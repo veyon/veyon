@@ -1,5 +1,4 @@
 #include <QBuffer>
-#include <QGuiApplication>
 
 #include "VncServerClient.h"
 #include "VncServerProtocol.h"
@@ -31,16 +30,6 @@ private:
 	const RfbVeyonAuth::Type m_authMethod;
 
 };
-
-
-
-extern "C" int LLVMFuzzerInitialize(int *argc, char ***argv)
-{
-	// QVariant requires GUI support to create types such as QPixmap
-	new QGuiApplication(*argc, *argv);
-	return 0;
-}
-
 
 
 extern "C" int LLVMFuzzerTestOneInput(const char *data, size_t size)

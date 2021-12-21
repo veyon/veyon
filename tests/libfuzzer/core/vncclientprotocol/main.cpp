@@ -18,7 +18,6 @@ public:
 };
 
 
-
 extern "C" int LLVMFuzzerTestOneInput(const char *data, size_t size)
 {
 	if (size < 3)
