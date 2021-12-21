@@ -35,6 +35,16 @@ VariantStream::VariantStream( QIODevice* ioDevice ) :
 QVariant VariantStream::read() // Flawfinder: ignore
 {
 	QVariant v;
+
+	m_dataStream.startTransaction();
+	const auto isValid = checkVariant(0);
+	m_dataStream.rollbackTransaction();
+
+	if (isValid == false)
+	{
+		return {};
+	}
+
 	m_dataStream >> v;
 
 	if( v.isValid() == false || v.isNull() )
@@ -50,4 +60,194 @@ QVariant VariantStream::read() // Flawfinder: ignore
 void VariantStream::write( const QVariant& v )
 {
 	m_dataStream << v;
+}
+
+
+
+bool VariantStream::checkBool()
+{
+	bool b;
+	m_dataStream >> b;
+	return m_dataStream.status() == QDataStream::Status::Ok;
+}
+
+
+
+bool VariantStream::checkByteArray()
+{
+	const auto pos = m_dataStream.device()->pos();
+
+	quint32 len;
+	m_dataStream >> len;
+
+	m_dataStream.device()->seek(pos);
+
+	if (len > MaxByteArraySize)
+	{
+		vDebug() << "byte array too big";
+		return false;
+	}
+
+	QByteArray s;
+	m_dataStream >> s;
+
+	return m_dataStream.status() == QDataStream::Status::Ok;
+}
+
+
+
+bool VariantStream::checkInt()
+{
+	int i;
+	m_dataStream >> i;
+	return m_dataStream.status() == QDataStream::Status::Ok;
+}
+
+
+
+bool VariantStream::checkRect()
+{
+	qint32 i;
+	m_dataStream >> i >> i >> i >> i;
+	return m_dataStream.status() == QDataStream::Status::Ok;
+}
+
+
+
+bool VariantStream::checkString()
+{
+	const auto pos = m_dataStream.device()->pos();
+
+	quint32 len;
+	m_dataStream >> len;
+
+	m_dataStream.device()->seek(pos);
+
+	if (len > MaxStringSize)
+	{
+		vDebug() << "string too long";
+		return false;
+	}
+
+	QString s;
+	m_dataStream >> s;
+
+	return m_dataStream.status() == QDataStream::Status::Ok;
+}
+
+
+
+bool VariantStream::checkStringList()
+{
+	quint32 n;
+	m_dataStream >> n;
+
+	if (n > MaxContainerSize)
+	{
+		vDebug() << "QStringList has too many elements";
+		return false;
+	}
+
+	for (quint32 i = 0; i < n; ++i)
+	{
+		if (checkString() == false)
+		{
+			return false;
+		}
+	}
+
+	return m_dataStream.status() == QDataStream::Status::Ok;
+}
+
+
+
+bool VariantStream::checkUuid()
+{
+	QUuid uuid;
+	m_dataStream >> uuid;
+	return m_dataStream.status() == QDataStream::Status::Ok;
+}
+
+
+
+bool VariantStream::checkVariant(int depth)
+{
+	if (depth > MaxCheckRecursionDepth)
+	{
+		vDebug() << "max recursion depth reached";
+		return false;
+	}
+
+	quint32 typeId = 0;
+	m_dataStream >> typeId;
+
+	quint8 isNull = false;
+	m_dataStream >> isNull;
+
+	switch(typeId)
+	{
+	case QMetaType::Bool: return checkBool();
+	case QMetaType::QByteArray: return checkByteArray();
+	case QMetaType::Int: return checkInt();
+	case QMetaType::QRect: return checkRect();
+	case QMetaType::QString: return checkString();
+	case QMetaType::QStringList: return checkStringList();
+	case QMetaType::QUuid: return checkUuid();
+	case QMetaType::QVariantList: return checkVariantList(depth);
+	case QMetaType::QVariantMap: return checkVariantMap(depth);
+	default:
+		vDebug() << "invalid type" << typeId;
+		return false;
+	}
+
+	return m_dataStream.status() == QDataStream::Status::Ok;
+}
+
+
+
+bool VariantStream::checkVariantList(int depth)
+{
+	quint32 n;
+	m_dataStream >> n;
+
+	if (n > MaxContainerSize)
+	{
+		vDebug() << "QVariantList has too many elements";
+		return false;
+	}
+
+	for (quint32 i = 0; i < n; ++i)
+	{
+		if (checkVariant(depth+1) == false)
+		{
+			return false;
+		}
+	}
+
+	return m_dataStream.status() == QDataStream::Status::Ok;
+}
+
+
+
+bool VariantStream::checkVariantMap(int depth)
+{
+	quint32 n;
+	m_dataStream >> n;
+
+	if (n > MaxContainerSize)
+	{
+		vDebug() << "QVariantMap has too many elements";
+		return false;
+	}
+
+	for (quint32 i = 0; i < n; ++i)
+	{
+		if (checkString() == false ||
+			checkVariant(depth+1) == false)
+		{
+			return false;
+		}
+	}
+
+	return m_dataStream.status() == QDataStream::Status::Ok;
 }
