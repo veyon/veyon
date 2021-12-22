@@ -4,6 +4,7 @@ if(NOT VEYON_X11VNC_EXTERNAL)
 
 	get_property(HAVE_LIBVNCCLIENT GLOBAL PROPERTY HAVE_LIBVNCCLIENT)
 	if(HAVE_LIBVNCCLIENT)
+		find_package(LibVNCClient)
 		find_package(LibVNCServer 0.9.8)
 	else()
 		message(WARNING "No suitable LibVNCClient library found therefore performing internal build of LibVNCServer as well to avoid binary compatibility issues")
@@ -224,11 +225,6 @@ else()
 	target_include_directories(builtin-x11vnc-server PRIVATE ${x11vnc_DIR}/src)
 
 	target_link_libraries(builtin-x11vnc-server PRIVATE
-		Threads::Threads
-		PNG::PNG
-		${ZLIB_LIBRARIES}
-		${JPEG_LIBRARIES}
-		${LZO_LIBRARIES}
 		${X11_LIBRARIES}
 		${X11_XTest_LIB}
 		${X11_Xfixes_LIB}
@@ -238,8 +234,17 @@ else()
 		)
 
 	if(LibVNCServer_FOUND)
-		target_link_libraries(builtin-x11vnc-server PRIVATE LibVNC::LibVNCServer)
+		target_link_libraries(builtin-x11vnc-server PRIVATE
+			LibVNC::LibVNCClient
+			LibVNC::LibVNCServer)
 	else()
+		target_link_libraries(builtin-x11vnc-server PRIVATE
+			Threads::Threads
+			PNG::PNG
+			${ZLIB_LIBRARIES}
+			${JPEG_LIBRARIES}
+			${LZO_LIBRARIES}
+			)
 		target_include_directories(builtin-x11vnc-server PRIVATE ${libvncserver_DIR}/libvncserver ${libvncserver_DIR}/common)
 	endif()
 
