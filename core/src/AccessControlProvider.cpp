@@ -168,6 +168,8 @@ bool AccessControlProvider::processAuthorizedGroups( const QString& accessingUse
 	const auto groupsOfAccessingUser = m_userGroupsBackend->groupsOfUser( accessingUser, m_queryDomainGroups );
 	const auto authorizedUserGroups = VeyonCore::config().authorizedUserGroups();
 
+	vDebug() << groupsOfAccessingUser << authorizedUserGroups;
+
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
 	const auto groupsOfAccessingUserSet = QSet<QString>{ groupsOfAccessingUser.begin(), groupsOfAccessingUser.end() };
 	const auto authorizedUserGroupSet = QSet<QString>{ authorizedUserGroups.begin(), authorizedUserGroups.end() };
