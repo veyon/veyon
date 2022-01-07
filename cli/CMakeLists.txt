@@ -22,7 +22,7 @@ target_compile_options(veyon-cli PRIVATE -Wno-date-time)
 add_windows_resource(veyon-cli ${CMAKE_CURRENT_BINARY_DIR}/veyon-cli.rc)
 make_console_app(veyon-cli)
 
-if(VEYON_BUILD_WIN32)
+if(VEYON_BUILD_WINDOWS)
 	build_veyon_application(veyon-wcli ${cli_SOURCES})
 
 	add_windows_resource(veyon-wcli ${CMAKE_CURRENT_BINARY_DIR}/veyon-wcli.rc)

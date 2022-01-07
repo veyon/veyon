@@ -119,7 +119,7 @@ else()
 		)
 endif()
 
-if(VEYON_BUILD_WIN32)
+if(VEYON_BUILD_WINDOWS)
 	# add Windows Socket library required by libvncclient
 	target_link_libraries(veyon-core PRIVATE -lws2_32)
 	set_target_properties(veyon-core PROPERTIES PREFIX "")
@@ -134,10 +134,6 @@ endif()
 
 if(VEYON_BUILD_ANDROID)
 	target_link_libraries(veyon-core PRIVATE Qt5::AndroidExtras)
-endif()
-
-if(VEYON_BUILD_WIN32)
-	target_compile_definitions(veyon-core PUBLIC _WIN32_WINNT=0x0602)
 endif()
 
 if(WITH_PCH)
@@ -159,7 +155,4 @@ if(WITH_PCH)
 		target_link_libraries(veyon-pch PUBLIC Qt5::Core Qt5::Concurrent Qt5::Network Qt5::Widgets)
 	endif()
 	target_precompile_headers(veyon-pch PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src/PrecompiledHeader.h")
-	if(VEYON_BUILD_WIN32)
-		target_compile_definitions(veyon-pch PUBLIC _WIN32_WINNT=0x0602)
-	endif()
 endif()
