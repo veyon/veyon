@@ -22,6 +22,8 @@
  *
  */
 
+#include <QUuid>
+
 #include "VariantStream.h"
 
 VariantStream::VariantStream( QIODevice* ioDevice ) :
