@@ -1,14 +1,7 @@
 macro(add_windows_resource TARGET)
-	if(VEYON_BUILD_WIN32)
-		set(WINRC "${CMAKE_CURRENT_BINARY_DIR}/${TARGET}.rc")
-		set(RCOBJ "${CMAKE_CURRENT_BINARY_DIR}/winrc-${TARGET}.obj")
-		add_custom_command(OUTPUT ${RCOBJ}
-			COMMAND ${WINDRES}
-			-I${CMAKE_CURRENT_SOURCE_DIR}
-			-o${RCOBJ}
-			-i${WINRC}
-			DEPENDS ${WINRC})
-		target_sources(${TARGET} PUBLIC ${RCOBJ})
+	if(VEYON_BUILD_WINDOWS)
+		set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/${TARGET}.rc PROPERTIES INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR})
+		target_sources(${TARGET} PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/${TARGET}.rc)
 	endif()
 endmacro()
 
