@@ -22,6 +22,8 @@
  *
  */
 
+#include <QTcpSocket>
+
 #include "AuthenticationManager.h"
 #include "ServerAuthenticationManager.h"
 #include "ServerAccessControlManager.h"
