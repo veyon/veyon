@@ -26,6 +26,8 @@
 
 #include "VncServerProtocol.h"
 
+class QTcpSocket;
+
 class ServerAuthenticationManager;
 class ServerAccessControlManager;
 
