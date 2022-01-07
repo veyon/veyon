@@ -29,8 +29,8 @@
 AuthenticationManager::AuthenticationManager( QObject* parent ) :
 	QObject( parent ),
 	m_legacyAuthTypes( {
-		{ LegacyAuthType::Logon, QStringLiteral("63611f7c-b457-42c7-832e-67d0f9281085") },
-		{ LegacyAuthType::KeyFile, QStringLiteral("0c69b301-81b4-42d6-8fae-128cdd113314") }
+		{ LegacyAuthType::Logon, Plugin::Uid{QStringLiteral("63611f7c-b457-42c7-832e-67d0f9281085")} },
+		{ LegacyAuthType::KeyFile, Plugin::Uid{QStringLiteral("0c69b301-81b4-42d6-8fae-128cdd113314")} }
 	} )
 {
 	for( auto pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )

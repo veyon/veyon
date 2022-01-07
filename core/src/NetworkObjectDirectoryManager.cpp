@@ -53,14 +53,14 @@ NetworkObjectDirectory* NetworkObjectDirectoryManager::configuredDirectory()
 		const auto enabledDirectories = VeyonCore::config().enabledNetworkObjectDirectoryPlugins();
 		if( enabledDirectories.count() == 1 )
 		{
-			m_configuredDirectory = createDirectory( enabledDirectories.constFirst(), this );
+			m_configuredDirectory = createDirectory( Plugin::Uid{enabledDirectories.constFirst()}, this );
 		}
 		else if( enabledDirectories.count() > 1 )
 		{
 			const auto nestedDirectory = new NestedNetworkObjectDirectory( this );
 			for( const auto& directoryUid : enabledDirectories )
 			{
-				nestedDirectory->addSubDirectory( createDirectory( directoryUid, this ) );
+				nestedDirectory->addSubDirectory( createDirectory( Plugin::Uid{directoryUid}, this ) );
 			}
 			m_configuredDirectory = nestedDirectory;
 		}
