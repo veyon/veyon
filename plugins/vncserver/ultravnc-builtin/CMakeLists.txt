@@ -100,6 +100,8 @@ if(VEYON_BUILD_WIN64)
 	target_compile_definitions(builtin-ultravnc-server PRIVATE _X64)
 endif()
 
+qt6_disable_unicode_defines(builtin-ultravnc-server)
+
 set(ULTRAVNC_COMPILER_FLAGS "-Wno-comments -Wno-attributes -Wno-write-strings -Wno-parentheses -Wno-misleading-indentation -Wno-unused-result -Wno-unused-label -Wno-unknown-pragmas -Wno-unused-variable -Wno-unused-but-set-variable -Wno-deprecated-declarations -Wno-format-zero-length -Wno-sign-compare -Wno-int-to-pointer-cast -fexceptions")
 
 set_source_files_properties(${ultravnc_C_SOURCES} PROPERTIES COMPILE_FLAGS "${ULTRAVNC_COMPILER_FLAGS}")
