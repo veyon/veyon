@@ -28,10 +28,10 @@ build-windows:
   stage: build
   image: $CI_REGISTRY/veyon/ci-mingw-w64:4.7
   script:
-    - .ci/windows/build.sh $BITS
+    - .ci/windows/build.sh $ARCH
   parallel:
     matrix:
-      - BITS: [32, 64]
+      - ARCH: [i686, x86_64]
   artifacts:
     paths: [ veyon-win* ]
     expire_in: 1 day
