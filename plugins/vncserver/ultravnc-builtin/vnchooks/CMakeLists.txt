@@ -1,16 +1,10 @@
-set(VH_WINRC "${CMAKE_CURRENT_BINARY_DIR}/vnchooksrc.obj")
-add_custom_command(OUTPUT ${VH_WINRC}
-						COMMAND ${WINDRES}
-							-I${CMAKE_CURRENT_SOURCE_DIR}
-							-o${VH_WINRC}
-							-i${ultravnc_DIR}/winvnc/vnchooks/vnchooks.rc)
-
 set(vnchooks_SOURCES
 	${ultravnc_DIR}/winvnc/vnchooks/VNCHooks.cpp
 	${ultravnc_DIR}/winvnc/vnchooks/SharedData.cpp
+	${ultravnc_DIR}/winvnc/vnchooks/vnchooks.rc
 )
 
-add_library(vnchooks MODULE ${vnchooks_SOURCES} ${VH_WINRC})
+add_library(vnchooks MODULE ${vnchooks_SOURCES})
 set_source_files_properties(${vnchooks_SOURCES} PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE)
 set_default_target_properties(vnchooks)
 set_target_properties(vnchooks PROPERTIES PREFIX "")

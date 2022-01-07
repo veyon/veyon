@@ -12,13 +12,11 @@ set(CMAKE_INSTALL_PREFIX	${MINGW_PREFIX})
 set(MINGW_TOOL_PREFIX		/usr/bin/${MINGW_TARGET}-)
 
 # specify the cross compiler
-set(CMAKE_RC_COMPILER		${MINGW_TOOL_PREFIX}gcc)
 set(CMAKE_C_COMPILER		${MINGW_TOOL_PREFIX}gcc)
 set(CMAKE_CXX_COMPILER		${MINGW_TOOL_PREFIX}g++)
 
 # specify location of some tools
 set(STRIP					${MINGW_TOOL_PREFIX}strip)
-set(WINDRES					${MINGW_TOOL_PREFIX}windres)
 
 set(QT_BINARY_DIR			${MINGW_PREFIX}/bin)
 set(QT_QMAKE_EXECUTABLE		${QT_BINARY_DIR}/qmake)
