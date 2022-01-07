@@ -11,7 +11,7 @@ rm -rf $BUILDDIR
 mkdir $BUILDDIR
 cd $BUILDDIR
 
-cmake $BASEDIR -DCMAKE_TOOLCHAIN_FILE=$BASEDIR/cmake/modules/Win${1}Toolchain.cmake -DCMAKE_MODULE_PATH=$BASEDIR/cmake/modules/ -G Ninja $CMAKE_FLAGS
+/usr/$1-w64-mingw32/bin/qt-cmake $BASEDIR -G Ninja -DWITH_QT6=ON $CMAKE_FLAGS
 
 if [ -z "$2" ] ; then
 	ninja windows-binaries
