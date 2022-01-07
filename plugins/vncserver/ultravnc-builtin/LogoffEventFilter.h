@@ -34,7 +34,7 @@ class LogoffEventFilter : public QAbstractNativeEventFilter
 public:
 	LogoffEventFilter();
 
-	bool nativeEventFilter( const QByteArray& eventType, void* message, long* result) override;
+	bool nativeEventFilter(const QByteArray& eventType, void* message, qintptr* result) override;
 
 private:
 	HANDLE m_shutdownEventHandle;
