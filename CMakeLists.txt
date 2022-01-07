@@ -112,7 +112,14 @@ string(REGEX REPLACE "\\.[0-9]$" "" COMPILER_VERSION_MAJOR_MINOR ${CMAKE_CXX_COM
 
 # set up basic platform variables
 if(WIN32)
-	set(VEYON_BUILD_WIN32 1)
+	set(VEYON_BUILD_WINDOWS 1)
+	if(CMAKE_SYSTEM_PROCESSOR STREQUAL "x86_64")
+		set(VEYON_BUILD_WIN64 1)
+		set(VEYON_WINDOWS_ARCH "win64")
+	else()
+		set(VEYON_BUILD_WIN32 1)
+		set(VEYON_WINDOWS_ARCH "win32")
+	endif()
 	add_definitions(-DUNICODE -D_UNICODE)
 endif()
 if(APPLE)
@@ -123,10 +130,6 @@ if(UNIX AND NOT ANDROID)
 endif()
 if(ANDROID)
 	set(VEYON_BUILD_ANDROID 1)
-endif()
-
-if(WIN64)
-	set(VEYON_BUILD_WIN64 TRUE)
 endif()
 
 # set up library and plugin path variables
@@ -198,7 +201,7 @@ elseif(WITH_UNITY_BUILD)
 	set(CMAKE_UNITY_BUILD ON)
 endif()
 
-if(VEYON_BUILD_WIN32 OR VEYON_BUILD_WIN64)
+if(VEYON_BUILD_WINDOWS)
 	set(WITH_LTO OFF)
 endif()
 
