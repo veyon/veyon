@@ -272,6 +272,7 @@ void ComputerMonitoringWidget::runDoubleClickFeature( const QModelIndex& index )
 
 void ComputerMonitoringWidget::runMousePressAndHoldFeature( )
 {
+	m_mousePressAndHold.stop();
 	const auto selectedInterfaces = selectedComputerControlInterfaces();
 	if( !m_ignoreMousePressAndHoldEvent &&
 		selectedInterfaces.count() > 0 &&
@@ -280,9 +281,9 @@ void ComputerMonitoringWidget::runMousePressAndHoldFeature( )
 		selectedInterfaces.first()->hasValidFramebuffer() )
 	{
 		m_ignoreMousePressAndHoldEvent = true;
+		m_ignoreNumberOfMouseEvents = IgnoredNumberOfMouseEventsWhileHold;
 		delete m_computerZoomWidget;
-		m_computerZoomWidget = new ComputerZoomWidget( selectedInterfaces.first()  );
-		QApplication::setOverrideCursor(Qt::BlankCursor);
+		m_computerZoomWidget = new ComputerZoomWidget( selectedInterfaces.first() );
 	}
 }
 
@@ -290,9 +291,11 @@ void ComputerMonitoringWidget::runMousePressAndHoldFeature( )
 
 void ComputerMonitoringWidget::stopMousePressAndHoldFeature( )
 {
+	m_ignoreMousePressAndHoldEvent = false;
+	m_ignoreNumberOfMouseEvents = 0;
+	m_computerZoomWidget->close();
 	delete m_computerZoomWidget;
 	m_computerZoomWidget = nullptr;
-	QApplication::restoreOverrideCursor();
 }
 
 
@@ -320,7 +323,6 @@ void ComputerMonitoringWidget::mouseReleaseEvent( QMouseEvent* event )
 	{
 		stopMousePressAndHoldFeature();
 	}
-	m_ignoreMousePressAndHoldEvent = false;
 	QListView::mouseReleaseEvent( event );
 }
 
@@ -329,12 +331,19 @@ void ComputerMonitoringWidget::mouseReleaseEvent( QMouseEvent* event )
 void ComputerMonitoringWidget::mouseMoveEvent( QMouseEvent* event )
 {
 	m_mousePressAndHold.stop();
-	if ( m_ignoreMousePressAndHoldEvent )
+	if ( m_ignoreNumberOfMouseEvents <= 0 )
 	{
-		stopMousePressAndHoldFeature();
+		if ( m_ignoreMousePressAndHoldEvent )
+		{
+			stopMousePressAndHoldFeature();
+		}
+
+		QListView::mouseMoveEvent( event );
+	} else
+	{
+		m_ignoreNumberOfMouseEvents--;
+		event->accept();
 	}
-	m_ignoreMousePressAndHoldEvent = false;
-	QListView::mouseMoveEvent( event );
 }
 
 
