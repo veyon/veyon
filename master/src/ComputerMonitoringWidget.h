@@ -73,7 +73,8 @@ private:
 
 	void mousePressEvent( QMouseEvent* event ) override;
 	void mouseReleaseEvent( QMouseEvent* event ) override;
-	void mouseMoveEvent( QMouseEvent * event ) override;
+	void mouseMoveEvent( QMouseEvent* event ) override;
+
 	void resizeEvent( QResizeEvent* event ) override;
 	void showEvent( QShowEvent* event ) override;
 	void wheelEvent( QWheelEvent* event ) override;
@@ -82,6 +83,9 @@ private:
 	bool m_ignoreMousePressAndHoldEvent{false};
 	bool m_ignoreWheelEvent{false};
 	bool m_ignoreResizeEvent{false};
+	int m_ignoreNumberOfMouseEvents = 0;
+
+	static constexpr auto IgnoredNumberOfMouseEventsWhileHold = 3;
 
 	ComputerZoomWidget* m_computerZoomWidget{nullptr};
 
