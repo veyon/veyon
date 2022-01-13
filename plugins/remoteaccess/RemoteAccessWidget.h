@@ -88,6 +88,11 @@ public:
 								 bool startViewOnly, bool showViewOnlyToggleButton );
 	~RemoteAccessWidget() override;
 
+	ComputerControlInterface::Pointer computerControlInterface() const
+	{
+		return m_computerControlInterface;
+	}
+
 	VncViewWidget* vncView() const
 	{
 		return m_vncView;
