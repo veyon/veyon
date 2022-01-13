@@ -42,6 +42,11 @@ public:
 							   QQuickItem* parent );
 	~RemoteAccessPage() override;
 
+	ComputerControlInterface::Pointer computerControlInterface() const
+	{
+		return m_computerControlInterface;
+	}
+
 	QString computerName() const
 	{
 		return m_computerControlInterface->computer().name();
