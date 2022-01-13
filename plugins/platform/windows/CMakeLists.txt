@@ -57,7 +57,7 @@ target_include_directories(windows-platform PRIVATE
 	${Qt5Gui_PRIVATE_INCLUDE_DIRS}
 	)
 
-target_link_libraries(windows-platform PRIVATE -lwtsapi32 -lnetapi32 -luserenv -linterception -liphlpapi)
+target_link_libraries(windows-platform PRIVATE -lws2_32 -lwtsapi32 -lnetapi32 -luserenv -linterception -liphlpapi)
 target_link_libraries(windows-platform PRIVATE Qt6::GuiPrivate)
 target_compile_definitions(windows-platform PRIVATE ULTRAVNC_VEYON_SUPPORT)
 target_compile_options(windows-platform PRIVATE "-Wno-unknown-pragmas")
