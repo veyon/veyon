@@ -22,6 +22,8 @@
  *
  */
 
+#include <QTcpSocket>
+
 #include "DemoServerProtocol.h"
 #include "VariantArrayMessage.h"
 #include "VncServerClient.h"
