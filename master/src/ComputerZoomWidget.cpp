@@ -22,6 +22,7 @@
  *
  */
 
+#include <QApplication>
 #include <QIcon>
 
 #include "ComputerZoomWidget.h"
@@ -35,6 +36,8 @@ ComputerZoomWidget::ComputerZoomWidget( const ComputerControlInterface::Pointer&
 	QWidget(),
 	m_vncView( new VncViewWidget( computerControlInterface, {}, this ) )
 {
+	QApplication::setOverrideCursor(Qt::BlankCursor);
+
 	const auto openOnMasterScreen = VeyonCore::config().showFeatureWindowsOnSameScreen();
 	const auto master = VeyonCore::instance()->findChild<VeyonMasterInterface *>();
 	const auto masterWindow = master->mainWindow();
@@ -53,9 +56,12 @@ ComputerZoomWidget::ComputerZoomWidget( const ComputerControlInterface::Pointer&
 	setAttribute( Qt::WA_DeleteOnClose, true );
 
 	m_vncView->move( 0, 0 );
+	connect( m_vncView, &VncViewWidget::sizeHintChanged, this, &ComputerZoomWidget::updateSize );
 
-	showMaximized();
+	setWindowState(Qt::WindowMaximized);
 	VeyonCore::platform().coreFunctions().raiseWindow( this, false );
+
+	show();
 }
 
 
@@ -84,4 +90,31 @@ void ComputerZoomWidget::updateComputerZoomWidgetTitle()
 															  m_vncView->computerControlInterface()->computer().name(),
 															  VeyonCore::applicationName() ) );
 	}
+}
+
+
+
+void ComputerZoomWidget::resizeEvent( QResizeEvent* event )
+{
+	m_vncView->resize( size() );
+
+	QWidget::resizeEvent( event );
+}
+
+
+
+void ComputerZoomWidget::updateSize()
+{
+	if( !( windowState() & Qt::WindowFullScreen ) &&
+			m_vncView->sizeHint().isEmpty() == false )
+	{
+		resize( m_vncView->sizeHint() );
+	}
+}
+
+
+
+void ComputerZoomWidget::closeEvent( QCloseEvent* event )
+{
+	QApplication::restoreOverrideCursor();
 }
