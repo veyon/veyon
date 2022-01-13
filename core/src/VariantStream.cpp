@@ -82,13 +82,19 @@ bool VariantStream::checkByteArray()
 	quint32 len;
 	m_dataStream >> len;
 
-	m_dataStream.device()->seek(pos);
+	// null array?
+	if (len == 0xffffffff)
+	{
+		return true;
+	}
 
 	if (len > MaxByteArraySize)
 	{
 		vDebug() << "byte array too big";
 		return false;
 	}
+
+	m_dataStream.device()->seek(pos);
 
 	QByteArray s;
 	m_dataStream >> s;
@@ -123,13 +129,19 @@ bool VariantStream::checkString()
 	quint32 len;
 	m_dataStream >> len;
 
-	m_dataStream.device()->seek(pos);
+	// null string?
+	if (len == 0xffffffff)
+	{
+		return true;
+	}
 
 	if (len > MaxStringSize)
 	{
 		vDebug() << "string too long";
 		return false;
 	}
+
+	m_dataStream.device()->seek(pos);
 
 	QString s;
 	m_dataStream >> s;
