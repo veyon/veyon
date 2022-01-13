@@ -23,6 +23,8 @@
  */
 
 #include <QApplication>
+#include <QBuffer>
+#include <QClipboard>
 #include <QInputDialog>
 
 #include "AuthenticationCredentials.h"
@@ -50,13 +52,23 @@ RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin( QObject* parent ) :
 							tr( "Remote control" ), {},
 							tr( "Open a remote control window for a computer." ),
 							QStringLiteral(":/remoteaccess/krdc.png") ),
-	m_features( { m_remoteViewFeature, m_remoteControlFeature } ),
+	m_clipboardExchangeFeature(QStringLiteral("ClipboardExchange"),
+								Feature::Flag::Meta,
+								Feature::Uid("8fa73e19-3d66-4d59-9783-c2a1bb07e20e"),
+								Feature::Uid(),
+								tr("Exchange clipboard contents"), {}, {}),
+	m_features({m_remoteViewFeature, m_remoteControlFeature, m_clipboardExchangeFeature}),
 	m_commands( {
 { QStringLiteral("view"), m_remoteViewFeature.displayName() },
 { QStringLiteral("control"), m_remoteControlFeature.displayName() },
 { QStringLiteral("help"), tr( "Show help about command" ) },
 				} )
 {
+	if (VeyonCore::component() == VeyonCore::Component::Server)
+	{
+		connect (QGuiApplication::clipboard(), &QClipboard::dataChanged,
+				 this, &RemoteAccessFeaturePlugin::updateClipboardData);
+	}
 }
 
 
@@ -129,6 +141,23 @@ bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 }
 
 
+
+bool RemoteAccessFeaturePlugin::handleFeatureMessage(ComputerControlInterface::Pointer computerControlInterface,
+													 const FeatureMessage& message)
+{
+	Q_UNUSED(computerControlInterface)
+
+	if (message.featureUid() == m_clipboardExchangeFeature.uid())
+	{
+		loadClipboardData(message);
+		return true;
+	}
+
+	return false;
+}
+
+
+
 bool RemoteAccessFeaturePlugin::handleFeatureMessage(VeyonServerInterface &server,
 													 const MessageContext &messageContext,
 													 const FeatureMessage &message)
@@ -140,6 +169,11 @@ bool RemoteAccessFeaturePlugin::handleFeatureMessage(VeyonServerInterface &serve
 	{
 		// forward message to worker
 		server.featureWorkerManager().sendMessageToUnmanagedSessionWorker(message);
+		return true;
+	}
+	else if (message.featureUid() == m_clipboardExchangeFeature.uid())
+	{
+		loadClipboardData(message);
 		return true;
 	}
 
@@ -164,6 +198,26 @@ bool RemoteAccessFeaturePlugin::handleFeatureMessage(VeyonWorkerInterface &worke
 	}
 
 	return false;
+}
+
+
+
+void RemoteAccessFeaturePlugin::sendAsyncFeatureMessages(VeyonServerInterface& server,
+														 const MessageContext& messageContext)
+{
+	const auto clipboardDataVersion = messageContext.ioDevice()->property(clipboardDataVersionProperty()).toInt();
+
+	if (clipboardDataVersion != m_clipboardDataVersion)
+	{
+		FeatureMessage message{m_clipboardExchangeFeature.uid()};
+
+		m_clipboardDataMutex.lock();
+		storeClipboardData(&message, m_clipboardText, m_clipboardImage);
+		m_clipboardDataMutex.unlock();
+
+		server.sendFeatureMessageReply(messageContext, message);
+		messageContext.ioDevice()->setProperty(clipboardDataVersionProperty(), m_clipboardDataVersion);
+	}
 }
 
 
@@ -301,4 +355,85 @@ void RemoteAccessFeaturePlugin::createRemoteAccessWindow(const ComputerControlIn
 														 bool viewOnly)
 {
 	new RemoteAccessWidget(computerControlInterface, viewOnly, remoteViewEnabled() && remoteControlEnabled());
+	auto widget = new RemoteAccessWidget(computerControlInterface, viewOnly,
+										  remoteViewEnabled() && remoteControlEnabled());
+
+	// forward clipboard changes as long as the widget exists
+	connect(QGuiApplication::clipboard(), &QClipboard::dataChanged, widget, [=]()
+			 {
+				 sendClipboardData(widget->computerControlInterface());
+			 });
+}
+
+
+
+void RemoteAccessFeaturePlugin::storeClipboardData(FeatureMessage *message, const QString& text, const QImage& image)
+{
+	QBuffer buffer;
+	buffer.open(QIODevice::WriteOnly);
+	image.save(&buffer, clipboardImageFormat());
+	buffer.close();
+
+	message->addArgument(Argument::ClipboardText, text);
+	message->addArgument(Argument::ClipboardImage, buffer.data());
+}
+
+
+
+void RemoteAccessFeaturePlugin::loadClipboardData(const FeatureMessage &message)
+{
+	const auto clipboard = QGuiApplication::clipboard();
+
+	const auto text = message.argument(Argument::ClipboardText).toString();
+	if (text.isEmpty() == false && clipboard->text() != text)
+	{
+		clipboard->setText(text);
+	}
+
+	// TODO: better support for image I/O on Windows via QWindowsMime
+
+	const auto image = QImage::fromData(message.argument(Argument::ClipboardImage).toByteArray(),
+										 clipboardImageFormat());
+	if (image.isNull() == false && clipboard->image() != image)
+	{
+		clipboard->setImage(image);
+	}
+}
+
+
+
+void RemoteAccessFeaturePlugin::sendClipboardData(ComputerControlInterface::Pointer computerControlInterface)
+{
+	FeatureMessage message{m_clipboardExchangeFeature.uid()};
+
+	const auto clipboard = QGuiApplication::clipboard();
+
+	// TODO: better support for image I/O on Windows via QWindowsMime
+	storeClipboardData(&message, clipboard->text(), clipboard->image());
+
+	computerControlInterface->sendFeatureMessage(message);
+}
+
+
+
+void RemoteAccessFeaturePlugin::updateClipboardData()
+{
+	m_clipboardDataMutex.lock();
+
+	const auto clipboard = QGuiApplication::clipboard();
+
+	if (m_clipboardText != clipboard->text())
+	{
+		m_clipboardText = clipboard->text();
+		++m_clipboardDataVersion;
+	}
+
+	// TODO: better support for image I/O on Windows via QWindowsMime
+	if (m_clipboardImage != clipboard->image())
+	{
+		m_clipboardImage = clipboard->image();
+		++m_clipboardDataVersion;
+	}
+
+	m_clipboardDataMutex.unlock();
 }

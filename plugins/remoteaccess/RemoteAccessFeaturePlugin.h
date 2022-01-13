@@ -37,7 +37,9 @@ class RemoteAccessFeaturePlugin : public QObject, CommandLinePluginInterface, Fe
 public:
 	enum class Argument
 	{
-		HostName
+		HostName,
+		ClipboardText,
+		ClipboardImage
 	};
 	Q_ENUM(Argument)
 
@@ -82,11 +84,16 @@ public:
 	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
 					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
 
+	bool handleFeatureMessage(ComputerControlInterface::Pointer computerControlInterface,
+							  const FeatureMessage& message) override;
+
 	bool handleFeatureMessage(VeyonServerInterface& server,
 							  const MessageContext& messageContext,
 							  const FeatureMessage& message) override;
 
 	bool handleFeatureMessage(VeyonWorkerInterface& worker, const FeatureMessage& message) override;
+
+	void sendAsyncFeatureMessages(VeyonServerInterface& server, const MessageContext& messageContext) override;
 
 	QString commandLineModuleName() const override
 	{
@@ -108,16 +115,38 @@ private Q_SLOTS:
 	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );
 
 private:
+	static const char* clipboardDataVersionProperty()
+	{
+		return "clipboardDataVersion";
+	}
+
+	static const char* clipboardImageFormat()
+	{
+		return "PNG";
+	}
+
 	bool remoteViewEnabled() const;
 	bool remoteControlEnabled() const;
 	bool initAuthentication();
 	bool remoteAccess( const QString& hostAddress, bool viewOnly );
 	void createRemoteAccessWindow(const ComputerControlInterface::Pointer& computerControlInterface, bool viewOnly);
 
+	void storeClipboardData(FeatureMessage* message, const QString& text, const QImage& image);
+	void loadClipboardData(const FeatureMessage& message);
+	void sendClipboardData(ComputerControlInterface::Pointer computerControlInterface);
+
+	void updateClipboardData();
+
 	const Feature m_remoteViewFeature;
 	const Feature m_remoteControlFeature;
+	const Feature m_clipboardExchangeFeature;
 	const FeatureList m_features;
 
 	QMap<QString, QString> m_commands;
+
+	QMutex m_clipboardDataMutex;
+	int m_clipboardDataVersion{0};
+	QString m_clipboardText;
+	QImage m_clipboardImage;
 
 };
