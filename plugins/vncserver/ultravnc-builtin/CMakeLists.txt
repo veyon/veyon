@@ -86,7 +86,7 @@ build_veyon_plugin(builtin-ultravnc-server
 	UltraVncConfiguration.h
 	)
 
-target_link_libraries(builtin-ultravnc-server PRIVATE -luserenv -lole32 -lversion -lgdi32 -limm32 -lwinmm ${ZLIB_LIBRARIES} ${JPEG_LIBRARIES} ${LZO_LIBRARIES})
+target_link_libraries(builtin-ultravnc-server PRIVATE -lws2_32 -luserenv -lole32 -lversion -lgdi32 -limm32 -lwinmm ${ZLIB_LIBRARIES} ${JPEG_LIBRARIES} ${LZO_LIBRARIES})
 target_include_directories(builtin-ultravnc-server PRIVATE
 	${ultravnc_DIR}
 	${ultravnc_DIR}/winvnc
