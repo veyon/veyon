@@ -22,6 +22,8 @@
  *
  */
 
+#include <QTcpSocket>
+
 #include "DemoAuthentication.h"
 #include "DemoServerProtocol.h"
 #include "VariantArrayMessage.h"
