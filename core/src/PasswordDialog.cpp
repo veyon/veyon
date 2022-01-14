@@ -1,7 +1,7 @@
 /*
  * PasswordDialog.cpp - dialog for querying logon credentials
  *
- * Copyright (c) 2010-2021 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2010-2022 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

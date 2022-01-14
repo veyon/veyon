@@ -1,4 +1,4 @@
-# FindQtTranslations.cmake - Copyright (c) 2020-2021 Tobias Junghans
+# FindQtTranslations.cmake - Copyright (c) 2020-2022 Tobias Junghans
 #
 # description: find translation files of Qt and prepare them for Windows build
 # usage: find_qt_translations()

@@ -30,7 +30,7 @@ The following features are available in Veyon:
 
 ## License
 
-Copyright (c) 2004-2021 Tobias Junghans / Veyon Solutions.
+Copyright (c) 2004-2022 Tobias Junghans / Veyon Solutions.
 
 See the file COPYING for the GNU GENERAL PUBLIC LICENSE.
 
