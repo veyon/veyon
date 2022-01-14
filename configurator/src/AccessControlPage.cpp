@@ -252,8 +252,13 @@ void AccessControlPage::moveAccessControlRuleUp()
 
 void AccessControlPage::testUserGroupsAccessControl()
 {
-	QString username = QInputDialog::getText( this, tr( "Enter username" ),
-										  tr( "Please enter a user login name whose access permissions to test:" ) );
+	const auto username = QInputDialog::getText( this, tr( "Enter username" ),
+												 tr( "Please enter a user login name whose access permissions to test:" ) );
+
+	if (username.isEmpty())
+	{
+		return;
+	}
 
 	if( AccessControlProvider().processAuthorizedGroups( username ) )
 	{
