@@ -1,7 +1,7 @@
 /*
  * ConfigurationPage.cpp - implementation of configuration page base class
  *
- * Copyright (c) 2016-2021 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2016-2022 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

@@ -1,7 +1,7 @@
 /*
  * LdapDirectory.h - class representing the LDAP directory and providing access to directory entries
  *
- * Copyright (c) 2016-2021 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2016-2022 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

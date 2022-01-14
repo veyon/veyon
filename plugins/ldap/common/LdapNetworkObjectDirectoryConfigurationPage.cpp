@@ -1,7 +1,7 @@
 /*
  * LdapNetworkObjectDirectoryConfigurationPage.cpp - implementation of the LdapNetworkObjectDirectoryConfigurationPage class
  *
- * Copyright (c) 2021 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2021-2022 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
