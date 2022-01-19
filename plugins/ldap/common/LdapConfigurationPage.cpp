@@ -42,6 +42,8 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 {
 	ui->setupUi(this);
 
+	Configuration::UiMapping::setFlags(ui->queryTimeoutLabel, Configuration::Property::Flag::Advanced);
+
 #define CONNECT_BUTTON_SLOT(name)	connect( ui->name, &QPushButton::clicked, this, &LdapConfigurationPage::name );
 
 	connect( ui->browseBaseDn, &QPushButton::clicked, this, &LdapConfigurationPage::browseBaseDn );
