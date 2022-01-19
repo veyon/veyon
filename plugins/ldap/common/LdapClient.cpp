@@ -51,7 +51,8 @@ LdapClient::LdapClient( const LdapConfiguration& configuration, const QUrl& url,
 	m_configuration( configuration ),
 	m_server( new KLDAP::LdapServer ),
 	m_connection( new KLDAP::LdapConnection ),
-	m_operation( new KLDAP::LdapOperation )
+	m_operation( new KLDAP::LdapOperation ),
+	m_queryTimeout(m_configuration.queryTimeout())
 {
 	connectAndBind( url );
 }
@@ -130,7 +131,7 @@ LdapClient::Objects LdapClient::queryObjects( const QString& dn, const QStringLi
 
 		auto isFirstResult = true;
 
-		while( ( result = m_operation->waitForResult( id, LdapQueryTimeout ) ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
+		while( ( result = m_operation->waitForResult( id, m_queryTimeout ) ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
 		{
 			if( isFirstResult )
 			{
@@ -221,7 +222,7 @@ QStringList LdapClient::queryAttributeValues( const QString& dn, const QString& 
 		bool isFirstResult = true;
 		QString realAttributeName = attribute.toLower();
 
-		while( ( result = m_operation->waitForResult( id, LdapQueryTimeout ) ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
+		while( ( result = m_operation->waitForResult( id, m_queryTimeout ) ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
 		{
 			if( isFirstResult )
 			{
@@ -293,7 +294,7 @@ QStringList LdapClient::queryDistinguishedNames( const QString& dn, const QStrin
 
 	if( id != -1 )
 	{
-		while( ( result = m_operation->waitForResult( id, LdapQueryTimeout ) ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
+		while( ( result = m_operation->waitForResult( id, m_queryTimeout ) ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
 		{
 			distinguishedNames += m_operation->object().dn().toString();
 		}
@@ -344,7 +345,7 @@ QStringList LdapClient::queryObjectAttributes( const QString& dn )
 		return {};
 	}
 
-	if( m_operation->waitForResult( id, LdapQueryTimeout ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
+	if( m_operation->waitForResult( id, m_queryTimeout ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
 	{
 		const auto keys = m_operation->object().attributes().keys();
 		vDebug() << "results" << keys;
