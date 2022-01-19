@@ -126,6 +126,8 @@ public:
 		return QStringLiteral("cn");
 	}
 
+	static constexpr int DefaultQueryTimeout = 3000;
+
 private:
 	static constexpr int LdapQueryTimeout = 3000;
 	static constexpr int LdapConnectionTimeout = 60*1000;

@@ -80,10 +80,57 @@
             </item>
            </layout>
           </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="queryTimeoutLabel">
+            <property name="text">
+             <string>Query timeout</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="serverHost"/>
+          </item>
+          <item row="3" column="1" colspan="2">
+           <widget class="QLineEdit" name="bindDn">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
           <item row="3" column="0">
            <widget class="QLabel" name="label_30">
             <property name="text">
              <string>Bind DN</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1" colspan="2">
+           <widget class="QLineEdit" name="bindPassword">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="echoMode">
+             <enum>QLineEdit::Password</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1" colspan="2">
+           <widget class="QSpinBox" name="queryTimeout">
+            <property name="suffix">
+             <string> ms</string>
+            </property>
+            <property name="minimum">
+             <number>500</number>
+            </property>
+            <property name="maximum">
+             <number>60000</number>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_27">
+            <property name="text">
+             <string>LDAP server and port</string>
             </property>
            </widget>
           </item>
@@ -101,33 +148,6 @@
            <widget class="QLabel" name="label_31">
             <property name="text">
              <string>Bind password</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="serverHost"/>
-          </item>
-          <item row="4" column="1" colspan="2">
-           <widget class="QLineEdit" name="bindPassword">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="echoMode">
-             <enum>QLineEdit::Password</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="label_27">
-            <property name="text">
-             <string>LDAP server and port</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1" colspan="2">
-           <widget class="QLineEdit" name="bindDn">
-            <property name="enabled">
-             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -1032,6 +1052,7 @@
   <tabstop>testBindInteractively</tabstop>
   <tabstop>bindDn</tabstop>
   <tabstop>bindPassword</tabstop>
+  <tabstop>queryTimeout</tabstop>
   <tabstop>connectionSecurity</tabstop>
   <tabstop>tlsVerifyMode</tabstop>
   <tabstop>tlsCACertificateFile</tabstop>
@@ -1378,9 +1399,9 @@
   </connection>
  </connections>
  <buttongroups>
-  <buttongroup name="baseDnConfigGroup"/>
   <buttongroup name="bindConfigurationGroup"/>
-  <buttongroup name="groupMemberMatchingGroup"/>
+  <buttongroup name="baseDnConfigGroup"/>
   <buttongroup name="computerGroupingGroup"/>
+  <buttongroup name="groupMemberMatchingGroup"/>
  </buttongroups>
 </ui>

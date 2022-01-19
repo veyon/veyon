@@ -39,6 +39,7 @@
 	OP( LdapConfiguration, m_configuration, QString, bindDn, setBindDn, "BindDN", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, Configuration::Password, bindPassword, setBindPassword, "BindPassword", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, bool, queryNamingContext, setQueryNamingContext, "QueryNamingContext", "LDAP", false, Configuration::Property::Flag::Standard )	\
+	OP( LdapConfiguration, m_configuration, int, queryTimeout, setQueryTimeout, "QueryTimeout", "LDAP", LdapClient::DefaultQueryTimeout, Configuration::Property::Flag::Advanced )	\
 	OP( LdapConfiguration, m_configuration, QString, baseDn, setBaseDn, "BaseDN", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, QString, namingContextAttribute, setNamingContextAttribute, "NamingContextAttribute", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
 	OP( LdapConfiguration, m_configuration, QString, userTree, setUserTree, "UserTree", "LDAP", QString(), Configuration::Property::Flag::Standard )	\
