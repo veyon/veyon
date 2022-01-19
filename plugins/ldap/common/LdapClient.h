@@ -129,7 +129,6 @@ public:
 	static constexpr int DefaultQueryTimeout = 3000;
 
 private:
-	static constexpr int LdapQueryTimeout = 3000;
 	static constexpr int LdapConnectionTimeout = 60*1000;
 	static constexpr auto LdapLibraryDebugAny = -1;
 
@@ -156,5 +155,7 @@ private:
 
 	QString m_baseDn;
 	QString m_namingContextAttribute;
+
+	const int m_queryTimeout{DefaultQueryTimeout};
 
 };
