@@ -129,7 +129,6 @@ public:
 	static constexpr int DefaultQueryTimeout = 3000;
 
 private:
-	static constexpr int LdapConnectionTimeout = 60*1000;
 	static constexpr auto LdapLibraryDebugAny = -1;
 
 	bool reconnect();
