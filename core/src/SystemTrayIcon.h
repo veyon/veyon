@@ -38,7 +38,8 @@ public:
 	{
 		ToolTipText,
 		MessageTitle,
-		MessageText
+		MessageText,
+		OverlayIconUrl
 	};
 	Q_ENUM(Argument)
 
@@ -51,6 +52,12 @@ public:
 	void showMessage( const QString& messageTitle,
 					  const QString& messageText,
 					  FeatureWorkerManager& featureWorkerManager );
+
+	void setOverlay(const ComputerControlInterfaceList& computerControlInterfaces, const QString& iconUrl);
+	void clearOverlay(const ComputerControlInterfaceList& computerControlInterfaces)
+	{
+		setOverlay(computerControlInterfaces, {});
+	}
 
 	Plugin::Uid uid() const override
 	{
@@ -105,10 +112,13 @@ public:
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 
 private:
+	void updateIcon(const QString& overlayIconUrl = {});
+
 	enum Commands
 	{
 		SetToolTipCommand,
-		ShowMessageCommand
+		ShowMessageCommand,
+		SetOverlayIcon
 	};
 
 	const Feature m_systemTrayIconFeature;

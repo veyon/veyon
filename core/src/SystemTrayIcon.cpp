@@ -23,6 +23,8 @@
  */
 
 #include <QMessageBox>
+#include <QPainter>
+#include <QPixmap>
 #include <QSystemTrayIcon>
 
 #include "SystemTrayIcon.h"
@@ -70,6 +72,16 @@ void SystemTrayIcon::showMessage( const QString& messageTitle,
 
 
 
+void SystemTrayIcon::setOverlay(const ComputerControlInterfaceList& computerControlInterfaces,
+								const QString &iconUrl)
+{
+	sendFeatureMessage(FeatureMessage{m_systemTrayIconFeature.uid(), SetOverlayIcon}
+							.addArgument(Argument::OverlayIconUrl, iconUrl),
+						computerControlInterfaces);
+}
+
+
+
 bool SystemTrayIcon::handleFeatureMessage( VeyonServerInterface& server,
 										  const MessageContext& messageContext,
 										  const FeatureMessage& message )
@@ -101,12 +113,8 @@ bool SystemTrayIcon::handleFeatureMessage( VeyonWorkerInterface& worker, const F
 	{
 		m_systemTrayIcon = new QSystemTrayIcon( this );
 
-		QIcon icon( QStringLiteral( ":/core/icon16.png" ) );
-		icon.addFile( QStringLiteral( ":/core/icon22.png" ) );
-		icon.addFile( QStringLiteral( ":/core/icon32.png" ) );
-		icon.addFile( QStringLiteral( ":/core/icon64.png" ) );
+		updateIcon();
 
-		m_systemTrayIcon->setIcon( icon );
 		m_systemTrayIcon->show();
 	}
 
@@ -133,9 +141,37 @@ bool SystemTrayIcon::handleFeatureMessage( VeyonWorkerInterface& worker, const F
 		}
 		return true;
 
+	case SetOverlayIcon:
+		updateIcon(message.argument(Argument::OverlayIconUrl).toString());
+		return true;
+
 	default:
 		break;
 	}
 
 	return false;
+}
+
+
+
+void SystemTrayIcon::updateIcon(const QString& overlayIconUrl)
+{
+	if (m_systemTrayIcon)
+	{
+		QImage overlayIcon(overlayIconUrl);
+		QIcon icon;
+
+		for(auto size : {16, 22, 32, 64})
+		{
+			QPixmap pixmap(QStringLiteral(":/core/icon%1.png").arg(size));
+			if (overlayIcon.isNull() == false)
+			{
+				QPainter painter(&pixmap);
+				painter.drawImage(0, 0, overlayIcon.scaled(pixmap.size()));
+			}
+			icon.addPixmap(pixmap);
+		}
+
+		m_systemTrayIcon->setIcon(icon);
+	}
 }
