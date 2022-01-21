@@ -72,6 +72,17 @@ void SystemTrayIcon::showMessage( const QString& messageTitle,
 
 
 
+void SystemTrayIcon::showMessage(const ComputerControlInterfaceList &computerControlInterfaces,
+								 const QString& messageTitle, const QString& messageText)
+{
+	sendFeatureMessage(FeatureMessage{m_systemTrayIconFeature.uid(), ShowMessageCommand}
+							.addArgument(Argument::MessageTitle, messageTitle)
+							.addArgument(Argument::MessageText, messageText),
+						computerControlInterfaces);
+}
+
+
+
 void SystemTrayIcon::setOverlay(const ComputerControlInterfaceList& computerControlInterfaces,
 								const QString &iconUrl)
 {

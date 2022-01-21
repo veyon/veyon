@@ -53,6 +53,9 @@ public:
 					  const QString& messageText,
 					  FeatureWorkerManager& featureWorkerManager );
 
+	void showMessage(const ComputerControlInterfaceList& computerControlInterfaces,
+					 const QString& messageTitle, const QString& messageText);
+
 	void setOverlay(const ComputerControlInterfaceList& computerControlInterfaces, const QString& iconUrl);
 	void clearOverlay(const ComputerControlInterfaceList& computerControlInterfaces)
 	{
