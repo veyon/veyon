@@ -20,6 +20,7 @@ RUN \
 		libpng-dev \
 		liblzo2-dev \
 		libqca-qt5-2-dev libqca-qt5-2-plugins \
+		libavcodec-dev libavformat-dev libavutil-dev libswscale-dev \
 		&& \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/*

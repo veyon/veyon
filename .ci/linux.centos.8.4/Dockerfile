@@ -3,8 +3,9 @@ MAINTAINER Tobias Junghans <tobydox@veyon.io>
 
 RUN \
 	yum --enablerepo=extras install -y epel-release dnf-plugins-core && \
+	yum install -y https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm && \
 	yum config-manager --set-enabled powertools && \
-	dnf install -y https://pkgs.dyn.su/el8/base/x86_64/raven-release-1.0-1.el8.noarch.rpm && \
+	dnf install -y https://pkgs.dyn.su/el8/base/x86_64/raven-release-1.0-2.el8.noarch.rpm && \
 	yum install -y git gcc-c++ make ninja-build cmake rpm-build fakeroot \
 		qt5-qtbase-devel qt5-qtbase-private-devel qt5-qtbase qt5-linguist qt5-qttools qt5-qtquickcontrols2-devel qt5-qtwebengine-devel \
 		libXtst-devel libXrandr-devel libXinerama-devel libXcursor-devel libXrandr-devel libXdamage-devel libXcomposite-devel libXfixes-devel \
@@ -17,5 +18,6 @@ RUN \
 		procps-ng-devel \
 		lzo-devel \
 		qca-qt5-devel qca-qt5-ossl \
+		ffmpeg-devel \
 		cyrus-sasl-devel \
 		openldap-devel

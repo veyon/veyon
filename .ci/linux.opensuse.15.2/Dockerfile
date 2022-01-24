@@ -13,6 +13,7 @@ RUN \
 		procps-devel \
 		pam-devel lzo-devel \
 		libqca-qt5-devel libqca-qt5-plugins \
+		libavcodec-devel libavformat-devel libavutil-devel libswscale-devel \
 		cyrus-sasl-devel \
 		openldap2-devel
 
