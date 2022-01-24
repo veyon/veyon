@@ -29,7 +29,8 @@ set(CPACK_SOURCE_IGNORE_FILES "${CMAKE_SOURCE_DIR}/build/;${CMAKE_SOURCE_DIR}/.g
 set(CPACK_STRIP_FILES  TRUE)
 
 # DEB package
-set(CPACK_DEBIAN_PACKAGE_DESCRIPTION
+if(${CMAKE_VERSION} VERSION_GREATER "3.15.0")
+	set(CPACK_DEBIAN_PACKAGE_DESCRIPTION
 "Veyon is a free and open source software for monitoring and controlling
 computers across multiple platforms. Veyon supports you in teaching in digital
 learning environments, performing virtual trainings or giving remote support.
@@ -46,6 +47,8 @@ The following features are available in Veyon:
 * Programs & websites: launch programs and open website URLs remotely
 * Teaching material: distribute and open documents, images and videos easily
 * Administration: power on/off and reboot computers remotely")
+endif()
+
 set(CPACK_DEBIAN_PACKAGE_SECTION "Education")
 set(CPACK_DEBIAN_PACKAGE_DEPENDS "libqca-qt5-2-plugins, qml-module-qtquick2, qml-module-qtquick-dialogs, qml-module-qtquick-layouts, qml-module-qtqml-models2, qml-module-qtquick-controls2, qml-module-qtquick-window2")
 set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
