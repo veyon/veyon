@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_CN" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_CN">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -652,15 +652,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation type="unfinished"/>
+        <translation>请指定键名 (例如: &quot;teacher/public&quot;) 作为第一个参数。</translation>
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>请指定显示说明的命令。</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>指定的命令不存在或没有它的说明可以使用。</translation>
     </message>
 </context>
 <context>
@@ -985,7 +985,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>指定的命令不存在或没有它的说明可以使用。</translation>
     </message>
 </context>
 <context>
@@ -1046,15 +1046,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 服务器无法连接或未在运行</translation>
     </message>
     <message>
         <source>[no user]</source>
-        <translation type="unfinished"/>
+        <translation>[无用户]</translation>
     </message>
     <message>
         <source>invalid</source>
-        <translation type="unfinished"/>
+        <translation>无效</translation>
     </message>
     <message>
         <source>Name: %1</source>
@@ -1062,7 +1062,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>[none]</source>
-        <translation type="unfinished"/>
+        <translation>[无]</translation>
     </message>
 </context>
 <context>
@@ -1326,7 +1326,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"/>
+        <translation>分享您的屏幕或允许一个用户与其他用户分享其屏幕。</translation>
     </message>
     <message>
         <source>Full screen demo</source>
@@ -1575,7 +1575,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>请指定显示说明的命令。</translation>
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
@@ -1623,7 +1623,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>指定的命令不存在或没有它的说明可以使用。</translation>
     </message>
     <message>
         <source>Name</source>
@@ -2618,6 +2618,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Query nested user groups (supported by AD only)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>毫秒</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3384,12 +3392,16 @@ Please save your work and close all programs.</source>
         <translation>远程查看或控制电脑</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>请输入要访问的计算机的主机名或IP地址：</translation>
-    </message>
-    <message>
         <source>Show help about command</source>
         <translation>显此命令的帮助信息</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

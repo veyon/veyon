@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ca_ES" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ca_ES">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -2617,6 +2617,14 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
         <source>Query nested user groups (supported by AD only)</source>
         <translation>Consulta els grups d&apos;usuaris imbricats (disponible només AD)</translation>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3383,12 +3391,16 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
         <translation>Visualització remota o control remot a un ordinador</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>Introduïu el nom d&apos;amfitrió o l&apos;adreça IP de l&apos;ordinador on voleu accedir:</translation>
-    </message>
-    <message>
         <source>Show help about command</source>
         <translation>Mostra l&apos;ajuda sobre l&apos;ordre</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

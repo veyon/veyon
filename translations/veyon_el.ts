@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="el" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="el">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -225,11 +225,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing user</source>
-        <translation type="unfinished"/>
+        <translation>Πρόσβαση χρήστη</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation type="unfinished"/>
+        <translation>Πρόσβαση υπολογιστή</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
@@ -718,7 +718,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Locations</source>
-        <translation type="unfinished"/>
+        <translation>Τοποθεσίες</translation>
     </message>
     <message>
         <source>Add new location</source>
@@ -765,7 +765,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Host address</source>
-        <translation type="unfinished"/>
+        <translation>Διεύθυνση υπολογιστή</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -2595,6 +2595,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Query nested user groups (supported by AD only)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3359,12 +3367,16 @@ Please save your work and close all programs.</source>
         <translation>Απομακρυσμένος έλεγχος/προβολή ενός υπολογιστή</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
+        <source>Show help about command</source>
+        <translation>Εμφάνιση βοήθειας για την εντολή</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show help about command</source>
-        <translation>Εμφάνιση βοήθειας για την εντολή</translation>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

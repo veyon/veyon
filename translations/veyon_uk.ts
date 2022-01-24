@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="uk" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="uk">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -2616,6 +2616,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Query nested user groups (supported by AD only)</source>
         <translation>Опитати вкладені групи користувачів (лише для AD)</translation>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>мс</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3382,12 +3390,16 @@ Please save your work and close all programs.</source>
         <translation>Віддалений перегляд або керування комп’ютером</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>Будь ласка, вкажіть назву вузла або IP-адресу комп’ютера, доступ до якого слід отримати:</translation>
-    </message>
-    <message>
         <source>Show help about command</source>
         <translation>Показати довідку щодо команди</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="fr">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -2617,6 +2617,14 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Query nested user groups (supported by AD only)</source>
         <translation>Interroger des groupes d&apos;utilisateurs imbriqués (pris en charge par AD uniquement)</translation>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>ms</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3383,12 +3391,16 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
         <translation>Vue à distance ou contrôle de l&apos;ordinateur</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>Pour accéder, veuillez entrer le nom de l&apos;hôte ou l&apos;adresse IP de l&apos;ordinateur :</translation>
-    </message>
-    <message>
         <source>Show help about command</source>
         <translation>Afficher la commande aide et à propos</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

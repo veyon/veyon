@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="cs" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="cs">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -2613,6 +2613,14 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <source>Query nested user groups (supported by AD only)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3379,12 +3387,16 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
         <translation>Pohled na nebo ovládání počítače na dálku</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>Zadejte název nebo IP adresu počítače ke kterému přistoupit:</translation>
-    </message>
-    <message>
         <source>Show help about command</source>
         <translation>Zobrazit nápovědu k příkazu</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

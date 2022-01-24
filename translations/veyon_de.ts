@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="de" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="de">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -2614,6 +2614,14 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Query nested user groups (supported by AD only)</source>
         <translation>Verschachtelte Benutzergruppen abfragen (nur von AD unterstützt)</translation>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation>Abfrage-Timeout</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3380,12 +3388,16 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
         <translation>Fernansicht oder -Steuerung eines Computers</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>Bitte geben Sie den Hostnamen oder IP-Adresse des Computers ein, auf den Sie zugreifen möchten:</translation>
-    </message>
-    <message>
         <source>Show help about command</source>
         <translation>Hilfe über Befehl anzeigen</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
+        <translation>Inhalt der Zwischenablage austauschen</translation>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation>Da kein Computer ausgewählt wurde, können Sie einen Hostnamen oder eine IP-Adresse eines Computers für den manuellen Zugriff eingeben:</translation>
     </message>
 </context>
 <context>

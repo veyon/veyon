@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ar" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ar">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -2593,6 +2593,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Query nested user groups (supported by AD only)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3357,12 +3365,16 @@ Please save your work and close all programs.</source>
         <translation>عرض عن بعد أو التحكم في الحاسوب</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
+        <source>Show help about command</source>
+        <translation>عرض المساعدة حول الأمر</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show help about command</source>
-        <translation>عرض المساعدة حول الأمر</translation>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

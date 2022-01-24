@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="id" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="id">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -379,7 +379,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation type="unfinished"/>
+        <translation>Harap masukkan nama grup pengguna atau peran untuk mengimpor kunci autentikasi:</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
@@ -387,11 +387,11 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation type="unfinished"/>
+        <translation>Silakan pilih grup pengguna yang akan diberikan akses ke kunci &quot;%1&quot;:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
-        <translation type="unfinished"/>
+        <translation>Silakan pilih kunci untuk mengatur grup akses!</translation>
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
@@ -411,7 +411,7 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation type="unfinished"/>
+        <translation>Silakan merujuk pada &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Manual Administrasi  Veyon&lt;/a&gt; untuk informasi lebih lanjut.</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
@@ -2598,6 +2598,14 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
         <source>Query nested user groups (supported by AD only)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>ms</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3362,12 +3370,16 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
+        <source>Show help about command</source>
+        <translation>Tunjukkan bantuan tentang perintah</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show help about command</source>
-        <translation>Tunjukkan bantuan tentang perintah</translation>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

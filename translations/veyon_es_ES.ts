@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="es_ES" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="es_ES">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -2619,6 +2619,14 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>Query nested user groups (supported by AD only)</source>
         <translation>Consultar grupos de usuarios anidados (compatible solo con AD)</translation>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3385,12 +3393,16 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
         <translation>Vista remota o control de un equipo</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>Por favor, introduzca el nombre o la dirección IP del equipo a acceder:</translation>
-    </message>
-    <message>
         <source>Show help about command</source>
         <translation>Mostrar ayuda sobre el comando</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

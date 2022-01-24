@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ja" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ja">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -656,11 +656,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>ヘルプを表示するコマンドを指定してください。</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>指定されたコマンドが存在しないか、そのコマンドに対するヘルプがありません。</translation>
     </message>
 </context>
 <context>
@@ -957,7 +957,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
-        <translation type="unfinished"/>
+        <translation>指定されたオブジェクトをディレクトリから削除します。%1 は名前または UUID で指定できます。場所を削除すると、関連するすべてのコンピュータも削除されます。</translation>
     </message>
     <message>
         <source>Remove a computer by name</source>
@@ -985,7 +985,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>指定されたコマンドが存在しないか、そのコマンドに対するヘルプがありません。</translation>
     </message>
 </context>
 <context>
@@ -1058,11 +1058,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Name: %1</source>
-        <translation type="unfinished"/>
+        <translation>名前: %1</translation>
     </message>
     <message>
         <source>[none]</source>
-        <translation type="unfinished"/>
+        <translation>[なし]</translation>
     </message>
 </context>
 <context>
@@ -1108,11 +1108,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Missing network object directory plugin</source>
-        <translation type="unfinished"/>
+        <translation>ネットワークオブジェクトプラグインが見つかりません</translation>
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>既定のネットワーク オブジェクト ディレクトリ プラグインが見つかりませんでした。インストールを確認するか、%1 Configurator で別のネットワーク オブジェクト ディレクトリ バックエンドを構成してください。 </translation>
     </message>
     <message>
         <source>Location detection failed</source>
@@ -1120,7 +1120,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
-        <translation type="unfinished"/>
+        <translation>コンピュータ名;ホスト名;ユーザー</translation>
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
@@ -1155,7 +1155,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation type="unfinished"/>
+        <translation>コンピュータとユーザのリストを %1 に書き込めません! ファイルのアクセス許可を確認してください。</translation>
     </message>
 </context>
 <context>
@@ -1190,15 +1190,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
-        <translation type="unfinished"/>
+        <translation>プログラムおよびプラグインのアップグレードと設定の保存</translation>
     </message>
     <message>
         <source>Please specify an existing configuration file to import.</source>
-        <translation type="unfinished"/>
+        <translation>インポートする既存の設定ファイルを指定してください。</translation>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
-        <translation type="unfinished"/>
+        <translation>設定ファイルは読み込む事ができません！</translation>
     </message>
     <message>
         <source>Please specify a valid filename for the configuration export.</source>
@@ -1206,31 +1206,31 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>出力ファイルは書き込む事ができません！</translation>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation type="unfinished"/>
+        <translation>出力先ディレクトリは書き込むことができません！</translation>
     </message>
     <message>
         <source>Please specify a valid key.</source>
-        <translation type="unfinished"/>
+        <translation>有効なキーを指定してください。</translation>
     </message>
     <message>
         <source>Specified key does not exist in current configuration!</source>
-        <translation type="unfinished"/>
+        <translation>指定されたキーは現在の構成に存在しません！</translation>
     </message>
     <message>
         <source>Please specify a valid value.</source>
-        <translation type="unfinished"/>
+        <translation>有効な値を指定してください。</translation>
     </message>
     <message>
         <source>Configure Veyon at command line</source>
-        <translation type="unfinished"/>
+        <translation>コマンドラインからVeynを設定する</translation>
     </message>
     <message>
         <source>Commands for managing the configuration of Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyonの設定を管理するためのコマンド</translation>
     </message>
 </context>
 <context>
@@ -1295,7 +1295,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> s</source>
-        <translation type="unfinished"/>
+        <translation> s</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
@@ -1575,7 +1575,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>ヘルプを表示するコマンドを指定してください。</translation>
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
@@ -1623,7 +1623,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>指定されたコマンドが存在しないか、そのコマンドに対するヘルプがありません。</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1854,7 +1854,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Log to standard error output</source>
-        <translation type="unfinished"/>
+        <translation>ログを標準エラー出力に出力する</translation>
     </message>
     <message>
         <source>Network object directory</source>
@@ -1910,7 +1910,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Write to logging system of operating system</source>
-        <translation type="unfinished"/>
+        <translation>OSのシステムログに書き込む</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -2598,6 +2598,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Query nested user groups (supported by AD only)</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
     </message>
 </context>
 <context>
@@ -3364,12 +3372,16 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>アクセスするコンピュータのホスト名、またはIPアドレスを入力してください</translation>
-    </message>
-    <message>
         <source>Show help about command</source>
         <translation>コマンドに関するヘルプを表示する</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3606,7 +3618,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation type="unfinished"/>
+        <translation>ファイアウォールの例外を有効にする</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
@@ -3806,7 +3818,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"/>
+        <translation>リアルタイムでコンピュータを更新</translation>
     </message>
     <message>
         <source>Spotlight</source>
@@ -3837,7 +3849,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation type="unfinished"/>
+        <translation>例:&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
     <message>
         <source>Remember and add to application menu</source>
@@ -3864,22 +3876,22 @@ Typically this is required to support terminal servers.</source>
     <name>SystemUserGroupsPlugin</name>
     <message>
         <source>User groups backend for system user groups</source>
-        <translation type="unfinished"/>
+        <translation>システムユーザグループのためのユーザグループバックエンド</translation>
     </message>
     <message>
         <source>Default (system user groups)</source>
-        <translation type="unfinished"/>
+        <translation>デフォルト（システムユーザーグループ）</translation>
     </message>
 </context>
 <context>
     <name>TestingCommandLinePlugin</name>
     <message>
         <source>Test internal Veyon components and functions</source>
-        <translation type="unfinished"/>
+        <translation>Veyonの内部コンポーネントや機能のテスト</translation>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
-        <translation type="unfinished"/>
+        <translation>内部コンポーネントやVeyonの機能をテストするためのコマンド</translation>
     </message>
 </context>
 <context>
@@ -3916,15 +3928,15 @@ Typically this is required to support terminal servers.</source>
     <name>UltraVncConfigurationWidget</name>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation type="unfinished"/>
+        <translation>レイヤー（半透明）ウィンドウのキャプチャを可能にする</translation>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
-        <translation type="unfinished"/>
+        <translation>ポーリングフルスクリーン（デフォルトで有効のまま）</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation type="unfinished"/>
+        <translation>低精度（ターボモード）</translation>
     </message>
     <message>
         <source>Builtin UltraVNC server configuration</source>
@@ -3936,22 +3948,22 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation type="unfinished"/>
+        <translation>Windows 8以降でDesktop Duplication Engineを有効化する</translation>
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
+        <translation>CPUの最大使用率</translation>
     </message>
 </context>
 <context>
     <name>UserConfig</name>
     <message>
         <source>No write access</source>
-        <translation type="unfinished"/>
+        <translation>書込不可</translation>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>個人設定を保存できませんでした！ %1 Configuratorを使ってユーザー設定ファイルのパスを確認してください。</translation>
     </message>
 </context>
 <context>
@@ -3993,7 +4005,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation type="unfinished"/>
+        <translation>ユーザーログオフの確認</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
@@ -4020,15 +4032,15 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation type="unfinished"/>
+        <translation>無効なコマンドです！</translation>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation type="unfinished"/>
+        <translation>使用可能なコマンド：</translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
-        <translation type="unfinished"/>
+        <translation>無効な引数が指定されました</translation>
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
@@ -4118,7 +4130,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source> s</source>
-        <translation type="unfinished"/>
+        <translation> s</translation>
     </message>
     <message>
         <source>Idle timeout</source>
@@ -4180,7 +4192,7 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformConfiguration</name>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation type="unfinished"/>
+        <translation>SAS生成の設定をソフトウェアで変更することができませんでした。リモコンでCtrl+Alt+Delを送っても動作しません！</translation>
     </message>
 </context>
 <context>
@@ -4219,7 +4231,9 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation type="unfinished"/>
+        <translation>代替のユーザー認証機構を使用する
+
+</translation>
     </message>
     <message>
         <source>User login</source>
@@ -4235,7 +4249,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation type="unfinished"/>
+        <translation>法的通知の確認（メッセージはユーザーがログインする前に表示されます）</translation>
     </message>
     <message>
         <source>Use input device interception driver</source>
@@ -4246,11 +4260,11 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation type="unfinished"/>
+        <translation>Windows環境用の抽象関数を実装したプラグイン</translation>
     </message>
     <message>
         <source>Internal display</source>
-        <translation type="unfinished"/>
+        <translation>内蔵ディスプレイ</translation>
     </message>
 </context>
 <context>
@@ -4300,7 +4314,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Do not use X Damage extension</source>
-        <translation type="unfinished"/>
+        <translation>X Damage extensionは使わないでください</translation>
     </message>
 </context>
 </TS>
