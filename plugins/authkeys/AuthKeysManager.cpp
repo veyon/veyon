@@ -470,7 +470,8 @@ QString AuthKeysManager::exportedKeyFileName( const QString& name, const QString
 
 QString AuthKeysManager::keyNameFromExportedKeyFile( const QString& keyFile )
 {
-	const auto keyNameMatch = QRegularExpression( QStringLiteral("^(.*)_(.*)_key.pem$") ).match( keyFile );
+	const auto keyNameMatch = QRegularExpression( QStringLiteral("^(.*)_(.*)_key.pem$") )
+								  .match(QFileInfo(keyFile).fileName());
 
 	if( keyNameMatch.hasMatch() )
 	{
