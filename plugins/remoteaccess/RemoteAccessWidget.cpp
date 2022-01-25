@@ -321,10 +321,10 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface::Pointer&
 	connect( m_vncView, &VncViewWidget::mouseAtBorder, m_toolBar, &RemoteAccessWidgetToolBar::appear );
 	connect( m_vncView, &VncViewWidget::sizeHintChanged, this, &RemoteAccessWidget::updateSize );
 
-	showMaximized();
+	setWindowState(Qt::WindowMaximized);
 	VeyonCore::platform().coreFunctions().raiseWindow( this, false );
 
-	showNormal();
+	show();
 
 	setViewOnly( startViewOnly );
 }
