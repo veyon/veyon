@@ -354,7 +354,6 @@ bool RemoteAccessFeaturePlugin::remoteAccess( const QString& hostAddress, bool v
 void RemoteAccessFeaturePlugin::createRemoteAccessWindow(const ComputerControlInterface::Pointer& computerControlInterface,
 														 bool viewOnly)
 {
-	new RemoteAccessWidget(computerControlInterface, viewOnly, remoteViewEnabled() && remoteControlEnabled());
 	auto widget = new RemoteAccessWidget(computerControlInterface, viewOnly,
 										  remoteViewEnabled() && remoteControlEnabled());
 
