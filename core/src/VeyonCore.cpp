@@ -687,6 +687,7 @@ bool VeyonCore::initKeyFileAuthentication()
 				m_authenticationCredentials->loadPrivateKey( VeyonCore::filesystem().privateKeyPath( authKeyName ) ) )
 		{
 			m_authenticationCredentials->setAuthenticationKeyName( authKeyName );
+			return true;
 		}
 	}
 	else
