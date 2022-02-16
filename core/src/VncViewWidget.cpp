@@ -25,13 +25,8 @@
 #include <QApplication>
 #include <QMouseEvent>
 #include <QPainter>
-#include <QtMath>
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
 #include <QScreen>
-#else
-#include <QDesktopWidget>
-#endif
+#include <QWindow>
 
 #include "VeyonConnection.h"
 #include "VncConnection.h"
@@ -68,14 +63,6 @@ VncViewWidget::VncViewWidget( const ComputerControlInterface::Pointer& computerC
 
 	show();
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-	const auto screenGeometry = screen()->availableGeometry();
-#else
-	const auto screenGeometry = QApplication::desktop()->availableGeometry( this );
-#endif
-
-	resize( screenGeometry.size() - QSize( 10, 30 ) );
-
 	setFocusPolicy( Qt::WheelFocus );
 	setFocus();
 
@@ -99,7 +86,32 @@ VncViewWidget::~VncViewWidget()
 
 QSize VncViewWidget::sizeHint() const
 {
-	return effectiveFramebufferSize();
+	QSize availableSize{QGuiApplication::primaryScreen()->availableVirtualSize()};
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+	const auto* windowScreen = windowHandle() ? windowHandle()->screen() : nullptr;
+#else
+	const auto* windowScreen = screen();
+#endif
+	if (windowScreen)
+	{
+		availableSize = windowScreen->availableVirtualSize();
+	}
+
+	availableSize -= window()->frameSize() - window()->size();
+
+	const auto size = effectiveFramebufferSize();
+	if (size.isEmpty())
+	{
+		return availableSize;
+	}
+
+	if (size.width() > availableSize.width() ||
+		size.height() > availableSize.height())
+	{
+		return size.scaled(availableSize, Qt::KeepAspectRatio);
+	}
+
+	return size;
 }
 
 
