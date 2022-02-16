@@ -306,6 +306,8 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface::Pointer&
 
 	showNormal();
 
+	updateSize();
+
 	setViewOnly( startViewOnly );
 }
 
@@ -367,7 +369,7 @@ void RemoteAccessWidget::leaveEvent( QEvent* event )
 
 void RemoteAccessWidget::resizeEvent( QResizeEvent* event )
 {
-	m_vncView->resize( size() );
+	m_vncView->setFixedSize(size());
 	m_toolBar->setFixedSize( width(), m_toolBar->height() );
 
 	QWidget::resizeEvent( event );
@@ -377,8 +379,7 @@ void RemoteAccessWidget::resizeEvent( QResizeEvent* event )
 
 void RemoteAccessWidget::updateSize()
 {
-	if( !( windowState() & Qt::WindowFullScreen ) &&
-			m_vncView->sizeHint().isEmpty() == false )
+	if (!(windowState() & Qt::WindowFullScreen))
 	{
 		resize( m_vncView->sizeHint() );
 	}
