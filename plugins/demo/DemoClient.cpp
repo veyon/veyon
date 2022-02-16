@@ -23,13 +23,7 @@
  */
 
 #include <QApplication>
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-#include <QScreen>
-#else
-#include <QDesktopWidget>
-#endif
 #include <QIcon>
-#include <QLayout>
 
 #include "DemoClient.h"
 #include "VeyonConfiguration.h"
@@ -54,28 +48,14 @@ DemoClient::DemoClient( const QString& host, int port, bool fullscreen, QRect vi
 	m_toplevel->setWindowTitle( tr( "%1 Demo" ).arg( VeyonCore::applicationName() ) );
 	m_toplevel->setWindowIcon( QPixmap( QStringLiteral(":/core/icon64.png") ) );
 	m_toplevel->setAttribute( Qt::WA_DeleteOnClose, false );
+	m_toplevel->installEventFilter(this);
 
 	if( fullscreen == false )
 	{
 		m_toplevel->setWindowFlags( Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowMinMaxButtonsHint );
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-		const auto screenGeometry = m_toplevel->screen()->availableGeometry();
-#else
-		const auto screenGeometry = QApplication::desktop()->availableGeometry( m_toplevel );
-#endif
-
-		m_toplevel->resize( screenGeometry.size() - QSize( 10, 30 ) );
 	}
 
 	m_vncView = new VncViewWidget( m_computerControlInterface, viewport, m_toplevel );
-
-	auto toplevelLayout = new QVBoxLayout;
-	toplevelLayout->setContentsMargins( 0, 0, 0, 0 );
-	toplevelLayout->setSpacing( 0 );
-	toplevelLayout->addWidget( m_vncView );
-
-	m_toplevel->setLayout( toplevelLayout );
 
 	connect( m_toplevel, &QObject::destroyed, this, &DemoClient::viewDestroyed );
 	connect( m_vncView, &VncViewWidget::sizeHintChanged, this, &DemoClient::resizeToplevelWidget );
@@ -90,6 +70,8 @@ DemoClient::DemoClient( const QString& host, int port, bool fullscreen, QRect vi
 		m_toplevel->show();
 	}
 
+	resizeToplevelWidget();
+
 	VeyonCore::platform().coreFunctions().raiseWindow( m_toplevel, fullscreen );
 
 	VeyonCore::platform().coreFunctions().disableScreenSaver();
@@ -102,6 +84,19 @@ DemoClient::~DemoClient()
 	VeyonCore::platform().coreFunctions().restoreScreenSaverSettings();
 
 	delete m_toplevel;
+}
+
+
+
+bool DemoClient::eventFilter(QObject* watched, QEvent* event)
+{
+	if (watched == m_toplevel && event->type() == QEvent::Resize)
+	{
+		m_vncView->setFixedSize(m_toplevel->size());
+		return true;
+	}
+
+	return QObject::eventFilter(watched, event);
 }
 
 
@@ -123,10 +118,10 @@ void DemoClient::resizeToplevelWidget()
 {
 	if( m_toplevel->windowState() & Qt::WindowFullScreen )
 	{
-		m_vncView->resize( m_toplevel->size() );
+		m_vncView->setFixedSize(m_toplevel->size());
 	}
 	else
 	{
-		m_toplevel->resize( m_vncView->sizeHint() );
+		m_toplevel->resize(m_vncView->sizeHint());
 	}
 }

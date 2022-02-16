@@ -37,6 +37,9 @@ public:
 	DemoClient( const QString& host, int port, bool fullscreen, QRect viewport, QObject* parent = nullptr );
 	~DemoClient() override;
 
+protected:
+	bool eventFilter(QObject* watched, QEvent* event) override;
+
 private:
 	void viewDestroyed( QObject* obj );
 	void resizeToplevelWidget();
