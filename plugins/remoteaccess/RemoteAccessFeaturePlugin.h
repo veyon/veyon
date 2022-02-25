@@ -28,6 +28,7 @@
 #include "FeatureProviderInterface.h"
 #include "CommandLinePluginInterface.h"
 
+class VncView;
 
 class RemoteAccessFeaturePlugin : public QObject, CommandLinePluginInterface, FeatureProviderInterface, PluginInterface
 {
@@ -149,5 +150,7 @@ private:
 	int m_clipboardDataVersion{0};
 	QString m_clipboardText;
 	QImage m_clipboardImage;
+
+	QList<QPair<QPointer<QObject>, VncView *> > m_vncViews{};
 
 };

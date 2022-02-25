@@ -35,6 +35,7 @@
 #include "VeyonConfiguration.h"
 #include "VeyonMasterInterface.h"
 #include "VeyonServerInterface.h"
+#include "VncView.h"
 
 
 RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin( QObject* parent ) :
@@ -351,6 +352,9 @@ bool RemoteAccessFeaturePlugin::remoteAccess( const QString& hostAddress, bool v
 void RemoteAccessFeaturePlugin::createRemoteAccessWindow(const ComputerControlInterface::Pointer& computerControlInterface,
 														 bool viewOnly, VeyonMasterInterface* master)
 {
+	VncView* vncView{nullptr};
+	QObject* remoteAccessView{nullptr};
+
 	if (master && master->appContainer())
 	{
 		auto page = new RemoteAccessPage(computerControlInterface, viewOnly, master->appContainer());
@@ -359,6 +363,9 @@ void RemoteAccessFeaturePlugin::createRemoteAccessWindow(const ComputerControlIn
 				 {
 					 sendClipboardData(page->computerControlInterface());
 				 });
+
+		remoteAccessView = page;
+		vncView = page->vncView();
 	}
 	else
 	{
@@ -370,7 +377,26 @@ void RemoteAccessFeaturePlugin::createRemoteAccessWindow(const ComputerControlIn
 				 {
 					 sendClipboardData(widget->computerControlInterface());
 				 });
+
+		remoteAccessView = widget;
+		vncView = widget->vncView();
 	}
+
+	connect(remoteAccessView, &QObject::destroyed, this, [this](QObject* view) {
+		for (auto it = m_vncViews.begin(); it != m_vncViews.end();)
+		{
+			if (it->first == nullptr || it->first == view)
+			{
+				it = m_vncViews.erase(it);
+			}
+			else
+			{
+				it++;
+			}
+		}
+	});
+
+	m_vncViews.append(qMakePair(remoteAccessView, vncView));
 }
 
 
