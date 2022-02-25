@@ -34,6 +34,7 @@
 #include "VeyonConfiguration.h"
 #include "VeyonMasterInterface.h"
 #include "VeyonServerInterface.h"
+#include "VncView.h"
 
 
 RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin( QObject* parent ) :
@@ -362,6 +363,22 @@ void RemoteAccessFeaturePlugin::createRemoteAccessWindow(const ComputerControlIn
 			 {
 				 sendClipboardData(widget->computerControlInterface());
 			 });
+
+	connect(widget, &QObject::destroyed, this, [this](QObject* view) {
+		for (auto it = m_vncViews.begin(); it != m_vncViews.end();)
+		{
+			if (it->first == nullptr || it->first == view)
+			{
+				it = m_vncViews.erase(it);
+			}
+			else
+			{
+				it++;
+			}
+		}
+	});
+
+	m_vncViews.append(qMakePair(widget, widget->vncView()));
 }
 
 
