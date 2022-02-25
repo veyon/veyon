@@ -55,6 +55,13 @@ QQuickItem* RemoteAccessPage::view() const
 }
 
 
+
+VncView* RemoteAccessPage::vncView() const
+{
+	return m_view;
+}
+
+
 /*
 void RemoteAccessPage::takeScreenshot()
 {

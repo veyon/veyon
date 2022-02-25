@@ -27,6 +27,7 @@
 
 #include "ComputerControlInterface.h"
 
+class VncView;
 class VncViewItem;
 
 // clazy:excludeall=ctor-missing-parent-argument
@@ -53,6 +54,8 @@ public:
 	}
 
 	QQuickItem* view() const;
+
+	VncView* vncView() const;
 
 private:
 	ComputerControlInterface::Pointer m_computerControlInterface;
