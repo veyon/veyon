@@ -90,14 +90,14 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	updateScreens();
 
 	auto shortcutMenu = new QMenu();
-	shortcutMenu->addAction( tr( "Ctrl+Alt+Del" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlAltDel ); }  );
-	shortcutMenu->addAction( tr( "Ctrl+Esc" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlEscape ); }  );
-	shortcutMenu->addAction( tr( "Alt+Tab" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutAltTab ); }  );
-	shortcutMenu->addAction( tr( "Alt+F4" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutAltF4 ); }  );
-	shortcutMenu->addAction( tr( "Win+Tab" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutWinTab ); }  );
-	shortcutMenu->addAction( tr( "Win" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutWin ); }  );
-	shortcutMenu->addAction( tr( "Menu" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutMenu ); }  );
-	shortcutMenu->addAction( tr( "Alt+Ctrl+F1" ), vncView, [=]() { vncView->sendShortcut( VncView::ShortcutAltCtrlF1 ); }  );
+	shortcutMenu->addAction( tr( "Ctrl+Alt+Del" ), this, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlAltDel ); }  );
+	shortcutMenu->addAction( tr( "Ctrl+Esc" ), this, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlEscape ); }  );
+	shortcutMenu->addAction( tr( "Alt+Tab" ), this, [=]() { vncView->sendShortcut( VncView::ShortcutAltTab ); }  );
+	shortcutMenu->addAction( tr( "Alt+F4" ), this, [=]() { vncView->sendShortcut( VncView::ShortcutAltF4 ); }  );
+	shortcutMenu->addAction( tr( "Win+Tab" ), this, [=]() { vncView->sendShortcut( VncView::ShortcutWinTab ); }  );
+	shortcutMenu->addAction( tr( "Win" ), this, [=]() { vncView->sendShortcut( VncView::ShortcutWin ); }  );
+	shortcutMenu->addAction( tr( "Menu" ), this, [=]() { vncView->sendShortcut( VncView::ShortcutMenu ); }  );
+	shortcutMenu->addAction( tr( "Alt+Ctrl+F1" ), this, [=]() { vncView->sendShortcut( VncView::ShortcutAltCtrlF1 ); }  );
 
 	m_sendShortcutButton->setMenu( shortcutMenu );
 	m_sendShortcutButton->setPopupMode( QToolButton::InstantPopup );
@@ -339,6 +339,13 @@ RemoteAccessWidget::RemoteAccessWidget( const ComputerControlInterface::Pointer&
 RemoteAccessWidget::~RemoteAccessWidget()
 {
 	delete m_vncView;
+}
+
+
+
+VncView* RemoteAccessWidget::vncView() const
+{
+	return m_vncView;
 }
 
 
