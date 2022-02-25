@@ -30,6 +30,7 @@
 
 class QActionGroup;
 
+class VncView;
 class VncViewWidget;
 class RemoteAccessWidget;
 class ToolButton;
@@ -94,10 +95,7 @@ public:
 		return m_computerControlInterface;
 	}
 
-	VncViewWidget* vncView() const
-	{
-		return m_vncView;
-	}
+	VncView* vncView() const;
 
 	void toggleFullScreen( bool );
 	void setViewOnly( bool viewOnly );
