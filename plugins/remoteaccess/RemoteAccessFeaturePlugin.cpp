@@ -151,7 +151,14 @@ bool RemoteAccessFeaturePlugin::handleFeatureMessage(ComputerControlInterface::P
 
 	if (message.featureUid() == m_clipboardExchangeFeature.uid())
 	{
-		loadClipboardData(message);
+		for (auto it = m_vncViews.constBegin(), end = m_vncViews.constEnd(); it != end; ++it)
+		{
+			if (it->first && it->second->computerControlInterface() == computerControlInterface)
+			{
+				loadClipboardData(message);
+			}
+		}
+
 		return true;
 	}
 
