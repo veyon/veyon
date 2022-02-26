@@ -411,7 +411,7 @@ static void updateDialog( QProgressDialog* dialog, int newValue )
 
 	if( remainingSeconds <= 0 )
 	{
-		VeyonCore::platform().coreFunctions().powerDown( false );
+		dialog->accept();
 	}
 
 }
@@ -444,4 +444,6 @@ void PowerControlFeaturePlugin::displayShutdownTimeout( int shutdownTimeout )
 	} );
 
 	dialog.exec();
+
+	VeyonCore::platform().coreFunctions().powerDown(false);
 }
