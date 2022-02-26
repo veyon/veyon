@@ -109,6 +109,9 @@ public Q_SLOTS:
 	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );
 	CommandLinePluginInterface::RunResult handle_on( const QStringList& arguments );
 
+protected:
+	bool eventFilter(QObject* watched, QEvent* event) override;
+
 private:
 	bool confirmFeatureExecution( const Feature& feature, bool all, QWidget* parent );
 	static bool broadcastWOLPacket( QString macAddress );

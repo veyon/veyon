@@ -22,6 +22,7 @@
  *
  */
 
+#include <QEvent>
 #include <QMessageBox>
 #include <QNetworkInterface>
 #include <QProgressBar>
@@ -287,6 +288,20 @@ CommandLinePluginInterface::RunResult PowerControlFeaturePlugin::handle_on( cons
 
 
 
+bool PowerControlFeaturePlugin::eventFilter(QObject* watched, QEvent* event)
+{
+	if (event->type() == QEvent::Close &&
+		qobject_cast<QProgressDialog *>(watched))
+	{
+		event->ignore();
+		return true;
+	}
+
+	return QObject::eventFilter(watched, event);
+}
+
+
+
 bool PowerControlFeaturePlugin::confirmFeatureExecution( const Feature& feature, bool all, QWidget* parent )
 {
 	if( VeyonCore::config().confirmUnsafeActions() == false )
@@ -424,6 +439,7 @@ void PowerControlFeaturePlugin::displayShutdownTimeout( int shutdownTimeout )
 	dialog.setMaximum( shutdownTimeout );
 	dialog.setCancelButton( nullptr );
 	dialog.setWindowFlags( Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint );
+	dialog.installEventFilter(this);
 
 	auto progressBar = dialog.findChild<QProgressBar *>();
 	if( progressBar )
