@@ -734,7 +734,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation>通过命令行界面可导入CSV文件。更多信息，请参看&lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;在线文档&lt;/a&gt;。</translation>
+        <translation>通过命令行界面可导入CSV文件。更多信息，请查看&lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;在线文档&lt;/a&gt;。</translation>
     </message>
     <message>
         <source>New location</source>
@@ -1342,11 +1342,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>在窗口中分享您自己的屏幕</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>以全屏模式分享选中用户的屏幕</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
@@ -1354,7 +1354,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>在窗口中分享选中用户的屏幕</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -1362,15 +1362,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>请选择一个用户的屏幕进行分享</translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>请仅选择一个用户的屏幕进行分享</translation>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>所有屏幕</translation>
     </message>
 </context>
 <context>
@@ -1424,11 +1424,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Applications &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>应用 &amp; 网站</translation>
     </message>
     <message>
         <source>Predefined applications</source>
-        <translation type="unfinished"/>
+        <translation>预定义的程序</translation>
     </message>
     <message>
         <source>Add new application</source>
@@ -1440,7 +1440,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add new website</source>
-        <translation type="unfinished"/>
+        <translation>添加新的网站</translation>
     </message>
     <message>
         <source>New application</source>
@@ -1479,7 +1479,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>自定义程序</translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
@@ -1530,7 +1530,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>自定义程序</translation>
     </message>
 </context>
 <context>
@@ -1599,19 +1599,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Lock the screen</source>
-        <translation type="unfinished"/>
+        <translation>锁定屏幕</translation>
     </message>
     <message>
         <source>Display a text message</source>
-        <translation type="unfinished"/>
+        <translation>显示文字消息</translation>
     </message>
     <message>
         <source>Test message</source>
-        <translation type="unfinished"/>
+        <translation>文字消息</translation>
     </message>
     <message>
         <source>Start an application</source>
-        <translation type="unfinished"/>
+        <translation>启动程序</translation>
     </message>
     <message>
         <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
@@ -1619,7 +1619,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Unlock the screen</source>
-        <translation type="unfinished"/>
+        <translation>解锁屏幕</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
@@ -1651,7 +1651,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Plugin</source>
-        <translation type="unfinished"/>
+        <translation>插件</translation>
     </message>
     <message>
         <source>Invalid feature name or UID specified</source>
@@ -3491,7 +3491,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>所有屏幕</translation>
     </message>
 </context>
 <context>

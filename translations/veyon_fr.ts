@@ -2619,7 +2619,7 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     </message>
     <message>
         <source>Query timeout</source>
-        <translation type="unfinished"/>
+        <translation>Délai d&apos;expiration de la requête</translation>
     </message>
     <message>
         <source> ms</source>
@@ -3396,11 +3396,11 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     </message>
     <message>
         <source>Exchange clipboard contents</source>
-        <translation type="unfinished"/>
+        <translation>Échanger le contenu du presse-papiers</translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
-        <translation type="unfinished"/>
+        <translation>Aucun ordinateur n&apos;a été sélectionné, vous pouvez donc saisir le nom d&apos;hôte ou l&apos;adresse IP d&apos;un ordinateur pour un accès manuel :</translation>
     </message>
 </context>
 <context>

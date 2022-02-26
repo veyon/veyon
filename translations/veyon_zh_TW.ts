@@ -2619,7 +2619,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Query timeout</source>
-        <translation type="unfinished"/>
+        <translation>查詢逾時</translation>
     </message>
     <message>
         <source> ms</source>
@@ -3396,11 +3396,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exchange clipboard contents</source>
-        <translation type="unfinished"/>
+        <translation>交換剪貼簿內容</translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
-        <translation type="unfinished"/>
+        <translation>未選取電腦，因此您可以輸入電腦主機名稱或 IP 地址以進行手動存取:</translation>
     </message>
 </context>
 <context>

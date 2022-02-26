@@ -1898,7 +1898,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Rotate log files</source>
-        <translation type="unfinished"/>
+        <translation>ログファイルをローテーション</translation>
     </message>
     <message>
         <source>x</source>
@@ -2978,7 +2978,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Hide computer filter field</source>
-        <translation type="unfinished"/>
+        <translation>&quot;コンピューターを検索&quot;の欄を隠す</translation>
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
@@ -3070,7 +3070,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Hide local session</source>
-        <translation type="unfinished"/>
+        <translation>ローカルセッションを隠す</translation>
     </message>
     <message>
         <source> px</source>
@@ -3663,7 +3663,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Network port numbers</source>
-        <translation type="unfinished"/>
+        <translation>通信ポート番号</translation>
     </message>
     <message>
         <source>Veyon server</source>
@@ -3675,7 +3675,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Feature manager</source>
-        <translation type="unfinished"/>
+        <translation>機能マネージャー</translation>
     </message>
     <message>
         <source>Demo server</source>
@@ -3683,23 +3683,23 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
-        <translation type="unfinished"/>
+        <translation>その他のネットワーク設定</translation>
     </message>
     <message>
         <source>Session mode</source>
-        <translation type="unfinished"/>
+        <translation>セッションモード</translation>
     </message>
     <message>
         <source>Local session mode (single server instance for primary local session)</source>
-        <translation type="unfinished"/>
+        <translation>ローカルセッションモード（プライマリローカルセッション用の単一サーバーインスタンス）</translation>
     </message>
     <message>
         <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation type="unfinished"/>
+        <translation>アクティブセッションモード（アクティブなローカルまたはリモートセッション用の単一サーバーインスタンス）</translation>
     </message>
     <message>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
+        <translation>マルチセッションモード（ローカルおよびリモートデスクトップセッションごとに異なるサーバーインスタンス）</translation>
     </message>
 </context>
 <context>
@@ -4253,7 +4253,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use input device interception driver</source>
-        <translation type="unfinished"/>
+        <translation>入力デバイス遮断ドライバを使用する</translation>
     </message>
 </context>
 <context>

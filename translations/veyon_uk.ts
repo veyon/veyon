@@ -2618,7 +2618,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Query timeout</source>
-        <translation type="unfinished"/>
+        <translation>Перевищення часу очікування на виконання запиту</translation>
     </message>
     <message>
         <source> ms</source>
@@ -3395,11 +3395,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exchange clipboard contents</source>
-        <translation type="unfinished"/>
+        <translation>Обмін вмістом буфера обміну даними</translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
-        <translation type="unfinished"/>
+        <translation>Не вибрано жодного комп&apos;ютера. Ви можете ввести назву вузла або IP-адресу комп&apos;ютера для доступу вручну:</translation>
     </message>
 </context>
 <context>

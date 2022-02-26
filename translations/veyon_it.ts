@@ -2606,7 +2606,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Query timeout</source>
-        <translation type="unfinished"/>
+        <translation>Timeout query</translation>
     </message>
     <message>
         <source> ms</source>
@@ -3383,11 +3383,11 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     </message>
     <message>
         <source>Exchange clipboard contents</source>
-        <translation type="unfinished"/>
+        <translation>Scambia il contenuto degli appunti</translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
-        <translation type="unfinished"/>
+        <translation>Nessun computer è stato selezionato, quindi puoi inserire un nome host o un indirizzo IP di un computer per l&apos;accesso manuale:</translation>
     </message>
 </context>
 <context>
