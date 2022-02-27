@@ -53,6 +53,7 @@ else()
 	  Qca-${QCA_SUFFIX}/QtCrypto
 	  qt/Qca-${QCA_SUFFIX}/QtCrypto
 	  qt5/Qca-${QCA_SUFFIX}/QtCrypto
+	  qt6/Qca-${QCA_SUFFIX}/QtCrypto
   )
 
   if(QCA_LIBRARY AND QCA_INCLUDE_DIR)
