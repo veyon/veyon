@@ -7,7 +7,7 @@ jobs:
           - centos.8.4
           - debian.buster
           - fedora.35
-          - opensuse.15.2
+          - opensuse.tumbleweed
           - ubuntu.focal
     runs-on: ubuntu-latest
     container: veyon/ci.linux.${{matrix.dist}}
