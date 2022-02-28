@@ -4,9 +4,7 @@ include(WindowsBuildHelpers)
 set(kitemmodels_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/kitemmodels/src/core)
 set(kitemmodels_SOURCES
 	${kitemmodels_SOURCE_DIR}/kextracolumnsproxymodel.cpp
-	${kitemmodels_SOURCE_DIR}/krecursivefilterproxymodel.cpp
 	${kitemmodels_SOURCE_DIR}/kextracolumnsproxymodel.h
-	${kitemmodels_SOURCE_DIR}/krecursivefilterproxymodel.h
 	)
 
 file(GLOB master_INCLUDES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)

@@ -27,12 +27,13 @@
 #include <QModelIndexList>
 #include <QWidget>
 
+class QSortFilterProxyModel;
+
 namespace Ui {
 class ComputerSelectPanel;
 }
 
 class ComputerManager;
-class RecursiveFilterProxyModel;
 
 class ComputerSelectPanel : public QWidget
 {
@@ -52,7 +53,7 @@ private Q_SLOTS:
 private:
 	Ui::ComputerSelectPanel *ui;
 	ComputerManager& m_computerManager;
-	RecursiveFilterProxyModel* m_filterProxyModel;
+	QSortFilterProxyModel* m_filterProxyModel;
 	QString m_previousFilter;
 	QModelIndexList m_expandedGroups;
 

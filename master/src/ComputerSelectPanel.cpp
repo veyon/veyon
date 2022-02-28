@@ -45,6 +45,9 @@ ComputerSelectPanel::ComputerSelectPanel( ComputerManager& computerManager, QWid
 	m_filterProxyModel->setSourceModel( computerManager.computerTreeModel() );
 	m_filterProxyModel->setFilterCaseSensitivity( Qt::CaseInsensitive );
 	m_filterProxyModel->setFilterKeyColumn( -1 ); // filter all columns instead of first one only
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+	m_filterProxyModel->setRecursiveFilteringEnabled(true);
+#endif
 
 	ui->setupUi(this);
 
