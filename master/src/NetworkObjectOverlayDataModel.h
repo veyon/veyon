@@ -24,7 +24,7 @@
 
 #pragma once
 
-#include "kextracolumnsproxymodel.h"
+#include "KExtraColumnsProxyModel.h"
 #include "NetworkObject.h"
 
 class NetworkObjectOverlayDataModel : public KExtraColumnsProxyModel

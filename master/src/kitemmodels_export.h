@@ -1,2 +1,0 @@
-#define KITEMMODELS_EXPORT
-
