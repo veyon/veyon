@@ -24,9 +24,9 @@
 
 #pragma once
 
-#include "RecursiveFilterProxyModel.h"
+#include <QSortFilterProxyModel>
 
-class ComputerSelectModel : public RecursiveFilterProxyModel
+class ComputerSelectModel : public QSortFilterProxyModel
 {
 	Q_OBJECT
 public:

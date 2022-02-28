@@ -23,13 +23,14 @@
  */
 
 #include "ComputerSelectModel.h"
+#include "VeyonCore.h"
 
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 #include <QAbstractItemModelTester>
 #endif
 
 ComputerSelectModel::ComputerSelectModel( QAbstractItemModel* sourceModel, QObject* parent ) :
-	RecursiveFilterProxyModel( parent )
+	QSortFilterProxyModel(parent)
 {
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
@@ -39,6 +40,11 @@ ComputerSelectModel::ComputerSelectModel( QAbstractItemModel* sourceModel, QObje
 	setFilterCaseSensitivity( Qt::CaseInsensitive );
 	setFilterKeyColumn( -1 ); // filter all columns instead of first one only
 	sort( 0 );
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+	setRecursiveFilteringEnabled(true);
+#else
+	vWarning() << "Built with Qt < 5.10 – filtering computers/users will not work properly";
+#endif
 }
 
 
