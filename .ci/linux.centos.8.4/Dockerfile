@@ -8,7 +8,6 @@ RUN \
 	dnf install -y https://pkgs.dyn.su/el8/base/x86_64/raven-release-1.0-2.el8.noarch.rpm && \
 	yum install -y git gcc-c++ make ninja-build cmake rpm-build fakeroot \
 		qt5-qtbase-devel qt5-qtbase-private-devel qt5-qtbase qt5-linguist qt5-qttools qt5-qtquickcontrols2-devel qt5-qtwebengine-devel \
-		kf5-kitemmodels-devel \
 		libXtst-devel libXrandr-devel libXinerama-devel libXcursor-devel libXrandr-devel libXdamage-devel libXcomposite-devel libXfixes-devel \
 		libfakekey-devel \
 		libjpeg-turbo-devel \

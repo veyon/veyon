@@ -6,7 +6,6 @@ RUN \
 	apt-get install --no-install-recommends -y \
 		git binutils gcc g++ ninja-build cmake rename file fakeroot bzip2 \
 		qtbase5-dev qtbase5-private-dev qtbase5-dev-tools qttools5-dev qttools5-dev-tools qtdeclarative5-dev qtquickcontrols2-5-dev qtwebengine5-dev \
-		libkf5itemmodels-dev \
 		xorg-dev \
 		libfakekey-dev \
 		libjpeg-dev \

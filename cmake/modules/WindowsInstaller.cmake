@@ -26,7 +26,6 @@ add_custom_target(windows-binaries
 	COMMAND mv ${WINDOWS_INSTALL_FILES}/plugins/vnchooks.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND mkdir -p ${WINDOWS_INSTALL_FILES}/translations
 	COMMAND cp translations/*qm ${WINDOWS_INSTALL_FILES}/translations/
-	COMMAND cp ${DLLDIR}/libKF5ItemModels.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND cp ${DLLDIR}/libjpeg-62.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND cp ${DLLDIR}/libpng16-16.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND cp ${DLLDIR}/libcrypto-1_1*.dll ${DLLDIR}/libssl-1_1*.dll ${WINDOWS_INSTALL_FILES}
