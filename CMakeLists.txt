@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.1.0)
+cmake_minimum_required(VERSION 3.10.0)
+message("Using CMake ${CMAKE_VERSION}")
 
 project(veyon)
 
@@ -31,14 +32,11 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
 if(COMMAND CMAKE_POLICY)
 	cmake_policy(SET CMP0009 NEW)
-	cmake_policy(SET CMP0020 NEW)
 	cmake_policy(SET CMP0022 NEW)
 	cmake_policy(SET CMP0058 NEW)
 	cmake_policy(SET CMP0063 NEW)
-	if(${CMAKE_VERSION} VERSION_GREATER "3.8.0")
-		cmake_policy(SET CMP0069 NEW)
-	endif()
-	if(${CMAKE_VERSION} VERSION_GREATER "3.12.0")
+	cmake_policy(SET CMP0069 NEW)
+	if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.12.0")
 		cmake_policy(SET CMP0075 NEW)
 	endif()
 	if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.14.0")
