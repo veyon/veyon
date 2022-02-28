@@ -19,7 +19,7 @@ macro(build_veyon_plugin PLUGIN_NAME)
 	set_target_properties(${PLUGIN_NAME} PROPERTIES PREFIX "")
 	install(TARGETS ${PLUGIN_NAME} LIBRARY DESTINATION ${VEYON_INSTALL_PLUGIN_DIR})
 	if(WITH_PCH)
-		target_precompile_headers(${PLUGIN_NAME} REUSE_FROM veyon-pch)
+		target_precompile_headers(${PLUGIN_NAME} REUSE_FROM veyon-library-pch)
 	endif()
 endmacro()
 
