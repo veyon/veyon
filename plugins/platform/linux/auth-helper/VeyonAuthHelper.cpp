@@ -92,6 +92,14 @@ int main()
 		{
 			printf( "pam_authenticate: %s\n", pam_strerror( pamh, err ) );
 		}
+        else
+        {
+            err = pam_acct_mgmt( pamh, PAM_SILENT );
+            if( err != PAM_SUCCESS )
+            {
+                printf( "pam_acct_mgmt: %s\n", pam_strerror( pamh, err ) );
+            }
+        }
 	}
 	else
 	{
