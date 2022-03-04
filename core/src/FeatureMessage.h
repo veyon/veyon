@@ -26,6 +26,7 @@
 
 #include <QVariant>
 
+#include "EnumHelper.h"
 #include "Feature.h"
 
 class QIODevice;
@@ -88,17 +89,21 @@ public:
 		return m_arguments;
 	}
 
-	template<typename T = int>
-	FeatureMessage& addArgument( T index, const QVariant& value )
+	template<typename T>
+	FeatureMessage& addArgument(T index, const QVariant& value)
 	{
-		m_arguments[QString::number( static_cast<int>( index ) )] = value;
+		const auto indexString = EnumHelper::toString(index);
+		if (indexString.isEmpty() == false)
+		{
+			m_arguments[indexString] = value;
+		}
 		return *this;
 	}
 
-	template<typename T = int>
-	QVariant argument( T index ) const
+	template<typename T>
+	QVariant argument(T index) const
 	{
-		return m_arguments[QString::number( static_cast<int>( index ) )];
+		return m_arguments[EnumHelper::toString(index)];
 	}
 
 	bool send( QIODevice* ioDevice ) const;
