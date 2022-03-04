@@ -44,7 +44,7 @@ static XImage* createXShmTestImage( Display* display, XShmSegmentInfo* shm )
 		return NULL;
 	}
 
-	shm->shmid = shmget(IPC_PRIVATE, xim->bytes_per_line * xim->height, IPC_CREAT | 0600);
+	shm->shmid = shmget(IPC_PRIVATE, (size_t)xim->bytes_per_line * xim->height, IPC_CREAT | 0600);
 
 	if( shm->shmid == -1 )
 	{
