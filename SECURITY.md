@@ -6,8 +6,8 @@ Usually, only the latest stable release series is provided with security updates
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 4.7.x   | :white_check_mark: |
-| < 4.7.x | :x:                |
+| 4.7.x   | ✔️                 |
+| < 4.7.x | ❌                 |
 
 ## Reporting a Vulnerability
 
