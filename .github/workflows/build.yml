@@ -1,3 +1,4 @@
+name: "CI Builds"
 on: [push]
 jobs:
   build-linux:
