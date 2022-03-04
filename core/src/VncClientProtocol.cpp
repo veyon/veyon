@@ -562,12 +562,12 @@ bool VncClientProtocol::handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHea
 	case rfbEncodingXCursor:
 		return width * height == 0 ||
 				( buffer.read( sz_rfbXCursorColors ).size() == sz_rfbXCursorColors &&
-				  buffer.read( 2 * bytesPerRow * height ).size() == static_cast<int>( 2 * bytesPerRow * height ) );
+				  buffer.read( size_t(2) * bytesPerRow * height ).size() == static_cast<int>( 2 * bytesPerRow * height ) );
 
 	case rfbEncodingRichCursor:
 		return width * height == 0 ||
-				( buffer.read( width * height * bytesPerPixel ).size() == static_cast<int>( width * height * bytesPerPixel ) &&
-				  buffer.read( bytesPerRow * height ).size() == static_cast<int>( bytesPerRow * height ) );
+				( buffer.read( size_t(width) * height * bytesPerPixel ).size() == static_cast<int>( width * height * bytesPerPixel ) &&
+				  buffer.read( size_t(bytesPerRow) * height ).size() == static_cast<int>( bytesPerRow * height ) );
 
 	case rfbEncodingSupportedMessages:
 		return buffer.read( sz_rfbSupportedMessages ).size() == sz_rfbSupportedMessages;
@@ -578,7 +578,7 @@ bool VncClientProtocol::handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHea
 		return buffer.read( width ).size() == static_cast<int>( width );
 
 	case rfbEncodingRaw:
-		return buffer.read( width * height * bytesPerPixel ).size() == static_cast<int>( width * height * bytesPerPixel );
+		return buffer.read( size_t(width) * height * bytesPerPixel ).size() == static_cast<int>( width * height * bytesPerPixel );
 
 	case rfbEncodingCopyRect:
 		return buffer.read( sz_rfbCopyRect ).size() == sz_rfbCopyRect;
