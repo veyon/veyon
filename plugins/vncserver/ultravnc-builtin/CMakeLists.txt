@@ -55,6 +55,7 @@ set(ultravnc_CXX_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/ScreenCapture.cpp
 	${ultravnc_DIR}/winvnc/winvnc/DeskdupEngine.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vsocket.cpp
+	${ultravnc_DIR}/winvnc/winvnc/LayeredWindows.cpp
 	${ultravnc_DIR}/winvnc/omnithread/nt.cpp
 	${ultravnc_DIR}/common/Clipboard.cpp
 	${ultravnc_DIR}/common/win32_helpers.cpp
