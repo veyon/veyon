@@ -163,8 +163,10 @@ endif()
 # find required Qt modules
 option(WITH_QT6 "Build for Qt 6" OFF)
 if(WITH_QT6)
+	set(QT_MAJOR_VERSION 6)
 	find_package(Qt6 COMPONENTS
 		Core
+		Core5Compat
 		Concurrent
 		Gui
 		Widgets
@@ -179,6 +181,7 @@ if(WITH_QT6)
 		find_package(Qt6 COMPONENTS AndroidExtras REQUIRED)
 	endif()
 else()
+	set(QT_MAJOR_VERSION 5)
 	find_package(Qt5Core REQUIRED)
 	find_package(Qt5Concurrent REQUIRED)
 	find_package(Qt5Gui REQUIRED)
@@ -195,7 +198,7 @@ else()
 endif()
 
 # find required libraries
-find_package(QCA REQUIRED)
+find_package(Qca-qt${QT_MAJOR_VERSION} REQUIRED)
 find_package(OpenSSL REQUIRED)
 
 # find Linux-specific packages

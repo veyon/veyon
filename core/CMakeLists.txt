@@ -69,34 +69,27 @@ target_include_directories(veyon-core PUBLIC
 	${CMAKE_CURRENT_BINARY_DIR}
 	${CMAKE_CURRENT_SOURCE_DIR}/src
 	${CMAKE_CURRENT_BINARY_DIR}/src
-	${QCA_INCLUDE_DIR}
+	)
+
+target_link_libraries(veyon-core PUBLIC
+	Qt${QT_MAJOR_VERSION}::Concurrent
+	Qt${QT_MAJOR_VERSION}::Gui
+	Qt${QT_MAJOR_VERSION}::Network
+	Qt${QT_MAJOR_VERSION}::Widgets
+	Qt${QT_MAJOR_VERSION}::QuickControls2
+	qca-qt${QT_MAJOR_VERSION}
 	)
 
 if(WITH_QT6)
-	target_link_libraries(veyon-core PUBLIC
-		Qt6::Concurrent
-		Qt6::Gui
-		Qt6::Network
-		Qt6::Widgets
-		Qt6::QuickControls2)
-	if(WITH_TESTS)
-		target_link_libraries(veyon-core PUBLIC Qt6::Test)
-	endif()
-else()
-	target_link_libraries(veyon-core PUBLIC
-		Qt5::Concurrent
-		Qt5::Gui
-		Qt5::Network
-		Qt5::Widgets
-		Qt5::QuickControls2)
-	if(WITH_TESTS)
-		target_link_libraries(veyon-core PUBLIC Qt5::Test)
-	endif()
+	# required by qca-qt6
+	target_link_libraries(veyon-core PUBLIC Qt6::Core5Compat)
 endif()
 
-target_link_libraries(veyon-core PUBLIC
-	OpenSSL::SSL
-	${QCA_LIBRARY})
+if(WITH_TESTS)
+	target_link_libraries(veyon-core PUBLIC Qt${QT_MAJOR_VERSION}::Test)
+endif()
+
+target_link_libraries(veyon-core PUBLIC OpenSSL::SSL)
 
 if(LibVNCClient_FOUND)
 	target_link_libraries(veyon-core PRIVATE LibVNC::LibVNCClient)
@@ -133,7 +126,7 @@ else()
 endif()
 
 if(VEYON_BUILD_ANDROID)
-	target_link_libraries(veyon-core PRIVATE Qt5::AndroidExtras)
+	target_link_libraries(veyon-core PRIVATE Qt${QT_MAJOR_VERSION}::AndroidExtras)
 endif()
 
 if(WITH_PCH)

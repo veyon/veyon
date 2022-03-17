@@ -39,11 +39,7 @@ set(kldap_SOURCES
 	)
 
 add_library(kldap-light SHARED ${kldap_SOURCES})
-if(WITH_QT6)
-	target_link_libraries(kldap-light PRIVATE Qt6::Core)
-else()
-	target_link_libraries(kldap-light PRIVATE Qt5::Core)
-endif()
+target_link_libraries(kldap-light PRIVATE Qt${QT_MAJOR_VERSION}::Core)
 target_link_libraries(kldap-light PUBLIC ${Ldap_LIBRARIES} ${Sasl2_LIBRARIES})
 target_include_directories(kldap-light PRIVATE ${Ldap_INCLUDE_DIRS})
 target_include_directories(kldap-light PUBLIC ${kldap_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})

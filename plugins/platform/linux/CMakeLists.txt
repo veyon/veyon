@@ -65,11 +65,11 @@ target_include_directories(linux-platform PRIVATE
 
 if(WITH_QT6)
 	find_package(Qt6 COMPONENTS DBus REQUIRED)
-	target_link_libraries(linux-platform PRIVATE Qt6::DBus)
 else()
 	find_package(Qt5DBus REQUIRED)
-	target_link_libraries(linux-platform PRIVATE Qt5::DBus)
 endif()
+
+target_link_libraries(linux-platform PRIVATE Qt${QT_MAJOR_VERSION}::DBus)
 
 target_link_libraries(linux-platform PRIVATE
 	${X11_LIBRARIES}
