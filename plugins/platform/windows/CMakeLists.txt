@@ -54,10 +54,10 @@ target_include_directories(windows-platform PRIVATE
 	${ultravnc_DIR}/addon/ms-logon/authSSP
 	${ultravnc_DIR}/winvnc/winvnc
 	${ultravnc_DIR}
-	${Qt5Gui_PRIVATE_INCLUDE_DIRS}
 	)
 
 target_link_libraries(windows-platform PRIVATE -lws2_32 -lwtsapi32 -lnetapi32 -luserenv -linterception -liphlpapi)
+target_link_libraries(windows-platform PRIVATE Qt${QT_MAJOR_VERSION}::GuiPrivate)
 target_compile_definitions(windows-platform PRIVATE ULTRAVNC_VEYON_SUPPORT)
 target_compile_options(windows-platform PRIVATE "-Wno-unknown-pragmas")
 set_source_files_properties(WindowsNetworkFunctions.cpp PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE SKIP_PRECOMPILE_HEADERS TRUE)
