@@ -33,7 +33,7 @@ jobs:
 
     - name: Install dependencies
       run: >
-        sudo apt-get install --no-install-recommends -y
+        sudo apt-get update && sudo apt-get install --no-install-recommends -y
         cmake
         ninja-build
         qtbase5-dev qtbase5-private-dev qtbase5-dev-tools qtdeclarative5-dev qtquickcontrols2-5-dev
