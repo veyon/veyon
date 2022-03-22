@@ -55,7 +55,7 @@ public:
 	static constexpr int DefaultFileSizeLimit = 100;
 	static constexpr int DefaultFileRotationCount = 10;
 	static constexpr int MaximumMessageSize = 1000;
-	static constexpr const char* DefaultLogFileDirectory = "$TEMP";
+	static constexpr const char* DefaultLogFileDirectory = "%TEMP%";
 
 	explicit Logger( const QString &appName );
 	~Logger();
