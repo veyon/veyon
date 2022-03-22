@@ -35,24 +35,16 @@
 QString Filesystem::expandPath( QString path ) const
 {
 	const auto p = QDir::toNativeSeparators( path.replace( QStringLiteral( "%HOME%" ), QDir::homePath() ).
-											 replace( QStringLiteral( "$HOME" ), QDir::homePath() ).
 											 replace( QStringLiteral( "%HOSTNAME%" ), QHostInfo::localHostName() ).
-											 replace( QStringLiteral( "$HOSTNAME" ), QHostInfo::localHostName() ).
 											 replace( QStringLiteral( "%PROFILE%" ), QDir::homePath() ).
-											 replace( QStringLiteral( "$PROFILE" ), QDir::homePath() ).
 											 replace(QStringLiteral("%DESKTOP%"), QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)).
 											 replace(QStringLiteral("%DOCUMENTS%"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)).
 											 replace(QStringLiteral("%DOWNLOADS%"), QStandardPaths::writableLocation(QStandardPaths::DownloadLocation)).
 											 replace(QStringLiteral("%PICTURES%"), QStandardPaths::writableLocation(QStandardPaths::PicturesLocation)).
 											 replace(QStringLiteral("%VIDEOS%"), QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)).
 											 replace( QStringLiteral( "%APPDATA%" ), VeyonCore::platform().filesystemFunctions().personalAppDataPath() ).
-											 replace( QStringLiteral( "$APPDATA" ), VeyonCore::platform().filesystemFunctions().personalAppDataPath() ).
 											 replace( QStringLiteral( "%GLOBALAPPDATA%" ), VeyonCore::platform().filesystemFunctions().globalAppDataPath() ).
-											 replace( QStringLiteral( "$GLOBALAPPDATA" ), VeyonCore::platform().filesystemFunctions().globalAppDataPath() ).
-											 replace( QStringLiteral( "%TMP%" ), QDir::tempPath() ).
-											 replace( QStringLiteral( "$TMP" ), QDir::tempPath() ).
-											 replace( QStringLiteral( "%TEMP%" ), QDir::tempPath() ).
-											 replace( QStringLiteral( "$TEMP" ), QDir::tempPath() ) );
+											 replace(QStringLiteral("%TEMP%"), QDir::tempPath()));
 
 	// remove duplicate directory separators - however skip the first two chars
 	// as they might specify an UNC path on Windows
