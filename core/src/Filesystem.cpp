@@ -25,6 +25,7 @@
 #include <QCoreApplication>
 #include <QDir>
 #include <QHostInfo>
+#include <QStandardPaths>
 
 #include "VeyonConfiguration.h"
 #include "Filesystem.h"
@@ -39,6 +40,11 @@ QString Filesystem::expandPath( QString path ) const
 											 replace( QStringLiteral( "$HOSTNAME" ), QHostInfo::localHostName() ).
 											 replace( QStringLiteral( "%PROFILE%" ), QDir::homePath() ).
 											 replace( QStringLiteral( "$PROFILE" ), QDir::homePath() ).
+											 replace(QStringLiteral("%DESKTOP%"), QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)).
+											 replace(QStringLiteral("%DOCUMENTS%"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)).
+											 replace(QStringLiteral("%DOWNLOADS%"), QStandardPaths::writableLocation(QStandardPaths::DownloadLocation)).
+											 replace(QStringLiteral("%PICTURES%"), QStandardPaths::writableLocation(QStandardPaths::PicturesLocation)).
+											 replace(QStringLiteral("%VIDEOS%"), QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)).
 											 replace( QStringLiteral( "%APPDATA%" ), VeyonCore::platform().filesystemFunctions().personalAppDataPath() ).
 											 replace( QStringLiteral( "$APPDATA" ), VeyonCore::platform().filesystemFunctions().personalAppDataPath() ).
 											 replace( QStringLiteral( "%GLOBALAPPDATA%" ), VeyonCore::platform().filesystemFunctions().globalAppDataPath() ).
@@ -66,25 +72,33 @@ QString Filesystem::shrinkPath( QString path ) const
 {
 	path = QDir::toNativeSeparators( path );
 
-	const QString envVar( QStringLiteral( "%%1%" ) );
+	const auto tempPath = QDir::toNativeSeparators(QDir::tempPath());
 	const auto personalAppDataPath = VeyonCore::platform().filesystemFunctions().personalAppDataPath();
 	const auto globalAppDataPath = VeyonCore::platform().filesystemFunctions().globalAppDataPath();
+	const auto desktopPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+	const auto documentsPath = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
+	const auto downloadsPath = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
+	const auto picturesPath = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
+	const auto videosPath = QStandardPaths::writableLocation(QStandardPaths::MoviesLocation);
+	const auto homePath = QDir::toNativeSeparators(QDir::homePath());
 
-	if( path.startsWith( QDir::toNativeSeparators( QDir::tempPath() ) ) )
+	for (const auto& mapping : {
+			 qMakePair(tempPath, QStringLiteral("TEMP")),
+			 qMakePair(personalAppDataPath, QStringLiteral("APPDATA")),
+			 qMakePair(globalAppDataPath, QStringLiteral("GLOBALAPPDATA")),
+			 qMakePair(desktopPath, QStringLiteral("DESKTOP")),
+			 qMakePair(documentsPath, QStringLiteral("DOCUMENTS")),
+			 qMakePair(downloadsPath, QStringLiteral("DOWNLOADS")),
+			 qMakePair(picturesPath, QStringLiteral("PICTURES")),
+			 qMakePair(videosPath, QStringLiteral("VIDEOS")),
+			 qMakePair(homePath, QStringLiteral("HOME")),
+			 })
 	{
-		path.replace( QDir::toNativeSeparators( QDir::tempPath() ), envVar.arg( QStringLiteral( "TEMP" ) ) );
-	}
-	else if( path.startsWith( personalAppDataPath ) )
-	{
-		path.replace( personalAppDataPath, envVar.arg( QStringLiteral( "APPDATA" ) ) );
-	}
-	else if( path.startsWith( globalAppDataPath ) )
-	{
-		path.replace( globalAppDataPath, envVar.arg( QStringLiteral( "GLOBALAPPDATA" ) ) );
-	}
-	else if( path.startsWith( QDir::toNativeSeparators( QDir::homePath() ) ) )
-	{
-		path.replace( QDir::toNativeSeparators( QDir::homePath() ), envVar.arg( QStringLiteral( "HOME" ) ) );
+		if (path.startsWith(mapping.first))
+		{
+			path.replace(mapping.first, QStringLiteral("%%1%").arg(mapping.second));
+			break;
+		}
 	}
 
 	// remove duplicate directory separators - however skip the first two chars
