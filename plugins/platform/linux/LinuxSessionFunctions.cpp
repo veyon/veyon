@@ -220,6 +220,27 @@ QString LinuxSessionFunctions::getSessionId(const QString& session, bool logErro
 
 
 
+QString LinuxSessionFunctions::getSessionUser(const QString& session)
+{
+	quint32 uid{0};
+	QString userObjectPath;
+
+	const auto reply = getSessionProperty(session, QStringLiteral("User"));
+	if (reply.isValid())
+	{
+		const auto replyData = reply.value<QDBusArgument>();
+		replyData.beginStructure();
+		replyData >> uid >> userObjectPath;
+		replyData.endStructure();
+
+		return userObjectPath;
+	}
+
+	return {};
+}
+
+
+
 LinuxSessionFunctions::State LinuxSessionFunctions::getSessionState( const QString& session )
 {
 	static const QMap<QString, State> stateMap{
