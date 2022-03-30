@@ -96,7 +96,7 @@ QStringList LinuxSessionFunctions::listSessions()
 
 
 
-QVariant LinuxSessionFunctions::getSessionProperty( const QString& session, const QString& property )
+QVariant LinuxSessionFunctions::getSessionProperty(const QString& session, const QString& property, bool logErrors)
 {
 	QDBusInterface loginManager( QStringLiteral("org.freedesktop.login1"),
 								 session,
@@ -109,7 +109,12 @@ QVariant LinuxSessionFunctions::getSessionProperty( const QString& session, cons
 
 	if( reply.isValid() == false )
 	{
-		vCritical() << "Could not query session property" << property << reply.error().message();
+		if (logErrors)
+		{
+			vCritical() << "Could not query property" << property
+						<< "of session" << session
+						<< "error:" << reply.error().message();
+		}
 		return {};
 	}
 

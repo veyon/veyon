@@ -86,7 +86,7 @@ public:
 
 	static QStringList listSessions();
 
-	static QVariant getSessionProperty( const QString& session, const QString& property );
+	static QVariant getSessionProperty(const QString& session, const QString& property, bool logErrors = true);
 
 	static int getSessionLeaderPid( const QString& session );
 	static qint64 getSessionUptimeSeconds( const QString& session );
