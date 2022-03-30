@@ -51,6 +51,8 @@ public:
 
 	static uid_t userIdFromName( const QString& username );
 
+	static QVariant getUserProperty(const QString& userPath, const QString& property, bool logErrors = true);
+
 private:
 	static constexpr auto AuthHelperTimeout = 10000;
 

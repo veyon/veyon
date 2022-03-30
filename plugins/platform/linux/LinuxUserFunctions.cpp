@@ -443,3 +443,30 @@ uid_t LinuxUserFunctions::userIdFromName( const QString& username )
 
 	return 0;
 }
+
+
+
+QVariant LinuxUserFunctions::getUserProperty(const QString& userPath, const QString& property, bool logErrors)
+{
+	QDBusInterface loginManager(QStringLiteral("org.freedesktop.login1"),
+								 userPath,
+								 QStringLiteral("org.freedesktop.DBus.Properties"),
+								 QDBusConnection::systemBus());
+
+	const QDBusReply<QDBusVariant> reply = loginManager.call(QStringLiteral("Get"),
+															  QStringLiteral("org.freedesktop.login1.User"),
+															  property);
+
+	if( reply.isValid() == false )
+	{
+		if (logErrors)
+		{
+			vCritical() << "Could not query property" << property
+						<< "of user" << userPath
+						<< "error:" << reply.error().message();
+		}
+		return {};
+	}
+
+	return reply.value().variant();
+}
