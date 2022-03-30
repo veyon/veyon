@@ -212,8 +212,11 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 	// if pam-systemd is not in use, we have to set the XDG_SESSION_ID environment variable manually
 	if( sessionEnvironment.contains( LinuxSessionFunctions::xdgSessionIdEnvVarName() ) == false )
 	{
-		sessionEnvironment.insert( LinuxSessionFunctions::xdgSessionIdEnvVarName(),
-								   LinuxSessionFunctions::getSessionId( sessionPath ) );
+		const auto sessionId = LinuxSessionFunctions::getSessionId(sessionPath);
+		if (sessionId.isEmpty() == false)
+		{
+			sessionEnvironment.insert(LinuxSessionFunctions::xdgSessionIdEnvVarName(), sessionId);
+		}
 	}
 
 	const auto sessionId = m_sessionManager.openSession( sessionPath );
