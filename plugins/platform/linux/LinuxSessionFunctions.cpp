@@ -298,12 +298,61 @@ QProcessEnvironment LinuxSessionFunctions::getSessionEnvironment( int sessionLea
 QString LinuxSessionFunctions::currentSessionPath()
 {
 	const auto xdgSessionPath = QProcessEnvironment::systemEnvironment().value( sessionPathEnvVarName() );
-	if( xdgSessionPath.isEmpty() )
+	if (xdgSessionPath.isEmpty() == false)
 	{
-		return QStringLiteral("/org/freedesktop/login1/session/auto");
+		return xdgSessionPath;
 	}
 
-	return xdgSessionPath;
+	const auto sessionAuto = QStringLiteral("/org/freedesktop/login1/session/auto");
+	const auto sessionSelf = QStringLiteral("/org/freedesktop/login1/session/self"); // systemd < 243
+	static QString sessionPathFromXdgSessionId;
+
+	static bool hasSessionAuto = false;
+	static bool hasSessionSelf = false;
+
+	if (hasSessionAuto)
+	{
+		return sessionAuto;
+	}
+
+	if (hasSessionSelf)
+	{
+		return sessionSelf;
+	}
+
+	if (sessionPathFromXdgSessionId.isEmpty() == false)
+	{
+		return sessionPathFromXdgSessionId;
+	}
+
+	if (getSessionId(sessionAuto, false).isNull() == false)
+	{
+		hasSessionAuto = true;
+		return sessionAuto;
+	}
+
+	if (getSessionId(sessionSelf, false).isNull() == false)
+	{
+		hasSessionSelf = true;
+		return sessionSelf;
+	}
+
+	const auto xdgSessionId = QProcessEnvironment::systemEnvironment().value(xdgSessionIdEnvVarName());
+	if (xdgSessionId.isEmpty() == false)
+	{
+		const QDBusReply<QDBusObjectPath> reply = LinuxCoreFunctions::systemdLoginManager()->call(
+			QDBus::Block, QStringLiteral("GetSession"), xdgSessionId);
+
+		if (reply.isValid())
+		{
+			sessionPathFromXdgSessionId = reply.value().path();
+			return sessionPathFromXdgSessionId;
+		}
+	}
+
+	vWarning() << "could not determine dbus object path of current session – please make sure systemd is "
+				  "up to date and/or the environment variable" << xdgSessionIdEnvVarName() << "is set";
+	return {};
 }
 
 
