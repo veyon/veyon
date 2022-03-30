@@ -94,6 +94,7 @@ public:
 	static Class getSessionClass( const QString& session );
 	static Type getSessionType( const QString& session );
 	static QString getSessionId(const QString& session, bool logErrors = true);
+	static QString getSessionUser( const QString& session );
 	static State getSessionState( const QString& session );
 	static LoginDBusSessionSeat getSessionSeat( const QString& session );
 
