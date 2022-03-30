@@ -93,7 +93,7 @@ public:
 	static qint64 getSessionUptimeSeconds( const QString& session );
 	static Class getSessionClass( const QString& session );
 	static Type getSessionType( const QString& session );
-	static QString getSessionId( const QString& session );
+	static QString getSessionId(const QString& session, bool logErrors = true);
 	static State getSessionState( const QString& session );
 	static LoginDBusSessionSeat getSessionSeat( const QString& session );
 

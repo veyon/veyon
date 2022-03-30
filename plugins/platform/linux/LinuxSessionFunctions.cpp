@@ -220,9 +220,9 @@ LinuxSessionFunctions::Type LinuxSessionFunctions::getSessionType( const QString
 
 
 
-QString LinuxSessionFunctions::getSessionId( const QString& session )
+QString LinuxSessionFunctions::getSessionId(const QString& session, bool logErrors)
 {
-	return getSessionProperty( session, QStringLiteral("Id") ).toString();
+	return getSessionProperty(session, QStringLiteral("Id"), logErrors).toString();
 }
 
 
