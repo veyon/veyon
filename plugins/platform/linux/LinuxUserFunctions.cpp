@@ -243,6 +243,16 @@ QString LinuxUserFunctions::currentUser()
 {
 	QString username;
 
+	const auto sessionUserPath = LinuxSessionFunctions::getSessionUser(LinuxSessionFunctions::currentSessionPath());
+	if (sessionUserPath.isEmpty() == false)
+	{
+		username = getUserProperty(sessionUserPath, QStringLiteral("Name")).toString();
+		if (username.isEmpty() == false)
+		{
+			return username;
+		}
+	}
+
 	const auto envUser = qgetenv( "USER" );
 
 	struct passwd * pw_entry = nullptr;
