@@ -46,7 +46,7 @@
 
 QString LinuxUserFunctions::fullName( const QString& username )
 {
-	auto pw_entry = getpwnam( VeyonCore::stripDomain( username ).toUtf8().constData() );
+	const auto pw_entry = getpwnam(username.toUtf8().constData());
 
 	if( pw_entry )
 	{
@@ -179,8 +179,6 @@ QStringList LinuxUserFunctions::groupsOfUser( const QString& username, bool quer
 
 	QStringList groupList;
 
-	const auto strippedUsername = VeyonCore::stripDomain( username );
-
 	QProcess getentProcess;
 	getentProcess.start( QStringLiteral("getent"), { QStringLiteral("group") } );
 	getentProcess.waitForFinished();
@@ -190,7 +188,7 @@ QStringList LinuxUserFunctions::groupsOfUser( const QString& username, bool quer
 	{
 		const auto groupComponents = group.split( QLatin1Char(':') );
 		if( groupComponents.size() == 4 &&
-				groupComponents.last().split( QLatin1Char(',') ).contains( strippedUsername ) )
+			groupComponents.last().split( QLatin1Char(',') ).contains(username))
 		{
 			groupList += groupComponents.first(); // clazy:exclude=reserve-candidates
 		}
@@ -395,7 +393,7 @@ bool LinuxUserFunctions::authenticate( const QString& username, const Password& 
 	const auto pamService = LinuxPlatformConfiguration( &VeyonCore::config() ).pamServiceName();
 
 	QDataStream ds( &p );
-	ds << VeyonCore::stripDomain( username ).toUtf8();
+	ds << username.toUtf8();
 	ds << password.toByteArray();
 	ds << pamService.toUtf8();
 
