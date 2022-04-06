@@ -2,8 +2,10 @@
 
 set -e
 
+export CMAKE_FLAGS="$CMAKE_FLAGS -DCPACK_DIST=debian.bullseye"
+
 $1/.ci/common/linux-build.sh $@
-$1/.ci/common/finalize-deb.sh $1 $2 "debian-bullseye"
+$1/.ci/common/finalize-deb.sh $1 $2
 
 if [ -z "$3" ] ; then
 

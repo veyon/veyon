@@ -4,9 +4,6 @@ set -e
 
 cd $2
 
-# add distribution name to file name
-rename ".x86_64" ".${3}.x86_64" *.rpm
-
 # show files
 for i in *.rpm ; do
 	echo Contents of $i:
