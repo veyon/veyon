@@ -292,6 +292,10 @@ if(VEYON_BUILD_ANDROID)
 		)
 endif()
 
+
+include(cmake/CPackDefinitions.cmake)
+
+
 # make sub-directories
 add_subdirectory(core)
 if(NOT WITH_CORE_ONLY)
@@ -319,7 +323,7 @@ endif()
 #
 # package generation
 #
-include(cmake/CPackDefinitions.cmake)
+include(CPack)
 
 
 
