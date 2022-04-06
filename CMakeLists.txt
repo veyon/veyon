@@ -270,6 +270,10 @@ set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${VEYON_LIB_DIR}")
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
+
+include(cmake/CPackDefinitions.cmake)
+
+
 # make sub-directories
 add_subdirectory(core)
 if(NOT WITH_CORE_ONLY)
@@ -297,7 +301,7 @@ endif()
 #
 # package generation
 #
-include(cmake/CPackDefinitions.cmake)
+include(CPack)
 
 
 

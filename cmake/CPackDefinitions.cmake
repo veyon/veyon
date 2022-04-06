@@ -114,4 +114,3 @@ else()
 	set(CPACK_SOURCE_GENERATOR "TGZ")
 endif()
 
-include(CPack)
