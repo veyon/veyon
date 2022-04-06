@@ -655,7 +655,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Podaj polecenie, dla którego chcesz wyświetlić pomoc.</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
@@ -1049,7 +1049,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>[no user]</source>
-        <translation type="unfinished"/>
+        <translation>[no user]</translation>
     </message>
     <message>
         <source>invalid</source>
@@ -1423,7 +1423,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Applications &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>Aplikacje i strony internetowe</translation>
     </message>
     <message>
         <source>Predefined applications</source>
@@ -1466,7 +1466,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Uruchom aplikację</translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
@@ -1482,7 +1482,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
-        <translation type="unfinished"/>
+        <translation>Uruchom aplikacje i otwórz strony internetowe w sesjach użytkownika</translation>
     </message>
 </context>
 <context>
@@ -1574,7 +1574,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Podaj polecenie, dla którego chcesz wyświetlić pomoc.</translation>
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
@@ -2688,7 +2688,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Login key sequence</source>
-        <translation type="unfinished"/>
+        <translation>Sekwencja klawiszy logowania</translation>
     </message>
     <message>
         <source>User sessions</source>
@@ -3856,7 +3856,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Uruchom aplikację</translation>
     </message>
     <message>
         <source>Name:</source>

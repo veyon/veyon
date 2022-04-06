@@ -2621,7 +2621,7 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     </message>
     <message>
         <source>Query timeout</source>
-        <translation type="unfinished"/>
+        <translation>Tiempo vencido de consulta</translation>
     </message>
     <message>
         <source> ms</source>
@@ -3398,11 +3398,11 @@ Por favor guarde su trabajo y cierre todos los programas.</translation>
     </message>
     <message>
         <source>Exchange clipboard contents</source>
-        <translation type="unfinished"/>
+        <translation>Intercambiar contenido del portapapeles</translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
-        <translation type="unfinished"/>
+        <translation>No se ha seleccionado ninguna computadora, por lo que puede introducir un nombre de host o dirección IP de una computadora para acceso manual:</translation>
     </message>
 </context>
 <context>

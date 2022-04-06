@@ -2619,7 +2619,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Query timeout</source>
-        <translation type="unfinished"/>
+        <translation>Päringu ajalõpp</translation>
     </message>
     <message>
         <source> ms</source>
@@ -3396,11 +3396,11 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     </message>
     <message>
         <source>Exchange clipboard contents</source>
-        <translation type="unfinished"/>
+        <translation>Vahetage lõikepuhvri sisu</translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
-        <translation type="unfinished"/>
+        <translation>Ühtegi arvutit pole valitud, nii et saate käsitsi juurdepääsuks sisestada arvuti hostinime või IP-aadressi:</translation>
     </message>
 </context>
 <context>
