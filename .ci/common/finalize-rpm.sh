@@ -8,10 +8,16 @@ cd $2
 rename ".x86_64" ".${3}.x86_64" *.rpm
 
 # show files
-rpm -qlp *.rpm
+for i in *.rpm ; do
+	echo Contents of $i:
+	rpm -qlp $i
+done
 
 # show dependencies
-rpm -qpR *.rpm
+for i in *.rpm ; do
+	echo Package information for $i:
+	rpm -qpR $i
+done
 
 # move to Docker volume
 mv -v *.rpm $1
