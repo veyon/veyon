@@ -157,6 +157,13 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 		return;
 	}
 
+	// do not start server for sessions with unspecified type
+	if (sessionType == LinuxSessionFunctions::Type::Unspecified)
+	{
+		vDebug() << "Not starting Veyon Server in a session with unspecified type";
+		return;
+	}
+
 	const auto sessionState = LinuxSessionFunctions::getSessionState( sessionPath );
 	if( sessionState == LinuxSessionFunctions::State::Opening )
 	{
