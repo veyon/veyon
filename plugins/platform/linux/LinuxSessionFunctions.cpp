@@ -202,10 +202,14 @@ LinuxSessionFunctions::Type LinuxSessionFunctions::getSessionType( const QString
 	{
 		return Type::Wayland;
 	}
+	else if (type == QLatin1String("unspecified"))
+	{
+		return Type::Unspecified;
+	}
 
 	if( type.isEmpty() == false )
 	{
-		vWarning() << "unspecified session type" << type;
+		vWarning() << "unknown session type" << type;
 	}
 
 	return Type::Unspecified;
