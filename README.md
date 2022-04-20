@@ -80,7 +80,7 @@ As root you can run
 	            qtdeclarative5-dev qtquickcontrols2-5-dev libfakekey-dev \
 	            xorg-dev libxtst-dev libjpeg-dev zlib1g-dev libssl-dev libpam0g-dev \
 	            libprocps-dev liblzo2-dev libqca-qt5-2-dev libldap2-dev \
-	            libsasl2-dev
+	            libsasl2-dev ninja-build
 
 
 
@@ -103,7 +103,7 @@ As root you can run
 
 	dnf install gcc-c++ make cmake rpm-build qt5-devel libXtst-devel libXrandr-devel libXinerama-devel libXcursor-devel \
              libXrandr-devel libXdamage-devel libXcomposite-devel libXfixes-devel libfakekey-devel libjpeg-turbo-devel zlib-devel \
-             openssl-devel pam-devel procps-devel lzo-devel qca-devel qca-qt5-devel openldap-devel cyrus-sasl-devel
+             openssl-devel pam-devel procps-devel lzo-devel qca-devel qca-qt5-devel openldap-devel cyrus-sasl-devel ninja-build
 
 
 ### Configuring and building sources
