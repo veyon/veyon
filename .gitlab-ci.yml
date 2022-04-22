@@ -20,6 +20,7 @@ build-linux:
         - opensuse.tumbleweed
         - ubuntu.bionic
         - ubuntu.focal
+        - ubuntu.jammy
   artifacts:
     paths: [ "veyon*" ]
     expire_in: 1 day
