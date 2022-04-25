@@ -53,7 +53,7 @@ else()
 		${libvncserver_DIR}/common/turbojpeg.c)
 
 	set_source_files_properties(${libvncclient_SOURCES} PROPERTIES
-		COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable -fvisibility=default"
+		COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable -fvisibility=default -Wno-deprecated-declarations"
 		SKIP_PRECOMPILE_HEADERS TRUE)
 endif()
 
