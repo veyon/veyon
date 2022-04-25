@@ -26,6 +26,8 @@ extern "C" {
 #include "rfb/rfb.h"
 }
 
+#include <array>
+
 #include "HeadlessVncServer.h"
 #include "VeyonConfiguration.h"
 

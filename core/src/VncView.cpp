@@ -25,6 +25,8 @@
 #include <rfb/keysym.h>
 #include <rfb/rfbproto.h>
 
+#include <array>
+
 #include <QCursor>
 #include <QHoverEvent>
 #include <QMouseEvent>
