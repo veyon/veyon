@@ -454,6 +454,18 @@ uid_t LinuxUserFunctions::userIdFromName( const QString& username )
 	return 0;
 }
 
+gid_t LinuxUserFunctions::userGroupIdFromName( const QString& username )
+{
+	const auto pw_entry = getpwnam( username.toUtf8().constData() );
+
+	if( pw_entry )
+	{
+		return pw_entry->pw_gid;
+	}
+
+	return 0;
+}
+
 
 
 QVariant LinuxUserFunctions::getUserProperty(const QString& userPath, const QString& property, bool logErrors)
