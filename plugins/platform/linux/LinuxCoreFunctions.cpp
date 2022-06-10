@@ -32,6 +32,7 @@
 #include <QWidget>
 
 #include <unistd.h>
+#include <grp.h>
 #include <proc/readproc.h>
 
 #include "LinuxCoreFunctions.h"
@@ -232,26 +233,49 @@ bool LinuxCoreFunctions::runProgramAsUser( const QString& program, const QString
 		return false;
 	}
 
+	const auto gid = LinuxUserFunctions::userGroupIdFromName( username );
+	if( gid <= 0 )
+	{
+		return false;
+	}
+
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 	auto process = new QProcess;
-	process->setChildProcessModifier( [uid]() {
+	process->setChildProcessModifier( [uid, gid]() {
+		if( setgroups(0, nullptr) != 0 )
+		{
+			qFatal( "Could not drop all supplementary groups for child process!" );
+		}
+		if( setgid( gid ) != 0 )
+		{
+			qFatal( "Could not set GID for child process!" );
+		}
 		if( setuid( uid ) != 0 )
 		{
 			qFatal( "Could not set UID for child process!" );
-		};
+		}
 	} );
 #else
 	class UserProcess : public QProcess // clazy:exclude=missing-qobject-macro
 	{
 	public:
-		explicit UserProcess( uid_t uid, QObject* parent = nullptr ) :
+		explicit UserProcess( uid_t uid, gid_t gid, QObject* parent = nullptr ) :
 			QProcess( parent ),
-			m_uid( uid )
+			m_uid( uid ),
+			m_gid( gid )
 		{
 		}
 
 		void setupChildProcess() override
 		{
+			if( setgroups( 0, nullptr ) != 0 )
+			{
+				qFatal( "Could not drop all supplementary groups for child process!" );
+			}
+			if( setgid( m_gid ) != 0 )
+			{
+				qFatal( "Could not set GID for child process!" );
+			}
 			if( setuid( m_uid ) != 0 )
 			{
 				qFatal( "Could not set UID for child process!" );
@@ -260,9 +284,10 @@ bool LinuxCoreFunctions::runProgramAsUser( const QString& program, const QString
 
 	private:
 		const uid_t m_uid;
+		const uid_t m_gid;
 	};
 
-	auto process = new UserProcess( uid );
+	auto process = new UserProcess( uid, gid );
 #endif
 
 	QObject::connect( process, QOverload<int, QProcess::ExitStatus>::of( &QProcess::finished ), &QProcess::deleteLater );

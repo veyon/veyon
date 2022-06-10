@@ -49,6 +49,7 @@ public:
 	bool authenticate( const QString& username, const Password& password ) override;
 
 	static uid_t userIdFromName( const QString& username );
+	static gid_t userGroupIdFromName( const QString& username );
 
 	static QVariant getUserProperty(const QString& userPath, const QString& property, bool logErrors = true);
 
