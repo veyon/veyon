@@ -13,7 +13,9 @@ set(core_RESOURCES
 	${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc
 	)
 
-find_package(LibVNCClient 0.9.13)
+if(NOT WITH_BUILTIN_LIBVNC)
+	find_package(LibVNCClient 0.9.13)
+endif()
 
 if(LibVNCClient_FOUND)
 	set_property(GLOBAL PROPERTY HAVE_LIBVNCCLIENT TRUE)
