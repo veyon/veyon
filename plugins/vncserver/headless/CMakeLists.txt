@@ -1,6 +1,9 @@
 include(BuildVeyonPlugin)
 
-find_package(LibVNCServer 0.9.8)
+get_property(HAVE_LIBVNCCLIENT GLOBAL PROPERTY HAVE_LIBVNCCLIENT)
+if(HAVE_LIBVNCCLIENT)
+	find_package(LibVNCServer 0.9.8)
+endif()
 
 if(LibVNCServer_FOUND)
 
