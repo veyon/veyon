@@ -326,9 +326,8 @@ QString ComputerManager::findLocationOfComputer( const QStringList& hostNames, c
 
 	for( int i = 0; i < rows; ++i )
 	{
-		QModelIndex entryIndex = model->index( i, 0, parent );
-
-		const auto objectType = NetworkObject::Type( model->data(entryIndex, NetworkObjectModel::TypeRole).toInt() );
+		const auto entryIndex = model->index(i, 0, parent);
+		const auto objectType = NetworkObject::Type(model->data(entryIndex, NetworkObjectModel::TypeRole).toInt());
 
 		if( NetworkObject::isContainer(objectType) )
 		{
@@ -367,9 +366,8 @@ ComputerList ComputerManager::getComputersAtLocation( const QString& locationNam
 
 	for( int i = 0; i < rows; ++i )
 	{
-		QModelIndex entryIndex = model->index( i, 0, parent );
-
-		const auto objectType = NetworkObject::Type( model->data(entryIndex, NetworkObjectModel::TypeRole).toInt() );
+		const auto entryIndex = model->index(i, 0, parent);
+		const auto objectType = NetworkObject::Type(model->data(entryIndex, NetworkObjectModel::TypeRole).toInt());
 
 		if( NetworkObject::isContainer(objectType) )
 		{
