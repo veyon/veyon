@@ -331,6 +331,11 @@ QString ComputerManager::findLocationOfComputer( const QStringList& hostNames, c
 
 		if( NetworkObject::isContainer(objectType) )
 		{
+			if (model->canFetchMore(entryIndex))
+			{
+				model->fetchMore(entryIndex);
+			}
+
 			const auto location = findLocationOfComputer( hostNames, hostAddresses, entryIndex );
 			if( location.isEmpty() == false )
 			{
