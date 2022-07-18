@@ -395,6 +395,27 @@ ComputerList ComputerManager::getComputersAtLocation( const QString& locationNam
 
 
 
+bool ComputerManager::hasSubLocations(const QModelIndex& index) const
+{
+	const auto model = computerTreeModel();
+	const auto rows = model->rowCount(index);
+
+	for (int i = 0; i < rows; ++i)
+	{
+		const auto objectType = NetworkObject::Type(model->data(model->index(i, 0, index),
+																NetworkObjectModel::TypeRole).toInt());
+
+		if (objectType == NetworkObject::Type::Location || objectType == NetworkObject::Type::DesktopGroup)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+
 ComputerList ComputerManager::selectedComputers( const QModelIndex& parent )
 {
 	QAbstractItemModel* model = computerTreeModel();
