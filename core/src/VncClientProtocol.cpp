@@ -605,6 +605,9 @@ bool VncClientProtocol::handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHea
 	case rfbEncodingZYWRLE:
 		return handleRectEncodingZRLE( buffer );
 
+	case rfbEncodingExtDesktopSize:
+		return handleRectEncodingExtDesktopSize(buffer);
+
 	case rfbEncodingPointerPos:
 	case rfbEncodingKeyboardLedState:
 	case rfbEncodingNewFBSize:
@@ -774,6 +777,25 @@ bool VncClientProtocol::handleRectEncodingZRLE(QBuffer &buffer)
 	const auto n = qFromBigEndian( hdr.length );
 
 	return n < MaxMessageSize && uint32_t(buffer.read(n).size()) == n;
+}
+
+
+
+bool VncClientProtocol::handleRectEncodingExtDesktopSize(QBuffer& buffer)
+{
+	rfbExtDesktopSizeMsg extDesktopSizeMsg;
+	if (buffer.peek(reinterpret_cast<char *>(&extDesktopSizeMsg), sz_rfbExtDesktopSizeMsg) != sz_rfbExtDesktopSizeMsg)
+	{
+		return false;
+	}
+
+	const auto totalMessageSize = sz_rfbExtDesktopSizeMsg + extDesktopSizeMsg.numberOfScreens * sz_rfbExtDesktopScreen;
+	if (buffer.bytesAvailable() >= totalMessageSize)
+	{
+		return buffer.read(totalMessageSize).size() == totalMessageSize;
+	}
+
+	return false;
 }
 
 
