@@ -60,28 +60,55 @@ void NetworkObjectFilterProxyModel::setComputerExcludeFilter( const QStringList&
 
 bool NetworkObjectFilterProxyModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const
 {
-	if( sourceParent.isValid() )
+	const auto rowIndex = sourceModel()->index(sourceRow, 0, sourceParent);
+	const auto objectType = NetworkObject::Type(sourceModel()->data(rowIndex, NetworkObjectModel::TypeRole).toInt());
+
+	if (objectType == NetworkObject::Type::Host)
 	{
 		if( m_computerExcludeList.isEmpty() )
 		{
 			return true;
 		}
 
-		const auto hostAddress = sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ),
-													  NetworkObjectModel::HostAddressRole ).toString();
+		const auto hostAddress = sourceModel()->data(rowIndex, NetworkObjectModel::HostAddressRole).toString();
 
 		return m_computerExcludeList.contains( hostAddress, Qt::CaseInsensitive ) == false;
 	}
-
-	if( m_excludeEmptyGroups && sourceModel()->rowCount( sourceModel()->index( sourceRow, 0 ) ) == 0 )
+	else if(NetworkObject::isContainer(objectType))
 	{
-		return false;
+		if (sourceModel()->canFetchMore(rowIndex))
+		{
+			sourceModel()->fetchMore(rowIndex);
+		}
+
+		const auto rows = sourceModel()->rowCount(rowIndex);
+
+		if (m_excludeEmptyGroups && rows == 0)
+		{
+			return false;
+		}
+
+		if (m_groupList.isEmpty())
+		{
+			return true;
+		}
+
+		for (int i = 0; i < rows; ++i)
+		{
+			const auto objectType = NetworkObject::Type(sourceModel()->data(sourceModel()->index(i, 0, rowIndex),
+																			NetworkObjectModel::TypeRole).toInt());
+
+			if (objectType == NetworkObject::Type::Location || objectType == NetworkObject::Type::DesktopGroup)
+			{
+				if (filterAcceptsRow(i, rowIndex))
+				{
+					return true;
+				}
+			}
+		}
+
+		return m_groupList.contains(sourceModel()->data(rowIndex).toString());
 	}
 
-	if( m_groupList.isEmpty() )
-	{
-		return true;
-	}
-
-	return m_groupList.contains( sourceModel()->data( sourceModel()->index( sourceRow, 0 ) ).toString() );
+	return true;
 }
