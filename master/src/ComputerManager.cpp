@@ -185,7 +185,11 @@ void ComputerManager::initLocations()
 		vDebug() << "initializing locations for host address" << address.toString();
 	}
 
-	m_currentLocations.append( findLocationOfComputer( m_localHostNames, m_localHostAddresses, QModelIndex() ) );
+	const auto currentLocation = findLocationOfComputer(m_localHostNames, m_localHostAddresses, {});
+	if (currentLocation.isEmpty() == false)
+	{
+		m_currentLocations.append(currentLocation);
+	}
 
 	vDebug() << "found locations" << m_currentLocations;
 
