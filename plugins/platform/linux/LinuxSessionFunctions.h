@@ -101,6 +101,16 @@ public:
 
 	static QString currentSessionPath();
 
+	static QString kdeSessionVersionEnvVarName()
+	{
+		return QStringLiteral("KDE_SESSION_VERSION");
+	}
+
+	static QString xdgCurrentDesktopEnvVarName()
+	{
+		return QStringLiteral("XDG_CURRENT_DESKTOP");
+	}
+
 	static QString xdgSessionIdEnvVarName()
 	{
 		return QStringLiteral("XDG_SESSION_ID");
