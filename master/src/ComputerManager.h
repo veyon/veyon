@@ -45,7 +45,7 @@ public:
 		return m_networkObjectModel;
 	}
 
-	QAbstractItemModel* computerTreeModel()
+	QAbstractItemModel* computerTreeModel() const
 	{
 		return m_computerTreeModel;
 	}
@@ -74,6 +74,7 @@ private:
 	QString findLocationOfComputer( const QStringList& hostNames, const QList<QHostAddress>& hostAddresses, const QModelIndex& parent );
 
 	ComputerList getComputersAtLocation( const QString& locationName, const QModelIndex& parent = QModelIndex() );
+	bool hasSubLocations(const QModelIndex& index) const;
 
 	QModelIndex findNetworkObject( NetworkObject::Uid networkObjectUid, const QModelIndex& parent = QModelIndex() );
 
