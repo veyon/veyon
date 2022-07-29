@@ -3395,7 +3395,7 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
-        <translation type="unfinished"/>
+        <translation>Nie zaznaczono komputera, wpisz nazwę lub adres IP komputera do dostępu ręcznego</translation>
     </message>
 </context>
 <context>
@@ -3477,11 +3477,11 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
+        <translation>Łączenie...</translation>
     </message>
     <message>
         <source>Select screen</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz ekran</translation>
     </message>
     <message>
         <source>All screens</source>

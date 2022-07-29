@@ -4130,15 +4130,15 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Network port</source>
-        <translation type="unfinished"/>
+        <translation>网络端口</translation>
     </message>
     <message>
         <source>Enable WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>启用 WebAPI 服务器</translation>
     </message>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"/>
+        <translation>连接设置</translation>
     </message>
     <message>
         <source>Lifetime</source>
@@ -4158,7 +4158,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Authentication timeout</source>
-        <translation type="unfinished"/>
+        <translation>验证超时</translation>
     </message>
     <message>
         <source>Maximum number of open connections</source>
@@ -4166,11 +4166,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Connection encryption</source>
-        <translation type="unfinished"/>
+        <translation>连接加密</translation>
     </message>
     <message>
         <source>TLS certificate file</source>
-        <translation type="unfinished"/>
+        <translation>TLS 证书文件</translation>
     </message>
     <message>
         <source>TLS private key file</source>
@@ -4189,7 +4189,7 @@ Typically this is required to support terminal servers.</source>
     <name>WebApiPlugin</name>
     <message>
         <source>Run WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>启动 WebAPI 服务器</translation>
     </message>
     <message>
         <source>Failed to start WebAPI server at port %1</source>

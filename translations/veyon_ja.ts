@@ -2343,7 +2343,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Connection security</source>
-        <translation type="unfinished"/>
+        <translation>接続の安全性</translation>
     </message>
     <message>
         <source>TLS certificate verification</source>
@@ -2351,15 +2351,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>System defaults</source>
-        <translation type="unfinished"/>
+        <translation>システムの標準</translation>
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation type="unfinished"/>
+        <translation>しない（安全ではありません！）</translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
-        <translation type="unfinished"/>
+        <translation>カスタムCA証明書ファイル</translation>
     </message>
     <message>
         <source>None</source>

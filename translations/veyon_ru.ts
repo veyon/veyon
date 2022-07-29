@@ -619,7 +619,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation>Эта команда выводит список всех ключей аутентификации в настроенном каталоге ключей. Если выбрана опция &quot;%1&quot;, то вместо списка будет выведена таблица с подробностями про ключи. Некоторые параметры ключа могут быть не показаны, если доступ к ключу ограничен, например из-за нехватки прав на чтение файла ключа.</translation>
+        <translation>Эта команда выводит список всех ключей аутентификации в настроенном каталоге ключей. Если выбрана опция &quot;%1&quot;, то вместо списка будет выведена таблица с подробностями про ключи. Некоторые параметры ключа могут быть не показаны, если доступ к ключу ограничен, например, из-за нехватки прав на чтение файла ключа.</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -1061,7 +1061,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>[none]</source>
-        <translation type="unfinished"/>
+        <translation>[нет]</translation>
     </message>
 </context>
 <context>
@@ -1501,7 +1501,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom website</source>
-        <translation>Необычный сайт</translation>
+        <translation>Другой веб-сайт</translation>
     </message>
     <message>
         <source>Open file manager</source>
@@ -2215,7 +2215,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
-        <translation>Пожалуйста, укажите DN компьютера, запрос по MAC-адресу которого следует прислать:</translation>
+        <translation>Пожалуйста, укажите DN компьютера, чей MAC-адрес необходимо получить:</translation>
     </message>
     <message>
         <source>computer MAC addresses</source>
@@ -2235,7 +2235,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
-        <translation>Пожалуйста, укажите имя записи пользователя, для кого следует получить данные об участии в группах:</translation>
+        <translation>Пожалуйста, укажите имя пользователя, для которого следует получить данные об участии в группах:</translation>
     </message>
     <message>
         <source>groups of user</source>
@@ -2259,7 +2259,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
-        <translation>Пожалуйста, укажите IP-адрес компьютера, с которой следует определить объект компьютера:</translation>
+        <translation>Пожалуйста, укажите IP-адрес компьютера, для которого необходимо получить объект компьютера.</translation>
     </message>
     <message>
         <source>computers</source>
@@ -2459,7 +2459,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>e.g. cn or displayName</source>
-        <translation>например cn или displayName</translation>
+        <translation>например, cn или displayName</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
@@ -2467,7 +2467,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Identify computer locations (e.g. rooms) via:</source>
-        <translation>Идентифицировать места компьютеров (например классы) на основе:</translation>
+        <translation>Идентифицировать места компьютеров (например, классы) на основе:</translation>
     </message>
     <message>
         <source>Location attribute in computer objects</source>
@@ -2551,7 +2551,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>Имена хостов сохранены как полные доменные имена (FQDN, например myhost.example.org)</translation>
+        <translation>Имена хостов сохранены как полные доменные имена (FQDN, например, myhost.example.org)</translation>
     </message>
     <message>
         <source>Computer hostname attribute</source>
@@ -2583,7 +2583,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation>Пожалуйста, укажите имя хоста компьютера, для кого следует получить данные об участии в группах:</translation>
+        <translation>Пожалуйста, укажите имя компьютера, для которого следует получить данные об участии в группах:</translation>
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
@@ -2619,7 +2619,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Query timeout</source>
-        <translation type="unfinished"/>
+        <translation>Время ожидания запроса</translation>
     </message>
     <message>
         <source> ms</source>
@@ -2921,7 +2921,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Use custom computer arrangement</source>
-        <translation>Использовать необычное расположение компьютеров</translation>
+        <translation>Использовать нестандартное расположение компьютеров</translation>
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
@@ -2941,7 +2941,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Only show computers with logged on users</source>
-        <translation type="unfinished"/>
+        <translation>Показывать только те компьютеры, где пользователи выполнили вход в систему</translation>
     </message>
 </context>
 <context>
@@ -3131,15 +3131,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Query application version of the server</source>
-        <translation type="unfinished"/>
+        <translation>Запросить версию серверного приложения</translation>
     </message>
     <message>
         <source>Query active features</source>
-        <translation type="unfinished"/>
+        <translation>Запросить активные функции</translation>
     </message>
     <message>
         <source>Query properties of remotely available screens</source>
-        <translation type="unfinished"/>
+        <translation>Запросить свойства удаленно доступных экранов</translation>
     </message>
 </context>
 <context>
@@ -3157,7 +3157,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation>например Veyon</translation>
+        <translation>например, Veyon</translation>
     </message>
     <message>
         <source>Remember and add to website menu</source>
@@ -3165,7 +3165,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation>например www.veyon.io</translation>
+        <translation>например, www.veyon.io</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -3200,7 +3200,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation>Пожалуйста, введите имя пользователя и пароль для доступа компьютеров.</translation>
+        <translation>Пожалуйста, введите имя пользователя и пароль для доступа к компьютерам.</translation>
     </message>
 </context>
 <context>
@@ -3396,11 +3396,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exchange clipboard contents</source>
-        <translation type="unfinished"/>
+        <translation>Обмен содержимым буфера обмена</translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
-        <translation type="unfinished"/>
+        <translation>Компьютер не выбран, поэтому вы можете ввести имя хоста или IP-адрес компьютера для доступа к нему:</translation>
     </message>
 </context>
 <context>
@@ -3486,7 +3486,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Select screen</source>
-        <translation type="unfinished"/>
+        <translation>Выбрать экран</translation>
     </message>
     <message>
         <source>All screens</source>
@@ -3877,7 +3877,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation>например VLC</translation>
+        <translation>например, VLC</translation>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
@@ -3921,7 +3921,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Используйте это поле снизу для набора сообщения, которое хотите послать всем выбранным пользователям.</translation>
+        <translation>Используйте это поле для набора сообщения, которое хотите послать всем выбранным пользователям.</translation>
     </message>
 </context>
 <context>
@@ -4063,7 +4063,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
-        <translation>Дано недостаточно аргументов - используйте &quot;справку %1&quot; для большей информации</translation>
+        <translation>Недостаточно аргументов - используйте &quot;%1 help&quot; для получения дополнительной информации</translation>
     </message>
     <message>
         <source>Unknown result!</source>
@@ -4107,7 +4107,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Screen %1</source>
-        <translation type="unfinished"/>
+        <translation>Экран %1</translation>
     </message>
 </context>
 <context>
@@ -4226,7 +4226,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>Включить программное создания SAS (Ctrl+Alt+Del)</translation>
+        <translation>Включить программное создание SAS (Ctrl+Alt+Del)</translation>
     </message>
     <message>
         <source>Screen lock</source>
@@ -4281,7 +4281,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Internal display</source>
-        <translation type="unfinished"/>
+        <translation>Внутренний дисплей</translation>
     </message>
 </context>
 <context>
@@ -4296,7 +4296,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>Служба &quot;%1&quot; была успешно деинсталирована.</translation>
+        <translation>Служба &quot;%1&quot; была успешно деинсталлирована.</translation>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
@@ -4304,19 +4304,19 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось установить службу &quot;%1&quot; (ошибка %2).</translation>
     </message>
     <message>
         <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось изменить конфигурацию действий при отказе для службы &quot;%1&quot; (ошибка %2).</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось деинсталлировать  службу &quot;%1&quot; (ошибка %2).</translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось изменить тип запуска службы &quot;%1&quot; (ошибка %2).</translation>
     </message>
 </context>
 <context>
