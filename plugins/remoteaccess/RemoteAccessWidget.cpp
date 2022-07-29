@@ -265,10 +265,17 @@ void RemoteAccessWidgetToolBar::updateScreens()
 
 		menu->addSeparator();
 
+		QPoint minimumScreenPosition{};
+		for (const auto& screen : screens)
+		{
+			minimumScreenPosition.setX(qMin(minimumScreenPosition.x(), screen.geometry.x()));
+			minimumScreenPosition.setY(qMin(minimumScreenPosition.y(), screen.geometry.y()));
+		}
+
 		for (const auto& screen : screens)
 		{
 			const auto action = menu->addAction(screen.name, this, [=]() {
-				m_parent->vncView()->setViewport(screen.geometry);
+				m_parent->vncView()->setViewport(screen.geometry.translated(-minimumScreenPosition));
 			});
 			action->setCheckable(true);
 			if(action->text() == checkedScreenName)
