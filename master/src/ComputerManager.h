@@ -40,7 +40,7 @@ public:
 	ComputerManager( UserConfig& config, QObject* parent );
 	~ComputerManager() override;
 
-	QAbstractItemModel* networkObjectModel()
+	QAbstractItemModel* networkObjectModel() const
 	{
 		return m_networkObjectModel;
 	}
@@ -50,14 +50,14 @@ public:
 		return m_computerTreeModel;
 	}
 
-	ComputerList selectedComputers( const QModelIndex& parent );
+	ComputerList selectedComputers(const QModelIndex& parent) const;
 
 	void addLocation( const QString& location );
 	void removeLocation( const QString& location );
 
 	bool saveComputerAndUsersList( const QString& fileName );
 
-	void updateUser( const ComputerControlInterface::Pointer& controlInterface );
+	void updateUser(const ComputerControlInterface::Pointer& controlInterface) const;
 
 Q_SIGNALS:
 	void computerSelectionReset();
@@ -71,14 +71,15 @@ private:
 	void initComputerTreeModel();
 	void updateLocationFilterList();
 
-	QString findLocationOfComputer( const QStringList& hostNames, const QList<QHostAddress>& hostAddresses, const QModelIndex& parent );
+	QString findLocationOfComputer(const QStringList& hostNames, const QList<QHostAddress>& hostAddresses,
+								   const QModelIndex& parent) const;
 
-	ComputerList getComputersAtLocation( const QString& locationName, const QModelIndex& parent = QModelIndex() );
+	ComputerList getComputersAtLocation(const QString& locationName, const QModelIndex& parent = {}) const;
 	bool hasSubLocations(const QModelIndex& index) const;
 
-	QModelIndex findNetworkObject( NetworkObject::Uid networkObjectUid, const QModelIndex& parent = QModelIndex() );
+	QModelIndex findNetworkObject(NetworkObject::Uid networkObjectUid, const QModelIndex& parent = {}) const;
 
-	QModelIndex mapToUserNameModelIndex( const QModelIndex& networkObjectIndex );
+	QModelIndex mapToUserNameModelIndex(const QModelIndex& networkObjectIndex) const;
 
 	static constexpr int OverlayDataUsernameColumn = 1;
 

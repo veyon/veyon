@@ -141,7 +141,7 @@ bool ComputerManager::saveComputerAndUsersList( const QString& fileName )
 
 
 
-void ComputerManager::updateUser( const ComputerControlInterface::Pointer& controlInterface )
+void ComputerManager::updateUser(const ComputerControlInterface::Pointer& controlInterface) const
 {
 	const auto networkObjectIndex = findNetworkObject( controlInterface->computer().networkObjectUid() );
 
@@ -318,7 +318,8 @@ void ComputerManager::updateLocationFilterList()
 
 
 
-QString ComputerManager::findLocationOfComputer( const QStringList& hostNames, const QList<QHostAddress>& hostAddresses, const QModelIndex& parent )
+QString ComputerManager::findLocationOfComputer(const QStringList& hostNames, const QList<QHostAddress>& hostAddresses,
+												const QModelIndex& parent) const
 {
 	QAbstractItemModel* model = networkObjectModel();
 
@@ -360,7 +361,7 @@ QString ComputerManager::findLocationOfComputer( const QStringList& hostNames, c
 
 
 
-ComputerList ComputerManager::getComputersAtLocation( const QString& locationName, const QModelIndex& parent )
+ComputerList ComputerManager::getComputersAtLocation(const QString& locationName, const QModelIndex& parent) const
 {
 	QAbstractItemModel* model = computerTreeModel();
 
@@ -422,7 +423,7 @@ bool ComputerManager::hasSubLocations(const QModelIndex& index) const
 
 
 
-ComputerList ComputerManager::selectedComputers( const QModelIndex& parent )
+ComputerList ComputerManager::selectedComputers(const QModelIndex& parent) const
 {
 	QAbstractItemModel* model = computerTreeModel();
 
@@ -460,7 +461,7 @@ ComputerList ComputerManager::selectedComputers( const QModelIndex& parent )
 
 
 
-QModelIndex ComputerManager::findNetworkObject( NetworkObject::Uid networkObjectUid, const QModelIndex& parent )
+QModelIndex ComputerManager::findNetworkObject(NetworkObject::Uid networkObjectUid, const QModelIndex& parent) const
 {
 	QAbstractItemModel* model = networkObjectModel();
 
@@ -494,7 +495,7 @@ QModelIndex ComputerManager::findNetworkObject( NetworkObject::Uid networkObject
 
 
 
-QModelIndex ComputerManager::mapToUserNameModelIndex( const QModelIndex& networkObjectIndex )
+QModelIndex ComputerManager::mapToUserNameModelIndex(const QModelIndex& networkObjectIndex) const
 {
 	// map arbitrary index from m_networkObjectModel to username column in m_networkObjectOverlayDataModel
 	const auto parent = m_networkObjectOverlayDataModel->mapFromSource( networkObjectIndex.parent() );
