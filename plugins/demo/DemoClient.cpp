@@ -26,7 +26,6 @@
 #include <QIcon>
 
 #include "DemoClient.h"
-#include "VeyonConfiguration.h"
 #include "LockWidget.h"
 #include "PlatformCoreFunctions.h"
 #include "VncViewWidget.h"
@@ -43,6 +42,8 @@ DemoClient::DemoClient( const QString& host, int port, bool fullscreen, QRect vi
 	else
 	{
 		m_toplevel = new QWidget();
+		m_toplevel->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowMinMaxButtonsHint);
+		m_toplevel->move(0, 0);
 	}
 
 	m_toplevel->setWindowTitle( tr( "%1 Demo" ).arg( VeyonCore::applicationName() ) );
@@ -50,22 +51,12 @@ DemoClient::DemoClient( const QString& host, int port, bool fullscreen, QRect vi
 	m_toplevel->setAttribute( Qt::WA_DeleteOnClose, false );
 	m_toplevel->installEventFilter(this);
 
-	if( fullscreen == false )
-	{
-		m_toplevel->setWindowFlags( Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowMinMaxButtonsHint );
-	}
-
 	m_vncView = new VncViewWidget( m_computerControlInterface, viewport, m_toplevel );
 
 	connect( m_toplevel, &QObject::destroyed, this, &DemoClient::viewDestroyed );
 	connect( m_vncView, &VncViewWidget::sizeHintChanged, this, &DemoClient::resizeToplevelWidget );
 
-	m_toplevel->move( 0, 0 );
-	if( fullscreen )
-	{
-		m_toplevel->showFullScreen();
-	}
-	else
+	if (fullscreen == false)
 	{
 		m_toplevel->show();
 	}
