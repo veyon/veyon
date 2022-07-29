@@ -36,34 +36,34 @@ LockWidget::LockWidget( Mode mode, const QPixmap& background, QWidget* parent ) 
 	m_background( background ),
 	m_mode( mode )
 {
-	if( mode == DesktopVisible )
+	auto leftMostScreen = QGuiApplication::primaryScreen();
+	int minimumX = 0;
+	for (auto* screen : QGuiApplication::screens())
 	{
-		auto screen = QGuiApplication::primaryScreen();
-		if( windowHandle() )
+		if (screen->geometry().x() < minimumX)
 		{
-			screen = windowHandle()->screen();
-		}
-
-		if( screen )
-		{
-			m_background = screen->grabWindow( 0 );
+			minimumX = screen->geometry().x();
+			leftMostScreen = screen;
 		}
 	}
 
+	if (mode == DesktopVisible)
+	{
+		m_background = leftMostScreen->grabWindow(0);
+	}
 
 	VeyonCore::platform().coreFunctions().setSystemUiState( false );
 	VeyonCore::platform().inputDeviceFunctions().disableInputDevices();
 
 	setWindowTitle( {} );
-	show();
-	move( 0, 0 );
-	setFixedSize(
-#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
-		windowHandle()->
-#endif
-				  screen()->virtualSize());
-	VeyonCore::platform().coreFunctions().raiseWindow( this, true );
+
+	move(leftMostScreen->geometry().topLeft());
 	showFullScreen();
+	windowHandle()->setScreen(leftMostScreen);
+	setFixedSize(leftMostScreen->virtualSize());
+
+	VeyonCore::platform().coreFunctions().raiseWindow(this, true);
+
 	setFocusPolicy( Qt::StrongFocus );
 	setFocus();
 	grabMouse();
