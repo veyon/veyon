@@ -146,21 +146,29 @@ bool DemoFeaturePlugin::controlFeature( Feature::Uid featureUid,
 	{
 		if( operation == Operation::Start )
 		{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
 			QMetaObject::invokeMethod(&m_demoServerControlTimer, [this, &arguments, &computerControlInterfaces]() {
+#endif
 				m_demoServerArguments = arguments;
 				m_demoServerControlInterfaces = computerControlInterfaces;
 				m_demoServerControlTimer.start(DemoServerControlInterval);
 				controlDemoServer();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
 			}, Qt::BlockingQueuedConnection);
+#endif
 		}
 		else if( operation == Operation::Stop )
 		{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
 			QMetaObject::invokeMethod(&m_demoServerControlTimer, [this, &computerControlInterfaces]() {
+#endif
 				m_demoServerControlTimer.stop();
 				m_demoServerControlInterfaces = computerControlInterfaces;
 				controlDemoServer();
 				m_demoServerControlInterfaces.clear();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
 			}, Qt::BlockingQueuedConnection);
+#endif
 		}
 		else
 		{
