@@ -144,23 +144,26 @@ bool DemoFeaturePlugin::controlFeature( Feature::Uid featureUid,
 {
 	if( featureUid == m_demoServerFeature.uid() )
 	{
-		m_demoServerArguments = arguments;
-
 		if( operation == Operation::Start )
 		{
-			m_demoServerControlTimer.start( DemoServerControlInterval );
-			m_demoServerControlInterfaces = computerControlInterfaces;
+			QMetaObject::invokeMethod(&m_demoServerControlTimer, [this, &arguments, &computerControlInterfaces]() {
+				m_demoServerArguments = arguments;
+				m_demoServerControlInterfaces = computerControlInterfaces;
+				m_demoServerControlTimer.start(DemoServerControlInterval);
+				controlDemoServer();
+			}, Qt::BlockingQueuedConnection);
 		}
 		else if( operation == Operation::Stop )
 		{
-			m_demoServerControlTimer.stop();
+			QMetaObject::invokeMethod(&m_demoServerControlTimer, [this]() {
+				m_demoServerControlTimer.stop();
+				controlDemoServer();
+			}, Qt::BlockingQueuedConnection);
 		}
 		else
 		{
 			return false;
 		}
-
-		controlDemoServer();
 
 		return true;
 	}
