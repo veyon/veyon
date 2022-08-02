@@ -90,10 +90,11 @@ private:
 	LogLevel m_logLevel;
 	QMutex m_logMutex;
 
-	LogLevel m_lastMessageLevel;
-	QString m_lastMessage;
-	int m_lastMessageCount;
-	bool m_logToSystem;
+	LogLevel m_lastMessageLevel{LogLevel::Nothing};
+	QString m_lastMessage{};
+	int m_lastMessageCount{0};
+	bool m_logToStdErr{false};
+	bool m_logToSystem{false};
 
 	QString m_appName;
 
