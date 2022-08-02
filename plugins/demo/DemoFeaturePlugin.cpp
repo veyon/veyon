@@ -155,9 +155,11 @@ bool DemoFeaturePlugin::controlFeature( Feature::Uid featureUid,
 		}
 		else if( operation == Operation::Stop )
 		{
-			QMetaObject::invokeMethod(&m_demoServerControlTimer, [this]() {
+			QMetaObject::invokeMethod(&m_demoServerControlTimer, [this, &computerControlInterfaces]() {
 				m_demoServerControlTimer.stop();
+				m_demoServerControlInterfaces = computerControlInterfaces;
 				controlDemoServer();
+				m_demoServerControlInterfaces.clear();
 			}, Qt::BlockingQueuedConnection);
 		}
 		else
