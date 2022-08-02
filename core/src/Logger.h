@@ -70,6 +70,7 @@ public:
 		return m_logLevel;
 	}
 
+	static LogLevel logLevelFromString(const QString& logLevelString);
 
 private:
 	void initLogFile();

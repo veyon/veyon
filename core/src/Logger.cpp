@@ -53,7 +53,13 @@ Logger::Logger( const QString &appName ) :
 	auto configuredLogLevel = VeyonCore::config().logLevel();
 	if( qEnvironmentVariableIsSet( logLevelEnvironmentVariable() ) )
 	{
-		configuredLogLevel = static_cast<LogLevel>( qEnvironmentVariableIntValue( logLevelEnvironmentVariable() ) );
+		configuredLogLevel = logLevelFromString(
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+								 qEnvironmentVariable(logLevelEnvironmentVariable())
+#else
+								 QLatin1String(qgetenv(logLevelEnvironmentVariable()))
+#endif
+								 );
 	}
 
 	m_logLevel = qBound( LogLevel::Min, configuredLogLevel, LogLevel::Max );
@@ -94,6 +100,38 @@ Logger::~Logger()
 	s_instanceMutex.unlock();
 
 	delete m_logFile;
+}
+
+
+
+Logger::LogLevel Logger::logLevelFromString(const QString& logLevelString)
+{
+	if (logLevelString.startsWith(QLatin1String("debug")))
+	{
+		return LogLevel::Debug;
+	}
+
+	if (logLevelString.startsWith(QLatin1String("info")))
+	{
+		return LogLevel::Info;
+	}
+
+	if (logLevelString.startsWith(QLatin1String("warn")))
+	{
+		return LogLevel::Warning;
+	}
+
+	if (logLevelString.startsWith(QLatin1String("err")))
+	{
+		return LogLevel::Error;
+	}
+
+	if (logLevelString.startsWith(QLatin1String("crit")))
+	{
+		return LogLevel::Critical;
+	}
+
+	return LogLevel(logLevelString.toUInt());
 }
 
 
