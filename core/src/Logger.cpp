@@ -47,6 +47,9 @@ Logger::Logger( const QString &appName ) :
 	s_instance = this;
 	s_instanceMutex.unlock();
 
+	m_logToSystem = VeyonCore::config().logToSystem();
+	m_logToStdErr = VeyonCore::config().logToStdErr();
+
 	auto configuredLogLevel = VeyonCore::config().logLevel();
 	if( qEnvironmentVariableIsSet( logLevelEnvironmentVariable() ) )
 	{
@@ -54,7 +57,6 @@ Logger::Logger( const QString &appName ) :
 	}
 
 	m_logLevel = qBound( LogLevel::Min, configuredLogLevel, LogLevel::Max );
-	m_logToSystem = VeyonCore::config().logToSystem();
 
 	if( m_logLevel > LogLevel::Nothing )
 	{
@@ -328,7 +330,7 @@ void Logger::outputMessage( const QString& message )
 		}
 	}
 
-	if( VeyonCore::config().logToStdErr() )
+	if (m_logToStdErr)
 	{
 		fprintf( stderr, "%s", message.toUtf8().constData() );
 		fflush( stderr );

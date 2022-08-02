@@ -93,6 +93,7 @@ private:
 	LogLevel m_lastMessageLevel{LogLevel::Nothing};
 	QString m_lastMessage{};
 	int m_lastMessageCount{0};
+	bool m_logToStdErr{false};
 	bool m_logToSystem{false};
 
 	QString m_appName;
