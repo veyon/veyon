@@ -563,7 +563,7 @@ QRect DemoFeaturePlugin::viewportFromScreenSelection() const
 
 
 
-bool DemoFeaturePlugin::controlDemoServer()
+void DemoFeaturePlugin::controlDemoServer()
 {
 	if( m_demoServerControlTimer.isActive() )
 	{
@@ -585,8 +585,6 @@ bool DemoFeaturePlugin::controlDemoServer()
 		sendFeatureMessage( FeatureMessage{ m_demoServerFeature.uid(), StopDemoServer },
 							m_demoServerControlInterfaces );
 	}
-
-	return true;
 }
 
 

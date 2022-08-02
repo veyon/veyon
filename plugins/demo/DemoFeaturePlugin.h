@@ -126,7 +126,7 @@ private:
 
 	QRect viewportFromScreenSelection() const;
 
-	bool controlDemoServer();
+	void controlDemoServer();
 	bool controlDemoClient( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
 						   const ComputerControlInterfaceList& computerControlInterfaces );
 
