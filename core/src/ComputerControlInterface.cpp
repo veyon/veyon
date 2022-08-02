@@ -472,7 +472,10 @@ void ComputerControlInterface::handleFeatureMessage( const FeatureMessage& messa
 
 QDebug operator<<(QDebug stream, ComputerControlInterface::Pointer computerControlInterface)
 {
-	stream << qUtf8Printable(computerControlInterface->computer().hostAddress());
+	if (computerControlInterface.isNull() == false)
+	{
+		stream << qUtf8Printable(computerControlInterface->computer().hostAddress());
+	}
 	return stream;
 }
 
@@ -484,7 +487,10 @@ QDebug operator<<(QDebug stream, const ComputerControlInterfaceList& computerCon
 	hostAddresses.reserve(computerControlInterfaces.size());
 	for(const auto& computerControlInterface : computerControlInterfaces)
 	{
-		hostAddresses.append(computerControlInterface->computer().hostAddress());
+		if (computerControlInterface.isNull() == false)
+		{
+			hostAddresses.append(computerControlInterface->computer().hostAddress());
+		}
 	}
 
 	stream << QStringLiteral("[%1]").arg(hostAddresses.join(QLatin1Char(','))).toUtf8().constData();
