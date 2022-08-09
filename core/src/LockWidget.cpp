@@ -57,12 +57,13 @@ LockWidget::LockWidget( Mode mode, const QPixmap& background, QWidget* parent ) 
 
 	setWindowTitle( {} );
 
+	show();
 	move(leftMostScreen->geometry().topLeft());
-	showFullScreen();
 	windowHandle()->setScreen(leftMostScreen);
 	setFixedSize(leftMostScreen->virtualSize());
 
 	VeyonCore::platform().coreFunctions().raiseWindow(this, true);
+	showFullScreen();
 
 	setFocusPolicy( Qt::StrongFocus );
 	setFocus();
