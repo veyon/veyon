@@ -200,7 +200,7 @@ private:
 	VeyonCore::ApplicationVersion m_serverVersion{VeyonCore::ApplicationVersion::Unknown};
 	QTimer m_serverVersionQueryTimer{this};
 
-	QTimer m_compatPollingTimer{this};
+	QTimer m_statePollingTimer{this};
 
 Q_SIGNALS:
 	void framebufferSizeChanged();
