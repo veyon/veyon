@@ -39,6 +39,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), VeyonCore::ApplicationVersion, applicationVersion, setApplicationVersion, "ApplicationVersion", "Core", QVariant::fromValue(VeyonCore::ApplicationVersion::Version_4_0), Configuration::Property::Flag::Hidden )			\
 	OP( VeyonConfiguration, VeyonCore::config(), QJsonObject, pluginVersions, setPluginVersions, "PluginVersions", "Core", QJsonObject(), Configuration::Property::Flag::Hidden )			\
 	OP( VeyonConfiguration, VeyonCore::config(), QString, installationID, setInstallationID, "InstallationID", "Core", QString(), Configuration::Property::Flag::Hidden )			\
+	OP(VeyonConfiguration, VeyonCore::config(), int, computerStatePollingInterval, setComputerStatePollingInterval, "ComputerStatePollingInterval", "Core", -1, Configuration::Property::Flag::Hidden)	\
 
 #define FOREACH_VEYON_VNC_CONNECTION_CONFIG_PROPERTIES(OP)		\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, useCustomVncConnectionSettings, setUseCustomVncConnectionSettings, "UseCustomSettings", "VncConnection", false, Configuration::Property::Flag::Hidden )			\
