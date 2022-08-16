@@ -51,7 +51,7 @@ ComputerControlInterface::ComputerControlInterface( const Computer& computer, in
 		setServerVersion(VeyonCore::ApplicationVersion::Unknown);
 	});
 
-	connect(&m_compatPollingTimer, &QTimer::timeout, this, [this]() {
+	connect(&m_statePollingTimer, &QTimer::timeout, this, [this]() {
 		updateUser();
 		updateActiveFeatures();
 	});
@@ -200,9 +200,12 @@ void ComputerControlInterface::setServerVersion(VeyonCore::ApplicationVersion ve
 
 	m_serverVersion = version;
 
-	if (m_serverVersion >= VeyonCore::ApplicationVersion::Version_4_7)
+	const auto statePollingInterval = VeyonCore::config().computerStatePollingInterval();
+
+	if (m_serverVersion >= VeyonCore::ApplicationVersion::Version_4_7 &&
+		statePollingInterval <= 0)
 	{
-		m_compatPollingTimer.stop();
+		m_statePollingTimer.stop();
 
 		updateScreens();
 		setMinimumFramebufferUpdateInterval();
@@ -214,7 +217,8 @@ void ComputerControlInterface::setServerVersion(VeyonCore::ApplicationVersion ve
 			vncConnection()->setRequiresManualUpdateRateControl(true);
 		}
 
-		m_compatPollingTimer.start(VeyonCore::config().computerMonitoringUpdateInterval());
+		m_statePollingTimer.start(statePollingInterval > 0 ? statePollingInterval :
+															 VeyonCore::config().computerMonitoringUpdateInterval());
 	}
 }
 
