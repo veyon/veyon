@@ -143,6 +143,7 @@ if(NOT VEYON_X11VNC_EXTERNAL)
 			${libvncserver_DIR}/libvncserver/zrlepalettehelper.c
 			${libvncserver_DIR}/libvncserver/tight.c
 			${libvncserver_DIR}/common/d3des.c
+			${libvncserver_DIR}/common/sockets.c
 			${libvncserver_DIR}/common/turbojpeg.c
 			${libvncserver_DIR}/common/vncauth.c)
 	endif()

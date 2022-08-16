@@ -30,6 +30,7 @@ else()
 		${libvncserver_DIR}/libvncclient/tls_openssl.c
 		${libvncserver_DIR}/libvncclient/vncviewer.c
 		${libvncserver_DIR}/common/crypto_openssl.c
+		${libvncserver_DIR}/common/sockets.c
 		${libvncserver_DIR}/common/turbojpeg.c)
 
 	set_source_files_properties(${libvncclient_SOURCES} PROPERTIES
