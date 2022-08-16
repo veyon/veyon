@@ -115,7 +115,7 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	mainSplitter->setStretchFactor( mainSplitter->indexOf(monitoringSplitter), 1 );
 
 
-	static const QMap<QWidget *, QAbstractButton *> panelButtons{
+	static const QHash<QWidget *, QAbstractButton *> panelButtons{
 		{ computerSelectPanel, ui->computerSelectPanelButton },
 		{ screenshotManagementPanel, ui->screenshotManagementPanelButton },
 		{ slideshowPanel, ui->slideshowPanelButton },
@@ -244,7 +244,7 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	addFeaturesToToolBar();
 	reloadSubFeatures();
 
-	m_modeGroup->button( static_cast<int>( qHash( VeyonCore::builtinFeatures().monitoringMode().feature().uid() ) ) )->setChecked( true );
+	m_modeGroup->button(int(qHash(VeyonCore::builtinFeatures().monitoringMode().feature().uid())))->setChecked(true); // clazy:exclude=qt6-qhash-signature
 
 	VeyonCore::enforceBranding( this );
 }

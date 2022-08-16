@@ -38,7 +38,8 @@ LockWidget::LockWidget( Mode mode, const QPixmap& background, QWidget* parent ) 
 {
 	auto leftMostScreen = QGuiApplication::primaryScreen();
 	int minimumX = 0;
-	for (auto* screen : QGuiApplication::screens())
+	const auto screens = QGuiApplication::screens();
+	for (auto* screen : screens)
 	{
 		if (screen->geometry().x() < minimumX)
 		{

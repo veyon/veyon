@@ -390,7 +390,7 @@ void RemoteAccessFeaturePlugin::createRemoteAccessWindow(const ComputerControlIn
 	}
 
 	connect(remoteAccessView, &QObject::destroyed, this, [this](QObject* view) {
-		for (auto it = m_vncViews.begin(); it != m_vncViews.end();)
+		for (auto it = m_vncViews.begin(); it != m_vncViews.end();) // clazy:exclude=detaching-member
 		{
 			if (it->first == nullptr || it->first == view)
 			{
