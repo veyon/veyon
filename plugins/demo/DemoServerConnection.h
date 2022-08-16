@@ -49,7 +49,7 @@ public:
 private:
 	void run() override;
 
-	void processClient();
+	void processClient(); // clazy:exclude=thread-with-slots
 	void sendFramebufferUpdate();
 
 	bool receiveClientMessage();

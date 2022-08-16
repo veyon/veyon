@@ -98,7 +98,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, Component component, const 
 
 	initSystemInfo();
 
-	Q_EMIT initialized();
+	Q_EMIT initialized(); // clazy:exclude=incorrect-emit
 }
 
 

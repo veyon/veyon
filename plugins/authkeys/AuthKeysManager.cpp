@@ -422,7 +422,7 @@ QString AuthKeysManager::accessGroup( const QString& key )
 
 
 
-QString AuthKeysManager::keyPairId( const QString& key )
+QString AuthKeysManager::keyPairId(const QString& key) // clazy:exclude=qt6-qhash-signature
 {
 	const auto nameAndType = key.split( QLatin1Char('/') );
 	const auto name = nameAndType.value( 0 );

@@ -179,7 +179,8 @@ void PluginManager::initPluginSearchPath()
 								 QStringLiteral(CMAKE_BINARY_DIR "/plugins/vncserver"),
 								 QStringLiteral(CMAKE_BINARY_DIR "/plugins/")})
 	{
-		for (auto pluginDir : QDir(baseDir).entryInfoList(QDir::AllDirs | QDir::NoDotAndDotDot))
+		const auto pluginDirs = QDir(baseDir).entryInfoList(QDir::AllDirs | QDir::NoDotAndDotDot);
+		for (const auto& pluginDir : pluginDirs)
 		{
 			m_pluginSearchPaths.append(pluginDir.absoluteFilePath());
 		}
@@ -192,7 +193,7 @@ void PluginManager::initPluginSearchPath()
 void PluginManager::loadPlugins( const QString& nameFilter )
 {
 	QFileInfoList plugins;
-	for (const auto& pluginSearchPath : m_pluginSearchPaths)
+	for (const auto& pluginSearchPath : qAsConst(m_pluginSearchPaths))
 	{
 		plugins.append(QDir(pluginSearchPath).entryInfoList({nameFilter}));
 	}

@@ -67,9 +67,9 @@ private Q_SLOTS:
 	void showAboutDialog();
 
 private:
-	static int buttonId( const Feature& feature )
+	static int buttonId(const Feature& feature) // clazy:exclude=qt6-qhash-signature
 	{
-		return static_cast<int>( qHash( feature.uid() ) );
+		return int(qHash(feature.uid()));
 	}
 
 	static constexpr const char* originalSizePropertyName()

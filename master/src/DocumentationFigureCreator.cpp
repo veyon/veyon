@@ -417,7 +417,7 @@ void DocumentationFigureCreator::createRemoteAccessWindowFigure()
 				auto vncView = window->findChild<VncViewWidget *>();
 				Q_ASSERT(vncView != nullptr);
 
-				for( auto timeline : window->findChildren<QTimeLine *>() )
+				for( auto timeline : window->findChildren<QTimeLine *>() ) // clazy:exclude=range-loop-detach
 				{
 					timeline->stop();
 					timeline->setCurrentTime( 0 );
