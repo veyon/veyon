@@ -61,6 +61,7 @@ private:
 	SERVICE_STATUS_HANDLE m_statusHandle{nullptr};
 	HANDLE m_stopServiceEvent{nullptr};
 	HANDLE m_serverShutdownEvent{nullptr};
+	QAtomicInt m_serviceShutdownPending{0};
 	QAtomicInt m_sessionChangeEvent{0};
 
 	ServiceDataManager m_dataManager{};

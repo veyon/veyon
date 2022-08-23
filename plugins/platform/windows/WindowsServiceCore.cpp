@@ -50,8 +50,6 @@ public:
 
 	void start( DWORD wtsSessionId, const ServiceDataManager::Token& token )
 	{
-		stop();
-
 		const auto baseProcessId = WtsSessionManager::findWinlogonProcessId( wtsSessionId );
 		const auto user = WtsSessionManager::querySessionInformation( wtsSessionId, WtsSessionManager::SessionInfo::UserName );
 
@@ -189,7 +187,8 @@ void WindowsServiceCore::manageServersForAllSessions()
 
 	const auto activeSessionOnly = m_sessionManager.mode() == PlatformSessionManager::Mode::Active;
 
-	while( WaitForSingleObject( m_stopServiceEvent, SessionPollingInterval ) == WAIT_TIMEOUT )
+	while (WaitForSingleObject(m_stopServiceEvent, SessionPollingInterval) == WAIT_TIMEOUT &&
+		   m_serviceShutdownPending == 0)
 	{
 		auto wtsSessionIds = WtsSessionManager::activeSessions();
 
@@ -262,7 +261,8 @@ void WindowsServiceCore::manageServerForConsoleSession()
 
 	QElapsedTimer lastServerStart;
 
-	while( WaitForSingleObject( m_stopServiceEvent, SessionPollingInterval ) == WAIT_TIMEOUT )
+	while (WaitForSingleObject(m_stopServiceEvent, SessionPollingInterval) == WAIT_TIMEOUT &&
+		   m_serviceShutdownPending == 0)
 	{
 		const auto sessionChanged = m_sessionChangeEvent.testAndSetOrdered( 1, 0 );
 		const auto wtsSessionId = WtsSessionManager::activeConsoleSession();
@@ -285,8 +285,12 @@ void WindowsServiceCore::manageServerForConsoleSession()
 
 			if( wtsSessionId != WtsSessionManager::InvalidSession || sessionChanged )
 			{
-				veyonServerProcess.start( wtsSessionId, m_dataManager.token() );
-				lastServerStart.restart();
+				veyonServerProcess.stop();
+				if (m_serviceShutdownPending == 0)
+				{
+					veyonServerProcess.start( wtsSessionId, m_dataManager.token() );
+					lastServerStart.restart();
+				}
 			}
 
 			oldWtsSessionId = wtsSessionId;
@@ -411,6 +415,7 @@ DWORD WindowsServiceCore::serviceCtrl( DWORD ctrlCode, DWORD eventType, LPVOID e
 	case SERVICE_CONTROL_SHUTDOWN:
 	case SERVICE_CONTROL_STOP:
 		m_status.dwCurrentState = SERVICE_STOP_PENDING;
+		m_serviceShutdownPending = 1;
 		SetEvent( m_stopServiceEvent );
 		break;
 
