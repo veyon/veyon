@@ -44,8 +44,11 @@ FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( VeyonWorkerInter
 	connect( &m_socket, &QTcpSocket::connected,
 			 this, &FeatureWorkerManagerConnection::sendInitMessage );
 
-	connect( &m_socket, &QTcpSocket::disconnected,
-			 QCoreApplication::instance(), &QCoreApplication::quit );
+	connect(&m_socket, &QTcpSocket::disconnected, this,
+			[=]() {
+		vDebug() << "lost connection to FeatureWorkerManager – exiting";
+		QCoreApplication::instance()->exit(0);
+	}, Qt::QueuedConnection);
 
 	connect( &m_socket, &QTcpSocket::readyRead,
 			 this, &FeatureWorkerManagerConnection::receiveMessage );
