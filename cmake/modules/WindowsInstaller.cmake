@@ -11,10 +11,8 @@ else()
 endif()
 
 if(VEYON_BUILD_WIN64)
-	set(DLL_GCC "libgcc_s_seh-1.dll")
 	set(DLL_DDENGINE "ddengine64.dll")
 else()
-	set(DLL_GCC "libgcc_s_sjlj-1.dll")
 	set(DLL_DDENGINE "ddengine.dll")
 endif()
 
@@ -45,7 +43,7 @@ add_custom_target(windows-binaries
 	COMMAND cp ${DLLDIR_LIB}/libwinpthread-1.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND cp ${DLLDIR_GCC}/libstdc++-6.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND cp ${DLLDIR_GCC}/libssp-0.dll ${WINDOWS_INSTALL_FILES}
-	COMMAND cp ${DLLDIR_GCC}/${DLL_GCC} ${WINDOWS_INSTALL_FILES}
+	COMMAND cp ${DLLDIR_GCC}/libgcc_s_*-1.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND mkdir -p ${WINDOWS_INSTALL_FILES}/crypto
 	COMMAND cp ${DLLDIR_LIB}/qca-qt5/crypto/libqca-ossl.dll ${WINDOWS_INSTALL_FILES}/crypto
 	COMMAND cp ${DLLDIR}/Qt5Core.dll ${DLLDIR}/Qt5Gui.dll ${DLLDIR}/Qt5Widgets.dll ${DLLDIR}/Qt5Network.dll ${DLLDIR}/Qt5Concurrent.dll ${WINDOWS_INSTALL_FILES}
