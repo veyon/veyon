@@ -35,6 +35,7 @@ FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( VeyonWorkerInter
 																QObject* parent ) :
 	QObject( parent ),
 	m_worker( worker ),
+	m_port(VeyonCore::config().featureWorkerManagerPort() + VeyonCore::sessionId()),
 	m_socket( this ),
 	m_featureUid( featureUid )
 {
@@ -65,12 +66,10 @@ void FeatureWorkerManagerConnection::tryConnection()
 {
 	if( m_socket.state() != QTcpSocket::ConnectedState )
 	{
-		const auto port = quint16( VeyonCore::config().featureWorkerManagerPort() + VeyonCore::sessionId() );
+		vDebug() << "connecting to FeatureWorkerManager at port" << m_port;
 
-		vDebug() << "connecting to FeatureWorkerManager at port" << port;
-
-		m_socket.connectToHost( QHostAddress::LocalHost, port );
-		m_connectTimer.start( ConnectTimeout );
+		m_socket.connectToHost(QHostAddress::LocalHost, m_port);
+		m_connectTimer.start(ConnectTimeout);
 	}
 }
 

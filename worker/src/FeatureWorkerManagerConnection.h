@@ -52,6 +52,7 @@ private:
 	void receiveMessage();
 
 	VeyonWorkerInterface& m_worker;
+	const int m_port;
 	QTcpSocket m_socket;
 	Feature::Uid m_featureUid;
 	QTimer m_connectTimer{this};
