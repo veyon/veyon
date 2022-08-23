@@ -57,14 +57,27 @@ VeyonWorker::VeyonWorker( QUuid featureUid, QObject* parent ) :
 		qFatal( "Specified feature is disabled by configuration!" );
 	}
 
-	m_workerManagerConnection = new FeatureWorkerManagerConnection( *this, featureUid, this );
+	m_workerManagerConnection = new FeatureWorkerManagerConnection(*this, featureUid);
 
 	vInfo() << "Running worker for feature" << workerFeature->name();
 }
 
 
 
+VeyonWorker::~VeyonWorker()
+{
+	vDebug();
+
+	delete m_workerManagerConnection;
+	m_workerManagerConnection = nullptr;
+
+	vDebug() << "finished";
+}
+
+
+
 bool VeyonWorker::sendFeatureMessageReply( const FeatureMessage& reply )
 {
-	return m_workerManagerConnection->sendMessage( reply );
+	return m_workerManagerConnection &&
+			m_workerManagerConnection->sendMessage( reply );
 }
