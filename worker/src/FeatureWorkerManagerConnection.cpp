@@ -60,6 +60,8 @@ FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( VeyonWorkerInter
 
 bool FeatureWorkerManagerConnection::sendMessage( const FeatureMessage& message )
 {
+	vDebug() << message;
+
 	return message.send( &m_socket );
 }
 
