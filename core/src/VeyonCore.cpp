@@ -37,7 +37,6 @@
 #include <QSysInfo>
 
 #include "BuiltinFeatures.h"
-#include "ComputerControlInterface.h"
 #include "FeatureManager.h"
 #include "Filesystem.h"
 #include "HostAddress.h"
@@ -105,6 +104,8 @@ VeyonCore::VeyonCore( QCoreApplication* application, Component component, const 
 
 VeyonCore::~VeyonCore()
 {
+	vDebug();
+
 	delete m_featureManager;
 	m_featureManager = nullptr;
 
