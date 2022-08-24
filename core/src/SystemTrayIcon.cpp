@@ -22,6 +22,7 @@
  *
  */
 
+#include <QCoreApplication>
 #include <QMessageBox>
 #include <QPainter>
 #include <QPixmap>
@@ -41,8 +42,7 @@ SystemTrayIcon::SystemTrayIcon( QObject* parent ) :
 									  Feature::Uid( "8e997d84-ebb9-430f-8f72-d45d9821963d" ),
 									  Feature::Uid(),
 									  tr( "System tray icon"), {}, {} ) ),
-	m_features( { m_systemTrayIconFeature } ),
-	m_systemTrayIcon( nullptr )
+	m_hidden(VeyonCore::config().isTrayIconHidden())
 {
 }
 
@@ -51,10 +51,13 @@ SystemTrayIcon::SystemTrayIcon( QObject* parent ) :
 void SystemTrayIcon::setToolTip( const QString& toolTipText,
 								FeatureWorkerManager& featureWorkerManager )
 {
-	FeatureMessage featureMessage( m_systemTrayIconFeature.uid(), SetToolTipCommand );
-	featureMessage.addArgument( Argument::ToolTipText, toolTipText );
+	if (m_hidden == false)
+	{
+		FeatureMessage featureMessage(m_systemTrayIconFeature.uid(), SetToolTipCommand);
+		featureMessage.addArgument(Argument::ToolTipText, toolTipText);
 
-	featureWorkerManager.sendMessageToUnmanagedSessionWorker( featureMessage );
+		featureWorkerManager.sendMessageToUnmanagedSessionWorker(featureMessage);
+	}
 }
 
 
@@ -86,9 +89,12 @@ void SystemTrayIcon::showMessage(const ComputerControlInterfaceList &computerCon
 void SystemTrayIcon::setOverlay(const ComputerControlInterfaceList& computerControlInterfaces,
 								const QString &iconUrl)
 {
-	sendFeatureMessage(FeatureMessage{m_systemTrayIconFeature.uid(), SetOverlayIcon}
-							.addArgument(Argument::OverlayIconUrl, iconUrl),
-						computerControlInterfaces);
+	if (m_hidden == false)
+	{
+		sendFeatureMessage(FeatureMessage{m_systemTrayIconFeature.uid(), SetOverlayIcon}
+						   .addArgument(Argument::OverlayIconUrl, iconUrl),
+						   computerControlInterfaces);
+	}
 }
 
 
@@ -120,7 +126,7 @@ bool SystemTrayIcon::handleFeatureMessage( VeyonWorkerInterface& worker, const F
 		return false;
 	}
 
-	if( m_systemTrayIcon == nullptr && VeyonCore::config().isTrayIconHidden() == false )
+	if (m_systemTrayIcon == nullptr && m_hidden == false)
 	{
 		m_systemTrayIcon = new QSystemTrayIcon( this );
 
@@ -149,6 +155,7 @@ bool SystemTrayIcon::handleFeatureMessage( VeyonWorkerInterface& worker, const F
 			QMessageBox::information( nullptr,
 									  message.argument( Argument::MessageTitle ).toString(),
 									  message.argument( Argument::MessageText ).toString() );
+			QCoreApplication::instance()->quit();
 		}
 		return true;
 
