@@ -141,6 +141,7 @@ bool FeatureWorkerManager::startUnmanagedSessionWorker( Feature::Uid featureUid 
 									   VeyonCore::platform().coreFunctions().activeDesktopName() );
 	if( ret == false )
 	{
+		vWarning() << "failed to start worker for feature" << featureUid;
 		return false;
 	}
 
