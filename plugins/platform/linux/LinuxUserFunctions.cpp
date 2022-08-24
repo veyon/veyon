@@ -431,8 +431,10 @@ uid_t LinuxUserFunctions::userIdFromName( const QString& username )
 		return pw_entry->pw_uid;
 	}
 
-	return 0;
+	return -1;
 }
+
+
 
 gid_t LinuxUserFunctions::userGroupIdFromName( const QString& username )
 {
@@ -443,7 +445,7 @@ gid_t LinuxUserFunctions::userGroupIdFromName( const QString& username )
 		return pw_entry->pw_gid;
 	}
 
-	return 0;
+	return -1;
 }
 
 
