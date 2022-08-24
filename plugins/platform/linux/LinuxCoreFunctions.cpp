@@ -243,15 +243,16 @@ bool LinuxCoreFunctions::runProgramAsUser( const QString& program, const QString
 
 	const auto adjustChildProcessPrivileges = [uid, gid]()
 	{
-		if( setgroups(0, nullptr) != 0 )
+		const auto isRoot = getuid() == 0 || geteuid() == 0;
+		if (setgroups(0, nullptr) != 0 && isRoot)
 		{
 			qFatal( "Could not drop all supplementary groups for child process!" );
 		}
-		if( setgid( gid ) != 0 )
+		if (setgid(gid) != 0 && isRoot)
 		{
 			qFatal( "Could not set GID for child process!" );
 		}
-		if( setuid( uid ) != 0 )
+		if (setuid(uid) != 0 && isRoot)
 		{
 			qFatal( "Could not set UID for child process!" );
 		}
