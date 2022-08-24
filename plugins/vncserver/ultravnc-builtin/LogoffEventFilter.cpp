@@ -64,9 +64,9 @@ bool LogoffEventFilter::nativeEventFilter( const QByteArray& eventType, void* me
 
 	const auto winMsg = reinterpret_cast<MSG *>( message )->message;
 
-	if( winMsg == WM_QUERYENDSESSION )
+	if (winMsg == WM_ENDSESSION)
 	{
-		vInfo() << "Got WM_QUERYENDSESSION - initiating server shutdown";
+		vInfo() << "Got WM_ENDSESSION - initiating server shutdown";
 
 		// tell UltraVNC server to quit
 		SetEvent( m_shutdownEventHandle );
