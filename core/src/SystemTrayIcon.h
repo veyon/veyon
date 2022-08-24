@@ -125,8 +125,9 @@ private:
 	};
 
 	const Feature m_systemTrayIconFeature;
-	const FeatureList m_features;
+	const FeatureList m_features = {m_systemTrayIconFeature};
 
-	QSystemTrayIcon* m_systemTrayIcon;
+	QSystemTrayIcon* m_systemTrayIcon = nullptr;
+	bool m_hidden = false;
 
 };
