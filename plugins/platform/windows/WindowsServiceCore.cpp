@@ -188,8 +188,7 @@ void WindowsServiceCore::manageServersForAllSessions()
 
 	const auto activeSessionOnly = m_sessionManager.mode() == PlatformSessionManager::Mode::Active;
 
-	while (WaitForSingleObject(m_stopServiceEvent, SessionPollingInterval) == WAIT_TIMEOUT &&
-		   m_serviceShutdownPending == 0)
+	do
 	{
 		auto wtsSessionIds = WtsSessionManager::activeSessions();
 
@@ -243,7 +242,11 @@ void WindowsServiceCore::manageServersForAllSessions()
 				serverProcesses[wtsSessionId] = serverProcess;
 			}
 		}
-	}
+
+		std::array<HANDLE, 2> events{m_sessionChangeEvent, m_stopServiceEvent};
+		WaitForMultipleObjects(events.size(), events.data(), FALSE, SessionPollingInterval);
+
+	} while (m_serviceStopRequested == 0);
 
 	vInfo() << "Service shutdown";
 
@@ -262,10 +265,8 @@ void WindowsServiceCore::manageServerForConsoleSession()
 
 	QElapsedTimer lastServerStart;
 
-	while (WaitForSingleObject(m_stopServiceEvent, SessionPollingInterval) == WAIT_TIMEOUT &&
-		   m_serviceShutdownPending == 0)
-	{
-		const auto sessionChanged = m_sessionChangeEvent.testAndSetOrdered( 1, 0 );
+	do {
+		const auto sessionChanged = m_sessionChanged.testAndSetOrdered(1, 0);
 		const auto wtsSessionId = WtsSessionManager::activeConsoleSession();
 
 		if( oldWtsSessionId != wtsSessionId || sessionChanged )
@@ -287,7 +288,8 @@ void WindowsServiceCore::manageServerForConsoleSession()
 			if( wtsSessionId != WtsSessionManager::InvalidSession || sessionChanged )
 			{
 				veyonServerProcess.stop();
-				if (m_serviceShutdownPending == 0)
+				if (m_serviceStopRequested == 0 &&
+					wtsSessionId != WtsSessionManager::InvalidSession)
 				{
 					veyonServerProcess.start( wtsSessionId, m_dataManager.token() );
 					lastServerStart.restart();
@@ -296,13 +298,21 @@ void WindowsServiceCore::manageServerForConsoleSession()
 
 			oldWtsSessionId = wtsSessionId;
 		}
-		else if( veyonServerProcess.isRunning() == false )
+		else if (veyonServerProcess.isRunning() == false)
 		{
-			veyonServerProcess.start( wtsSessionId, m_dataManager.token() );
+			if (wtsSessionId != WtsSessionManager::InvalidSession)
+			{
+				veyonServerProcess.start( wtsSessionId, m_dataManager.token() );
+				lastServerStart.restart();
+			}
+
 			oldWtsSessionId = wtsSessionId;
-			lastServerStart.restart();
 		}
-	}
+
+		std::array<HANDLE, 2> events{m_sessionChangeEvent, m_stopServiceEvent};
+		WaitForMultipleObjects(events.size(), events.data(), FALSE, SessionPollingInterval);
+
+	} while (m_serviceStopRequested == 0);
 
 	vInfo() << "Service shutdown";
 
@@ -352,6 +362,7 @@ void WindowsServiceCore::serviceMain()
 	}
 
 	m_stopServiceEvent = CreateEvent( nullptr, false, false, nullptr );
+	m_sessionChangeEvent = CreateEvent(nullptr, false, false, nullptr);
 
 	if( reportStatus( SERVICE_RUNNING, NO_ERROR, 0 ) == false )
 	{
@@ -364,6 +375,7 @@ void WindowsServiceCore::serviceMain()
 
 	m_serviceEntryPoint();
 
+	CloseHandle(m_sessionChangeEvent);
 	CloseHandle( m_stopServiceEvent );
 
 	sasEventListener.stop();
@@ -416,7 +428,7 @@ DWORD WindowsServiceCore::serviceCtrl( DWORD ctrlCode, DWORD eventType, LPVOID e
 	case SERVICE_CONTROL_SHUTDOWN:
 	case SERVICE_CONTROL_STOP:
 		m_status.dwCurrentState = SERVICE_STOP_PENDING;
-		m_serviceShutdownPending = 1;
+		m_serviceStopRequested = 1;
 		SetEvent( m_stopServiceEvent );
 		break;
 
@@ -435,9 +447,12 @@ DWORD WindowsServiceCore::serviceCtrl( DWORD ctrlCode, DWORD eventType, LPVOID e
 		{
 		case WTS_SESSION_LOGON:
 		case WTS_SESSION_LOGOFF:
+		case WTS_CONSOLE_CONNECT:
+		case WTS_CONSOLE_DISCONNECT:
 		case WTS_REMOTE_CONNECT:
 		case WTS_REMOTE_DISCONNECT:
-			m_sessionChangeEvent = 1;
+			m_sessionChanged = 1;
+			SetEvent(m_sessionChangeEvent);
 			break;
 		}
 		break;
