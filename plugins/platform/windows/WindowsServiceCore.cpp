@@ -77,11 +77,10 @@ public:
 			{
 				vWarning() << "Terminating server";
 				TerminateProcess( m_subProcessHandle, 0 );
+				WaitForSingleObject(m_subProcessHandle, ServerWaitTime);
 			}
 			CloseHandle( m_subProcessHandle );
 			m_subProcessHandle = nullptr;
-
-			Sleep( ServerPostStopWaitTime );
 		}
 	}
 
@@ -100,7 +99,6 @@ public:
 private:
 	static constexpr auto ServerQueryTime = 100;
 	static constexpr auto ServerWaitTime = 5000;
-	static constexpr auto ServerPostStopWaitTime = 1000;
 
 	HANDLE m_subProcessHandle{nullptr};
 
