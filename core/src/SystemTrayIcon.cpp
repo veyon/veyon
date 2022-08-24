@@ -169,7 +169,12 @@ void SystemTrayIcon::updateIcon(const QString& overlayIconUrl)
 {
 	if (m_systemTrayIcon)
 	{
-		QImage overlayIcon(overlayIconUrl);
+		QImage overlayIcon;
+		if (overlayIconUrl.isEmpty() == false)
+		{
+			overlayIcon.load(overlayIconUrl);
+		}
+
 		QIcon icon;
 
 		for(auto size : {16, 22, 32, 64})
