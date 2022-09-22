@@ -313,7 +313,7 @@ bool DemoServer::setVncServerPixelFormat()
 	rfbPixelFormat format;
 
 	format.bitsPerPixel = 32;
-	format.depth = 32;
+	format.depth = 24;
 	format.bigEndian = qFromBigEndian<uint16_t>( 1 ) == 1 ? true : false;
 	format.trueColour = 1;
 	format.redShift = 16;
