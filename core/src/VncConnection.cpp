@@ -44,9 +44,9 @@
 rfbBool VncConnection::hookInitFrameBuffer( rfbClient* client )
 {
 	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
-	if( connection )
+	if (connection && connection->m_client == client)
 	{
-		return connection->initFrameBuffer( client );
+		return connection->initFrameBuffer();
 	}
 
 	return false;
@@ -663,51 +663,52 @@ bool VncConnection::isControlFlagSet( VncConnection::ControlFlag flag )
 
 
 
-bool VncConnection::initFrameBuffer( rfbClient* client )
+bool VncConnection::initFrameBuffer()
 {
-	if( client->format.bitsPerPixel != RfbBitsPerSample * RfbBytesPerPixel )
+	if (m_client->format.bitsPerPixel != RfbBitsPerSample * RfbBytesPerPixel)
 	{
-		vCritical() << "Bits per pixel does not match" << client->format.bitsPerPixel;
+		vCritical() << "Bits per pixel does not match" << m_client->format.bitsPerPixel;
 		return false;
 	}
 
-	const auto pixelCount = static_cast<uint32_t>( client->width ) * client->height;
+	const auto pixelCount = static_cast<uint32_t>(m_client->width) * m_client->height;
 
-	client->frameBuffer = reinterpret_cast<uint8_t *>( new RfbPixel[pixelCount] );
+	m_client->frameBuffer = reinterpret_cast<uint8_t *>(new RfbPixel[pixelCount]);
 
-	memset( client->frameBuffer, '\0', pixelCount*RfbBytesPerPixel );
+	memset(m_client->frameBuffer, '\0', pixelCount*RfbBytesPerPixel);
 
 	// initialize framebuffer image which just wraps the allocated memory and ensures cleanup after last
 	// image copy using the framebuffer gets destroyed
 	m_imgLock.lockForWrite();
-	m_image = QImage( client->frameBuffer, client->width, client->height, QImage::Format_RGB32, framebufferCleanup, client->frameBuffer );
+	m_image = QImage(m_client->frameBuffer, m_client->width, m_client->height, QImage::Format_RGB32,
+					 framebufferCleanup, m_client->frameBuffer);
 	m_imgLock.unlock();
 
 	// set up pixel format according to QImage
-	client->format.redShift = 16;
-	client->format.greenShift = 8;
-	client->format.blueShift = 0;
-	client->format.redMax = 0xff;
-	client->format.greenMax = 0xff;
-	client->format.blueMax = 0xff;
+	m_client->format.redShift = 16;
+	m_client->format.greenShift = 8;
+	m_client->format.blueShift = 0;
+	m_client->format.redMax = 0xff;
+	m_client->format.greenMax = 0xff;
+	m_client->format.blueMax = 0xff;
 
-	client->appData.encodingsString = "zrle ultra copyrect hextile zlib corre rre raw";
-	client->appData.useRemoteCursor = m_useRemoteCursor ? TRUE : FALSE;
-	client->appData.compressLevel = 0;
-	client->appData.useBGR233 = false;
-	client->appData.qualityLevel = 9;
-	client->appData.enableJPEG = false;
+	m_client->appData.encodingsString = "zrle ultra copyrect hextile zlib corre rre raw";
+	m_client->appData.useRemoteCursor = m_useRemoteCursor ? TRUE : FALSE;
+	m_client->appData.compressLevel = 0;
+	m_client->appData.useBGR233 = false;
+	m_client->appData.qualityLevel = 9;
+	m_client->appData.enableJPEG = false;
 
 	switch( m_quality )
 	{
 	case Quality::Screenshot:
 		// make sure to use lossless raw encoding
-		client->appData.encodingsString = "raw";
+		m_client->appData.encodingsString = "raw";
 		break;
 	case Quality::Thumbnail:
-		client->appData.compressLevel = 9;
-		client->appData.qualityLevel = 5;
-		client->appData.enableJPEG = true;
+		m_client->appData.compressLevel = 9;
+		m_client->appData.qualityLevel = 5;
+		m_client->appData.enableJPEG = true;
 		break;
 	default:
 		break;
@@ -715,7 +716,7 @@ bool VncConnection::initFrameBuffer( rfbClient* client )
 
 	m_framebufferState = FramebufferState::Initialized;
 
-	Q_EMIT framebufferSizeChanged( client->width, client->height );
+	Q_EMIT framebufferSizeChanged(m_client->width, m_client->height);
 
 	return true;
 }

@@ -205,7 +205,7 @@ private:
 	void setControlFlag( ControlFlag flag, bool on );
 	bool isControlFlagSet( ControlFlag flag );
 
-	bool initFrameBuffer( rfbClient* client );
+	bool initFrameBuffer();
 	void finishFrameBufferUpdate();
 
 	void sendEvents();
