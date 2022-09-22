@@ -609,6 +609,9 @@ bool VncClientProtocol::handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHea
 	case rfbEncodingZYWRLE:
 		return handleRectEncodingZRLE( buffer );
 
+	case rfbEncodingTight:
+		return handleRectEncodingTight(buffer, rectHeader);
+
 	case rfbEncodingExtDesktopSize:
 		return handleRectEncodingExtDesktopSize(buffer);
 
@@ -781,6 +784,147 @@ bool VncClientProtocol::handleRectEncodingZRLE(QBuffer &buffer)
 	const auto n = qFromBigEndian( hdr.length );
 
 	return n < MaxMessageSize && uint32_t(buffer.read(n).size()) == n;
+}
+
+
+
+bool VncClientProtocol::handleRectEncodingTight(QBuffer& buffer,
+												const rfbFramebufferUpdateRectHeader rectHeader)
+{
+	static const auto readCompactLength = [](QBuffer& buffer) -> int64_t
+	{
+		int64_t len;
+		uint8_t b;
+
+		if (buffer.read(reinterpret_cast<char *>(&b), 1 ) != 1)
+		{
+			return -1;
+		}
+
+		len = int(b) & 0x7f;
+
+		if (b & 0x80)
+		{
+			if (buffer.read(reinterpret_cast<char *>(&b), 1) != 1)
+			{
+				return -1;
+			}
+
+			len |= (int(b) & 0x7f) << 7;
+
+			if (b & 0x80)
+			{
+				if (buffer.read(reinterpret_cast<char *>(&b), 1) != 1)
+				{
+					return -1;
+				}
+
+				len |= (int(b) & 0xff) << 14;
+			}
+		}
+
+		return len;
+	};
+
+	auto bitsPerPixel = m_pixelFormat.bitsPerPixel;
+	if (bitsPerPixel == 32 &&
+		m_pixelFormat.depth == 24 &&
+		m_pixelFormat.redMax == 255 &&
+		m_pixelFormat.greenMax == 255 &&
+		m_pixelFormat.blueMax == 255)
+	{
+		bitsPerPixel = 24;
+	}
+
+	const auto bytesPerPixel = bitsPerPixel / 8;
+
+	uint8_t compCtl = 255;
+	if (buffer.read(reinterpret_cast<char *>(&compCtl), 1) != 1)
+	{
+		return false;
+	}
+
+	compCtl >>= 4; // ignore compression stream reset bits
+
+	if ((compCtl & rfbTightNoZlib) == rfbTightNoZlib)
+	{
+	   compCtl &= ~(rfbTightNoZlib);
+	}
+
+	if (compCtl == rfbTightFill)
+	{
+		return buffer.read(bytesPerPixel).size() == bytesPerPixel;
+	}
+
+	if (compCtl == rfbTightJpeg)
+	{
+		const auto dataLength = readCompactLength(buffer);
+		return buffer.read(dataLength).size() == dataLength;
+	}
+
+	if (compCtl > rfbTightMaxSubencoding)
+	{
+		vWarning() << "bad subencoding value received";
+		return false;
+	}
+
+	if (compCtl & rfbTightExplicitFilter)
+	{
+		uint8_t filterId = 0;
+		if (buffer.read(reinterpret_cast<char *>(&filterId), 1) != 1)
+		{
+			return false;
+		}
+
+		switch (filterId)
+		{
+		case rfbTightFilterCopy:
+			break;
+		case rfbTightFilterPalette:
+		{
+			uint8_t numColors;
+			if (buffer.read(reinterpret_cast<char *>(&numColors), 1) != 1)
+			{
+				return false;
+			}
+			const auto tightRectColors = numColors + 1;
+			if (tightRectColors < 2)
+			{
+				return false;
+			}
+			const auto rectBytes = tightRectColors * bytesPerPixel;
+			if (buffer.read(rectBytes).size() != rectBytes)
+			{
+				return false;
+			}
+			bitsPerPixel = tightRectColors == 2 ? 1 : 8;
+			break;
+		}
+		case rfbTightFilterGradient:
+			break;
+		default:
+			vWarning() << "invalid filter ID";
+			return false;
+		}
+	}
+
+	const int MaximumUncompressedSize = 12;
+
+	const int rowSize = (rectHeader.r.w * bitsPerPixel + 7) / 8;
+	const int uncompressedRectSize = rectHeader.r.h * rowSize;
+	if (uncompressedRectSize < MaximumUncompressedSize)
+	{
+		return buffer.read(uncompressedRectSize).size() == uncompressedRectSize;
+	}
+
+	const auto compressedLength = readCompactLength(buffer);
+	if (compressedLength <= 0)
+	{
+		vWarning() << "bad compressed length received";
+		return false;
+	}
+
+	return buffer.read(compressedLength).size() == compressedLength;
 }
 
 
