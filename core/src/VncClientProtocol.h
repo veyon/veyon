@@ -129,6 +129,8 @@ private:
 									uint bytesPerPixel );
 	bool handleRectEncodingZlib( QBuffer& buffer );
 	bool handleRectEncodingZRLE( QBuffer& buffer );
+	bool handleRectEncodingTight(QBuffer& buffer,
+								 const rfbFramebufferUpdateRectHeader rectHeader);
 	bool handleRectEncodingExtDesktopSize(QBuffer& buffer);
 
 	static bool isPseudoEncoding( rfbFramebufferUpdateRectHeader header );
