@@ -391,6 +391,10 @@ bool VncClientProtocol::receiveServerInitMessage()
 
 		memcpy( &m_pixelFormat, &message.format, sz_rfbPixelFormat ); // Flawfinder: ignore
 
+		m_pixelFormat.redMax = qFromBigEndian(m_pixelFormat.redMax);
+		m_pixelFormat.greenMax = qFromBigEndian(m_pixelFormat.greenMax);
+		m_pixelFormat.blueMax = qFromBigEndian(m_pixelFormat.blueMax);
+
 		if( static_cast<uint32_t>( m_socket->peek( nameLength ).size() ) == nameLength )
 		{
 			m_serverInitMessage = m_socket->read( sz_rfbServerInitMsg + nameLength );
