@@ -76,39 +76,7 @@
           <string>User interface</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
-          <item row="4" column="0">
-           <widget class="QLabel" name="label_9">
-            <property name="text">
-             <string>Text color</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QPushButton" name="computerMonitoringTextColor"/>
-          </item>
-          <item row="9" column="1">
-           <widget class="QSpinBox" name="computerMonitoringThumbnailSpacing">
-            <property name="suffix">
-             <string> px</string>
-            </property>
-            <property name="prefix">
-             <string/>
-            </property>
-            <property name="minimum">
-             <number>2</number>
-            </property>
-            <property name="maximum">
-             <number>50</number>
-            </property>
-            <property name="value">
-             <number>16</number>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QPushButton" name="computerMonitoringBackgroundColor"/>
-          </item>
-          <item row="9" column="0">
+          <item row="7" column="0">
            <widget class="QLabel" name="label_11">
             <property name="text">
              <string>Thumbnail spacing</string>
@@ -134,7 +102,69 @@
             </item>
            </widget>
           </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_13">
+            <property name="text">
+             <string>Image quality</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>Thumbnail update interval</string>
+            </property>
+           </widget>
+          </item>
           <item row="7" column="1">
+           <widget class="QSpinBox" name="computerMonitoringThumbnailSpacing">
+            <property name="suffix">
+             <string> px</string>
+            </property>
+            <property name="prefix">
+             <string/>
+            </property>
+            <property name="minimum">
+             <number>2</number>
+            </property>
+            <property name="maximum">
+             <number>50</number>
+            </property>
+            <property name="value">
+             <number>16</number>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>Text color</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QPushButton" name="computerMonitoringTextColor"/>
+          </item>
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="computerMonitoringUpdateInterval">
+            <property name="suffix">
+             <string> ms</string>
+            </property>
+            <property name="minimum">
+             <number>250</number>
+            </property>
+            <property name="maximum">
+             <number>10000</number>
+            </property>
+            <property name="singleStep">
+             <number>250</number>
+            </property>
+            <property name="value">
+             <number>1000</number>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
            <widget class="QComboBox" name="computerMonitoringSortOrder">
             <item>
              <property name="text">
@@ -153,11 +183,50 @@
             </item>
            </widget>
           </item>
-          <item row="7" column="0">
-           <widget class="QLabel" name="label_10">
+          <item row="3" column="1">
+           <widget class="QPushButton" name="computerMonitoringBackgroundColor"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_12">
             <property name="text">
-             <string>Sort order</string>
+             <string>Thumbnail aspect ratio</string>
             </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>Background color</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="computerMonitoringImageQuality">
+            <item>
+             <property name="text">
+              <string>Highest</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">High</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">Medium</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">Low</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">Lowest</string>
+             </property>
+            </item>
            </widget>
           </item>
           <item row="2" column="1">
@@ -189,25 +258,6 @@
             </item>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="QSpinBox" name="computerMonitoringUpdateInterval">
-            <property name="suffix">
-             <string> ms</string>
-            </property>
-            <property name="minimum">
-             <number>250</number>
-            </property>
-            <property name="maximum">
-             <number>10000</number>
-            </property>
-            <property name="singleStep">
-             <number>250</number>
-            </property>
-            <property name="value">
-             <number>1000</number>
-            </property>
-           </widget>
-          </item>
           <item row="5" column="0">
            <widget class="QLabel" name="label_8">
             <property name="text">
@@ -215,24 +265,10 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label_7">
+          <item row="6" column="0">
+           <widget class="QLabel" name="label_10">
             <property name="text">
-             <string>Thumbnail update interval</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>Background color</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_12">
-            <property name="text">
-             <string>Thumbnail aspect ratio</string>
+             <string>Sort order</string>
             </property>
            </widget>
           </item>
@@ -495,6 +531,7 @@
   <tabstop>screenshotDirectory</tabstop>
   <tabstop>openUserConfigurationDirectory</tabstop>
   <tabstop>openScreenshotDirectory</tabstop>
+  <tabstop>computerMonitoringImageQuality</tabstop>
   <tabstop>computerMonitoringUpdateInterval</tabstop>
   <tabstop>computerMonitoringAspectRatio</tabstop>
   <tabstop>computerMonitoringBackgroundColor</tabstop>
