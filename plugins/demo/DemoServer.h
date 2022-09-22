@@ -88,10 +88,13 @@ private:
 
 	void start();
 	bool setVncServerPixelFormat();
-	bool setVncServerEncodings();
+	bool setVncServerEncodings(int quality);
 
 	static constexpr auto ConnectionThreadWaitTime = 5000;
 	static constexpr auto TerminateRetryInterval = 1000;
+	static constexpr auto MinimumQuality = 0;
+	static constexpr auto DefaultQuality = 6;
+	static constexpr auto MaximumQuality = 9;
 
 	const DemoConfiguration& m_configuration;
 	const qint64 m_memoryLimit;
@@ -111,5 +114,7 @@ private:
 
 	int m_keyFrame;
 	MessageList m_framebufferUpdateMessages;
+	int m_quality = DefaultQuality;
+	int m_bandwidthLimit;
 
 } ;
