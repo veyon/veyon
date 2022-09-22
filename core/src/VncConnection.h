@@ -51,14 +51,6 @@ class VEYON_CORE_EXPORT VncConnection : public QThread
 {
 	Q_OBJECT
 public:
-	enum class Quality
-	{
-		Thumbnail,
-		Screenshot,
-		RemoteControl,
-		Default
-	} ;
-
 	enum class FramebufferState
 	{
 		Invalid,
@@ -107,10 +99,7 @@ public:
 		return m_host;
 	}
 
-	void setQuality( Quality quality )
-	{
-		m_quality = quality ;
-	}
+	void setQuality(VncConnectionConfiguration::Quality quality);
 
 	void setUseRemoteCursor( bool enabled );
 
@@ -200,6 +189,8 @@ private:
 	rfbBool initFrameBuffer( rfbClient* client );
 	void finishFrameBufferUpdate();
 
+	void updateEncodingSettingsFromQuality();
+
 	rfbBool updateCursorPosition( int x, int y );
 	void updateCursorShape( rfbClient* client, int xh, int yh, int w, int h, int bpp );
 	void updateClipboard( const char *text, int textlen );
@@ -239,7 +230,7 @@ private:
 
 	// connection parameters and data
 	rfbClient* m_client{nullptr};
-	Quality m_quality{Quality::Default};
+	VncConnectionConfiguration::Quality m_quality{VncConnectionConfiguration::Quality::High};
 	QString m_host{};
 	int m_port{-1};
 	int m_defaultPort{-1};

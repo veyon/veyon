@@ -24,9 +24,22 @@
 
 #pragma once
 
-class VncConnectionConfiguration
+#include "VeyonCore.h"
+
+class VEYON_CORE_EXPORT VncConnectionConfiguration
 {
+	Q_GADGET
 public:
+	enum class Quality
+	{
+		Highest,
+		High,
+		Medium,
+		Low,
+		Lowest
+	};
+	Q_ENUM(Quality)
+
 	// intervals and timeouts
 	static constexpr int DefaultThreadTerminationTimeout = 30000;
 	static constexpr int DefaultConnectTimeout = 10000;

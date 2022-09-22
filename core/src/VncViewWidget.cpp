@@ -45,8 +45,6 @@ VncViewWidget::VncViewWidget( const ComputerControlInterface::Pointer& computerC
 	connect( connection(), &VncConnection::stateChanged, this, &VncViewWidget::updateConnectionState );
 	connect( &m_busyIndicatorTimer, &QTimer::timeout, this, QOverload<>::of(&QWidget::repaint) );
 
-	connection()->setQuality( VncConnection::Quality::Default );
-
 	// set up mouse border signal timer
 	m_mouseBorderSignalTimer.setSingleShot( true );
 	m_mouseBorderSignalTimer.setInterval( MouseBorderSignalDelay );

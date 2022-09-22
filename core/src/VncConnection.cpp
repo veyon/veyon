@@ -189,6 +189,19 @@ void VncConnection::setPort( int port )
 
 
 
+void VncConnection::setQuality(VncConnectionConfiguration::Quality quality)
+{
+	m_quality = quality;
+
+	if (m_client)
+	{
+		updateEncodingSettingsFromQuality();
+		enqueueEvent(new VncUpdateFormatAndEncodingsEvent);
+	}
+}
+
+
+
 void VncConnection::setUseRemoteCursor( bool enabled )
 {
 	m_useRemoteCursor = enabled;
@@ -631,27 +644,10 @@ rfbBool VncConnection::initFrameBuffer( rfbClient* client )
 	client->format.greenMax = 0xff;
 	client->format.blueMax = 0xff;
 
-	client->appData.encodingsString = "zrle ultra copyrect hextile zlib corre rre raw";
 	client->appData.useRemoteCursor = m_useRemoteCursor ? TRUE : FALSE;
-	client->appData.compressLevel = 0;
 	client->appData.useBGR233 = false;
-	client->appData.qualityLevel = 9;
-	client->appData.enableJPEG = false;
 
-	switch( m_quality )
-	{
-	case Quality::Screenshot:
-		// make sure to use lossless raw encoding
-		client->appData.encodingsString = "raw";
-		break;
-	case Quality::Thumbnail:
-		client->appData.compressLevel = 9;
-		client->appData.qualityLevel = 5;
-		client->appData.enableJPEG = true;
-		break;
-	default:
-		break;
-	}
+	updateEncodingSettingsFromQuality();
 
 	m_framebufferState = FramebufferState::Initialized;
 
@@ -670,6 +666,31 @@ void VncConnection::finishFrameBufferUpdate()
 	setControlFlag( ControlFlag::ScaledFramebufferNeedsUpdate, true );
 
 	Q_EMIT framebufferUpdateComplete();
+}
+
+
+
+void VncConnection::updateEncodingSettingsFromQuality()
+{
+	m_client->appData.encodingsString = m_quality == VncConnectionConfiguration::Quality::Highest ?
+											"zrle ultra copyrect hextile zlib corre rre raw" :
+											"tight zywrle zrle ultra";
+
+	m_client->appData.compressLevel = 9;
+
+	m_client->appData.qualityLevel = [this] {
+		switch(m_quality)
+		{
+		case VncConnectionConfiguration::Quality::Highest: return 9;
+		case VncConnectionConfiguration::Quality::High: return 7;
+		case VncConnectionConfiguration::Quality::Medium: return 5;
+		case VncConnectionConfiguration::Quality::Low: return 3;
+		case VncConnectionConfiguration::Quality::Lowest: return 0;
+		}
+		return 5;
+	}();
+
+	m_client->appData.enableJPEG = m_quality != VncConnectionConfiguration::Quality::Highest;
 }
 
 
