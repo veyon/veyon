@@ -169,7 +169,7 @@ VncConnection::VncConnection( QObject* parent ) :
 	m_framebufferState( FramebufferState::Invalid ),
 	m_controlFlags(),
 	m_client( nullptr ),
-	m_quality( Quality::Default ),
+	m_quality(Quality::High),
 	m_host(),
 	m_port( -1 ),
 	m_defaultPort( VeyonCore::config().veyonServerPort() ),
@@ -314,6 +314,19 @@ void VncConnection::setPort( int port )
 	{
 		QMutexLocker locker( &m_globalMutex );
 		m_port = port;
+	}
+}
+
+
+
+void VncConnection::setQuality(Quality quality)
+{
+	m_quality = quality;
+
+	if (m_client)
+	{
+		updateEncodingSettingsFromQuality();
+		enqueueEvent(new VncUpdateFormatAndEncodingsEvent);
 	}
 }
 
@@ -692,27 +705,10 @@ bool VncConnection::initFrameBuffer()
 	m_client->format.greenMax = 0xff;
 	m_client->format.blueMax = 0xff;
 
-	m_client->appData.encodingsString = "zrle ultra copyrect hextile zlib corre rre raw";
 	m_client->appData.useRemoteCursor = m_useRemoteCursor ? TRUE : FALSE;
-	m_client->appData.compressLevel = 0;
 	m_client->appData.useBGR233 = false;
-	m_client->appData.qualityLevel = 9;
-	m_client->appData.enableJPEG = false;
 
-	switch( m_quality )
-	{
-	case Quality::Screenshot:
-		// make sure to use lossless raw encoding
-		m_client->appData.encodingsString = "raw";
-		break;
-	case Quality::Thumbnail:
-		m_client->appData.compressLevel = 9;
-		m_client->appData.qualityLevel = 5;
-		m_client->appData.enableJPEG = true;
-		break;
-	default:
-		break;
-	}
+	updateEncodingSettingsFromQuality();
 
 	m_framebufferState = FramebufferState::Initialized;
 
@@ -731,6 +727,31 @@ void VncConnection::finishFrameBufferUpdate()
 	setControlFlag( ControlFlag::ScaledFramebufferNeedsUpdate, true );
 
 	Q_EMIT framebufferUpdateComplete();
+}
+
+
+
+void VncConnection::updateEncodingSettingsFromQuality()
+{
+	m_client->appData.encodingsString = m_quality == Quality::Highest ?
+											"zrle ultra copyrect hextile zlib corre rre raw" :
+											"tight zywrle zrle ultra";
+
+	m_client->appData.compressLevel = 9;
+
+	m_client->appData.qualityLevel = [this] {
+		switch(m_quality)
+		{
+		case Quality::Highest: return 9;
+		case Quality::High: return 7;
+		case Quality::Medium: return 5;
+		case Quality::Low: return 3;
+		case Quality::Lowest: return 0;
+		}
+		return 5;
+	}();
+
+	m_client->appData.enableJPEG = m_quality != Quality::Highest;
 }
 
 

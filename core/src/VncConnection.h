@@ -61,11 +61,13 @@ public:
 
 	enum class Quality
 	{
-		Thumbnail,
-		Screenshot,
-		RemoteControl,
-		Default
-	} ;
+		Highest,
+		High,
+		Medium,
+		Low,
+		Lowest
+	};
+	Q_ENUM(Quality)
 
 	enum class FramebufferState
 	{
@@ -115,10 +117,7 @@ public:
 		return m_host;
 	}
 
-	void setQuality( Quality quality )
-	{
-		m_quality = quality ;
-	}
+	void setQuality(Quality quality);
 
 	void setUseRemoteCursor( bool enabled );
 
@@ -207,6 +206,8 @@ private:
 
 	bool initFrameBuffer();
 	void finishFrameBufferUpdate();
+
+	void updateEncodingSettingsFromQuality();
 
 	void sendEvents();
 

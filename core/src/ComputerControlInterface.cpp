@@ -84,7 +84,6 @@ void ComputerControlInterface::start( QSize scaledFramebufferSize, UpdateMode up
 		{
 			vncConnection->setPort( m_port );
 		}
-		vncConnection->setQuality( VncConnection::Quality::Thumbnail );
 		vncConnection->setScaledSize( m_scaledFramebufferSize );
 
 		connect( vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::resetWatchdog );
