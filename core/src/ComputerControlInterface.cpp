@@ -84,8 +84,8 @@ void ComputerControlInterface::start( QSize scaledFramebufferSize, UpdateMode up
 		{
 			vncConnection->setPort( m_port );
 		}
+		vncConnection->setQuality(VeyonCore::config().computerMonitoringImageQuality());
 		vncConnection->setScaledSize( m_scaledFramebufferSize );
-
 		connect( vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::resetWatchdog );
 		connect( vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::framebufferUpdated );
 
