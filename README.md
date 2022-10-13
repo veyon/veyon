@@ -153,6 +153,9 @@ If you are interested in Veyon, its programming, artwork, testing or something l
 
 Before starting the implementation of a new feature, please always open an issue at https://github.com/veyon/veyon/issues to start a discussion about your intended implementation. There may be different ideas, improvements, hints or maybe an already ongoing work on this feature.
 
+## Join translation team
+
+Veyon and its documentation are translated at the Transifex platform. Please go to https://www.transifex.com/veyon-solutions/veyon and join the corresponding translation team. Please DO NOT submit pull requests for modified translation files since this would require manual Transifex synchronizations on our side.
 
 ## More information
 
