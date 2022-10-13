@@ -521,7 +521,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation>Impossibile rimuovere il file chiave &quot;%1&quot;!</translation>
+        <translation>Impossibile rimuovere il file della chiave &quot;%1&quot;!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
@@ -541,11 +541,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
-        <translation>Il tasto &quot;%1 /%2&quot; è stato esportato correttamente in &quot;%3&quot;.</translation>
+        <translation>La chiave &quot;%1 /%2&quot; è stata esportata correttamente in &quot;%3&quot;.</translation>
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation>File di input di lettura non riuscito.</translation>
+        <translation>Impossibile leggere il file inserito.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
@@ -569,7 +569,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation>Il tasto &quot;%1 /%2&quot; è stato importato correttamente. Controlla i permessi dei file di &quot;%3&quot; per impedire accessi non autorizzati.</translation>
+        <translation>La chiave &quot;%1 /%2&quot; è stata importata correttamente. Controlla i permessi dei file di &quot;%3&quot; per impedire accessi non autorizzati.</translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
@@ -577,7 +577,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation>Impossibile creare la directory per il file di chiave privata &quot;%1&quot;.</translation>
+        <translation>Impossibile creare la cartella per il file della chiave privata &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
@@ -589,7 +589,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to create directory for public key file &quot;%1&quot;.</source>
-        <translation>Impossibile creare la directory per il file di chiave pubblica &quot;%1&quot;.</translation>
+        <translation>Impossibile creare la cartella per il file della chiave pubblica &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Failed to save public key in file &quot;%1&quot;!</source>
@@ -609,7 +609,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
-        <translation>Il tasto &quot;%1&quot; è ora accessibile dal gruppo di utenti &quot;%2&quot;.</translation>
+        <translation>La chiave &quot;%1&quot; è ora accessibile dal gruppo di utenti &quot;%2&quot;.</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -617,7 +617,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation>Impossibile leggere il file chiave.</translation>
+        <translation>Impossibile leggere il file della chiave.</translation>
     </message>
 </context>
 <context>
@@ -684,7 +684,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation>Si prega di specificare il comando per visualizzare la guida per!</translation>
+        <translation>Per favore specifica il comando di cui vuoi visualizzare la guida!</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -812,7 +812,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
-        <translation>Logon fallito con le credenziali fornite. Riprova!</translation>
+        <translation>Accesso fallito con il nome utente e la password forniti. Per favore riprova!</translation>
     </message>
 </context>
 <context>
