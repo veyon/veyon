@@ -26,7 +26,9 @@
 #include <QDBusReply>
 #include <QProcessEnvironment>
 
+#ifdef HAVE_LIBPROCPS
 #include <proc/readproc.h>
+#endif
 
 #include "LinuxCoreFunctions.h"
 #include "LinuxSessionFunctions.h"
@@ -287,6 +289,7 @@ QProcessEnvironment LinuxSessionFunctions::getSessionEnvironment( int sessionLea
 {
 	QProcessEnvironment sessionEnv;
 
+#ifdef HAVE_LIBPROCPS
 	LinuxCoreFunctions::forEachChildProcess(
 		[&sessionEnv]( proc_t* procInfo ) {
 			if( procInfo->environ != nullptr )
@@ -307,6 +310,32 @@ QProcessEnvironment LinuxSessionFunctions::getSessionEnvironment( int sessionLea
 			return false;
 		},
 		sessionLeaderPid, PROC_FILLENV, true );
+#elif defined(HAVE_LIBPROC2)
+	LinuxCoreFunctions::forEachChildProcess([&sessionEnv](const pids_stack* stack, const pids_info* info)
+	{
+		Q_UNUSED(info)
+		static constexpr auto EnvironItemIndex = 2;
+		const auto environ = PIDS_VAL(EnvironItemIndex, strv, stack, info);
+
+		if (environ != nullptr)
+		{
+			for (int i = 0; environ[i]; ++i)
+			{
+				const auto env = QString::fromUtf8(environ[i]);
+				const auto separatorPos = env.indexOf(QLatin1Char('='));
+				if (separatorPos > 0)
+				{
+					sessionEnv.insert(env.left(separatorPos), env.mid(separatorPos+1));
+				}
+			}
+
+			return true;
+		}
+
+		return false;
+	},
+	sessionLeaderPid, {PIDS_ENVIRON_V}, true);
+#endif
 
 	return sessionEnv;
 }

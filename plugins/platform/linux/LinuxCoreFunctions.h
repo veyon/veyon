@@ -29,7 +29,11 @@
 
 #include "PlatformCoreFunctions.h"
 
+#ifdef HAVE_LIBPROC2
+#include <libproc2/pids.h>
+#else
 struct proc_t;
+#endif
 
 // clazy:excludeall=copyable-polymorphic
 
@@ -80,8 +84,13 @@ public:
 
 	static void restartDisplayManagers();
 
+#ifdef HAVE_LIBPROC2
+	static void forEachChildProcess(const std::function<bool(const pids_stack*, const pids_info*)>& visitor,
+									int parentPid, const std::vector<pids_item>& items, bool visitParent);
+#else
 	static void forEachChildProcess( const std::function<bool(proc_t *)>& visitor,
 							 int parentPid, int flags, bool visitParent );
+#endif
 
 	static bool waitForProcess( qint64 pid, int timeout, int sleepInterval );
 

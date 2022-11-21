@@ -86,6 +86,7 @@ void LinuxServerProcess::stop()
 	const auto sendSignalRecursively = []( pid_t pid, int sig ) {
 		if( pid > 0 )
 		{
+#ifdef HAVE_LIBPROCPS
 			LinuxCoreFunctions::forEachChildProcess(
 				[=]( proc_t* procInfo ) {
 					if( procInfo->tid > 0 && ::kill( procInfo->tid, sig ) < 0 && errno != ESRCH )
@@ -95,6 +96,20 @@ void LinuxServerProcess::stop()
 					return true;
 				},
 				pid, 0, true );
+#elif defined(HAVE_LIBPROC2)
+			LinuxCoreFunctions::forEachChildProcess([=](const pids_stack* stack, const pids_info* info)
+			{
+				Q_UNUSED(info)
+				const pid_t tid = PIDS_VAL(0, s_int, stack, info);
+				if (tid > 0 && ::kill(tid, sig) < 0 && errno != ESRCH)
+				{
+					vCritical() << "kill() failed with" << errno;
+				}
+				return true;
+			},
+			pid,
+			{}, true);
+#endif
 
 			if( ::kill( pid, sig ) < 0 && errno != ESRCH )
 			{
