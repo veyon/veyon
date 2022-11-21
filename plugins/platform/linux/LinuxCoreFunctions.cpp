@@ -33,7 +33,9 @@
 
 #include <unistd.h>
 #include <grp.h>
+#ifdef HAVE_LIBPROCPS
 #include <proc/readproc.h>
+#endif
 
 #include "LinuxCoreFunctions.h"
 #include "LinuxDesktopIntegration.h"
@@ -437,6 +439,7 @@ void LinuxCoreFunctions::restartDisplayManagers()
 
 
 
+#ifdef HAVE_LIBPROCPS
 void LinuxCoreFunctions::forEachChildProcess( const std::function<bool(proc_t*)>& visitor,
 											 int parentPid, int flags, bool visitParent )
 {
@@ -466,7 +469,47 @@ void LinuxCoreFunctions::forEachChildProcess( const std::function<bool(proc_t*)>
 
 	closeproc( proc );
 }
+#elif defined(HAVE_LIBPROC2)
+void LinuxCoreFunctions::forEachChildProcess(const std::function<bool(const pids_stack*, const pids_info*)>& visitor,
+											 int parentPid, const std::vector<pids_item>& items, bool visitParent)
+{
+	QProcessEnvironment sessionEnv;
 
+	pids_info* info = nullptr;
+	pids_stack* stack;
+	QList<int> ppids;
+
+	std::vector<pids_item> allItems{PIDS_ID_PID, PIDS_ID_PPID};
+	static constexpr auto PidItemIndex = 0;
+	static constexpr auto PPidItemIndex = 1;
+
+	allItems.insert(allItems.end(), items.cbegin(), items.cend());
+
+	if (procps_pids_new(&info, allItems.data(), allItems.size()) < 0)
+	{
+		return;
+	}
+
+	while ((stack = procps_pids_get(info, PIDS_FETCH_TASKS_ONLY)))
+	{
+		const auto ppid = PIDS_VAL(PPidItemIndex, s_int, stack, info);
+
+		if (ppid == parentPid)
+		{
+			if (visitParent == false || visitor(stack, info))
+			{
+				ppids.append(PIDS_VAL(PidItemIndex, s_int, stack, info));
+			}
+		}
+		else if (ppids.contains(ppid) && visitor(stack, info))
+		{
+			ppids.append(PIDS_VAL(PidItemIndex, s_int, stack, info));
+		}
+	}
+
+	procps_pids_unref(&info);
+}
+#endif
 
 
 bool LinuxCoreFunctions::waitForProcess( qint64 pid, int timeout, int sleepInterval )
