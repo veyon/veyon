@@ -6,7 +6,7 @@ jobs:
       matrix:
         dist:
           - debian.buster
-          - fedora.35
+          - fedora.36
           - opensuse.tumbleweed
           - ubuntu.focal
     runs-on: ubuntu-latest
