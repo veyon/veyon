@@ -1,8 +1,8 @@
-FROM fedora:35
+FROM fedora:37
 MAINTAINER Tobias Junghans <tobydox@veyon.io>
 
 RUN \
-	dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-35.noarch.rpm && \
+	dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-37.noarch.rpm && \
 	dnf install -y --setopt=install_weak_deps=False \
 		git gcc-c++ ninja-build cmake rpm-build fakeroot fakeroot-libs \
 		qt5-qtbase-devel qt5-qtbase-private-devel qt5-qtbase qt5-linguist qt5-qttools qt5-qtquickcontrols2-devel qt5-qtwebengine-devel \
