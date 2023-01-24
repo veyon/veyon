@@ -15,7 +15,7 @@ build-linux:
         - debian.bullseye
         - fedora.36
         - fedora.37
-        - opensuse.15.3
+        - opensuse.15.4
         - opensuse.tumbleweed
         - ubuntu.bionic
         - ubuntu.focal
