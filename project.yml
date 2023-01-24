@@ -1,7 +1,7 @@
 project:
   name: Veyon
-  version: 4.7.4
-  copyright: 2004-2022
+  version: 4.7.5
+  copyright: 2004-2023
   author: Tobias Junghans
   contact: Tobias Junghans <tobydox@veyon.io>
   contributors:
