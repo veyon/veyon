@@ -217,7 +217,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation type="unfinished"/>
+        <translation>Ζήτησε άδεια από τον συνδεδεμένο χρήστη</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
@@ -257,7 +257,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>is located at</source>
-        <translation type="unfinished"/>
+        <translation>βρίσκεται στο</translation>
     </message>
 </context>
 <context>
@@ -276,7 +276,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation type="unfinished"/>
+        <translation>Πρόσβαση στον υπολογιστή:</translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
@@ -292,19 +292,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation type="unfinished"/>
+        <translation>Επιτρέπεται η πρόσβαση στο δεδομένο σενάριο.</translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation type="unfinished"/>
+        <translation>Η πρόσβαση στο δεδομένο σενάριο δεν επιτρέπεται.</translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation type="unfinished"/>
+        <translation>Η πρόσβαση στο δεδομένο σενάριο χρειάζεται άδεια από τον συνδεδεμένο χρήστη.</translation>
     </message>
     <message>
         <source>ERROR: Unknown action</source>
-        <translation type="unfinished"/>
+        <translation>ΣΦΑΛΜΑ: Άγνωστη ενέργεια</translation>
     </message>
     <message>
         <source>Test result</source>
@@ -734,7 +734,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>New location</source>
-        <translation type="unfinished"/>
+        <translation>Νέα τοποθεσία</translation>
     </message>
 </context>
 <context>
@@ -777,7 +777,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>Το αρχείο &quot;%1&quot; δεν υπάρχει!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
@@ -977,7 +977,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>ΔΙΕΥΘΥΝΣΗ MAC</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
@@ -1263,7 +1263,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"/>
+        <translation>Διακομιστής επίδειξης</translation>
     </message>
     <message>
         <source>Tunables</source>
@@ -1366,7 +1366,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>Όλες οι οθόνες</translation>
     </message>
 </context>
 <context>
@@ -1412,7 +1412,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New website</source>
@@ -1463,7 +1463,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Έναρξη εφαρμογής</translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
@@ -1702,7 +1702,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογές</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1728,7 +1728,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογές</translation>
     </message>
     <message>
         <source>Transfer only</source>
@@ -2667,7 +2667,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Σύνδεση χρήστη</translation>
     </message>
     <message>
         <source>Login key sequence</source>
@@ -3151,7 +3151,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα:</translation>
     </message>
 </context>
 <context>
@@ -3236,7 +3236,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Power down</source>
-        <translation type="unfinished"/>
+        <translation>Τερματισμός λειτουργίας</translation>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
@@ -3264,7 +3264,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>ΔΙΕΥΘΥΝΣΗ MAC</translation>
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
@@ -3284,19 +3284,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Power down now</source>
-        <translation type="unfinished"/>
+        <translation>Τερματισμός λειτουργίας τώρα</translation>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation type="unfinished"/>
+        <translation>Εγκατάσταση ενημερώσεων και τερματισμός λειτουργίας</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation type="unfinished"/>
+        <translation>Τερματισμός λειτουργίας μετά από επιβεβαίωση χρήστη</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation type="unfinished"/>
+        <translation>Τερματισμός λειτουργίας μετά από λήξη χρονικού ορίου</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
@@ -3325,7 +3325,7 @@ Please save your work and close all programs.</source>
     <name>PowerDownTimeInputDialog</name>
     <message>
         <source>Power down</source>
-        <translation type="unfinished"/>
+        <translation>Τερματισμός λειτουργίας</translation>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
@@ -3333,18 +3333,18 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>λεπτά</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>δευτερόλεπτα</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation type="unfinished"/>
+        <translation>Απομακρυσμένη προβολή</translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
@@ -3383,11 +3383,11 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 Απομακρυσμένη πρόσβαση</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 Απομακρυσμένη πρόσβαση</translation>
     </message>
 </context>
 <context>
@@ -3454,19 +3454,19 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Έξοδος</translation>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
+        <translation>Σύνδεση...</translation>
     </message>
     <message>
         <source>Select screen</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογή οθόνης</translation>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>Όλες οι οθόνες</translation>
     </message>
 </context>
 <context>
@@ -3489,11 +3489,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Lock input devices</source>
-        <translation type="unfinished"/>
+        <translation>Κλείδωμα συσκευών εισόδου</translation>
     </message>
     <message>
         <source>Unlock input devices</source>
-        <translation type="unfinished"/>
+        <translation>Ξεκλείδωμα συσκευών εισόδου</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
@@ -3621,15 +3621,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Διακομιστής VNC</translation>
     </message>
     <message>
         <source>Plugin:</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη:</translation>
     </message>
     <message>
         <source>Restart %1 Service</source>
-        <translation type="unfinished"/>
+        <translation>Εκκίνηση της υπηρεσίας %1</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
@@ -3662,7 +3662,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Veyon server</source>
-        <translation type="unfinished"/>
+        <translation>Διακομιστής Veyon</translation>
     </message>
     <message>
         <source>Internal VNC server</source>
@@ -3670,11 +3670,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Feature manager</source>
-        <translation type="unfinished"/>
+        <translation>Διαχείριση δυνατοτήτων</translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"/>
+        <translation>Διακομιστής επίδειξης</translation>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
@@ -3701,11 +3701,11 @@ Typically this is required to support terminal servers.</source>
     <name>ServiceControl</name>
     <message>
         <source>Starting service %1</source>
-        <translation type="unfinished"/>
+        <translation>Εκκίνηση της υπηρεσίας %1</translation>
     </message>
     <message>
         <source>Stopping service %1</source>
-        <translation type="unfinished"/>
+        <translation>Τερματισμός της υπηρεσίας %1</translation>
     </message>
     <message>
         <source>Registering service %1</source>
@@ -3771,7 +3771,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>Το αρχείο &quot;%1&quot; δεν υπάρχει!</translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon CLI</source>
@@ -3786,34 +3786,34 @@ Typically this is required to support terminal servers.</source>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>Προηγούμενο</translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation type="unfinished"/>
+        <translation>Έναρξη/παύση</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished"/>
+        <translation>Επόμενο</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"/>
+        <translation>Διάρκεια:</translation>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη επιλεγμένων υπολογιστών</translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Αφαίρεση επιλεγμένων υπολογιστών</translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"/>
+        <translation>Ενημέρωση υπολογιστών σε πραγματικό χρόνο</translation>
     </message>
     <message>
         <source>Spotlight</source>
@@ -3836,23 +3836,23 @@ Typically this is required to support terminal servers.</source>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Έναρξη εφαρμογής</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα:</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation type="unfinished"/>
+        <translation>π.χ. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
     <message>
         <source>Remember and add to application menu</source>
-        <translation type="unfinished"/>
+        <translation>Απομνημόνευση και προσθήκη στο μενού εφαρμογών</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation type="unfinished"/>
+        <translation>π.χ. VLC</translation>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
@@ -3946,14 +3946,14 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
+        <translation>Μέγιστη χρήση CPU</translation>
     </message>
 </context>
 <context>
     <name>UserConfig</name>
     <message>
         <source>No write access</source>
-        <translation type="unfinished"/>
+        <translation>Χωρίς πρόσβαση εγγραφής</translation>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
@@ -3964,7 +3964,7 @@ Typically this is required to support terminal servers.</source>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Σύνδεση χρήστη</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
@@ -3983,7 +3983,7 @@ Typically this is required to support terminal servers.</source>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"/>
+        <translation>Σύνδεση</translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
@@ -3991,7 +3991,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Log off</source>
-        <translation type="unfinished"/>
+        <translation>Αποσύνδεση</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
@@ -4018,7 +4018,7 @@ Typically this is required to support terminal servers.</source>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation type="unfinished"/>
+        <translation>[OK]</translation>
     </message>
     <message>
         <source>[FAIL]</source>
@@ -4058,38 +4058,38 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>INFO</source>
-        <translation type="unfinished"/>
+        <translation>ΠΛΗΡ.</translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation type="unfinished"/>
+        <translation>ΣΦΑΛΜΑ</translation>
     </message>
     <message>
         <source>USAGE</source>
-        <translation type="unfinished"/>
+        <translation>ΧΡΗΣΗ</translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation type="unfinished"/>
+        <translation>ΠΕΡΙΓΡΑΦΗ</translation>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation type="unfinished"/>
+        <translation>ΠΑΡΑΔΕΙΓΜΑΤΑ</translation>
     </message>
     <message>
         <source>WARNING</source>
-        <translation type="unfinished"/>
+        <translation>ΠΡΟΕΙΔΟΠΟΙΗΣΗ</translation>
     </message>
     <message>
         <source>Screen %1</source>
-        <translation type="unfinished"/>
+        <translation>Οθόνη %1</translation>
     </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Υπηρεσία Veyon</translation>
     </message>
 </context>
 <context>
@@ -4205,19 +4205,19 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation type="unfinished"/>
+        <translation>Κλείδωμα οθόνης</translation>
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation type="unfinished"/>
+        <translation>Απόκρυψη γραμμής εργασιών</translation>
     </message>
     <message>
         <source>Hide start menu</source>
-        <translation type="unfinished"/>
+        <translation>Απόκρυψη μενού Έναρξη</translation>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation type="unfinished"/>
+        <translation>Απόκρυψη επιφάνειας εργασίας</translation>
     </message>
     <message>
         <source>User authentication</source>
@@ -4229,7 +4229,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Σύνδεση χρήστη</translation>
     </message>
     <message>
         <source>Input start delay</source>
@@ -4263,23 +4263,23 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation type="unfinished"/>
+        <translation>Η υπηρεσία &quot;%1&quot; είναι ήδη εγκατεστημένη.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Η υπηρεσία &quot;%1&quot; έχει εγκατασταθεί με επιτυχία.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Η υπηρεσία &quot;%1&quot; έχει απεγκατασταθεί με επιτυχία.</translation>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
+        <translation>Η υπηρεσία &quot;%1&quot; δεν ήταν δυνατό να βρεθεί.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>Η υπηρεσία &quot;%1&quot; δεν ήταν δυνατό να εγκατασταθεί (σφάλμα %2).</translation>
     </message>
     <message>
         <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
@@ -4287,7 +4287,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>Η υπηρεσία &quot;%1&quot; δεν ήταν δυνατό να απεγκατασταθεί (σφάλμα %2).</translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>

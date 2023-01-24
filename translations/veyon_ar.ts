@@ -716,7 +716,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Locations</source>
-        <translation type="unfinished"/>
+        <translation>العناوين</translation>
     </message>
     <message>
         <source>Add new location</source>
@@ -763,7 +763,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Host address</source>
-        <translation type="unfinished"/>
+        <translation>عنوان المضيف</translation>
     </message>
     <message>
         <source>MAC address</source>

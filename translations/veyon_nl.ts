@@ -411,7 +411,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation type="unfinished"/>
+        <translation>Raadpleeg de &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator handleiding&lt;/a&gt; voor meer informatie.</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
@@ -568,7 +568,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>List authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Toon authenticatiesleutels</translation>
     </message>
     <message>
         <source>Import public or private key</source>
@@ -628,11 +628,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Commando&apos;s om authenticatiesleutels te beheren</translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Commando&apos;s om authenticatiesleutels te beheren</translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
@@ -718,15 +718,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Locations</source>
-        <translation type="unfinished"/>
+        <translation>Locaties</translation>
     </message>
     <message>
         <source>Add new location</source>
-        <translation type="unfinished"/>
+        <translation>Nieuwe locatie toevoegen</translation>
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation type="unfinished"/>
+        <translation>Verwijder geselecteerde locatie</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -765,7 +765,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Host address</source>
-        <translation type="unfinished"/>
+        <translation>Host adres</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -845,11 +845,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>Voeg locatie of computer toe</translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>Wis alle locaties en computers</translation>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
@@ -857,7 +857,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>List all locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>Toon alle lokalen en computers</translation>
     </message>
     <message>
         <source>Remove a location or computer</source>
@@ -1686,7 +1686,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>Bestandsoverdracht</translation>
     </message>
     <message>
         <source>Directories</source>
@@ -1724,7 +1724,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>Bestandsoverdracht</translation>
     </message>
     <message>
         <source>Options</source>
@@ -1752,14 +1752,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Overwrite existing files</source>
-        <translation type="unfinished"/>
+        <translation>Overschrijf bestaande bestanden</translation>
     </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>Bestandsoverdracht</translation>
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
@@ -3299,7 +3299,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation type="unfinished"/>
+        <translation>Schakel uit na gebruikersbevestiging</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
