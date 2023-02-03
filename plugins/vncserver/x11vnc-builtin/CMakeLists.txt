@@ -199,6 +199,8 @@ if(NOT VEYON_X11VNC_EXTERNAL)
 
 	set_source_files_properties(${x11vnc_SOURCES} ${libvncserver_SOURCES} PROPERTIES
 		COMPILE_FLAGS "${COMPILER_WARN_DISABLE_FLAGS} -Wno-deprecated-declarations -Wno-unused-result -Wno-unused-function -Wno-unused-variable -Wno-misleading-indentation")
+else()
+	add_definitions ( -DVEYON_X11VNC_EXTERNAL )
 endif()
 
 set(WITH_PCH OFF)
