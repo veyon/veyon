@@ -30,7 +30,8 @@
 #include "UltraVncConfigurationWidget.h"
 #include "VeyonConfiguration.h"
 
-extern int WinVNCAppMain();
+int WinVNCAppMain();
+void initUltraVncSettingsManager();
 
 static BuiltinUltraVncServer* vncServerInstance = nullptr;
 
@@ -55,7 +56,7 @@ void ultravnc_veyon_load_password( char* out, int size )
 
 
 
-BOOL ultravnc_veyon_load_int( LPCSTR valname, LONG *out )
+BOOL ultravnc_veyon_load_int( LPCSTR valname, int *out )
 {
 	if( strcmp( valname, "LoopbackOnly" ) == 0 )
 	{
@@ -203,6 +204,8 @@ bool BuiltinUltraVncServer::runServer( int serverPort, const Password& password 
 {
 	m_serverPort = serverPort;
 	m_password = password;
+
+	initUltraVncSettingsManager();
 
 	// run UltraVNC server
 	auto hUser32 = LoadLibrary( "user32.dll" );
