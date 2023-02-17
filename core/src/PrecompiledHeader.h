@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef _WIN32_WINNT
+#ifdef __MINGW32__
 #include <winsock2.h>
 #endif
 
