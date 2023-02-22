@@ -45,14 +45,15 @@ else()
 	message(WARNING "Performing internal build of LibVNCClient which requires additional development packages")
 	include(LibVNCServerIntegration)
 	set(libvncclient_SOURCES
-		${libvncserver_DIR}/libvncclient/cursor.c
-		${libvncserver_DIR}/libvncclient/listen.c
-		${libvncserver_DIR}/libvncclient/rfbproto.c
-		${libvncserver_DIR}/libvncclient/sockets.c
-		${libvncserver_DIR}/libvncclient/tls_openssl.c
-		${libvncserver_DIR}/libvncclient/vncviewer.c
-		${libvncserver_DIR}/common/crypto_openssl.c
-		${libvncserver_DIR}/common/turbojpeg.c)
+		${libvncserver_DIR}/src/libvncclient/cursor.c
+		${libvncserver_DIR}/src/libvncclient/listen.c
+		${libvncserver_DIR}/src/libvncclient/rfbclient.c
+		${libvncserver_DIR}/src/libvncclient/sockets.c
+		${libvncserver_DIR}/src/libvncclient/tls_openssl.c
+		${libvncserver_DIR}/src/libvncclient/vncviewer.c
+		${libvncserver_DIR}/src/common/crypto_openssl.c
+		${libvncserver_DIR}/src/common/sockets.c
+		${libvncserver_DIR}/src/common/turbojpeg.c)
 
 	set_source_files_properties(${libvncclient_SOURCES} PROPERTIES
 		COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable -fvisibility=default -Wno-deprecated-declarations"
@@ -102,8 +103,8 @@ else()
 		${LZO_INCLUDE_DIR}
 		)
 	target_include_directories(veyon-core PUBLIC
-		${libvncserver_DIR}/common/
-		${libvncserver_DIR}
+		${libvncserver_DIR}/src/common/
+		${libvncserver_DIR}/include
 		)
 	target_link_libraries(veyon-core PRIVATE
 		Threads::Threads
