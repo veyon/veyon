@@ -21,7 +21,6 @@ set(STRIP					${MINGW_TOOL_PREFIX}strip)
 set(WINDRES					${MINGW_TOOL_PREFIX}windres)
 
 set(QT_BINARY_DIR			${MINGW_PREFIX}/bin)
-set(QT_QMAKE_EXECUTABLE		${QT_BINARY_DIR}/qmake)
 
 # search for programs in the build host directories
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
