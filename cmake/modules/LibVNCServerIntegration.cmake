@@ -94,5 +94,5 @@ set(LIBVNCSERVER_HAVE_LIBSSL TRUE)
 set(LIBVNCSERVER_ALLOW24BPP TRUE)
 set(LIBVNCSERVER_IPv6 TRUE)
 
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/rfb)
-configure_file(${CMAKE_SOURCE_DIR}/3rdparty/libvncserver/rfb/rfbconfig.h.cmakein ${CMAKE_CURRENT_BINARY_DIR}/rfb/rfbconfig.h @ONLY)
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/rfb)
+configure_file(${libvncserver_DIR}/include/rfb/rfbconfig.h.cmakein ${CMAKE_CURRENT_BINARY_DIR}/rfb/rfbconfig.h @ONLY)
