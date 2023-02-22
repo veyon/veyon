@@ -22,6 +22,7 @@
  *
  */
 
+#include <QCoreApplication>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -187,10 +188,15 @@ void LocalStore::clear()
 
 QSettings *LocalStore::createSettingsObject() const
 {
-	return new QSettings( scope() == System ?
-							QSettings::SystemScope : QSettings::UserScope,
-						QSettings().organizationName(),
-						QSettings().applicationName() );
+	return new QSettings(
+#ifdef Q_OS_WIN
+				QSettings::Registry64Format,
+#else
+				QSettings::NativeFormat,
+#endif
+				scope() == System ? QSettings::SystemScope : QSettings::UserScope,
+				QCoreApplication::organizationName(),
+				QCoreApplication::applicationName());
 }
 
 
