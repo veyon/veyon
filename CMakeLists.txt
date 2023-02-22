@@ -214,7 +214,7 @@ elseif(WITH_UNITY_BUILD)
 	set(CMAKE_UNITY_BUILD ON)
 endif()
 
-if(VEYON_BUILD_WINDOWS)
+if(VEYON_BUILD_WIN32)
 	set(WITH_LTO OFF)
 endif()
 
