@@ -1,4 +1,4 @@
-set(WINDOWS_INSTALL_FILES "veyon-${MINGW_PLATFORM}-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_BUILD}")
+set(WINDOWS_INSTALL_FILES "veyon-${VEYON_WINDOWS_ARCH}-${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_BUILD}")
 
 set(DLLDIR "${MINGW_PREFIX}/bin")
 set(DLLDIR_LIB "${MINGW_PREFIX}/lib")
@@ -33,7 +33,7 @@ add_custom_target(windows-binaries
 	COMMAND cp ${DLLDIR}/libjpeg-62.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND cp ${DLLDIR}/libpng16-16.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND cp ${DLLDIR}/libcrypto-1_1*.dll ${DLLDIR}/libssl-1_1*.dll ${WINDOWS_INSTALL_FILES}
-	COMMAND cp ${DLLDIR}/libqca-qt5.dll ${WINDOWS_INSTALL_FILES}
+	COMMAND cp ${DLLDIR}/libqca-qt6.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND cp ${DLLDIR}/libsasl2-3.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND cp ${DLLDIR}/libldap.dll ${DLLDIR}/liblber.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND cp ${DLLDIR}/interception.dll ${WINDOWS_INSTALL_FILES}
@@ -45,15 +45,21 @@ add_custom_target(windows-binaries
 	COMMAND cp ${DLLDIR_GCC}/libssp-0.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND cp ${DLLDIR_GCC}/libgcc_s_*-1.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND mkdir -p ${WINDOWS_INSTALL_FILES}/crypto
-	COMMAND cp ${DLLDIR_LIB}/qca-qt5/crypto/libqca-ossl.dll ${WINDOWS_INSTALL_FILES}/crypto
-	COMMAND cp ${DLLDIR}/Qt5Core.dll ${DLLDIR}/Qt5Gui.dll ${DLLDIR}/Qt5Widgets.dll ${DLLDIR}/Qt5Network.dll ${DLLDIR}/Qt5Concurrent.dll ${WINDOWS_INSTALL_FILES}
+	COMMAND cp ${DLLDIR_LIB}/qca-qt6/crypto/libqca-ossl.dll ${WINDOWS_INSTALL_FILES}/crypto
+	COMMAND cp ${DLLDIR}/Qt6Core.dll
+				${DLLDIR}/Qt6Core5Compat.dll
+				${DLLDIR}/Qt6Gui.dll
+				${DLLDIR}/Qt6Widgets.dll
+				${DLLDIR}/Qt6Network.dll
+				${DLLDIR}/Qt6Concurrent.dll
+			${WINDOWS_INSTALL_FILES}
 	COMMAND mkdir -p ${WINDOWS_INSTALL_FILES}/imageformats
-	COMMAND cp ${DLLDIR_LIB}/qt5/plugins/imageformats/qjpeg.dll ${WINDOWS_INSTALL_FILES}/imageformats
+	COMMAND cp ${MINGW_PREFIX}/plugins/imageformats/qjpeg.dll ${WINDOWS_INSTALL_FILES}/imageformats
 	COMMAND mkdir -p ${WINDOWS_INSTALL_FILES}/platforms
-	COMMAND cp ${DLLDIR_LIB}/qt5/plugins/platforms/qwindows.dll ${WINDOWS_INSTALL_FILES}/platforms
+	COMMAND cp ${MINGW_PREFIX}/plugins/platforms/qwindows.dll ${WINDOWS_INSTALL_FILES}/platforms
 	COMMAND mkdir -p ${WINDOWS_INSTALL_FILES}/styles
-	COMMAND cp ${DLLDIR_LIB}/qt5/plugins/styles/*.dll ${WINDOWS_INSTALL_FILES}/styles
-	COMMAND ${STRIP} ${WINDOWS_INSTALL_FILES}/*.dll ${WINDOWS_INSTALL_FILES}/*.exe ${WINDOWS_INSTALL_FILES}/plugins/*.dll ${WINDOWS_INSTALL_FILES}/platforms/*.dll ${WINDOWS_INSTALL_FILES}/styles/*.dll ${WINDOWS_INSTALL_FILES}/crypto/*.dll
+	COMMAND cp ${MINGW_PREFIX}/plugins/styles/*.dll ${WINDOWS_INSTALL_FILES}/styles
+	COMMAND ${MINGW_TOOL_PREFIX}strip ${WINDOWS_INSTALL_FILES}/*.dll ${WINDOWS_INSTALL_FILES}/*.exe ${WINDOWS_INSTALL_FILES}/plugins/*.dll ${WINDOWS_INSTALL_FILES}/platforms/*.dll ${WINDOWS_INSTALL_FILES}/styles/*.dll ${WINDOWS_INSTALL_FILES}/crypto/*.dll
 	COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${WINDOWS_INSTALL_FILES}
 	COMMAND cp ${CMAKE_SOURCE_DIR}/COPYING ${WINDOWS_INSTALL_FILES}/LICENSE.TXT
 	COMMAND cp ${CMAKE_SOURCE_DIR}/README.md ${WINDOWS_INSTALL_FILES}/README.TXT

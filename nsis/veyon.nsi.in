@@ -5,7 +5,7 @@
 !define COPYRIGHT "2004-2022 Veyon Solutions / Tobias Junghans"
 !define DESCRIPTION "Veyon Installer"
 !define LICENSE_TXT "COPYING"
-!define INSTALLER_NAME "veyon-${VERSION}-@MINGW_PLATFORM@-setup.exe"
+!define INSTALLER_NAME "veyon-${VERSION}-@VEYON_WINDOWS_ARCH@-setup.exe"
 !define MAIN_APP_EXE "veyon-master.exe"
 !define INSTALL_TYPE "SetShellVarContext all"
 !define REG_ROOT "HKLM"
