@@ -14,7 +14,7 @@ set(core_RESOURCES
 	)
 
 if(NOT WITH_BUILTIN_LIBVNC)
-	find_package(LibVNCClient 0.9.13)
+	find_package(LibVNCClient 0.9.14)
 endif()
 
 if(LibVNCClient_FOUND)
