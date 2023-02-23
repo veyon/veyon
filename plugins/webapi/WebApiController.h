@@ -79,8 +79,13 @@ public:
 
 	struct Request
 	{
-		Request( const QVariantMap& h = {}, const QVariantMap& d = {} ) : headers(h), data(d) { }
-		QVariantMap headers{};
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+		using Headers = QList<QPair<QByteArray, QByteArray>>;
+#else
+		using Headers = QVariantMap;
+#endif
+		Request( const Headers& h = {}, const QVariantMap& d = {} ) : headers(h), data(d) { }
+		Headers headers{};
 		QVariantMap data{};
 	};
 
@@ -125,12 +130,12 @@ private:
 		return EnumHelper::toCamelCaseString( key );
 	}
 
-	static QString connectionUidHeaderFieldName()
+	static QByteArray connectionUidHeaderFieldName()
 	{
-		return QStringLiteral("Connection-Uid");
+		return QByteArrayLiteral("Connection-Uid");
 	}
 
-	static QVariant lookupHeaderField( const Request& request, const QString& fieldName );
+	static QByteArray lookupHeaderField(const Request& request, const QByteArray& fieldName);
 
 	using WebApiConnectionPointer = QSharedPointer<WebApiConnection>;
 	using LockingConnectionPointer = LockingPointer<WebApiConnectionPointer>;

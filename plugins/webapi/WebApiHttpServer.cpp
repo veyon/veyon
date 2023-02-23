@@ -23,8 +23,11 @@
  */
 
 #include <QtHttpServer/qhttpserver.h>
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #include <QtHttpServer/qhttpserverfutureresponse.h>
+#endif
 #include <QJsonDocument>
+#include <QSslKey>
 
 #include "Filesystem.h"
 #include "WebApiHttpServer.h"
@@ -195,7 +198,12 @@ bool WebApiHttpServer::addRoute( const QString& path,
 			case Method::Delete: return QHttpServerRequest::Method::Delete;
 			}
 		}(),
-		[=]( Args... args, const QHttpServerRequest& request ) -> QHttpServerFutureResponse
+		[=](Args... args, const QHttpServerRequest& request) ->
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+	QFuture<QHttpServerResponse>
+#else
+	QHttpServerFutureResponse
+#endif
 		{
 			const auto headers = request.headers();
 			const auto data = dataFromRequest<M>( request );

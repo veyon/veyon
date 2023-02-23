@@ -236,7 +236,7 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 		} );
 
 		return QVariantMap{
-			{ connectionUidHeaderFieldName().toLower(), uuidToString( uuid ) },
+			{ QString::fromUtf8(connectionUidHeaderFieldName().toLower()), uuidToString(uuid) },
 			{ k2s(Key::ValidUntil), QDateTime::currentSecsSinceEpoch() + connectionLifetime / MillisecondsPerSecond }
 		};
 	}
@@ -256,7 +256,7 @@ WebApiController::Response WebApiController::closeConnection( const Request& req
 		return checkResponse;
 	}
 
-	removeConnection( lookupHeaderField(request.headers, connectionUidHeaderFieldName()).toUuid() );
+	removeConnection(QUuid{lookupHeaderField(request.headers, connectionUidHeaderFieldName())});
 
 	return {};
 }
@@ -448,20 +448,31 @@ void WebApiController::removeConnection( QUuid connectionUuid )
 
 
 
-QVariant WebApiController::lookupHeaderField(const Request& request, const QString& fieldName)
+QByteArray WebApiController::lookupHeaderField(const Request& request, const QByteArray& fieldName)
 {
-	if( request.headers.contains(fieldName) )
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+	for (const auto& h : request.headers)
 	{
-		return request.headers[fieldName];
-	}
-
-	for( auto it = request.headers.constBegin(), end = request.headers.constEnd(); it != end; ++it )
-	{
-		if( it.key().compare( fieldName, Qt::CaseInsensitive ) == 0 )
+		if (h.first.compare(fieldName, Qt::CaseInsensitive) == 0)
 		{
-			return it.value();
+			return h.second;
 		}
 	}
+#else
+	const auto fieldNameString = QString::fromUtf8(fieldName);
+	if (request.headers.contains(fieldNameString))
+	{
+		return request.headers[fieldNameString].toByteArray();
+	}
+
+	for (auto it = request.headers.constBegin(), end = request.headers.constEnd(); it != end; ++it)
+	{
+		if (it.key().compare(fieldNameString, Qt::CaseInsensitive ) == 0)
+		{
+			return it.value().toByteArray();
+		}
+	}
+#endif
 
 	return {};
 }
@@ -472,14 +483,14 @@ WebApiController::LockingConnectionPointer WebApiController::lookupConnection( c
 {
 	QReadLocker connectionsReadLocker{&m_connectionsLock};
 
-	return m_connections.value( lookupHeaderField(request.headers, connectionUidHeaderFieldName()).toUuid() );
+	return m_connections.value(QUuid{lookupHeaderField(request.headers, connectionUidHeaderFieldName())});
 }
 
 
 
 WebApiController::Response WebApiController::checkConnection( const Request& request )
 {
-	const auto connectionUuid = lookupHeaderField(request.headers, connectionUidHeaderFieldName()).toUuid();
+	const QUuid connectionUuid{lookupHeaderField(request.headers, connectionUidHeaderFieldName())};
 
 	return runInMainThread<WebApiController::Response>( [=]() -> WebApiController::Response {
 		m_connectionsLock.lockForRead();
