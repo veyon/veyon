@@ -357,7 +357,7 @@ WebApiController::Response WebApiController::setFeatureStatus( const Request& re
 	const auto arguments = request.data[k2s(Key::Arguments)].toMap();
 
 	runInMainThread([&] {
-		VeyonCore::featureManager().controlFeature(feature, operation, arguments, {connection->controlInterface()});
+		VeyonCore::featureManager().controlFeature(Feature::Uid{feature}, operation, arguments, {connection->controlInterface()});
 	});
 
 	return {};
@@ -376,7 +376,7 @@ WebApiController::Response WebApiController::getFeatureStatus( const Request& re
 	const auto connection = lookupConnection( request );
 	const auto controlInterface = connection->controlInterface();
 
-	const auto result = controlInterface->activeFeatures().contains( feature );
+	const auto result = controlInterface->activeFeatures().contains(Feature::Uid{feature});
 
 	return QVariantMap{ { k2s(Key::Active), result } };
 }
@@ -508,7 +508,7 @@ WebApiController::Response WebApiController::checkConnection( const Request& req
 
 WebApiController::Response WebApiController::checkFeature( const QString& featureUid )
 {
-	if( VeyonCore::featureManager().feature( featureUid ).isValid() == false )
+	if( VeyonCore::featureManager().feature(Feature::Uid{featureUid}).isValid() == false )
 	{
 		return Error::InvalidFeature;
 	}

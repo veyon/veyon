@@ -116,7 +116,7 @@ QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Post>( c
 	const auto bodyData = QJsonDocument::fromJson( request.body() ).object();
 	for( auto it = bodyData.constBegin(), end = bodyData.constEnd(); it != end; ++it )
 	{
-		data[it.key()] = it.value();
+		data[it.key()] = it.value().toVariant();
 	}
 
 	vDebug() << "POST" << request.url() << request.headers() << data;
@@ -134,7 +134,7 @@ QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Put>( co
 	const auto bodyData = QJsonDocument::fromJson( request.body() ).object();
 	for( auto it = bodyData.constBegin(), end = bodyData.constEnd(); it != end; ++it )
 	{
-		data[it.key()] = it.value();
+		data[it.key()] = it.value().toVariant();
 	}
 
 	vDebug() << "PUT" << request.url() << request.headers() << data;
