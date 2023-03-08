@@ -235,6 +235,12 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 				 ui->spotlightPanelButton->setChecked (isVisible);
 			 } );
 
+	const auto toolButtons = findChildren<QToolButton*>();
+	for(auto* btn : toolButtons)
+	{
+		btn->setIconSize(QSize(32, 32) / qGuiApp->devicePixelRatio());
+	}
+
 	// create the main toolbar
 	ui->toolBar->layout()->setSpacing( 2 );
 	ui->toolBar->toggleViewAction()->setEnabled( false );

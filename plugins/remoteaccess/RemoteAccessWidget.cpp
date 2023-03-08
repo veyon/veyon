@@ -57,10 +57,6 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	m_exitButton( new ToolButton( QPixmap( QStringLiteral(":/remoteaccess/application-exit.png") ), tr( "Exit" ) ) ),
 	m_screenSelectActions( new QActionGroup(this) )
 {
-	QPalette pal = palette();
-	pal.setBrush( QPalette::Window, QPixmap( QStringLiteral(":/core/toolbar-background.png") ) );
-	setPalette( pal );
-
 	setAttribute( Qt::WA_NoSystemBackground, true );
 	move( 0, 0 );
 	show();
@@ -118,7 +114,7 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	layout->addWidget( m_exitButton );
 	layout->addSpacing( 5 );
 
-	setFixedHeight( m_exitButton->height() );
+	setFixedHeight(m_exitButton->minimumSizeHint().height());
 
 	connect( &m_showHideTimeLine, &QTimeLine::valueChanged, this, &RemoteAccessWidgetToolBar::updatePosition );
 
@@ -206,7 +202,7 @@ void RemoteAccessWidgetToolBar::paintEvent( QPaintEvent *paintEv )
 	f.setBold( true );
 	p.setFont( f );
 
-	p.setPen( QColor( 192, 192, 192 ) );
+	p.setPen(palette().color(QPalette::Text));
 	p.drawText( height() / 2, height() / 2 + fontMetrics().height() / 2,
 				m_parent->vncView() && m_parent->vncView()->connection() &&
 						m_parent->vncView()->connection()->state() == VncConnection::State::Connected ?

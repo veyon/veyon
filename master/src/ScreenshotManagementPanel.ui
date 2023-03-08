@@ -38,7 +38,6 @@
       <widget class="QLabel" name="userDescLbl">
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -57,7 +56,6 @@
       <widget class="QLabel" name="hostDescLbl">
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -70,7 +68,6 @@
       <widget class="QLabel" name="dateDescLbl">
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -86,7 +83,6 @@
       <widget class="QLabel" name="timeDescLbl">
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
         </font>
        </property>
@@ -108,12 +104,6 @@
         <iconset resource="../../core/resources/core.qrc">
          <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
        </property>
-       <property name="iconSize">
-        <size>
-         <width>22</width>
-         <height>22</height>
-        </size>
-       </property>
       </widget>
      </item>
      <item>
@@ -124,12 +114,6 @@
        <property name="icon">
         <iconset resource="../../core/resources/core.qrc">
          <normaloff>:/core/edit-delete.png</normaloff>:/core/edit-delete.png</iconset>
-       </property>
-       <property name="iconSize">
-        <size>
-         <width>22</width>
-         <height>22</height>
-        </size>
        </property>
       </widget>
      </item>

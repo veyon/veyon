@@ -21,9 +21,8 @@
  *  USA.
  */
 
+#include <QGuiApplication>
 #include <QMenu>
-#include <QPainter>
-#include <QPaintEvent>
 
 #include "MainToolBar.h"
 #include "MainWindow.h"
@@ -36,9 +35,7 @@ MainToolBar::MainToolBar( QWidget* parent ) :
 	QToolBar( tr( "Configuration" ), parent ),
 	m_mainWindow( dynamic_cast<MainWindow *>( parent ) )
 {
-	QPalette pal = palette();
-	pal.setBrush( QPalette::Window, QPixmap( QStringLiteral(":/core/toolbar-background.png") ) );
-	setPalette( pal );
+	setIconSize(QSize(48, 48) / qGuiApp->devicePixelRatio());
 
 	ToolButton::setToolTipsDisabled( m_mainWindow->masterCore().userConfig().noToolTips() );
 	ToolButton::setIconOnlyMode( m_mainWindow, m_mainWindow->masterCore().userConfig().toolButtonIconOnlyMode() );
@@ -50,7 +47,7 @@ void MainToolBar::contextMenuEvent( QContextMenuEvent* event )
 {
 	QMenu menu( this );
 
-	auto toolTipAction = menu.addAction( tr( "Disable balloon tooltips" ), this, &MainToolBar::toggleToolTips );
+	auto toolTipAction = menu.addAction(tr("Disable tooltips"), this, &MainToolBar::toggleToolTips);
 	toolTipAction->setCheckable( true );
 	toolTipAction->setChecked( m_mainWindow->masterCore().userConfig().noToolTips() );
 
@@ -59,17 +56,6 @@ void MainToolBar::contextMenuEvent( QContextMenuEvent* event )
 	iconModeAction->setChecked( m_mainWindow->masterCore().userConfig().toolButtonIconOnlyMode() );
 
 	menu.exec( event->globalPos() );
-}
-
-
-
-void MainToolBar::paintEvent( QPaintEvent* event )
-{
-	QPainter p( this );
-	p.setPen( QColor( 48, 48, 48 ) );
-	p.fillRect( event->rect(), palette().brush( QPalette::Window ) );
-	p.drawLine( 0, 0, width(), 0 );
-	p.drawLine( 0, height()-1, width(), height()-1 );
 }
 
 
