@@ -22,19 +22,10 @@
  *
  */
 
-#include <QTimer>
 #include <QAction>
-#include <QApplication>
-#include <QBitmap>
-#if QT_VERSION < QT_VERSION_CHECK(5, 10, 0)
-#include <QDesktopWidget>
-#endif
-#include <QLabel>
-#include <QLayout>
-#include <QLinearGradient>
-#include <QPainter>
-#include <QScreen>
+#include <QTimer>
 #include <QToolBar>
+#include <QToolTip>
 
 #include "ToolButton.h"
 
@@ -54,9 +45,10 @@ ToolButton::ToolButton( const QIcon& icon,
 {
 	setShortcut( shortcut );
 
-	setAttribute( Qt::WA_NoSystemBackground, true );
-
-	updateSize();
+	setIcon(icon);
+	setText(label);
+	setAutoRaise(true);
+	setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonTextUnderIcon);
 }
 
 
@@ -67,7 +59,7 @@ void ToolButton::setIconOnlyMode( QWidget* mainWindow, bool enabled )
 	const auto toolButtons = mainWindow->findChildren<ToolButton *>();
 	for( auto toolButton : toolButtons )
 	{
-		toolButton->updateSize();
+		toolButton->setToolButtonStyle(enabled ? Qt::ToolButtonIconOnly : Qt::ToolButtonTextUnderIcon);
 	}
 }
 
@@ -81,56 +73,15 @@ void ToolButton::addTo( QToolBar* toolBar )
 
 
 
-
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 void ToolButton::enterEvent( QEnterEvent* event )
 #else
 void ToolButton::enterEvent( QEvent* event )
 #endif
 {
-	m_mouseOver = true;
-	if( !s_toolTipsDisabled && !m_label.isEmpty() && !m_descr.isEmpty() )
+	if (!s_toolTipsDisabled && !m_descr.isEmpty())
 	{
-		auto toolTipPos = mapToGlobal( QPoint( 0, 0 ) );
-#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
-		const auto screenRect = QGuiApplication::screenAt( toolTipPos )->availableGeometry();
-#else
-		int screenNumber = QApplication::desktop()->isVirtualDesktop() ?
-					QApplication::desktop()->screenNumber( toolTipPos ) :
-					QApplication::desktop()->screenNumber( this );
-		const auto screenRect = QApplication::desktop()->screenGeometry( screenNumber );
-#endif
-
-		auto toolTip = new ToolButtonTip( m_icon.pixmap( 128, 128 ), m_label, m_descr, nullptr, this );
-		connect( this, &ToolButton::mouseLeftButton, toolTip, &QWidget::close );
-
-		if( toolTipPos.x() + toolTip->width() > screenRect.x() + screenRect.width() )
-		{
-			toolTipPos.rx() -= 4;
-		}
-		if( toolTipPos.y() + toolTip->height() > screenRect.y() + screenRect.height() )
-		{
-			toolTipPos.ry() -= 30 + toolTip->height();
-		}
-		if( toolTipPos.y() < screenRect.y() )
-		{
-			toolTipPos.setY( screenRect.y() );
-		}
-		if( toolTipPos.x() + toolTip->width() > screenRect.x() + screenRect.width() )
-		{
-			toolTipPos.setX( screenRect.x() + screenRect.width() - toolTip->width() );
-		}
-		if( toolTipPos.x() < screenRect.x() )
-		{
-			toolTipPos.setX( screenRect.x() );
-		}
-		if( toolTipPos.y() + toolTip->height() > screenRect.y() + screenRect.height() )
-		{
-			toolTipPos.setY( screenRect.y() + screenRect.height() - toolTip->height() );
-		}
-
-		toolTip->move( toolTipPos += QPoint( -4, height() ) );
-		toolTip->show();
+		QToolTip::showText(mapToGlobal(QPoint(width() / 2, height())), m_descr, this);
 	}
 
 	QToolButton::enterEvent( event );
@@ -138,10 +89,9 @@ void ToolButton::enterEvent( QEvent* event )
 
 
 
-
 void ToolButton::leaveEvent( QEvent* event )
 {
-	if( checkForLeaveEvent() )
+	if (checkForLeaveEvent())
 	{
 		QToolButton::leaveEvent( event );
 	}
@@ -149,81 +99,19 @@ void ToolButton::leaveEvent( QEvent* event )
 
 
 
-
 void ToolButton::mousePressEvent( QMouseEvent* event )
 {
-	Q_EMIT mouseLeftButton();
+	QToolTip::hideText();
 	QToolButton::mousePressEvent( event );
 }
 
 
 
-
-void ToolButton::paintEvent( QPaintEvent* )
+QSize ToolButton::sizeHint() const
 {
-	const bool active = isDown() || isChecked();
-
-	QPainter painter(this);
-	painter.setRenderHint(QPainter::SmoothPixmapTransform);
-	painter.setRenderHint(QPainter::Antialiasing);
-	painter.setPen(Qt::NoPen);
-
-	QLinearGradient outlinebrush(0, 0, 0, height());
-	QLinearGradient brush(0, 0, 0, height());
-
-	brush.setSpread(QLinearGradient::PadSpread);
-	QColor highlight(255, 255, 255, 70);
-	QColor shadow(0, 0, 0, 70);
-	QColor sunken(220, 220, 220, 30);
-	QColor normal1(255, 255, 245, 60);
-	QColor normal2(255, 255, 235, 10);
-
-	if( active )
-	{
-		outlinebrush.setColorAt( 0.0, shadow );
-		outlinebrush.setColorAt( 1.0, highlight );
-		brush.setColorAt( 0.0, sunken );
-		painter.setPen(Qt::NoPen);
-	}
-	else
-	{
-		outlinebrush.setColorAt( 1.0, shadow );
-		outlinebrush.setColorAt( 0.0, highlight );
-		brush.setColorAt( 0.0, normal1 );
-		if( m_mouseOver == false )
-		{
-			brush.setColorAt( 1.0, normal2 );
-		}
-		painter.setPen(QPen(outlinebrush, 1));
-	}
-
-	painter.setBrush(brush);
-
-	painter.drawRoundedRect( rect(), roundness(), roundness() );
-
-	const int delta = active ? 1 : 0;
-	QPoint pixmapPos( ( width() - m_pixmap.width() ) / 2 + delta, margin() / 2 + delta );
-	if( s_iconOnlyMode )
-	{
-		pixmapPos.setY( ( height() - m_pixmap.height() ) / 2 - 1 + delta );
-	}
-	painter.drawPixmap( pixmapPos, m_pixmap );
-
-	if( s_iconOnlyMode == false )
-	{
-		const auto label = ( isChecked() && m_altLabel.isEmpty() == false ) ? m_altLabel : m_label;
-		const int labelX = 1 + ( width() - painter.fontMetrics().boundingRect( label ).width() ) / 2;
-		const int deltaNormal = delta - 1;
-		const int deltaShadow = deltaNormal + 1;
-
-		painter.setPen( Qt::black );
-		painter.drawText( labelX + deltaShadow, height() - margin() / 2 + deltaShadow, label );
-
-		painter.setPen( Qt::white );
-		painter.drawText( labelX + deltaNormal, height() - margin() / 2 + deltaNormal, label );
-	}
+	const auto sh = QToolButton::sizeHint();
+	return QSize(std::max<int>(sh.height() * 1.3, sh.width()), sh.height());
 }
-
 
 
 
@@ -236,177 +124,9 @@ bool ToolButton::checkForLeaveEvent()
 	}
 	else
 	{
-		Q_EMIT mouseLeftButton();
-		m_mouseOver = false;
-
+		QToolTip::hideText();
 		return true;
 	}
+
 	return false;
-}
-
-
-
-
-void ToolButton::updateSize()
-{
-	auto f = QApplication::font();
-	f.setPointSizeF( qMax( 7.5, f.pointSizeF() * 0.9 ) );
-	setFont( f );
-
-	m_pixelRatio = fontInfo().pixelSize() / fontInfo().pointSizeF();
-
-	const auto metrics = fontMetrics();
-
-	m_pixmap = m_icon.pixmap( static_cast<int>( iconSize() ) );
-
-	if( s_iconOnlyMode )
-	{
-		setFixedSize( margin() + iconSize(), margin() + iconSize() );
-	}
-	else
-	{
-		const int textWidth = ( qMax( metrics.boundingRect( m_label ).width(), metrics.boundingRect( m_altLabel ).width() ) / stepSize() + 1 ) * stepSize();
-		const int width = qMax( textWidth, iconSize() * 3 / 2 );
-		const int height = iconSize() + fontInfo().pixelSize();
-		setFixedSize( width + margin(), height + margin() );
-	}
-}
-
-
-
-
-
-
-
-ToolButtonTip::ToolButtonTip( const QIcon& icon, const QString &title,
-							  const QString & _description,
-							  QWidget * _parent, QWidget * _tool_btn ) :
-	QWidget( _parent, Qt::ToolTip ),
-	m_pixelRatio( fontInfo().pixelSize() / fontInfo().pointSizeF() ),
-	m_pixmap( icon.pixmap( static_cast<int>( 64 * m_pixelRatio ) ) ),
-	m_title( title ),
-	m_description( _description ),
-	m_toolButton( _tool_btn )
-{
-	setAttribute( Qt::WA_DeleteOnClose, true );
-	setAttribute( Qt::WA_NoSystemBackground, true );
-
-	QTimer::singleShot( 0, this, [this]() { resize( sizeHint() ); } );
-
-	updateMask();
-}
-
-
-
-
-QSize ToolButtonTip::sizeHint() const
-{
-	auto f = font();
-	f.setBold( true );
-
-	const auto titleWidth = QFontMetrics( f ).boundingRect( m_title ).width();
-	const auto descriptionRect = fontMetrics().boundingRect( QRect( 0, 0, 250, 100 ), Qt::TextWordWrap, m_description );
-
-	return { margin() + m_pixmap.width() + margin() + qMax( titleWidth, descriptionRect.width() ) + margin(),
-				margin() + qMax( m_pixmap.height(), fontMetrics().height() + margin() + descriptionRect.height() ) + margin() };
-}
-
-
-
-
-void ToolButtonTip::paintEvent( QPaintEvent* )
-{
-	QPainter p( this );
-	p.drawImage( 0, 0, m_bg );
-}
-
-
-
-
-void ToolButtonTip::resizeEvent( QResizeEvent * _re )
-{
-	const QColor color_frame = QColor( 48, 48, 48 );
-	m_bg = QImage( size(), QImage::Format_ARGB32 );
-	m_bg.fill( color_frame.rgba() );
-	QPainter p( &m_bg );
-	p.setRenderHint( QPainter::Antialiasing );
-	QPen pen( color_frame );
-	pen.setWidthF( 1.5 );
-	p.setPen( pen );
-	QLinearGradient grad( 0, 0, 0, height() );
-	const QColor color_top = palette().color( QPalette::Active,
-											  QPalette::Window ).lighter( 120 );
-	grad.setColorAt( 0, color_top );
-	grad.setColorAt( 1, palette().color( QPalette::Active,
-										 QPalette::Window ).
-					 lighter( 80 ) );
-	p.setBrush( grad );
-	p.drawRoundedRect( 0, 0, width() - 1, height() - 1, ROUNDED / width(), ROUNDED / height() );
-
-	if( m_toolButton )
-	{
-		QPoint pt = m_toolButton->mapToGlobal( QPoint( 0, 0 ) );
-		p.setPen( color_top );
-		p.setBrush( color_top );
-		p.setRenderHint( QPainter::Antialiasing, false );
-		p.drawLine( pt.x() - x(), 0,
-					pt.x() + m_toolButton->width() - x() - 2, 0 );
-		const int dx = pt.x() - x();
-		p.setRenderHint( QPainter::Antialiasing, true );
-		if( dx < 10 && dx >= 0 )
-		{
-			p.setPen( pen );
-			p.drawImage( dx+1, 0, m_bg.copy( 20, 0, 10-dx, 10 ) );
-			p.drawImage( dx, 0, m_bg.copy( 0, 10, 1, 10-dx*2 ) );
-		}
-	}
-	p.setPen( Qt::black );
-
-	p.drawPixmap( margin(), margin(), m_pixmap );
-	QFont f = p.font();
-	f.setBold( true );
-	p.setFont( f );
-	const auto titleX = margin() + m_pixmap.width() + margin();
-	const auto titleY = margin() + fontMetrics().height() - 2;
-	p.drawText( titleX, titleY, m_title );
-
-	f.setBold( false );
-	p.setFont( f );
-	p.drawText( QRect( titleX,
-					   titleY + margin(),
-					   width() - margin() - titleX,
-					   height() - margin() - titleY ),
-				Qt::TextWordWrap, m_description );
-
-	updateMask();
-	QWidget::resizeEvent( _re );
-}
-
-
-
-
-void ToolButtonTip::updateMask()
-{
-	// as this widget has not a rectangular shape AND is a top
-	// level widget (which doesn't allow painting only particular
-	// regions), we have to set a mask for it
-	QBitmap b( size() );
-	b.clear();
-
-	QPainter p( &b );
-	p.setBrush( Qt::color1 );
-	p.setPen( Qt::color1 );
-	p.drawRoundedRect( 0, 0, width() - 1, height() - 1, ROUNDED / width(), ROUNDED / height() );
-
-	if( m_toolButton )
-	{
-		QPoint pt = m_toolButton->mapToGlobal( QPoint( 0, 0 ) );
-		const int dx = pt.x()-x();
-		if( dx < 10 && dx >= 0 )
-		{
-			p.fillRect( dx, 0, 10, 10, Qt::color1 );
-		}
-	}
-
-	setMask( b );
 }

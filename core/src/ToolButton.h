@@ -60,8 +60,7 @@ public:
 		return s_toolTipsDisabled;
 	}
 
-	void addTo( QToolBar * );
-
+	void addTo(QToolBar* toolBar);
 
 protected:
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
@@ -71,86 +70,18 @@ protected:
 #endif
 	void leaveEvent( QEvent * _e ) override;
 	void mousePressEvent( QMouseEvent * _me ) override;
-	void paintEvent( QPaintEvent * _pe ) override;
-
-
-Q_SIGNALS:
-	void mouseLeftButton();
-
+	QSize sizeHint() const override;
 
 private:
 	bool checkForLeaveEvent();
 
-	void updateSize();
-
 	static bool s_toolTipsDisabled;
 	static bool s_iconOnlyMode;
 
-	int iconSize() const
-	{
-		return static_cast<int>( 32 * m_pixelRatio );
-	}
-
-	int margin() const
-	{
-		return static_cast<int>( 8 * m_pixelRatio );
-	}
-
-	int roundness() const
-	{
-		return static_cast<int>( 3 * m_pixelRatio );
-	}
-
-	int stepSize() const
-	{
-		return static_cast<int>( 8 * m_pixelRatio );
-	}
-
-	qreal m_pixelRatio{1};
 	QIcon m_icon;
-	QPixmap m_pixmap;
-	bool m_mouseOver{false};
 
 	QString m_label;
 	QString m_altLabel;
 	QString m_descr;
-
-} ;
-
-
-
-class ToolButtonTip : public QWidget
-{
-	Q_OBJECT
-public:
-	ToolButtonTip( const QIcon& icon, const QString& title, const QString& description,
-				QWidget* parent, QWidget* toolButton = nullptr );
-
-	QSize sizeHint( void ) const override;
-
-
-protected:
-	void paintEvent( QPaintEvent * _pe ) override;
-	void resizeEvent( QResizeEvent * _re ) override;
-
-
-private:
-	void updateMask( void );
-
-	int margin() const
-	{
-		return static_cast<int>( 8 * m_pixelRatio );
-	}
-
-	const int ROUNDED = 2000;
-
-	qreal m_pixelRatio{1};
-	QPixmap m_pixmap;
-	QString m_title;
-	QString m_description;
-
-	QImage m_bg;
-
-	QWidget* m_toolButton;
 
 } ;
