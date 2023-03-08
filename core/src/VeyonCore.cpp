@@ -91,6 +91,8 @@ VeyonCore::VeyonCore( QCoreApplication* application, Component component, const 
 
 	initLocaleAndTranslation();
 
+	initUi();
+
 	initCryptoCore();
 
 	initTlsConfiguration();
@@ -606,6 +608,20 @@ void VeyonCore::initLocaleAndTranslation()
 	if( app )
 	{
 		QGuiApplication::setLayoutDirection( QLocale{}.textDirection() );
+	}
+}
+
+
+
+void VeyonCore::initUi()
+{
+	auto app = qobject_cast<QApplication *>(QCoreApplication::instance());
+	if (app)
+	{
+		app->setStyleSheet(QStringLiteral(
+							   "QToolButton:checked {background-color:#88ddff;}"
+							   "QToolTip {color:#ffffff; background-color:#198cb3; padding:5px; border:0px;}"
+							   ));
 	}
 }
 

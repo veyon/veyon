@@ -204,6 +204,7 @@ private:
 	void initConfiguration();
 	void initLogging( const QString& appComponentName );
 	void initLocaleAndTranslation();
+	void initUi();
 	void initCryptoCore();
 	void initQmlCore();
 	void initAuthenticationCredentials();
