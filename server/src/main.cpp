@@ -25,7 +25,6 @@
 #include <QGuiApplication>
 
 #include "ComputerControlServer.h"
-#include "VeyonConfiguration.h"
 
 
 int main( int argc, char **argv )
