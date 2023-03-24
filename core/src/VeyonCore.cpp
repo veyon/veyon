@@ -33,8 +33,10 @@
 #include <QLabel>
 #include <QLibraryInfo>
 #include <QProcessEnvironment>
+#include <QRegularExpression>
 #include <QSslConfiguration>
 #include <QSslKey>
+#include <QStyleFactory>
 #include <QSysInfo>
 
 #include "AuthenticationCredentials.h"
@@ -618,6 +620,11 @@ void VeyonCore::initUi()
 	auto app = qobject_cast<QApplication *>(QCoreApplication::instance());
 	if (app)
 	{
+		if (m_config->uiStyle() == UiStyle::Fusion)
+		{
+			app->setStyle(QStyleFactory::create(QStringLiteral("Fusion")));
+		}
+
 		app->setStyleSheet(QStringLiteral(
 							   "QToolButton:checked {background-color:#88ddff;}"
 							   "QToolTip {color:#ffffff; background-color:#198cb3; padding:5px; border:0px;}"
