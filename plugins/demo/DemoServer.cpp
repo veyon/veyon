@@ -246,7 +246,7 @@ void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
 		if( m_keyFrameTimer.elapsed() > 1 )
 		{
 			const auto memTotal = queueSize / 1024;
-			const auto bandwidth = (memTotal * 1000) / m_keyFrameTimer.elapsed();
+			const auto bandwidth = qMax<int>(1, (memTotal * 1000) / m_keyFrameTimer.elapsed());
 			const auto clientCount = qMin(1, findChildren<DemoServerConnection *>().count());
 			const auto totalBandwidth = bandwidth * clientCount;
 
