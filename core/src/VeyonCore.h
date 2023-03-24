@@ -94,6 +94,12 @@ public:
 	};
 	Q_ENUM(Component)
 
+	enum class UiStyle {
+		Fusion,
+		Native
+	};
+	Q_ENUM(UiStyle)
+
 	static constexpr char RfbSecurityTypeVeyon = 40;
 
 	VeyonCore( QCoreApplication* application, Component component, const QString& appComponentName );
