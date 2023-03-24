@@ -88,6 +88,12 @@ public:
 	};
 	Q_ENUM(Component)
 
+	enum class UiStyle {
+		Fusion,
+		Native
+	};
+	Q_ENUM(UiStyle)
+
 	VeyonCore( QCoreApplication* application, Component component, const QString& appComponentName );
 	~VeyonCore() override;
 
