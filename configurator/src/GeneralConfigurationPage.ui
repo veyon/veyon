@@ -15,13 +15,6 @@
       <string>User interface</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_13">
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_39">
-        <property name="text">
-         <string>Language:</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="1">
        <widget class="QComboBox" name="uiLanguage">
         <property name="sizePolicy">
@@ -40,11 +33,39 @@
         </item>
        </widget>
       </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_39">
+        <property name="text">
+         <string>Language:</string>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="0" colspan="2">
        <widget class="QLineEdit" name="applicationName">
         <property name="text">
          <string>Veyon</string>
         </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_41">
+        <property name="text">
+         <string>Style:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QComboBox" name="uiStyle">
+        <item>
+         <property name="text">
+          <string>Fusion</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Native</string>
+         </property>
+        </item>
        </widget>
       </item>
      </layout>
@@ -345,6 +366,7 @@
  <tabstops>
   <tabstop>applicationName</tabstop>
   <tabstop>uiLanguage</tabstop>
+  <tabstop>uiStyle</tabstop>
   <tabstop>logFileDirectory</tabstop>
   <tabstop>openLogFileDirectory</tabstop>
   <tabstop>logLevel</tabstop>
