@@ -54,16 +54,6 @@ public:
 		return m_vncConnection && m_vncConnection->isConnected();
 	}
 
-	const QString& user() const
-	{
-		return m_user;
-	}
-
-	const QString& userHomeDir() const
-	{
-		return m_userHomeDir;
-	}
-
 	void sendFeatureMessage(const FeatureMessage& featureMessage);
 
 	bool handleServerMessage( rfbClient* client, uint8_t msg );
@@ -85,8 +75,5 @@ private:
 	static void hookPrepareAuthentication( rfbClient* client );
 
 	VncConnection* m_vncConnection{new VncConnection};
-
-	QString m_user;
-	QString m_userHomeDir;
 
 } ;
