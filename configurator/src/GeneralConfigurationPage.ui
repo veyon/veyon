@@ -58,7 +58,7 @@
        <widget class="QComboBox" name="uiStyle">
         <item>
          <property name="text">
-          <string>Fusion</string>
+          <string notr="true">Fusion</string>
          </property>
         </item>
         <item>
