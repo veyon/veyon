@@ -55,16 +55,6 @@ public:
 		return m_vncConnection && m_vncConnection->isConnected();
 	}
 
-	const QString& user() const
-	{
-		return m_user;
-	}
-
-	const QString& userHomeDir() const
-	{
-		return m_userHomeDir;
-	}
-
 	void setVeyonAuthType( RfbVeyonAuth::Type authType )
 	{
 		m_veyonAuthType = authType;
@@ -107,8 +97,5 @@ private:
 	RfbVeyonAuth::Type m_veyonAuthType;
 
 	AuthenticationProxy* m_authenticationProxy{nullptr};
-
-	QString m_user;
-	QString m_userHomeDir;
 
 } ;

@@ -51,10 +51,8 @@ rfbBool handleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg )
 
 
 
-VeyonConnection::VeyonConnection():
-	m_veyonAuthType( RfbVeyonAuth::Logon ),
-	m_user(),
-	m_userHomeDir()
+VeyonConnection::VeyonConnection() :
+	m_veyonAuthType(RfbVeyonAuth::Logon)
 {
 	if( __veyonProtocolExt == nullptr )
 	{
