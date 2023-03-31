@@ -69,7 +69,7 @@ WtsSessionManager::SessionList WtsSessionManager::activeSessions()
 		const auto session = &sessions[sessionIndex];
 		if( session->State == WTSActive ||
 			QString::fromWCharArray(session->pWinStationName)
-				.compare( QLatin1String("multiseat"), Qt::CaseInsensitive ) == 0 )
+			.compare( QLatin1String("multiseat"), Qt::CaseInsensitive ) == 0 )
 		{
 			sessionList.append( session->SessionId );
 		}
@@ -82,33 +82,84 @@ WtsSessionManager::SessionList WtsSessionManager::activeSessions()
 
 
 
-QString WtsSessionManager::querySessionInformation( SessionId sessionId, SessionInfo sessionInfo )
+QString WtsSessionManager::querySessionInformation(SessionId sessionId, SessionInfo sessionInfo)
 {
-	if( sessionId == InvalidSession )
+	if (sessionId == InvalidSession)
 	{
 		vCritical() << "called with invalid session ID";
 		return {};
 	}
 
-	WTS_INFO_CLASS infoClass = WTSInitialProgram;
+	WTS_INFO_CLASS infoClass{};
 
-	switch( sessionInfo )
+	switch (sessionInfo)
 	{
 	case SessionInfo::UserName: infoClass = WTSUserName; break;
 	case SessionInfo::DomainName: infoClass = WTSDomainName; break;
+	case SessionInfo::SessionUptime: infoClass = WTSSessionInfo; break;
+	case SessionInfo::ClientAddress: infoClass = WTSClientAddress; break;
+	case SessionInfo::ClientName: infoClass = WTSClientName; break;
 	default:
 		vCritical() << "invalid session info" << sessionInfo << "requested";
 		return {};
 	}
 
 	QString result;
-	LPWSTR pBuffer = nullptr;
-	DWORD dwBufferLen;
+	LPWSTR queryBuffer = nullptr;
+	DWORD bufferLen;
 
-	if( WTSQuerySessionInformation( WTS_CURRENT_SERVER_HANDLE, sessionId, infoClass,
-									&pBuffer, &dwBufferLen ) )
+	if (WTSQuerySessionInformation(WTS_CURRENT_SERVER_HANDLE, sessionId, infoClass, &queryBuffer, &bufferLen))
 	{
-		result = QString::fromWCharArray( pBuffer );
+		switch (infoClass)
+		{
+		case WTSClientAddress:
+		{
+			const auto clientAddress = PWTS_CLIENT_ADDRESS(queryBuffer);
+			switch (clientAddress->AddressFamily)
+			{
+			case AF_UNSPEC:
+				result = QString::fromLatin1(reinterpret_cast<const char *>(clientAddress->Address));
+				break;
+			case AF_INET:
+				result = QStringLiteral("%1.%2.%3.%4")
+						 .arg(int(clientAddress->Address[2]))
+						.arg(int(clientAddress->Address[3]))
+						.arg(int(clientAddress->Address[4]))
+						.arg(int(clientAddress->Address[5]));
+				break;
+			case AF_INET6:
+				for (int i = 2; i < 18; i++)
+				{
+					if (i != 2 && i % 2 == 0)
+					{
+						result.append(QLatin1Char(':'));
+					}
+					result.append(QStringLiteral("%1").arg( int(clientAddress->Address[i]), 16, 2, QLatin1Char('0')));
+				}
+				break;
+			}
+			break;
+		}
+		case WTSSessionInfo:
+		{
+			const auto sessionInfoData = PWTSINFO(queryBuffer);
+			switch (sessionInfo)
+			{
+			case SessionInfo::SessionUptime:
+				result = QString::number((sessionInfoData->CurrentTime.QuadPart -
+										  qMax(sessionInfoData->ConnectTime.QuadPart, sessionInfoData->LogonTime.QuadPart))
+										 / (1000*1000*10));
+				break;
+			default:
+				vCritical() << "unhandled session info" << sessionInfo;
+				break;
+			}
+			break;
+		}
+		default:
+			result = QString::fromWCharArray(queryBuffer);
+			break;
+		}
 	}
 	else
 	{
@@ -116,7 +167,7 @@ QString WtsSessionManager::querySessionInformation( SessionId sessionId, Session
 		vCritical() << lastError;
 	}
 
-	WTSFreeMemory( pBuffer );
+	WTSFreeMemory(queryBuffer);
 
 	vDebug() << sessionId << sessionInfo << result;
 

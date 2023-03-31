@@ -22,6 +22,8 @@
  *
  */
 
+#include <QHostInfo>
+
 #include "PlatformSessionManager.h"
 #include "WindowsSessionFunctions.h"
 #include "WtsSessionManager.h"
@@ -37,6 +39,37 @@ WindowsSessionFunctions::SessionId WindowsSessionFunctions::currentSessionId()
 	}
 
 	return PlatformSessionManager::resolveSessionId( QString::number(currentSession) );
+}
+
+
+
+WindowsSessionFunctions::SessionUptime WindowsSessionFunctions::currentSessionUptime() const
+{
+	return WtsSessionManager::querySessionInformation(WtsSessionManager::currentSession(),
+													  WtsSessionManager::SessionInfo::SessionUptime).toLongLong();
+}
+
+
+
+QString WindowsSessionFunctions::currentSessionClientAddress() const
+{
+	return WtsSessionManager::querySessionInformation(WtsSessionManager::currentSession(),
+													  WtsSessionManager::SessionInfo::ClientAddress);
+}
+
+
+
+QString WindowsSessionFunctions::currentSessionClientName() const
+{
+	return WtsSessionManager::querySessionInformation(WtsSessionManager::currentSession(),
+													  WtsSessionManager::SessionInfo::ClientName);
+}
+
+
+
+QString WindowsSessionFunctions::currentSessionHostName() const
+{
+	return QHostInfo::localHostName();
 }
 
 
