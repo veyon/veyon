@@ -34,6 +34,26 @@ public:
 	using SessionId = int;
 	using SessionUptime = qint64;
 
+	struct SessionInfo {
+		SessionId id = InvalidSessionId;
+		SessionUptime uptime;
+		QString clientAddress;
+		QString clientName;
+		QString hostName;
+		bool operator==(const SessionInfo& other) const
+		{
+			return other.id == id &&
+					other.uptime == uptime &&
+					other.clientAddress == clientAddress &&
+					other.clientName == clientName &&
+					other.hostName == hostName;
+		}
+		bool operator!=(const SessionInfo& other) const
+		{
+			return !(other == *this);
+		}
+	};
+
 	static constexpr SessionId DefaultSessionId = 0;
 	static constexpr SessionId InvalidSessionId = -1;
 	static constexpr SessionUptime InvalidSessionUptime = -1;
