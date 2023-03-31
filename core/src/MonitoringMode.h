@@ -96,7 +96,7 @@ public:
 
 	void queryActiveFeatures(const ComputerControlInterfaceList& computerControlInterfaces);
 
-	void queryLoggedOnUserInfo( const ComputerControlInterfaceList& computerControlInterfaces );
+	void queryUserInfo(const ComputerControlInterfaceList& computerControlInterfaces);
 
 	void queryScreens( const ComputerControlInterfaceList& computerControlInterfaces );
 
@@ -155,7 +155,7 @@ private:
 	const Feature m_monitoringModeFeature;
 	const Feature m_queryApplicationVersionFeature;
 	const Feature m_queryActiveFeatures;
-	const Feature m_queryLoggedOnUserInfoFeature;
+	const Feature m_queryUserInfoFeature;
 	const Feature m_queryScreensFeature;
 	const FeatureList m_features;
 
