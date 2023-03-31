@@ -113,6 +113,15 @@ bool VariantStream::checkInt()
 
 
 
+bool VariantStream::checkLong()
+{
+	qlonglong i;
+	m_dataStream >> i;
+	return m_dataStream.status() == QDataStream::Status::Ok;
+}
+
+
+
 bool VariantStream::checkRect()
 {
 	qint32 i;
@@ -203,6 +212,7 @@ bool VariantStream::checkVariant(int depth)
 	case QMetaType::Bool: return checkBool();
 	case QMetaType::QByteArray: return checkByteArray();
 	case QMetaType::Int: return checkInt();
+	case QMetaType::LongLong: return checkLong();
 	case QMetaType::QRect: return checkRect();
 	case QMetaType::QString: return checkString();
 	case QMetaType::QStringList: return checkStringList();
