@@ -58,6 +58,7 @@ public:
 	bool saveComputerAndUsersList( const QString& fileName );
 
 	void updateUser(const ComputerControlInterface::Pointer& controlInterface) const;
+	void updateSessionInfo(const ComputerControlInterface::Pointer& controlInterface) const;
 
 Q_SIGNALS:
 	void computerSelectionReset();
@@ -80,8 +81,10 @@ private:
 	QModelIndex findNetworkObject(NetworkObject::Uid networkObjectUid, const QModelIndex& parent = {}) const;
 
 	QModelIndex mapToUserNameModelIndex(const QModelIndex& networkObjectIndex) const;
+	QModelIndex mapToSessionUptimeModelIndex(const QModelIndex& networkObjectIndex) const;
 
 	static constexpr int OverlayDataUsernameColumn = 1;
+	static constexpr int OverlayDataSessionUptimeColumn = 2;
 
 	UserConfig& m_config;
 
