@@ -72,4 +72,8 @@ void VeyonConfiguration::upgrade()
 	{
 		setApplicationVersion(VeyonCore::ApplicationVersion::Version_4_7);
 	}
+	else if (applicationVersion() < VeyonCore::ApplicationVersion::Version_4_8)
+	{
+		setApplicationVersion(VeyonCore::ApplicationVersion::Version_4_8);
+	}
 }
