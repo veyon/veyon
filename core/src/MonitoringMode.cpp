@@ -51,16 +51,16 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 						   Feature::Flag::Service | Feature::Flag::Builtin,
 						   Feature::Uid{"a0a96fba-425d-414a-aaf4-352b76d7c4f3"}, {},
 						   tr("Query active features"), {}, {} ),
-	m_queryLoggedOnUserInfoFeature( QStringLiteral("UserSessionInfo"),
-									Feature::Flag::Session | Feature::Flag::Service | Feature::Flag::Builtin,
-									Feature::Uid( "79a5e74d-50bd-4aab-8012-0e70dc08cc72" ),
-									Feature::Uid(), {}, {}, {} ),
+	m_queryUserInfoFeature(QStringLiteral("UserInfo"),
+						   Feature::Flag::Session | Feature::Flag::Service | Feature::Flag::Builtin,
+						   Feature::Uid("79a5e74d-50bd-4aab-8012-0e70dc08cc72"),
+						   Feature::Uid(), {}, {}, {} ),
 	m_queryScreensFeature( QStringLiteral("QueryScreens"),
 						   Feature::Flag::Meta,
 						   Feature::Uid("d5bbc486-7bc5-4c36-a9a8-1566c8b0091a"),
 						   Feature::Uid(), tr("Query properties of remotely available screens"), {}, {} ),
 	m_features({ m_monitoringModeFeature, m_queryApplicationVersionFeature, m_queryActiveFeatures,
-				  m_queryLoggedOnUserInfoFeature, m_queryScreensFeature })
+			   m_queryUserInfoFeature, m_queryScreensFeature})
 {
 	if(VeyonCore::component() == VeyonCore::Component::Server)
 	{
@@ -108,9 +108,9 @@ void MonitoringMode::queryActiveFeatures(const ComputerControlInterfaceList& com
 
 
 
-void MonitoringMode::queryLoggedOnUserInfo( const ComputerControlInterfaceList& computerControlInterfaces )
+void MonitoringMode::queryUserInfo(const ComputerControlInterfaceList& computerControlInterfaces)
 {
-	sendFeatureMessage(FeatureMessage{m_queryLoggedOnUserInfoFeature.uid()}, computerControlInterfaces);
+	sendFeatureMessage(FeatureMessage{m_queryUserInfoFeature.uid()}, computerControlInterfaces);
 }
 
 
@@ -158,7 +158,7 @@ bool MonitoringMode::handleFeatureMessage( ComputerControlInterface::Pointer com
 		return true;
 	}
 
-	if( message.featureUid() == m_queryLoggedOnUserInfoFeature.uid() )
+	if( message.featureUid() == m_queryUserInfoFeature.uid() )
 	{
 		computerControlInterface->setUserInformation( message.argument( Argument::UserLoginName ).toString(),
 													  message.argument( Argument::UserFullName ).toString(),
@@ -223,7 +223,7 @@ bool MonitoringMode::handleFeatureMessage( VeyonServerInterface& server,
 		return sendActiveFeatures(server, messageContext);
 	}
 
-	if (message.featureUid() == m_queryLoggedOnUserInfoFeature.uid())
+	if (message.featureUid() == m_queryUserInfoFeature.uid())
 	{
 		return sendUserInformation(server, messageContext);
 	}
@@ -271,15 +271,15 @@ void MonitoringMode::sendAsyncFeatureMessages(VeyonServerInterface& server, cons
 bool MonitoringMode::sendActiveFeatures(VeyonServerInterface& server, const MessageContext& messageContext)
 {
 	return server.sendFeatureMessageReply(messageContext,
-										   FeatureMessage{m_queryActiveFeatures.uid()}
-											   .addArgument(Argument::ActiveFeaturesList, m_activeFeatures));
+										  FeatureMessage{m_queryActiveFeatures.uid()}
+										  .addArgument(Argument::ActiveFeaturesList, m_activeFeatures));
 }
 
 
 
 bool MonitoringMode::sendUserInformation(VeyonServerInterface& server, const MessageContext& messageContext)
 {
-	FeatureMessage message{m_queryLoggedOnUserInfoFeature.uid()};
+	FeatureMessage message{m_queryUserInfoFeature.uid()};
 
 	m_userDataLock.lockForRead();
 	if (m_userLoginName.isEmpty())
