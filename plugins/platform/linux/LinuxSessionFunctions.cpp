@@ -24,6 +24,7 @@
 
 #include <QDateTime>
 #include <QDBusReply>
+#include <QHostInfo>
 #include <QProcessEnvironment>
 
 #ifdef HAVE_LIBPROCPS
@@ -38,6 +39,34 @@
 LinuxSessionFunctions::SessionId LinuxSessionFunctions::currentSessionId()
 {
 	return PlatformSessionManager::resolveSessionId( currentSessionPath() );
+}
+
+
+
+LinuxSessionFunctions::SessionUptime LinuxSessionFunctions::currentSessionUptime() const
+{
+	return getSessionUptimeSeconds(currentSessionPath());
+}
+
+
+
+QString LinuxSessionFunctions::currentSessionClientAddress() const
+{
+	return getSessionProperty(currentSessionPath(), QStringLiteral("RemoteHost")).toString();
+}
+
+
+
+QString LinuxSessionFunctions::currentSessionClientName() const
+{
+	return currentSessionClientAddress();
+}
+
+
+
+QString LinuxSessionFunctions::currentSessionHostName() const
+{
+	return QHostInfo::localHostName();
 }
 
 

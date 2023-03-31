@@ -39,6 +39,9 @@ public:
 	enum class SessionInfo {
 		UserName,
 		DomainName,
+		SessionUptime,
+		ClientAddress,
+		ClientName
 	};
 
 	Q_ENUM(SessionInfo)

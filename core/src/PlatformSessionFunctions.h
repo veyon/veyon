@@ -32,13 +32,20 @@ class PlatformSessionFunctions
 {
 public:
 	using SessionId = int;
+	using SessionUptime = qint64;
 
 	static constexpr SessionId DefaultSessionId = 0;
 	static constexpr SessionId InvalidSessionId = -1;
+	static constexpr SessionUptime InvalidSessionUptime = -1;
 
 	virtual ~PlatformSessionFunctions() = default;
 
 	virtual SessionId currentSessionId() = 0;
+
+	virtual PlatformSessionFunctions::SessionUptime currentSessionUptime() const = 0;
+	virtual QString currentSessionClientAddress() const = 0;
+	virtual QString currentSessionClientName() const = 0;
+	virtual QString currentSessionHostName() const = 0;
 
 	virtual QString currentSessionType() const = 0;
 	virtual bool currentSessionHasUser() const = 0;

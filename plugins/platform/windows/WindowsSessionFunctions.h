@@ -33,6 +33,11 @@ class WindowsSessionFunctions : public PlatformSessionFunctions
 public:
 	SessionId currentSessionId() override;
 
+	WindowsSessionFunctions::SessionUptime currentSessionUptime() const override;
+	QString currentSessionClientAddress() const override;
+	QString currentSessionClientName() const override;
+	QString currentSessionHostName() const override;
+
 	QString currentSessionType() const override;
 	bool currentSessionHasUser() const override;
 
