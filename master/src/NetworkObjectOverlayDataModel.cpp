@@ -31,8 +31,7 @@
 #endif
 
 
-NetworkObjectOverlayDataModel::NetworkObjectOverlayDataModel( const QString& overlayDataHeader,
-															  QObject *parent ) :
+NetworkObjectOverlayDataModel::NetworkObjectOverlayDataModel(const QStringList& overlayDataHeaders, QObject *parent) :
 	KExtraColumnsProxyModel( parent ),
 	m_overlayDataRole( Qt::DisplayRole )
 {
@@ -41,14 +40,17 @@ NetworkObjectOverlayDataModel::NetworkObjectOverlayDataModel( const QString& ove
 	setSourceModel( new QStandardItemModel( this ) );
 	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
 #endif
-	appendColumn( overlayDataHeader );
+	for (const auto& header : overlayDataHeaders)
+	{
+		appendColumn(header);
+	}
 }
 
 
 
 QVariant NetworkObjectOverlayDataModel::extraColumnData(const QModelIndex &parent, int row, int extraColumn, int role) const
 {
-	if( extraColumn != 0 || role != m_overlayDataRole )
+	if (role != m_overlayDataRole)
 	{
 		return QVariant();
 	}
@@ -57,25 +59,34 @@ QVariant NetworkObjectOverlayDataModel::extraColumnData(const QModelIndex &paren
 
 	if( networkObjectUid.isNull() == false && m_overlayData.contains( networkObjectUid ) )
 	{
-		return m_overlayData[networkObjectUid];
+		return m_overlayData[networkObjectUid].value(extraColumn);
 	}
 
 	return QVariant();
 }
 
 
+
 bool NetworkObjectOverlayDataModel::setExtraColumnData( const QModelIndex &parent, int row, int extraColumn, const QVariant &data, int role)
 {
-	if( extraColumn != 0 || role != m_overlayDataRole )
+	if (role != m_overlayDataRole)
 	{
 		return false;
 	}
 
 	const auto networkObjectUid = KExtraColumnsProxyModel::data( index( row, 0, parent ), NetworkObjectModel::UidRole ).toUuid();
+	auto& rowData = m_overlayData[networkObjectUid]; // clazy:exclude=detaching-member
 
-	if( m_overlayData[networkObjectUid] != data )
+	if (extraColumn >= rowData.count() ||
+		rowData[extraColumn] != data)
 	{
-		m_overlayData[networkObjectUid] = data;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+		rowData.resize(extraColumn+1);
+#else
+		std::fill_n(std::back_inserter(rowData), extraColumn + 1 - rowData.size(), QVariant{});
+#endif
+		rowData[extraColumn] = data;
+		m_overlayData[networkObjectUid] = rowData;
 		extraColumnDataChanged( parent, row, extraColumn, { m_overlayDataRole } );
 	}
 
