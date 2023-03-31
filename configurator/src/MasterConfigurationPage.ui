@@ -209,22 +209,22 @@
             </item>
             <item>
              <property name="text">
-              <string notr="true">High</string>
+              <string>High</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string notr="true">Medium</string>
+              <string>Medium</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string notr="true">Low</string>
+              <string>Low</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string notr="true">Lowest</string>
+              <string>Lowest</string>
              </property>
             </item>
            </widget>
