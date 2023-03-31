@@ -256,6 +256,7 @@ bool WebApiHttpServer::start()
 	success &= addRoute<Method::Get>( QStringLiteral("feature/<arg>"), &WebApiController::getFeatureStatus );
 	success &= addRoute<Method::Put>( QStringLiteral("feature/<arg>"), &WebApiController::setFeatureStatus );
 	success &= addRoute<Method::Get>( QStringLiteral("user"), &WebApiController::getUserInformation );
+	success &= addRoute<Method::Get>(QStringLiteral("session"), &WebApiController::getSessionInformation);
 
 	success &= m_server->route( QStringLiteral(".*"), [] {
 		return QHttpServerResponse{
