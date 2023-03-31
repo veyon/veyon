@@ -28,7 +28,6 @@
 
 #include "ComputerControlInterface.h"
 #include "FeatureManager.h"
-#include "PlatformSessionFunctions.h"
 #include "WebApiAuthenticationProxy.h"
 #include "WebApiConfiguration.h"
 #include "WebApiController.h"
@@ -396,18 +395,41 @@ WebApiController::Response WebApiController::getUserInformation( const Request& 
 
 	const auto& userLoginName = controlInterface->userLoginName();
 	auto userFullName = controlInterface->userFullName();
-	auto sessionId = controlInterface->userSessionId();
-	if( userLoginName.isEmpty() )
+	if (userLoginName.isEmpty())
 	{
 		userFullName.clear();
-		sessionId = PlatformSessionFunctions::InvalidSessionId;
 	}
 
-	return QVariantMap{ {
-		{ k2s(Key::Login), userLoginName },
-		{ k2s(Key::FullName), userFullName },
-		{ k2s(Key::Session), sessionId }
-	} };
+	return QVariantMap{
+		{
+			{k2s(Key::Login), userLoginName},
+			{k2s(Key::FullName), userFullName}
+		}
+	};
+}
+
+
+
+WebApiController::Response WebApiController::getSessionInformation(const Request& request)
+{
+	Response checkResponse{};
+	if((checkResponse = checkConnection(request)).error != Error::NoError)
+	{
+		return checkResponse;
+	}
+
+	const auto connection = lookupConnection(request);
+	const auto controlInterface = connection->controlInterface();
+
+	return QVariantMap{
+		{
+			{k2s(Key::SessionId), controlInterface->sessionInfo().id},
+			{k2s(Key::SessionUptime), controlInterface->sessionInfo().uptime},
+			{k2s(Key::SessionClientAddress), controlInterface->sessionInfo().clientAddress},
+			{k2s(Key::SessionClientName), controlInterface->sessionInfo().clientName},
+			{k2s(Key::SessionHostName), controlInterface->sessionInfo().hostName},
+		}
+	};
 }
 
 

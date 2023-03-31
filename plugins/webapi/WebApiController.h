@@ -55,7 +55,11 @@ public:
 		Arguments,
 		Login,
 		FullName,
-		Session,
+		SessionId,
+		SessionUptime,
+		SessionClientAddress,
+		SessionClientName,
+		SessionHostName,
 		ValidUntil
 	};
 	Q_ENUM(Key)
@@ -116,6 +120,7 @@ public:
 	Response getFeatureStatus( const Request& request, const QString& feature );
 
 	Response getUserInformation( const Request& request );
+	Response getSessionInformation(const Request& request);
 
 	static QString errorString( Error error );
 
