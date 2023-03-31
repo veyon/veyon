@@ -108,7 +108,7 @@
 
 #define FOREACH_VEYON_MASTER_CONFIG_PROPERTY(OP) \
 	OP( VeyonConfiguration, VeyonCore::config(), bool, modernUserInterface, setModernUserInterface, "ModernUserInterface", "Master", false, Configuration::Property::Flag::Standard )	\
-	OP( VeyonConfiguration, VeyonCore::config(), VncConnectionConfiguration::Quality, computerMonitoringImageQuality, setComputerMonitoringUpdateInterval, "ComputerMonitoringImageQuality", "Master", QVariant::fromValue(VncConnectionConfiguration::Quality::High), Configuration::Property::Flag::Standard )    \
+	OP( VeyonConfiguration, VeyonCore::config(), VncConnectionConfiguration::Quality, computerMonitoringImageQuality, setComputerMonitoringImageQuality, "ComputerMonitoringImageQuality", "Master", QVariant::fromValue(VncConnectionConfiguration::Quality::Medium), Configuration::Property::Flag::Standard )    \
 	OP( VeyonConfiguration, VeyonCore::config(), int, computerMonitoringUpdateInterval, setComputerMonitoringUpdateInterval, "ComputerMonitoringUpdateInterval", "Master", 1000, Configuration::Property::Flag::Standard )	\
 	OP( VeyonConfiguration, VeyonCore::config(), int, computerMonitoringThumbnailSpacing, setComputerMonitoringThumbnailSpacing, "ComputerMonitoringThumbnailSpacing", "Master", 5, Configuration::Property::Flag::Standard )	\
 	OP( VeyonConfiguration, VeyonCore::config(), ComputerListModel::DisplayRoleContent, computerDisplayRoleContent, setComputerDisplayRoleContent, "ComputerDisplayRoleContent", "Master", QVariant::fromValue(ComputerListModel::DisplayRoleContent::UserAndComputerName), Configuration::Property::Flag::Standard )	\
