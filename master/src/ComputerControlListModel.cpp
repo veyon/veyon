@@ -453,7 +453,7 @@ QString ComputerControlListModel::computerToolTipRole( const ComputerControlInte
 	const QString host( tr( "Host/IP address: %1" ).arg( controlInterface->computer().hostAddress().isEmpty()
 															 ? QStringLiteral("&lt;%1&gt;").arg( tr("invalid") )
 															 : controlInterface->computer().hostAddress() ) );
-	const QString user( loggedOnUserInformation( controlInterface ) );
+	const QString user( userInformation( controlInterface ) );
 	const QString features( tr( "Active features: %1" ).arg( activeFeatures( controlInterface ) ) );
 
 	if( user.isEmpty() )
@@ -550,7 +550,7 @@ QString ComputerControlListModel::computerStateDescription( const ComputerContro
 
 
 
-QString ComputerControlListModel::loggedOnUserInformation( const ComputerControlInterface::Pointer& controlInterface )
+QString ComputerControlListModel::userInformation(const ComputerControlInterface::Pointer& controlInterface)
 {
 	if( controlInterface->state() == ComputerControlInterface::State::Connected )
 	{
