@@ -27,6 +27,7 @@
 #include "Computer.h"
 #include "Feature.h"
 #include "Lockable.h"
+#include "PlatformSessionFunctions.h"
 #include "VeyonCore.h"
 #include "VeyonConnection.h"
 
@@ -116,12 +117,14 @@ public:
 		return m_userFullName;
 	}
 
-	int userSessionId() const
+	void setUserInformation(const QString& userLoginName, const QString& userFullName);
+
+	const PlatformSessionFunctions::SessionInfo& sessionInfo() const
 	{
-		return m_userSessionId;
+		return m_sessionInfo;
 	}
 
-	void setUserInformation( const QString& userLoginName, const QString& userFullName, int sessionId );
+	void setSessionInfo(const PlatformSessionFunctions::SessionInfo& sessionInfo);
 
 	const ScreenList& screens() const
 	{
@@ -168,6 +171,7 @@ private:
 	void updateServerVersion();
 	void updateActiveFeatures();
 	void updateUser();
+	void updateSessionInfo();
 	void updateScreens();
 
 	void handleFeatureMessage( const FeatureMessage& message );
@@ -185,7 +189,7 @@ private:
 	State m_state{State::Disconnected};
 	QString m_userLoginName{};
 	QString m_userFullName{};
-	int m_userSessionId{0};
+	PlatformSessionFunctions::SessionInfo m_sessionInfo{};
 	ScreenList m_screens;
 	FeatureUidList m_activeFeatures;
 	Feature::Uid m_designatedModeFeature;
@@ -206,6 +210,7 @@ Q_SIGNALS:
 	void framebufferSizeChanged();
 	void framebufferUpdated();
 	void userChanged();
+	void sessionInfoChanged();
 	void screensChanged();
 	void stateChanged();
 	void activeFeaturesChanged();

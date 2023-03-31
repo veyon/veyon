@@ -28,7 +28,6 @@
 
 #include "FeatureManager.h"
 #include "MonitoringMode.h"
-#include "PlatformSessionFunctions.h"
 #include "PlatformUserFunctions.h"
 #include "VeyonConfiguration.h"
 #include "VeyonServerInterface.h"
@@ -55,19 +54,27 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 						   Feature::Flag::Session | Feature::Flag::Service | Feature::Flag::Builtin,
 						   Feature::Uid("79a5e74d-50bd-4aab-8012-0e70dc08cc72"),
 						   Feature::Uid(), {}, {}, {} ),
+	m_querySessionInfoFeature(QStringLiteral("SessionInfo"),
+							  Feature::Flag::Session | Feature::Flag::Service | Feature::Flag::Builtin,
+							  Feature::Uid("699ed9dd-f58b-477b-a0af-df8105571b3c"),
+							  Feature::Uid(), {}, {}, {}),
 	m_queryScreensFeature( QStringLiteral("QueryScreens"),
 						   Feature::Flag::Meta,
 						   Feature::Uid("d5bbc486-7bc5-4c36-a9a8-1566c8b0091a"),
 						   Feature::Uid(), tr("Query properties of remotely available screens"), {}, {} ),
 	m_features({ m_monitoringModeFeature, m_queryApplicationVersionFeature, m_queryActiveFeatures,
-			   m_queryUserInfoFeature, m_queryScreensFeature})
+			   m_queryUserInfoFeature, m_querySessionInfoFeature, m_queryScreensFeature})
 {
 	if(VeyonCore::component() == VeyonCore::Component::Server)
 	{
 		connect(&m_activeFeaturesUpdateTimer, &QTimer::timeout, this, &MonitoringMode::updateActiveFeatures);
 		m_activeFeaturesUpdateTimer.start(ActiveFeaturesUpdateInterval);
 
+		connect(&m_sessionInfoUpdateTimer, &QTimer::timeout, this, &MonitoringMode::updateSessionInfo);
+		m_sessionInfoUpdateTimer.start(SessionInfoUpdateInterval);
+
 		updateUserData();
+		updateSessionInfo();
 		updateScreenInfoList();
 
 		connect(qGuiApp, &QGuiApplication::screenAdded, this, &MonitoringMode::updateScreenInfoList);
@@ -88,8 +95,8 @@ void MonitoringMode::setMinimumFramebufferUpdateInterval(const ComputerControlIn
 														 int interval)
 {
 	sendFeatureMessage(FeatureMessage{m_monitoringModeFeature.uid(), Command::SetMinimumFramebufferUpdateInterval}
-							.addArgument(Argument::MinimumFramebufferUpdateInterval, interval),
-						computerControlInterfaces);
+					   .addArgument(Argument::MinimumFramebufferUpdateInterval, interval),
+					   computerControlInterfaces);
 }
 
 
@@ -115,6 +122,13 @@ void MonitoringMode::queryUserInfo(const ComputerControlInterfaceList& computerC
 
 
 
+void MonitoringMode::querySessionInfo(const ComputerControlInterfaceList& computerControlInterfaces)
+{
+	sendFeatureMessage(FeatureMessage{m_querySessionInfoFeature.uid()}, computerControlInterfaces);
+}
+
+
+
 void MonitoringMode::queryScreens(const ComputerControlInterfaceList& computerControlInterfaces)
 {
 	sendFeatureMessage(FeatureMessage{m_queryScreensFeature.uid()}, computerControlInterfaces);
@@ -123,7 +137,7 @@ void MonitoringMode::queryScreens(const ComputerControlInterfaceList& computerCo
 
 
 bool MonitoringMode::handleFeatureMessage( ComputerControlInterface::Pointer computerControlInterface,
-										  const FeatureMessage& message )
+										   const FeatureMessage& message )
 {
 	if (message.featureUid() == m_monitoringModeFeature.uid())
 	{
@@ -137,7 +151,7 @@ bool MonitoringMode::handleFeatureMessage( ComputerControlInterface::Pointer com
 	if (message.featureUid() == m_queryApplicationVersionFeature.uid())
 	{
 		computerControlInterface->setServerVersion(message.argument(Argument::ApplicationVersion)
-														.value<VeyonCore::ApplicationVersion>());
+												   .value<VeyonCore::ApplicationVersion>());
 		return true;
 	}
 
@@ -160,9 +174,21 @@ bool MonitoringMode::handleFeatureMessage( ComputerControlInterface::Pointer com
 
 	if( message.featureUid() == m_queryUserInfoFeature.uid() )
 	{
-		computerControlInterface->setUserInformation( message.argument( Argument::UserLoginName ).toString(),
-													  message.argument( Argument::UserFullName ).toString(),
-													  message.argument( Argument::UserSessionId ).toInt() );
+		computerControlInterface->setUserInformation(message.argument( Argument::UserLoginName ).toString(),
+													 message.argument( Argument::UserFullName ).toString());
+
+		return true;
+	}
+
+	if (message.featureUid() == m_querySessionInfoFeature.uid())
+	{
+		computerControlInterface->setSessionInfo(PlatformSessionFunctions::SessionInfo{
+													 message.argument(Argument::SessionId).toInt(),
+													 message.argument(Argument::SessionUptime).toLongLong(),
+													 message.argument(Argument::SessionClientAddress).toString(),
+													 message.argument(Argument::SessionClientName).toString(),
+													 message.argument(Argument::SessionHostName).toString()
+												 });
 
 		return true;
 	}
@@ -192,9 +218,9 @@ bool MonitoringMode::handleFeatureMessage( ComputerControlInterface::Pointer com
 
 
 
-bool MonitoringMode::handleFeatureMessage( VeyonServerInterface& server,
+bool MonitoringMode::handleFeatureMessage(VeyonServerInterface& server,
 										  const MessageContext& messageContext,
-										  const FeatureMessage& message )
+										  const FeatureMessage& message)
 {
 	if (message.featureUid() == m_monitoringModeFeature.uid())
 	{
@@ -206,7 +232,7 @@ bool MonitoringMode::handleFeatureMessage( VeyonServerInterface& server,
 		if (message.command() == Command::SetMinimumFramebufferUpdateInterval)
 		{
 			server.setMinimumFramebufferUpdateInterval(messageContext,
-														message.argument(Argument::MinimumFramebufferUpdateInterval).toInt());
+													   message.argument(Argument::MinimumFramebufferUpdateInterval).toInt());
 			return true;
 		}
 	}
@@ -214,8 +240,8 @@ bool MonitoringMode::handleFeatureMessage( VeyonServerInterface& server,
 	if (message.featureUid() == m_queryApplicationVersionFeature.uid())
 	{
 		server.sendFeatureMessageReply(messageContext,
-										FeatureMessage{m_queryApplicationVersionFeature.uid()}
-											.addArgument(Argument::ApplicationVersion, int(VeyonCore::config().applicationVersion())));
+									   FeatureMessage{m_queryApplicationVersionFeature.uid()}
+									   .addArgument(Argument::ApplicationVersion, int(VeyonCore::config().applicationVersion())));
 	}
 
 	if (m_queryActiveFeatures.uid() == message.featureUid())
@@ -226,6 +252,11 @@ bool MonitoringMode::handleFeatureMessage( VeyonServerInterface& server,
 	if (message.featureUid() == m_queryUserInfoFeature.uid())
 	{
 		return sendUserInformation(server, messageContext);
+	}
+
+	if (message.featureUid() == m_querySessionInfoFeature.uid())
+	{
+		return sendSessionInfo(server, messageContext);
 	}
 
 	if (message.featureUid() == m_queryScreensFeature.uid())
@@ -251,15 +282,23 @@ void MonitoringMode::sendAsyncFeatureMessages(VeyonServerInterface& server, cons
 	const auto currentUserInfoVersion = m_userInfoVersion.loadAcquire();
 	const auto contextUserInfoVersion = messageContext.ioDevice()->property(userInfoVersionProperty()).toInt();
 
-	if(contextUserInfoVersion  != currentUserInfoVersion)
+	if(contextUserInfoVersion != currentUserInfoVersion)
 	{
 		sendUserInformation(server, messageContext);
 		messageContext.ioDevice()->setProperty(userInfoVersionProperty(), currentUserInfoVersion);
 	}
 
+	const auto sessionInfoVersion = messageContext.ioDevice()->property(sessionInfoVersionProperty()).toInt();
+
+	if (sessionInfoVersion != m_sessionInfoVersion)
+	{
+		sendSessionInfo(server, messageContext);
+		messageContext.ioDevice()->setProperty(sessionInfoVersionProperty(), m_sessionInfoVersion);
+	}
+
 	const auto screenInfoVersion = messageContext.ioDevice()->property(screenInfoListVersionProperty()).toInt();
 
-	if (screenInfoVersion  != m_screenInfoListVersion)
+	if (screenInfoVersion != m_screenInfoListVersion)
 	{
 		sendScreenInfoList(server, messageContext);
 		messageContext.ioDevice()->setProperty(screenInfoListVersionProperty(), m_screenInfoListVersion);
@@ -287,13 +326,11 @@ bool MonitoringMode::sendUserInformation(VeyonServerInterface& server, const Mes
 		updateUserData();
 		message.addArgument(Argument::UserLoginName, QString{});
 		message.addArgument(Argument::UserFullName, QString{});
-		message.addArgument(Argument::UserSessionId, -1);
 	}
 	else
 	{
 		message.addArgument(Argument::UserLoginName, m_userLoginName);
 		message.addArgument(Argument::UserFullName, m_userFullName);
-		message.addArgument(Argument::UserSessionId, m_userSessionId);
 	}
 	m_userDataLock.unlock();
 
@@ -302,11 +339,25 @@ bool MonitoringMode::sendUserInformation(VeyonServerInterface& server, const Mes
 
 
 
+bool MonitoringMode::sendSessionInfo(VeyonServerInterface& server, const MessageContext& messageContext)
+{
+	FeatureMessage message{m_querySessionInfoFeature.uid()};
+	message.addArgument(Argument::SessionId, m_sessionInfo.id);
+	message.addArgument(Argument::SessionUptime, m_sessionInfo.uptime);
+	message.addArgument(Argument::SessionClientAddress, m_sessionInfo.clientAddress);
+	message.addArgument(Argument::SessionClientName, m_sessionInfo.clientName);
+	message.addArgument(Argument::SessionHostName, m_sessionInfo.hostName);
+
+	return server.sendFeatureMessageReply(messageContext,message);
+}
+
+
+
 bool MonitoringMode::sendScreenInfoList(VeyonServerInterface& server, const MessageContext& messageContext)
 {
 	return server.sendFeatureMessageReply(messageContext,
-										   FeatureMessage{m_queryScreensFeature.uid()}
-											   .addArgument(Argument::ScreenInfoList, m_screenInfoList));
+										  FeatureMessage{m_queryScreensFeature.uid()}
+										  .addArgument(Argument::ScreenInfoList, m_screenInfoList));
 }
 
 
@@ -345,21 +396,38 @@ void MonitoringMode::updateUserData()
 		{
 			const auto userLoginName = VeyonCore::platform().userFunctions().currentUser();
 			const auto userFullName = VeyonCore::platform().userFunctions().fullName( userLoginName );
-			const auto userSessionId = VeyonCore::sessionId();
 			m_userDataLock.lockForWrite();
 			if(m_userLoginName != userLoginName ||
-				m_userFullName != userFullName ||
-				m_userSessionId != userSessionId )
+			   m_userFullName != userFullName)
 			{
 				m_userLoginName = userLoginName;
 				m_userFullName = userFullName;
-				m_userSessionId = userSessionId;
 				++m_userInfoVersion;
 			}
 			m_userDataLock.unlock();
 		}
 	} );
 }
+
+
+
+void MonitoringMode::updateSessionInfo()
+{
+	const PlatformSessionFunctions::SessionInfo currentSessionInfo{
+		VeyonCore::sessionId(),
+				VeyonCore::platform().sessionFunctions().currentSessionUptime(),
+				VeyonCore::platform().sessionFunctions().currentSessionClientAddress(),
+				VeyonCore::platform().sessionFunctions().currentSessionClientName(),
+				VeyonCore::platform().sessionFunctions().currentSessionHostName()
+	};
+
+	if (currentSessionInfo != m_sessionInfo)
+	{
+		m_sessionInfo = currentSessionInfo;
+		++m_sessionInfoVersion;
+	}
+}
+
 
 
 

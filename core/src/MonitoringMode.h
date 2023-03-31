@@ -27,6 +27,7 @@
 #include <QTimer>
 
 #include "FeatureProviderInterface.h"
+#include "PlatformSessionFunctions.h"
 
 class VEYON_CORE_EXPORT MonitoringMode : public QObject, FeatureProviderInterface, PluginInterface
 {
@@ -37,10 +38,14 @@ public:
 	{
 		UserLoginName,
 		UserFullName,
-		UserSessionId,
+		SessionId,
 		ScreenInfoList,
 		MinimumFramebufferUpdateInterval,
 		ApplicationVersion,
+		SessionUptime,
+		SessionHostName,
+		SessionClientAddress,
+		SessionClientName,
 		ActiveFeaturesList = 0 // for compatibility after migration from FeatureControl
 	};
 	Q_ENUM(Argument)
@@ -98,6 +103,8 @@ public:
 
 	void queryUserInfo(const ComputerControlInterfaceList& computerControlInterfaces);
 
+	void querySessionInfo(const ComputerControlInterfaceList& computerControlInterfaces);
+
 	void queryScreens( const ComputerControlInterfaceList& computerControlInterfaces );
 
 	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
@@ -123,6 +130,7 @@ public:
 private:
 	bool sendActiveFeatures(VeyonServerInterface& server, const MessageContext& messageContext);
 	bool sendUserInformation(VeyonServerInterface& server, const MessageContext& messageContext);
+	bool sendSessionInfo(VeyonServerInterface& server, const MessageContext& messageContext);
 	bool sendScreenInfoList(VeyonServerInterface& server, const MessageContext& messageContext);
 
 	static const char* activeFeaturesVersionProperty()
@@ -135,6 +143,11 @@ private:
 		return "userInfoVersion";
 	}
 
+	static const char* sessionInfoVersionProperty()
+	{
+		return "sessionInfoVersion";
+	}
+
 	static const char* screenInfoListVersionProperty()
 	{
 		return "screenInfoListVersion";
@@ -142,6 +155,7 @@ private:
 
 	void updateActiveFeatures();
 	void updateUserData();
+	void updateSessionInfo();
 	void updateScreenInfoList();
 
 	enum Command
@@ -151,11 +165,13 @@ private:
 	};
 
 	static constexpr int ActiveFeaturesUpdateInterval = 250;
+	static constexpr int SessionInfoUpdateInterval = 1000;
 
 	const Feature m_monitoringModeFeature;
 	const Feature m_queryApplicationVersionFeature;
 	const Feature m_queryActiveFeatures;
 	const Feature m_queryUserInfoFeature;
+	const Feature m_querySessionInfoFeature;
 	const Feature m_queryScreensFeature;
 	const FeatureList m_features;
 
@@ -166,10 +182,13 @@ private:
 	QReadWriteLock m_userDataLock;
 	QString m_userLoginName;
 	QString m_userFullName;
-	int m_userSessionId{0};
 	QAtomicInt m_userInfoVersion{0};
 
 	QVariantList m_screenInfoList;
 	int m_screenInfoListVersion{0};
+
+	PlatformSessionFunctions::SessionInfo m_sessionInfo{};
+	int m_sessionInfoVersion = 0;
+	QTimer m_sessionInfoUpdateTimer;
 
 };

@@ -53,6 +53,7 @@ ComputerControlInterface::ComputerControlInterface( const Computer& computer, in
 
 	connect(&m_statePollingTimer, &QTimer::timeout, this, [this]() {
 		updateUser();
+		updateSessionInfo();
 		updateActiveFeatures();
 	});
 }
@@ -95,6 +96,7 @@ void ComputerControlInterface::start( QSize scaledFramebufferSize, UpdateMode up
 		connect(vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateServerVersion);
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
+		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateSessionInfo );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateActiveFeatures );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateScreens );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::stateChanged );
@@ -198,6 +200,7 @@ void ComputerControlInterface::setServerVersion(VeyonCore::ApplicationVersion ve
 	{
 		m_statePollingTimer.stop();
 
+		updateSessionInfo();
 		updateScreens();
 		setMinimumFramebufferUpdateInterval();
 	}
@@ -215,17 +218,26 @@ void ComputerControlInterface::setServerVersion(VeyonCore::ApplicationVersion ve
 
 
 
-void ComputerControlInterface::setUserInformation( const QString& userLoginName, const QString& userFullName, int sessionId )
+void ComputerControlInterface::setUserInformation(const QString& userLoginName, const QString& userFullName)
 {
-	if( userLoginName != m_userLoginName ||
-		userFullName != m_userFullName ||
-		sessionId != m_userSessionId )
+	if (userLoginName != m_userLoginName ||
+		userFullName != m_userFullName)
 	{
 		m_userLoginName = userLoginName;
 		m_userFullName = userFullName;
-		m_userSessionId = sessionId;
 
 		Q_EMIT userChanged();
+	}
+}
+
+
+
+void ComputerControlInterface::setSessionInfo(const PlatformSessionFunctions::SessionInfo& sessionInfo)
+{
+	if (sessionInfo != m_sessionInfo)
+	{
+		m_sessionInfo = sessionInfo;
+		Q_EMIT sessionInfoChanged();
 	}
 }
 
@@ -432,12 +444,31 @@ void ComputerControlInterface::updateUser()
 	{
 		if( userLoginName().isEmpty() )
 		{
-			VeyonCore::builtinFeatures().monitoringMode().queryLoggedOnUserInfo( { weakPointer() } );
+			VeyonCore::builtinFeatures().monitoringMode().queryUserInfo( { weakPointer() } );
 		}
 	}
 	else
 	{
-		setUserInformation( {}, {}, -1 );
+		setUserInformation({}, {});
+	}
+
+	unlock();
+}
+
+
+
+void ComputerControlInterface::updateSessionInfo()
+{
+	lock();
+
+	if (vncConnection() && state() == State::Connected &&
+		m_serverVersion >= VeyonCore::ApplicationVersion::Version_4_8)
+	{
+		VeyonCore::builtinFeatures().monitoringMode().querySessionInfo({weakPointer()});
+	}
+	else
+	{
+		setSessionInfo({});
 	}
 
 	unlock();
