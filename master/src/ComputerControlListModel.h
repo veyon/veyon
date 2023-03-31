@@ -71,6 +71,7 @@ private:
 	void updateScreen( const QModelIndex& index );
 	void updateActiveFeatures( const QModelIndex& index );
 	void updateUser( const QModelIndex& index );
+	void updateSessionInfo(const QModelIndex& index);
 
 	void startComputerControlInterface( ComputerControlInterface* controlInterface );
 	void stopComputerControlInterface( const ComputerControlInterface::Pointer& controlInterface );

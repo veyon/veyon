@@ -27,6 +27,7 @@
 #include <QHostAddress>
 #include <QHostInfo>
 #include <QMessageBox>
+#include <QTime>
 
 #include "ComputerManager.h"
 #include "VeyonConfiguration.h"
@@ -45,7 +46,7 @@ ComputerManager::ComputerManager( UserConfig& config, QObject* parent ) :
 	m_config( config ),
 	m_networkObjectDirectory( VeyonCore::networkObjectDirectoryManager().configuredDirectory() ),
 	m_networkObjectModel( new NetworkObjectTreeModel( m_networkObjectDirectory, this ) ),
-	m_networkObjectOverlayDataModel(new NetworkObjectOverlayDataModel({tr("User")}, this)),
+	m_networkObjectOverlayDataModel(new NetworkObjectOverlayDataModel({tr("User"), tr("Logged in since")}, this)),
 	m_computerTreeModel( new CheckableItemProxyModel( NetworkObjectModel::UidRole, this ) ),
 	m_networkObjectFilterProxyModel( new NetworkObjectFilterProxyModel( this ) ),
 	m_localHostNames( QHostInfo::localHostName().toLower() ),
@@ -158,6 +159,25 @@ void ComputerManager::updateUser(const ComputerControlInterface::Pointer& contro
 	}
 }
 
+
+
+void ComputerManager::updateSessionInfo(const ComputerControlInterface::Pointer& controlInterface) const
+{
+	const auto networkObjectIndex = findNetworkObject(controlInterface->computer().networkObjectUid());
+
+	if (networkObjectIndex.isValid())
+	{
+		const auto uptime24h = controlInterface->sessionInfo().uptime % (60*60*24);
+		const auto uptimeDays = controlInterface->sessionInfo().uptime / (60*60*24);
+		const QString uptimeString = (uptimeDays > 0 ?
+										  ((uptimeDays > 1 ? tr("%1 days").arg(uptimeDays) : tr("1 day")) + QStringLiteral(", ")) :
+										  QString()) +
+									 QTime::fromMSecsSinceStartOfDay(uptime24h * 1000).toString(QStringLiteral("hh:mm:ss"));
+		m_networkObjectOverlayDataModel->setData(mapToSessionUptimeModelIndex(networkObjectIndex),
+												  uptimeString,
+												  Qt::DisplayRole);
+	}
+}
 
 
 void ComputerManager::checkChangedData( const QModelIndex& topLeft, const QModelIndex& bottomRight, const QVector<int>& roles )
@@ -501,4 +521,14 @@ QModelIndex ComputerManager::mapToUserNameModelIndex(const QModelIndex& networkO
 	const auto parent = m_networkObjectOverlayDataModel->mapFromSource( networkObjectIndex.parent() );
 
 	return m_networkObjectOverlayDataModel->index( networkObjectIndex.row(), OverlayDataUsernameColumn, parent );
+}
+
+
+
+QModelIndex ComputerManager::mapToSessionUptimeModelIndex(const QModelIndex& networkObjectIndex) const
+{
+	// map arbitrary index from m_networkObjectModel to username column in m_networkObjectOverlayDataModel
+	const auto parent = m_networkObjectOverlayDataModel->mapFromSource(networkObjectIndex.parent());
+
+	return m_networkObjectOverlayDataModel->index(networkObjectIndex.row(), OverlayDataSessionUptimeColumn, parent);
 }

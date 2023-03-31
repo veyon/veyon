@@ -27,9 +27,9 @@
 #include "ComputerControlListModel.h"
 #include "ComputerManager.h"
 #include "FeatureManager.h"
+#include "PlatformSessionFunctions.h"
 #include "VeyonMaster.h"
 #include "UserConfig.h"
-#include "VeyonConfiguration.h"
 
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 #include <QAbstractItemModelTester>
@@ -291,6 +291,19 @@ void ComputerControlListModel::updateUser( const QModelIndex& index )
 
 
 
+void ComputerControlListModel::updateSessionInfo(const QModelIndex& index)
+{
+	Q_EMIT dataChanged(index, index, {Qt::ToolTipRole});
+
+	auto controlInterface = computerControlInterface( index );
+	if (controlInterface.isNull() == false)
+	{
+		m_master->computerManager().updateSessionInfo(controlInterface);
+	}
+}
+
+
+
 void ComputerControlListModel::startComputerControlInterface( ComputerControlInterface* controlInterface )
 {
 	controlInterface->start( computerScreenSize(), ComputerControlInterface::UpdateMode::Monitoring );
@@ -309,6 +322,9 @@ void ComputerControlListModel::startComputerControlInterface( ComputerControlInt
 
 	connect( controlInterface, &ComputerControlInterface::userChanged,
 			 this, [=]() { updateUser( interfaceIndex( controlInterface ) ); } );
+
+	connect(controlInterface, &ComputerControlInterface::sessionInfoChanged,
+			 this, [=]() { updateSessionInfo(interfaceIndex(controlInterface)); });
 }
 
 
@@ -320,6 +336,7 @@ void ComputerControlListModel::stopComputerControlInterface( const ComputerContr
 	controlInterface->disconnect( &m_master->computerManager() );
 
 	controlInterface->setUserInformation({}, {});
+	controlInterface->setSessionInfo({});
 
 	m_master->computerManager().updateUser( controlInterface );
 }
