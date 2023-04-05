@@ -46,7 +46,16 @@ class Test_VeyonWebAPI(unittest.TestCase):
 		user_information = self.client.user_information()
 		assert len(user_information['login']) > 0
 		assert 'fullName' in user_information
-		assert 'session' in user_information
+
+	def test_session_information(self):
+		assert self.client.wait_for_framebuffer(), "Framebuffer not available!"
+
+		session_information = self.client.session_information()
+		assert 'sessionId' in session_information
+		assert 'sessionUptime' in session_information
+		assert 'sessionClientAddress' in session_information
+		assert 'sessionClientName' in session_information
+		assert 'sessionHostName' in session_information
 
 	def test_features(self):
 		available_features = self.client.available_features()
