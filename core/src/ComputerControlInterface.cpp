@@ -84,7 +84,6 @@ void ComputerControlInterface::start( QSize scaledFramebufferSize, UpdateMode up
 		{
 			vncConnection->setPort( m_port );
 		}
-		vncConnection->setQuality(VeyonCore::config().computerMonitoringImageQuality());
 		vncConnection->setScaledSize( m_scaledFramebufferSize );
 
 		connect( vncConnection, &VncConnection::imageUpdated, this, [this]( int x, int y, int w, int h )
@@ -204,6 +203,8 @@ void ComputerControlInterface::setServerVersion(VeyonCore::ApplicationVersion ve
 
 	const auto statePollingInterval = VeyonCore::config().computerStatePollingInterval();
 
+	setQuality();
+
 	if (m_serverVersion >= VeyonCore::ApplicationVersion::Version_4_7 &&
 		statePollingInterval <= 0)
 	{
@@ -303,6 +304,7 @@ void ComputerControlInterface::setUpdateMode( UpdateMode updateMode )
 	m_updateMode = updateMode;
 
 	setMinimumFramebufferUpdateInterval();
+	setQuality();
 
 	if (vncConnection())
 	{
@@ -356,6 +358,36 @@ void ComputerControlInterface::setMinimumFramebufferUpdateInterval()
 	if (m_serverVersion >= VeyonCore::ApplicationVersion::Version_4_7)
 	{
 		VeyonCore::builtinFeatures().monitoringMode().setMinimumFramebufferUpdateInterval({weakPointer()}, updateInterval);
+	}
+}
+
+
+
+void ComputerControlInterface::setQuality()
+{
+	auto quality = VncConnectionConfiguration::Quality::Highest;
+
+	if (m_serverVersion >= VeyonCore::ApplicationVersion::Version_4_8)
+	{
+		switch (m_updateMode)
+		{
+		case UpdateMode::Disabled:
+			quality = VncConnectionConfiguration::Quality::Lowest;
+			break;
+
+		case UpdateMode::Basic:
+		case UpdateMode::Monitoring:
+			quality = VeyonCore::config().computerMonitoringImageQuality();
+			break;
+
+		case UpdateMode::Live:
+			break;
+		}
+	}
+
+	if (vncConnection())
+	{
+		vncConnection()->setQuality(quality);
 	}
 }
 
