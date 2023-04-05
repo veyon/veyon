@@ -372,6 +372,7 @@ void ComputerControlInterface::setQuality()
 			break;
 
 		case UpdateMode::Live:
+			quality = VeyonCore::config().remoteAccessImageQuality();
 			break;
 		}
 	}
