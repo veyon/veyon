@@ -33,7 +33,7 @@
 #include "ComputerListModel.h"
 #include "Logger.h"
 #include "NetworkObjectDirectory.h"
-#include "VncConnection.h"
+#include "VncConnectionConfiguration.h"
 
 #define FOREACH_VEYON_CORE_CONFIG_PROPERTIES(OP)		\
 	OP( VeyonConfiguration, VeyonCore::config(), VeyonCore::ApplicationVersion, applicationVersion, setApplicationVersion, "ApplicationVersion", "Core", QVariant::fromValue(VeyonCore::ApplicationVersion::Version_4_0), Configuration::Property::Flag::Hidden )			\
@@ -43,16 +43,16 @@
 
 #define FOREACH_VEYON_VNC_CONNECTION_CONFIG_PROPERTIES(OP)		\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, useCustomVncConnectionSettings, setUseCustomVncConnectionSettings, "UseCustomSettings", "VncConnection", false, Configuration::Property::Flag::Hidden )			\
-	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionThreadTerminationTimeout, setVncConnectionThreadTerminationTimeout, "ThreadTerminationTimeout", "VncConnection", VncConnection::DefaultThreadTerminationTimeout, Configuration::Property::Flag::Hidden )			\
-	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionConnectTimeout, setVncConnectionConnectTimeout, "ConnectTimeout", "VncConnection", VncConnection::DefaultConnectTimeout, Configuration::Property::Flag::Hidden )			\
-	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionReadTimeout, setVncConnectionReadTimeout, "ReadTimeout", "VncConnection", VncConnection::DefaultReadTimeout, Configuration::Property::Flag::Hidden )			\
-	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionRetryInterval, setVncConnectionRetryInterval, "ConnectionRetryInterval", "VncConnection", VncConnection::DefaultConnectionRetryInterval, Configuration::Property::Flag::Hidden )			\
-	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionMessageWaitTimeout, setVncConnectionMessageWaitTimeout, "MessageWaitTimeout", "VncConnection", VncConnection::DefaultMessageWaitTimeout, Configuration::Property::Flag::Hidden )			\
-	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionFastFramebufferUpdateInterval, setVncConnectionFastFramebufferUpdateInterval, "FastFramebufferUpdateInterval", "VncConnection", VncConnection::DefaultFastFramebufferUpdateInterval, Configuration::Property::Flag::Hidden )			\
-	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionFramebufferUpdateWatchdogTimeout, setVncConnectionFramebufferUpdateWatchdogTimeout, "FramebufferUpdateWatchdogTimeout", "VncConnection", VncConnection::DefaultFramebufferUpdateWatchdogTimeout, Configuration::Property::Flag::Hidden )			\
-	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionSocketKeepaliveIdleTime, setVncConnectionSocketKeepaliveIdleTime, "SocketKeepaliveIdleTime", "VncConnection", VncConnection::DefaultSocketKeepaliveIdleTime, Configuration::Property::Flag::Hidden )			\
-	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionSocketKeepaliveInterval, setVncConnectionSocketKeepaliveInterval, "SocketKeepaliveInterval", "VncConnection", VncConnection::DefaultSocketKeepaliveInterval, Configuration::Property::Flag::Hidden )			\
-	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionSocketKeepaliveCount, setVncConnectionSocketKeepaliveCount, "SocketKeepaliveCount", "VncConnection", VncConnection::DefaultSocketKeepaliveCount, Configuration::Property::Flag::Hidden )			\
+	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionThreadTerminationTimeout, setVncConnectionThreadTerminationTimeout, "ThreadTerminationTimeout", "VncConnection", VncConnectionConfiguration::DefaultThreadTerminationTimeout, Configuration::Property::Flag::Hidden )			\
+	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionConnectTimeout, setVncConnectionConnectTimeout, "ConnectTimeout", "VncConnection", VncConnectionConfiguration::DefaultConnectTimeout, Configuration::Property::Flag::Hidden )			\
+	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionReadTimeout, setVncConnectionReadTimeout, "ReadTimeout", "VncConnection", VncConnectionConfiguration::DefaultReadTimeout, Configuration::Property::Flag::Hidden )			\
+	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionRetryInterval, setVncConnectionRetryInterval, "ConnectionRetryInterval", "VncConnection", VncConnectionConfiguration::DefaultConnectionRetryInterval, Configuration::Property::Flag::Hidden )			\
+	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionMessageWaitTimeout, setVncConnectionMessageWaitTimeout, "MessageWaitTimeout", "VncConnection", VncConnectionConfiguration::DefaultMessageWaitTimeout, Configuration::Property::Flag::Hidden )			\
+	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionFastFramebufferUpdateInterval, setVncConnectionFastFramebufferUpdateInterval, "FastFramebufferUpdateInterval", "VncConnection", VncConnectionConfiguration::DefaultFastFramebufferUpdateInterval, Configuration::Property::Flag::Hidden )			\
+	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionFramebufferUpdateWatchdogTimeout, setVncConnectionFramebufferUpdateWatchdogTimeout, "FramebufferUpdateWatchdogTimeout", "VncConnection", VncConnectionConfiguration::DefaultFramebufferUpdateWatchdogTimeout, Configuration::Property::Flag::Hidden )			\
+	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionSocketKeepaliveIdleTime, setVncConnectionSocketKeepaliveIdleTime, "SocketKeepaliveIdleTime", "VncConnection", VncConnectionConfiguration::DefaultSocketKeepaliveIdleTime, Configuration::Property::Flag::Hidden )			\
+	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionSocketKeepaliveInterval, setVncConnectionSocketKeepaliveInterval, "SocketKeepaliveInterval", "VncConnection", VncConnectionConfiguration::DefaultSocketKeepaliveInterval, Configuration::Property::Flag::Hidden )			\
+	OP( VeyonConfiguration, VeyonCore::config(), int, vncConnectionSocketKeepaliveCount, setVncConnectionSocketKeepaliveCount, "SocketKeepaliveCount", "VncConnection", VncConnectionConfiguration::DefaultSocketKeepaliveCount, Configuration::Property::Flag::Hidden )			\
 
 #define FOREACH_VEYON_UI_CONFIG_PROPERTY(OP)				\
 	OP( VeyonConfiguration, VeyonCore::config(), QString, applicationName, setApplicationName, "ApplicationName", "UI", QStringLiteral("Veyon"), Configuration::Property::Flag::Hidden )			\
@@ -102,7 +102,7 @@
 
 #define FOREACH_VEYON_MASTER_CONFIG_PROPERTY(OP) \
 	OP( VeyonConfiguration, VeyonCore::config(), int, computerMonitoringUpdateInterval, setComputerMonitoringUpdateInterval, "ComputerMonitoringUpdateInterval", "Master", 1000, Configuration::Property::Flag::Standard )	\
-	OP( VeyonConfiguration, VeyonCore::config(), VncConnection::Quality, computerMonitoringImageQuality, setComputerMonitoringImageQuality, "ComputerMonitoringImageQuality", "Master", QVariant::fromValue(VncConnection::Quality::Medium), Configuration::Property::Flag::Standard )	\
+	OP( VeyonConfiguration, VeyonCore::config(), VncConnectionConfiguration::Quality, computerMonitoringImageQuality, setComputerMonitoringImageQuality, "ComputerMonitoringImageQuality", "Master", QVariant::fromValue(VncConnectionConfiguration::Quality::Medium), Configuration::Property::Flag::Standard )	\
 	OP( VeyonConfiguration, VeyonCore::config(), int, computerMonitoringThumbnailSpacing, setComputerMonitoringThumbnailSpacing, "ComputerMonitoringThumbnailSpacing", "Master", 5, Configuration::Property::Flag::Standard )	\
 	OP( VeyonConfiguration, VeyonCore::config(), ComputerListModel::DisplayRoleContent, computerDisplayRoleContent, setComputerDisplayRoleContent, "ComputerDisplayRoleContent", "Master", QVariant::fromValue(ComputerListModel::DisplayRoleContent::UserAndComputerName), Configuration::Property::Flag::Standard )	\
 	OP( VeyonConfiguration, VeyonCore::config(), ComputerListModel::SortOrder, computerMonitoringSortOrder, setComputerMonitoringSortOrder, "ComputerMonitoringSortOrder", "Master", QVariant::fromValue(ComputerListModel::SortOrder::ComputerAndUserName), Configuration::Property::Flag::Standard )	\

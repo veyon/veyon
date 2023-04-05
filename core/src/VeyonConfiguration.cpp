@@ -74,7 +74,7 @@ void VeyonConfiguration::upgrade()
 	}
 	else if (applicationVersion() < VeyonCore::ApplicationVersion::Version_4_8)
 	{
-		setComputerMonitoringImageQuality(VncConnection::Quality::Highest);
+		setComputerMonitoringImageQuality(VncConnectionConfiguration::Quality::Highest);
 
 		setApplicationVersion(VeyonCore::ApplicationVersion::Version_4_8);
 	}

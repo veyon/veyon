@@ -36,8 +36,9 @@
 #include <QTimer>
 #include <QWaitCondition>
 
-#include "VeyonCore.h"
 #include "SocketDevice.h"
+#include "VeyonCore.h"
+#include "VncConnectionConfiguration.h"
 
 using rfbClient = struct _rfbClient;
 
@@ -47,28 +48,6 @@ class VEYON_CORE_EXPORT VncConnection : public QThread
 {
 	Q_OBJECT
 public:
-	// intervals and timeouts
-	static constexpr int DefaultThreadTerminationTimeout = 30000;
-	static constexpr int DefaultConnectTimeout = 10000;
-	static constexpr int DefaultReadTimeout = 30000;
-	static constexpr int DefaultConnectionRetryInterval = 1000;
-	static constexpr int DefaultMessageWaitTimeout = 500;
-	static constexpr int DefaultFastFramebufferUpdateInterval = 100;
-	static constexpr int DefaultFramebufferUpdateWatchdogTimeout = 10000;
-	static constexpr int DefaultSocketKeepaliveIdleTime = 1000;
-	static constexpr int DefaultSocketKeepaliveInterval = 500;
-	static constexpr int DefaultSocketKeepaliveCount = 5;
-
-	enum class Quality
-	{
-		Highest,
-		High,
-		Medium,
-		Low,
-		Lowest
-	};
-	Q_ENUM(Quality)
-
 	enum class FramebufferState
 	{
 		Invalid,
@@ -117,7 +96,7 @@ public:
 		return m_host;
 	}
 
-	void setQuality(Quality quality);
+	void setQuality(VncConnectionConfiguration::Quality quality);
 
 	void setUseRemoteCursor( bool enabled );
 
@@ -225,16 +204,16 @@ private:
 	static void framebufferCleanup( void* framebuffer );
 
 	// intervals and timeouts
-	int m_threadTerminationTimeout{DefaultThreadTerminationTimeout};
-	int m_connectTimeout{DefaultConnectTimeout};
-	int m_readTimeout{DefaultReadTimeout};
-	int m_connectionRetryInterval{DefaultConnectionRetryInterval};
-	int m_messageWaitTimeout{DefaultMessageWaitTimeout};
-	int m_fastFramebufferUpdateInterval{DefaultFastFramebufferUpdateInterval};
-	int m_framebufferUpdateWatchdogTimeout{DefaultFramebufferUpdateWatchdogTimeout};
-	int m_socketKeepaliveIdleTime{DefaultSocketKeepaliveIdleTime};
-	int m_socketKeepaliveInterval{DefaultSocketKeepaliveInterval};
-	int m_socketKeepaliveCount{DefaultSocketKeepaliveCount};
+	int m_threadTerminationTimeout{VncConnectionConfiguration::DefaultThreadTerminationTimeout};
+	int m_connectTimeout{VncConnectionConfiguration::DefaultConnectTimeout};
+	int m_readTimeout{VncConnectionConfiguration::DefaultReadTimeout};
+	int m_connectionRetryInterval{VncConnectionConfiguration::DefaultConnectionRetryInterval};
+	int m_messageWaitTimeout{VncConnectionConfiguration::DefaultMessageWaitTimeout};
+	int m_fastFramebufferUpdateInterval{VncConnectionConfiguration::DefaultFastFramebufferUpdateInterval};
+	int m_framebufferUpdateWatchdogTimeout{VncConnectionConfiguration::DefaultFramebufferUpdateWatchdogTimeout};
+	int m_socketKeepaliveIdleTime{VncConnectionConfiguration::DefaultSocketKeepaliveIdleTime};
+	int m_socketKeepaliveInterval{VncConnectionConfiguration::DefaultSocketKeepaliveInterval};
+	int m_socketKeepaliveCount{VncConnectionConfiguration::DefaultSocketKeepaliveCount};
 
 	// states and flags
 	std::atomic<State> m_state;
@@ -243,7 +222,7 @@ private:
 
 	// connection parameters and data
 	rfbClient* m_client;
-	Quality m_quality;
+	VncConnectionConfiguration::Quality m_quality;
 	QString m_host;
 	int m_port;
 	int m_defaultPort{-1};

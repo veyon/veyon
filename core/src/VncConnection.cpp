@@ -169,7 +169,7 @@ VncConnection::VncConnection( QObject* parent ) :
 	m_framebufferState( FramebufferState::Invalid ),
 	m_controlFlags(),
 	m_client( nullptr ),
-	m_quality(Quality::High),
+	m_quality(VncConnectionConfiguration::Quality::High),
 	m_host(),
 	m_port( -1 ),
 	m_defaultPort( VeyonCore::config().veyonServerPort() ),
@@ -319,7 +319,7 @@ void VncConnection::setPort( int port )
 
 
 
-void VncConnection::setQuality(Quality quality)
+void VncConnection::setQuality(VncConnectionConfiguration::Quality quality)
 {
 	m_quality = quality;
 
@@ -733,7 +733,7 @@ void VncConnection::finishFrameBufferUpdate()
 
 void VncConnection::updateEncodingSettingsFromQuality()
 {
-	m_client->appData.encodingsString = m_quality == Quality::Highest ?
+	m_client->appData.encodingsString = m_quality == VncConnectionConfiguration::Quality::Highest ?
 											"zrle ultra copyrect hextile zlib corre rre raw" :
 											"tight zywrle zrle ultra";
 
@@ -742,16 +742,16 @@ void VncConnection::updateEncodingSettingsFromQuality()
 	m_client->appData.qualityLevel = [this] {
 		switch(m_quality)
 		{
-		case Quality::Highest: return 9;
-		case Quality::High: return 7;
-		case Quality::Medium: return 5;
-		case Quality::Low: return 3;
-		case Quality::Lowest: return 0;
+		case VncConnectionConfiguration::Quality::Highest: return 9;
+		case VncConnectionConfiguration::Quality::High: return 7;
+		case VncConnectionConfiguration::Quality::Medium: return 5;
+		case VncConnectionConfiguration::Quality::Low: return 3;
+		case VncConnectionConfiguration::Quality::Lowest: return 0;
 		}
 		return 5;
 	}();
 
-	m_client->appData.enableJPEG = m_quality != Quality::Highest;
+	m_client->appData.enableJPEG = m_quality != VncConnectionConfiguration::Quality::Highest;
 }
 
 
