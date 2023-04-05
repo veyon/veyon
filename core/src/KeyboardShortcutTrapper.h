@@ -1,7 +1,7 @@
 /*
  * KeyboardShortcutTrapper.h - class for trapping system-wide keyboard shortcuts
  *
- * Copyright (c) 2006-2022 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2006-2023 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

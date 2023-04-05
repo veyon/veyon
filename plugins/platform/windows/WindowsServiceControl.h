@@ -1,7 +1,7 @@
 /*
  * WindowsService.h - class for managing a Windows service
  *
- * Copyright (c) 2017-2022 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2017-2023 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

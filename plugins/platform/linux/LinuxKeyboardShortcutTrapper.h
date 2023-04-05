@@ -1,7 +1,7 @@
 /*
  * LinuxKeyboardShortcutTrapper.h - dummy KeyboardShortcutTrapper implementation 
  *
- * Copyright (c) 2018-2022 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2018-2023 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

@@ -1,7 +1,7 @@
 /*
  * WindowsServiceCore.h - header file for WindowsServiceCore class
  *
- * Copyright (c) 2006-2022 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2006-2023 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

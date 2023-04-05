@@ -1,7 +1,7 @@
 /*
  * GeneralConfigurationPage.h - configuration page with general settings
  *
- * Copyright (c) 2016-2022 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2016-2023 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
