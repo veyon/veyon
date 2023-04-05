@@ -77,6 +77,9 @@ class WebAPIClient(object):
 	def user_information(self):
 		return self.__get('user', self.headers)
 
+	def session_information(self):
+		return self.__get('session', self.headers)
+
 	def wait_for_framebuffer(self, timeout = 30):
 		i = 0
 		while(i < timeout):
