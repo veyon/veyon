@@ -230,7 +230,7 @@ private:
 
 	// connection parameters and data
 	rfbClient* m_client{nullptr};
-	VncConnectionConfiguration::Quality m_quality{VncConnectionConfiguration::Quality::High};
+	VncConnectionConfiguration::Quality m_quality = VncConnectionConfiguration::Quality::Highest;
 	QString m_host{};
 	int m_port{-1};
 	int m_defaultPort{-1};
