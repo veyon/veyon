@@ -187,8 +187,9 @@ private:
 	QVariantList m_screenInfoList;
 	int m_screenInfoListVersion{0};
 
+	QReadWriteLock m_sessionInfoLock;
 	PlatformSessionFunctions::SessionInfo m_sessionInfo{};
-	int m_sessionInfoVersion = 0;
+	QAtomicInt m_sessionInfoVersion = 0;
 	QTimer m_sessionInfoUpdateTimer;
 
 };
