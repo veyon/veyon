@@ -169,7 +169,6 @@ VncConnection::VncConnection( QObject* parent ) :
 	m_framebufferState( FramebufferState::Invalid ),
 	m_controlFlags(),
 	m_client( nullptr ),
-	m_quality(VncConnectionConfiguration::Quality::High),
 	m_host(),
 	m_port( -1 ),
 	m_defaultPort( VeyonCore::config().veyonServerPort() ),
