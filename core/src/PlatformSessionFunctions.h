@@ -32,7 +32,7 @@ class PlatformSessionFunctions
 {
 public:
 	using SessionId = int;
-	using SessionUptime = qint64;
+	using SessionUptime = int;
 
 	struct SessionInfo {
 		SessionId id = InvalidSessionId;

@@ -175,7 +175,7 @@ int LinuxSessionFunctions::getSessionLeaderPid( const QString& session )
 
 
 
-qint64 LinuxSessionFunctions::getSessionUptimeSeconds( const QString& session )
+LinuxSessionFunctions::SessionUptime LinuxSessionFunctions::getSessionUptimeSeconds( const QString& session )
 {
 	const auto sessionUptimeUsec = getSessionProperty( session, QStringLiteral("Timestamp") );
 
@@ -190,7 +190,7 @@ qint64 LinuxSessionFunctions::getSessionUptimeSeconds( const QString& session )
 	const auto currentTimestamp = QDateTime::currentSecsSinceEpoch();
 #endif
 
-	return currentTimestamp - qint64( sessionUptimeUsec.toLongLong() / ( 1000 * 1000 ) );
+	return SessionUptime(currentTimestamp - sessionUptimeUsec.toLongLong() / (1000 * 1000));
 }
 
 
