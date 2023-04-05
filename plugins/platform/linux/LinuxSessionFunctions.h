@@ -81,7 +81,7 @@ public:
 
 	SessionId currentSessionId() override;
 
-	LinuxSessionFunctions::SessionUptime currentSessionUptime() const override;
+	SessionUptime currentSessionUptime() const override;
 	QString currentSessionClientAddress() const override;
 	QString currentSessionClientName() const override;
 	QString currentSessionHostName() const override;
@@ -94,7 +94,7 @@ public:
 	static QVariant getSessionProperty(const QString& session, const QString& property, bool logErrors = true);
 
 	static int getSessionLeaderPid( const QString& session );
-	static qint64 getSessionUptimeSeconds( const QString& session );
+	static SessionUptime getSessionUptimeSeconds( const QString& session );
 	static Class getSessionClass( const QString& session );
 	static Type getSessionType( const QString& session );
 	static QString getSessionId(const QString& session, bool logErrors = true);

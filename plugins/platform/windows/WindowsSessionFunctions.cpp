@@ -46,7 +46,7 @@ WindowsSessionFunctions::SessionId WindowsSessionFunctions::currentSessionId()
 WindowsSessionFunctions::SessionUptime WindowsSessionFunctions::currentSessionUptime() const
 {
 	return WtsSessionManager::querySessionInformation(WtsSessionManager::currentSession(),
-													  WtsSessionManager::SessionInfo::SessionUptime).toLongLong();
+													  WtsSessionManager::SessionInfo::SessionUptime).toInt();
 }
 
 

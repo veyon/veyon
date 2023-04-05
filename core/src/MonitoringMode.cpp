@@ -184,7 +184,7 @@ bool MonitoringMode::handleFeatureMessage( ComputerControlInterface::Pointer com
 	{
 		computerControlInterface->setSessionInfo(PlatformSessionFunctions::SessionInfo{
 													 message.argument(Argument::SessionId).toInt(),
-													 message.argument(Argument::SessionUptime).toLongLong(),
+													 message.argument(Argument::SessionUptime).toInt(),
 													 message.argument(Argument::SessionClientAddress).toString(),
 													 message.argument(Argument::SessionClientName).toString(),
 													 message.argument(Argument::SessionHostName).toString()
