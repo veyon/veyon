@@ -27,6 +27,7 @@
 #include <QtHttpServer/qhttpserverfutureresponse.h>
 #endif
 #include <QJsonDocument>
+#include <QSslCertificate>
 #include <QSslKey>
 
 #include "Filesystem.h"
