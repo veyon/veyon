@@ -1,7 +1,7 @@
 /*
  * TestingCommandLinePlugin.h - declaration of TestingCommandLinePlugin class
  *
- * Copyright (c) 2017-2022 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2017-2023 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

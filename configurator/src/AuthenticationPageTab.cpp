@@ -1,7 +1,7 @@
 /*
  * AuthenticationPageTab.cpp - implementation of the AuthenticationPageTab class
  *
- * Copyright (c) 2020-2022 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2020-2023 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

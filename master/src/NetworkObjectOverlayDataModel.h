@@ -1,7 +1,7 @@
 /*
  * NetworkObjectOverlayDataModel.h - overlay model for NetworkObjectModel to provide extra data
  *
- * Copyright (c) 2017-2022 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2017-2023 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

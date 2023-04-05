@@ -1,7 +1,7 @@
 /*
  * X11VncConfigurationWidget.h - header for the X11VncConfigurationWidget class
  *
- * Copyright (c) 2017-2022 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2017-2023 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

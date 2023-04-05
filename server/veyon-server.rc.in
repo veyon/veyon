@@ -20,7 +20,7 @@ BEGIN
       VALUE "ProductVersion",	"@VERSION_STRING@\0"
       VALUE "FileDescription",	"Veyon Server\0"
       VALUE "FileVersion",	"@VERSION_STRING@\0"
-      VALUE "LegalCopyright",	"Copyright (c) 2017-2022 Veyon Solutions / Tobias Junghans\0"
+      VALUE "LegalCopyright",	"Copyright (c) 2017-2023 Veyon Solutions / Tobias Junghans\0"
       VALUE "OriginalFilename",	"veyon-server.exe\0"
     END
   END

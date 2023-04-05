@@ -1,7 +1,7 @@
 /*
  * VncViewItem.h - QtQuick VNC view item
  *
- * Copyright (c) 2019-2022 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2019-2023 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

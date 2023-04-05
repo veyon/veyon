@@ -23,7 +23,7 @@
 #	 The LibVNCClient library
 
 #=============================================================================
-# SPDX-FileCopyrightText: 2020-2022 Tobias Junghans <tobydox@veyon.io>
+# SPDX-FileCopyrightText: 2020-2023 Tobias Junghans <tobydox@veyon.io>
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #=============================================================================

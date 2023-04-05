@@ -149,7 +149,7 @@
        <item row="3" column="0" colspan="2">
         <widget class="QLabel" name="label_8">
          <property name="text">
-          <string notr="true">Copyright © 2004-2022 Tobias Junghans / Veyon Solutions</string>
+          <string notr="true">Copyright © 2004-2023 Tobias Junghans / Veyon Solutions</string>
          </property>
         </widget>
        </item>
