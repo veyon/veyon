@@ -288,12 +288,13 @@ void MonitoringMode::sendAsyncFeatureMessages(VeyonServerInterface& server, cons
 		messageContext.ioDevice()->setProperty(userInfoVersionProperty(), currentUserInfoVersion);
 	}
 
+	const auto currentSessionInfoVersion = m_sessionInfoVersion.loadAcquire();
 	const auto sessionInfoVersion = messageContext.ioDevice()->property(sessionInfoVersionProperty()).toInt();
 
-	if (sessionInfoVersion != m_sessionInfoVersion)
+	if (sessionInfoVersion != currentSessionInfoVersion)
 	{
 		sendSessionInfo(server, messageContext);
-		messageContext.ioDevice()->setProperty(sessionInfoVersionProperty(), m_sessionInfoVersion);
+		messageContext.ioDevice()->setProperty(sessionInfoVersionProperty(), currentSessionInfoVersion);
 	}
 
 	const auto screenInfoVersion = messageContext.ioDevice()->property(screenInfoListVersionProperty()).toInt();
@@ -342,11 +343,14 @@ bool MonitoringMode::sendUserInformation(VeyonServerInterface& server, const Mes
 bool MonitoringMode::sendSessionInfo(VeyonServerInterface& server, const MessageContext& messageContext)
 {
 	FeatureMessage message{m_querySessionInfoFeature.uid()};
+
+	m_sessionInfoLock.lockForRead();
 	message.addArgument(Argument::SessionId, m_sessionInfo.id);
 	message.addArgument(Argument::SessionUptime, m_sessionInfo.uptime);
 	message.addArgument(Argument::SessionClientAddress, m_sessionInfo.clientAddress);
 	message.addArgument(Argument::SessionClientName, m_sessionInfo.clientName);
 	message.addArgument(Argument::SessionHostName, m_sessionInfo.hostName);
+	m_sessionInfoLock.unlock();
 
 	return server.sendFeatureMessageReply(messageContext,message);
 }
@@ -413,19 +417,23 @@ void MonitoringMode::updateUserData()
 
 void MonitoringMode::updateSessionInfo()
 {
-	const PlatformSessionFunctions::SessionInfo currentSessionInfo{
-		VeyonCore::sessionId(),
-				VeyonCore::platform().sessionFunctions().currentSessionUptime(),
-				VeyonCore::platform().sessionFunctions().currentSessionClientAddress(),
-				VeyonCore::platform().sessionFunctions().currentSessionClientName(),
-				VeyonCore::platform().sessionFunctions().currentSessionHostName()
-	};
+	(void) QtConcurrent::run([=]() {
+		const PlatformSessionFunctions::SessionInfo currentSessionInfo{
+			VeyonCore::sessionId(),
+					VeyonCore::platform().sessionFunctions().currentSessionUptime(),
+					VeyonCore::platform().sessionFunctions().currentSessionClientAddress(),
+					VeyonCore::platform().sessionFunctions().currentSessionClientName(),
+					VeyonCore::platform().sessionFunctions().currentSessionHostName()
+		};
 
-	if (currentSessionInfo != m_sessionInfo)
-	{
-		m_sessionInfo = currentSessionInfo;
-		++m_sessionInfoVersion;
-	}
+		m_sessionInfoLock.lockForWrite();
+		if (currentSessionInfo != m_sessionInfo)
+		{
+			m_sessionInfo = currentSessionInfo;
+			++m_sessionInfoVersion;
+		}
+		m_sessionInfoLock.unlock();
+	});
 }
 
 
