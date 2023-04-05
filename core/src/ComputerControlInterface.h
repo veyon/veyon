@@ -164,6 +164,7 @@ public:
 private:
 	void ping();
 	void setMinimumFramebufferUpdateInterval();
+	void setQuality();
 	void resetWatchdog();
 	void restartConnection();
 
