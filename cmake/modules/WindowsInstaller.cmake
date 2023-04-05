@@ -52,6 +52,7 @@ add_custom_target(windows-binaries
 				${DLLDIR}/Qt6Widgets.dll
 				${DLLDIR}/Qt6Network.dll
 				${DLLDIR}/Qt6Concurrent.dll
+				${DLLDIR}/Qt6HttpServer.dll
 			${WINDOWS_INSTALL_FILES}
 	COMMAND mkdir -p ${WINDOWS_INSTALL_FILES}/imageformats
 	COMMAND cp ${MINGW_PREFIX}/plugins/imageformats/qjpeg.dll ${WINDOWS_INSTALL_FILES}/imageformats
