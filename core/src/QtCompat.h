@@ -55,6 +55,29 @@ static inline QList<T> qlistFromSet(const QSet<T>& set)
 }
 
 
+template <typename T, typename Predicate>
+static inline void qsetRemoveIf(QSet<T>& set, Predicate pred)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 1, 0)
+	set.removeIf(pred);
+#else
+	auto it = set.begin();
+	const auto e = set.end();
+	while (it != e)
+	{
+		if (pred(*it))
+		{
+			it = set.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+#endif
+}
+
+
 #if QT_VERSION < QT_VERSION_CHECK(5, 13, 0)
 #define Q_DISABLE_MOVE(Class) \
 	Class(const Class &&) Q_DECL_EQ_DELETE;\
