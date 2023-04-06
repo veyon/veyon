@@ -33,15 +33,27 @@
 #error Qt < 5.7 not supported
 #endif
 
-template<class A, class B>
-static inline bool intersects( const QSet<A>& a, const QSet<B>& b )
+template<class T>
+static inline QSet<T> qsetFromList(const QList<T>& list)
 {
-#if QT_VERSION < QT_VERSION_CHECK(5, 6, 0)
-	return QSet<A>( a ).intersect( b ).isEmpty() == false;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+	return QSet<T>(list.constBegin(), list.constEnd());
 #else
-	return a.intersects( b );
+	return list.toSet();
 #endif
 }
+
+
+template<class T>
+static inline QList<T> qlistFromSet(const QSet<T>& set)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+	return QList<T>(set.constBegin(), set.constEnd());
+#else
+	return set.toList();
+#endif
+}
+
 
 #if QT_VERSION < QT_VERSION_CHECK(5, 13, 0)
 #define Q_DISABLE_MOVE(Class) \
