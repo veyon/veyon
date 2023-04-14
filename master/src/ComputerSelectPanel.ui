@@ -31,7 +31,7 @@
    <item>
     <widget class="QLineEdit" name="filterLineEdit">
      <property name="placeholderText">
-      <string>Computer search</string>
+      <string>Search computers</string>
      </property>
     </widget>
    </item>
