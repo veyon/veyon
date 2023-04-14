@@ -11,6 +11,9 @@
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>
      </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
      <property name="animated">
       <bool>true</bool>
      </property>
@@ -21,7 +24,7 @@
       <number>180</number>
      </attribute>
      <attribute name="headerShowSortIndicator" stdset="0">
-      <bool>false</bool>
+      <bool>true</bool>
      </attribute>
     </widget>
    </item>
