@@ -115,7 +115,7 @@
           <item row="0" column="0">
            <widget class="QLabel" name="label_13">
             <property name="text">
-             <string>Monitoring image quality</string>
+             <string>Image quality in monitoring mode</string>
             </property>
            </widget>
           </item>
