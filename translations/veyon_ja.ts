@@ -1126,13 +1126,21 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>このコンピューターの場所を特定できませんでした。これは、システム構成に問題があることを示しています。 代わりに、すべての場所がコンピューターの選択パネルに表示されます。</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer search</source>
-        <translation>コンピューターを検索</translation>
-    </message>
     <message>
         <source>Add location</source>
         <translation>場所を追加</translation>
@@ -1156,6 +1164,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>コンピュータとユーザのリストを %1 に書き込めません! ファイルのアクセス許可を確認してください。</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1267,11 +1279,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>デモサーバー</translation>
+        <translation>デモサーバ</translation>
     </message>
     <message>
         <source>Tunables</source>
-        <translation>調整可能</translation>
+        <translation>チューニング</translation>
     </message>
     <message>
         <source> ms</source>
@@ -1300,6 +1312,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>デモの実行中はサムネイルの更新を遅くする</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1943,6 +1963,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Authentication test</source>
         <translation>認証テスト</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2711,12 +2739,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>構成</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>バルーン通知を無効</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>アイコンのみ表示</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3095,6 +3123,34 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Open feature windows on the same screen as the main window</source>
         <translation>メインウィンドウと同じ画面で機能ウィンドウを開く</translation>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3671,7 +3727,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Internal VNC server</source>
-        <translation>内部VNCサーバー</translation>
+        <translation>内部VNCサーバ</translation>
     </message>
     <message>
         <source>Feature manager</source>
@@ -3679,7 +3735,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Demo server</source>
-        <translation>デモサーバー</translation>
+        <translation>デモサーバ</translation>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
@@ -3849,7 +3905,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>例:&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+        <translation>（例）&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
     <message>
         <source>Remember and add to application menu</source>
@@ -3932,7 +3988,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
-        <translation>ポーリングフルスクリーン（デフォルトで有効のまま）</translation>
+        <translation>フルスクリーンでポーリング（デフォルトで有効のまま）</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
@@ -4231,9 +4287,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation>代替のユーザー認証機構を使用する
-
-</translation>
+        <translation>代替のユーザー認証機構を使用する</translation>
     </message>
     <message>
         <source>User login</source>

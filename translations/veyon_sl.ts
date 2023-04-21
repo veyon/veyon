@@ -1125,13 +1125,21 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>Ne morem določiti lokacije tega računalnika. To kaže na težavo s konfiguracijo sistema. Namesto tega bodo v izbranem oknu računalnika prikazane vse lokacije.</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer search</source>
-        <translation>Preišči računalnik</translation>
-    </message>
     <message>
         <source>Add location</source>
         <translation>Dodaj lokacijo</translation>
@@ -1155,6 +1163,10 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Računalnika in uporabnikov ni mogoče vpisati v seznam %1! Preverite dovoljenja za dostop do datotek.</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1298,6 +1310,14 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> MB/s</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1942,6 +1962,14 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>Authentication test</source>
         <translation>Preverjanje pristnosti</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2729,12 +2757,12 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Nastavitve</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>Onemogoči namige v balončkih </translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>Prikaži samo ikone</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3112,6 +3140,34 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
         <translation type="unfinished"/>
     </message>
 </context>

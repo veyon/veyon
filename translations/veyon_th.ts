@@ -1123,13 +1123,21 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer search</source>
-        <translation>การค้นหาคอมพิวเตอร์</translation>
-    </message>
     <message>
         <source>Add location</source>
         <translation>เพิ่มสถานที่</translation>
@@ -1152,6 +1160,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Search computers</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1298,6 +1310,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>ลดความเร็วการอัปเดตภาพทัมเนลลงเมื่ออยู่ในโหมดสาธิต</translation>
     </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
@@ -1367,7 +1387,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>หน้าจอทั้งหมด</translation>
     </message>
 </context>
 <context>
@@ -1441,7 +1461,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>New application</source>
-        <translation type="unfinished"/>
+        <translation>แอพพลิเคชั่นใหม่</translation>
     </message>
 </context>
 <context>
@@ -1464,7 +1484,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>เริ่มแอพพลิเคชั่น</translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
@@ -1596,11 +1616,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Lock the screen</source>
-        <translation type="unfinished"/>
+        <translation>ล็อกหน้าจอ</translation>
     </message>
     <message>
         <source>Display a text message</source>
-        <translation type="unfinished"/>
+        <translation>แสดงข้อความตัวอักษร</translation>
     </message>
     <message>
         <source>Test message</source>
@@ -1616,7 +1636,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Unlock the screen</source>
-        <translation type="unfinished"/>
+        <translation>ปลดล็อกหน้าจอ</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
@@ -1941,6 +1961,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Authentication test</source>
         <translation>การทดสอบการยืนยันตัวตน</translation>
     </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>HeadlessVncServer</name>
@@ -2248,7 +2276,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer not found</source>
-        <translation type="unfinished"/>
+        <translation>ไม่พบคอมพิวเตอร์</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2708,12 +2736,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>แสดงไอคอนเท่านั้น</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3093,6 +3121,34 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Open feature windows on the same screen as the main window</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Highest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3460,7 +3516,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
+        <translation>กำลังเชื่อมต่อ...</translation>
     </message>
     <message>
         <source>Select screen</source>
@@ -3468,7 +3524,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>หน้าจอทั้งหมด</translation>
     </message>
 </context>
 <context>
@@ -3838,7 +3894,7 @@ Typically this is required to support terminal servers.</source>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>เริ่มแอพพลิเคชั่น</translation>
     </message>
     <message>
         <source>Name:</source>

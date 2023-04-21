@@ -611,11 +611,11 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Este comando exporta a chave de autenticação de &lt;KEY&gt; de &lt;FILE&gt;. Se &lt;FILE&gt; não tiver um nome especificado será atribuído o nome e tipo de &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Este comando importa a chave de autenticação de&lt;KEY&gt; de &lt;FILE&gt;. Se &lt;FILE&gt; não tiver um nome especificado será atribuído o nome e tipo de &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
@@ -631,7 +631,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Linha de comando suporta gerenciamento de chaves de autenticação.</translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
@@ -651,15 +651,15 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation type="unfinished"/>
+        <translation>Por favor, especifique o nome da chave (ex. &quot;Professor/público&quot;) como primeiro argumento.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Por favor, especifique o comando para o qual quer exibir ajuda.</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>O comando especificado não existe ou não possui ajuda disponível.</translation>
     </message>
 </context>
 <context>
@@ -733,7 +733,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>A importação de arquivos CSV é possível através da interface de linha de comando. Para mais informações, consulte a seção &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt; da documentação online.&lt;/a&gt;</translation>
     </message>
     <message>
         <source>New location</source>
@@ -984,7 +984,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>O comando especificado não existe ou não possui ajuda disponível.</translation>
     </message>
 </context>
 <context>
@@ -1125,13 +1125,21 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer search</source>
-        <translation>Pesquisa de computador</translation>
-    </message>
     <message>
         <source>Add location</source>
         <translation>Adicionar local</translation>
@@ -1155,6 +1163,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Não foi possível salvar a lista de computadores e usuários em %1! Verifique as permissões de acesso ao arquivo.</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1299,6 +1311,14 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Diminua a velocidade das atualizações de miniaturas enquanto a demonstração está em execução</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1574,7 +1594,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Por favor, especifique o comando para o qual quer exibir ajuda.</translation>
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
@@ -1622,7 +1642,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>O comando especificado não existe ou não possui ajuda disponível.</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1942,6 +1962,14 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Authentication test</source>
         <translation>Teste de autenticação</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2715,12 +2743,12 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Configuração</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>Desativar balões tooltip</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>Exibir apenas ícones</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3098,6 +3126,34 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
         <translation type="unfinished"/>
     </message>
 </context>

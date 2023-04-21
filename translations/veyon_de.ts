@@ -1122,13 +1122,21 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>Der Standort dieses Computers konnte nicht ermittelt werden. Das deutet auf ein Problem mit der Systemkonfiguration hin. Stattdessen werden alle Standorte im Computerauswahlbedienfeld angezeigt.</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation>Angemeldet seit</translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation>%1 Tage</translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation>1 Tag</translation>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer search</source>
-        <translation>Computersuche</translation>
-    </message>
     <message>
         <source>Add location</source>
         <translation>Standort hinzufügen</translation>
@@ -1152,6 +1160,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Die Computer- und Benutzerliste konnte nicht in die Datei %1 geschrieben werden. Bitte überprüfen Sie die Dateizugriffsrechte.</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation>Computer suchen</translation>
     </message>
 </context>
 <context>
@@ -1296,6 +1308,14 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Miniaturbildaktualisierungen während laufender Demo verlangsamen</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation>Bandbreitenbeschränkung</translation>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation>MB/s</translation>
     </message>
 </context>
 <context>
@@ -1939,6 +1959,14 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Authentication test</source>
         <translation>Authentifizierungstest</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation>Stil:</translation>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation>Nativ</translation>
     </message>
 </context>
 <context>
@@ -2726,12 +2754,12 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Konfiguration</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>Balloon-Tooltips deaktivieren</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>Nur Icons anzeigen</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation>Tooltips deaktivieren</translation>
     </message>
 </context>
 <context>
@@ -3110,6 +3138,34 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Open feature windows on the same screen as the main window</source>
         <translation>Funktionsfenster auf dem gleichen Bildschirm wie der des Hauptfensters öffnen</translation>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation>Höchste</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation>Hoch</translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation>Mittel</translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation>Niedrig</translation>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation>Niedrigste</translation>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation>Bildqualität beim Fernzugriff</translation>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation>Bildqualität im Beobachtungsmodus</translation>
     </message>
 </context>
 <context>

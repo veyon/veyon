@@ -1125,13 +1125,21 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>Selle arvuti asukohta ei õnnestunud kindlaks teha. See viitab probleemile süsteemi konfiguratsioonis. Kõik asukohad kuvatakse selle asemel arvuti valimise paneelil.</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation>Sisse logitud alates</translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation>%1 päeva</translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation>1 päev</translation>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer search</source>
-        <translation>Arvuti otsing</translation>
-    </message>
     <message>
         <source>Add location</source>
         <translation>Lisa asukoht</translation>
@@ -1155,6 +1163,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Arvutit ja kasutajate loendi %1 kirjutamine nurjus! Kontrollige failidele juurdepääsu õigusi.</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1299,6 +1311,14 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Demo töötamise ajal vähendage pisipiltide värskendussagedustt</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation>Ribalaiuse piirang</translation>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation> MB/s</translation>
     </message>
 </context>
 <context>
@@ -1586,7 +1606,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>FEATURE</source>
-        <translation>Tunnusjoon</translation>
+        <translation>TUNNUSJOON</translation>
     </message>
     <message>
         <source>ARGUMENTS</source>
@@ -1942,6 +1962,14 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Authentication test</source>
         <translation>Autentimistest</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation>Stiil:</translation>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation>Kohalik</translation>
     </message>
 </context>
 <context>
@@ -2729,12 +2757,12 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Konfiguratsioon</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>Keelake tööriistavihjed</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>Kuva ainult ikoone</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation>Keela tööriistavihjed</translation>
     </message>
 </context>
 <context>
@@ -3113,6 +3141,34 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Open feature windows on the same screen as the main window</source>
         <translation>Avage funktsiooniaknad peaaknaga samal ekraanil</translation>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation>Kõrgeim</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation>Kõrge</translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation>Keskmine</translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation>Madal</translation>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation>Madalaim</translation>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

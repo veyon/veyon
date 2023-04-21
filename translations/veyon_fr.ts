@@ -1125,13 +1125,21 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>Impossible de déterminer l&apos;emplacement de cet ordinateur. Cela indique un problème de configuration du système. A la place, tous les emplacements seront affichés dans le panneau de sélection de l&apos;ordinateur.</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation>Connecté depuis</translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation>%1 jours</translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation>1 jour</translation>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer search</source>
-        <translation>Recherche d&apos;ordinateur</translation>
-    </message>
     <message>
         <source>Add location</source>
         <translation>Ajouter un emplacement</translation>
@@ -1155,6 +1163,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Impossible d&apos;écrire la liste des ordinateurs et des utilisateurs dans %1! Vérifiez le fichier des permissions d&apos;accès.</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation>Chercher des ordinateurs</translation>
     </message>
 </context>
 <context>
@@ -1299,6 +1311,14 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Ralentir la mise à jour des vignettes lorsque qu&apos;une démo est en cours d&apos;exécution</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation>Limite de bande passante</translation>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation>Mo/s</translation>
     </message>
 </context>
 <context>
@@ -1942,6 +1962,14 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Authentication test</source>
         <translation>Test d&apos;authentification</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation>Style:</translation>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation>Natif</translation>
     </message>
 </context>
 <context>
@@ -2729,12 +2757,12 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Configuration</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>Désactiver les info-bulles</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>Afficher seulement les icônes</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation>Désactiver les info-bulles</translation>
     </message>
 </context>
 <context>
@@ -3113,6 +3141,34 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Open feature windows on the same screen as the main window</source>
         <translation>Ouvrir les fenêtres de fonctionnalités sur le même écran que la fenêtre principale</translation>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation>Supérieure</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation>Élevée</translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation>Moyenne</translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation>Basse</translation>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation>La plus basse</translation>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation>Qualité de l&apos;image de l&apos;accès à distance</translation>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation>Qualité d&apos;image en mode surveillance</translation>
     </message>
 </context>
 <context>

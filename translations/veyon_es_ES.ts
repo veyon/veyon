@@ -1127,13 +1127,21 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>No se pudo determinar la ubicación de este equipo. Esto indica un problema con la configuración del sistema. En su lugar, se mostrarán todas las ubicaciones en el panel de selección del equipo.</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation>Conectado desde</translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation>%1 días</translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation>1 día</translation>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer search</source>
-        <translation>Búsqueda de equipos</translation>
-    </message>
     <message>
         <source>Add location</source>
         <translation>Añadir ubicación</translation>
@@ -1157,6 +1165,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>No se pudo escribir la lista de equipos y usuarios en %1. Por favor, compruebe los permisos de acceso al archivo.</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation>Buscar equipos</translation>
     </message>
 </context>
 <context>
@@ -1301,6 +1313,14 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Ralentizar las actualizaciones de miniaturas mientras se ejecuta la demostración</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation>Límite de ancho de banda</translation>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation>MB/s</translation>
     </message>
 </context>
 <context>
@@ -1944,6 +1964,14 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Authentication test</source>
         <translation>Prueba de autenticacion</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation>Estilo:</translation>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation>Nativo</translation>
     </message>
 </context>
 <context>
@@ -2731,12 +2759,12 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Configuración</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>Desactivar ayudas en globos</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>Mostrar solo iconos</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation>Desactivar los tooltips</translation>
     </message>
 </context>
 <context>
@@ -3115,6 +3143,34 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Open feature windows on the same screen as the main window</source>
         <translation>Abrir ventanas de funciones en la misma pantalla que la ventana principal</translation>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation>Más alto</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation>Alto</translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation>Medio</translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation>Bajo</translation>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation>El más bajo</translation>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation>Calidad de imagen de acceso remoto</translation>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation>Calidad de imagen en modo de monitoreo</translation>
     </message>
 </context>
 <context>

@@ -1125,13 +1125,21 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>無法確定這部電腦的位置。 這表示系統組態有問題。 所有位置將顯示在電腦選取面板中。</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation>登入自</translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation>%1 天</translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation>1 天</translation>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer search</source>
-        <translation>電腦搜尋</translation>
-    </message>
     <message>
         <source>Add location</source>
         <translation>加入位置</translation>
@@ -1155,6 +1163,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>無法寫入電腦和使用者清單到 %1! 請檢查檔案的存取權限。</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1299,6 +1311,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>示範執行時，縮圖更新速度變慢</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation>頻寬限制</translation>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation> MB/秒</translation>
     </message>
 </context>
 <context>
@@ -1594,7 +1614,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
-        <translation>透過連線到遠端執行的 veyon 伺服器來啟動指定主機的指定功能。 該功能可以由名稱或 UID 指定。 使用「show」命令查看所有的可用功能。 根據功能，必須指定編碼為單一 JSON 字串的附加引數 (比如顯示的文字訊息)。 請參閱開發人員文件取得更多資訊</translation>
+        <translation>透過連線到遠端執行的 Veyon 伺服器來啟動指定主機的指定功能。 該功能可以由名稱或 UID 指定。 使用「show」命令查看所有的可用功能。 根據功能，必須指定編碼為單一 JSON 字串的附加引數 (比如顯示的文字訊息)。 請參閱開發人員文件取得更多資訊</translation>
     </message>
     <message>
         <source>Lock the screen</source>
@@ -1614,7 +1634,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
-        <translation>透過連線到遠端執行的 veyon 伺服器來停止指定主機的指定功能。 該功能可以由名稱或 UID 指定。 使用「show」命令查看所有的可用功能。</translation>
+        <translation>透過連線到遠端執行的 Veyon 伺服器來停止指定主機的指定功能。 該功能可以由名稱或 UID 指定。 使用「show」命令查看所有的可用功能。</translation>
     </message>
     <message>
         <source>Unlock the screen</source>
@@ -1942,6 +1962,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Authentication test</source>
         <translation>身份驗證測試</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation>樣式:</translation>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation>原生</translation>
     </message>
 </context>
 <context>
@@ -2729,12 +2757,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>組態</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>停用氣球工具提示</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>只顯示圖示</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation>停用工具提示</translation>
     </message>
 </context>
 <context>
@@ -2925,7 +2953,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation>地點 &amp;&amp; 電腦</translation>
+        <translation>地點 &amp;&amp;&amp; 電腦</translation>
     </message>
     <message>
         <source>Slideshow</source>
@@ -3113,6 +3141,34 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Open feature windows on the same screen as the main window</source>
         <translation>在與主視窗同一螢幕上開啟功能視窗</translation>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation>最高</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation>高</translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation>中</translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation>低</translation>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation>最低</translation>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3400,7 +3456,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
-        <translation>未選取電腦，因此您可以輸入電腦主機名稱或 IP 地址以進行手動存取:</translation>
+        <translation>未選取電腦，因此您可以輸入電腦的主機名稱或 IP 地址以手動存取:</translation>
     </message>
 </context>
 <context>

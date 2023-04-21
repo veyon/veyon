@@ -23,7 +23,7 @@
     </message>
     <message>
         <source>Version:</source>
-        <translation>Versie</translation>
+        <translation>Versie:</translation>
     </message>
     <message>
         <source>Website:</source>
@@ -35,7 +35,7 @@
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
         <translation>Huidige taal is nog niet vertaald (of in moedertaal English).
 
-Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een andere taal of de vertaling wilt verbeteren, neem dan contact op met een Veyon ontwikkelaar!</translation>
+Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een andere taal of je de vertaling wilt verbeteren, neem dan contact op met een Veyon ontwikkelaar!</translation>
     </message>
     <message>
         <source>About %1 %2</source>
@@ -1122,13 +1122,21 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer search</source>
-        <translation>Computer zoeken</translation>
-    </message>
     <message>
         <source>Add location</source>
         <translation type="unfinished"/>
@@ -1152,6 +1160,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Kon de computer en gebruikerslijst niet schrijven naar %1! Controleer de toegangsrechten voor het bestand.</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1295,6 +1307,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> MB/s</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1938,6 +1958,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication test</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Native</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2714,12 +2742,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Configuratie</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>Schakel ballontooltips uit</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>Toon enkel iconen</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3097,6 +3125,34 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
         <translation type="unfinished"/>
     </message>
 </context>

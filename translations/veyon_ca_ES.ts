@@ -1125,13 +1125,21 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>No s&apos;ha pogut determinar la ubicació d&apos;aquest ordinador. Això indica un problema amb la configuració del sistema. Totes les ubicacions es mostraran al plafó de selecció de l&apos;ordinador.</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer search</source>
-        <translation>Cerca per ordinador</translation>
-    </message>
     <message>
         <source>Add location</source>
         <translation>Afegeix una ubicació</translation>
@@ -1155,6 +1163,10 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>No s&apos;ha pogut escriure la llista d&apos;ordinadors i usuaris a %1! Comproveu els permisos d&apos;accés als fitxers.</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1299,6 +1311,14 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Alenteix les actualitzacions de miniatures mentre s&apos;està executant la demostració</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1942,6 +1962,14 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     <message>
         <source>Authentication test</source>
         <translation>Prova d&apos;autenticació</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2729,12 +2757,12 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
         <translation>Configuració</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>Desactiva els consells d&apos;eina de globus</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>Mostra només les icones</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3113,6 +3141,34 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     <message>
         <source>Open feature windows on the same screen as the main window</source>
         <translation>Obre les finestres de les característiques a la mateixa pantalla que la finestra principal</translation>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -1125,13 +1125,21 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>Nie można określić lokalizacji tego komputera. Wskazuje to na problem z konfiguracją systemu. W panelu wyboru komputera pokazane zostaną wszystkie lokalizacje.</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer search</source>
-        <translation>Znajdź komputer</translation>
-    </message>
     <message>
         <source>Add location</source>
         <translation>Dodaj lokalizację</translation>
@@ -1155,6 +1163,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Nie można zapisać listy komputerów i użytkowników w %1! Sprawdź prawa dostępu do pliku</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1299,6 +1311,14 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Spowalniaj aktualizacje miniatur podczas działania wersji demonstracyjnej</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1942,6 +1962,14 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Authentication test</source>
         <translation>Test uwierzytelnienia</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2724,12 +2752,12 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Konfiguracja</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>Wyłącz dymki z podpowiedziami</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>Pokaż tylko ikony</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3108,6 +3136,34 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Open feature windows on the same screen as the main window</source>
         <translation>Otwieraj okna funkcji na tym samym ekranie, co okno główne </translation>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

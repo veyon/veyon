@@ -1122,13 +1122,21 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>Impossibile determinare la posizione di questo computer. Questo indica un problema con la configurazione del sistema. Tutte le posizioni verranno visualizzate nel pannello di selezione del computer.</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation>Collegato dal</translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation>%1 giorni</translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation>1 giorno</translation>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
-    <message>
-        <source>Computer search</source>
-        <translation>Ricerca computer</translation>
-    </message>
     <message>
         <source>Add location</source>
         <translation>Aggiungi posizione</translation>
@@ -1152,6 +1160,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Impossibile scrivere l&apos;elenco computer e utenti su %1! Controllare i permessi di accesso al file.</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation>Cerca computer</translation>
     </message>
 </context>
 <context>
@@ -1296,6 +1308,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Rallenta gli aggiornamenti delle miniature mentre la demo è in esecuzione</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation>Limite di larghezza di banda</translation>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation>MB/s</translation>
     </message>
 </context>
 <context>
@@ -1939,6 +1959,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Authentication test</source>
         <translation>Test di autenticazione</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation>Stile:</translation>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation>Nativo</translation>
     </message>
 </context>
 <context>
@@ -2716,12 +2744,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Configurazione</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>Disabilita tooltip dei palloncini</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>Mostra solamente le icone</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation>Disabilita i tooltip</translation>
     </message>
 </context>
 <context>
@@ -3100,6 +3128,34 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Open feature windows on the same screen as the main window</source>
         <translation>Apri le finestre delle funzioni sulla stessa schermata della finestra principale</translation>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation>Più alto</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation>Alta</translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation>Media</translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation>Bassa</translation>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation>Minima</translation>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation>Qualità dell&apos;immagine per l&apos;accesso remoto</translation>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation>Qualità dell&apos;immagine in modalità di monitoraggio</translation>
     </message>
 </context>
 <context>
