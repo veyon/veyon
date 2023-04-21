@@ -417,6 +417,7 @@ void ComputerControlListModel::stopComputerControlInterface( const ComputerContr
 {
 	m_master->stopAllFeatures( { controlInterface } );
 
+	controlInterface->disconnect(this);
 	controlInterface->disconnect( &m_master->computerManager() );
 
 	controlInterface->setUserInformation({}, {});
