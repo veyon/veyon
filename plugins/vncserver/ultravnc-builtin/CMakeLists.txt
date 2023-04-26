@@ -25,7 +25,6 @@ set(ultravnc_CXX_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/HideDesktop.cpp
 	${ultravnc_DIR}/winvnc/winvnc/inifile.cpp
 	${ultravnc_DIR}/winvnc/winvnc/IPC.cpp
-	${ultravnc_DIR}/winvnc/winvnc/LayeredWindows.cpp
 	${ultravnc_DIR}/winvnc/winvnc/MouseSimulator.cpp
 	${ultravnc_DIR}/winvnc/winvnc/rfbRegion_win32.cpp
 	${ultravnc_DIR}/winvnc/winvnc/rfbUpdateTracker.cpp
