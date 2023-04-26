@@ -186,6 +186,9 @@ SetOutPath "$INSTDIR\platforms"
 File "platforms/qwindows.dll"
 SetOutPath "$INSTDIR\styles"
 File "styles/*.dll"
+# Qt TLS backend
+SetOutPath "$INSTDIR\tls"
+File "tls/qopensslbackend.dll"
 # configuration
 ExecWait '"$INSTDIR\veyon-wcli.exe" service register'
 ExecWait '"$INSTDIR\veyon-wcli.exe" config set Network/FirewallExceptionEnabled 1'
