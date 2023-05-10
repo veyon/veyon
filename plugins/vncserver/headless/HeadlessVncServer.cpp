@@ -28,6 +28,8 @@ extern "C" {
 
 #include <array>
 
+#include <QImage>
+
 #include "HeadlessVncServer.h"
 #include "VeyonConfiguration.h"
 
