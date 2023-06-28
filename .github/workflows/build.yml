@@ -5,7 +5,7 @@ jobs:
     strategy:
       matrix:
         dist:
-          - debian.buster
+          - debian.bookworm
           - fedora.36
           - opensuse.tumbleweed
           - ubuntu.focal
