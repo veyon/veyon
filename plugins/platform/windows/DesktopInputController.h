@@ -26,12 +26,11 @@
 
 #include <QMutex>
 #include <QQueue>
-#include <QThread>
 #include <QWaitCondition>
 
 // clazy:excludeall=copyable-polymorphic
 
-class DesktopInputController : public QThread
+class DesktopInputController : public QObject
 {
 	Q_OBJECT
 public:
@@ -48,16 +47,17 @@ public:
 	void pressAndReleaseKey( QChar character );
 	void pressAndReleaseKey( QLatin1Char character );
 
-protected:
-	void run() override;
-
 private:
+	DWORD run();
+
 	static constexpr int ThreadStopTimeout = 3000;
 	static constexpr int ThreadSleepInterval = 100;
 
+	HANDLE m_threadHandle = 0;
 	QMutex m_dataMutex;
 	QQueue<QPair<KeyCode, bool> > m_keys;
 	QWaitCondition m_inputWaitCondition;
+	QAtomicInt m_requestStop;
 
 	unsigned long m_keyEventInterval;
 
