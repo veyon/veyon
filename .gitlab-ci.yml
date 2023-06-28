@@ -13,6 +13,7 @@ build-linux:
         - centos.7.9
         - debian.buster
         - debian.bullseye
+        - debian.bookworm
         - fedora.36
         - fedora.37
         - opensuse.15.4
@@ -38,7 +39,7 @@ build-windows:
 
 collect-artifacts:
   stage: collect
-  image: veyon/ci.linux.debian.buster:latest
+  image: veyon/ci.linux.debian.bookworm:latest
   dependencies: [ build-linux ]
   only: [ tags ]
   script:
