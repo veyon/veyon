@@ -26,9 +26,6 @@
 
 #include <windows.h>
 
-#include <QElapsedTimer>
-#include <QTimer>
-
 #include "DesktopInputController.h"
 #include "VeyonCore.h"
 
@@ -45,15 +42,23 @@ void keybd_uni_event( BYTE bVk, BYTE bScan, DWORD dwFlags, ULONG_PTR dwExtraInfo
 DesktopInputController::DesktopInputController( int keyEventInterval ) :
 	m_keyEventInterval( static_cast<unsigned long>( keyEventInterval ) )
 {
-	start();
+	m_threadHandle = CreateThread(nullptr, 0, [](LPVOID param) WINAPI -> DWORD {
+		return reinterpret_cast<DesktopInputController*>(param)->run();
+	}, this, 0, nullptr);
+
+	if (!m_threadHandle)
+	{
+		vCritical() << "could not create thread";
+	}
 }
 
 
 
 DesktopInputController::~DesktopInputController()
 {
-	requestInterruption();
-	wait( ThreadStopTimeout );
+	m_requestStop = 1;
+
+	WaitForSingleObject(m_threadHandle, ThreadStopTimeout);
 }
 
 
@@ -102,17 +107,23 @@ void DesktopInputController::pressAndReleaseKey( QLatin1Char character )
 
 
 
-void DesktopInputController::run()
+DWORD DesktopInputController::run()
 {
 	auto desktop = OpenInputDesktop( 0, false, GENERIC_WRITE );
+	if (!desktop)
+	{
+		const auto error = GetLastError();
+		vCritical() << "failed to open input desktop:" << error;
+		return -1;
+	}
 
-	if( SetThreadDesktop( desktop ) )
+	if (SetThreadDesktop(desktop))
 	{
 		vncKeymap::ClearShiftKeys();
 
 		QMutex waitMutex;
 
-		while( isInterruptionRequested() == false )
+		while (m_requestStop == 0)
 		{
 			waitMutex.lock();
 			m_inputWaitCondition.wait( &waitMutex, ThreadSleepInterval );
@@ -130,8 +141,11 @@ void DesktopInputController::run()
 	}
 	else
 	{
-		vCritical() << GetLastError();
+		const auto error = GetLastError();
+		vCritical() << "failed to set thread desktop:" << error;
 	}
 
-	CloseDesktop( desktop );
+	CloseDesktop(desktop);
+
+	return 0;
 }
