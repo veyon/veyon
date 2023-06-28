@@ -25,7 +25,9 @@
 #include <QFileInfo>
 
 #include <csignal>
+#ifdef HAVE_LIBPROCPS
 #include <proc/readproc.h>
+#endif
 #include <sys/errno.h>
 #include <sys/types.h>
 #include <sys/wait.h>
