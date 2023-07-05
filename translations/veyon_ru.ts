@@ -1127,15 +1127,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Logged in since</source>
-        <translation type="unfinished"/>
+        <translation>Вошел в систему с</translation>
     </message>
     <message>
         <source>%1 days</source>
-        <translation type="unfinished"/>
+        <translation>%1 дн.</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"/>
+        <translation>1 день</translation>
     </message>
 </context>
 <context>
@@ -1166,7 +1166,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Search computers</source>
-        <translation type="unfinished"/>
+        <translation>Поиск компьютеров</translation>
     </message>
 </context>
 <context>
@@ -1314,11 +1314,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Bandwidth limit</source>
-        <translation type="unfinished"/>
+        <translation>Ограничение пропускной способности</translation>
     </message>
     <message>
         <source> MB/s</source>
-        <translation type="unfinished"/>
+        <translation>МБ/с</translation>
     </message>
 </context>
 <context>
@@ -1965,11 +1965,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Style:</source>
-        <translation type="unfinished"/>
+        <translation>Стиль:</translation>
     </message>
     <message>
         <source>Native</source>
-        <translation type="unfinished"/>
+        <translation>Нативный</translation>
     </message>
 </context>
 <context>
@@ -2762,7 +2762,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Disable tooltips</source>
-        <translation type="unfinished"/>
+        <translation>Отключить всплывающие подсказки</translation>
     </message>
 </context>
 <context>
@@ -3144,31 +3144,31 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Highest</source>
-        <translation type="unfinished"/>
+        <translation>Самое высокое</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished"/>
+        <translation>Высокое</translation>
     </message>
     <message>
         <source>Medium</source>
-        <translation type="unfinished"/>
+        <translation>Среднее</translation>
     </message>
     <message>
         <source>Low</source>
-        <translation type="unfinished"/>
+        <translation>Низкое</translation>
     </message>
     <message>
         <source>Lowest</source>
-        <translation type="unfinished"/>
+        <translation>Самое низкое</translation>
     </message>
     <message>
         <source>Remote access image quality</source>
-        <translation type="unfinished"/>
+        <translation>Качество изображения удаленного доступа</translation>
     </message>
     <message>
         <source>Image quality in monitoring mode</source>
-        <translation type="unfinished"/>
+        <translation>Качество изображения в режиме мониторинга</translation>
     </message>
 </context>
 <context>

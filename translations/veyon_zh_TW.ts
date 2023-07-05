@@ -1150,7 +1150,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Select output filename</source>
-        <translation>選擇輸出檔案名稱</translation>
+        <translation>選取輸出檔案名稱</translation>
     </message>
     <message>
         <source>CSV files (*.csv)</source>
@@ -1166,7 +1166,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Search computers</source>
-        <translation type="unfinished"/>
+        <translation>搜尋電腦</translation>
     </message>
 </context>
 <context>
@@ -2889,7 +2889,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>螢幕截圖</translation>
+        <translation>螢幕快照</translation>
     </message>
     <message>
         <source>Feature active</source>
@@ -3000,7 +3000,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>螢幕截圖</translation>
+        <translation>螢幕快照</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
@@ -3164,11 +3164,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Remote access image quality</source>
-        <translation type="unfinished"/>
+        <translation>遠端存取圖片品質</translation>
     </message>
     <message>
         <source>Image quality in monitoring mode</source>
-        <translation type="unfinished"/>
+        <translation>圖片品質在監控模式</translation>
     </message>
 </context>
 <context>
