@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include <thread>
+
 #include <QMutex>
 #include <QQueue>
 #include <QWaitCondition>
@@ -48,9 +50,8 @@ public:
 	void pressAndReleaseKey( QLatin1Char character );
 
 private:
-	DWORD run();
+	void run();
 
-	static constexpr int ThreadStopTimeout = 3000;
 	static constexpr int ThreadSleepInterval = 100;
 
 	HANDLE m_threadHandle = 0;
@@ -60,5 +61,7 @@ private:
 	QAtomicInt m_requestStop;
 
 	unsigned long m_keyEventInterval;
+
+	std::thread m_thread = std::thread([this](){ run(); });
 
 };
