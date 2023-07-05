@@ -18,7 +18,6 @@ build-linux:
         - fedora.37
         - opensuse.15.4
         - opensuse.tumbleweed
-        - ubuntu.bionic
         - ubuntu.focal
         - ubuntu.jammy
   artifacts:
