@@ -42,14 +42,6 @@ void keybd_uni_event( BYTE bVk, BYTE bScan, DWORD dwFlags, ULONG_PTR dwExtraInfo
 DesktopInputController::DesktopInputController( int keyEventInterval ) :
 	m_keyEventInterval( static_cast<unsigned long>( keyEventInterval ) )
 {
-	m_threadHandle = CreateThread(nullptr, 0, [](LPVOID param) WINAPI -> DWORD {
-		return reinterpret_cast<DesktopInputController*>(param)->run();
-	}, this, 0, nullptr);
-
-	if (!m_threadHandle)
-	{
-		vCritical() << "could not create thread";
-	}
 }
 
 
@@ -58,7 +50,7 @@ DesktopInputController::~DesktopInputController()
 {
 	m_requestStop = 1;
 
-	WaitForSingleObject(m_threadHandle, ThreadStopTimeout);
+	m_thread.join();
 }
 
 
@@ -107,14 +99,14 @@ void DesktopInputController::pressAndReleaseKey( QLatin1Char character )
 
 
 
-DWORD DesktopInputController::run()
+void DesktopInputController::run()
 {
 	auto desktop = OpenInputDesktop( 0, false, GENERIC_WRITE );
 	if (!desktop)
 	{
 		const auto error = GetLastError();
 		vCritical() << "failed to open input desktop:" << error;
-		return -1;
+		return;
 	}
 
 	if (SetThreadDesktop(desktop))
@@ -146,6 +138,4 @@ DWORD DesktopInputController::run()
 	}
 
 	CloseDesktop(desktop);
-
-	return 0;
 }
