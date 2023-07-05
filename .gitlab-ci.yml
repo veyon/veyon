@@ -14,8 +14,8 @@ build-linux:
         - debian.buster
         - debian.bullseye
         - debian.bookworm
-        - fedora.36
         - fedora.37
+        - fedora.38
         - opensuse.15.4
         - opensuse.tumbleweed
         - ubuntu.focal
