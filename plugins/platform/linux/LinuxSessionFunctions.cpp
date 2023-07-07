@@ -378,7 +378,7 @@ QProcessEnvironment LinuxSessionFunctions::getSessionEnvironment( int sessionLea
 
 
 
-QString LinuxSessionFunctions::currentSessionPath()
+QString LinuxSessionFunctions::currentSessionPath(bool ignoreErrors)
 {
 	const auto xdgSessionPath = QProcessEnvironment::systemEnvironment().value( sessionPathEnvVarName() );
 	if (xdgSessionPath.isEmpty() == false)
@@ -433,8 +433,12 @@ QString LinuxSessionFunctions::currentSessionPath()
 		}
 	}
 
-	vWarning() << "could not determine dbus object path of current session – please make sure systemd is "
-				  "up to date and/or the environment variable" << xdgSessionIdEnvVarName() << "is set";
+	if (ignoreErrors == false)
+	{
+		vWarning() << "could not determine dbus object path of current session – please make sure systemd is "
+					  "up to date and/or the environment variable" << xdgSessionIdEnvVarName() << "is set";
+	}
+
 	return {};
 }
 
