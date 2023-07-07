@@ -104,7 +104,7 @@ public:
 
 	static QProcessEnvironment getSessionEnvironment( int sessionLeaderPid );
 
-	static QString currentSessionPath();
+	static QString currentSessionPath(bool ignoreErrors = false);
 
 	static QString kdeSessionVersionEnvVarName()
 	{
