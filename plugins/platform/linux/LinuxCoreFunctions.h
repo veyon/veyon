@@ -80,6 +80,7 @@ public:
 	static DBusInterfacePointer systemdLoginManager();
 	static DBusInterfacePointer consoleKitManager();
 
+	static bool isSystemdManaged();
 	static int systemctl( const QStringList& arguments );
 
 	static void restartDisplayManagers();
