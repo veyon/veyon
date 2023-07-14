@@ -41,6 +41,7 @@
 #include "LinuxDesktopIntegration.h"
 #include "LinuxUserFunctions.h"
 #include "PlatformUserFunctions.h"
+#include "ProcessHelper.h"
 
 #include <X11/XKBlib.h>
 #include <X11/extensions/dpms.h>
@@ -402,6 +403,21 @@ LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::consoleKitManager()
 										 QStringLiteral("/org/freedesktop/ConsoleKit/Manager"),
 										 QStringLiteral("org.freedesktop.ConsoleKit.Manager"),
 										 QDBusConnection::systemBus() );
+}
+
+
+
+bool LinuxCoreFunctions::isSystemdManaged()
+{
+	if (QFile::exists(QStringLiteral("/sbin/systemd")) == false &&
+		QFile::exists(QStringLiteral("/usr/sbin/systemd")) == false &&
+		QFile::exists(QStringLiteral("/lib/systemd/systemd")) == false)
+	{
+		return false;
+	}
+
+	const auto status = ProcessHelper(QStringLiteral("systemctl"), {QStringLiteral("is-system-running")}).runAndReadAll();
+	return status.isEmpty() == false && status != "offline";
 }
 
 
