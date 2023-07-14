@@ -94,6 +94,12 @@ bool LinuxServiceFunctions::uninstall( const QString& name )
 
 bool LinuxServiceFunctions::setStartMode( const QString& name, PlatformServiceFunctions::StartMode startMode )
 {
+	if (LinuxCoreFunctions::isSystemdManaged() == false)
+	{
+		vWarning() << "System is not managed by systemd – unable to configure start mode for service" << name;
+		return true;
+	}
+
 	if( startMode == StartMode::Auto )
 	{
 		return LinuxCoreFunctions::systemctl( { QStringLiteral("enable"), name } ) == 0;
