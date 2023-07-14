@@ -187,7 +187,8 @@ void ComputerControlServer::showAuthenticationMessage( VncServerClient* client )
 	{
 		vWarning() << "Authentication failed for" << client->hostAddress() << client->username();
 
-		if( VeyonCore::config().failedAuthenticationNotificationsEnabled() )
+		if (VeyonCore::config().failedAuthenticationNotificationsEnabled() &&
+			VeyonCore::platform().sessionFunctions().currentSessionHasUser())
 		{
 			QMutexLocker l( &m_dataMutex );
 
@@ -216,7 +217,8 @@ void ComputerControlServer::showAccessControlMessage( VncServerClient* client )
 	{
 		vInfo() << "Access control successful for" << client->hostAddress() << client->username();
 
-		if( VeyonCore::config().remoteConnectionNotificationsEnabled() )
+		if (VeyonCore::config().remoteConnectionNotificationsEnabled() &&
+			VeyonCore::platform().sessionFunctions().currentSessionHasUser())
 		{
 			const auto fqdn = HostAddress( client->hostAddress() ).tryConvert( HostAddress::Type::FullyQualifiedDomainName );
 
@@ -287,6 +289,11 @@ void ComputerControlServer::sendAsyncFeatureMessages(VncProxyConnection* connect
 
 void ComputerControlServer::updateTrayIconToolTip()
 {
+	if (VeyonCore::platform().sessionFunctions().currentSessionHasUser() == false)
+	{
+		return;
+	}
+
 	auto toolTip = tr( "%1 Service %2 at %3:%4" ).arg( VeyonCore::applicationName(), VeyonCore::versionString(),
 													   HostAddress::localFQDN(),
 												QString::number( VeyonCore::config().veyonServerPort() + VeyonCore::sessionId() ) );
