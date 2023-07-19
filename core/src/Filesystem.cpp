@@ -30,6 +30,7 @@
 #include "VeyonConfiguration.h"
 #include "Filesystem.h"
 #include "PlatformFilesystemFunctions.h"
+#include "PlatformUserFunctions.h"
 
 
 QString Filesystem::expandPath( QString path ) const
@@ -37,6 +38,7 @@ QString Filesystem::expandPath( QString path ) const
 	const auto p = QDir::toNativeSeparators( path.replace( QStringLiteral( "%HOME%" ), QDir::homePath() ).
 											 replace( QStringLiteral( "%HOSTNAME%" ), QHostInfo::localHostName() ).
 											 replace( QStringLiteral( "%PROFILE%" ), QDir::homePath() ).
+											 replace(QStringLiteral( "%USER%" ), VeyonCore::platform().userFunctions().currentUser()).
 											 replace(QStringLiteral("%DESKTOP%"), QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)).
 											 replace(QStringLiteral("%DOCUMENTS%"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)).
 											 replace(QStringLiteral("%DOWNLOADS%"), QStandardPaths::writableLocation(QStandardPaths::DownloadLocation)).
@@ -91,6 +93,12 @@ QString Filesystem::shrinkPath( QString path ) const
 			path.replace(mapping.first, QStringLiteral("%%1%").arg(mapping.second));
 			break;
 		}
+	}
+
+	const auto currentUser = VeyonCore::platform().userFunctions().currentUser();
+	if (currentUser.isEmpty() == false)
+	{
+		path.replace(currentUser, QStringLiteral("%USER%"));
 	}
 
 	// remove duplicate directory separators - however skip the first two chars
