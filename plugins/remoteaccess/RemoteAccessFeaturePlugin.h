@@ -145,6 +145,7 @@ private:
 
 	QMap<QString, QString> m_commands;
 
+	bool m_clipboardSynchronizationDisabled;
 	QMutex m_clipboardDataMutex;
 	int m_clipboardDataVersion{0};
 	QString m_clipboardText;

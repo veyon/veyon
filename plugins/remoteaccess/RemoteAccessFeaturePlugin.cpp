@@ -63,9 +63,10 @@ RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin( QObject* parent ) :
 { QStringLiteral("view"), m_remoteViewFeature.displayName() },
 { QStringLiteral("control"), m_remoteControlFeature.displayName() },
 { QStringLiteral("help"), tr( "Show help about command" ) },
-				} )
+				} ),
+	m_clipboardSynchronizationDisabled(VeyonCore::config().clipboardSynchronizationDisabled())
 {
-	if (VeyonCore::component() == VeyonCore::Component::Server)
+	if (VeyonCore::component() == VeyonCore::Component::Server && m_clipboardSynchronizationDisabled == false)
 	{
 		connect (QGuiApplication::clipboard(), &QClipboard::dataChanged,
 				 this, &RemoteAccessFeaturePlugin::updateClipboardData);
@@ -148,7 +149,7 @@ bool RemoteAccessFeaturePlugin::handleFeatureMessage(ComputerControlInterface::P
 {
 	Q_UNUSED(computerControlInterface)
 
-	if (message.featureUid() == m_clipboardExchangeFeature.uid())
+	if (message.featureUid() == m_clipboardExchangeFeature.uid() && m_clipboardSynchronizationDisabled == false)
 	{
 		for (auto it = m_vncViews.constBegin(), end = m_vncViews.constEnd(); it != end; ++it)
 		{
@@ -179,7 +180,7 @@ bool RemoteAccessFeaturePlugin::handleFeatureMessage(VeyonServerInterface &serve
 		server.featureWorkerManager().sendMessageToUnmanagedSessionWorker(message);
 		return true;
 	}
-	else if (message.featureUid() == m_clipboardExchangeFeature.uid())
+	else if (message.featureUid() == m_clipboardExchangeFeature.uid() && m_clipboardSynchronizationDisabled == false)
 	{
 		loadClipboardData(message);
 		return true;
@@ -215,7 +216,7 @@ void RemoteAccessFeaturePlugin::sendAsyncFeatureMessages(VeyonServerInterface& s
 {
 	const auto clipboardDataVersion = messageContext.ioDevice()->property(clipboardDataVersionProperty()).toInt();
 
-	if (clipboardDataVersion != m_clipboardDataVersion)
+	if (m_clipboardSynchronizationDisabled == false && clipboardDataVersion != m_clipboardDataVersion)
 	{
 		FeatureMessage message{m_clipboardExchangeFeature.uid()};
 
@@ -405,6 +406,11 @@ void RemoteAccessFeaturePlugin::storeClipboardData(FeatureMessage *message, cons
 
 void RemoteAccessFeaturePlugin::loadClipboardData(const FeatureMessage &message)
 {
+	if (m_clipboardSynchronizationDisabled)
+	{
+		return;
+	}
+
 	const auto clipboard = QGuiApplication::clipboard();
 
 	const auto text = message.argument(Argument::ClipboardText).toString();
@@ -427,6 +433,11 @@ void RemoteAccessFeaturePlugin::loadClipboardData(const FeatureMessage &message)
 
 void RemoteAccessFeaturePlugin::sendClipboardData(ComputerControlInterface::Pointer computerControlInterface)
 {
+	if (m_clipboardSynchronizationDisabled)
+	{
+		return;
+	}
+
 	FeatureMessage message{m_clipboardExchangeFeature.uid()};
 
 	const auto clipboard = QGuiApplication::clipboard();
@@ -441,6 +452,11 @@ void RemoteAccessFeaturePlugin::sendClipboardData(ComputerControlInterface::Poin
 
 void RemoteAccessFeaturePlugin::updateClipboardData()
 {
+	if (m_clipboardSynchronizationDisabled)
+	{
+		return;
+	}
+
 	m_clipboardDataMutex.lock();
 
 	const auto clipboard = QGuiApplication::clipboard();
