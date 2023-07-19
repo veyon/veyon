@@ -59,7 +59,6 @@
          <widget class="QLabel" name="serviceState">
           <property name="font">
            <font>
-            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
@@ -273,9 +272,9 @@ Typically this is required to support terminal servers.</string>
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="miscNetworkSettingsGroupBox">
+    <widget class="QGroupBox" name="miscSettingsGroupBox">
      <property name="title">
-      <string>Miscellaneous network settings</string>
+      <string>Miscellaneous settings</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
@@ -289,6 +288,13 @@ Typically this is required to support terminal servers.</string>
        <widget class="QCheckBox" name="localConnectOnly">
         <property name="text">
          <string>Allow connections from localhost only</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="clipboardSynchronizationDisabled">
+        <property name="text">
+         <string>Disable clipboard synchronization</string>
         </property>
        </widget>
       </item>
@@ -357,6 +363,7 @@ Typically this is required to support terminal servers.</string>
   <tabstop>demoServerPort</tabstop>
   <tabstop>isFirewallExceptionEnabled</tabstop>
   <tabstop>localConnectOnly</tabstop>
+  <tabstop>clipboardSynchronizationDisabled</tabstop>
   <tabstop>vncServerPlugin</tabstop>
  </tabstops>
  <resources>
