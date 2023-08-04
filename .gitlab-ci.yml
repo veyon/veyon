@@ -17,6 +17,7 @@ build-linux:
         - fedora.37
         - fedora.38
         - opensuse.15.4
+        - opensuse.15.5
         - opensuse.tumbleweed
         - ubuntu.focal
         - ubuntu.jammy
