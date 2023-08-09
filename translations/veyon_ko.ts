@@ -2,24 +2,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About</source>
-        <translation>정보</translation>
-    </message>
-    <message>
-        <source>Translation</source>
-        <translation>번역</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation>라이센스</translation>
-    </message>
-    <message>
         <source>About Veyon</source>
         <translation>Veyon에 대해서</translation>
     </message>
     <message>
-        <source>Contributors</source>
-        <translation>참여하신 분들</translation>
+        <source>About</source>
+        <translation>정보</translation>
     </message>
     <message>
         <source>Version:</source>
@@ -30,6 +18,18 @@
         <translation>웹 사이트:</translation>
     </message>
     <message>
+        <source>Support Veyon project with a donation</source>
+        <translation>Veyon 프로그램에 기부하여 지원하기</translation>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation>참여하신 분들</translation>
+    </message>
+    <message>
+        <source>Translation</source>
+        <translation>번역</translation>
+    </message>
+    <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
@@ -38,12 +38,12 @@ If you&apos;re interested in translating Veyon into your local or another langua
 Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 분들은 Veyon 개발자에게 연락바랍니다. </translation>
     </message>
     <message>
-        <source>About %1 %2</source>
-        <translation>%1 %2 에 대하여</translation>
+        <source>License</source>
+        <translation>라이센스</translation>
     </message>
     <message>
-        <source>Support Veyon project with a donation</source>
-        <translation>Veyon 프로그램에 기부하여 지원하기</translation>
+        <source>About %1 %2</source>
+        <translation>%1 %2 에 대하여</translation>
     </message>
 </context>
 <context>
@@ -53,8 +53,12 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <translation>컴퓨터 접근제어</translation>
     </message>
     <message>
-        <source>Grant access to every authenticated user (default)</source>
-        <translation>인증된 모든 사용자에게 접근 허용(기본값)</translation>
+        <source>Restrict access to members of specific user groups</source>
+        <translation>특정 그룹 사용자의 접근 제한</translation>
+    </message>
+    <message>
+        <source>User groups backend:</source>
+        <translation>유저그룹 백엔드:</translation>
     </message>
     <message>
         <source>Test</source>
@@ -63,6 +67,14 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <message>
         <source>Process access control rules</source>
         <translation>프로세스 접근제어 규칙</translation>
+    </message>
+    <message>
+        <source>Grant access to every authenticated user (default)</source>
+        <translation>인증된 모든 사용자에게 접근 허용(기본값)</translation>
+    </message>
+    <message>
+        <source>Enable usage of domain groups</source>
+        <translation>도메인 그룹 사용 허용</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -85,6 +97,14 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <translation>접근 제어 규칙</translation>
     </message>
     <message>
+        <source>Move selected rule up</source>
+        <translation>선택된 규칙 위로 이동</translation>
+    </message>
+    <message>
+        <source>Edit selected rule</source>
+        <translation>선택된 규칙 수정</translation>
+    </message>
+    <message>
         <source>Add access control rule</source>
         <translation>접근제어규칙 추가</translation>
     </message>
@@ -97,12 +117,12 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <translation>선택된 규칙을 아래로 이동</translation>
     </message>
     <message>
-        <source>Move selected rule up</source>
-        <translation>선택된 규칙 위로 이동</translation>
+        <source>Missing user groups backend</source>
+        <translation>유저그룹 백엔드 없음</translation>
     </message>
     <message>
-        <source>Edit selected rule</source>
-        <translation>선택된 규칙 수정</translation>
+        <source>No default user groups plugin was found. Please check your installation!</source>
+        <translation>디폴트 유저 그룹 플러그인이 없습니다. 설치상태를 확인하세요!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -127,26 +147,6 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
         <translation>선택된 사용자는 이 설정으로 컴퓨터 접근이 거부 됨.</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>도메인 그룹 사용 허용</translation>
-    </message>
-    <message>
-        <source>User groups backend:</source>
-        <translation>유저그룹 백엔드:</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>유저그룹 백엔드 없음</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>디폴트 유저 그룹 플러그인이 없습니다. 설치상태를 확인하세요!</translation>
-    </message>
-    <message>
-        <source>Restrict access to members of specific user groups</source>
-        <translation>특정 그룹 사용자의 접근 제한</translation>
     </message>
 </context>
 <context>
@@ -180,6 +180,10 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <translation>모든 조건 반대로 (&quot;is/has&quot; 는  &quot;is/has not&quot; 로 변경됨)</translation>
     </message>
     <message>
+        <source>Always process rule and ignore conditions</source>
+        <translation>조건 무시하고 항상 규칙 수행</translation>
+    </message>
+    <message>
         <source>Conditions</source>
         <translation>조건</translation>
     </message>
@@ -188,8 +192,28 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <translation>는 그룹의 멤버임</translation>
     </message>
     <message>
+        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
+        <translation>한개 이상의 조건이 활성화 될 경우 규칙이 적용되려면 각각의 조건이 일치해야 한다 (논리적 AND). 여러개 중에서 하나의  조건만 맞아야 할 경우에는(논리적 OR) 다수의 접근 제어 규칙을 생성하세요 .</translation>
+    </message>
+    <message>
+        <source>Accessing computer and local computer are at the same location</source>
+        <translation>같은 장소에 있는 다른 컴퓨터와 로컬 컴퓨터에 접근</translation>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>로그온된 사용자 없음</translation>
+    </message>
+    <message>
+        <source>is located at</source>
+        <translation>에 위치함</translation>
+    </message>
+    <message>
         <source>Accessing computer is localhost</source>
         <translation>연결하는 컴퓨터는 로컬 호스트입니다</translation>
+    </message>
+    <message>
+        <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <translation>연결하는 사용자는 로컬 사용자(로그온됨)와 하나 또는 그이상의 공통 그룹을 갖고 있습니다</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
@@ -198,10 +222,6 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <message>
         <source>Accessing user is already connected</source>
         <translation>접속하는 사용자는 이미 연결되어 있습니다</translation>
-    </message>
-    <message>
-        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>한개 이상의 조건이 활성화 될 경우 규칙이 적용되려면 각각의 조건이 일치해야 한다 (논리적 AND). 여러개 중에서 하나의  조건만 맞아야 할 경우에는(논리적 OR) 다수의 접근 제어 규칙을 생성하세요 .</translation>
     </message>
     <message>
         <source>Action</source>
@@ -238,26 +258,6 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <message>
         <source>Local computer</source>
         <translation>로컬 컴퓨터</translation>
-    </message>
-    <message>
-        <source>Always process rule and ignore conditions</source>
-        <translation>조건 무시하고 항상 규칙 수행</translation>
-    </message>
-    <message>
-        <source>No user logged on</source>
-        <translation>로그온된 사용자 없음</translation>
-    </message>
-    <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>연결하는 사용자는 로컬 사용자(로그온됨)와 하나 또는 그이상의 공통 그룹을 갖고 있습니다</translation>
-    </message>
-    <message>
-        <source>Accessing computer and local computer are at the same location</source>
-        <translation>같은 장소에 있는 다른 컴퓨터와 로컬 컴퓨터에 접근</translation>
-    </message>
-    <message>
-        <source>is located at</source>
-        <translation>에 위치함</translation>
     </message>
 </context>
 <context>
@@ -322,6 +322,26 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <translation>소개</translation>
     </message>
     <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>키 파일 인증을 설정하기 위해 다음 단계들을 실행하세요:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) 마스터 컴퓨터에서 키페어를 생성하시오.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) 다른 컴퓨터에 접근을 허용할 멤버가 속한 그룹을 설정하세요.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) 공개키를 내보내고 그키를 같은 이름을 가진 모든 클라이언트 컴퓨터에서 읽어들이기.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>더 자세한 정보는  &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt; Veyon 관리자 매뉴얼을 참조하세요 &lt;/a&gt; .</translation>
+    </message>
+    <message>
         <source>Key file directories</source>
         <translation>키 파일 폴더</translation>
     </message>
@@ -336,6 +356,16 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <message>
         <source>Available authentication keys</source>
         <translation>사용 가능한 인증키들</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>인증 키는 두 부분으로 구성되어 있습니다, 공개 키 파트와 개인 키 파트.
+개인 키를 사용하여 마스터 컴퓨터에서 클라이언트 컴퓨터에 접속할 수 있습니다.
+오직 승인된 사용자만 개인 키 화일을 읽을 수 있도록 하는 것이 아주 중요합니다.
+공개 키 파트는 클라이언트 컴퓨터에서 사용되며 들어오는 연결 요청이 허가된 것인지 검증하는데 사용됩니다.</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -392,36 +422,6 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>이 접근 그룹에 설정할 키를 선택하세요!</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>키 파일 인증을 설정하기 위해 다음 단계들을 실행하세요:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) 마스터 컴퓨터에서 키페어를 생성하시오.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) 다른 컴퓨터에 접근을 허용할 멤버가 속한 그룹을 설정하세요.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) 공개키를 내보내고 그키를 같은 이름을 가진 모든 클라이언트 컴퓨터에서 읽어들이기.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>더 자세한 정보는  &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt; Veyon 관리자 매뉴얼을 참조하세요 &lt;/a&gt; .</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>인증 키는 두 부분으로 구성되어 있습니다, 공개 키 파트와 개인 키 파트.
-개인 키를 사용하여 마스터 컴퓨터에서 클라이언트 컴퓨터에 접속할 수 있습니다.
-오직 승인된 사용자만 개인 키 화일을 읽을 수 있도록 하는 것이 아주 중요합니다.
-공개 키 파트는 클라이언트 컴퓨터에서 사용되며 들어오는 연결 요청이 허가된 것인지 검증하는데 사용됩니다.</translation>
     </message>
 </context>
 <context>
@@ -590,20 +590,24 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>키에 접근을 허용할 유저 그룹을 설정하세요.</translation>
     </message>
     <message>
-        <source>KEY</source>
-        <translation>KEY</translation>
-    </message>
-    <message>
-        <source>ACCESS GROUP</source>
-        <translation>접근 그룹</translation>
-    </message>
-    <message>
-        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation>이 명령어는 &lt;KEY&gt; 에 대한 화일 접근 권한을 조정하여 유저 그룹 &lt;ACCESS GROUP&gt; 만 읽기 허가를 합니다.</translation>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>NAME</source>
         <translation>이름</translation>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
+        <translation>이 명령어는 이름 &lt;NAME&gt; 를 가진 새로운 인증 키 페어를  생성하고 개인키와 공개키를 지정된 키 폴더에 저장합니다.  파라메터는 반드시 글자만을 포함하는 키 이름이어야 함.</translation>
+    </message>
+    <message>
+        <source>KEY</source>
+        <translation>KEY</translation>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
+        <translation>이 명령어는 키폴더에 설정된 인증키 &lt;KEY&gt;  를 삭제합니다. 이키를 삭제하면 다시 복구할 수 없습니다.</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -614,12 +618,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation> 이 명려어는 인증키 &lt;KEY&gt; 를  &lt;FILE&gt;로 내 보냅니다.  만일  &lt;FILE&gt; 이 지정되지 않으면  &lt;KEY&gt;의 이름 과 형식을 이용해서 이름이 생성됩니다 . .</translation>
     </message>
     <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
+        <translation>이 명령어는 개인키 &lt;KEY&gt; 를 통해서 공개키 파트를 추출하여 개인키에 대한 공개키로 저장합니다. 다른 마스터 컴퓨터를 설정할 경우, 개인기만 전송하는 것으로 충분합니다. 공개키는 이때 추출될수 있습니다.</translation>
+    </message>
+    <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
         <translation> 이 명려어는 인증키 &lt;KEY&gt; 를  &lt;FILE&gt;에서 읽어 들입니다.  만일  &lt;FILE&gt; 이 지정되지 않으면  &lt;KEY&gt; 의 이름 과 형식을 이용해서 이름이 생성됩니다 .</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
         <translation>이 명령어는 설정된 키폴더에 있는 모든 인증키를 리스트해 줍니다. 만일 옵션 &quot;%1&quot;가 지정되면 키 상세 테이블이 대신 표시됩니다. 키가 접근 불가할 경우엔 일부 내용이 누락될 수 있습니다. 즉 e.g. 읽기 권한이 없는 경우등.</translation>
+    </message>
+    <message>
+        <source>ACCESS GROUP</source>
+        <translation>접근 그룹</translation>
+    </message>
+    <message>
+        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
+        <translation>이 명령어는 &lt;KEY&gt; 에 대한 화일 접근 권한을 조정하여 유저 그룹 &lt;ACCESS GROUP&gt; 만 읽기 허가를 합니다.</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>TYPE</source>
@@ -636,30 +660,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Commands for managing authentication keys</source>
         <translation>인증키 조작 명령어들</translation>
-    </message>
-    <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation>이 명령어는 이름 &lt;NAME&gt; 를 가진 새로운 인증 키 페어를  생성하고 개인키와 공개키를 지정된 키 폴더에 저장합니다.  파라메터는 반드시 글자만을 포함하는 키 이름이어야 함.</translation>
-    </message>
-    <message>
-        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation>이 명령어는 키폴더에 설정된 인증키 &lt;KEY&gt;  를 삭제합니다. 이키를 삭제하면 다시 복구할 수 없습니다.</translation>
-    </message>
-    <message>
-        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation>이 명령어는 개인키 &lt;KEY&gt; 를 통해서 공개키 파트를 추출하여 개인키에 대한 공개키로 저장합니다. 다른 마스터 컴퓨터를 설정할 경우, 개인기만 전송하는 것으로 충분합니다. 공개키는 이때 추출될수 있습니다.</translation>
-    </message>
-    <message>
-        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -684,8 +684,28 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
+        <source>Locations &amp; computers</source>
+        <translation>위치 및 컴퓨터들</translation>
+    </message>
+    <message>
+        <source>Builtin directory</source>
+        <translation>게시물 폴더</translation>
+    </message>
+    <message>
         <source>Computers</source>
         <translation>컴퓨터</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>위치</translation>
+    </message>
+    <message>
+        <source>Add new computer</source>
+        <translation>새 컴퓨터 추가</translation>
+    </message>
+    <message>
+        <source>Remove selected computer</source>
+        <translation>선택된 컴퓨터 삭제</translation>
     </message>
     <message>
         <source>Name</source>
@@ -698,30 +718,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>MAC address</source>
         <translation>MAC주소</translation>
-    </message>
-    <message>
-        <source>Add new computer</source>
-        <translation>새 컴퓨터 추가</translation>
-    </message>
-    <message>
-        <source>Remove selected computer</source>
-        <translation>선택된 컴퓨터 삭제</translation>
-    </message>
-    <message>
-        <source>New computer</source>
-        <translation>새 컴퓨터</translation>
-    </message>
-    <message>
-        <source>Builtin directory</source>
-        <translation>게시물 폴더</translation>
-    </message>
-    <message>
-        <source>Locations &amp; computers</source>
-        <translation>위치 및 컴퓨터들</translation>
-    </message>
-    <message>
-        <source>Locations</source>
-        <translation>위치</translation>
     </message>
     <message>
         <source>Add new location</source>
@@ -739,112 +735,16 @@ The public key is used on client computers to authenticate incoming connection r
         <source>New location</source>
         <translation>새로운 위치</translation>
     </message>
+    <message>
+        <source>New computer</source>
+        <translation>새 컴퓨터</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
         <translation>특정 명령어에 대한 도움말 보여줌</translation>
-    </message>
-    <message>
-        <source>Import objects from given file</source>
-        <translation>지정된 화일에서 개체 가져오기</translation>
-    </message>
-    <message>
-        <source>Export objects to given file</source>
-        <translation>지정된 화일로 개체 내보내기</translation>
-    </message>
-    <message>
-        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>잘못된 형식 지정됨. 유효한 값들은 &quot;%1&quot;  또는 &quot;%2&quot;.</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>종류</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>이름</translation>
-    </message>
-    <message>
-        <source>Host address</source>
-        <translation>호스트 주소</translation>
-    </message>
-    <message>
-        <source>MAC address</source>
-        <translation>MAC주소</translation>
-    </message>
-    <message>
-        <source>Specified object not found.</source>
-        <translation>해당 개체를 찾을 수 없음</translation>
-    </message>
-    <message>
-        <source>File &quot;%1&quot; does not exist!</source>
-        <translation>화일 &quot;%1&quot; 이 없음!</translation>
-    </message>
-    <message>
-        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation>읽으려는 &quot;%1&quot; 파일을 열수 없음!</translation>
-    </message>
-    <message>
-        <source>Unknown argument &quot;%1&quot;.</source>
-        <translation>알수 없는 인자 &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation>컴퓨터 &quot;%1&quot; (호스트 주소: &quot;%2&quot; MAC 주소: &quot;%3&quot;)</translation>
-    </message>
-    <message>
-        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation>분류되지 않은 개체 &quot;%1&quot; 아이디 &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>없음</translation>
-    </message>
-    <message>
-        <source>Computer</source>
-        <translation>컴퓨터</translation>
-    </message>
-    <message>
-        <source>Root</source>
-        <translation>루트</translation>
-    </message>
-    <message>
-        <source>Invalid</source>
-        <translation>무효</translation>
-    </message>
-    <message>
-        <source>Error while parsing line %1.</source>
-        <translation>라인 %1 을 파싱하는 중 오류.</translation>
-    </message>
-    <message>
-        <source>Network object directory which stores objects in local configuration</source>
-        <translation>로컬 설정에 오브젝트를 저장하고 있는 네트워크 오브젝트 폴더</translation>
-    </message>
-    <message>
-        <source>Commands for managing the builtin network object directory</source>
-        <translation>내장 네트워크 오브젝트 폴더를 관리하는 명령어들</translation>
-    </message>
-    <message>
-        <source>No format string or regular expression specified!</source>
-        <translation>형식 문자열 또는 표현식이 지정되지 않음!</translation>
-    </message>
-    <message>
-        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation>쓰기 위한  &quot;%1&quot; 파일을 열수 없음!</translation>
-    </message>
-    <message>
-        <source>No format string specified!</source>
-        <translation>형식 문자열이 지정되지 않음!</translation>
-    </message>
-    <message>
-        <source>Object UUID</source>
-        <translation>Object UUID</translation>
-    </message>
-    <message>
-        <source>Parent UUID</source>
-        <translation>부모 UUID</translation>
     </message>
     <message>
         <source>Add a location or computer</source>
@@ -867,16 +767,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>위치 또는 컴퓨터 삭제</translation>
     </message>
     <message>
-        <source>Location &quot;%1&quot;</source>
-        <translation>위치 &quot;%1&quot;</translation>
+        <source>Import objects from given file</source>
+        <translation>지정된 화일에서 개체 가져오기</translation>
     </message>
     <message>
-        <source>Builtin (computers and locations in local configuration)</source>
-        <translation>내장 (로컬 설정에 있는 컴퓨터 및 위치)</translation>
-    </message>
-    <message>
-        <source>Location</source>
-        <translation>위치</translation>
+        <source>Export objects to given file</source>
+        <translation>지정된 화일로 개체 내보내기</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -935,6 +831,14 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>이름</translation>
     </message>
     <message>
+        <source>HOST ADDRESS</source>
+        <translation>HOST ADDRESS</translation>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>맥 어드레스</translation>
+    </message>
+    <message>
         <source>PARENT</source>
         <translation>PARENT</translation>
     </message>
@@ -967,24 +871,120 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>UUID로 오브젝트 삭제하기</translation>
     </message>
     <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
+        <translation>잘못된 형식 지정됨. 유효한 값들은 &quot;%1&quot;  또는 &quot;%2&quot;.</translation>
+    </message>
+    <message>
+        <source>Object UUID</source>
+        <translation>Object UUID</translation>
+    </message>
+    <message>
+        <source>Parent UUID</source>
+        <translation>부모 UUID</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>종류</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>이름</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>호스트 주소</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MAC주소</translation>
+    </message>
+    <message>
+        <source>Specified object not found.</source>
+        <translation>해당 개체를 찾을 수 없음</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not exist!</source>
+        <translation>화일 &quot;%1&quot; 이 없음!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
+        <translation>읽으려는 &quot;%1&quot; 파일을 열수 없음!</translation>
+    </message>
+    <message>
+        <source>Unknown argument &quot;%1&quot;.</source>
+        <translation>알수 없는 인자 &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>No format string or regular expression specified!</source>
+        <translation>형식 문자열 또는 표현식이 지정되지 않음!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
+        <translation>쓰기 위한  &quot;%1&quot; 파일을 열수 없음!</translation>
+    </message>
+    <message>
+        <source>No format string specified!</source>
+        <translation>형식 문자열이 지정되지 않음!</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot;</source>
+        <translation>위치 &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
+        <translation>컴퓨터 &quot;%1&quot; (호스트 주소: &quot;%2&quot; MAC 주소: &quot;%3&quot;)</translation>
+    </message>
+    <message>
+        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
+        <translation>분류되지 않은 개체 &quot;%1&quot; 아이디 &quot;%2&quot;</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>없음</translation>
+    </message>
+    <message>
+        <source>Invalid</source>
+        <translation>무효</translation>
+    </message>
+    <message>
+        <source>Error while parsing line %1.</source>
+        <translation>라인 %1 을 파싱하는 중 오류.</translation>
+    </message>
+    <message>
+        <source>Network object directory which stores objects in local configuration</source>
+        <translation>로컬 설정에 오브젝트를 저장하고 있는 네트워크 오브젝트 폴더</translation>
+    </message>
+    <message>
+        <source>Builtin (computers and locations in local configuration)</source>
+        <translation>내장 (로컬 설정에 있는 컴퓨터 및 위치)</translation>
+    </message>
+    <message>
+        <source>Commands for managing the builtin network object directory</source>
+        <translation>내장 네트워크 오브젝트 폴더를 관리하는 명령어들</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>위치</translation>
+    </message>
+    <message>
+        <source>Computer</source>
+        <translation>컴퓨터</translation>
+    </message>
+    <message>
+        <source>Root</source>
+        <translation>루트</translation>
+    </message>
+    <message>
         <source>&quot;Room 01&quot;</source>
         <translation>&quot;룸 01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;컴퓨터 01&quot;</translation>
-    </message>
-    <message>
-        <source>HOST ADDRESS</source>
-        <translation>HOST ADDRESS</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>맥 어드레스</translation>
-    </message>
-    <message>
-        <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1004,12 +1004,28 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>ComputerControlListModel</name>
     <message>
+        <source>Name: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location: %1</source>
+        <translation>장소: %1</translation>
+    </message>
+    <message>
         <source>Host/IP address: %1</source>
         <translation>호스트/IP 주소: %1</translation>
     </message>
     <message>
+        <source>invalid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Active features: %1</source>
         <translation>활성화된 기능들: %1</translation>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Online and connected</source>
@@ -1022,6 +1038,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Computer offline or switched off</source>
         <translation>컴퓨터 오프라인 또는 전원 꺼짐</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
@@ -1040,26 +1060,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>로그온된 사용자 : %1</translation>
     </message>
     <message>
-        <source>Location: %1</source>
-        <translation>장소: %1</translation>
-    </message>
-    <message>
-        <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>[no user]</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>invalid</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Name: %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>[none]</source>
         <translation type="unfinished"/>
     </message>
@@ -1067,12 +1067,12 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>ComputerControlServer</name>
     <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 서비스 %2 위치 %3:%4</translation>
-    </message>
-    <message>
         <source>Authentication error</source>
         <translation>인증 에러</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
+        <translation>호스트 &quot;%2&quot;의 사용자  &quot;%1&quot; 가 이 컴퓨터에 연결하려고 하였으나 인증에 성공하지 못했습니다.</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -1083,16 +1083,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>호스트 &quot;%2&quot;의 사용자  &quot;%1&quot; 가 이 컴퓨터에 연결합니다.</translation>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation>호스트 &quot;%2&quot;의 사용자  &quot;%1&quot; 가 이 컴퓨터에 연결하려고 하였으나 인증에 성공하지 못했습니다.</translation>
-    </message>
-    <message>
         <source>Access control error</source>
         <translation>접근 제어 오류</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation>호스트 &quot;%2&quot;의 사용자  &quot;%1&quot; 가 이 컴퓨터에 연결하려고 하였으나 접근제어 설정에 의해 블럭되었습니다.</translation>
+    </message>
+    <message>
+        <source>%1 Service %2 at %3:%4</source>
+        <translation>%1 서비스 %2 위치 %3:%4</translation>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1106,6 +1106,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>사용자</translation>
     </message>
     <message>
+        <source>Logged in since</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Missing network object directory plugin</source>
         <translation>네트워크 개체 디렉토리 플러그인이 없음</translation>
     </message>
@@ -1114,20 +1118,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>기본 네트워크 개체 폴더 플러그인 없음. 설치 상태를 점검하거나 또는 %1 설정을 이용하여 다른 네트워크 개체 폴더 백엔드를 설정하세요.</translation>
     </message>
     <message>
-        <source>Location detection failed</source>
-        <translation>위치 탐색 실패</translation>
-    </message>
-    <message>
         <source>Computer name;Hostname;User</source>
         <translation>컴퓨터 이름;호스트 이름;사용자</translation>
-    </message>
-    <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation>이 컴퓨터의 위치를 찾을 수 없음. 시스템 설정에 문제가 있어 보입니다. 대신 모든  위치는 컴퓨터 선정 패널에 표시됩니다.</translation>
-    </message>
-    <message>
-        <source>Logged in since</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 days</source>
@@ -1137,9 +1129,21 @@ The public key is used on client computers to authenticate incoming connection r
         <source>1 day</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Location detection failed</source>
+        <translation>위치 탐색 실패</translation>
+    </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
+        <translation>이 컴퓨터의 위치를 찾을 수 없음. 시스템 설정에 문제가 있어 보입니다. 대신 모든  위치는 컴퓨터 선정 패널에 표시됩니다.</translation>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
+    <message>
+        <source>Search computers</source>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>Add location</source>
         <translation>위치 추가</translation>
@@ -1163,10 +1167,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>컴퓨터와 사용자 리스트를 %1에 저장하지 못함. 접근 권한을 확인하세요.</translation>
-    </message>
-    <message>
-        <source>Search computers</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1259,12 +1259,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>%1 워커용 방화벽 설정을 변경할 수 없습니다.</translation>
     </message>
     <message>
-        <source>Configuration is not writable. Please check your permissions!</source>
-        <translation>설정을 쓸수 없습니다. 권한을 점검하기 바랍니다!</translation>
-    </message>
-    <message>
         <source>Could not apply platform-specific configuration settings.</source>
         <translation>플랫폼 전용 설정 세팅을 적용할 수 없습니다.</translation>
+    </message>
+    <message>
+        <source>Configuration is not writable. Please check your permissions!</source>
+        <translation>설정을 쓸수 없습니다. 권한을 점검하기 바랍니다!</translation>
     </message>
 </context>
 <context>
@@ -1285,32 +1285,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>조정할수 있는 항목들</translation>
     </message>
     <message>
-        <source> ms</source>
-        <translation> ms</translation>
-    </message>
-    <message>
-        <source>Key frame interval</source>
-        <translation>키 프레임 인터벌</translation>
-    </message>
-    <message>
-        <source>Memory limit</source>
-        <translation>메모리 한계</translation>
-    </message>
-    <message>
-        <source> MB</source>
-        <translation> MB</translation>
+        <source> s</source>
+        <translation> s</translation>
     </message>
     <message>
         <source>Update interval</source>
         <translation>업데이트 간격</translation>
     </message>
     <message>
-        <source> s</source>
-        <translation> s</translation>
+        <source> MB</source>
+        <translation> MB</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>데모가 실행중일 때 썸네일 업데이트 속도를 늦춤</translation>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation>메모리 한계</translation>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation>키 프레임 인터벌</translation>
     </message>
     <message>
         <source>Bandwidth limit</source>
@@ -1324,24 +1324,12 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Stop demo</source>
-        <translation>데모 중지</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>윈도우 데모</translation>
-    </message>
-    <message>
-        <source>Give a demonstration by screen broadcasting</source>
-        <translation>화면 전송으로 데모를 보여 줍니다.</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation>이 모드에서는 교사의 화면이 하나의 윈도우 창 으로 모든 컴퓨터에 표시됩니다. 필요할 경우 사용자들은 다른 윈도우 창으로 전환해서 자신의 작업을 계속 할 수 있습니다.</translation>
-    </message>
-    <message>
         <source>Demo</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stop demo</source>
+        <translation>데모 중지</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
@@ -1350,6 +1338,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Full screen demo</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation>윈도우 데모</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
@@ -1362,6 +1354,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Share your own screen in a window</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation>이 모드에서는 교사의 화면이 하나의 윈도우 창 으로 모든 컴퓨터에 표시됩니다. 필요할 경우 사용자들은 다른 윈도우 창으로 전환해서 자신의 작업을 계속 할 수 있습니다.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
@@ -1391,6 +1387,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>All screens</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Give a demonstration by screen broadcasting</source>
+        <translation>화면 전송으로 데모를 보여 줍니다.</translation>
+    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1403,6 +1403,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>컴퓨터 접속 허가</translation>
     </message>
     <message>
+        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
+        <translation>컴퓨터 %2의 사용자 %1 이 당신의 데스크탑에 접속을 원합니다. 접속을 허가 할까요 ?</translation>
+    </message>
+    <message>
         <source>Never for this session</source>
         <translation>이번 세션에서는 허락하지 않음</translation>
     </message>
@@ -1410,37 +1414,9 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Always for this session</source>
         <translation>이번 세션에서는 항상 허락함</translation>
     </message>
-    <message>
-        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>컴퓨터 %2의 사용자 %1 이 당신의 데스크탑에 접속을 원합니다. 접속을 허가 할까요 ?</translation>
-    </message>
 </context>
 <context>
     <name>DesktopServicesConfigurationPage</name>
-    <message>
-        <source>Name</source>
-        <translation>이름</translation>
-    </message>
-    <message>
-        <source>Path</source>
-        <translation>경로</translation>
-    </message>
-    <message>
-        <source>Predefined websites</source>
-        <translation>미리 지정된 웹사이트들</translation>
-    </message>
-    <message>
-        <source>Remove selected website</source>
-        <translation>선택한 웹사이트 삭제</translation>
-    </message>
-    <message>
-        <source>URL</source>
-        <translation>URL</translation>
-    </message>
-    <message>
-        <source>New website</source>
-        <translation>새 웹사이트</translation>
-    </message>
     <message>
         <source>Applications &amp; websites</source>
         <translation type="unfinished"/>
@@ -1448,6 +1424,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Predefined applications</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>이름</translation>
+    </message>
+    <message>
+        <source>Path</source>
+        <translation>경로</translation>
     </message>
     <message>
         <source>Add new application</source>
@@ -1458,32 +1442,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Predefined websites</source>
+        <translation>미리 지정된 웹사이트들</translation>
+    </message>
+    <message>
         <source>Add new website</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected website</source>
+        <translation>선택한 웹사이트 삭제</translation>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New application</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>New website</source>
+        <translation>새 웹사이트</translation>
+    </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Open website</source>
-        <translation>웹사이트 열기</translation>
-    </message>
-    <message>
-        <source>Click this button to open a website on all computers.</source>
-        <translation>클릭하면 모든 컴퓨터에서 같은 웹사이트를 오픈합니다.</translation>
-    </message>
-    <message>
-        <source>Open website &quot;%1&quot;</source>
-        <translation>웹사이트 &quot;%1&quot; 열기</translation>
-    </message>
-    <message>
-        <source>Custom website</source>
-        <translation>사용자 지정 웹사이트</translation>
-    </message>
     <message>
         <source>Start application</source>
         <translation type="unfinished"/>
@@ -1493,12 +1477,28 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Open website</source>
+        <translation>웹사이트 열기</translation>
+    </message>
+    <message>
+        <source>Click this button to open a website on all computers.</source>
+        <translation>클릭하면 모든 컴퓨터에서 같은 웹사이트를 오픈합니다.</translation>
+    </message>
+    <message>
         <source>Start application &quot;%1&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Custom application</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open website &quot;%1&quot;</source>
+        <translation>웹사이트 &quot;%1&quot; 열기</translation>
+    </message>
+    <message>
+        <source>Custom website</source>
+        <translation>사용자 지정 웹사이트</translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
@@ -1514,6 +1514,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Room %1</source>
         <translation>방 %1</translation>
+    </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation>일반-학생-사용자</translation>
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
@@ -1536,20 +1540,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>튜토리얼 동영상 재생</translation>
     </message>
     <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Handout</source>
         <translation>자료 배포 핸드아웃</translation>
     </message>
     <message>
         <source>Texts to read</source>
         <translation>읽을 글자들</translation>
-    </message>
-    <message>
-        <source>generic-student-user</source>
-        <translation>일반-학생-사용자</translation>
-    </message>
-    <message>
-        <source>Custom application</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1598,6 +1598,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1700,10 +1704,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Commands for controlling features</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -1754,6 +1754,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>옵션</translation>
     </message>
     <message>
+        <source>Overwrite existing files</source>
+        <translation>기존 화일을 덮어 씀</translation>
+    </message>
+    <message>
         <source>Transfer only</source>
         <translation>전송만 함</translation>
     </message>
@@ -1773,10 +1777,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Start</source>
         <translation>시작</translation>
     </message>
-    <message>
-        <source>Overwrite existing files</source>
-        <translation>기존 화일을 덮어 씀</translation>
-    </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
@@ -1793,10 +1793,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>전송하려는 하나 또는 여러개의 화일을 선택하세요</translation>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
-        <translation>원격 컴퓨터로 화일 전송</translation>
-    </message>
-    <message>
         <source>Received file &quot;%1&quot;.</source>
         <translation>받은 화일 &quot;%1&quot;.</translation>
     </message>
@@ -1808,6 +1804,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
         <translation>화일 &quot;%1&quot; 이 쓸수 있도록 열리지 않아 화일을 받을 수 없습니다!</translation>
     </message>
+    <message>
+        <source>Transfer files to remote computer</source>
+        <translation>원격 컴퓨터로 화일 전송</translation>
+    </message>
 </context>
 <context>
     <name>GeneralConfigurationPage</name>
@@ -1816,16 +1816,60 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>유저 인터페이스</translation>
     </message>
     <message>
-        <source>Language:</source>
-        <translation>언어:</translation>
-    </message>
-    <message>
         <source>Use system language setting</source>
         <translation>시스템 언어 설정 사용</translation>
     </message>
     <message>
+        <source>Language:</source>
+        <translation>언어:</translation>
+    </message>
+    <message>
         <source>Veyon</source>
         <translation>Veyon</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>인증</translation>
+    </message>
+    <message>
+        <source>Method:</source>
+        <translation>방법:</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>로그온 인증</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>키 화일 인증</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>테스트</translation>
+    </message>
+    <message>
+        <source>Network object directory</source>
+        <translation>네트워크 개체 폴더</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>백엔드:</translation>
+    </message>
+    <message>
+        <source>Update interval:</source>
+        <translation>화면업데이트 간격:</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation>초</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -1864,28 +1908,40 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>디버그 메시지와 기타 모든 메시지 남김</translation>
     </message>
     <message>
-        <source>Limit log file size</source>
-        <translation>로그 파일 최대 크기</translation>
+        <source>x</source>
+        <translation>x</translation>
     </message>
     <message>
-        <source>Clear all log files</source>
-        <translation>모든 로그 파일 지우기</translation>
+        <source>Rotate log files</source>
+        <translation>로그화일 회전</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation> MB</translation>
+    </message>
+    <message>
+        <source>Limit log file size</source>
+        <translation>로그 파일 최대 크기</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
         <translation>표준 에러 출력장치에 기록</translation>
     </message>
     <message>
-        <source>Network object directory</source>
-        <translation>네트워크 개체 폴더</translation>
+        <source>Write to logging system of operating system</source>
+        <translation>운영체계의 로깅시스템에 기록</translation>
     </message>
     <message>
-        <source>Backend:</source>
-        <translation>백엔드:</translation>
+        <source>Clear all log files</source>
+        <translation>모든 로그 파일 지우기</translation>
     </message>
     <message>
-        <source>Update interval:</source>
-        <translation>화면업데이트 간격:</translation>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>이 컴퓨터에서 인증이 적절히 설정되었습니다.</translation>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation>이 컴퓨터에서 인증키가 적절히 설정되지 않았습니다.</translation>
     </message>
     <message>
         <source>%1 service</source>
@@ -1912,64 +1968,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>모든 로그화일을 삭제하지 못함.</translation>
     </message>
     <message>
-        <source> MB</source>
-        <translation> MB</translation>
-    </message>
-    <message>
-        <source>Rotate log files</source>
-        <translation>로그화일 회전</translation>
-    </message>
-    <message>
-        <source>x</source>
-        <translation>x</translation>
-    </message>
-    <message>
-        <source> seconds</source>
-        <translation>초</translation>
-    </message>
-    <message>
-        <source>Write to logging system of operating system</source>
-        <translation>운영체계의 로깅시스템에 기록</translation>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation>인증</translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation>방법:</translation>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>로그온 인증</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>키 화일 인증</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>테스트</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>이 컴퓨터에서 인증이 적절히 설정되었습니다.</translation>
-    </message>
-    <message>
-        <source>Authentication keys are not set up properly on this computer.</source>
-        <translation>이 컴퓨터에서 인증키가 적절히 설정되지 않았습니다.</translation>
-    </message>
-    <message>
         <source>Authentication test</source>
         <translation>인증 테스트</translation>
-    </message>
-    <message>
-        <source>Style:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Native</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2004,18 +2004,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>일반사항</translation>
     </message>
     <message>
-        <source>LDAP server and port</source>
-        <translation>LDAP 서버 및 포트</translation>
-    </message>
-    <message>
-        <source>Bind DN</source>
-        <translation>DN 결합</translation>
-    </message>
-    <message>
-        <source>Bind password</source>
-        <translation>패스워드 결합</translation>
-    </message>
-    <message>
         <source>Anonymous bind</source>
         <translation>익명으로 결합</translation>
     </message>
@@ -2024,16 +2012,64 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>인증서 결합 사용</translation>
     </message>
     <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bind DN</source>
+        <translation>DN 결합</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
+    <message>
+        <source>LDAP server and port</source>
+        <translation>LDAP 서버 및 포트</translation>
+    </message>
+    <message>
+        <source>Bind password</source>
+        <translation>패스워드 결합</translation>
+    </message>
+    <message>
+        <source>Connection security</source>
+        <translation>연결 보안</translation>
+    </message>
+    <message>
+        <source>TLS certificate verification</source>
+        <translation>TLS 인증 검증</translation>
+    </message>
+    <message>
+        <source>Encryption protocol</source>
+        <translation>암호화 프로토콜</translation>
+    </message>
+    <message>
+        <source>System defaults</source>
+        <translation>시스템 디폴트</translation>
+    </message>
+    <message>
+        <source>Never (insecure!)</source>
+        <translation>거부(보안 안됨)</translation>
+    </message>
+    <message>
+        <source>Custom CA certificate file</source>
+        <translation>사용자 CA 인증 화일</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>없음</translation>
+    </message>
+    <message>
+        <source>TLS</source>
+        <translation>TLS</translation>
+    </message>
+    <message>
+        <source>SSL</source>
+        <translation>SSL</translation>
+    </message>
+    <message>
         <source>Base DN</source>
         <translation>기본 DN</translation>
-    </message>
-    <message>
-        <source>Fixed base DN</source>
-        <translation>고정된 기본 DN</translation>
-    </message>
-    <message>
-        <source>e.g. dc=example,dc=org</source>
-        <translation>예. dc=example,dc=org</translation>
     </message>
     <message>
         <source>Discover base DN by naming context</source>
@@ -2044,6 +2080,14 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>예. namingContexts or defaultNamingContext</translation>
     </message>
     <message>
+        <source>Fixed base DN</source>
+        <translation>고정된 기본 DN</translation>
+    </message>
+    <message>
+        <source>e.g. dc=example,dc=org</source>
+        <translation>예. dc=example,dc=org</translation>
+    </message>
+    <message>
         <source>Environment settings</source>
         <translation>환경설정</translation>
     </message>
@@ -2052,20 +2096,20 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>개체 트리</translation>
     </message>
     <message>
+        <source>(only if different from group tree)</source>
+        <translation>(그룹 트리가 다를 경우에만)</translation>
+    </message>
+    <message>
         <source>Computer tree</source>
         <translation>컴퓨터 트리</translation>
     </message>
     <message>
-        <source>e.g. OU=Groups</source>
-        <translation>예. OU=Groups</translation>
+        <source>Perform recursive search operations in object trees</source>
+        <translation>개체 트리에서 재귀적 검색작업 수행</translation>
     </message>
     <message>
         <source>User tree</source>
         <translation>사용자 트리</translation>
-    </message>
-    <message>
-        <source>e.g. OU=Users</source>
-        <translation>예. OU=Users</translation>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
@@ -2076,36 +2120,80 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>그룹 트리</translation>
     </message>
     <message>
-        <source>Perform recursive search operations in object trees</source>
-        <translation>개체 트리에서 재귀적 검색작업 수행</translation>
+        <source>Computer group tree</source>
+        <translation>컴퓨터 그룹 트리</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Users</source>
+        <translation>예. OU=Users</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Groups</source>
+        <translation>예. OU=Groups</translation>
     </message>
     <message>
         <source>Object attributes</source>
         <translation>개체 특성</translation>
     </message>
     <message>
-        <source>e.g. hwAddress</source>
-        <translation>예. hwAddress</translation>
+        <source>e.g. name or description</source>
+        <translation>예. 이름 또는 설명</translation>
+    </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation>호스트 이름이 완전히 검증된 도메인 이름으로 저장되었음 (FQDN, 예 myhost.example.org)</translation>
+    </message>
+    <message>
+        <source>e.g. room or computerLab</source>
+        <translation>예. room or computerLab</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation>사용자 로긴이름 속성</translation>
+    </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>컴퓨터 위치 및 속성</translation>
     </message>
     <message>
         <source>e.g. member or memberUid</source>
         <translation>예. member or memberUid</translation>
     </message>
     <message>
-        <source>e.g. dNSHostName</source>
-        <translation>예. dNSHostName</translation>
+        <source>Group member attribute</source>
+        <translation>그룹멤버 속성</translation>
+    </message>
+    <message>
+        <source>e.g. hwAddress</source>
+        <translation>예. hwAddress</translation>
     </message>
     <message>
         <source>Computer MAC address attribute</source>
         <translation>컴퓨터 MAC 주소 속성</translation>
     </message>
     <message>
-        <source>Group member attribute</source>
-        <translation>그룹멤버 속성</translation>
+        <source>e.g. dNSHostName</source>
+        <translation>예. dNSHostName</translation>
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
         <translation>예. uid or sAMAccountName</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>컴퓨터 표시 이름 속성</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>컴퓨터 호스트 이름 속성</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>위치 이름 및 속성</translation>
+    </message>
+    <message>
+        <source>e.g. cn or displayName</source>
+        <translation>예, cn 또는 displayName</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -2116,16 +2204,52 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>선택적 개체필터 </translation>
     </message>
     <message>
-        <source>Filter for user groups</source>
-        <translation>유저그룹 필터</translation>
+        <source>Filter for computer groups</source>
+        <translation>컴퓨터 그룹 필터</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=computer)</source>
+        <translation>e.g. (objectClass=computer)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=group)</source>
+        <translation>e.g. (objectClass=group)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=person)</source>
+        <translation>예. (objectClass=person)</translation>
     </message>
     <message>
         <source>Filter for users</source>
         <translation>유저필터</translation>
     </message>
     <message>
-        <source>Filter for computer groups</source>
-        <translation>컴퓨터 그룹 필터</translation>
+        <source>Filter for computers</source>
+        <translation>컴퓨터 필터</translation>
+    </message>
+    <message>
+        <source>Filter for user groups</source>
+        <translation>유저그룹 필터</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
+        <translation>e.g. (objectClass=room) or (objectClass=computerLab)</translation>
+    </message>
+    <message>
+        <source>Filter for computer containers</source>
+        <translation>컴퓨터 컨테이너 필터</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
+        <translation>e.g. (objectClass=container) or (objectClass=organizationalUnit)</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Group member identification</source>
@@ -2134,6 +2258,34 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Distinguished name (Samba/AD)</source>
         <translation>식별이름 (Samba/AD)</translation>
+    </message>
+    <message>
+        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
+        <translation>사용자 로그인 또는 컴퓨터 호스트 이름 (OpenLDAP)의 속성 설정됨</translation>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation>컴퓨터 위치 ID</translation>
+    </message>
+    <message>
+        <source>Identify computer locations (e.g. rooms) via:</source>
+        <translation>를 통해서 컴퓨터 위치 확인하기( 예,   rooms) :</translation>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation>컴퓨터 그룹</translation>
+    </message>
+    <message>
+        <source>Computer containers or OUs</source>
+        <translation>컴퓨터 컨테이너 또는 OU</translation>
+    </message>
+    <message>
+        <source>Location attribute in computer objects</source>
+        <translation>컴퓨터 오브젝트에서의 위치 속성</translation>
+    </message>
+    <message>
+        <source>Integration tests</source>
+        <translation>결합 테스트</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -2148,32 +2300,54 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>IP주소로 컴퓨터 개체 가져오기</translation>
     </message>
     <message>
-        <source>LDAP connection failed</source>
-        <translation>LDAP 연결실패</translation>
+        <source>List all entries of a location</source>
+        <translation>모든 위치의 엔트리 출력</translation>
     </message>
     <message>
-        <source>LDAP bind failed</source>
-        <translation>LDAP 결합실패</translation>
+        <source>List all locations</source>
+        <translation>모든 위치 출력</translation>
     </message>
     <message>
-        <source>LDAP bind successful</source>
-        <translation>LDAP 결합 성공</translation>
+        <source>Browse</source>
+        <translation>찾아보기</translation>
     </message>
     <message>
-        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation>LDAP 서버  연결및 바인드에 성공했습니다. 기본 LDAP 설정이 올바르게 끝났습니다.</translation>
+        <source>Test</source>
+        <translation>테스트</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
         <translation>LDAP 기본 DN 시험 실패 </translation>
     </message>
     <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation>설정된 베이스 DN을 찾을 수 없습니다. 베이스 DN 파라메터를 점검하세요.
+
+%1</translation>
+    </message>
+    <message>
         <source>LDAP base DN test successful</source>
         <translation>LDAP 기본 DN 시험 성공</translation>
     </message>
     <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation>LDAP 베이스 DN 조회 성공. 다음 입력항목이 발견되었습니다:
+%1</translation>
+    </message>
+    <message>
         <source>LDAP naming context test failed</source>
         <translation>LDAP naming context 시험실패</translation>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
+        <translation>명칭 내용을 통해 베이스 DN 조회를 할 수 없습니다. 명칭 속성 파라메터를 점검하세요.
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
@@ -2196,6 +2370,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>computer tree</source>
         <translation>컴퓨터 트리</translation>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation>컴퓨터 그룹 트리</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -2230,12 +2408,36 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>이름 &quot;%1&quot; 그룹 검색되지 않음.  그룹이름 또는 그룹 트리 파라메터를 확인하세요.</translation>
     </message>
     <message>
-        <source>Enter computer name</source>
-        <translation>그룹이름 입력</translation>
+        <source>Enter computer display name</source>
+        <translation>컴퓨터 표시 이름 입력</translation>
+    </message>
+    <message>
+        <source>Please enter a computer display name to query:</source>
+        <translation>검색할 컴퓨터 디스플레이 이름을 입력하세요:</translation>
     </message>
     <message>
         <source>computer objects</source>
         <translation>컴퓨터 개체</translation>
+    </message>
+    <message>
+        <source>Enter computer name</source>
+        <translation>그룹이름 입력</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname to query:</source>
+        <translation>검색할 컴퓨터 호스트 이름을 입력하세요:</translation>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>잘못된 호스트 이름</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation>컴퓨터 호스트 이름을 완전히 인증된 도메인 이름으로 저장되도록 설정했으나 도메인(FQDN) 이 입력되지 않았음.</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation>컴퓨터 호스트 이름을 도메인 없는 단순 호스트 이름으로 저장되도록 설정하였으나 호스트 이름에 도메인 이름이 입력되있습니다.</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
@@ -2250,6 +2452,22 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>컴퓨터 MAC 주소</translation>
     </message>
     <message>
+        <source>Enter computer location name</source>
+        <translation>컴퓨터 위치 이름 입력</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer location (wildcards allowed):</source>
+        <translation>컴퓨터 위치의 이름을 입력하세요(와일드카드 허용됨):</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>컴퓨터 위치</translation>
+    </message>
+    <message>
+        <source>Enter location name</source>
+        <translation>위치 이름 입력</translation>
+    </message>
+    <message>
         <source>users</source>
         <translation>사용자</translation>
     </message>
@@ -2258,8 +2476,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>사용자 그룹</translation>
     </message>
     <message>
+        <source>computers</source>
+        <translation>컴퓨터</translation>
+    </message>
+    <message>
         <source>computer groups</source>
         <translation>컴퓨터 그룹</translation>
+    </message>
+    <message>
+        <source>computer containers</source>
+        <translation>컴퓨터 컨테이너들</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
@@ -2274,12 +2500,28 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>사용자 검색되지 않음</translation>
     </message>
     <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation>사용자 이름 &quot;%1&quot;  검색되지 않음.  사용자 이름 또는 사용자 트리 파라메터를 확인하세요.</translation>
+    </message>
+    <message>
+        <source>Enter hostname</source>
+        <translation>호스트 이름을 입력하세요</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname whose group memberships to query:</source>
+        <translation>멤버 속성을 검색할 컴퓨터 호스트 이름을 입력하세요:</translation>
+    </message>
+    <message>
         <source>groups of computer</source>
         <translation>컴퓨터 그룹</translation>
     </message>
     <message>
         <source>Computer not found</source>
         <translation>컴퓨터 발견되지 않음</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation>호스트 이름 &quot;%1&quot;인 컴퓨터 가 검색되지 않음.  호스트 이름 또는 컴퓨터 트리 파라메터를 확인하세요.</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2290,12 +2532,68 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>컴퓨터 개체로 변환할 컴퓨터 IP 주소를 입력하세요</translation>
     </message>
     <message>
-        <source>computers</source>
-        <translation>컴퓨터</translation>
+        <source>Hostname lookup failed</source>
+        <translation>호스트이름 검색 실패</translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation>IP %1 에 대한 호스트 이름  검색 실패. DNS 서버 설정을 확인하세요 </translation>
+    </message>
+    <message>
+        <source>Please enter the name of a location whose entries to query:</source>
+        <translation>조회할 위치 이름을 넣으세요:</translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation>위치 엔트리</translation>
+    </message>
+    <message>
+        <source>Certificate files (*.pem)</source>
+        <translation>인증화일 (*.pem)</translation>
+    </message>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation>LDAP 연결실패</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation>LDAP 서버에 연결할 수 없음. 서버 파라메터를 점검하세요.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation>LDAP 결합실패</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation>LDAP서버와 결합 불가. 결합인자와 서버 파라메터를 점검하세요.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation>LDAP 결합 성공</translation>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <translation>LDAP 서버  연결및 바인드에 성공했습니다. 기본 LDAP 설정이 올바르게 끝났습니다.</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
         <translation>LDAP %1 시험 실패</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation>설정된 %1에서 엔트리 값을 찾지 못함. &quot;%2&quot; 파라메터를 점검하세요.
+
+%3</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
@@ -2304,6 +2602,26 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
         <translation>%1 이 성공적으로 조회되고 %2 입력 값이 검색됨</translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>LDAP 테스트 실패</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation>%1을 조회할 수 없음. %2 파라메터(들)을 점검하거나 또는 기존의 개체의 이름을 입력하세요
+
+%3</translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation>및 </translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>LDAP 테스트 성공</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
@@ -2333,324 +2651,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>컴퓨터 필터를 사용한 %1 %2 검색 조회 성공 </translation>
     </message>
-    <message>
-        <source>(only if different from group tree)</source>
-        <translation>(그룹 트리가 다를 경우에만)</translation>
-    </message>
-    <message>
-        <source>Computer group tree</source>
-        <translation>컴퓨터 그룹 트리</translation>
-    </message>
-    <message>
-        <source>computer group tree</source>
-        <translation>컴퓨터 그룹 트리</translation>
-    </message>
-    <message>
-        <source>Filter for computers</source>
-        <translation>컴퓨터 필터</translation>
-    </message>
-    <message>
-        <source>e.g. room or computerLab</source>
-        <translation>예. room or computerLab</translation>
-    </message>
-    <message>
-        <source>Integration tests</source>
-        <translation>결합 테스트</translation>
-    </message>
-    <message>
-        <source>Computer groups</source>
-        <translation>컴퓨터 그룹</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>예. 이름 또는 설명</translation>
-    </message>
-    <message>
-        <source>Filter for computer containers</source>
-        <translation>컴퓨터 컨테이너 필터</translation>
-    </message>
-    <message>
-        <source>Computer containers or OUs</source>
-        <translation>컴퓨터 컨테이너 또는 OU</translation>
-    </message>
-    <message>
-        <source>Connection security</source>
-        <translation>연결 보안</translation>
-    </message>
-    <message>
-        <source>TLS certificate verification</source>
-        <translation>TLS 인증 검증</translation>
-    </message>
-    <message>
-        <source>System defaults</source>
-        <translation>시스템 디폴트</translation>
-    </message>
-    <message>
-        <source>Never (insecure!)</source>
-        <translation>거부(보안 안됨)</translation>
-    </message>
-    <message>
-        <source>Custom CA certificate file</source>
-        <translation>사용자 CA 인증 화일</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>없음</translation>
-    </message>
-    <message>
-        <source>TLS</source>
-        <translation>TLS</translation>
-    </message>
-    <message>
-        <source>SSL</source>
-        <translation>SSL</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=computer)</source>
-        <translation>e.g. (objectClass=computer)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=group)</source>
-        <translation>e.g. (objectClass=group)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=person)</source>
-        <translation>예. (objectClass=person)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation>e.g. (objectClass=room) or (objectClass=computerLab)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation>e.g. (objectClass=container) or (objectClass=organizationalUnit)</translation>
-    </message>
-    <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-
-%1</source>
-        <translation>설정된 베이스 DN을 찾을 수 없습니다. 베이스 DN 파라메터를 점검하세요.
-
-%1</translation>
-    </message>
-    <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-
-%1</source>
-        <translation>LDAP 베이스 DN 조회 성공. 다음 입력항목이 발견되었습니다:
-%1</translation>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-
-%1</source>
-        <translation>명칭 내용을 통해 베이스 DN 조회를 할 수 없습니다. 명칭 속성 파라메터를 점검하세요.
-%1</translation>
-    </message>
-    <message>
-        <source>Certificate files (*.pem)</source>
-        <translation>인증화일 (*.pem)</translation>
-    </message>
-    <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters.
-
-%1</source>
-        <translation>LDAP 서버에 연결할 수 없음. 서버 파라메터를 점검하세요.
-
-%1</translation>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
-
-%1</source>
-        <translation>LDAP서버와 결합 불가. 결합인자와 서버 파라메터를 점검하세요.
-
-%1</translation>
-    </message>
-    <message>
-        <source>Encryption protocol</source>
-        <translation>암호화 프로토콜</translation>
-    </message>
-    <message>
-        <source>Computer location attribute</source>
-        <translation>컴퓨터 위치 및 속성</translation>
-    </message>
-    <message>
-        <source>Computer display name attribute</source>
-        <translation>컴퓨터 표시 이름 속성</translation>
-    </message>
-    <message>
-        <source>Location name attribute</source>
-        <translation>위치 이름 및 속성</translation>
-    </message>
-    <message>
-        <source>e.g. cn or displayName</source>
-        <translation>예, cn 또는 displayName</translation>
-    </message>
-    <message>
-        <source>Computer locations identification</source>
-        <translation>컴퓨터 위치 ID</translation>
-    </message>
-    <message>
-        <source>Identify computer locations (e.g. rooms) via:</source>
-        <translation>를 통해서 컴퓨터 위치 확인하기( 예,   rooms) :</translation>
-    </message>
-    <message>
-        <source>Location attribute in computer objects</source>
-        <translation>컴퓨터 오브젝트에서의 위치 속성</translation>
-    </message>
-    <message>
-        <source>List all entries of a location</source>
-        <translation>모든 위치의 엔트리 출력</translation>
-    </message>
-    <message>
-        <source>List all locations</source>
-        <translation>모든 위치 출력</translation>
-    </message>
-    <message>
-        <source>Enter computer display name</source>
-        <translation>컴퓨터 표시 이름 입력</translation>
-    </message>
-    <message>
-        <source>Please enter a computer display name to query:</source>
-        <translation>검색할 컴퓨터 디스플레이 이름을 입력하세요:</translation>
-    </message>
-    <message>
-        <source>Enter computer location name</source>
-        <translation>컴퓨터 위치 이름 입력</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation>컴퓨터 위치의 이름을 입력하세요(와일드카드 허용됨):</translation>
-    </message>
-    <message>
-        <source>computer locations</source>
-        <translation>컴퓨터 위치</translation>
-    </message>
-    <message>
-        <source>Enter location name</source>
-        <translation>위치 이름 입력</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a location whose entries to query:</source>
-        <translation>조회할 위치 이름을 넣으세요:</translation>
-    </message>
-    <message>
-        <source>location entries</source>
-        <translation>위치 엔트리</translation>
-    </message>
-    <message>
-        <source>LDAP test failed</source>
-        <translation>LDAP 테스트 실패</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
-
-%3</source>
-        <translation>%1을 조회할 수 없음. %2 파라메터(들)을 점검하거나 또는 기존의 개체의 이름을 입력하세요
-
-%3</translation>
-    </message>
-    <message>
-        <source>and</source>
-        <translation>및 </translation>
-    </message>
-    <message>
-        <source>LDAP test successful</source>
-        <translation>LDAP 테스트 성공</translation>
-    </message>
-    <message>
-        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
-
-%3</source>
-        <translation>설정된 %1에서 엔트리 값을 찾지 못함. &quot;%2&quot; 파라메터를 점검하세요.
-
-%3</translation>
-    </message>
-    <message>
-        <source>Browse</source>
-        <translation>찾아보기</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>테스트</translation>
-    </message>
-    <message>
-        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>호스트 이름이 완전히 검증된 도메인 이름으로 저장되었음 (FQDN, 예 myhost.example.org)</translation>
-    </message>
-    <message>
-        <source>Computer hostname attribute</source>
-        <translation>컴퓨터 호스트 이름 속성</translation>
-    </message>
-    <message>
-        <source>Please enter a computer hostname to query:</source>
-        <translation>검색할 컴퓨터 호스트 이름을 입력하세요:</translation>
-    </message>
-    <message>
-        <source>Invalid hostname</source>
-        <translation>잘못된 호스트 이름</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation>컴퓨터 호스트 이름을 완전히 인증된 도메인 이름으로 저장되도록 설정했으나 도메인(FQDN) 이 입력되지 않았음.</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation>컴퓨터 호스트 이름을 도메인 없는 단순 호스트 이름으로 저장되도록 설정하였으나 호스트 이름에 도메인 이름이 입력되있습니다.</translation>
-    </message>
-    <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation>사용자 이름 &quot;%1&quot;  검색되지 않음.  사용자 이름 또는 사용자 트리 파라메터를 확인하세요.</translation>
-    </message>
-    <message>
-        <source>Enter hostname</source>
-        <translation>호스트 이름을 입력하세요</translation>
-    </message>
-    <message>
-        <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation>멤버 속성을 검색할 컴퓨터 호스트 이름을 입력하세요:</translation>
-    </message>
-    <message>
-        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>호스트 이름 &quot;%1&quot;인 컴퓨터 가 검색되지 않음.  호스트 이름 또는 컴퓨터 트리 파라메터를 확인하세요.</translation>
-    </message>
-    <message>
-        <source>Hostname lookup failed</source>
-        <translation>호스트이름 검색 실패</translation>
-    </message>
-    <message>
-        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation>IP %1 에 대한 호스트 이름  검색 실패. DNS 서버 설정을 확인하세요 </translation>
-    </message>
-    <message>
-        <source>User login name attribute</source>
-        <translation>사용자 로긴이름 속성</translation>
-    </message>
-    <message>
-        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation>사용자 로그인 또는 컴퓨터 호스트 이름 (OpenLDAP)의 속성 설정됨</translation>
-    </message>
-    <message>
-        <source>computer containers</source>
-        <translation>컴퓨터 컨테이너들</translation>
-    </message>
-    <message>
-        <source>Query options</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Query nested user groups (supported by AD only)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Query timeout</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation> ms</translation>
-    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2665,22 +2665,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Show help about command</source>
         <translation>명령어에 대한 도움말 보여줌</translation>
-    </message>
-    <message>
-        <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation>LDAP/AD 통합을 설정하거나 제어하는 명령어</translation>
-    </message>
-    <message>
-        <source>Basic LDAP/AD support for Veyon</source>
-        <translation>Veyon 기본 LDAP/AD 지원</translation>
-    </message>
-    <message>
-        <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation>%1 (LDAP/AD에서 컴퓨터와 위치를 가져옴)</translation>
-    </message>
-    <message>
-        <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation>%1 (LDAP/AD에서 사용자와 그룹을 가져옴)</translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
@@ -2698,6 +2682,22 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
         <translation>%1 을 기본 DN 으로 설정하고 네이밍 컨텍스트 조회를 비활성화 함.</translation>
     </message>
+    <message>
+        <source>Basic LDAP/AD support for Veyon</source>
+        <translation>Veyon 기본 LDAP/AD 지원</translation>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
+        <translation>LDAP/AD 통합을 설정하거나 제어하는 명령어</translation>
+    </message>
+    <message>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation>%1 (LDAP/AD에서 컴퓨터와 위치를 가져옴)</translation>
+    </message>
+    <message>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation>%1 (LDAP/AD에서 사용자와 그룹을 가져옴)</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformConfigurationPage</name>
@@ -2706,20 +2706,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>리눅스</translation>
     </message>
     <message>
-        <source>Custom PAM service for user authentication</source>
-        <translation>사용자 인증용 커스텀 PAM 서비스</translation>
-    </message>
-    <message>
         <source>User authentication</source>
         <translation>사용자 인증</translation>
     </message>
     <message>
-        <source>User login</source>
-        <translation>유저 로긴</translation>
-    </message>
-    <message>
-        <source>Login key sequence</source>
-        <translation type="unfinished"/>
+        <source>Custom PAM service for user authentication</source>
+        <translation>사용자 인증용 커스텀 PAM 서비스</translation>
     </message>
     <message>
         <source>User sessions</source>
@@ -2727,6 +2719,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation>유저 로긴</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2755,87 +2755,23 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>설정</translation>
     </message>
     <message>
-        <source>Show icons only</source>
-        <translation>아이콘만 보여주기</translation>
-    </message>
-    <message>
         <source>Disable tooltips</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show icons only</source>
+        <translation>아이콘만 보여주기</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <source>MainWindow</source>
-        <translation>메인 윈도우</translation>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation>툴바</translation>
+        <source>Veyon Configurator</source>
+        <translation>Veyon Configurator</translation>
     </message>
     <message>
         <source>General</source>
         <translation>일반사항</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>파일(&amp;F)</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>&amp;Help</translation>
-    </message>
-    <message>
-        <source>&amp;Quit</source>
-        <translation>&amp;Quit</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
-    </message>
-    <message>
-        <source>L&amp;oad settings from file</source>
-        <translation>&amp;o 화일에서 설정 불러오기</translation>
-    </message>
-    <message>
-        <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
-    </message>
-    <message>
-        <source>About Qt</source>
-        <translation>Qt 정보</translation>
-    </message>
-    <message>
-        <source>Authentication impossible</source>
-        <translation>인증 불가</translation>
-    </message>
-    <message>
-        <source>Configuration not writable</source>
-        <translation>설정 저장 불가</translation>
-    </message>
-    <message>
-        <source>Load settings from file</source>
-        <translation>화일에서 설정 불러오기</translation>
-    </message>
-    <message>
-        <source>Save settings to file</source>
-        <translation>화일에 설정 저장</translation>
-    </message>
-    <message>
-        <source>Unsaved settings</source>
-        <translation>저장되지 않은 설정</translation>
-    </message>
-    <message>
-        <source>There are unsaved settings. Quit anyway?</source>
-        <translation>저장되지 않은 설정이 있습니다.그래도 끝낼까요 ?</translation>
-    </message>
-    <message>
-        <source>Veyon Configurator</source>
-        <translation>Veyon Configurator</translation>
     </message>
     <message>
         <source>Service</source>
@@ -2850,8 +2786,72 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>접근 제어</translation>
     </message>
     <message>
+        <source>&amp;File</source>
+        <translation>파일(&amp;F)</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>&amp;Help</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation>&amp;보기</translation>
+    </message>
+    <message>
+        <source>&amp;Quit</source>
+        <translation>&amp;Quit</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
+    </message>
+    <message>
+        <source>&amp;Save settings to file</source>
+        <translation>&amp;설정을 화일에 저장</translation>
+    </message>
+    <message>
+        <source>Save settings to file</source>
+        <translation>화일에 설정 저장</translation>
+    </message>
+    <message>
+        <source>Ctrl+S</source>
+        <translation>Ctrl+S</translation>
+    </message>
+    <message>
+        <source>L&amp;oad settings from file</source>
+        <translation>&amp;o 화일에서 설정 불러오기</translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
+        <translation>Ctrl+O</translation>
+    </message>
+    <message>
         <source>About Veyon</source>
         <translation>Veyon에 대해서</translation>
+    </message>
+    <message>
+        <source>About Qt</source>
+        <translation>Qt 정보</translation>
+    </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation>설정 초기화</translation>
+    </message>
+    <message>
+        <source>&amp;Standard</source>
+        <translation>&amp;Standard 표준</translation>
+    </message>
+    <message>
+        <source>&amp;Advanced</source>
+        <translation>&amp;Advanced 고급</translation>
+    </message>
+    <message>
+        <source>MainWindow</source>
+        <translation>메인 윈도우</translation>
+    </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Auto</source>
@@ -2862,16 +2862,92 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>정보</translation>
     </message>
     <message>
+        <source>Search users and computers</source>
+        <translation>사용자 또는 컴퓨터 검색</translation>
+    </message>
+    <message>
+        <source>Align computers to grid</source>
+        <translation>컴퓨터를 그리드에 맞춤</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
+        <translation>사용자가 정의한 컴퓨터 배치를 사용</translation>
+    </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation>전원이 켜진 컴퓨터만 보여주기</translation>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
+        <translation>위치 &amp;&amp; 컴퓨터</translation>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation>화면캡쳐</translation>
+    </message>
+    <message>
+        <source>Slideshow</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation>툴바</translation>
+    </message>
+    <message>
         <source>%1 Configurator %2</source>
         <translation>%1  %2 설정</translation>
+    </message>
+    <message>
+        <source>Load settings from file</source>
+        <translation>화일에서 설정 불러오기</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
         <translation>JSON files (*.json)</translation>
     </message>
     <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation>정말 로컬설정을 초기화하고 기본 설정값으로 되돌리시겠습니까?</translation>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation>%1 설정자</translation>
+    </message>
+    <message>
+        <source>Unsaved settings</source>
+        <translation>저장되지 않은 설정</translation>
+    </message>
+    <message>
+        <source>There are unsaved settings. Quit anyway?</source>
+        <translation>저장되지 않은 설정이 있습니다.그래도 끝낼까요 ?</translation>
+    </message>
+    <message>
+        <source>Insufficient privileges</source>
+        <translation>권한 부족</translation>
+    </message>
+    <message>
+        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
+        <translation>관리자 권한으로 시작하지  못했습니다. 데스크탑 환경에 슈퍼유저 프로그램이 설치되었는지 확인하세요. 이 프로그램은 일반 유저 권한으로 실행됩니다.</translation>
+    </message>
+    <message>
+        <source>Configuration not writable</source>
+        <translation>설정 저장 불가</translation>
+    </message>
+    <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>설정을 저장할 수 없다는 로컬 설정 백엔드가 보고됨! %1  Configurator    를 관리자 권한으로 실행하세요.</translation>
+    </message>
+    <message>
+        <source>Authentication impossible</source>
+        <translation>인증 불가</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
@@ -2886,10 +2962,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>로컬 설정에 따라 당신은 네트워크상의 컴퓨터에 접근이 거부됩니다. 다른 사용자 이름으로 다시 로그인 하거나 시스템 관리자에게 로컬 설정 확인을 요청하세요</translation>
     </message>
     <message>
-        <source>Screenshots</source>
-        <translation>화면캡쳐</translation>
-    </message>
-    <message>
         <source>Feature active</source>
         <translation>기능 활성화</translation>
     </message>
@@ -2897,81 +2969,13 @@ The public key is used on client computers to authenticate incoming connection r
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation>기능 &quot;%1&quot; 이 현재 활성화 상태입니다. %2를 닫기 전에 중지시키세요</translation>
     </message>
-    <message>
-        <source>Reset configuration</source>
-        <translation>설정 초기화</translation>
-    </message>
-    <message>
-        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation>정말 로컬설정을 초기화하고 기본 설정값으로 되돌리시겠습니까?</translation>
-    </message>
-    <message>
-        <source>Search users and computers</source>
-        <translation>사용자 또는 컴퓨터 검색</translation>
-    </message>
-    <message>
-        <source>Align computers to grid</source>
-        <translation>컴퓨터를 그리드에 맞춤</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>%1 설정자</translation>
-    </message>
-    <message>
-        <source>Insufficient privileges</source>
-        <translation>권한 부족</translation>
-    </message>
-    <message>
-        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation>관리자 권한으로 시작하지  못했습니다. 데스크탑 환경에 슈퍼유저 프로그램이 설치되었는지 확인하세요. 이 프로그램은 일반 유저 권한으로 실행됩니다.</translation>
-    </message>
-    <message>
-        <source>Only show powered on computers</source>
-        <translation>전원이 켜진 컴퓨터만 보여주기</translation>
-    </message>
-    <message>
-        <source>&amp;Save settings to file</source>
-        <translation>&amp;설정을 화일에 저장</translation>
-    </message>
-    <message>
-        <source>&amp;View</source>
-        <translation>&amp;보기</translation>
-    </message>
-    <message>
-        <source>&amp;Standard</source>
-        <translation>&amp;Standard 표준</translation>
-    </message>
-    <message>
-        <source>&amp;Advanced</source>
-        <translation>&amp;Advanced 고급</translation>
-    </message>
-    <message>
-        <source>Use custom computer arrangement</source>
-        <translation>사용자가 정의한 컴퓨터 배치를 사용</translation>
-    </message>
-    <message>
-        <source>Locations &amp;&amp; computers</source>
-        <translation>위치 &amp;&amp; 컴퓨터</translation>
-    </message>
-    <message>
-        <source>Slideshow</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Spotlight</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Only show computers with logged on users</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
+    <message>
+        <source>Basic settings</source>
+        <translation>기본 설정</translation>
+    </message>
     <message>
         <source>Directories</source>
         <translation>디렉토리</translation>
@@ -2981,80 +2985,44 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>사용자 설정</translation>
     </message>
     <message>
-        <source>Feature on computer double click:</source>
-        <translation>컴퓨터를 더블 클릭할 때의 기능</translation>
-    </message>
-    <message>
-        <source>Features</source>
-        <translation>기능</translation>
-    </message>
-    <message>
-        <source>All features</source>
-        <translation>모든 기능 항목</translation>
-    </message>
-    <message>
-        <source>Disabled features</source>
-        <translation>기능 비활성화</translation>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation>화면캡쳐</translation>
-    </message>
-    <message>
-        <source>&lt;no feature&gt;</source>
-        <translation>&lt;no feature&gt;</translation>
-    </message>
-    <message>
-        <source>Basic settings</source>
-        <translation>기본 설정</translation>
-    </message>
-    <message>
-        <source>Behaviour</source>
-        <translation>수행형태</translation>
-    </message>
-    <message>
-        <source>Enforce selected mode for client computers</source>
-        <translation>클라이언트 컴퓨터를 선택된 모드로 강제로 실행</translation>
-    </message>
-    <message>
-        <source>Hide local computer</source>
-        <translation>로컬컴퓨터 숨김</translation>
-    </message>
-    <message>
-        <source>Hide computer filter field</source>
-        <translation>컴퓨터 필터 필드 숨김</translation>
-    </message>
-    <message>
-        <source>Actions such as rebooting or powering down computers</source>
-        <translation>리부팅 또는 컴퓨터 파워 끄기</translation>
     </message>
     <message>
         <source>User interface</source>
         <translation>유저 인터페이스</translation>
     </message>
     <message>
-        <source>Background color</source>
-        <translation>백그라운드 색상</translation>
-    </message>
-    <message>
-        <source>Thumbnail update interval</source>
-        <translation>썸네일 그림 업데이트 시간간격</translation>
+        <source>Text color</source>
+        <translation>글자색</translation>
     </message>
     <message>
         <source> ms</source>
         <translation> ms</translation>
     </message>
     <message>
-        <source>Program start</source>
-        <translation>프로그램 시작</translation>
+        <source>Background color</source>
+        <translation>백그라운드 색상</translation>
     </message>
     <message>
-        <source>Modes and features</source>
-        <translation>모드와 기능들</translation>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>User and computer name</source>
-        <translation>사용자 와 컴퓨터 이름</translation>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>자동</translation>
+    </message>
+    <message>
+        <source>Computer thumbnail caption</source>
+        <translation>컴퓨터 썸네일 캡션</translation>
+    </message>
+    <message>
+        <source>Computer and user name</source>
+        <translation>켬퓨터 및 사용자 이름</translation>
     </message>
     <message>
         <source>Only user name</source>
@@ -3065,79 +3033,19 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>전용 컴퓨터 이름</translation>
     </message>
     <message>
-        <source>Computer thumbnail caption</source>
-        <translation>컴퓨터 썸네일 캡션</translation>
+        <source>User and computer name</source>
+        <translation>사용자 와 컴퓨터 이름</translation>
     </message>
     <message>
-        <source>Text color</source>
-        <translation>글자색</translation>
+        <source>Thumbnail update interval</source>
+        <translation>썸네일 그림 업데이트 시간간격</translation>
     </message>
     <message>
         <source>Sort order</source>
         <translation>정렬 순서</translation>
     </message>
     <message>
-        <source>Computer and user name</source>
-        <translation>켬퓨터 및 사용자 이름</translation>
-    </message>
-    <message>
-        <source>Computer locations</source>
-        <translation>컴퓨터 위치</translation>
-    </message>
-    <message>
-        <source>Show current location only</source>
-        <translation>현재 위치만 표시</translation>
-    </message>
-    <message>
-        <source>Allow adding hidden locations manually</source>
-        <translation>수동으로 숨겨진 위치 추가를 허용</translation>
-    </message>
-    <message>
-        <source>Hide empty locations</source>
-        <translation>빈 위치 숨김</translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation>안전하지 않은 작동에 대한 확인 대화 창 보여주기</translation>
-    </message>
-    <message>
-        <source>Perform access control</source>
-        <translation>접근제어 실행</translation>
-    </message>
-    <message>
-        <source>Automatically select current location</source>
-        <translation>자동으로 현재 위치를 선택</translation>
-    </message>
-    <message>
-        <source>Automatically open computer select panel</source>
-        <translation>컴퓨터 선택 패너을 자동으로 열기</translation>
-    </message>
-    <message>
-        <source>Hide local session</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source> px</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>자동</translation>
-    </message>
-    <message>
         <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Open feature windows on the same screen as the main window</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3161,12 +3069,104 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Remote access image quality</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Image quality in monitoring mode</source>
+        <source>Behaviour</source>
+        <translation>수행형태</translation>
+    </message>
+    <message>
+        <source>Program start</source>
+        <translation>프로그램 시작</translation>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation>접근제어 실행</translation>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation>자동으로 현재 위치를 선택</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
+        <translation>컴퓨터 선택 패너을 자동으로 열기</translation>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation>컴퓨터 위치</translation>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation>현재 위치만 표시</translation>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation>수동으로 숨겨진 위치 추가를 허용</translation>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation>로컬컴퓨터 숨김</translation>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation>빈 위치 숨김</translation>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation>컴퓨터 필터 필드 숨김</translation>
+    </message>
+    <message>
+        <source>Modes and features</source>
+        <translation>모드와 기능들</translation>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation>클라이언트 컴퓨터를 선택된 모드로 강제로 실행</translation>
+    </message>
+    <message>
+        <source>Actions such as rebooting or powering down computers</source>
+        <translation>리부팅 또는 컴퓨터 파워 끄기</translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation>안전하지 않은 작동에 대한 확인 대화 창 보여주기</translation>
+    </message>
+    <message>
+        <source>Feature on computer double click:</source>
+        <translation>컴퓨터를 더블 클릭할 때의 기능</translation>
+    </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Features</source>
+        <translation>기능</translation>
+    </message>
+    <message>
+        <source>All features</source>
+        <translation>모든 기능 항목</translation>
+    </message>
+    <message>
+        <source>Disabled features</source>
+        <translation>기능 비활성화</translation>
+    </message>
+    <message>
+        <source>&lt;no feature&gt;</source>
+        <translation>&lt;no feature&gt;</translation>
     </message>
 </context>
 <context>
@@ -3174,10 +3174,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Monitoring</source>
         <translation>모니터링</translation>
-    </message>
-    <message>
-        <source>Builtin monitoring mode</source>
-        <translation>게시판형 모니터링 모드</translation>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
@@ -3194,6 +3190,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Query properties of remotely available screens</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Builtin monitoring mode</source>
+        <translation>게시판형 모니터링 모드</translation>
     </message>
 </context>
 <context>
@@ -3233,6 +3233,14 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>PasswordDialog</name>
     <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon 로그온</translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation>컴퓨터에 접근 하려면 당신의 사용자이름과 패스워드를 입력하세요</translation>
+    </message>
+    <message>
         <source>Username</source>
         <translation>사용자 이름</translation>
     </message>
@@ -3241,20 +3249,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>암호</translation>
     </message>
     <message>
-        <source>Veyon Logon</source>
-        <translation>Veyon 로그온</translation>
-    </message>
-    <message>
         <source>Authentication error</source>
         <translation>인증 에러</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>입력한 사용자이름과 패스워드로 로그온 실패. 다시 시도하세요!</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
-        <translation>컴퓨터에 접근 하려면 당신의 사용자이름과 패스워드를 입력하세요</translation>
     </message>
 </context>
 <context>
@@ -3295,6 +3295,10 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>PowerControlFeaturePlugin</name>
     <message>
+        <source>Power on a computer via Wake-on-LAN (WOL)</source>
+        <translation>Wake-on-LAN(WOL)을 사용하여 컴퓨터 파워를 켬</translation>
+    </message>
+    <message>
         <source>Power on</source>
         <translation>전원켜기</translation>
     </message>
@@ -3319,46 +3323,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>이버튼 눌러서 모든 컴퓨터의 파워를 끕니다. 따라서 수동으로 한대씩 전원을 끌 필요가 없습니다</translation>
     </message>
     <message>
-        <source>Power on/down or reboot a computer</source>
-        <translation>선택된 컴퓨터 파워 온/오프 또는 재시작</translation>
-    </message>
-    <message>
-        <source>Confirm reboot</source>
-        <translation>리부팅 확인</translation>
-    </message>
-    <message>
-        <source>Confirm power down</source>
-        <translation>컴퓨터 파워 끄기 확인</translation>
-    </message>
-    <message>
-        <source>Do you really want to reboot the selected computers?</source>
-        <translation>선택된 컴퓨터를 리부팅하시겠습니까 ?</translation>
-    </message>
-    <message>
-        <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>Wake-on-LAN(WOL)을 사용하여 컴퓨터 파워를 켬</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>맥 어드레스</translation>
-    </message>
-    <message>
-        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation>이 명령어는 주어진 MAC 주소를 갖는 컴퓨터 파워를 켜기 위해 네트워크에 Wake-on-LAN(WOL) 패킷을 배포함.</translation>
-    </message>
-    <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>도움말을 표시할 명령어를 지정하세요</translation>
-    </message>
-    <message>
-        <source>Invalid MAC address specified!</source>
-        <translation>유효하지 않은 MAC 주소가 선택됨!</translation>
-    </message>
-    <message>
-        <source>Commands for controlling power status of computers</source>
-        <translation>컴퓨터 파워 상태를 제어하기 위한 명령어들</translation>
-    </message>
-    <message>
         <source>Power down now</source>
         <translation>지금 전원 끄기</translation>
     </message>
@@ -3375,6 +3339,46 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>시간이  다 되면 전원 끄기</translation>
     </message>
     <message>
+        <source>MAC ADDRESS</source>
+        <translation>맥 어드레스</translation>
+    </message>
+    <message>
+        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
+        <translation>이 명령어는 주어진 MAC 주소를 갖는 컴퓨터 파워를 켜기 위해 네트워크에 Wake-on-LAN(WOL) 패킷을 배포함.</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation>도움말을 표시할 명령어를 지정하세요</translation>
+    </message>
+    <message>
+        <source>Confirm reboot</source>
+        <translation>리부팅 확인</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to reboot the selected computers?</source>
+        <translation>선택된 컴퓨터를 리부팅하시겠습니까 ?</translation>
+    </message>
+    <message>
+        <source>Confirm power down</source>
+        <translation>컴퓨터 파워 끄기 확인</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid MAC address specified!</source>
+        <translation>유효하지 않은 MAC 주소가 선택됨!</translation>
+    </message>
+    <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
         <translation>이 컴퓨터는 원격으로 종료를 요청했습니다. 컴퓨터를 지금 끄시겠습니까?</translation>
     </message>
@@ -3387,16 +3391,12 @@ Please save your work and close all programs.</source>
 작업을 저장하고 모든 프로그램을 닫기 바랍니다.</translation>
     </message>
     <message>
-        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <source>Power on/down or reboot a computer</source>
+        <translation>선택된 컴퓨터 파워 온/오프 또는 재시작</translation>
     </message>
     <message>
-        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Do you really want to power down the selected computers?</source>
-        <translation type="unfinished"/>
+        <source>Commands for controlling power status of computers</source>
+        <translation>컴퓨터 파워 상태를 제어하기 위한 명령어들</translation>
     </message>
 </context>
 <context>
@@ -3437,24 +3437,24 @@ Please save your work and close all programs.</source>
         <translation>컴퓨터의 원격제어 윈도우를 열기</translation>
     </message>
     <message>
-        <source>Remote access</source>
-        <translation>원격 접근</translation>
-    </message>
-    <message>
-        <source>Remote view or control a computer</source>
-        <translation>감시화면 또는 컴퓨터 제어</translation>
+        <source>Exchange clipboard contents</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Show help about command</source>
         <translation>명령어에 대한 도움말 보여줌</translation>
     </message>
     <message>
-        <source>Exchange clipboard contents</source>
-        <translation type="unfinished"/>
+        <source>Remote access</source>
+        <translation>원격 접근</translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote view or control a computer</source>
+        <translation>감시화면 또는 컴퓨터 제어</translation>
     </message>
 </context>
 <context>
@@ -3479,8 +3479,16 @@ Please save your work and close all programs.</source>
         <translation>원격제어</translation>
     </message>
     <message>
+        <source>Select screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Send shortcut</source>
         <translation>바로가기 보내기</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>화면캡쳐</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -3489,6 +3497,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Window</source>
         <translation>윈도우</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation>나가기</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
@@ -3527,19 +3539,7 @@ Please save your work and close all programs.</source>
         <translation>연결됨</translation>
     </message>
     <message>
-        <source>Screenshot</source>
-        <translation>화면캡쳐</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation>나가기</translation>
-    </message>
-    <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Select screen</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3558,10 +3558,6 @@ Please save your work and close all programs.</source>
         <translation>잠금해제</translation>
     </message>
     <message>
-        <source>Lock screen and input devices of a computer</source>
-        <translation>컴퓨터의 입력장치와 화면을 잠금</translation>
-    </message>
-    <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>사용자의 주의를 끌기 위해서 이버튼을 사용하여 사용자의 컴퓨터를 잠글수 있습니다. 이 모드에서 모든 입력 장치는 잠기며 화면은 검은색이 됩니다.</translation>
     </message>
@@ -3576,6 +3572,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock screen and input devices of a computer</source>
+        <translation>컴퓨터의 입력장치와 화면을 잠금</translation>
     </message>
 </context>
 <context>
@@ -3666,56 +3666,44 @@ Please save your work and close all programs.</source>
         <translation>일반사항</translation>
     </message>
     <message>
-        <source>Autostart</source>
-        <translation>자동시작</translation>
+        <source>Show notification when an unauthorized access is blocked</source>
+        <translation>허가되지 않은 접속이 차단되었을때 알려줌</translation>
+    </message>
+    <message>
+        <source>Show notification on remote connection</source>
+        <translation>원격 연결이면 알림 보이기</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
         <translation>트레이 아이콘 숨기기</translation>
     </message>
     <message>
-        <source>Start service</source>
-        <translation>서비스 시작</translation>
-    </message>
-    <message>
-        <source>Stopped</source>
-        <translation>멈춤</translation>
-    </message>
-    <message>
-        <source>Stop service</source>
-        <translation>서비스 중지</translation>
+        <source>Autostart</source>
+        <translation>자동시작</translation>
     </message>
     <message>
         <source>State:</source>
         <translation>상태:</translation>
     </message>
     <message>
-        <source>Enable firewall exception</source>
-        <translation>방화벽 예외 적용 활성화</translation>
+        <source>Stopped</source>
+        <translation>멈춤</translation>
     </message>
     <message>
-        <source>Allow connections from localhost only</source>
-        <translation>로컬 호스트 연결만 허용함</translation>
+        <source>Start service</source>
+        <translation>서비스 시작</translation>
     </message>
     <message>
-        <source>VNC server</source>
-        <translation>VNC server</translation>
+        <source>Stop service</source>
+        <translation>서비스 중지</translation>
     </message>
     <message>
-        <source>Plugin:</source>
-        <translation>플러그인:</translation>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Restart %1 Service</source>
-        <translation>%1 서비스 재시작</translation>
-    </message>
-    <message>
-        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>모든 설정이 성공적으로 저장됨. %1 서비스가 작동하려면 재시작해야 합니다. 지금 재시작 할까요 ?</translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>실행중</translation>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
@@ -3724,12 +3712,12 @@ Typically this is required to support terminal servers.</source>
 일반적으로 터미널 서버를 지원하는데 필요합니다.</translation>
     </message>
     <message>
-        <source>Show notification on remote connection</source>
-        <translation>원격 연결이면 알림 보이기</translation>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show notification when an unauthorized access is blocked</source>
-        <translation>허가되지 않은 접속이 차단되었을때 알려줌</translation>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Maximum session count</source>
@@ -3756,24 +3744,40 @@ Typically this is required to support terminal servers.</source>
         <translation>데모 서버</translation>
     </message>
     <message>
-        <source>Miscellaneous network settings</source>
+        <source>Miscellaneous settings</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Session mode</source>
+        <source>Enable firewall exception</source>
+        <translation>방화벽 예외 적용 활성화</translation>
+    </message>
+    <message>
+        <source>Allow connections from localhost only</source>
+        <translation>로컬 호스트 연결만 허용함</translation>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Local session mode (single server instance for primary local session)</source>
-        <translation type="unfinished"/>
+        <source>VNC server</source>
+        <translation>VNC server</translation>
     </message>
     <message>
-        <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation type="unfinished"/>
+        <source>Plugin:</source>
+        <translation>플러그인:</translation>
     </message>
     <message>
-        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
+        <source>Restart %1 Service</source>
+        <translation>%1 서비스 재시작</translation>
+    </message>
+    <message>
+        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
+        <translation>모든 설정이 성공적으로 저장됨. %1 서비스가 작동하려면 재시작해야 합니다. 지금 재시작 할까요 ?</translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>실행중</translation>
     </message>
 </context>
 <context>
@@ -3883,6 +3887,10 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>SpotlightPanel</name>
     <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Add selected computers</source>
         <translation type="unfinished"/>
     </message>
@@ -3904,10 +3912,6 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4000,32 +4004,32 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>UltraVncConfigurationWidget</name>
     <message>
-        <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>계층화된 윈도우 캡쳐 활성화 (반 투명)</translation>
+        <source>Builtin UltraVNC server configuration</source>
+        <translation>내장 UltraVNC 서버 설정</translation>
     </message>
     <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation>전체화면 (기본값으로 활성화시켜 놓음)</translation>
+        <source>Maximum CPU usage</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
         <translation>저해상도 (터보모드)</translation>
     </message>
     <message>
-        <source>Builtin UltraVNC server configuration</source>
-        <translation>내장 UltraVNC 서버 설정</translation>
-    </message>
-    <message>
-        <source>Enable multi monitor support</source>
-        <translation>다중 모니터 지원 활성화</translation>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>전체화면 (기본값으로 활성화시켜 놓음)</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>윈도8 또는 상위버전에서 데스크탑 복제엔진 활성화</translation>
     </message>
     <message>
-        <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
+        <source>Enable multi monitor support</source>
+        <translation>다중 모니터 지원 활성화</translation>
+    </message>
+    <message>
+        <source>Enable capturing of layered (semi-transparent) windows</source>
+        <translation>계층화된 윈도우 캡쳐 활성화 (반 투명)</translation>
     </message>
 </context>
 <context>
@@ -4081,16 +4085,16 @@ Typically this is required to support terminal servers.</source>
         <translation>사용자 확인 로그오프</translation>
     </message>
     <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>선택한 유저를 로그오프 하시겠습니까?</translation>
     </message>
     <message>
         <source>User session control</source>
         <translation>사용자 세션제어</translation>
-    </message>
-    <message>
-        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4108,10 +4112,6 @@ Typically this is required to support terminal servers.</source>
         <translation>잘못된 명령어</translation>
     </message>
     <message>
-        <source>Available commands:</source>
-        <translation>사용가능한 명령어:</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>인자가 잘못됨</translation>
     </message>
@@ -4120,8 +4120,16 @@ Typically this is required to support terminal servers.</source>
         <translation>필수 인자 미입력 - 자세한 정보는 %1 HELP를 사용하세요</translation>
     </message>
     <message>
+        <source>Plugin not licensed</source>
+        <translation>플러그인 라이센스 안됨</translation>
+    </message>
+    <message>
         <source>Unknown result!</source>
         <translation>알수 없는 결과!</translation>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation>사용가능한 명령어:</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -4132,12 +4140,12 @@ Typically this is required to support terminal servers.</source>
         <translation>모듈이 지정되지 않았거나 찾을 수 없음 - 사용가능한 모듈들은:</translation>
     </message>
     <message>
-        <source>Plugin not licensed</source>
-        <translation>플러그인 라이센스 안됨</translation>
-    </message>
-    <message>
         <source>INFO</source>
         <translation>정보</translation>
+    </message>
+    <message>
+        <source>WARNING</source>
+        <translation>경고</translation>
     </message>
     <message>
         <source>ERROR</source>
@@ -4154,10 +4162,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>EXAMPLES</source>
         <translation>예제</translation>
-    </message>
-    <message>
-        <source>WARNING</source>
-        <translation>경고</translation>
     </message>
     <message>
         <source>Screen %1</source>
@@ -4283,22 +4287,6 @@ Typically this is required to support terminal servers.</source>
         <translation>소프트웨어로 SAS (Ctrl+Alt+Del)  생성 허용</translation>
     </message>
     <message>
-        <source>Screen lock</source>
-        <translation>화면 잠금</translation>
-    </message>
-    <message>
-        <source>Hide taskbar</source>
-        <translation>작업 표시줄 숨기기</translation>
-    </message>
-    <message>
-        <source>Hide start menu</source>
-        <translation>시작 메뉴 숨기기</translation>
-    </message>
-    <message>
-        <source>Hide desktop</source>
-        <translation>데스크탑 숨김</translation>
-    </message>
-    <message>
         <source>User authentication</source>
         <translation>사용자 인증</translation>
     </message>
@@ -4323,6 +4311,22 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Screen lock</source>
+        <translation>화면 잠금</translation>
+    </message>
+    <message>
+        <source>Hide taskbar</source>
+        <translation>작업 표시줄 숨기기</translation>
+    </message>
+    <message>
+        <source>Hide start menu</source>
+        <translation>시작 메뉴 숨기기</translation>
+    </message>
+    <message>
+        <source>Hide desktop</source>
+        <translation>데스크탑 숨김</translation>
+    </message>
+    <message>
         <source>Use input device interception driver</source>
         <translation type="unfinished"/>
     </message>
@@ -4330,12 +4334,12 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
-        <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation>윈도우즈 플래폼용 플러그인 실행용 추상화 함수</translation>
-    </message>
-    <message>
         <source>Internal display</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin implementing abstract functions for the Windows platform</source>
+        <translation>윈도우즈 플래폼용 플러그인 실행용 추상화 함수</translation>
     </message>
 </context>
 <context>
@@ -4343,18 +4347,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
         <translation>서비스 &quot;%1&quot;은 이미 설치되어 있습니다.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation>서비스 &quot;%1&quot;을 성공적으로 설치했습니다.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>서비스 &quot;%1&quot;을 성공적으로 제거했습니다.</translation>
-    </message>
-    <message>
-        <source>Service &quot;%1&quot; could not be found.</source>
-        <translation>서비스 &quot;%1&quot;을 찾을 수 없습니다.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
@@ -4365,12 +4357,24 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
+        <translation>서비스 &quot;%1&quot;을 성공적으로 설치했습니다.</translation>
+    </message>
+    <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation>서비스 &quot;%1&quot;을 성공적으로 제거했습니다.</translation>
+    </message>
+    <message>
         <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation>서비스 &quot;%1&quot;을 찾을 수 없습니다.</translation>
     </message>
 </context>
 <context>

@@ -2,24 +2,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About</source>
-        <translation>Programmist</translation>
-    </message>
-    <message>
-        <source>Translation</source>
-        <translation>Tõlkimine</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation>Litsents</translation>
-    </message>
-    <message>
         <source>About Veyon</source>
         <translation>Programmist Veyon</translation>
     </message>
     <message>
-        <source>Contributors</source>
-        <translation>Kaastöötajad</translation>
+        <source>About</source>
+        <translation>Programmist</translation>
     </message>
     <message>
         <source>Version:</source>
@@ -30,6 +18,18 @@
         <translation>Koduleht:</translation>
     </message>
     <message>
+        <source>Support Veyon project with a donation</source>
+        <translation>Toetage Veyon projekti annetusega</translation>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation>Kaastöötajad</translation>
+    </message>
+    <message>
+        <source>Translation</source>
+        <translation>Tõlkimine</translation>
+    </message>
+    <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
@@ -38,12 +38,12 @@ If you&apos;re interested in translating Veyon into your local or another langua
 Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde või soovite olemasolevat tõlget paremaks muuta, võtke ühendust Veyoni arendajaga!</translation>
     </message>
     <message>
-        <source>About %1 %2</source>
-        <translation>Programmist %1 %2</translation>
+        <source>License</source>
+        <translation>Litsents</translation>
     </message>
     <message>
-        <source>Support Veyon project with a donation</source>
-        <translation>Toetage Veyon projekti annetusega</translation>
+        <source>About %1 %2</source>
+        <translation>Programmist %1 %2</translation>
     </message>
 </context>
 <context>
@@ -53,8 +53,12 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
         <translation>Arvuti juurdepääsu juhtimine</translation>
     </message>
     <message>
-        <source>Grant access to every authenticated user (default)</source>
-        <translation>Andke juurdepääs igale autentitud kasutajale (vaikimisi)</translation>
+        <source>Restrict access to members of specific user groups</source>
+        <translation>Määratud gruppide liikmete juurdepääsu keelamine</translation>
+    </message>
+    <message>
+        <source>User groups backend:</source>
+        <translation>Kasutajarühmade taustaprogramm:</translation>
     </message>
     <message>
         <source>Test</source>
@@ -63,6 +67,14 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
     <message>
         <source>Process access control rules</source>
         <translation>Protsessi juurdepääsu juhtimise reeglid</translation>
+    </message>
+    <message>
+        <source>Grant access to every authenticated user (default)</source>
+        <translation>Andke juurdepääs igale autentitud kasutajale (vaikimisi)</translation>
+    </message>
+    <message>
+        <source>Enable usage of domain groups</source>
+        <translation>Domeeni gruppide juurdepääsu lubamine</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -85,6 +97,14 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
         <translation>Juurdepääsu reeglid</translation>
     </message>
     <message>
+        <source>Move selected rule up</source>
+        <translation>Teisalda valitud reegel üles</translation>
+    </message>
+    <message>
+        <source>Edit selected rule</source>
+        <translation>Muuda valitud reeglit</translation>
+    </message>
+    <message>
         <source>Add access control rule</source>
         <translation>Lisa juurdepääsu reegel</translation>
     </message>
@@ -97,12 +117,12 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
         <translation>Teisalda valitud reegel alla</translation>
     </message>
     <message>
-        <source>Move selected rule up</source>
-        <translation>Teisalda valitud reegel üles</translation>
+        <source>Missing user groups backend</source>
+        <translation>Puuduvad kasutajagruppide taustaprogrammid</translation>
     </message>
     <message>
-        <source>Edit selected rule</source>
-        <translation>Muuda valitud reeglit</translation>
+        <source>No default user groups plugin was found. Please check your installation!</source>
+        <translation>Kasutajate rühmade vaikepistikprogrammi ei leitud. Palun kontrollige oma installimist!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -127,26 +147,6 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
         <translation>Määratud kasutajal pole lubatud selle konfiguratsiooniga arvutitele juurde pääseda.</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Domeeni gruppide juurdepääsu lubamine</translation>
-    </message>
-    <message>
-        <source>User groups backend:</source>
-        <translation>Kasutajarühmade taustaprogramm:</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Puuduvad kasutajagruppide taustaprogrammid</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Kasutajate rühmade vaikepistikprogrammi ei leitud. Palun kontrollige oma installimist!</translation>
-    </message>
-    <message>
-        <source>Restrict access to members of specific user groups</source>
-        <translation>Määratud gruppide liikmete juurdepääsu keelamine</translation>
     </message>
 </context>
 <context>
@@ -180,6 +180,10 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
         <translation>Pöörake kõik tingimused ümber (&quot;on/on&quot; tõlgendatud kui &quot;on/ei ole&quot;)</translation>
     </message>
     <message>
+        <source>Always process rule and ignore conditions</source>
+        <translation>Kasutage reeglit alati ja eirake tingimusi</translation>
+    </message>
+    <message>
         <source>Conditions</source>
         <translation>Tingimused</translation>
     </message>
@@ -188,8 +192,28 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
         <translation>on rühma liige</translation>
     </message>
     <message>
+        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
+        <translation>Kui aktiveeritakse rohkem kui üks tingimus, peavad reegli rakendamiseks kõik tingimused vastama (loogiline JA). Kui peab vastama ainult üks mitmest tingimusest (loogiline VÕI), siis looge mitu juurdepääsu kontrollreeglit.</translation>
+    </message>
+    <message>
+        <source>Accessing computer and local computer are at the same location</source>
+        <translation>Juurdepääs arvutile ja kohalikule arvutile asuvad samas asukohas</translation>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>Ükski kasutaja pole sisse loginud</translation>
+    </message>
+    <message>
+        <source>is located at</source>
+        <translation>on asukohas</translation>
+    </message>
+    <message>
         <source>Accessing computer is localhost</source>
         <translation>Arvutile juurdepääs on kohalik host</translation>
+    </message>
+    <message>
+        <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <translation>Kasutajal, kellel on juurdepääs, on üks või mitu kohaliku (sisse logitud) kasutajaga ühist rühma</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
@@ -198,10 +222,6 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
     <message>
         <source>Accessing user is already connected</source>
         <translation>Juurdepääs kasutajale on juba ühendatud</translation>
-    </message>
-    <message>
-        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>Kui aktiveeritakse rohkem kui üks tingimus, peavad reegli rakendamiseks kõik tingimused vastama (loogiline JA). Kui peab vastama ainult üks mitmest tingimusest (loogiline VÕI), siis looge mitu juurdepääsu kontrollreeglit.</translation>
     </message>
     <message>
         <source>Action</source>
@@ -238,26 +258,6 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
     <message>
         <source>Local computer</source>
         <translation>Kohalik arvuti</translation>
-    </message>
-    <message>
-        <source>Always process rule and ignore conditions</source>
-        <translation>Kasutage reeglit alati ja eirake tingimusi</translation>
-    </message>
-    <message>
-        <source>No user logged on</source>
-        <translation>Ükski kasutaja pole sisse loginud</translation>
-    </message>
-    <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>Kasutajal, kellel on juurdepääs, on üks või mitu kohaliku (sisse logitud) kasutajaga ühist rühma</translation>
-    </message>
-    <message>
-        <source>Accessing computer and local computer are at the same location</source>
-        <translation>Juurdepääs arvutile ja kohalikule arvutile asuvad samas asukohas</translation>
-    </message>
-    <message>
-        <source>is located at</source>
-        <translation>on asukohas</translation>
     </message>
 </context>
 <context>
@@ -322,6 +322,26 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
         <translation>Juhend</translation>
     </message>
     <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Võtmefaili autentimise seadistamiseks toimige järgmiselt:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Looge Masterarvutis võtmepaar.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Määrake juurdepääsugrupp, mille liikmetel peaks olema juurdepääs teistele arvutitele.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Eksportige avalik võti ja importige see kõigisse samanimelistesse klientarvutitesse.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Kasutage &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon administraatori käsiraamatut&lt;/a&gt; lisateabe saamiseks.</translation>
+    </message>
+    <message>
         <source>Key file directories</source>
         <translation>Võtmefailide kataloogid</translation>
     </message>
@@ -336,6 +356,16 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
     <message>
         <source>Available authentication keys</source>
         <translation>Saadaval olevad autentimisvõtmed</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Autentimisvõtmete paar koosneb kahest ühendatud krüptovõtmest, privaatsest ja avalikust võtmest.
+Privaatvõti võimaldab peaarvuti kasutajatel pääseda juurde klientarvutitele.
+On oluline, et ainult volitatud kasutajatel oleks juurdepääs privaatvõtme failile.
+Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu autentimiseks.</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -392,36 +422,6 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Valige võti, millele juurdepääsugrupp määrata!</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Võtmefaili autentimise seadistamiseks toimige järgmiselt:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Looge Masterarvutis võtmepaar.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Määrake juurdepääsugrupp, mille liikmetel peaks olema juurdepääs teistele arvutitele.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Eksportige avalik võti ja importige see kõigisse samanimelistesse klientarvutitesse.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Kasutage &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon administraatori käsiraamatut&lt;/a&gt; lisateabe saamiseks.</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Autentimisvõtmete paar koosneb kahest ühendatud krüptovõtmest, privaatsest ja avalikust võtmest.
-Privaatvõti võimaldab peaarvuti kasutajatel pääseda juurde klientarvutitele.
-On oluline, et ainult volitatud kasutajatel oleks juurdepääs privaatvõtme failile.
-Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu autentimiseks.</translation>
     </message>
 </context>
 <context>
@@ -590,20 +590,24 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Määra kasutajagrupp, kellel on juurdepääs võtmele</translation>
     </message>
     <message>
-        <source>KEY</source>
-        <translation>VÕTI</translation>
-    </message>
-    <message>
-        <source>ACCESS GROUP</source>
-        <translation>JUURDEPÄÄSU GRUPP</translation>
-    </message>
-    <message>
-        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation>See käsk reguleerib failile juurdepääsuõigused  &lt;KEY&gt; selliseks, et ainult kasutajagrupil &lt;ACCESS GROUP&gt; on sellele lugemisõigus.</translation>
+        <source>Please specify the command to display help for.</source>
+        <translation>Palun määrake käsk abi kuvamiseks.</translation>
     </message>
     <message>
         <source>NAME</source>
         <translation>NIMI</translation>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
+        <translation>See käsk loob uue autentimisvõtmepaari nimega &lt;NAME&gt; ja salvestab privaatse ja avaliku võtme konfigureeritud võtmete kataloogidesse. Parameeter peab olema võtme nimi, mis võib sisaldada ainult tähti.</translation>
+    </message>
+    <message>
+        <source>KEY</source>
+        <translation>VÕTI</translation>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
+        <translation>See käsk kustutab autentimisvõtme &lt;KEY&gt; konfigureeritud võtmete kataloogist. Pange tähele, et võtit ei saa pärast selle kustutamist taastada.</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -614,12 +618,32 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>See käsk ekspordib autentimisvõtme &lt;KEY&gt; võtmeks &lt;FILE&gt;. Kui &lt;FILE&gt; pole täpsustatud, koostatakse nimi nime ja tüübi &lt;KEY&gt; järgi.</translation>
     </message>
     <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
+        <translation>See käsk eraldab avaliku võtme osa privaatvõtmest &lt;KEY&gt;  ja salvestab selle vastava avaliku võtmena. Teise põhiarvuti seadistamisel piisab seetõttu ainult privaatvõtme edastamisest. Seejärel saab avaliku võtme välja tõmmata.</translation>
+    </message>
+    <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
         <translation>See käsk impordib autentimisvõtme &lt;KEY&gt; kohast &lt;FILE&gt;. Kui &lt;FILE&gt;pole täpsustatud, koostatakse nimi nime ja tüübi &lt;KEY&gt; järgi.</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
         <translation>See käsk loetleb kõik saadaolevad autentimisvõtmed konfigureeritud võtmete kataloogis. Kui määratakse suvand &quot;%1&quot;, kuvatakse selle asemel võtme üksikasjadega tabel. Mõni detail võib puududa, kui võtmele pole juurdepääsu, nt. lugemisõiguste puudumise tõttu.</translation>
+    </message>
+    <message>
+        <source>ACCESS GROUP</source>
+        <translation>JUURDEPÄÄSU GRUPP</translation>
+    </message>
+    <message>
+        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
+        <translation>See käsk reguleerib failile juurdepääsuõigused  &lt;KEY&gt; selliseks, et ainult kasutajagrupil &lt;ACCESS GROUP&gt; on sellele lugemisõigus.</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>Määratud käsku pole olemas või selle jaoks pole abi saadaval.</translation>
+    </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation>Palun määrake esimese argumendina võtme nimi (näiteks „õpetaja/avalik”).</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -636,30 +660,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Commands for managing authentication keys</source>
         <translation>Käsud autentimisvõtmete haldamiseks</translation>
-    </message>
-    <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation>See käsk loob uue autentimisvõtmepaari nimega &lt;NAME&gt; ja salvestab privaatse ja avaliku võtme konfigureeritud võtmete kataloogidesse. Parameeter peab olema võtme nimi, mis võib sisaldada ainult tähti.</translation>
-    </message>
-    <message>
-        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation>See käsk kustutab autentimisvõtme &lt;KEY&gt; konfigureeritud võtmete kataloogist. Pange tähele, et võtit ei saa pärast selle kustutamist taastada.</translation>
-    </message>
-    <message>
-        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation>See käsk eraldab avaliku võtme osa privaatvõtmest &lt;KEY&gt;  ja salvestab selle vastava avaliku võtmena. Teise põhiarvuti seadistamisel piisab seetõttu ainult privaatvõtme edastamisest. Seejärel saab avaliku võtme välja tõmmata.</translation>
-    </message>
-    <message>
-        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation>Palun määrake esimese argumendina võtme nimi (näiteks „õpetaja/avalik”).</translation>
-    </message>
-    <message>
-        <source>Please specify the command to display help for.</source>
-        <translation>Palun määrake käsk abi kuvamiseks.</translation>
-    </message>
-    <message>
-        <source>The specified command does not exist or no help is available for it.</source>
-        <translation>Määratud käsku pole olemas või selle jaoks pole abi saadaval.</translation>
     </message>
 </context>
 <context>
@@ -684,8 +684,28 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
+        <source>Locations &amp; computers</source>
+        <translation>Asukohad&amp;arvutid</translation>
+    </message>
+    <message>
+        <source>Builtin directory</source>
+        <translation>Sisseehitatud kataloog</translation>
+    </message>
+    <message>
         <source>Computers</source>
         <translation>Arvutid</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>Asukohad</translation>
+    </message>
+    <message>
+        <source>Add new computer</source>
+        <translation>Lisa arvuti</translation>
+    </message>
+    <message>
+        <source>Remove selected computer</source>
+        <translation>Eemalda valitud arvutid</translation>
     </message>
     <message>
         <source>Name</source>
@@ -698,30 +718,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>MAC address</source>
         <translation>MAC aadress</translation>
-    </message>
-    <message>
-        <source>Add new computer</source>
-        <translation>Lisa arvuti</translation>
-    </message>
-    <message>
-        <source>Remove selected computer</source>
-        <translation>Eemalda valitud arvutid</translation>
-    </message>
-    <message>
-        <source>New computer</source>
-        <translation>Uus arvuti</translation>
-    </message>
-    <message>
-        <source>Builtin directory</source>
-        <translation>Sisseehitatud kataloog</translation>
-    </message>
-    <message>
-        <source>Locations &amp; computers</source>
-        <translation>Asukohad&amp;arvutid</translation>
-    </message>
-    <message>
-        <source>Locations</source>
-        <translation>Asukohad</translation>
     </message>
     <message>
         <source>Add new location</source>
@@ -739,112 +735,16 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>New location</source>
         <translation>Uus asukoht</translation>
     </message>
+    <message>
+        <source>New computer</source>
+        <translation>Uus arvuti</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
         <translation>Näita valitud käsu abi</translation>
-    </message>
-    <message>
-        <source>Import objects from given file</source>
-        <translation>Objektide importimine antud failist</translation>
-    </message>
-    <message>
-        <source>Export objects to given file</source>
-        <translation>Objektide eksportimine antud faili</translation>
-    </message>
-    <message>
-        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>Määratud kehtetu tüüp. Kehtivad väärtused on &quot;%1&quot; või &quot;%2&quot;.</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>Tüüp</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Nimi</translation>
-    </message>
-    <message>
-        <source>Host address</source>
-        <translation>Seadme aadress</translation>
-    </message>
-    <message>
-        <source>MAC address</source>
-        <translation>MAC aadress</translation>
-    </message>
-    <message>
-        <source>Specified object not found.</source>
-        <translation>Määratud objekti ei leia.</translation>
-    </message>
-    <message>
-        <source>File &quot;%1&quot; does not exist!</source>
-        <translation>Faili &quot;%1&quot; ei ole!</translation>
-    </message>
-    <message>
-        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation>Ei saa avada faili &quot;%1&quot; lugemiseks!</translation>
-    </message>
-    <message>
-        <source>Unknown argument &quot;%1&quot;.</source>
-        <translation>Tundmatu argument &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation>Arvuti &quot;%1&quot; (IP aadress: &quot;%2&quot; MAC aadress: &quot;%3&quot;)</translation>
-    </message>
-    <message>
-        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation>Klassifitseerimata objekt &quot;%1&quot; ID-ga &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Puudub</translation>
-    </message>
-    <message>
-        <source>Computer</source>
-        <translation>Arvuti</translation>
-    </message>
-    <message>
-        <source>Root</source>
-        <translation>Juur</translation>
-    </message>
-    <message>
-        <source>Invalid</source>
-        <translation>Kehtetu</translation>
-    </message>
-    <message>
-        <source>Error while parsing line %1.</source>
-        <translation>Viga rea %1 lahendamisel.</translation>
-    </message>
-    <message>
-        <source>Network object directory which stores objects in local configuration</source>
-        <translation>Võrguobjektide kataloog, mis salvestab objekte kohalikus konfiguratsioonis</translation>
-    </message>
-    <message>
-        <source>Commands for managing the builtin network object directory</source>
-        <translation>Käsud sisseehitatud võrguobjektide kataloogi haldamiseks</translation>
-    </message>
-    <message>
-        <source>No format string or regular expression specified!</source>
-        <translation>Vormingustringi ega regulaaravaldist pole määratud!</translation>
-    </message>
-    <message>
-        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation>Faili &quot;%1&quot; ei saa kirjutamiseks avada!</translation>
-    </message>
-    <message>
-        <source>No format string specified!</source>
-        <translation>Vormingustringi pole määratud!</translation>
-    </message>
-    <message>
-        <source>Object UUID</source>
-        <translation>Objekti UUID</translation>
-    </message>
-    <message>
-        <source>Parent UUID</source>
-        <translation>Vanema UUID</translation>
     </message>
     <message>
         <source>Add a location or computer</source>
@@ -867,16 +767,12 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Eemaldage asukoht või arvuti</translation>
     </message>
     <message>
-        <source>Location &quot;%1&quot;</source>
-        <translation>Asukoht &quot;%1&quot;</translation>
+        <source>Import objects from given file</source>
+        <translation>Objektide importimine antud failist</translation>
     </message>
     <message>
-        <source>Builtin (computers and locations in local configuration)</source>
-        <translation>Sissemised (arvutid ja asukohad kohalikus konfiguratsioonis)</translation>
-    </message>
-    <message>
-        <source>Location</source>
-        <translation>Asukoht</translation>
+        <source>Export objects to given file</source>
+        <translation>Objektide eksportimine antud faili</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -935,6 +831,14 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>NIMI</translation>
     </message>
     <message>
+        <source>HOST ADDRESS</source>
+        <translation>IP AADRESS</translation>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>MAC AADRESS</translation>
+    </message>
+    <message>
         <source>PARENT</source>
         <translation>VANEM</translation>
     </message>
@@ -967,24 +871,120 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Eemaldage objekt UUID järgi</translation>
     </message>
     <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>Määratud käsku pole olemas või selle jaoks pole abi saadaval.</translation>
+    </message>
+    <message>
+        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
+        <translation>Määratud kehtetu tüüp. Kehtivad väärtused on &quot;%1&quot; või &quot;%2&quot;.</translation>
+    </message>
+    <message>
+        <source>Object UUID</source>
+        <translation>Objekti UUID</translation>
+    </message>
+    <message>
+        <source>Parent UUID</source>
+        <translation>Vanema UUID</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Tüüp</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nimi</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Seadme aadress</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MAC aadress</translation>
+    </message>
+    <message>
+        <source>Specified object not found.</source>
+        <translation>Määratud objekti ei leia.</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not exist!</source>
+        <translation>Faili &quot;%1&quot; ei ole!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
+        <translation>Ei saa avada faili &quot;%1&quot; lugemiseks!</translation>
+    </message>
+    <message>
+        <source>Unknown argument &quot;%1&quot;.</source>
+        <translation>Tundmatu argument &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>No format string or regular expression specified!</source>
+        <translation>Vormingustringi ega regulaaravaldist pole määratud!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
+        <translation>Faili &quot;%1&quot; ei saa kirjutamiseks avada!</translation>
+    </message>
+    <message>
+        <source>No format string specified!</source>
+        <translation>Vormingustringi pole määratud!</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot;</source>
+        <translation>Asukoht &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
+        <translation>Arvuti &quot;%1&quot; (IP aadress: &quot;%2&quot; MAC aadress: &quot;%3&quot;)</translation>
+    </message>
+    <message>
+        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
+        <translation>Klassifitseerimata objekt &quot;%1&quot; ID-ga &quot;%2&quot;</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Puudub</translation>
+    </message>
+    <message>
+        <source>Invalid</source>
+        <translation>Kehtetu</translation>
+    </message>
+    <message>
+        <source>Error while parsing line %1.</source>
+        <translation>Viga rea %1 lahendamisel.</translation>
+    </message>
+    <message>
+        <source>Network object directory which stores objects in local configuration</source>
+        <translation>Võrguobjektide kataloog, mis salvestab objekte kohalikus konfiguratsioonis</translation>
+    </message>
+    <message>
+        <source>Builtin (computers and locations in local configuration)</source>
+        <translation>Sissemised (arvutid ja asukohad kohalikus konfiguratsioonis)</translation>
+    </message>
+    <message>
+        <source>Commands for managing the builtin network object directory</source>
+        <translation>Käsud sisseehitatud võrguobjektide kataloogi haldamiseks</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Asukoht</translation>
+    </message>
+    <message>
+        <source>Computer</source>
+        <translation>Arvuti</translation>
+    </message>
+    <message>
+        <source>Root</source>
+        <translation>Juur</translation>
+    </message>
+    <message>
         <source>&quot;Room 01&quot;</source>
         <translation>&quot;Ruum 01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;Arvuti 01&quot;</translation>
-    </message>
-    <message>
-        <source>HOST ADDRESS</source>
-        <translation>IP AADRESS</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>MAC AADRESS</translation>
-    </message>
-    <message>
-        <source>The specified command does not exist or no help is available for it.</source>
-        <translation>Määratud käsku pole olemas või selle jaoks pole abi saadaval.</translation>
     </message>
 </context>
 <context>
@@ -1004,12 +1004,28 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
 <context>
     <name>ComputerControlListModel</name>
     <message>
+        <source>Name: %1</source>
+        <translation>Nimi: %1</translation>
+    </message>
+    <message>
+        <source>Location: %1</source>
+        <translation>Asukoht: %1</translation>
+    </message>
+    <message>
         <source>Host/IP address: %1</source>
         <translation>Host/IP aadress: %1</translation>
     </message>
     <message>
+        <source>invalid</source>
+        <translation>kehtetu</translation>
+    </message>
+    <message>
         <source>Active features: %1</source>
         <translation>Aktiivsed funktsioonid: %1</translation>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation>[ükski kasutaja]</translation>
     </message>
     <message>
         <source>Online and connected</source>
@@ -1022,6 +1038,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Computer offline or switched off</source>
         <translation>Arvuti on võrguühenduseta või välja lülitatud</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation>Veyon Server pole kättesaadav või ei tööta</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
@@ -1040,26 +1060,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Sisseloginud kasutaja: %1</translation>
     </message>
     <message>
-        <source>Location: %1</source>
-        <translation>Asukoht: %1</translation>
-    </message>
-    <message>
-        <source>Veyon Server unreachable or not running</source>
-        <translation>Veyon Server pole kättesaadav või ei tööta</translation>
-    </message>
-    <message>
-        <source>[no user]</source>
-        <translation>[ükski kasutaja]</translation>
-    </message>
-    <message>
-        <source>invalid</source>
-        <translation>kehtetu</translation>
-    </message>
-    <message>
-        <source>Name: %1</source>
-        <translation>Nimi: %1</translation>
-    </message>
-    <message>
         <source>[none]</source>
         <translation>[pole]</translation>
     </message>
@@ -1067,12 +1067,12 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
 <context>
     <name>ComputerControlServer</name>
     <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 Teenus %2 kohas %3:%4</translation>
-    </message>
-    <message>
         <source>Authentication error</source>
         <translation>Autentimise viga</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
+        <translation>Kasutaja &quot;%1&quot; hostis &quot;%2&quot; üritas sellele arvutile juurde pääseda, kuid ei suutnud edukalt autentida.</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -1083,16 +1083,16 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Kasutaja &quot;%1&quot; hostis &quot;%2&quot;  pääseb nüüd sellele arvutile ligi.</translation>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation>Kasutaja &quot;%1&quot; hostis &quot;%2&quot; üritas sellele arvutile juurde pääseda, kuid ei suutnud edukalt autentida.</translation>
-    </message>
-    <message>
         <source>Access control error</source>
         <translation>Juurdepääsu viga</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation>Kasutaja &quot;%1&quot; hostis &quot;%2&quot; üritas sellele arvutile juurde pääseda, kuid on juurdepääsu seadete tõttu blokeeritud.</translation>
+    </message>
+    <message>
+        <source>%1 Service %2 at %3:%4</source>
+        <translation>%1 Teenus %2 kohas %3:%4</translation>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1106,6 +1106,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Kasutaja</translation>
     </message>
     <message>
+        <source>Logged in since</source>
+        <translation>Sisse logitud alates</translation>
+    </message>
+    <message>
         <source>Missing network object directory plugin</source>
         <translation>Võrguobjektide kataloogi pistikprogramm puudub</translation>
     </message>
@@ -1114,20 +1118,8 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Vaikevõrguobjektide kataloogi pistikprogrammi ei leitud. Kontrollige installimist või konfigureerige %1 konfiguraatori kaudu mõni muu võrguobjektide kataloogi taustaprogramm.</translation>
     </message>
     <message>
-        <source>Location detection failed</source>
-        <translation>Asukoha tuvastamine nurjus</translation>
-    </message>
-    <message>
         <source>Computer name;Hostname;User</source>
         <translation>Arvuti nimi;Hostinimi;Kasutaja</translation>
-    </message>
-    <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation>Selle arvuti asukohta ei õnnestunud kindlaks teha. See viitab probleemile süsteemi konfiguratsioonis. Kõik asukohad kuvatakse selle asemel arvuti valimise paneelil.</translation>
-    </message>
-    <message>
-        <source>Logged in since</source>
-        <translation>Sisse logitud alates</translation>
     </message>
     <message>
         <source>%1 days</source>
@@ -1137,9 +1129,21 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>1 day</source>
         <translation>1 päev</translation>
     </message>
+    <message>
+        <source>Location detection failed</source>
+        <translation>Asukoha tuvastamine nurjus</translation>
+    </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
+        <translation>Selle arvuti asukohta ei õnnestunud kindlaks teha. See viitab probleemile süsteemi konfiguratsioonis. Kõik asukohad kuvatakse selle asemel arvuti valimise paneelil.</translation>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
+    <message>
+        <source>Search computers</source>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>Add location</source>
         <translation>Lisa asukoht</translation>
@@ -1163,10 +1167,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Arvutit ja kasutajate loendi %1 kirjutamine nurjus! Kontrollige failidele juurdepääsu õigusi.</translation>
-    </message>
-    <message>
-        <source>Search computers</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1259,12 +1259,12 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>%1 töötaja tulemüüri konfiguratsiooni ei õnnestunud konfigureerida.</translation>
     </message>
     <message>
-        <source>Configuration is not writable. Please check your permissions!</source>
-        <translation>Konfiguratsiooni ei saa kirjutada. Palun kontrollige oma õigusi!</translation>
-    </message>
-    <message>
         <source>Could not apply platform-specific configuration settings.</source>
         <translation>Platvormispetsiifilisi konfiguratsiooniseadeid ei saanud rakendada.</translation>
+    </message>
+    <message>
+        <source>Configuration is not writable. Please check your permissions!</source>
+        <translation>Konfiguratsiooni ei saa kirjutada. Palun kontrollige oma õigusi!</translation>
     </message>
 </context>
 <context>
@@ -1285,32 +1285,32 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Häälestatavad</translation>
     </message>
     <message>
-        <source> ms</source>
-        <translation> ms</translation>
-    </message>
-    <message>
-        <source>Key frame interval</source>
-        <translation>Võtmekaadri intervall</translation>
-    </message>
-    <message>
-        <source>Memory limit</source>
-        <translation>Mälupiirang</translation>
-    </message>
-    <message>
-        <source> MB</source>
-        <translation> MB</translation>
+        <source> s</source>
+        <translation> s</translation>
     </message>
     <message>
         <source>Update interval</source>
         <translation>Värskendamise intervall</translation>
     </message>
     <message>
-        <source> s</source>
-        <translation> s</translation>
+        <source> MB</source>
+        <translation> MB</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Demo töötamise ajal vähendage pisipiltide värskendussagedustt</translation>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation>Mälupiirang</translation>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation>Võtmekaadri intervall</translation>
     </message>
     <message>
         <source>Bandwidth limit</source>
@@ -1324,24 +1324,12 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Stop demo</source>
-        <translation>Peata demo</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>Akna demo</translation>
-    </message>
-    <message>
-        <source>Give a demonstration by screen broadcasting</source>
-        <translation>Andke juhiseid ekraanil edastamise kaudu</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation>Selles režiimis kuvatakse teie ekraan aknas kõigis arvutites. Kasutajad saavad vajadusel üle minna teistele akendele.</translation>
-    </message>
-    <message>
         <source>Demo</source>
         <translation>Demo</translation>
+    </message>
+    <message>
+        <source>Stop demo</source>
+        <translation>Peata demo</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
@@ -1350,6 +1338,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Full screen demo</source>
         <translation>Täisekraaniga demo</translation>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation>Akna demo</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
@@ -1362,6 +1354,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Share your own screen in a window</source>
         <translation>Jagage oma ekraani aknas</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation>Selles režiimis kuvatakse teie ekraan aknas kõigis arvutites. Kasutajad saavad vajadusel üle minna teistele akendele.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
@@ -1391,6 +1387,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>All screens</source>
         <translation>Kõik ekraanid</translation>
     </message>
+    <message>
+        <source>Give a demonstration by screen broadcasting</source>
+        <translation>Andke juhiseid ekraanil edastamise kaudu</translation>
+    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1403,6 +1403,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Kinnitage töölauale juurdepääs</translation>
     </message>
     <message>
+        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
+        <translation>Kasutaja %1 arvutis %2 soovib teie töölauale juurde pääseda. Kas soovite lubada juurdepääsu?</translation>
+    </message>
+    <message>
         <source>Never for this session</source>
         <translation>Mitte kunagi selle seansi jaoks</translation>
     </message>
@@ -1410,37 +1414,9 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Always for this session</source>
         <translation>Alati selle sessiooni jaoks</translation>
     </message>
-    <message>
-        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>Kasutaja %1 arvutis %2 soovib teie töölauale juurde pääseda. Kas soovite lubada juurdepääsu?</translation>
-    </message>
 </context>
 <context>
     <name>DesktopServicesConfigurationPage</name>
-    <message>
-        <source>Name</source>
-        <translation>Nimi</translation>
-    </message>
-    <message>
-        <source>Path</source>
-        <translation>Rada</translation>
-    </message>
-    <message>
-        <source>Predefined websites</source>
-        <translation>Eelmääratud veebilehed</translation>
-    </message>
-    <message>
-        <source>Remove selected website</source>
-        <translation>Eemalda valitud veebileht</translation>
-    </message>
-    <message>
-        <source>URL</source>
-        <translation>URL aadress</translation>
-    </message>
-    <message>
-        <source>New website</source>
-        <translation>Uus veebileht</translation>
-    </message>
     <message>
         <source>Applications &amp; websites</source>
         <translation>Rakendused ja veebisaidid</translation>
@@ -1448,6 +1424,14 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Predefined applications</source>
         <translation>Eelmääratud rakendused</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nimi</translation>
+    </message>
+    <message>
+        <source>Path</source>
+        <translation>Rada</translation>
     </message>
     <message>
         <source>Add new application</source>
@@ -1458,32 +1442,32 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Eemalda valitud rakendus</translation>
     </message>
     <message>
+        <source>Predefined websites</source>
+        <translation>Eelmääratud veebilehed</translation>
+    </message>
+    <message>
         <source>Add new website</source>
         <translation>Lisage uus veebisait</translation>
+    </message>
+    <message>
+        <source>Remove selected website</source>
+        <translation>Eemalda valitud veebileht</translation>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation>URL aadress</translation>
     </message>
     <message>
         <source>New application</source>
         <translation>Uus rakendus</translation>
     </message>
+    <message>
+        <source>New website</source>
+        <translation>Uus veebileht</translation>
+    </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Open website</source>
-        <translation>Weebilehe avamine</translation>
-    </message>
-    <message>
-        <source>Click this button to open a website on all computers.</source>
-        <translation>Kõigil arvutitel veebisaidi avamiseks klõpsake seda nuppu.</translation>
-    </message>
-    <message>
-        <source>Open website &quot;%1&quot;</source>
-        <translation>Avage veebileht &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Custom website</source>
-        <translation>Kohandatud veebileht</translation>
-    </message>
     <message>
         <source>Start application</source>
         <translation>Käivita rakendus</translation>
@@ -1493,12 +1477,28 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Rakenduse käivitamiseks kõikides arvutites klõpsake seda nuppu.</translation>
     </message>
     <message>
+        <source>Open website</source>
+        <translation>Weebilehe avamine</translation>
+    </message>
+    <message>
+        <source>Click this button to open a website on all computers.</source>
+        <translation>Kõigil arvutitel veebisaidi avamiseks klõpsake seda nuppu.</translation>
+    </message>
+    <message>
         <source>Start application &quot;%1&quot;</source>
         <translation>Käivitage rakendus &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom application</source>
         <translation>Kohandatud rakendus</translation>
+    </message>
+    <message>
+        <source>Open website &quot;%1&quot;</source>
+        <translation>Avage veebileht &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Custom website</source>
+        <translation>Kohandatud veebileht</translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
@@ -1514,6 +1514,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Room %1</source>
         <translation>Ruum %1</translation>
+    </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation>üldine-õpilane-kasutaja</translation>
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
@@ -1536,20 +1540,16 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Esitage õppevideot</translation>
     </message>
     <message>
+        <source>Custom application</source>
+        <translation>Kohandatud rakendus</translation>
+    </message>
+    <message>
         <source>Handout</source>
         <translation>Jaotusmaterjal</translation>
     </message>
     <message>
         <source>Texts to read</source>
         <translation>Loetavad tekstid</translation>
-    </message>
-    <message>
-        <source>generic-student-user</source>
-        <translation>üldine-õpilane-kasutaja</translation>
-    </message>
-    <message>
-        <source>Custom application</source>
-        <translation>Kohandatud rakendus</translation>
     </message>
 </context>
 <context>
@@ -1599,6 +1599,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Displays a list with the names of all available features.</source>
         <translation>Kuvab loendi kõigi saadaolevate funktsioonide nimedega.</translation>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation>Kuvab tabeli üksikasjaliku teabega kõigi saadaolevate funktsioonide kohta. See teave sisaldab kirjeldust, UID-d, vastavat funktsiooni pakkuva pistikprogrammi nime ja mõningaid muid juurutamisega seotud üksikasju.</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -1700,10 +1704,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Commands for controlling features</source>
         <translation>Funktsioonide juhtimise käsud</translation>
     </message>
-    <message>
-        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation>Kuvab tabeli üksikasjaliku teabega kõigi saadaolevate funktsioonide kohta. See teave sisaldab kirjeldust, UID-d, vastavat funktsiooni pakkuva pistikprogrammi nime ja mõningaid muid juurutamisega seotud üksikasju.</translation>
-    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -1754,6 +1754,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Valikud</translation>
     </message>
     <message>
+        <source>Overwrite existing files</source>
+        <translation>Kirjutage olemasolevad failid üle</translation>
+    </message>
+    <message>
         <source>Transfer only</source>
         <translation>Edasta vaid</translation>
     </message>
@@ -1773,10 +1777,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Start</source>
         <translation>Start</translation>
     </message>
-    <message>
-        <source>Overwrite existing files</source>
-        <translation>Kirjutage olemasolevad failid üle</translation>
-    </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
@@ -1793,10 +1793,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Valige üks või mitu edastatavat faili</translation>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Failide edastamine kaugarvutisse</translation>
-    </message>
-    <message>
         <source>Received file &quot;%1&quot;.</source>
         <translation>Vastuvõetud fail &quot;%1&quot;.</translation>
     </message>
@@ -1808,6 +1804,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
         <translation>Faili &quot;%1&quot; ei saanud vastu võtta, kuna seda ei saanud kirjutamiseks avada!</translation>
     </message>
+    <message>
+        <source>Transfer files to remote computer</source>
+        <translation>Failide edastamine kaugarvutisse</translation>
+    </message>
 </context>
 <context>
     <name>GeneralConfigurationPage</name>
@@ -1816,16 +1816,60 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Kasutajaliides</translation>
     </message>
     <message>
-        <source>Language:</source>
-        <translation>Keel:</translation>
-    </message>
-    <message>
         <source>Use system language setting</source>
         <translation>Kasutage süsteemi keele seadistust</translation>
     </message>
     <message>
+        <source>Language:</source>
+        <translation>Keel:</translation>
+    </message>
+    <message>
         <source>Veyon</source>
         <translation>Veyon</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation>Stiil:</translation>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation>Kohalik</translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Autentimine</translation>
+    </message>
+    <message>
+        <source>Method:</source>
+        <translation>Meetod:</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Sisselogimise autentimine</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Võtmefaili autentimine</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Test</translation>
+    </message>
+    <message>
+        <source>Network object directory</source>
+        <translation>Võrguobjektide kataloog</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Taustaprogramm:</translation>
+    </message>
+    <message>
+        <source>Update interval:</source>
+        <translation>Värskenduse sagedus:</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation>sekundit</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -1864,28 +1908,40 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Siluge sõnumeid ja kõike muud</translation>
     </message>
     <message>
-        <source>Limit log file size</source>
-        <translation>Logi faili suuruse piirang</translation>
+        <source>x</source>
+        <translation>x</translation>
     </message>
     <message>
-        <source>Clear all log files</source>
-        <translation>Kustutage kõik logifailid</translation>
+        <source>Rotate log files</source>
+        <translation>Korraldage logifaile</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation> MB</translation>
+    </message>
+    <message>
+        <source>Limit log file size</source>
+        <translation>Logi faili suuruse piirang</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
         <translation>Logige standardvea väljundisse</translation>
     </message>
     <message>
-        <source>Network object directory</source>
-        <translation>Võrguobjektide kataloog</translation>
+        <source>Write to logging system of operating system</source>
+        <translation>Kirjutage operatsioonisüsteemi logimissüsteemi</translation>
     </message>
     <message>
-        <source>Backend:</source>
-        <translation>Taustaprogramm:</translation>
+        <source>Clear all log files</source>
+        <translation>Kustutage kõik logifailid</translation>
     </message>
     <message>
-        <source>Update interval:</source>
-        <translation>Värskenduse sagedus:</translation>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>Autentimine on selles arvutis õigesti seadistatud.</translation>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation>Autentimisvõtmed pole selles arvutis õigesti seadistatud.</translation>
     </message>
     <message>
         <source>%1 service</source>
@@ -1912,64 +1968,8 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Kõiki logifaile ei saanud eemaldada.</translation>
     </message>
     <message>
-        <source> MB</source>
-        <translation> MB</translation>
-    </message>
-    <message>
-        <source>Rotate log files</source>
-        <translation>Korraldage logifaile</translation>
-    </message>
-    <message>
-        <source>x</source>
-        <translation>x</translation>
-    </message>
-    <message>
-        <source> seconds</source>
-        <translation>sekundit</translation>
-    </message>
-    <message>
-        <source>Write to logging system of operating system</source>
-        <translation>Kirjutage operatsioonisüsteemi logimissüsteemi</translation>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation>Autentimine</translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation>Meetod:</translation>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>Sisselogimise autentimine</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Võtmefaili autentimine</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Test</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>Autentimine on selles arvutis õigesti seadistatud.</translation>
-    </message>
-    <message>
-        <source>Authentication keys are not set up properly on this computer.</source>
-        <translation>Autentimisvõtmed pole selles arvutis õigesti seadistatud.</translation>
-    </message>
-    <message>
         <source>Authentication test</source>
         <translation>Autentimistest</translation>
-    </message>
-    <message>
-        <source>Style:</source>
-        <translation>Stiil:</translation>
-    </message>
-    <message>
-        <source>Native</source>
-        <translation>Kohalik</translation>
     </message>
 </context>
 <context>
@@ -2004,18 +2004,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Üldine</translation>
     </message>
     <message>
-        <source>LDAP server and port</source>
-        <translation>LDAP server ja port</translation>
-    </message>
-    <message>
-        <source>Bind DN</source>
-        <translation>Siduv DN</translation>
-    </message>
-    <message>
-        <source>Bind password</source>
-        <translation>Siduge parool</translation>
-    </message>
-    <message>
         <source>Anonymous bind</source>
         <translation>Anonüümne side</translation>
     </message>
@@ -2024,16 +2012,64 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Kasutage sidumismandaate</translation>
     </message>
     <message>
+        <source>Query timeout</source>
+        <translation>Päringu ajalõpp</translation>
+    </message>
+    <message>
+        <source>Bind DN</source>
+        <translation>Siduv DN</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
+    <message>
+        <source>LDAP server and port</source>
+        <translation>LDAP server ja port</translation>
+    </message>
+    <message>
+        <source>Bind password</source>
+        <translation>Siduge parool</translation>
+    </message>
+    <message>
+        <source>Connection security</source>
+        <translation>Ühenduse turvalisus</translation>
+    </message>
+    <message>
+        <source>TLS certificate verification</source>
+        <translation>TLS-sertifikaadi kontroll</translation>
+    </message>
+    <message>
+        <source>Encryption protocol</source>
+        <translation>Krüptimisprotokoll</translation>
+    </message>
+    <message>
+        <source>System defaults</source>
+        <translation>Süsteemi vaikesätted</translation>
+    </message>
+    <message>
+        <source>Never (insecure!)</source>
+        <translation>Mitte kunagi (ebakindel!)</translation>
+    </message>
+    <message>
+        <source>Custom CA certificate file</source>
+        <translation>Kohandatud CA-sertifikaadi fail</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Puudub</translation>
+    </message>
+    <message>
+        <source>TLS</source>
+        <translation>TLS</translation>
+    </message>
+    <message>
+        <source>SSL</source>
+        <translation>SSL</translation>
+    </message>
+    <message>
         <source>Base DN</source>
         <translation>Baas DN</translation>
-    </message>
-    <message>
-        <source>Fixed base DN</source>
-        <translation>Fikseeritud baas DN</translation>
-    </message>
-    <message>
-        <source>e.g. dc=example,dc=org</source>
-        <translation>näit. dc=example,dc=org</translation>
     </message>
     <message>
         <source>Discover base DN by naming context</source>
@@ -2044,6 +2080,14 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>näit. namingContexts või defaultNamingContext</translation>
     </message>
     <message>
+        <source>Fixed base DN</source>
+        <translation>Fikseeritud baas DN</translation>
+    </message>
+    <message>
+        <source>e.g. dc=example,dc=org</source>
+        <translation>näit. dc=example,dc=org</translation>
+    </message>
+    <message>
         <source>Environment settings</source>
         <translation>Keskkonna seaded</translation>
     </message>
@@ -2052,20 +2096,20 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Objektipuud</translation>
     </message>
     <message>
+        <source>(only if different from group tree)</source>
+        <translation>(ainult siis, kui see erineb grupipuust)</translation>
+    </message>
+    <message>
         <source>Computer tree</source>
         <translation>Arvutipuu</translation>
     </message>
     <message>
-        <source>e.g. OU=Groups</source>
-        <translation>näit. OU=Grupid</translation>
+        <source>Perform recursive search operations in object trees</source>
+        <translation>Tehke rekursiivsed otsinguoperatsioonid objektipuudes</translation>
     </message>
     <message>
         <source>User tree</source>
         <translation>Kasutajapuu</translation>
-    </message>
-    <message>
-        <source>e.g. OU=Users</source>
-        <translation>näit. OU=kasutajad</translation>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
@@ -2076,36 +2120,80 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Grupipuu</translation>
     </message>
     <message>
-        <source>Perform recursive search operations in object trees</source>
-        <translation>Tehke rekursiivsed otsinguoperatsioonid objektipuudes</translation>
+        <source>Computer group tree</source>
+        <translation>Arvuti grupipuu</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Users</source>
+        <translation>näit. OU=kasutajad</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Groups</source>
+        <translation>näit. OU=Grupid</translation>
     </message>
     <message>
         <source>Object attributes</source>
         <translation>Objekti atribuudid</translation>
     </message>
     <message>
-        <source>e.g. hwAddress</source>
-        <translation>näit. riistvara aadress</translation>
+        <source>e.g. name or description</source>
+        <translation>näit. nimi või kirjeldus</translation>
+    </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation>Hosti nimed, mis on salvestatud täielikult kvalifitseeritud domeeninimedena (FQDN, nt myhost.example.org)</translation>
+    </message>
+    <message>
+        <source>e.g. room or computerLab</source>
+        <translation>näit. ruum või arvutiLab</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation>Kasutaja sisselogimise nime atribuut</translation>
+    </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>Arvuti asukoha atribuut</translation>
     </message>
     <message>
         <source>e.g. member or memberUid</source>
         <translation>näit. liige või liikmeUiD</translation>
     </message>
     <message>
-        <source>e.g. dNSHostName</source>
-        <translation>näit. dNSHostName</translation>
+        <source>Group member attribute</source>
+        <translation>Grupi liikme atribuut</translation>
+    </message>
+    <message>
+        <source>e.g. hwAddress</source>
+        <translation>näit. riistvara aadress</translation>
     </message>
     <message>
         <source>Computer MAC address attribute</source>
         <translation>Arvuti MAC-aadressi atribuut</translation>
     </message>
     <message>
-        <source>Group member attribute</source>
-        <translation>Grupi liikme atribuut</translation>
+        <source>e.g. dNSHostName</source>
+        <translation>näit. dNSHostName</translation>
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
         <translation>näit. uid või sAMAccountName</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>Arvuti kuvanime atribuut</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>Arvuti hosti nime atribuut</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>Asukoha nime atribuut</translation>
+    </message>
+    <message>
+        <source>e.g. cn or displayName</source>
+        <translation>näit. cn või displayName</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -2116,16 +2204,52 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Valikulised objektifiltrid</translation>
     </message>
     <message>
-        <source>Filter for user groups</source>
-        <translation>Filter kasutajagruppide jaoks</translation>
+        <source>Filter for computer groups</source>
+        <translation>Filter arvutigruppide jaoks</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=computer)</source>
+        <translation>näit. (objectClass=arvuti)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=group)</source>
+        <translation>näit. (objectClass=grupp)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=person)</source>
+        <translation>näit. (objectClass=person)</translation>
     </message>
     <message>
         <source>Filter for users</source>
         <translation>Kasutajatele mõeldud filter</translation>
     </message>
     <message>
-        <source>Filter for computer groups</source>
-        <translation>Filter arvutigruppide jaoks</translation>
+        <source>Filter for computers</source>
+        <translation>Filter arvutite jaoks</translation>
+    </message>
+    <message>
+        <source>Filter for user groups</source>
+        <translation>Filter kasutajagruppide jaoks</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
+        <translation>näit. (objectClass=ruum) või (objectClass=arvutiLab)</translation>
+    </message>
+    <message>
+        <source>Filter for computer containers</source>
+        <translation>Filter arvutikonteinerite jaoks</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
+        <translation>näit. (objectClass=konteiner) või (objectClass=organizationalUnit)</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation>Päringu valikud</translation>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation>Pesastatud kasutajarühmade päring (toetab ainult AD)</translation>
     </message>
     <message>
         <source>Group member identification</source>
@@ -2134,6 +2258,34 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Distinguished name (Samba/AD)</source>
         <translation>Eraldatud nimi (Samba/AD)</translation>
+    </message>
+    <message>
+        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
+        <translation>Konfigureeritud atribuut kasutaja sisselogimisnimele või arvuti hostinimele (OpenLDAP)</translation>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation>Asukoha nime atribuut</translation>
+    </message>
+    <message>
+        <source>Identify computer locations (e.g. rooms) via:</source>
+        <translation>Tehke kindlaks arvuti asukohad (nt ruumid):</translation>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation>Arvutigrupid</translation>
+    </message>
+    <message>
+        <source>Computer containers or OUs</source>
+        <translation>Arvutikonteinerid või OU-d</translation>
+    </message>
+    <message>
+        <source>Location attribute in computer objects</source>
+        <translation>Asukoha atribuut arvutiobjektides</translation>
+    </message>
+    <message>
+        <source>Integration tests</source>
+        <translation>Integratsioonitestid</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -2148,32 +2300,56 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Hankige arvutiobjekt IP-aadressi järgi</translation>
     </message>
     <message>
-        <source>LDAP connection failed</source>
-        <translation>LDAP-ühendus ebaõnnestus</translation>
+        <source>List all entries of a location</source>
+        <translation>Loetlege kõik asukoha kirjed</translation>
     </message>
     <message>
-        <source>LDAP bind failed</source>
-        <translation>LDAP-sidumine nurjus</translation>
+        <source>List all locations</source>
+        <translation>Loetlege kõik asukohad</translation>
     </message>
     <message>
-        <source>LDAP bind successful</source>
-        <translation>LDAP-sidumine õnnestus</translation>
+        <source>Browse</source>
+        <translation>Sirvi</translation>
     </message>
     <message>
-        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation>LDAP-serveriga ühenduse loomine ja LDAP-sidumine. LDAP põhiseaded on õigesti konfigureeritud.</translation>
+        <source>Test</source>
+        <translation>Test</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
         <translation>LDAP baasi DN test ebaõnnestus</translation>
     </message>
     <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation>Konfigureeritud baasi DN-i ei saanud pärida. Kontrollige põhiparameetrit DN.
+
+%1</translation>
+    </message>
+    <message>
         <source>LDAP base DN test successful</source>
         <translation>LDAP baasi DN test õnnestus</translation>
     </message>
     <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation>LDAP-i baasi DN-i kohta on edukalt päringuid tehtud. Leiti järgmised kirjed:
+
+%1</translation>
+    </message>
+    <message>
         <source>LDAP naming context test failed</source>
         <translation>LDAP-i nimetamise kontekstitest ebaõnnestus</translation>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
+        <translation>Põhi-DN-i ei saanud päringukontekstide kaudu pärida. Palun kontrollige nimetamise konteksti atribuudi parameetrit.
+
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
@@ -2196,6 +2372,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>computer tree</source>
         <translation>arvutipuu</translation>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation>arvuti grupipuu</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -2230,12 +2410,36 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Gruppi nimega &quot;%1&quot; ei leitud. Kontrollige grupi nime või grupipuu parameetrit.</translation>
     </message>
     <message>
-        <source>Enter computer name</source>
-        <translation>Sisestage arvuti nimi</translation>
+        <source>Enter computer display name</source>
+        <translation>Sisestage arvuti kuvatav nimi</translation>
+    </message>
+    <message>
+        <source>Please enter a computer display name to query:</source>
+        <translation>Sisestage arvuti kuvatav nimi:</translation>
     </message>
     <message>
         <source>computer objects</source>
         <translation>arvuti objektid</translation>
+    </message>
+    <message>
+        <source>Enter computer name</source>
+        <translation>Sisestage arvuti nimi</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname to query:</source>
+        <translation>Sisestage päringuks arvuti hostinimi:</translation>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>Tundmatu hosti nimi</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation>Konfigureerisite arvuti hostinimed salvestamiseks täielikult kvalifitseeritud domeeninimedena (FQDN), kuid sisestasite hostinime ilma domeenita.</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation>Konfigureerisite arvuti hostinimed salvestamiseks lihtsate hostinimedena ilma domeeninimeta, kuid sisestasite hostinime koos domeeninime osaga.</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
@@ -2250,6 +2454,22 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>arvuti MAC-aadressid</translation>
     </message>
     <message>
+        <source>Enter computer location name</source>
+        <translation>Sisestage arvuti asukoha nimi</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer location (wildcards allowed):</source>
+        <translation>Sisestage arvuti asukoha nimi (metamärgid on lubatud):</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>arvuti asukohad</translation>
+    </message>
+    <message>
+        <source>Enter location name</source>
+        <translation>Sisestage asukoha nimi</translation>
+    </message>
+    <message>
         <source>users</source>
         <translation>kasutajad</translation>
     </message>
@@ -2258,8 +2478,16 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>kasutaja grupid</translation>
     </message>
     <message>
+        <source>computers</source>
+        <translation>arvutid</translation>
+    </message>
+    <message>
         <source>computer groups</source>
         <translation>arvuti grupid</translation>
+    </message>
+    <message>
+        <source>computer containers</source>
+        <translation>arvutikonteinerid</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
@@ -2274,12 +2502,28 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Kasutajat ei leidnud</translation>
     </message>
     <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation>Kasutajat nimega &quot;%1&quot; ei leitud. Kontrollige kasutajanime või kasutajapuu parameetrit.</translation>
+    </message>
+    <message>
+        <source>Enter hostname</source>
+        <translation>Sisestage hosti nimi</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname whose group memberships to query:</source>
+        <translation>Sisestage arvuti hostinimi, mille rühma liikmesused päringu esitamiseks:</translation>
+    </message>
+    <message>
         <source>groups of computer</source>
         <translation>arvuti grupid</translation>
     </message>
     <message>
         <source>Computer not found</source>
         <translation>Arvutit ei leidnud</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation>Ei leidnud arvutit hostinimega &quot;%1&quot;. Palun kontrolli hostinime või arvutipuu parameetrit.</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2290,12 +2534,68 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Sisestage arvuti IP-aadress arvutiobjekti lahendamiseks:</translation>
     </message>
     <message>
-        <source>computers</source>
-        <translation>arvutid</translation>
+        <source>Hostname lookup failed</source>
+        <translation>Hostinime otsimine nurjus</translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation>IP-aadressi %1 hostinime otsimine nurjus. Palun kontrollige oma DNS-serveri seadeid.</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a location whose entries to query:</source>
+        <translation>Sisestage asukoha nimi, mille sisestuste kohta päringu teha:</translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation>asukohtade kirjed</translation>
+    </message>
+    <message>
+        <source>Certificate files (*.pem)</source>
+        <translation>Sertifikaadifailid (*.pem)</translation>
+    </message>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation>LDAP-ühendus ebaõnnestus</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation>LDAP-serveriga ei saanud ühendust luua. Palun kontrollige serveri parameetreid.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation>LDAP-sidumine nurjus</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation>LDAP-serveriga ei saanud siduda. Kontrollige serveri parameetreid ja siduge mandaadid.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation>LDAP-sidumine õnnestus</translation>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <translation>LDAP-serveriga ühenduse loomine ja LDAP-sidumine. LDAP põhiseaded on õigesti konfigureeritud.</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
         <translation>LDAP %1 test ebaõnnestus</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation>Konfigureeritud %1. kirjeid ei saa pärida. Kontrollige parameetrit &quot;%2&quot;.
+
+%3</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
@@ -2304,6 +2604,26 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
         <translation>%1 on edukalt päritud ja leitud %2 kirjet.</translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>LDAP-test ebaõnnestus</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation>%1. päringu esitamine nurjus. Kontrollige parameetr(eid) %2 ja sisestage olemasoleva objekti nimi.
+
+%3</translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation>ning</translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>LDAP-test õnnestus</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
@@ -2333,326 +2653,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 on konfigureeritud filtri abil edukalt päritud.</translation>
     </message>
-    <message>
-        <source>(only if different from group tree)</source>
-        <translation>(ainult siis, kui see erineb grupipuust)</translation>
-    </message>
-    <message>
-        <source>Computer group tree</source>
-        <translation>Arvuti grupipuu</translation>
-    </message>
-    <message>
-        <source>computer group tree</source>
-        <translation>arvuti grupipuu</translation>
-    </message>
-    <message>
-        <source>Filter for computers</source>
-        <translation>Filter arvutite jaoks</translation>
-    </message>
-    <message>
-        <source>e.g. room or computerLab</source>
-        <translation>näit. ruum või arvutiLab</translation>
-    </message>
-    <message>
-        <source>Integration tests</source>
-        <translation>Integratsioonitestid</translation>
-    </message>
-    <message>
-        <source>Computer groups</source>
-        <translation>Arvutigrupid</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>näit. nimi või kirjeldus</translation>
-    </message>
-    <message>
-        <source>Filter for computer containers</source>
-        <translation>Filter arvutikonteinerite jaoks</translation>
-    </message>
-    <message>
-        <source>Computer containers or OUs</source>
-        <translation>Arvutikonteinerid või OU-d</translation>
-    </message>
-    <message>
-        <source>Connection security</source>
-        <translation>Ühenduse turvalisus</translation>
-    </message>
-    <message>
-        <source>TLS certificate verification</source>
-        <translation>TLS-sertifikaadi kontroll</translation>
-    </message>
-    <message>
-        <source>System defaults</source>
-        <translation>Süsteemi vaikesätted</translation>
-    </message>
-    <message>
-        <source>Never (insecure!)</source>
-        <translation>Mitte kunagi (ebakindel!)</translation>
-    </message>
-    <message>
-        <source>Custom CA certificate file</source>
-        <translation>Kohandatud CA-sertifikaadi fail</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Puudub</translation>
-    </message>
-    <message>
-        <source>TLS</source>
-        <translation>TLS</translation>
-    </message>
-    <message>
-        <source>SSL</source>
-        <translation>SSL</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=computer)</source>
-        <translation>näit. (objectClass=arvuti)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=group)</source>
-        <translation>näit. (objectClass=grupp)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=person)</source>
-        <translation>näit. (objectClass=person)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation>näit. (objectClass=ruum) või (objectClass=arvutiLab)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation>näit. (objectClass=konteiner) või (objectClass=organizationalUnit)</translation>
-    </message>
-    <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-
-%1</source>
-        <translation>Konfigureeritud baasi DN-i ei saanud pärida. Kontrollige põhiparameetrit DN.
-
-%1</translation>
-    </message>
-    <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-
-%1</source>
-        <translation>LDAP-i baasi DN-i kohta on edukalt päringuid tehtud. Leiti järgmised kirjed:
-
-%1</translation>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-
-%1</source>
-        <translation>Põhi-DN-i ei saanud päringukontekstide kaudu pärida. Palun kontrollige nimetamise konteksti atribuudi parameetrit.
-
-%1</translation>
-    </message>
-    <message>
-        <source>Certificate files (*.pem)</source>
-        <translation>Sertifikaadifailid (*.pem)</translation>
-    </message>
-    <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters.
-
-%1</source>
-        <translation>LDAP-serveriga ei saanud ühendust luua. Palun kontrollige serveri parameetreid.
-
-%1</translation>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
-
-%1</source>
-        <translation>LDAP-serveriga ei saanud siduda. Kontrollige serveri parameetreid ja siduge mandaadid.
-
-%1</translation>
-    </message>
-    <message>
-        <source>Encryption protocol</source>
-        <translation>Krüptimisprotokoll</translation>
-    </message>
-    <message>
-        <source>Computer location attribute</source>
-        <translation>Arvuti asukoha atribuut</translation>
-    </message>
-    <message>
-        <source>Computer display name attribute</source>
-        <translation>Arvuti kuvanime atribuut</translation>
-    </message>
-    <message>
-        <source>Location name attribute</source>
-        <translation>Asukoha nime atribuut</translation>
-    </message>
-    <message>
-        <source>e.g. cn or displayName</source>
-        <translation>näit. cn või displayName</translation>
-    </message>
-    <message>
-        <source>Computer locations identification</source>
-        <translation>Asukoha nime atribuut</translation>
-    </message>
-    <message>
-        <source>Identify computer locations (e.g. rooms) via:</source>
-        <translation>Tehke kindlaks arvuti asukohad (nt ruumid):</translation>
-    </message>
-    <message>
-        <source>Location attribute in computer objects</source>
-        <translation>Asukoha atribuut arvutiobjektides</translation>
-    </message>
-    <message>
-        <source>List all entries of a location</source>
-        <translation>Loetlege kõik asukoha kirjed</translation>
-    </message>
-    <message>
-        <source>List all locations</source>
-        <translation>Loetlege kõik asukohad</translation>
-    </message>
-    <message>
-        <source>Enter computer display name</source>
-        <translation>Sisestage arvuti kuvatav nimi</translation>
-    </message>
-    <message>
-        <source>Please enter a computer display name to query:</source>
-        <translation>Sisestage arvuti kuvatav nimi:</translation>
-    </message>
-    <message>
-        <source>Enter computer location name</source>
-        <translation>Sisestage arvuti asukoha nimi</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation>Sisestage arvuti asukoha nimi (metamärgid on lubatud):</translation>
-    </message>
-    <message>
-        <source>computer locations</source>
-        <translation>arvuti asukohad</translation>
-    </message>
-    <message>
-        <source>Enter location name</source>
-        <translation>Sisestage asukoha nimi</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a location whose entries to query:</source>
-        <translation>Sisestage asukoha nimi, mille sisestuste kohta päringu teha:</translation>
-    </message>
-    <message>
-        <source>location entries</source>
-        <translation>asukohtade kirjed</translation>
-    </message>
-    <message>
-        <source>LDAP test failed</source>
-        <translation>LDAP-test ebaõnnestus</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
-
-%3</source>
-        <translation>%1. päringu esitamine nurjus. Kontrollige parameetr(eid) %2 ja sisestage olemasoleva objekti nimi.
-
-%3</translation>
-    </message>
-    <message>
-        <source>and</source>
-        <translation>ning</translation>
-    </message>
-    <message>
-        <source>LDAP test successful</source>
-        <translation>LDAP-test õnnestus</translation>
-    </message>
-    <message>
-        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
-
-%3</source>
-        <translation>Konfigureeritud %1. kirjeid ei saa pärida. Kontrollige parameetrit &quot;%2&quot;.
-
-%3</translation>
-    </message>
-    <message>
-        <source>Browse</source>
-        <translation>Sirvi</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Test</translation>
-    </message>
-    <message>
-        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>Hosti nimed, mis on salvestatud täielikult kvalifitseeritud domeeninimedena (FQDN, nt myhost.example.org)</translation>
-    </message>
-    <message>
-        <source>Computer hostname attribute</source>
-        <translation>Arvuti hosti nime atribuut</translation>
-    </message>
-    <message>
-        <source>Please enter a computer hostname to query:</source>
-        <translation>Sisestage päringuks arvuti hostinimi:</translation>
-    </message>
-    <message>
-        <source>Invalid hostname</source>
-        <translation>Tundmatu hosti nimi</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation>Konfigureerisite arvuti hostinimed salvestamiseks täielikult kvalifitseeritud domeeninimedena (FQDN), kuid sisestasite hostinime ilma domeenita.</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation>Konfigureerisite arvuti hostinimed salvestamiseks lihtsate hostinimedena ilma domeeninimeta, kuid sisestasite hostinime koos domeeninime osaga.</translation>
-    </message>
-    <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation>Kasutajat nimega &quot;%1&quot; ei leitud. Kontrollige kasutajanime või kasutajapuu parameetrit.</translation>
-    </message>
-    <message>
-        <source>Enter hostname</source>
-        <translation>Sisestage hosti nimi</translation>
-    </message>
-    <message>
-        <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation>Sisestage arvuti hostinimi, mille rühma liikmesused päringu esitamiseks:</translation>
-    </message>
-    <message>
-        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>Ei leidnud arvutit hostinimega &quot;%1&quot;. Palun kontrolli hostinime või arvutipuu parameetrit.</translation>
-    </message>
-    <message>
-        <source>Hostname lookup failed</source>
-        <translation>Hostinime otsimine nurjus</translation>
-    </message>
-    <message>
-        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation>IP-aadressi %1 hostinime otsimine nurjus. Palun kontrollige oma DNS-serveri seadeid.</translation>
-    </message>
-    <message>
-        <source>User login name attribute</source>
-        <translation>Kasutaja sisselogimise nime atribuut</translation>
-    </message>
-    <message>
-        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation>Konfigureeritud atribuut kasutaja sisselogimisnimele või arvuti hostinimele (OpenLDAP)</translation>
-    </message>
-    <message>
-        <source>computer containers</source>
-        <translation>arvutikonteinerid</translation>
-    </message>
-    <message>
-        <source>Query options</source>
-        <translation>Päringu valikud</translation>
-    </message>
-    <message>
-        <source>Query nested user groups (supported by AD only)</source>
-        <translation>Pesastatud kasutajarühmade päring (toetab ainult AD)</translation>
-    </message>
-    <message>
-        <source>Query timeout</source>
-        <translation>Päringu ajalõpp</translation>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation> ms</translation>
-    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2667,22 +2667,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Show help about command</source>
         <translation>Näita abi käsu kohta</translation>
-    </message>
-    <message>
-        <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation>Käsud LDAP/AD integreerimise konfigureerimiseks ja testimiseks</translation>
-    </message>
-    <message>
-        <source>Basic LDAP/AD support for Veyon</source>
-        <translation>Põhiline LDAP/AD tugi Veyonile</translation>
-    </message>
-    <message>
-        <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation>%1 (laadige arvutid ja asukohad LDAP/AD-st)</translation>
-    </message>
-    <message>
-        <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation>%1 (laadige kasutajad ja grupid LDAP/AD-st)</translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
@@ -2700,6 +2684,22 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
         <translation>%1 konfigureerimine baas-DN-ks ja kontekstipäringute nimetamise keelamine.</translation>
     </message>
+    <message>
+        <source>Basic LDAP/AD support for Veyon</source>
+        <translation>Põhiline LDAP/AD tugi Veyonile</translation>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
+        <translation>Käsud LDAP/AD integreerimise konfigureerimiseks ja testimiseks</translation>
+    </message>
+    <message>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation>%1 (laadige arvutid ja asukohad LDAP/AD-st)</translation>
+    </message>
+    <message>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation>%1 (laadige kasutajad ja grupid LDAP/AD-st)</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformConfigurationPage</name>
@@ -2708,20 +2708,12 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Linux</translation>
     </message>
     <message>
-        <source>Custom PAM service for user authentication</source>
-        <translation>Kasutaja autentimiseks kohandatud PAM-teenus</translation>
-    </message>
-    <message>
         <source>User authentication</source>
         <translation>Kasutaja autentimine</translation>
     </message>
     <message>
-        <source>User login</source>
-        <translation>Kasutaja sisselogimine</translation>
-    </message>
-    <message>
-        <source>Login key sequence</source>
-        <translation>Sisselogimisvõtmete järjestus</translation>
+        <source>Custom PAM service for user authentication</source>
+        <translation>Kasutaja autentimiseks kohandatud PAM-teenus</translation>
     </message>
     <message>
         <source>User sessions</source>
@@ -2730,6 +2722,14 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Minimum session lifetime before server start</source>
         <translation>Minimaalne seansi eluiga enne serveri käivitamist</translation>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation>Kasutaja sisselogimine</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation>Sisselogimisvõtmete järjestus</translation>
     </message>
 </context>
 <context>
@@ -2757,87 +2757,23 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Konfiguratsioon</translation>
     </message>
     <message>
-        <source>Show icons only</source>
-        <translation>Kuva ainult ikoone</translation>
-    </message>
-    <message>
         <source>Disable tooltips</source>
         <translation>Keela tööriistavihjed</translation>
+    </message>
+    <message>
+        <source>Show icons only</source>
+        <translation>Kuva ainult ikoone</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <source>MainWindow</source>
-        <translation>PeaAken</translation>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation>Tööriistariba</translation>
+        <source>Veyon Configurator</source>
+        <translation>Veyoni konfiguraator</translation>
     </message>
     <message>
         <source>General</source>
         <translation>Üldine</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>&amp;Fail</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>&amp;Abi</translation>
-    </message>
-    <message>
-        <source>&amp;Quit</source>
-        <translation>&amp;Välju</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
-    </message>
-    <message>
-        <source>L&amp;oad settings from file</source>
-        <translation>L&amp;oe seaded failist</translation>
-    </message>
-    <message>
-        <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
-    </message>
-    <message>
-        <source>About Qt</source>
-        <translation>Qt kohta</translation>
-    </message>
-    <message>
-        <source>Authentication impossible</source>
-        <translation>Autentimine on võimatu</translation>
-    </message>
-    <message>
-        <source>Configuration not writable</source>
-        <translation>Konfiguratsiooni ei saa kirjutada</translation>
-    </message>
-    <message>
-        <source>Load settings from file</source>
-        <translation>Loe seaded failist</translation>
-    </message>
-    <message>
-        <source>Save settings to file</source>
-        <translation>Salvesta seaded faili</translation>
-    </message>
-    <message>
-        <source>Unsaved settings</source>
-        <translation>Salvestamata seaded</translation>
-    </message>
-    <message>
-        <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Seal on salvestamata seadeid. Kas ikkagi lõpetada?</translation>
-    </message>
-    <message>
-        <source>Veyon Configurator</source>
-        <translation>Veyoni konfiguraator</translation>
     </message>
     <message>
         <source>Service</source>
@@ -2852,8 +2788,72 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Juurdepääsu juhtimine</translation>
     </message>
     <message>
+        <source>&amp;File</source>
+        <translation>&amp;Fail</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>&amp;Abi</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation>&amp;Vaade</translation>
+    </message>
+    <message>
+        <source>&amp;Quit</source>
+        <translation>&amp;Välju</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
+    </message>
+    <message>
+        <source>&amp;Save settings to file</source>
+        <translation>&amp;Salvesta seaded faili</translation>
+    </message>
+    <message>
+        <source>Save settings to file</source>
+        <translation>Salvesta seaded faili</translation>
+    </message>
+    <message>
+        <source>Ctrl+S</source>
+        <translation>Ctrl+S</translation>
+    </message>
+    <message>
+        <source>L&amp;oad settings from file</source>
+        <translation>L&amp;oe seaded failist</translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
+        <translation>Ctrl+O</translation>
+    </message>
+    <message>
         <source>About Veyon</source>
         <translation>Programmist Veyon</translation>
+    </message>
+    <message>
+        <source>About Qt</source>
+        <translation>Qt kohta</translation>
+    </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation>Lähtesta konfiguratsioon</translation>
+    </message>
+    <message>
+        <source>&amp;Standard</source>
+        <translation>&amp;Standard</translation>
+    </message>
+    <message>
+        <source>&amp;Advanced</source>
+        <translation>&amp;Edasijõudnud</translation>
+    </message>
+    <message>
+        <source>MainWindow</source>
+        <translation>PeaAken</translation>
+    </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation>Kohandage arvuti ikoonide suurust automaatselt</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2864,16 +2864,92 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Programmist</translation>
     </message>
     <message>
+        <source>Search users and computers</source>
+        <translation>Otsige kasutajaid ja arvuteid</translation>
+    </message>
+    <message>
+        <source>Align computers to grid</source>
+        <translation>Joondage arvutid</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
+        <translation>Kasutage kohandatud arvutikorraldust</translation>
+    </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation>Näita ainult töötavaid arvuteid</translation>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
+        <translation>Asukohad &amp;&amp; arvutid</translation>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation>Ekraanipildid</translation>
+    </message>
+    <message>
+        <source>Slideshow</source>
+        <translation>Slaidiseanss</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Tähelepanu keskpunktis</translation>
+    </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation>Kuva ainult arvutid, mille kasutajad on sisse logitud</translation>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation>Tööriistariba</translation>
+    </message>
+    <message>
         <source>%1 Configurator %2</source>
         <translation>%1  Konfiguraator %2</translation>
+    </message>
+    <message>
+        <source>Load settings from file</source>
+        <translation>Loe seaded failist</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
         <translation>JSON failid (*.json)</translation>
     </message>
     <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation>Kas soovite tõesti lähtestada kohaliku konfiguratsiooni ja taastada kõigi seadete vaikeväärtused?</translation>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation>%1 Konfiguraator</translation>
+    </message>
+    <message>
+        <source>Unsaved settings</source>
+        <translation>Salvestamata seaded</translation>
+    </message>
+    <message>
+        <source>There are unsaved settings. Quit anyway?</source>
+        <translation>Seal on salvestamata seadeid. Kas ikkagi lõpetada?</translation>
+    </message>
+    <message>
+        <source>Insufficient privileges</source>
+        <translation>Ebapiisavad privileegid</translation>
+    </message>
+    <message>
+        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
+        <translation>Ei saanud alustada administraatoriõigustega. Veenduge, et teie töölaua keskkonda oleks installitud sudo-laadne programm! Programmi käivitatakse tavaliste kasutajaõigustega.</translation>
+    </message>
+    <message>
+        <source>Configuration not writable</source>
+        <translation>Konfiguratsiooni ei saa kirjutada</translation>
+    </message>
+    <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>Kohaliku konfiguratsiooni taustaprogramm teatas, et konfiguratsiooni ei saa kirjutada! Palun käivitage %1 konfiguraator suuremate õigustega.</translation>
+    </message>
+    <message>
+        <source>Authentication impossible</source>
+        <translation>Autentimine on võimatu</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
@@ -2888,10 +2964,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Kohaliku konfiguratsiooni kohaselt pole teil lubatud võrgus olevatele arvutitele juurde pääseda. Logige sisse teise kontoga või laske oma süsteemiadministraatoril kohalikku konfiguratsiooni kontrollida.</translation>
     </message>
     <message>
-        <source>Screenshots</source>
-        <translation>Ekraanipildid</translation>
-    </message>
-    <message>
         <source>Feature active</source>
         <translation>Funktsioon on aktiivne</translation>
     </message>
@@ -2899,81 +2971,13 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation>Funktsioon &quot;%1&quot; on endiselt aktiivne. Enne %2 sulgemist peatage see.</translation>
     </message>
-    <message>
-        <source>Reset configuration</source>
-        <translation>Lähtesta konfiguratsioon</translation>
-    </message>
-    <message>
-        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation>Kas soovite tõesti lähtestada kohaliku konfiguratsiooni ja taastada kõigi seadete vaikeväärtused?</translation>
-    </message>
-    <message>
-        <source>Search users and computers</source>
-        <translation>Otsige kasutajaid ja arvuteid</translation>
-    </message>
-    <message>
-        <source>Align computers to grid</source>
-        <translation>Joondage arvutid</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>%1 Konfiguraator</translation>
-    </message>
-    <message>
-        <source>Insufficient privileges</source>
-        <translation>Ebapiisavad privileegid</translation>
-    </message>
-    <message>
-        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation>Ei saanud alustada administraatoriõigustega. Veenduge, et teie töölaua keskkonda oleks installitud sudo-laadne programm! Programmi käivitatakse tavaliste kasutajaõigustega.</translation>
-    </message>
-    <message>
-        <source>Only show powered on computers</source>
-        <translation>Näita ainult töötavaid arvuteid</translation>
-    </message>
-    <message>
-        <source>&amp;Save settings to file</source>
-        <translation>&amp;Salvesta seaded faili</translation>
-    </message>
-    <message>
-        <source>&amp;View</source>
-        <translation>&amp;Vaade</translation>
-    </message>
-    <message>
-        <source>&amp;Standard</source>
-        <translation>&amp;Standard</translation>
-    </message>
-    <message>
-        <source>&amp;Advanced</source>
-        <translation>&amp;Edasijõudnud</translation>
-    </message>
-    <message>
-        <source>Use custom computer arrangement</source>
-        <translation>Kasutage kohandatud arvutikorraldust</translation>
-    </message>
-    <message>
-        <source>Locations &amp;&amp; computers</source>
-        <translation>Asukohad &amp;&amp; arvutid</translation>
-    </message>
-    <message>
-        <source>Slideshow</source>
-        <translation>Slaidiseanss</translation>
-    </message>
-    <message>
-        <source>Spotlight</source>
-        <translation>Tähelepanu keskpunktis</translation>
-    </message>
-    <message>
-        <source>Adjust size of computer icons automatically</source>
-        <translation>Kohandage arvuti ikoonide suurust automaatselt</translation>
-    </message>
-    <message>
-        <source>Only show computers with logged on users</source>
-        <translation>Kuva ainult arvutid, mille kasutajad on sisse logitud</translation>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
+    <message>
+        <source>Basic settings</source>
+        <translation>Üldised seaded</translation>
+    </message>
     <message>
         <source>Directories</source>
         <translation>Kataloogid</translation>
@@ -2983,80 +2987,44 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Kasutaja konfiguratsioon</translation>
     </message>
     <message>
-        <source>Feature on computer double click:</source>
-        <translation>Funktsioon arvutis topeltklõpsake:</translation>
-    </message>
-    <message>
-        <source>Features</source>
-        <translation>Funktsioonid</translation>
-    </message>
-    <message>
-        <source>All features</source>
-        <translation>Kõik funktsioonid</translation>
-    </message>
-    <message>
-        <source>Disabled features</source>
-        <translation>Keelatud funktsioonid</translation>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation>Ekraanipildid</translation>
-    </message>
-    <message>
-        <source>&lt;no feature&gt;</source>
-        <translation>&lt;no feature&gt;</translation>
-    </message>
-    <message>
-        <source>Basic settings</source>
-        <translation>Üldised seaded</translation>
-    </message>
-    <message>
-        <source>Behaviour</source>
-        <translation>Käitumine</translation>
-    </message>
-    <message>
-        <source>Enforce selected mode for client computers</source>
-        <translation>Valitud režiimi rakendamine klientarvutite jaoks</translation>
-    </message>
-    <message>
-        <source>Hide local computer</source>
-        <translation>Peida kohalik arvuti</translation>
-    </message>
-    <message>
-        <source>Hide computer filter field</source>
-        <translation>Peida arvuti filtri väli</translation>
-    </message>
-    <message>
-        <source>Actions such as rebooting or powering down computers</source>
-        <translation>Sellised toimingud nagu arvutite taaskäivitamine või väljalülitamine</translation>
     </message>
     <message>
         <source>User interface</source>
         <translation>Kasutajaliides</translation>
     </message>
     <message>
-        <source>Background color</source>
-        <translation>Taustavärv</translation>
-    </message>
-    <message>
-        <source>Thumbnail update interval</source>
-        <translation>Pisipiltide uuendamise sagedus</translation>
+        <source>Text color</source>
+        <translation>Teksti värv</translation>
     </message>
     <message>
         <source> ms</source>
         <translation> ms</translation>
     </message>
     <message>
-        <source>Program start</source>
-        <translation>Käivita programm</translation>
+        <source>Background color</source>
+        <translation>Taustavärv</translation>
     </message>
     <message>
-        <source>Modes and features</source>
-        <translation>Režiimid ja funktsioonid</translation>
+        <source>Thumbnail spacing</source>
+        <translation>Pisipiltide vahe</translation>
     </message>
     <message>
-        <source>User and computer name</source>
-        <translation>Kasutaja ja arvuti nimi</translation>
+        <source> px</source>
+        <translation> px</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Auto</translation>
+    </message>
+    <message>
+        <source>Computer thumbnail caption</source>
+        <translation>Arvuti pisipiltide pealdis</translation>
+    </message>
+    <message>
+        <source>Computer and user name</source>
+        <translation>Arvuti ja kasutajanimi</translation>
     </message>
     <message>
         <source>Only user name</source>
@@ -3067,80 +3035,20 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Vaid arvuti nimi</translation>
     </message>
     <message>
-        <source>Computer thumbnail caption</source>
-        <translation>Arvuti pisipiltide pealdis</translation>
+        <source>User and computer name</source>
+        <translation>Kasutaja ja arvuti nimi</translation>
     </message>
     <message>
-        <source>Text color</source>
-        <translation>Teksti värv</translation>
+        <source>Thumbnail update interval</source>
+        <translation>Pisipiltide uuendamise sagedus</translation>
     </message>
     <message>
         <source>Sort order</source>
         <translation>Järjestamine</translation>
     </message>
     <message>
-        <source>Computer and user name</source>
-        <translation>Arvuti ja kasutajanimi</translation>
-    </message>
-    <message>
-        <source>Computer locations</source>
-        <translation>Arvuti asukoht</translation>
-    </message>
-    <message>
-        <source>Show current location only</source>
-        <translation>Kuva ainult praegune asukoht</translation>
-    </message>
-    <message>
-        <source>Allow adding hidden locations manually</source>
-        <translation>Luba peidetud asukohtade käsitsi lisamine</translation>
-    </message>
-    <message>
-        <source>Hide empty locations</source>
-        <translation>Peida tühjad asukohad</translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation>Kuva potentsiaalselt ohtlike toimingute kinnitusdialoog</translation>
-    </message>
-    <message>
-        <source>Perform access control</source>
-        <translation>Tehke juurdepääsu kontroll</translation>
-    </message>
-    <message>
-        <source>Automatically select current location</source>
-        <translation>Valige praegune asukoht automaatselt</translation>
-    </message>
-    <message>
-        <source>Automatically open computer select panel</source>
-        <translation>Avage arvuti valimispaneel automaatselt</translation>
-    </message>
-    <message>
-        <source>Hide local session</source>
-        <translation>Peida kohalik seanss</translation>
-    </message>
-    <message>
-        <source> px</source>
-        <translation> px</translation>
-    </message>
-    <message>
-        <source>Thumbnail spacing</source>
-        <translation>Pisipiltide vahe</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Auto</translation>
-    </message>
-    <message>
         <source>Thumbnail aspect ratio</source>
         <translation>Pisipildi kuvasuhe</translation>
-    </message>
-    <message>
-        <source>Automatically adjust computer icon size</source>
-        <translation>Reguleerige arvuti ikooni suurust automaatselt</translation>
-    </message>
-    <message>
-        <source>Open feature windows on the same screen as the main window</source>
-        <translation>Avage funktsiooniaknad peaaknaga samal ekraanil</translation>
     </message>
     <message>
         <source>Highest</source>
@@ -3163,12 +3071,104 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Madalaim</translation>
     </message>
     <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Remote access image quality</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Image quality in monitoring mode</source>
-        <translation type="unfinished"/>
+        <source>Behaviour</source>
+        <translation>Käitumine</translation>
+    </message>
+    <message>
+        <source>Program start</source>
+        <translation>Käivita programm</translation>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation>Tehke juurdepääsu kontroll</translation>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation>Valige praegune asukoht automaatselt</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation>Reguleerige arvuti ikooni suurust automaatselt</translation>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
+        <translation>Avage arvuti valimispaneel automaatselt</translation>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation>Arvuti asukoht</translation>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation>Kuva ainult praegune asukoht</translation>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation>Luba peidetud asukohtade käsitsi lisamine</translation>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation>Peida kohalik arvuti</translation>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation>Peida kohalik seanss</translation>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation>Peida tühjad asukohad</translation>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation>Peida arvuti filtri väli</translation>
+    </message>
+    <message>
+        <source>Modes and features</source>
+        <translation>Režiimid ja funktsioonid</translation>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation>Valitud režiimi rakendamine klientarvutite jaoks</translation>
+    </message>
+    <message>
+        <source>Actions such as rebooting or powering down computers</source>
+        <translation>Sellised toimingud nagu arvutite taaskäivitamine või väljalülitamine</translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation>Kuva potentsiaalselt ohtlike toimingute kinnitusdialoog</translation>
+    </message>
+    <message>
+        <source>Feature on computer double click:</source>
+        <translation>Funktsioon arvutis topeltklõpsake:</translation>
+    </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation>Avage funktsiooniaknad peaaknaga samal ekraanil</translation>
+    </message>
+    <message>
+        <source>Features</source>
+        <translation>Funktsioonid</translation>
+    </message>
+    <message>
+        <source>All features</source>
+        <translation>Kõik funktsioonid</translation>
+    </message>
+    <message>
+        <source>Disabled features</source>
+        <translation>Keelatud funktsioonid</translation>
+    </message>
+    <message>
+        <source>&lt;no feature&gt;</source>
+        <translation>&lt;no feature&gt;</translation>
     </message>
 </context>
 <context>
@@ -3176,10 +3176,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Monitoring</source>
         <translation>Jälgimine</translation>
-    </message>
-    <message>
-        <source>Builtin monitoring mode</source>
-        <translation>Sisemine jälgimisrežiim</translation>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
@@ -3196,6 +3192,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Query properties of remotely available screens</source>
         <translation>Pärige kaugkasutatavate ekraanide atribuute</translation>
+    </message>
+    <message>
+        <source>Builtin monitoring mode</source>
+        <translation>Sisemine jälgimisrežiim</translation>
     </message>
 </context>
 <context>
@@ -3235,6 +3235,14 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
 <context>
     <name>PasswordDialog</name>
     <message>
+        <source>Veyon Logon</source>
+        <translation>Veyoni sisselogimine</translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation>Arvutitele juurdepääsu saamiseks sisestage oma kasutajanimi ja parool.</translation>
+    </message>
+    <message>
         <source>Username</source>
         <translation>Kasutajanimi</translation>
     </message>
@@ -3243,20 +3251,12 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Parool</translation>
     </message>
     <message>
-        <source>Veyon Logon</source>
-        <translation>Veyoni sisselogimine</translation>
-    </message>
-    <message>
         <source>Authentication error</source>
         <translation>Autentimise viga</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>Sisselogimine nurjus antud kasutajanime ja parooliga. Palun proovi uuesti!</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
-        <translation>Arvutitele juurdepääsu saamiseks sisestage oma kasutajanimi ja parool.</translation>
     </message>
 </context>
 <context>
@@ -3297,6 +3297,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
 <context>
     <name>PowerControlFeaturePlugin</name>
     <message>
+        <source>Power on a computer via Wake-on-LAN (WOL)</source>
+        <translation>Lülitage arvuti sisse Wake-on-LAN (WOL) kaudu</translation>
+    </message>
+    <message>
         <source>Power on</source>
         <translation>Lülita sisse</translation>
     </message>
@@ -3321,46 +3325,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Kõigi arvutite väljalülitamiseks klõpsake seda nuppu. Nii ei pea te iga arvutit käsitsi välja lülitama.</translation>
     </message>
     <message>
-        <source>Power on/down or reboot a computer</source>
-        <translation>Lülitage arvuti sisse/välja või taaskäivitage</translation>
-    </message>
-    <message>
-        <source>Confirm reboot</source>
-        <translation>Kinnitage taaskäivitamine</translation>
-    </message>
-    <message>
-        <source>Confirm power down</source>
-        <translation>Kinnitage väljalülitamine</translation>
-    </message>
-    <message>
-        <source>Do you really want to reboot the selected computers?</source>
-        <translation>Kas soovite tõesti valitud arvutid taaskäivitada?</translation>
-    </message>
-    <message>
-        <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>Lülitage arvuti sisse Wake-on-LAN (WOL) kaudu</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>MAC AADRESS</translation>
-    </message>
-    <message>
-        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation>See käsk edastab võrgus Wake-on-LAN (WOL) paketi, et antud MAC-aadressiga arvuti sisse lülitada.</translation>
-    </message>
-    <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Palun määrake käsk, mille jaoks abi kuvatakse!</translation>
-    </message>
-    <message>
-        <source>Invalid MAC address specified!</source>
-        <translation>Määratud on kehtetu MAC-aadress!</translation>
-    </message>
-    <message>
-        <source>Commands for controlling power status of computers</source>
-        <translation>Käsud arvutite toiteoleku kontrollimiseks</translation>
-    </message>
-    <message>
         <source>Power down now</source>
         <translation>Lülita kohe välja</translation>
     </message>
@@ -3377,6 +3341,46 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Lülita välja aja möödumisel</translation>
     </message>
     <message>
+        <source>MAC ADDRESS</source>
+        <translation>MAC AADRESS</translation>
+    </message>
+    <message>
+        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
+        <translation>See käsk edastab võrgus Wake-on-LAN (WOL) paketi, et antud MAC-aadressiga arvuti sisse lülitada.</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation>Palun määrake käsk, mille jaoks abi kuvatakse!</translation>
+    </message>
+    <message>
+        <source>Confirm reboot</source>
+        <translation>Kinnitage taaskäivitamine</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Kas soovite tõesti taaskäivitada &lt;b&gt;KÕIK&lt;/b&gt; arvutid?</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot the selected computers?</source>
+        <translation>Kas soovite tõesti valitud arvutid taaskäivitada?</translation>
+    </message>
+    <message>
+        <source>Confirm power down</source>
+        <translation>Kinnitage väljalülitamine</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Kas soovite tõesti välja lülitada &lt;b&gt;KÕIK&lt;/b&gt; arvutid?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation>Kas soovite tõesti välja lülitada valitud arvutid?</translation>
+    </message>
+    <message>
+        <source>Invalid MAC address specified!</source>
+        <translation>Määratud on kehtetu MAC-aadress!</translation>
+    </message>
+    <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
         <translation>Arvuti paluti eemalt välja lülitada. Kas soovite arvuti kohe välja lülitada?</translation>
     </message>
@@ -3389,16 +3393,12 @@ Please save your work and close all programs.</source>
 Salvestage oma töö ja sulgege kõik programmid.</translation>
     </message>
     <message>
-        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation>Kas soovite tõesti taaskäivitada &lt;b&gt;KÕIK&lt;/b&gt; arvutid?</translation>
+        <source>Power on/down or reboot a computer</source>
+        <translation>Lülitage arvuti sisse/välja või taaskäivitage</translation>
     </message>
     <message>
-        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation>Kas soovite tõesti välja lülitada &lt;b&gt;KÕIK&lt;/b&gt; arvutid?</translation>
-    </message>
-    <message>
-        <source>Do you really want to power down the selected computers?</source>
-        <translation>Kas soovite tõesti välja lülitada valitud arvutid?</translation>
+        <source>Commands for controlling power status of computers</source>
+        <translation>Käsud arvutite toiteoleku kontrollimiseks</translation>
     </message>
 </context>
 <context>
@@ -3439,24 +3439,24 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
         <translation>Avage arvuti kaughalduse aken.</translation>
     </message>
     <message>
-        <source>Remote access</source>
-        <translation>Kaugjuurdepääs</translation>
-    </message>
-    <message>
-        <source>Remote view or control a computer</source>
-        <translation>Kaugvaatamine või arvuti kaughaldus</translation>
+        <source>Exchange clipboard contents</source>
+        <translation>Vahetage lõikepuhvri sisu</translation>
     </message>
     <message>
         <source>Show help about command</source>
         <translation>Näita abi käsu kohta</translation>
     </message>
     <message>
-        <source>Exchange clipboard contents</source>
-        <translation>Vahetage lõikepuhvri sisu</translation>
+        <source>Remote access</source>
+        <translation>Kaugjuurdepääs</translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
         <translation>Ühtegi arvutit pole valitud, nii et saate käsitsi juurdepääsuks sisestada arvuti hostinime või IP-aadressi:</translation>
+    </message>
+    <message>
+        <source>Remote view or control a computer</source>
+        <translation>Kaugvaatamine või arvuti kaughaldus</translation>
     </message>
 </context>
 <context>
@@ -3481,8 +3481,16 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
         <translation>Kaugjuurdepääs</translation>
     </message>
     <message>
+        <source>Select screen</source>
+        <translation>Valige ekraan</translation>
+    </message>
+    <message>
         <source>Send shortcut</source>
         <translation>Saada otsetee</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Ekraanipilt</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -3491,6 +3499,10 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     <message>
         <source>Window</source>
         <translation>Aken</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation>Välju</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
@@ -3529,20 +3541,8 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
         <translation>Ühendatud</translation>
     </message>
     <message>
-        <source>Screenshot</source>
-        <translation>Ekraanipilt</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation>Välju</translation>
-    </message>
-    <message>
         <source>Connecting...</source>
         <translation>Ühendamine...</translation>
-    </message>
-    <message>
-        <source>Select screen</source>
-        <translation>Valige ekraan</translation>
     </message>
     <message>
         <source>All screens</source>
@@ -3560,10 +3560,6 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
         <translation>Lukusta lahti</translation>
     </message>
     <message>
-        <source>Lock screen and input devices of a computer</source>
-        <translation>Lukusta arvuti ekraan ja sisendseadmed</translation>
-    </message>
-    <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Kasutaja tähelepanu äratamiseks võite selle nupu abil tema arvutid lukustada. Selles režiimis on kõik sisendseadmed lukustatud ja ekraanid mustad.</translation>
     </message>
@@ -3578,6 +3574,10 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
         <translation>Kasutaja tähelepanu äratamiseks võite selle nupu abil tema arvutid lukustada. Selles režiimis on kõik sisendseadmed lukustatud, kuid töölaud on endiselt nähtav.</translation>
+    </message>
+    <message>
+        <source>Lock screen and input devices of a computer</source>
+        <translation>Lukusta arvuti ekraan ja sisendseadmed</translation>
     </message>
 </context>
 <context>
@@ -3668,56 +3668,44 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
         <translation>Üldine</translation>
     </message>
     <message>
-        <source>Autostart</source>
-        <translation>Autostart</translation>
+        <source>Show notification when an unauthorized access is blocked</source>
+        <translation>Kuva teade, kui volitamata juurdepääs on blokeeritud</translation>
+    </message>
+    <message>
+        <source>Show notification on remote connection</source>
+        <translation>Kuva teated kaugühenduse korral</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
         <translation>Peida salveikoon</translation>
     </message>
     <message>
-        <source>Start service</source>
-        <translation>Käivita teenus</translation>
-    </message>
-    <message>
-        <source>Stopped</source>
-        <translation>Peatatud</translation>
-    </message>
-    <message>
-        <source>Stop service</source>
-        <translation>Peata teenus</translation>
+        <source>Autostart</source>
+        <translation>Autostart</translation>
     </message>
     <message>
         <source>State:</source>
         <translation>Seisund:</translation>
     </message>
     <message>
-        <source>Enable firewall exception</source>
-        <translation>Luba tulemüüri erisused</translation>
+        <source>Stopped</source>
+        <translation>Peatatud</translation>
     </message>
     <message>
-        <source>Allow connections from localhost only</source>
-        <translation>Luba ühendused ainult localhostilt</translation>
+        <source>Start service</source>
+        <translation>Käivita teenus</translation>
     </message>
     <message>
-        <source>VNC server</source>
-        <translation>VNC server</translation>
+        <source>Stop service</source>
+        <translation>Peata teenus</translation>
     </message>
     <message>
-        <source>Plugin:</source>
-        <translation>Pistikprogramm:</translation>
+        <source>Session mode</source>
+        <translation>Seansi režiim</translation>
     </message>
     <message>
-        <source>Restart %1 Service</source>
-        <translation>Taaskäivita %1 teenus</translation>
-    </message>
-    <message>
-        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Kõik seaded salvestati edukalt. Jõustumiseks tuleb %1 teenus taaskäivitada. Kas taaskäivitada see kohe?</translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>Käib</translation>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation>Kohaliku seansi režiim (ühe serveri eksemplar esmase kohaliku seansi jaoks)</translation>
     </message>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
@@ -3726,12 +3714,12 @@ Typically this is required to support terminal servers.</source>
 Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
-        <source>Show notification on remote connection</source>
-        <translation>Kuva teated kaugühenduse korral</translation>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation>Aktiivne seansirežiim (ühe serveri eksemplar aktiivse kohaliku või kaugseansi jaoks)</translation>
     </message>
     <message>
-        <source>Show notification when an unauthorized access is blocked</source>
-        <translation>Kuva teade, kui volitamata juurdepääs on blokeeritud</translation>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation>Mitme seansi režiim (iga kohaliku ja kaugtöölaua seansi jaoks eraldi serveri eksemplar)</translation>
     </message>
     <message>
         <source>Maximum session count</source>
@@ -3758,24 +3746,40 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <translation>Demo server</translation>
     </message>
     <message>
-        <source>Miscellaneous network settings</source>
-        <translation>Mitmesugused võrguseaded</translation>
+        <source>Miscellaneous settings</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Session mode</source>
-        <translation>Seansi režiim</translation>
+        <source>Enable firewall exception</source>
+        <translation>Luba tulemüüri erisused</translation>
     </message>
     <message>
-        <source>Local session mode (single server instance for primary local session)</source>
-        <translation>Kohaliku seansi režiim (ühe serveri eksemplar esmase kohaliku seansi jaoks)</translation>
+        <source>Allow connections from localhost only</source>
+        <translation>Luba ühendused ainult localhostilt</translation>
     </message>
     <message>
-        <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation>Aktiivne seansirežiim (ühe serveri eksemplar aktiivse kohaliku või kaugseansi jaoks)</translation>
+        <source>Disable clipboard synchronization</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation>Mitme seansi režiim (iga kohaliku ja kaugtöölaua seansi jaoks eraldi serveri eksemplar)</translation>
+        <source>VNC server</source>
+        <translation>VNC server</translation>
+    </message>
+    <message>
+        <source>Plugin:</source>
+        <translation>Pistikprogramm:</translation>
+    </message>
+    <message>
+        <source>Restart %1 Service</source>
+        <translation>Taaskäivita %1 teenus</translation>
+    </message>
+    <message>
+        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
+        <translation>Kõik seaded salvestati edukalt. Jõustumiseks tuleb %1 teenus taaskäivitada. Kas taaskäivitada see kohe?</translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>Käib</translation>
     </message>
 </context>
 <context>
@@ -3885,6 +3889,10 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
 <context>
     <name>SpotlightPanel</name>
     <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation>Arvutite lisamiseks klõpsake hiire keskmise nupuga või klõpsake allolevat esimest nuppu.</translation>
+    </message>
+    <message>
         <source>Add selected computers</source>
         <translation>Lisage valitud arvutid</translation>
     </message>
@@ -3907,10 +3915,6 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     <message>
         <source>Please select at least one computer to remove.</source>
         <translation>Valige eemaldamiseks vähemalt üks arvuti.</translation>
-    </message>
-    <message>
-        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation>Arvutite lisamiseks klõpsake hiire keskmise nupuga või klõpsake allolevat esimest nuppu.</translation>
     </message>
 </context>
 <context>
@@ -4002,32 +4006,32 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
 <context>
     <name>UltraVncConfigurationWidget</name>
     <message>
-        <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>Luba kihiliste (poolläbipaistvate) akende hõivamine</translation>
+        <source>Builtin UltraVNC server configuration</source>
+        <translation>Sissemise UltraVNC serveri konfiguratsioon</translation>
     </message>
     <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Küsitlus täisekraanil (jätke see vaikimisi lubatuks)</translation>
+        <source>Maximum CPU usage</source>
+        <translation>Maksimaalne protsessori kasutamine</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
         <translation>Madal täpsus (turborežiim)</translation>
     </message>
     <message>
-        <source>Builtin UltraVNC server configuration</source>
-        <translation>Sissemise UltraVNC serveri konfiguratsioon</translation>
-    </message>
-    <message>
-        <source>Enable multi monitor support</source>
-        <translation>Luba mitme kuvari tugi</translation>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>Küsitlus täisekraanil (jätke see vaikimisi lubatuks)</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>Luba töölaua laiendamismootor Windows 8 ja uuemates versioonides</translation>
     </message>
     <message>
-        <source>Maximum CPU usage</source>
-        <translation>Maksimaalne protsessori kasutamine</translation>
+        <source>Enable multi monitor support</source>
+        <translation>Luba mitme kuvari tugi</translation>
+    </message>
+    <message>
+        <source>Enable capturing of layered (semi-transparent) windows</source>
+        <translation>Luba kihiliste (poolläbipaistvate) akende hõivamine</translation>
     </message>
 </context>
 <context>
@@ -4083,16 +4087,16 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <translation>Kinnitage kasutaja väljalogimine</translation>
     </message>
     <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation>Kas soovite tõesti välja logida &lt;b&gt;KÕIK&lt;/b&gt; kasutajad?</translation>
+    </message>
+    <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>Kas soovite tõesti valitud kasutajad välja logida?</translation>
     </message>
     <message>
         <source>User session control</source>
         <translation>Kasutaja seansi juhtimine</translation>
-    </message>
-    <message>
-        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation>Kas soovite tõesti välja logida &lt;b&gt;KÕIK&lt;/b&gt; kasutajad?</translation>
     </message>
 </context>
 <context>
@@ -4110,10 +4114,6 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <translation>Tundmatu käsk!</translation>
     </message>
     <message>
-        <source>Available commands:</source>
-        <translation>Saadaolevad käsud:</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>Esitatud valed argumendid</translation>
     </message>
@@ -4122,8 +4122,16 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <translation>Ei ole piisavalt argumente esitatud - lisateabe saamiseks kasutage &quot;%1 abi&quot;</translation>
     </message>
     <message>
+        <source>Plugin not licensed</source>
+        <translation>Pistikprogramm pole litsentsitud</translation>
+    </message>
+    <message>
         <source>Unknown result!</source>
         <translation>Tundmatu tulemus!</translation>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation>Saadaolevad käsud:</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -4134,12 +4142,12 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <translation>Moodulit pole määratud või moodulit ei leitud - saadaval on:</translation>
     </message>
     <message>
-        <source>Plugin not licensed</source>
-        <translation>Pistikprogramm pole litsentsitud</translation>
-    </message>
-    <message>
         <source>INFO</source>
         <translation>INFO</translation>
+    </message>
+    <message>
+        <source>WARNING</source>
+        <translation>HOIATUS</translation>
     </message>
     <message>
         <source>ERROR</source>
@@ -4156,10 +4164,6 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     <message>
         <source>EXAMPLES</source>
         <translation>NÄITED</translation>
-    </message>
-    <message>
-        <source>WARNING</source>
-        <translation>HOIATUS</translation>
     </message>
     <message>
         <source>Screen %1</source>
@@ -4285,22 +4289,6 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <translation>Luba tarkvara SAS genereerimine (Ctrl+Alt+Del)</translation>
     </message>
     <message>
-        <source>Screen lock</source>
-        <translation>Ekraanilukk</translation>
-    </message>
-    <message>
-        <source>Hide taskbar</source>
-        <translation>Peida tegumiriba</translation>
-    </message>
-    <message>
-        <source>Hide start menu</source>
-        <translation>Peida Start menüü</translation>
-    </message>
-    <message>
-        <source>Hide desktop</source>
-        <translation>Peida töölaud</translation>
-    </message>
-    <message>
         <source>User authentication</source>
         <translation>Kasutaja autentimine</translation>
     </message>
@@ -4325,6 +4313,22 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <translation>Kinnitage juriidiline teade (teade kuvatakse enne kasutaja sisselogimist)</translation>
     </message>
     <message>
+        <source>Screen lock</source>
+        <translation>Ekraanilukk</translation>
+    </message>
+    <message>
+        <source>Hide taskbar</source>
+        <translation>Peida tegumiriba</translation>
+    </message>
+    <message>
+        <source>Hide start menu</source>
+        <translation>Peida Start menüü</translation>
+    </message>
+    <message>
+        <source>Hide desktop</source>
+        <translation>Peida töölaud</translation>
+    </message>
+    <message>
         <source>Use input device interception driver</source>
         <translation>Kasutage sisendseadme pealtkuulamise draiverit</translation>
     </message>
@@ -4332,12 +4336,12 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
-        <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation>Pistikprogramm, mis rakendab Windowsi platvormi jaoks abstraktseid funktsioone</translation>
-    </message>
-    <message>
         <source>Internal display</source>
         <translation>Sisemine ekraan</translation>
+    </message>
+    <message>
+        <source>Plugin implementing abstract functions for the Windows platform</source>
+        <translation>Pistikprogramm, mis rakendab Windowsi platvormi jaoks abstraktseid funktsioone</translation>
     </message>
 </context>
 <context>
@@ -4345,18 +4349,6 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
         <translation>Teenus &quot;%1&quot; on juba installitud.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation>Teenus &quot;%1&quot; installiti edukalt.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>Teenuse &quot;%1&quot; desinstallimine õnnestus.</translation>
-    </message>
-    <message>
-        <source>Service &quot;%1&quot; could not be found.</source>
-        <translation>Teenust &quot;%1&quot; ei leitud.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
@@ -4367,12 +4359,24 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <translation>Teenuse &quot;%1&quot; tõrketoimingute konfiguratsiooni ei saanud muuta (viga %2).</translation>
     </message>
     <message>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
+        <translation>Teenus &quot;%1&quot; installiti edukalt.</translation>
+    </message>
+    <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
         <translation>Teenust &quot;%1&quot; ei saanud desinstallida (viga %2).</translation>
     </message>
     <message>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation>Teenuse &quot;%1&quot; desinstallimine õnnestus.</translation>
+    </message>
+    <message>
         <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
         <translation>Teenuse algustüüpi &quot;%1&quot; ei saanud muuta (viga %2).</translation>
+    </message>
+    <message>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation>Teenust &quot;%1&quot; ei leitud.</translation>
     </message>
 </context>
 <context>

@@ -2,24 +2,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About</source>
-        <translation>Over</translation>
-    </message>
-    <message>
-        <source>Translation</source>
-        <translation>Vertaling</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation>Licentie</translation>
-    </message>
-    <message>
         <source>About Veyon</source>
         <translation>Over Veyon</translation>
     </message>
     <message>
-        <source>Contributors</source>
-        <translation>Bijdragers</translation>
+        <source>About</source>
+        <translation>Over</translation>
     </message>
     <message>
         <source>Version:</source>
@@ -30,6 +18,18 @@
         <translation>Website:</translation>
     </message>
     <message>
+        <source>Support Veyon project with a donation</source>
+        <translation>Steun het Veyon project met een gift</translation>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation>Bijdragers</translation>
+    </message>
+    <message>
+        <source>Translation</source>
+        <translation>Vertaling</translation>
+    </message>
+    <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
@@ -38,12 +38,12 @@ If you&apos;re interested in translating Veyon into your local or another langua
 Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een andere taal of je de vertaling wilt verbeteren, neem dan contact op met een Veyon ontwikkelaar!</translation>
     </message>
     <message>
-        <source>About %1 %2</source>
-        <translation>Over %1 %2</translation>
+        <source>License</source>
+        <translation>Licentie</translation>
     </message>
     <message>
-        <source>Support Veyon project with a donation</source>
-        <translation>Steun het Veyon project met een gift</translation>
+        <source>About %1 %2</source>
+        <translation>Over %1 %2</translation>
     </message>
 </context>
 <context>
@@ -53,8 +53,12 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een ande
         <translation>Computer toegangscontrole</translation>
     </message>
     <message>
-        <source>Grant access to every authenticated user (default)</source>
-        <translation>Verleen toegang aan elke geauthenticeerde gebruiker (standaard)</translation>
+        <source>Restrict access to members of specific user groups</source>
+        <translation>Beperk toegang tot leden van bepaalde groepen</translation>
+    </message>
+    <message>
+        <source>User groups backend:</source>
+        <translation>Gebruikersgroepen backend</translation>
     </message>
     <message>
         <source>Test</source>
@@ -63,6 +67,14 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een ande
     <message>
         <source>Process access control rules</source>
         <translation>Verwerk toegangscontrole regels</translation>
+    </message>
+    <message>
+        <source>Grant access to every authenticated user (default)</source>
+        <translation>Verleen toegang aan elke geauthenticeerde gebruiker (standaard)</translation>
+    </message>
+    <message>
+        <source>Enable usage of domain groups</source>
+        <translation>Gebruik van domeingroepen inschakelen</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -85,6 +97,14 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een ande
         <translation>Toegangscontrole regels</translation>
     </message>
     <message>
+        <source>Move selected rule up</source>
+        <translation>Verplaatsde de geselecteerde regel naar boven</translation>
+    </message>
+    <message>
+        <source>Edit selected rule</source>
+        <translation>Bewerk de geselecteerde regel</translation>
+    </message>
+    <message>
         <source>Add access control rule</source>
         <translation>Voeg toegangsregelregel toe</translation>
     </message>
@@ -97,12 +117,12 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een ande
         <translation>Verplaats de geselecteerde regel naar beneden</translation>
     </message>
     <message>
-        <source>Move selected rule up</source>
-        <translation>Verplaatsde de geselecteerde regel naar boven</translation>
+        <source>Missing user groups backend</source>
+        <translation>Ontbrekende gebruikersgroepen backend</translation>
     </message>
     <message>
-        <source>Edit selected rule</source>
-        <translation>Bewerk de geselecteerde regel</translation>
+        <source>No default user groups plugin was found. Please check your installation!</source>
+        <translation>Er werd geen standaard gebruikersgroepplugin gevonden. Controleer de installatie!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -127,26 +147,6 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een ande
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
         <translation>De opgegeven gebruiker is niet toegestaan om toegang tot computers te krijgen met deze configuratie.</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Gebruik van domeingroepen inschakelen</translation>
-    </message>
-    <message>
-        <source>User groups backend:</source>
-        <translation>Gebruikersgroepen backend</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Ontbrekende gebruikersgroepen backend</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Er werd geen standaard gebruikersgroepplugin gevonden. Controleer de installatie!</translation>
-    </message>
-    <message>
-        <source>Restrict access to members of specific user groups</source>
-        <translation>Beperk toegang tot leden van bepaalde groepen</translation>
     </message>
 </context>
 <context>
@@ -180,6 +180,10 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een ande
         <translation>Keer all condities om (&quot;is/heeft&quot; geïnterpreteerd als &quot;is/heeft niet&quot;)</translation>
     </message>
     <message>
+        <source>Always process rule and ignore conditions</source>
+        <translation>Verwerk altijd regel en negeer de voorwaarden</translation>
+    </message>
+    <message>
         <source>Conditions</source>
         <translation>Voorwaarden</translation>
     </message>
@@ -188,8 +192,28 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een ande
         <translation>is lid van groep</translation>
     </message>
     <message>
+        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
+        <translation>Als er meerdere condities zijn geactiveerd, moet elke conditie voldoen om de regel toe te passen (logisch EN). Als slechts één van meerdere voorwaarden moet voldoen (logisch OF), maak dan meerdere toegangsregels aan.</translation>
+    </message>
+    <message>
+        <source>Accessing computer and local computer are at the same location</source>
+        <translation>Toegangzoekende computer bevindt zich in hetzelfde lokaal als lokale computer</translation>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>Geen gebruiker ingelogd</translation>
+    </message>
+    <message>
+        <source>is located at</source>
+        <translation>bevind zich in</translation>
+    </message>
+    <message>
         <source>Accessing computer is localhost</source>
         <translation>Toegangzoekende computer is localhost</translation>
+    </message>
+    <message>
+        <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <translation>Toegangzoekende gebruiker heeft een of meerdere groepen gemeenschappelijk met de lokale (aangemelde) gebruiker</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
@@ -198,10 +222,6 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een ande
     <message>
         <source>Accessing user is already connected</source>
         <translation>Toegangzoekende gebruiker is reeds aangemeld</translation>
-    </message>
-    <message>
-        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>Als er meerdere condities zijn geactiveerd, moet elke conditie voldoen om de regel toe te passen (logisch EN). Als slechts één van meerdere voorwaarden moet voldoen (logisch OF), maak dan meerdere toegangsregels aan.</translation>
     </message>
     <message>
         <source>Action</source>
@@ -238,26 +258,6 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een ande
     <message>
         <source>Local computer</source>
         <translation>Lokale computer</translation>
-    </message>
-    <message>
-        <source>Always process rule and ignore conditions</source>
-        <translation>Verwerk altijd regel en negeer de voorwaarden</translation>
-    </message>
-    <message>
-        <source>No user logged on</source>
-        <translation>Geen gebruiker ingelogd</translation>
-    </message>
-    <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>Toegangzoekende gebruiker heeft een of meerdere groepen gemeenschappelijk met de lokale (aangemelde) gebruiker</translation>
-    </message>
-    <message>
-        <source>Accessing computer and local computer are at the same location</source>
-        <translation>Toegangzoekende computer bevindt zich in hetzelfde lokaal als lokale computer</translation>
-    </message>
-    <message>
-        <source>is located at</source>
-        <translation>bevind zich in</translation>
     </message>
 </context>
 <context>
@@ -322,6 +322,26 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een ande
         <translation>Inleiding</translation>
     </message>
     <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Gelieve volgende stappen te volgen om sleutel authenticatie in te stellen:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Maak een key pair op de master computer.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation> Stel een toegangsgroep in waarvan de leden toegang moeten krijgen tot andere computers.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Exporteer de publieke key en importeer deze op alle client computers met dezelfde naam.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Raadpleeg de &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator handleiding&lt;/a&gt; voor meer informatie.</translation>
+    </message>
+    <message>
         <source>Key file directories</source>
         <translation>Sleutelbestand folder</translation>
     </message>
@@ -336,6 +356,16 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een ande
     <message>
         <source>Available authentication keys</source>
         <translation>Beschikbare authenticatie sleutels</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Een authenticatiesleutelpaar bestaat uit twee gekoppelde cryptografische sleutels, een private en een publieke sleutel.
+Een privesleutel geeft gebruikers op de mastercomputer toegang tot clientcomputers.
+Het is belangrijk dat alleen bevoegde gebruikers leestoegang hebben tot het bestand met de prive-sleutel.
+De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaanvragen te controleren.</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -392,36 +422,6 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een ande
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Gelieve de sleutel aan te duiden waarvoor u de toegangsgroep wil instellen!</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Gelieve volgende stappen te volgen om sleutel authenticatie in te stellen:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Maak een key pair op de master computer.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation> Stel een toegangsgroep in waarvan de leden toegang moeten krijgen tot andere computers.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Exporteer de publieke key en importeer deze op alle client computers met dezelfde naam.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Raadpleeg de &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator handleiding&lt;/a&gt; voor meer informatie.</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Een authenticatiesleutelpaar bestaat uit twee gekoppelde cryptografische sleutels, een private en een publieke sleutel.
-Een privesleutel geeft gebruikers op de mastercomputer toegang tot clientcomputers.
-Het is belangrijk dat alleen bevoegde gebruikers leestoegang hebben tot het bestand met de prive-sleutel.
-De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaanvragen te controleren.</translation>
     </message>
 </context>
 <context>
@@ -590,20 +590,24 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <translation>Stel de gebruikersgroep in die toegang heeft tot een sleutel</translation>
     </message>
     <message>
-        <source>KEY</source>
-        <translation>SLEUTEL</translation>
-    </message>
-    <message>
-        <source>ACCESS GROUP</source>
-        <translation>TOEGANGS GROEP</translation>
-    </message>
-    <message>
-        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation>Dit commando past de bestandstoegangsrechten aan op &lt;KEY&gt; zodat alleen de gebruikersgroep &lt;ACCESS GROUP&gt; leestoegang heeft.</translation>
+        <source>Please specify the command to display help for.</source>
+        <translation>Geef het commando op waarvoor hulp moet worden weergegeven.</translation>
     </message>
     <message>
         <source>NAME</source>
         <translation>NAAM</translation>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
+        <translation>Dit commando maakt een nieuw authenticatiesleutelpaar met de naam &lt;NAME&gt; en slaat de private en publieke sleutel op in de geconfigureerde sleutelmappen. De parameter moet een naam voor de sleutel zijn, die alleen letters mag bevatten.</translation>
+    </message>
+    <message>
+        <source>KEY</source>
+        <translation>SLEUTEL</translation>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
+        <translation>Dit commando verwijdert de authenticatiesleutel &lt;KEY&gt; uit de geconfigureerde sleutelmap. Merk op dat een sleutel&apos;niet kan worden hersteld als hij eenmaal is verwijderd.</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -614,12 +618,32 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <translation>Dit commando exporteert de authenticatiesleutel &lt;KEY&gt; naar &lt;FILE&gt;. Als &lt;FILE&gt; niet is opgegeven, wordt een naam samengesteld uit de naam en het type van &lt;KEY&gt;.</translation>
     </message>
     <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
+        <translation>Dit commando haalt het openbare sleutelgedeelte uit de private sleutel &lt;KEY&gt; en slaat het op als de corresponderende publieke sleutel. Bij het opzetten van een andere mastercomputer is het daarom voldoende om alleen de private sleutel over te dragen. De openbare sleutel kan dan worden uitgepakt.</translation>
+    </message>
+    <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
         <translation>Dit commando importeert de authenticatiesleutel &lt;KEY&gt; uit &lt;FILE&gt;. Als &lt;FILE&gt; niet is opgegeven, wordt een naam samengesteld uit de naam en het type van &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
         <translation>Dit commando geeft een lijst weer van alle beschikbare authenticatiesleutels in de geconfigureerde sleutel map. Als de optie &quot;%1&quot; is opgegeven, wordt in plaats daarvan een tabel met sleuteldetails weergegeven. Sommige details kunnen ontbreken als een sleutel niet toegankelijk is, bijvoorbeeld door het ontbreken van leesrechten.</translation>
+    </message>
+    <message>
+        <source>ACCESS GROUP</source>
+        <translation>TOEGANGS GROEP</translation>
+    </message>
+    <message>
+        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
+        <translation>Dit commando past de bestandstoegangsrechten aan op &lt;KEY&gt; zodat alleen de gebruikersgroep &lt;ACCESS GROUP&gt; leestoegang heeft.</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>De opgegeven opdracht bestaat niet of er is geen hulp voor beschikbaar.</translation>
+    </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation>Geef de sleutelnaam (bijv. &quot;teacher/public&quot;) op als eerste argument.</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -636,30 +660,6 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     <message>
         <source>Commands for managing authentication keys</source>
         <translation>Commando&apos;s om authenticatiesleutels te beheren</translation>
-    </message>
-    <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation>Dit commando maakt een nieuw authenticatiesleutelpaar met de naam &lt;NAME&gt; en slaat de private en publieke sleutel op in de geconfigureerde sleutelmappen. De parameter moet een naam voor de sleutel zijn, die alleen letters mag bevatten.</translation>
-    </message>
-    <message>
-        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation>Dit commando verwijdert de authenticatiesleutel &lt;KEY&gt; uit de geconfigureerde sleutelmap. Merk op dat een sleutel&apos;niet kan worden hersteld als hij eenmaal is verwijderd.</translation>
-    </message>
-    <message>
-        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation>Dit commando haalt het openbare sleutelgedeelte uit de private sleutel &lt;KEY&gt; en slaat het op als de corresponderende publieke sleutel. Bij het opzetten van een andere mastercomputer is het daarom voldoende om alleen de private sleutel over te dragen. De openbare sleutel kan dan worden uitgepakt.</translation>
-    </message>
-    <message>
-        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation>Geef de sleutelnaam (bijv. &quot;teacher/public&quot;) op als eerste argument.</translation>
-    </message>
-    <message>
-        <source>Please specify the command to display help for.</source>
-        <translation>Geef het commando op waarvoor hulp moet worden weergegeven.</translation>
-    </message>
-    <message>
-        <source>The specified command does not exist or no help is available for it.</source>
-        <translation>De opgegeven opdracht bestaat niet of er is geen hulp voor beschikbaar.</translation>
     </message>
 </context>
 <context>
@@ -684,8 +684,28 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
+        <source>Locations &amp; computers</source>
+        <translation>Locaties &amp; computers</translation>
+    </message>
+    <message>
+        <source>Builtin directory</source>
+        <translation>Ingebouwde map</translation>
+    </message>
+    <message>
         <source>Computers</source>
         <translation>Computers</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>Locaties</translation>
+    </message>
+    <message>
+        <source>Add new computer</source>
+        <translation>Voeg nieuwe computer toe</translation>
+    </message>
+    <message>
+        <source>Remove selected computer</source>
+        <translation>Verwijder geselecteerde computer</translation>
     </message>
     <message>
         <source>Name</source>
@@ -698,30 +718,6 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     <message>
         <source>MAC address</source>
         <translation>MAC adres</translation>
-    </message>
-    <message>
-        <source>Add new computer</source>
-        <translation>Voeg nieuwe computer toe</translation>
-    </message>
-    <message>
-        <source>Remove selected computer</source>
-        <translation>Verwijder geselecteerde computer</translation>
-    </message>
-    <message>
-        <source>New computer</source>
-        <translation>Nieuwe computer</translation>
-    </message>
-    <message>
-        <source>Builtin directory</source>
-        <translation>Ingebouwde map</translation>
-    </message>
-    <message>
-        <source>Locations &amp; computers</source>
-        <translation>Locaties &amp; computers</translation>
-    </message>
-    <message>
-        <source>Locations</source>
-        <translation>Locaties</translation>
     </message>
     <message>
         <source>Add new location</source>
@@ -739,112 +735,16 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <source>New location</source>
         <translation>Nieuwe locatie</translation>
     </message>
+    <message>
+        <source>New computer</source>
+        <translation>Nieuwe computer</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
         <translation>Geef hulp weer voor een specifiek commando</translation>
-    </message>
-    <message>
-        <source>Import objects from given file</source>
-        <translation>Importeer objecten van opgegeven bestand</translation>
-    </message>
-    <message>
-        <source>Export objects to given file</source>
-        <translation>Exporteer objecten van opgegeven bestand</translation>
-    </message>
-    <message>
-        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>Ongeldig type opgegeven. Geldige waarden zijn &quot;%1&quot; of &quot;%2&quot;.</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>Type</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Naam</translation>
-    </message>
-    <message>
-        <source>Host address</source>
-        <translation>Host adres</translation>
-    </message>
-    <message>
-        <source>MAC address</source>
-        <translation>MAC adres</translation>
-    </message>
-    <message>
-        <source>Specified object not found.</source>
-        <translation>Gevraagd object niet gevonnden.</translation>
-    </message>
-    <message>
-        <source>File &quot;%1&quot; does not exist!</source>
-        <translation>Bestand &quot;%1&quot; bestaat niet!</translation>
-    </message>
-    <message>
-        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation>Kan bestand &quot;%1&quot; niet lezen!</translation>
-    </message>
-    <message>
-        <source>Unknown argument &quot;%1&quot;.</source>
-        <translation>Onbekend argument &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation>Computer &quot;%1&quot; (host adres: &quot;%2&quot; MAC-adres: &quot;%3&quot;)</translation>
-    </message>
-    <message>
-        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation>Niet-geclassificeerd object &quot;%1&quot; met ID &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Geen</translation>
-    </message>
-    <message>
-        <source>Computer</source>
-        <translation>Computer</translation>
-    </message>
-    <message>
-        <source>Root</source>
-        <translation>Root</translation>
-    </message>
-    <message>
-        <source>Invalid</source>
-        <translation>Ongeldig</translation>
-    </message>
-    <message>
-        <source>Error while parsing line %1.</source>
-        <translation>Fout tijdens het ontleden van regel %1.</translation>
-    </message>
-    <message>
-        <source>Network object directory which stores objects in local configuration</source>
-        <translation>Netwerk object map die objecten opslaat in lokale configuratie</translation>
-    </message>
-    <message>
-        <source>Commands for managing the builtin network object directory</source>
-        <translation>Commando&apos;s voor het beheren van de ingebouwde netwerk object map</translation>
-    </message>
-    <message>
-        <source>No format string or regular expression specified!</source>
-        <translation>Geen format string of reguliere expressie gespecificeerd!</translation>
-    </message>
-    <message>
-        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation>Can&apos;t open bestand &quot;%1&quot; om te schrijven!</translation>
-    </message>
-    <message>
-        <source>No format string specified!</source>
-        <translation>Geen format string gespecificeerd!</translation>
-    </message>
-    <message>
-        <source>Object UUID</source>
-        <translation>Object UUID</translation>
-    </message>
-    <message>
-        <source>Parent UUID</source>
-        <translation>Ouder UUID</translation>
     </message>
     <message>
         <source>Add a location or computer</source>
@@ -867,16 +767,12 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <translation>Een locatie of computer verwijderen</translation>
     </message>
     <message>
-        <source>Location &quot;%1&quot;</source>
-        <translation>Locatie &quot;%1&quot;</translation>
+        <source>Import objects from given file</source>
+        <translation>Importeer objecten van opgegeven bestand</translation>
     </message>
     <message>
-        <source>Builtin (computers and locations in local configuration)</source>
-        <translation>Ingebouwd (computers en locaties in lokale configuratie)</translation>
-    </message>
-    <message>
-        <source>Location</source>
-        <translation>Locatie</translation>
+        <source>Export objects to given file</source>
+        <translation>Exporteer objecten van opgegeven bestand</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -935,6 +831,14 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <translation>NAAM</translation>
     </message>
     <message>
+        <source>HOST ADDRESS</source>
+        <translation>HOST ADRES</translation>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>MAC ADRES</translation>
+    </message>
+    <message>
         <source>PARENT</source>
         <translation>OUDER</translation>
     </message>
@@ -967,24 +871,120 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <translation>Verwijder een object op UUID</translation>
     </message>
     <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>De opgegeven opdracht bestaat niet of er is geen hulp voor beschikbaar.</translation>
+    </message>
+    <message>
+        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
+        <translation>Ongeldig type opgegeven. Geldige waarden zijn &quot;%1&quot; of &quot;%2&quot;.</translation>
+    </message>
+    <message>
+        <source>Object UUID</source>
+        <translation>Object UUID</translation>
+    </message>
+    <message>
+        <source>Parent UUID</source>
+        <translation>Ouder UUID</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Type</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Naam</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Host adres</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MAC adres</translation>
+    </message>
+    <message>
+        <source>Specified object not found.</source>
+        <translation>Gevraagd object niet gevonnden.</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not exist!</source>
+        <translation>Bestand &quot;%1&quot; bestaat niet!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
+        <translation>Kan bestand &quot;%1&quot; niet lezen!</translation>
+    </message>
+    <message>
+        <source>Unknown argument &quot;%1&quot;.</source>
+        <translation>Onbekend argument &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>No format string or regular expression specified!</source>
+        <translation>Geen format string of reguliere expressie gespecificeerd!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
+        <translation>Can&apos;t open bestand &quot;%1&quot; om te schrijven!</translation>
+    </message>
+    <message>
+        <source>No format string specified!</source>
+        <translation>Geen format string gespecificeerd!</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot;</source>
+        <translation>Locatie &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
+        <translation>Computer &quot;%1&quot; (host adres: &quot;%2&quot; MAC-adres: &quot;%3&quot;)</translation>
+    </message>
+    <message>
+        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
+        <translation>Niet-geclassificeerd object &quot;%1&quot; met ID &quot;%2&quot;</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Geen</translation>
+    </message>
+    <message>
+        <source>Invalid</source>
+        <translation>Ongeldig</translation>
+    </message>
+    <message>
+        <source>Error while parsing line %1.</source>
+        <translation>Fout tijdens het ontleden van regel %1.</translation>
+    </message>
+    <message>
+        <source>Network object directory which stores objects in local configuration</source>
+        <translation>Netwerk object map die objecten opslaat in lokale configuratie</translation>
+    </message>
+    <message>
+        <source>Builtin (computers and locations in local configuration)</source>
+        <translation>Ingebouwd (computers en locaties in lokale configuratie)</translation>
+    </message>
+    <message>
+        <source>Commands for managing the builtin network object directory</source>
+        <translation>Commando&apos;s voor het beheren van de ingebouwde netwerk object map</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Locatie</translation>
+    </message>
+    <message>
+        <source>Computer</source>
+        <translation>Computer</translation>
+    </message>
+    <message>
+        <source>Root</source>
+        <translation>Root</translation>
+    </message>
+    <message>
         <source>&quot;Room 01&quot;</source>
         <translation>&quot; Ruimte 01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;Computer 01&quot;</translation>
-    </message>
-    <message>
-        <source>HOST ADDRESS</source>
-        <translation>HOST ADRES</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>MAC ADRES</translation>
-    </message>
-    <message>
-        <source>The specified command does not exist or no help is available for it.</source>
-        <translation>De opgegeven opdracht bestaat niet of er is geen hulp voor beschikbaar.</translation>
     </message>
 </context>
 <context>
@@ -1004,12 +1004,28 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
 <context>
     <name>ComputerControlListModel</name>
     <message>
+        <source>Name: %1</source>
+        <translation>Naam: %1</translation>
+    </message>
+    <message>
+        <source>Location: %1</source>
+        <translation>Locatie: %1</translation>
+    </message>
+    <message>
         <source>Host/IP address: %1</source>
         <translation>Host/IP adres: %1</translation>
     </message>
     <message>
+        <source>invalid</source>
+        <translation>ongeldig</translation>
+    </message>
+    <message>
         <source>Active features: %1</source>
         <translation>Actieve functies: %1</translation>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation>[geen gebruiker]</translation>
     </message>
     <message>
         <source>Online and connected</source>
@@ -1022,6 +1038,10 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     <message>
         <source>Computer offline or switched off</source>
         <translation>Computer offline of uitgeschakeld</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation>Veyon Server onbereikbaar of niet actief</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
@@ -1040,26 +1060,6 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <translation>Ingelogde gebruiker: %1</translation>
     </message>
     <message>
-        <source>Location: %1</source>
-        <translation>Locatie: %1</translation>
-    </message>
-    <message>
-        <source>Veyon Server unreachable or not running</source>
-        <translation>Veyon Server onbereikbaar of niet actief</translation>
-    </message>
-    <message>
-        <source>[no user]</source>
-        <translation>[geen gebruiker]</translation>
-    </message>
-    <message>
-        <source>invalid</source>
-        <translation>ongeldig</translation>
-    </message>
-    <message>
-        <source>Name: %1</source>
-        <translation>Naam: %1</translation>
-    </message>
-    <message>
         <source>[none]</source>
         <translation>[geen]</translation>
     </message>
@@ -1067,12 +1067,12 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
 <context>
     <name>ComputerControlServer</name>
     <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 Service %2 bij %3:%4</translation>
-    </message>
-    <message>
         <source>Authentication error</source>
         <translation>Authenticatie fout</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
+        <translation>Gebruiker &quot;%1&quot; op host &quot;%2&quot; probeerde toegang te krijgen tot deze computer maar kon zich niet met succes aanmelden.</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -1083,16 +1083,16 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <translation>Gebruiker &quot;%1&quot; op host &quot;%2&quot; benadert nu deze computer.</translation>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation>Gebruiker &quot;%1&quot; op host &quot;%2&quot; probeerde toegang te krijgen tot deze computer maar kon zich niet met succes aanmelden.</translation>
-    </message>
-    <message>
         <source>Access control error</source>
         <translation>Fout bij toegangscontrole</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation>Gebruiker &quot;%1&quot; op host &quot;%2&quot; heeft geprobeerd toegang te krijgen tot deze computer, maar is geblokkeerd vanwege de instellingen voor toegangscontrole.</translation>
+    </message>
+    <message>
+        <source>%1 Service %2 at %3:%4</source>
+        <translation>%1 Service %2 bij %3:%4</translation>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1106,6 +1106,10 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <translation>Gebruiker</translation>
     </message>
     <message>
+        <source>Logged in since</source>
+        <translation>Aangemeld sinds</translation>
+    </message>
+    <message>
         <source>Missing network object directory plugin</source>
         <translation>Ontbrekende netwerk object directory plugin</translation>
     </message>
@@ -1114,32 +1118,32 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <translation>Er is geen standaard plugin voor netwerkobjecten gevonden. Controleer uw installatie of configureer een andere netwerk object directory backend via%1 Configurator.</translation>
     </message>
     <message>
-        <source>Location detection failed</source>
-        <translation>Locatiedetectie mislukt</translation>
-    </message>
-    <message>
         <source>Computer name;Hostname;User</source>
         <translation>Computernaam;Hostnaam;Gebruiker</translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation>%1 dagen</translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation>1 dag</translation>
+    </message>
+    <message>
+        <source>Location detection failed</source>
+        <translation>Locatiedetectie mislukt</translation>
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>Kan de locatie van deze computer niet bepalen. Dit wijst op een probleem met de systeemconfiguratie. In plaats daarvan worden alle locaties weergegeven in het selectiepaneel van de computer.</translation>
     </message>
-    <message>
-        <source>Logged in since</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 days</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>1 day</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
+    <message>
+        <source>Search computers</source>
+        <translation>Zoek computers</translation>
+    </message>
     <message>
         <source>Add location</source>
         <translation>Locatie toevoegen</translation>
@@ -1163,10 +1167,6 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Kon de computer en gebruikerslijst niet schrijven naar %1! Controleer de toegangsrechten voor het bestand.</translation>
-    </message>
-    <message>
-        <source>Search computers</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1259,12 +1259,12 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <translation>Kon de firewallconfiguratie voor de %1 Werker niet configureren.</translation>
     </message>
     <message>
-        <source>Configuration is not writable. Please check your permissions!</source>
-        <translation>Configuratie is niet beschrijfbaar. Controleer uw rechten!</translation>
-    </message>
-    <message>
         <source>Could not apply platform-specific configuration settings.</source>
         <translation>Kon platform-specifieke configuratie-instellingen niet toepassen.</translation>
+    </message>
+    <message>
+        <source>Configuration is not writable. Please check your permissions!</source>
+        <translation>Configuratie is niet beschrijfbaar. Controleer uw rechten!</translation>
     </message>
 </context>
 <context>
@@ -1285,63 +1285,51 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <translation>Tunables</translation>
     </message>
     <message>
-        <source> ms</source>
-        <translation>ms</translation>
-    </message>
-    <message>
-        <source>Key frame interval</source>
-        <translation>Keyframe interval</translation>
-    </message>
-    <message>
-        <source>Memory limit</source>
-        <translation>Geheugenlimiet</translation>
-    </message>
-    <message>
-        <source> MB</source>
-        <translation>MB</translation>
+        <source> s</source>
+        <translation>s</translation>
     </message>
     <message>
         <source>Update interval</source>
         <translation>Update interval</translation>
     </message>
     <message>
-        <source> s</source>
-        <translation>s</translation>
+        <source> MB</source>
+        <translation>MB</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Vertraag thumbnailupdates terwijl demo draait</translation>
     </message>
     <message>
+        <source>Memory limit</source>
+        <translation>Geheugenlimiet</translation>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation>Keyframe interval</translation>
+    </message>
+    <message>
         <source>Bandwidth limit</source>
-        <translation type="unfinished"/>
+        <translation>Bandbreedtelimiet</translation>
     </message>
     <message>
         <source> MB/s</source>
-        <translation type="unfinished"/>
+        <translation> MB/s</translation>
     </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Stop demo</source>
-        <translation>Stop demo</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>Venster demo</translation>
-    </message>
-    <message>
-        <source>Give a demonstration by screen broadcasting</source>
-        <translation>Geef een demonstratie door het uitzenden van het scherm</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation>In deze modus wordt uw scherm in een venster op alle computers weergegeven. De gebruikers kunnen, indien nodig, overstappen naar andere vensters.</translation>
-    </message>
-    <message>
         <source>Demo</source>
         <translation>Demo</translation>
+    </message>
+    <message>
+        <source>Stop demo</source>
+        <translation>Stop demo</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
@@ -1350,6 +1338,10 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     <message>
         <source>Full screen demo</source>
         <translation>Demoweergave op volledig scherm</translation>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation>Venster demo</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
@@ -1362,6 +1354,10 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     <message>
         <source>Share your own screen in a window</source>
         <translation>Deel je eigen scherm in een venster</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation>In deze modus wordt uw scherm in een venster op alle computers weergegeven. De gebruikers kunnen, indien nodig, overstappen naar andere vensters.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
@@ -1391,6 +1387,10 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <source>All screens</source>
         <translation>Alle schermen</translation>
     </message>
+    <message>
+        <source>Give a demonstration by screen broadcasting</source>
+        <translation>Geef een demonstratie door het uitzenden van het scherm</translation>
+    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1403,6 +1403,10 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <translation>Bevestig bureaublad toegang</translation>
     </message>
     <message>
+        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
+        <translation>De gebruiker %1 van computer %2 wil toegang krijgen tot uw bureaublad. Wilt u toegang geven?</translation>
+    </message>
+    <message>
         <source>Never for this session</source>
         <translation>Nooit voor deze sessie</translation>
     </message>
@@ -1410,37 +1414,9 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <source>Always for this session</source>
         <translation>Altijd voor deze sessie</translation>
     </message>
-    <message>
-        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>De gebruiker %1 van computer %2 wil toegang krijgen tot uw bureaublad. Wilt u toegang geven?</translation>
-    </message>
 </context>
 <context>
     <name>DesktopServicesConfigurationPage</name>
-    <message>
-        <source>Name</source>
-        <translation>Naam</translation>
-    </message>
-    <message>
-        <source>Path</source>
-        <translation>Pad</translation>
-    </message>
-    <message>
-        <source>Predefined websites</source>
-        <translation>Voorgedefinieerde websites</translation>
-    </message>
-    <message>
-        <source>Remove selected website</source>
-        <translation>Geselecteerde website verwijderen</translation>
-    </message>
-    <message>
-        <source>URL</source>
-        <translation>URL</translation>
-    </message>
-    <message>
-        <source>New website</source>
-        <translation>Nieuwe website</translation>
-    </message>
     <message>
         <source>Applications &amp; websites</source>
         <translation>Toepassingen &amp; websites</translation>
@@ -1448,6 +1424,14 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     <message>
         <source>Predefined applications</source>
         <translation>Voorgedefinieerde toepassingen</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Naam</translation>
+    </message>
+    <message>
+        <source>Path</source>
+        <translation>Pad</translation>
     </message>
     <message>
         <source>Add new application</source>
@@ -1458,32 +1442,32 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <translation>Verwijder geselecteerde toepassing</translation>
     </message>
     <message>
+        <source>Predefined websites</source>
+        <translation>Voorgedefinieerde websites</translation>
+    </message>
+    <message>
         <source>Add new website</source>
         <translation>Nieuwe website toevoegen</translation>
+    </message>
+    <message>
+        <source>Remove selected website</source>
+        <translation>Geselecteerde website verwijderen</translation>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New application</source>
         <translation>Nieuwe toepassing</translation>
     </message>
+    <message>
+        <source>New website</source>
+        <translation>Nieuwe website</translation>
+    </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Open website</source>
-        <translation>Open website</translation>
-    </message>
-    <message>
-        <source>Click this button to open a website on all computers.</source>
-        <translation>Klik op deze knop om een website op alle computers te openen.</translation>
-    </message>
-    <message>
-        <source>Open website &quot;%1&quot;</source>
-        <translation>Open website &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Custom website</source>
-        <translation>Aangepaste website</translation>
-    </message>
     <message>
         <source>Start application</source>
         <translation>Start toepassing</translation>
@@ -1493,12 +1477,28 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <translation>Klik op deze knop om een toepassing op alle computers te starten.</translation>
     </message>
     <message>
+        <source>Open website</source>
+        <translation>Open website</translation>
+    </message>
+    <message>
+        <source>Click this button to open a website on all computers.</source>
+        <translation>Klik op deze knop om een website op alle computers te openen.</translation>
+    </message>
+    <message>
         <source>Start application &quot;%1&quot;</source>
         <translation>Start toepassing &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom application</source>
         <translation>Aangepaste toepassing</translation>
+    </message>
+    <message>
+        <source>Open website &quot;%1&quot;</source>
+        <translation>Open website &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Custom website</source>
+        <translation>Aangepaste website</translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
@@ -1514,6 +1514,10 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     <message>
         <source>Room %1</source>
         <translation>Room %1</translation>
+    </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation>generieke-student-gebruiker</translation>
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
@@ -1536,20 +1540,16 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <translation>Zelfstudievideo afspelen</translation>
     </message>
     <message>
+        <source>Custom application</source>
+        <translation>Aangepaste toepassing</translation>
+    </message>
+    <message>
         <source>Handout</source>
         <translation>Uitreiking</translation>
     </message>
     <message>
         <source>Texts to read</source>
         <translation>Te lezen teksten</translation>
-    </message>
-    <message>
-        <source>generic-student-user</source>
-        <translation>generieke-student-gebruiker</translation>
-    </message>
-    <message>
-        <source>Custom application</source>
-        <translation>Aangepaste toepassing</translation>
     </message>
 </context>
 <context>
@@ -1599,6 +1599,10 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     <message>
         <source>Displays a list with the names of all available features.</source>
         <translation>Geeft een lijst weer met de namen van alle beschikbare functies.</translation>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation>Toont een tabel met gedetailleerde informatie over alle beschikbare functies. Deze informatie bevat een beschrijving, de UID, de naam van de plugin die de betreffende eigenschap levert en enkele andere implementatie-gerelateerde details.</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -1702,10 +1706,6 @@ Translated with DeepL</translation>
         <source>Commands for controlling features</source>
         <translation>Commando&apos;s voor het bedienen van functies</translation>
     </message>
-    <message>
-        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation>Toont een tabel met gedetailleerde informatie over alle beschikbare functies. Deze informatie bevat een beschrijving, de UID, de naam van de plugin die de betreffende eigenschap levert en enkele andere implementatie-gerelateerde details.</translation>
-    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -1756,6 +1756,10 @@ Translated with DeepL</translation>
         <translation>Opties</translation>
     </message>
     <message>
+        <source>Overwrite existing files</source>
+        <translation>Overschrijf bestaande bestanden</translation>
+    </message>
+    <message>
         <source>Transfer only</source>
         <translation>Alleen overdracht</translation>
     </message>
@@ -1775,10 +1779,6 @@ Translated with DeepL</translation>
         <source>Start</source>
         <translation>Start</translation>
     </message>
-    <message>
-        <source>Overwrite existing files</source>
-        <translation>Overschrijf bestaande bestanden</translation>
-    </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
@@ -1795,10 +1795,6 @@ Translated with DeepL</translation>
         <translation>Selecteer één of meerdere bestanden om over te zetten.</translation>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Bestanden overzetten naar externe computer</translation>
-    </message>
-    <message>
         <source>Received file &quot;%1&quot;.</source>
         <translation>Ontvangen bestand &quot;%1&quot;.</translation>
     </message>
@@ -1810,6 +1806,10 @@ Translated with DeepL</translation>
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
         <translation>Kon bestand &quot;%1&quot; niet ontvangen omdat het niet geopend kon worden om te schrijven!</translation>
     </message>
+    <message>
+        <source>Transfer files to remote computer</source>
+        <translation>Bestanden overzetten naar externe computer</translation>
+    </message>
 </context>
 <context>
     <name>GeneralConfigurationPage</name>
@@ -1818,16 +1818,60 @@ Translated with DeepL</translation>
         <translation>Gebruikersomgeving</translation>
     </message>
     <message>
-        <source>Language:</source>
-        <translation>Taal:</translation>
-    </message>
-    <message>
         <source>Use system language setting</source>
         <translation>Gebruik de systeemtaalinstelling</translation>
     </message>
     <message>
+        <source>Language:</source>
+        <translation>Taal:</translation>
+    </message>
+    <message>
         <source>Veyon</source>
         <translation>Veyon</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation>Stijl:</translation>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation>Eigen</translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Authenticatie</translation>
+    </message>
+    <message>
+        <source>Method:</source>
+        <translation>Methode:</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Aanmeldingsverificatie</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Sleutel bestand authenticatie</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Test</translation>
+    </message>
+    <message>
+        <source>Network object directory</source>
+        <translation>Netwerk object map</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Backend:</translation>
+    </message>
+    <message>
+        <source>Update interval:</source>
+        <translation>Update interval:</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation>seconden</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -1866,28 +1910,40 @@ Translated with DeepL</translation>
         <translation>Fout opsporings berichten en al het andere</translation>
     </message>
     <message>
-        <source>Limit log file size</source>
-        <translation>Beperk log bestandsgrootte</translation>
+        <source>x</source>
+        <translation>x</translation>
     </message>
     <message>
-        <source>Clear all log files</source>
-        <translation>Wis alle logbestanden</translation>
+        <source>Rotate log files</source>
+        <translation>Roteer logbestanden</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation>MB</translation>
+    </message>
+    <message>
+        <source>Limit log file size</source>
+        <translation>Beperk log bestandsgrootte</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
         <translation>Log naar standaard fout uitgang</translation>
     </message>
     <message>
-        <source>Network object directory</source>
-        <translation>Netwerk object map</translation>
+        <source>Write to logging system of operating system</source>
+        <translation>Schrijven naar het logsysteem van het besturingssysteem</translation>
     </message>
     <message>
-        <source>Backend:</source>
-        <translation>Backend:</translation>
+        <source>Clear all log files</source>
+        <translation>Wis alle logbestanden</translation>
     </message>
     <message>
-        <source>Update interval:</source>
-        <translation>Update interval:</translation>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>Authenticatie is correct ingesteld op deze computer.</translation>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation>Verificatiesleutels zijn niet goed ingesteld op deze computer.</translation>
     </message>
     <message>
         <source>%1 service</source>
@@ -1914,64 +1970,8 @@ Translated with DeepL</translation>
         <translation>Kon alle log bestanden niet verwijderen.</translation>
     </message>
     <message>
-        <source> MB</source>
-        <translation>MB</translation>
-    </message>
-    <message>
-        <source>Rotate log files</source>
-        <translation>Roteer logbestanden</translation>
-    </message>
-    <message>
-        <source>x</source>
-        <translation>x</translation>
-    </message>
-    <message>
-        <source> seconds</source>
-        <translation>seconden</translation>
-    </message>
-    <message>
-        <source>Write to logging system of operating system</source>
-        <translation>Schrijven naar het logsysteem van het besturingssysteem</translation>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation>Authenticatie</translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation>Methode:</translation>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>Aanmeldingsverificatie</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Sleutel bestand authenticatie</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Test</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>Authenticatie is correct ingesteld op deze computer.</translation>
-    </message>
-    <message>
-        <source>Authentication keys are not set up properly on this computer.</source>
-        <translation>Verificatiesleutels zijn niet goed ingesteld op deze computer.</translation>
-    </message>
-    <message>
         <source>Authentication test</source>
         <translation>Authenticatietest</translation>
-    </message>
-    <message>
-        <source>Style:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Native</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2006,18 +2006,6 @@ Translated with DeepL</translation>
         <translation>Algemeen</translation>
     </message>
     <message>
-        <source>LDAP server and port</source>
-        <translation>LDAP server en poort</translation>
-    </message>
-    <message>
-        <source>Bind DN</source>
-        <translation>Bind DN</translation>
-    </message>
-    <message>
-        <source>Bind password</source>
-        <translation>Bind wachtwoord</translation>
-    </message>
-    <message>
         <source>Anonymous bind</source>
         <translation>Anonieme bind</translation>
     </message>
@@ -2026,16 +2014,64 @@ Translated with DeepL</translation>
         <translation>Gebruik bind credentials</translation>
     </message>
     <message>
+        <source>Query timeout</source>
+        <translation>Time-out zoekopdracht</translation>
+    </message>
+    <message>
+        <source>Bind DN</source>
+        <translation>Bind DN</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>ms</translation>
+    </message>
+    <message>
+        <source>LDAP server and port</source>
+        <translation>LDAP server en poort</translation>
+    </message>
+    <message>
+        <source>Bind password</source>
+        <translation>Bind wachtwoord</translation>
+    </message>
+    <message>
+        <source>Connection security</source>
+        <translation>Verbindingsbeveiliging</translation>
+    </message>
+    <message>
+        <source>TLS certificate verification</source>
+        <translation>TLS certificaatverificatie</translation>
+    </message>
+    <message>
+        <source>Encryption protocol</source>
+        <translation>Encryptie protocol</translation>
+    </message>
+    <message>
+        <source>System defaults</source>
+        <translation>Systeem standaard</translation>
+    </message>
+    <message>
+        <source>Never (insecure!)</source>
+        <translation>Nooit (onveilig!)</translation>
+    </message>
+    <message>
+        <source>Custom CA certificate file</source>
+        <translation>Aangepast CA certificaatbestand</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Geen</translation>
+    </message>
+    <message>
+        <source>TLS</source>
+        <translation>TLS</translation>
+    </message>
+    <message>
+        <source>SSL</source>
+        <translation>SSL</translation>
+    </message>
+    <message>
         <source>Base DN</source>
         <translation>Base DN</translation>
-    </message>
-    <message>
-        <source>Fixed base DN</source>
-        <translation>Vaste basis DN</translation>
-    </message>
-    <message>
-        <source>e.g. dc=example,dc=org</source>
-        <translation>bv. dc=example,dc=org</translation>
     </message>
     <message>
         <source>Discover base DN by naming context</source>
@@ -2046,6 +2082,14 @@ Translated with DeepL</translation>
         <translation>bv. namingContexts of defaultNamingContext</translation>
     </message>
     <message>
+        <source>Fixed base DN</source>
+        <translation>Vaste basis DN</translation>
+    </message>
+    <message>
+        <source>e.g. dc=example,dc=org</source>
+        <translation>bv. dc=example,dc=org</translation>
+    </message>
+    <message>
         <source>Environment settings</source>
         <translation>Omgevingsinstellingen</translation>
     </message>
@@ -2054,20 +2098,20 @@ Translated with DeepL</translation>
         <translation>Object boomstructuren</translation>
     </message>
     <message>
+        <source>(only if different from group tree)</source>
+        <translation>(Alleen als verschillend van groep-structuur)</translation>
+    </message>
+    <message>
         <source>Computer tree</source>
         <translation>Computer boomstructuur</translation>
     </message>
     <message>
-        <source>e.g. OU=Groups</source>
-        <translation>bv. OU=Groups</translation>
+        <source>Perform recursive search operations in object trees</source>
+        <translation>Voer recursieve zoekacties uit in objectbomen</translation>
     </message>
     <message>
         <source>User tree</source>
         <translation>Gebruiker boomstructuur</translation>
-    </message>
-    <message>
-        <source>e.g. OU=Users</source>
-        <translation>bv. OU=Users</translation>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
@@ -2078,36 +2122,80 @@ Translated with DeepL</translation>
         <translation>Groep boomstructuur</translation>
     </message>
     <message>
-        <source>Perform recursive search operations in object trees</source>
-        <translation>Voer recursieve zoekacties uit in objectbomen</translation>
+        <source>Computer group tree</source>
+        <translation>Computer groep structuur</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Users</source>
+        <translation>bv. OU=Users</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Groups</source>
+        <translation>bv. OU=Groups</translation>
     </message>
     <message>
         <source>Object attributes</source>
         <translation>Object attributen</translation>
     </message>
     <message>
-        <source>e.g. hwAddress</source>
-        <translation>bv. hwAddress</translation>
+        <source>e.g. name or description</source>
+        <translation>bv. naam of beschrijving</translation>
+    </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation>Hostnamen opgeslagen als volledig gekwalificeerde domeinnamen (FQDN, bijv. myhost.example.org)</translation>
+    </message>
+    <message>
+        <source>e.g. room or computerLab</source>
+        <translation>bv. lokaal of computerlabo</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation>Attribuut inlognaam gebruiker</translation>
+    </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>Computerlocatiekenmerk</translation>
     </message>
     <message>
         <source>e.g. member or memberUid</source>
         <translation>bv. member of memberUid</translation>
     </message>
     <message>
-        <source>e.g. dNSHostName</source>
-        <translation>bv. dNSHostName</translation>
+        <source>Group member attribute</source>
+        <translation>Groepslid attribuut</translation>
+    </message>
+    <message>
+        <source>e.g. hwAddress</source>
+        <translation>bv. hwAddress</translation>
     </message>
     <message>
         <source>Computer MAC address attribute</source>
         <translation>Computer MAC adres attribuut</translation>
     </message>
     <message>
-        <source>Group member attribute</source>
-        <translation>Groepslid attribuut</translation>
+        <source>e.g. dNSHostName</source>
+        <translation>bv. dNSHostName</translation>
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
         <translation>bv. uid of sAMAccountName</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>Attribuut weergavenaam computer</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>Computer hostnaam kenmerk</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>Kenmerk locatienaam</translation>
+    </message>
+    <message>
+        <source>e.g. cn or displayName</source>
+        <translation>bijv. cn of displayName</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -2118,16 +2206,52 @@ Translated with DeepL</translation>
         <translation>Optionele objectfilters</translation>
     </message>
     <message>
-        <source>Filter for user groups</source>
-        <translation>Filter voor gebruikersgroepen</translation>
+        <source>Filter for computer groups</source>
+        <translation>Filter voor computergroepen</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=computer)</source>
+        <translation>bv. (objectClass=computer)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=group)</source>
+        <translation>bv. (objectClass=group)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=person)</source>
+        <translation>bv. (objectClass=person)</translation>
     </message>
     <message>
         <source>Filter for users</source>
         <translation>Filter voor gebruikers</translation>
     </message>
     <message>
-        <source>Filter for computer groups</source>
-        <translation>Filter voor computergroepen</translation>
+        <source>Filter for computers</source>
+        <translation>Filter voor computers</translation>
+    </message>
+    <message>
+        <source>Filter for user groups</source>
+        <translation>Filter voor gebruikersgroepen</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
+        <translation>bv. (objectClass=room) of (objectClass=computerLab)</translation>
+    </message>
+    <message>
+        <source>Filter for computer containers</source>
+        <translation>Filter voor computer containers</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
+        <translation>bv. (objectClass=container) of (objectClass=organizationalUnit)</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation>Zoekopties</translation>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation>Geneste gebruikersgroepen opvragen (alleen ondersteund door AD)</translation>
     </message>
     <message>
         <source>Group member identification</source>
@@ -2136,6 +2260,34 @@ Translated with DeepL</translation>
     <message>
         <source>Distinguished name (Samba/AD)</source>
         <translation>Onderscheidende naam (Samba/AD)</translation>
+    </message>
+    <message>
+        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
+        <translation>Geconfigureerd attribuut voor aanmeldingsnaam van gebruiker of hostnaam van computer (OpenLDAP)</translation>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation>Identificatie computerlocaties</translation>
+    </message>
+    <message>
+        <source>Identify computer locations (e.g. rooms) via:</source>
+        <translation>Computerlocaties (bijv. ruimtes) identificeren via:</translation>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation>Computergroepen</translation>
+    </message>
+    <message>
+        <source>Computer containers or OUs</source>
+        <translation>Computer containers of OUs</translation>
+    </message>
+    <message>
+        <source>Location attribute in computer objects</source>
+        <translation>Locatiekenmerk in computerobjecten</translation>
+    </message>
+    <message>
+        <source>Integration tests</source>
+        <translation>Intregatietests</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -2150,32 +2302,56 @@ Translated with DeepL</translation>
         <translation>Verkrijg computer object door IP-adres</translation>
     </message>
     <message>
-        <source>LDAP connection failed</source>
-        <translation>LDAP connectie mislukt</translation>
+        <source>List all entries of a location</source>
+        <translation>Alle vermeldingen van een locatie weergeven</translation>
     </message>
     <message>
-        <source>LDAP bind failed</source>
-        <translation>LDAP bind mislukt</translation>
+        <source>List all locations</source>
+        <translation>Alle locaties weergeven</translation>
     </message>
     <message>
-        <source>LDAP bind successful</source>
-        <translation>LDAP bind gelukt</translation>
+        <source>Browse</source>
+        <translation>Bladeren</translation>
     </message>
     <message>
-        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation>Succesvol geconnecteerd op de LDAP-server en een LDAP-bind uitgevoerd. De basis LDAP instellingen zijn correct geconfigureerd.</translation>
+        <source>Test</source>
+        <translation>Test</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
         <translation>LDAP base DN test mislukt</translation>
     </message>
     <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation>De geconfigureerde basis-DN kon niet worden opgevraagd. Controleer de parameter base DN.
+
+%1</translation>
+    </message>
+    <message>
         <source>LDAP base DN test successful</source>
         <translation>LDAP base DN test gelukt</translation>
     </message>
     <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation>De LDAP base DN is met succes opgevraagd. De volgende vermeldingen zijn gevonden:
+
+%1</translation>
+    </message>
+    <message>
         <source>LDAP naming context test failed</source>
         <translation>LDAP naming context test mislukt</translation>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
+        <translation>Kan de basis-DN niet opvragen via naamcontexten. Controleer de naamcontext attribuutparameter.
+
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
@@ -2198,6 +2374,10 @@ Translated with DeepL</translation>
     <message>
         <source>computer tree</source>
         <translation>computer boomstructuur</translation>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation>computer groep structuur </translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -2232,12 +2412,36 @@ Translated with DeepL</translation>
         <translation>Kan een groep met de naam &quot;%1&quot; niet vinden. Controleer de groepsnaam of de groepsboomstructuur parameter.</translation>
     </message>
     <message>
-        <source>Enter computer name</source>
-        <translation>Voer de computernaam in</translation>
+        <source>Enter computer display name</source>
+        <translation>Voer de weergavenaam van de computer in</translation>
+    </message>
+    <message>
+        <source>Please enter a computer display name to query:</source>
+        <translation>Voer een computernaam in om op te vragen:</translation>
     </message>
     <message>
         <source>computer objects</source>
         <translation>computer objecten</translation>
+    </message>
+    <message>
+        <source>Enter computer name</source>
+        <translation>Voer de computernaam in</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname to query:</source>
+        <translation>Voer de hostnaam van een computer in om een zoekopdracht uit te voeren:</translation>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>Ongeldige hostnaam</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation>Je hebt hostnamen van computers geconfigureerd om te worden opgeslagen als volledig gekwalificeerde domeinnamen (FQDN), maar je hebt een hostnaam zonder domein ingevoerd.</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation>Je hebt hostnamen van computers geconfigureerd om te worden opgeslagen als eenvoudige hostnamen zonder domeinnaam, maar je hebt een hostnaam ingevoerd met een domeinnaamgedeelte.</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
@@ -2252,6 +2456,22 @@ Translated with DeepL</translation>
         <translation>computer MAC adressen</translation>
     </message>
     <message>
+        <source>Enter computer location name</source>
+        <translation>Voer de naam van de computerlocatie in</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer location (wildcards allowed):</source>
+        <translation>Voer de naam van een computerlocatie in (jokertekens toegestaan):</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>computerlocaties</translation>
+    </message>
+    <message>
+        <source>Enter location name</source>
+        <translation>Locatie naam invoeren</translation>
+    </message>
+    <message>
         <source>users</source>
         <translation>gebruikers</translation>
     </message>
@@ -2260,8 +2480,16 @@ Translated with DeepL</translation>
         <translation>gebruikersgroepen</translation>
     </message>
     <message>
+        <source>computers</source>
+        <translation>computers</translation>
+    </message>
+    <message>
         <source>computer groups</source>
         <translation>computergroepen</translation>
+    </message>
+    <message>
+        <source>computer containers</source>
+        <translation>computercontainers</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
@@ -2276,12 +2504,30 @@ Translated with DeepL</translation>
         <translation>Gebruiker niet gevonden</translation>
     </message>
     <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation>Kon geen gebruiker vinden met de naam &quot;%1&quot;. Controleer de gebruikersnaam of de parameter van de gebruikersstructuur.</translation>
+    </message>
+    <message>
+        <source>Enter hostname</source>
+        <translation>Voer hostnaam in</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname whose group memberships to query:</source>
+        <translation>Voer een hostnaam van een computer in waarvan de groepslidmaatschappen moeten worden opgevraagd:</translation>
+    </message>
+    <message>
         <source>groups of computer</source>
         <translation>groepen van computer</translation>
     </message>
     <message>
         <source>Computer not found</source>
         <translation>Computer niet gevonden</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation>Kon geen computer vinden met de hostnaam &quot;%1&quot;. Controleer de hostnaam of de computerstructuur parameter.
+
+</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2292,12 +2538,68 @@ Translated with DeepL</translation>
         <translation>Voer het IP-adres van een computer in dat moet worden omgezet naar een computerobject:</translation>
     </message>
     <message>
-        <source>computers</source>
-        <translation>computers</translation>
+        <source>Hostname lookup failed</source>
+        <translation>Hostnaam opzoeken mislukt</translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation>Kan hostnaam voor IP-adres %1 niet opzoeken. Controleer uw DNS-server instellingen.</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a location whose entries to query:</source>
+        <translation>Voer de naam in van een locatie waarvan u de gegevens wilt opvragen:</translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation>locatievermeldingen</translation>
+    </message>
+    <message>
+        <source>Certificate files (*.pem)</source>
+        <translation>Certificaatbestanden (*.pem)</translation>
+    </message>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation>LDAP connectie mislukt</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation>Kon geen verbinding maken met de LDAP server. Controleer de server parameters.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation>LDAP bind mislukt</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation>Kan niet koppelen aan de LDAP-server. Controleer de serverparameters en de aanmeldingsgegevens.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation>LDAP bind gelukt</translation>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <translation>Succesvol geconnecteerd op de LDAP-server en een LDAP-bind uitgevoerd. De basis LDAP instellingen zijn correct geconfigureerd.</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
         <translation>LDAP %1 test mislukt</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation>Er konden geen items worden opgevraagd in geconfigureerd %1. Controleer de parameter &quot;%2&quot;.
+
+%3</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
@@ -2306,6 +2608,26 @@ Translated with DeepL</translation>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
         <translation>De %1  is met succes opgevraagd en %2 ingaven zijn gevonden.</translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>LDAP test mislukt</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation>Kan %1 niet opvragen. Controleer de parameter(s) %2 en voer de naam van een bestaand object in.
+
+%3</translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation>en</translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>LDAP-test geslaagd</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
@@ -2335,328 +2657,6 @@ Translated with DeepL</translation>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 zijn met succes opgevraagd gebruikmakend van de ingestelde filter.</translation>
     </message>
-    <message>
-        <source>(only if different from group tree)</source>
-        <translation>(Alleen als verschillend van groep-structuur)</translation>
-    </message>
-    <message>
-        <source>Computer group tree</source>
-        <translation>Computer groep structuur</translation>
-    </message>
-    <message>
-        <source>computer group tree</source>
-        <translation>computer groep structuur </translation>
-    </message>
-    <message>
-        <source>Filter for computers</source>
-        <translation>Filter voor computers</translation>
-    </message>
-    <message>
-        <source>e.g. room or computerLab</source>
-        <translation>bv. lokaal of computerlabo</translation>
-    </message>
-    <message>
-        <source>Integration tests</source>
-        <translation>Intregatietests</translation>
-    </message>
-    <message>
-        <source>Computer groups</source>
-        <translation>Computergroepen</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>bv. naam of beschrijving</translation>
-    </message>
-    <message>
-        <source>Filter for computer containers</source>
-        <translation>Filter voor computer containers</translation>
-    </message>
-    <message>
-        <source>Computer containers or OUs</source>
-        <translation>Computer containers of OUs</translation>
-    </message>
-    <message>
-        <source>Connection security</source>
-        <translation>Verbindingsbeveiliging</translation>
-    </message>
-    <message>
-        <source>TLS certificate verification</source>
-        <translation>TLS certificaatverificatie</translation>
-    </message>
-    <message>
-        <source>System defaults</source>
-        <translation>Systeem standaard</translation>
-    </message>
-    <message>
-        <source>Never (insecure!)</source>
-        <translation>Nooit (onveilig!)</translation>
-    </message>
-    <message>
-        <source>Custom CA certificate file</source>
-        <translation>Aangepast CA certificaatbestand</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Geen</translation>
-    </message>
-    <message>
-        <source>TLS</source>
-        <translation>TLS</translation>
-    </message>
-    <message>
-        <source>SSL</source>
-        <translation>SSL</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=computer)</source>
-        <translation>bv. (objectClass=computer)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=group)</source>
-        <translation>bv. (objectClass=group)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=person)</source>
-        <translation>bv. (objectClass=person)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation>bv. (objectClass=room) of (objectClass=computerLab)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation>bv. (objectClass=container) of (objectClass=organizationalUnit)</translation>
-    </message>
-    <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-
-%1</source>
-        <translation>De geconfigureerde basis-DN kon niet worden opgevraagd. Controleer de parameter base DN.
-
-%1</translation>
-    </message>
-    <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-
-%1</source>
-        <translation>De LDAP base DN is met succes opgevraagd. De volgende vermeldingen zijn gevonden:
-
-%1</translation>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-
-%1</source>
-        <translation>Kan de basis-DN niet opvragen via naamcontexten. Controleer de naamcontext attribuutparameter.
-
-%1</translation>
-    </message>
-    <message>
-        <source>Certificate files (*.pem)</source>
-        <translation>Certificaatbestanden (*.pem)</translation>
-    </message>
-    <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters.
-
-%1</source>
-        <translation>Kon geen verbinding maken met de LDAP server. Controleer de server parameters.
-
-%1</translation>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
-
-%1</source>
-        <translation>Kan niet koppelen aan de LDAP-server. Controleer de serverparameters en de aanmeldingsgegevens.
-
-%1</translation>
-    </message>
-    <message>
-        <source>Encryption protocol</source>
-        <translation>Encryptie protocol</translation>
-    </message>
-    <message>
-        <source>Computer location attribute</source>
-        <translation>Computerlocatiekenmerk</translation>
-    </message>
-    <message>
-        <source>Computer display name attribute</source>
-        <translation>Attribuut weergavenaam computer</translation>
-    </message>
-    <message>
-        <source>Location name attribute</source>
-        <translation>Kenmerk locatienaam</translation>
-    </message>
-    <message>
-        <source>e.g. cn or displayName</source>
-        <translation>bijv. cn of displayName</translation>
-    </message>
-    <message>
-        <source>Computer locations identification</source>
-        <translation>Identificatie computerlocaties</translation>
-    </message>
-    <message>
-        <source>Identify computer locations (e.g. rooms) via:</source>
-        <translation>Computerlocaties (bijv. ruimtes) identificeren via:</translation>
-    </message>
-    <message>
-        <source>Location attribute in computer objects</source>
-        <translation>Locatiekenmerk in computerobjecten</translation>
-    </message>
-    <message>
-        <source>List all entries of a location</source>
-        <translation>Alle vermeldingen van een locatie weergeven</translation>
-    </message>
-    <message>
-        <source>List all locations</source>
-        <translation>Alle locaties weergeven</translation>
-    </message>
-    <message>
-        <source>Enter computer display name</source>
-        <translation>Voer de weergavenaam van de computer in</translation>
-    </message>
-    <message>
-        <source>Please enter a computer display name to query:</source>
-        <translation>Voer een computernaam in om op te vragen:</translation>
-    </message>
-    <message>
-        <source>Enter computer location name</source>
-        <translation>Voer de naam van de computerlocatie in</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation>Voer de naam van een computerlocatie in (jokertekens toegestaan):</translation>
-    </message>
-    <message>
-        <source>computer locations</source>
-        <translation>computerlocaties</translation>
-    </message>
-    <message>
-        <source>Enter location name</source>
-        <translation>Locatie naam invoeren</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a location whose entries to query:</source>
-        <translation>Voer de naam in van een locatie waarvan u de gegevens wilt opvragen:</translation>
-    </message>
-    <message>
-        <source>location entries</source>
-        <translation>locatievermeldingen</translation>
-    </message>
-    <message>
-        <source>LDAP test failed</source>
-        <translation>LDAP test mislukt</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
-
-%3</source>
-        <translation>Kan %1 niet opvragen. Controleer de parameter(s) %2 en voer de naam van een bestaand object in.
-
-%3</translation>
-    </message>
-    <message>
-        <source>and</source>
-        <translation>en</translation>
-    </message>
-    <message>
-        <source>LDAP test successful</source>
-        <translation>LDAP-test geslaagd</translation>
-    </message>
-    <message>
-        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
-
-%3</source>
-        <translation>Er konden geen items worden opgevraagd in geconfigureerd %1. Controleer de parameter &quot;%2&quot;.
-
-%3</translation>
-    </message>
-    <message>
-        <source>Browse</source>
-        <translation>Bladeren</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Test</translation>
-    </message>
-    <message>
-        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>Hostnamen opgeslagen als volledig gekwalificeerde domeinnamen (FQDN, bijv. myhost.example.org)</translation>
-    </message>
-    <message>
-        <source>Computer hostname attribute</source>
-        <translation>Computer hostnaam kenmerk</translation>
-    </message>
-    <message>
-        <source>Please enter a computer hostname to query:</source>
-        <translation>Voer de hostnaam van een computer in om een zoekopdracht uit te voeren:</translation>
-    </message>
-    <message>
-        <source>Invalid hostname</source>
-        <translation>Ongeldige hostnaam</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation>Je hebt hostnamen van computers geconfigureerd om te worden opgeslagen als volledig gekwalificeerde domeinnamen (FQDN), maar je hebt een hostnaam zonder domein ingevoerd.</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation>Je hebt hostnamen van computers geconfigureerd om te worden opgeslagen als eenvoudige hostnamen zonder domeinnaam, maar je hebt een hostnaam ingevoerd met een domeinnaamgedeelte.</translation>
-    </message>
-    <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation>Kon geen gebruiker vinden met de naam &quot;%1&quot;. Controleer de gebruikersnaam of de parameter van de gebruikersstructuur.</translation>
-    </message>
-    <message>
-        <source>Enter hostname</source>
-        <translation>Voer hostnaam in</translation>
-    </message>
-    <message>
-        <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation>Voer een hostnaam van een computer in waarvan de groepslidmaatschappen moeten worden opgevraagd:</translation>
-    </message>
-    <message>
-        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>Kon geen computer vinden met de hostnaam &quot;%1&quot;. Controleer de hostnaam of de computerstructuur parameter.
-
-</translation>
-    </message>
-    <message>
-        <source>Hostname lookup failed</source>
-        <translation>Hostnaam opzoeken mislukt</translation>
-    </message>
-    <message>
-        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation>Kan hostnaam voor IP-adres %1 niet opzoeken. Controleer uw DNS-server instellingen.</translation>
-    </message>
-    <message>
-        <source>User login name attribute</source>
-        <translation>Attribuut inlognaam gebruiker</translation>
-    </message>
-    <message>
-        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation>Geconfigureerd attribuut voor aanmeldingsnaam van gebruiker of hostnaam van computer (OpenLDAP)</translation>
-    </message>
-    <message>
-        <source>computer containers</source>
-        <translation>computercontainers</translation>
-    </message>
-    <message>
-        <source>Query options</source>
-        <translation>Zoekopties</translation>
-    </message>
-    <message>
-        <source>Query nested user groups (supported by AD only)</source>
-        <translation>Geneste gebruikersgroepen opvragen (alleen ondersteund door AD)</translation>
-    </message>
-    <message>
-        <source>Query timeout</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation>ms</translation>
-    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2671,22 +2671,6 @@ Translated with DeepL</translation>
     <message>
         <source>Show help about command</source>
         <translation>Toon hulp over commando</translation>
-    </message>
-    <message>
-        <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation>Commando&apos;s voor het configureren en testen van LDAP/AD-integratie</translation>
-    </message>
-    <message>
-        <source>Basic LDAP/AD support for Veyon</source>
-        <translation>Basis LDAP/AD-ondersteuning voor Veyon</translation>
-    </message>
-    <message>
-        <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation>%1 (computers en locaties laden vanuit LDAP/AD)</translation>
-    </message>
-    <message>
-        <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation>%1 (gebruikers en groepen laden vanuit LDAP/AD)</translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
@@ -2704,6 +2688,22 @@ Translated with DeepL</translation>
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
         <translation>%1 configureren als basis DN en zoekopdrachten voor naamcontext uitschakelen.</translation>
     </message>
+    <message>
+        <source>Basic LDAP/AD support for Veyon</source>
+        <translation>Basis LDAP/AD-ondersteuning voor Veyon</translation>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
+        <translation>Commando&apos;s voor het configureren en testen van LDAP/AD-integratie</translation>
+    </message>
+    <message>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation>%1 (computers en locaties laden vanuit LDAP/AD)</translation>
+    </message>
+    <message>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation>%1 (gebruikers en groepen laden vanuit LDAP/AD)</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformConfigurationPage</name>
@@ -2712,20 +2712,12 @@ Translated with DeepL</translation>
         <translation>Linux</translation>
     </message>
     <message>
-        <source>Custom PAM service for user authentication</source>
-        <translation>Aangepaste PAM-service voor gebruikersverificatie</translation>
-    </message>
-    <message>
         <source>User authentication</source>
         <translation>Gebruikersverificatie</translation>
     </message>
     <message>
-        <source>User login</source>
-        <translation>Aanmelden gebruiker</translation>
-    </message>
-    <message>
-        <source>Login key sequence</source>
-        <translation>Toetsvolgorde aanmelden</translation>
+        <source>Custom PAM service for user authentication</source>
+        <translation>Aangepaste PAM-service voor gebruikersverificatie</translation>
     </message>
     <message>
         <source>User sessions</source>
@@ -2734,6 +2726,14 @@ Translated with DeepL</translation>
     <message>
         <source>Minimum session lifetime before server start</source>
         <translation>Minimale sessieduur voor het starten van de server</translation>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation>Aanmelden gebruiker</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation>Toetsvolgorde aanmelden</translation>
     </message>
 </context>
 <context>
@@ -2761,87 +2761,23 @@ Translated with DeepL</translation>
         <translation>Configuratie</translation>
     </message>
     <message>
-        <source>Show icons only</source>
-        <translation>Toon enkel iconen</translation>
+        <source>Disable tooltips</source>
+        <translation>Tooltips uitschakelen</translation>
     </message>
     <message>
-        <source>Disable tooltips</source>
-        <translation type="unfinished"/>
+        <source>Show icons only</source>
+        <translation>Toon enkel iconen</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <source>MainWindow</source>
-        <translation>HoofdScherm</translation>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation>werkbalk</translation>
+        <source>Veyon Configurator</source>
+        <translation>Veyon Configurator</translation>
     </message>
     <message>
         <source>General</source>
         <translation>Algemeen</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>&amp;Bestand</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>&amp;Help</translation>
-    </message>
-    <message>
-        <source>&amp;Quit</source>
-        <translation>&amp;Stoppen</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
-    </message>
-    <message>
-        <source>L&amp;oad settings from file</source>
-        <translation>&amp;Laad instellingen uit bestand</translation>
-    </message>
-    <message>
-        <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
-    </message>
-    <message>
-        <source>About Qt</source>
-        <translation>Over Qt</translation>
-    </message>
-    <message>
-        <source>Authentication impossible</source>
-        <translation>Authenticatie onmogelijk</translation>
-    </message>
-    <message>
-        <source>Configuration not writable</source>
-        <translation>Configuratie niet schrijfbaar</translation>
-    </message>
-    <message>
-        <source>Load settings from file</source>
-        <translation>Instellingen uit bestand laden</translation>
-    </message>
-    <message>
-        <source>Save settings to file</source>
-        <translation>Instellingen opslaan naar bestand</translation>
-    </message>
-    <message>
-        <source>Unsaved settings</source>
-        <translation>Niet-opgeslagen instellingen</translation>
-    </message>
-    <message>
-        <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Er zijn niet-opgeslagen instellingen. Toch stoppen?</translation>
-    </message>
-    <message>
-        <source>Veyon Configurator</source>
-        <translation>Veyon Configurator</translation>
     </message>
     <message>
         <source>Service</source>
@@ -2856,8 +2792,72 @@ Translated with DeepL</translation>
         <translation>Toegangscontrole</translation>
     </message>
     <message>
+        <source>&amp;File</source>
+        <translation>&amp;Bestand</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>&amp;Help</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation>&amp;View</translation>
+    </message>
+    <message>
+        <source>&amp;Quit</source>
+        <translation>&amp;Stoppen</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
+    </message>
+    <message>
+        <source>&amp;Save settings to file</source>
+        <translation>&amp;Instellingen opslaan naar bestand</translation>
+    </message>
+    <message>
+        <source>Save settings to file</source>
+        <translation>Instellingen opslaan naar bestand</translation>
+    </message>
+    <message>
+        <source>Ctrl+S</source>
+        <translation>Ctrl+S</translation>
+    </message>
+    <message>
+        <source>L&amp;oad settings from file</source>
+        <translation>&amp;Laad instellingen uit bestand</translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
+        <translation>Ctrl+O</translation>
+    </message>
+    <message>
         <source>About Veyon</source>
         <translation>Over Veyon</translation>
+    </message>
+    <message>
+        <source>About Qt</source>
+        <translation>Over Qt</translation>
+    </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation>Reset configuratie</translation>
+    </message>
+    <message>
+        <source>&amp;Standard</source>
+        <translation>&amp;Standard</translation>
+    </message>
+    <message>
+        <source>&amp;Advanced</source>
+        <translation>&amp;Advanced</translation>
+    </message>
+    <message>
+        <source>MainWindow</source>
+        <translation>HoofdScherm</translation>
+    </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation>Pas de grootte van computerpictogrammen automatisch aan</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2868,16 +2868,92 @@ Translated with DeepL</translation>
         <translation>Over</translation>
     </message>
     <message>
+        <source>Search users and computers</source>
+        <translation>Zoek gebruikers en computers</translation>
+    </message>
+    <message>
+        <source>Align computers to grid</source>
+        <translation>Computers uitlijnen op rooster</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
+        <translation>Aangepaste computeropstelling gebruiken</translation>
+    </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation>Toon alleen de ingeschakelde computers</translation>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
+        <translation>Locaties &amp;&amp; computers</translation>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation>Schermafbeeldingen</translation>
+    </message>
+    <message>
+        <source>Slideshow</source>
+        <translation>Diavoorstelling</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>In de kijker</translation>
+    </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation>Toon alleen computers met aangemelde gebruikers</translation>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation>werkbalk</translation>
+    </message>
+    <message>
         <source>%1 Configurator %2</source>
         <translation>%1 Configuratie %2</translation>
+    </message>
+    <message>
+        <source>Load settings from file</source>
+        <translation>Instellingen uit bestand laden</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
         <translation>JSON bestanden (*.json)</translation>
     </message>
     <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation>Wilt u echt de lokale configuratie resetten en alle instellingen terugzetten naar hun standaardinstellingen?</translation>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation>%1 Configurator</translation>
+    </message>
+    <message>
+        <source>Unsaved settings</source>
+        <translation>Niet-opgeslagen instellingen</translation>
+    </message>
+    <message>
+        <source>There are unsaved settings. Quit anyway?</source>
+        <translation>Er zijn niet-opgeslagen instellingen. Toch stoppen?</translation>
+    </message>
+    <message>
+        <source>Insufficient privileges</source>
+        <translation>Onvoldoende toegangsrechten</translation>
+    </message>
+    <message>
+        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
+        <translation>Kon niet starten met beheerdersrechten. Zorg ervoor dat er een sudo-achtig programma is geïnstalleerd voor je desktopomgeving! Het programma wordt uitgevoerd met normale gebruikersrechten.</translation>
+    </message>
+    <message>
+        <source>Configuration not writable</source>
+        <translation>Configuratie niet schrijfbaar</translation>
+    </message>
+    <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>De lokale backend configuratie rapporteert dat de configuratie niet-schrijfbaar is. Start de %1 configurator met admin of hogere previleges.</translation>
+    </message>
+    <message>
+        <source>Authentication impossible</source>
+        <translation>Authenticatie onmogelijk</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
@@ -2892,10 +2968,6 @@ Translated with DeepL</translation>
         <translation>Volgens de lokale instellingen hebt u geen toelating tot de computers in het netwerk. Login met een ander gebruikersaccount of laat uw systeemadministrator de lokale instellingen nazien.</translation>
     </message>
     <message>
-        <source>Screenshots</source>
-        <translation>Schermafbeeldingen</translation>
-    </message>
-    <message>
         <source>Feature active</source>
         <translation>Functie actief</translation>
     </message>
@@ -2903,81 +2975,13 @@ Translated with DeepL</translation>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation>Het programma %1 is nog steeds actief. Stop het alvorens %2 af te sluiten.</translation>
     </message>
-    <message>
-        <source>Reset configuration</source>
-        <translation>Reset configuratie</translation>
-    </message>
-    <message>
-        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation>Wilt u echt de lokale configuratie resetten en alle instellingen terugzetten naar hun standaardinstellingen?</translation>
-    </message>
-    <message>
-        <source>Search users and computers</source>
-        <translation>Zoek gebruikers en computers</translation>
-    </message>
-    <message>
-        <source>Align computers to grid</source>
-        <translation>Computers uitlijnen op rooster</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>%1 Configurator</translation>
-    </message>
-    <message>
-        <source>Insufficient privileges</source>
-        <translation>Onvoldoende toegangsrechten</translation>
-    </message>
-    <message>
-        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation>Kon niet starten met beheerdersrechten. Zorg ervoor dat er een sudo-achtig programma is geïnstalleerd voor je desktopomgeving! Het programma wordt uitgevoerd met normale gebruikersrechten.</translation>
-    </message>
-    <message>
-        <source>Only show powered on computers</source>
-        <translation>Toon alleen de ingeschakelde computers</translation>
-    </message>
-    <message>
-        <source>&amp;Save settings to file</source>
-        <translation>&amp;Instellingen opslaan naar bestand</translation>
-    </message>
-    <message>
-        <source>&amp;View</source>
-        <translation>&amp;View</translation>
-    </message>
-    <message>
-        <source>&amp;Standard</source>
-        <translation>&amp;Standard</translation>
-    </message>
-    <message>
-        <source>&amp;Advanced</source>
-        <translation>&amp;Advanced</translation>
-    </message>
-    <message>
-        <source>Use custom computer arrangement</source>
-        <translation>Aangepaste computeropstelling gebruiken</translation>
-    </message>
-    <message>
-        <source>Locations &amp;&amp; computers</source>
-        <translation>Locaties &amp;&amp; computers</translation>
-    </message>
-    <message>
-        <source>Slideshow</source>
-        <translation>Diavoorstelling</translation>
-    </message>
-    <message>
-        <source>Spotlight</source>
-        <translation>In de kijker</translation>
-    </message>
-    <message>
-        <source>Adjust size of computer icons automatically</source>
-        <translation>Pas de grootte van computerpictogrammen automatisch aan</translation>
-    </message>
-    <message>
-        <source>Only show computers with logged on users</source>
-        <translation>Toon alleen computers met aangemelde gebruikers</translation>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
+    <message>
+        <source>Basic settings</source>
+        <translation>Basisinstellingen</translation>
+    </message>
     <message>
         <source>Directories</source>
         <translation>Mappen</translation>
@@ -2987,80 +2991,44 @@ Translated with DeepL</translation>
         <translation>Gebruikerconfiguratie</translation>
     </message>
     <message>
-        <source>Feature on computer double click:</source>
-        <translation>Functie op de computer bij double click:</translation>
-    </message>
-    <message>
-        <source>Features</source>
-        <translation>Kenmerken</translation>
-    </message>
-    <message>
-        <source>All features</source>
-        <translation>Alle kenmerken</translation>
-    </message>
-    <message>
-        <source>Disabled features</source>
-        <translation>Uitgeschakelde functies</translation>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation>Schermafbeeldingen</translation>
-    </message>
-    <message>
-        <source>&lt;no feature&gt;</source>
-        <translation>&lt;no feature&gt;</translation>
-    </message>
-    <message>
-        <source>Basic settings</source>
-        <translation>Basisinstellingen</translation>
-    </message>
-    <message>
-        <source>Behaviour</source>
-        <translation>Gedrag</translation>
-    </message>
-    <message>
-        <source>Enforce selected mode for client computers</source>
-        <translation>Forceer de geselecteerde mode voor client computers</translation>
-    </message>
-    <message>
-        <source>Hide local computer</source>
-        <translation>Verberg lokale computer</translation>
-    </message>
-    <message>
-        <source>Hide computer filter field</source>
-        <translation>Verberg computerfilter</translation>
-    </message>
-    <message>
-        <source>Actions such as rebooting or powering down computers</source>
-        <translation>Acties zoals herstarten of uitschakelen van computers</translation>
     </message>
     <message>
         <source>User interface</source>
         <translation>Gebruikersomgeving</translation>
     </message>
     <message>
-        <source>Background color</source>
-        <translation>Achtergrond kleur</translation>
-    </message>
-    <message>
-        <source>Thumbnail update interval</source>
-        <translation>Miniatuurweergave update interval</translation>
+        <source>Text color</source>
+        <translation>Tekstkleur</translation>
     </message>
     <message>
         <source> ms</source>
         <translation>ms</translation>
     </message>
     <message>
-        <source>Program start</source>
-        <translation>Start programma</translation>
+        <source>Background color</source>
+        <translation>Achtergrond kleur</translation>
     </message>
     <message>
-        <source>Modes and features</source>
-        <translation>Modi en functies</translation>
+        <source>Thumbnail spacing</source>
+        <translation>Tussenruimte voor miniaturen</translation>
     </message>
     <message>
-        <source>User and computer name</source>
-        <translation>Gebruiker en computer naam</translation>
+        <source> px</source>
+        <translation> px</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Auto</translation>
+    </message>
+    <message>
+        <source>Computer thumbnail caption</source>
+        <translation>Bijschrift van de computerminiatuur</translation>
+    </message>
+    <message>
+        <source>Computer and user name</source>
+        <translation>Computer- en gebruikersnaam</translation>
     </message>
     <message>
         <source>Only user name</source>
@@ -3071,20 +3039,72 @@ Translated with DeepL</translation>
         <translation>Alleen computernaam</translation>
     </message>
     <message>
-        <source>Computer thumbnail caption</source>
-        <translation>Bijschrift van de computerminiatuur</translation>
+        <source>User and computer name</source>
+        <translation>Gebruiker en computer naam</translation>
     </message>
     <message>
-        <source>Text color</source>
-        <translation>Tekstkleur</translation>
+        <source>Thumbnail update interval</source>
+        <translation>Miniatuurweergave update interval</translation>
     </message>
     <message>
         <source>Sort order</source>
         <translation>Sorteer volgorde</translation>
     </message>
     <message>
-        <source>Computer and user name</source>
-        <translation>Computer- en gebruikersnaam</translation>
+        <source>Thumbnail aspect ratio</source>
+        <translation>Beeldverhouding miniaturen</translation>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation>Hoogste</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation>Hoog</translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation>Medium</translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation>Laag</translation>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation>Laagste</translation>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation>Beeldkwaliteit in bewakingsmodus</translation>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation>Beeldkwaliteit van externe toegang</translation>
+    </message>
+    <message>
+        <source>Behaviour</source>
+        <translation>Gedrag</translation>
+    </message>
+    <message>
+        <source>Program start</source>
+        <translation>Start programma</translation>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation>Toegangscontrole uitvoeren</translation>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation>Automatisch huidige locatie selecteren</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation>Pictogramgrootte van computer automatisch aanpassen</translation>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
+        <translation>Automatisch computer selectiepaneel openen</translation>
     </message>
     <message>
         <source>Computer locations</source>
@@ -3099,80 +3119,60 @@ Translated with DeepL</translation>
         <translation>Toestaan om verborgen locaties handmatig toe te voegen</translation>
     </message>
     <message>
-        <source>Hide empty locations</source>
-        <translation>Verberg lege locaties</translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation>Bevestigingsdialoog weergeven voor mogelijk onveilige acties</translation>
-    </message>
-    <message>
-        <source>Perform access control</source>
-        <translation>Toegangscontrole uitvoeren</translation>
-    </message>
-    <message>
-        <source>Automatically select current location</source>
-        <translation>Automatisch huidige locatie selecteren</translation>
-    </message>
-    <message>
-        <source>Automatically open computer select panel</source>
-        <translation>Automatisch computer selectiepaneel openen</translation>
+        <source>Hide local computer</source>
+        <translation>Verberg lokale computer</translation>
     </message>
     <message>
         <source>Hide local session</source>
         <translation>Lokale sessie verbergen</translation>
     </message>
     <message>
-        <source> px</source>
-        <translation> px</translation>
+        <source>Hide empty locations</source>
+        <translation>Verberg lege locaties</translation>
     </message>
     <message>
-        <source>Thumbnail spacing</source>
-        <translation>Tussenruimte voor miniaturen</translation>
+        <source>Hide computer filter field</source>
+        <translation>Verberg computerfilter</translation>
     </message>
     <message>
-        <source>Auto</source>
-        <translation>Auto</translation>
+        <source>Modes and features</source>
+        <translation>Modi en functies</translation>
     </message>
     <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation>Beeldverhouding miniaturen</translation>
+        <source>Enforce selected mode for client computers</source>
+        <translation>Forceer de geselecteerde mode voor client computers</translation>
     </message>
     <message>
-        <source>Automatically adjust computer icon size</source>
-        <translation>Pictogramgrootte van computer automatisch aanpassen</translation>
+        <source>Actions such as rebooting or powering down computers</source>
+        <translation>Acties zoals herstarten of uitschakelen van computers</translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation>Bevestigingsdialoog weergeven voor mogelijk onveilige acties</translation>
+    </message>
+    <message>
+        <source>Feature on computer double click:</source>
+        <translation>Functie op de computer bij double click:</translation>
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
         <translation>Functievensters openen op hetzelfde scherm als het hoofdvenster</translation>
     </message>
     <message>
-        <source>Highest</source>
-        <translation type="unfinished"/>
+        <source>Features</source>
+        <translation>Kenmerken</translation>
     </message>
     <message>
-        <source>High</source>
-        <translation type="unfinished"/>
+        <source>All features</source>
+        <translation>Alle kenmerken</translation>
     </message>
     <message>
-        <source>Medium</source>
-        <translation type="unfinished"/>
+        <source>Disabled features</source>
+        <translation>Uitgeschakelde functies</translation>
     </message>
     <message>
-        <source>Low</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Lowest</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remote access image quality</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Image quality in monitoring mode</source>
-        <translation type="unfinished"/>
+        <source>&lt;no feature&gt;</source>
+        <translation>&lt;no feature&gt;</translation>
     </message>
 </context>
 <context>
@@ -3182,24 +3182,24 @@ Translated with DeepL</translation>
         <translation>Toezicht</translation>
     </message>
     <message>
-        <source>Builtin monitoring mode</source>
-        <translation>Ingebouwde monitoring modus</translation>
-    </message>
-    <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Deze modus stelt je in staat om alle computers op één of meer locaties te controleren.</translation>
     </message>
     <message>
         <source>Query application version of the server</source>
-        <translation type="unfinished"/>
+        <translation>Toepassingsversie van de server opvragen</translation>
     </message>
     <message>
         <source>Query active features</source>
-        <translation type="unfinished"/>
+        <translation>Actieve functies opvragen</translation>
     </message>
     <message>
         <source>Query properties of remotely available screens</source>
-        <translation type="unfinished"/>
+        <translation>Eigenschappen opvragen van schermen die op afstand beschikbaar zijn</translation>
+    </message>
+    <message>
+        <source>Builtin monitoring mode</source>
+        <translation>Ingebouwde monitoring modus</translation>
     </message>
 </context>
 <context>
@@ -3217,15 +3217,15 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation type="unfinished"/>
+        <translation>bijv. Veyon</translation>
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation type="unfinished"/>
+        <translation>Onthoud en voeg toe aan website menu</translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation type="unfinished"/>
+        <translation>bijv. www.veyon.io</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -3233,11 +3233,19 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Naam:</translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
+    <message>
+        <source>Veyon Logon</source>
+        <translation>Veyon inloggen</translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation>Geef uw gebruikersnaam en paswoord in om toegang tot de computers te krijgen.</translation>
+    </message>
     <message>
         <source>Username</source>
         <translation>Gebruikersnaam</translation>
@@ -3247,10 +3255,6 @@ Translated with DeepL</translation>
         <translation>Wachtwoord</translation>
     </message>
     <message>
-        <source>Veyon Logon</source>
-        <translation>Veyon inloggen</translation>
-    </message>
-    <message>
         <source>Authentication error</source>
         <translation>Authenticatie fout</translation>
     </message>
@@ -3258,20 +3262,16 @@ Translated with DeepL</translation>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>Inloggen mislukt met de opgegeven gebruikersnaam en wachtwoord. Probeer het opnieuw!</translation>
     </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
-        <translation>Geef uw gebruikersnaam en paswoord in om toegang tot de computers te krijgen.</translation>
-    </message>
 </context>
 <context>
     <name>PluginCommands</name>
     <message>
         <source>List names of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Namen van alle geïnstalleerde plugins weergeven</translation>
     </message>
     <message>
         <source>Show table with details of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Tabel weergeven met details van alle geïnstalleerde plugins</translation>
     </message>
     <message>
         <source>Name</source>
@@ -3283,7 +3283,7 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Versie</translation>
     </message>
     <message>
         <source>UID</source>
@@ -3291,15 +3291,19 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>Plugin-gerelateerde CLI-bewerkingen</translation>
     </message>
     <message>
         <source>Commands for managing plugins</source>
-        <translation type="unfinished"/>
+        <translation>Commando&apos;s voor het beheren van plugins</translation>
     </message>
 </context>
 <context>
     <name>PowerControlFeaturePlugin</name>
+    <message>
+        <source>Power on a computer via Wake-on-LAN (WOL)</source>
+        <translation>Een computer inschakelen via Wake-on-LAN (WOL)</translation>
+    </message>
     <message>
         <source>Power on</source>
         <translation>Aanzetten</translation>
@@ -3325,46 +3329,6 @@ Translated with DeepL</translation>
         <translation>Klik op deze knop om alle computers uit te schakelen. Op deze manier hoeft u niet elke computer apart manueel uit te schakelen.</translation>
     </message>
     <message>
-        <source>Power on/down or reboot a computer</source>
-        <translation>Computer aan-/uitzetten of herstarten</translation>
-    </message>
-    <message>
-        <source>Confirm reboot</source>
-        <translation>Bevestig heropstart</translation>
-    </message>
-    <message>
-        <source>Confirm power down</source>
-        <translation>Bevestig uischakelen</translation>
-    </message>
-    <message>
-        <source>Do you really want to reboot the selected computers?</source>
-        <translation>Wilt u werkelijk de geselecteerde computers heropstarten?</translation>
-    </message>
-    <message>
-        <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>Een computer inschakelen via Wake-on-LAN (WOL)</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>MAC ADRES</translation>
-    </message>
-    <message>
-        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation>Dit commando zendt een Wake-on-LAN (WOL) pakket uit naar het netwerk om de computer met het opgegeven MAC-adres in te schakelen.</translation>
-    </message>
-    <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Geef het commando op waarvoor hulp moet worden weergegeven!</translation>
-    </message>
-    <message>
-        <source>Invalid MAC address specified!</source>
-        <translation>Ongeldig MAC adres!</translation>
-    </message>
-    <message>
-        <source>Commands for controlling power status of computers</source>
-        <translation>Commando&apos;s om de energiestatus van computers te regelen</translation>
-    </message>
-    <message>
         <source>Power down now</source>
         <translation>Schakel nu uit</translation>
     </message>
@@ -3381,26 +3345,64 @@ Translated with DeepL</translation>
         <translation>Schakel uit na timeout</translation>
     </message>
     <message>
+        <source>MAC ADDRESS</source>
+        <translation>MAC ADRES</translation>
+    </message>
+    <message>
+        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
+        <translation>Dit commando zendt een Wake-on-LAN (WOL) pakket uit naar het netwerk om de computer met het opgegeven MAC-adres in te schakelen.</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation>Geef het commando op waarvoor hulp moet worden weergegeven!</translation>
+    </message>
+    <message>
+        <source>Confirm reboot</source>
+        <translation>Bevestig heropstart</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Wilt u echt &lt;b&gt;ALLE&lt;/b&gt; computers opnieuw opstarten?</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot the selected computers?</source>
+        <translation>Wilt u werkelijk de geselecteerde computers heropstarten?</translation>
+    </message>
+    <message>
+        <source>Confirm power down</source>
+        <translation>Bevestig uischakelen</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Wilt u echt &lt;b&gt;ALLE&lt;/b&gt; computers uitschakelen?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation>Wil je echt de geselecteerde computers uitschakelen?</translation>
+    </message>
+    <message>
+        <source>Invalid MAC address specified!</source>
+        <translation>Ongeldig MAC adres!</translation>
+    </message>
+    <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation type="unfinished"/>
+        <translation>Er is op afstand gevraagd om de computer uit te schakelen. Wilt u de computer nu uitschakelen?</translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
-        <translation type="unfinished"/>
+        <translation>De computer wordt over %1 minuten, %2 seconden uitgeschakeld.
+
+Sla je werk op en sluit alle programma&apos;s af.</translation>
     </message>
     <message>
-        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <source>Power on/down or reboot a computer</source>
+        <translation>Computer aan-/uitzetten of herstarten</translation>
     </message>
     <message>
-        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Do you really want to power down the selected computers?</source>
-        <translation type="unfinished"/>
+        <source>Commands for controlling power status of computers</source>
+        <translation>Commando&apos;s om de energiestatus van computers te regelen</translation>
     </message>
 </context>
 <context>
@@ -3411,15 +3413,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
-        <translation type="unfinished"/>
+        <translation>Geef een time-out op voor het uitschakelen van de geselecteerde computers:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>minuten</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>seconden</translation>
     </message>
 </context>
 <context>
@@ -3441,24 +3443,24 @@ Please save your work and close all programs.</source>
         <translation>Open een remote control venster voor een computer.</translation>
     </message>
     <message>
-        <source>Remote access</source>
-        <translation>Toegang op afstand</translation>
-    </message>
-    <message>
-        <source>Remote view or control a computer</source>
-        <translation>Meekijken of overnemen op afstand</translation>
+        <source>Exchange clipboard contents</source>
+        <translation>Inhoud klembord uitwisselen</translation>
     </message>
     <message>
         <source>Show help about command</source>
         <translation>Toon hulp over commando</translation>
     </message>
     <message>
-        <source>Exchange clipboard contents</source>
-        <translation type="unfinished"/>
+        <source>Remote access</source>
+        <translation>Toegang op afstand</translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
-        <translation type="unfinished"/>
+        <translation>Er is geen computer geselecteerd, dus je kunt een hostnaam of IP-adres van een computer invoeren voor handmatige toegang:</translation>
+    </message>
+    <message>
+        <source>Remote view or control a computer</source>
+        <translation>Meekijken of overnemen op afstand</translation>
     </message>
 </context>
 <context>
@@ -3469,7 +3471,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 Toegang op afstand</translation>
     </message>
 </context>
 <context>
@@ -3483,8 +3485,16 @@ Please save your work and close all programs.</source>
         <translation>Overnemen op afstand</translation>
     </message>
     <message>
+        <source>Select screen</source>
+        <translation>Selecteer scherm</translation>
+    </message>
+    <message>
         <source>Send shortcut</source>
         <translation>Stuur snelkoppeling</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Schermafbeelding</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -3493,6 +3503,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Window</source>
         <translation>Venster</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation>Verlaten</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
@@ -3531,20 +3545,8 @@ Please save your work and close all programs.</source>
         <translation>Verbonden.</translation>
     </message>
     <message>
-        <source>Screenshot</source>
-        <translation>Schermafbeelding</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Select screen</source>
-        <translation type="unfinished"/>
+        <translation>Verbinden...</translation>
     </message>
     <message>
         <source>All screens</source>
@@ -3562,24 +3564,24 @@ Please save your work and close all programs.</source>
         <translation>Ontgrendelen</translation>
     </message>
     <message>
-        <source>Lock screen and input devices of a computer</source>
-        <translation>Blokkeer scherm en invoerapparaten van een computer</translation>
-    </message>
-    <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Om de volledige aandacht van alle gebruikers te eisen, kunt u hun computers vergrendelen met deze knop. In deze modus zijn alle invoerapparaten vergrendeld en de schermen zijn zwart.</translation>
     </message>
     <message>
         <source>Lock input devices</source>
-        <translation type="unfinished"/>
+        <translation>Invoerapparaten vergrendelen</translation>
     </message>
     <message>
         <source>Unlock input devices</source>
-        <translation type="unfinished"/>
+        <translation>Ontgrendel invoerapparaten</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
-        <translation type="unfinished"/>
+        <translation>Om de volledige aandacht van alle gebruikers terug te krijgen, kun je hun computers vergrendelen met deze knop. In deze modus worden alle invoerapparaten vergrendeld terwijl het bureaublad nog steeds zichtbaar is.</translation>
+    </message>
+    <message>
+        <source>Lock screen and input devices of a computer</source>
+        <translation>Blokkeer scherm en invoerapparaten van een computer</translation>
     </message>
 </context>
 <context>
@@ -3598,7 +3600,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
-        <translation type="unfinished"/>
+        <translation>Kan schermopnamebestand %1 niet openen om te schrijven.</translation>
     </message>
 </context>
 <context>
@@ -3660,7 +3662,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation type="unfinished"/>
+        <translation>Wil je echt alle geselecteerde schermafbeeldingen verwijderen?</translation>
     </message>
 </context>
 <context>
@@ -3670,28 +3672,86 @@ Please save your work and close all programs.</source>
         <translation>Algemeen</translation>
     </message>
     <message>
-        <source>Autostart</source>
-        <translation>Automatische start</translation>
+        <source>Show notification when an unauthorized access is blocked</source>
+        <translation>Meldingen tonen wanneer een niet-geautoriseerde toegang is geblokkeerd</translation>
+    </message>
+    <message>
+        <source>Show notification on remote connection</source>
+        <translation>Toon melding bij externe verbinding</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
         <translation>Pictogram in het systeemvak verbergen</translation>
     </message>
     <message>
-        <source>Start service</source>
-        <translation>Start service</translation>
+        <source>Autostart</source>
+        <translation>Automatische start</translation>
+    </message>
+    <message>
+        <source>State:</source>
+        <translation>Staat:</translation>
     </message>
     <message>
         <source>Stopped</source>
         <translation>Gestopt</translation>
     </message>
     <message>
+        <source>Start service</source>
+        <translation>Start service</translation>
+    </message>
+    <message>
         <source>Stop service</source>
         <translation>Stop service</translation>
     </message>
     <message>
-        <source>State:</source>
-        <translation>Staat:</translation>
+        <source>Session mode</source>
+        <translation>Sessie modus</translation>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation>Lokale sessiemodus (enkele serverinstantie voor primaire lokale sessie)</translation>
+    </message>
+    <message>
+        <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
+Typically this is required to support terminal servers.</source>
+        <translation>Het inschakelen van deze optie zorgt ervoor dat de service een serverproces start voor elke interactieve sessie op een computer.
+Dit is meestal nodig om terminalservers te ondersteunen.</translation>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation>Actieve sessiemodus (één serverinstantie voor actieve lokale of externe sessie)</translation>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation>Modus voor meerdere sessies (afzonderlijke serverinstantie voor elke lokale en externe desktopsessie)</translation>
+    </message>
+    <message>
+        <source>Maximum session count</source>
+        <translation>Maximaal aantal sessies</translation>
+    </message>
+    <message>
+        <source>Network port numbers</source>
+        <translation>Netwerkpoort nummers</translation>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation>Veyon server</translation>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation>Interne VNC server</translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation>Functiebeheerder</translation>
+    </message>
+    <message>
+        <source>Demo server</source>
+        <translation>Demo server</translation>
+    </message>
+    <message>
+        <source>Miscellaneous settings</source>
+        <translation>Diverse instellingen</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
@@ -3700,6 +3760,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Allow connections from localhost only</source>
         <translation>Sta alleen verbindingen van localhost toe</translation>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
+        <translation>Klembordsynchronisatie uitschakelen</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3720,64 +3784,6 @@ Please save your work and close all programs.</source>
     <message>
         <source>Running</source>
         <translation>Gestart</translation>
-    </message>
-    <message>
-        <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
-Typically this is required to support terminal servers.</source>
-        <translation>Het inschakelen van deze optie zorgt ervoor dat de service een serverproces start voor elke interactieve sessie op een computer.
-Dit is meestal nodig om terminalservers te ondersteunen.</translation>
-    </message>
-    <message>
-        <source>Show notification on remote connection</source>
-        <translation>Toon melding bij externe verbinding</translation>
-    </message>
-    <message>
-        <source>Show notification when an unauthorized access is blocked</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Maximum session count</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Network port numbers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Veyon server</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Internal VNC server</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Feature manager</source>
-        <translation>Functiebeheerder</translation>
-    </message>
-    <message>
-        <source>Demo server</source>
-        <translation>Demo server</translation>
-    </message>
-    <message>
-        <source>Miscellaneous network settings</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Session mode</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Local session mode (single server instance for primary local session)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3858,7 +3864,7 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon CLI</source>
-        <translation type="unfinished"/>
+        <translation>Interactieve shell en uitvoering van scripts voor Veyon CLI</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -3869,34 +3875,38 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>Vorige</translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation type="unfinished"/>
+        <translation>Start/pauze</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished"/>
+        <translation>Volgende</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"/>
+        <translation>Duur:</translation>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation>Voeg computers toe door met de middelste muisknop te klikken of door op de eerste knop hieronder te klikken.</translation>
+    </message>
+    <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Voeg geselecteerde computers toe</translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Verwijder geselecteerde computers</translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"/>
+        <translation>Computers in realtime bijwerken</translation>
     </message>
     <message>
         <source>Spotlight</source>
@@ -3904,15 +3914,11 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation type="unfinished"/>
+        <translation>Selecteer ten minste één computer om toe te voegen.</translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation type="unfinished"/>
+        <translation>Selecteer ten minste één computer om te verwijderen.</translation>
     </message>
 </context>
 <context>
@@ -3923,7 +3929,7 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Naam:</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
@@ -3931,15 +3937,15 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     </message>
     <message>
         <source>Remember and add to application menu</source>
-        <translation type="unfinished"/>
+        <translation>Onthouden en toevoegen aan applicatiemenu</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation type="unfinished"/>
+        <translation>bijv. VLC</translation>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
-        <translation type="unfinished"/>
+        <translation>Voer de applicaties in die moeten worden gestart op de geselecteerde computers. Je kunt meerdere applicaties van elkaar scheiden door een regel.</translation>
     </message>
 </context>
 <context>
@@ -3964,11 +3970,11 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     <name>TestingCommandLinePlugin</name>
     <message>
         <source>Test internal Veyon components and functions</source>
-        <translation type="unfinished"/>
+        <translation>Interne Veyon componenten en functies testen</translation>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Commando&apos;s voor het testen van interne componenten en functies van Veyon</translation>
     </message>
 </context>
 <context>
@@ -4004,32 +4010,32 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
 <context>
     <name>UltraVncConfigurationWidget</name>
     <message>
-        <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>Inschakelen capturing van gelaagde (semi-transparante) schermen</translation>
+        <source>Builtin UltraVNC server configuration</source>
+        <translation>Ingebouwde UltraVNC server configuratie</translation>
     </message>
     <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Start het volledige scherm (laat dit standaard ingeschakeld)</translation>
+        <source>Maximum CPU usage</source>
+        <translation>Maximaal CPU-gebruik</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
         <translation>Lage nauwkeurigheid (turbo-modus)</translation>
     </message>
     <message>
-        <source>Builtin UltraVNC server configuration</source>
-        <translation>Ingebouwde UltraVNC server configuratie</translation>
-    </message>
-    <message>
-        <source>Enable multi monitor support</source>
-        <translation>Ondersteuning voor meerdere monitors inschakelen</translation>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>Start het volledige scherm (laat dit standaard ingeschakeld)</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>Bureaublad Duplicatie Engine inschakelen op Windows 8 en nieuwer</translation>
     </message>
     <message>
-        <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
+        <source>Enable multi monitor support</source>
+        <translation>Ondersteuning voor meerdere monitors inschakelen</translation>
+    </message>
+    <message>
+        <source>Enable capturing of layered (semi-transparent) windows</source>
+        <translation>Inschakelen capturing van gelaagde (semi-transparante) schermen</translation>
     </message>
 </context>
 <context>
@@ -4051,7 +4057,7 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Voer een gebruikersnaam en wachtwoord in om automatisch in te loggen op alle computers.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -4066,35 +4072,35 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"/>
+        <translation>Log in</translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Klik op deze knop om een specifieke gebruiker op alle computers aan te melden.</translation>
     </message>
     <message>
         <source>Log off</source>
-        <translation type="unfinished"/>
+        <translation>Afmelden</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Klik op deze knop om gebruikers van alle computers uit te loggen.</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation type="unfinished"/>
+        <translation>Bevestig uitloggen gebruiker</translation>
+    </message>
+    <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation>Wilt u echt &lt;b&gt;ALLE&lt;/b&gt; gebruikers afmelden?</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>Wil je echt de geselecteerde gebruikers afmelden?</translation>
     </message>
     <message>
         <source>User session control</source>
         <translation>Gebruikers sessie controle</translation>
-    </message>
-    <message>
-        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4112,10 +4118,6 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
         <translation>Ongeldig commando!</translation>
     </message>
     <message>
-        <source>Available commands:</source>
-        <translation>Beschikbare commando&apos;s:</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>Ongeldige argumenten gegeven</translation>
     </message>
@@ -4124,8 +4126,16 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
         <translation>Niet genoeg argumenten opgegeven - gebruik &quot;%1 help&quot; voor meer informatie</translation>
     </message>
     <message>
+        <source>Plugin not licensed</source>
+        <translation>Plugin niet gelicentieerd</translation>
+    </message>
+    <message>
         <source>Unknown result!</source>
         <translation>Onbekend resultaat!</translation>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation>Beschikbare commando&apos;s:</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -4136,12 +4146,12 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
         <translation>Geen module opgegeven of module niet gevonden - beschikbare modules zijn:</translation>
     </message>
     <message>
-        <source>Plugin not licensed</source>
-        <translation>Plugin niet gelicentieerd</translation>
-    </message>
-    <message>
         <source>INFO</source>
         <translation>INFO</translation>
+    </message>
+    <message>
+        <source>WARNING</source>
+        <translation>WAARSCHUWING</translation>
     </message>
     <message>
         <source>ERROR</source>
@@ -4160,12 +4170,8 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
         <translation>VOORBEELDEN</translation>
     </message>
     <message>
-        <source>WARNING</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Screen %1</source>
-        <translation type="unfinished"/>
+        <translation>Scherm %1</translation>
     </message>
 </context>
 <context>
@@ -4179,7 +4185,7 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     <name>WebApiConfigurationPage</name>
     <message>
         <source>Web API</source>
-        <translation type="unfinished"/>
+        <translation>Web API</translation>
     </message>
     <message>
         <source>General</source>
@@ -4191,19 +4197,19 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     </message>
     <message>
         <source>Enable WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>WebAPI-server inschakelen</translation>
     </message>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"/>
+        <translation>Verbindingsinstellingen</translation>
     </message>
     <message>
         <source>Lifetime</source>
-        <translation type="unfinished"/>
+        <translation>Levenslang</translation>
     </message>
     <message>
         <source> h</source>
-        <translation type="unfinished"/>
+        <translation> h</translation>
     </message>
     <message>
         <source> s</source>
@@ -4211,27 +4217,27 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     </message>
     <message>
         <source>Idle timeout</source>
-        <translation type="unfinished"/>
+        <translation>Time-out inactief</translation>
     </message>
     <message>
         <source>Authentication timeout</source>
-        <translation type="unfinished"/>
+        <translation>Time-out authenticatie</translation>
     </message>
     <message>
         <source>Maximum number of open connections</source>
-        <translation type="unfinished"/>
+        <translation>Maximum aantal open verbindingen</translation>
     </message>
     <message>
         <source>Connection encryption</source>
-        <translation type="unfinished"/>
+        <translation>Verbindingsversleuteling</translation>
     </message>
     <message>
         <source>TLS certificate file</source>
-        <translation type="unfinished"/>
+        <translation>TLS-certificaatbestand</translation>
     </message>
     <message>
         <source>TLS private key file</source>
-        <translation type="unfinished"/>
+        <translation>TLS privé sleutelbestand</translation>
     </message>
     <message>
         <source>...</source>
@@ -4239,30 +4245,30 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     </message>
     <message>
         <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
-        <translation type="unfinished"/>
+        <translation>Gebruik HTTPS met TLS 1.3 in plaats van HTTP</translation>
     </message>
 </context>
 <context>
     <name>WebApiPlugin</name>
     <message>
         <source>Run WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>WebAPI-server uitvoeren</translation>
     </message>
     <message>
         <source>Failed to start WebAPI server at port %1</source>
-        <translation type="unfinished"/>
+        <translation>WebAPI-server op poort %1 is niet gestart</translation>
     </message>
     <message>
         <source>WebAPI server running at port %1</source>
-        <translation type="unfinished"/>
+        <translation>WebAPI-server draait op poort %1</translation>
     </message>
     <message>
         <source>Provide access to a computer via HTTP</source>
-        <translation type="unfinished"/>
+        <translation>Toegang verlenen tot een computer via HTTP</translation>
     </message>
     <message>
         <source>Commands for running the WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>Commando&apos;s om de WebAPI-server uit te voeren</translation>
     </message>
 </context>
 <context>
@@ -4276,7 +4282,7 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>Windows</translation>
     </message>
     <message>
         <source>General</source>
@@ -4287,28 +4293,12 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
         <translation>Zet SAS generatie door software aan (Ctrl + Alt + Del)</translation>
     </message>
     <message>
-        <source>Screen lock</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Hide taskbar</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Hide start menu</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Hide desktop</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>User authentication</source>
         <translation>Gebruikersverificatie</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation type="unfinished"/>
+        <translation>Gebruik alternatief authenticatiemechanisme voor gebruikers</translation>
     </message>
     <message>
         <source>User login</source>
@@ -4316,65 +4306,81 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation type="unfinished"/>
+        <translation>Ingangsvertraging</translation>
     </message>
     <message>
         <source>Simulated key presses interval</source>
-        <translation type="unfinished"/>
+        <translation>Interval gesimuleerde toetsaanslagen</translation>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation type="unfinished"/>
+        <translation>Bevestig wettelijke kennisgeving (bericht dat wordt weergegeven voordat de gebruiker inlogt)</translation>
+    </message>
+    <message>
+        <source>Screen lock</source>
+        <translation>Schermvergrendeling</translation>
+    </message>
+    <message>
+        <source>Hide taskbar</source>
+        <translation>Verberg taakbalk</translation>
+    </message>
+    <message>
+        <source>Hide start menu</source>
+        <translation>Verberg startmenu</translation>
+    </message>
+    <message>
+        <source>Hide desktop</source>
+        <translation>Verberg bureaublad</translation>
     </message>
     <message>
         <source>Use input device interception driver</source>
-        <translation type="unfinished"/>
+        <translation>Gebruik het stuurprogramma voor het onderscheppen van invoerapparaten</translation>
     </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
-        <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation>Uitvoering plugin abstracte functies voor Windows</translation>
+        <source>Internal display</source>
+        <translation>Intern scherm</translation>
     </message>
     <message>
-        <source>Internal display</source>
-        <translation type="unfinished"/>
+        <source>Plugin implementing abstract functions for the Windows platform</source>
+        <translation>Uitvoering plugin abstracte functies voor Windows</translation>
     </message>
 </context>
 <context>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
+        <translation>De service &quot;%1&quot; is al geïnstalleerd.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>De service &quot;%1&quot; kon niet worden geïnstalleerd (fout %2).</translation>
     </message>
     <message>
         <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>Kon de storing acties config niet wijzigen voor service &quot;%1&quot; (fout %2).</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
+        <translation>De service &quot;%1&quot; is met succes geïnstalleerd.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>De service &quot;%1&quot; kon niet worden verwijderd (fout %2).</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation>De service &quot;%1&quot; is met succes verwijderd.</translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>Het starttype van de service &quot;%1&quot; kon niet worden gewijzigd (fout %2).</translation>
+    </message>
+    <message>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation>Service &quot;%1&quot; kon niet worden gevonden.</translation>
     </message>
 </context>
 <context>

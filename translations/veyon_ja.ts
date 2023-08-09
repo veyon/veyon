@@ -2,24 +2,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About</source>
-        <translation>詳細</translation>
-    </message>
-    <message>
-        <source>Translation</source>
-        <translation>翻訳</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation>ライセンス</translation>
-    </message>
-    <message>
         <source>About Veyon</source>
         <translation>Veyonについて</translation>
     </message>
     <message>
-        <source>Contributors</source>
-        <translation>貢献者</translation>
+        <source>About</source>
+        <translation>詳細</translation>
     </message>
     <message>
         <source>Version:</source>
@@ -30,6 +18,18 @@
         <translation>ウェブサイト:</translation>
     </message>
     <message>
+        <source>Support Veyon project with a donation</source>
+        <translation>寄付してVeyonプロジェクトを支援する</translation>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation>貢献者</translation>
+    </message>
+    <message>
+        <source>Translation</source>
+        <translation>翻訳</translation>
+    </message>
+    <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
@@ -38,12 +38,12 @@ If you&apos;re interested in translating Veyon into your local or another langua
 この言語への翻訳や既存の翻訳の改善に興味がある方はVeyonの開発者に連絡してください。</translation>
     </message>
     <message>
-        <source>About %1 %2</source>
-        <translation>%1 %2について</translation>
+        <source>License</source>
+        <translation>ライセンス</translation>
     </message>
     <message>
-        <source>Support Veyon project with a donation</source>
-        <translation>寄付してVeyonプロジェクトを支援する</translation>
+        <source>About %1 %2</source>
+        <translation>%1 %2について</translation>
     </message>
 </context>
 <context>
@@ -53,8 +53,12 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>コンピューターアクセスコントロール</translation>
     </message>
     <message>
-        <source>Grant access to every authenticated user (default)</source>
-        <translation>すべての認証されたユーザーにアクセスを許可（デフォルト）</translation>
+        <source>Restrict access to members of specific user groups</source>
+        <translation>特定のグループのメンバーのアクセスを制限する</translation>
+    </message>
+    <message>
+        <source>User groups backend:</source>
+        <translation>ユーザーグループのバックエンド</translation>
     </message>
     <message>
         <source>Test</source>
@@ -63,6 +67,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Process access control rules</source>
         <translation>アクセスコントロールのルールを処理</translation>
+    </message>
+    <message>
+        <source>Grant access to every authenticated user (default)</source>
+        <translation>すべての認証されたユーザーにアクセスを許可（デフォルト）</translation>
+    </message>
+    <message>
+        <source>Enable usage of domain groups</source>
+        <translation>ドメイングループの使用を有効にする</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -85,6 +97,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>アクセスコントロールルール</translation>
     </message>
     <message>
+        <source>Move selected rule up</source>
+        <translation>選択したルールを上げる</translation>
+    </message>
+    <message>
+        <source>Edit selected rule</source>
+        <translation>選択したルールを編集</translation>
+    </message>
+    <message>
         <source>Add access control rule</source>
         <translation>アクセスコントロールルールを追加</translation>
     </message>
@@ -97,12 +117,13 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>選択したルールを下げる</translation>
     </message>
     <message>
-        <source>Move selected rule up</source>
-        <translation>選択したルールを上げる</translation>
+        <source>Missing user groups backend</source>
+        <translation>ユーザーグループのバックエンドが不明</translation>
     </message>
     <message>
-        <source>Edit selected rule</source>
-        <translation>選択したルールを編集</translation>
+        <source>No default user groups plugin was found. Please check your installation!</source>
+        <translation>ユーザーグループのプラグインが見つかりませんでした。
+インストール状況を確認してください!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -127,27 +148,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
         <translation>このユーザーは設定によりコンピューターへのアクセスが拒否されました。</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>ドメイングループの使用を有効にする</translation>
-    </message>
-    <message>
-        <source>User groups backend:</source>
-        <translation>ユーザーグループのバックエンド</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>ユーザーグループのバックエンドが不明</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>ユーザーグループのプラグインが見つかりませんでした。
-インストール状況を確認してください!</translation>
-    </message>
-    <message>
-        <source>Restrict access to members of specific user groups</source>
-        <translation>特定のグループのメンバーのアクセスを制限する</translation>
     </message>
 </context>
 <context>
@@ -181,6 +181,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>反転する</translation>
     </message>
     <message>
+        <source>Always process rule and ignore conditions</source>
+        <translation>常にルールを有効にし、コンディションを無視する</translation>
+    </message>
+    <message>
         <source>Conditions</source>
         <translation>コンディション</translation>
     </message>
@@ -189,8 +193,28 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>はグループのメンバーです</translation>
     </message>
     <message>
+        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
+        <translation>もし1つ以上のコンディションが有効にされている場合、ルールが有効になるようそれぞれのコンディションを調整する必要があります。もし複数のコンディションを使用したい場合複数のコントロールルールを作ってください。</translation>
+    </message>
+    <message>
+        <source>Accessing computer and local computer are at the same location</source>
+        <translation>アクセスしているコンピューターとローカルコンピューターが同じ場所にあります</translation>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>ログインユーザーなし</translation>
+    </message>
+    <message>
+        <source>is located at</source>
+        <translation>の場所</translation>
+    </message>
+    <message>
         <source>Accessing computer is localhost</source>
         <translation>アクセスしているコンピューターはローカルホストです</translation>
+    </message>
+    <message>
+        <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <translation>アクセスしているユーザーは1つかそれ以上のグループにローカルユーザーと共通で所属しています</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
@@ -199,10 +223,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Accessing user is already connected</source>
         <translation>アクセスしているユーザーは既に接続されています</translation>
-    </message>
-    <message>
-        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>もし1つ以上のコンディションが有効にされている場合、ルールが有効になるようそれぞれのコンディションを調整する必要があります。もし複数のコンディションを使用したい場合複数のコントロールルールを作ってください。</translation>
     </message>
     <message>
         <source>Action</source>
@@ -239,26 +259,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Local computer</source>
         <translation>ローカルコンピューター</translation>
-    </message>
-    <message>
-        <source>Always process rule and ignore conditions</source>
-        <translation>常にルールを有効にし、コンディションを無視する</translation>
-    </message>
-    <message>
-        <source>No user logged on</source>
-        <translation>ログインユーザーなし</translation>
-    </message>
-    <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>アクセスしているユーザーは1つかそれ以上のグループにローカルユーザーと共通で所属しています</translation>
-    </message>
-    <message>
-        <source>Accessing computer and local computer are at the same location</source>
-        <translation>アクセスしているコンピューターとローカルコンピューターが同じ場所にあります</translation>
-    </message>
-    <message>
-        <source>is located at</source>
-        <translation>の場所</translation>
     </message>
 </context>
 <context>
@@ -323,6 +323,26 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>紹介</translation>
     </message>
     <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>キーファイル認証を設定するために以下の手順を追ってください</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1.マスターPCで認証キーを作成</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2.他のコンピューターへのアクセスを許可するメンバーのグループを設定</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3.パブリックキーをエクスポートし、すべてのクライアントPCに同じ名前でインポートしてください。</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>詳細は&lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon管理者マニュアル&lt;/a&gt;を確認してください。</translation>
+    </message>
+    <message>
         <source>Key file directories</source>
         <translation>キーファイルの場所:</translation>
     </message>
@@ -337,6 +357,16 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Available authentication keys</source>
         <translation>使用可能な認証キー</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>1つの認証キーのペアは、プライベートキーとパブリックキーの2つの暗号キーで構成されています。
+プライベートキーを使用すると、マスターコンピューターのユーザーがクライアントPCにアクセスすることができます。
+許可されたユーザーのみがプライベートキーを読む権限があるようにしてください。
+パブリックキーはクライアントPCが他からのアクセス要求を認証するために使用します。</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -393,36 +423,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>アクセスグループに設定するキーを選択してください!</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>キーファイル認証を設定するために以下の手順を追ってください</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1.マスターPCで認証キーを作成</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2.他のコンピューターへのアクセスを許可するメンバーのグループを設定</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3.パブリックキーをエクスポートし、すべてのクライアントPCに同じ名前でインポートしてください。</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>詳細は&lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon管理者マニュアル&lt;/a&gt;を確認してください。</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>1つの認証キーのペアは、プライベートキーとパブリックキーの2つの暗号キーで構成されています。
-プライベートキーを使用すると、マスターコンピューターのユーザーがクライアントPCにアクセスすることができます。
-許可されたユーザーのみがプライベートキーを読む権限があるようにしてください。
-パブリックキーはクライアントPCが他からのアクセス要求を認証するために使用します。</translation>
     </message>
 </context>
 <context>
@@ -591,20 +591,24 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ユーザーグループをキーにアクセス可能にする</translation>
     </message>
     <message>
-        <source>KEY</source>
-        <translation>キー</translation>
-    </message>
-    <message>
-        <source>ACCESS GROUP</source>
-        <translation>アクセスグループ</translation>
-    </message>
-    <message>
-        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation>このコマンドはファイルのアクセス権限を、ユーザーグループ&lt;ACCESS GROUP&gt;がアクセスできるよう、&lt;KEY&gt;に設定します。</translation>
+        <source>Please specify the command to display help for.</source>
+        <translation>ヘルプを表示するコマンドを指定してください。</translation>
     </message>
     <message>
         <source>NAME</source>
         <translation>名前</translation>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
+        <translation>このコマンドは&lt;NAME&gt;という名前で認証キーペアを作成し、設定されたキーの保存ディレクトリーに保存されます。このパラメーターは文字だけを含む名前である必要があります。</translation>
+    </message>
+    <message>
+        <source>KEY</source>
+        <translation>キー</translation>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
+        <translation>このコマンドは認証キー&lt;KEY&gt;を設定されたーディレクトリーから削除します。一度削除したキーは復元できないことに注意してください。</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -615,12 +619,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>このコマンドは認証キー&lt;KEY&gt;を&lt;FILE&gt;にエクスポートします。&lt;FILE&gt;が指定されていない場合、&lt;KEY&gt;の名前とタイプから新しい名前が作成されます。</translation>
     </message>
     <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
+        <translation>このコマンドはプライベートキー&lt;KEY&gt;からパブリックキーを作成し、対応するパブリックキーとして保存します。別のマスターPCを設定する際はプライベートキーを転送すると便利です。パブリックキーが作成されます。</translation>
+    </message>
+    <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
         <translation>このコマンドは認証キー&lt;KEY&gt;を&lt;FILE&gt;からインポートします。&lt;FILE&gt;が指定されていない場合、&lt;KEY&gt;の名前とタイプから新しい名前が作成されます。</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
         <translation>このコマンドは設定されたキーディレクトリーにあるすべての有効な認証キーを一覧にします。&quot;%1&quot;が指定されていれば、キーの詳細が表で表示されます。キーにアクセス権限が無いなどキーにアクセスできなかった場合、いくつかの詳細が表示されない場合があります。</translation>
+    </message>
+    <message>
+        <source>ACCESS GROUP</source>
+        <translation>アクセスグループ</translation>
+    </message>
+    <message>
+        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
+        <translation>このコマンドはファイルのアクセス権限を、ユーザーグループ&lt;ACCESS GROUP&gt;がアクセスできるよう、&lt;KEY&gt;に設定します。</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>指定されたコマンドが存在しないか、そのコマンドに対するヘルプがありません。</translation>
+    </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation>第一引数にキー名（例：&quot;teacher/public&quot;）を指定してください。</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -637,30 +661,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Commands for managing authentication keys</source>
         <translation>認証キーを管理するコマンド</translation>
-    </message>
-    <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation>このコマンドは&lt;NAME&gt;という名前で認証キーペアを作成し、設定されたキーの保存ディレクトリーに保存されます。このパラメーターは文字だけを含む名前である必要があります。</translation>
-    </message>
-    <message>
-        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation>このコマンドは認証キー&lt;KEY&gt;を設定されたーディレクトリーから削除します。一度削除したキーは復元できないことに注意してください。</translation>
-    </message>
-    <message>
-        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation>このコマンドはプライベートキー&lt;KEY&gt;からパブリックキーを作成し、対応するパブリックキーとして保存します。別のマスターPCを設定する際はプライベートキーを転送すると便利です。パブリックキーが作成されます。</translation>
-    </message>
-    <message>
-        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation>第一引数にキー名（例：&quot;teacher/public&quot;）を指定してください。</translation>
-    </message>
-    <message>
-        <source>Please specify the command to display help for.</source>
-        <translation>ヘルプを表示するコマンドを指定してください。</translation>
-    </message>
-    <message>
-        <source>The specified command does not exist or no help is available for it.</source>
-        <translation>指定されたコマンドが存在しないか、そのコマンドに対するヘルプがありません。</translation>
     </message>
 </context>
 <context>
@@ -685,8 +685,28 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
+        <source>Locations &amp; computers</source>
+        <translation>場所＆コンピューター</translation>
+    </message>
+    <message>
+        <source>Builtin directory</source>
+        <translation>ビルドインディクショナリー</translation>
+    </message>
+    <message>
         <source>Computers</source>
         <translation>コンピューター</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>場所</translation>
+    </message>
+    <message>
+        <source>Add new computer</source>
+        <translation>新しいコンピューターを追加</translation>
+    </message>
+    <message>
+        <source>Remove selected computer</source>
+        <translation>選択したコンピューターを削除</translation>
     </message>
     <message>
         <source>Name</source>
@@ -699,30 +719,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>MAC address</source>
         <translation>MACアドレス</translation>
-    </message>
-    <message>
-        <source>Add new computer</source>
-        <translation>新しいコンピューターを追加</translation>
-    </message>
-    <message>
-        <source>Remove selected computer</source>
-        <translation>選択したコンピューターを削除</translation>
-    </message>
-    <message>
-        <source>New computer</source>
-        <translation>新しいコンピューター</translation>
-    </message>
-    <message>
-        <source>Builtin directory</source>
-        <translation>ビルドインディクショナリー</translation>
-    </message>
-    <message>
-        <source>Locations &amp; computers</source>
-        <translation>場所＆コンピューター</translation>
-    </message>
-    <message>
-        <source>Locations</source>
-        <translation>場所</translation>
     </message>
     <message>
         <source>Add new location</source>
@@ -740,112 +736,16 @@ The public key is used on client computers to authenticate incoming connection r
         <source>New location</source>
         <translation>新しい場所</translation>
     </message>
+    <message>
+        <source>New computer</source>
+        <translation>新しいコンピューター</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
         <translation>指定したコマンドのヘルプを表示</translation>
-    </message>
-    <message>
-        <source>Import objects from given file</source>
-        <translation>ファイルからオブジェクトを追加</translation>
-    </message>
-    <message>
-        <source>Export objects to given file</source>
-        <translation>ファイルへオブジェクトをエクスポート</translation>
-    </message>
-    <message>
-        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>無効なタイプが指定されました。有効な値は&quot;%1&quot; か &quot;%2&quot;です。</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>タイプ</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>名前</translation>
-    </message>
-    <message>
-        <source>Host address</source>
-        <translation>ホストアドレス</translation>
-    </message>
-    <message>
-        <source>MAC address</source>
-        <translation>MACアドレス</translation>
-    </message>
-    <message>
-        <source>Specified object not found.</source>
-        <translation>指定したオブジェクトが見つかりませんでした。</translation>
-    </message>
-    <message>
-        <source>File &quot;%1&quot; does not exist!</source>
-        <translation>ファイル&quot;%1&quot;が存在しません!</translation>
-    </message>
-    <message>
-        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation>&quot;%1&quot;の読み込みに失敗</translation>
-    </message>
-    <message>
-        <source>Unknown argument &quot;%1&quot;.</source>
-        <translation>不明な因数&quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation>コンピューター&quot;%1&quot;（ホストアドレス:&quot;%2&quot; MACアドレス:&quot;%3&quot;）</translation>
-    </message>
-    <message>
-        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation>未分類のオブジェクト&quot;%1&quot;、ID&quot;%2&quot;</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>なし</translation>
-    </message>
-    <message>
-        <source>Computer</source>
-        <translation>コンピューター</translation>
-    </message>
-    <message>
-        <source>Root</source>
-        <translation>ルート</translation>
-    </message>
-    <message>
-        <source>Invalid</source>
-        <translation>無効</translation>
-    </message>
-    <message>
-        <source>Error while parsing line %1.</source>
-        <translation>&quot;%1&quot;の解析中にエラーが発生しました。</translation>
-    </message>
-    <message>
-        <source>Network object directory which stores objects in local configuration</source>
-        <translation>ローカル設定でオブジェクトを保管するネットワークオブジェクトの保存先</translation>
-    </message>
-    <message>
-        <source>Commands for managing the builtin network object directory</source>
-        <translation>ビルドインのネットワークオブジェクト保存先を管理するためのコマンド</translation>
-    </message>
-    <message>
-        <source>No format string or regular expression specified!</source>
-        <translation>ストリングや一般の表現が指定されていません。</translation>
-    </message>
-    <message>
-        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation>&quot;%1&quot;に書き込むことができませんでした。</translation>
-    </message>
-    <message>
-        <source>No format string specified!</source>
-        <translation>フォーマットが指定されていません!</translation>
-    </message>
-    <message>
-        <source>Object UUID</source>
-        <translation>オブジェクトUUID</translation>
-    </message>
-    <message>
-        <source>Parent UUID</source>
-        <translation>ペアレントUUID</translation>
     </message>
     <message>
         <source>Add a location or computer</source>
@@ -868,16 +768,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>場所かコンピューターを削除</translation>
     </message>
     <message>
-        <source>Location &quot;%1&quot;</source>
-        <translation>場所&quot;%1&quot;</translation>
+        <source>Import objects from given file</source>
+        <translation>ファイルからオブジェクトを追加</translation>
     </message>
     <message>
-        <source>Builtin (computers and locations in local configuration)</source>
-        <translation>ビルドイン（ローカル設定内のコンピューターと場所）</translation>
-    </message>
-    <message>
-        <source>Location</source>
-        <translation>場所</translation>
+        <source>Export objects to given file</source>
+        <translation>ファイルへオブジェクトをエクスポート</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -936,6 +832,14 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>名前</translation>
     </message>
     <message>
+        <source>HOST ADDRESS</source>
+        <translation>ホストアドレス</translation>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>MACアドレス</translation>
+    </message>
+    <message>
         <source>PARENT</source>
         <translation>親</translation>
     </message>
@@ -968,24 +872,120 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>UUIDを指定してオブジェクトを削除</translation>
     </message>
     <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>指定されたコマンドが存在しないか、そのコマンドに対するヘルプがありません。</translation>
+    </message>
+    <message>
+        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
+        <translation>無効なタイプが指定されました。有効な値は&quot;%1&quot; か &quot;%2&quot;です。</translation>
+    </message>
+    <message>
+        <source>Object UUID</source>
+        <translation>オブジェクトUUID</translation>
+    </message>
+    <message>
+        <source>Parent UUID</source>
+        <translation>ペアレントUUID</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>タイプ</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>名前</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>ホストアドレス</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MACアドレス</translation>
+    </message>
+    <message>
+        <source>Specified object not found.</source>
+        <translation>指定したオブジェクトが見つかりませんでした。</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not exist!</source>
+        <translation>ファイル&quot;%1&quot;が存在しません!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
+        <translation>&quot;%1&quot;の読み込みに失敗</translation>
+    </message>
+    <message>
+        <source>Unknown argument &quot;%1&quot;.</source>
+        <translation>不明な因数&quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>No format string or regular expression specified!</source>
+        <translation>ストリングや一般の表現が指定されていません。</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
+        <translation>&quot;%1&quot;に書き込むことができませんでした。</translation>
+    </message>
+    <message>
+        <source>No format string specified!</source>
+        <translation>フォーマットが指定されていません!</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot;</source>
+        <translation>場所&quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
+        <translation>コンピューター&quot;%1&quot;（ホストアドレス:&quot;%2&quot; MACアドレス:&quot;%3&quot;）</translation>
+    </message>
+    <message>
+        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
+        <translation>未分類のオブジェクト&quot;%1&quot;、ID&quot;%2&quot;</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>なし</translation>
+    </message>
+    <message>
+        <source>Invalid</source>
+        <translation>無効</translation>
+    </message>
+    <message>
+        <source>Error while parsing line %1.</source>
+        <translation>&quot;%1&quot;の解析中にエラーが発生しました。</translation>
+    </message>
+    <message>
+        <source>Network object directory which stores objects in local configuration</source>
+        <translation>ローカル設定でオブジェクトを保管するネットワークオブジェクトの保存先</translation>
+    </message>
+    <message>
+        <source>Builtin (computers and locations in local configuration)</source>
+        <translation>ビルドイン（ローカル設定内のコンピューターと場所）</translation>
+    </message>
+    <message>
+        <source>Commands for managing the builtin network object directory</source>
+        <translation>ビルドインのネットワークオブジェクト保存先を管理するためのコマンド</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>場所</translation>
+    </message>
+    <message>
+        <source>Computer</source>
+        <translation>コンピューター</translation>
+    </message>
+    <message>
+        <source>Root</source>
+        <translation>ルート</translation>
+    </message>
+    <message>
         <source>&quot;Room 01&quot;</source>
         <translation>&quot;ルーム01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;コンピューター01&quot;</translation>
-    </message>
-    <message>
-        <source>HOST ADDRESS</source>
-        <translation>ホストアドレス</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>MACアドレス</translation>
-    </message>
-    <message>
-        <source>The specified command does not exist or no help is available for it.</source>
-        <translation>指定されたコマンドが存在しないか、そのコマンドに対するヘルプがありません。</translation>
     </message>
 </context>
 <context>
@@ -1005,12 +1005,28 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>ComputerControlListModel</name>
     <message>
+        <source>Name: %1</source>
+        <translation>名前: %1</translation>
+    </message>
+    <message>
+        <source>Location: %1</source>
+        <translation>場所: %1</translation>
+    </message>
+    <message>
         <source>Host/IP address: %1</source>
         <translation>ホスト/IPアドレス: %1</translation>
     </message>
     <message>
+        <source>invalid</source>
+        <translation>無効</translation>
+    </message>
+    <message>
         <source>Active features: %1</source>
         <translation>アクティブな機能: %1</translation>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation>[ユーザー無し]</translation>
     </message>
     <message>
         <source>Online and connected</source>
@@ -1023,6 +1039,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Computer offline or switched off</source>
         <translation>コンピューターがオフライン、または電源OFF</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation>Veyonサーバーに到達できないか動作していない</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
@@ -1041,26 +1061,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ログインしたユーザー: %1</translation>
     </message>
     <message>
-        <source>Location: %1</source>
-        <translation>場所: %1</translation>
-    </message>
-    <message>
-        <source>Veyon Server unreachable or not running</source>
-        <translation>Veyonサーバーに到達できないか動作していない</translation>
-    </message>
-    <message>
-        <source>[no user]</source>
-        <translation>[ユーザー無し]</translation>
-    </message>
-    <message>
-        <source>invalid</source>
-        <translation>無効</translation>
-    </message>
-    <message>
-        <source>Name: %1</source>
-        <translation>名前: %1</translation>
-    </message>
-    <message>
         <source>[none]</source>
         <translation>[なし]</translation>
     </message>
@@ -1068,12 +1068,12 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>ComputerControlServer</name>
     <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Authentication error</source>
         <translation>認証エラー</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
+        <translation>ホスト&quot;%2&quot;のユーザー&quot;%1&quot;がこのコンピューターにアクセスしようとしましたが、正常に認証できませんでした。</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -1084,16 +1084,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>現在ホスト&quot;%2&quot;のユーザー&quot;%1&quot;がこのコンピューターにアクセスしています。</translation>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation>ホスト&quot;%2&quot;のユーザー&quot;%1&quot;がこのコンピューターにアクセスしようとしましたが、正常に認証できませんでした。</translation>
-    </message>
-    <message>
         <source>Access control error</source>
         <translation>アクセスコントロールエラー</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation>ホスト&quot;%2&quot;のユーザー&quot;%1&quot;がこのコンピューターにアクセスしようとしましたが、アクセスコントロール設定によりブロックされました。</translation>
+    </message>
+    <message>
+        <source>%1 Service %2 at %3:%4</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1107,6 +1107,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ユーザー</translation>
     </message>
     <message>
+        <source>Logged in since</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Missing network object directory plugin</source>
         <translation>ネットワークオブジェクトプラグインが見つかりません</translation>
     </message>
@@ -1115,20 +1119,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>既定のネットワーク オブジェクト ディレクトリ プラグインが見つかりませんでした。インストールを確認するか、%1 Configurator で別のネットワーク オブジェクト ディレクトリ バックエンドを構成してください。 </translation>
     </message>
     <message>
-        <source>Location detection failed</source>
-        <translation>場所の検出に失敗</translation>
-    </message>
-    <message>
         <source>Computer name;Hostname;User</source>
         <translation>コンピュータ名;ホスト名;ユーザー</translation>
-    </message>
-    <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation>このコンピューターの場所を特定できませんでした。これは、システム構成に問題があることを示しています。 代わりに、すべての場所がコンピューターの選択パネルに表示されます。</translation>
-    </message>
-    <message>
-        <source>Logged in since</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 days</source>
@@ -1138,9 +1130,21 @@ The public key is used on client computers to authenticate incoming connection r
         <source>1 day</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Location detection failed</source>
+        <translation>場所の検出に失敗</translation>
+    </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
+        <translation>このコンピューターの場所を特定できませんでした。これは、システム構成に問題があることを示しています。 代わりに、すべての場所がコンピューターの選択パネルに表示されます。</translation>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
+    <message>
+        <source>Search computers</source>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>Add location</source>
         <translation>場所を追加</translation>
@@ -1164,10 +1168,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>コンピュータとユーザのリストを %1 に書き込めません! ファイルのアクセス許可を確認してください。</translation>
-    </message>
-    <message>
-        <source>Search computers</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1260,11 +1260,11 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Configuration is not writable. Please check your permissions!</source>
+        <source>Could not apply platform-specific configuration settings.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not apply platform-specific configuration settings.</source>
+        <source>Configuration is not writable. Please check your permissions!</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1286,32 +1286,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>チューニング</translation>
     </message>
     <message>
-        <source> ms</source>
-        <translation> ms</translation>
-    </message>
-    <message>
-        <source>Key frame interval</source>
-        <translation>キーフレーム間隔</translation>
-    </message>
-    <message>
-        <source>Memory limit</source>
-        <translation>メモリ制限</translation>
-    </message>
-    <message>
-        <source> MB</source>
-        <translation>MB</translation>
+        <source> s</source>
+        <translation> s</translation>
     </message>
     <message>
         <source>Update interval</source>
         <translation>更新間隔</translation>
     </message>
     <message>
-        <source> s</source>
-        <translation> s</translation>
+        <source> MB</source>
+        <translation>MB</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>デモの実行中はサムネイルの更新を遅くする</translation>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation>メモリ制限</translation>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation>キーフレーム間隔</translation>
     </message>
     <message>
         <source>Bandwidth limit</source>
@@ -1325,24 +1325,12 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Stop demo</source>
-        <translation>デモ停止</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>ウィンドウデモ</translation>
-    </message>
-    <message>
-        <source>Give a demonstration by screen broadcasting</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation>このモードでは、このPCの画面が全てのコンピューターの画面にウィンドウとして表示されます。全てのユーザーは必要に応じて他のウィンドウに切り替えることができます。</translation>
-    </message>
-    <message>
         <source>Demo</source>
         <translation>デモ</translation>
+    </message>
+    <message>
+        <source>Stop demo</source>
+        <translation>デモ停止</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
@@ -1351,6 +1339,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Full screen demo</source>
         <translation>フルスクリーンデモ</translation>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation>ウィンドウデモ</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
@@ -1363,6 +1355,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Share your own screen in a window</source>
         <translation>自分の画面をウィンドウで共有</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation>このモードでは、このPCの画面が全てのコンピューターの画面にウィンドウとして表示されます。全てのユーザーは必要に応じて他のウィンドウに切り替えることができます。</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
@@ -1392,6 +1388,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>All screens</source>
         <translation>全ての画面</translation>
     </message>
+    <message>
+        <source>Give a demonstration by screen broadcasting</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1404,6 +1404,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>デスクトップアクセスの確認</translation>
     </message>
     <message>
+        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Never for this session</source>
         <translation type="unfinished"/>
     </message>
@@ -1411,37 +1415,9 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Always for this session</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>DesktopServicesConfigurationPage</name>
-    <message>
-        <source>Name</source>
-        <translation>名前</translation>
-    </message>
-    <message>
-        <source>Path</source>
-        <translation>パス</translation>
-    </message>
-    <message>
-        <source>Predefined websites</source>
-        <translation>定義済みWebサイト</translation>
-    </message>
-    <message>
-        <source>Remove selected website</source>
-        <translation>選択したWebサイトを削除</translation>
-    </message>
-    <message>
-        <source>URL</source>
-        <translation>URL</translation>
-    </message>
-    <message>
-        <source>New website</source>
-        <translation>新しいWebサイト</translation>
-    </message>
     <message>
         <source>Applications &amp; websites</source>
         <translation>アプリケーションとWebサイト</translation>
@@ -1449,6 +1425,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Predefined applications</source>
         <translation>定義済みアプリケーション</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>名前</translation>
+    </message>
+    <message>
+        <source>Path</source>
+        <translation>パス</translation>
     </message>
     <message>
         <source>Add new application</source>
@@ -1459,32 +1443,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>選択したアプリケーションを削除</translation>
     </message>
     <message>
+        <source>Predefined websites</source>
+        <translation>定義済みWebサイト</translation>
+    </message>
+    <message>
         <source>Add new website</source>
         <translation>新しいWebサイトを追加</translation>
+    </message>
+    <message>
+        <source>Remove selected website</source>
+        <translation>選択したWebサイトを削除</translation>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New application</source>
         <translation>新しいアプリケーション</translation>
     </message>
+    <message>
+        <source>New website</source>
+        <translation>新しいWebサイト</translation>
+    </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Open website</source>
-        <translation>Webサイトを開く</translation>
-    </message>
-    <message>
-        <source>Click this button to open a website on all computers.</source>
-        <translation>全てのコンピューターでWebサイトを開きます。</translation>
-    </message>
-    <message>
-        <source>Open website &quot;%1&quot;</source>
-        <translation>Webサイト &quot;%1&quot; を開く</translation>
-    </message>
-    <message>
-        <source>Custom website</source>
-        <translation>カスタムWebサイト</translation>
-    </message>
     <message>
         <source>Start application</source>
         <translation>アプリケーションを開始</translation>
@@ -1494,12 +1478,28 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>全てのコンピューターでアプリケーションを起動します</translation>
     </message>
     <message>
+        <source>Open website</source>
+        <translation>Webサイトを開く</translation>
+    </message>
+    <message>
+        <source>Click this button to open a website on all computers.</source>
+        <translation>全てのコンピューターでWebサイトを開きます。</translation>
+    </message>
+    <message>
         <source>Start application &quot;%1&quot;</source>
         <translation>アプリケーション &quot;%1&quot; を開始</translation>
     </message>
     <message>
         <source>Custom application</source>
         <translation>カスタムアプリケーション</translation>
+    </message>
+    <message>
+        <source>Open website &quot;%1&quot;</source>
+        <translation>Webサイト &quot;%1&quot; を開く</translation>
+    </message>
+    <message>
+        <source>Custom website</source>
+        <translation>カスタムWebサイト</translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
@@ -1514,6 +1514,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Room %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>generic-student-user</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1537,20 +1541,16 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>チュートリアルビデオを再生</translation>
     </message>
     <message>
+        <source>Custom application</source>
+        <translation>カスタムアプリケーション</translation>
+    </message>
+    <message>
         <source>Handout</source>
         <translation>配布資料</translation>
     </message>
     <message>
         <source>Texts to read</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>generic-student-user</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Custom application</source>
-        <translation>カスタムアプリケーション</translation>
     </message>
 </context>
 <context>
@@ -1599,6 +1599,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1701,10 +1705,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Commands for controlling features</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -1755,6 +1755,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>オプション</translation>
     </message>
     <message>
+        <source>Overwrite existing files</source>
+        <translation>既存のファイルを上書き</translation>
+    </message>
+    <message>
         <source>Transfer only</source>
         <translation>転送のみ</translation>
     </message>
@@ -1774,10 +1778,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Start</source>
         <translation>開始</translation>
     </message>
-    <message>
-        <source>Overwrite existing files</source>
-        <translation>既存のファイルを上書き</translation>
-    </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
@@ -1794,10 +1794,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>一つ、または複数の配布ファイルを選択</translation>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
-        <translation>コンピューターへファイルを転送</translation>
-    </message>
-    <message>
         <source>Received file &quot;%1&quot;.</source>
         <translation type="unfinished"/>
     </message>
@@ -1809,6 +1805,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Transfer files to remote computer</source>
+        <translation>コンピューターへファイルを転送</translation>
+    </message>
 </context>
 <context>
     <name>GeneralConfigurationPage</name>
@@ -1817,16 +1817,60 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ユーザーインターフェイス</translation>
     </message>
     <message>
-        <source>Language:</source>
-        <translation>言語:</translation>
-    </message>
-    <message>
         <source>Use system language setting</source>
         <translation>システムの言語設定を使用する</translation>
     </message>
     <message>
+        <source>Language:</source>
+        <translation>言語:</translation>
+    </message>
+    <message>
         <source>Veyon</source>
         <translation>Veyon</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>認証</translation>
+    </message>
+    <message>
+        <source>Method:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>ログオン認証</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>キーファイル認証</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>テスト</translation>
+    </message>
+    <message>
+        <source>Network object directory</source>
+        <translation>ネットワーク オブジェクト ディレクトリ</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>バックエンド:</translation>
+    </message>
+    <message>
+        <source>Update interval:</source>
+        <translation>更新間隔:</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation>秒</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -1865,28 +1909,40 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Limit log file size</source>
-        <translation>ログファイルサイズ上限</translation>
+        <source>x</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Clear all log files</source>
-        <translation>すべてのログファイルをクリア</translation>
+        <source>Rotate log files</source>
+        <translation>ログファイルをローテーション</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation>MB</translation>
+    </message>
+    <message>
+        <source>Limit log file size</source>
+        <translation>ログファイルサイズ上限</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
         <translation>ログを標準エラー出力に出力する</translation>
     </message>
     <message>
-        <source>Network object directory</source>
-        <translation>ネットワーク オブジェクト ディレクトリ</translation>
+        <source>Write to logging system of operating system</source>
+        <translation>OSのシステムログに書き込む</translation>
     </message>
     <message>
-        <source>Backend:</source>
-        <translation>バックエンド:</translation>
+        <source>Clear all log files</source>
+        <translation>すべてのログファイルをクリア</translation>
     </message>
     <message>
-        <source>Update interval:</source>
-        <translation>更新間隔:</translation>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>このコンピューターでは認証が正しく設定されています。</translation>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 service</source>
@@ -1913,64 +1969,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source> MB</source>
-        <translation>MB</translation>
-    </message>
-    <message>
-        <source>Rotate log files</source>
-        <translation>ログファイルをローテーション</translation>
-    </message>
-    <message>
-        <source>x</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source> seconds</source>
-        <translation>秒</translation>
-    </message>
-    <message>
-        <source>Write to logging system of operating system</source>
-        <translation>OSのシステムログに書き込む</translation>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation>認証</translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>ログオン認証</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>キーファイル認証</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>テスト</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>このコンピューターでは認証が正しく設定されています。</translation>
-    </message>
-    <message>
-        <source>Authentication keys are not set up properly on this computer.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Authentication test</source>
         <translation>認証テスト</translation>
-    </message>
-    <message>
-        <source>Style:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Native</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2005,18 +2005,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>一般</translation>
     </message>
     <message>
-        <source>LDAP server and port</source>
-        <translation>LDAPサーバとポート</translation>
-    </message>
-    <message>
-        <source>Bind DN</source>
-        <translation>Bind DN</translation>
-    </message>
-    <message>
-        <source>Bind password</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Anonymous bind</source>
         <translation type="unfinished"/>
     </message>
@@ -2025,7 +2013,71 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bind DN</source>
+        <translation>Bind DN</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
+    <message>
+        <source>LDAP server and port</source>
+        <translation>LDAPサーバとポート</translation>
+    </message>
+    <message>
+        <source>Bind password</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection security</source>
+        <translation>接続の安全性</translation>
+    </message>
+    <message>
+        <source>TLS certificate verification</source>
+        <translation>TLS証明書の検証</translation>
+    </message>
+    <message>
+        <source>Encryption protocol</source>
+        <translation>暗号化プロトコル</translation>
+    </message>
+    <message>
+        <source>System defaults</source>
+        <translation>システムの標準</translation>
+    </message>
+    <message>
+        <source>Never (insecure!)</source>
+        <translation>しない（安全ではありません！）</translation>
+    </message>
+    <message>
+        <source>Custom CA certificate file</source>
+        <translation>カスタムCA証明書ファイル</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>なし</translation>
+    </message>
+    <message>
+        <source>TLS</source>
+        <translation>TLS</translation>
+    </message>
+    <message>
+        <source>SSL</source>
+        <translation>SSL</translation>
+    </message>
+    <message>
         <source>Base DN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Discover base DN by naming context</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. namingContexts or defaultNamingContext</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2037,14 +2089,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>例： dc=example,dc=org</translation>
     </message>
     <message>
-        <source>Discover base DN by naming context</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. namingContexts or defaultNamingContext</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Environment settings</source>
         <translation>環境設定</translation>
     </message>
@@ -2053,20 +2097,20 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>(only if different from group tree)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Computer tree</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>e.g. OU=Groups</source>
-        <translation>例：OU=Groups</translation>
+        <source>Perform recursive search operations in object trees</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>User tree</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. OU=Users</source>
-        <translation>例：OU=Users</translation>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
@@ -2077,11 +2121,47 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Perform recursive search operations in object trees</source>
+        <source>Computer group tree</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>e.g. OU=Users</source>
+        <translation>例：OU=Users</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Groups</source>
+        <translation>例：OU=Groups</translation>
+    </message>
+    <message>
         <source>Object attributes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. name or description</source>
+        <translation>例：name または description</translation>
+    </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. room or computerLab</source>
+        <translation>例：room または computerLab</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. member or memberUid</source>
+        <translation>例：member または memberUid</translation>
+    </message>
+    <message>
+        <source>Group member attribute</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2089,24 +2169,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>例：hwAddress</translation>
     </message>
     <message>
-        <source>e.g. member or memberUid</source>
-        <translation>例：member または memberUid</translation>
+        <source>Computer MAC address attribute</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>e.g. dNSHostName</source>
         <translation>例：dNSHostName</translation>
     </message>
     <message>
-        <source>Computer MAC address attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Group member attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>e.g. uid or sAMAccountName</source>
         <translation>例：uid または sAMAccountName</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. cn or displayName</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -2117,7 +2205,19 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Filter for user groups</source>
+        <source>Filter for computer groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. (objectClass=computer)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. (objectClass=group)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. (objectClass=person)</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2125,7 +2225,31 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Filter for computer groups</source>
+        <source>Filter for computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Filter for user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Filter for computer containers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2135,6 +2259,34 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Distinguished name (Samba/AD)</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation>コンピューターの場所の識別</translation>
+    </message>
+    <message>
+        <source>Identify computer locations (e.g. rooms) via:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer containers or OUs</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location attribute in computer objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Integration tests</source>
+        <translation>統合テスト</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -2149,23 +2301,29 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>LDAP connection failed</source>
-        <translation>LDAP接続失敗</translation>
-    </message>
-    <message>
-        <source>LDAP bind failed</source>
-        <translation>LDAPバインド失敗</translation>
-    </message>
-    <message>
-        <source>LDAP bind successful</source>
-        <translation>LDAPバインド成功</translation>
-    </message>
-    <message>
-        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <source>List all entries of a location</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>List all locations</source>
+        <translation>すべての場所をリスト</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation>参照</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>テスト</translation>
+    </message>
+    <message>
         <source>LDAP base DN test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2173,7 +2331,19 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>LDAP naming context test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2195,6 +2365,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>computer tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer group tree</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2230,11 +2404,35 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Enter computer display name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer display name to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Enter computer name</source>
         <translation>コンピューター名を入力</translation>
     </message>
     <message>
-        <source>computer objects</source>
+        <source>Please enter a computer hostname to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>無効なホスト名</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2250,6 +2448,22 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>コンピュータのMACアドレス</translation>
     </message>
     <message>
+        <source>Enter computer location name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of a computer location (wildcards allowed):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>コンピューターの場所</translation>
+    </message>
+    <message>
+        <source>Enter location name</source>
+        <translation>場所の名前を入力</translation>
+    </message>
+    <message>
         <source>users</source>
         <translation type="unfinished"/>
     </message>
@@ -2258,7 +2472,15 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>computer groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer containers</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2274,11 +2496,27 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter hostname</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer hostname whose group memberships to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>groups of computer</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer not found</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2290,11 +2528,61 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>computers</source>
+        <source>Hostname lookup failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of a location whose entries to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Certificate files (*.pem)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation>LDAP接続失敗</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation>LDAPバインド失敗</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation>LDAPバインド成功</translation>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2303,6 +2591,24 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>and</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2329,312 +2635,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>(only if different from group tree)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer group tree</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer group tree</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Filter for computers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. room or computerLab</source>
-        <translation>例：room または computerLab</translation>
-    </message>
-    <message>
-        <source>Integration tests</source>
-        <translation>統合テスト</translation>
-    </message>
-    <message>
-        <source>Computer groups</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>例：name または description</translation>
-    </message>
-    <message>
-        <source>Filter for computer containers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer containers or OUs</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Connection security</source>
-        <translation>接続の安全性</translation>
-    </message>
-    <message>
-        <source>TLS certificate verification</source>
-        <translation>TLS証明書の検証</translation>
-    </message>
-    <message>
-        <source>System defaults</source>
-        <translation>システムの標準</translation>
-    </message>
-    <message>
-        <source>Never (insecure!)</source>
-        <translation>しない（安全ではありません！）</translation>
-    </message>
-    <message>
-        <source>Custom CA certificate file</source>
-        <translation>カスタムCA証明書ファイル</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>なし</translation>
-    </message>
-    <message>
-        <source>TLS</source>
-        <translation>TLS</translation>
-    </message>
-    <message>
-        <source>SSL</source>
-        <translation>SSL</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=computer)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. (objectClass=group)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. (objectClass=person)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Certificate files (*.pem)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Encryption protocol</source>
-        <translation>暗号化プロトコル</translation>
-    </message>
-    <message>
-        <source>Computer location attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer display name attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Location name attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. cn or displayName</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer locations identification</source>
-        <translation>コンピューターの場所の識別</translation>
-    </message>
-    <message>
-        <source>Identify computer locations (e.g. rooms) via:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Location attribute in computer objects</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>List all entries of a location</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>List all locations</source>
-        <translation>すべての場所をリスト</translation>
-    </message>
-    <message>
-        <source>Enter computer display name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter a computer display name to query:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Enter computer location name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer locations</source>
-        <translation>コンピューターの場所</translation>
-    </message>
-    <message>
-        <source>Enter location name</source>
-        <translation>場所の名前を入力</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a location whose entries to query:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>location entries</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>LDAP test failed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
-
-%3</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>and</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>LDAP test successful</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
-
-%3</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Browse</source>
-        <translation>参照</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>テスト</translation>
-    </message>
-    <message>
-        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer hostname attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter a computer hostname to query:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Invalid hostname</source>
-        <translation>無効なホスト名</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Enter hostname</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Hostname lookup failed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>User login name attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer containers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Query options</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Query nested user groups (supported by AD only)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Query timeout</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation> ms</translation>
-    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2649,22 +2649,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Show help about command</source>
         <translation>コマンドに関するヘルプを表示する</translation>
-    </message>
-    <message>
-        <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Basic LDAP/AD support for Veyon</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation>%1 (LDAP/ADからコンピューターとその場所を読み込む)</translation>
-    </message>
-    <message>
-        <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation>%1 (LDAP/ADからユーザーとグループを読み込む)</translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
@@ -2682,6 +2666,22 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Basic LDAP/AD support for Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation>%1 (LDAP/ADからコンピューターとその場所を読み込む)</translation>
+    </message>
+    <message>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation>%1 (LDAP/ADからユーザーとグループを読み込む)</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformConfigurationPage</name>
@@ -2690,19 +2690,11 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Linux</translation>
     </message>
     <message>
-        <source>Custom PAM service for user authentication</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>User authentication</source>
         <translation>ユーザー認証</translation>
     </message>
     <message>
-        <source>User login</source>
-        <translation>ユーザーログイン</translation>
-    </message>
-    <message>
-        <source>Login key sequence</source>
+        <source>Custom PAM service for user authentication</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2711,6 +2703,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation>ユーザーログイン</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2739,87 +2739,23 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>構成</translation>
     </message>
     <message>
-        <source>Show icons only</source>
-        <translation>アイコンのみ表示</translation>
-    </message>
-    <message>
         <source>Disable tooltips</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show icons only</source>
+        <translation>アイコンのみ表示</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <source>MainWindow</source>
-        <translation>メインウィンドウ</translation>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation>ツールバー</translation>
+        <source>Veyon Configurator</source>
+        <translation>Veyon構成</translation>
     </message>
     <message>
         <source>General</source>
         <translation>一般</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>&amp;ファイル</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>&amp;ヘルプ</translation>
-    </message>
-    <message>
-        <source>&amp;Quit</source>
-        <translation>&amp;終了</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
-    </message>
-    <message>
-        <source>L&amp;oad settings from file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
-    </message>
-    <message>
-        <source>About Qt</source>
-        <translation>Qtについて</translation>
-    </message>
-    <message>
-        <source>Authentication impossible</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Configuration not writable</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Load settings from file</source>
-        <translation>設定をファイルから読み込む</translation>
-    </message>
-    <message>
-        <source>Save settings to file</source>
-        <translation>設定をファイルに保存する</translation>
-    </message>
-    <message>
-        <source>Unsaved settings</source>
-        <translation>未保存の設定</translation>
-    </message>
-    <message>
-        <source>There are unsaved settings. Quit anyway?</source>
-        <translation>未保存の設定があります。終了しますか？</translation>
-    </message>
-    <message>
-        <source>Veyon Configurator</source>
-        <translation>Veyon構成</translation>
     </message>
     <message>
         <source>Service</source>
@@ -2834,8 +2770,72 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>アクセスコントロール</translation>
     </message>
     <message>
+        <source>&amp;File</source>
+        <translation>&amp;ファイル</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>&amp;ヘルプ</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation>&amp;表示</translation>
+    </message>
+    <message>
+        <source>&amp;Quit</source>
+        <translation>&amp;終了</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
+    </message>
+    <message>
+        <source>&amp;Save settings to file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save settings to file</source>
+        <translation>設定をファイルに保存する</translation>
+    </message>
+    <message>
+        <source>Ctrl+S</source>
+        <translation>Ctrl+S</translation>
+    </message>
+    <message>
+        <source>L&amp;oad settings from file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
+        <translation>Ctrl+O</translation>
+    </message>
+    <message>
         <source>About Veyon</source>
         <translation>Veyonについて</translation>
+    </message>
+    <message>
+        <source>About Qt</source>
+        <translation>Qtについて</translation>
+    </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation>構成のリセット</translation>
+    </message>
+    <message>
+        <source>&amp;Standard</source>
+        <translation>標準</translation>
+    </message>
+    <message>
+        <source>&amp;Advanced</source>
+        <translation>拡張</translation>
+    </message>
+    <message>
+        <source>MainWindow</source>
+        <translation>メインウィンドウ</translation>
+    </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation>コンピューターアイコンのサイズを自動で調整する</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2846,15 +2846,91 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>詳細</translation>
     </message>
     <message>
+        <source>Search users and computers</source>
+        <translation>ユーザーとコンピューターを検索</translation>
+    </message>
+    <message>
+        <source>Align computers to grid</source>
+        <translation>コンピューターをグリッドに揃える</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
+        <translation>コンピュータの自由配置を使用する</translation>
+    </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation>電源ONのコンピューターのみ表示</translation>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
+        <translation>場所とコンピューター</translation>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation>スクリーンショット</translation>
+    </message>
+    <message>
+        <source>Slideshow</source>
+        <translation>スライドショー</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>スポットライト</translation>
+    </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation>ツールバー</translation>
+    </message>
+    <message>
         <source>%1 Configurator %2</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Load settings from file</source>
+        <translation>設定をファイルから読み込む</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
         <translation>JSON files (*.json)</translation>
     </message>
     <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation>ローカル設定をリセットし、すべての設定をデフォルトに戻して良いですか？</translation>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unsaved settings</source>
+        <translation>未保存の設定</translation>
+    </message>
+    <message>
+        <source>There are unsaved settings. Quit anyway?</source>
+        <translation>未保存の設定があります。終了しますか？</translation>
+    </message>
+    <message>
+        <source>Insufficient privileges</source>
+        <translation>権限が不足</translation>
+    </message>
+    <message>
+        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration not writable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication impossible</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2870,10 +2946,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Screenshots</source>
-        <translation>スクリーンショット</translation>
-    </message>
-    <message>
         <source>Feature active</source>
         <translation type="unfinished"/>
     </message>
@@ -2881,81 +2953,13 @@ The public key is used on client computers to authenticate incoming connection r
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>Reset configuration</source>
-        <translation>構成のリセット</translation>
-    </message>
-    <message>
-        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation>ローカル設定をリセットし、すべての設定をデフォルトに戻して良いですか？</translation>
-    </message>
-    <message>
-        <source>Search users and computers</source>
-        <translation>ユーザーとコンピューターを検索</translation>
-    </message>
-    <message>
-        <source>Align computers to grid</source>
-        <translation>コンピューターをグリッドに揃える</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Insufficient privileges</source>
-        <translation>権限が不足</translation>
-    </message>
-    <message>
-        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Only show powered on computers</source>
-        <translation>電源ONのコンピューターのみ表示</translation>
-    </message>
-    <message>
-        <source>&amp;Save settings to file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&amp;View</source>
-        <translation>&amp;表示</translation>
-    </message>
-    <message>
-        <source>&amp;Standard</source>
-        <translation>標準</translation>
-    </message>
-    <message>
-        <source>&amp;Advanced</source>
-        <translation>拡張</translation>
-    </message>
-    <message>
-        <source>Use custom computer arrangement</source>
-        <translation>コンピュータの自由配置を使用する</translation>
-    </message>
-    <message>
-        <source>Locations &amp;&amp; computers</source>
-        <translation>場所とコンピューター</translation>
-    </message>
-    <message>
-        <source>Slideshow</source>
-        <translation>スライドショー</translation>
-    </message>
-    <message>
-        <source>Spotlight</source>
-        <translation>スポットライト</translation>
-    </message>
-    <message>
-        <source>Adjust size of computer icons automatically</source>
-        <translation>コンピューターアイコンのサイズを自動で調整する</translation>
-    </message>
-    <message>
-        <source>Only show computers with logged on users</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
+    <message>
+        <source>Basic settings</source>
+        <translation>基本設定</translation>
+    </message>
     <message>
         <source>Directories</source>
         <translation>ディレクトリ</translation>
@@ -2965,80 +2969,44 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ユーザー構成</translation>
     </message>
     <message>
-        <source>Feature on computer double click:</source>
-        <translation>コンピューターをダブルクリックした時の機能：</translation>
-    </message>
-    <message>
-        <source>Features</source>
-        <translation>機能</translation>
-    </message>
-    <message>
-        <source>All features</source>
-        <translation>すべての機能</translation>
-    </message>
-    <message>
-        <source>Disabled features</source>
-        <translation>無効な機能</translation>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation>スクリーンショット</translation>
-    </message>
-    <message>
-        <source>&lt;no feature&gt;</source>
-        <translation>機能指定無し</translation>
-    </message>
-    <message>
-        <source>Basic settings</source>
-        <translation>基本設定</translation>
-    </message>
-    <message>
-        <source>Behaviour</source>
-        <translation>動作</translation>
-    </message>
-    <message>
-        <source>Enforce selected mode for client computers</source>
-        <translation>クライアントコンピューターに選択したモードを適用する</translation>
-    </message>
-    <message>
-        <source>Hide local computer</source>
-        <translation>ローカルコンピューターを隠す</translation>
-    </message>
-    <message>
-        <source>Hide computer filter field</source>
-        <translation>&quot;コンピューターを検索&quot;の欄を隠す</translation>
-    </message>
-    <message>
-        <source>Actions such as rebooting or powering down computers</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>User interface</source>
         <translation>ユーザーインターフェイス</translation>
     </message>
     <message>
-        <source>Background color</source>
-        <translation>背景色</translation>
-    </message>
-    <message>
-        <source>Thumbnail update interval</source>
-        <translation>サムネイル更新間隔</translation>
+        <source>Text color</source>
+        <translation>文字色</translation>
     </message>
     <message>
         <source> ms</source>
         <translation> ms</translation>
     </message>
     <message>
-        <source>Program start</source>
-        <translation>起動設定</translation>
+        <source>Background color</source>
+        <translation>背景色</translation>
     </message>
     <message>
-        <source>Modes and features</source>
-        <translation>モードと機能</translation>
+        <source>Thumbnail spacing</source>
+        <translation>サムネイル間隔</translation>
     </message>
     <message>
-        <source>User and computer name</source>
-        <translation>ユーザー名とコンピューター名</translation>
+        <source> px</source>
+        <translation> px</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>自動</translation>
+    </message>
+    <message>
+        <source>Computer thumbnail caption</source>
+        <translation>コンピューターサムネイルの見出し</translation>
+    </message>
+    <message>
+        <source>Computer and user name</source>
+        <translation>コンピューター名とユーザー名</translation>
     </message>
     <message>
         <source>Only user name</source>
@@ -3049,80 +3017,20 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>コンピューター名のみ</translation>
     </message>
     <message>
-        <source>Computer thumbnail caption</source>
-        <translation>コンピューターサムネイルの見出し</translation>
+        <source>User and computer name</source>
+        <translation>ユーザー名とコンピューター名</translation>
     </message>
     <message>
-        <source>Text color</source>
-        <translation>文字色</translation>
+        <source>Thumbnail update interval</source>
+        <translation>サムネイル更新間隔</translation>
     </message>
     <message>
         <source>Sort order</source>
         <translation>ソート順</translation>
     </message>
     <message>
-        <source>Computer and user name</source>
-        <translation>コンピューター名とユーザー名</translation>
-    </message>
-    <message>
-        <source>Computer locations</source>
-        <translation>コンピューターの場所</translation>
-    </message>
-    <message>
-        <source>Show current location only</source>
-        <translation>現在の場所のみを表示</translation>
-    </message>
-    <message>
-        <source>Allow adding hidden locations manually</source>
-        <translation>非表示の場所を手動で追加することを許可する</translation>
-    </message>
-    <message>
-        <source>Hide empty locations</source>
-        <translation>空の場所を隠す</translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation>安全ではない可能性のあるアクションに対する確認ダイアログを表示する</translation>
-    </message>
-    <message>
-        <source>Perform access control</source>
-        <translation>アクセスコントロールの実行</translation>
-    </message>
-    <message>
-        <source>Automatically select current location</source>
-        <translation>自動的に現在の場所を選択する</translation>
-    </message>
-    <message>
-        <source>Automatically open computer select panel</source>
-        <translation>自動的にコンピューター選択パネルを開く</translation>
-    </message>
-    <message>
-        <source>Hide local session</source>
-        <translation>ローカルセッションを隠す</translation>
-    </message>
-    <message>
-        <source> px</source>
-        <translation> px</translation>
-    </message>
-    <message>
-        <source>Thumbnail spacing</source>
-        <translation>サムネイル間隔</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>自動</translation>
-    </message>
-    <message>
         <source>Thumbnail aspect ratio</source>
         <translation>サムネイルアスペクト比</translation>
-    </message>
-    <message>
-        <source>Automatically adjust computer icon size</source>
-        <translation>自動的にコンピューターのアイコンサイズを調整する</translation>
-    </message>
-    <message>
-        <source>Open feature windows on the same screen as the main window</source>
-        <translation>メインウィンドウと同じ画面で機能ウィンドウを開く</translation>
     </message>
     <message>
         <source>Highest</source>
@@ -3145,12 +3053,104 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Remote access image quality</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Image quality in monitoring mode</source>
+        <source>Behaviour</source>
+        <translation>動作</translation>
+    </message>
+    <message>
+        <source>Program start</source>
+        <translation>起動設定</translation>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation>アクセスコントロールの実行</translation>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation>自動的に現在の場所を選択する</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation>自動的にコンピューターのアイコンサイズを調整する</translation>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
+        <translation>自動的にコンピューター選択パネルを開く</translation>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation>コンピューターの場所</translation>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation>現在の場所のみを表示</translation>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation>非表示の場所を手動で追加することを許可する</translation>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation>ローカルコンピューターを隠す</translation>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation>ローカルセッションを隠す</translation>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation>空の場所を隠す</translation>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation>&quot;コンピューターを検索&quot;の欄を隠す</translation>
+    </message>
+    <message>
+        <source>Modes and features</source>
+        <translation>モードと機能</translation>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation>クライアントコンピューターに選択したモードを適用する</translation>
+    </message>
+    <message>
+        <source>Actions such as rebooting or powering down computers</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation>安全ではない可能性のあるアクションに対する確認ダイアログを表示する</translation>
+    </message>
+    <message>
+        <source>Feature on computer double click:</source>
+        <translation>コンピューターをダブルクリックした時の機能：</translation>
+    </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation>メインウィンドウと同じ画面で機能ウィンドウを開く</translation>
+    </message>
+    <message>
+        <source>Features</source>
+        <translation>機能</translation>
+    </message>
+    <message>
+        <source>All features</source>
+        <translation>すべての機能</translation>
+    </message>
+    <message>
+        <source>Disabled features</source>
+        <translation>無効な機能</translation>
+    </message>
+    <message>
+        <source>&lt;no feature&gt;</source>
+        <translation>機能指定無し</translation>
     </message>
 </context>
 <context>
@@ -3158,10 +3158,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Monitoring</source>
         <translation>モニタリング</translation>
-    </message>
-    <message>
-        <source>Builtin monitoring mode</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
@@ -3177,6 +3173,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Query properties of remotely available screens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Builtin monitoring mode</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3217,6 +3217,14 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>PasswordDialog</name>
     <message>
+        <source>Veyon Logon</source>
+        <translation>Veyonログオン</translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation>アクセスするにはユーザー名とパスワードを入力してください。</translation>
+    </message>
+    <message>
         <source>Username</source>
         <translation>ユーザー名</translation>
     </message>
@@ -3225,20 +3233,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>パスワード</translation>
     </message>
     <message>
-        <source>Veyon Logon</source>
-        <translation>Veyonログオン</translation>
-    </message>
-    <message>
         <source>Authentication error</source>
         <translation>認証エラー</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>入力したユーザー名とパスワードでログインに失敗しました。再試行してください!</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
-        <translation>アクセスするにはユーザー名とパスワードを入力してください。</translation>
     </message>
 </context>
 <context>
@@ -3279,6 +3279,10 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>PowerControlFeaturePlugin</name>
     <message>
+        <source>Power on a computer via Wake-on-LAN (WOL)</source>
+        <translation>Wake-on-LAN(WOL)でコンピュータの電源を入れる</translation>
+    </message>
+    <message>
         <source>Power on</source>
         <translation>電源オン</translation>
     </message>
@@ -3303,46 +3307,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>全てのコンピューターの電源をオフにします。各コンピューターの電源を手動でオフにする必要はありません。</translation>
     </message>
     <message>
-        <source>Power on/down or reboot a computer</source>
-        <translation>電源オン・オフ・再起動</translation>
-    </message>
-    <message>
-        <source>Confirm reboot</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Confirm power down</source>
-        <translation>パワーダウンを確認</translation>
-    </message>
-    <message>
-        <source>Do you really want to reboot the selected computers?</source>
-        <translation>選択したコンピューターを再起動して良いですか？</translation>
-    </message>
-    <message>
-        <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>Wake-on-LAN(WOL)でコンピュータの電源を入れる</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>MACアドレス</translation>
-    </message>
-    <message>
-        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>ヘルプを表示するコマンドを指定してください!</translation>
-    </message>
-    <message>
-        <source>Invalid MAC address specified!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Commands for controlling power status of computers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Power down now</source>
         <translation>今すぐ電源オフ</translation>
     </message>
@@ -3359,6 +3323,46 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>タイムアウト後にシャットダウン</translation>
     </message>
     <message>
+        <source>MAC ADDRESS</source>
+        <translation>MACアドレス</translation>
+    </message>
+    <message>
+        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation>ヘルプを表示するコマンドを指定してください!</translation>
+    </message>
+    <message>
+        <source>Confirm reboot</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>全てのコンピューターを再起動しても良いですか？</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot the selected computers?</source>
+        <translation>選択したコンピューターを再起動して良いですか？</translation>
+    </message>
+    <message>
+        <source>Confirm power down</source>
+        <translation>パワーダウンを確認</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>全てのコンピューターをシャットダウンしても良いですか？</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation>選択したコンピューターをシャットダウンしても良いですか？</translation>
+    </message>
+    <message>
+        <source>Invalid MAC address specified!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
         <translation>このコンピューターは遠隔操作でシャットダウンが要求されました。
 コンピューターをシャットダウンして良いですか？</translation>
@@ -3370,16 +3374,12 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation>全てのコンピューターを再起動しても良いですか？</translation>
+        <source>Power on/down or reboot a computer</source>
+        <translation>電源オン・オフ・再起動</translation>
     </message>
     <message>
-        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation>全てのコンピューターをシャットダウンしても良いですか？</translation>
-    </message>
-    <message>
-        <source>Do you really want to power down the selected computers?</source>
-        <translation>選択したコンピューターをシャットダウンしても良いですか？</translation>
+        <source>Commands for controlling power status of computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3420,11 +3420,7 @@ Please save your work and close all programs.</source>
         <translation>リモート操作ウィンドウを開きます</translation>
     </message>
     <message>
-        <source>Remote access</source>
-        <translation>リモートアクセス</translation>
-    </message>
-    <message>
-        <source>Remote view or control a computer</source>
+        <source>Exchange clipboard contents</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3432,11 +3428,15 @@ Please save your work and close all programs.</source>
         <translation>コマンドに関するヘルプを表示する</translation>
     </message>
     <message>
-        <source>Exchange clipboard contents</source>
-        <translation type="unfinished"/>
+        <source>Remote access</source>
+        <translation>リモートアクセス</translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote view or control a computer</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3462,8 +3462,16 @@ Please save your work and close all programs.</source>
         <translation>リモート操作</translation>
     </message>
     <message>
+        <source>Select screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Send shortcut</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>スクリーンショット</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -3471,6 +3479,10 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Exit</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3510,19 +3522,7 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Screenshot</source>
-        <translation>スクリーンショット</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Select screen</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3541,10 +3541,6 @@ Please save your work and close all programs.</source>
         <translation>ロック解除</translation>
     </message>
     <message>
-        <source>Lock screen and input devices of a computer</source>
-        <translation>コンピューターのスクリーンと入力機器をロック</translation>
-    </message>
-    <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>ユーザーの注意をひくためには、このボタンを使用して全てのコンピューターの入力をロック・黒画面を表示し、PCをロックできます。</translation>
     </message>
@@ -3559,6 +3555,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock screen and input devices of a computer</source>
+        <translation>コンピューターのスクリーンと入力機器をロック</translation>
     </message>
 </context>
 <context>
@@ -3649,56 +3649,44 @@ Please save your work and close all programs.</source>
         <translation>一般</translation>
     </message>
     <message>
-        <source>Autostart</source>
-        <translation>自動起動</translation>
+        <source>Show notification when an unauthorized access is blocked</source>
+        <translation>許可されていないアクセスがブロックされた時、通知を表示</translation>
+    </message>
+    <message>
+        <source>Show notification on remote connection</source>
+        <translation>リモート接続時、通知を表示</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
         <translation>通知領域のアイコンを非表示</translation>
     </message>
     <message>
-        <source>Start service</source>
-        <translation>サービスを起動</translation>
-    </message>
-    <message>
-        <source>Stopped</source>
-        <translation>停止</translation>
-    </message>
-    <message>
-        <source>Stop service</source>
-        <translation>サービスを停止</translation>
+        <source>Autostart</source>
+        <translation>自動起動</translation>
     </message>
     <message>
         <source>State:</source>
         <translation>状態: </translation>
     </message>
     <message>
-        <source>Enable firewall exception</source>
-        <translation>ファイアウォールの例外を有効にする</translation>
+        <source>Stopped</source>
+        <translation>停止</translation>
     </message>
     <message>
-        <source>Allow connections from localhost only</source>
-        <translation>localhostからの接続のみ許可</translation>
+        <source>Start service</source>
+        <translation>サービスを起動</translation>
     </message>
     <message>
-        <source>VNC server</source>
-        <translation>VNCサーバー</translation>
+        <source>Stop service</source>
+        <translation>サービスを停止</translation>
     </message>
     <message>
-        <source>Plugin:</source>
-        <translation>プラグイン:</translation>
+        <source>Session mode</source>
+        <translation>セッションモード</translation>
     </message>
     <message>
-        <source>Restart %1 Service</source>
-        <translation>サービス%1を再起動します</translation>
-    </message>
-    <message>
-        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>実行中</translation>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation>ローカルセッションモード（プライマリローカルセッション用の単一サーバーインスタンス）</translation>
     </message>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
@@ -3706,12 +3694,12 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show notification on remote connection</source>
-        <translation>リモート接続時、通知を表示</translation>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation>アクティブセッションモード（アクティブなローカルまたはリモートセッション用の単一サーバーインスタンス）</translation>
     </message>
     <message>
-        <source>Show notification when an unauthorized access is blocked</source>
-        <translation>許可されていないアクセスがブロックされた時、通知を表示</translation>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation>マルチセッションモード（ローカルおよびリモートデスクトップセッションごとに異なるサーバーインスタンス）</translation>
     </message>
     <message>
         <source>Maximum session count</source>
@@ -3738,24 +3726,40 @@ Typically this is required to support terminal servers.</source>
         <translation>デモサーバ</translation>
     </message>
     <message>
-        <source>Miscellaneous network settings</source>
-        <translation>その他のネットワーク設定</translation>
+        <source>Miscellaneous settings</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Session mode</source>
-        <translation>セッションモード</translation>
+        <source>Enable firewall exception</source>
+        <translation>ファイアウォールの例外を有効にする</translation>
     </message>
     <message>
-        <source>Local session mode (single server instance for primary local session)</source>
-        <translation>ローカルセッションモード（プライマリローカルセッション用の単一サーバーインスタンス）</translation>
+        <source>Allow connections from localhost only</source>
+        <translation>localhostからの接続のみ許可</translation>
     </message>
     <message>
-        <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation>アクティブセッションモード（アクティブなローカルまたはリモートセッション用の単一サーバーインスタンス）</translation>
+        <source>Disable clipboard synchronization</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation>マルチセッションモード（ローカルおよびリモートデスクトップセッションごとに異なるサーバーインスタンス）</translation>
+        <source>VNC server</source>
+        <translation>VNCサーバー</translation>
+    </message>
+    <message>
+        <source>Plugin:</source>
+        <translation>プラグイン:</translation>
+    </message>
+    <message>
+        <source>Restart %1 Service</source>
+        <translation>サービス%1を再起動します</translation>
+    </message>
+    <message>
+        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>実行中</translation>
     </message>
 </context>
 <context>
@@ -3865,6 +3869,10 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>SpotlightPanel</name>
     <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation>マウスの中ボタンをクリックするか、下の１つ目のボタンをクリックして、コンピューターを追加します</translation>
+    </message>
+    <message>
         <source>Add selected computers</source>
         <translation>選択したコンピューターを追加</translation>
     </message>
@@ -3887,10 +3895,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Please select at least one computer to remove.</source>
         <translation>削除するコンピューターを少なくとも１台は選択してください</translation>
-    </message>
-    <message>
-        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation>マウスの中ボタンをクリックするか、下の１つ目のボタンをクリックして、コンピューターを追加します</translation>
     </message>
 </context>
 <context>
@@ -3983,32 +3987,32 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>UltraVncConfigurationWidget</name>
     <message>
-        <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>レイヤー（半透明）ウィンドウのキャプチャを可能にする</translation>
+        <source>Builtin UltraVNC server configuration</source>
+        <translation>ビルトインUltraVNCサーバー構成</translation>
     </message>
     <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation>フルスクリーンでポーリング（デフォルトで有効のまま）</translation>
+        <source>Maximum CPU usage</source>
+        <translation>CPUの最大使用率</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
         <translation>低精度（ターボモード）</translation>
     </message>
     <message>
-        <source>Builtin UltraVNC server configuration</source>
-        <translation>ビルトインUltraVNCサーバー構成</translation>
-    </message>
-    <message>
-        <source>Enable multi monitor support</source>
-        <translation>マルチモニターサポートを有効</translation>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>フルスクリーンでポーリング（デフォルトで有効のまま）</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>Windows 8以降でDesktop Duplication Engineを有効化する</translation>
     </message>
     <message>
-        <source>Maximum CPU usage</source>
-        <translation>CPUの最大使用率</translation>
+        <source>Enable multi monitor support</source>
+        <translation>マルチモニターサポートを有効</translation>
+    </message>
+    <message>
+        <source>Enable capturing of layered (semi-transparent) windows</source>
+        <translation>レイヤー（半透明）ウィンドウのキャプチャを可能にする</translation>
     </message>
 </context>
 <context>
@@ -4064,16 +4068,16 @@ Typically this is required to support terminal servers.</source>
         <translation>ユーザーログオフの確認</translation>
     </message>
     <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation>全てのユーザーをログオフしても良いですか？</translation>
+    </message>
+    <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>選択したユーザーをログオフしても良いですか？</translation>
     </message>
     <message>
         <source>User session control</source>
         <translation>ユーザーセッション制御</translation>
-    </message>
-    <message>
-        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation>全てのユーザーをログオフしても良いですか？</translation>
     </message>
 </context>
 <context>
@@ -4091,10 +4095,6 @@ Typically this is required to support terminal servers.</source>
         <translation>無効なコマンドです！</translation>
     </message>
     <message>
-        <source>Available commands:</source>
-        <translation>使用可能なコマンド：</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>無効な引数が指定されました</translation>
     </message>
@@ -4103,8 +4103,16 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Plugin not licensed</source>
+        <translation>プラグインはライセンスされていません</translation>
+    </message>
+    <message>
         <source>Unknown result!</source>
         <translation>不明な結果!</translation>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation>使用可能なコマンド：</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -4115,12 +4123,12 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Plugin not licensed</source>
-        <translation>プラグインはライセンスされていません</translation>
-    </message>
-    <message>
         <source>INFO</source>
         <translation>方</translation>
+    </message>
+    <message>
+        <source>WARNING</source>
+        <translation>警告</translation>
     </message>
     <message>
         <source>ERROR</source>
@@ -4137,10 +4145,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>EXAMPLES</source>
         <translation>例</translation>
-    </message>
-    <message>
-        <source>WARNING</source>
-        <translation>警告</translation>
     </message>
     <message>
         <source>Screen %1</source>
@@ -4266,22 +4270,6 @@ Typically this is required to support terminal servers.</source>
         <translation>ソフトウェアによるSAS生成を有効にする（Ctrl + Alt + Del）</translation>
     </message>
     <message>
-        <source>Screen lock</source>
-        <translation>スクリーンロック</translation>
-    </message>
-    <message>
-        <source>Hide taskbar</source>
-        <translation>タスクバーを隠す</translation>
-    </message>
-    <message>
-        <source>Hide start menu</source>
-        <translation>スタートメニュー隠す</translation>
-    </message>
-    <message>
-        <source>Hide desktop</source>
-        <translation>デスクトップを隠す</translation>
-    </message>
-    <message>
         <source>User authentication</source>
         <translation>ユーザー認証</translation>
     </message>
@@ -4306,6 +4294,22 @@ Typically this is required to support terminal servers.</source>
         <translation>法的通知の確認（メッセージはユーザーがログインする前に表示されます）</translation>
     </message>
     <message>
+        <source>Screen lock</source>
+        <translation>スクリーンロック</translation>
+    </message>
+    <message>
+        <source>Hide taskbar</source>
+        <translation>タスクバーを隠す</translation>
+    </message>
+    <message>
+        <source>Hide start menu</source>
+        <translation>スタートメニュー隠す</translation>
+    </message>
+    <message>
+        <source>Hide desktop</source>
+        <translation>デスクトップを隠す</translation>
+    </message>
+    <message>
         <source>Use input device interception driver</source>
         <translation>入力デバイス遮断ドライバを使用する</translation>
     </message>
@@ -4313,12 +4317,12 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
-        <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation>Windows環境用の抽象関数を実装したプラグイン</translation>
-    </message>
-    <message>
         <source>Internal display</source>
         <translation>内蔵ディスプレイ</translation>
+    </message>
+    <message>
+        <source>Plugin implementing abstract functions for the Windows platform</source>
+        <translation>Windows環境用の抽象関数を実装したプラグイン</translation>
     </message>
 </context>
 <context>
@@ -4326,18 +4330,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Service &quot;%1&quot; could not be found.</source>
-        <translation>サービス &quot;％1&quot;が見つかりませんでした。</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
@@ -4348,12 +4340,24 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation>サービス &quot;％1&quot;が見つかりませんでした。</translation>
     </message>
 </context>
 <context>

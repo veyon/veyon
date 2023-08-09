@@ -2,24 +2,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About</source>
-        <translation>Sobre</translation>
-    </message>
-    <message>
-        <source>Translation</source>
-        <translation>Tradução</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation>Licença</translation>
-    </message>
-    <message>
         <source>About Veyon</source>
         <translation>Sobre o Veyon</translation>
     </message>
     <message>
-        <source>Contributors</source>
-        <translation>Contribuidores</translation>
+        <source>About</source>
+        <translation>Sobre</translation>
     </message>
     <message>
         <source>Version:</source>
@@ -30,6 +18,18 @@
         <translation>Website:</translation>
     </message>
     <message>
+        <source>Support Veyon project with a donation</source>
+        <translation>Apoie o projeto Veyon com uma doação</translation>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation>Contribuidores</translation>
+    </message>
+    <message>
+        <source>Translation</source>
+        <translation>Tradução</translation>
+    </message>
+    <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
@@ -38,12 +38,12 @@ If you&apos;re interested in translating Veyon into your local or another langua
 Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idioma, ou melhorar uma tradução existente, por favor entre em contato com um desenvolvedor Veyon!</translation>
     </message>
     <message>
-        <source>About %1 %2</source>
-        <translation>Sobre %1 %2</translation>
+        <source>License</source>
+        <translation>Licença</translation>
     </message>
     <message>
-        <source>Support Veyon project with a donation</source>
-        <translation>Apoie o projeto Veyon com uma doação</translation>
+        <source>About %1 %2</source>
+        <translation>Sobre %1 %2</translation>
     </message>
 </context>
 <context>
@@ -53,8 +53,12 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
         <translation>Controle de acesso do computador</translation>
     </message>
     <message>
-        <source>Grant access to every authenticated user (default)</source>
-        <translation>Conceder acesso para cada usuário autenticado (padrão)</translation>
+        <source>Restrict access to members of specific user groups</source>
+        <translation>Restringir acesso para membros de determinados grupos</translation>
+    </message>
+    <message>
+        <source>User groups backend:</source>
+        <translation>Back-end dos grupos de usuários:</translation>
     </message>
     <message>
         <source>Test</source>
@@ -63,6 +67,14 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     <message>
         <source>Process access control rules</source>
         <translation>Regras de controle de acesso do processo</translation>
+    </message>
+    <message>
+        <source>Grant access to every authenticated user (default)</source>
+        <translation>Conceder acesso para cada usuário autenticado (padrão)</translation>
+    </message>
+    <message>
+        <source>Enable usage of domain groups</source>
+        <translation>Habilitar o uso de grupos de domínio</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -85,6 +97,14 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
         <translation>Regras de controle de acesso</translation>
     </message>
     <message>
+        <source>Move selected rule up</source>
+        <translation>Mover para cima a regra selecionada</translation>
+    </message>
+    <message>
+        <source>Edit selected rule</source>
+        <translation>Editar a regra selecionada</translation>
+    </message>
+    <message>
         <source>Add access control rule</source>
         <translation>Adicionar regra de controle de acesso</translation>
     </message>
@@ -97,12 +117,12 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
         <translation>Mover para baixo a regra selecionada</translation>
     </message>
     <message>
-        <source>Move selected rule up</source>
-        <translation>Mover para cima a regra selecionada</translation>
+        <source>Missing user groups backend</source>
+        <translation>Sem Back-end dos grupos de usuários:</translation>
     </message>
     <message>
-        <source>Edit selected rule</source>
-        <translation>Editar a regra selecionada</translation>
+        <source>No default user groups plugin was found. Please check your installation!</source>
+        <translation>Nenhum plugin padrão de grupos de usuários foi encontrado. Verifique sua instalação!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -127,26 +147,6 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
         <translation>O usuário especificado não pode acessar computadores com esta configuração.</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Habilitar o uso de grupos de domínio</translation>
-    </message>
-    <message>
-        <source>User groups backend:</source>
-        <translation>Back-end dos grupos de usuários:</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Sem Back-end dos grupos de usuários:</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Nenhum plugin padrão de grupos de usuários foi encontrado. Verifique sua instalação!</translation>
-    </message>
-    <message>
-        <source>Restrict access to members of specific user groups</source>
-        <translation>Restringir acesso para membros de determinados grupos</translation>
     </message>
 </context>
 <context>
@@ -180,6 +180,10 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
         <translation>Inverter todas as condições</translation>
     </message>
     <message>
+        <source>Always process rule and ignore conditions</source>
+        <translation>Sempre processe as regras e ignore as condições</translation>
+    </message>
+    <message>
         <source>Conditions</source>
         <translation>Condições</translation>
     </message>
@@ -188,8 +192,28 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
         <translation>é membro do grupo</translation>
     </message>
     <message>
+        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
+        <translation>Se mais de uma condição for ativada, todas devem ser atendidas para que a regra seja aplicada (E lógico). Se apenas uma das múltiplas condições tiver que ser atendida (OU lógico), crie múltiplas regras de controle de acesso.</translation>
+    </message>
+    <message>
+        <source>Accessing computer and local computer are at the same location</source>
+        <translation>O computador de acesso e o computador local estão no mesmo local</translation>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>Nenhum usuário logado</translation>
+    </message>
+    <message>
+        <source>is located at</source>
+        <translation>está localizado em</translation>
+    </message>
+    <message>
         <source>Accessing computer is localhost</source>
         <translation>O computador acessando é localhost</translation>
+    </message>
+    <message>
+        <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <translation>O acesso ao usuário tem um ou mais grupos em comum com o usuário local (logado)</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
@@ -198,10 +222,6 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     <message>
         <source>Accessing user is already connected</source>
         <translation>O usuário acessando já está conectado</translation>
-    </message>
-    <message>
-        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>Se mais de uma condição for ativada, todas devem ser atendidas para que a regra seja aplicada (E lógico). Se apenas uma das múltiplas condições tiver que ser atendida (OU lógico), crie múltiplas regras de controle de acesso.</translation>
     </message>
     <message>
         <source>Action</source>
@@ -238,26 +258,6 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     <message>
         <source>Local computer</source>
         <translation>Computador local</translation>
-    </message>
-    <message>
-        <source>Always process rule and ignore conditions</source>
-        <translation>Sempre processe as regras e ignore as condições</translation>
-    </message>
-    <message>
-        <source>No user logged on</source>
-        <translation>Nenhum usuário logado</translation>
-    </message>
-    <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>O acesso ao usuário tem um ou mais grupos em comum com o usuário local (logado)</translation>
-    </message>
-    <message>
-        <source>Accessing computer and local computer are at the same location</source>
-        <translation>O computador de acesso e o computador local estão no mesmo local</translation>
-    </message>
-    <message>
-        <source>is located at</source>
-        <translation>está localizado em</translation>
     </message>
 </context>
 <context>
@@ -322,6 +322,26 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
         <translation>Introdução</translation>
     </message>
     <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Por favor, realize os passos a seguir para configurar a autenticação por arquivo chave:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Crie um par de chaves no computador master.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Defina um grupo de acesso, cujos membros devem ter permissão para acessar outros computadores.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Exporte a chave pública e importe ela, com o mesmo nome, nos computadores clientes.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Por favor, consulte o &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Manual de administração do Veyon &lt;/a&gt; para mais informações.</translation>
+    </message>
+    <message>
         <source>Key file directories</source>
         <translation>Diretórios do arquivo chave</translation>
     </message>
@@ -336,6 +356,16 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     <message>
         <source>Available authentication keys</source>
         <translation>Chaves de autenticação disponíveis</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Um par de chaves de autenticação consiste em duas chaves criptografadas, uma chave privada e uma chave pública.
+A chave privada concede acesso ao computador cliente através do computador master.
+É importante que somente usuários autorizados tenham acesso de leitura ao arquivo da chave privada.
+A chave pública é usada no computadores clientes para autenticar as requisições de conexão do computador master.</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -392,36 +422,6 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Selecione uma chave para a atribuir o grupo de acesso!</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Por favor, realize os passos a seguir para configurar a autenticação por arquivo chave:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Crie um par de chaves no computador master.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Defina um grupo de acesso, cujos membros devem ter permissão para acessar outros computadores.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Exporte a chave pública e importe ela, com o mesmo nome, nos computadores clientes.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Por favor, consulte o &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Manual de administração do Veyon &lt;/a&gt; para mais informações.</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Um par de chaves de autenticação consiste em duas chaves criptografadas, uma chave privada e uma chave pública.
-A chave privada concede acesso ao computador cliente através do computador master.
-É importante que somente usuários autorizados tenham acesso de leitura ao arquivo da chave privada.
-A chave pública é usada no computadores clientes para autenticar as requisições de conexão do computador master.</translation>
     </message>
 </context>
 <context>
@@ -590,20 +590,24 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Definir grupo de usuários com permissão para acessar uma chave</translation>
     </message>
     <message>
-        <source>KEY</source>
-        <translation>CHAVE</translation>
-    </message>
-    <message>
-        <source>ACCESS GROUP</source>
-        <translation>GRUPO DE ACESSO</translation>
-    </message>
-    <message>
-        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation>Este comando ajusta as permissões de acesso ao arquivo &lt;KEY&gt; de modo que apenas o grupo de usuários &lt;ACCESS GROUP&gt; tenha acesso de leitura a ele.</translation>
+        <source>Please specify the command to display help for.</source>
+        <translation>Por favor, especifique o comando para o qual quer exibir ajuda.</translation>
     </message>
     <message>
         <source>NAME</source>
         <translation>NOME</translation>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>KEY</source>
+        <translation>CHAVE</translation>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>FILE</source>
@@ -614,12 +618,32 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Este comando exporta a chave de autenticação de &lt;KEY&gt; de &lt;FILE&gt;. Se &lt;FILE&gt; não tiver um nome especificado será atribuído o nome e tipo de &lt;KEY&gt;.</translation>
     </message>
     <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
         <translation>Este comando importa a chave de autenticação de&lt;KEY&gt; de &lt;FILE&gt;. Se &lt;FILE&gt; não tiver um nome especificado será atribuído o nome e tipo de &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
         <translation>Este comando lista todas as chaves de autenticação disponíveis no diretório de chaves configurado. Se a opção &quot;%1&quot; for especificada, uma tabela com detalhes da chave será exibida. Alguns detalhes podem estar faltando se uma chave não estiver acessível. devido à falta de permissões de leitura.</translation>
+    </message>
+    <message>
+        <source>ACCESS GROUP</source>
+        <translation>GRUPO DE ACESSO</translation>
+    </message>
+    <message>
+        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
+        <translation>Este comando ajusta as permissões de acesso ao arquivo &lt;KEY&gt; de modo que apenas o grupo de usuários &lt;ACCESS GROUP&gt; tenha acesso de leitura a ele.</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>O comando especificado não existe ou não possui ajuda disponível.</translation>
+    </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation>Por favor, especifique o nome da chave (ex. &quot;Professor/público&quot;) como primeiro argumento.</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -636,30 +660,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Commands for managing authentication keys</source>
         <translation>Comandos para gerenciar chaves de autenticação</translation>
-    </message>
-    <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation>Por favor, especifique o nome da chave (ex. &quot;Professor/público&quot;) como primeiro argumento.</translation>
-    </message>
-    <message>
-        <source>Please specify the command to display help for.</source>
-        <translation>Por favor, especifique o comando para o qual quer exibir ajuda.</translation>
-    </message>
-    <message>
-        <source>The specified command does not exist or no help is available for it.</source>
-        <translation>O comando especificado não existe ou não possui ajuda disponível.</translation>
     </message>
 </context>
 <context>
@@ -684,8 +684,28 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
+        <source>Locations &amp; computers</source>
+        <translation>Locais e computadores</translation>
+    </message>
+    <message>
+        <source>Builtin directory</source>
+        <translation>Diretório integrado</translation>
+    </message>
+    <message>
         <source>Computers</source>
         <translation>Computadores</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>Locais</translation>
+    </message>
+    <message>
+        <source>Add new computer</source>
+        <translation>Adicionar novo computador</translation>
+    </message>
+    <message>
+        <source>Remove selected computer</source>
+        <translation>Remover computador selecionado</translation>
     </message>
     <message>
         <source>Name</source>
@@ -698,30 +718,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>MAC address</source>
         <translation>Endereço MAC</translation>
-    </message>
-    <message>
-        <source>Add new computer</source>
-        <translation>Adicionar novo computador</translation>
-    </message>
-    <message>
-        <source>Remove selected computer</source>
-        <translation>Remover computador selecionado</translation>
-    </message>
-    <message>
-        <source>New computer</source>
-        <translation>Novo computador</translation>
-    </message>
-    <message>
-        <source>Builtin directory</source>
-        <translation>Diretório integrado</translation>
-    </message>
-    <message>
-        <source>Locations &amp; computers</source>
-        <translation>Locais e computadores</translation>
-    </message>
-    <message>
-        <source>Locations</source>
-        <translation>Locais</translation>
     </message>
     <message>
         <source>Add new location</source>
@@ -739,112 +735,16 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>New location</source>
         <translation>Novo local</translation>
     </message>
+    <message>
+        <source>New computer</source>
+        <translation>Novo computador</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
         <translation>Exibir ajuda para o comando específico</translation>
-    </message>
-    <message>
-        <source>Import objects from given file</source>
-        <translation>Importar objetos de arquivo</translation>
-    </message>
-    <message>
-        <source>Export objects to given file</source>
-        <translation>Exportar objetos para arquivo</translation>
-    </message>
-    <message>
-        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>Tipo inválido especificado. Os valores válidos são &quot;%1&quot; ou &quot;%2&quot;.</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>Tipo</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Nome</translation>
-    </message>
-    <message>
-        <source>Host address</source>
-        <translation>Ip do host</translation>
-    </message>
-    <message>
-        <source>MAC address</source>
-        <translation>Endereço MAC</translation>
-    </message>
-    <message>
-        <source>Specified object not found.</source>
-        <translation>Objeto não encontrado.</translation>
-    </message>
-    <message>
-        <source>File &quot;%1&quot; does not exist!</source>
-        <translation>O arquivo &quot;%1&quot; não existe!</translation>
-    </message>
-    <message>
-        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation>Não é possível abrir o arquivo &quot;%1&quot; para leitura!</translation>
-    </message>
-    <message>
-        <source>Unknown argument &quot;%1&quot;.</source>
-        <translation>Argumento desconhecido &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation>Computador &quot;%1&quot; (endereço do host: &quot;%2&quot; endereço MAC: &quot;%3&quot;)</translation>
-    </message>
-    <message>
-        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation>Objeto não classificado &quot;%1&quot; com ID &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Nenhum</translation>
-    </message>
-    <message>
-        <source>Computer</source>
-        <translation>Computador</translation>
-    </message>
-    <message>
-        <source>Root</source>
-        <translation>Root</translation>
-    </message>
-    <message>
-        <source>Invalid</source>
-        <translation>Inválido</translation>
-    </message>
-    <message>
-        <source>Error while parsing line %1.</source>
-        <translation>Erro ao analisar a linha %1.</translation>
-    </message>
-    <message>
-        <source>Network object directory which stores objects in local configuration</source>
-        <translation>Diretório de objetos de rede que armazena objetos em configuração local</translation>
-    </message>
-    <message>
-        <source>Commands for managing the builtin network object directory</source>
-        <translation>Comandos para gerenciar o diretório interno de objetos de rede</translation>
-    </message>
-    <message>
-        <source>No format string or regular expression specified!</source>
-        <translation>Nenhuma string de formato ou expressão regular especificada!</translation>
-    </message>
-    <message>
-        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>No format string specified!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Object UUID</source>
-        <translation>Objeto UUID</translation>
-    </message>
-    <message>
-        <source>Parent UUID</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add a location or computer</source>
@@ -867,16 +767,12 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Location &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <source>Import objects from given file</source>
+        <translation>Importar objetos de arquivo</translation>
     </message>
     <message>
-        <source>Builtin (computers and locations in local configuration)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Location</source>
-        <translation type="unfinished"/>
+        <source>Export objects to given file</source>
+        <translation>Exportar objetos para arquivo</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -935,6 +831,14 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>NOME</translation>
     </message>
     <message>
+        <source>HOST ADDRESS</source>
+        <translation>Endereço host</translation>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>Endereço MAC</translation>
+    </message>
+    <message>
         <source>PARENT</source>
         <translation type="unfinished"/>
     </message>
@@ -967,24 +871,120 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>O comando especificado não existe ou não possui ajuda disponível.</translation>
+    </message>
+    <message>
+        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
+        <translation>Tipo inválido especificado. Os valores válidos são &quot;%1&quot; ou &quot;%2&quot;.</translation>
+    </message>
+    <message>
+        <source>Object UUID</source>
+        <translation>Objeto UUID</translation>
+    </message>
+    <message>
+        <source>Parent UUID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Tipo</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nome</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Ip do host</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>Endereço MAC</translation>
+    </message>
+    <message>
+        <source>Specified object not found.</source>
+        <translation>Objeto não encontrado.</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not exist!</source>
+        <translation>O arquivo &quot;%1&quot; não existe!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
+        <translation>Não é possível abrir o arquivo &quot;%1&quot; para leitura!</translation>
+    </message>
+    <message>
+        <source>Unknown argument &quot;%1&quot;.</source>
+        <translation>Argumento desconhecido &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>No format string or regular expression specified!</source>
+        <translation>Nenhuma string de formato ou expressão regular especificada!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No format string specified!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
+        <translation>Computador &quot;%1&quot; (endereço do host: &quot;%2&quot; endereço MAC: &quot;%3&quot;)</translation>
+    </message>
+    <message>
+        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
+        <translation>Objeto não classificado &quot;%1&quot; com ID &quot;%2&quot;</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Nenhum</translation>
+    </message>
+    <message>
+        <source>Invalid</source>
+        <translation>Inválido</translation>
+    </message>
+    <message>
+        <source>Error while parsing line %1.</source>
+        <translation>Erro ao analisar a linha %1.</translation>
+    </message>
+    <message>
+        <source>Network object directory which stores objects in local configuration</source>
+        <translation>Diretório de objetos de rede que armazena objetos em configuração local</translation>
+    </message>
+    <message>
+        <source>Builtin (computers and locations in local configuration)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing the builtin network object directory</source>
+        <translation>Comandos para gerenciar o diretório interno de objetos de rede</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer</source>
+        <translation>Computador</translation>
+    </message>
+    <message>
+        <source>Root</source>
+        <translation>Root</translation>
+    </message>
+    <message>
         <source>&quot;Room 01&quot;</source>
         <translation>&quot;Sala 01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;Computador 01&quot;</translation>
-    </message>
-    <message>
-        <source>HOST ADDRESS</source>
-        <translation>Endereço host</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>Endereço MAC</translation>
-    </message>
-    <message>
-        <source>The specified command does not exist or no help is available for it.</source>
-        <translation>O comando especificado não existe ou não possui ajuda disponível.</translation>
     </message>
 </context>
 <context>
@@ -1004,12 +1004,28 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
 <context>
     <name>ComputerControlListModel</name>
     <message>
+        <source>Name: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Host/IP address: %1</source>
         <translation>Servidor/endereço IP: %1</translation>
     </message>
     <message>
+        <source>invalid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Active features: %1</source>
         <translation>Funcionalidades ativas: %1</translation>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Online and connected</source>
@@ -1022,6 +1038,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Computer offline or switched off</source>
         <translation>Computador offline ou desligado</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
@@ -1040,26 +1060,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Usuário logado: %1</translation>
     </message>
     <message>
-        <source>Location: %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>[no user]</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>invalid</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Name: %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>[none]</source>
         <translation type="unfinished"/>
     </message>
@@ -1067,12 +1067,12 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
 <context>
     <name>ComputerControlServer</name>
     <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 Serviço %2 em %3:%4</translation>
-    </message>
-    <message>
         <source>Authentication error</source>
         <translation>Erro de autenticação</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remote access</source>
@@ -1083,16 +1083,16 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Access control error</source>
         <translation>Erro no controle de acesso</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Service %2 at %3:%4</source>
+        <translation>%1 Serviço %2 em %3:%4</translation>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1106,6 +1106,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Usuário</translation>
     </message>
     <message>
+        <source>Logged in since</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Missing network object directory plugin</source>
         <translation>Está faltando o plugin de diretório de objetos de rede</translation>
     </message>
@@ -1114,20 +1118,8 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Nenhum plugin de diretório de objetos de rede padrão foi encontrado. Por favor verifique sua instalação ou configure um backend de diretório de objetos de rede diferente via o Configurador %1.</translation>
     </message>
     <message>
-        <source>Location detection failed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Computer name;Hostname;User</source>
         <translation>Nome do computador;Hostname;Usuário</translation>
-    </message>
-    <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Logged in since</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 days</source>
@@ -1137,9 +1129,21 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>1 day</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Location detection failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
+    <message>
+        <source>Search computers</source>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>Add location</source>
         <translation>Adicionar local</translation>
@@ -1163,10 +1167,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Não foi possível salvar a lista de computadores e usuários em %1! Verifique as permissões de acesso ao arquivo.</translation>
-    </message>
-    <message>
-        <source>Search computers</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1259,12 +1259,12 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Configuration is not writable. Please check your permissions!</source>
-        <translation>A configuração não é gravável. Por favor, verifique suas permissões!</translation>
-    </message>
-    <message>
         <source>Could not apply platform-specific configuration settings.</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration is not writable. Please check your permissions!</source>
+        <translation>A configuração não é gravável. Por favor, verifique suas permissões!</translation>
     </message>
 </context>
 <context>
@@ -1285,32 +1285,32 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Tunables</translation>
     </message>
     <message>
-        <source> ms</source>
-        <translation>ms</translation>
-    </message>
-    <message>
-        <source>Key frame interval</source>
-        <translation>Intervalo de frame da chave</translation>
-    </message>
-    <message>
-        <source>Memory limit</source>
-        <translation>Limite de memória</translation>
-    </message>
-    <message>
-        <source> MB</source>
-        <translation>MB</translation>
+        <source> s</source>
+        <translation>s</translation>
     </message>
     <message>
         <source>Update interval</source>
         <translation>Intervalo de atualização</translation>
     </message>
     <message>
-        <source> s</source>
-        <translation>s</translation>
+        <source> MB</source>
+        <translation>MB</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Diminua a velocidade das atualizações de miniaturas enquanto a demonstração está em execução</translation>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation>Limite de memória</translation>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation>Intervalo de frame da chave</translation>
     </message>
     <message>
         <source>Bandwidth limit</source>
@@ -1324,24 +1324,12 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Stop demo</source>
-        <translation>Parar exibição</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation> Exibir em janela</translation>
-    </message>
-    <message>
-        <source>Give a demonstration by screen broadcasting</source>
-        <translation>Exibir por transmissão de tela</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation>Neste modo a sua tela está sendo exibida em uma janela em todos os computadores. Os usuários podem mudar para outras janelas como necessário.</translation>
-    </message>
-    <message>
         <source>Demo</source>
         <translation>Demonstração</translation>
+    </message>
+    <message>
+        <source>Stop demo</source>
+        <translation>Parar exibição</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
@@ -1350,6 +1338,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Full screen demo</source>
         <translation>Demonstração em tela inteira</translation>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation> Exibir em janela</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
@@ -1362,6 +1354,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Share your own screen in a window</source>
         <translation>Compartilhe sua própria tela em uma janela</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation>Neste modo a sua tela está sendo exibida em uma janela em todos os computadores. Os usuários podem mudar para outras janelas como necessário.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
@@ -1391,6 +1387,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>All screens</source>
         <translation>Todas as telas</translation>
     </message>
+    <message>
+        <source>Give a demonstration by screen broadcasting</source>
+        <translation>Exibir por transmissão de tela</translation>
+    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1403,6 +1403,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Confirmar acesso ao desktop</translation>
     </message>
     <message>
+        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
+        <translation>O usuário %1 no computador %2 deseja acessar o seu desktop. Permitir o acesso?</translation>
+    </message>
+    <message>
         <source>Never for this session</source>
         <translation>Nunca para esta sessão</translation>
     </message>
@@ -1410,37 +1414,9 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>Always for this session</source>
         <translation>Sempre para esta sessão</translation>
     </message>
-    <message>
-        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>O usuário %1 no computador %2 deseja acessar o seu desktop. Permitir o acesso?</translation>
-    </message>
 </context>
 <context>
     <name>DesktopServicesConfigurationPage</name>
-    <message>
-        <source>Name</source>
-        <translation>Nome</translation>
-    </message>
-    <message>
-        <source>Path</source>
-        <translation>Caminho</translation>
-    </message>
-    <message>
-        <source>Predefined websites</source>
-        <translation>Sites predefinidos</translation>
-    </message>
-    <message>
-        <source>Remove selected website</source>
-        <translation>Remover sites selecionados</translation>
-    </message>
-    <message>
-        <source>URL</source>
-        <translation>URL</translation>
-    </message>
-    <message>
-        <source>New website</source>
-        <translation>Novo website</translation>
-    </message>
     <message>
         <source>Applications &amp; websites</source>
         <translation type="unfinished"/>
@@ -1448,6 +1424,14 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Predefined applications</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nome</translation>
+    </message>
+    <message>
+        <source>Path</source>
+        <translation>Caminho</translation>
     </message>
     <message>
         <source>Add new application</source>
@@ -1458,32 +1442,32 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Predefined websites</source>
+        <translation>Sites predefinidos</translation>
+    </message>
+    <message>
         <source>Add new website</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected website</source>
+        <translation>Remover sites selecionados</translation>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New application</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>New website</source>
+        <translation>Novo website</translation>
+    </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Open website</source>
-        <translation>Abrir website</translation>
-    </message>
-    <message>
-        <source>Click this button to open a website on all computers.</source>
-        <translation>Clique neste botão para abrir um website em todos os computadores.</translation>
-    </message>
-    <message>
-        <source>Open website &quot;%1&quot;</source>
-        <translation>Abrir site &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Custom website</source>
-        <translation>Website personalizado</translation>
-    </message>
     <message>
         <source>Start application</source>
         <translation type="unfinished"/>
@@ -1493,12 +1477,28 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Open website</source>
+        <translation>Abrir website</translation>
+    </message>
+    <message>
+        <source>Click this button to open a website on all computers.</source>
+        <translation>Clique neste botão para abrir um website em todos os computadores.</translation>
+    </message>
+    <message>
         <source>Start application &quot;%1&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Custom application</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open website &quot;%1&quot;</source>
+        <translation>Abrir site &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Custom website</source>
+        <translation>Website personalizado</translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
@@ -1514,6 +1514,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Room %1</source>
         <translation>Sala &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
@@ -1536,20 +1540,16 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Iniciar vídeo tutorial</translation>
     </message>
     <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Handout</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Texts to read</source>
         <translation>Textos para ler</translation>
-    </message>
-    <message>
-        <source>generic-student-user</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Custom application</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1598,6 +1598,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1700,10 +1704,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>Commands for controlling features</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -1754,6 +1754,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Opções</translation>
     </message>
     <message>
+        <source>Overwrite existing files</source>
+        <translation>Sobrescrever arquivos existentes</translation>
+    </message>
+    <message>
         <source>Transfer only</source>
         <translation>Apenas transferir</translation>
     </message>
@@ -1773,10 +1777,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>Start</source>
         <translation>Iniciar</translation>
     </message>
-    <message>
-        <source>Overwrite existing files</source>
-        <translation>Sobrescrever arquivos existentes</translation>
-    </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
@@ -1793,10 +1793,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Selecione um ou mais arquivos para transferir</translation>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Transferir arquivos para computador remoto</translation>
-    </message>
-    <message>
         <source>Received file &quot;%1&quot;.</source>
         <translation>Arquivo recebido: &quot;%1&quot;.</translation>
     </message>
@@ -1808,6 +1804,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
         <translation>Não foi possível receber o arquivo &quot;%1&quot; porque ele não pôde ser aberto para gravação!</translation>
     </message>
+    <message>
+        <source>Transfer files to remote computer</source>
+        <translation>Transferir arquivos para computador remoto</translation>
+    </message>
 </context>
 <context>
     <name>GeneralConfigurationPage</name>
@@ -1816,16 +1816,60 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Interface do usuário</translation>
     </message>
     <message>
-        <source>Language:</source>
-        <translation>Idioma:</translation>
-    </message>
-    <message>
         <source>Use system language setting</source>
         <translation>Usar a configuração de idioma do sistema</translation>
     </message>
     <message>
+        <source>Language:</source>
+        <translation>Idioma:</translation>
+    </message>
+    <message>
         <source>Veyon</source>
         <translation>Veyon</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Autenticação</translation>
+    </message>
+    <message>
+        <source>Method:</source>
+        <translation>Método:</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Autenticação de logon</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Autenticação de arquivo de chave</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Teste</translation>
+    </message>
+    <message>
+        <source>Network object directory</source>
+        <translation>Diretório de objetos de rede</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Backend:</translation>
+    </message>
+    <message>
+        <source>Update interval:</source>
+        <translation>Intervalo de atualização:</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation>segundos</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -1864,28 +1908,40 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Mensagens de depuração e tudo o mais</translation>
     </message>
     <message>
-        <source>Limit log file size</source>
-        <translation>Limite do tamanho do arquivo de log</translation>
+        <source>x</source>
+        <translation>x</translation>
     </message>
     <message>
-        <source>Clear all log files</source>
-        <translation>Remover todos os arquivos de log</translation>
+        <source>Rotate log files</source>
+        <translation>Rodar arquivos de log</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation>MB</translation>
+    </message>
+    <message>
+        <source>Limit log file size</source>
+        <translation>Limite do tamanho do arquivo de log</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
         <translation>Log para a saída de erro padrão</translation>
     </message>
     <message>
-        <source>Network object directory</source>
-        <translation>Diretório de objetos de rede</translation>
+        <source>Write to logging system of operating system</source>
+        <translation>Grave no sistema de registro do sistema operacional</translation>
     </message>
     <message>
-        <source>Backend:</source>
-        <translation>Backend:</translation>
+        <source>Clear all log files</source>
+        <translation>Remover todos os arquivos de log</translation>
     </message>
     <message>
-        <source>Update interval:</source>
-        <translation>Intervalo de atualização:</translation>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>A autenticação está configurada corretamente neste computador.</translation>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 service</source>
@@ -1912,64 +1968,8 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Não foi possível remover todos os arquivos de log.</translation>
     </message>
     <message>
-        <source> MB</source>
-        <translation>MB</translation>
-    </message>
-    <message>
-        <source>Rotate log files</source>
-        <translation>Rodar arquivos de log</translation>
-    </message>
-    <message>
-        <source>x</source>
-        <translation>x</translation>
-    </message>
-    <message>
-        <source> seconds</source>
-        <translation>segundos</translation>
-    </message>
-    <message>
-        <source>Write to logging system of operating system</source>
-        <translation>Grave no sistema de registro do sistema operacional</translation>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation>Autenticação</translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation>Método:</translation>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>Autenticação de logon</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Autenticação de arquivo de chave</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Teste</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>A autenticação está configurada corretamente neste computador.</translation>
-    </message>
-    <message>
-        <source>Authentication keys are not set up properly on this computer.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Authentication test</source>
         <translation>Teste de autenticação</translation>
-    </message>
-    <message>
-        <source>Style:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Native</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2004,18 +2004,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Geral</translation>
     </message>
     <message>
-        <source>LDAP server and port</source>
-        <translation>Servidor LDAP e porta</translation>
-    </message>
-    <message>
-        <source>Bind DN</source>
-        <translation>Bind DN</translation>
-    </message>
-    <message>
-        <source>Bind password</source>
-        <translation>Senha bind</translation>
-    </message>
-    <message>
         <source>Anonymous bind</source>
         <translation>Bind anônimo</translation>
     </message>
@@ -2024,16 +2012,64 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Utilizar credenciais de bind</translation>
     </message>
     <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bind DN</source>
+        <translation>Bind DN</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>ms</translation>
+    </message>
+    <message>
+        <source>LDAP server and port</source>
+        <translation>Servidor LDAP e porta</translation>
+    </message>
+    <message>
+        <source>Bind password</source>
+        <translation>Senha bind</translation>
+    </message>
+    <message>
+        <source>Connection security</source>
+        <translation>Segurança da conexão</translation>
+    </message>
+    <message>
+        <source>TLS certificate verification</source>
+        <translation>Verificação de certificado TLS</translation>
+    </message>
+    <message>
+        <source>Encryption protocol</source>
+        <translation>Protocolo de encriptação</translation>
+    </message>
+    <message>
+        <source>System defaults</source>
+        <translation>Padrões do sistems</translation>
+    </message>
+    <message>
+        <source>Never (insecure!)</source>
+        <translation>Nunca (inseguro!)</translation>
+    </message>
+    <message>
+        <source>Custom CA certificate file</source>
+        <translation>Arquivo personalizado de certificado CA</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Nenhum</translation>
+    </message>
+    <message>
+        <source>TLS</source>
+        <translation>TLS</translation>
+    </message>
+    <message>
+        <source>SSL</source>
+        <translation>SSL</translation>
+    </message>
+    <message>
         <source>Base DN</source>
         <translation>Base DN</translation>
-    </message>
-    <message>
-        <source>Fixed base DN</source>
-        <translation>Base DN fixo</translation>
-    </message>
-    <message>
-        <source>e.g. dc=example,dc=org</source>
-        <translation>e.g. dc=exemplo,dc=org</translation>
     </message>
     <message>
         <source>Discover base DN by naming context</source>
@@ -2044,6 +2080,14 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>e.g. namingContexts ou defaultNamingContext</translation>
     </message>
     <message>
+        <source>Fixed base DN</source>
+        <translation>Base DN fixo</translation>
+    </message>
+    <message>
+        <source>e.g. dc=example,dc=org</source>
+        <translation>e.g. dc=exemplo,dc=org</translation>
+    </message>
+    <message>
         <source>Environment settings</source>
         <translation>Configurações de ambiente</translation>
     </message>
@@ -2052,20 +2096,20 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Árvores de objeto</translation>
     </message>
     <message>
+        <source>(only if different from group tree)</source>
+        <translation>(apenas se for diferente da árvore de grupo)</translation>
+    </message>
+    <message>
         <source>Computer tree</source>
         <translation>Árvore de computador</translation>
     </message>
     <message>
-        <source>e.g. OU=Groups</source>
-        <translation>e.g. OU=Grupos</translation>
+        <source>Perform recursive search operations in object trees</source>
+        <translation>Executar operações de pesquisa recursivas em árvores de objeto</translation>
     </message>
     <message>
         <source>User tree</source>
         <translation>Árvore de usuário</translation>
-    </message>
-    <message>
-        <source>e.g. OU=Users</source>
-        <translation>e.g. OU=Usuários</translation>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
@@ -2076,36 +2120,80 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Árvore de grupo</translation>
     </message>
     <message>
-        <source>Perform recursive search operations in object trees</source>
-        <translation>Executar operações de pesquisa recursivas em árvores de objeto</translation>
+        <source>Computer group tree</source>
+        <translation>Árvore de grupos de computador</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Users</source>
+        <translation>e.g. OU=Usuários</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Groups</source>
+        <translation>e.g. OU=Grupos</translation>
     </message>
     <message>
         <source>Object attributes</source>
         <translation>Atributos de objeto</translation>
     </message>
     <message>
-        <source>e.g. hwAddress</source>
-        <translation>e.g. hwAddress</translation>
+        <source>e.g. name or description</source>
+        <translation>e.g. nome ou descrição</translation>
+    </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. room or computerLab</source>
+        <translation>e.g. sala ou salaDeComputador</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation>Atributo de nome de login do usuário</translation>
+    </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>Atributo de nome de localização do computador</translation>
     </message>
     <message>
         <source>e.g. member or memberUid</source>
         <translation>e.g. member ou memberUid</translation>
     </message>
     <message>
-        <source>e.g. dNSHostName</source>
-        <translation>e.g. dNSHostName</translation>
+        <source>Group member attribute</source>
+        <translation>Atributo de membro do grupo</translation>
+    </message>
+    <message>
+        <source>e.g. hwAddress</source>
+        <translation>e.g. hwAddress</translation>
     </message>
     <message>
         <source>Computer MAC address attribute</source>
         <translation>Atributo de endereço MAC do computador</translation>
     </message>
     <message>
-        <source>Group member attribute</source>
-        <translation>Atributo de membro do grupo</translation>
+        <source>e.g. dNSHostName</source>
+        <translation>e.g. dNSHostName</translation>
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
         <translation>e.g. uid ou sAMAccountName</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>Atributo de nome de exibição do computador</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>Atributo de hostname do computador</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>Atributo de nome de localização</translation>
+    </message>
+    <message>
+        <source>e.g. cn or displayName</source>
+        <translation>Ex.: cn ou displayName</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -2116,16 +2204,52 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Filtros de objeto opcionais</translation>
     </message>
     <message>
-        <source>Filter for user groups</source>
-        <translation>FIltro para grupos de usuários</translation>
+        <source>Filter for computer groups</source>
+        <translation>Filtro para grupos de computador</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=computer)</source>
+        <translation>ex.: (objectClass=computer)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=group)</source>
+        <translation>ex.: (objectClass=group)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=person)</source>
+        <translation>ex.: (objectClass=person)</translation>
     </message>
     <message>
         <source>Filter for users</source>
         <translation>FIltro para usuários</translation>
     </message>
     <message>
-        <source>Filter for computer groups</source>
-        <translation>Filtro para grupos de computador</translation>
+        <source>Filter for computers</source>
+        <translation>Filtro para computadores</translation>
+    </message>
+    <message>
+        <source>Filter for user groups</source>
+        <translation>FIltro para grupos de usuários</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
+        <translation>ex.: (objectClass=room) or (objectClass=computerLab)</translation>
+    </message>
+    <message>
+        <source>Filter for computer containers</source>
+        <translation>Filtro para contêineres de computador</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
+        <translation>ex.: (objectClass=container) ou (objectClass=organizationalUnit)</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Group member identification</source>
@@ -2134,6 +2258,34 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Distinguished name (Samba/AD)</source>
         <translation>Nome distinto (Samba/AD)</translation>
+    </message>
+    <message>
+        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation>Identificação de localização do computador</translation>
+    </message>
+    <message>
+        <source>Identify computer locations (e.g. rooms) via:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation>Grupos de computadores</translation>
+    </message>
+    <message>
+        <source>Computer containers or OUs</source>
+        <translation>Contêineres de computador ou OUs</translation>
+    </message>
+    <message>
+        <source>Location attribute in computer objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Integration tests</source>
+        <translation>Testes de integração</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -2148,32 +2300,50 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Obter objeto de computador pelo endereço IP</translation>
     </message>
     <message>
-        <source>LDAP connection failed</source>
-        <translation>Falha na conexão LDAP</translation>
+        <source>List all entries of a location</source>
+        <translation>Lista todas as entradas de um local</translation>
     </message>
     <message>
-        <source>LDAP bind failed</source>
-        <translation>Falha no bind de LDAP</translation>
+        <source>List all locations</source>
+        <translation>Liste todos os locais</translation>
     </message>
     <message>
-        <source>LDAP bind successful</source>
-        <translation>Bind de LDAP bem sucedido</translation>
+        <source>Browse</source>
+        <translation>Pesquisar</translation>
     </message>
     <message>
-        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation>Conexão com o servidor LDAP foi feita com sucesso e foi executado um bind de LDAP. As configurações LDAP básicas estão configuradas corretamente.</translation>
+        <source>Test</source>
+        <translation>Teste</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
         <translation>Falha no teste de base DN LDAP</translation>
     </message>
     <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>LDAP base DN test successful</source>
         <translation>Teste de base DN LDAP bem sucedido</translation>
     </message>
     <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>LDAP naming context test failed</source>
         <translation>Falha no teste de contexto de nomeação LDAP </translation>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
@@ -2196,6 +2366,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>computer tree</source>
         <translation>árvore de computador</translation>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation>árvore de grupos de computador</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -2230,12 +2404,36 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Não foi possível encontrar um grupo com o nome &quot;%1&quot;. Por favor verifique o nome do grupo ou o parâmetro de árvore.</translation>
     </message>
     <message>
-        <source>Enter computer name</source>
-        <translation>Digite o nome do computador</translation>
+        <source>Enter computer display name</source>
+        <translation>Insira o nome de exibição do computador</translation>
+    </message>
+    <message>
+        <source>Please enter a computer display name to query:</source>
+        <translation>Insira um nome de exibição do computador para consultar:</translation>
     </message>
     <message>
         <source>computer objects</source>
         <translation>objetos do computador</translation>
+    </message>
+    <message>
+        <source>Enter computer name</source>
+        <translation>Digite o nome do computador</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>Hostname inválido</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation>Você configurou nomes de host de computador para serem armazenados como nomes de domínio totalmente qualificados (FQDN), mas inseriu um nome de host sem domínio.</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation>Você configurou nomes de host de computador para serem armazenados como nomes de host simples sem um nome de domínio, mas inseriu um nome de host com uma parte do nome de domínio.</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
@@ -2250,6 +2448,22 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>endereços MAC dos computadores</translation>
     </message>
     <message>
+        <source>Enter computer location name</source>
+        <translation>Insira o nome do local do computador</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer location (wildcards allowed):</source>
+        <translation>Insira o nome de um local de computador (caracteres curinga permitidos):</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>localizações de computador</translation>
+    </message>
+    <message>
+        <source>Enter location name</source>
+        <translation>Insira o nome do local</translation>
+    </message>
+    <message>
         <source>users</source>
         <translation>usuários</translation>
     </message>
@@ -2258,8 +2472,16 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>grupos de usuários</translation>
     </message>
     <message>
+        <source>computers</source>
+        <translation>computadores</translation>
+    </message>
+    <message>
         <source>computer groups</source>
         <translation>grupos de computadores</translation>
+    </message>
+    <message>
+        <source>computer containers</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
@@ -2274,12 +2496,28 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Usuário não encontrado</translation>
     </message>
     <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation>Não foi possível encontrar um usuário com o nome &quot;%1&quot;. Verifique o nome de usuário ou o parâmetro da árvore do usuário.</translation>
+    </message>
+    <message>
+        <source>Enter hostname</source>
+        <translation>Insira o nome do host</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname whose group memberships to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>groups of computer</source>
         <translation>grupos do computador</translation>
     </message>
     <message>
         <source>Computer not found</source>
         <translation>Computador não encontrado</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation>Não foi possível encontrar um computador com o nome de host &quot;%1&quot;. Verifique o nome do host ou o parâmetro da árvore do computador.</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2290,12 +2528,62 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Por favor digite um endereço de IP que deve ser resolvido para um objeto:</translation>
     </message>
     <message>
-        <source>computers</source>
-        <translation>computadores</translation>
+        <source>Hostname lookup failed</source>
+        <translation>A pesquisa de nome de host falhou</translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation>Não foi possível pesquisar o nome do host para o endereço IP &quot;%1&quot;. Verifique as configurações do servidor DNS.</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a location whose entries to query:</source>
+        <translation>Insira o nome de um local cujas entradas deseja consultar:</translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Certificate files (*.pem)</source>
+        <translation>Arquivos de certificados (*.pem)</translation>
+    </message>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation>Falha na conexão LDAP</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation>Falha no bind de LDAP</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation>Bind de LDAP bem sucedido</translation>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <translation>Conexão com o servidor LDAP foi feita com sucesso e foi executado um bind de LDAP. As configurações LDAP básicas estão configuradas corretamente.</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
         <translation>Falha no teste LDAP %1</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
@@ -2304,6 +2592,24 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
         <translation>O %1 foi consultado com sucesso e %2 entradas foram encontradas.</translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>Teste LDAP falhou.</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>and</source>
+        <translation>e</translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>Teste LDAP bem sucedido</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
@@ -2333,312 +2639,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 foram consultados com sucesso usando o filtro configurado.</translation>
     </message>
-    <message>
-        <source>(only if different from group tree)</source>
-        <translation>(apenas se for diferente da árvore de grupo)</translation>
-    </message>
-    <message>
-        <source>Computer group tree</source>
-        <translation>Árvore de grupos de computador</translation>
-    </message>
-    <message>
-        <source>computer group tree</source>
-        <translation>árvore de grupos de computador</translation>
-    </message>
-    <message>
-        <source>Filter for computers</source>
-        <translation>Filtro para computadores</translation>
-    </message>
-    <message>
-        <source>e.g. room or computerLab</source>
-        <translation>e.g. sala ou salaDeComputador</translation>
-    </message>
-    <message>
-        <source>Integration tests</source>
-        <translation>Testes de integração</translation>
-    </message>
-    <message>
-        <source>Computer groups</source>
-        <translation>Grupos de computadores</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>e.g. nome ou descrição</translation>
-    </message>
-    <message>
-        <source>Filter for computer containers</source>
-        <translation>Filtro para contêineres de computador</translation>
-    </message>
-    <message>
-        <source>Computer containers or OUs</source>
-        <translation>Contêineres de computador ou OUs</translation>
-    </message>
-    <message>
-        <source>Connection security</source>
-        <translation>Segurança da conexão</translation>
-    </message>
-    <message>
-        <source>TLS certificate verification</source>
-        <translation>Verificação de certificado TLS</translation>
-    </message>
-    <message>
-        <source>System defaults</source>
-        <translation>Padrões do sistems</translation>
-    </message>
-    <message>
-        <source>Never (insecure!)</source>
-        <translation>Nunca (inseguro!)</translation>
-    </message>
-    <message>
-        <source>Custom CA certificate file</source>
-        <translation>Arquivo personalizado de certificado CA</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Nenhum</translation>
-    </message>
-    <message>
-        <source>TLS</source>
-        <translation>TLS</translation>
-    </message>
-    <message>
-        <source>SSL</source>
-        <translation>SSL</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=computer)</source>
-        <translation>ex.: (objectClass=computer)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=group)</source>
-        <translation>ex.: (objectClass=group)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=person)</source>
-        <translation>ex.: (objectClass=person)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation>ex.: (objectClass=room) or (objectClass=computerLab)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation>ex.: (objectClass=container) ou (objectClass=organizationalUnit)</translation>
-    </message>
-    <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Certificate files (*.pem)</source>
-        <translation>Arquivos de certificados (*.pem)</translation>
-    </message>
-    <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Encryption protocol</source>
-        <translation>Protocolo de encriptação</translation>
-    </message>
-    <message>
-        <source>Computer location attribute</source>
-        <translation>Atributo de nome de localização do computador</translation>
-    </message>
-    <message>
-        <source>Computer display name attribute</source>
-        <translation>Atributo de nome de exibição do computador</translation>
-    </message>
-    <message>
-        <source>Location name attribute</source>
-        <translation>Atributo de nome de localização</translation>
-    </message>
-    <message>
-        <source>e.g. cn or displayName</source>
-        <translation>Ex.: cn ou displayName</translation>
-    </message>
-    <message>
-        <source>Computer locations identification</source>
-        <translation>Identificação de localização do computador</translation>
-    </message>
-    <message>
-        <source>Identify computer locations (e.g. rooms) via:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Location attribute in computer objects</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>List all entries of a location</source>
-        <translation>Lista todas as entradas de um local</translation>
-    </message>
-    <message>
-        <source>List all locations</source>
-        <translation>Liste todos os locais</translation>
-    </message>
-    <message>
-        <source>Enter computer display name</source>
-        <translation>Insira o nome de exibição do computador</translation>
-    </message>
-    <message>
-        <source>Please enter a computer display name to query:</source>
-        <translation>Insira um nome de exibição do computador para consultar:</translation>
-    </message>
-    <message>
-        <source>Enter computer location name</source>
-        <translation>Insira o nome do local do computador</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation>Insira o nome de um local de computador (caracteres curinga permitidos):</translation>
-    </message>
-    <message>
-        <source>computer locations</source>
-        <translation>localizações de computador</translation>
-    </message>
-    <message>
-        <source>Enter location name</source>
-        <translation>Insira o nome do local</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a location whose entries to query:</source>
-        <translation>Insira o nome de um local cujas entradas deseja consultar:</translation>
-    </message>
-    <message>
-        <source>location entries</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>LDAP test failed</source>
-        <translation>Teste LDAP falhou.</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
-
-%3</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>and</source>
-        <translation>e</translation>
-    </message>
-    <message>
-        <source>LDAP test successful</source>
-        <translation>Teste LDAP bem sucedido</translation>
-    </message>
-    <message>
-        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
-
-%3</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Browse</source>
-        <translation>Pesquisar</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Teste</translation>
-    </message>
-    <message>
-        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer hostname attribute</source>
-        <translation>Atributo de hostname do computador</translation>
-    </message>
-    <message>
-        <source>Please enter a computer hostname to query:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Invalid hostname</source>
-        <translation>Hostname inválido</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation>Você configurou nomes de host de computador para serem armazenados como nomes de domínio totalmente qualificados (FQDN), mas inseriu um nome de host sem domínio.</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation>Você configurou nomes de host de computador para serem armazenados como nomes de host simples sem um nome de domínio, mas inseriu um nome de host com uma parte do nome de domínio.</translation>
-    </message>
-    <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation>Não foi possível encontrar um usuário com o nome &quot;%1&quot;. Verifique o nome de usuário ou o parâmetro da árvore do usuário.</translation>
-    </message>
-    <message>
-        <source>Enter hostname</source>
-        <translation>Insira o nome do host</translation>
-    </message>
-    <message>
-        <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>Não foi possível encontrar um computador com o nome de host &quot;%1&quot;. Verifique o nome do host ou o parâmetro da árvore do computador.</translation>
-    </message>
-    <message>
-        <source>Hostname lookup failed</source>
-        <translation>A pesquisa de nome de host falhou</translation>
-    </message>
-    <message>
-        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation>Não foi possível pesquisar o nome do host para o endereço IP &quot;%1&quot;. Verifique as configurações do servidor DNS.</translation>
-    </message>
-    <message>
-        <source>User login name attribute</source>
-        <translation>Atributo de nome de login do usuário</translation>
-    </message>
-    <message>
-        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer containers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Query options</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Query nested user groups (supported by AD only)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Query timeout</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation>ms</translation>
-    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2653,22 +2653,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Show help about command</source>
         <translation>Mostrar ajuda sobre comando</translation>
-    </message>
-    <message>
-        <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation>Comandos para configurar e testar integração LDAP/AD</translation>
-    </message>
-    <message>
-        <source>Basic LDAP/AD support for Veyon</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
@@ -2686,6 +2670,22 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Basic LDAP/AD support for Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
+        <translation>Comandos para configurar e testar integração LDAP/AD</translation>
+    </message>
+    <message>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformConfigurationPage</name>
@@ -2694,19 +2694,11 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Custom PAM service for user authentication</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>User authentication</source>
         <translation>Autenticação de usuário</translation>
     </message>
     <message>
-        <source>User login</source>
-        <translation>Usuário:</translation>
-    </message>
-    <message>
-        <source>Login key sequence</source>
+        <source>Custom PAM service for user authentication</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2715,6 +2707,14 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation>Usuário:</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2743,87 +2743,23 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Configuração</translation>
     </message>
     <message>
-        <source>Show icons only</source>
-        <translation>Exibir apenas ícones</translation>
-    </message>
-    <message>
         <source>Disable tooltips</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show icons only</source>
+        <translation>Exibir apenas ícones</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <source>MainWindow</source>
-        <translation>JanelaPrincipal</translation>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation>Ferrramentas</translation>
+        <source>Veyon Configurator</source>
+        <translation>Configurador Veyon</translation>
     </message>
     <message>
         <source>General</source>
         <translation>Geral</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>&amp;Arquivo</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>A&amp;juda</translation>
-    </message>
-    <message>
-        <source>&amp;Quit</source>
-        <translation>&amp;Sair</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
-    </message>
-    <message>
-        <source>L&amp;oad settings from file</source>
-        <translation>Carregar c&amp;onfigurações do arquivo</translation>
-    </message>
-    <message>
-        <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
-    </message>
-    <message>
-        <source>About Qt</source>
-        <translation>Sobre o QT</translation>
-    </message>
-    <message>
-        <source>Authentication impossible</source>
-        <translation>Autenticação impossível</translation>
-    </message>
-    <message>
-        <source>Configuration not writable</source>
-        <translation>Configuração não gravável</translation>
-    </message>
-    <message>
-        <source>Load settings from file</source>
-        <translation>Carregar configurações de um arquivo</translation>
-    </message>
-    <message>
-        <source>Save settings to file</source>
-        <translation>Salvar configurações para arquivo</translation>
-    </message>
-    <message>
-        <source>Unsaved settings</source>
-        <translation>Configurações não salvas</translation>
-    </message>
-    <message>
-        <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Existem configurações não salvas. Sair mesmo assim?</translation>
-    </message>
-    <message>
-        <source>Veyon Configurator</source>
-        <translation>Configurador Veyon</translation>
     </message>
     <message>
         <source>Service</source>
@@ -2838,8 +2774,72 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Controle de acesso</translation>
     </message>
     <message>
+        <source>&amp;File</source>
+        <translation>&amp;Arquivo</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>A&amp;juda</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&amp;Quit</source>
+        <translation>&amp;Sair</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
+    </message>
+    <message>
+        <source>&amp;Save settings to file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save settings to file</source>
+        <translation>Salvar configurações para arquivo</translation>
+    </message>
+    <message>
+        <source>Ctrl+S</source>
+        <translation>Ctrl+S</translation>
+    </message>
+    <message>
+        <source>L&amp;oad settings from file</source>
+        <translation>Carregar c&amp;onfigurações do arquivo</translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
+        <translation>Ctrl+O</translation>
+    </message>
+    <message>
         <source>About Veyon</source>
         <translation>Sobre o Veyon</translation>
+    </message>
+    <message>
+        <source>About Qt</source>
+        <translation>Sobre o QT</translation>
+    </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation>Resetar configuração</translation>
+    </message>
+    <message>
+        <source>&amp;Standard</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&amp;Advanced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>MainWindow</source>
+        <translation>JanelaPrincipal</translation>
+    </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Auto</source>
@@ -2850,16 +2850,92 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Sobre</translation>
     </message>
     <message>
+        <source>Search users and computers</source>
+        <translation>Buscar usuários e computadores</translation>
+    </message>
+    <message>
+        <source>Align computers to grid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation>Capturas de tela</translation>
+    </message>
+    <message>
+        <source>Slideshow</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation>Ferrramentas</translation>
+    </message>
+    <message>
         <source>%1 Configurator %2</source>
         <translation>%1 Configurador %2</translation>
+    </message>
+    <message>
+        <source>Load settings from file</source>
+        <translation>Carregar configurações de um arquivo</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
         <translation>arquivos JSON (*.json)</translation>
     </message>
     <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation>Você quer mesmo resetar a configuração local e revertê-las para o modo padrão?</translation>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation>Configurador %1</translation>
+    </message>
+    <message>
+        <source>Unsaved settings</source>
+        <translation>Configurações não salvas</translation>
+    </message>
+    <message>
+        <source>There are unsaved settings. Quit anyway?</source>
+        <translation>Existem configurações não salvas. Sair mesmo assim?</translation>
+    </message>
+    <message>
+        <source>Insufficient privileges</source>
+        <translation>Privilégios insuficientes</translation>
+    </message>
+    <message>
+        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration not writable</source>
+        <translation>Configuração não gravável</translation>
+    </message>
+    <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>O backend de configuração local relatou que a configuração não é gravável! Por favor execute o Configurador %1 com privilégios mais altos.</translation>
+    </message>
+    <message>
+        <source>Authentication impossible</source>
+        <translation>Autenticação impossível</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
@@ -2874,10 +2950,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>De acordo com a configuração local você não tem permissão de acessar computadores na rede. Por favor entre com uma conta diferente or deixe o seu administrador de sistemas verificar a configuração local.</translation>
     </message>
     <message>
-        <source>Screenshots</source>
-        <translation>Capturas de tela</translation>
-    </message>
-    <message>
         <source>Feature active</source>
         <translation>Funcionalidade ativo</translation>
     </message>
@@ -2885,81 +2957,13 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation>A funcionalidade &quot;%1&quot; ainda está ativa. Por favor pare-a antes de fechar o %2.</translation>
     </message>
-    <message>
-        <source>Reset configuration</source>
-        <translation>Resetar configuração</translation>
-    </message>
-    <message>
-        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation>Você quer mesmo resetar a configuração local e revertê-las para o modo padrão?</translation>
-    </message>
-    <message>
-        <source>Search users and computers</source>
-        <translation>Buscar usuários e computadores</translation>
-    </message>
-    <message>
-        <source>Align computers to grid</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>Configurador %1</translation>
-    </message>
-    <message>
-        <source>Insufficient privileges</source>
-        <translation>Privilégios insuficientes</translation>
-    </message>
-    <message>
-        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Only show powered on computers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&amp;Save settings to file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&amp;View</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&amp;Standard</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&amp;Advanced</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Use custom computer arrangement</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Locations &amp;&amp; computers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Slideshow</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Spotlight</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Only show computers with logged on users</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
+    <message>
+        <source>Basic settings</source>
+        <translation>Configurações básicas</translation>
+    </message>
     <message>
         <source>Directories</source>
         <translation>Diretórios</translation>
@@ -2969,63 +2973,15 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Configuração de usuário</translation>
     </message>
     <message>
-        <source>Feature on computer double click:</source>
-        <translation>No clique duplo:</translation>
-    </message>
-    <message>
-        <source>Features</source>
-        <translation>Funcionalidades</translation>
-    </message>
-    <message>
-        <source>All features</source>
-        <translation>Todos as funcionalidades</translation>
-    </message>
-    <message>
-        <source>Disabled features</source>
-        <translation>Funcionalidades desativadas</translation>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation>Capturas de tela</translation>
-    </message>
-    <message>
-        <source>&lt;no feature&gt;</source>
-        <translation>&lt;no feature&gt;</translation>
-    </message>
-    <message>
-        <source>Basic settings</source>
-        <translation>Configurações básicas</translation>
-    </message>
-    <message>
-        <source>Behaviour</source>
-        <translation>Comportamento</translation>
-    </message>
-    <message>
-        <source>Enforce selected mode for client computers</source>
-        <translation>Aplicar modo selecionado para computadores cliente</translation>
-    </message>
-    <message>
-        <source>Hide local computer</source>
-        <translation>Ocultar computador local</translation>
-    </message>
-    <message>
-        <source>Hide computer filter field</source>
-        <translation>Ocultar campo de filtros de computadores</translation>
-    </message>
-    <message>
-        <source>Actions such as rebooting or powering down computers</source>
-        <translation>Ações como reiniciar ou desligar computadores</translation>
     </message>
     <message>
         <source>User interface</source>
         <translation>Interface do usuário</translation>
     </message>
     <message>
-        <source>Background color</source>
-        <translation>Cor de plano de fundo</translation>
-    </message>
-    <message>
-        <source>Thumbnail update interval</source>
+        <source>Text color</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3033,15 +2989,27 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>ms</translation>
     </message>
     <message>
-        <source>Program start</source>
-        <translation>Iniciar programa</translation>
+        <source>Background color</source>
+        <translation>Cor de plano de fundo</translation>
     </message>
     <message>
-        <source>Modes and features</source>
-        <translation>Modos e funcionalidades</translation>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>User and computer name</source>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Auto</translation>
+    </message>
+    <message>
+        <source>Computer thumbnail caption</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer and user name</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3053,11 +3021,11 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Computer thumbnail caption</source>
+        <source>User and computer name</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Text color</source>
+        <source>Thumbnail update interval</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3065,67 +3033,7 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Computer and user name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer locations</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Show current location only</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Allow adding hidden locations manually</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Hide empty locations</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Perform access control</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Automatically select current location</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Automatically open computer select panel</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Hide local session</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source> px</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Auto</translation>
-    </message>
-    <message>
         <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Open feature windows on the same screen as the main window</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3149,12 +3057,104 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Remote access image quality</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Image quality in monitoring mode</source>
+        <source>Behaviour</source>
+        <translation>Comportamento</translation>
+    </message>
+    <message>
+        <source>Program start</source>
+        <translation>Iniciar programa</translation>
+    </message>
+    <message>
+        <source>Perform access control</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation>Ocultar computador local</translation>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation>Ocultar campo de filtros de computadores</translation>
+    </message>
+    <message>
+        <source>Modes and features</source>
+        <translation>Modos e funcionalidades</translation>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation>Aplicar modo selecionado para computadores cliente</translation>
+    </message>
+    <message>
+        <source>Actions such as rebooting or powering down computers</source>
+        <translation>Ações como reiniciar ou desligar computadores</translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature on computer double click:</source>
+        <translation>No clique duplo:</translation>
+    </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Features</source>
+        <translation>Funcionalidades</translation>
+    </message>
+    <message>
+        <source>All features</source>
+        <translation>Todos as funcionalidades</translation>
+    </message>
+    <message>
+        <source>Disabled features</source>
+        <translation>Funcionalidades desativadas</translation>
+    </message>
+    <message>
+        <source>&lt;no feature&gt;</source>
+        <translation>&lt;no feature&gt;</translation>
     </message>
 </context>
 <context>
@@ -3162,10 +3162,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Monitoring</source>
         <translation>Monitoramento</translation>
-    </message>
-    <message>
-        <source>Builtin monitoring mode</source>
-        <translation>Modo de monitoramento embutido</translation>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
@@ -3182,6 +3178,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Query properties of remotely available screens</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Builtin monitoring mode</source>
+        <translation>Modo de monitoramento embutido</translation>
     </message>
 </context>
 <context>
@@ -3221,6 +3221,14 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
 <context>
     <name>PasswordDialog</name>
     <message>
+        <source>Veyon Logon</source>
+        <translation>Logon Veyon</translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation>Por favor digite o seu nome de usuário e senha para poder acessar os computadores.</translation>
+    </message>
+    <message>
         <source>Username</source>
         <translation>Nome de usuário</translation>
     </message>
@@ -3229,20 +3237,12 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Senha</translation>
     </message>
     <message>
-        <source>Veyon Logon</source>
-        <translation>Logon Veyon</translation>
-    </message>
-    <message>
         <source>Authentication error</source>
         <translation>Erro de autenticação</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>Falha no logon com o nome de usuário e senha fornecidos. Por favor tente novamente!</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
-        <translation>Por favor digite o seu nome de usuário e senha para poder acessar os computadores.</translation>
     </message>
 </context>
 <context>
@@ -3283,6 +3283,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
 <context>
     <name>PowerControlFeaturePlugin</name>
     <message>
+        <source>Power on a computer via Wake-on-LAN (WOL)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Power on</source>
         <translation>Ligar</translation>
     </message>
@@ -3307,46 +3311,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Clique neste botão para desligar todos os computadores. Desse jeito você não precisará desligar cada computador manualmente.</translation>
     </message>
     <message>
-        <source>Power on/down or reboot a computer</source>
-        <translation>Ligar/desligar ou reiniciar um computador</translation>
-    </message>
-    <message>
-        <source>Confirm reboot</source>
-        <translation>Confirmar reiniciamento</translation>
-    </message>
-    <message>
-        <source>Confirm power down</source>
-        <translation>Confirmar desligamento</translation>
-    </message>
-    <message>
-        <source>Do you really want to reboot the selected computers?</source>
-        <translation>Tem certeza que quer reiniciar todos os computadores selecionados?</translation>
-    </message>
-    <message>
-        <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>Endereço MAC</translation>
-    </message>
-    <message>
-        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Especifique o comando para o qual exibir ajuda!</translation>
-    </message>
-    <message>
-        <source>Invalid MAC address specified!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Commands for controlling power status of computers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Power down now</source>
         <translation type="unfinished"/>
     </message>
@@ -3363,6 +3327,46 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>MAC ADDRESS</source>
+        <translation>Endereço MAC</translation>
+    </message>
+    <message>
+        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation>Especifique o comando para o qual exibir ajuda!</translation>
+    </message>
+    <message>
+        <source>Confirm reboot</source>
+        <translation>Confirmar reiniciamento</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to reboot the selected computers?</source>
+        <translation>Tem certeza que quer reiniciar todos os computadores selecionados?</translation>
+    </message>
+    <message>
+        <source>Confirm power down</source>
+        <translation>Confirmar desligamento</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid MAC address specified!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
         <translation type="unfinished"/>
     </message>
@@ -3373,15 +3377,11 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <source>Power on/down or reboot a computer</source>
+        <translation>Ligar/desligar ou reiniciar um computador</translation>
     </message>
     <message>
-        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Do you really want to power down the selected computers?</source>
+        <source>Commands for controlling power status of computers</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3423,24 +3423,24 @@ Please save your work and close all programs.</source>
         <translation>Abra uma janela de controle remoto para um computador.</translation>
     </message>
     <message>
-        <source>Remote access</source>
-        <translation>Acesso remoto</translation>
-    </message>
-    <message>
-        <source>Remote view or control a computer</source>
-        <translation>Exibir tela ou controlar um computador</translation>
+        <source>Exchange clipboard contents</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Show help about command</source>
         <translation>Mostrar ajuda sobre comando</translation>
     </message>
     <message>
-        <source>Exchange clipboard contents</source>
-        <translation type="unfinished"/>
+        <source>Remote access</source>
+        <translation>Acesso remoto</translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote view or control a computer</source>
+        <translation>Exibir tela ou controlar um computador</translation>
     </message>
 </context>
 <context>
@@ -3465,8 +3465,16 @@ Please save your work and close all programs.</source>
         <translation>Controlar remotamente</translation>
     </message>
     <message>
+        <source>Select screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Send shortcut</source>
         <translation>Enviar atalho</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Captura de tela</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -3475,6 +3483,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Window</source>
         <translation>Janela</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
@@ -3513,19 +3525,7 @@ Please save your work and close all programs.</source>
         <translation>Conectado.</translation>
     </message>
     <message>
-        <source>Screenshot</source>
-        <translation>Captura de tela</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Select screen</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3544,10 +3544,6 @@ Please save your work and close all programs.</source>
         <translation>Desbloquear computador</translation>
     </message>
     <message>
-        <source>Lock screen and input devices of a computer</source>
-        <translation>Bloquear a tela e dispositivos de entrada de um computador</translation>
-    </message>
-    <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Com esse botão, você pode bloquear os computadores de todos os usuários para chamar a atenção deles. Nesse modo todos os dispositivos de entrada são travados e as telas são desligadas.</translation>
     </message>
@@ -3562,6 +3558,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock screen and input devices of a computer</source>
+        <translation>Bloquear a tela e dispositivos de entrada de um computador</translation>
     </message>
 </context>
 <context>
@@ -3652,60 +3652,7 @@ Please save your work and close all programs.</source>
         <translation>Geral</translation>
     </message>
     <message>
-        <source>Autostart</source>
-        <translation>Iniciar automaticamente</translation>
-    </message>
-    <message>
-        <source>Hide tray icon</source>
-        <translation>Ocultar ícone da área de notificação</translation>
-    </message>
-    <message>
-        <source>Start service</source>
-        <translation>Iniciar serviço</translation>
-    </message>
-    <message>
-        <source>Stopped</source>
-        <translation>Parado</translation>
-    </message>
-    <message>
-        <source>Stop service</source>
-        <translation>Parar serviço</translation>
-    </message>
-    <message>
-        <source>State:</source>
-        <translation>Estado:</translation>
-    </message>
-    <message>
-        <source>Enable firewall exception</source>
-        <translation>Habilitar exceção de firewall</translation>
-    </message>
-    <message>
-        <source>Allow connections from localhost only</source>
-        <translation>Permitir conexões de localhost apenas</translation>
-    </message>
-    <message>
-        <source>VNC server</source>
-        <translation>Servidor VNC</translation>
-    </message>
-    <message>
-        <source>Plugin:</source>
-        <translation>Plugin:</translation>
-    </message>
-    <message>
-        <source>Restart %1 Service</source>
-        <translation>Reiniciar Serviço %1</translation>
-    </message>
-    <message>
-        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Todas as configurações foram salvas com sucesso. Para entrarem em efeito, o serviço %1 precisa ser reiniciado. Reiniciá-lo agora?</translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>Em execução</translation>
-    </message>
-    <message>
-        <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
-Typically this is required to support terminal servers.</source>
+        <source>Show notification when an unauthorized access is blocked</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3713,7 +3660,48 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show notification when an unauthorized access is blocked</source>
+        <source>Hide tray icon</source>
+        <translation>Ocultar ícone da área de notificação</translation>
+    </message>
+    <message>
+        <source>Autostart</source>
+        <translation>Iniciar automaticamente</translation>
+    </message>
+    <message>
+        <source>State:</source>
+        <translation>Estado:</translation>
+    </message>
+    <message>
+        <source>Stopped</source>
+        <translation>Parado</translation>
+    </message>
+    <message>
+        <source>Start service</source>
+        <translation>Iniciar serviço</translation>
+    </message>
+    <message>
+        <source>Stop service</source>
+        <translation>Parar serviço</translation>
+    </message>
+    <message>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
+Typically this is required to support terminal servers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3741,24 +3729,40 @@ Typically this is required to support terminal servers.</source>
         <translation>Servidor de exibição</translation>
     </message>
     <message>
-        <source>Miscellaneous network settings</source>
+        <source>Miscellaneous settings</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Session mode</source>
+        <source>Enable firewall exception</source>
+        <translation>Habilitar exceção de firewall</translation>
+    </message>
+    <message>
+        <source>Allow connections from localhost only</source>
+        <translation>Permitir conexões de localhost apenas</translation>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Local session mode (single server instance for primary local session)</source>
-        <translation type="unfinished"/>
+        <source>VNC server</source>
+        <translation>Servidor VNC</translation>
     </message>
     <message>
-        <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation type="unfinished"/>
+        <source>Plugin:</source>
+        <translation>Plugin:</translation>
     </message>
     <message>
-        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
+        <source>Restart %1 Service</source>
+        <translation>Reiniciar Serviço %1</translation>
+    </message>
+    <message>
+        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
+        <translation>Todas as configurações foram salvas com sucesso. Para entrarem em efeito, o serviço %1 precisa ser reiniciado. Reiniciá-lo agora?</translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>Em execução</translation>
     </message>
 </context>
 <context>
@@ -3868,6 +3872,10 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>SpotlightPanel</name>
     <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Add selected computers</source>
         <translation>Adicionar computadores selecionados</translation>
     </message>
@@ -3890,10 +3898,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Please select at least one computer to remove.</source>
         <translation>Selecione pelo menos um computador para remover.</translation>
-    </message>
-    <message>
-        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3985,32 +3989,32 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>UltraVncConfigurationWidget</name>
     <message>
-        <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>Habilitar captura de janelas em camadas (semi-transparente)</translation>
+        <source>Builtin UltraVNC server configuration</source>
+        <translation>Configuração de servidor UltraVNC embutido</translation>
     </message>
     <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Captar em tela cheia (deixar esta opção habilitada por padrão)</translation>
+        <source>Maximum CPU usage</source>
+        <translation>Máximo uso de CPU</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
         <translation>Baixa precisão (modo turbo)</translation>
     </message>
     <message>
-        <source>Builtin UltraVNC server configuration</source>
-        <translation>Configuração de servidor UltraVNC embutido</translation>
-    </message>
-    <message>
-        <source>Enable multi monitor support</source>
-        <translation type="unfinished"/>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>Captar em tela cheia (deixar esta opção habilitada por padrão)</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Maximum CPU usage</source>
-        <translation>Máximo uso de CPU</translation>
+        <source>Enable multi monitor support</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable capturing of layered (semi-transparent) windows</source>
+        <translation>Habilitar captura de janelas em camadas (semi-transparente)</translation>
     </message>
 </context>
 <context>
@@ -4066,16 +4070,16 @@ Typically this is required to support terminal servers.</source>
         <translation>Confirmar logoff</translation>
     </message>
     <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>Você realmente deseja deslogar o usuário selecionado?</translation>
     </message>
     <message>
         <source>User session control</source>
         <translation>Controle de sessão do usuário.</translation>
-    </message>
-    <message>
-        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4093,10 +4097,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Comando inválido!</translation>
     </message>
     <message>
-        <source>Available commands:</source>
-        <translation>Comandos disponíveis:</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>Argumentos inválidos</translation>
     </message>
@@ -4105,8 +4105,16 @@ Typically this is required to support terminal servers.</source>
         <translation>Argumentos dados insuficientes - use &quot;Ajuda %1&quot; para mais informação</translation>
     </message>
     <message>
+        <source>Plugin not licensed</source>
+        <translation>Plugin não licenciado</translation>
+    </message>
+    <message>
         <source>Unknown result!</source>
         <translation>Resultado desconhecido!</translation>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation>Comandos disponíveis:</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -4117,12 +4125,12 @@ Typically this is required to support terminal servers.</source>
         <translation>Nenhum módulo especificado ou módulo não encontrado - os módulos disponíveis são:</translation>
     </message>
     <message>
-        <source>Plugin not licensed</source>
-        <translation>Plugin não licenciado</translation>
-    </message>
-    <message>
         <source>INFO</source>
         <translation>INFORMAÇÃO</translation>
+    </message>
+    <message>
+        <source>WARNING</source>
+        <translation>ATENÇÃO</translation>
     </message>
     <message>
         <source>ERROR</source>
@@ -4139,10 +4147,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>EXAMPLES</source>
         <translation>EXEMPLOS</translation>
-    </message>
-    <message>
-        <source>WARNING</source>
-        <translation>ATENÇÃO</translation>
     </message>
     <message>
         <source>Screen %1</source>
@@ -4268,22 +4272,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Permitir geração SAS por software (Ctrl+Alt+Del)</translation>
     </message>
     <message>
-        <source>Screen lock</source>
-        <translation>Bloquear tela</translation>
-    </message>
-    <message>
-        <source>Hide taskbar</source>
-        <translation>Ocultar barra de tarefas</translation>
-    </message>
-    <message>
-        <source>Hide start menu</source>
-        <translation>Ocultar menu iniciar</translation>
-    </message>
-    <message>
-        <source>Hide desktop</source>
-        <translation>Ocultar desktop</translation>
-    </message>
-    <message>
         <source>User authentication</source>
         <translation>Autenticação de usuário</translation>
     </message>
@@ -4308,6 +4296,22 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Screen lock</source>
+        <translation>Bloquear tela</translation>
+    </message>
+    <message>
+        <source>Hide taskbar</source>
+        <translation>Ocultar barra de tarefas</translation>
+    </message>
+    <message>
+        <source>Hide start menu</source>
+        <translation>Ocultar menu iniciar</translation>
+    </message>
+    <message>
+        <source>Hide desktop</source>
+        <translation>Ocultar desktop</translation>
+    </message>
+    <message>
         <source>Use input device interception driver</source>
         <translation type="unfinished"/>
     </message>
@@ -4315,12 +4319,12 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
-        <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation>Plugin implementando funções abstratas para a plataforma WIndows</translation>
-    </message>
-    <message>
         <source>Internal display</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin implementing abstract functions for the Windows platform</source>
+        <translation>Plugin implementando funções abstratas para a plataforma WIndows</translation>
     </message>
 </context>
 <context>
@@ -4328,18 +4332,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Service &quot;%1&quot; could not be found.</source>
-        <translation>Serviço &quot;%1&quot; não foi encontrado.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
@@ -4350,12 +4342,24 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation>Serviço &quot;%1&quot; não foi encontrado.</translation>
     </message>
 </context>
 <context>

@@ -2,24 +2,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About</source>
-        <translation>เกี่ยวกับ</translation>
-    </message>
-    <message>
-        <source>Translation</source>
-        <translation>การแปลภาษา</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation>ลิขสิทธิ์</translation>
-    </message>
-    <message>
         <source>About Veyon</source>
         <translation>เกี่ยวกับ Veyon</translation>
     </message>
     <message>
-        <source>Contributors</source>
-        <translation>ผู้มีส่วนช่วยเหลือ</translation>
+        <source>About</source>
+        <translation>เกี่ยวกับ</translation>
     </message>
     <message>
         <source>Version:</source>
@@ -30,18 +18,30 @@
         <translation>เว็บไซต์:</translation>
     </message>
     <message>
+        <source>Support Veyon project with a donation</source>
+        <translation>สนับสนุนโครงการ Veyon ด้วยการบริจาค</translation>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation>ผู้มีส่วนช่วยเหลือ</translation>
+    </message>
+    <message>
+        <source>Translation</source>
+        <translation>การแปลภาษา</translation>
+    </message>
+    <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>About %1 %2</source>
-        <translation>เกี่ยวกับ %1 %2</translation>
+        <source>License</source>
+        <translation>ลิขสิทธิ์</translation>
     </message>
     <message>
-        <source>Support Veyon project with a donation</source>
-        <translation>สนับสนุนโครงการ Veyon ด้วยการบริจาค</translation>
+        <source>About %1 %2</source>
+        <translation>เกี่ยวกับ %1 %2</translation>
     </message>
 </context>
 <context>
@@ -51,7 +51,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Grant access to every authenticated user (default)</source>
+        <source>Restrict access to members of specific user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups backend:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -61,6 +65,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Process access control rules</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grant access to every authenticated user (default)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable usage of domain groups</source>
+        <translation>เปิดอนุญาตการให้ใช้งานกลุ่มโดเมน</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -83,6 +95,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Move selected rule up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Edit selected rule</source>
+        <translation>แก้ไขกฏที่เลือก</translation>
+    </message>
+    <message>
         <source>Add access control rule</source>
         <translation type="unfinished"/>
     </message>
@@ -95,12 +115,12 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Move selected rule up</source>
+        <source>Missing user groups backend</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Edit selected rule</source>
-        <translation>แก้ไขกฏที่เลือก</translation>
+        <source>No default user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enter username</source>
@@ -124,26 +144,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>เปิดอนุญาตการให้ใช้งานกลุ่มโดเมน</translation>
-    </message>
-    <message>
-        <source>User groups backend:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Restrict access to members of specific user groups</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -178,6 +178,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Always process rule and ignore conditions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Conditions</source>
         <translation>เงื่อนไข</translation>
     </message>
@@ -186,7 +190,27 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>เป็นสมาชิกของกลุ่ม</translation>
     </message>
     <message>
+        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing computer and local computer are at the same location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>ไม่มีผู้ใช้เข้าสู่ระบบ</translation>
+    </message>
+    <message>
+        <source>is located at</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Accessing computer is localhost</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user has one or more groups in common with local (logged on) user</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -195,10 +219,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -236,26 +256,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Local computer</source>
         <translation>คอมพิวเตอร์ท้องที่</translation>
-    </message>
-    <message>
-        <source>Always process rule and ignore conditions</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>No user logged on</source>
-        <translation>ไม่มีผู้ใช้เข้าสู่ระบบ</translation>
-    </message>
-    <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Accessing computer and local computer are at the same location</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>is located at</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -320,6 +320,26 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) สร้างคู่กุญแจบนคอมพิวเตอร์หลัก</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) ตั้งกลุ่มการเข้าถึง โดยสมาชิกใดบ้างที่จะสามารถเข้าถึงคอมพิวเตอร์เครื่องอื่นได้</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) ส่งออกไฟล์กุญแจสาธารณะ และนำเข้าลงในเครื่องคอมพิวเตอร์ลูกข่ายโดยใช้ชื่อไฟล์เดียวกัน</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Key file directories</source>
         <translation>ไดเรกทอรีเก็บไฟล์กุญแจ</translation>
     </message>
@@ -334,6 +354,16 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Available authentication keys</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>คู่กุญแจยืนยันตัวตนนั้นจะประกอบด้วยกุญแจคริปโตกราฟิกสองดอกกุญแจสาธารณะและกุญแจส่วนตัว
+กุญแจส่วนตัวจะอนุญาตให้ผู้ใช้งานในเครื่องมาสเตอร์ในการการเข้าถึงเครื่องลูกข่าย
+ซึ่งเป็นสิ่งที่สำคัญว่า ต้องกำหนดให้ผู้ใช้ที่ได้รับการอนุญาตเท่านั้นที่จะสามารถอ่านไฟล์กุญแจส่วนตัวได้
+ไฟล์กุญแจสาธารณะจะใช้บนเครื่องลูกข่ายเพื่อรับการยืนยันตัวตนจากการร้องขอการเชื่อมต่อที่เข้ามา</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -390,36 +420,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) สร้างคู่กุญแจบนคอมพิวเตอร์หลัก</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) ตั้งกลุ่มการเข้าถึง โดยสมาชิกใดบ้างที่จะสามารถเข้าถึงคอมพิวเตอร์เครื่องอื่นได้</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) ส่งออกไฟล์กุญแจสาธารณะ และนำเข้าลงในเครื่องคอมพิวเตอร์ลูกข่ายโดยใช้ชื่อไฟล์เดียวกัน</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>คู่กุญแจยืนยันตัวตนนั้นจะประกอบด้วยกุญแจคริปโตกราฟิกสองดอกกุญแจสาธารณะและกุญแจส่วนตัว
-กุญแจส่วนตัวจะอนุญาตให้ผู้ใช้งานในเครื่องมาสเตอร์ในการการเข้าถึงเครื่องลูกข่าย
-ซึ่งเป็นสิ่งที่สำคัญว่า ต้องกำหนดให้ผู้ใช้ที่ได้รับการอนุญาตเท่านั้นที่จะสามารถอ่านไฟล์กุญแจส่วนตัวได้
-ไฟล์กุญแจสาธารณะจะใช้บนเครื่องลูกข่ายเพื่อรับการยืนยันตัวตนจากการร้องขอการเชื่อมต่อที่เข้ามา</translation>
     </message>
 </context>
 <context>
@@ -588,19 +588,23 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>KEY</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>ACCESS GROUP</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
+        <source>Please specify the command to display help for.</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>NAME</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>KEY</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -612,11 +616,31 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ACCESS GROUP</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -633,30 +657,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The specified command does not exist or no help is available for it.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -682,8 +682,28 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
+        <source>Locations &amp; computers</source>
+        <translation>สถานที่และคอมพิวเตอร์</translation>
+    </message>
+    <message>
+        <source>Builtin directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Computers</source>
         <translation>คอมพิวเตอร์</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>สถานที่</translation>
+    </message>
+    <message>
+        <source>Add new computer</source>
+        <translation>เพิ่มคอมพิวเตอร์ใหม่</translation>
+    </message>
+    <message>
+        <source>Remove selected computer</source>
+        <translation>ลบคอมพิวเตอร์ที่เลือก</translation>
     </message>
     <message>
         <source>Name</source>
@@ -696,30 +716,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>MAC address</source>
         <translation>MAC แอดแดรส</translation>
-    </message>
-    <message>
-        <source>Add new computer</source>
-        <translation>เพิ่มคอมพิวเตอร์ใหม่</translation>
-    </message>
-    <message>
-        <source>Remove selected computer</source>
-        <translation>ลบคอมพิวเตอร์ที่เลือก</translation>
-    </message>
-    <message>
-        <source>New computer</source>
-        <translation>คอมพิวเตอร์ใหม่</translation>
-    </message>
-    <message>
-        <source>Builtin directory</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Locations &amp; computers</source>
-        <translation>สถานที่และคอมพิวเตอร์</translation>
-    </message>
-    <message>
-        <source>Locations</source>
-        <translation>สถานที่</translation>
     </message>
     <message>
         <source>Add new location</source>
@@ -737,111 +733,15 @@ The public key is used on client computers to authenticate incoming connection r
         <source>New location</source>
         <translation>สถานที่ใหม่</translation>
     </message>
+    <message>
+        <source>New computer</source>
+        <translation>คอมพิวเตอร์ใหม่</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Import objects from given file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Export objects to given file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>ประเภท</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>ชื่อ</translation>
-    </message>
-    <message>
-        <source>Host address</source>
-        <translation>โฮสแอดแดรส</translation>
-    </message>
-    <message>
-        <source>MAC address</source>
-        <translation>MAC แอดแดรส</translation>
-    </message>
-    <message>
-        <source>Specified object not found.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>File &quot;%1&quot; does not exist!</source>
-        <translation>ไฟล์ &quot;%1&quot; ไม่มีอยู่!</translation>
-    </message>
-    <message>
-        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Unknown argument &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>ไม่มี</translation>
-    </message>
-    <message>
-        <source>Computer</source>
-        <translation>คอมพิวเตอร์</translation>
-    </message>
-    <message>
-        <source>Root</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Invalid</source>
-        <translation>ไม่ถูกต้อง</translation>
-    </message>
-    <message>
-        <source>Error while parsing line %1.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Network object directory which stores objects in local configuration</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Commands for managing the builtin network object directory</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>No format string or regular expression specified!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>No format string specified!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Object UUID</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Parent UUID</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -865,15 +765,11 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Location &quot;%1&quot;</source>
+        <source>Import objects from given file</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Builtin (computers and locations in local configuration)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Location</source>
+        <source>Export objects to given file</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -933,6 +829,14 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>HOST ADDRESS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>PARENT</source>
         <translation type="unfinished"/>
     </message>
@@ -965,24 +869,120 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Object UUID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Parent UUID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>ประเภท</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>ชื่อ</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>โฮสแอดแดรส</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MAC แอดแดรส</translation>
+    </message>
+    <message>
+        <source>Specified object not found.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not exist!</source>
+        <translation>ไฟล์ &quot;%1&quot; ไม่มีอยู่!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown argument &quot;%1&quot;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No format string or regular expression specified!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No format string specified!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>ไม่มี</translation>
+    </message>
+    <message>
+        <source>Invalid</source>
+        <translation>ไม่ถูกต้อง</translation>
+    </message>
+    <message>
+        <source>Error while parsing line %1.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Network object directory which stores objects in local configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Builtin (computers and locations in local configuration)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for managing the builtin network object directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer</source>
+        <translation>คอมพิวเตอร์</translation>
+    </message>
+    <message>
+        <source>Root</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>&quot;Room 01&quot;</source>
         <translation>&quot;ห้อง 01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;คอมพิวเตอร์ 01&quot;</translation>
-    </message>
-    <message>
-        <source>HOST ADDRESS</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1002,11 +1002,27 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>ComputerControlListModel</name>
     <message>
+        <source>Name: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Host/IP address: %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>invalid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Active features: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[no user]</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1020,6 +1036,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Computer offline or switched off</source>
         <translation>คอมพิวเตอร์ออฟไลน์หรือปิดเครื่องอยู่</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
@@ -1038,26 +1058,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ผู้ใช้ที่เข้าสู่ระบบ: %1</translation>
     </message>
     <message>
-        <source>Location: %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>[no user]</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>invalid</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Name: %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>[none]</source>
         <translation type="unfinished"/>
     </message>
@@ -1065,12 +1065,12 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>ComputerControlServer</name>
     <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Authentication error</source>
         <translation>การยืนยันตัวตนผิดพลาด</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remote access</source>
@@ -1081,15 +1081,15 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Access control error</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Service %2 at %3:%4</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1104,6 +1104,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ผู้ใช้</translation>
     </message>
     <message>
+        <source>Logged in since</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Missing network object directory plugin</source>
         <translation type="unfinished"/>
     </message>
@@ -1112,19 +1116,7 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Location detection failed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Computer name;Hostname;User</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Logged in since</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1135,9 +1127,21 @@ The public key is used on client computers to authenticate incoming connection r
         <source>1 day</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Location detection failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
+    <message>
+        <source>Search computers</source>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>Add location</source>
         <translation>เพิ่มสถานที่</translation>
@@ -1160,10 +1164,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Search computers</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1257,11 +1257,11 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Configuration is not writable. Please check your permissions!</source>
+        <source>Could not apply platform-specific configuration settings.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not apply platform-specific configuration settings.</source>
+        <source>Configuration is not writable. Please check your permissions!</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1283,32 +1283,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source> ms</source>
-        <translation> ms</translation>
-    </message>
-    <message>
-        <source>Key frame interval</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Memory limit</source>
-        <translation>จำกัดหน่วยความจำ</translation>
-    </message>
-    <message>
-        <source> MB</source>
-        <translation> MB</translation>
+        <source> s</source>
+        <translation>วิ</translation>
     </message>
     <message>
         <source>Update interval</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source> s</source>
-        <translation>วิ</translation>
+        <source> MB</source>
+        <translation> MB</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>ลดความเร็วการอัปเดตภาพทัมเนลลงเมื่ออยู่ในโหมดสาธิต</translation>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation>จำกัดหน่วยความจำ</translation>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Bandwidth limit</source>
@@ -1322,24 +1322,12 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Stop demo</source>
-        <translation>หยุดการสาธิต</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>สาธิตแบบมีหน้าต่าง</translation>
-    </message>
-    <message>
-        <source>Give a demonstration by screen broadcasting</source>
-        <translation>อธิบายสาธิตด้วยการถ่ายทอดสดจากหน้าจอ</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Demo</source>
         <translation>สาธิต</translation>
+    </message>
+    <message>
+        <source>Stop demo</source>
+        <translation>หยุดการสาธิต</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
@@ -1348,6 +1336,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Full screen demo</source>
         <translation>สาธิตแบบเต็มจอ</translation>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation>สาธิตแบบมีหน้าต่าง</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
@@ -1360,6 +1352,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Share your own screen in a window</source>
         <translation>แบ่งปันหน้าจอของคุณในหน้าต่างแยก</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
@@ -1389,6 +1385,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>All screens</source>
         <translation>หน้าจอทั้งหมด</translation>
     </message>
+    <message>
+        <source>Give a demonstration by screen broadcasting</source>
+        <translation>อธิบายสาธิตด้วยการถ่ายทอดสดจากหน้าจอ</translation>
+    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1401,6 +1401,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Never for this session</source>
         <translation type="unfinished"/>
     </message>
@@ -1408,43 +1412,23 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Always for this session</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>DesktopServicesConfigurationPage</name>
-    <message>
-        <source>Name</source>
-        <translation>ชื่อ</translation>
-    </message>
-    <message>
-        <source>Path</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Predefined websites</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remove selected website</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>URL</source>
-        <translation>URL</translation>
-    </message>
-    <message>
-        <source>New website</source>
-        <translation>เว็บไซต์ใหม่</translation>
-    </message>
     <message>
         <source>Applications &amp; websites</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Predefined applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>ชื่อ</translation>
+    </message>
+    <message>
+        <source>Path</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1456,32 +1440,32 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Predefined websites</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Add new website</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected website</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New application</source>
         <translation>แอพพลิเคชั่นใหม่</translation>
     </message>
+    <message>
+        <source>New website</source>
+        <translation>เว็บไซต์ใหม่</translation>
+    </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Open website</source>
-        <translation>เปิดเว็บไซต์</translation>
-    </message>
-    <message>
-        <source>Click this button to open a website on all computers.</source>
-        <translation>คลิกที่ปุ่มนี้เพื่อเปิดเว็บไซต์ทั้งหมด</translation>
-    </message>
-    <message>
-        <source>Open website &quot;%1&quot;</source>
-        <translation>เปิดเว็บไซต์ &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Custom website</source>
-        <translation>เว็บไซต์กำหนดเอง</translation>
-    </message>
     <message>
         <source>Start application</source>
         <translation>เริ่มแอพพลิเคชั่น</translation>
@@ -1491,12 +1475,28 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Open website</source>
+        <translation>เปิดเว็บไซต์</translation>
+    </message>
+    <message>
+        <source>Click this button to open a website on all computers.</source>
+        <translation>คลิกที่ปุ่มนี้เพื่อเปิดเว็บไซต์ทั้งหมด</translation>
+    </message>
+    <message>
         <source>Start application &quot;%1&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Custom application</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open website &quot;%1&quot;</source>
+        <translation>เปิดเว็บไซต์ &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Custom website</source>
+        <translation>เว็บไซต์กำหนดเอง</translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
@@ -1512,6 +1512,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Room %1</source>
         <translation>ห้อง %1</translation>
+    </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
@@ -1534,19 +1538,15 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Handout</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Texts to read</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>generic-student-user</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Custom application</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1596,6 +1596,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1698,10 +1702,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Commands for controlling features</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -1752,6 +1752,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ตัวเลือก</translation>
     </message>
     <message>
+        <source>Overwrite existing files</source>
+        <translation>บันทึกทับไฟล์ที่มีอยู่แล้ว</translation>
+    </message>
+    <message>
         <source>Transfer only</source>
         <translation>ถ่ายโอนไฟล์เท่านั้น</translation>
     </message>
@@ -1771,10 +1775,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Start</source>
         <translation>เริ่ม</translation>
     </message>
-    <message>
-        <source>Overwrite existing files</source>
-        <translation>บันทึกทับไฟล์ที่มีอยู่แล้ว</translation>
-    </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
@@ -1791,10 +1791,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>เลือกไฟล์อย่างน้อยหนึ่งไฟล์เพื่อนำไปถ่ายโอน</translation>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
-        <translation>ส่งไฟล์ไปยังคอมพิวเตอร์ระยะไกล</translation>
-    </message>
-    <message>
         <source>Received file &quot;%1&quot;.</source>
         <translation>ได้รับไฟล์ &quot;%1&quot;</translation>
     </message>
@@ -1806,6 +1802,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Transfer files to remote computer</source>
+        <translation>ส่งไฟล์ไปยังคอมพิวเตอร์ระยะไกล</translation>
+    </message>
 </context>
 <context>
     <name>GeneralConfigurationPage</name>
@@ -1814,16 +1814,60 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ส่วนติดต่อผู้ใช้</translation>
     </message>
     <message>
-        <source>Language:</source>
-        <translation>ภาษา:</translation>
-    </message>
-    <message>
         <source>Use system language setting</source>
         <translation>ใช้การตั้งค่าภาษาตามระบบ</translation>
     </message>
     <message>
+        <source>Language:</source>
+        <translation>ภาษา:</translation>
+    </message>
+    <message>
         <source>Veyon</source>
         <translation>Veyon</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>การยืนยันตัวตน</translation>
+    </message>
+    <message>
+        <source>Method:</source>
+        <translation>วิธีการ:</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>การยืนยันตัวตนด้วยการลงชื่อเข้าใช้</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>การยืนยันตัวตนด้วยไฟล์กุญแจ</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>ทดสอบ</translation>
+    </message>
+    <message>
+        <source>Network object directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Update interval:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation>วินาที</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -1862,11 +1906,19 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Limit log file size</source>
+        <source>x</source>
+        <translation>x</translation>
+    </message>
+    <message>
+        <source>Rotate log files</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Clear all log files</source>
+        <source> MB</source>
+        <translation> MB</translation>
+    </message>
+    <message>
+        <source>Limit log file size</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1874,16 +1926,20 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Network object directory</source>
+        <source>Write to logging system of operating system</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Backend:</source>
+        <source>Clear all log files</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Update interval:</source>
-        <translation type="unfinished"/>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>การยืนยันตัวตนถูกติดตั้งบนคอมพิวเตอร์ได้อย่างถูกต้องแล้ว</translation>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation>การยืนยันตัวตนยังไม่ได้รับถูกติดตั้งบนคอมพิวเตอร์อย่างถูกต้อง</translation>
     </message>
     <message>
         <source>%1 service</source>
@@ -1910,64 +1966,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source> MB</source>
-        <translation> MB</translation>
-    </message>
-    <message>
-        <source>Rotate log files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>x</source>
-        <translation>x</translation>
-    </message>
-    <message>
-        <source> seconds</source>
-        <translation>วินาที</translation>
-    </message>
-    <message>
-        <source>Write to logging system of operating system</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation>การยืนยันตัวตน</translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation>วิธีการ:</translation>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>การยืนยันตัวตนด้วยการลงชื่อเข้าใช้</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>การยืนยันตัวตนด้วยไฟล์กุญแจ</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>ทดสอบ</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>การยืนยันตัวตนถูกติดตั้งบนคอมพิวเตอร์ได้อย่างถูกต้องแล้ว</translation>
-    </message>
-    <message>
-        <source>Authentication keys are not set up properly on this computer.</source>
-        <translation>การยืนยันตัวตนยังไม่ได้รับถูกติดตั้งบนคอมพิวเตอร์อย่างถูกต้อง</translation>
-    </message>
-    <message>
         <source>Authentication test</source>
         <translation>การทดสอบการยืนยันตัวตน</translation>
-    </message>
-    <message>
-        <source>Style:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Native</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2002,18 +2002,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ทั่วไป</translation>
     </message>
     <message>
-        <source>LDAP server and port</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Bind DN</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Bind password</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Anonymous bind</source>
         <translation type="unfinished"/>
     </message>
@@ -2022,7 +2010,71 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bind DN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
+    <message>
+        <source>LDAP server and port</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bind password</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Connection security</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>TLS certificate verification</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Encryption protocol</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>System defaults</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Never (insecure!)</source>
+        <translation>ไม่เลย (ไม่ปลอดภัย!)</translation>
+    </message>
+    <message>
+        <source>Custom CA certificate file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>ไม่มี</translation>
+    </message>
+    <message>
+        <source>TLS</source>
+        <translation>TLS</translation>
+    </message>
+    <message>
+        <source>SSL</source>
+        <translation>SSL</translation>
+    </message>
+    <message>
         <source>Base DN</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Discover base DN by naming context</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. namingContexts or defaultNamingContext</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2034,14 +2086,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>เช่น dc=example,dc=org</translation>
     </message>
     <message>
-        <source>Discover base DN by naming context</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. namingContexts or defaultNamingContext</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Environment settings</source>
         <translation type="unfinished"/>
     </message>
@@ -2050,20 +2094,20 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>(only if different from group tree)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Computer tree</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>e.g. OU=Groups</source>
+        <source>Perform recursive search operations in object trees</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>User tree</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. OU=Users</source>
-        <translation>เช่น OU=Users</translation>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
@@ -2074,7 +2118,15 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Perform recursive search operations in object trees</source>
+        <source>Computer group tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. OU=Users</source>
+        <translation>เช่น OU=Users</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Groups</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2082,7 +2134,23 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>e.g. hwAddress</source>
+        <source>e.g. name or description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. room or computerLab</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer location attribute</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2090,7 +2158,11 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>e.g. dNSHostName</source>
+        <source>Group member attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. hwAddress</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2098,11 +2170,27 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Group member attribute</source>
+        <source>e.g. dNSHostName</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. cn or displayName</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2114,15 +2202,51 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Filter for user groups</source>
+        <source>Filter for computer groups</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. (objectClass=computer)</source>
+        <translation>เช่น (objectClass=computer)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=group)</source>
+        <translation>เช่น (objectClass=group)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=person)</source>
+        <translation>เช่น (objectClass=person)</translation>
     </message>
     <message>
         <source>Filter for users</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Filter for computer groups</source>
+        <source>Filter for computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Filter for user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
+        <translation>เช่น (objectClass=room) หรือ (objectClass=computerLab)</translation>
+    </message>
+    <message>
+        <source>Filter for computer containers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
+        <translation>เช่น (objectClass=container) หรือ (objectClass=organizationalUnit)</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2131,6 +2255,34 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Distinguished name (Samba/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Identify computer locations (e.g. rooms) via:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer containers or OUs</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location attribute in computer objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Integration tests</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2146,31 +2298,49 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>LDAP connection failed</source>
+        <source>List all entries of a location</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>LDAP bind failed</source>
+        <source>List all locations</source>
+        <translation>แสดงรายชื่อสถานที่ทั้งหมด</translation>
+    </message>
+    <message>
+        <source>Browse</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>LDAP bind successful</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation type="unfinished"/>
+        <source>Test</source>
+        <translation>ทดสอบ</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
         <translation>การทดสอบ LDAP base DN ล้มเหลว</translation>
     </message>
     <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>LDAP base DN test successful</source>
         <translation>การทดสอบ LDAP base DN สำเร็จลุล่วง</translation>
     </message>
     <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>LDAP naming context test failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2192,6 +2362,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>computer tree</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer group tree</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2227,11 +2401,35 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Enter computer name</source>
+        <source>Enter computer display name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer display name to query:</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>computer objects</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter computer name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer hostname to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2247,6 +2445,22 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Enter computer location name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of a computer location (wildcards allowed):</source>
+        <translation>กรุณากรอกชื่อของสถานที่ของคอมพิวเตอร์ (อนุญาตใช้อักขระแทนได้ เช่น ดอกจัน):</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter location name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>users</source>
         <translation type="unfinished"/>
     </message>
@@ -2255,7 +2469,15 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>computer groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>computer containers</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2271,12 +2493,28 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ไม่พบผู้ใช้</translation>
     </message>
     <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter hostname</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a computer hostname whose group memberships to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>groups of computer</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer not found</source>
         <translation>ไม่พบคอมพิวเตอร์</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2287,12 +2525,62 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>computers</source>
+        <source>Hostname lookup failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of a location whose entries to query:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Certificate files (*.pem)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
         <translation>การทดสอบ LDAP %1 ล้มเหลว</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
@@ -2301,6 +2589,24 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>การทดสอบ LDAP ล้มเหลว</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>and</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>การทดสอบ LDAP สำเร็จลุล่วง</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
@@ -2326,312 +2632,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>(only if different from group tree)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer group tree</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer group tree</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Filter for computers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. room or computerLab</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Integration tests</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer groups</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Filter for computer containers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer containers or OUs</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Connection security</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>TLS certificate verification</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>System defaults</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Never (insecure!)</source>
-        <translation>ไม่เลย (ไม่ปลอดภัย!)</translation>
-    </message>
-    <message>
-        <source>Custom CA certificate file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>ไม่มี</translation>
-    </message>
-    <message>
-        <source>TLS</source>
-        <translation>TLS</translation>
-    </message>
-    <message>
-        <source>SSL</source>
-        <translation>SSL</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=computer)</source>
-        <translation>เช่น (objectClass=computer)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=group)</source>
-        <translation>เช่น (objectClass=group)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=person)</source>
-        <translation>เช่น (objectClass=person)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation>เช่น (objectClass=room) หรือ (objectClass=computerLab)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation>เช่น (objectClass=container) หรือ (objectClass=organizationalUnit)</translation>
-    </message>
-    <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Certificate files (*.pem)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
-
-%1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Encryption protocol</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer location attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer display name attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Location name attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. cn or displayName</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer locations identification</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Identify computer locations (e.g. rooms) via:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Location attribute in computer objects</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>List all entries of a location</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>List all locations</source>
-        <translation>แสดงรายชื่อสถานที่ทั้งหมด</translation>
-    </message>
-    <message>
-        <source>Enter computer display name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter a computer display name to query:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Enter computer location name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation>กรุณากรอกชื่อของสถานที่ของคอมพิวเตอร์ (อนุญาตใช้อักขระแทนได้ เช่น ดอกจัน):</translation>
-    </message>
-    <message>
-        <source>computer locations</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Enter location name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter the name of a location whose entries to query:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>location entries</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>LDAP test failed</source>
-        <translation>การทดสอบ LDAP ล้มเหลว</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
-
-%3</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>and</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>LDAP test successful</source>
-        <translation>การทดสอบ LDAP สำเร็จลุล่วง</translation>
-    </message>
-    <message>
-        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
-
-%3</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Browse</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>ทดสอบ</translation>
-    </message>
-    <message>
-        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer hostname attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter a computer hostname to query:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Invalid hostname</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Enter hostname</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Hostname lookup failed</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>User login name attribute</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>computer containers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Query options</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Query nested user groups (supported by AD only)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Query timeout</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation> ms</translation>
-    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2645,22 +2645,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Show help about command</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Basic LDAP/AD support for Veyon</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 (load users and groups from LDAP/AD)</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2679,6 +2663,22 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Basic LDAP/AD support for Veyon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformConfigurationPage</name>
@@ -2687,19 +2687,11 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Custom PAM service for user authentication</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>User authentication</source>
         <translation>การยืนยันตัวตนผู้ใช้</translation>
     </message>
     <message>
-        <source>User login</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Login key sequence</source>
+        <source>Custom PAM service for user authentication</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2708,6 +2700,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Login key sequence</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2736,87 +2736,23 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show icons only</source>
-        <translation>แสดงไอคอนเท่านั้น</translation>
-    </message>
-    <message>
         <source>Disable tooltips</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show icons only</source>
+        <translation>แสดงไอคอนเท่านั้น</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <source>MainWindow</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation type="unfinished"/>
+        <source>Veyon Configurator</source>
+        <translation>Veyon Configurator</translation>
     </message>
     <message>
         <source>General</source>
         <translation>ทั่วไป</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>ไ&amp;ฟล์ </translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>วิ&amp;ธีใช้</translation>
-    </message>
-    <message>
-        <source>&amp;Quit</source>
-        <translation>&amp;ออก</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
-    </message>
-    <message>
-        <source>L&amp;oad settings from file</source>
-        <translation>โ&amp;หลดการตั้งค่าจากไฟล์</translation>
-    </message>
-    <message>
-        <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
-    </message>
-    <message>
-        <source>About Qt</source>
-        <translation>เกี่ยวกับ Qt</translation>
-    </message>
-    <message>
-        <source>Authentication impossible</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Configuration not writable</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Load settings from file</source>
-        <translation>โหลดการตั้งค่าจากไฟล์</translation>
-    </message>
-    <message>
-        <source>Save settings to file</source>
-        <translation>บันทึกการตั้งค่าลงในไฟล์</translation>
-    </message>
-    <message>
-        <source>Unsaved settings</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>There are unsaved settings. Quit anyway?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Veyon Configurator</source>
-        <translation>Veyon Configurator</translation>
     </message>
     <message>
         <source>Service</source>
@@ -2831,8 +2767,72 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>&amp;File</source>
+        <translation>ไ&amp;ฟล์ </translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>วิ&amp;ธีใช้</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation>&amp;มุมมอง</translation>
+    </message>
+    <message>
+        <source>&amp;Quit</source>
+        <translation>&amp;ออก</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
+    </message>
+    <message>
+        <source>&amp;Save settings to file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save settings to file</source>
+        <translation>บันทึกการตั้งค่าลงในไฟล์</translation>
+    </message>
+    <message>
+        <source>Ctrl+S</source>
+        <translation>Ctrl+S</translation>
+    </message>
+    <message>
+        <source>L&amp;oad settings from file</source>
+        <translation>โ&amp;หลดการตั้งค่าจากไฟล์</translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
+        <translation>Ctrl+O</translation>
+    </message>
+    <message>
         <source>About Veyon</source>
         <translation>เกี่ยวกับ Veyon</translation>
+    </message>
+    <message>
+        <source>About Qt</source>
+        <translation>เกี่ยวกับ Qt</translation>
+    </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&amp;Standard</source>
+        <translation>&amp;มาตรฐาน</translation>
+    </message>
+    <message>
+        <source>&amp;Advanced</source>
+        <translation>&amp;ขั้นสูง</translation>
+    </message>
+    <message>
+        <source>MainWindow</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation>ตั้งค่าขนาดไอคอนคอมพิวเตอร์โดยอัตโนมัติ</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2843,15 +2843,91 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>เกี่ยวกับ</translation>
     </message>
     <message>
+        <source>Search users and computers</source>
+        <translation>ค้นหาผู้ใช้และคอมพิวเตอร์</translation>
+    </message>
+    <message>
+        <source>Align computers to grid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
+        <translation>ใช้การจัดเรียงคอมพิวเตอร์แบบกำหนดเอง</translation>
+    </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation>แสดงเฉพาะคอมพิวเตอร์ที่เปิดอยู่เท่านั้น</translation>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
+        <translation>สถานที่ &amp;&amp; คอมพิวเตอร์</translation>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation>ภาพถ่ายหน้าจอ</translation>
+    </message>
+    <message>
+        <source>Slideshow</source>
+        <translation>สไลด์โชว์</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>สปอร์ตไลท์</translation>
+    </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>%1 Configurator %2</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Load settings from file</source>
+        <translation>โหลดการตั้งค่าจากไฟล์</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
         <translation>ไฟล์ JSON (*.json)</translation>
     </message>
     <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unsaved settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>There are unsaved settings. Quit anyway?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Insufficient privileges</source>
+        <translation>สิทธิไม่เพียงพอ</translation>
+    </message>
+    <message>
+        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration not writable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication impossible</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2867,10 +2943,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Screenshots</source>
-        <translation>ภาพถ่ายหน้าจอ</translation>
-    </message>
-    <message>
         <source>Feature active</source>
         <translation type="unfinished"/>
     </message>
@@ -2878,81 +2950,13 @@ The public key is used on client computers to authenticate incoming connection r
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation>ฟีเจอร์ &quot;%1&quot; ยังถูกในระหว่างการใช้งานอยู่ กรุณาหยุดการใช้งานก่อนปิด %2</translation>
     </message>
-    <message>
-        <source>Reset configuration</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Search users and computers</source>
-        <translation>ค้นหาผู้ใช้และคอมพิวเตอร์</translation>
-    </message>
-    <message>
-        <source>Align computers to grid</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Insufficient privileges</source>
-        <translation>สิทธิไม่เพียงพอ</translation>
-    </message>
-    <message>
-        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Only show powered on computers</source>
-        <translation>แสดงเฉพาะคอมพิวเตอร์ที่เปิดอยู่เท่านั้น</translation>
-    </message>
-    <message>
-        <source>&amp;Save settings to file</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>&amp;View</source>
-        <translation>&amp;มุมมอง</translation>
-    </message>
-    <message>
-        <source>&amp;Standard</source>
-        <translation>&amp;มาตรฐาน</translation>
-    </message>
-    <message>
-        <source>&amp;Advanced</source>
-        <translation>&amp;ขั้นสูง</translation>
-    </message>
-    <message>
-        <source>Use custom computer arrangement</source>
-        <translation>ใช้การจัดเรียงคอมพิวเตอร์แบบกำหนดเอง</translation>
-    </message>
-    <message>
-        <source>Locations &amp;&amp; computers</source>
-        <translation>สถานที่ &amp;&amp; คอมพิวเตอร์</translation>
-    </message>
-    <message>
-        <source>Slideshow</source>
-        <translation>สไลด์โชว์</translation>
-    </message>
-    <message>
-        <source>Spotlight</source>
-        <translation>สปอร์ตไลท์</translation>
-    </message>
-    <message>
-        <source>Adjust size of computer icons automatically</source>
-        <translation>ตั้งค่าขนาดไอคอนคอมพิวเตอร์โดยอัตโนมัติ</translation>
-    </message>
-    <message>
-        <source>Only show computers with logged on users</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
+    <message>
+        <source>Basic settings</source>
+        <translation>การตั้งค่าพื้นฐาน</translation>
+    </message>
     <message>
         <source>Directories</source>
         <translation type="unfinished"/>
@@ -2962,80 +2966,44 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Feature on computer double click:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Features</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>All features</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Disabled features</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation>ภาพถ่ายหน้าจอ</translation>
-    </message>
-    <message>
-        <source>&lt;no feature&gt;</source>
-        <translation>&lt;no feature&gt;</translation>
-    </message>
-    <message>
-        <source>Basic settings</source>
-        <translation>การตั้งค่าพื้นฐาน</translation>
-    </message>
-    <message>
-        <source>Behaviour</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Enforce selected mode for client computers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Hide local computer</source>
-        <translation>ซ่อนคอมพิวเตอร์ท้องที่</translation>
-    </message>
-    <message>
-        <source>Hide computer filter field</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Actions such as rebooting or powering down computers</source>
-        <translation>การกระทำอย่างเช่นการสั่งบู๊ตเครื่องใหม่ หรือการสั่งปิดคอมพิวเตอร์</translation>
     </message>
     <message>
         <source>User interface</source>
         <translation>ส่วนติดต่อผู้ใช้</translation>
     </message>
     <message>
-        <source>Background color</source>
-        <translation>สีพื้นหลัง</translation>
-    </message>
-    <message>
-        <source>Thumbnail update interval</source>
-        <translation type="unfinished"/>
+        <source>Text color</source>
+        <translation>สีของข้อความ</translation>
     </message>
     <message>
         <source> ms</source>
         <translation> ms</translation>
     </message>
     <message>
-        <source>Program start</source>
+        <source>Background color</source>
+        <translation>สีพื้นหลัง</translation>
+    </message>
+    <message>
+        <source>Thumbnail spacing</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Modes and features</source>
+        <source> px</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>User and computer name</source>
-        <translation>ผู้ใช้และชื่อคอมพิวเตอร์</translation>
+        <source>Auto</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer thumbnail caption</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer and user name</source>
+        <translation>คอมพิวเตอร์และชื่อผู้ใช้</translation>
     </message>
     <message>
         <source>Only user name</source>
@@ -3046,79 +3014,19 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>เฉพาะชื่อคอมพิวเตอร์</translation>
     </message>
     <message>
-        <source>Computer thumbnail caption</source>
-        <translation type="unfinished"/>
+        <source>User and computer name</source>
+        <translation>ผู้ใช้และชื่อคอมพิวเตอร์</translation>
     </message>
     <message>
-        <source>Text color</source>
-        <translation>สีของข้อความ</translation>
+        <source>Thumbnail update interval</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Sort order</source>
         <translation>การจัดเรียงลำดับ</translation>
     </message>
     <message>
-        <source>Computer and user name</source>
-        <translation>คอมพิวเตอร์และชื่อผู้ใช้</translation>
-    </message>
-    <message>
-        <source>Computer locations</source>
-        <translation>สถานที่ของคอมพิวเตอร์</translation>
-    </message>
-    <message>
-        <source>Show current location only</source>
-        <translation>แสดงสถานที่ปัจจุบันเท่านั้น</translation>
-    </message>
-    <message>
-        <source>Allow adding hidden locations manually</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Hide empty locations</source>
-        <translation>ซ่อนสถานที่ว่างเปล่า</translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Perform access control</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Automatically select current location</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Automatically open computer select panel</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Hide local session</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source> px</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Automatically adjust computer icon size</source>
-        <translation>ปรับเปลี่ยนขนาดไอคอนของคอมพิวเตอร์โดยอัตโนมัติ</translation>
-    </message>
-    <message>
-        <source>Open feature windows on the same screen as the main window</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3142,12 +3050,104 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Remote access image quality</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Image quality in monitoring mode</source>
+        <source>Behaviour</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Program start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation>ปรับเปลี่ยนขนาดไอคอนของคอมพิวเตอร์โดยอัตโนมัติ</translation>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation>สถานที่ของคอมพิวเตอร์</translation>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation>แสดงสถานที่ปัจจุบันเท่านั้น</translation>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation>ซ่อนคอมพิวเตอร์ท้องที่</translation>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation>ซ่อนสถานที่ว่างเปล่า</translation>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Modes and features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Actions such as rebooting or powering down computers</source>
+        <translation>การกระทำอย่างเช่นการสั่งบู๊ตเครื่องใหม่ หรือการสั่งปิดคอมพิวเตอร์</translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature on computer double click:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disabled features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;no feature&gt;</source>
+        <translation>&lt;no feature&gt;</translation>
     </message>
 </context>
 <context>
@@ -3155,10 +3155,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Monitoring</source>
         <translation>สังเกตการณ์</translation>
-    </message>
-    <message>
-        <source>Builtin monitoring mode</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
@@ -3174,6 +3170,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Query properties of remotely available screens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Builtin monitoring mode</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3214,6 +3214,14 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>PasswordDialog</name>
     <message>
+        <source>Veyon Logon</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Username</source>
         <translation>ชื่อผู้ใช้</translation>
     </message>
@@ -3222,19 +3230,11 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>รหัสผ่าน</translation>
     </message>
     <message>
-        <source>Veyon Logon</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Authentication error</source>
         <translation>การยืนยันตัวตนผิดพลาด</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3276,6 +3276,10 @@ The public key is used on client computers to authenticate incoming connection r
 <context>
     <name>PowerControlFeaturePlugin</name>
     <message>
+        <source>Power on a computer via Wake-on-LAN (WOL)</source>
+        <translation>เปิดเครื่องคอมพิวเตอร์โดยใช้ Wake-on-LAN (WOL)</translation>
+    </message>
+    <message>
         <source>Power on</source>
         <translation>เปิดเครื่อง</translation>
     </message>
@@ -3300,46 +3304,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>คลิกที่ปุ่มนี้เพื่อทำการสั่งปิดเครื่องคอมพิวเตอร์ทั้งหมด วิธีนี้จะทำให้คุณไม่จำเป็นต้องเดินไปปิดคอมพิวเตอร์ด้วยตัวเองทีละเครื่อง</translation>
     </message>
     <message>
-        <source>Power on/down or reboot a computer</source>
-        <translation>เปิด/ปิดเครื่อง หรือรีสตาร์ทคอมพิวเตอร์ใหม่</translation>
-    </message>
-    <message>
-        <source>Confirm reboot</source>
-        <translation>ยืนยันการรีบู๊ต</translation>
-    </message>
-    <message>
-        <source>Confirm power down</source>
-        <translation>ยืนยันการปิดเครื่อง</translation>
-    </message>
-    <message>
-        <source>Do you really want to reboot the selected computers?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>เปิดเครื่องคอมพิวเตอร์โดยใช้ Wake-on-LAN (WOL)</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Invalid MAC address specified!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Commands for controlling power status of computers</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Power down now</source>
         <translation>ปิดเครื่องตอนนี้</translation>
     </message>
@@ -3356,6 +3320,46 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>ปิดเครื่องหลังจากหมดเวลา</translation>
     </message>
     <message>
+        <source>MAC ADDRESS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Confirm reboot</source>
+        <translation>ยืนยันการรีบู๊ต</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to reboot the selected computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Confirm power down</source>
+        <translation>ยืนยันการปิดเครื่อง</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid MAC address specified!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
         <translation>คอมพิวเตอร์ได้รับการร้องขอจากระยะไกลให้ปิดเครื่องลง คุณต้องการปิดเครื่องลงตอนนี้หรือไม่?</translation>
     </message>
@@ -3367,15 +3371,11 @@ Please save your work and close all programs.</source>
 กรุณาบันทึกงานให้เรียบร้อยแล้วปิดโปรแกรมทุกโปรแกรม</translation>
     </message>
     <message>
-        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <source>Power on/down or reboot a computer</source>
+        <translation>เปิด/ปิดเครื่อง หรือรีสตาร์ทคอมพิวเตอร์ใหม่</translation>
     </message>
     <message>
-        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Do you really want to power down the selected computers?</source>
+        <source>Commands for controlling power status of computers</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3417,24 +3417,24 @@ Please save your work and close all programs.</source>
         <translation>เปิดหน้าต่างการเข้าควบคุมระยะไกลสำหรับคอมพิวเตอร์</translation>
     </message>
     <message>
-        <source>Remote access</source>
-        <translation>การเข้าถึงระยะไกล</translation>
-    </message>
-    <message>
-        <source>Remote view or control a computer</source>
-        <translation>ดูจากระยะไกลหรือเข้าควบคุมคอมพิวเตอร์</translation>
+        <source>Exchange clipboard contents</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Show help about command</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Exchange clipboard contents</source>
-        <translation type="unfinished"/>
+        <source>Remote access</source>
+        <translation>การเข้าถึงระยะไกล</translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote view or control a computer</source>
+        <translation>ดูจากระยะไกลหรือเข้าควบคุมคอมพิวเตอร์</translation>
     </message>
 </context>
 <context>
@@ -3459,8 +3459,16 @@ Please save your work and close all programs.</source>
         <translation>ควบคุมระยะไกล</translation>
     </message>
     <message>
+        <source>Select screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Send shortcut</source>
         <translation>ส่งคีย์ลัด</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>ภาพหน้าจอ</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -3469,6 +3477,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>Window</source>
         <translation>หน้าต่าง</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation>ออก</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
@@ -3507,20 +3519,8 @@ Please save your work and close all programs.</source>
         <translation>เชื่อมต่อแล้ว</translation>
     </message>
     <message>
-        <source>Screenshot</source>
-        <translation>ภาพหน้าจอ</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation>ออก</translation>
-    </message>
-    <message>
         <source>Connecting...</source>
         <translation>กำลังเชื่อมต่อ...</translation>
-    </message>
-    <message>
-        <source>Select screen</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>All screens</source>
@@ -3538,10 +3538,6 @@ Please save your work and close all programs.</source>
         <translation>ปลดล็อก</translation>
     </message>
     <message>
-        <source>Lock screen and input devices of a computer</source>
-        <translation>ล็อกหน้าจอและอุปกรณ์นำเข้าของคอมพิวเตอร์</translation>
-    </message>
-    <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>เพื่อที่จะดึงความสนใจจากผู้ใช้ทั้งหมดให้กลับมา คุณสามารถล็อกคอมพิวเตอร์ของเขาโดยใช้ปุ่มนี้ ในโหมดนี้ อุปกรณ์ประเภทนำเข้าข้อมูล เช่น เมาส์ คีย์บอร์ด จะถูกล็อกและหน้าจอจะดับลง</translation>
     </message>
@@ -3556,6 +3552,10 @@ Please save your work and close all programs.</source>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock screen and input devices of a computer</source>
+        <translation>ล็อกหน้าจอและอุปกรณ์นำเข้าของคอมพิวเตอร์</translation>
     </message>
 </context>
 <context>
@@ -3646,56 +3646,44 @@ Please save your work and close all programs.</source>
         <translation>ทั่วไป</translation>
     </message>
     <message>
-        <source>Autostart</source>
-        <translation>เริ่มอัตโนมัติ</translation>
+        <source>Show notification when an unauthorized access is blocked</source>
+        <translation>แสดงการแจ้งเตือนเมื่อการเข้าถึงที่ไม่ได้รับอนุญาตถูกบล็อก</translation>
+    </message>
+    <message>
+        <source>Show notification on remote connection</source>
+        <translation>แสดงการแจ้งเตือนเมื่อมีการเชื่อมต่อจากระยะไกล</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Start service</source>
-        <translation>เริ่ม service</translation>
-    </message>
-    <message>
-        <source>Stopped</source>
-        <translation>หยุดแล้ว</translation>
-    </message>
-    <message>
-        <source>Stop service</source>
-        <translation>หยุด service</translation>
+        <source>Autostart</source>
+        <translation>เริ่มอัตโนมัติ</translation>
     </message>
     <message>
         <source>State:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Enable firewall exception</source>
-        <translation>เปิดใช้ข้อยกเว้นของไฟร์วอลล์</translation>
+        <source>Stopped</source>
+        <translation>หยุดแล้ว</translation>
     </message>
     <message>
-        <source>Allow connections from localhost only</source>
-        <translation>อนุญาตการเชื่อมต่อจาก localhost เท่านั้น</translation>
+        <source>Start service</source>
+        <translation>เริ่ม service</translation>
     </message>
     <message>
-        <source>VNC server</source>
-        <translation>เซิฟเวอร์ VNC</translation>
+        <source>Stop service</source>
+        <translation>หยุด service</translation>
     </message>
     <message>
-        <source>Plugin:</source>
-        <translation>ปลั๊กอิน:</translation>
-    </message>
-    <message>
-        <source>Restart %1 Service</source>
-        <translation>เริ่มต้นเซอร์วิส %1 ใหม่</translation>
-    </message>
-    <message>
-        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
+        <source>Session mode</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Running</source>
-        <translation>กำลังทำงาน</translation>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
@@ -3703,12 +3691,12 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show notification on remote connection</source>
-        <translation>แสดงการแจ้งเตือนเมื่อมีการเชื่อมต่อจากระยะไกล</translation>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show notification when an unauthorized access is blocked</source>
-        <translation>แสดงการแจ้งเตือนเมื่อการเข้าถึงที่ไม่ได้รับอนุญาตถูกบล็อก</translation>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Maximum session count</source>
@@ -3735,24 +3723,40 @@ Typically this is required to support terminal servers.</source>
         <translation>เซิฟเวอร์สาธิต</translation>
     </message>
     <message>
-        <source>Miscellaneous network settings</source>
+        <source>Miscellaneous settings</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Session mode</source>
+        <source>Enable firewall exception</source>
+        <translation>เปิดใช้ข้อยกเว้นของไฟร์วอลล์</translation>
+    </message>
+    <message>
+        <source>Allow connections from localhost only</source>
+        <translation>อนุญาตการเชื่อมต่อจาก localhost เท่านั้น</translation>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Local session mode (single server instance for primary local session)</source>
+        <source>VNC server</source>
+        <translation>เซิฟเวอร์ VNC</translation>
+    </message>
+    <message>
+        <source>Plugin:</source>
+        <translation>ปลั๊กอิน:</translation>
+    </message>
+    <message>
+        <source>Restart %1 Service</source>
+        <translation>เริ่มต้นเซอร์วิส %1 ใหม่</translation>
+    </message>
+    <message>
+        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
+        <source>Running</source>
+        <translation>กำลังทำงาน</translation>
     </message>
 </context>
 <context>
@@ -3862,6 +3866,10 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>SpotlightPanel</name>
     <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Add selected computers</source>
         <translation type="unfinished"/>
     </message>
@@ -3883,10 +3891,6 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3979,11 +3983,11 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>UltraVncConfigurationWidget</name>
     <message>
-        <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation type="unfinished"/>
+        <source>Builtin UltraVNC server configuration</source>
+        <translation>การตั้งค่าเซิฟเวอร์ UltraVNC ในตัว</translation>
     </message>
     <message>
-        <source>Poll full screen (leave this enabled per default)</source>
+        <source>Maximum CPU usage</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3991,19 +3995,19 @@ Typically this is required to support terminal servers.</source>
         <translation>ความแม่นยำต่ำ (โหมดเทอร์โบ)</translation>
     </message>
     <message>
-        <source>Builtin UltraVNC server configuration</source>
-        <translation>การตั้งค่าเซิฟเวอร์ UltraVNC ในตัว</translation>
-    </message>
-    <message>
-        <source>Enable multi monitor support</source>
-        <translation>เปิดใช้การสนับสนุนการแสดงหลายหน้าจอ</translation>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Maximum CPU usage</source>
+        <source>Enable multi monitor support</source>
+        <translation>เปิดใช้การสนับสนุนการแสดงหลายหน้าจอ</translation>
+    </message>
+    <message>
+        <source>Enable capturing of layered (semi-transparent) windows</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4060,15 +4064,15 @@ Typically this is required to support terminal servers.</source>
         <translation>ยืนยันการล็อกออฟผู้ใช้</translation>
     </message>
     <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>คุณต้องการล็อกออฟผู้ใช้ที่เลือกไว้หรือไม่</translation>
     </message>
     <message>
         <source>User session control</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4087,10 +4091,6 @@ Typically this is required to support terminal servers.</source>
         <translation>คำสั่งไม่ถูกต้อง!</translation>
     </message>
     <message>
-        <source>Available commands:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation type="unfinished"/>
     </message>
@@ -4099,8 +4099,16 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Plugin not licensed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Unknown result!</source>
         <translation>ผลลัพธ์ที่ไม่รู้จัก!</translation>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available modules:</source>
@@ -4111,11 +4119,11 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Plugin not licensed</source>
+        <source>INFO</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>INFO</source>
+        <source>WARNING</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4132,10 +4140,6 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>WARNING</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4262,22 +4266,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Screen lock</source>
-        <translation>ล็อกจอ</translation>
-    </message>
-    <message>
-        <source>Hide taskbar</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Hide start menu</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Hide desktop</source>
-        <translation>ซ่อนเดสก์ท็อป</translation>
-    </message>
-    <message>
         <source>User authentication</source>
         <translation>การยืนยันตัวตนผู้ใช้</translation>
     </message>
@@ -4302,6 +4290,22 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Screen lock</source>
+        <translation>ล็อกจอ</translation>
+    </message>
+    <message>
+        <source>Hide taskbar</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide start menu</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide desktop</source>
+        <translation>ซ่อนเดสก์ท็อป</translation>
+    </message>
+    <message>
         <source>Use input device interception driver</source>
         <translation type="unfinished"/>
     </message>
@@ -4309,11 +4313,11 @@ Typically this is required to support terminal servers.</source>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
-        <source>Plugin implementing abstract functions for the Windows platform</source>
+        <source>Internal display</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Internal display</source>
+        <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4324,18 +4328,6 @@ Typically this is required to support terminal servers.</source>
         <translation>เซอร์วิส &quot;%1&quot; ถูกติดตั้งอยู่ก่อนแล้ว</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation>เซอร์วิส &quot;%1&quot; ได้รับการติดตั้งอย่างเสร็จสมบูรณ์แล้ว</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>เซอร์วิส &quot;%1&quot; ได้รับการยกเลิกการติดตั้งอย่างเสร็จสมบูรณ์แล้ว</translation>
-    </message>
-    <message>
-        <source>Service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
         <translation type="unfinished"/>
     </message>
@@ -4344,11 +4336,23 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
+        <translation>เซอร์วิส &quot;%1&quot; ได้รับการติดตั้งอย่างเสร็จสมบูรณ์แล้ว</translation>
+    </message>
+    <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation>เซอร์วิส &quot;%1&quot; ได้รับการยกเลิกการติดตั้งอย่างเสร็จสมบูรณ์แล้ว</translation>
+    </message>
+    <message>
         <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service &quot;%1&quot; could not be found.</source>
         <translation type="unfinished"/>
     </message>
 </context>

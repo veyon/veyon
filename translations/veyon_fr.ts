@@ -2,24 +2,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About</source>
-        <translation>À propos</translation>
-    </message>
-    <message>
-        <source>Translation</source>
-        <translation>Traduction</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation>Licence</translation>
-    </message>
-    <message>
         <source>About Veyon</source>
         <translation>À propos de Veyon</translation>
     </message>
     <message>
-        <source>Contributors</source>
-        <translation>Contributeurs</translation>
+        <source>About</source>
+        <translation>À propos</translation>
     </message>
     <message>
         <source>Version:</source>
@@ -30,6 +18,18 @@
         <translation>Site Internet :</translation>
     </message>
     <message>
+        <source>Support Veyon project with a donation</source>
+        <translation>Soutenir le projet Veyon avec un don</translation>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation>Contributeurs</translation>
+    </message>
+    <message>
+        <source>Translation</source>
+        <translation>Traduction</translation>
+    </message>
+    <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
@@ -38,12 +38,12 @@ If you&apos;re interested in translating Veyon into your local or another langua
 Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, ou si vous souhaitez améliorer la traduction existante, merci de contacter l&apos;équipe des développeurs de Veyon !</translation>
     </message>
     <message>
-        <source>About %1 %2</source>
-        <translation>A propos %1 %2</translation>
+        <source>License</source>
+        <translation>Licence</translation>
     </message>
     <message>
-        <source>Support Veyon project with a donation</source>
-        <translation>Soutenir le projet Veyon avec un don</translation>
+        <source>About %1 %2</source>
+        <translation>A propos %1 %2</translation>
     </message>
 </context>
 <context>
@@ -53,8 +53,12 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
         <translation>Contrôle d&apos;accès ordinateur</translation>
     </message>
     <message>
-        <source>Grant access to every authenticated user (default)</source>
-        <translation>Accorder l&apos;accès à tous les utilisateurs authentifiés (par défaut)</translation>
+        <source>Restrict access to members of specific user groups</source>
+        <translation>Restreindre l&apos;accès aux membres de groupes d&apos;utilisateurs spécifiques</translation>
+    </message>
+    <message>
+        <source>User groups backend:</source>
+        <translation>Groupes d&apos;utilisateurs de processus d&apos;arrière plan :</translation>
     </message>
     <message>
         <source>Test</source>
@@ -63,6 +67,14 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     <message>
         <source>Process access control rules</source>
         <translation>Procéder avec des règles de contrôle d&apos;accès</translation>
+    </message>
+    <message>
+        <source>Grant access to every authenticated user (default)</source>
+        <translation>Accorder l&apos;accès à tous les utilisateurs authentifiés (par défaut)</translation>
+    </message>
+    <message>
+        <source>Enable usage of domain groups</source>
+        <translation>Activer l&apos;utilisation des groupes de domaine</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -85,6 +97,14 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
         <translation>Règles du contrôle d&apos;accès</translation>
     </message>
     <message>
+        <source>Move selected rule up</source>
+        <translation>Déplacer la règle sélectionnée vers le haut</translation>
+    </message>
+    <message>
+        <source>Edit selected rule</source>
+        <translation>Éditer la règle sélectionnée</translation>
+    </message>
+    <message>
         <source>Add access control rule</source>
         <translation>Ajouter une règle de contrôle d&apos;accès</translation>
     </message>
@@ -97,12 +117,12 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
         <translation>Déplacer la règle sélectionnée vers le bas</translation>
     </message>
     <message>
-        <source>Move selected rule up</source>
-        <translation>Déplacer la règle sélectionnée vers le haut</translation>
+        <source>Missing user groups backend</source>
+        <translation>Groupes d&apos;utilisateurs de processus d&apos;arrière plan manquants</translation>
     </message>
     <message>
-        <source>Edit selected rule</source>
-        <translation>Éditer la règle sélectionnée</translation>
+        <source>No default user groups plugin was found. Please check your installation!</source>
+        <translation>Aucun greffon par défaut pour les groupes d&apos;utilisateurs n&apos;a été trouvé. Veuillez vérifier votre installation!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -127,26 +147,6 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
         <translation>Avec cette configuration, l&apos;utilisateur spécifié n&apos;est pas autorisé à accéder aux ordinateurs.</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Activer l&apos;utilisation des groupes de domaine</translation>
-    </message>
-    <message>
-        <source>User groups backend:</source>
-        <translation>Groupes d&apos;utilisateurs de processus d&apos;arrière plan :</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Groupes d&apos;utilisateurs de processus d&apos;arrière plan manquants</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Aucun greffon par défaut pour les groupes d&apos;utilisateurs n&apos;a été trouvé. Veuillez vérifier votre installation!</translation>
-    </message>
-    <message>
-        <source>Restrict access to members of specific user groups</source>
-        <translation>Restreindre l&apos;accès aux membres de groupes d&apos;utilisateurs spécifiques</translation>
     </message>
 </context>
 <context>
@@ -180,6 +180,10 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
         <translation>Inverser toutes les conditions (&quot;est&quot; sera interprété par &quot;n&apos;est pas&quot;)</translation>
     </message>
     <message>
+        <source>Always process rule and ignore conditions</source>
+        <translation>Toujours appliquer la règle et ignorer les conditions</translation>
+    </message>
+    <message>
         <source>Conditions</source>
         <translation>Conditions</translation>
     </message>
@@ -188,8 +192,28 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
         <translation>est membre du groupe</translation>
     </message>
     <message>
+        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
+        <translation>Si plus d&apos;une condition est validée, chaque condition doit être en adéquation avec les autres afin que la règle puisse s&apos;appliquer (ET Logique). Si seulement une condition sur plusieurs est validée (OU Logique) optez plutôt pour la création de plusieurs règles de contrôle d&apos;accès.</translation>
+    </message>
+    <message>
+        <source>Accessing computer and local computer are at the same location</source>
+        <translation>L&apos;accès à l&apos;ordinateur et l&apos;ordinateur local se trouvent au même endroit</translation>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>Aucun utilisateur connecté</translation>
+    </message>
+    <message>
+        <source>is located at</source>
+        <translation>est situé à</translation>
+    </message>
+    <message>
         <source>Accessing computer is localhost</source>
         <translation>L&apos;ordinateur accédant est l&apos;hôte local</translation>
+    </message>
+    <message>
+        <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <translation>L&apos;utilisateur accédant est membre d&apos;un ou plusieurs groupes en commun avec l&apos;utilisateur local (connecté)</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
@@ -198,10 +222,6 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     <message>
         <source>Accessing user is already connected</source>
         <translation>L&apos;utilisateur accédant est déjà connecté</translation>
-    </message>
-    <message>
-        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>Si plus d&apos;une condition est validée, chaque condition doit être en adéquation avec les autres afin que la règle puisse s&apos;appliquer (ET Logique). Si seulement une condition sur plusieurs est validée (OU Logique) optez plutôt pour la création de plusieurs règles de contrôle d&apos;accès.</translation>
     </message>
     <message>
         <source>Action</source>
@@ -238,26 +258,6 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     <message>
         <source>Local computer</source>
         <translation>L&apos;ordinateur local</translation>
-    </message>
-    <message>
-        <source>Always process rule and ignore conditions</source>
-        <translation>Toujours appliquer la règle et ignorer les conditions</translation>
-    </message>
-    <message>
-        <source>No user logged on</source>
-        <translation>Aucun utilisateur connecté</translation>
-    </message>
-    <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>L&apos;utilisateur accédant est membre d&apos;un ou plusieurs groupes en commun avec l&apos;utilisateur local (connecté)</translation>
-    </message>
-    <message>
-        <source>Accessing computer and local computer are at the same location</source>
-        <translation>L&apos;accès à l&apos;ordinateur et l&apos;ordinateur local se trouvent au même endroit</translation>
-    </message>
-    <message>
-        <source>is located at</source>
-        <translation>est situé à</translation>
     </message>
 </context>
 <context>
@@ -322,6 +322,26 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
         <translation>Introduction</translation>
     </message>
     <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Veuillez suivre les indications suivantes pour configurer la clé d&apos;authentification :</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Créer une paire de clé sur l&apos;ordinateur maître.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Définissez un groupe d&apos;accès dont les membres sont autorisés pour accéder aux autres ordinateurs.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Exporter la clé publique et importer la avec le même nom sur tous les ordinateurs clients .</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Veuillez vous référer au &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Manuel Administrateur Veyon&lt;/a&gt; pour plus d&apos;informations.</translation>
+    </message>
+    <message>
         <source>Key file directories</source>
         <translation>Répertoires de fichier clé</translation>
     </message>
@@ -336,6 +356,16 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     <message>
         <source>Available authentication keys</source>
         <translation>Clés d&apos;authentification disponibles</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Une paire de clé d&apos;authentification, consiste en deux clés cryptographiques couplées, une clé privée et une autre publique.
+La clé privée permet aux utilisateurs de l&apos;ordinateur maitre d&apos;accéder aux ordinateurs clients.
+Il est important que seuls les utilisateurs autorisés aient l&apos;accès en lecture sur la clé privée.
+La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentification des demandes de connexions.</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -392,36 +422,6 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Veuillez sélectionner une clé pour accorder l&apos;accès groupe !</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Veuillez suivre les indications suivantes pour configurer la clé d&apos;authentification :</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Créer une paire de clé sur l&apos;ordinateur maître.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Définissez un groupe d&apos;accès dont les membres sont autorisés pour accéder aux autres ordinateurs.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Exporter la clé publique et importer la avec le même nom sur tous les ordinateurs clients .</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Veuillez vous référer au &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Manuel Administrateur Veyon&lt;/a&gt; pour plus d&apos;informations.</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Une paire de clé d&apos;authentification, consiste en deux clés cryptographiques couplées, une clé privée et une autre publique.
-La clé privée permet aux utilisateurs de l&apos;ordinateur maitre d&apos;accéder aux ordinateurs clients.
-Il est important que seuls les utilisateurs autorisés aient l&apos;accès en lecture sur la clé privée.
-La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentification des demandes de connexions.</translation>
     </message>
 </context>
 <context>
@@ -590,20 +590,24 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Configure l&apos;autorisation d&apos;un groupe utilisateur pour accéder à une clé.</translation>
     </message>
     <message>
-        <source>KEY</source>
-        <translation>CLÉ</translation>
-    </message>
-    <message>
-        <source>ACCESS GROUP</source>
-        <translation>GROUPE D&apos;ACCÈS</translation>
-    </message>
-    <message>
-        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation>Cette commande ajuste les permissions du fichier d&apos;accès vers &lt;KEY&gt; de sorte que seul le groupe d&apos;utilisateurs &lt;ACCESS GROUP&gt; dispose d&apos;un accès en lecture.</translation>
+        <source>Please specify the command to display help for.</source>
+        <translation>Veuillez spécifier la commande pour afficher l&apos;aide correspondante.</translation>
     </message>
     <message>
         <source>NAME</source>
         <translation>NOM</translation>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
+        <translation>Cette commande crée une nouvelle paire de clés d&apos;authentification avec comme nom &lt;NAME&gt; et sauve les clés privée et publique dans le répertoire des clés configuré. Le paramètre doit être un nom pour la clé, qui ne peut contenir que des lettres.</translation>
+    </message>
+    <message>
+        <source>KEY</source>
+        <translation>CLÉ</translation>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
+        <translation>Cette commande supprime la clé d’authentification &lt;KEY&gt; depuis le répertoire de clé configuré. Veuillez noter qu&apos;une clé ne peut pas être récupérée une fois qu&apos;elle a été supprimée.</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -614,12 +618,32 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Cette commande exporte la clé d&apos;authentification &lt;KEY&gt; vers &lt;FILE&gt;. Si &lt;FILE&gt; n&apos;est pas spécifié un nom sera construit à partir du nom et du type de &lt;KEY&gt;.</translation>
     </message>
     <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
+        <translation>Cette commande extrait la partie clé publique à partir de la clé privée &lt;KEY&gt; et l&apos;enregistre comme la clé publique correspondante. Lors de la configuration d&apos;un autre ordinateur maître, il suffit simplement de ne transférer que la clé privée. La clé publique pourra par la suite être extraite.</translation>
+    </message>
+    <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
         <translation>Cette commande importe la clé d&apos;authentification &lt;KEY&gt; à partir de &lt;FILE&gt;. Si &lt;FILE&gt; n&apos;est pas spécifié un nom sera construit à partir du nom et du type de &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
         <translation>Cette commande liste toutes les clés d&apos;authentification disponibles dans le répertoire des clés configuré. Si l&apos;option &quot;%1&quot; est spécifiée, un tableau avec les détails de la clé sera affiché à la place. Certaines informations peuvent être manquantes si une clé n&apos;est pas accessible ex: en cas d&apos;un manque de permission en lecture.</translation>
+    </message>
+    <message>
+        <source>ACCESS GROUP</source>
+        <translation>GROUPE D&apos;ACCÈS</translation>
+    </message>
+    <message>
+        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
+        <translation>Cette commande ajuste les permissions du fichier d&apos;accès vers &lt;KEY&gt; de sorte que seul le groupe d&apos;utilisateurs &lt;ACCESS GROUP&gt; dispose d&apos;un accès en lecture.</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>La commande demandée n&apos;existe pas et il n&apos;y a pas d&apos;aide disponible pour ce sujet.</translation>
+    </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation>Veuillez spécifier le nom de la clé (par exemple &quot;enseignant/public&quot;) comme premier argument.</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -636,30 +660,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Commands for managing authentication keys</source>
         <translation>Commandes pour gérer les clés d&apos;authentification</translation>
-    </message>
-    <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation>Cette commande crée une nouvelle paire de clés d&apos;authentification avec comme nom &lt;NAME&gt; et sauve les clés privée et publique dans le répertoire des clés configuré. Le paramètre doit être un nom pour la clé, qui ne peut contenir que des lettres.</translation>
-    </message>
-    <message>
-        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation>Cette commande supprime la clé d’authentification &lt;KEY&gt; depuis le répertoire de clé configuré. Veuillez noter qu&apos;une clé ne peut pas être récupérée une fois qu&apos;elle a été supprimée.</translation>
-    </message>
-    <message>
-        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation>Cette commande extrait la partie clé publique à partir de la clé privée &lt;KEY&gt; et l&apos;enregistre comme la clé publique correspondante. Lors de la configuration d&apos;un autre ordinateur maître, il suffit simplement de ne transférer que la clé privée. La clé publique pourra par la suite être extraite.</translation>
-    </message>
-    <message>
-        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation>Veuillez spécifier le nom de la clé (par exemple &quot;enseignant/public&quot;) comme premier argument.</translation>
-    </message>
-    <message>
-        <source>Please specify the command to display help for.</source>
-        <translation>Veuillez spécifier la commande pour afficher l&apos;aide correspondante.</translation>
-    </message>
-    <message>
-        <source>The specified command does not exist or no help is available for it.</source>
-        <translation>La commande demandée n&apos;existe pas et il n&apos;y a pas d&apos;aide disponible pour ce sujet.</translation>
     </message>
 </context>
 <context>
@@ -684,8 +684,28 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
+        <source>Locations &amp; computers</source>
+        <translation>Emplacements &amp; ordinateurs</translation>
+    </message>
+    <message>
+        <source>Builtin directory</source>
+        <translation>Répertoire intégré</translation>
+    </message>
+    <message>
         <source>Computers</source>
         <translation>Ordinateurs</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>Emplacements</translation>
+    </message>
+    <message>
+        <source>Add new computer</source>
+        <translation>Ajouter un nouvel ordinateur</translation>
+    </message>
+    <message>
+        <source>Remove selected computer</source>
+        <translation>Retirer l&apos;ordinateur selectionné</translation>
     </message>
     <message>
         <source>Name</source>
@@ -698,30 +718,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>MAC address</source>
         <translation>Adresse MAC</translation>
-    </message>
-    <message>
-        <source>Add new computer</source>
-        <translation>Ajouter un nouvel ordinateur</translation>
-    </message>
-    <message>
-        <source>Remove selected computer</source>
-        <translation>Retirer l&apos;ordinateur selectionné</translation>
-    </message>
-    <message>
-        <source>New computer</source>
-        <translation>Nouvel ordinateur</translation>
-    </message>
-    <message>
-        <source>Builtin directory</source>
-        <translation>Répertoire intégré</translation>
-    </message>
-    <message>
-        <source>Locations &amp; computers</source>
-        <translation>Emplacements &amp; ordinateurs</translation>
-    </message>
-    <message>
-        <source>Locations</source>
-        <translation>Emplacements</translation>
     </message>
     <message>
         <source>Add new location</source>
@@ -739,112 +735,16 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>New location</source>
         <translation>Nouvel emplacement</translation>
     </message>
+    <message>
+        <source>New computer</source>
+        <translation>Nouvel ordinateur</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
         <translation>Affiche l&apos;aide pour une commande spécifique</translation>
-    </message>
-    <message>
-        <source>Import objects from given file</source>
-        <translation>Importer des objets d&apos;un fichier donné</translation>
-    </message>
-    <message>
-        <source>Export objects to given file</source>
-        <translation>Exporter des objets vers un fichier donné</translation>
-    </message>
-    <message>
-        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>Le type spécifié est non valide! Les valeurs convenables sont &quot;%1&quot; ou &quot;%2&quot;.</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>Type</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Nom</translation>
-    </message>
-    <message>
-        <source>Host address</source>
-        <translation>Adresse hôte</translation>
-    </message>
-    <message>
-        <source>MAC address</source>
-        <translation>Adresse MAC</translation>
-    </message>
-    <message>
-        <source>Specified object not found.</source>
-        <translation>Objet spécifié n&apos;a pas été trouvé.</translation>
-    </message>
-    <message>
-        <source>File &quot;%1&quot; does not exist!</source>
-        <translation>Le fichier &quot;%1&quot; n&apos;existe pas.</translation>
-    </message>
-    <message>
-        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation>Impossible d&apos;ouvrir le fichier &quot;%1&quot; pour une lecture !</translation>
-    </message>
-    <message>
-        <source>Unknown argument &quot;%1&quot;.</source>
-        <translation>Argument inconnu &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation>Ordinateur &quot;%1&quot; (adresse hôte : &quot;%2&quot; adresse MAC : &quot;%3&quot;)</translation>
-    </message>
-    <message>
-        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation>Objet inclassable &quot;%1&quot; avec comme numéro d&apos;identification &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Aucun</translation>
-    </message>
-    <message>
-        <source>Computer</source>
-        <translation>Ordinateur</translation>
-    </message>
-    <message>
-        <source>Root</source>
-        <translation>Racine</translation>
-    </message>
-    <message>
-        <source>Invalid</source>
-        <translation>Invalide</translation>
-    </message>
-    <message>
-        <source>Error while parsing line %1.</source>
-        <translation>Erreur pendant l&apos;analyse de la ligne %1.</translation>
-    </message>
-    <message>
-        <source>Network object directory which stores objects in local configuration</source>
-        <translation>Répertoire d&apos;objets réseau qui stocke des objets dans la configuration locale</translation>
-    </message>
-    <message>
-        <source>Commands for managing the builtin network object directory</source>
-        <translation>Commandes de gestion du répertoire d&apos;objets réseau intégré</translation>
-    </message>
-    <message>
-        <source>No format string or regular expression specified!</source>
-        <translation>Aucune chaîne de format ou d&apos;expression régulière spécifiée!</translation>
-    </message>
-    <message>
-        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation>Impossible d&apos;ouvrir le fichier &quot;%1&quot; pour l&apos;écriture !</translation>
-    </message>
-    <message>
-        <source>No format string specified!</source>
-        <translation>Aucune chaîne de format spécifiée!</translation>
-    </message>
-    <message>
-        <source>Object UUID</source>
-        <translation>UUID Objet</translation>
-    </message>
-    <message>
-        <source>Parent UUID</source>
-        <translation>UUID Parent </translation>
     </message>
     <message>
         <source>Add a location or computer</source>
@@ -867,16 +767,12 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Retirer un emplacement ou un ordinateur</translation>
     </message>
     <message>
-        <source>Location &quot;%1&quot;</source>
-        <translation>Emplacement &quot;%1&quot;</translation>
+        <source>Import objects from given file</source>
+        <translation>Importer des objets d&apos;un fichier donné</translation>
     </message>
     <message>
-        <source>Builtin (computers and locations in local configuration)</source>
-        <translation>Intégré (ordinateurs et emplacements dans la configuration locale)</translation>
-    </message>
-    <message>
-        <source>Location</source>
-        <translation>Emplacement</translation>
+        <source>Export objects to given file</source>
+        <translation>Exporter des objets vers un fichier donné</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -935,6 +831,14 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>NOM</translation>
     </message>
     <message>
+        <source>HOST ADDRESS</source>
+        <translation>ADRESSE HÔTE</translation>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>ADRESSE MAC</translation>
+    </message>
+    <message>
         <source>PARENT</source>
         <translation>PARENT</translation>
     </message>
@@ -967,24 +871,120 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Retirer un objet à partir de son UUID</translation>
     </message>
     <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>La commande demandée n&apos;existe pas et il n&apos;y a pas d&apos;aide disponible pour ce sujet.</translation>
+    </message>
+    <message>
+        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
+        <translation>Le type spécifié est non valide! Les valeurs convenables sont &quot;%1&quot; ou &quot;%2&quot;.</translation>
+    </message>
+    <message>
+        <source>Object UUID</source>
+        <translation>UUID Objet</translation>
+    </message>
+    <message>
+        <source>Parent UUID</source>
+        <translation>UUID Parent </translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Type</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nom</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Adresse hôte</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>Adresse MAC</translation>
+    </message>
+    <message>
+        <source>Specified object not found.</source>
+        <translation>Objet spécifié n&apos;a pas été trouvé.</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not exist!</source>
+        <translation>Le fichier &quot;%1&quot; n&apos;existe pas.</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
+        <translation>Impossible d&apos;ouvrir le fichier &quot;%1&quot; pour une lecture !</translation>
+    </message>
+    <message>
+        <source>Unknown argument &quot;%1&quot;.</source>
+        <translation>Argument inconnu &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>No format string or regular expression specified!</source>
+        <translation>Aucune chaîne de format ou d&apos;expression régulière spécifiée!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
+        <translation>Impossible d&apos;ouvrir le fichier &quot;%1&quot; pour l&apos;écriture !</translation>
+    </message>
+    <message>
+        <source>No format string specified!</source>
+        <translation>Aucune chaîne de format spécifiée!</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot;</source>
+        <translation>Emplacement &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
+        <translation>Ordinateur &quot;%1&quot; (adresse hôte : &quot;%2&quot; adresse MAC : &quot;%3&quot;)</translation>
+    </message>
+    <message>
+        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
+        <translation>Objet inclassable &quot;%1&quot; avec comme numéro d&apos;identification &quot;%2&quot;</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Aucun</translation>
+    </message>
+    <message>
+        <source>Invalid</source>
+        <translation>Invalide</translation>
+    </message>
+    <message>
+        <source>Error while parsing line %1.</source>
+        <translation>Erreur pendant l&apos;analyse de la ligne %1.</translation>
+    </message>
+    <message>
+        <source>Network object directory which stores objects in local configuration</source>
+        <translation>Répertoire d&apos;objets réseau qui stocke des objets dans la configuration locale</translation>
+    </message>
+    <message>
+        <source>Builtin (computers and locations in local configuration)</source>
+        <translation>Intégré (ordinateurs et emplacements dans la configuration locale)</translation>
+    </message>
+    <message>
+        <source>Commands for managing the builtin network object directory</source>
+        <translation>Commandes de gestion du répertoire d&apos;objets réseau intégré</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Emplacement</translation>
+    </message>
+    <message>
+        <source>Computer</source>
+        <translation>Ordinateur</translation>
+    </message>
+    <message>
+        <source>Root</source>
+        <translation>Racine</translation>
+    </message>
+    <message>
         <source>&quot;Room 01&quot;</source>
         <translation>&quot;Salle 01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;Ordinateur 01&quot;</translation>
-    </message>
-    <message>
-        <source>HOST ADDRESS</source>
-        <translation>ADRESSE HÔTE</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>ADRESSE MAC</translation>
-    </message>
-    <message>
-        <source>The specified command does not exist or no help is available for it.</source>
-        <translation>La commande demandée n&apos;existe pas et il n&apos;y a pas d&apos;aide disponible pour ce sujet.</translation>
     </message>
 </context>
 <context>
@@ -1004,12 +1004,28 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
 <context>
     <name>ComputerControlListModel</name>
     <message>
+        <source>Name: %1</source>
+        <translation>Nom : %1</translation>
+    </message>
+    <message>
+        <source>Location: %1</source>
+        <translation>Emplacement : %1</translation>
+    </message>
+    <message>
         <source>Host/IP address: %1</source>
         <translation>Adresse de l&apos;hôte / IP : %1</translation>
     </message>
     <message>
+        <source>invalid</source>
+        <translation>invalide</translation>
+    </message>
+    <message>
         <source>Active features: %1</source>
         <translation>Fonctionnalités activées : %1</translation>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation>[aucun utilisateur]</translation>
     </message>
     <message>
         <source>Online and connected</source>
@@ -1022,6 +1038,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Computer offline or switched off</source>
         <translation>Ordinateur hors ligne ou éteint</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation>Serveur Veyon inaccessible ou ne fonctionne pas</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
@@ -1040,26 +1060,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Connecté sur l&apos;utilisateur : %1</translation>
     </message>
     <message>
-        <source>Location: %1</source>
-        <translation>Emplacement : %1</translation>
-    </message>
-    <message>
-        <source>Veyon Server unreachable or not running</source>
-        <translation>Serveur Veyon inaccessible ou ne fonctionne pas</translation>
-    </message>
-    <message>
-        <source>[no user]</source>
-        <translation>[aucun utilisateur]</translation>
-    </message>
-    <message>
-        <source>invalid</source>
-        <translation>invalide</translation>
-    </message>
-    <message>
-        <source>Name: %1</source>
-        <translation>Nom : %1</translation>
-    </message>
-    <message>
         <source>[none]</source>
         <translation>[Aucun]</translation>
     </message>
@@ -1067,12 +1067,12 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
 <context>
     <name>ComputerControlServer</name>
     <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>Service %1 %2 à %3:%4</translation>
-    </message>
-    <message>
         <source>Authentication error</source>
         <translation>Erreur d&apos;authentification</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
+        <translation>L&apos;utilisateur &quot;%1&quot; sur l&apos;hôte &quot;%2&quot; a tenté d&apos;accéder à cet ordinateur mais n&apos;a pas réussi à s&apos;authentifier avec succès.</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -1083,16 +1083,16 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>L&apos;utilisateur &quot;%1&quot; sur l&apos;hôte &quot;%2&quot; est en train d’accéder à cet ordinateur.</translation>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation>L&apos;utilisateur &quot;%1&quot; sur l&apos;hôte &quot;%2&quot; a tenté d&apos;accéder à cet ordinateur mais n&apos;a pas réussi à s&apos;authentifier avec succès.</translation>
-    </message>
-    <message>
         <source>Access control error</source>
         <translation>Erreur de contrôle d&apos;accès</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation>L&apos;utilisateur &quot;%1&quot; sur l&apos;hôte &quot;%2&quot; a tenté d&apos;accéder à cet ordinateur, mais a été bloqué en raison des paramétrages du contrôle d&apos;accès.</translation>
+    </message>
+    <message>
+        <source>%1 Service %2 at %3:%4</source>
+        <translation>Service %1 %2 à %3:%4</translation>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1106,6 +1106,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Utilisateur</translation>
     </message>
     <message>
+        <source>Logged in since</source>
+        <translation>Connecté depuis</translation>
+    </message>
+    <message>
         <source>Missing network object directory plugin</source>
         <translation>Contenu du répertoire d&apos;objet réseau manquant</translation>
     </message>
@@ -1114,20 +1118,8 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Aucune extension de répertoire d&apos;objet réseau par défaut n&apos;a été trouvée. Veuillez vérifier votre installation ou configurer un processus d&apos;annuaire d&apos;objets réseau différent via la console de gestion %1.</translation>
     </message>
     <message>
-        <source>Location detection failed</source>
-        <translation>La détection de l&apos;emplacement a échoué</translation>
-    </message>
-    <message>
         <source>Computer name;Hostname;User</source>
         <translation>Nom de l&apos;ordinateur;Nom de l’hôte;Utilisateur</translation>
-    </message>
-    <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation>Impossible de déterminer l&apos;emplacement de cet ordinateur. Cela indique un problème de configuration du système. A la place, tous les emplacements seront affichés dans le panneau de sélection de l&apos;ordinateur.</translation>
-    </message>
-    <message>
-        <source>Logged in since</source>
-        <translation>Connecté depuis</translation>
     </message>
     <message>
         <source>%1 days</source>
@@ -1137,9 +1129,21 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>1 day</source>
         <translation>1 jour</translation>
     </message>
+    <message>
+        <source>Location detection failed</source>
+        <translation>La détection de l&apos;emplacement a échoué</translation>
+    </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
+        <translation>Impossible de déterminer l&apos;emplacement de cet ordinateur. Cela indique un problème de configuration du système. A la place, tous les emplacements seront affichés dans le panneau de sélection de l&apos;ordinateur.</translation>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
+    <message>
+        <source>Search computers</source>
+        <translation>Chercher des ordinateurs</translation>
+    </message>
     <message>
         <source>Add location</source>
         <translation>Ajouter un emplacement</translation>
@@ -1163,10 +1167,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Impossible d&apos;écrire la liste des ordinateurs et des utilisateurs dans %1! Vérifiez le fichier des permissions d&apos;accès.</translation>
-    </message>
-    <message>
-        <source>Search computers</source>
-        <translation>Chercher des ordinateurs</translation>
     </message>
 </context>
 <context>
@@ -1259,12 +1259,12 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Impossible de configurer les paramètres du pare-feu pour la personne %1.</translation>
     </message>
     <message>
-        <source>Configuration is not writable. Please check your permissions!</source>
-        <translation>La configuration n&apos;est pas accessible en écriture. Veuillez vérifier vos autorisations !</translation>
-    </message>
-    <message>
         <source>Could not apply platform-specific configuration settings.</source>
         <translation>Impossible d&apos;appliquer les paramètres de configuration spécifiques à la plateforme.</translation>
+    </message>
+    <message>
+        <source>Configuration is not writable. Please check your permissions!</source>
+        <translation>La configuration n&apos;est pas accessible en écriture. Veuillez vérifier vos autorisations !</translation>
     </message>
 </context>
 <context>
@@ -1285,32 +1285,32 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Réglables</translation>
     </message>
     <message>
-        <source> ms</source>
-        <translation>ms</translation>
-    </message>
-    <message>
-        <source>Key frame interval</source>
-        <translation>Intervalle entre les images clés </translation>
-    </message>
-    <message>
-        <source>Memory limit</source>
-        <translation>Limite de mémoire</translation>
-    </message>
-    <message>
-        <source> MB</source>
-        <translation>MB</translation>
+        <source> s</source>
+        <translation>s</translation>
     </message>
     <message>
         <source>Update interval</source>
         <translation>Intervalle d&apos;actualisation</translation>
     </message>
     <message>
-        <source> s</source>
-        <translation>s</translation>
+        <source> MB</source>
+        <translation>MB</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Ralentir la mise à jour des vignettes lorsque qu&apos;une démo est en cours d&apos;exécution</translation>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation>Limite de mémoire</translation>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation>Intervalle entre les images clés </translation>
     </message>
     <message>
         <source>Bandwidth limit</source>
@@ -1324,24 +1324,12 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Stop demo</source>
-        <translation>Arrêter la démo</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>Démo dans une fenêtre</translation>
-    </message>
-    <message>
-        <source>Give a demonstration by screen broadcasting</source>
-        <translation>Faire une démonstration par diffusion de l&apos;écran</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation>Dans ce mode votre écran est diffusé dans une fenêtre sur tous les autres ordinateurs. Les utilisateurs sont librement en mesure de changer de fenêtre comme ils le souhaitent.</translation>
-    </message>
-    <message>
         <source>Demo</source>
         <translation>Démo</translation>
+    </message>
+    <message>
+        <source>Stop demo</source>
+        <translation>Arrêter la démo</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
@@ -1350,6 +1338,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Full screen demo</source>
         <translation>Démo en plein écran</translation>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation>Démo dans une fenêtre</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
@@ -1362,6 +1354,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Share your own screen in a window</source>
         <translation>Partagez votre propre écran dans une fenêtre</translation>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation>Dans ce mode votre écran est diffusé dans une fenêtre sur tous les autres ordinateurs. Les utilisateurs sont librement en mesure de changer de fenêtre comme ils le souhaitent.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
@@ -1391,6 +1387,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>All screens</source>
         <translation>Tous les écrans</translation>
     </message>
+    <message>
+        <source>Give a demonstration by screen broadcasting</source>
+        <translation>Faire une démonstration par diffusion de l&apos;écran</translation>
+    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1403,6 +1403,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Confirmer l&apos;accès au bureau</translation>
     </message>
     <message>
+        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
+        <translation>L&apos;utilisateur %1 sur l&apos;ordinateur %2 souhaite accéder à votre bureau. Souhaitez-vous autoriser cet accès ?</translation>
+    </message>
+    <message>
         <source>Never for this session</source>
         <translation>Jamais pour cette session</translation>
     </message>
@@ -1410,37 +1414,9 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Always for this session</source>
         <translation>Toujours pour cette session</translation>
     </message>
-    <message>
-        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>L&apos;utilisateur %1 sur l&apos;ordinateur %2 souhaite accéder à votre bureau. Souhaitez-vous autoriser cet accès ?</translation>
-    </message>
 </context>
 <context>
     <name>DesktopServicesConfigurationPage</name>
-    <message>
-        <source>Name</source>
-        <translation>Nom</translation>
-    </message>
-    <message>
-        <source>Path</source>
-        <translation>Chemin</translation>
-    </message>
-    <message>
-        <source>Predefined websites</source>
-        <translation>Sites internet prédéfinis</translation>
-    </message>
-    <message>
-        <source>Remove selected website</source>
-        <translation>Retirer le site internet sélectionné</translation>
-    </message>
-    <message>
-        <source>URL</source>
-        <translation>URL</translation>
-    </message>
-    <message>
-        <source>New website</source>
-        <translation>Nouveau site internet</translation>
-    </message>
     <message>
         <source>Applications &amp; websites</source>
         <translation>Applications &amp; sites internet</translation>
@@ -1448,6 +1424,14 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Predefined applications</source>
         <translation>Applications prédéfinies</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nom</translation>
+    </message>
+    <message>
+        <source>Path</source>
+        <translation>Chemin</translation>
     </message>
     <message>
         <source>Add new application</source>
@@ -1458,32 +1442,32 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Retirer l&apos;application sélectionnée</translation>
     </message>
     <message>
+        <source>Predefined websites</source>
+        <translation>Sites internet prédéfinis</translation>
+    </message>
+    <message>
         <source>Add new website</source>
         <translation>Ajouter un nouveau site internet</translation>
+    </message>
+    <message>
+        <source>Remove selected website</source>
+        <translation>Retirer le site internet sélectionné</translation>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New application</source>
         <translation>Nouvelle application</translation>
     </message>
+    <message>
+        <source>New website</source>
+        <translation>Nouveau site internet</translation>
+    </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Open website</source>
-        <translation>Ouvrir une page internet</translation>
-    </message>
-    <message>
-        <source>Click this button to open a website on all computers.</source>
-        <translation>Cliquez sur ce bouton pour ouvrir un site internet sur tous les ordinateurs.</translation>
-    </message>
-    <message>
-        <source>Open website &quot;%1&quot;</source>
-        <translation>Ouvre le site internet &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Custom website</source>
-        <translation>Site internet personnalisé</translation>
-    </message>
     <message>
         <source>Start application</source>
         <translation>Démarrer l&apos;application</translation>
@@ -1493,12 +1477,28 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Cliquez sur ce bouton pour exécuter une application sur tous les ordinateurs.</translation>
     </message>
     <message>
+        <source>Open website</source>
+        <translation>Ouvrir une page internet</translation>
+    </message>
+    <message>
+        <source>Click this button to open a website on all computers.</source>
+        <translation>Cliquez sur ce bouton pour ouvrir un site internet sur tous les ordinateurs.</translation>
+    </message>
+    <message>
         <source>Start application &quot;%1&quot;</source>
         <translation>Démarrer l&apos;application &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom application</source>
         <translation>Application personnalisée</translation>
+    </message>
+    <message>
+        <source>Open website &quot;%1&quot;</source>
+        <translation>Ouvre le site internet &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Custom website</source>
+        <translation>Site internet personnalisé</translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
@@ -1514,6 +1514,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Room %1</source>
         <translation>Salle %1</translation>
+    </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation>utilisateur-élève-générique</translation>
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
@@ -1536,20 +1540,16 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Démarrer le didacticiel vidéo</translation>
     </message>
     <message>
+        <source>Custom application</source>
+        <translation>Application personnalisée</translation>
+    </message>
+    <message>
         <source>Handout</source>
         <translation>Don</translation>
     </message>
     <message>
         <source>Texts to read</source>
         <translation>Textes à lire</translation>
-    </message>
-    <message>
-        <source>generic-student-user</source>
-        <translation>utilisateur-élève-générique</translation>
-    </message>
-    <message>
-        <source>Custom application</source>
-        <translation>Application personnalisée</translation>
     </message>
 </context>
 <context>
@@ -1599,6 +1599,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Displays a list with the names of all available features.</source>
         <translation>Affiche une liste avec le nom de toutes les fonctionnalités disponibles.</translation>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation>Affiche un tableau avec des informations détaillées sur toutes les fonctionnalités disponibles. Ces informations incluent une description, l&apos;UID, le nom du plugin fournissant la fonctionnalité respective et d&apos;autres détails liés à l&apos;implémentation.</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -1700,10 +1704,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Commands for controlling features</source>
         <translation>Commandes pour contrôler les fonctionnalités</translation>
     </message>
-    <message>
-        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation>Affiche un tableau avec des informations détaillées sur toutes les fonctionnalités disponibles. Ces informations incluent une description, l&apos;UID, le nom du plugin fournissant la fonctionnalité respective et d&apos;autres détails liés à l&apos;implémentation.</translation>
-    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -1754,6 +1754,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Options</translation>
     </message>
     <message>
+        <source>Overwrite existing files</source>
+        <translation>Écraser les fichiers existants</translation>
+    </message>
+    <message>
         <source>Transfer only</source>
         <translation>Transférer uniquement</translation>
     </message>
@@ -1773,10 +1777,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Start</source>
         <translation>Démarrer</translation>
     </message>
-    <message>
-        <source>Overwrite existing files</source>
-        <translation>Écraser les fichiers existants</translation>
-    </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
@@ -1793,10 +1793,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Sélectionner un ou plusieurs fichiers à transférer</translation>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Transférer des fichiers sur un ordinateur distant</translation>
-    </message>
-    <message>
         <source>Received file &quot;%1&quot;.</source>
         <translation>Réception du fichier &quot;%1&quot;</translation>
     </message>
@@ -1808,6 +1804,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
         <translation>Impossible de recevoir le fichier &quot;%1&quot; puisqu&apos;il ne peut pas être ouvert en écriture!</translation>
     </message>
+    <message>
+        <source>Transfer files to remote computer</source>
+        <translation>Transférer des fichiers sur un ordinateur distant</translation>
+    </message>
 </context>
 <context>
     <name>GeneralConfigurationPage</name>
@@ -1816,16 +1816,60 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Interface de l&apos;utilisateur</translation>
     </message>
     <message>
-        <source>Language:</source>
-        <translation>Langue :</translation>
-    </message>
-    <message>
         <source>Use system language setting</source>
         <translation>Utiliser les paramètres de langage du système</translation>
     </message>
     <message>
+        <source>Language:</source>
+        <translation>Langue :</translation>
+    </message>
+    <message>
         <source>Veyon</source>
         <translation>Veyon</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation>Style:</translation>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation>Natif</translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Authentification</translation>
+    </message>
+    <message>
+        <source>Method:</source>
+        <translation>Méthode:</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Authentification par identifiant</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Authentification par un fichier clé</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Test</translation>
+    </message>
+    <message>
+        <source>Network object directory</source>
+        <translation>Répertoire objets réseau</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Méthode de fonctionnement:</translation>
+    </message>
+    <message>
+        <source>Update interval:</source>
+        <translation>Intervalle de rafraichissement :</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation> secondes</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -1864,28 +1908,40 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Les messages de débogage et tout le reste...</translation>
     </message>
     <message>
-        <source>Limit log file size</source>
-        <translation>Taille maximum du fichier de journalisation</translation>
+        <source>x</source>
+        <translation> x</translation>
     </message>
     <message>
-        <source>Clear all log files</source>
-        <translation>Purger tous les fichiers de journalisation</translation>
+        <source>Rotate log files</source>
+        <translation>Rotation des fichiers de journalisation</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation>MB</translation>
+    </message>
+    <message>
+        <source>Limit log file size</source>
+        <translation>Taille maximum du fichier de journalisation</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
         <translation>Journaliser via la sortie standard</translation>
     </message>
     <message>
-        <source>Network object directory</source>
-        <translation>Répertoire objets réseau</translation>
+        <source>Write to logging system of operating system</source>
+        <translation>Écrire dans le système de journalisation du système d&apos;exploitation</translation>
     </message>
     <message>
-        <source>Backend:</source>
-        <translation>Méthode de fonctionnement:</translation>
+        <source>Clear all log files</source>
+        <translation>Purger tous les fichiers de journalisation</translation>
     </message>
     <message>
-        <source>Update interval:</source>
-        <translation>Intervalle de rafraichissement :</translation>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>L&apos;authentification est correctement configurée sur cet ordinateur.</translation>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation>Les clés d&apos;authentification ne sont pas configurées correctement sur cet ordinateur.</translation>
     </message>
     <message>
         <source>%1 service</source>
@@ -1912,64 +1968,8 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Impossible de supprimer tous les fichiers de journalisation.</translation>
     </message>
     <message>
-        <source> MB</source>
-        <translation>MB</translation>
-    </message>
-    <message>
-        <source>Rotate log files</source>
-        <translation>Rotation des fichiers de journalisation</translation>
-    </message>
-    <message>
-        <source>x</source>
-        <translation> x</translation>
-    </message>
-    <message>
-        <source> seconds</source>
-        <translation> secondes</translation>
-    </message>
-    <message>
-        <source>Write to logging system of operating system</source>
-        <translation>Écrire dans le système de journalisation du système d&apos;exploitation</translation>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation>Authentification</translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation>Méthode:</translation>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>Authentification par identifiant</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Authentification par un fichier clé</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Test</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>L&apos;authentification est correctement configurée sur cet ordinateur.</translation>
-    </message>
-    <message>
-        <source>Authentication keys are not set up properly on this computer.</source>
-        <translation>Les clés d&apos;authentification ne sont pas configurées correctement sur cet ordinateur.</translation>
-    </message>
-    <message>
         <source>Authentication test</source>
         <translation>Test d&apos;authentification</translation>
-    </message>
-    <message>
-        <source>Style:</source>
-        <translation>Style:</translation>
-    </message>
-    <message>
-        <source>Native</source>
-        <translation>Natif</translation>
     </message>
 </context>
 <context>
@@ -2004,18 +2004,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Général</translation>
     </message>
     <message>
-        <source>LDAP server and port</source>
-        <translation>Port et serveur LDAP</translation>
-    </message>
-    <message>
-        <source>Bind DN</source>
-        <translation>Liaison DN</translation>
-    </message>
-    <message>
-        <source>Bind password</source>
-        <translation>Mot de passe lié</translation>
-    </message>
-    <message>
         <source>Anonymous bind</source>
         <translation>Liaison anonyme</translation>
     </message>
@@ -2024,16 +2012,64 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Utiliser des informations d&apos;identification par liaison</translation>
     </message>
     <message>
+        <source>Query timeout</source>
+        <translation>Délai d&apos;expiration de la requête</translation>
+    </message>
+    <message>
+        <source>Bind DN</source>
+        <translation>Liaison DN</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>ms</translation>
+    </message>
+    <message>
+        <source>LDAP server and port</source>
+        <translation>Port et serveur LDAP</translation>
+    </message>
+    <message>
+        <source>Bind password</source>
+        <translation>Mot de passe lié</translation>
+    </message>
+    <message>
+        <source>Connection security</source>
+        <translation>Sécurité de connexion</translation>
+    </message>
+    <message>
+        <source>TLS certificate verification</source>
+        <translation>Certificat de vérification TLS</translation>
+    </message>
+    <message>
+        <source>Encryption protocol</source>
+        <translation>Protocole de cryptage</translation>
+    </message>
+    <message>
+        <source>System defaults</source>
+        <translation>Paramètres par défaut du système</translation>
+    </message>
+    <message>
+        <source>Never (insecure!)</source>
+        <translation>Jamais (non sécurisé!)</translation>
+    </message>
+    <message>
+        <source>Custom CA certificate file</source>
+        <translation>Fichier personnel de certificat CA</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Aucun</translation>
+    </message>
+    <message>
+        <source>TLS</source>
+        <translation>TLS</translation>
+    </message>
+    <message>
+        <source>SSL</source>
+        <translation>SSL</translation>
+    </message>
+    <message>
         <source>Base DN</source>
         <translation>Base DN</translation>
-    </message>
-    <message>
-        <source>Fixed base DN</source>
-        <translation>Base DN Fixe</translation>
-    </message>
-    <message>
-        <source>e.g. dc=example,dc=org</source>
-        <translation>ex: dc=exemple, dc=org</translation>
     </message>
     <message>
         <source>Discover base DN by naming context</source>
@@ -2044,6 +2080,14 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>ex: ContextesNommés ou ContexteNomméParDéfaut</translation>
     </message>
     <message>
+        <source>Fixed base DN</source>
+        <translation>Base DN Fixe</translation>
+    </message>
+    <message>
+        <source>e.g. dc=example,dc=org</source>
+        <translation>ex: dc=exemple, dc=org</translation>
+    </message>
+    <message>
         <source>Environment settings</source>
         <translation>Paramètres d&apos;environnement</translation>
     </message>
@@ -2052,20 +2096,20 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Arborescence objet</translation>
     </message>
     <message>
+        <source>(only if different from group tree)</source>
+        <translation>(seulement si différent de l&apos;arborescence du groupe)</translation>
+    </message>
+    <message>
         <source>Computer tree</source>
         <translation>Arborescence ordinateur</translation>
     </message>
     <message>
-        <source>e.g. OU=Groups</source>
-        <translation>ex: OU=Groupes</translation>
+        <source>Perform recursive search operations in object trees</source>
+        <translation>Effectuer des recherches récursives dans les arborescences objet</translation>
     </message>
     <message>
         <source>User tree</source>
         <translation>Arborescence utilisateur</translation>
-    </message>
-    <message>
-        <source>e.g. OU=Users</source>
-        <translation>ex: OU=Utilisateurs</translation>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
@@ -2076,36 +2120,80 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Arborescence groupe</translation>
     </message>
     <message>
-        <source>Perform recursive search operations in object trees</source>
-        <translation>Effectuer des recherches récursives dans les arborescences objet</translation>
+        <source>Computer group tree</source>
+        <translation>Arborescence groupe ordinateur</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Users</source>
+        <translation>ex: OU=Utilisateurs</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Groups</source>
+        <translation>ex: OU=Groupes</translation>
     </message>
     <message>
         <source>Object attributes</source>
         <translation>Attributs d&apos;objet</translation>
     </message>
     <message>
-        <source>e.g. hwAddress</source>
-        <translation>ex: Adressehw</translation>
+        <source>e.g. name or description</source>
+        <translation>Ex: nom ou description </translation>
+    </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation>Noms d&apos;hôtes enregistrés comme des noms de domaine pleinement nommé (FQDN, ex: monhote.exemple.org)</translation>
+    </message>
+    <message>
+        <source>e.g. room or computerLab</source>
+        <translation>ex: salle ou labo</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation>Attribut de l&apos;identifiant utilisateur</translation>
+    </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>Attribut d&apos;emplacement d&apos;ordinateur</translation>
     </message>
     <message>
         <source>e.g. member or memberUid</source>
         <translation>ex: membre ou surnom</translation>
     </message>
     <message>
-        <source>e.g. dNSHostName</source>
-        <translation>ex: NomHotedNS</translation>
+        <source>Group member attribute</source>
+        <translation>Attribut du groupe membre</translation>
+    </message>
+    <message>
+        <source>e.g. hwAddress</source>
+        <translation>ex: Adressehw</translation>
     </message>
     <message>
         <source>Computer MAC address attribute</source>
         <translation>Attribut de l&apos;adresse MAC de l&apos;ordinateur</translation>
     </message>
     <message>
-        <source>Group member attribute</source>
-        <translation>Attribut du groupe membre</translation>
+        <source>e.g. dNSHostName</source>
+        <translation>ex: NomHotedNS</translation>
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
         <translation>ex: uid ou sAMAccountName</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>Attribut de nom d&apos;affichage d&apos;ordinateur</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>Attribut du nom d&apos;hôte de l&apos;ordinateur</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>Attribut de nom d&apos;emplacement</translation>
+    </message>
+    <message>
+        <source>e.g. cn or displayName</source>
+        <translation>ex cn ou Nom d&apos;affichage</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -2116,16 +2204,52 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Filtres d&apos;objet optionnel</translation>
     </message>
     <message>
-        <source>Filter for user groups</source>
-        <translation>Filtre pour les groupes utilisateur</translation>
+        <source>Filter for computer groups</source>
+        <translation>Filtre pour les groupes d&apos;ordinateurs</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=computer)</source>
+        <translation>ex: (ClasseObjet=ordinateur)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=group)</source>
+        <translation>ex: (ClasseObjet=groupe)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=person)</source>
+        <translation>ex: (ClasseObjet=personne)</translation>
     </message>
     <message>
         <source>Filter for users</source>
         <translation>Filtre pour les utilisateurs</translation>
     </message>
     <message>
-        <source>Filter for computer groups</source>
-        <translation>Filtre pour les groupes d&apos;ordinateurs</translation>
+        <source>Filter for computers</source>
+        <translation>Filtre pour les ordinateurs</translation>
+    </message>
+    <message>
+        <source>Filter for user groups</source>
+        <translation>Filtre pour les groupes utilisateur</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
+        <translation>ex: (ClasseObjet=salle) ou (ClasseObjet=Labo)</translation>
+    </message>
+    <message>
+        <source>Filter for computer containers</source>
+        <translation>Filtre pour les conteneurs d&apos;ordinateur</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
+        <translation>ex: (ClasseObjet=container) ou (ClasseObjet=Unité d&apos;Organisation)</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation>Options de requête</translation>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation>Interroger des groupes d&apos;utilisateurs imbriqués (pris en charge par AD uniquement)</translation>
     </message>
     <message>
         <source>Group member identification</source>
@@ -2134,6 +2258,34 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Distinguished name (Samba/AD)</source>
         <translation>Nom distinct (Samba/AD)</translation>
+    </message>
+    <message>
+        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
+        <translation>Attribut configuré pour l&apos;identifiant utilisateur ou le nom d&apos;hôte de l&apos;ordinateur (OpenLDAP)</translation>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation>Identification des emplacements d&apos;ordinateur</translation>
+    </message>
+    <message>
+        <source>Identify computer locations (e.g. rooms) via:</source>
+        <translation>Identifier des emplacements ordinateur (ex salles) via :</translation>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation>Groupe d&apos;ordinateurs</translation>
+    </message>
+    <message>
+        <source>Computer containers or OUs</source>
+        <translation>Conteneurs d&apos;ordinateur ou bien OU</translation>
+    </message>
+    <message>
+        <source>Location attribute in computer objects</source>
+        <translation>Attribut d&apos;emplacement dans les objets ordinateur</translation>
+    </message>
+    <message>
+        <source>Integration tests</source>
+        <translation>Tests d&apos;intégration</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -2148,32 +2300,56 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Trouver un ordinateur par son adresse IP</translation>
     </message>
     <message>
-        <source>LDAP connection failed</source>
-        <translation>La connexion LDAP a échoué</translation>
+        <source>List all entries of a location</source>
+        <translation>Lister toutes les entrées d&apos;un emplacement</translation>
     </message>
     <message>
-        <source>LDAP bind failed</source>
-        <translation>Échec de la liaison LDAP</translation>
+        <source>List all locations</source>
+        <translation>Lister tous les emplacements</translation>
     </message>
     <message>
-        <source>LDAP bind successful</source>
-        <translation>Liaison LDAP réussie</translation>
+        <source>Browse</source>
+        <translation>Parcourir</translation>
     </message>
     <message>
-        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation>La connexion au serveur LDAP ainsi que la liaison d&apos;authentification LDAP ont été réussis. Les paramètres LDAP de base sont configurés convenablement.</translation>
+        <source>Test</source>
+        <translation>Test</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
         <translation>Échec du test base LDAP DN</translation>
     </message>
     <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation>Impossible d&apos;interroger la base DN ainsi configurée. Veuillez vérifier les paramètres de la base DN.
+
+%1</translation>
+    </message>
+    <message>
         <source>LDAP base DN test successful</source>
         <translation>Le test base LDAP DN à réussi</translation>
     </message>
     <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation>La base LDAP DN a été interrogée avec succès. Les entrées suivantes ont été trouvées :
+
+%1</translation>
+    </message>
+    <message>
         <source>LDAP naming context test failed</source>
         <translation>Échec du test LDAP de nommage par contexte  </translation>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
+        <translation>Impossible d&apos;interroger la base DN via des contextes de nommage. Veuillez vérifier l&apos;attribut du paramètre de contexte de nommage.
+
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
@@ -2196,6 +2372,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>computer tree</source>
         <translation>arborescence ordinateur</translation>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation>arborescence groupe ordinateur</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -2230,12 +2410,36 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Impossible de trouver un groupe avec le nom &quot;%1&quot;. Veuillez vérifier le nom du groupe ou le paramètre de l&apos;arborescence du groupe.</translation>
     </message>
     <message>
-        <source>Enter computer name</source>
-        <translation>Entrer un nom d&apos;ordinateur</translation>
+        <source>Enter computer display name</source>
+        <translation>Entrer un nom d&apos;affichage ordinateur</translation>
+    </message>
+    <message>
+        <source>Please enter a computer display name to query:</source>
+        <translation>Veuillez entrer un nom d&apos;affichage d&apos;ordinateur à interroger :</translation>
     </message>
     <message>
         <source>computer objects</source>
         <translation>objets ordinateur</translation>
+    </message>
+    <message>
+        <source>Enter computer name</source>
+        <translation>Entrer un nom d&apos;ordinateur</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname to query:</source>
+        <translation>Veuillez entrer un nom d&apos;ordinateur hôte à rechercher :</translation>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>Nom d&apos;hôte invalide</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation>Vous avez choisi de stocker les noms d&apos;ordinateurs hôtes comme des noms de domaine pleinement nommé (FQDN) mais vous avez saisi un nom d&apos;hôte sans domaine.</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation>Vous avez choisi de stocker les noms d&apos;ordinateurs hôtes comme de simple noms d&apos;hôte sans nom de domaine, mais vous avez saisi un nom d&apos;hôte dont une partie est un nom de domaine.</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
@@ -2250,6 +2454,22 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Adresse MAC de l&apos;ordinateur</translation>
     </message>
     <message>
+        <source>Enter computer location name</source>
+        <translation>Entrez le nom de l&apos;emplacement de l&apos;ordinateur</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer location (wildcards allowed):</source>
+        <translation>Veuillez entrer le nom d&apos;un emplacement d&apos;ordinateur (jokers autorisés) :</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>Emplacements d&apos;ordinateur</translation>
+    </message>
+    <message>
+        <source>Enter location name</source>
+        <translation>Entrer le nom de l&apos;emplacement</translation>
+    </message>
+    <message>
         <source>users</source>
         <translation>utilisateurs</translation>
     </message>
@@ -2258,8 +2478,16 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>groupes d&apos;utilisateurs</translation>
     </message>
     <message>
+        <source>computers</source>
+        <translation>ordinateurs</translation>
+    </message>
+    <message>
         <source>computer groups</source>
         <translation>groupes d&apos;ordinateurs</translation>
+    </message>
+    <message>
+        <source>computer containers</source>
+        <translation>Conteneurs d&apos;ordinateur</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
@@ -2274,12 +2502,28 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Utilisateur introuvable</translation>
     </message>
     <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation>Impossible de trouver un utilisateur dont le nom est &quot;%1&quot;. Vérifiez le nom de l&apos;utilisateur ou du paramètre d&apos;arborescence utilisateur.</translation>
+    </message>
+    <message>
+        <source>Enter hostname</source>
+        <translation>Entrer nom d&apos;hôte</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname whose group memberships to query:</source>
+        <translation>Veuillez entrer un nom d’hôte pour l’ordinateur appartenant au groupe à interroger :</translation>
+    </message>
+    <message>
         <source>groups of computer</source>
         <translation>groupes d&apos;ordinateur</translation>
     </message>
     <message>
         <source>Computer not found</source>
         <translation>Ordinateur introuvable</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation>Impossible de trouver un ordinateur dont le nom d&apos;hôte est &quot;%1&quot;. Vérifiez le nom d&apos;hôte de l&apos;ordinateur ou du paramètre d&apos;arborescence ordinateur.</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2290,12 +2534,68 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Veuillez entrer une adresse IP pour trouver un ordinateur :</translation>
     </message>
     <message>
-        <source>computers</source>
-        <translation>ordinateurs</translation>
+        <source>Hostname lookup failed</source>
+        <translation>Échec de la recherche du nom d&apos;hôte</translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation>Impossible de rechercher le nom d&apos;hôte pour l&apos;adresse IP %1. Veuillez vérifier le paramétrage de votre serveur DNS.</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a location whose entries to query:</source>
+        <translation>Veuillez entrer le nom d&apos;un emplacement dont les entrées sont à interroger :</translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation>Entrées d&apos;emplacement</translation>
+    </message>
+    <message>
+        <source>Certificate files (*.pem)</source>
+        <translation>Fichiers de certificats (*.pem)</translation>
+    </message>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation>La connexion LDAP a échoué</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation>Impossible de se connecter au serveur LDAP. Veuillez vérifier les paramètres du serveur.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation>Échec de la liaison LDAP</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation>Impossible de créer une liaison au serveur LDAP. Veuillez vérifier les paramètres du serveur et les informations d&apos;identification. 
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation>Liaison LDAP réussie</translation>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <translation>La connexion au serveur LDAP ainsi que la liaison d&apos;authentification LDAP ont été réussis. Les paramètres LDAP de base sont configurés convenablement.</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
         <translation>Échec du test LDAP %1</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation>Impossible d&apos;interroger les entrées dans le &quot;%1&quot; configuré. Veuillez vérifier le paramètre &quot;%2&quot;.
+
+%3</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
@@ -2304,6 +2604,26 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
         <translation>%1 a été interrogé avec succès et %2 entrée(s) ont été trouvée(s).</translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>Le test LDAP a échoué</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation>Impossible d&apos;interroger les %1. Veuillez vérifier le(s) paramètre(s) %2 et entrez le nom d&apos;un objet existant.
+
+%3</translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation>et</translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>Le test LDAP a réussi</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
@@ -2333,326 +2653,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%2 %1 a été interrogé avec succès en appliquant le filtre.</translation>
     </message>
-    <message>
-        <source>(only if different from group tree)</source>
-        <translation>(seulement si différent de l&apos;arborescence du groupe)</translation>
-    </message>
-    <message>
-        <source>Computer group tree</source>
-        <translation>Arborescence groupe ordinateur</translation>
-    </message>
-    <message>
-        <source>computer group tree</source>
-        <translation>arborescence groupe ordinateur</translation>
-    </message>
-    <message>
-        <source>Filter for computers</source>
-        <translation>Filtre pour les ordinateurs</translation>
-    </message>
-    <message>
-        <source>e.g. room or computerLab</source>
-        <translation>ex: salle ou labo</translation>
-    </message>
-    <message>
-        <source>Integration tests</source>
-        <translation>Tests d&apos;intégration</translation>
-    </message>
-    <message>
-        <source>Computer groups</source>
-        <translation>Groupe d&apos;ordinateurs</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>Ex: nom ou description </translation>
-    </message>
-    <message>
-        <source>Filter for computer containers</source>
-        <translation>Filtre pour les conteneurs d&apos;ordinateur</translation>
-    </message>
-    <message>
-        <source>Computer containers or OUs</source>
-        <translation>Conteneurs d&apos;ordinateur ou bien OU</translation>
-    </message>
-    <message>
-        <source>Connection security</source>
-        <translation>Sécurité de connexion</translation>
-    </message>
-    <message>
-        <source>TLS certificate verification</source>
-        <translation>Certificat de vérification TLS</translation>
-    </message>
-    <message>
-        <source>System defaults</source>
-        <translation>Paramètres par défaut du système</translation>
-    </message>
-    <message>
-        <source>Never (insecure!)</source>
-        <translation>Jamais (non sécurisé!)</translation>
-    </message>
-    <message>
-        <source>Custom CA certificate file</source>
-        <translation>Fichier personnel de certificat CA</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Aucun</translation>
-    </message>
-    <message>
-        <source>TLS</source>
-        <translation>TLS</translation>
-    </message>
-    <message>
-        <source>SSL</source>
-        <translation>SSL</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=computer)</source>
-        <translation>ex: (ClasseObjet=ordinateur)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=group)</source>
-        <translation>ex: (ClasseObjet=groupe)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=person)</source>
-        <translation>ex: (ClasseObjet=personne)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation>ex: (ClasseObjet=salle) ou (ClasseObjet=Labo)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation>ex: (ClasseObjet=container) ou (ClasseObjet=Unité d&apos;Organisation)</translation>
-    </message>
-    <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-
-%1</source>
-        <translation>Impossible d&apos;interroger la base DN ainsi configurée. Veuillez vérifier les paramètres de la base DN.
-
-%1</translation>
-    </message>
-    <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-
-%1</source>
-        <translation>La base LDAP DN a été interrogée avec succès. Les entrées suivantes ont été trouvées :
-
-%1</translation>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-
-%1</source>
-        <translation>Impossible d&apos;interroger la base DN via des contextes de nommage. Veuillez vérifier l&apos;attribut du paramètre de contexte de nommage.
-
-%1</translation>
-    </message>
-    <message>
-        <source>Certificate files (*.pem)</source>
-        <translation>Fichiers de certificats (*.pem)</translation>
-    </message>
-    <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters.
-
-%1</source>
-        <translation>Impossible de se connecter au serveur LDAP. Veuillez vérifier les paramètres du serveur.
-
-%1</translation>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
-
-%1</source>
-        <translation>Impossible de créer une liaison au serveur LDAP. Veuillez vérifier les paramètres du serveur et les informations d&apos;identification. 
-
-%1</translation>
-    </message>
-    <message>
-        <source>Encryption protocol</source>
-        <translation>Protocole de cryptage</translation>
-    </message>
-    <message>
-        <source>Computer location attribute</source>
-        <translation>Attribut d&apos;emplacement d&apos;ordinateur</translation>
-    </message>
-    <message>
-        <source>Computer display name attribute</source>
-        <translation>Attribut de nom d&apos;affichage d&apos;ordinateur</translation>
-    </message>
-    <message>
-        <source>Location name attribute</source>
-        <translation>Attribut de nom d&apos;emplacement</translation>
-    </message>
-    <message>
-        <source>e.g. cn or displayName</source>
-        <translation>ex cn ou Nom d&apos;affichage</translation>
-    </message>
-    <message>
-        <source>Computer locations identification</source>
-        <translation>Identification des emplacements d&apos;ordinateur</translation>
-    </message>
-    <message>
-        <source>Identify computer locations (e.g. rooms) via:</source>
-        <translation>Identifier des emplacements ordinateur (ex salles) via :</translation>
-    </message>
-    <message>
-        <source>Location attribute in computer objects</source>
-        <translation>Attribut d&apos;emplacement dans les objets ordinateur</translation>
-    </message>
-    <message>
-        <source>List all entries of a location</source>
-        <translation>Lister toutes les entrées d&apos;un emplacement</translation>
-    </message>
-    <message>
-        <source>List all locations</source>
-        <translation>Lister tous les emplacements</translation>
-    </message>
-    <message>
-        <source>Enter computer display name</source>
-        <translation>Entrer un nom d&apos;affichage ordinateur</translation>
-    </message>
-    <message>
-        <source>Please enter a computer display name to query:</source>
-        <translation>Veuillez entrer un nom d&apos;affichage d&apos;ordinateur à interroger :</translation>
-    </message>
-    <message>
-        <source>Enter computer location name</source>
-        <translation>Entrez le nom de l&apos;emplacement de l&apos;ordinateur</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation>Veuillez entrer le nom d&apos;un emplacement d&apos;ordinateur (jokers autorisés) :</translation>
-    </message>
-    <message>
-        <source>computer locations</source>
-        <translation>Emplacements d&apos;ordinateur</translation>
-    </message>
-    <message>
-        <source>Enter location name</source>
-        <translation>Entrer le nom de l&apos;emplacement</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a location whose entries to query:</source>
-        <translation>Veuillez entrer le nom d&apos;un emplacement dont les entrées sont à interroger :</translation>
-    </message>
-    <message>
-        <source>location entries</source>
-        <translation>Entrées d&apos;emplacement</translation>
-    </message>
-    <message>
-        <source>LDAP test failed</source>
-        <translation>Le test LDAP a échoué</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
-
-%3</source>
-        <translation>Impossible d&apos;interroger les %1. Veuillez vérifier le(s) paramètre(s) %2 et entrez le nom d&apos;un objet existant.
-
-%3</translation>
-    </message>
-    <message>
-        <source>and</source>
-        <translation>et</translation>
-    </message>
-    <message>
-        <source>LDAP test successful</source>
-        <translation>Le test LDAP a réussi</translation>
-    </message>
-    <message>
-        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
-
-%3</source>
-        <translation>Impossible d&apos;interroger les entrées dans le &quot;%1&quot; configuré. Veuillez vérifier le paramètre &quot;%2&quot;.
-
-%3</translation>
-    </message>
-    <message>
-        <source>Browse</source>
-        <translation>Parcourir</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Test</translation>
-    </message>
-    <message>
-        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>Noms d&apos;hôtes enregistrés comme des noms de domaine pleinement nommé (FQDN, ex: monhote.exemple.org)</translation>
-    </message>
-    <message>
-        <source>Computer hostname attribute</source>
-        <translation>Attribut du nom d&apos;hôte de l&apos;ordinateur</translation>
-    </message>
-    <message>
-        <source>Please enter a computer hostname to query:</source>
-        <translation>Veuillez entrer un nom d&apos;ordinateur hôte à rechercher :</translation>
-    </message>
-    <message>
-        <source>Invalid hostname</source>
-        <translation>Nom d&apos;hôte invalide</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation>Vous avez choisi de stocker les noms d&apos;ordinateurs hôtes comme des noms de domaine pleinement nommé (FQDN) mais vous avez saisi un nom d&apos;hôte sans domaine.</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation>Vous avez choisi de stocker les noms d&apos;ordinateurs hôtes comme de simple noms d&apos;hôte sans nom de domaine, mais vous avez saisi un nom d&apos;hôte dont une partie est un nom de domaine.</translation>
-    </message>
-    <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation>Impossible de trouver un utilisateur dont le nom est &quot;%1&quot;. Vérifiez le nom de l&apos;utilisateur ou du paramètre d&apos;arborescence utilisateur.</translation>
-    </message>
-    <message>
-        <source>Enter hostname</source>
-        <translation>Entrer nom d&apos;hôte</translation>
-    </message>
-    <message>
-        <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation>Veuillez entrer un nom d’hôte pour l’ordinateur appartenant au groupe à interroger :</translation>
-    </message>
-    <message>
-        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>Impossible de trouver un ordinateur dont le nom d&apos;hôte est &quot;%1&quot;. Vérifiez le nom d&apos;hôte de l&apos;ordinateur ou du paramètre d&apos;arborescence ordinateur.</translation>
-    </message>
-    <message>
-        <source>Hostname lookup failed</source>
-        <translation>Échec de la recherche du nom d&apos;hôte</translation>
-    </message>
-    <message>
-        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation>Impossible de rechercher le nom d&apos;hôte pour l&apos;adresse IP %1. Veuillez vérifier le paramétrage de votre serveur DNS.</translation>
-    </message>
-    <message>
-        <source>User login name attribute</source>
-        <translation>Attribut de l&apos;identifiant utilisateur</translation>
-    </message>
-    <message>
-        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation>Attribut configuré pour l&apos;identifiant utilisateur ou le nom d&apos;hôte de l&apos;ordinateur (OpenLDAP)</translation>
-    </message>
-    <message>
-        <source>computer containers</source>
-        <translation>Conteneurs d&apos;ordinateur</translation>
-    </message>
-    <message>
-        <source>Query options</source>
-        <translation>Options de requête</translation>
-    </message>
-    <message>
-        <source>Query nested user groups (supported by AD only)</source>
-        <translation>Interroger des groupes d&apos;utilisateurs imbriqués (pris en charge par AD uniquement)</translation>
-    </message>
-    <message>
-        <source>Query timeout</source>
-        <translation>Délai d&apos;expiration de la requête</translation>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation>ms</translation>
-    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2667,22 +2667,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Show help about command</source>
         <translation>Afficher la commande aide et à propos</translation>
-    </message>
-    <message>
-        <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation>Commandes pour configurer et tester l&apos;intégration LDAP/AD</translation>
-    </message>
-    <message>
-        <source>Basic LDAP/AD support for Veyon</source>
-        <translation>Support LDAP/AD basique pour Veyon</translation>
-    </message>
-    <message>
-        <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation>%1 (charger les ordinateurs et les emplacements depuis LDAP/AD)</translation>
-    </message>
-    <message>
-        <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation>%1 (charger les utilisateurs et les groupes depuis LDAP/AD)</translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
@@ -2700,6 +2684,22 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
         <translation>Configuration de %1 en tant que base DN et désactivation des requêtes de contexte de dénomination.</translation>
     </message>
+    <message>
+        <source>Basic LDAP/AD support for Veyon</source>
+        <translation>Support LDAP/AD basique pour Veyon</translation>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
+        <translation>Commandes pour configurer et tester l&apos;intégration LDAP/AD</translation>
+    </message>
+    <message>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation>%1 (charger les ordinateurs et les emplacements depuis LDAP/AD)</translation>
+    </message>
+    <message>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation>%1 (charger les utilisateurs et les groupes depuis LDAP/AD)</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformConfigurationPage</name>
@@ -2708,20 +2708,12 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Linux</translation>
     </message>
     <message>
-        <source>Custom PAM service for user authentication</source>
-        <translation>Service PAM personnalisé pour l&apos;authentification de l&apos;utilisateur</translation>
-    </message>
-    <message>
         <source>User authentication</source>
         <translation>Authentification utilisateur</translation>
     </message>
     <message>
-        <source>User login</source>
-        <translation>Identifiant utilisateur</translation>
-    </message>
-    <message>
-        <source>Login key sequence</source>
-        <translation>Séquence de touches de connexion</translation>
+        <source>Custom PAM service for user authentication</source>
+        <translation>Service PAM personnalisé pour l&apos;authentification de l&apos;utilisateur</translation>
     </message>
     <message>
         <source>User sessions</source>
@@ -2730,6 +2722,14 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Minimum session lifetime before server start</source>
         <translation>Durée de vie minimale de la session avant le démarrage du serveur</translation>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation>Identifiant utilisateur</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation>Séquence de touches de connexion</translation>
     </message>
 </context>
 <context>
@@ -2757,87 +2757,23 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Configuration</translation>
     </message>
     <message>
-        <source>Show icons only</source>
-        <translation>Afficher seulement les icônes</translation>
-    </message>
-    <message>
         <source>Disable tooltips</source>
         <translation>Désactiver les info-bulles</translation>
+    </message>
+    <message>
+        <source>Show icons only</source>
+        <translation>Afficher seulement les icônes</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <source>MainWindow</source>
-        <translation>Fenêtre principale</translation>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation>Barre d&apos;outils</translation>
+        <source>Veyon Configurator</source>
+        <translation>Console de gestion Veyon</translation>
     </message>
     <message>
         <source>General</source>
         <translation>Général</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>&amp;Fichier</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>&amp;Aide</translation>
-    </message>
-    <message>
-        <source>&amp;Quit</source>
-        <translation>&amp;Quitter</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
-    </message>
-    <message>
-        <source>L&amp;oad settings from file</source>
-        <translation>&amp;Charger la configuration à partir d&apos;un fichier</translation>
-    </message>
-    <message>
-        <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
-    </message>
-    <message>
-        <source>About Qt</source>
-        <translation>À propos de QT</translation>
-    </message>
-    <message>
-        <source>Authentication impossible</source>
-        <translation>Authentification impossible</translation>
-    </message>
-    <message>
-        <source>Configuration not writable</source>
-        <translation>Impossible d&apos;enregistrer la configuration</translation>
-    </message>
-    <message>
-        <source>Load settings from file</source>
-        <translation>Charge la configuration à partir d&apos;un fichier</translation>
-    </message>
-    <message>
-        <source>Save settings to file</source>
-        <translation>Enregistre la configuration dans un fichier</translation>
-    </message>
-    <message>
-        <source>Unsaved settings</source>
-        <translation>Paramètres non enregistrés</translation>
-    </message>
-    <message>
-        <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Certains paramètres n&apos;ont pas été enregistrés. Souhaitez-vous tout de même quitter?</translation>
-    </message>
-    <message>
-        <source>Veyon Configurator</source>
-        <translation>Console de gestion Veyon</translation>
     </message>
     <message>
         <source>Service</source>
@@ -2852,8 +2788,72 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Contrôle d&apos;accès</translation>
     </message>
     <message>
+        <source>&amp;File</source>
+        <translation>&amp;Fichier</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>&amp;Aide</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation>&amp;Vue</translation>
+    </message>
+    <message>
+        <source>&amp;Quit</source>
+        <translation>&amp;Quitter</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
+    </message>
+    <message>
+        <source>&amp;Save settings to file</source>
+        <translation>&amp;Sauver les paramètres vers un fichier</translation>
+    </message>
+    <message>
+        <source>Save settings to file</source>
+        <translation>Enregistre la configuration dans un fichier</translation>
+    </message>
+    <message>
+        <source>Ctrl+S</source>
+        <translation>Ctrl+S</translation>
+    </message>
+    <message>
+        <source>L&amp;oad settings from file</source>
+        <translation>&amp;Charger la configuration à partir d&apos;un fichier</translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
+        <translation>Ctrl+O</translation>
+    </message>
+    <message>
         <source>About Veyon</source>
         <translation>À propos de Veyon</translation>
+    </message>
+    <message>
+        <source>About Qt</source>
+        <translation>À propos de QT</translation>
+    </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation>Réinitialisation de la configuration</translation>
+    </message>
+    <message>
+        <source>&amp;Standard</source>
+        <translation>&amp;Standard</translation>
+    </message>
+    <message>
+        <source>&amp;Advanced</source>
+        <translation>&amp;Confirmé</translation>
+    </message>
+    <message>
+        <source>MainWindow</source>
+        <translation>Fenêtre principale</translation>
+    </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation>Ajuster automatiquement la taille des icônes d&apos;ordinateur</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2864,16 +2864,92 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>À propos</translation>
     </message>
     <message>
+        <source>Search users and computers</source>
+        <translation>Chercher des utilisateurs et des ordinateurs</translation>
+    </message>
+    <message>
+        <source>Align computers to grid</source>
+        <translation>Aligner les ordinateurs sur la grille</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
+        <translation>Utiliser une disposition personnalisé pour les ordinateurs</translation>
+    </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation>Montrer seulement les ordinateurs allumés</translation>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
+        <translation>Emplacements &amp;&amp; ordinateurs</translation>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation>Captures d&apos;écrans</translation>
+    </message>
+    <message>
+        <source>Slideshow</source>
+        <translation>Diaporama</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Focalisation</translation>
+    </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation>Afficher uniquement les ordinateurs avec des utilisateurs connectés</translation>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation>Barre d&apos;outils</translation>
+    </message>
+    <message>
         <source>%1 Configurator %2</source>
         <translation>Console de gestion %1 %2</translation>
+    </message>
+    <message>
+        <source>Load settings from file</source>
+        <translation>Charge la configuration à partir d&apos;un fichier</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
         <translation>Fichiers JSON (*.json)</translation>
     </message>
     <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation>Souhaitez-vous vraiment réinitialiser la configuration locale et restaurer tous les paramètres à leurs valeurs par défaut ?</translation>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation>Console de gestion %1</translation>
+    </message>
+    <message>
+        <source>Unsaved settings</source>
+        <translation>Paramètres non enregistrés</translation>
+    </message>
+    <message>
+        <source>There are unsaved settings. Quit anyway?</source>
+        <translation>Certains paramètres n&apos;ont pas été enregistrés. Souhaitez-vous tout de même quitter?</translation>
+    </message>
+    <message>
+        <source>Insufficient privileges</source>
+        <translation>Privilèges insuffisants</translation>
+    </message>
+    <message>
+        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
+        <translation>Impossible de démarrer avec des privilèges administrateurs. Veuillez vous assurez qu&apos;un programme de type &quot;sudo&quot; (permettant les droits admin), est installé pour votre environnement! Le programme sera exécuté avec des privilèges d&apos;utilisateur classique.</translation>
+    </message>
+    <message>
+        <source>Configuration not writable</source>
+        <translation>Impossible d&apos;enregistrer la configuration</translation>
+    </message>
+    <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>Le processus de configuration locale rapporte que le fichier de configuration ne peut pas s&apos;enregistrer! Veuillez exécuter la console de gestion %1 avec des droits plus importants.</translation>
+    </message>
+    <message>
+        <source>Authentication impossible</source>
+        <translation>Authentification impossible</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
@@ -2888,10 +2964,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Selon la configuration locale, vous n&apos;êtes pas autorisé à accéder aux ordinateurs du réseau. Veuillez vous identifier avec un compte différent ou bien demandez à votre administrateur système de vérifier la configuration locale.</translation>
     </message>
     <message>
-        <source>Screenshots</source>
-        <translation>Captures d&apos;écrans</translation>
-    </message>
-    <message>
         <source>Feature active</source>
         <translation>Fonctionnalité active</translation>
     </message>
@@ -2899,81 +2971,13 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation>La fonctionnalité &quot;%1&quot; est toujours active. Veuillez l&apos;interrompre avant de fermer %2.</translation>
     </message>
-    <message>
-        <source>Reset configuration</source>
-        <translation>Réinitialisation de la configuration</translation>
-    </message>
-    <message>
-        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation>Souhaitez-vous vraiment réinitialiser la configuration locale et restaurer tous les paramètres à leurs valeurs par défaut ?</translation>
-    </message>
-    <message>
-        <source>Search users and computers</source>
-        <translation>Chercher des utilisateurs et des ordinateurs</translation>
-    </message>
-    <message>
-        <source>Align computers to grid</source>
-        <translation>Aligner les ordinateurs sur la grille</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>Console de gestion %1</translation>
-    </message>
-    <message>
-        <source>Insufficient privileges</source>
-        <translation>Privilèges insuffisants</translation>
-    </message>
-    <message>
-        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation>Impossible de démarrer avec des privilèges administrateurs. Veuillez vous assurez qu&apos;un programme de type &quot;sudo&quot; (permettant les droits admin), est installé pour votre environnement! Le programme sera exécuté avec des privilèges d&apos;utilisateur classique.</translation>
-    </message>
-    <message>
-        <source>Only show powered on computers</source>
-        <translation>Montrer seulement les ordinateurs allumés</translation>
-    </message>
-    <message>
-        <source>&amp;Save settings to file</source>
-        <translation>&amp;Sauver les paramètres vers un fichier</translation>
-    </message>
-    <message>
-        <source>&amp;View</source>
-        <translation>&amp;Vue</translation>
-    </message>
-    <message>
-        <source>&amp;Standard</source>
-        <translation>&amp;Standard</translation>
-    </message>
-    <message>
-        <source>&amp;Advanced</source>
-        <translation>&amp;Confirmé</translation>
-    </message>
-    <message>
-        <source>Use custom computer arrangement</source>
-        <translation>Utiliser une disposition personnalisé pour les ordinateurs</translation>
-    </message>
-    <message>
-        <source>Locations &amp;&amp; computers</source>
-        <translation>Emplacements &amp;&amp; ordinateurs</translation>
-    </message>
-    <message>
-        <source>Slideshow</source>
-        <translation>Diaporama</translation>
-    </message>
-    <message>
-        <source>Spotlight</source>
-        <translation>Focalisation</translation>
-    </message>
-    <message>
-        <source>Adjust size of computer icons automatically</source>
-        <translation>Ajuster automatiquement la taille des icônes d&apos;ordinateur</translation>
-    </message>
-    <message>
-        <source>Only show computers with logged on users</source>
-        <translation>Afficher uniquement les ordinateurs avec des utilisateurs connectés</translation>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
+    <message>
+        <source>Basic settings</source>
+        <translation>Paramètres généraux</translation>
+    </message>
     <message>
         <source>Directories</source>
         <translation>Répertoires</translation>
@@ -2983,80 +2987,44 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Configuration utilisateur</translation>
     </message>
     <message>
-        <source>Feature on computer double click:</source>
-        <translation>Action au double clique sur un ordinateur :</translation>
-    </message>
-    <message>
-        <source>Features</source>
-        <translation>Fonctionnalités</translation>
-    </message>
-    <message>
-        <source>All features</source>
-        <translation>Fonctionnalités disponibles</translation>
-    </message>
-    <message>
-        <source>Disabled features</source>
-        <translation>Fonctionnalités désactivées</translation>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation>Captures d&apos;écrans</translation>
-    </message>
-    <message>
-        <source>&lt;no feature&gt;</source>
-        <translation>Aucune action</translation>
-    </message>
-    <message>
-        <source>Basic settings</source>
-        <translation>Paramètres généraux</translation>
-    </message>
-    <message>
-        <source>Behaviour</source>
-        <translation>Comportement</translation>
-    </message>
-    <message>
-        <source>Enforce selected mode for client computers</source>
-        <translation>Forcer le mode sélectionné pour les ordinateurs</translation>
-    </message>
-    <message>
-        <source>Hide local computer</source>
-        <translation>Masquer l&apos;ordinateur local</translation>
-    </message>
-    <message>
-        <source>Hide computer filter field</source>
-        <translation>Masquer le champ filtre ordinateur</translation>
-    </message>
-    <message>
-        <source>Actions such as rebooting or powering down computers</source>
-        <translation>Actions comme le redémarrage ou l&apos;extinction d&apos;ordinateurs</translation>
     </message>
     <message>
         <source>User interface</source>
         <translation>Interface de l&apos;utilisateur</translation>
     </message>
     <message>
-        <source>Background color</source>
-        <translation>Couleur d&apos;arrière plan</translation>
-    </message>
-    <message>
-        <source>Thumbnail update interval</source>
-        <translation>Intervalle de rafraichissement des miniatures d&apos;écran</translation>
+        <source>Text color</source>
+        <translation>Couleur du texte</translation>
     </message>
     <message>
         <source> ms</source>
         <translation>ms</translation>
     </message>
     <message>
-        <source>Program start</source>
-        <translation>Démarrage du programme</translation>
+        <source>Background color</source>
+        <translation>Couleur d&apos;arrière plan</translation>
     </message>
     <message>
-        <source>Modes and features</source>
-        <translation>Modes et fonctionnalités</translation>
+        <source>Thumbnail spacing</source>
+        <translation>Espacement des miniatures</translation>
     </message>
     <message>
-        <source>User and computer name</source>
-        <translation>Utilisateur et nom d&apos;ordinateur</translation>
+        <source> px</source>
+        <translation> px</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Auto</translation>
+    </message>
+    <message>
+        <source>Computer thumbnail caption</source>
+        <translation>Légende de la vignette ordinateur</translation>
+    </message>
+    <message>
+        <source>Computer and user name</source>
+        <translation>Ordinateur et nom d&apos;utilisateur</translation>
     </message>
     <message>
         <source>Only user name</source>
@@ -3067,80 +3035,20 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Nom d&apos;ordinateur seulement</translation>
     </message>
     <message>
-        <source>Computer thumbnail caption</source>
-        <translation>Légende de la vignette ordinateur</translation>
+        <source>User and computer name</source>
+        <translation>Utilisateur et nom d&apos;ordinateur</translation>
     </message>
     <message>
-        <source>Text color</source>
-        <translation>Couleur du texte</translation>
+        <source>Thumbnail update interval</source>
+        <translation>Intervalle de rafraichissement des miniatures d&apos;écran</translation>
     </message>
     <message>
         <source>Sort order</source>
         <translation>Ordre de tri</translation>
     </message>
     <message>
-        <source>Computer and user name</source>
-        <translation>Ordinateur et nom d&apos;utilisateur</translation>
-    </message>
-    <message>
-        <source>Computer locations</source>
-        <translation>Emplacements d&apos;ordinateur</translation>
-    </message>
-    <message>
-        <source>Show current location only</source>
-        <translation>Afficher seulement l&apos;emplacement actuel</translation>
-    </message>
-    <message>
-        <source>Allow adding hidden locations manually</source>
-        <translation>Autoriser l&apos;ajout manuel d&apos;emplacements cachés</translation>
-    </message>
-    <message>
-        <source>Hide empty locations</source>
-        <translation>Cacher les emplacements vides</translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation>Afficher un message de confirmation pour les actions potentiellement risquées</translation>
-    </message>
-    <message>
-        <source>Perform access control</source>
-        <translation>Effectuer un contrôle d&apos;accès</translation>
-    </message>
-    <message>
-        <source>Automatically select current location</source>
-        <translation>Sélectionner automatiquement la localisation courante</translation>
-    </message>
-    <message>
-        <source>Automatically open computer select panel</source>
-        <translation>Ouvrir automatiquement le panneau de sélection ordinateur</translation>
-    </message>
-    <message>
-        <source>Hide local session</source>
-        <translation>Masquer la session locale</translation>
-    </message>
-    <message>
-        <source> px</source>
-        <translation> px</translation>
-    </message>
-    <message>
-        <source>Thumbnail spacing</source>
-        <translation>Espacement des miniatures</translation>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Auto</translation>
-    </message>
-    <message>
         <source>Thumbnail aspect ratio</source>
         <translation>Rapport hauteur / largeur de la miniature</translation>
-    </message>
-    <message>
-        <source>Automatically adjust computer icon size</source>
-        <translation>Ajuster automatiquement la taille de l&apos;icône de l&apos;ordinateur</translation>
-    </message>
-    <message>
-        <source>Open feature windows on the same screen as the main window</source>
-        <translation>Ouvrir les fenêtres de fonctionnalités sur le même écran que la fenêtre principale</translation>
     </message>
     <message>
         <source>Highest</source>
@@ -3163,12 +3071,104 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>La plus basse</translation>
     </message>
     <message>
+        <source>Image quality in monitoring mode</source>
+        <translation>Qualité d&apos;image en mode surveillance</translation>
+    </message>
+    <message>
         <source>Remote access image quality</source>
         <translation>Qualité de l&apos;image de l&apos;accès à distance</translation>
     </message>
     <message>
-        <source>Image quality in monitoring mode</source>
-        <translation>Qualité d&apos;image en mode surveillance</translation>
+        <source>Behaviour</source>
+        <translation>Comportement</translation>
+    </message>
+    <message>
+        <source>Program start</source>
+        <translation>Démarrage du programme</translation>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation>Effectuer un contrôle d&apos;accès</translation>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation>Sélectionner automatiquement la localisation courante</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation>Ajuster automatiquement la taille de l&apos;icône de l&apos;ordinateur</translation>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
+        <translation>Ouvrir automatiquement le panneau de sélection ordinateur</translation>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation>Emplacements d&apos;ordinateur</translation>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation>Afficher seulement l&apos;emplacement actuel</translation>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation>Autoriser l&apos;ajout manuel d&apos;emplacements cachés</translation>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation>Masquer l&apos;ordinateur local</translation>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation>Masquer la session locale</translation>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation>Cacher les emplacements vides</translation>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation>Masquer le champ filtre ordinateur</translation>
+    </message>
+    <message>
+        <source>Modes and features</source>
+        <translation>Modes et fonctionnalités</translation>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation>Forcer le mode sélectionné pour les ordinateurs</translation>
+    </message>
+    <message>
+        <source>Actions such as rebooting or powering down computers</source>
+        <translation>Actions comme le redémarrage ou l&apos;extinction d&apos;ordinateurs</translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation>Afficher un message de confirmation pour les actions potentiellement risquées</translation>
+    </message>
+    <message>
+        <source>Feature on computer double click:</source>
+        <translation>Action au double clique sur un ordinateur :</translation>
+    </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation>Ouvrir les fenêtres de fonctionnalités sur le même écran que la fenêtre principale</translation>
+    </message>
+    <message>
+        <source>Features</source>
+        <translation>Fonctionnalités</translation>
+    </message>
+    <message>
+        <source>All features</source>
+        <translation>Fonctionnalités disponibles</translation>
+    </message>
+    <message>
+        <source>Disabled features</source>
+        <translation>Fonctionnalités désactivées</translation>
+    </message>
+    <message>
+        <source>&lt;no feature&gt;</source>
+        <translation>Aucune action</translation>
     </message>
 </context>
 <context>
@@ -3176,10 +3176,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Monitoring</source>
         <translation>Surveiller</translation>
-    </message>
-    <message>
-        <source>Builtin monitoring mode</source>
-        <translation>mode de surveillance intégré</translation>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
@@ -3196,6 +3192,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Query properties of remotely available screens</source>
         <translation>Interroger les propriétés des écrans distants disponibles</translation>
+    </message>
+    <message>
+        <source>Builtin monitoring mode</source>
+        <translation>mode de surveillance intégré</translation>
     </message>
 </context>
 <context>
@@ -3235,6 +3235,14 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
 <context>
     <name>PasswordDialog</name>
     <message>
+        <source>Veyon Logon</source>
+        <translation>Connexion Veyon</translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation>Veuillez entrer votre identifiant et votre mot de passe afin d&apos;accéder aux ordinateurs.</translation>
+    </message>
+    <message>
         <source>Username</source>
         <translation>Identifiant</translation>
     </message>
@@ -3243,20 +3251,12 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Mot de passe</translation>
     </message>
     <message>
-        <source>Veyon Logon</source>
-        <translation>Connexion Veyon</translation>
-    </message>
-    <message>
         <source>Authentication error</source>
         <translation>Erreur d&apos;authentification</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>La connexion a échoué avec le nom d&apos;utilisateur et le mot de passe donné. Veuillez réessayer!</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
-        <translation>Veuillez entrer votre identifiant et votre mot de passe afin d&apos;accéder aux ordinateurs.</translation>
     </message>
 </context>
 <context>
@@ -3297,6 +3297,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
 <context>
     <name>PowerControlFeaturePlugin</name>
     <message>
+        <source>Power on a computer via Wake-on-LAN (WOL)</source>
+        <translation>Allumer un ordinateur via Wake-on-LAN (WOL)</translation>
+    </message>
+    <message>
         <source>Power on</source>
         <translation>Allumer</translation>
     </message>
@@ -3321,46 +3325,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Cliquez sur ce bouton pour éteindre tous les ordinateurs. De cette façon, vous n&apos;avez pas à le faire à la main pour chacun.</translation>
     </message>
     <message>
-        <source>Power on/down or reboot a computer</source>
-        <translation>Allumer / Éteindre ou redémarrer un ordinateur</translation>
-    </message>
-    <message>
-        <source>Confirm reboot</source>
-        <translation>Confirmer le redémarrage</translation>
-    </message>
-    <message>
-        <source>Confirm power down</source>
-        <translation>Confirmer l&apos;extinction</translation>
-    </message>
-    <message>
-        <source>Do you really want to reboot the selected computers?</source>
-        <translation>Souhaitez-vous réellement redémarrer les ordinateurs sélectionnés ?</translation>
-    </message>
-    <message>
-        <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>Allumer un ordinateur via Wake-on-LAN (WOL)</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>ADRESSE MAC</translation>
-    </message>
-    <message>
-        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation>Cette commande diffuse un paquet Wake-on-LAN (WOL) sur le réseau afin d&apos;allumer l&apos;ordinateur correspondant à l&apos;adresse MAC donnée.</translation>
-    </message>
-    <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Veuillez spécifier la commande pour afficher l&apos;aide correspondante !</translation>
-    </message>
-    <message>
-        <source>Invalid MAC address specified!</source>
-        <translation>L&apos; adresse MAC spécifiée est invalide!</translation>
-    </message>
-    <message>
-        <source>Commands for controlling power status of computers</source>
-        <translation>Commandes pour contrôler l&apos;état d&apos;allumage des ordinateurs</translation>
-    </message>
-    <message>
         <source>Power down now</source>
         <translation>Éteindre maintenant</translation>
     </message>
@@ -3377,6 +3341,46 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Éteindre après l&apos;expiration d&apos;un délai</translation>
     </message>
     <message>
+        <source>MAC ADDRESS</source>
+        <translation>ADRESSE MAC</translation>
+    </message>
+    <message>
+        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
+        <translation>Cette commande diffuse un paquet Wake-on-LAN (WOL) sur le réseau afin d&apos;allumer l&apos;ordinateur correspondant à l&apos;adresse MAC donnée.</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation>Veuillez spécifier la commande pour afficher l&apos;aide correspondante !</translation>
+    </message>
+    <message>
+        <source>Confirm reboot</source>
+        <translation>Confirmer le redémarrage</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Souhaitez-vous vraiment redémarrer &lt;b&gt;TOUS&lt;/b&gt; les ordinateurs?</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot the selected computers?</source>
+        <translation>Souhaitez-vous réellement redémarrer les ordinateurs sélectionnés ?</translation>
+    </message>
+    <message>
+        <source>Confirm power down</source>
+        <translation>Confirmer l&apos;extinction</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation>Souhaitez-vous vraiment éteindre  &lt;b&gt;TOUS&lt;/b&gt; les ordinateurs?</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation>Souhaitez-vous vraiment éteindre les ordinateurs sélectionnés?</translation>
+    </message>
+    <message>
+        <source>Invalid MAC address specified!</source>
+        <translation>L&apos; adresse MAC spécifiée est invalide!</translation>
+    </message>
+    <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
         <translation>L&apos;ordinateur a été invité à s&apos;éteindre à distance. Voulez-vous éteindre l&apos;ordinateur maintenant?</translation>
     </message>
@@ -3389,16 +3393,12 @@ Please save your work and close all programs.</source>
 Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     </message>
     <message>
-        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation>Souhaitez-vous vraiment redémarrer &lt;b&gt;TOUS&lt;/b&gt; les ordinateurs?</translation>
+        <source>Power on/down or reboot a computer</source>
+        <translation>Allumer / Éteindre ou redémarrer un ordinateur</translation>
     </message>
     <message>
-        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation>Souhaitez-vous vraiment éteindre  &lt;b&gt;TOUS&lt;/b&gt; les ordinateurs?</translation>
-    </message>
-    <message>
-        <source>Do you really want to power down the selected computers?</source>
-        <translation>Souhaitez-vous vraiment éteindre les ordinateurs sélectionnés?</translation>
+        <source>Commands for controlling power status of computers</source>
+        <translation>Commandes pour contrôler l&apos;état d&apos;allumage des ordinateurs</translation>
     </message>
 </context>
 <context>
@@ -3439,24 +3439,24 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
         <translation>Ouvre une fenêtre de contrôle à distance pour un ordinateur.</translation>
     </message>
     <message>
-        <source>Remote access</source>
-        <translation>Accès à distance</translation>
-    </message>
-    <message>
-        <source>Remote view or control a computer</source>
-        <translation>Vue à distance ou contrôle de l&apos;ordinateur</translation>
+        <source>Exchange clipboard contents</source>
+        <translation>Échanger le contenu du presse-papiers</translation>
     </message>
     <message>
         <source>Show help about command</source>
         <translation>Afficher la commande aide et à propos</translation>
     </message>
     <message>
-        <source>Exchange clipboard contents</source>
-        <translation>Échanger le contenu du presse-papiers</translation>
+        <source>Remote access</source>
+        <translation>Accès à distance</translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
         <translation>Aucun ordinateur n&apos;a été sélectionné, vous pouvez donc saisir le nom d&apos;hôte ou l&apos;adresse IP d&apos;un ordinateur pour un accès manuel :</translation>
+    </message>
+    <message>
+        <source>Remote view or control a computer</source>
+        <translation>Vue à distance ou contrôle de l&apos;ordinateur</translation>
     </message>
 </context>
 <context>
@@ -3481,8 +3481,16 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
         <translation>Contrôle à distance</translation>
     </message>
     <message>
+        <source>Select screen</source>
+        <translation>Sélectionner l&apos;écran</translation>
+    </message>
+    <message>
         <source>Send shortcut</source>
         <translation>Envoyer un raccourci</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Capture d&apos;écran</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -3491,6 +3499,10 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     <message>
         <source>Window</source>
         <translation>Fenêtre</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation>Quitter</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
@@ -3529,20 +3541,8 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
         <translation>Connecté.</translation>
     </message>
     <message>
-        <source>Screenshot</source>
-        <translation>Capture d&apos;écran</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation>Quitter</translation>
-    </message>
-    <message>
         <source>Connecting...</source>
         <translation>En cours de connexion</translation>
-    </message>
-    <message>
-        <source>Select screen</source>
-        <translation>Sélectionner l&apos;écran</translation>
     </message>
     <message>
         <source>All screens</source>
@@ -3560,10 +3560,6 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
         <translation>Déverrouiller</translation>
     </message>
     <message>
-        <source>Lock screen and input devices of a computer</source>
-        <translation>Verrouiller l&apos;écran et les périphériques d&apos;entrée d&apos;un ordinateur</translation>
-    </message>
-    <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Pour attirer toute l&apos;attention de tous les utilisateurs, vous pouvez verrouiller les ordinateurs en utilisant ce bouton. Dans ce mode, tous les périphériques d&apos;entrée sont verrouillés et l&apos;écran est noir.</translation>
     </message>
@@ -3578,6 +3574,10 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
         <translation>Pour conserver toute l&apos;attention de tous les utilisateurs, vous pouvez verrouiller leurs ordinateurs à l&apos;aide de ce bouton. Dans ce mode, tous les périphériques d&apos;entrée sont verrouillés tandis que le bureau est toujours visible.</translation>
+    </message>
+    <message>
+        <source>Lock screen and input devices of a computer</source>
+        <translation>Verrouiller l&apos;écran et les périphériques d&apos;entrée d&apos;un ordinateur</translation>
     </message>
 </context>
 <context>
@@ -3668,56 +3668,44 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
         <translation>Général</translation>
     </message>
     <message>
-        <source>Autostart</source>
-        <translation>Démarrage automatique</translation>
+        <source>Show notification when an unauthorized access is blocked</source>
+        <translation>Afficher une notification quand un accès non autorisé est bloqué</translation>
+    </message>
+    <message>
+        <source>Show notification on remote connection</source>
+        <translation>Afficher la notification sur la connexion à distance</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
         <translation>Cacher l’icône de la barre</translation>
     </message>
     <message>
-        <source>Start service</source>
-        <translation>Démarrer le service</translation>
-    </message>
-    <message>
-        <source>Stopped</source>
-        <translation>Arrêté</translation>
-    </message>
-    <message>
-        <source>Stop service</source>
-        <translation>Arrêter le service</translation>
+        <source>Autostart</source>
+        <translation>Démarrage automatique</translation>
     </message>
     <message>
         <source>State:</source>
         <translation>État :</translation>
     </message>
     <message>
-        <source>Enable firewall exception</source>
-        <translation>Autoriser une exception pour le pare-feu</translation>
+        <source>Stopped</source>
+        <translation>Arrêté</translation>
     </message>
     <message>
-        <source>Allow connections from localhost only</source>
-        <translation>Autoriser les connexions seulement à partir de l&apos;hôte local </translation>
+        <source>Start service</source>
+        <translation>Démarrer le service</translation>
     </message>
     <message>
-        <source>VNC server</source>
-        <translation>Serveur VNC</translation>
+        <source>Stop service</source>
+        <translation>Arrêter le service</translation>
     </message>
     <message>
-        <source>Plugin:</source>
-        <translation>Extension :</translation>
+        <source>Session mode</source>
+        <translation>Mode Session</translation>
     </message>
     <message>
-        <source>Restart %1 Service</source>
-        <translation>Redémarrage du service %1</translation>
-    </message>
-    <message>
-        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Tous les paramètres ont été sauvegardés avec succès. Afin de prendre effet, le service %1 doit être redémarré. Souhaitez vous le faire maintenant ?</translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>En cours d’exécution</translation>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation>Mode session locale (instance de serveur unique pour la session locale principale)</translation>
     </message>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
@@ -3726,12 +3714,12 @@ Typically this is required to support terminal servers.</source>
 Généralement, ceci est nécessaire pour prendre en charge les serveurs de terminaux.</translation>
     </message>
     <message>
-        <source>Show notification on remote connection</source>
-        <translation>Afficher la notification sur la connexion à distance</translation>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation>Mode session active (instance de serveur unique pour une session locale ou distante active)</translation>
     </message>
     <message>
-        <source>Show notification when an unauthorized access is blocked</source>
-        <translation>Afficher une notification quand un accès non autorisé est bloqué</translation>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation>Mode multi-session (instance de serveur distincte pour chaque session de bureau local et distant)</translation>
     </message>
     <message>
         <source>Maximum session count</source>
@@ -3758,24 +3746,40 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <translation>Serveur de démo</translation>
     </message>
     <message>
-        <source>Miscellaneous network settings</source>
-        <translation>Divers paramètres réseau</translation>
+        <source>Miscellaneous settings</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Session mode</source>
-        <translation>Mode Session</translation>
+        <source>Enable firewall exception</source>
+        <translation>Autoriser une exception pour le pare-feu</translation>
     </message>
     <message>
-        <source>Local session mode (single server instance for primary local session)</source>
-        <translation>Mode session locale (instance de serveur unique pour la session locale principale)</translation>
+        <source>Allow connections from localhost only</source>
+        <translation>Autoriser les connexions seulement à partir de l&apos;hôte local </translation>
     </message>
     <message>
-        <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation>Mode session active (instance de serveur unique pour une session locale ou distante active)</translation>
+        <source>Disable clipboard synchronization</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation>Mode multi-session (instance de serveur distincte pour chaque session de bureau local et distant)</translation>
+        <source>VNC server</source>
+        <translation>Serveur VNC</translation>
+    </message>
+    <message>
+        <source>Plugin:</source>
+        <translation>Extension :</translation>
+    </message>
+    <message>
+        <source>Restart %1 Service</source>
+        <translation>Redémarrage du service %1</translation>
+    </message>
+    <message>
+        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
+        <translation>Tous les paramètres ont été sauvegardés avec succès. Afin de prendre effet, le service %1 doit être redémarré. Souhaitez vous le faire maintenant ?</translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>En cours d’exécution</translation>
     </message>
 </context>
 <context>
@@ -3885,6 +3889,10 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
 <context>
     <name>SpotlightPanel</name>
     <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation>Ajoutez des ordinateurs en cliquant avec le bouton central de la souris ou en cliquant sur le premier bouton ci-dessous.</translation>
+    </message>
+    <message>
         <source>Add selected computers</source>
         <translation>Ajouter les ordinateurs sélectionnés</translation>
     </message>
@@ -3907,10 +3915,6 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>Please select at least one computer to remove.</source>
         <translation>Veuillez sélectionner au moins un ordinateur à supprimer.</translation>
-    </message>
-    <message>
-        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation>Ajoutez des ordinateurs en cliquant avec le bouton central de la souris ou en cliquant sur le premier bouton ci-dessous.</translation>
     </message>
 </context>
 <context>
@@ -4002,32 +4006,32 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
 <context>
     <name>UltraVncConfigurationWidget</name>
     <message>
-        <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>Activer la capture des fenêtres semi-transparentes</translation>
+        <source>Builtin UltraVNC server configuration</source>
+        <translation>Configuration du serveur intégré UltraVNC</translation>
     </message>
     <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Sondage en plein écran (laissez activé par défaut)</translation>
+        <source>Maximum CPU usage</source>
+        <translation>Utilisation maximale du processeur</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
         <translation>Résolution faible (mode turbo)</translation>
     </message>
     <message>
-        <source>Builtin UltraVNC server configuration</source>
-        <translation>Configuration du serveur intégré UltraVNC</translation>
-    </message>
-    <message>
-        <source>Enable multi monitor support</source>
-        <translation>Activer le support multi moniteur</translation>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>Sondage en plein écran (laissez activé par défaut)</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>Activer le processus de duplication du bureau sur Windows 8 ou supérieur</translation>
     </message>
     <message>
-        <source>Maximum CPU usage</source>
-        <translation>Utilisation maximale du processeur</translation>
+        <source>Enable multi monitor support</source>
+        <translation>Activer le support multi moniteur</translation>
+    </message>
+    <message>
+        <source>Enable capturing of layered (semi-transparent) windows</source>
+        <translation>Activer la capture des fenêtres semi-transparentes</translation>
     </message>
 </context>
 <context>
@@ -4083,16 +4087,16 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <translation>Confirmer la déconnexion utilisateur</translation>
     </message>
     <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation>Souhaitez-vous vraiment déconnecter &lt;b&gt;TOUS&lt;/b&gt; les utilisateurs?</translation>
+    </message>
+    <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>Souhaitez-vous vraiment déconnecter l&apos;utilisateur sélectionné ?</translation>
     </message>
     <message>
         <source>User session control</source>
         <translation>Contrôle de session utilisateur</translation>
-    </message>
-    <message>
-        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation>Souhaitez-vous vraiment déconnecter &lt;b&gt;TOUS&lt;/b&gt; les utilisateurs?</translation>
     </message>
 </context>
 <context>
@@ -4110,10 +4114,6 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <translation>Commande non valide!</translation>
     </message>
     <message>
-        <source>Available commands:</source>
-        <translation>Commandes disponibles :</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>Les arguments donnés ne sont pas valide</translation>
     </message>
@@ -4122,8 +4122,16 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <translation>Pas assez d&apos;arguments donnés - Utiliser &quot;l&apos;aide %1&quot; pour plus d&apos;information</translation>
     </message>
     <message>
+        <source>Plugin not licensed</source>
+        <translation>Greffon sans licence</translation>
+    </message>
+    <message>
         <source>Unknown result!</source>
         <translation>Résultat inconnu!</translation>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation>Commandes disponibles :</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -4134,12 +4142,12 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <translation>Aucun module spécifié ou module non trouvé - les modules disponibles sont :</translation>
     </message>
     <message>
-        <source>Plugin not licensed</source>
-        <translation>Greffon sans licence</translation>
-    </message>
-    <message>
         <source>INFO</source>
         <translation>INFO</translation>
+    </message>
+    <message>
+        <source>WARNING</source>
+        <translation>ATTENTION</translation>
     </message>
     <message>
         <source>ERROR</source>
@@ -4156,10 +4164,6 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>EXAMPLES</source>
         <translation>EXEMPLES</translation>
-    </message>
-    <message>
-        <source>WARNING</source>
-        <translation>ATTENTION</translation>
     </message>
     <message>
         <source>Screen %1</source>
@@ -4285,22 +4289,6 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <translation>Activer la génération de touche SAS de manière logicielle (Ctrl+Alt+Suppr)</translation>
     </message>
     <message>
-        <source>Screen lock</source>
-        <translation>Verrouillage d&apos;écran</translation>
-    </message>
-    <message>
-        <source>Hide taskbar</source>
-        <translation>Masquer la barre des tâches</translation>
-    </message>
-    <message>
-        <source>Hide start menu</source>
-        <translation>Masquer le menu de démarrage</translation>
-    </message>
-    <message>
-        <source>Hide desktop</source>
-        <translation>Masquer le bureau</translation>
-    </message>
-    <message>
         <source>User authentication</source>
         <translation>Authentification utilisateur</translation>
     </message>
@@ -4325,6 +4313,22 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <translation>Confirmer les mentions légales (message affiché avant la connexion de l&apos;utilisateur)</translation>
     </message>
     <message>
+        <source>Screen lock</source>
+        <translation>Verrouillage d&apos;écran</translation>
+    </message>
+    <message>
+        <source>Hide taskbar</source>
+        <translation>Masquer la barre des tâches</translation>
+    </message>
+    <message>
+        <source>Hide start menu</source>
+        <translation>Masquer le menu de démarrage</translation>
+    </message>
+    <message>
+        <source>Hide desktop</source>
+        <translation>Masquer le bureau</translation>
+    </message>
+    <message>
         <source>Use input device interception driver</source>
         <translation>Utiliser le pilote d&apos;interception du périphérique d&apos;entrée</translation>
     </message>
@@ -4332,12 +4336,12 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
-        <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation>Extension implémentant les fonctions abstraites pour le système Windows </translation>
-    </message>
-    <message>
         <source>Internal display</source>
         <translation>Affichage interne</translation>
+    </message>
+    <message>
+        <source>Plugin implementing abstract functions for the Windows platform</source>
+        <translation>Extension implémentant les fonctions abstraites pour le système Windows </translation>
     </message>
 </context>
 <context>
@@ -4345,18 +4349,6 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
         <translation>Le service &quot;%1&quot; est déjà installé.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation>Le service &quot;%1&quot; a été installé avec succès.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>Le service &quot;%1&quot; a été désinstallé avec succès.</translation>
-    </message>
-    <message>
-        <source>Service &quot;%1&quot; could not be found.</source>
-        <translation>Service &quot;%1&quot; impossible à trouvé.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
@@ -4367,12 +4359,24 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <translation>Impossible de modifier la configuration des actions d&apos;échec pour le service &quot;%1&quot; (erreur %2).</translation>
     </message>
     <message>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
+        <translation>Le service &quot;%1&quot; a été installé avec succès.</translation>
+    </message>
+    <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
         <translation>Le service &quot;%1&quot; n&apos;a pas pu être désinstallé (erreur %2).</translation>
     </message>
     <message>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation>Le service &quot;%1&quot; a été désinstallé avec succès.</translation>
+    </message>
+    <message>
         <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
         <translation>Le type de démarrage du service &quot;%1&quot; n&apos;a pas pu être modifié (erreur %2).</translation>
+    </message>
+    <message>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation>Service &quot;%1&quot; impossible à trouvé.</translation>
     </message>
 </context>
 <context>

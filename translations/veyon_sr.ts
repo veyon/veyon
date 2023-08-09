@@ -2,24 +2,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <source>About</source>
-        <translation>O nama</translation>
-    </message>
-    <message>
-        <source>Translation</source>
-        <translation>Prevod</translation>
-    </message>
-    <message>
-        <source>License</source>
-        <translation>Licenca</translation>
-    </message>
-    <message>
         <source>About Veyon</source>
         <translation>O Veyonu</translation>
     </message>
     <message>
-        <source>Contributors</source>
-        <translation>Saradnici</translation>
+        <source>About</source>
+        <translation>O nama</translation>
     </message>
     <message>
         <source>Version:</source>
@@ -30,6 +18,18 @@
         <translation>Websajt:</translation>
     </message>
     <message>
+        <source>Support Veyon project with a donation</source>
+        <translation>Podržite Veyon projekat sa donacijom</translation>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation>Saradnici</translation>
+    </message>
+    <message>
+        <source>Translation</source>
+        <translation>Prevod</translation>
+    </message>
+    <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
@@ -38,12 +38,12 @@ If you&apos;re interested in translating Veyon into your local or another langua
 Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili želite poboljšati postojeći prevod,molimo kontaktirajte Veyon programera!</translation>
     </message>
     <message>
-        <source>About %1 %2</source>
-        <translation>O %1 %2</translation>
+        <source>License</source>
+        <translation>Licenca</translation>
     </message>
     <message>
-        <source>Support Veyon project with a donation</source>
-        <translation>Podržite Veyon projekat sa donacijom</translation>
+        <source>About %1 %2</source>
+        <translation>O %1 %2</translation>
     </message>
 </context>
 <context>
@@ -53,8 +53,12 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
         <translation>Kontrola pristupa računaru</translation>
     </message>
     <message>
-        <source>Grant access to every authenticated user (default)</source>
-        <translation>Odobriti pristup autorizovanom korisniku (podrazumevano)</translation>
+        <source>Restrict access to members of specific user groups</source>
+        <translation>Ograniči pristup članovima određjenih grupa korisnika</translation>
+    </message>
+    <message>
+        <source>User groups backend:</source>
+        <translation>Pozadina grupe korisnika:</translation>
     </message>
     <message>
         <source>Test</source>
@@ -63,6 +67,14 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
     <message>
         <source>Process access control rules</source>
         <translation>Obraditi pravila kontrole pristupa</translation>
+    </message>
+    <message>
+        <source>Grant access to every authenticated user (default)</source>
+        <translation>Odobriti pristup autorizovanom korisniku (podrazumevano)</translation>
+    </message>
+    <message>
+        <source>Enable usage of domain groups</source>
+        <translation>Omogući korišćenje domen grupa</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -85,6 +97,14 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
         <translation>Pravila kotrole pristupa</translation>
     </message>
     <message>
+        <source>Move selected rule up</source>
+        <translation>Pomeri pravilo gore</translation>
+    </message>
+    <message>
+        <source>Edit selected rule</source>
+        <translation>Izmeni obeleženo pravilo</translation>
+    </message>
+    <message>
         <source>Add access control rule</source>
         <translation>Dodaj pravilo kontrole pristupa</translation>
     </message>
@@ -97,12 +117,12 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
         <translation>Pomeri obeleženo pravilo dole</translation>
     </message>
     <message>
-        <source>Move selected rule up</source>
-        <translation>Pomeri pravilo gore</translation>
+        <source>Missing user groups backend</source>
+        <translation>Nedostaje pozadina grupe korisnika</translation>
     </message>
     <message>
-        <source>Edit selected rule</source>
-        <translation>Izmeni obeleženo pravilo</translation>
+        <source>No default user groups plugin was found. Please check your installation!</source>
+        <translation>Nije pronađjen nijedan dodatak za grupe korisnika. Molimo proverite vašu instalaciju!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -127,26 +147,6 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
         <translation>Navedenom korisniku nije dozvoljen pristup računarima sa ovom konfiguracijom.</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Omogući korišćenje domen grupa</translation>
-    </message>
-    <message>
-        <source>User groups backend:</source>
-        <translation>Pozadina grupe korisnika:</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Nedostaje pozadina grupe korisnika</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Nije pronađjen nijedan dodatak za grupe korisnika. Molimo proverite vašu instalaciju!</translation>
-    </message>
-    <message>
-        <source>Restrict access to members of specific user groups</source>
-        <translation>Ograniči pristup članovima određjenih grupa korisnika</translation>
     </message>
 </context>
 <context>
@@ -180,6 +180,10 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
         <translation>Zamenite sve uslove (&quot;is / has&quot; je protumačeno kao &quot;je / nije&quot;)</translation>
     </message>
     <message>
+        <source>Always process rule and ignore conditions</source>
+        <translation>Uvek obradi pravilo i ignoriši uslove</translation>
+    </message>
+    <message>
         <source>Conditions</source>
         <translation>Uslovi</translation>
     </message>
@@ -188,8 +192,28 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
         <translation>je član grupe</translation>
     </message>
     <message>
+        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
+        <translation>Ako je aktivirano više od jednog uslova, svaki se uslov mora ispuniti da bi se pravilo primenilo (logično I). Ako mora biti ispunjen samo jedan od više uslova (logički ILI),kreirajte više pravila kontrole pristupa.</translation>
+    </message>
+    <message>
+        <source>Accessing computer and local computer are at the same location</source>
+        <translation>Pristupni računar i lokalni računar su na istoj lokaciji</translation>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>Nijedan korisnik nije prijavljen</translation>
+    </message>
+    <message>
+        <source>is located at</source>
+        <translation>nalazi se na</translation>
+    </message>
+    <message>
         <source>Accessing computer is localhost</source>
         <translation>Pristup kompjuteru je lokalni</translation>
+    </message>
+    <message>
+        <source>Accessing user has one or more groups in common with local (logged on) user</source>
+        <translation>Korisnik koji ima pristup ima jednu ili više grupa zajedničkih s lokalnim (prijavljenim) korisnikom</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
@@ -198,10 +222,6 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
     <message>
         <source>Accessing user is already connected</source>
         <translation>Pristupni korisnik je već povezan</translation>
-    </message>
-    <message>
-        <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>Ako je aktivirano više od jednog uslova, svaki se uslov mora ispuniti da bi se pravilo primenilo (logično I). Ako mora biti ispunjen samo jedan od više uslova (logički ILI),kreirajte više pravila kontrole pristupa.</translation>
     </message>
     <message>
         <source>Action</source>
@@ -238,26 +258,6 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
     <message>
         <source>Local computer</source>
         <translation>Lokalni računar</translation>
-    </message>
-    <message>
-        <source>Always process rule and ignore conditions</source>
-        <translation>Uvek obradi pravilo i ignoriši uslove</translation>
-    </message>
-    <message>
-        <source>No user logged on</source>
-        <translation>Nijedan korisnik nije prijavljen</translation>
-    </message>
-    <message>
-        <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>Korisnik koji ima pristup ima jednu ili više grupa zajedničkih s lokalnim (prijavljenim) korisnikom</translation>
-    </message>
-    <message>
-        <source>Accessing computer and local computer are at the same location</source>
-        <translation>Pristupni računar i lokalni računar su na istoj lokaciji</translation>
-    </message>
-    <message>
-        <source>is located at</source>
-        <translation>nalazi se na</translation>
     </message>
 </context>
 <context>
@@ -322,6 +322,26 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
         <translation>Uvod</translation>
     </message>
     <message>
+        <source>Please perform the following steps to set up key file authentication:</source>
+        <translation>Molimo vas da izvršite sledeće korake za podešavanje provjere autentičnosti datoteka:</translation>
+    </message>
+    <message>
+        <source>1) Create a key pair on the master computer.</source>
+        <translation>1) Na glavnom računaru napravite par ključeva.</translation>
+    </message>
+    <message>
+        <source>2) Set an access group whose members should be allowed to access other computers.</source>
+        <translation>2) Postavite pristupnu grupu čiji članovi trebaju imati pristup drugim računarima.</translation>
+    </message>
+    <message>
+        <source>3) Export the public key and import it on all client computers with the same name.</source>
+        <translation>3) Izvezite javni ključ i uvezite ga na sve računare klijenta sa istim nazivom.</translation>
+    </message>
+    <message>
+        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
+        <translation>Više informacija potražite u Priručniku za administratore Veyon.&lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;</translation>
+    </message>
+    <message>
         <source>Key file directories</source>
         <translation>Ključne datoteke direktorijuma</translation>
     </message>
@@ -336,6 +356,16 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
     <message>
         <source>Available authentication keys</source>
         <translation>Dostupni ključevi za proveru autentičnosti</translation>
+    </message>
+    <message>
+        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
+A private key allows users on the master computer to access client computers.
+It is important that only authorized users have read access to the private key file.
+The public key is used on client computers to authenticate incoming connection request.</source>
+        <translation>Par ključeva za autentifikaciju sastoji se od dva povezana kriptografska ključa, privatnog i javnog ključa.
+Privatni ključ omogućava korisnicima na matičnom računaru pristup klijentima.
+Važno je da su samo ovlašćeni korisnici pročitali pristup datoteci privatnog ključa.
+Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva za povezivanje.</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -392,36 +422,6 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Odaberite ključ za koji ćete podesiti pristupnu grupu!</translation>
-    </message>
-    <message>
-        <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Molimo vas da izvršite sledeće korake za podešavanje provjere autentičnosti datoteka:</translation>
-    </message>
-    <message>
-        <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Na glavnom računaru napravite par ključeva.</translation>
-    </message>
-    <message>
-        <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Postavite pristupnu grupu čiji članovi trebaju imati pristup drugim računarima.</translation>
-    </message>
-    <message>
-        <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Izvezite javni ključ i uvezite ga na sve računare klijenta sa istim nazivom.</translation>
-    </message>
-    <message>
-        <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Više informacija potražite u Priručniku za administratore Veyon.&lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;</translation>
-    </message>
-    <message>
-        <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
-A private key allows users on the master computer to access client computers.
-It is important that only authorized users have read access to the private key file.
-The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Par ključeva za autentifikaciju sastoji se od dva povezana kriptografska ključa, privatnog i javnog ključa.
-Privatni ključ omogućava korisnicima na matičnom računaru pristup klijentima.
-Važno je da su samo ovlašćeni korisnici pročitali pristup datoteci privatnog ključa.
-Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva za povezivanje.</translation>
     </message>
 </context>
 <context>
@@ -590,20 +590,24 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Postavite korisničkoj grupi dozvoljen pristup ključu</translation>
     </message>
     <message>
-        <source>KEY</source>
-        <translation>KLJUČ</translation>
-    </message>
-    <message>
-        <source>ACCESS GROUP</source>
-        <translation>PRISTUPNA GRUPA</translation>
-    </message>
-    <message>
-        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation>Ova naredba prilagođjava dozvole za pristup datoteci na &lt;KEY&gt; tako da samo korisnička grupa &lt;ACCESS GROUP&gt; može pročitati pristup.</translation>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>NAME</source>
         <translation>IME</translation>
+    </message>
+    <message>
+        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
+        <translation>Ova naredba kreira novi par ključeva za provjeru autentičnosti s imenom &lt;NAME&gt; i sačuvaće privatni i javni ključ u konfiguracione direktorijume ključeva. Parametar mora biti naziv ključa koji može sadržavati samo slova.</translation>
+    </message>
+    <message>
+        <source>KEY</source>
+        <translation>KLJUČ</translation>
+    </message>
+    <message>
+        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
+        <translation>Ova naredba briše ključ za proveru autentičnosti &lt;KEY&gt; iz konfiguracionog direktorija ključeva. Imajte na umu da ključ nije moguće vratiti nakon što ga izbrišete.</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -614,12 +618,32 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Ova naredba izvozi ključ  autentičnosti &lt;KEY&gt; u &lt;FILE&gt;.Ako &lt;FILE&gt; nije specifičan i ime će se konstruisati iz imena i tipa &lt;KEY&gt;.</translation>
     </message>
     <message>
+        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
+        <translation>Ova naredba izdvaja deo javnog ključa iz privatnog ključa &lt;KEY&gt; i sačuvaće ga kao odgovarajući javni ključ. Pri podešavanju drugog glavnog računara dovoljno je preneti samo privatni ključ. Javni ključ se zatim može izvući.</translation>
+    </message>
+    <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
         <translation>Ova komanda uvozi autentičnost ključa &lt;KEY&gt; od &lt;FILE&gt;.Ako &lt;FILE&gt; nije specifičan ime će biti konstruisano od imena i tipa &lt;KEY&gt;.</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
         <translation>Ova naredba navodi sve dostupne ključeve za proveru autentičnosti u konfiguracionom direktorijumu ključeva. Ako je navedena opcija &quot;%1&quot;,specifična tablica s ključnim detaljima biće prikazana umesto opcija. Neki detalji možda nedostaju ako ključ nije dostupan, npr. zbog nedostatka dozvola za čitanje.</translation>
+    </message>
+    <message>
+        <source>ACCESS GROUP</source>
+        <translation>PRISTUPNA GRUPA</translation>
+    </message>
+    <message>
+        <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
+        <translation>Ova naredba prilagođjava dozvole za pristup datoteci na &lt;KEY&gt; tako da samo korisnička grupa &lt;ACCESS GROUP&gt; može pročitati pristup.</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>TYPE</source>
@@ -636,30 +660,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>Commands for managing authentication keys</source>
         <translation>Komande za upravljanje ključevima autentičnosti</translation>
-    </message>
-    <message>
-        <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation>Ova naredba kreira novi par ključeva za provjeru autentičnosti s imenom &lt;NAME&gt; i sačuvaće privatni i javni ključ u konfiguracione direktorijume ključeva. Parametar mora biti naziv ključa koji može sadržavati samo slova.</translation>
-    </message>
-    <message>
-        <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation>Ova naredba briše ključ za proveru autentičnosti &lt;KEY&gt; iz konfiguracionog direktorija ključeva. Imajte na umu da ključ nije moguće vratiti nakon što ga izbrišete.</translation>
-    </message>
-    <message>
-        <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation>Ova naredba izdvaja deo javnog ključa iz privatnog ključa &lt;KEY&gt; i sačuvaće ga kao odgovarajući javni ključ. Pri podešavanju drugog glavnog računara dovoljno je preneti samo privatni ključ. Javni ključ se zatim može izvući.</translation>
-    </message>
-    <message>
-        <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -684,8 +684,28 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
+        <source>Locations &amp; computers</source>
+        <translation>Lokacije &amp; računari</translation>
+    </message>
+    <message>
+        <source>Builtin directory</source>
+        <translation>Ugradjeni direktorijum</translation>
+    </message>
+    <message>
         <source>Computers</source>
         <translation>Računari</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>Lokacije</translation>
+    </message>
+    <message>
+        <source>Add new computer</source>
+        <translation>Dodaj nov računar</translation>
+    </message>
+    <message>
+        <source>Remove selected computer</source>
+        <translation>Ukloni obeležene računar</translation>
     </message>
     <message>
         <source>Name</source>
@@ -698,30 +718,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>MAC address</source>
         <translation>MAC adresa</translation>
-    </message>
-    <message>
-        <source>Add new computer</source>
-        <translation>Dodaj nov računar</translation>
-    </message>
-    <message>
-        <source>Remove selected computer</source>
-        <translation>Ukloni obeležene računar</translation>
-    </message>
-    <message>
-        <source>New computer</source>
-        <translation>Novi računar</translation>
-    </message>
-    <message>
-        <source>Builtin directory</source>
-        <translation>Ugradjeni direktorijum</translation>
-    </message>
-    <message>
-        <source>Locations &amp; computers</source>
-        <translation>Lokacije &amp; računari</translation>
-    </message>
-    <message>
-        <source>Locations</source>
-        <translation>Lokacije</translation>
     </message>
     <message>
         <source>Add new location</source>
@@ -739,112 +735,16 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>New location</source>
         <translation>Nova lokacija</translation>
     </message>
+    <message>
+        <source>New computer</source>
+        <translation>Novi računar</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
         <translation>Prikaži pomoć za specifičnu komandu</translation>
-    </message>
-    <message>
-        <source>Import objects from given file</source>
-        <translation>Uvoz predmeta iz date datoteke</translation>
-    </message>
-    <message>
-        <source>Export objects to given file</source>
-        <translation>Izvoz predmeta iz date datoteke</translation>
-    </message>
-    <message>
-        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>Naveden nevažeći tip. Važeće vrednosti su „%1“ ili „%2“.</translation>
-    </message>
-    <message>
-        <source>Type</source>
-        <translation>Tip</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Ime</translation>
-    </message>
-    <message>
-        <source>Host address</source>
-        <translation>Domaćin adresa</translation>
-    </message>
-    <message>
-        <source>MAC address</source>
-        <translation>MAC adresa</translation>
-    </message>
-    <message>
-        <source>Specified object not found.</source>
-        <translation>Navedeni objekt nije pronađjen.</translation>
-    </message>
-    <message>
-        <source>File &quot;%1&quot; does not exist!</source>
-        <translation>Datoteka &quot;%1&quot; nije pronadjena!</translation>
-    </message>
-    <message>
-        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation>Nije moguće otvoriti datoteku &quot;%1&quot; za čitanje!</translation>
-    </message>
-    <message>
-        <source>Unknown argument &quot;%1&quot;.</source>
-        <translation>Nepoznati argument &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation>Računar &quot;%1&quot; (adresa domaćina: &quot;%2&quot; MAC adresa: &quot;%3&quot;)</translation>
-    </message>
-    <message>
-        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation>Nerazvrstani objekt &quot;%1&quot; sa ID-om &quot;%2&quot;</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Nijedan</translation>
-    </message>
-    <message>
-        <source>Computer</source>
-        <translation>Računar</translation>
-    </message>
-    <message>
-        <source>Root</source>
-        <translation>Ruta</translation>
-    </message>
-    <message>
-        <source>Invalid</source>
-        <translation>Nevažeći</translation>
-    </message>
-    <message>
-        <source>Error while parsing line %1.</source>
-        <translation>Greška prilikom raščlanjivanja linije%1.</translation>
-    </message>
-    <message>
-        <source>Network object directory which stores objects in local configuration</source>
-        <translation>Mrežni objektni direktorijum koji je sačuvan objekat u lokalnoj konfiguraciji</translation>
-    </message>
-    <message>
-        <source>Commands for managing the builtin network object directory</source>
-        <translation>Komande za upravljanje ugrađenim direktorijom mrežnih objekata</translation>
-    </message>
-    <message>
-        <source>No format string or regular expression specified!</source>
-        <translation>Nije naveden niz formata ili regularni izraz!</translation>
-    </message>
-    <message>
-        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation>Nije moguće otvoriti datoteku &quot;%1&quot; za pisanje!</translation>
-    </message>
-    <message>
-        <source>No format string specified!</source>
-        <translation>Nije naveden specifičan niz formata!</translation>
-    </message>
-    <message>
-        <source>Object UUID</source>
-        <translation>Objekat UUID</translation>
-    </message>
-    <message>
-        <source>Parent UUID</source>
-        <translation>Roditeljski UUID</translation>
     </message>
     <message>
         <source>Add a location or computer</source>
@@ -867,16 +767,12 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Ukloni lokaciju ili računar</translation>
     </message>
     <message>
-        <source>Location &quot;%1&quot;</source>
-        <translation>Lokacija  &quot;%1&quot;</translation>
+        <source>Import objects from given file</source>
+        <translation>Uvoz predmeta iz date datoteke</translation>
     </message>
     <message>
-        <source>Builtin (computers and locations in local configuration)</source>
-        <translation>Ugrađeni (računari i lokacije u lokalnoj konfiguraciji)</translation>
-    </message>
-    <message>
-        <source>Location</source>
-        <translation>Lokacija</translation>
+        <source>Export objects to given file</source>
+        <translation>Izvoz predmeta iz date datoteke</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -935,6 +831,14 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>IME</translation>
     </message>
     <message>
+        <source>HOST ADDRESS</source>
+        <translation>DOMAĆIN ADRESA</translation>
+    </message>
+    <message>
+        <source>MAC ADDRESS</source>
+        <translation>MAC ADRESA</translation>
+    </message>
+    <message>
         <source>PARENT</source>
         <translation>RODITELJ</translation>
     </message>
@@ -967,24 +871,120 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Uklonite objekt po UUID</translation>
     </message>
     <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
+        <translation>Naveden nevažeći tip. Važeće vrednosti su „%1“ ili „%2“.</translation>
+    </message>
+    <message>
+        <source>Object UUID</source>
+        <translation>Objekat UUID</translation>
+    </message>
+    <message>
+        <source>Parent UUID</source>
+        <translation>Roditeljski UUID</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Tip</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Ime</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Domaćin adresa</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MAC adresa</translation>
+    </message>
+    <message>
+        <source>Specified object not found.</source>
+        <translation>Navedeni objekt nije pronađjen.</translation>
+    </message>
+    <message>
+        <source>File &quot;%1&quot; does not exist!</source>
+        <translation>Datoteka &quot;%1&quot; nije pronadjena!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
+        <translation>Nije moguće otvoriti datoteku &quot;%1&quot; za čitanje!</translation>
+    </message>
+    <message>
+        <source>Unknown argument &quot;%1&quot;.</source>
+        <translation>Nepoznati argument &quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>No format string or regular expression specified!</source>
+        <translation>Nije naveden niz formata ili regularni izraz!</translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
+        <translation>Nije moguće otvoriti datoteku &quot;%1&quot; za pisanje!</translation>
+    </message>
+    <message>
+        <source>No format string specified!</source>
+        <translation>Nije naveden specifičan niz formata!</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot;</source>
+        <translation>Lokacija  &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
+        <translation>Računar &quot;%1&quot; (adresa domaćina: &quot;%2&quot; MAC adresa: &quot;%3&quot;)</translation>
+    </message>
+    <message>
+        <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
+        <translation>Nerazvrstani objekt &quot;%1&quot; sa ID-om &quot;%2&quot;</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Nijedan</translation>
+    </message>
+    <message>
+        <source>Invalid</source>
+        <translation>Nevažeći</translation>
+    </message>
+    <message>
+        <source>Error while parsing line %1.</source>
+        <translation>Greška prilikom raščlanjivanja linije%1.</translation>
+    </message>
+    <message>
+        <source>Network object directory which stores objects in local configuration</source>
+        <translation>Mrežni objektni direktorijum koji je sačuvan objekat u lokalnoj konfiguraciji</translation>
+    </message>
+    <message>
+        <source>Builtin (computers and locations in local configuration)</source>
+        <translation>Ugrađeni (računari i lokacije u lokalnoj konfiguraciji)</translation>
+    </message>
+    <message>
+        <source>Commands for managing the builtin network object directory</source>
+        <translation>Komande za upravljanje ugrađenim direktorijom mrežnih objekata</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Lokacija</translation>
+    </message>
+    <message>
+        <source>Computer</source>
+        <translation>Računar</translation>
+    </message>
+    <message>
+        <source>Root</source>
+        <translation>Ruta</translation>
+    </message>
+    <message>
         <source>&quot;Room 01&quot;</source>
         <translation>&quot;Prostorija 01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;Računar 01&quot;</translation>
-    </message>
-    <message>
-        <source>HOST ADDRESS</source>
-        <translation>DOMAĆIN ADRESA</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>MAC ADRESA</translation>
-    </message>
-    <message>
-        <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1004,12 +1004,28 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
 <context>
     <name>ComputerControlListModel</name>
     <message>
+        <source>Name: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location: %1</source>
+        <translation>Lokacija: %1</translation>
+    </message>
+    <message>
         <source>Host/IP address: %1</source>
         <translation>Domaćin/IP adresa: %1</translation>
     </message>
     <message>
+        <source>invalid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Active features: %1</source>
         <translation>Aktivne karakteristike: %1</translation>
+    </message>
+    <message>
+        <source>[no user]</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Online and connected</source>
@@ -1022,6 +1038,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>Computer offline or switched off</source>
         <translation>Računar nije mreži ili je isključen</translation>
+    </message>
+    <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
@@ -1040,26 +1060,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Prijavljeni korisnik: %1</translation>
     </message>
     <message>
-        <source>Location: %1</source>
-        <translation>Lokacija: %1</translation>
-    </message>
-    <message>
-        <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>[no user]</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>invalid</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Name: %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>[none]</source>
         <translation type="unfinished"/>
     </message>
@@ -1067,12 +1067,12 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
 <context>
     <name>ComputerControlServer</name>
     <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 Usluga %2 na %3:%4</translation>
-    </message>
-    <message>
         <source>Authentication error</source>
         <translation>Greška autentifikacije</translation>
+    </message>
+    <message>
+        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
+        <translation>Korisnik &quot;%1&quot; kod domaćina &quot;%2&quot; pokušao je pristupiti ovom računaru, ali nije uspeo uspješno proveriti identitet.</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -1083,16 +1083,16 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Korisnik &quot;%1&quot; kod domaćina &quot;%2&quot; sada pristupa ovom računaru.</translation>
     </message>
     <message>
-        <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation>Korisnik &quot;%1&quot; kod domaćina &quot;%2&quot; pokušao je pristupiti ovom računaru, ali nije uspeo uspješno proveriti identitet.</translation>
-    </message>
-    <message>
         <source>Access control error</source>
         <translation>Greška kontrole pristupa</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
         <translation>Korisnik &quot;%1&quot; kod računara &quot;%2&quot; pokušao je pristupiti ovom računaru, ali je blokiran zbog postavki kontrole pristupa.</translation>
+    </message>
+    <message>
+        <source>%1 Service %2 at %3:%4</source>
+        <translation>%1 Usluga %2 na %3:%4</translation>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1106,6 +1106,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Korisnik</translation>
     </message>
     <message>
+        <source>Logged in since</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Missing network object directory plugin</source>
         <translation>Nedostaje dodatak mrežnog objekta direktorijuma</translation>
     </message>
@@ -1114,20 +1118,8 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Nije pronađen nijedan podrazumevani dodatak mrežnog objekta. Proverite vašu instalaciju ili konfigurišite drugačiju poziciju direktorijuma mrežnih objekata putem %1 Konfigurator.</translation>
     </message>
     <message>
-        <source>Location detection failed</source>
-        <translation>Otkrivanje lokacije nije uspelo</translation>
-    </message>
-    <message>
         <source>Computer name;Hostname;User</source>
         <translation>Ime računara; Ime domaćina; Korisnik</translation>
-    </message>
-    <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation>Ne mogu odrediti lokaciju ovog računara. Ovo ukazuje na problem sa konfiguracijom sistema. Sve lokacije će se umesto toga prikazati na ploči za odabir računara.</translation>
-    </message>
-    <message>
-        <source>Logged in since</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 days</source>
@@ -1137,9 +1129,21 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>1 day</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Location detection failed</source>
+        <translation>Otkrivanje lokacije nije uspelo</translation>
+    </message>
+    <message>
+        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
+        <translation>Ne mogu odrediti lokaciju ovog računara. Ovo ukazuje na problem sa konfiguracijom sistema. Sve lokacije će se umesto toga prikazati na ploči za odabir računara.</translation>
+    </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
+    <message>
+        <source>Search computers</source>
+        <translation type="unfinished"/>
+    </message>
     <message>
         <source>Add location</source>
         <translation>Dodaj lokaciju</translation>
@@ -1163,10 +1167,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Ne može se zapisati lista računara i korisnika na %1! Proverite dozvole za pristup datoteci.</translation>
-    </message>
-    <message>
-        <source>Search computers</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1259,12 +1259,12 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Nije moguće konfigurisati konfiguraciju zaštitnog zida za %1 Radnika.</translation>
     </message>
     <message>
-        <source>Configuration is not writable. Please check your permissions!</source>
-        <translation>Konfiguracija nije upisiva. Molimo proverite svoje dozvole!</translation>
-    </message>
-    <message>
         <source>Could not apply platform-specific configuration settings.</source>
         <translation>Ne mogu se primeniti postavke konfiguracije specifične za platformu.</translation>
+    </message>
+    <message>
+        <source>Configuration is not writable. Please check your permissions!</source>
+        <translation>Konfiguracija nije upisiva. Molimo proverite svoje dozvole!</translation>
     </message>
 </context>
 <context>
@@ -1285,32 +1285,32 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Tunables</translation>
     </message>
     <message>
-        <source> ms</source>
-        <translation>ms</translation>
-    </message>
-    <message>
-        <source>Key frame interval</source>
-        <translation>Interval ključnog okvira</translation>
-    </message>
-    <message>
-        <source>Memory limit</source>
-        <translation>Memorijski limit</translation>
-    </message>
-    <message>
-        <source> MB</source>
-        <translation>MB</translation>
+        <source> s</source>
+        <translation>s</translation>
     </message>
     <message>
         <source>Update interval</source>
         <translation>Interval ažuriranja</translation>
     </message>
     <message>
-        <source> s</source>
-        <translation>s</translation>
+        <source> MB</source>
+        <translation>MB</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Usporite ažuriranje sličica dok je demonstracija aktivna</translation>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation>Memorijski limit</translation>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation>Interval ključnog okvira</translation>
     </message>
     <message>
         <source>Bandwidth limit</source>
@@ -1324,24 +1324,12 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
-        <source>Stop demo</source>
-        <translation>Zaustavi demonstraciju</translation>
-    </message>
-    <message>
-        <source>Window demo</source>
-        <translation>Prozor demonstracije</translation>
-    </message>
-    <message>
-        <source>Give a demonstration by screen broadcasting</source>
-        <translation>Pokažite demonstraciju ekranskim emitovanjem</translation>
-    </message>
-    <message>
-        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation>U ovom režimu se vaš ekran prikazuje u prozoru na svim računarima. Korisnici se po potrebi mogu prebaciti na druge prozore.</translation>
-    </message>
-    <message>
         <source>Demo</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stop demo</source>
+        <translation>Zaustavi demonstraciju</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
@@ -1350,6 +1338,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>Full screen demo</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Window demo</source>
+        <translation>Prozor demonstracije</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
@@ -1362,6 +1354,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>Share your own screen in a window</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
+        <translation>U ovom režimu se vaš ekran prikazuje u prozoru na svim računarima. Korisnici se po potrebi mogu prebaciti na druge prozore.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
@@ -1391,6 +1387,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>All screens</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Give a demonstration by screen broadcasting</source>
+        <translation>Pokažite demonstraciju ekranskim emitovanjem</translation>
+    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1403,6 +1403,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Potvrdite pristup radnoj površini</translation>
     </message>
     <message>
+        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
+        <translation>Korisnik %1 na računaru %2 želi pristupiti vašoj radnoj površini. Želite li odobriti pristup?</translation>
+    </message>
+    <message>
         <source>Never for this session</source>
         <translation>Nikada za ovu sesiju</translation>
     </message>
@@ -1410,37 +1414,9 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>Always for this session</source>
         <translation>Uvek za ovu sesiju</translation>
     </message>
-    <message>
-        <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>Korisnik %1 na računaru %2 želi pristupiti vašoj radnoj površini. Želite li odobriti pristup?</translation>
-    </message>
 </context>
 <context>
     <name>DesktopServicesConfigurationPage</name>
-    <message>
-        <source>Name</source>
-        <translation>Ime</translation>
-    </message>
-    <message>
-        <source>Path</source>
-        <translation>Putanja</translation>
-    </message>
-    <message>
-        <source>Predefined websites</source>
-        <translation>Unapred definisani websajtovi</translation>
-    </message>
-    <message>
-        <source>Remove selected website</source>
-        <translation>Ukloni obeležen websajt</translation>
-    </message>
-    <message>
-        <source>URL</source>
-        <translation>URL</translation>
-    </message>
-    <message>
-        <source>New website</source>
-        <translation>Novi websajt</translation>
-    </message>
     <message>
         <source>Applications &amp; websites</source>
         <translation type="unfinished"/>
@@ -1448,6 +1424,14 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>Predefined applications</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Ime</translation>
+    </message>
+    <message>
+        <source>Path</source>
+        <translation>Putanja</translation>
     </message>
     <message>
         <source>Add new application</source>
@@ -1458,32 +1442,32 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Predefined websites</source>
+        <translation>Unapred definisani websajtovi</translation>
+    </message>
+    <message>
         <source>Add new website</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remove selected website</source>
+        <translation>Ukloni obeležen websajt</translation>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New application</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>New website</source>
+        <translation>Novi websajt</translation>
+    </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
-    <message>
-        <source>Open website</source>
-        <translation>Otvori web lokaciju</translation>
-    </message>
-    <message>
-        <source>Click this button to open a website on all computers.</source>
-        <translation>Klikni ovo dugme da biste otvorili web lokaciju na svim računarima.</translation>
-    </message>
-    <message>
-        <source>Open website &quot;%1&quot;</source>
-        <translation>Otvori web lokaciju &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Custom website</source>
-        <translation>Prilagodjena web lokacija</translation>
-    </message>
     <message>
         <source>Start application</source>
         <translation type="unfinished"/>
@@ -1493,12 +1477,28 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Open website</source>
+        <translation>Otvori web lokaciju</translation>
+    </message>
+    <message>
+        <source>Click this button to open a website on all computers.</source>
+        <translation>Klikni ovo dugme da biste otvorili web lokaciju na svim računarima.</translation>
+    </message>
+    <message>
         <source>Start application &quot;%1&quot;</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Custom application</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open website &quot;%1&quot;</source>
+        <translation>Otvori web lokaciju &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Custom website</source>
+        <translation>Prilagodjena web lokacija</translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
@@ -1514,6 +1514,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>Room %1</source>
         <translation>Prostorija %1</translation>
+    </message>
+    <message>
+        <source>generic-student-user</source>
+        <translation>opšti-student-korisnik</translation>
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
@@ -1536,20 +1540,16 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Reprodukujte video tutorial</translation>
     </message>
     <message>
+        <source>Custom application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Handout</source>
         <translation>Brošura</translation>
     </message>
     <message>
         <source>Texts to read</source>
         <translation>Tekstovi za čitanje</translation>
-    </message>
-    <message>
-        <source>generic-student-user</source>
-        <translation>opšti-student-korisnik</translation>
-    </message>
-    <message>
-        <source>Custom application</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1598,6 +1598,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1700,10 +1704,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>Commands for controlling features</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -1754,6 +1754,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Opcije</translation>
     </message>
     <message>
+        <source>Overwrite existing files</source>
+        <translation>Prepišite postojeće datoteke</translation>
+    </message>
+    <message>
         <source>Transfer only</source>
         <translation>Samo prenos</translation>
     </message>
@@ -1773,10 +1777,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>Start</source>
         <translation>Pokreni</translation>
     </message>
-    <message>
-        <source>Overwrite existing files</source>
-        <translation>Prepišite postojeće datoteke</translation>
-    </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
@@ -1793,10 +1793,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Obeležite jednu ili više datoteka za prenos.</translation>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Prenos datoteka na upravljani računar</translation>
-    </message>
-    <message>
         <source>Received file &quot;%1&quot;.</source>
         <translation>Primljena datoteka &quot;%1&quot;.</translation>
     </message>
@@ -1808,6 +1804,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
         <translation>Ne mogu primiti datoteku &quot;%1&quot; jer se ne može otvoriti za pisanje!</translation>
     </message>
+    <message>
+        <source>Transfer files to remote computer</source>
+        <translation>Prenos datoteka na upravljani računar</translation>
+    </message>
 </context>
 <context>
     <name>GeneralConfigurationPage</name>
@@ -1816,16 +1816,60 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Korisnički interfejs</translation>
     </message>
     <message>
-        <source>Language:</source>
-        <translation>Jezik:</translation>
-    </message>
-    <message>
         <source>Use system language setting</source>
         <translation>Koristi podešeni sistemski jezik</translation>
     </message>
     <message>
+        <source>Language:</source>
+        <translation>Jezik:</translation>
+    </message>
+    <message>
         <source>Veyon</source>
         <translation>Veyon</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Autentifikacija</translation>
+    </message>
+    <message>
+        <source>Method:</source>
+        <translation>Metod:</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Provera autentičnosti</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Autentičnost ključa datoteke</translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation>Test</translation>
+    </message>
+    <message>
+        <source>Network object directory</source>
+        <translation>Mrežni direktorijum objekata</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Pozadina:</translation>
+    </message>
+    <message>
+        <source>Update interval:</source>
+        <translation>Ažuriraj interval:</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation>sekunde</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -1864,28 +1908,40 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Poruke za uklanjanje grešaka i sve ostalo</translation>
     </message>
     <message>
-        <source>Limit log file size</source>
-        <translation>Ograničite veličinu datoteke dnevnika</translation>
+        <source>x</source>
+        <translation>x</translation>
     </message>
     <message>
-        <source>Clear all log files</source>
-        <translation>Očistite sve datoteke dnevnika</translation>
+        <source>Rotate log files</source>
+        <translation>Rotacija datoteka dnevnika</translation>
+    </message>
+    <message>
+        <source> MB</source>
+        <translation>MB</translation>
+    </message>
+    <message>
+        <source>Limit log file size</source>
+        <translation>Ograničite veličinu datoteke dnevnika</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
         <translation>Prijavite se na standardni izlaz greške</translation>
     </message>
     <message>
-        <source>Network object directory</source>
-        <translation>Mrežni direktorijum objekata</translation>
+        <source>Write to logging system of operating system</source>
+        <translation>Zapisati u sistem za prijavu operativnog sistema</translation>
     </message>
     <message>
-        <source>Backend:</source>
-        <translation>Pozadina:</translation>
+        <source>Clear all log files</source>
+        <translation>Očistite sve datoteke dnevnika</translation>
     </message>
     <message>
-        <source>Update interval:</source>
-        <translation>Ažuriraj interval:</translation>
+        <source>Authentication is set up properly on this computer.</source>
+        <translation>Autentifikacija je na ovom računaru pravilno postavljena.</translation>
+    </message>
+    <message>
+        <source>Authentication keys are not set up properly on this computer.</source>
+        <translation>Ključevi za autentifikaciju nisu pravilno postavljeni na ovom računaru.</translation>
     </message>
     <message>
         <source>%1 service</source>
@@ -1912,64 +1968,8 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Nije bilo moguće ukloniti sve datoteke dnevnika.</translation>
     </message>
     <message>
-        <source> MB</source>
-        <translation>MB</translation>
-    </message>
-    <message>
-        <source>Rotate log files</source>
-        <translation>Rotacija datoteka dnevnika</translation>
-    </message>
-    <message>
-        <source>x</source>
-        <translation>x</translation>
-    </message>
-    <message>
-        <source> seconds</source>
-        <translation>sekunde</translation>
-    </message>
-    <message>
-        <source>Write to logging system of operating system</source>
-        <translation>Zapisati u sistem za prijavu operativnog sistema</translation>
-    </message>
-    <message>
-        <source>Authentication</source>
-        <translation>Autentifikacija</translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation>Metod:</translation>
-    </message>
-    <message>
-        <source>Logon authentication</source>
-        <translation>Provera autentičnosti</translation>
-    </message>
-    <message>
-        <source>Key file authentication</source>
-        <translation>Autentičnost ključa datoteke</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Test</translation>
-    </message>
-    <message>
-        <source>Authentication is set up properly on this computer.</source>
-        <translation>Autentifikacija je na ovom računaru pravilno postavljena.</translation>
-    </message>
-    <message>
-        <source>Authentication keys are not set up properly on this computer.</source>
-        <translation>Ključevi za autentifikaciju nisu pravilno postavljeni na ovom računaru.</translation>
-    </message>
-    <message>
         <source>Authentication test</source>
         <translation>Test provere autentičnosti</translation>
-    </message>
-    <message>
-        <source>Style:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Native</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2004,18 +2004,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Opšte</translation>
     </message>
     <message>
-        <source>LDAP server and port</source>
-        <translation>LDAP server i port</translation>
-    </message>
-    <message>
-        <source>Bind DN</source>
-        <translation>Vezati DN</translation>
-    </message>
-    <message>
-        <source>Bind password</source>
-        <translation>Vezati lozinku</translation>
-    </message>
-    <message>
         <source>Anonymous bind</source>
         <translation>Anonimni vez</translation>
     </message>
@@ -2024,16 +2012,64 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Koristite veze akreditiva</translation>
     </message>
     <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bind DN</source>
+        <translation>Vezati DN</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>ms</translation>
+    </message>
+    <message>
+        <source>LDAP server and port</source>
+        <translation>LDAP server i port</translation>
+    </message>
+    <message>
+        <source>Bind password</source>
+        <translation>Vezati lozinku</translation>
+    </message>
+    <message>
+        <source>Connection security</source>
+        <translation>Sigurnost veze</translation>
+    </message>
+    <message>
+        <source>TLS certificate verification</source>
+        <translation>Potvrda TLS certifikata</translation>
+    </message>
+    <message>
+        <source>Encryption protocol</source>
+        <translation>Protokol šifrovanja</translation>
+    </message>
+    <message>
+        <source>System defaults</source>
+        <translation>Podrazumevane postavke sistema</translation>
+    </message>
+    <message>
+        <source>Never (insecure!)</source>
+        <translation>Nikada (nesigurno!)</translation>
+    </message>
+    <message>
+        <source>Custom CA certificate file</source>
+        <translation>Prilagođena datoteka certifikata CA</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Nijedan</translation>
+    </message>
+    <message>
+        <source>TLS</source>
+        <translation>TLS</translation>
+    </message>
+    <message>
+        <source>SSL</source>
+        <translation>SSL</translation>
+    </message>
+    <message>
         <source>Base DN</source>
         <translation>Baza DN</translation>
-    </message>
-    <message>
-        <source>Fixed base DN</source>
-        <translation>Fiksna baza DN</translation>
-    </message>
-    <message>
-        <source>e.g. dc=example,dc=org</source>
-        <translation>npr. dc = primer, dc = org</translation>
     </message>
     <message>
         <source>Discover base DN by naming context</source>
@@ -2044,6 +2080,14 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>npr. imenovanje Konteksta ili podrazumevanoImenovanjeKonteksta</translation>
     </message>
     <message>
+        <source>Fixed base DN</source>
+        <translation>Fiksna baza DN</translation>
+    </message>
+    <message>
+        <source>e.g. dc=example,dc=org</source>
+        <translation>npr. dc = primer, dc = org</translation>
+    </message>
+    <message>
         <source>Environment settings</source>
         <translation>Postavke okruženja</translation>
     </message>
@@ -2052,20 +2096,20 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Objekt prikaz stablo</translation>
     </message>
     <message>
+        <source>(only if different from group tree)</source>
+        <translation>(samo ako se razlikuje od stabla grupe)</translation>
+    </message>
+    <message>
         <source>Computer tree</source>
         <translation>Rašunar prikaz stablo</translation>
     </message>
     <message>
-        <source>e.g. OU=Groups</source>
-        <translation>npr. OU=Grupe</translation>
+        <source>Perform recursive search operations in object trees</source>
+        <translation>Izvođenje rekurzivnih pretraga u stablima objekata</translation>
     </message>
     <message>
         <source>User tree</source>
         <translation>Korisnik prikaz stablo</translation>
-    </message>
-    <message>
-        <source>e.g. OU=Users</source>
-        <translation>npr. OU=Korisnici</translation>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
@@ -2076,36 +2120,80 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Grupa prikaz stabla</translation>
     </message>
     <message>
-        <source>Perform recursive search operations in object trees</source>
-        <translation>Izvođenje rekurzivnih pretraga u stablima objekata</translation>
+        <source>Computer group tree</source>
+        <translation>Stablo računarskih grupa</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Users</source>
+        <translation>npr. OU=Korisnici</translation>
+    </message>
+    <message>
+        <source>e.g. OU=Groups</source>
+        <translation>npr. OU=Grupe</translation>
     </message>
     <message>
         <source>Object attributes</source>
         <translation>Objekat atributi</translation>
     </message>
     <message>
-        <source>e.g. hwAddress</source>
-        <translation>npr.hwAdresa</translation>
+        <source>e.g. name or description</source>
+        <translation>npr. ime ili opis</translation>
+    </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation>Imena hosta sačuvana su kao potpuno kvalifikovana imena domena (FQDN, npr. Myhost.example.org)</translation>
+    </message>
+    <message>
+        <source>e.g. room or computerLab</source>
+        <translation>npr. soba ili kompjuterska laboratorija</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation>Atribut korisničkog imena za prijavu</translation>
+    </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>Atribut lokacije računara</translation>
     </message>
     <message>
         <source>e.g. member or memberUid</source>
         <translation>npr. član ili članUid</translation>
     </message>
     <message>
-        <source>e.g. dNSHostName</source>
-        <translation>npr.dNSHostName</translation>
+        <source>Group member attribute</source>
+        <translation>Atribut člana grupe</translation>
+    </message>
+    <message>
+        <source>e.g. hwAddress</source>
+        <translation>npr.hwAdresa</translation>
     </message>
     <message>
         <source>Computer MAC address attribute</source>
         <translation>Atribut računarske MAC adrese</translation>
     </message>
     <message>
-        <source>Group member attribute</source>
-        <translation>Atribut člana grupe</translation>
+        <source>e.g. dNSHostName</source>
+        <translation>npr.dNSHostName</translation>
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
         <translation>npr.uid ili sAMAccountName</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>Atribut prikaza računarskog imena</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>Atribut imena domaćina računara</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>Atribut naziva lokacije</translation>
+    </message>
+    <message>
+        <source>e.g. cn or displayName</source>
+        <translation>npr. cn ili displayName</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -2116,16 +2204,52 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Opcionalni filteri objekata</translation>
     </message>
     <message>
-        <source>Filter for user groups</source>
-        <translation>Filter za korisničke grupe</translation>
+        <source>Filter for computer groups</source>
+        <translation>Filter za grupe računara</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=computer)</source>
+        <translation>npr. (objectClass = računar)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=group)</source>
+        <translation>npr. (objectClass = grupa)</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=person)</source>
+        <translation>npr. (objectClass = osoba)</translation>
     </message>
     <message>
         <source>Filter for users</source>
         <translation>Filter za korisnike</translation>
     </message>
     <message>
-        <source>Filter for computer groups</source>
-        <translation>Filter za grupe računara</translation>
+        <source>Filter for computers</source>
+        <translation>Filter za računare</translation>
+    </message>
+    <message>
+        <source>Filter for user groups</source>
+        <translation>Filter za korisničke grupe</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
+        <translation>npr. (objectClass = soba) ili (objectClass = kompjuterska laboratorija)</translation>
+    </message>
+    <message>
+        <source>Filter for computer containers</source>
+        <translation>Filter za kontejnere računara</translation>
+    </message>
+    <message>
+        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
+        <translation>npr. (objectClass = kontejner) ili (objectClass = organizationUnit)</translation>
+    </message>
+    <message>
+        <source>Query options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query nested user groups (supported by AD only)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Group member identification</source>
@@ -2134,6 +2258,34 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>Distinguished name (Samba/AD)</source>
         <translation>Istaknuto ime (Samba / AD)</translation>
+    </message>
+    <message>
+        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
+        <translation>Konfigurisani atribut za korisničko ime za prijavu ili  domaćin računara (OpenLDAP)</translation>
+    </message>
+    <message>
+        <source>Computer locations identification</source>
+        <translation>Identifikacija računarskih lokacija</translation>
+    </message>
+    <message>
+        <source>Identify computer locations (e.g. rooms) via:</source>
+        <translation>Prepoznajte lokacije računara (npr. Sobe) putem:</translation>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation>Računarske grupe</translation>
+    </message>
+    <message>
+        <source>Computer containers or OUs</source>
+        <translation>Kontejneri za računare ili OU</translation>
+    </message>
+    <message>
+        <source>Location attribute in computer objects</source>
+        <translation>Atribut lokacije u računarskim objektima</translation>
+    </message>
+    <message>
+        <source>Integration tests</source>
+        <translation>Integracijski testovi</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -2148,32 +2300,56 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Nabavite predmet računara putem IP adrese</translation>
     </message>
     <message>
-        <source>LDAP connection failed</source>
-        <translation>LDAP veza je neuspešna</translation>
+        <source>List all entries of a location</source>
+        <translation>Lista svih unosa lokacije</translation>
     </message>
     <message>
-        <source>LDAP bind failed</source>
-        <translation>Neuspešna LDAP veza</translation>
+        <source>List all locations</source>
+        <translation>Lista svih lokacija</translation>
     </message>
     <message>
-        <source>LDAP bind successful</source>
-        <translation>LDAP vezanje je uspešno</translation>
+        <source>Browse</source>
+        <translation>Pregledajte</translation>
     </message>
     <message>
-        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
-        <translation>Uspešno se povezao s LDAP serverom i izvršio LDAP vezanje. Osnovne postavke LDAP-a ispravno su konfigurisane.</translation>
+        <source>Test</source>
+        <translation>Test</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
         <translation>DN-test za LDAP bazu je neuspešan</translation>
     </message>
     <message>
+        <source>Could not query the configured base DN. Please check the base DN parameter.
+
+%1</source>
+        <translation>Ne može se zatražiti konfigurisana baza DN. Molimo proverite osnovni DN parametar.
+
+%1</translation>
+    </message>
+    <message>
         <source>LDAP base DN test successful</source>
         <translation>LDAP baza DN test je uspešan</translation>
     </message>
     <message>
+        <source>The LDAP base DN has been queried successfully. The following entries were found:
+
+%1</source>
+        <translation>LDAP baza DN uspješno prosledjen upit. Pronađjeni su sledeći unosi:
+
+%1</translation>
+    </message>
+    <message>
         <source>LDAP naming context test failed</source>
         <translation>Neuspešan kontekstni test LDAP imenovanja</translation>
+    </message>
+    <message>
+        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
+
+%1</source>
+        <translation>Nije moguć upit baznog DN-a putem imenovanja konteksta. Molimo proverite parametar atributa konteksta imenovanja.
+
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
@@ -2196,6 +2372,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>computer tree</source>
         <translation>stablo računara</translation>
+    </message>
+    <message>
+        <source>computer group tree</source>
+        <translation>stablo računarske grupe</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -2230,12 +2410,36 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Nije bilo moguće pronaći grupu sa nazivom &quot;%1&quot;. Proverite naziv grupe ili parametar stabla grupe.</translation>
     </message>
     <message>
-        <source>Enter computer name</source>
-        <translation>Unesite ime računara</translation>
+        <source>Enter computer display name</source>
+        <translation>Unesite ime računara za prikaz</translation>
+    </message>
+    <message>
+        <source>Please enter a computer display name to query:</source>
+        <translation>Unesite prikazno ime računara za upit:</translation>
     </message>
     <message>
         <source>computer objects</source>
         <translation>računarski objekti</translation>
+    </message>
+    <message>
+        <source>Enter computer name</source>
+        <translation>Unesite ime računara</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname to query:</source>
+        <translation>Da biste poslali upit unesite ime domaćin računara:</translation>
+    </message>
+    <message>
+        <source>Invalid hostname</source>
+        <translation>Nevažeće ime domaćina</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
+        <translation>Konfigurisali ste imena domaćina računara da se sačuvaju kao potpuno kvalifikovana imena domena (FQDN), ali ste unieli ime računara domaćina bez domena.</translation>
+    </message>
+    <message>
+        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
+        <translation>Konfigurisali ste imena domaćina računara da se sačuvaju kao jednostavna imena računara bez imena domena, ali ste unieli ime računara s delom imena domena.</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
@@ -2250,6 +2454,22 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>računarske MAC adrese</translation>
     </message>
     <message>
+        <source>Enter computer location name</source>
+        <translation>Unesite naziv lokacije računara</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a computer location (wildcards allowed):</source>
+        <translation>Unesite ime lokacije računara (dozvoljene zamenske karte):</translation>
+    </message>
+    <message>
+        <source>computer locations</source>
+        <translation>lokacije računara</translation>
+    </message>
+    <message>
+        <source>Enter location name</source>
+        <translation>Unesite naziv lokacije</translation>
+    </message>
+    <message>
         <source>users</source>
         <translation>korisnici</translation>
     </message>
@@ -2258,8 +2478,16 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>korisničke grupe</translation>
     </message>
     <message>
+        <source>computers</source>
+        <translation>računari</translation>
+    </message>
+    <message>
         <source>computer groups</source>
         <translation>računarske grupe</translation>
+    </message>
+    <message>
+        <source>computer containers</source>
+        <translation>kontejneri za računare</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
@@ -2274,12 +2502,28 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Korisnik nije pronadjen</translation>
     </message>
     <message>
+        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
+        <translation>Ne mogu pronaći korisnika s imenom &quot;%1&quot;. Proverite korisničko ime ili parametar korisničkog stabla.</translation>
+    </message>
+    <message>
+        <source>Enter hostname</source>
+        <translation>Unesite ime domaćina</translation>
+    </message>
+    <message>
+        <source>Please enter a computer hostname whose group memberships to query:</source>
+        <translation>Unesite ime računara domaćina čije će članstvo u grupi biti upitno:</translation>
+    </message>
+    <message>
         <source>groups of computer</source>
         <translation>grupe računara</translation>
     </message>
     <message>
         <source>Computer not found</source>
         <translation>Računar nije pronadjen</translation>
+    </message>
+    <message>
+        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
+        <translation>Ne mogu pronaći računar s imenom domaćina &quot;%1&quot;. Molimo proverite naziv domaćina ili parametar stabla računara.</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2290,12 +2534,68 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Unesite računarsku IP adresu koja se može rešiti na računarskom objektu:</translation>
     </message>
     <message>
-        <source>computers</source>
-        <translation>računari</translation>
+        <source>Hostname lookup failed</source>
+        <translation>Pretraživanje imena hosta nije uspelo</translation>
+    </message>
+    <message>
+        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
+        <translation>Nije moguće potražiti ime hosta za IP adresu %1. Proverite postavke DNS servera.</translation>
+    </message>
+    <message>
+        <source>Please enter the name of a location whose entries to query:</source>
+        <translation>Unesite naziv lokacije koji se unosi traže:</translation>
+    </message>
+    <message>
+        <source>location entries</source>
+        <translation>unosi lokacije</translation>
+    </message>
+    <message>
+        <source>Certificate files (*.pem)</source>
+        <translation>Datoteke certifikata (* .pem)</translation>
+    </message>
+    <message>
+        <source>LDAP connection failed</source>
+        <translation>LDAP veza je neuspešna</translation>
+    </message>
+    <message>
+        <source>Could not connect to the LDAP server. Please check the server parameters.
+
+%1</source>
+        <translation>Ne mogu se povezati s LDAP serverom. Molimo proverite parametre servera.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind failed</source>
+        <translation>Neuspešna LDAP veza</translation>
+    </message>
+    <message>
+        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
+
+%1</source>
+        <translation>Nije se moglo povezati na LDAP server. Proverite parametre servera i povežite akreditive.
+
+%1</translation>
+    </message>
+    <message>
+        <source>LDAP bind successful</source>
+        <translation>LDAP vezanje je uspešno</translation>
+    </message>
+    <message>
+        <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
+        <translation>Uspešno se povezao s LDAP serverom i izvršio LDAP vezanje. Osnovne postavke LDAP-a ispravno su konfigurisane.</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
         <translation>LDAP %1 test je neuspešan</translation>
+    </message>
+    <message>
+        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
+
+%3</source>
+        <translation>Ne može se zatražiti ni jedan unos u konfigurisanom %1. Molimo proverite parametar &quot;%2&quot;.
+
+%3</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
@@ -2304,6 +2604,26 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
         <translation>%1 je uspešno upitan i pronađjeni su unosi %2.</translation>
+    </message>
+    <message>
+        <source>LDAP test failed</source>
+        <translation>LDAP test neuspešan</translation>
+    </message>
+    <message>
+        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
+
+%3</source>
+        <translation>Nije moguće postaviti nijedan %1. Proverite parametar(e) %2 i unesite ime postojećeg objekta.
+
+%3</translation>
+    </message>
+    <message>
+        <source>and</source>
+        <translation>i</translation>
+    </message>
+    <message>
+        <source>LDAP test successful</source>
+        <translation>LDAP test je uspešan</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
@@ -2333,326 +2653,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 uspešno je ispitan pomoću konfigurisanog filtera.</translation>
     </message>
-    <message>
-        <source>(only if different from group tree)</source>
-        <translation>(samo ako se razlikuje od stabla grupe)</translation>
-    </message>
-    <message>
-        <source>Computer group tree</source>
-        <translation>Stablo računarskih grupa</translation>
-    </message>
-    <message>
-        <source>computer group tree</source>
-        <translation>stablo računarske grupe</translation>
-    </message>
-    <message>
-        <source>Filter for computers</source>
-        <translation>Filter za računare</translation>
-    </message>
-    <message>
-        <source>e.g. room or computerLab</source>
-        <translation>npr. soba ili kompjuterska laboratorija</translation>
-    </message>
-    <message>
-        <source>Integration tests</source>
-        <translation>Integracijski testovi</translation>
-    </message>
-    <message>
-        <source>Computer groups</source>
-        <translation>Računarske grupe</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>npr. ime ili opis</translation>
-    </message>
-    <message>
-        <source>Filter for computer containers</source>
-        <translation>Filter za kontejnere računara</translation>
-    </message>
-    <message>
-        <source>Computer containers or OUs</source>
-        <translation>Kontejneri za računare ili OU</translation>
-    </message>
-    <message>
-        <source>Connection security</source>
-        <translation>Sigurnost veze</translation>
-    </message>
-    <message>
-        <source>TLS certificate verification</source>
-        <translation>Potvrda TLS certifikata</translation>
-    </message>
-    <message>
-        <source>System defaults</source>
-        <translation>Podrazumevane postavke sistema</translation>
-    </message>
-    <message>
-        <source>Never (insecure!)</source>
-        <translation>Nikada (nesigurno!)</translation>
-    </message>
-    <message>
-        <source>Custom CA certificate file</source>
-        <translation>Prilagođena datoteka certifikata CA</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Nijedan</translation>
-    </message>
-    <message>
-        <source>TLS</source>
-        <translation>TLS</translation>
-    </message>
-    <message>
-        <source>SSL</source>
-        <translation>SSL</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=computer)</source>
-        <translation>npr. (objectClass = računar)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=group)</source>
-        <translation>npr. (objectClass = grupa)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=person)</source>
-        <translation>npr. (objectClass = osoba)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation>npr. (objectClass = soba) ili (objectClass = kompjuterska laboratorija)</translation>
-    </message>
-    <message>
-        <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation>npr. (objectClass = kontejner) ili (objectClass = organizationUnit)</translation>
-    </message>
-    <message>
-        <source>Could not query the configured base DN. Please check the base DN parameter.
-
-%1</source>
-        <translation>Ne može se zatražiti konfigurisana baza DN. Molimo proverite osnovni DN parametar.
-
-%1</translation>
-    </message>
-    <message>
-        <source>The LDAP base DN has been queried successfully. The following entries were found:
-
-%1</source>
-        <translation>LDAP baza DN uspješno prosledjen upit. Pronađjeni su sledeći unosi:
-
-%1</translation>
-    </message>
-    <message>
-        <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
-
-%1</source>
-        <translation>Nije moguć upit baznog DN-a putem imenovanja konteksta. Molimo proverite parametar atributa konteksta imenovanja.
-
-%1</translation>
-    </message>
-    <message>
-        <source>Certificate files (*.pem)</source>
-        <translation>Datoteke certifikata (* .pem)</translation>
-    </message>
-    <message>
-        <source>Could not connect to the LDAP server. Please check the server parameters.
-
-%1</source>
-        <translation>Ne mogu se povezati s LDAP serverom. Molimo proverite parametre servera.
-
-%1</translation>
-    </message>
-    <message>
-        <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
-
-%1</source>
-        <translation>Nije se moglo povezati na LDAP server. Proverite parametre servera i povežite akreditive.
-
-%1</translation>
-    </message>
-    <message>
-        <source>Encryption protocol</source>
-        <translation>Protokol šifrovanja</translation>
-    </message>
-    <message>
-        <source>Computer location attribute</source>
-        <translation>Atribut lokacije računara</translation>
-    </message>
-    <message>
-        <source>Computer display name attribute</source>
-        <translation>Atribut prikaza računarskog imena</translation>
-    </message>
-    <message>
-        <source>Location name attribute</source>
-        <translation>Atribut naziva lokacije</translation>
-    </message>
-    <message>
-        <source>e.g. cn or displayName</source>
-        <translation>npr. cn ili displayName</translation>
-    </message>
-    <message>
-        <source>Computer locations identification</source>
-        <translation>Identifikacija računarskih lokacija</translation>
-    </message>
-    <message>
-        <source>Identify computer locations (e.g. rooms) via:</source>
-        <translation>Prepoznajte lokacije računara (npr. Sobe) putem:</translation>
-    </message>
-    <message>
-        <source>Location attribute in computer objects</source>
-        <translation>Atribut lokacije u računarskim objektima</translation>
-    </message>
-    <message>
-        <source>List all entries of a location</source>
-        <translation>Lista svih unosa lokacije</translation>
-    </message>
-    <message>
-        <source>List all locations</source>
-        <translation>Lista svih lokacija</translation>
-    </message>
-    <message>
-        <source>Enter computer display name</source>
-        <translation>Unesite ime računara za prikaz</translation>
-    </message>
-    <message>
-        <source>Please enter a computer display name to query:</source>
-        <translation>Unesite prikazno ime računara za upit:</translation>
-    </message>
-    <message>
-        <source>Enter computer location name</source>
-        <translation>Unesite naziv lokacije računara</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation>Unesite ime lokacije računara (dozvoljene zamenske karte):</translation>
-    </message>
-    <message>
-        <source>computer locations</source>
-        <translation>lokacije računara</translation>
-    </message>
-    <message>
-        <source>Enter location name</source>
-        <translation>Unesite naziv lokacije</translation>
-    </message>
-    <message>
-        <source>Please enter the name of a location whose entries to query:</source>
-        <translation>Unesite naziv lokacije koji se unosi traže:</translation>
-    </message>
-    <message>
-        <source>location entries</source>
-        <translation>unosi lokacije</translation>
-    </message>
-    <message>
-        <source>LDAP test failed</source>
-        <translation>LDAP test neuspešan</translation>
-    </message>
-    <message>
-        <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
-
-%3</source>
-        <translation>Nije moguće postaviti nijedan %1. Proverite parametar(e) %2 i unesite ime postojećeg objekta.
-
-%3</translation>
-    </message>
-    <message>
-        <source>and</source>
-        <translation>i</translation>
-    </message>
-    <message>
-        <source>LDAP test successful</source>
-        <translation>LDAP test je uspešan</translation>
-    </message>
-    <message>
-        <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
-
-%3</source>
-        <translation>Ne može se zatražiti ni jedan unos u konfigurisanom %1. Molimo proverite parametar &quot;%2&quot;.
-
-%3</translation>
-    </message>
-    <message>
-        <source>Browse</source>
-        <translation>Pregledajte</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Test</translation>
-    </message>
-    <message>
-        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>Imena hosta sačuvana su kao potpuno kvalifikovana imena domena (FQDN, npr. Myhost.example.org)</translation>
-    </message>
-    <message>
-        <source>Computer hostname attribute</source>
-        <translation>Atribut imena domaćina računara</translation>
-    </message>
-    <message>
-        <source>Please enter a computer hostname to query:</source>
-        <translation>Da biste poslali upit unesite ime domaćin računara:</translation>
-    </message>
-    <message>
-        <source>Invalid hostname</source>
-        <translation>Nevažeće ime domaćina</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation>Konfigurisali ste imena domaćina računara da se sačuvaju kao potpuno kvalifikovana imena domena (FQDN), ali ste unieli ime računara domaćina bez domena.</translation>
-    </message>
-    <message>
-        <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation>Konfigurisali ste imena domaćina računara da se sačuvaju kao jednostavna imena računara bez imena domena, ali ste unieli ime računara s delom imena domena.</translation>
-    </message>
-    <message>
-        <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation>Ne mogu pronaći korisnika s imenom &quot;%1&quot;. Proverite korisničko ime ili parametar korisničkog stabla.</translation>
-    </message>
-    <message>
-        <source>Enter hostname</source>
-        <translation>Unesite ime domaćina</translation>
-    </message>
-    <message>
-        <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation>Unesite ime računara domaćina čije će članstvo u grupi biti upitno:</translation>
-    </message>
-    <message>
-        <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>Ne mogu pronaći računar s imenom domaćina &quot;%1&quot;. Molimo proverite naziv domaćina ili parametar stabla računara.</translation>
-    </message>
-    <message>
-        <source>Hostname lookup failed</source>
-        <translation>Pretraživanje imena hosta nije uspelo</translation>
-    </message>
-    <message>
-        <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation>Nije moguće potražiti ime hosta za IP adresu %1. Proverite postavke DNS servera.</translation>
-    </message>
-    <message>
-        <source>User login name attribute</source>
-        <translation>Atribut korisničkog imena za prijavu</translation>
-    </message>
-    <message>
-        <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation>Konfigurisani atribut za korisničko ime za prijavu ili  domaćin računara (OpenLDAP)</translation>
-    </message>
-    <message>
-        <source>computer containers</source>
-        <translation>kontejneri za računare</translation>
-    </message>
-    <message>
-        <source>Query options</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Query nested user groups (supported by AD only)</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Query timeout</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source> ms</source>
-        <translation>ms</translation>
-    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2667,22 +2667,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>Show help about command</source>
         <translation>Pokažite pomoć o naredbi</translation>
-    </message>
-    <message>
-        <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation>Naredbe za konfigurisanje i testiranje LDAP / AD integracije</translation>
-    </message>
-    <message>
-        <source>Basic LDAP/AD support for Veyon</source>
-        <translation>Osnovna podrška za LDAP / AD za Veyon</translation>
-    </message>
-    <message>
-        <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation>%1 (učitavanje računara i lokacija iz LDAP / AD)</translation>
-    </message>
-    <message>
-        <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation>%1 (učitavanje korisnika i grupa iz LDAP / AD)</translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
@@ -2700,6 +2684,22 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
         <translation>Konfigurisanje %1 kao osnovnog DN-a i onemogućavanje imenovanja kontekstnih upita.</translation>
     </message>
+    <message>
+        <source>Basic LDAP/AD support for Veyon</source>
+        <translation>Osnovna podrška za LDAP / AD za Veyon</translation>
+    </message>
+    <message>
+        <source>Commands for configuring and testing LDAP/AD integration</source>
+        <translation>Naredbe za konfigurisanje i testiranje LDAP / AD integracije</translation>
+    </message>
+    <message>
+        <source>%1 (load computers and locations from LDAP/AD)</source>
+        <translation>%1 (učitavanje računara i lokacija iz LDAP / AD)</translation>
+    </message>
+    <message>
+        <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation>%1 (učitavanje korisnika i grupa iz LDAP / AD)</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformConfigurationPage</name>
@@ -2708,20 +2708,12 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Linux</translation>
     </message>
     <message>
-        <source>Custom PAM service for user authentication</source>
-        <translation>Prilagođena PAM usluga za proveru autentičnosti korisnika</translation>
-    </message>
-    <message>
         <source>User authentication</source>
         <translation>Autentifikacija korisnika</translation>
     </message>
     <message>
-        <source>User login</source>
-        <translation>Prijava korisnika</translation>
-    </message>
-    <message>
-        <source>Login key sequence</source>
-        <translation type="unfinished"/>
+        <source>Custom PAM service for user authentication</source>
+        <translation>Prilagođena PAM usluga za proveru autentičnosti korisnika</translation>
     </message>
     <message>
         <source>User sessions</source>
@@ -2729,6 +2721,14 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation>Prijava korisnika</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2757,87 +2757,23 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Konfiguracija</translation>
     </message>
     <message>
-        <source>Show icons only</source>
-        <translation>Prikaži samo ikone</translation>
-    </message>
-    <message>
         <source>Disable tooltips</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show icons only</source>
+        <translation>Prikaži samo ikone</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <source>MainWindow</source>
-        <translation>Glavni prozor</translation>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation>alatna traka</translation>
+        <source>Veyon Configurator</source>
+        <translation>Veyon Konfigurator</translation>
     </message>
     <message>
         <source>General</source>
         <translation>Opšte</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>&amp;Datoteka</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>&amp;Pomoć</translation>
-    </message>
-    <message>
-        <source>&amp;Quit</source>
-        <translation>&amp;Odustati</translation>
-    </message>
-    <message>
-        <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
-    </message>
-    <message>
-        <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
-    </message>
-    <message>
-        <source>L&amp;oad settings from file</source>
-        <translation>Učitajte postavke iz datoteke</translation>
-    </message>
-    <message>
-        <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
-    </message>
-    <message>
-        <source>About Qt</source>
-        <translation>O QT</translation>
-    </message>
-    <message>
-        <source>Authentication impossible</source>
-        <translation>Autentifikacija je nemoguća</translation>
-    </message>
-    <message>
-        <source>Configuration not writable</source>
-        <translation>Konfiguracija se ne može prepisati</translation>
-    </message>
-    <message>
-        <source>Load settings from file</source>
-        <translation>Učitajte postavke iz datoteka</translation>
-    </message>
-    <message>
-        <source>Save settings to file</source>
-        <translation>Sačuvaj postavke u datoteku</translation>
-    </message>
-    <message>
-        <source>Unsaved settings</source>
-        <translation>Nečuvaj podešavanja</translation>
-    </message>
-    <message>
-        <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Postoje ne sačuvana podešavanja. Prestati svakako?</translation>
-    </message>
-    <message>
-        <source>Veyon Configurator</source>
-        <translation>Veyon Konfigurator</translation>
     </message>
     <message>
         <source>Service</source>
@@ -2852,8 +2788,72 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Pristup kontroli</translation>
     </message>
     <message>
+        <source>&amp;File</source>
+        <translation>&amp;Datoteka</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>&amp;Pomoć</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation>%Vidi</translation>
+    </message>
+    <message>
+        <source>&amp;Quit</source>
+        <translation>&amp;Odustati</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
+    </message>
+    <message>
+        <source>&amp;Save settings to file</source>
+        <translation>%Sačuvajte postavke u datoteci</translation>
+    </message>
+    <message>
+        <source>Save settings to file</source>
+        <translation>Sačuvaj postavke u datoteku</translation>
+    </message>
+    <message>
+        <source>Ctrl+S</source>
+        <translation>Ctrl+S</translation>
+    </message>
+    <message>
+        <source>L&amp;oad settings from file</source>
+        <translation>Učitajte postavke iz datoteke</translation>
+    </message>
+    <message>
+        <source>Ctrl+O</source>
+        <translation>Ctrl+O</translation>
+    </message>
+    <message>
         <source>About Veyon</source>
         <translation>O Veyonu</translation>
+    </message>
+    <message>
+        <source>About Qt</source>
+        <translation>O QT</translation>
+    </message>
+    <message>
+        <source>Reset configuration</source>
+        <translation>Resetujte konfiguraciju</translation>
+    </message>
+    <message>
+        <source>&amp;Standard</source>
+        <translation>&amp;Standardno</translation>
+    </message>
+    <message>
+        <source>&amp;Advanced</source>
+        <translation>&amp;Napredno</translation>
+    </message>
+    <message>
+        <source>MainWindow</source>
+        <translation>Glavni prozor</translation>
+    </message>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Auto</source>
@@ -2864,16 +2864,92 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>O nama</translation>
     </message>
     <message>
+        <source>Search users and computers</source>
+        <translation>Pretražite korisnike i računare</translation>
+    </message>
+    <message>
+        <source>Align computers to grid</source>
+        <translation>Poravnajte računare po mreži</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement</source>
+        <translation>Koristite prilagođjeni raspored računara</translation>
+    </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation>Pokaži samo na pokrenutim računarima</translation>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
+        <translation>Lokacije i računari</translation>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation>Snimci ekrana</translation>
+    </message>
+    <message>
+        <source>Slideshow</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>toolBar</source>
+        <translation>alatna traka</translation>
+    </message>
+    <message>
         <source>%1 Configurator %2</source>
         <translation>%1 Konfigurator %2</translation>
+    </message>
+    <message>
+        <source>Load settings from file</source>
+        <translation>Učitajte postavke iz datoteka</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
         <translation>JSON datoteke (*.json)</translation>
     </message>
     <message>
+        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
+        <translation>Želite li stvarno resetovati lokalnu konfiguraciju i vratiti sve postavke na njihove početne vrednosti?</translation>
+    </message>
+    <message>
+        <source>%1 Configurator</source>
+        <translation>%1 Konfigurator</translation>
+    </message>
+    <message>
+        <source>Unsaved settings</source>
+        <translation>Nečuvaj podešavanja</translation>
+    </message>
+    <message>
+        <source>There are unsaved settings. Quit anyway?</source>
+        <translation>Postoje ne sačuvana podešavanja. Prestati svakako?</translation>
+    </message>
+    <message>
+        <source>Insufficient privileges</source>
+        <translation>Nedovoljno privilegija</translation>
+    </message>
+    <message>
+        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
+        <translation>Ne mogu započeti s administrativnim privilegijama. Molimo vas proverite da li je instaliran program sličan sudo-u za radnu površinu! Program će se pokrenuti sa uobičajenim korisničkim privilegijama.</translation>
+    </message>
+    <message>
+        <source>Configuration not writable</source>
+        <translation>Konfiguracija se ne može prepisati</translation>
+    </message>
+    <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
         <translation>Lokalni pomoćni program za konfiguraciju izveštava da konfiguracija ne može biti napisana! Molimo pokrenite %1 konfigurator s većim privilegijama.</translation>
+    </message>
+    <message>
+        <source>Authentication impossible</source>
+        <translation>Autentifikacija je nemoguća</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
@@ -2888,10 +2964,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Prema lokalnoj konfiguraciji nije vam dopušten pristup računarima u mreži. Prijavite se pomoću drugog naloga ili dopustite administratoru sistema da proveri lokalnu konfiguraciju.</translation>
     </message>
     <message>
-        <source>Screenshots</source>
-        <translation>Snimci ekrana</translation>
-    </message>
-    <message>
         <source>Feature active</source>
         <translation>Aktivna funkcija</translation>
     </message>
@@ -2899,81 +2971,13 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation>Funkcija &quot;%1&quot; i dalje je aktivna. Molim zaustavite pre zatvaranja %2.</translation>
     </message>
-    <message>
-        <source>Reset configuration</source>
-        <translation>Resetujte konfiguraciju</translation>
-    </message>
-    <message>
-        <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation>Želite li stvarno resetovati lokalnu konfiguraciju i vratiti sve postavke na njihove početne vrednosti?</translation>
-    </message>
-    <message>
-        <source>Search users and computers</source>
-        <translation>Pretražite korisnike i računare</translation>
-    </message>
-    <message>
-        <source>Align computers to grid</source>
-        <translation>Poravnajte računare po mreži</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>%1 Konfigurator</translation>
-    </message>
-    <message>
-        <source>Insufficient privileges</source>
-        <translation>Nedovoljno privilegija</translation>
-    </message>
-    <message>
-        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation>Ne mogu započeti s administrativnim privilegijama. Molimo vas proverite da li je instaliran program sličan sudo-u za radnu površinu! Program će se pokrenuti sa uobičajenim korisničkim privilegijama.</translation>
-    </message>
-    <message>
-        <source>Only show powered on computers</source>
-        <translation>Pokaži samo na pokrenutim računarima</translation>
-    </message>
-    <message>
-        <source>&amp;Save settings to file</source>
-        <translation>%Sačuvajte postavke u datoteci</translation>
-    </message>
-    <message>
-        <source>&amp;View</source>
-        <translation>%Vidi</translation>
-    </message>
-    <message>
-        <source>&amp;Standard</source>
-        <translation>&amp;Standardno</translation>
-    </message>
-    <message>
-        <source>&amp;Advanced</source>
-        <translation>&amp;Napredno</translation>
-    </message>
-    <message>
-        <source>Use custom computer arrangement</source>
-        <translation>Koristite prilagođjeni raspored računara</translation>
-    </message>
-    <message>
-        <source>Locations &amp;&amp; computers</source>
-        <translation>Lokacije i računari</translation>
-    </message>
-    <message>
-        <source>Slideshow</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Spotlight</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Only show computers with logged on users</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
+    <message>
+        <source>Basic settings</source>
+        <translation>Osnovna podešavanja</translation>
+    </message>
     <message>
         <source>Directories</source>
         <translation>Direktorijumi</translation>
@@ -2983,80 +2987,44 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Korisnička konfiguracija</translation>
     </message>
     <message>
-        <source>Feature on computer double click:</source>
-        <translation>Dvostruki klik na računaru:</translation>
-    </message>
-    <message>
-        <source>Features</source>
-        <translation>Karakteristike</translation>
-    </message>
-    <message>
-        <source>All features</source>
-        <translation>Sve karakteristike</translation>
-    </message>
-    <message>
-        <source>Disabled features</source>
-        <translation>Onemogući karakteristike</translation>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation>Snimci ekrana</translation>
-    </message>
-    <message>
-        <source>&lt;no feature&gt;</source>
-        <translation>&lt;no feature&gt;</translation>
-    </message>
-    <message>
-        <source>Basic settings</source>
-        <translation>Osnovna podešavanja</translation>
-    </message>
-    <message>
-        <source>Behaviour</source>
-        <translation>Ponašanje</translation>
-    </message>
-    <message>
-        <source>Enforce selected mode for client computers</source>
-        <translation>Pojačajte odabrani režim za klijentske računare</translation>
-    </message>
-    <message>
-        <source>Hide local computer</source>
-        <translation>Sakri lokalni računar</translation>
-    </message>
-    <message>
-        <source>Hide computer filter field</source>
-        <translation>Sakri polje filtera računara</translation>
-    </message>
-    <message>
-        <source>Actions such as rebooting or powering down computers</source>
-        <translation>Radnje poput ponovnog pokretanja ili isključivanja računara</translation>
     </message>
     <message>
         <source>User interface</source>
         <translation>Korisnički interfejs</translation>
     </message>
     <message>
-        <source>Background color</source>
-        <translation>Boja pozadine</translation>
-    </message>
-    <message>
-        <source>Thumbnail update interval</source>
-        <translation>Interval ažuriranja sličica</translation>
+        <source>Text color</source>
+        <translation>Boja teksta</translation>
     </message>
     <message>
         <source> ms</source>
         <translation>ms</translation>
     </message>
     <message>
-        <source>Program start</source>
-        <translation>Startovanje programa</translation>
+        <source>Background color</source>
+        <translation>Boja pozadine</translation>
     </message>
     <message>
-        <source>Modes and features</source>
-        <translation>Načini i funkcije</translation>
+        <source>Thumbnail spacing</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>User and computer name</source>
-        <translation>Ime korisnika i računara</translation>
+        <source> px</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Automatski</translation>
+    </message>
+    <message>
+        <source>Computer thumbnail caption</source>
+        <translation>Opis računara u sličicama</translation>
+    </message>
+    <message>
+        <source>Computer and user name</source>
+        <translation>Ime računara i korisnika</translation>
     </message>
     <message>
         <source>Only user name</source>
@@ -3067,79 +3035,19 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Samo ime računara</translation>
     </message>
     <message>
-        <source>Computer thumbnail caption</source>
-        <translation>Opis računara u sličicama</translation>
+        <source>User and computer name</source>
+        <translation>Ime korisnika i računara</translation>
     </message>
     <message>
-        <source>Text color</source>
-        <translation>Boja teksta</translation>
+        <source>Thumbnail update interval</source>
+        <translation>Interval ažuriranja sličica</translation>
     </message>
     <message>
         <source>Sort order</source>
         <translation>Poredjaj prema</translation>
     </message>
     <message>
-        <source>Computer and user name</source>
-        <translation>Ime računara i korisnika</translation>
-    </message>
-    <message>
-        <source>Computer locations</source>
-        <translation>Lokacije računara</translation>
-    </message>
-    <message>
-        <source>Show current location only</source>
-        <translation>Prikaži samo trenutnu lokaciju</translation>
-    </message>
-    <message>
-        <source>Allow adding hidden locations manually</source>
-        <translation>Dopusti ručno dodavanje skrivenih lokacija</translation>
-    </message>
-    <message>
-        <source>Hide empty locations</source>
-        <translation>Sakri prazne lokacije</translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation>Prikaži potvrdni dijalog za potencijalno nesigurne radnje</translation>
-    </message>
-    <message>
-        <source>Perform access control</source>
-        <translation>Izvršite kontrolu pristupa</translation>
-    </message>
-    <message>
-        <source>Automatically select current location</source>
-        <translation>Automatski odaberite trenutnu lokaciju</translation>
-    </message>
-    <message>
-        <source>Automatically open computer select panel</source>
-        <translation>Automatski otvorite panel za odabir računara</translation>
-    </message>
-    <message>
-        <source>Hide local session</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source> px</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Auto</source>
-        <translation>Automatski</translation>
-    </message>
-    <message>
         <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Open feature windows on the same screen as the main window</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3163,12 +3071,104 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Remote access image quality</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Image quality in monitoring mode</source>
+        <source>Behaviour</source>
+        <translation>Ponašanje</translation>
+    </message>
+    <message>
+        <source>Program start</source>
+        <translation>Startovanje programa</translation>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation>Izvršite kontrolu pristupa</translation>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation>Automatski odaberite trenutnu lokaciju</translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
+        <translation>Automatski otvorite panel za odabir računara</translation>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation>Lokacije računara</translation>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation>Prikaži samo trenutnu lokaciju</translation>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation>Dopusti ručno dodavanje skrivenih lokacija</translation>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation>Sakri lokalni računar</translation>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation>Sakri prazne lokacije</translation>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation>Sakri polje filtera računara</translation>
+    </message>
+    <message>
+        <source>Modes and features</source>
+        <translation>Načini i funkcije</translation>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation>Pojačajte odabrani režim za klijentske računare</translation>
+    </message>
+    <message>
+        <source>Actions such as rebooting or powering down computers</source>
+        <translation>Radnje poput ponovnog pokretanja ili isključivanja računara</translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation>Prikaži potvrdni dijalog za potencijalno nesigurne radnje</translation>
+    </message>
+    <message>
+        <source>Feature on computer double click:</source>
+        <translation>Dvostruki klik na računaru:</translation>
+    </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Features</source>
+        <translation>Karakteristike</translation>
+    </message>
+    <message>
+        <source>All features</source>
+        <translation>Sve karakteristike</translation>
+    </message>
+    <message>
+        <source>Disabled features</source>
+        <translation>Onemogući karakteristike</translation>
+    </message>
+    <message>
+        <source>&lt;no feature&gt;</source>
+        <translation>&lt;no feature&gt;</translation>
     </message>
 </context>
 <context>
@@ -3176,10 +3176,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>Monitoring</source>
         <translation>Nadgledanje</translation>
-    </message>
-    <message>
-        <source>Builtin monitoring mode</source>
-        <translation>Ugrađeni način praćenja</translation>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
@@ -3196,6 +3192,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>Query properties of remotely available screens</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Builtin monitoring mode</source>
+        <translation>Ugrađeni način praćenja</translation>
     </message>
 </context>
 <context>
@@ -3235,6 +3235,14 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
 <context>
     <name>PasswordDialog</name>
     <message>
+        <source>Veyon Logon</source>
+        <translation>Prijava u Veyon</translation>
+    </message>
+    <message>
+        <source>Please enter your username and password in order to access computers.</source>
+        <translation>Molimo unesite vaše korisničko ime i šifru za pristup kompjuterima.</translation>
+    </message>
+    <message>
         <source>Username</source>
         <translation>Korisničko ime</translation>
     </message>
@@ -3243,20 +3251,12 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Šifra/lozinka</translation>
     </message>
     <message>
-        <source>Veyon Logon</source>
-        <translation>Prijava u Veyon</translation>
-    </message>
-    <message>
         <source>Authentication error</source>
         <translation>Greška autentifikacije</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>Prijava je neuspešna sa datim korisničkim imenom i šifrom. Molimo pokušajte ponovo!</translation>
-    </message>
-    <message>
-        <source>Please enter your username and password in order to access computers.</source>
-        <translation>Molimo unesite vaše korisničko ime i šifru za pristup kompjuterima.</translation>
     </message>
 </context>
 <context>
@@ -3297,6 +3297,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
 <context>
     <name>PowerControlFeaturePlugin</name>
     <message>
+        <source>Power on a computer via Wake-on-LAN (WOL)</source>
+        <translation>Uključivanje kompjutera preko Wake-on-LAN (WOL)</translation>
+    </message>
+    <message>
         <source>Power on</source>
         <translation>Uključite</translation>
     </message>
@@ -3321,46 +3325,6 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Klik na ovo dugme za isključivanje svih kompjutera. Na ovaj način ne morate isključivati svaki kompjuter ručno.</translation>
     </message>
     <message>
-        <source>Power on/down or reboot a computer</source>
-        <translation>Uključite/Isključite ili pokrenite ponovo sistem kompjutera</translation>
-    </message>
-    <message>
-        <source>Confirm reboot</source>
-        <translation>Potvrdite ponovno podizanje sistema</translation>
-    </message>
-    <message>
-        <source>Confirm power down</source>
-        <translation>Potvrdite isključivanje</translation>
-    </message>
-    <message>
-        <source>Do you really want to reboot the selected computers?</source>
-        <translation>Da li stvarno želite ponovo pokrenuti sistem izabranih kompjutera?</translation>
-    </message>
-    <message>
-        <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>Uključivanje kompjutera preko Wake-on-LAN (WOL)</translation>
-    </message>
-    <message>
-        <source>MAC ADDRESS</source>
-        <translation>MAC ADRESA</translation>
-    </message>
-    <message>
-        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation>Ova komanda emituje Wake-on-LAN (WOL) paket na mreži da bi bio uključen kompjuter sa datom MAC adresom.</translation>
-    </message>
-    <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Molimo navedite naredbu za prikaz pomoći!</translation>
-    </message>
-    <message>
-        <source>Invalid MAC address specified!</source>
-        <translation>Specificirana je neispravna MAC adresa!</translation>
-    </message>
-    <message>
-        <source>Commands for controlling power status of computers</source>
-        <translation>Komande za kontrolu statusa napajanja kompjutera</translation>
-    </message>
-    <message>
         <source>Power down now</source>
         <translation>Isključiti odmah</translation>
     </message>
@@ -3377,6 +3341,46 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
         <translation>Isključiti posle isteka vremena</translation>
     </message>
     <message>
+        <source>MAC ADDRESS</source>
+        <translation>MAC ADRESA</translation>
+    </message>
+    <message>
+        <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
+        <translation>Ova komanda emituje Wake-on-LAN (WOL) paket na mreži da bi bio uključen kompjuter sa datom MAC adresom.</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for!</source>
+        <translation>Molimo navedite naredbu za prikaz pomoći!</translation>
+    </message>
+    <message>
+        <source>Confirm reboot</source>
+        <translation>Potvrdite ponovno podizanje sistema</translation>
+    </message>
+    <message>
+        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to reboot the selected computers?</source>
+        <translation>Da li stvarno želite ponovo pokrenuti sistem izabranih kompjutera?</translation>
+    </message>
+    <message>
+        <source>Confirm power down</source>
+        <translation>Potvrdite isključivanje</translation>
+    </message>
+    <message>
+        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Do you really want to power down the selected computers?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid MAC address specified!</source>
+        <translation>Specificirana je neispravna MAC adresa!</translation>
+    </message>
+    <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
         <translation>Isključenje kompjutera je bilo daljinski zahtevano. Želite li isključiti kompjuter odmah?</translation>
     </message>
@@ -3389,16 +3393,12 @@ Please save your work and close all programs.</source>
 Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
     </message>
     <message>
-        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <source>Power on/down or reboot a computer</source>
+        <translation>Uključite/Isključite ili pokrenite ponovo sistem kompjutera</translation>
     </message>
     <message>
-        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Do you really want to power down the selected computers?</source>
-        <translation type="unfinished"/>
+        <source>Commands for controlling power status of computers</source>
+        <translation>Komande za kontrolu statusa napajanja kompjutera</translation>
     </message>
 </context>
 <context>
@@ -3439,24 +3439,24 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
         <translation>Otvorite prozor daljinske kontrole kompjutera.</translation>
     </message>
     <message>
-        <source>Remote access</source>
-        <translation>Udaljeni pristup</translation>
-    </message>
-    <message>
-        <source>Remote view or control a computer</source>
-        <translation>Daljinski prikaz ili kontrola kompjutera</translation>
+        <source>Exchange clipboard contents</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Show help about command</source>
         <translation>Pokažite pomoć o naredbi</translation>
     </message>
     <message>
-        <source>Exchange clipboard contents</source>
-        <translation type="unfinished"/>
+        <source>Remote access</source>
+        <translation>Udaljeni pristup</translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote view or control a computer</source>
+        <translation>Daljinski prikaz ili kontrola kompjutera</translation>
     </message>
 </context>
 <context>
@@ -3481,8 +3481,16 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
         <translation>Daljinska kontrola</translation>
     </message>
     <message>
+        <source>Select screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Send shortcut</source>
         <translation>Pošalji prečicu</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Snimka ekrana</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -3491,6 +3499,10 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
     <message>
         <source>Window</source>
         <translation>Prozor</translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation>Izlaz</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
@@ -3529,19 +3541,7 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
         <translation>Spojen.</translation>
     </message>
     <message>
-        <source>Screenshot</source>
-        <translation>Snimka ekrana</translation>
-    </message>
-    <message>
-        <source>Exit</source>
-        <translation>Izlaz</translation>
-    </message>
-    <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Select screen</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3560,10 +3560,6 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
         <translation>Otključaj</translation>
     </message>
     <message>
-        <source>Lock screen and input devices of a computer</source>
-        <translation>Zaključajte ekran i ulazne uređaje kompjutera</translation>
-    </message>
-    <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
         <translation>Da biste privukli punu pažnju svih korisnika možete zaključati njihove kompjutere upotrebom ovog dugmeta. Na ovaj način svi ulazni uređaji su zaključani a ekrani su zatamnjeni.</translation>
     </message>
@@ -3578,6 +3574,10 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock screen and input devices of a computer</source>
+        <translation>Zaključajte ekran i ulazne uređaje kompjutera</translation>
     </message>
 </context>
 <context>
@@ -3668,56 +3668,44 @@ Molimo snimite/spasite Vaš rad i zatvorite sve programe.</translation>
         <translation>Opšte</translation>
     </message>
     <message>
-        <source>Autostart</source>
-        <translation>Autostart</translation>
+        <source>Show notification when an unauthorized access is blocked</source>
+        <translation>Prikaži obavest kada je zabranjeni pristup blokiran.</translation>
+    </message>
+    <message>
+        <source>Show notification on remote connection</source>
+        <translation>Prikaži obaveštenje na daljinskoj vezi</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
         <translation>Sakrij ikonu u tray-u</translation>
     </message>
     <message>
-        <source>Start service</source>
-        <translation>Startuj servis</translation>
-    </message>
-    <message>
-        <source>Stopped</source>
-        <translation>Zaustavljen</translation>
-    </message>
-    <message>
-        <source>Stop service</source>
-        <translation>Zaustavi servis</translation>
+        <source>Autostart</source>
+        <translation>Autostart</translation>
     </message>
     <message>
         <source>State:</source>
         <translation>Stanje:</translation>
     </message>
     <message>
-        <source>Enable firewall exception</source>
-        <translation>Uključi firewall izuzetak</translation>
+        <source>Stopped</source>
+        <translation>Zaustavljen</translation>
     </message>
     <message>
-        <source>Allow connections from localhost only</source>
-        <translation>Dozvoli samo konekcije od lokalnog kompjutera</translation>
+        <source>Start service</source>
+        <translation>Startuj servis</translation>
     </message>
     <message>
-        <source>VNC server</source>
-        <translation>VNC server</translation>
+        <source>Stop service</source>
+        <translation>Zaustavi servis</translation>
     </message>
     <message>
-        <source>Plugin:</source>
-        <translation>Plugin:</translation>
+        <source>Session mode</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Restart %1 Service</source>
-        <translation>Ponovo pokreni %1 servis</translation>
-    </message>
-    <message>
-        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Sve postavke su uspješno spašene. Da bi se primijenile servis %1 treba biti ponovo pokrenut. Želite li sada ponovo pokrenuti?</translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>Pokrenut</translation>
+        <source>Local session mode (single server instance for primary local session)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
@@ -3726,12 +3714,12 @@ Typically this is required to support terminal servers.</source>
 Obično je ovo zahtevano kao podrška trminal serverima.</translation>
     </message>
     <message>
-        <source>Show notification on remote connection</source>
-        <translation>Prikaži obaveštenje na daljinskoj vezi</translation>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show notification when an unauthorized access is blocked</source>
-        <translation>Prikaži obavest kada je zabranjeni pristup blokiran.</translation>
+        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Maximum session count</source>
@@ -3758,24 +3746,40 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
         <translation>Demo server</translation>
     </message>
     <message>
-        <source>Miscellaneous network settings</source>
+        <source>Miscellaneous settings</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Session mode</source>
+        <source>Enable firewall exception</source>
+        <translation>Uključi firewall izuzetak</translation>
+    </message>
+    <message>
+        <source>Allow connections from localhost only</source>
+        <translation>Dozvoli samo konekcije od lokalnog kompjutera</translation>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Local session mode (single server instance for primary local session)</source>
-        <translation type="unfinished"/>
+        <source>VNC server</source>
+        <translation>VNC server</translation>
     </message>
     <message>
-        <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation type="unfinished"/>
+        <source>Plugin:</source>
+        <translation>Plugin:</translation>
     </message>
     <message>
-        <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
+        <source>Restart %1 Service</source>
+        <translation>Ponovo pokreni %1 servis</translation>
+    </message>
+    <message>
+        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
+        <translation>Sve postavke su uspješno spašene. Da bi se primijenile servis %1 treba biti ponovo pokrenut. Želite li sada ponovo pokrenuti?</translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>Pokrenut</translation>
     </message>
 </context>
 <context>
@@ -3885,6 +3889,10 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
 <context>
     <name>SpotlightPanel</name>
     <message>
+        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Add selected computers</source>
         <translation type="unfinished"/>
     </message>
@@ -3906,10 +3914,6 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4002,32 +4006,32 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
 <context>
     <name>UltraVncConfigurationWidget</name>
     <message>
-        <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>Omogući hvatanje polu providnih prozora</translation>
+        <source>Builtin UltraVNC server configuration</source>
+        <translation>Konfiguracija ugrađenog UltraVNC servera</translation>
     </message>
     <message>
-        <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Preko celog ekrana (ostaviti uključeno kao zadano)</translation>
+        <source>Maximum CPU usage</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
         <translation>Mala preciznost (brzi način)</translation>
     </message>
     <message>
-        <source>Builtin UltraVNC server configuration</source>
-        <translation>Konfiguracija ugrađenog UltraVNC servera</translation>
-    </message>
-    <message>
-        <source>Enable multi monitor support</source>
-        <translation>Uključi više ekransku podršku</translation>
+        <source>Poll full screen (leave this enabled per default)</source>
+        <translation>Preko celog ekrana (ostaviti uključeno kao zadano)</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
         <translation>Uključi Desktop Duplication Engine- mogućnost dupliciranja desktopa na Windows 8 i novijim</translation>
     </message>
     <message>
-        <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
+        <source>Enable multi monitor support</source>
+        <translation>Uključi više ekransku podršku</translation>
+    </message>
+    <message>
+        <source>Enable capturing of layered (semi-transparent) windows</source>
+        <translation>Omogući hvatanje polu providnih prozora</translation>
     </message>
 </context>
 <context>
@@ -4083,16 +4087,16 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
         <translation>Potvrdite odjavu korisnika</translation>
     </message>
     <message>
+        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Do you really want to log off the selected users?</source>
         <translation>Želite li stvarno odjaviti izabrane korisnike?</translation>
     </message>
     <message>
         <source>User session control</source>
         <translation>Kontrola sesije korisnika</translation>
-    </message>
-    <message>
-        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4110,10 +4114,6 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
         <translation>Pogrešna komanda!</translation>
     </message>
     <message>
-        <source>Available commands:</source>
-        <translation>Dostupne komande:</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>Određeni-dati pogrešni argumenti</translation>
     </message>
@@ -4122,8 +4122,16 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
         <translation>Nije dato dovoljno argumenata - upotrebiti &quot;1 help&quot; za više informacija</translation>
     </message>
     <message>
+        <source>Plugin not licensed</source>
+        <translation>Plugin nije licenciran</translation>
+    </message>
+    <message>
         <source>Unknown result!</source>
         <translation>Nepoznat rezultat!</translation>
+    </message>
+    <message>
+        <source>Available commands:</source>
+        <translation>Dostupne komande:</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -4134,12 +4142,12 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
         <translation>Nije specificiran modul ili modul nije nađen - dostupni moduli su:</translation>
     </message>
     <message>
-        <source>Plugin not licensed</source>
-        <translation>Plugin nije licenciran</translation>
-    </message>
-    <message>
         <source>INFO</source>
         <translation>INFO</translation>
+    </message>
+    <message>
+        <source>WARNING</source>
+        <translation>UPOZORENJE</translation>
     </message>
     <message>
         <source>ERROR</source>
@@ -4156,10 +4164,6 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
     <message>
         <source>EXAMPLES</source>
         <translation>PRIMJERI</translation>
-    </message>
-    <message>
-        <source>WARNING</source>
-        <translation>UPOZORENJE</translation>
     </message>
     <message>
         <source>Screen %1</source>
@@ -4285,22 +4289,6 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
         <translation>Omogućavanje programskog SAS generisanja (Ctrl+Alt+Del)</translation>
     </message>
     <message>
-        <source>Screen lock</source>
-        <translation>Ekran zaključan</translation>
-    </message>
-    <message>
-        <source>Hide taskbar</source>
-        <translation>Sakriti traku zadataka</translation>
-    </message>
-    <message>
-        <source>Hide start menu</source>
-        <translation>Sakriti start meni</translation>
-    </message>
-    <message>
-        <source>Hide desktop</source>
-        <translation>Sakriti radnu površinu</translation>
-    </message>
-    <message>
         <source>User authentication</source>
         <translation>Autentifikacija korisnika</translation>
     </message>
@@ -4325,6 +4313,22 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
         <translation>Potvrdite pravnu napomenu (poruka se prikazuje pre nego što se korisnik prijavi)</translation>
     </message>
     <message>
+        <source>Screen lock</source>
+        <translation>Ekran zaključan</translation>
+    </message>
+    <message>
+        <source>Hide taskbar</source>
+        <translation>Sakriti traku zadataka</translation>
+    </message>
+    <message>
+        <source>Hide start menu</source>
+        <translation>Sakriti start meni</translation>
+    </message>
+    <message>
+        <source>Hide desktop</source>
+        <translation>Sakriti radnu površinu</translation>
+    </message>
+    <message>
         <source>Use input device interception driver</source>
         <translation type="unfinished"/>
     </message>
@@ -4332,12 +4336,12 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
-        <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation>Plugin implementiranje apstraktnih funkcija za Windows platformu</translation>
-    </message>
-    <message>
         <source>Internal display</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin implementing abstract functions for the Windows platform</source>
+        <translation>Plugin implementiranje apstraktnih funkcija za Windows platformu</translation>
     </message>
 </context>
 <context>
@@ -4345,18 +4349,6 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
         <translation>Servis &quot;%1&quot; je već instaliran.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation>Servis &quot;%1&quot; je instaliran uspešno.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>Servis &quot;%1&quot; je deinstalisan uspešno.</translation>
-    </message>
-    <message>
-        <source>Service &quot;%1&quot; could not be found.</source>
-        <translation>Servis &quot;%1&quot; ne može biti pronađen.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
@@ -4367,12 +4359,24 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>The service &quot;%1&quot; has been installed successfully.</source>
+        <translation>Servis &quot;%1&quot; je instaliran uspešno.</translation>
+    </message>
+    <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
+        <translation>Servis &quot;%1&quot; je deinstalisan uspešno.</translation>
+    </message>
+    <message>
         <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service &quot;%1&quot; could not be found.</source>
+        <translation>Servis &quot;%1&quot; ne može biti pronađen.</translation>
     </message>
 </context>
 <context>
