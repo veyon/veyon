@@ -95,12 +95,6 @@ QString Filesystem::shrinkPath( QString path ) const
 		}
 	}
 
-	const auto currentUser = VeyonCore::platform().userFunctions().currentUser();
-	if (currentUser.isEmpty() == false)
-	{
-		path.replace(currentUser, QStringLiteral("%USER%"));
-	}
-
 	// remove duplicate directory separators - however skip the first two chars
 	// as they might specify an UNC path on Windows
 	if( path.length() > 3 )
