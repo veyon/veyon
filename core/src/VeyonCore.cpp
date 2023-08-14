@@ -38,6 +38,7 @@
 #include <QSslKey>
 #include <QStyleFactory>
 #include <QSysInfo>
+#include <QToolTip>
 
 #include "AuthenticationCredentials.h"
 #include "AuthenticationManager.h"
@@ -627,8 +628,15 @@ void VeyonCore::initUi()
 
 		app->setStyleSheet(QStringLiteral(
 							   "QToolButton:checked {background-color:#88ddff;}"
-							   "QToolTip {color:#ffffff; background-color:#198cb3; padding:5px; border:0px;}"
+							   "QToolTip {padding:5px; border:0px;}"
 							   ));
+
+		auto toolTipPalette = QToolTip::palette();
+		static const char* toolTipBackgroundColor = "#198cb3";
+		toolTipPalette.setColor(QPalette::Window, toolTipBackgroundColor);
+		toolTipPalette.setColor(QPalette::ToolTipBase, toolTipBackgroundColor);
+		toolTipPalette.setColor(QPalette::ToolTipText, Qt::white);
+		QToolTip::setPalette(toolTipPalette);
 	}
 }
 
