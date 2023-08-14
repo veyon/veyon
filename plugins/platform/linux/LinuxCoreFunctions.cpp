@@ -416,7 +416,7 @@ bool LinuxCoreFunctions::isSystemdManaged()
 		return false;
 	}
 
-	const auto status = ProcessHelper(QStringLiteral("systemctl"), {QStringLiteral("is-system-running")}).runAndReadAll();
+	const auto status = ProcessHelper(QStringLiteral("systemctl"), {QStringLiteral("is-system-running")}).runAndReadAll().trimmed();
 	return status.isEmpty() == false && status != "offline";
 }
 
