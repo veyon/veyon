@@ -23,6 +23,7 @@
  */
 
 #include <csignal>
+#include <execinfo.h>
 
 #include "LinuxPlatformPlugin.h"
 #include "LinuxPlatformConfiguration.h"
@@ -35,7 +36,11 @@ LinuxPlatformPlugin::LinuxPlatformPlugin( QObject* parent ) :
 	qunsetenv( "XDG_CONFIG_DIRS" );
 
 	// don't abort with SIGPIPE when writing to closed sockets e.g. while shutting down VncConnection
-	signal( SIGPIPE, SIG_IGN );
+	::signal(SIGPIPE, SIG_IGN);
+
+	::signal(SIGKILL, abort);
+	::signal(SIGBUS, abort);
+	::signal(SIGSEGV, abort);
 }
 
 
@@ -50,6 +55,41 @@ LinuxPlatformPlugin::~LinuxPlatformPlugin()
 ConfigurationPage* LinuxPlatformPlugin::createConfigurationPage()
 {
 	return new LinuxPlatformConfigurationPage();
+}
+
+
+
+void LinuxPlatformPlugin::abort(int signal)
+{
+	vCritical() << "Received signal" << signal;
+
+	qCritical().noquote() << formattedBacktraceString();
+
+	qFatal("Aborting due to severe error");
+	::abort();
+}
+
+
+
+QString LinuxPlatformPlugin::formattedBacktraceString()
+{
+	static constexpr int BackTraceMaxDepth = 20;
+
+	void* stackFrame[BackTraceMaxDepth + 1];
+	const auto frameCount = backtrace(stackFrame, BackTraceMaxDepth + 1);
+
+	char** humanReadableFrames = backtrace_symbols(stackFrame, frameCount);
+
+	QStringList list{QLatin1String("BACKTRACE:")};
+	list.reserve(frameCount);
+	for (int i = 1; i < frameCount; i++)
+	{
+		list.append(QStringLiteral("\t %1").arg( QLatin1String(humanReadableFrames[i])));
+	}
+
+	free(humanReadableFrames);
+
+	return list.join(QLatin1String("\n"));
 }
 
 

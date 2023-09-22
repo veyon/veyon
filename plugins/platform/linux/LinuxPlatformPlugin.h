@@ -116,6 +116,9 @@ public:
 
 	ConfigurationPage* createConfigurationPage() override;
 
+	static void abort(int signal);
+	static QString formattedBacktraceString();
+
 private:
 	LinuxCoreFunctions m_linuxCoreFunctions{};
 	LinuxFilesystemFunctions m_linuxFilesystemFunctions{};
