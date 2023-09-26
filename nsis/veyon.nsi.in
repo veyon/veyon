@@ -305,6 +305,7 @@ RmDir /r "$INSTDIR\imageformats"
 RmDir /r "$INSTDIR\plugins"
 RmDir /r "$INSTDIR\platforms"
 RmDir /r "$INSTDIR\styles"
+RmDir /r "$INSTDIR\tls"
 RmDir /r "$INSTDIR\translations"
 RmDir /r "$INSTDIR\interception"
 
