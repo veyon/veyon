@@ -141,6 +141,12 @@ QVariant LinuxSessionFunctions::getSessionProperty(const QString& session, const
 								 QStringLiteral("org.freedesktop.DBus.Properties"),
 								 QDBusConnection::systemBus() );
 
+	if (loginManager.connection().isConnected() == false)
+	{
+		vDebug() << "system bus not connected";
+		return {};
+	}
+
 	const QDBusReply<QDBusVariant> reply = loginManager.call( QStringLiteral("Get"),
 															  QStringLiteral("org.freedesktop.login1.Session"),
 															  property );

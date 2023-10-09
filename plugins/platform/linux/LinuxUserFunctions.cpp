@@ -481,6 +481,12 @@ QVariant LinuxUserFunctions::getUserProperty(const QString& userPath, const QStr
 								 QStringLiteral("org.freedesktop.DBus.Properties"),
 								 QDBusConnection::systemBus());
 
+	if (loginManager.connection().isConnected() == false)
+	{
+		vDebug() << "system bus not connected";
+		return {};
+	}
+
 	const QDBusReply<QDBusVariant> reply = loginManager.call(QStringLiteral("Get"),
 															  QStringLiteral("org.freedesktop.login1.User"),
 															  property);
