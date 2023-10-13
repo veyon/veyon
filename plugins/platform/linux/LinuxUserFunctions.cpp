@@ -243,16 +243,19 @@ QString LinuxUserFunctions::currentUser()
 {
 	QString username;
 
-	const auto sessionPath = LinuxSessionFunctions::currentSessionPath(true);
-	if (sessionPath.isEmpty() == false)
+	if (m_systemBus.isConnected())
 	{
-		const auto sessionUserPath = LinuxSessionFunctions::getSessionUser(sessionPath);
-		if (sessionUserPath.isEmpty() == false)
+		const auto sessionPath = LinuxSessionFunctions::currentSessionPath(true);
+		if (sessionPath.isEmpty() == false)
 		{
-			username = getUserProperty(sessionUserPath, QStringLiteral("Name")).toString();
-			if (username.isEmpty() == false)
+			const auto sessionUserPath = LinuxSessionFunctions::getSessionUser(sessionPath);
+			if (sessionUserPath.isEmpty() == false)
 			{
-				return username;
+				username = getUserProperty(sessionUserPath, QStringLiteral("Name")).toString();
+				if (username.isEmpty() == false)
+				{
+					return username;
+				}
 			}
 		}
 	}

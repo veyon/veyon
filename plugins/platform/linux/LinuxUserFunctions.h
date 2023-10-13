@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include <QDBusConnection>
+
 #include "LogonHelper.h"
 #include "PlatformUserFunctions.h"
 
@@ -55,6 +57,8 @@ public:
 	static QVariant getUserProperty(const QString& userPath, const QString& property, bool logErrors = true);
 
 private:
+	QDBusConnection m_systemBus = QDBusConnection::systemBus();
+
 	static constexpr auto AuthHelperTimeout = 10000;
 
 	LogonHelper m_logonHelper{};
