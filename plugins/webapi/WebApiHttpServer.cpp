@@ -42,14 +42,17 @@ static QHttpServerResponse convertResponse( const WebApiController::Response& re
 	{
 		if( response.binaryData.isEmpty() == false )
 		{
+			vDebug() << "binary data" << response.binaryData.mid(Logger::MaximumMessageSize / 2);
 			return QHttpServerResponse{ response.binaryData };
 		}
 
 		if( response.arrayData.isEmpty() == false )
 		{
+			vDebug() << "array data" << response.arrayData;
 			return { QJsonArray::fromVariantList(response.arrayData) };
 		}
 
+		vDebug() << "map data" << response.mapData;
 		return { QJsonObject::fromVariantMap(response.mapData) };
 	}
 
@@ -82,6 +85,8 @@ static QHttpServerResponse convertResponse( const WebApiController::Response& re
 	{
 		errorObject[QStringLiteral("details")] = response.errorDetails;
 	}
+
+	vDebug() << "error" << errorObject << int(statusCode);
 
 	return {
 		QByteArrayLiteral("application/json"),
