@@ -30,6 +30,8 @@
 #include "LockingPointer.h"
 #include "WebApiConnection.h"
 
+#define waDebug() if (VeyonCore::isDebugging()==false); else qDebug() << "[WebAPI]"
+
 class WebApiConfiguration;
 
 class WebApiController : public QObject
@@ -88,7 +90,8 @@ public:
 #else
 		using Headers = QVariantMap;
 #endif
-		Request( const Headers& h = {}, const QVariantMap& d = {} ) : headers(h), data(d) { }
+		Request(const QString& p = {}, const Headers& h = {}, const QVariantMap& d = {}) : path(p), headers(h), data(d) { }
+		QString path{};
 		Headers headers{};
 		QVariantMap data{};
 	};

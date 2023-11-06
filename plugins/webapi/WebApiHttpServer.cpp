@@ -35,24 +35,39 @@
 #include "WebApiConfiguration.h"
 #include "WebApiController.h"
 
+static inline QByteArray toJson(const QVariant& data)
+{
+	return QJsonDocument::fromVariant(data).toJson(QJsonDocument::Compact);
+}
 
-static QHttpServerResponse convertResponse( const WebApiController::Response& response )
+
+static QHttpServerResponse convertResponse(const WebApiController::Request& request,
+										   const WebApiController::Response& response)
 {
 	if( response.error == WebApiController::Error::NoError )
 	{
 		if( response.binaryData.isEmpty() == false )
 		{
-			vDebug() << "binary data" << response.binaryData.mid(Logger::MaximumMessageSize / 2);
+			waDebug() << "[RESP]"
+					  << request.path.toUtf8().constData()
+					  << toJson(request.headers).constData()
+					  << "[binary data]";
 			return QHttpServerResponse{ response.binaryData };
 		}
 
 		if( response.arrayData.isEmpty() == false )
 		{
-			vDebug() << "array data" << response.arrayData;
+			waDebug() << "[RESP]"
+					  << request.path.toUtf8().constData()
+					  << toJson(request.headers).constData()
+					  << toJson(response.arrayData).constData();
 			return { QJsonArray::fromVariantList(response.arrayData) };
 		}
 
-		vDebug() << "map data" << response.mapData;
+		waDebug() << "[RESP]"
+				  << request.path.toUtf8().constData()
+				  << toJson(request.headers).constData()
+				  << toJson(response.mapData).constData();
 		return { QJsonObject::fromVariantMap(response.mapData) };
 	}
 
@@ -86,7 +101,7 @@ static QHttpServerResponse convertResponse( const WebApiController::Response& re
 		errorObject[QStringLiteral("details")] = response.errorDetails;
 	}
 
-	vDebug() << "error" << errorObject << int(statusCode);
+	waDebug() << "[RESP] [ERROR]" << request.path.toUtf8().constData() << errorObject << int(statusCode);
 
 	return {
 		QByteArrayLiteral("application/json"),
@@ -120,6 +135,11 @@ WebApiHttpServer::~WebApiHttpServer()
 template<>
 QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Post>( const QHttpServerRequest& request )
 {
+	waDebug() << "[REQ] [POST]"
+			  << request.url().toString().toUtf8().constData()
+			  << toJson(request.headers()).constData()
+			  << request.body().constData();
+
 	QVariantMap data;
 
 	const auto bodyData = QJsonDocument::fromJson( request.body() ).object();
@@ -127,8 +147,6 @@ QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Post>( c
 	{
 		data[it.key()] = it.value().toVariant();
 	}
-
-	vDebug() << "POST" << request.url() << request.headers() << data;
 
 	return data;
 }
@@ -138,6 +156,11 @@ QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Post>( c
 template<>
 QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Put>( const QHttpServerRequest& request )
 {
+	waDebug() << "[REQ] [PUT]"
+			  << request.url().toString().toUtf8().constData()
+			  << toJson(request.headers()).constData()
+			  << request.body().constData();
+
 	QVariantMap data;
 
 	const auto bodyData = QJsonDocument::fromJson( request.body() ).object();
@@ -145,8 +168,6 @@ QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Put>( co
 	{
 		data[it.key()] = it.value().toVariant();
 	}
-
-	vDebug() << "PUT" << request.url() << request.headers() << data;
 
 	return data;
 }
@@ -156,6 +177,10 @@ QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Put>( co
 template<>
 QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Get>( const QHttpServerRequest& request )
 {
+	waDebug() << "[REQ] [GET]"
+			  << request.url().toString().toUtf8().constData()
+			  << toJson(request.headers()).constData();
+
 	QVariantMap data;
 
 	const auto items = request.query().queryItems(); // clazy:exclude=inefficient-qlist
@@ -163,8 +188,6 @@ QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Get>( co
 	{
 		data[item.first] = item.second;
 	}
-
-	vDebug() << "GET" << request.url() << request.headers();
 
 	return data;
 }
@@ -174,6 +197,10 @@ QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Get>( co
 template<>
 QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Delete>( const QHttpServerRequest& request )
 {
+	waDebug() << "[REQ] [DELETE]"
+			  << request.url().toString().toUtf8().constData()
+			  << toJson(request.headers()).constData();
+
 	QVariantMap data;
 
 	const auto items = request.query().queryItems(); // clazy:exclude=inefficient-qlist
@@ -181,8 +208,6 @@ QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Delete>(
 	{
 		data[item.first] = item.second;
 	}
-
-	vDebug() << "DELETE" << request.url() << request.headers();
 
 	return data;
 }
@@ -213,10 +238,11 @@ bool WebApiHttpServer::addRoute( const QString& path,
 		{
 			const auto headers = request.headers();
 			const auto data = dataFromRequest<M>( request );
+			const auto controllerRequest = WebApiController::Request{path, headers, data};
 
 			if( m_threadPool.activeThreadCount() >= m_threadPool.maxThreadCount() )
 			{
-				auto response = convertResponse( WebApiController::Error::ConnectionLimitReached );
+				auto response = convertResponse(controllerRequest, WebApiController::Error::ConnectionLimitReached);
 				QFutureInterface<QHttpServerResponse> fi;
 				fi.reportAndMoveResult( std::move(response) );
 				fi.reportFinished();
@@ -224,9 +250,8 @@ bool WebApiHttpServer::addRoute( const QString& path,
 			}
 
 			return QtConcurrent::run( &m_threadPool, [=] {
-				return convertResponse( (m_controller->*controllerMethod)(
-					{ headers, data },
-					std::forward<Args>(args)... ) );
+				return convertResponse(controllerRequest,
+									   (m_controller->*controllerMethod)(controllerRequest, std::forward<Args>(args)... ));
 			} );
 		} );
 }

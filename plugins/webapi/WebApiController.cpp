@@ -255,7 +255,7 @@ WebApiController::Response WebApiController::closeConnection( const Request& req
 		return checkResponse;
 	}
 
-	removeConnection(QUuid{lookupHeaderField(request.headers, connectionUidHeaderFieldName())});
+	removeConnection(QUuid{lookupHeaderField(request, connectionUidHeaderFieldName())});
 
 	return {};
 }
@@ -505,14 +505,14 @@ WebApiController::LockingConnectionPointer WebApiController::lookupConnection( c
 {
 	QReadLocker connectionsReadLocker{&m_connectionsLock};
 
-	return m_connections.value(QUuid{lookupHeaderField(request.headers, connectionUidHeaderFieldName())});
+	return m_connections.value(QUuid{lookupHeaderField(request, connectionUidHeaderFieldName())});
 }
 
 
 
 WebApiController::Response WebApiController::checkConnection( const Request& request )
 {
-	const QUuid connectionUuid{lookupHeaderField(request.headers, connectionUidHeaderFieldName())};
+	const QUuid connectionUuid{lookupHeaderField(request, connectionUidHeaderFieldName())};
 
 	return runInMainThread<WebApiController::Response>( [=]() -> WebApiController::Response {
 		m_connectionsLock.lockForRead();
