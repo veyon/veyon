@@ -26,6 +26,7 @@
 #include <QEventLoop>
 #include <QImageWriter>
 
+#include "CommandLineIO.h"
 #include "ComputerControlInterface.h"
 #include "FeatureManager.h"
 #include "WebApiAuthenticationProxy.h"
@@ -454,6 +455,38 @@ QString WebApiController::errorString( WebApiController::Error error )
 	}
 
 	return {};
+}
+
+
+
+void WebApiController::dumpDebugInformation()
+{
+	QReadLocker connectionsLocker{&m_connectionsLock};
+
+	waDebug() << "Number of connections:" << m_connections.count();
+	waDebug() << "Connection details:";
+
+	CommandLineIO::Table infoTable;
+	infoTable.first = {QStringLiteral("Connection UUID"),
+					   QStringLiteral("State"),
+					   QStringLiteral("Host"),
+					   QStringLiteral("User"),
+					   QStringLiteral("Server version")
+					  };
+	infoTable.second.reserve(m_connections.count());
+	for (auto it = m_connections.constBegin(), end = m_connections.constEnd(); it != end; ++it)
+	{
+		const auto connection = it.value();
+
+		infoTable.second.append({uuidToString(it.key()),
+								 EnumHelper::toString(connection->controlInterface()->state()),
+								 connection->controlInterface()->computer().hostAddress(),
+								 connection->controlInterface()->userLoginName(),
+								 EnumHelper::toString(connection->controlInterface()->serverVersion()),
+								});
+	}
+
+	CommandLineIO::printTable(infoTable);
 }
 
 

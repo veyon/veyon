@@ -127,6 +127,8 @@ public:
 
 	static QString errorString( Error error );
 
+	void dumpDebugInformation();
+
 private:
 	void removeConnection( QUuid connectionUuid );
 
