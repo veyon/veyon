@@ -41,6 +41,8 @@ public:
 
 	bool start();
 
+	void dumpDebugInformation();
+
 private:
 	enum class Method {
 		Get,

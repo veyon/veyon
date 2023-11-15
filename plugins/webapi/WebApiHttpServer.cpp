@@ -30,6 +30,10 @@
 #include <QSslCertificate>
 #include <QSslKey>
 
+#ifdef Q_OS_LINUX
+#include <csignal>
+#endif
+
 #include "Filesystem.h"
 #include "WebApiHttpServer.h"
 #include "WebApiConfiguration.h"
@@ -112,12 +116,22 @@ static QHttpServerResponse convertResponse(const WebApiController::Request& requ
 
 
 
+static WebApiHttpServer* __serverInstance = nullptr;
+
 WebApiHttpServer::WebApiHttpServer( const WebApiConfiguration& configuration, QObject* parent ) :
 	QObject( parent ),
 	m_configuration( configuration ),
 	m_controller( new WebApiController( configuration, this ) ),
 	m_server( new QHttpServer( this ) )
 {
+	__serverInstance = this;
+
+#ifdef Q_OS_LINUX
+	::signal(SIGUSR1, [](int) {
+		__serverInstance->dumpDebugInformation();
+	});
+#endif
+
 	m_threadPool.setMaxThreadCount( m_configuration.connectionLimit() );
 }
 
@@ -300,6 +314,15 @@ bool WebApiHttpServer::start()
 	vInfo() << "listening at port" << m_configuration.httpServerPort();
 
 	return success;
+}
+
+
+
+void WebApiHttpServer::dumpDebugInformation()
+{
+	waDebug() << "Number of active threads:" << m_threadPool.activeThreadCount() << "/" << m_threadPool.maxThreadCount();
+
+	m_controller->dumpDebugInformation();
 }
 
 
