@@ -45,6 +45,20 @@ static inline QByteArray toJson(const QVariant& data)
 }
 
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+static inline QByteArray toJson(const QList<QPair<QByteArray, QByteArray>>& headers)
+{
+	QVariantList data;
+	for (auto it = headers.constBegin(), end = headers.constEnd(); it != end; ++it)
+	{
+		data.append(QVariantList({it->first, it->second}));
+	}
+	return toJson(data);
+}
+#endif
+
+
+
 static QHttpServerResponse convertResponse(const WebApiController::Request& request,
 										   const WebApiController::Response& response)
 {
