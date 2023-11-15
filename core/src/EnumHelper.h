@@ -34,7 +34,7 @@ public:
 	template<class T>
 	static QString toString( T item )
 	{
-		return QLatin1String( QMetaEnum::fromType<T>().key( static_cast<int>( item ) ) );
+		return QLatin1String(QMetaEnum::fromType<T>().valueToKey(int(item)));
 	}
 
 	template<class T>
