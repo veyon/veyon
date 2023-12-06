@@ -695,7 +695,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation>PAIR ID</translation>
+        <translation>PAAR ID</translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
@@ -2021,19 +2021,19 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Write to logging system of operating system</source>
-        <translation></translation>
+        <translation>Schrijven naar het logsysteem van het besturingssysteem</translation>
     </message>
     <message>
         <source>TLS configuration</source>
-        <translation></translation>
+        <translation>TLS-configuratie</translation>
     </message>
     <message>
         <source>Use certificate authority for TLS connections</source>
-        <translation></translation>
+        <translation>Certificaatautoriteit gebruiken voor TLS-verbindingen</translation>
     </message>
     <message>
         <source>CA certificate file</source>
-        <translation></translation>
+        <translation>CA-certificaatbestand</translation>
     </message>
     <message>
         <source>...</source>
@@ -2041,25 +2041,25 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Host certificate file</source>
-        <translation></translation>
+        <translation>Host certificaat bestand</translation>
     </message>
     <message>
         <source>Host private key file</source>
-        <translation></translation>
+        <translation>Host privé sleutelbestand</translation>
     </message>
 </context>
 <context>
     <name>HeadlessVncServer</name>
     <message>
         <source>Headless VNC server</source>
-        <translation></translation>
+        <translation>VNC-server zonder kop</translation>
     </message>
 </context>
 <context>
     <name>LdapBrowseDialog</name>
     <message>
         <source>Browse LDAP</source>
-        <translation></translation>
+        <translation>Door LDAP bladeren</translation>
     </message>
 </context>
 <context>
@@ -2091,7 +2091,9 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
 
 %1</source>
-        <translation></translation>
+        <translation>Kan niet binden aan de LDAP-server. Controleer de serverparameters en de aanmeldingsgegevens.
+
+%1</translation>
     </message>
     <message>
         <source>LDAP bind successful</source>
@@ -2109,7 +2111,9 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <source>Could not query the configured base DN. Please check the base DN parameter.
 
 %1</source>
-        <translation></translation>
+        <translation>De geconfigureerde basis-DN kon niet worden opgevraagd. Controleer de parameter basis DN.
+
+%1</translation>
     </message>
     <message>
         <source>LDAP base DN test successful</source>
@@ -2119,7 +2123,9 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 
 %1</source>
-        <translation></translation>
+        <translation>De LDAP base DN is met succes opgevraagd. De volgende vermeldingen zijn gevonden:
+
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test failed</source>
@@ -2129,17 +2135,18 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
 
 %1</source>
-        <translation></translation>
+        <translation>Kan de basis-DN niet opvragen via naamcontexten. Controleer de parameter van het naamcontextkenmerk.
+
+%1<</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
-        <translation>LDAP naming context test gelukt</translation>
+        <translation>LDAP-naamcontexttest geslaagd</translation>
     </message>
     <message>
         <source>The LDAP naming context has been queried successfully. The following base DN was found:
 %1</source>
-        <translation>De LDAP naming context is succesvol bevraagd. De volgende basis DN werd gevonden:
-%1</translation>
+        <translation>De LDAP-naamcontext is met succes opgevraagd. De volgende basis DN is gevonden: %1</translation>
     </message>
     <message>
         <source>user tree</source>
@@ -2179,7 +2186,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation></translation>
+        <translation>Kenmerk inlognaam gebruiker</translation>
     </message>
     <message>
         <source>group members</source>
@@ -2187,7 +2194,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Group member attribute</source>
-        <translation>Groepslid attribuut</translation>
+        <translation>Groepslid kenmerk</translation>
     </message>
     <message>
         <source>Group not found</source>
@@ -2203,23 +2210,23 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Computer display name attribute</source>
-        <translation></translation>
+        <translation>Kenmerk weergavenaam computer</translation>
     </message>
     <message>
         <source>Invalid hostname</source>
-        <translation></translation>
+        <translation>Ongeldige hostnaam</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation></translation>
+        <translation>U hebt hostnamen van computers geconfigureerd om te worden opgeslagen als volledig gekwalificeerde domeinnamen (FQDN), maar u hebt een hostnaam zonder domein ingevoerd.</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation></translation>
+        <translation>U hebt hostnamen van computers geconfigureerd om te worden opgeslagen als eenvoudige hostnamen zonder domeinnaam, maar u hebt een hostnaam met een domeinnaamgedeelte ingevoerd.</translation>
     </message>
     <message>
         <source>Computer hostname attribute</source>
-        <translation></translation>
+        <translation>Kenmerk hostnaam computer</translation>
     </message>
     <message>
         <source>computer MAC addresses</source>
@@ -2227,19 +2234,19 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Computer MAC address attribute</source>
-        <translation>Computer MAC adres attribuut</translation>
+        <translation>Computer MAC adres kenmerk</translation>
     </message>
     <message>
         <source>computer locations</source>
-        <translation></translation>
+        <translation>computerlocaties</translation>
     </message>
     <message>
         <source>Computer location attribute</source>
-        <translation></translation>
+        <translation>Computerlocatiekenmerk</translation>
     </message>
     <message>
         <source>Location name attribute</source>
-        <translation></translation>
+        <translation>Kenmerk locatienaam</translation>
     </message>
     <message>
         <source>users</source>
@@ -2259,7 +2266,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>computer containers</source>
-        <translation></translation>
+        <translation>computercontainers</translation>
     </message>
     <message>
         <source>groups of user</source>
@@ -2271,7 +2278,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation></translation>
+        <translation>Kon geen gebruiker vinden met de naam &quot;%1&quot;. Controleer de gebruikersnaam of de parameter van de gebruikersboom.</translation>
     </message>
     <message>
         <source>groups of computer</source>
@@ -2283,27 +2290,27 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation></translation>
+        <translation>Kon geen computer vinden met de hostnaam &quot;%1&quot;. Controleer de hostnaam of de computerstructuurparameter.</translation>
     </message>
     <message>
         <source>Hostname lookup failed</source>
-        <translation></translation>
+        <translation>Hostnaam opzoeken mislukt</translation>
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation></translation>
+        <translation>Kan hostnaam voor IP-adres %1 niet opzoeken. Controleer uw DNS-serverinstellingen.</translation>
     </message>
     <message>
         <source>location entries</source>
-        <translation></translation>
+        <translation>locatievermeldingen</translation>
     </message>
     <message>
         <source>Computer groups filter</source>
-        <translation></translation>
+        <translation>Filter voor computergroepen</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
-        <translation></translation>
+        <translation>Identificatie computerlocaties</translation>
     </message>
     <message>
         <source>Filter for computer groups</source>
@@ -2311,11 +2318,11 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Invalid test value</source>
-        <translation></translation>
+        <translation>Ongeldige testwaarde</translation>
     </message>
     <message>
         <source>An empty or invalid value has been supplied for this test.</source>
-        <translation></translation>
+        <translation>Er is een lege of ongeldige waarde opgegeven voor deze test.</translation>
     </message>
     <message>
         <source>LDAP %1 test failed</source>
@@ -2325,7 +2332,9 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
 
 %3</source>
-        <translation></translation>
+        <translation>Er konden geen items worden opgevraagd in geconfigureerd %1. Controleer de parameter &quot;%2&quot;.
+
+%3</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
@@ -2337,21 +2346,23 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>LDAP test failed</source>
-        <translation></translation>
+        <translation>LDAP-test mislukt</translation>
     </message>
     <message>
         <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
 
 %3</source>
-        <translation></translation>
+        <translation>Kan %1 niet opvragen. Controleer de parameter(s) %2 en voer de naam van een bestaand object in.
+
+%3</translation>
     </message>
     <message>
         <source>and</source>
-        <translation></translation>
+        <translation>en</translation>
     </message>
     <message>
         <source>LDAP test successful</source>
-        <translation></translation>
+        <translation>LDAP-test geslaagd</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
@@ -2383,7 +2394,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>LDAP directory</source>
-        <translation></translation>
+        <translation>LDAP map</translation>
     </message>
 </context>
 <context>
@@ -2402,23 +2413,23 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Bind DN</source>
-        <translation>Bind DN</translation>
+        <translation>DN binden</translation>
     </message>
     <message>
         <source>Bind password</source>
-        <translation>Bind wachtwoord</translation>
+        <translation>Wachtwoord binden</translation>
     </message>
     <message>
         <source>Anonymous bind</source>
-        <translation>Anonieme bind</translation>
+        <translation>Anoniem binden</translation>
     </message>
     <message>
         <source>Use bind credentials</source>
-        <translation>Gebruik bind credentials</translation>
+        <translation>Bindgegevens gebruiken</translation>
     </message>
     <message>
         <source>Base DN</source>
-        <translation>Base DN</translation>
+        <translation>Basis DN</translation>
     </message>
     <message>
         <source>Fixed base DN</source>
@@ -2430,7 +2441,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Discover base DN by naming context</source>
-        <translation>Ontdek basis DN door naming context</translation>
+        <translation>Ontdek basis-DN door naamcontext</translation>
     </message>
     <message>
         <source>e.g. namingContexts or defaultNamingContext</source>
@@ -2474,7 +2485,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Object attributes</source>
-        <translation>Object attributen</translation>
+        <translation>Object kenmerken</translation>
     </message>
     <message>
         <source>e.g. hwAddress</source>
@@ -2490,11 +2501,11 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Computer MAC address attribute</source>
-        <translation>Computer MAC adres attribuut</translation>
+        <translation>Computer MAC adres kenmerk</translation>
     </message>
     <message>
         <source>Group member attribute</source>
-        <translation>Groepslid attribuut</translation>
+        <translation>Groepslid kenmerk</translation>
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
@@ -2546,7 +2557,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation>Vul alstublieft een gebruikersnaam in (wildcards toegestaan) die bevraagd moet worden:</translation>
+        <translation>Voer een gebruikersnaam in (jokertekens toegestaan) die moet worden opgevraagd:</translation>
     </message>
     <message>
         <source>Enter group name</source>
@@ -2554,7 +2565,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
-        <translation>Vul alstublieft een groepsnaam in waarvan de leden bevraagd moeten worden: </translation>
+        <translation>Voer een groepsnaam in waarvan u de leden wilt opvragen:</translation>
     </message>
     <message>
         <source>Enter computer name</source>
@@ -2566,11 +2577,11 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
-        <translation>Vul alstublieft de DN in van een computer waarvan het MAC-adres moet worden bevraagd:</translation>
+        <translation>Voer de DN van een computer in waarvan het MAC-adres moet worden opgevraagd:</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
-        <translation>Vul alstublieft een gebruikersnaam in van wie de groepslidmaatschappen moeten bevraagd worden:</translation>
+        <translation>Voer een gebruikersnaam in waarvan u de lidmaatschappen van de groep wilt opvragen:</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2582,7 +2593,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>(only if different from group tree)</source>
-        <translation>(Alleen als verschillend van groep-structuur)</translation>
+        <translation>(alleen indien verschillend van groepsboom)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
@@ -2610,11 +2621,11 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Filter for computer containers</source>
-        <translation>Filter voor computer containers</translation>
+        <translation>Filter voor computercontainers</translation>
     </message>
     <message>
         <source>Computer containers or OUs</source>
-        <translation>Computer containers of OUs</translation>
+        <translation>Computercontainers of OU's</translation>
     </message>
     <message>
         <source>Connection security</source>
@@ -2630,7 +2641,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation>Nooit (onveilig!)</translation>
+        <translation>Nooit (onzeker!)</translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
@@ -2678,39 +2689,39 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Computer location attribute</source>
-        <translation></translation>
+        <translation>Computerlocatiekenmerk</translation>
     </message>
     <message>
         <source>Computer display name attribute</source>
-        <translation></translation>
+        <translation>Kenmerk weergavenaam computer</translation>
     </message>
     <message>
         <source>Location name attribute</source>
-        <translation></translation>
+        <translation>Kenmerk locatienaam</translation>
     </message>
     <message>
         <source>e.g. cn or displayName</source>
-        <translation></translation>
+        <translation>bijv. cn of displayName</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
-        <translation></translation>
+        <translation>Identificatie computerlocaties</translation>
     </message>
     <message>
         <source>Identify computer locations (e.g. rooms) via:</source>
-        <translation></translation>
+        <translation>Computerlocaties (bijv. kamers) identificeren via:</translation>
     </message>
     <message>
         <source>Location attribute in computer objects</source>
-        <translation></translation>
+        <translation>Locatiekenmerk in computerobjecten</translation>
     </message>
     <message>
         <source>List all entries of a location</source>
-        <translation></translation>
+        <translation>Alle vermeldingen van een locatie weergeven</translation>
     </message>
     <message>
         <source>List all locations</source>
-        <translation></translation>
+        <translation>Alle locaties weergeven</translation>
     </message>
     <message>
         <source>Enter computer display name</source>
@@ -2718,27 +2729,27 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Please enter a computer display name to query:</source>
-        <translation></translation>
+        <translation>Voer de weergavenaam van de computer in</translation>
     </message>
     <message>
         <source>Enter computer location name</source>
-        <translation></translation>
+        <translation>Voer de naam van de computerlocatie in</translation>
     </message>
     <message>
         <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation></translation>
+        <translation>Voer de naam van een computerlocatie in (jokertekens toegestaan):</translation>
     </message>
     <message>
         <source>Enter location name</source>
-        <translation></translation>
+        <translation>Locatie naam invoeren</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
-        <translation></translation>
+        <translation>Voer de naam in van een locatie waarvan u de gegevens wilt opvragen:</translation>
     </message>
     <message>
         <source>Browse</source>
-        <translation></translation>
+        <translation>Blader door</translation>
     </message>
     <message>
         <source>Test</source>
@@ -2746,43 +2757,43 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation></translation>
+        <translation>Hostnamen opgeslagen als volledig gekwalificeerde domeinnamen (FQDN, bijv. myhost.example.org)</translation>
     </message>
     <message>
         <source>Computer hostname attribute</source>
-        <translation></translation>
+        <translation>Kenmerk hostnaam computer</translation>
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
-        <translation></translation>
+        <translation>Voer een hostnaam van een computer in om een query uit te voeren:</translation>
     </message>
     <message>
         <source>Enter hostname</source>
-        <translation></translation>
+        <translation>Voer hostnaam in</translation>
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation></translation>
+        <translation>Voer een hostnaam van een computer in waarvan de groepslidmaatschappen moeten worden opgevraagd:</translation>
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation></translation>
+        <translation>Kenmerk inlognaam gebruiker</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation></translation>
+        <translation>Geconfigureerd kenmerk voor aanmeldnaam gebruiker of hostnaam computer (OpenLDAP)</translation>
     </message>
     <message>
         <source>Directory name</source>
-        <translation></translation>
+        <translation>Mapnaam</translation>
     </message>
     <message>
         <source>Query options</source>
-        <translation></translation>
+        <translation>Query-opties</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
-        <translation></translation>
+        <translation>Geneste gebruikersgroepen opvragen (alleen ondersteund door AD)</translation>
     </message>
 </context>
 <context>
@@ -2793,7 +2804,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Please use the global LDAP configuration page to configure how to retrieve locations and computers from your LDAP-based directory service.</source>
-        <translation></translation>
+        <translation>Gebruik de globale LDAP-configuratiepagina om te configureren hoe locaties en computers worden opgehaald uit uw LDAP-gebaseerde mapservice.Gebruik de globale LDAP-configuratiepagina om te configureren hoe locaties en computers worden opgehaald uit uw LDAP-gebaseerde mapservice.</translation>
     </message>
 </context>
 <context>
@@ -2804,55 +2815,55 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Query objects from LDAP directory</source>
-        <translation>Objecten opvragen uit LDAP directory</translation>
+        <translation>Objecten opvragen uit LDAP map</translation>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>Toon hulp over commando</translation>
+        <translation>Help over commando weergeven</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation>Commando&apos;s voor het configureren en testen van LDAP/AD-integratie</translation>
+        <translation>Opdrachten voor het configureren en testen van LDAP/AD-integratie</translation>
     </message>
     <message>
         <source>Basic LDAP/AD support for Veyon</source>
-        <translation></translation>
+        <translation>Basis LDAP/AD-ondersteuning voor Veyon</translation>
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation></translation>
+        <translation>%1 (computers en locaties laden vanuit LDAP/AD)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation></translation>
+        <translation>%1 (gebruikers en groepen laden vanuit LDAP/AD)</translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
-        <translation></translation>
+        <translation>Geef een geldige LDAP-url op volgens het schema &quot;ldap[s]://[gebruiker[:wachtwoord]@]hostnaam[:poort]&quot;</translation>
     </message>
     <message>
         <source>No naming context attribute name given - falling back to configured value.</source>
-        <translation></translation>
+        <translation>Geen naamgeving contextkenmerk gegeven - terugvallen op geconfigureerde waarde.</translation>
     </message>
     <message>
         <source>Could not query base DN. Please check your LDAP configuration.</source>
-        <translation></translation>
+        <translation>Kan basis-DN niet opvragen. Controleer uw LDAP-configuratie.</translation>
     </message>
     <message>
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
-        <translation></translation>
+        <translation>%1 configureren als basis DN en naamcontextquery's uitschakelen.</translation>
     </message>
     <message>
         <source>Test binding to an LDAP server</source>
-        <translation></translation>
+        <translation>Test de binding met een LDAP-server</translation>
     </message>
     <message>
         <source>The supplied username or password is wrong. Please enter valid credentials or switch to a different authentication method using the Veyon Configurator.</source>
-        <translation></translation>
+        <translation>De opgegeven gebruikersnaam of wachtwoord is onjuist. Voer geldige gegevens in of schakel over op een andere authenticatiemethode met behulp van de Veyon Configurator.</translation>
     </message>
     <message>
         <source>LDAP bind</source>
-        <translation></translation>
+        <translation>LDAP binden</translation>
     </message>
 </context>
 <context>
@@ -2863,45 +2874,45 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
-        <translation></translation>
+        <translation>Aangepaste PAM-service voor gebruikersauthenticatie</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation></translation>
+        <translation>Verificatie van gebruikers</translation>
     </message>
     <message>
         <source>User sessions</source>
-        <translation></translation>
+        <translation>Gebruikerssessies</translation>
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
-        <translation></translation>
+        <translation>Minimale sessielevensduur voor het starten van de server</translation>
     </message>
     <message>
         <source>User login</source>
-        <translation></translation>
+        <translation>Gebruiker inloggen</translation>
     </message>
     <message>
         <source>Login key sequence</source>
-        <translation></translation>
+        <translation>Toetsvolgorde inloggen</translation>
     </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
-        <translation>Plugin uitvoering van abstracte functies voor Linux</translation>
+        <translation>Plugin die abstracte functies uitvoert voor het Linux-platform</translation>
     </message>
 </context>
 <context>
     <name>LocationDialog</name>
     <message>
         <source>Select location</source>
-        <translation></translation>
+        <translation>Selecteer locatie</translation>
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation>vul zoekfilter in...</translation>
+        <translation>zoekfilter invoeren...</translation>
     </message>
 </context>
 <context>
@@ -2916,7 +2927,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Show icons only</source>
-        <translation>Toon enkel iconen</translation>
+        <translation>Alleen pictogrammen weergeven</translation>
     </message>
 </context>
 <context>
@@ -2927,7 +2938,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>toolBar</source>
-        <translation>werkbalk</translation>
+        <translation>werkBalk</translation>
     </message>
     <message>
         <source>General</source>
@@ -2954,7 +2965,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <source>L&amp;oad settings from file</source>
+        <source>L&amp;load settings from file</source>
         <translation>&amp;Laad instellingen uit bestand</translation>
     </message>
     <message>
@@ -2967,7 +2978,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Configuration not writable</source>
-        <translation>Configuratie niet schrijfbaar</translation>
+        <translation>Configuratie niet beschrijfbaar</translation>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3071,7 +3082,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation></translation>
+        <translation>Kon niet starten met beheerdersrechten. Zorg ervoor dat er een sudo-achtig programma is geïnstalleerd voor je desktopomgeving! Het programma wordt uitgevoerd met normale gebruikersrechten.</translation>
     </message>
     <message>
         <source>Only show powered on computers</source>
@@ -3083,23 +3094,23 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>&amp;View</source>
-        <translation></translation>
+        <translation>&amp;Bekijken</translation>
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation></translation>
+        <translation>&amp;Standaard</translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
-        <translation></translation>
+        <translation>&amp;Geavanceerd</translation>
     </message>
     <message>
         <source>Use custom computer arrangement</source>
-        <translation></translation>
+        <translation>Aangepaste computeropstelling gebruiken</translation>
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation></translation>
+        <translation>Locaties &amp;&amp; computers</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -3107,19 +3118,19 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
-        <translation></translation>
+        <translation>Pas de grootte van computerpictogrammen automatisch aan</translation>
     </message>
     <message>
         <source>Slideshow</source>
-        <translation></translation>
+        <translation>Diavoorstelling</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation></translation>
+        <translation>Spotlight</translation>
     </message>
     <message>
         <source>Veyon Master</source>
-        <translation></translation>
+        <translation>Veyon Master</translation>
     </message>
     <message>
         <source>Locations &amp; computers</source>
@@ -3138,7 +3149,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Feature on computer double click:</source>
-        <translation>Functie op de computer bij double click:</translation>
+        <translation>Functie op computer bij dubbelklikken:</translation>
     </message>
     <message>
         <source>Features</source>
@@ -3194,7 +3205,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Thumbnail update interval</source>
-        <translation>Miniatuurweergave update interval</translation>
+        <translation>Bijwerkinterval miniaturen</translation>
     </message>
     <message>
         <source> ms</source>
@@ -3206,7 +3217,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Modes and features</source>
-        <translation></translation>
+        <translation>Modi en functies</translation>
     </message>
     <message>
         <source>User and computer name</source>
@@ -3230,11 +3241,11 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Sort order</source>
-        <translation></translation>
+        <translation>Sorteer volgorde</translation>
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation></translation>
+        <translation>Computer en gebruikersnaam</translation>
     </message>
     <message>
         <source>Computer locations</source>
@@ -3242,47 +3253,47 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Show current location only</source>
-        <translation></translation>
+        <translation>Alleen huidige locatie weergeven</translation>
     </message>
     <message>
         <source>Allow adding hidden locations manually</source>
-        <translation></translation>
+        <translation>Verborgen locaties handmatig toevoegen</translation>
     </message>
     <message>
         <source>Hide empty locations</source>
-        <translation></translation>
+        <translation>Lege locaties verbergen</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation></translation>
+        <translation>Bevestigingsdialoog weergeven voor mogelijk onveilige acties</translation>
     </message>
     <message>
         <source>Perform access control</source>
-        <translation></translation>
+        <translation>Toegangscontrole uitvoeren</translation>
     </message>
     <message>
         <source>Automatically select current location</source>
-        <translation></translation>
+        <translation>Automatisch de huidige locatie selecteren</translation>
     </message>
     <message>
         <source>Automatically open computer select panel</source>
-        <translation></translation>
+        <translation>Computer selectiepaneel automatisch openen</translation>
     </message>
     <message>
         <source>Use modern user interface (experimental)</source>
-        <translation></translation>
+        <translation>Gebruik moderne gebruikersinterface (experimenteel)</translation>
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation></translation>
+        <translation>Tussenruimte miniaturen</translation>
     </message>
     <message>
         <source> px</source>
-        <translation></translation>
+        <translation>px</translation>
     </message>
     <message>
         <source>Hide local session</source>
-        <translation></translation>
+        <translation>Verberg lokale sessie</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -3290,15 +3301,15 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
-        <translation></translation>
+        <translation>Beeldverhouding miniaturen</translation>
     </message>
     <message>
         <source>Automatically adjust computer icon size</source>
-        <translation></translation>
+        <translation>Computerpictogramgrootte automatisch aanpassen</translation>
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
-        <translation></translation>
+        <translation>Functievensters openen op hetzelfde scherm als het hoofdvenster</translation>
     </message>
 </context>
 <context>
@@ -3313,21 +3324,21 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
-        <translation></translation>
+        <translation>In deze modus kun je alle computers op één of meer locaties controleren.</translation>
     </message>
 </context>
 <context>
     <name>NestedNetworkObjectDirectory</name>
     <message>
         <source>All directories</source>
-        <translation></translation>
+        <translation>Alle mappen</translation>
     </message>
 </context>
 <context>
     <name>NetworkObjectDirectoryConfigurationPage</name>
     <message>
         <source>Update interval:</source>
-        <translation>Update interval:</translation>
+        <translation>Bijwerken interval:</translation>
     </message>
     <message>
         <source> seconds</source>
@@ -3338,14 +3349,14 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     <name>NetworkObjectDirectoryConfigurationPageTab</name>
     <message>
         <source>Enabled</source>
-        <translation></translation>
+        <translation>Ingeschakeld</translation>
     </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
-        <translation></translation>
+        <translation>Locaties/Computers</translation>
     </message>
 </context>
 <context>
@@ -3356,15 +3367,15 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation></translation>
+        <translation>bijv. Veyon</translation>
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation></translation>
+        <translation>Onthouden en toevoegen aan website menu</translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation></translation>
+        <translation>bijv. www.veyon.io</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -3372,22 +3383,22 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Name:</source>
-        <translation></translation>
+        <translation>Naam</translation>
     </message>
     <message>
         <source>Website name</source>
-        <translation></translation>
+        <translation>Website naam</translation>
     </message>
 </context>
 <context>
     <name>PluginsCommands</name>
     <message>
         <source>List names of all installed plugins</source>
-        <translation></translation>
+        <translation>Namen van alle geïnstalleerde plugins weergeven</translation>
     </message>
     <message>
         <source>Show table with details of all installed plugins</source>
-        <translation></translation>
+        <translation>Tabel weergeven met details van alle geïnstalleerde plugins</translation>
     </message>
     <message>
         <source>Name</source>
@@ -3395,23 +3406,23 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Description</source>
-        <translation></translation>
+        <translation>Beschrijving</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation></translation>
+        <translation>Versie</translation>
     </message>
     <message>
         <source>UID</source>
-        <translation></translation>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
-        <translation></translation>
+        <translation>Plugin-gerelateerde CLI-bewerkingen</translation>
     </message>
     <message>
         <source>Commands for managing plugins</source>
-        <translation></translation>
+        <translation>Opdrachten voor het beheren van plugins</translation>
     </message>
 </context>
 <context>
@@ -3442,7 +3453,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation>Computer aan-/uitzetten of herstarten</translation>
+        <translation>Een computer in-/uitschakelen of opnieuw opstarten</translation>
     </message>
     <message>
         <source>Confirm reboot</source>
@@ -3458,7 +3469,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation></translation>
+        <translation>Een computer inschakelen via Wake-on-LAN (WOL)</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
@@ -3466,11 +3477,11 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation></translation>
+        <translation>Dit commando zendt een Wake-on-LAN (WOL) pakket uit naar het netwerk om de computer met het opgegeven MAC-adres in te schakelen.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation></translation>
+        <translation>Geef het commando op waarvoor hulp moet worden weergegeven!</translation>
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
@@ -3478,7 +3489,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Commands for controlling power status of computers</source>
-        <translation></translation>
+        <translation>Commando's om de energiestatus van computers te regelen</translation>
     </message>
     <message>
         <source>Power down now</source>
@@ -3490,7 +3501,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation></translation>
+        <translation>Uitschakelen na bevestiging door gebruiker</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
@@ -3498,25 +3509,27 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation></translation>
+        <translation>De computer is op afstand gevraagd om uit te schakelen. Wilt u de computer nu uitschakelen?</translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
-        <translation></translation>
+        <translation>De computer wordt over %1 minuten, %2 seconden uitgeschakeld.
+
+Sla uw werk op en sluit alle programma's af.</translation>
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation></translation>
+        <translation>Wil je echt &lt;b&gt;ALL&lt;/b&gt; computers opnieuw opstarten?</translation>
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation></translation>
+        <translation>Wil je echt &lt;b&gt;ALL&lt;/b&gt; computers uitschakelen?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
-        <translation></translation>
+        <translation>Wil je echt de geselecteerde computers uitschakelen?</translation>
     </message>
 </context>
 <context>
@@ -3527,15 +3540,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
-        <translation></translation>
+        <translation>Geef een time-out op voor het uitschakelen van de geselecteerde computers:</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation></translation>
+        <translation>minuten</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation></translation>
+        <translation>seconden</translation>
     </message>
 </context>
 <context>
@@ -3546,7 +3559,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
-        <translation>Open een remote view zonder interactie voor een computer.</translation>
+        <translation>Open een weergave op afstand voor een computer zonder interactie.</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -3570,14 +3583,14 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>Toon hulp over commando</translation>
+        <translation>Help over commando weergeven</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessPage</name>
     <message>
         <source>Remote access: %1</source>
-        <translation></translation>
+        <translation>Toegang op afstand: %1</translation>
     </message>
 </context>
 <context>
@@ -3588,7 +3601,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation></translation>
+        <translation>%1 - %2 - %3 Externe toegang</translation>
     </message>
 </context>
 <context>
@@ -3655,11 +3668,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exit</source>
-        <translation></translation>
+        <translation>Verlaat</translation>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation></translation>
+        <translation>Verbinden...</translation>
     </message>
 </context>
 <context>
@@ -3682,15 +3695,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Lock input devices</source>
-        <translation></translation>
+        <translation>Invoerapparaten vergrendelen</translation>
     </message>
     <message>
         <source>Unlock input devices</source>
-        <translation></translation>
+        <translation>Invoerapparaten ontgrendelen</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
-        <translation></translation>
+        <translation>Om de volledige aandacht van alle gebruikers op te eisen kun je hun computers vergrendelen met deze knop. In deze modus worden alle invoerapparaten vergrendeld terwijl het bureaublad nog steeds zichtbaar is.</translation>
     </message>
 </context>
 <context>
@@ -3709,7 +3722,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
-        <translation></translation>
+        <translation>Kon schermafdrukbestand %1 niet openen om te schrijven.</translation>
     </message>
 </context>
 <context>
@@ -3778,7 +3791,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation></translation>
+        <translation>Wil je echt alle geselecteerde schermafbeeldingen verwijderen?</translation>
     </message>
 </context>
 <context>
@@ -3809,7 +3822,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>State:</source>
-        <translation>Staat:</translation>
+        <translation>Status:</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
@@ -3842,7 +3855,8 @@ Please save your work and close all programs.</source>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
-        <translation></translation>
+        <translation>Het inschakelen van deze optie zorgt ervoor dat de service een serverproces start voor elke interactieve sessie op een computer.
+Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     </message>
     <message>
         <source>Show notification on remote connection</source>
@@ -3850,27 +3864,27 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
-        <translation></translation>
+        <translation>Meldingen tonen wanneer een ongeautoriseerde toegang is geblokkeerd</translation>
     </message>
     <message>
         <source>Maximum session count</source>
-        <translation></translation>
+        <translation>Maximaal aantal sessies</translation>
     </message>
     <message>
         <source>Network port numbers</source>
-        <translation></translation>
+        <translation>Netwerk poortnummers</translation>
     </message>
     <message>
         <source>Veyon server</source>
-        <translation></translation>
+        <translation>Veyon server</translation>
     </message>
     <message>
         <source>Internal VNC server</source>
-        <translation></translation>
+        <translation>Interne VNC-server</translation>
     </message>
     <message>
         <source>Feature manager</source>
-        <translation></translation>
+        <translation>Functiebeheerder</translation>
     </message>
     <message>
         <source>Demo server</source>
@@ -3878,23 +3892,23 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
-        <translation></translation>
+        <translation>Diverse netwerkinstellingen</translation>
     </message>
     <message>
         <source>Session mode</source>
-        <translation></translation>
+        <translation>Sessie-modus</translation>
     </message>
     <message>
         <source>Local session mode (single server instance for primary local session)</source>
-        <translation></translation>
+        <translation>Lokale sessiemodus (enkele serverinstantie voor primaire lokale sessie)</translation>
     </message>
     <message>
         <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation></translation>
+        <translation>Actieve sessiemodus (één serverinstantie voor actieve lokale of externe sessie)</translation>
     </message>
     <message>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation></translation>
+        <translation>Modus voor meerdere sessies (afzonderlijke serverinstantie voor elke lokale en externe desktopsessie)</translation>
     </message>
 </context>
 <context>
@@ -3913,11 +3927,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Unregistering service %1</source>
-        <translation></translation>
+        <translation>Service %1 afmelden</translation>
     </message>
     <message>
         <source>Service control</source>
-        <translation></translation>
+        <translation>Servicebeheer</translation>
     </message>
 </context>
 <context>
@@ -3940,7 +3954,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation>Onregistreer Veyon Service</translation>
+        <translation>Veyon service afmelden</translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
@@ -3956,7 +3970,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
-        <translation>Bevraag status van Veyon Service</translation>
+        <translation>Status van Veyon Service opvragen</translation>
     </message>
     <message>
         <source>Commands for configuring and controlling Veyon Service</source>
@@ -3967,7 +3981,7 @@ Typically this is required to support terminal servers.</source>
     <name>ShellCommandLinePlugin</name>
     <message>
         <source>Run command file</source>
-        <translation></translation>
+        <translation>Opdrachtbestand uitvoeren</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
@@ -3975,69 +3989,69 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon Control</source>
-        <translation></translation>
+        <translation>Interactieve shell en uitvoering van scripts voor Veyon Control</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
-        <translation></translation>
+        <translation>Commando's voor shell-functionaliteiten</translation>
     </message>
 </context>
 <context>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation></translation>
+        <translation>Vorige</translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation></translation>
+        <translation>Starten/pauzeren</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation></translation>
+        <translation>Volgende</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation></translation>
+        <translation>Duur:</translation>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
         <source>Add selected computers</source>
-        <translation></translation>
+        <translation>Geselecteerde computers toevoegen</translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation></translation>
+        <translation>Verwijder geselecteerde computers</translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation></translation>
+        <translation>Computers in realtime bijwerken</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation></translation>
+        <translation>Spotlight</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation></translation>
+        <translation>Selecteer ten minste één computer om toe te voegen.</translation>
     </message>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
 The second button removes the selected or last computer.</source>
-        <translation></translation>
+        <translation>Voeg computers toe door te klikken met de middelste muisknop of door te klikken op de eerste knop hieronder. De tweede knop verwijdert de geselecteerde of laatste computer.</translation>
     </message>
 </context>
 <context>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation></translation>
+        <translation>Toepassing starten</translation>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
-        <translation></translation>
+        <translation>Voer de applicaties in die moeten worden gestart op de geselecteerde computers. Je kunt meerdere applicaties van elkaar scheiden door een regel.</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
@@ -4045,48 +4059,48 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Remember and add to application menu</source>
-        <translation></translation>
+        <translation>Onthouden en toevoegen aan applicatiemenu</translation>
     </message>
     <message>
         <source>Application name</source>
-        <translation></translation>
+        <translation>Naam toepassing</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation></translation>
+        <translation>Naam:</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation></translation>
+        <translation>bijv. VLC</translation>
     </message>
 </context>
 <context>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
-        <translation>Systeemvak icoon</translation>
+        <translation>Systeemvakpictogram</translation>
     </message>
 </context>
 <context>
     <name>SystemUserGroupsPlugin</name>
     <message>
         <source>User groups backend for system user groups</source>
-        <translation></translation>
+        <translation>Gebruikersgroepen backend voor systeemgebruikersgroepen</translation>
     </message>
     <message>
         <source>Default (system user groups)</source>
-        <translation></translation>
+        <translation>Standaard (systeemgebruikersgroepen)</translation>
     </message>
 </context>
 <context>
     <name>TestingCommandLinePlugin</name>
     <message>
         <source>Test internal Veyon components and functions</source>
-        <translation></translation>
+        <translation>Interne Veyon componenten en functies testen</translation>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
-        <translation></translation>
+        <translation>Commando's voor het testen van interne componenten en functies van Veyon</translation>
     </message>
 </context>
 <context>
@@ -4097,7 +4111,7 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Please enter your message which send to all selected users.</source>
-        <translation></translation>
+        <translation>Voer uw bericht in en verstuur het naar alle geselecteerde gebruikers.</translation>
     </message>
 </context>
 <context>
@@ -4123,7 +4137,7 @@ The second button removes the selected or last computer.</source>
     <name>UltraVncConfigurationWidget</name>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>Inschakelen capturing van gelaagde (semi-transparante) schermen</translation>
+        <translation>Vastleggen van gelaagde (semi-transparante) vensters inschakelen</translation>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
@@ -4139,15 +4153,15 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation></translation>
+        <translation>Ondersteuning voor meerdere monitors inschakelen</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation></translation>
+        <translation>Desktop Duplication Engine inschakelen op Windows 8 en nieuwer</translation>
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation></translation>
+        <translation>Maximaal CPU-gebruik</translation>
     </message>
 </context>
 <context>
@@ -4165,11 +4179,11 @@ The second button removes the selected or last computer.</source>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation></translation>
+        <translation>Inloggen gebruiker</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation></translation>
+        <translation>Voer een gebruikersnaam en wachtwoord in om automatisch in te loggen op alle computers.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -4184,27 +4198,27 @@ The second button removes the selected or last computer.</source>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation></translation>
+        <translation>Inloggen</translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation></translation>
+        <translation>Klik op deze knop om een specifieke gebruiker op alle computers aan te melden.</translation>
     </message>
     <message>
         <source>Log off</source>
-        <translation></translation>
+        <translation>Afmelden</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation></translation>
+        <translation>Klik op deze knop om gebruikers van alle computers uit te loggen.</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation></translation>
+        <translation>Afmelden gebruiker bevestigen</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation></translation>
+        <translation>Wil je echt de geselecteerde gebruikers afmelden?</translation>
     </message>
     <message>
         <source>User session control</source>
@@ -4212,7 +4226,7 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation></translation>
+        <translation>Wil je echt &lt;b&gt;ALL&lt;/b&gt; gebruikers afmelden?</translation>
     </message>
 </context>
 <context>
@@ -4251,19 +4265,19 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
-        <translation></translation>
+        <translation>Geen module opgegeven of module niet gevonden - beschikbare modules zijn:</translation>
     </message>
     <message>
         <source>Plugin not licensed</source>
-        <translation></translation>
+        <translation>Plugin niet gelicentieerd</translation>
     </message>
     <message>
         <source>INFO</source>
-        <translation></translation>
+        <translation>INFO</translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation></translation>
+        <translation>FOUT</translation>
     </message>
     <message>
         <source>USAGE</source>
@@ -4271,19 +4285,19 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation></translation>
+        <translation>BESCHRIJVING</translation>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation></translation>
+        <translation>VOORBEELDEN</translation>
     </message>
     <message>
         <source>WARNING</source>
-        <translation></translation>
+        <translation>WAARSCHUWING</translation>
     </message>
     <message>
         <source>Authentication test</source>
-        <translation></translation>
+        <translation>Authenticatietest</translation>
     </message>
 </context>
 <context>
@@ -4304,7 +4318,7 @@ The second button removes the selected or last computer.</source>
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation></translation>
+        <translation>Windows</translation>
     </message>
     <message>
         <source>General</source>
@@ -4316,85 +4330,85 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation></translation>
+        <translation>Schermvergrendeling</translation>
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation></translation>
+        <translation>Taakbalk verbergen</translation>
     </message>
     <message>
         <source>Hide start menu</source>
-        <translation></translation>
+        <translation>Startmenu verbergen</translation>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation></translation>
+        <translation>Desktop verbergen</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation></translation>
+        <translation>Verificatie gebruiker</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation></translation>
+        <translation>Alternatief authenticatiemechanisme voor gebruiker toepassen</translation>
     </message>
     <message>
         <source>User login</source>
-        <translation></translation>
+        <translation>Gebruiker inloggen</translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation></translation>
+        <translation>Ingangsvertraging</translation>
     </message>
     <message>
         <source>Simulated key presses interval</source>
-        <translation></translation>
+        <translation>Interval gesimuleerde toetsaanslagen</translation>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation></translation>
+        <translation>Bevestig wettelijke kennisgeving (bericht dat wordt weergegeven voordat de gebruiker inlogt)</translation>
     </message>
     <message>
         <source>Use input device interception driver</source>
-        <translation></translation>
+        <translation>Gebruik het stuurprogramma voor het onderscheppen van invoerapparaten</translation>
     </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation>Uitvoering plugin abstracte functies voor Windows</translation>
+        <translation>Plugin die abstracte functies gebruikt voor het Windows-platform</translation>
     </message>
 </context>
 <context>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation></translation>
+        <translation>De service &quot;%1&quot; is al geïnstalleerd.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation></translation>
+        <translation>De service &quot;%1&quot; kon niet worden geïnstalleerd.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation></translation>
+        <translation>De service &quot;%1&quot; is met succes geïnstalleerd.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation></translation>
+        <translation>De service &quot;%1&quot; kon niet worden verwijderd.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation></translation>
+        <translation>De service &quot;%1&quot; is succesvol verwijderd.</translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation></translation>
+        <translation>Het starttype van service &quot;%1&quot; kon niet worden gewijzigd.</translation>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation></translation>
+        <translation>Service &quot;%1&quot; kon niet worden gevonden.</translation>
     </message>
 </context>
 <context>
