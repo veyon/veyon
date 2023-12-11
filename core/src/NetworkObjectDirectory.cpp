@@ -279,7 +279,7 @@ void NetworkObjectDirectory::addOrUpdateObject( const NetworkObject& networkObje
 
 	if( index < 0 )
 	{
-		Q_EMIT objectsAboutToBeInserted( parent, objectList.count(), 1 );
+		Q_EMIT objectsAboutToBeInserted(parent.modelId(), objectList.count(), 1);
 
 		objectList.append( completeNetworkObject );
 		if( completeNetworkObject.isContainer() )
@@ -318,7 +318,7 @@ void NetworkObjectDirectory::removeObjects( const NetworkObject& parent, const N
 				objectsToRemove.append( it->modelId() );
 			}
 
-			Q_EMIT objectsAboutToBeRemoved( parent, index, 1 );
+			Q_EMIT objectsAboutToBeRemoved(parent.modelId(), index, 1);
 			it = objectList.erase( it );
 			Q_EMIT objectsRemoved();
 		}

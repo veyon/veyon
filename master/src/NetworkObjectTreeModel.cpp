@@ -226,9 +226,9 @@ Qt::ItemFlags NetworkObjectTreeModel::flags( const QModelIndex& index ) const
 
 
 
-void NetworkObjectTreeModel::beginInsertObjects( const NetworkObject& parent, int index, int count )
+void NetworkObjectTreeModel::beginInsertObjects(NetworkObject::ModelId parentId, int index, int count)
 {
-	beginInsertRows( objectIndex( parent.modelId() ), index, index+count-1 );
+	beginInsertRows(objectIndex(parentId), index, index+count-1);
 }
 
 
@@ -240,9 +240,9 @@ void NetworkObjectTreeModel::endInsertObjects()
 
 
 
-void NetworkObjectTreeModel::beginRemoveObjects( const NetworkObject& parent, int index, int count )
+void NetworkObjectTreeModel::beginRemoveObjects(NetworkObject::ModelId parentId, int index, int count)
 {
-	beginRemoveRows( objectIndex( parent.modelId() ), index, index+count-1 );
+	beginRemoveRows(objectIndex(parentId), index, index+count-1);
 }
 
 
@@ -254,9 +254,9 @@ void NetworkObjectTreeModel::endRemoveObjects()
 
 
 
-void NetworkObjectTreeModel::updateObject( const NetworkObject& parent, int row )
+void NetworkObjectTreeModel::updateObject(NetworkObject::ModelId parentId, int row)
 {
-	const auto index = createIndex( row, 0, parent.modelId() );
+	const auto index = createIndex(row, 0, parentId);
 
 	Q_EMIT dataChanged( index, index );
 }

@@ -52,13 +52,13 @@ public:
 	Qt::ItemFlags flags( const QModelIndex& index ) const override;
 
 private:
-	void beginInsertObjects( const NetworkObject& parent, int index, int count );
+	void beginInsertObjects(NetworkObject::ModelId parentId, int index, int count);
 	void endInsertObjects();
 
-	void beginRemoveObjects( const NetworkObject& parent, int index, int count );
+	void beginRemoveObjects(NetworkObject::ModelId parentId, int index, int count);
 	void endRemoveObjects();
 
-	void updateObject( const NetworkObject& parent, int index );
+	void updateObject(NetworkObject::ModelId parent, int index );
 
 	QModelIndex objectIndex( NetworkObject::ModelId object, int column = 0 ) const;
 	const NetworkObject& object( const QModelIndex& index ) const;
