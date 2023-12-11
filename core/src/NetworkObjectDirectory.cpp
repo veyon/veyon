@@ -292,11 +292,13 @@ void NetworkObjectDirectory::addOrUpdateObject( const NetworkObject& networkObje
 		}
 
 		Q_EMIT objectsInserted();
+
+		propagateChildObjectChange(parent.modelId(), objectList.count());
 	}
 	else if( objectList[index].exactMatch( completeNetworkObject ) == false )
 	{
 		objectList.replace( index, completeNetworkObject );
-		Q_EMIT objectChanged( parent, index );
+		propagateChildObjectChange(parent.modelId(), index);
 	}
 }
 
@@ -369,4 +371,20 @@ void NetworkObjectDirectory::setObjectPopulated( const NetworkObject& networkObj
 			}
 		}
 	}
+}
+
+
+
+void NetworkObjectDirectory::propagateChildObjectChange(NetworkObject::ModelId objectId, int childIndex)
+{
+	while (objectId != 0)
+	{
+		Q_EMIT objectChanged(objectId, childIndex);
+
+		const auto newObjectId = parentId(objectId);
+		childIndex = index(newObjectId, objectId);
+		objectId = newObjectId;
+	}
+
+	Q_EMIT objectChanged(rootId(), childIndex);
 }
