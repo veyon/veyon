@@ -687,10 +687,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>此命令列出配置的密钥目录中的所有可用身份验证密钥。 如果指定了选项 &quot;%1&quot; ，则会显示包含密钥详细信息的表格。 如果无法访问密钥，某些细节可能会丢失，例如，没有读取权限。</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>请指定需要显示用法命令！</translation>
-    </message>
-    <message>
         <source>TYPE</source>
         <translation>TYPE</translation>
     </message>
@@ -728,7 +724,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation type="unfinished"/>
+        <translation>请指定键名 (例如: &quot;teacher/public&quot;) 作为第一个参数。</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation>请指定显示说明的命令。</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>指定的命令不存在或没有它的说明可以使用。</translation>
     </message>
 </context>
 <context>
@@ -758,7 +762,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Username to bind DN mapping:</source>
-        <translation type="unfinished"/>
+        <translation>绑定 DN 对应的用户名：</translation>
     </message>
     <message>
         <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
@@ -773,7 +777,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter your domain/LDAP username and password in order to access computers.</source>
-        <translation type="unfinished"/>
+        <translation>请输入您的域/LDAP用户名和密码以访问计算机。</translation>
     </message>
     <message>
         <source>Username</source>
@@ -865,7 +869,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Simple password</source>
-        <translation type="unfinished"/>
+        <translation>简单密码</translation>
     </message>
 </context>
 <context>
@@ -945,11 +949,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Directory name</source>
-        <translation type="unfinished"/>
+        <translation>目录名称</translation>
     </message>
     <message>
         <source>Importing CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>可以通过命令行导入 CSV 文件。更多信息请查看&lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;在线文档&lt;/a&gt;。</translation>
     </message>
 </context>
 <context>
@@ -1194,6 +1198,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>MAC ADDRESS</source>
         <translation>MAC 地址(网卡物理地)</translation>
     </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>指定的命令不存在或没有它的说明可以使用。</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1253,19 +1261,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>[no user]</source>
-        <translation type="unfinished"/>
+        <translation>[无用户]</translation>
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 服务器无法连接或未在运行</translation>
     </message>
     <message>
         <source>Name: %1</source>
-        <translation type="unfinished"/>
+        <translation>名称：%1</translation>
     </message>
     <message>
         <source>invalid</source>
-        <translation type="unfinished"/>
+        <translation>无效</translation>
+    </message>
+    <message>
+        <source>[none]</source>
+        <translation>[无]</translation>
     </message>
 </context>
 <context>
@@ -1307,7 +1319,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>ComputerGroupSelector</name>
     <message>
         <source>Group %1</source>
-        <translation type="unfinished"/>
+        <translation>组 %1</translation>
     </message>
 </context>
 <context>
@@ -1567,7 +1579,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"/>
+        <translation>分享您的屏幕或允许一个用户与其他用户分享其屏幕。</translation>
     </message>
     <message>
         <source>Full screen demo</source>
@@ -1575,19 +1587,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>以全屏模式分享您自己的屏幕</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>在此模式下，您的屏幕将以全屏模式显示在所有电脑上，用户的输入设备将被锁定。</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>在窗口中分享您自己的屏幕</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>以全屏模式分享选中用户的屏幕</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
@@ -1595,7 +1607,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>在窗口中分享选中用户的屏幕</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -1603,19 +1615,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>请选择一个用户的屏幕进行分享</translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>请仅选择一个用户的屏幕进行分享</translation>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Screen %1 [%2]</source>
-        <translation type="unfinished"/>
+        <translation>所有屏幕</translation>
     </message>
 </context>
 <context>
@@ -1669,23 +1677,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Applications &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>程序 &amp; 网站</translation>
     </message>
     <message>
         <source>Predefined applications</source>
-        <translation type="unfinished"/>
+        <translation>预定义的程序</translation>
     </message>
     <message>
         <source>Add new application</source>
-        <translation type="unfinished"/>
+        <translation>添加新程序</translation>
     </message>
     <message>
         <source>Remove selected application</source>
-        <translation type="unfinished"/>
+        <translation>移除选中的程序</translation>
     </message>
     <message>
         <source>Add new website</source>
-        <translation type="unfinished"/>
+        <translation>添加新的网站</translation>
     </message>
     <message>
         <source>New application</source>
@@ -1712,7 +1720,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>启动程序</translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
@@ -1720,11 +1728,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>启动程序 &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>自定义程序</translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
@@ -1775,7 +1783,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>自定义程序</translation>
     </message>
 </context>
 <context>
@@ -1801,10 +1809,134 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>FeatureControl</name>
+    <name>FeatureCommands</name>
     <message>
-        <source>Feature control</source>
-        <translation>功能控制</translation>
+        <source>List names of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stop a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation>请指定显示说明的命令。</translation>
+    </message>
+    <message>
+        <source>Displays a list with the names of all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation>主机地址</translation>
+    </message>
+    <message>
+        <source>FEATURE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ARGUMENTS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock the screen</source>
+        <translation>锁定屏幕</translation>
+    </message>
+    <message>
+        <source>Display a text message</source>
+        <translation>显示文字消息</translation>
+    </message>
+    <message>
+        <source>Test message</source>
+        <translation>文字消息</translation>
+    </message>
+    <message>
+        <source>Start an application</source>
+        <translation>启动程序</translation>
+    </message>
+    <message>
+        <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock the screen</source>
+        <translation>解锁屏幕</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>指定的命令不存在或没有它的说明可以使用。</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>名称</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>介绍</translation>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation>主机</translation>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation>服务</translation>
+    </message>
+    <message>
+        <source>Worker</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation>插件</translation>
+    </message>
+    <message>
+        <source>Invalid feature name or UID specified</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Error parsing the JSON-encoded arguments: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to initialize credentials</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not establish a connection to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to send feature control message to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for controlling features</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2026,7 +2158,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>TLS configuration</source>
-        <translation type="unfinished"/>
+        <translation>TLS 配置</translation>
     </message>
     <message>
         <source>Use certificate authority for TLS connections</source>
@@ -2034,7 +2166,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>CA certificate file</source>
-        <translation type="unfinished"/>
+        <translation>CA 证书文件</translation>
     </message>
     <message>
         <source>...</source>
@@ -2042,11 +2174,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Host certificate file</source>
-        <translation type="unfinished"/>
+        <translation>主机证书文件</translation>
     </message>
     <message>
         <source>Host private key file</source>
-        <translation type="unfinished"/>
+        <translation>主机私钥文件</translation>
     </message>
 </context>
 <context>
@@ -2787,11 +2919,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Directory name</source>
-        <translation type="unfinished"/>
+        <translation>目录名称</translation>
     </message>
     <message>
         <source>Query options</source>
-        <translation type="unfinished"/>
+        <translation>查询选项</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
@@ -2884,7 +3016,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User sessions</source>
-        <translation type="unfinished"/>
+        <translation>用户会话</translation>
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
@@ -3138,6 +3270,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Locations &amp; computers</source>
         <translation>地点及计算机</translation>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3328,6 +3464,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>此模式允许您在一个或多个地点监控所有计算机。</translation>
     </message>
+    <message>
+        <source>Query application version of the server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>NestedNetworkObjectDirectory</name>
@@ -3393,7 +3541,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>PluginsCommands</name>
+    <name>PluginCommands</name>
     <message>
         <source>List names of all installed plugins</source>
         <translation type="unfinished"/>
@@ -3674,7 +3822,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
+        <translation>正在连接...</translation>
+    </message>
+    <message>
+        <source>Select screen</source>
+        <translation>选择屏幕</translation>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation>所有屏幕</translation>
     </message>
 </context>
 <context>
@@ -3793,7 +3949,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation type="unfinished"/>
+        <translation>您确定要删除所有选中的屏幕截图吗？</translation>
     </message>
 </context>
 <context>
@@ -3882,7 +4038,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Internal VNC server</source>
-        <translation type="unfinished"/>
+        <translation>内部 VNC 服务器</translation>
     </message>
     <message>
         <source>Feature manager</source>
@@ -3898,7 +4054,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Session mode</source>
-        <translation type="unfinished"/>
+        <translation>会话模式</translation>
     </message>
     <message>
         <source>Local session mode (single server instance for primary local session)</source>
@@ -3937,19 +4093,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>ServiceControlPlugin</name>
-    <message>
-        <source>Service is running</source>
-        <translation>服务正在运行</translation>
-    </message>
-    <message>
-        <source>Service is not running</source>
-        <translation>服务没有运行</translation>
-    </message>
-    <message>
-        <source>Configure and control Veyon service</source>
-        <translation>配置和控制 Veyon 服务</translation>
-    </message>
+    <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
         <translation>注册 Veyon 服务</translation>
@@ -3975,12 +4119,24 @@ Typically this is required to support terminal servers.</source>
         <translation>查询 Veyon 服务状态</translation>
     </message>
     <message>
+        <source>Service is running</source>
+        <translation>服务正在运行</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>服务没有运行</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation>配置和控制 Veyon 服务</translation>
+    </message>
+    <message>
         <source>Commands for configuring and controlling Veyon Service</source>
         <translation>用于配置和控制Veyon服务的命令</translation>
     </message>
 </context>
 <context>
-    <name>ShellCommandLinePlugin</name>
+    <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
         <translation>运行命令文件</translation>
@@ -3990,8 +4146,8 @@ Typically this is required to support terminal servers.</source>
         <translation>文件 &quot;%1&quot; 不存在！</translation>
     </message>
     <message>
-        <source>Interactive shell and script execution for Veyon Control</source>
-        <translation>Veyon 控制器的交互式 shell 和脚本运行</translation>
+        <source>Interactive shell and script execution for Veyon CLI</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -4014,22 +4170,22 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"/>
+        <translation>持续时间：</translation>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"/>
+        <translation>添加选中的计算机</translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"/>
+        <translation>删除选中的计算机</translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"/>
+        <translation>实时更新计算机</translation>
     </message>
     <message>
         <source>Spotlight</source>
@@ -4049,7 +4205,7 @@ The second button removes the selected or last computer.</source>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>启动程序</translation>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
@@ -4228,7 +4384,7 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation type="unfinished"/>
+        <translation>您确定要注销 &lt;b&gt;所有&lt;/b&gt; 用户吗？</translation>
     </message>
 </context>
 <context>
@@ -4300,6 +4456,10 @@ The second button removes the selected or last computer.</source>
     <message>
         <source>Authentication test</source>
         <translation>验证测试</translation>
+    </message>
+    <message>
+        <source>Screen %1</source>
+        <translation>屏幕 %1</translation>
     </message>
 </context>
 <context>
@@ -4381,6 +4541,10 @@ The second button removes the selected or last computer.</source>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>插件实现 Windows 平台的抽象函数</translation>
     </message>
+    <message>
+        <source>Internal display</source>
+        <translation>内部显示</translation>
+    </message>
 </context>
 <context>
     <name>WindowsServiceControl</name>
@@ -4389,28 +4553,32 @@ The second button removes the selected or last computer.</source>
         <translation>服务 &quot;%1&quot; 已安装。</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>服务 &quot;%1&quot; 未能安装。</translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation>服务 &quot;%1&quot; 已成功安装。</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>服务 &quot;%1&quot; 未能卸载。</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation>服务 &quot;%1&quot; 已成功卸载。</translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>服务 &quot;%1&quot; 的启动类型无法更改。</translation>
-    </message>
-    <message>
         <source>Service &quot;%1&quot; could not be found.</source>
         <translation>服务 &quot;%1&quot; 未找到。</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

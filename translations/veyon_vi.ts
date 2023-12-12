@@ -686,10 +686,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <translation>Lệnh này liệt kê tất cả các khóa xác thực khả dụng trong thư mục khóa đã cấu hinh. Nếu tùy chọn &quot;%1&quot; được chỉ định, một bảng với chi tiết khóa sẽ được hiển thị để thay thế. Một số chi tiết có thể bị thiếu nếu một khóa không thể truy cập được ví dụ do thiếu quyền đọc.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Vui lòng chỉ định lệnh để hiển thị trợ giúp!</translation>
-    </message>
-    <message>
         <source>TYPE</source>
         <translation>KIỂU</translation>
     </message>
@@ -727,6 +723,14 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1193,6 +1197,10 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <source>MAC ADDRESS</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1264,6 +1272,10 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     </message>
     <message>
         <source>invalid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[none]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1612,10 +1624,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <source>All screens</source>
         <translation type="unfinished"/>
     </message>
-    <message>
-        <source>Screen %1 [%2]</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1800,9 +1808,133 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     </message>
 </context>
 <context>
-    <name>FeatureControl</name>
+    <name>FeatureCommands</name>
     <message>
-        <source>Feature control</source>
+        <source>List names of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stop a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a list with the names of all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>FEATURE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ARGUMENTS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display a text message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start an application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Tên</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Worker</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid feature name or UID specified</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Error parsing the JSON-encoded arguments: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to initialize credentials</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not establish a connection to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to send feature control message to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for controlling features</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3118,6 +3250,10 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <source>Locations &amp; computers</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3308,6 +3444,18 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Query application version of the server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>NestedNetworkObjectDirectory</name>
@@ -3373,7 +3521,7 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     </message>
 </context>
 <context>
-    <name>PluginsCommands</name>
+    <name>PluginCommands</name>
     <message>
         <source>List names of all installed plugins</source>
         <translation type="unfinished"/>
@@ -3654,6 +3802,14 @@ Please save your work and close all programs.</source>
         <source>Connecting...</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Select screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
@@ -3914,19 +4070,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>ServiceControlPlugin</name>
-    <message>
-        <source>Service is running</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Service is not running</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Configure and control Veyon service</source>
-        <translation type="unfinished"/>
-    </message>
+    <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
         <translation type="unfinished"/>
@@ -3952,12 +4096,24 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Service is running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Commands for configuring and controlling Veyon Service</source>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>ShellCommandLinePlugin</name>
+    <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
         <translation type="unfinished"/>
@@ -3967,7 +4123,7 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Interactive shell and script execution for Veyon Control</source>
+        <source>Interactive shell and script execution for Veyon CLI</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4278,6 +4434,10 @@ The second button removes the selected or last computer.</source>
         <source>Authentication test</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Screen %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4358,6 +4518,10 @@ The second button removes the selected or last computer.</source>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Internal display</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsServiceControl</name>
@@ -4366,15 +4530,7 @@ The second button removes the selected or last computer.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4382,11 +4538,23 @@ The second button removes the selected or last computer.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
+        <source>Service &quot;%1&quot; could not be found.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Service &quot;%1&quot; could not be found.</source>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -686,10 +686,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>See käsk loetleb kõik saadaolevad autentimisvõtmed konfigureeritud võtmete kataloogis. Kui määratakse suvand &quot;%1&quot;, kuvatakse selle asemel võtme üksikasjadega tabel. Mõni detail võib puududa, kui võtmele pole juurdepääsu, nt. lugemisõiguste puudumise tõttu.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Palun määrake käsk, mille jaoks abi kuvatakse!</translation>
-    </message>
-    <message>
         <source>TYPE</source>
         <translation>TÜÜP</translation>
     </message>
@@ -728,6 +724,14 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
         <translation>Palun määrake esimese argumendina võtme nimi (näiteks „õpetaja/avalik”).</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation>Palun määrake käsk abi kuvamiseks.</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>Määratud käsku pole olemas või selle jaoks pole abi saadaval.</translation>
     </message>
 </context>
 <context>
@@ -944,11 +948,11 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Directory name</source>
-        <translation type="unfinished"/>
+        <translation>Kataloogi nimi</translation>
     </message>
     <message>
         <source>Importing CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>CSV -failide importimine on võimalik käsurealiidese kaudu. Lisateabe saamiseks vaadake &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;veebipõhist dokumentatsiooni&lt;/a&gt;.</translation>
     </message>
 </context>
 <context>
@@ -1193,6 +1197,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>MAC ADDRESS</source>
         <translation>MAC AADRESS</translation>
     </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>Määratud käsku pole olemas või selle jaoks pole abi saadaval.</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1260,11 +1268,15 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Name: %1</source>
-        <translation type="unfinished"/>
+        <translation>Nimi: %1</translation>
     </message>
     <message>
         <source>invalid</source>
         <translation>kehtetu</translation>
+    </message>
+    <message>
+        <source>[none]</source>
+        <translation>[pole]</translation>
     </message>
 </context>
 <context>
@@ -1612,10 +1624,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>All screens</source>
         <translation>Kõik ekraanid</translation>
     </message>
-    <message>
-        <source>Screen %1 [%2]</source>
-        <translation>Ekraan %1 [%2]</translation>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1800,10 +1808,134 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
 </context>
 <context>
-    <name>FeatureControl</name>
+    <name>FeatureCommands</name>
     <message>
-        <source>Feature control</source>
-        <translation>Funktsiooni juhtimine</translation>
+        <source>List names of all available features</source>
+        <translation>Loetlege kõigi saadaolevate funktsioonide nimed</translation>
+    </message>
+    <message>
+        <source>Show table with details of all available features</source>
+        <translation>Kuva tabel kõigi saadaolevate funktsioonide üksikasjadega</translation>
+    </message>
+    <message>
+        <source>Start a feature on a remote host</source>
+        <translation>Käivitage funktsioon kaughostis</translation>
+    </message>
+    <message>
+        <source>Stop a feature on a remote host</source>
+        <translation>Funktsiooni peatamine kaughostis</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation>Palun määrake käsk abi kuvamiseks.</translation>
+    </message>
+    <message>
+        <source>Displays a list with the names of all available features.</source>
+        <translation>Kuvab loendi kõigi saadaolevate funktsioonide nimedega.</translation>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation>Kuvab tabeli üksikasjaliku teabega kõigi saadaolevate funktsioonide kohta. See teave sisaldab kirjeldust, UID-d, vastavat funktsiooni pakkuva pistikprogrammi nime ja mõningaid muid juurutamisega seotud üksikasju.</translation>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation>IP AADRESS</translation>
+    </message>
+    <message>
+        <source>FEATURE</source>
+        <translation>Tunnusjoon</translation>
+    </message>
+    <message>
+        <source>ARGUMENTS</source>
+        <translation>ARGUMENTID</translation>
+    </message>
+    <message>
+        <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
+        <translation>Käivitab määratud funktsiooni määratud hostis, luues ühenduse kaugtöötava Veyoni serveriga. Funktsiooni saab määrata nime või UID-ga. Kõigi saadaolevate funktsioonide vaatamiseks kasutage käsku ``show``. Olenevalt funktsioonist tuleb määrata täiendavad argumendid (nt kuvatav tekstsõnum), mis on kodeeritud ühe JSON-stringina. Lisateabe saamiseks vaadake arendaja dokumentatsiooni</translation>
+    </message>
+    <message>
+        <source>Lock the screen</source>
+        <translation>Lukustage ekraan</translation>
+    </message>
+    <message>
+        <source>Display a text message</source>
+        <translation>Tekstisõnumi kuvamine</translation>
+    </message>
+    <message>
+        <source>Test message</source>
+        <translation>Testsõnum</translation>
+    </message>
+    <message>
+        <source>Start an application</source>
+        <translation>Käivitage rakendus</translation>
+    </message>
+    <message>
+        <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
+        <translation>Peatab määratud funktsiooni määratud hostis, luues ühenduse kaugtöötava Veyoni serveriga. Funktsiooni saab määrata nime või UID-ga. Kõigi saadaolevate funktsioonide vaatamiseks kasutage käsku ``show``.</translation>
+    </message>
+    <message>
+        <source>Unlock the screen</source>
+        <translation>Avage ekraan</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>Määratud käsku pole olemas või selle jaoks pole abi saadaval.</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nimi</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Kirjeldus</translation>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation>Master</translation>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation>Teenus</translation>
+    </message>
+    <message>
+        <source>Worker</source>
+        <translation>Tööline</translation>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation>UID</translation>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation>Pistikprogramm</translation>
+    </message>
+    <message>
+        <source>Invalid feature name or UID specified</source>
+        <translation>Määratud on kehtetu objekti nimi või UID</translation>
+    </message>
+    <message>
+        <source>Error parsing the JSON-encoded arguments: %1</source>
+        <translation>Viga JSON-kodeeritud argumentide sõelumisel: %1</translation>
+    </message>
+    <message>
+        <source>Failed to initialize credentials</source>
+        <translation>Mandaatide lähtestamine ebaõnnestus</translation>
+    </message>
+    <message>
+        <source>Could not establish a connection to host %1</source>
+        <translation>Hostiga %1 ei õnnestunud ühendust luua</translation>
+    </message>
+    <message>
+        <source>Failed to send feature control message to host %1</source>
+        <translation>Funktsiooni juhtsõnumi saatmine hostile %1 ebaõnnestus</translation>
+    </message>
+    <message>
+        <source>Feature-related CLI operations</source>
+        <translation>Funktsioonidega seotud CLI toimingud</translation>
+    </message>
+    <message>
+        <source>Commands for controlling features</source>
+        <translation>Funktsioonide juhtimise käsud</translation>
     </message>
 </context>
 <context>
@@ -2025,15 +2157,15 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>TLS configuration</source>
-        <translation type="unfinished"/>
+        <translation>TLS konfiguratsioon</translation>
     </message>
     <message>
         <source>Use certificate authority for TLS connections</source>
-        <translation type="unfinished"/>
+        <translation>Kasutage TLS -ühenduste jaoks sertifikaati</translation>
     </message>
     <message>
         <source>CA certificate file</source>
-        <translation type="unfinished"/>
+        <translation>CA sertifikaadi fail</translation>
     </message>
     <message>
         <source>...</source>
@@ -2041,11 +2173,11 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Host certificate file</source>
-        <translation type="unfinished"/>
+        <translation>Hosti sertifikaadi fail</translation>
     </message>
     <message>
         <source>Host private key file</source>
-        <translation type="unfinished"/>
+        <translation>Hosti privaatvõtme fail</translation>
     </message>
 </context>
 <context>
@@ -2395,7 +2527,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>LDAP directory</source>
-        <translation type="unfinished"/>
+        <translation>LDAP kataloog</translation>
     </message>
 </context>
 <context>
@@ -2786,7 +2918,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Directory name</source>
-        <translation type="unfinished"/>
+        <translation>Kataloogi nimi</translation>
     </message>
     <message>
         <source>Query options</source>
@@ -2805,7 +2937,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
     <message>
         <source>Please use the global LDAP configuration page to configure how to retrieve locations and computers from your LDAP-based directory service.</source>
-        <translation type="unfinished"/>
+        <translation>Kasutage üldist LDAP-i konfiguratsioonilehte, et konfigureerida, kuidas LDAP-põhisest kataloogiteenusest asukohti ja arvuteid alla laadida.</translation>
     </message>
 </context>
 <context>
@@ -3137,6 +3269,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Locations &amp; computers</source>
         <translation>Asukohad&amp;arvutid</translation>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation>Kuva ainult arvutid, mille kasutajad on sisse logitud</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3327,12 +3463,24 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>See režiim võimaldab teil jälgida kõiki arvuteid ühes või mitmes kohas.</translation>
     </message>
+    <message>
+        <source>Query application version of the server</source>
+        <translation>Päring serveri rakenduse versioonist</translation>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation>Aktiivsete funktsioonide päring</translation>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
+        <translation>Pärige kaugkasutatavate ekraanide atribuute</translation>
+    </message>
 </context>
 <context>
     <name>NestedNetworkObjectDirectory</name>
     <message>
         <source>All directories</source>
-        <translation type="unfinished"/>
+        <translation>Kõik kataloogid</translation>
     </message>
 </context>
 <context>
@@ -3392,7 +3540,7 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     </message>
 </context>
 <context>
-    <name>PluginsCommands</name>
+    <name>PluginCommands</name>
     <message>
         <source>List names of all installed plugins</source>
         <translation>Loetlege kõigi installitud pistikprogrammide nimed</translation>
@@ -3673,7 +3821,15 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
+        <translation>Ühendamine...</translation>
+    </message>
+    <message>
+        <source>Select screen</source>
+        <translation>Valige ekraan</translation>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation>Kõik ekraanid</translation>
     </message>
 </context>
 <context>
@@ -3897,19 +4053,19 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>Session mode</source>
-        <translation type="unfinished"/>
+        <translation>Seansi režiim</translation>
     </message>
     <message>
         <source>Local session mode (single server instance for primary local session)</source>
-        <translation type="unfinished"/>
+        <translation>Kohaliku seansi režiim (ühe serveri eksemplar esmase kohaliku seansi jaoks)</translation>
     </message>
     <message>
         <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation type="unfinished"/>
+        <translation>Aktiivne seansirežiim (ühe serveri eksemplar aktiivse kohaliku või kaugseansi jaoks)</translation>
     </message>
     <message>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
+        <translation>Mitme seansi režiim (iga kohaliku ja kaugtöölaua seansi jaoks eraldi serveri eksemplar)</translation>
     </message>
 </context>
 <context>
@@ -3936,19 +4092,7 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
 </context>
 <context>
-    <name>ServiceControlPlugin</name>
-    <message>
-        <source>Service is running</source>
-        <translation>Teenus töötab</translation>
-    </message>
-    <message>
-        <source>Service is not running</source>
-        <translation>Teenus on peatatud</translation>
-    </message>
-    <message>
-        <source>Configure and control Veyon service</source>
-        <translation>Veyoni teenuse konfigureerimine ja juhtimine</translation>
-    </message>
+    <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
         <translation>Registreerige Veyoni teenus</translation>
@@ -3963,7 +4107,7 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation>Peatage Veyoni teenus</translation>
+        <translation>Peatan Veyoni teenuse</translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
@@ -3974,12 +4118,24 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <translation>Veyoni teenuse päringu olek</translation>
     </message>
     <message>
+        <source>Service is running</source>
+        <translation>Teenus töötab</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>Teenus on peatatud</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation>Veyoni teenuse konfigureerimine ja juhtimine</translation>
+    </message>
+    <message>
         <source>Commands for configuring and controlling Veyon Service</source>
         <translation>Käsud Veyon Service&apos;i konfigureerimiseks ja juhtimiseks</translation>
     </message>
 </context>
 <context>
-    <name>ShellCommandLinePlugin</name>
+    <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
         <translation>Käivitage käsufail</translation>
@@ -3989,8 +4145,8 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <translation>Faili &quot;%1&quot; ei ole!</translation>
     </message>
     <message>
-        <source>Interactive shell and script execution for Veyon Control</source>
-        <translation>Interaktiivne kesta ja skripti käivitamine Veyon-i juhtimisele</translation>
+        <source>Interactive shell and script execution for Veyon CLI</source>
+        <translation>Interaktiivne kest ja skripti täitmine Veyon CLI jaoks</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -4041,7 +4197,8 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
 The second button removes the selected or last computer.</source>
-        <translation type="unfinished"/>
+        <translation>Arvutite lisamiseks klõpsake hiire keskmise nupuga või klõpsake esimest nuppu allpool.
+Teine nupp eemaldab valitud või viimase arvuti.</translation>
     </message>
 </context>
 <context>
@@ -4300,6 +4457,10 @@ The second button removes the selected or last computer.</source>
         <source>Authentication test</source>
         <translation>Autentimistest</translation>
     </message>
+    <message>
+        <source>Screen %1</source>
+        <translation>Ekraan %1</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4380,6 +4541,10 @@ The second button removes the selected or last computer.</source>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Pistikprogramm, mis rakendab Windowsi platvormi jaoks abstraktseid funktsioone</translation>
     </message>
+    <message>
+        <source>Internal display</source>
+        <translation>Sisemine ekraan</translation>
+    </message>
 </context>
 <context>
     <name>WindowsServiceControl</name>
@@ -4388,28 +4553,32 @@ The second button removes the selected or last computer.</source>
         <translation>Teenus &quot;%1&quot; on juba installitud.</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>Teenust &quot;%1&quot; ei saanud installida.</translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation>Teenus &quot;%1&quot; installiti edukalt.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>Teenust &quot;%1&quot; ei saanud desinstallida.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation>Teenuse &quot;%1&quot; desinstallimine õnnestus.</translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>Teenuse algustüüpi &quot;%1&quot; ei saanud muuta.</translation>
-    </message>
-    <message>
         <source>Service &quot;%1&quot; could not be found.</source>
         <translation>Teenust &quot;%1&quot; ei leitud.</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation>Teenust &quot;%1&quot; ei saanud installida (viga %2).</translation>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation>Teenuse &quot;%1&quot; tõrketoimingute konfiguratsiooni ei saanud muuta (viga %2).</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation>Teenust &quot;%1&quot; ei saanud desinstallida (viga %2).</translation>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation>Teenuse algustüüpi &quot;%1&quot; ei saanud muuta (viga %2).</translation>
     </message>
 </context>
 <context>

@@ -683,10 +683,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Ця команда виводить список усіх доступних ключів розпізнавання у налаштованому каталозі ключів. Якщо вказано параметр «%1», замість списку буде виведено таблицю із подробицями щодо ключів. Деякі параметри ключа може бути не показано, якщо доступ до ключа обмежено, наприклад через брак прав на читання файла ключа.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Будь ласка, вкажіть команду, для якої слід показати довідку!</translation>
-    </message>
-    <message>
         <source>TYPE</source>
         <translation>ТИП</translation>
     </message>
@@ -725,6 +721,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
         <translation>Будь ласка, вкажіть назву ключа (наприклад «teacher/public») першим аргументом.</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation>Будь ласка, вкажіть команду, для якої слід показати довідку.</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>Вказаної команди не існує або немає доступу до довідки до неї.</translation>
     </message>
 </context>
 <context>
@@ -1190,6 +1194,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>MAC ADDRESS</source>
         <translation>MAC-АДРЕСА</translation>
     </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>Вказаної команди не існує або немає доступу до довідки до неї.</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1262,6 +1270,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>invalid</source>
         <translation>некоректний</translation>
+    </message>
+    <message>
+        <source>[none]</source>
+        <translation>[немає]</translation>
     </message>
 </context>
 <context>
@@ -1609,10 +1621,6 @@ The public key is used on client computers to authenticate incoming connection r
         <source>All screens</source>
         <translation>Усі екрани</translation>
     </message>
-    <message>
-        <source>Screen %1 [%2]</source>
-        <translation>Екран %1 [%2]</translation>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1797,10 +1805,134 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>FeatureControl</name>
+    <name>FeatureCommands</name>
     <message>
-        <source>Feature control</source>
-        <translation>Керування можливосями</translation>
+        <source>List names of all available features</source>
+        <translation>Вивести список назв усіх доступних можливостей</translation>
+    </message>
+    <message>
+        <source>Show table with details of all available features</source>
+        <translation>Показати таблицю із подробицями щодо усіх доступних можливостей</translation>
+    </message>
+    <message>
+        <source>Start a feature on a remote host</source>
+        <translation>Запустити можливість на віддаленому вузлі</translation>
+    </message>
+    <message>
+        <source>Stop a feature on a remote host</source>
+        <translation>Зупинити роботу можливості на віддаленому вузлі</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation>Будь ласка, вкажіть команду, для якої слід показати довідку.</translation>
+    </message>
+    <message>
+        <source>Displays a list with the names of all available features.</source>
+        <translation>Показати список із назвами усіх доступних можливостей</translation>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation>Показує таблицю із докладними відомостями щодо усіх доступних можливостей. Серед цих відомостей опис, UID, назва додатка, який забезпечує роботу можливості, та деякі інші пов&apos;язані із реалізацією подробиці.</translation>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation>АДРЕСА ВУЗЛА</translation>
+    </message>
+    <message>
+        <source>FEATURE</source>
+        <translation>МОЖЛИВІСТЬ</translation>
+    </message>
+    <message>
+        <source>ARGUMENTS</source>
+        <translation>АРГУМЕНТИ</translation>
+    </message>
+    <message>
+        <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
+        <translation>Запускає вказану можливість на вказаному вузлі шляхом з&apos;єднання із запущеним віддалено сервером Veyon. Можливість можна вказати за назвою або UID. Скористайтеся командою «show», щоб переглянути список усіх доступних можливостей. Залежно від можливості, може бути вказано додаткові аргументи (зокрема текстове повідомлення для показу), які має бути закодовано у один рядок JSON. Щоб дізнатися більше, зверніться до документації для розробників.</translation>
+    </message>
+    <message>
+        <source>Lock the screen</source>
+        <translation>Заблокувати екран</translation>
+    </message>
+    <message>
+        <source>Display a text message</source>
+        <translation>Показати текстове повідомлення</translation>
+    </message>
+    <message>
+        <source>Test message</source>
+        <translation>Тестове повідомлення</translation>
+    </message>
+    <message>
+        <source>Start an application</source>
+        <translation>Запустити програму</translation>
+    </message>
+    <message>
+        <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
+        <translation>Зупиняє роботу вказаної можливості на вказанмоу вузлі шляхом з&apos;єднання із запущеним віддалено сервером Veyon. Можливість можна вказати за назвою або UID. Скористайтеся командою «show», щоб переглянути список усіх доступних можливостей.</translation>
+    </message>
+    <message>
+        <source>Unlock the screen</source>
+        <translation>Розблокувати екран</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>Вказаної команди не існує або немає доступу до довідки до неї.</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Назва</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Опис</translation>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation>Основний</translation>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation>Служба</translation>
+    </message>
+    <message>
+        <source>Worker</source>
+        <translation>Обробник</translation>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation>UID</translation>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation>Додаток</translation>
+    </message>
+    <message>
+        <source>Invalid feature name or UID specified</source>
+        <translation>Вказано некоректну назву або UID можливості</translation>
+    </message>
+    <message>
+        <source>Error parsing the JSON-encoded arguments: %1</source>
+        <translation>Помилка під час спроби обробити закодовані у JSON аргументи: %1</translation>
+    </message>
+    <message>
+        <source>Failed to initialize credentials</source>
+        <translation>Не вдалося ініціалізувати реєстраційні дані</translation>
+    </message>
+    <message>
+        <source>Could not establish a connection to host %1</source>
+        <translation>Не вдалося встановити з&apos;єднання із вузлом %1</translation>
+    </message>
+    <message>
+        <source>Failed to send feature control message to host %1</source>
+        <translation>Не вдалося надіслати повідомлення керування можливістю на вузол %1</translation>
+    </message>
+    <message>
+        <source>Feature-related CLI operations</source>
+        <translation>Пов&apos;язані із можливістю дії командного рядка</translation>
+    </message>
+    <message>
+        <source>Commands for controlling features</source>
+        <translation>Команди для керування можливостями</translation>
     </message>
 </context>
 <context>
@@ -3136,6 +3268,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Locations &amp; computers</source>
         <translation>Місця і комп&apos;ютери</translation>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation>Показувати лише комп&apos;ютери із користувачами у системі</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3326,6 +3462,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>У цьому режимі ви можете спостерігати за усіма комп&apos;ютерами у одному або декількох місцях.</translation>
     </message>
+    <message>
+        <source>Query application version of the server</source>
+        <translation>Опитати сервер щодо версії програми</translation>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation>Опитати щодо активних можливостей</translation>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
+        <translation>Опитати віддалені доступні екрани щодо властивостей</translation>
+    </message>
 </context>
 <context>
     <name>NestedNetworkObjectDirectory</name>
@@ -3391,7 +3539,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>PluginsCommands</name>
+    <name>PluginCommands</name>
     <message>
         <source>List names of all installed plugins</source>
         <translation>Вивести список назв усіх встановлених додатків</translation>
@@ -3672,7 +3820,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
+        <translation>Встановлюємо з&apos;єднання…</translation>
+    </message>
+    <message>
+        <source>Select screen</source>
+        <translation>Виберіть екран</translation>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation>Усі екрани</translation>
     </message>
 </context>
 <context>
@@ -3935,19 +4091,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>ServiceControlPlugin</name>
-    <message>
-        <source>Service is running</source>
-        <translation>Службу запущено</translation>
-    </message>
-    <message>
-        <source>Service is not running</source>
-        <translation>Службу не запущено</translation>
-    </message>
-    <message>
-        <source>Configure and control Veyon service</source>
-        <translation>Налаштовування і керування службою Veyon</translation>
-    </message>
+    <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
         <translation>Зареєструвати службу Veyon</translation>
@@ -3973,12 +4117,24 @@ Typically this is required to support terminal servers.</source>
         <translation>Визначити стан служби Veyon</translation>
     </message>
     <message>
+        <source>Service is running</source>
+        <translation>Службу запущено</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>Службу не запущено</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation>Налаштовування і керування службою Veyon</translation>
+    </message>
+    <message>
         <source>Commands for configuring and controlling Veyon Service</source>
         <translation>Команди для налаштовування і керування службою Veyon</translation>
     </message>
 </context>
 <context>
-    <name>ShellCommandLinePlugin</name>
+    <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
         <translation>Виконати файл команди</translation>
@@ -3988,8 +4144,8 @@ Typically this is required to support terminal servers.</source>
         <translation>Файла «%1» не існує!</translation>
     </message>
     <message>
-        <source>Interactive shell and script execution for Veyon Control</source>
-        <translation>Інтерактивна оболонка і засіб виконання скриптів для Керування Veyon</translation>
+        <source>Interactive shell and script execution for Veyon CLI</source>
+        <translation>Інтерактивна оболонка і засіб виконання скриптів для командного рядка Veyon</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -4300,6 +4456,10 @@ The second button removes the selected or last computer.</source>
         <source>Authentication test</source>
         <translation>Перевірка розпізнавання</translation>
     </message>
+    <message>
+        <source>Screen %1</source>
+        <translation>Екран %1</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4380,6 +4540,10 @@ The second button removes the selected or last computer.</source>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Додаток, який реалізуває абстрактні функції на платформі Windows</translation>
     </message>
+    <message>
+        <source>Internal display</source>
+        <translation>Внутрішній дисплей</translation>
+    </message>
 </context>
 <context>
     <name>WindowsServiceControl</name>
@@ -4388,28 +4552,32 @@ The second button removes the selected or last computer.</source>
         <translation>Службу «%1» вже встановлено.</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>Не вдалося встановити службу «%1».</translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation>Службу «%1» було успішно встановлено.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>Не вдалося вилучити службу «%1».</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation>Службу «%1» успішно вилучено.</translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>Не вдалося змінити тип запуску служби «%1».</translation>
-    </message>
-    <message>
         <source>Service &quot;%1&quot; could not be found.</source>
         <translation>Не вдалося знайти службу «%1».</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation>Не вдалося встановити службу «%1» (помилка %2).</translation>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation>Не вдалося змінити налаштування дій у відповідь на помилки для служби «%1» (помилка %2).</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation>Не вдалося вилучити службу «%1» (помилка %2).</translation>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation>TНе вдалося змінити тип запуску служби «%1» (помилка %2).</translation>
     </message>
 </context>
 <context>

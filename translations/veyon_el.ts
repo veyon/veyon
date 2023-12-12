@@ -11,7 +11,7 @@
     </message>
     <message>
         <source>License</source>
-        <translation>Άδεια</translation>
+        <translation>Άδεια χρήσης</translation>
     </message>
     <message>
         <source>About Veyon</source>
@@ -39,11 +39,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation>Σχετικά %1 %2</translation>
+        <translation>Σχετικά με το %1 %2</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation>Υποστήριξε το Veyon με μία δωρεά</translation>
+        <translation>Υποστήριξε το Veyon με μια δωρεά</translation>
     </message>
 </context>
 <context>
@@ -62,11 +62,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation>Επεξεργασία κανόνα ελέγχου πρόσβασης</translation>
+        <translation>Κανόνες ελέγχου πρόσβασης διεργασίας</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation>Εξουσιοδοτημένα μέλη ομάδων με πρόσβαση στον υπολογιστή</translation>
+        <translation>Ομάδες χρηστών εξουσιοδοτημένες για πρόσβαση στον υπολογιστή</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
@@ -74,7 +74,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation>Εξουσιοδοτημένα μέλη ομάδων</translation>
+        <translation>Εξουσιοδοτημένες ομάδες χρηστών</translation>
     </message>
     <message>
         <source>All groups</source>
@@ -82,7 +82,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access control rules</source>
-        <translation>Έλεγχος πρόσβασης</translation>
+        <translation>Κανόνες ελέγχου πρόσβασης</translation>
     </message>
     <message>
         <source>Add access control rule</source>
@@ -94,11 +94,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation>Μετακίνηση του κανόνα προς τα κάτω</translation>
+        <translation>Μετακίνηση επιλεγμένου κανόνα προς τα κάτω</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation>Μετακίνηση του κανόνα προς τα πάνω</translation>
+        <translation>Μετακίνηση επιλεγμένου κανόνα προς τα επάνω</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
@@ -106,7 +106,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Εισάγετε όνομα χρήστη</translation>
+        <translation>Εισαγωγή ονόματος χρήστη</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
@@ -118,7 +118,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation>Ο συγκεκριμένος χρήστης έχει δικαίωμα πρόσβασης σε υπολογιστή, με αυτή την διαμόρφωση.</translation>
+        <translation>Ο συγκεκριμένος χρήστης έχει δικαίωμα πρόσβασης σε υπολογιστές με αυτή τη διαμόρφωση.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -126,11 +126,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>Ο συγκεκριμένος χρήστης δεν έχει δικαίωμα πρόσβασης σε υπολογιστή, με αυτή την διαμόρφωση.</translation>
+        <translation>Ο συγκεκριμένος χρήστης δεν έχει δικαίωμα πρόσβασης σε υπολογιστές με αυτή τη διαμόρφωση.</translation>
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation>Ενεργοποιήση χρήσης ομάδων τομέα</translation>
+        <translation>Ενεργοποιήση χρήσης ομάδων τομέων</translation>
     </message>
     <message>
         <source>User groups backend:</source>
@@ -197,7 +197,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation type="unfinished"/>
+        <translation>Ζήτησε άδεια από τον συνδεδεμένο χρήστη</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
@@ -205,11 +205,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing user</source>
-        <translation type="unfinished"/>
+        <translation>Πρόσβαση χρήστη</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation type="unfinished"/>
+        <translation>Πρόσβαση υπολογιστή</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
@@ -225,43 +225,43 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>is logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>είναι τοπικά συνδεδεμένος</translation>
     </message>
     <message>
         <source>is logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>είναι απομακρισμένα συνδεδεμένος</translation>
     </message>
     <message>
         <source>No user is logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>Κανένας χρήστης δεν είναι τοπικά συνδεδεμένος</translation>
     </message>
     <message>
         <source>One or multiple users are logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>Ένας ή παραπάνω χρήστες είναι τοπικά συνδεδεμένοι</translation>
     </message>
     <message>
         <source>No user is logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>Κανένας χρήστης δεν είναι απομακρισμένα συνδεδεμένος</translation>
     </message>
     <message>
         <source>One or multiple users are logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>Ένας ή παραπάνω χρήστες είναι απομακρισμένα συνδεδεμένοι</translation>
     </message>
     <message>
         <source>is located at</source>
-        <translation type="unfinished"/>
+        <translation>βρίσκεται στο</translation>
     </message>
     <message>
         <source>is not located at</source>
-        <translation type="unfinished"/>
+        <translation>δεν βρίσκεται στο</translation>
     </message>
     <message>
         <source>are located at the same location</source>
-        <translation type="unfinished"/>
+        <translation>βρίσκονται στην ίδια τοποθεσία</translation>
     </message>
     <message>
         <source>are not located the same location</source>
-        <translation type="unfinished"/>
+        <translation>δεν βρίσκονται στην ίδια τοποθεσία</translation>
     </message>
     <message>
         <source>is member of group</source>
@@ -269,15 +269,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>is not member of group</source>
-        <translation type="unfinished"/>
+        <translation>δεν είναι μέρος κάποιας ομάδας</translation>
     </message>
     <message>
         <source>is authenticated via</source>
-        <translation type="unfinished"/>
+        <translation>είναι πιστοποιημένος μέσω</translation>
     </message>
     <message>
         <source>is not authenticated via</source>
-        <translation type="unfinished"/>
+        <translation>δεν είναι πιστοποιημένος μέσω</translation>
     </message>
     <message>
         <source>has one or more groups in common with user being accessed</source>
@@ -297,19 +297,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>is already connected</source>
-        <translation type="unfinished"/>
+        <translation>έχει ήδη συνδεθεί</translation>
     </message>
     <message>
         <source>is not connected</source>
-        <translation type="unfinished"/>
+        <translation>δεν έχει συνδεθεί</translation>
     </message>
     <message>
         <source>is local computer</source>
-        <translation type="unfinished"/>
+        <translation>είναι τοπικός υπολογιστής</translation>
     </message>
     <message>
         <source>is not local computer</source>
-        <translation type="unfinished"/>
+        <translation>δεν είναι τοπικός υπολογιστής</translation>
     </message>
     <message>
         <source>Computer being accessed</source>
@@ -340,7 +340,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation type="unfinished"/>
+        <translation>Πρόσβαση στον υπολογιστή:</translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
@@ -356,19 +356,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation type="unfinished"/>
+        <translation>Επιτρέπεται η πρόσβαση στο δεδομένο σενάριο.</translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation type="unfinished"/>
+        <translation>Η πρόσβαση στο δεδομένο σενάριο δεν επιτρέπεται.</translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation type="unfinished"/>
+        <translation>Η πρόσβαση στο δεδομένο σενάριο χρειάζεται άδεια από τον συνδεδεμένο χρήστη.</translation>
     </message>
     <message>
         <source>ERROR: Unknown action</source>
-        <translation type="unfinished"/>
+        <translation>ΣΦΑΛΜΑ: Άγνωστη ενέργεια</translation>
     </message>
     <message>
         <source>Test result</source>
@@ -454,7 +454,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα κλειδιού ελέγχου ταυτότητας</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
@@ -613,7 +613,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;N/A&gt;</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
@@ -652,7 +652,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>KEY</source>
-        <translation type="unfinished"/>
+        <translation>ΚΛΕΙΔΙ</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
@@ -664,11 +664,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>ΟΝΟΜΑ</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>ΑΡΧΕΙΟ</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
@@ -683,12 +683,8 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>ΤΥΠΟΣ</translation>
     </message>
     <message>
         <source>PAIR ID</source>
@@ -726,6 +722,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
@@ -735,7 +739,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>Τύπος</translation>
     </message>
     <message>
         <source>Access group</source>
@@ -758,7 +762,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>e.g. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</source>
-        <translation type="unfinished"/>
+        <translation>π.χ. %username%@DOMAIN or cn=%username%,ou=users,dc=example,dc=org</translation>
     </message>
 </context>
 <context>
@@ -781,7 +785,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>Σφάλμα ελέγχου ταυτότητας</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
@@ -808,7 +812,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>Σφάλμα ελέγχου ταυτότητας</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
@@ -827,7 +831,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Logon</source>
-        <translation type="unfinished"/>
+        <translation>Σύνδεση</translation>
     </message>
 </context>
 <context>
@@ -842,7 +846,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>Σφάλμα ελέγχου ταυτότητας</translation>
     </message>
     <message>
         <source>Logon failed with given password. Please try again!</source>
@@ -901,7 +905,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation>Διεύθυνση ΙΡ</translation>
+        <translation>Διεύθυνση/ΙΡ κεντρικού υπολογιστή</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -909,7 +913,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add new computer</source>
-        <translation>Προσθήκη υπολογιστή</translation>
+        <translation>Προσθήκη νέου υπολογιστή</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
@@ -917,7 +921,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>New computer</source>
-        <translation>Καινούριος υπολογιστής</translation>
+        <translation>Νέος υπολογιστής</translation>
     </message>
     <message>
         <source>Builtin directory</source>
@@ -925,23 +929,23 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Locations</source>
-        <translation type="unfinished"/>
+        <translation>Τοποθεσίες</translation>
     </message>
     <message>
         <source>Add new location</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη νέας τοποθεσίας</translation>
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation type="unfinished"/>
+        <translation>Αφαίρεση της επιλεγεμένης τοποθεσίας</translation>
     </message>
     <message>
         <source>New location</source>
-        <translation type="unfinished"/>
+        <translation>Νέα τοποθεσία</translation>
     </message>
     <message>
         <source>Directory name</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα καταλόγου</translation>
     </message>
     <message>
         <source>Importing CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -968,7 +972,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>Τύπος</translation>
     </message>
     <message>
         <source>Name</source>
@@ -976,7 +980,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Host address</source>
-        <translation type="unfinished"/>
+        <translation>Διεύθυνση υπολογιστή</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -988,7 +992,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>Το αρχείο &quot;%1&quot; δεν υπάρχει!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
@@ -1012,7 +1016,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>Υπολογιστής</translation>
     </message>
     <message>
         <source>Root</source>
@@ -1056,11 +1060,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>Προσθέστε μια τοποθεσία ή υπολογιστή</translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>Εκκαθάριση όλων των τοποθεσιών και υπολογιστών</translation>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
@@ -1072,11 +1076,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Remove a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>Αφαιρέστε μια τοποθεσία ή υπολογιστή</translation>
     </message>
     <message>
         <source>Location &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Τοποθεσία &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Builtin (computers and locations in local configuration)</source>
@@ -1084,15 +1088,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished"/>
+        <translation>Τοποθεσία</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>ΑΡΧΕΙΟ</translation>
     </message>
     <message>
         <source>LOCATION</source>
-        <translation type="unfinished"/>
+        <translation>ΤΟΠΟΘΕΣΙΑ</translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
@@ -1136,11 +1140,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>ΤΥΠΟΣ</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>ΟΝΟΜΑ</translation>
     </message>
     <message>
         <source>PARENT</source>
@@ -1160,7 +1164,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>OBJECT</source>
-        <translation type="unfinished"/>
+        <translation>ΑΝΤΙΚΕΙΜΕΝΟ</translation>
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
@@ -1188,6 +1192,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>MAC ADDRESS</source>
+        <translation>ΔΙΕΥΘΥΝΣΗ MAC</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1237,7 +1245,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>No user logged on</source>
-        <translation type="unfinished"/>
+        <translation>Κανένας χρήστης σε σύνδεση</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
@@ -1257,10 +1265,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Name: %1</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα: %1</translation>
     </message>
     <message>
         <source>invalid</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>[none]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1272,7 +1284,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>Σφάλμα ελέγχου ταυτότητας</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -1296,7 +1308,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"/>
+        <translation>Ενεργές συνδέσεις:</translation>
     </message>
 </context>
 <context>
@@ -1326,7 +1338,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα υπολογιστή;Κεντρικός υπολογιστής;Χρήστης</translation>
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
@@ -1341,15 +1353,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation type="unfinished"/>
+        <translation>Αναζήτηση χρηστών και υπολογιστών</translation>
     </message>
     <message>
         <source>Select all</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογή όλων</translation>
     </message>
     <message>
         <source>Unselect all</source>
-        <translation type="unfinished"/>
+        <translation>Αποεπιλογή όλων</translation>
     </message>
     <message>
         <source>Add to group</source>
@@ -1368,7 +1380,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add location</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη τοποθεσίας</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1380,7 +1392,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>CSV files (*.csv)</source>
-        <translation type="unfinished"/>
+        <translation>Αρχεία CSV (*.csv)</translation>
     </message>
     <message>
         <source>File error</source>
@@ -1504,7 +1516,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"/>
+        <translation>Διακομιστής επίδειξης</translation>
     </message>
     <message>
         <source>Tunables</source>
@@ -1607,11 +1619,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Screen %1 [%2]</source>
-        <translation type="unfinished"/>
+        <translation>Όλες οι οθόνες</translation>
     </message>
 </context>
 <context>
@@ -1657,7 +1665,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>URL</translation>
     </message>
     <message>
         <source>New website</source>
@@ -1665,7 +1673,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Applications &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>Εφαρμογές και ιστότοποι</translation>
     </message>
     <message>
         <source>Predefined applications</source>
@@ -1681,11 +1689,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add new website</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη νέου ιστότοπου</translation>
     </message>
     <message>
         <source>New application</source>
-        <translation type="unfinished"/>
+        <translation>Νέα εφαρμογή</translation>
     </message>
 </context>
 <context>
@@ -1708,7 +1716,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Έναρξη εφαρμογής</translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
@@ -1797,9 +1805,133 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>FeatureControl</name>
+    <name>FeatureCommands</name>
     <message>
-        <source>Feature control</source>
+        <source>List names of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stop a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a list with the names of all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>FEATURE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ARGUMENTS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock the screen</source>
+        <translation>Κλείδωμα οθόνης</translation>
+    </message>
+    <message>
+        <source>Display a text message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Test message</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start an application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock the screen</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Όνομα</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation>Υπηρεσία</translation>
+    </message>
+    <message>
+        <source>Worker</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid feature name or UID specified</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Error parsing the JSON-encoded arguments: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to initialize credentials</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not establish a connection to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to send feature control message to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for controlling features</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1807,7 +1939,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>Μεταφορά αρχείων</translation>
     </message>
     <message>
         <source>Directories</source>
@@ -1823,7 +1955,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογές</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1845,11 +1977,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>Μεταφορά αρχείων</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογές</translation>
     </message>
     <message>
         <source>Transfer only</source>
@@ -1865,11 +1997,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished"/>
+        <translation>Αρχεία</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished"/>
+        <translation>Εκκίνηση</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -1880,14 +2012,14 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FileTransferFileDialog</name>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation type="unfinished"/>
+        <translation>Επιλέξτε ένα ή περισσότερα αρχεία για μεταφορά</translation>
     </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>Μεταφορά αρχείων</translation>
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
@@ -1895,7 +2027,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation type="unfinished"/>
+        <translation>Επιλέξτε ένα ή περισσότερα αρχεία για μεταφορά</translation>
     </message>
     <message>
         <source>Transfer files to remote computer</source>
@@ -2261,7 +2393,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User not found</source>
-        <translation type="unfinished"/>
+        <translation>Δεν βρέθηκε ο χρήστης</translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
@@ -2548,7 +2680,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Enter computer name</source>
-        <translation type="unfinished"/>
+        <translation>Εισαγωγή ονόματος υπολογιστή</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
@@ -2564,7 +2696,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Enter computer IP address</source>
-        <translation type="unfinished"/>
+        <translation>Εισαγωγή διεύθυνσης IP υπολογιστή</translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
@@ -2632,11 +2764,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>TLS</source>
-        <translation type="unfinished"/>
+        <translation>TLS</translation>
     </message>
     <message>
         <source>SSL</source>
-        <translation type="unfinished"/>
+        <translation>SSL</translation>
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
@@ -2764,7 +2896,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Directory name</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα καταλόγου</translation>
     </message>
     <message>
         <source>Query options</source>
@@ -2849,7 +2981,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
-        <translation type="unfinished"/>
+        <translation>Linux</translation>
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
@@ -2857,7 +2989,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>Έλεγχος ταυτότητας χρήστη</translation>
     </message>
     <message>
         <source>User sessions</source>
@@ -2869,7 +3001,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Σύνδεση χρήστη</translation>
     </message>
     <message>
         <source>Login key sequence</source>
@@ -2887,7 +3019,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>LocationDialog</name>
     <message>
         <source>Select location</source>
-        <translation type="unfinished"/>
+        <translation>Επιλογή τοποθεσίας</translation>
     </message>
     <message>
         <source>enter search filter...</source>
@@ -2945,7 +3077,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
-        <translation type="unfinished"/>
+        <translation>Φ&amp;όρτωση ρυθμίσεων από αρχείο</translation>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -2961,7 +3093,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation type="unfinished"/>
+        <translation>Φόρτωση ρυθμίσεων από αρχείο</translation>
     </message>
     <message>
         <source>Save settings to file</source>
@@ -3009,7 +3141,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished"/>
+        <translation>Αρχεία JSON (*.json)</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
@@ -3045,7 +3177,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation type="unfinished"/>
+        <translation>Αναζήτηση χρηστών και υπολογιστών</translation>
     </message>
     <message>
         <source>Align computers to grid</source>
@@ -3069,11 +3201,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&amp;Save settings to file</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Αποθήκευση ρυθμίσεων σε αρχείο</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Προβολή</translation>
     </message>
     <message>
         <source>&amp;Standard</source>
@@ -3089,11 +3221,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation type="unfinished"/>
+        <translation>Τοποθεσίες &amp;&amp; υπολογιστές</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"/>
+        <translation>Αυθεντικοποίηση</translation>
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
@@ -3113,6 +3245,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Locations &amp; computers</source>
+        <translation>Τοποθεσίες &amp; υπολογιστές</translation>
+    </message>
+    <message>
+        <source>Only show computers with logged on users</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3204,11 +3340,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Only user name</source>
-        <translation type="unfinished"/>
+        <translation>Μόνο όνομα χρήστη</translation>
     </message>
     <message>
         <source>Only computer name</source>
-        <translation type="unfinished"/>
+        <translation>Μόνο όνομα υπολογιστή</translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
@@ -3216,7 +3352,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Text color</source>
-        <translation type="unfinished"/>
+        <translation>Χρώμα κειμένου</translation>
     </message>
     <message>
         <source>Sort order</source>
@@ -3240,7 +3376,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Hide empty locations</source>
-        <translation type="unfinished"/>
+        <translation>Απόκρυψη άδειων τοποθεσιών</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potentially unsafe actions</source>
@@ -3305,6 +3441,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Query application version of the server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>NestedNetworkObjectDirectory</name>
@@ -3362,7 +3510,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα:</translation>
     </message>
     <message>
         <source>Website name</source>
@@ -3370,7 +3518,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>PluginsCommands</name>
+    <name>PluginCommands</name>
     <message>
         <source>List names of all installed plugins</source>
         <translation type="unfinished"/>
@@ -3424,7 +3572,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Power down</source>
-        <translation type="unfinished"/>
+        <translation>Τερματισμός λειτουργίας</translation>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
@@ -3452,7 +3600,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>ΔΙΕΥΘΥΝΣΗ MAC</translation>
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
@@ -3472,19 +3620,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Power down now</source>
-        <translation type="unfinished"/>
+        <translation>Τερματισμός λειτουργίας τώρα</translation>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation type="unfinished"/>
+        <translation>Εγκατάσταση ενημερώσεων και τερματισμός λειτουργίας</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation type="unfinished"/>
+        <translation>Τερματισμός λειτουργίας μετά από επιβεβαίωση χρήστη</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation type="unfinished"/>
+        <translation>Τερματισμός λειτουργίας μετά από λήξη χρονικού ορίου</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
@@ -3513,7 +3661,7 @@ Please save your work and close all programs.</source>
     <name>PowerDownTimeInputDialog</name>
     <message>
         <source>Power down</source>
-        <translation type="unfinished"/>
+        <translation>Τερματισμός λειτουργίας</translation>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
@@ -3521,18 +3669,18 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>λεπτά</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>δευτερόλεπτα</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation type="unfinished"/>
+        <translation>Απομακρυσμένη προβολή</translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
@@ -3567,25 +3715,25 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessPage</name>
     <message>
         <source>Remote access: %1</source>
-        <translation type="unfinished"/>
+        <translation>Απομακρυσμένη πρόσβαση: %1</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 Απομακρυσμένη πρόσβαση</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 Απομακρυσμένη πρόσβαση</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
-        <translation>Προβολή μόνο</translation>
+        <translation>Μόνο προβολή</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -3645,11 +3793,19 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>Έξοδος</translation>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
+        <translation>Σύνδεση...</translation>
+    </message>
+    <message>
+        <source>Select screen</source>
+        <translation>Επιλογή οθόνης</translation>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation>Όλες οι οθόνες</translation>
     </message>
 </context>
 <context>
@@ -3672,11 +3828,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Lock input devices</source>
-        <translation type="unfinished"/>
+        <translation>Κλείδωμα συσκευών εισόδου</translation>
     </message>
     <message>
         <source>Unlock input devices</source>
-        <translation type="unfinished"/>
+        <translation>Ξεκλείδωμα συσκευών εισόδου</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
@@ -3695,7 +3851,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Στιγμιότυπο</translation>
+        <translation>Στιγμιότυπο οθόνης</translation>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
@@ -3706,7 +3862,7 @@ Please save your work and close all programs.</source>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation>Στιγμιότυπο</translation>
+        <translation>Στιγμιότυπο οθόνης</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
@@ -3729,7 +3885,7 @@ Please save your work and close all programs.</source>
     <name>ScreenshotManagementPage</name>
     <message>
         <source>Screenshots</source>
-        <translation>Στιγμιότυπα</translation>
+        <translation>Στιγμιότυπα οθόνης</translation>
     </message>
 </context>
 <context>
@@ -3756,7 +3912,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Show</source>
-        <translation>Προβολή</translation>
+        <translation>Εμφάνιση</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -3764,7 +3920,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Στιγμιότυπο</translation>
+        <translation>Στιγμιότυπο οθόνης</translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
@@ -3791,7 +3947,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>Τερματισμένη</translation>
+        <translation>Τερματίστηκε</translation>
     </message>
     <message>
         <source>Stop service</source>
@@ -3811,15 +3967,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Διακομιστής VNC</translation>
     </message>
     <message>
         <source>Plugin:</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη:</translation>
     </message>
     <message>
         <source>Restart %1 Service</source>
-        <translation type="unfinished"/>
+        <translation>Επανεκκίνηση της υπηρεσίας %1</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
@@ -3852,7 +4008,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Veyon server</source>
-        <translation type="unfinished"/>
+        <translation>Διακομιστής Veyon</translation>
     </message>
     <message>
         <source>Internal VNC server</source>
@@ -3860,11 +4016,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Feature manager</source>
-        <translation type="unfinished"/>
+        <translation>Διαχείριση δυνατοτήτων</translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation type="unfinished"/>
+        <translation>Διακομιστής επίδειξης</translation>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
@@ -3891,11 +4047,11 @@ Typically this is required to support terminal servers.</source>
     <name>ServiceControl</name>
     <message>
         <source>Starting service %1</source>
-        <translation type="unfinished"/>
+        <translation>Εκκίνηση της υπηρεσίας %1</translation>
     </message>
     <message>
         <source>Stopping service %1</source>
-        <translation type="unfinished"/>
+        <translation>Τερματισμός της υπηρεσίας %1</translation>
     </message>
     <message>
         <source>Registering service %1</source>
@@ -3911,19 +4067,7 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>ServiceControlPlugin</name>
-    <message>
-        <source>Service is running</source>
-        <translation>Η υπηρεσία εκτελείται</translation>
-    </message>
-    <message>
-        <source>Service is not running</source>
-        <translation>Η υπηρεσία δεν εκτελείται</translation>
-    </message>
-    <message>
-        <source>Configure and control Veyon service</source>
-        <translation type="unfinished"/>
-    </message>
+    <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
         <translation type="unfinished"/>
@@ -3949,22 +4093,34 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Service is running</source>
+        <translation>Η υπηρεσία εκτελείται</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>Η υπηρεσία δεν εκτελείται</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Commands for configuring and controlling Veyon Service</source>
         <translation type="unfinished"/>
     </message>
 </context>
 <context>
-    <name>ShellCommandLinePlugin</name>
+    <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation type="unfinished"/>
+        <translation>Το αρχείο &quot;%1&quot; δεν υπάρχει!</translation>
     </message>
     <message>
-        <source>Interactive shell and script execution for Veyon Control</source>
+        <source>Interactive shell and script execution for Veyon CLI</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3976,34 +4132,34 @@ Typically this is required to support terminal servers.</source>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>Προηγούμενο</translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation type="unfinished"/>
+        <translation>Έναρξη/παύση</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished"/>
+        <translation>Επόμενο</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"/>
+        <translation>Διάρκεια:</translation>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Προσθήκη επιλεγμένων υπολογιστών</translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Αφαίρεση επιλεγμένων υπολογιστών</translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"/>
+        <translation>Ενημέρωση υπολογιστών σε πραγματικό χρόνο</translation>
     </message>
     <message>
         <source>Spotlight</source>
@@ -4023,7 +4179,7 @@ The second button removes the selected or last computer.</source>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Έναρξη εφαρμογής</translation>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
@@ -4031,23 +4187,23 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation type="unfinished"/>
+        <translation>π.χ. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
     </message>
     <message>
         <source>Remember and add to application menu</source>
-        <translation type="unfinished"/>
+        <translation>Απομνημόνευση και προσθήκη στο μενού εφαρμογών</translation>
     </message>
     <message>
         <source>Application name</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα εφαρμογής</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα:</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation type="unfinished"/>
+        <translation>π.χ. VLC</translation>
     </message>
 </context>
 <context>
@@ -4083,7 +4239,7 @@ The second button removes the selected or last computer.</source>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>Αποστολή μηνύματος</translation>
+        <translation>Αποστολή κειμένου μηνύματος</translation>
     </message>
     <message>
         <source>Please enter your message which send to all selected users.</source>
@@ -4094,7 +4250,7 @@ The second button removes the selected or last computer.</source>
     <name>TextMessageFeaturePlugin</name>
     <message>
         <source>Text message</source>
-        <translation>Μήνυμα</translation>
+        <translation>Κείμενο μηνύματος</translation>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
@@ -4137,14 +4293,14 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
+        <translation>Μέγιστη χρήση CPU</translation>
     </message>
 </context>
 <context>
     <name>UserConfig</name>
     <message>
         <source>No write access</source>
-        <translation type="unfinished"/>
+        <translation>Χωρίς πρόσβαση εγγραφής</translation>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
@@ -4155,11 +4311,11 @@ The second button removes the selected or last computer.</source>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Σύνδεση χρήστη</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Παρακαλώ εισάγετε ένα όνομα χρήστη και κωδικό πρόσβασης για αυτόματη σύνδεση σε όλους τους υπολογιστές.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -4174,27 +4330,27 @@ The second button removes the selected or last computer.</source>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"/>
+        <translation>Σύνδεση</translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Κάντε κλικ σε αυτό το κουμπί για να συνδεθείτε σε έναν συγκεκριμένο χρήστη σε όλους τους υπολογιστές.</translation>
     </message>
     <message>
         <source>Log off</source>
-        <translation type="unfinished"/>
+        <translation>Αποσύνδεση</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Κάντε κλικ σε αυτό το κουμπί για να αποσυνδέσετε χρήστες από όλους τους υπολογιστές.</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation type="unfinished"/>
+        <translation>Επιβεβαίωση αποσύνδεσης χρήστη</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation type="unfinished"/>
+        <translation>Θέλετε πραγματικά να αποσυνδέσετε τους επιλεγμένους χρήστες;</translation>
     </message>
     <message>
         <source>User session control</source>
@@ -4209,15 +4365,15 @@ The second button removes the selected or last computer.</source>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation type="unfinished"/>
+        <translation>[OK]</translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation type="unfinished"/>
+        <translation>[ΑΠΟΤΥΧΙΑ]</translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation type="unfinished"/>
+        <translation>Μη έγκυρη εντολή!</translation>
     </message>
     <message>
         <source>Available commands:</source>
@@ -4233,7 +4389,7 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Unknown result!</source>
-        <translation type="unfinished"/>
+        <translation>Άγνωστο αποτέλεσμα!</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -4249,38 +4405,42 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>INFO</source>
-        <translation type="unfinished"/>
+        <translation>ΠΛΗΡ.</translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation type="unfinished"/>
+        <translation>ΣΦΑΛΜΑ</translation>
     </message>
     <message>
         <source>USAGE</source>
-        <translation type="unfinished"/>
+        <translation>ΧΡΗΣΗ</translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation type="unfinished"/>
+        <translation>ΠΕΡΙΓΡΑΦΗ</translation>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation type="unfinished"/>
+        <translation>ΠΑΡΑΔΕΙΓΜΑΤΑ</translation>
     </message>
     <message>
         <source>WARNING</source>
-        <translation type="unfinished"/>
+        <translation>ΠΡΟΕΙΔΟΠΟΙΗΣΗ</translation>
     </message>
     <message>
         <source>Authentication test</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Screen %1</source>
+        <translation>Οθόνη %1</translation>
     </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Υπηρεσία Veyon</translation>
     </message>
 </context>
 <context>
@@ -4306,23 +4466,23 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation type="unfinished"/>
+        <translation>Κλείδωμα οθόνης</translation>
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation type="unfinished"/>
+        <translation>Απόκρυψη γραμμής εργασιών</translation>
     </message>
     <message>
         <source>Hide start menu</source>
-        <translation type="unfinished"/>
+        <translation>Απόκρυψη μενού έναρξης</translation>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation type="unfinished"/>
+        <translation>Απόκρυψη επιφάνειας εργασίας</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>Έλεγχος ταυτότητας χρήστη</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
@@ -4330,7 +4490,7 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Σύνδεση χρήστη</translation>
     </message>
     <message>
         <source>Input start delay</source>
@@ -4355,36 +4515,44 @@ The second button removes the selected or last computer.</source>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Internal display</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"/>
+        <translation>Η υπηρεσία &quot;%1&quot; είναι ήδη εγκατεστημένη.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation type="unfinished"/>
+        <translation>Η υπηρεσία &quot;%1&quot; έχει εγκατασταθεί με επιτυχία.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation type="unfinished"/>
+        <translation>Η υπηρεσία &quot;%1&quot; έχει απεγκατασταθεί με επιτυχία.</translation>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
+        <translation>Η υπηρεσία &quot;%1&quot; δεν ήταν δυνατό να βρεθεί.</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation>Η υπηρεσία &quot;%1&quot; δεν ήταν δυνατό να εγκατασταθεί (σφάλμα %2).</translation>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation>Η υπηρεσία &quot;%1&quot; δεν ήταν δυνατό να απεγκατασταθεί (σφάλμα %2).</translation>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation>Ο τύπος έναρξης της υπηρεσίας &quot;%1&quot; δεν μπόρεσε να αλλάξει (σφάλμα %2).</translation>
     </message>
 </context>
 <context>

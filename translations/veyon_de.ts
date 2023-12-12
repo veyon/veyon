@@ -683,10 +683,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Dieser Befehl listet alle verfügbaren Authentifizierungsschlüssel im konfigurierten Schlüsselverzeichnis auf. Wenn die Option &quot;%1&quot; angegeben wird, wird stattdessen eine Tabelle mit Schlüsseldetails ausgegeben. Einige Details können fehlen, wenn auf einen Schlüssel nicht zugegriffen werden kann, z.B. aufgrund fehlender Leserechte.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Bitte geben Sie den Befehl an, für den Hilfe angezeigt werden soll!</translation>
-    </message>
-    <message>
         <source>TYPE</source>
         <translation>TYP</translation>
     </message>
@@ -725,6 +721,14 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
         <translation>Bitte geben Sie den Schlüsselname (z.B. &quot;teacher/public&quot;) als erstes Argument an.</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation>Bitte geben Sie den Befehl an, für den Hilfe angezeigt werden soll.</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>Der angegebene Befehl existiert nicht oder es ist keine Hilfe für ihn verfügbar.</translation>
     </message>
 </context>
 <context>
@@ -1190,6 +1194,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>MAC ADDRESS</source>
         <translation>MAC-ADRESSE</translation>
     </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>Der angegebene Befehl existiert nicht oder es ist keine Hilfe für ihn verfügbar.</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1262,6 +1270,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>invalid</source>
         <translation>ungültig</translation>
+    </message>
+    <message>
+        <source>[none]</source>
+        <translation>[keine]</translation>
     </message>
 </context>
 <context>
@@ -1609,10 +1621,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>All screens</source>
         <translation>Alle Bildschirme</translation>
     </message>
-    <message>
-        <source>Screen %1 [%2]</source>
-        <translation>Bildschirm %1 [%2]</translation>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1797,10 +1805,134 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
 </context>
 <context>
-    <name>FeatureControl</name>
+    <name>FeatureCommands</name>
     <message>
-        <source>Feature control</source>
-        <translation>Funktionssteuerung</translation>
+        <source>List names of all available features</source>
+        <translation>Namen aller verfügbaren Funktionen auflisten</translation>
+    </message>
+    <message>
+        <source>Show table with details of all available features</source>
+        <translation>Tabelle mit Details zu allen verfügbaren Funktionen anzeigen</translation>
+    </message>
+    <message>
+        <source>Start a feature on a remote host</source>
+        <translation>Eine Funktion auf einem entfernten Computer starten</translation>
+    </message>
+    <message>
+        <source>Stop a feature on a remote host</source>
+        <translation>Eine Funktion auf einem entfernten Computer stoppen</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation>Bitte geben Sie den Befehl an, für den Hilfe angezeigt werden soll.</translation>
+    </message>
+    <message>
+        <source>Displays a list with the names of all available features.</source>
+        <translation>Zeigt eine Liste mit den Namen aller verfügbaren Funktionen an.</translation>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation>Zeigt eine Tabelle mit detaillierten Informationen über alle verfügbaren Funktionen an. Diese Informationen umfassen eine Beschreibung, die UID, den Namen des Plugins, das die jeweilige Funktion bereitstellt, sowie einige andere implementierungsbezogene Details.</translation>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation>HOST-ADRESSE</translation>
+    </message>
+    <message>
+        <source>FEATURE</source>
+        <translation>FUNKTION</translation>
+    </message>
+    <message>
+        <source>ARGUMENTS</source>
+        <translation>ARGUMENTE</translation>
+    </message>
+    <message>
+        <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
+        <translation>Startet die angegebene Funktion auf dem angegebenen Computer, indem eine Verbindung zum entfernt laufenden Veyon Server hergestellt wird. Die Funktion kann mittels Name oder UID angegeben werden. Benutzen Sie den ``show``-Befehl, um alle verfügbaren Funktionen zu sehen. Abhängig von der Funktion müssen zusätzliche Argumente (wie z.B. die anzuzeigende Textnachricht), kodiert als einzelne JSON-String, angegeben werden. Weitere Informationen entnehmen Sie bitte der Entwicklerdokumentation.</translation>
+    </message>
+    <message>
+        <source>Lock the screen</source>
+        <translation>Den Bildschirm sperren</translation>
+    </message>
+    <message>
+        <source>Display a text message</source>
+        <translation>Eine Textnachricht anzeigen</translation>
+    </message>
+    <message>
+        <source>Test message</source>
+        <translation>Testnachricht</translation>
+    </message>
+    <message>
+        <source>Start an application</source>
+        <translation>Eine Anwendung starten</translation>
+    </message>
+    <message>
+        <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
+        <translation>Stoppt die angegebene Funktion auf dem angegebenen Computer, indem eine Verbindung zum entfernt laufenden Veyon Server hergestellt wird. Die Funktion kann mittels Name oder UID angegeben werden. Verwenden Sie den Befehl ``show``, um alle verfügbaren Funktionen zu sehen.</translation>
+    </message>
+    <message>
+        <source>Unlock the screen</source>
+        <translation>Den Bildschirm entsperren</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation>Der angegebene Befehl existiert nicht oder es ist keine Hilfe für ihn verfügbar.</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Beschreibung</translation>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation>Master</translation>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation>Dienst</translation>
+    </message>
+    <message>
+        <source>Worker</source>
+        <translation>Worker</translation>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation>UID</translation>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation>Plugin</translation>
+    </message>
+    <message>
+        <source>Invalid feature name or UID specified</source>
+        <translation>Ungültiger Featurename oder -UID angegeben</translation>
+    </message>
+    <message>
+        <source>Error parsing the JSON-encoded arguments: %1</source>
+        <translation>Fehler beim Parsen der JSON-kodierten Argumente: %1</translation>
+    </message>
+    <message>
+        <source>Failed to initialize credentials</source>
+        <translation>Initialisierung der Zugangsdaten fehlgeschlagen</translation>
+    </message>
+    <message>
+        <source>Could not establish a connection to host %1</source>
+        <translation>Es konnte keine Verbindung zum Computer %1 hergestellt werden</translation>
+    </message>
+    <message>
+        <source>Failed to send feature control message to host %1</source>
+        <translation>Die Funktionskontrollnachricht konnte nicht an den Computer %1 gesendet werden.</translation>
+    </message>
+    <message>
+        <source>Feature-related CLI operations</source>
+        <translation>Funktionsbezogene CLI-Operationen</translation>
+    </message>
+    <message>
+        <source>Commands for controlling features</source>
+        <translation>Befehle zur Steuerung von Funktionen</translation>
     </message>
 </context>
 <context>
@@ -3134,6 +3266,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Locations &amp; computers</source>
         <translation>Standorte &amp; Computer</translation>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation>Nur Computer mit angemeldeten Benutzern anzeigen</translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3324,6 +3460,18 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Dieser Modus erlaubt es Ihnen, alle Computer an einem oder mehreren Standorten zu beobachten.</translation>
     </message>
+    <message>
+        <source>Query application version of the server</source>
+        <translation>Anwendungsversion des Servers abfragen</translation>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation>Aktive Funktionen abfragen</translation>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
+        <translation>Eigenschaften entfernt verfügbarer Bildschirme abfragen</translation>
+    </message>
 </context>
 <context>
     <name>NestedNetworkObjectDirectory</name>
@@ -3389,7 +3537,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     </message>
 </context>
 <context>
-    <name>PluginsCommands</name>
+    <name>PluginCommands</name>
     <message>
         <source>List names of all installed plugins</source>
         <translation>Namen aller installierter Plugins auflisten</translation>
@@ -3672,6 +3820,14 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
         <source>Connecting...</source>
         <translation>Verbinde...</translation>
     </message>
+    <message>
+        <source>Select screen</source>
+        <translation>Bildschirm auswählen</translation>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation>Alle Bildschirme</translation>
+    </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
@@ -3933,19 +4089,7 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     </message>
 </context>
 <context>
-    <name>ServiceControlPlugin</name>
-    <message>
-        <source>Service is running</source>
-        <translation>Dienst läuft</translation>
-    </message>
-    <message>
-        <source>Service is not running</source>
-        <translation>Dienst läuft nicht</translation>
-    </message>
-    <message>
-        <source>Configure and control Veyon service</source>
-        <translation>Veyon-Dienst konfigurieren und steuern</translation>
-    </message>
+    <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
         <translation>Veyon-Dienst registrieren</translation>
@@ -3971,12 +4115,24 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <translation>Status des Veyon-Diensts abfragen</translation>
     </message>
     <message>
+        <source>Service is running</source>
+        <translation>Dienst läuft</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>Dienst läuft nicht</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation>Veyon-Dienst konfigurieren und steuern</translation>
+    </message>
+    <message>
         <source>Commands for configuring and controlling Veyon Service</source>
         <translation>Befehle zur Konfiguration und Steuerung des Veyon-Diensts</translation>
     </message>
 </context>
 <context>
-    <name>ShellCommandLinePlugin</name>
+    <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
         <translation>Befehlsdatei ausführen</translation>
@@ -3986,8 +4142,8 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <translation>Datei &quot;%1 existiert nicht!</translation>
     </message>
     <message>
-        <source>Interactive shell and script execution for Veyon Control</source>
-        <translation>Interaktive Shell und Scriptausführung für Veyon Control</translation>
+        <source>Interactive shell and script execution for Veyon CLI</source>
+        <translation>Interaktive Shell und Scriptausführung für Veyon CLI</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -4298,6 +4454,10 @@ Der zweite Button entfernt den gewählten oder letzten Computer.</translation>
         <source>Authentication test</source>
         <translation>Authentifizierungstest</translation>
     </message>
+    <message>
+        <source>Screen %1</source>
+        <translation>Bildschirm %1</translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4378,6 +4538,10 @@ Der zweite Button entfernt den gewählten oder letzten Computer.</translation>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Plugin zur Implementierung abstrakter Funktionen für die Windows-Plattform</translation>
     </message>
+    <message>
+        <source>Internal display</source>
+        <translation>Interne Anzeige</translation>
+    </message>
 </context>
 <context>
     <name>WindowsServiceControl</name>
@@ -4386,28 +4550,32 @@ Der zweite Button entfernt den gewählten oder letzten Computer.</translation>
         <translation>Der Dienst &quot;%1&quot; ist bereits installiert.</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>Der Dienst &quot;%1&quot; konnte nicht installiert werden.</translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation>Der Dienst &quot;%1&quot; wurde erfolgreich installiert.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>Der Dienst &quot;%1&quot; konnte nicht deinstalliert werden.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation>Der Dienst &quot;%1&quot; wurde erfolgreich deinstalliert.</translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>Der Starttyp des Diensts &quot;%1&quot; konnte nicht geändert werden.</translation>
-    </message>
-    <message>
         <source>Service &quot;%1&quot; could not be found.</source>
         <translation>Der Dienst &quot;%1&quot; wurde nicht gefunden.</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation>Der Dienst &quot;%1&quot; konnte nicht installiert werden (Fehler %2).</translation>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation>Die Konfiguration der Fehlermaßnahmen für den Dienst &quot;%1&quot; konnte nicht geändert werden (%2).</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation>Der Dienst &quot;%1&quot; konnte nicht deinstalliert werden (Fehler %2).</translation>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation>Der Starttyp des Diensts &quot;%1&quot; konnte nicht geändert werden (Fehler %2).</translation>
     </message>
 </context>
 <context>

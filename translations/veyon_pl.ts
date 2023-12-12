@@ -217,35 +217,35 @@ Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne 
     </message>
     <message>
         <source>Accessing computer and local computer</source>
-        <translation type="unfinished"/>
+        <translation>Uzyskiwanie dostępu do komputera i komputera lokalnego </translation>
     </message>
     <message>
         <source>User being accessed</source>
-        <translation type="unfinished"/>
+        <translation>Użytkownik uzyskuje dostęp</translation>
     </message>
     <message>
         <source>is logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>zalogowany lokalnie</translation>
     </message>
     <message>
         <source>is logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>zalogowany zdalnie</translation>
     </message>
     <message>
         <source>No user is logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>Żaden użytkownik nie jest zalogowany lokalnie</translation>
     </message>
     <message>
         <source>One or multiple users are logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>Jeden lub kliku użytkowników zalogowanych lokalnie </translation>
     </message>
     <message>
         <source>No user is logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>Żaden użytkownik nie jest zalogowany zdalnie</translation>
     </message>
     <message>
         <source>One or multiple users are logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>Jeden lub wielu użytkowników jest zalogowanych zdalnie</translation>
     </message>
     <message>
         <source>is located at</source>
@@ -253,7 +253,7 @@ Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne 
     </message>
     <message>
         <source>is not located at</source>
-        <translation type="unfinished"/>
+        <translation>nie jest w </translation>
     </message>
     <message>
         <source>are located at the same location</source>
@@ -269,7 +269,7 @@ Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne 
     </message>
     <message>
         <source>is not member of group</source>
-        <translation type="unfinished"/>
+        <translation>nie jest członkiem grupy</translation>
     </message>
     <message>
         <source>is authenticated via</source>
@@ -297,31 +297,31 @@ Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne 
     </message>
     <message>
         <source>is already connected</source>
-        <translation type="unfinished"/>
+        <translation>jest już podłączony</translation>
     </message>
     <message>
         <source>is not connected</source>
-        <translation type="unfinished"/>
+        <translation>nie jest połączony</translation>
     </message>
     <message>
         <source>is local computer</source>
-        <translation type="unfinished"/>
+        <translation>jest komputerem lokalnym</translation>
     </message>
     <message>
         <source>is not local computer</source>
-        <translation type="unfinished"/>
+        <translation>nie jest komputerem lokalnym</translation>
     </message>
     <message>
         <source>Computer being accessed</source>
-        <translation type="unfinished"/>
+        <translation>Dostęp do komputera</translation>
     </message>
     <message>
         <source>Session being accessed is a user session</source>
-        <translation type="unfinished"/>
+        <translation>Dostęp do sesji jest sesją użytkownika</translation>
     </message>
     <message>
         <source>Session being accessed is a login screen</source>
-        <translation type="unfinished"/>
+        <translation>Dostęp do sesji to ekran logowania</translation>
     </message>
 </context>
 <context>
@@ -686,10 +686,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>To polecenie wyświetla listę wszystkich dostępnych kluczy uwierzytelniania w  katalogu kluczy. Jeśli podano opcję „%1”, zamiast niej zostanie wyświetlona tabela ze szczegółami klucza. Niektórych szczegółów może brakować, jeśli klucz nie jest dostępny, np. z powodu braku uprawnień do odczytu.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Podaj polecenie aby wyświetlić pomoc!</translation>
-    </message>
-    <message>
         <source>TYPE</source>
         <translation>TYP</translation>
     </message>
@@ -727,6 +723,14 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation>Proszę wybrać nazwę klucza (np. &quot;nauczyciel/publiczny&quot;) jako pierwszy argument</translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation>Podaj polecenie, dla którego chcesz wyświetlić pomoc.</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -944,7 +948,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Directory name</source>
-        <translation type="unfinished"/>
+        <translation>Nazwa katalogu</translation>
     </message>
     <message>
         <source>Importing CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -1193,6 +1197,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>MAC ADDRESS</source>
         <translation>ADRES MAC</translation>
     </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1264,6 +1272,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>invalid</source>
+        <translation>nieprawidłowy</translation>
+    </message>
+    <message>
+        <source>[none]</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1612,10 +1624,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>All screens</source>
         <translation>Wszystkie ekrany</translation>
     </message>
-    <message>
-        <source>Screen %1 [%2]</source>
-        <translation>Ekran %1 [%2}</translation>
-    </message>
 </context>
 <context>
     <name>DesktopAccessDialog</name>
@@ -1668,7 +1676,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Applications &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>Aplikacje i strony internetowe</translation>
     </message>
     <message>
         <source>Predefined applications</source>
@@ -1676,19 +1684,19 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Add new application</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj nową aplikacje</translation>
     </message>
     <message>
         <source>Remove selected application</source>
-        <translation type="unfinished"/>
+        <translation>Usuń wybraną aplikację</translation>
     </message>
     <message>
         <source>Add new website</source>
-        <translation type="unfinished"/>
+        <translation>Dodaj nową stronę</translation>
     </message>
     <message>
         <source>New application</source>
-        <translation type="unfinished"/>
+        <translation>Nowa aplikacja</translation>
     </message>
 </context>
 <context>
@@ -1711,7 +1719,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Uruchom aplikację</translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
@@ -1727,7 +1735,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
-        <translation type="unfinished"/>
+        <translation>Uruchamiaj aplikacje i otwieraj strony internetowe w sesjach użytkownika</translation>
     </message>
 </context>
 <context>
@@ -1800,10 +1808,134 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
 </context>
 <context>
-    <name>FeatureControl</name>
+    <name>FeatureCommands</name>
     <message>
-        <source>Feature control</source>
-        <translation>Zarządzanie funkcjami</translation>
+        <source>List names of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Show table with details of all available features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stop a feature on a remote host</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation>Podaj polecenie, dla którego chcesz wyświetlić pomoc.</translation>
+    </message>
+    <message>
+        <source>Displays a list with the names of all available features.</source>
+        <translation>Wyświetla listę z nazwami wszystkich dostępnych funkcji.</translation>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation>Wyświetla tabelę ze szczegółowymi informacjami o wszystkich dostępnych funkcjach. Informacje te obejmują opis, identyfikator UID, nazwę wtyczki zapewniającej odpowiednią funkcję oraz kilka innych szczegółów związanych z implementacją. </translation>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation>ADRES HOSTA</translation>
+    </message>
+    <message>
+        <source>FEATURE</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>ARGUMENTS</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lock the screen</source>
+        <translation>Zablokuj ekran</translation>
+    </message>
+    <message>
+        <source>Display a text message</source>
+        <translation>Wyświetl wiadomość tekstową</translation>
+    </message>
+    <message>
+        <source>Test message</source>
+        <translation>Wiadomość testowa</translation>
+    </message>
+    <message>
+        <source>Start an application</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unlock the screen</source>
+        <translation>Odblokuj ekran</translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nazwa</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Opis</translation>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation>Master</translation>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation>Usługa</translation>
+    </message>
+    <message>
+        <source>Worker</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation>Identyfikator użytkownika</translation>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation>Dodatki</translation>
+    </message>
+    <message>
+        <source>Invalid feature name or UID specified</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Error parsing the JSON-encoded arguments: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to initialize credentials</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not establish a connection to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Failed to send feature control message to host %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Feature-related CLI operations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Commands for controlling features</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2033,7 +2165,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>CA certificate file</source>
-        <translation type="unfinished"/>
+        <translation>Plik certyfikatu CA</translation>
     </message>
     <message>
         <source>...</source>
@@ -2041,11 +2173,11 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Host certificate file</source>
-        <translation type="unfinished"/>
+        <translation>Plik certyfikatu hosta</translation>
     </message>
     <message>
         <source>Host private key file</source>
-        <translation type="unfinished"/>
+        <translation>Plik klucza prywatnego hosta</translation>
     </message>
 </context>
 <context>
@@ -2616,7 +2748,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Filter for computer containers</source>
-        <translation type="unfinished"/>
+        <translation>Filtruj według grup komputerów</translation>
     </message>
     <message>
         <source>Computer containers or OUs</source>
@@ -2781,15 +2913,15 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Directory name</source>
-        <translation type="unfinished"/>
+        <translation>Nazwa katalogu</translation>
     </message>
     <message>
         <source>Query options</source>
-        <translation type="unfinished"/>
+        <translation>Opcje zapytań</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
-        <translation type="unfinished"/>
+        <translation>Zapytanie o zagnieżdżone grupy użytkowników (obsługiwane tylko przez AD)</translation>
     </message>
 </context>
 <context>
@@ -2878,7 +3010,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>User sessions</source>
-        <translation type="unfinished"/>
+        <translation>Sesja użytkownia</translation>
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
@@ -2890,7 +3022,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Login key sequence</source>
-        <translation type="unfinished"/>
+        <translation>Sekwencja klawiszy logowania</translation>
     </message>
 </context>
 <context>
@@ -3132,6 +3264,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Locations &amp; computers</source>
         <translation>Sale i komputery</translation>
     </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3322,6 +3458,18 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>This mode allows you to monitor all computers at one or more locations.</source>
         <translation>Ten tryb umożliwia monitorowanie wszystkich komputerów w co najmniej jednej lokalizacji.</translation>
     </message>
+    <message>
+        <source>Query application version of the server</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>NestedNetworkObjectDirectory</name>
@@ -3387,7 +3535,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
 </context>
 <context>
-    <name>PluginsCommands</name>
+    <name>PluginCommands</name>
     <message>
         <source>List names of all installed plugins</source>
         <translation>Wyświetl nazwy wszystkich zainstalowanych wtyczek</translation>
@@ -3668,7 +3816,15 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
+        <translation>Łączenie...</translation>
+    </message>
+    <message>
+        <source>Select screen</source>
+        <translation>Wybierz ekran</translation>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation>Wszystkie ekrany</translation>
     </message>
 </context>
 <context>
@@ -3868,7 +4024,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Network port numbers</source>
-        <translation type="unfinished"/>
+        <translation>Numery portów sieciowych</translation>
     </message>
     <message>
         <source>Veyon server</source>
@@ -3931,19 +4087,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
 </context>
 <context>
-    <name>ServiceControlPlugin</name>
-    <message>
-        <source>Service is running</source>
-        <translation>Usługa jest uruchomiona</translation>
-    </message>
-    <message>
-        <source>Service is not running</source>
-        <translation>Usługa nie jest uruchomiona</translation>
-    </message>
-    <message>
-        <source>Configure and control Veyon service</source>
-        <translation>Konfiguruj i zarządzaj usługą Veyon</translation>
-    </message>
+    <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
         <translation>Rejestracja usługi Veyon</translation>
@@ -3969,12 +4113,24 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
         <translation>Status kolejki usługi Veyon</translation>
     </message>
     <message>
+        <source>Service is running</source>
+        <translation>Usługa jest uruchomiona</translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation>Usługa nie jest uruchomiona</translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation>Konfiguruj i zarządzaj usługą Veyon</translation>
+    </message>
+    <message>
         <source>Commands for configuring and controlling Veyon Service</source>
         <translation>Komendy do konfiguracji i zarządzania usługą Veyon</translation>
     </message>
 </context>
 <context>
-    <name>ShellCommandLinePlugin</name>
+    <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
         <translation>Uruchom plik komend</translation>
@@ -3984,8 +4140,8 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
         <translation>Plik &quot;%1&quot; nie istnieje!</translation>
     </message>
     <message>
-        <source>Interactive shell and script execution for Veyon Control</source>
-        <translation>Interaktywne wykonywanie powłok i skryptów dla Veyon Control</translation>
+        <source>Interactive shell and script execution for Veyon CLI</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -4031,7 +4187,7 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation type="unfinished"/>
+        <translation>Wybierz co najmniej jeden komputer do dodania.</translation>
     </message>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
@@ -4043,7 +4199,7 @@ The second button removes the selected or last computer.</source>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Uruchom aplikację</translation>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
@@ -4222,7 +4378,7 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation type="unfinished"/>
+        <translation>Czy na pewno chcesz wylogować WSZYSTKICH użytkowników?</translation>
     </message>
 </context>
 <context>
@@ -4294,6 +4450,10 @@ The second button removes the selected or last computer.</source>
     <message>
         <source>Authentication test</source>
         <translation>Test uwierzytelnienia</translation>
+    </message>
+    <message>
+        <source>Screen %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4375,6 +4535,10 @@ The second button removes the selected or last computer.</source>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Wtyczka dodająca specyficzne funkcje dla platformy Windows</translation>
     </message>
+    <message>
+        <source>Internal display</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsServiceControl</name>
@@ -4383,28 +4547,32 @@ The second button removes the selected or last computer.</source>
         <translation>Usługa „%1” jest już zainstalowana.</translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation>Nie można zainstalować usługi „%1”.</translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
         <translation>Usługa „%1” została pomyślnie zainstalowana.</translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
-        <translation>Nie można odinstalować usługi „%1”.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
         <translation>Usługa „%1” została pomyślnie odinstalowana.</translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
-        <translation>Nie można zmienić typu usługi „%1”.</translation>
-    </message>
-    <message>
         <source>Service &quot;%1&quot; could not be found.</source>
         <translation>Nie można znaleźć usługi „%1”.</translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
