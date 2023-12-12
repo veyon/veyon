@@ -1006,7 +1006,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>ComputerControlListModel</name>
     <message>
         <source>Name: %1</source>
-        <translation type="unfinished"/>
+        <translation>名称：%1</translation>
     </message>
     <message>
         <source>Location: %1</source>
@@ -1346,11 +1346,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>以全屏模式分享您自己的屏幕</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>在此模式下，您的屏幕将以全屏模式显示在所有电脑上，用户的输入设备将被锁定。</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
@@ -1436,11 +1436,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add new application</source>
-        <translation type="unfinished"/>
+        <translation>添加新程序</translation>
     </message>
     <message>
         <source>Remove selected application</source>
-        <translation type="unfinished"/>
+        <translation>移除选中的程序</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1471,7 +1471,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>启动程序</translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
@@ -1487,7 +1487,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>启动程序 &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom application</source>
@@ -2246,7 +2246,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Query options</source>
-        <translation type="unfinished"/>
+        <translation>查询选项</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
@@ -2718,7 +2718,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User sessions</source>
-        <translation type="unfinished"/>
+        <translation>用户会话</translation>
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
@@ -3483,7 +3483,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Select screen</source>
-        <translation type="unfinished"/>
+        <translation>选中屏幕</translation>
     </message>
     <message>
         <source>Send shortcut</source>
@@ -3543,7 +3543,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
+        <translation>正在连接...</translation>
     </message>
     <message>
         <source>All screens</source>
@@ -3659,7 +3659,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation type="unfinished"/>
+        <translation>您确定要删除所有选中的屏幕截图吗？</translation>
     </message>
 </context>
 <context>
@@ -3702,7 +3702,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Session mode</source>
-        <translation type="unfinished"/>
+        <translation>会话模式</translation>
     </message>
     <message>
         <source>Local session mode (single server instance for primary local session)</source>
@@ -3736,7 +3736,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Internal VNC server</source>
-        <translation type="unfinished"/>
+        <translation>内部 VNC 服务器</translation>
     </message>
     <message>
         <source>Feature manager</source>
@@ -3884,7 +3884,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"/>
+        <translation>持续时间：</translation>
     </message>
 </context>
 <context>
@@ -3895,15 +3895,15 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"/>
+        <translation>添加选中的计算机</translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"/>
+        <translation>删除选中的计算机</translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"/>
+        <translation>实时更新计算机</translation>
     </message>
     <message>
         <source>Spotlight</source>
@@ -3922,7 +3922,7 @@ Typically this is required to support terminal servers.</source>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>启动程序</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -4089,7 +4089,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation type="unfinished"/>
+        <translation>您确定要注销 &lt;b&gt;所有&lt;/b&gt; 用户吗？</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
@@ -4168,7 +4168,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Screen %1</source>
-        <translation type="unfinished"/>
+        <translation>屏幕 %1</translation>
     </message>
 </context>
 <context>
@@ -4338,7 +4338,7 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Internal display</source>
-        <translation type="unfinished"/>
+        <translation>内部显示</translation>
     </message>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>

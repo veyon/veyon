@@ -3747,7 +3747,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Miscellaneous settings</source>
-        <translation type="unfinished"/>
+        <translation>Дополнительные настройки</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
@@ -3759,7 +3759,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Disable clipboard synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Отключить синхронизацию буфера обмена</translation>
     </message>
     <message>
         <source>VNC server</source>
