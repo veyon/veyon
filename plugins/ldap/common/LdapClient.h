@@ -9,11 +9,20 @@
 
 #include "LdapCommon.h"
 
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
 namespace KLDAP {
 class LdapConnection;
 class LdapOperation;
 class LdapServer;
 }
+namespace KLDAPCore = KLDAP;
+#else
+namespace KLDAPCore {
+class LdapConnection;
+class LdapOperation;
+class LdapServer;
+}
+#endif
 
 class LdapConfiguration;
 
@@ -116,9 +125,9 @@ private:
 	void initTLS();
 
 	const LdapConfiguration& m_configuration;
-	KLDAP::LdapServer* m_server;
-	KLDAP::LdapConnection* m_connection;
-	KLDAP::LdapOperation* m_operation;
+	KLDAPCore::LdapServer* m_server;
+	KLDAPCore::LdapConnection* m_connection;
+	KLDAPCore::LdapOperation* m_operation;
 
 	enum State
 	{

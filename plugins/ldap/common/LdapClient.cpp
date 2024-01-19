@@ -12,16 +12,16 @@
 #include "ldapserver.h"
 
 
-static inline KLDAP::LdapUrl::Scope kldapUrlScope( LdapClient::Scope scope )
+static inline KLDAPCore::LdapUrl::Scope kldapUrlScope(LdapClient::Scope scope)
 {
-	switch( scope )
+	switch (scope)
 	{
-	case LdapClient::Scope::Base: return KLDAP::LdapUrl::Base;
-	case LdapClient::Scope::One: return KLDAP::LdapUrl::One;
-	case LdapClient::Scope::Sub: return KLDAP::LdapUrl::Sub;
+	case LdapClient::Scope::Base: return KLDAPCore::LdapUrl::Base;
+	case LdapClient::Scope::One: return KLDAPCore::LdapUrl::One;
+	case LdapClient::Scope::Sub: return KLDAPCore::LdapUrl::Sub;
 	}
 
-	return KLDAP::LdapUrl::Base;
+	return KLDAPCore::LdapUrl::Base;
 }
 
 
@@ -29,9 +29,9 @@ static inline KLDAP::LdapUrl::Scope kldapUrlScope( LdapClient::Scope scope )
 LdapClient::LdapClient( const LdapConfiguration& configuration, const QUrl& url, QObject* parent ) :
 	QObject( parent ),
 	m_configuration( configuration ),
-	m_server( new KLDAP::LdapServer ),
-	m_connection( new KLDAP::LdapConnection ),
-	m_operation( new KLDAP::LdapOperation ),
+	m_server( new KLDAPCore::LdapServer ),
+	m_connection( new KLDAPCore::LdapConnection ),
+	m_operation( new KLDAPCore::LdapOperation ),
 	m_queryTimeout(m_configuration.queryTimeout())
 {
 	connectAndBind( url );
@@ -99,7 +99,7 @@ LdapClient::Objects LdapClient::queryObjects( const QString& dn, const QStringLi
 	Objects entries;
 
 	int result = -1;
-	auto id = m_operation->search( KLDAP::LdapDN( dn ), kldapUrlScope( scope ), filter, QStringList( attributes ) );
+	auto id = m_operation->search(KLDAPCore::LdapDN(dn), kldapUrlScope(scope), filter, attributes);
 
 	if( id != -1 )
 	{
@@ -111,7 +111,7 @@ LdapClient::Objects LdapClient::queryObjects( const QString& dn, const QStringLi
 
 		auto isFirstResult = true;
 
-		while( ( result = m_operation->waitForResult( id, m_queryTimeout ) ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
+		while ((result = m_operation->waitForResult(id, m_queryTimeout)) == KLDAPCore::LdapOperation::RES_SEARCH_ENTRY)
 		{
 			if( isFirstResult )
 			{
@@ -195,14 +195,14 @@ QStringList LdapClient::queryAttributeValues( const QString& dn, const QString& 
 	QStringList entries;
 
 	int result = -1;
-	int id = m_operation->search( KLDAP::LdapDN( dn ), kldapUrlScope( scope ), filter, QStringList( attribute ) );
+	int id = m_operation->search(KLDAPCore::LdapDN(dn), kldapUrlScope(scope), filter, QStringList(attribute));
 
 	if( id != -1 )
 	{
 		bool isFirstResult = true;
 		QString realAttributeName = attribute.toLower();
 
-		while( ( result = m_operation->waitForResult( id, m_queryTimeout ) ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
+		while ((result = m_operation->waitForResult(id, m_queryTimeout)) == KLDAPCore::LdapOperation::RES_SEARCH_ENTRY)
 		{
 			if( isFirstResult )
 			{
@@ -270,11 +270,11 @@ QStringList LdapClient::queryDistinguishedNames( const QString& dn, const QStrin
 	QStringList distinguishedNames;
 
 	int result = -1;
-	int id = m_operation->search( KLDAP::LdapDN( dn ), kldapUrlScope( scope ), filter, QStringList() );
+	int id = m_operation->search( KLDAPCore::LdapDN(dn), kldapUrlScope(scope), filter, QStringList() );
 
 	if( id != -1 )
 	{
-		while( ( result = m_operation->waitForResult( id, m_queryTimeout ) ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
+		while ((result = m_operation->waitForResult(id, m_queryTimeout)) == KLDAPCore::LdapOperation::RES_SEARCH_ENTRY)
 		{
 			distinguishedNames += m_operation->object().dn().toString();
 		}
@@ -325,7 +325,7 @@ QStringList LdapClient::queryObjectAttributes( const QString& dn )
 		return {};
 	}
 
-	if( m_operation->waitForResult( id, m_queryTimeout ) == KLDAP::LdapOperation::RES_SEARCH_ENTRY )
+	if (m_operation->waitForResult(id, m_queryTimeout) == KLDAPCore::LdapOperation::RES_SEARCH_ENTRY)
 	{
 		const auto keys = m_operation->object().attributes().keys();
 		vDebug() << "results" << keys;
@@ -438,7 +438,7 @@ bool LdapClient::connectAndBind( const QUrl& url )
 {
 	if( url.isValid() )
 	{
-		m_server->setUrl( KLDAP::LdapUrl( url ) );
+		m_server->setUrl(KLDAPCore::LdapUrl(url));
 	}
 	else
 	{
@@ -449,24 +449,24 @@ bool LdapClient::connectAndBind( const QUrl& url )
 		{
 			m_server->setBindDn( m_configuration.bindDn() );
 			m_server->setPassword( QString::fromUtf8( m_configuration.bindPassword().plainText().toByteArray() ) );
-			m_server->setAuth( KLDAP::LdapServer::Simple );
+			m_server->setAuth(KLDAPCore::LdapServer::Simple);
 		}
 		else
 		{
-			m_server->setAuth( KLDAP::LdapServer::Anonymous );
+			m_server->setAuth(KLDAPCore::LdapServer::Anonymous);
 		}
 
 		const auto security = static_cast<ConnectionSecurity>( m_configuration.connectionSecurity() );
 		switch( security )
 		{
 		case ConnectionSecurityTLS:
-			m_server->setSecurity( KLDAP::LdapServer::TLS );
+			m_server->setSecurity(KLDAPCore::LdapServer::TLS);
 			break;
 		case ConnectionSecuritySSL:
-			m_server->setSecurity( KLDAP::LdapServer::SSL );
+			m_server->setSecurity(KLDAPCore::LdapServer::SSL);
 			break;
 		default:
-			m_server->setSecurity( KLDAP::LdapServer::None );
+			m_server->setSecurity(KLDAPCore::LdapServer::None);
 			break;
 		}
 	}
@@ -499,18 +499,18 @@ void LdapClient::initTLS()
 	switch( m_configuration.tlsVerifyMode() )
 	{
 	case TLSVerifyDefault:
-		m_server->setTLSRequireCertificate( KLDAP::LdapServer::TLSReqCertDefault );
+		m_server->setTLSRequireCertificate(KLDAPCore::LdapServer::TLSReqCertDefault);
 		break;
 	case TLSVerifyNever:
-		m_server->setTLSRequireCertificate( KLDAP::LdapServer::TLSReqCertNever );
+		m_server->setTLSRequireCertificate(KLDAPCore::LdapServer::TLSReqCertNever);
 		break;
 	case TLSVerifyCustomCert:
-		m_server->setTLSRequireCertificate( KLDAP::LdapServer::TLSReqCertHard );
+		m_server->setTLSRequireCertificate(KLDAPCore::LdapServer::TLSReqCertHard);
 		m_server->setTLSCACertFile( m_configuration.tlsCACertificateFile() );
 		break;
 	default:
 		vCritical() << "invalid TLS verify mode specified!";
-		m_server->setTLSRequireCertificate( KLDAP::LdapServer::TLSReqCertDefault );
+		m_server->setTLSRequireCertificate(KLDAPCore::LdapServer::TLSReqCertDefault);
 		break;
 	}
 }
