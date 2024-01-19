@@ -82,6 +82,7 @@ public:
 
 private:
 	FeatureList m_features{};
+	FeatureUidList m_disabledFeaturesUids{};
 	const FeatureList m_emptyFeatureList{};
 	QObjectList m_pluginObjects{};
 	FeatureProviderInterfaceList m_featurePluginInterfaces{};
