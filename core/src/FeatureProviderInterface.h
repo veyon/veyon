@@ -151,6 +151,15 @@ public:
 		return false;
 	}
 
+	virtual bool handleFeatureMessageFromWorker(VeyonServerInterface& server,
+												const FeatureMessage& message)
+	{
+		Q_UNUSED(server)
+		Q_UNUSED(message)
+
+		return false;
+	}
+
 	/*!
 	 * \brief Send asynchronous messages (e.g. notifications or state updates) to client
 	 */
