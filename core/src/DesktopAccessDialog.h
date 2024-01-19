@@ -113,9 +113,8 @@ public:
 		return false;
 	}
 
-	bool handleFeatureMessage( VeyonServerInterface& server,
-							   const MessageContext& messageContext,
-							   const FeatureMessage& message ) override;
+	bool handleFeatureMessageFromWorker(VeyonServerInterface& server,
+										const FeatureMessage& message) override;
 
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 
