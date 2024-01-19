@@ -58,6 +58,12 @@ FeatureManager::FeatureManager( QObject* parent ) :
 		}
 	}
 
+	const auto disabledFeatures = VeyonCore::config().disabledFeatures();
+	m_disabledFeaturesUids.reserve(disabledFeatures.count());
+	for (const auto& disabledFeature : disabledFeatures)
+	{
+		m_disabledFeaturesUids.append(Plugin::Uid{disabledFeature});
+	}
 }
 
 
@@ -221,7 +227,7 @@ void FeatureManager::handleFeatureMessage(VeyonServerInterface& server,
 {
 	vDebug() << "[SERVER]" << message;
 
-	if( VeyonCore::config().disabledFeatures().contains( message.featureUid().toString() ) )
+	if (m_disabledFeaturesUids.contains(message.featureUid()))
 	{
 		vWarning() << "ignoring message as feature" << message.featureUid() << "is disabled by configuration!";
 		return;
