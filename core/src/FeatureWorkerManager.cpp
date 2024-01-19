@@ -271,7 +271,7 @@ void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 
 		if( message.command() >= 0 )
 		{
-			VeyonCore::featureManager().handleFeatureMessage( m_server, MessageContext( socket ), message );
+			VeyonCore::featureManager().handleFeatureMessageFromWorker(m_server, message);
 		}
 	}
 	else
