@@ -241,6 +241,26 @@ void FeatureManager::handleFeatureMessage(VeyonServerInterface& server,
 
 
 
+void FeatureManager::handleFeatureMessageFromWorker(VeyonServerInterface& server,
+													const FeatureMessage& message) const
+{
+	vDebug() << "[FROM WORKER]" << message;
+
+	if (m_disabledFeaturesUids.contains(message.featureUid()))
+	{
+		vWarning() << "ignoring message as feature" << message.featureUid() << "is disabled by configuration!";
+		return;
+	}
+
+	for (const auto& featureInterface : qAsConst(m_featurePluginInterfaces))
+	{
+		featureInterface->handleFeatureMessageFromWorker(server, message);
+	}
+}
+
+
+
+
 void FeatureManager::handleFeatureMessage(VeyonWorkerInterface& worker, const FeatureMessage& message) const
 {
 	vDebug() << "[WORKER]" << message;
