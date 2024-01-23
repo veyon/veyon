@@ -39,7 +39,8 @@ public:
 		Disabled,
 		Basic,
 		Monitoring,
-		Live
+		Live,
+		FeatureControlOnly,
 	};
 
 	using Pointer = QSharedPointer<ComputerControlInterface>;
