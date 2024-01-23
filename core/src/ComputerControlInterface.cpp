@@ -308,7 +308,7 @@ void ComputerControlInterface::setUpdateMode( UpdateMode updateMode )
 
 	if (vncConnection())
 	{
-		vncConnection()->setSkipHostPing(m_updateMode == UpdateMode::Basic);
+		vncConnection()->setSkipHostPing(m_updateMode == UpdateMode::Basic || m_updateMode == UpdateMode::FeatureControlOnly);
 	}
 }
 
@@ -348,6 +348,13 @@ void ComputerControlInterface::setMinimumFramebufferUpdateInterval()
 
 	case UpdateMode::Live:
 		break;
+
+	case UpdateMode::FeatureControlOnly:
+		if (vncConnection())
+		{
+			vncConnection()->setSkipFramebufferUpdates(true);
+		}
+		break;
 	}
 
 	if (vncConnection())
@@ -372,6 +379,7 @@ void ComputerControlInterface::setQuality()
 		switch (m_updateMode)
 		{
 		case UpdateMode::Disabled:
+		case UpdateMode::FeatureControlOnly:
 			quality = VncConnectionConfiguration::Quality::Lowest;
 			break;
 
