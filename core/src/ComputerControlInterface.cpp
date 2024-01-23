@@ -96,9 +96,9 @@ void ComputerControlInterface::start( QSize scaledFramebufferSize, UpdateMode up
 			Q_EMIT scaledFramebufferUpdated();
 		} );
 
+		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
 		connect(vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::setMinimumFramebufferUpdateInterval);
 		connect(vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateServerVersion);
-		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateSessionInfo );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateActiveFeatures );
