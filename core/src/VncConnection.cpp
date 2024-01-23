@@ -516,8 +516,13 @@ void VncConnection::handleConnection()
 	{
 		loopTimer.start();
 
-		const int i = WaitForMessage(m_client, m_framebufferUpdateInterval > 0 ?
-													m_messageWaitTimeout * 100 : m_messageWaitTimeout);
+		const auto waitTimeout = isControlFlagSet(ControlFlag::SkipFramebufferUpdates) ?
+									 m_messageWaitTimeout / 10
+								   :
+									 (m_framebufferUpdateInterval > 0 ? m_messageWaitTimeout * 100 : m_messageWaitTimeout);
+
+		const int i = WaitForMessage(m_client, waitTimeout);
+
 		if( isControlFlagSet( ControlFlag::TerminateThread ) || i < 0 )
 		{
 			break;
@@ -539,18 +544,18 @@ void VncConnection::handleConnection()
 		else if (m_framebufferUpdateWatchdog.elapsed() >=
 				 qMax<qint64>(2*m_framebufferUpdateInterval, m_framebufferUpdateWatchdogTimeout))
 		{
-			SendFramebufferUpdateRequest(m_client, 0, 0, m_client->width, m_client->height, false);
+			requestFrameufferUpdate(FramebufferUpdateType::Full);
 			m_framebufferUpdateWatchdog.restart();
 		}
 		else if (m_framebufferUpdateInterval > 0 && m_framebufferUpdateWatchdog.elapsed() > m_framebufferUpdateInterval)
 		{
-			SendIncrementalFramebufferUpdateRequest(m_client);
+			requestFrameufferUpdate(FramebufferUpdateType::Incremental);
 			m_framebufferUpdateWatchdog.restart();
 		}
 		else if (isControlFlagSet(ControlFlag::TriggerFramebufferUpdate))
 		{
 			setControlFlag(ControlFlag::TriggerFramebufferUpdate, false);
-			SendIncrementalFramebufferUpdateRequest(m_client);
+			requestFrameufferUpdate(FramebufferUpdateType::Incremental);
 		}
 
 		const auto remainingUpdateInterval = m_framebufferUpdateInterval - loopTimer.elapsed();
@@ -654,6 +659,24 @@ rfbBool VncConnection::initFrameBuffer( rfbClient* client )
 	Q_EMIT framebufferSizeChanged( client->width, client->height );
 
 	return true;
+}
+
+
+
+void VncConnection::requestFrameufferUpdate(FramebufferUpdateType updateType)
+{
+	if (isControlFlagSet(ControlFlag::SkipFramebufferUpdates) == false)
+	{
+		switch (updateType)
+		{
+		case FramebufferUpdateType::Incremental:
+			SendIncrementalFramebufferUpdateRequest(m_client);
+			break;
+		case FramebufferUpdateType::Full:
+			SendFramebufferUpdateRequest(m_client, 0, 0, m_client->width, m_client->height, false);
+			break;
+		}
+	}
 }
 
 
