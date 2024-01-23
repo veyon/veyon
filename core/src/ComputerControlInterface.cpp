@@ -305,6 +305,31 @@ void ComputerControlInterface::setUpdateMode( UpdateMode updateMode )
 
 
 
+void ComputerControlInterface::setProperty(QUuid propertyId, const QVariant& data)
+{
+	if (propertyId.isNull() == false)
+	{
+		lock();
+		m_properties[propertyId] = data;
+		unlock();
+
+		Q_EMIT propertyChanged(propertyId);
+	}
+}
+
+
+
+QVariant ComputerControlInterface::queryProperty(QUuid propertyId)
+{
+	lock();
+	const auto data = m_properties.value(propertyId);
+	unlock();
+
+	return data;
+}
+
+
+
 ComputerControlInterface::Pointer ComputerControlInterface::weakPointer()
 {
 	return Pointer( this, []( ComputerControlInterface* ) { } );

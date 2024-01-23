@@ -160,6 +160,10 @@ public:
 		return m_updateMode;
 	}
 
+	void setProperty(QUuid propertyId, const QVariant& data);
+
+	QVariant queryProperty(QUuid propertyId);
+
 	Pointer weakPointer();
 
 private:
@@ -208,6 +212,8 @@ private:
 
 	QTimer m_statePollingTimer{this};
 
+	QMap<QUuid, QVariant> m_properties;
+
 Q_SIGNALS:
 	void framebufferSizeChanged();
 	void framebufferUpdated();
@@ -216,6 +222,7 @@ Q_SIGNALS:
 	void screensChanged();
 	void stateChanged();
 	void activeFeaturesChanged();
+	void propertyChanged(QUuid propertyId);
 
 };
 
