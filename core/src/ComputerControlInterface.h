@@ -166,6 +166,17 @@ public:
 
 	Pointer weakPointer();
 
+	template<typename T>
+	void executeIfConnected(const T& functor)
+	{
+		connect(this, &ComputerControlInterface::stateChanged, this, [this, functor]() {
+			if (state() == State::Connected)
+			{
+				functor();
+			}
+		});
+	}
+
 private:
 	void ping();
 	void setMinimumFramebufferUpdateInterval();
