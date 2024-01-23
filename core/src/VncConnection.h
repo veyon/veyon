@@ -55,6 +55,12 @@ public:
 		Valid
 	} ;
 
+	enum class FramebufferUpdateType
+	{
+		Full,
+		Incremental
+	};
+
 	enum class State
 	{
 		None,
@@ -117,6 +123,11 @@ public:
 
 	void setFramebufferUpdateInterval( int interval );
 
+	void setSkipFramebufferUpdates(bool on)
+	{
+		setControlFlag(ControlFlag::SkipFramebufferUpdates, on);
+	}
+
 	void setSkipHostPing( bool on )
 	{
 		setControlFlag( ControlFlag::SkipHostPing, on );
@@ -169,7 +180,8 @@ private:
 		DeleteAfterFinished = 0x10,
 		SkipHostPing = 0x20,
 		RequiresManualUpdateRateControl = 0x40,
-		TriggerFramebufferUpdate = 0x80
+		TriggerFramebufferUpdate = 0x80,
+		SkipFramebufferUpdates = 0x100
 	};
 
 	~VncConnection() override;
@@ -184,6 +196,7 @@ private:
 	bool isControlFlagSet( ControlFlag flag );
 
 	bool initFrameBuffer();
+	void requestFrameufferUpdate(FramebufferUpdateType updateType);
 	void finishFrameBufferUpdate();
 
 	void updateEncodingSettingsFromQuality();
