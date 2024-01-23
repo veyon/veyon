@@ -303,10 +303,6 @@ void MainWindow::switchToStandardView()
 		{
 			widget->hide();
 		}
-		else if( flags & Configuration::Property::Flag::Standard )
-		{
-			widget->show();
-		}
 		else if( flags & Configuration::Property::Flag::Advanced )
 		{
 			widget->hide();
