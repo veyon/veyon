@@ -80,7 +80,7 @@ protected:
 	void removeObjects( const NetworkObject& parent, const NetworkObjectFilter& removeObjectFilter );
 	void replaceObjects( const NetworkObjectList& objects, const NetworkObject& parent );
 	void setObjectPopulated( const NetworkObject& networkObject );
-	void propagateChildObjectChange(NetworkObject::ModelId objectId, int childIndex);
+	void propagateChildObjectChange(NetworkObject::ModelId objectId);
 
 private:
 	const QString m_name;
