@@ -108,6 +108,12 @@
      <property name="enabled">
       <bool>false</bool>
      </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>400</height>
+      </size>
+     </property>
      <property name="title">
       <string>User groups authorized for computer access</string>
      </property>
