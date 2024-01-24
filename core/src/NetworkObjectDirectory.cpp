@@ -325,6 +325,7 @@ void NetworkObjectDirectory::removeObjects( const NetworkObject& parent, const N
 			Q_EMIT objectsAboutToBeRemoved(parent.modelId(), index, 1);
 			it = objectList.erase( it );
 			Q_EMIT objectsRemoved();
+			propagateChildObjectChange(parent.modelId());
 		}
 		else
 		{
