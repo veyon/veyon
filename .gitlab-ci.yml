@@ -21,6 +21,7 @@ build-linux:
         - opensuse.tumbleweed
         - ubuntu.focal
         - ubuntu.jammy
+        - ubuntu.mantic
   artifacts:
     paths: [ "veyon*" ]
     expire_in: 1 day
