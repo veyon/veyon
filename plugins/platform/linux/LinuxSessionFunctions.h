@@ -89,6 +89,8 @@ public:
 	QString currentSessionType() const override;
 	bool currentSessionHasUser() const override;
 
+	EnvironmentVariables currentSessionEnvironmentVariables() const override;
+
 	static QStringList listSessions();
 
 	static QVariant getSessionProperty(const QString& session, const QString& property, bool logErrors = true);

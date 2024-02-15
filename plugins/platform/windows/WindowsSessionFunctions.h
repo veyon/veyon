@@ -41,4 +41,6 @@ public:
 	QString currentSessionType() const override;
 	bool currentSessionHasUser() const override;
 
+	EnvironmentVariables currentSessionEnvironmentVariables() const override;
+
 };
