@@ -27,14 +27,10 @@
 #include <QBuffer>
 
 #include "DesktopInputController.h"
-#include "VariantStream.h"
 #include "VeyonConfiguration.h"
-#include "VeyonServerInterface.h"
 #include "WindowsCoreFunctions.h"
 #include "WindowsInputDeviceFunctions.h"
 #include "WindowsPlatformConfiguration.h"
-#include "WindowsServiceControl.h"
-#include "WindowsServiceCore.h"
 #include "WindowsUserFunctions.h"
 #include "WtsSessionManager.h"
 
