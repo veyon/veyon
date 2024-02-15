@@ -50,7 +50,7 @@ public:
 
 	void start( DWORD wtsSessionId, const ServiceDataManager::Token& token )
 	{
-		const auto baseProcessId = WtsSessionManager::findWinlogonProcessId( wtsSessionId );
+		const auto baseProcessId = WtsSessionManager::findProcessId(QStringLiteral("winlogon.exe"), wtsSessionId);
 		const auto user = WtsSessionManager::querySessionInformation( wtsSessionId, WtsSessionManager::SessionInfo::UserName );
 
 		const QStringList extraEnv{

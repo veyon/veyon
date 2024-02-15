@@ -176,47 +176,6 @@ QString WtsSessionManager::querySessionInformation(SessionId sessionId, SessionI
 
 
 
-WtsSessionManager::ProcessId WtsSessionManager::findWinlogonProcessId( SessionId sessionId )
-{
-	if( sessionId == InvalidSession )
-	{
-		vCritical() << "called with invalid session ID";
-		return InvalidProcess;
-	}
-
-	PWTS_PROCESS_INFO processInfo = nullptr;
-	DWORD processCount = 0;
-
-	if( WTSEnumerateProcesses( WTS_CURRENT_SERVER_HANDLE, 0, 1, &processInfo, &processCount ) == false )
-	{
-		return InvalidProcess;
-	}
-
-	auto pid = InvalidProcess;
-	const auto processName = QStringLiteral("winlogon.exe");
-
-	for( DWORD proc = 0; proc < processCount; ++proc )
-	{
-		if( processInfo[proc].ProcessId == 0 )
-		{
-			continue;
-		}
-
-		if( processName.compare( QString::fromWCharArray( processInfo[proc].pProcessName ), Qt::CaseInsensitive ) == 0 &&
-			sessionId == processInfo[proc].SessionId )
-		{
-			pid = processInfo[proc].ProcessId;
-			break;
-		}
-	}
-
-	WTSFreeMemory( processInfo );
-
-	return pid;
-}
-
-
-
 WtsSessionManager::ProcessId WtsSessionManager::findUserProcessId( const QString& userName )
 {
 	DWORD sidLen = SECURITY_MAX_SID_SIZE; // Flawfinder: ignore
