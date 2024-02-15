@@ -90,6 +90,8 @@ public:
 	bool currentSessionHasUser() const override;
 	bool currentSessionIsRemote() const override;
 
+	EnvironmentVariables currentSessionEnvironmentVariables() const override;
+
 	static QStringList listSessions();
 
 	static QVariant getSessionProperty(const QString& session, const QString& property, bool logErrors = true);

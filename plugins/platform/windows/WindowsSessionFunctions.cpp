@@ -24,6 +24,7 @@
 
 #include <QHostInfo>
 
+#include "WindowsCoreFunctions.h"
 #include "PlatformSessionManager.h"
 #include "WindowsSessionFunctions.h"
 #include "WtsSessionManager.h"
@@ -97,4 +98,24 @@ bool WindowsSessionFunctions::currentSessionHasUser() const
 {
 	return WtsSessionManager::querySessionInformation( WtsSessionManager::currentSession(),
 													   WtsSessionManager::SessionInfo::UserName ).isEmpty() == false;
+}
+
+
+
+PlatformSessionFunctions::EnvironmentVariables WindowsSessionFunctions::currentSessionEnvironmentVariables() const
+{
+	const auto processId = WtsSessionManager::findProcessId(QStringLiteral("explorer.exe"), WtsSessionManager::currentSession());
+	const auto envStrings = WindowsCoreFunctions::queryProcessEnvironmentVariables(processId);
+
+	EnvironmentVariables environmentVariables;
+	for (const auto& envString : envStrings)
+	{
+		const auto envStringParts = envString.split(QLatin1Char('='));
+		if (envStringParts.size() >= 2)
+		{
+			environmentVariables[envStringParts.at(0)] = envStringParts.mid(1).join(QLatin1Char('='));
+		}
+	}
+
+	return environmentVariables;
 }

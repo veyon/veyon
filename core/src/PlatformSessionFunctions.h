@@ -33,6 +33,7 @@ class PlatformSessionFunctions
 public:
 	using SessionId = int;
 	using SessionUptime = int;
+	using EnvironmentVariables = QMap<QString, QString>;
 
 	struct SessionInfo {
 		SessionId id = InvalidSessionId;
@@ -70,5 +71,7 @@ public:
 	virtual QString currentSessionType() const = 0;
 	virtual bool currentSessionHasUser() const = 0;
 	virtual bool currentSessionIsRemote() const = 0;
+
+	virtual EnvironmentVariables currentSessionEnvironmentVariables() const = 0;
 
 };

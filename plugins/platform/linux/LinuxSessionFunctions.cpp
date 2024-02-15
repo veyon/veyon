@@ -103,6 +103,27 @@ bool LinuxSessionFunctions::currentSessionIsRemote() const
 
 
 
+LinuxSessionFunctions::EnvironmentVariables LinuxSessionFunctions::currentSessionEnvironmentVariables() const
+{
+	const auto sessionLeader = getSessionLeaderPid(currentSessionPath());
+	auto sessionEnv = getSessionEnvironment(sessionLeader);
+	if (sessionEnv.isEmpty())
+	{
+		sessionEnv = QProcessEnvironment::systemEnvironment();
+	}
+	const auto sessionEnvVars = sessionEnv.keys();
+
+	EnvironmentVariables envVars;
+	for (const auto& sessionEnvVar : sessionEnvVars)
+	{
+		envVars[sessionEnvVar] = sessionEnv.value(sessionEnvVar);
+	}
+
+	return envVars;
+}
+
+
+
 QStringList LinuxSessionFunctions::listSessions()
 {
 	QStringList sessions;

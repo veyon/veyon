@@ -42,4 +42,6 @@ public:
 	bool currentSessionHasUser() const override;
 	bool currentSessionIsRemote() const override;
 
+	EnvironmentVariables currentSessionEnvironmentVariables() const override;
+
 };
