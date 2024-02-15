@@ -615,18 +615,17 @@ bool WindowsCoreFunctions::terminateProcess( ProcessId processId, DWORD timeout 
 
 wchar_t* WindowsCoreFunctions::appendToEnvironmentBlock( const wchar_t* env, const QStringList& strings )
 {
-	static constexpr auto MaximumEnvironmentSize = 1024*1024;
 	static constexpr auto MaximumExtraStringsLength = 1024*1024;
 
 	size_t envPos = 0;
-	while( envPos < MaximumEnvironmentSize-1 && !(env[envPos] == 0 && env[envPos+1] == 0) )
+	while (envPos < MaximumEnvironmentBlockSize-1 && !(env[envPos] == 0 && env[envPos+1] == 0))
 	{
 		++envPos;
 	}
 
 	++envPos;
 
-	if( envPos >= MaximumEnvironmentSize-1 )
+	if (envPos >= MaximumEnvironmentBlockSize-1)
 	{
 		return nullptr;
 	}

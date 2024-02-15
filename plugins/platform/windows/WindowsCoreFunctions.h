@@ -87,6 +87,8 @@ private:
 	static constexpr DWORD DefaultProcessTerminationTimeout = 5000;
 	static constexpr size_t ScreenSaverSettingsCount = 3;
 
+	static constexpr auto MaximumEnvironmentBlockSize = 1024*1024;
+
 	static constexpr auto ShutdownFlags = SHUTDOWN_FORCE_OTHERS | SHUTDOWN_FORCE_SELF;
 	static constexpr auto ShutdownReason = SHTDN_REASON_MAJOR_OTHER | SHTDN_REASON_FLAG_PLANNED;
 
