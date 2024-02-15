@@ -30,7 +30,6 @@
 #include "Filesystem.h"
 #include "WindowsServiceCore.h"
 #include "SasEventListener.h"
-#include "PlatformUserFunctions.h"
 #include "VeyonConfiguration.h"
 #include "WindowsCoreFunctions.h"
 #include "WindowsInputDeviceFunctions.h"
@@ -389,6 +388,8 @@ void WindowsServiceCore::serviceMain()
 
 DWORD WindowsServiceCore::serviceCtrl( DWORD ctrlCode, DWORD eventType, LPVOID eventData, LPVOID context )
 {
+	Q_UNUSED(context);
+
 	static const QMap<DWORD, const char *> controlMessages{
 		{ SERVICE_CONTROL_SHUTDOWN, "SHUTDOWN" },
 		{ SERVICE_CONTROL_STOP, "STOP" },
