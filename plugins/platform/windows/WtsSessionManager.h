@@ -59,6 +59,6 @@ public:
 
 	static ProcessId findWinlogonProcessId( SessionId sessionId );
 	static ProcessId findUserProcessId( const QString& userName );
-	static ProcessId findProcessId( const QString& processName );
+	static ProcessId findProcessId(const QString& processName, SessionId sessionId = InvalidSession);
 
 } ;

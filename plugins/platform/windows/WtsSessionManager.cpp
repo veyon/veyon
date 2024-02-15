@@ -266,7 +266,7 @@ WtsSessionManager::ProcessId WtsSessionManager::findUserProcessId( const QString
 
 
 
-WtsSessionManager::ProcessId WtsSessionManager::findProcessId( const QString& processName )
+WtsSessionManager::ProcessId WtsSessionManager::findProcessId(const QString& processName, SessionId sessionId)
 {
 	PWTS_PROCESS_INFO processInfo = nullptr;
 	DWORD processCount = 0;
@@ -281,6 +281,11 @@ WtsSessionManager::ProcessId WtsSessionManager::findProcessId( const QString& pr
 	for( DWORD proc = 0; proc < processCount; ++proc )
 	{
 		if( processInfo[proc].ProcessId == 0 )
+		{
+			continue;
+		}
+
+		if (sessionId != InvalidSession && processInfo[proc].SessionId != sessionId)
 		{
 			continue;
 		}
