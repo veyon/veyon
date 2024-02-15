@@ -80,6 +80,8 @@ public:
 									   DWORD baseProcessId,
 									   const QString& desktop );
 
+	static QStringList queryProcessEnvironmentVariables(DWORD processId);
+
 	static bool terminateProcess( ProcessId processId, DWORD timeout = DefaultProcessTerminationTimeout );
 
 private:
