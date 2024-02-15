@@ -591,6 +591,53 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 
 
 
+QStringList WindowsCoreFunctions::queryProcessEnvironmentVariables(DWORD processId)
+{
+	const auto processHandle = OpenProcess(PROCESS_QUERY_INFORMATION, false, processId);
+	if (processHandle == nullptr)
+	{
+		vCritical() << "OpenProcess()" << GetLastError();
+		return {};
+	}
+
+	HANDLE processToken = nullptr;
+	if (OpenProcessToken(processHandle, MAXIMUM_ALLOWED, &processToken ) == false)
+	{
+		vCritical() << "OpenProcessToken()" << GetLastError();
+		CloseHandle(processHandle);
+		return {};
+	}
+
+	LPVOID envBlock = nullptr;
+	if (CreateEnvironmentBlock(&envBlock, processToken, false) == false ||
+		envBlock == nullptr)
+	{
+		vCritical() << "CreateEnvironmentBlock()" << GetLastError();
+		CloseHandle(processHandle);
+		CloseHandle(processToken);
+		return {};
+	}
+
+	const auto env = reinterpret_cast<const wchar_t *>(envBlock);
+	size_t envPos = 0;
+	size_t envCurVarStart = 0;
+
+	QStringList envVars;
+	while (envPos < MaximumEnvironmentBlockSize-1 && !(env[envPos] == 0 && env[envPos+1] == 0))
+	{
+		if (env[envPos] == 0)
+		{
+			envVars.append(QString::fromWCharArray(env + envCurVarStart));
+			envCurVarStart = envPos+1;
+		}
+		++envPos;
+	}
+
+	return envVars;
+}
+
+
+
 bool WindowsCoreFunctions::terminateProcess( ProcessId processId, DWORD timeout )
 {
 	if( processId != WtsSessionManager::InvalidProcess )
