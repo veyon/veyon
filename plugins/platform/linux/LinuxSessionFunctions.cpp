@@ -22,10 +22,12 @@
  *
  */
 
+#include <QCoreApplication>
 #include <QDateTime>
 #include <QDBusReply>
 #include <QHostInfo>
 #include <QProcessEnvironment>
+#include <QSettings>
 
 #ifdef HAVE_LIBPROCPS
 #include <proc/readproc.h>
@@ -113,6 +115,13 @@ LinuxSessionFunctions::EnvironmentVariables LinuxSessionFunctions::currentSessio
 	}
 
 	return envVars;
+}
+
+
+
+QVariant LinuxSessionFunctions::querySettingsValueInCurrentSession(const QString& key) const
+{
+	return QSettings(QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName()).value(key);
 }
 
 

@@ -42,5 +42,6 @@ public:
 	bool currentSessionHasUser() const override;
 
 	EnvironmentVariables currentSessionEnvironmentVariables() const override;
+	QVariant querySettingsValueInCurrentSession(const QString& key) const override;
 
 };

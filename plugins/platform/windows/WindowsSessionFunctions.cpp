@@ -22,7 +22,11 @@
  *
  */
 
+#include <wtsapi32.h>
+
+#include <QCoreApplication>
 #include <QHostInfo>
+#include <QSettings>
 
 #include "WindowsCoreFunctions.h"
 #include "PlatformSessionManager.h"
@@ -111,4 +115,37 @@ PlatformSessionFunctions::EnvironmentVariables WindowsSessionFunctions::currentS
 	}
 
 	return environmentVariables;
+}
+
+
+
+QVariant WindowsSessionFunctions::querySettingsValueInCurrentSession(const QString& key) const
+{
+	if (key.startsWith(QLatin1String("HKEY")))
+	{
+		HANDLE userToken = nullptr;
+		const auto sessionId = WtsSessionManager::currentSession();
+		if (WTSQueryUserToken(sessionId, &userToken) == false)
+		{
+			vCritical() << "could not query user token for session" << sessionId;
+			return {};
+		}
+
+		if (ImpersonateLoggedOnUser(userToken) == false)
+		{
+			vCritical() << "could not impersonate session user";
+			return {};
+		}
+
+		const auto keyParts = key.split(QLatin1Char('\\'));
+		const auto value = QSettings(keyParts.mid(0, keyParts.length()-1).join(QLatin1Char('\\')), QSettings::NativeFormat)
+						   .value(keyParts.constLast());
+
+		RevertToSelf();
+		CloseHandle(userToken);
+
+		return value;
+	}
+
+	return QSettings(QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName()).value(key);
 }
