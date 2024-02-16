@@ -73,5 +73,6 @@ public:
 	virtual bool currentSessionIsRemote() const = 0;
 
 	virtual EnvironmentVariables currentSessionEnvironmentVariables() const = 0;
+	virtual QVariant querySettingsValueInCurrentSession(const QString& key) const = 0;
 
 };
