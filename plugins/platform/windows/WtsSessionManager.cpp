@@ -22,6 +22,7 @@
  *
  */
 
+#include <sddl.h>
 #include <windows.h>
 #include <wtsapi32.h>
 
@@ -172,6 +173,54 @@ QString WtsSessionManager::querySessionInformation(SessionId sessionId, SessionI
 	vDebug() << sessionId << sessionInfo << result;
 
 	return result;
+}
+
+
+
+QString WtsSessionManager::queryUserSid(SessionId sessionId)
+{
+	HANDLE userToken = nullptr;
+	if (WTSQueryUserToken(sessionId, &userToken) == false)
+	{
+		vCritical() << "could not query user token for session" << sessionId;
+		return {};
+	}
+
+	DWORD tokenSize = 0;
+	if (GetTokenInformation(userToken, TokenUser, nullptr, 0, &tokenSize) ||
+		tokenSize == 0 ||
+		GetLastError() != ERROR_INSUFFICIENT_BUFFER)
+	{
+		CloseHandle(userToken);
+		return {};
+	}
+
+	const auto userInfo = reinterpret_cast<PTOKEN_USER>(HeapAlloc(GetProcessHeap(), 0, tokenSize));
+	if (!userInfo)
+	{
+		CloseHandle(userToken);
+		return {};
+	}
+
+	if (!GetTokenInformation(userToken, TokenUser, userInfo, tokenSize, &tokenSize))
+	{
+		HeapFree(GetProcessHeap(), 0, userInfo);
+		CloseHandle(userToken);
+		return {};
+	}
+
+	QString sid;
+	wchar_t* stringSid = nullptr;
+	if (ConvertSidToStringSid(userInfo->User.Sid, &stringSid) && stringSid)
+	{
+		sid = QString::fromWCharArray(stringSid);
+		LocalFree(stringSid);
+	}
+
+	HeapFree(GetProcessHeap(), 0, userInfo);
+	CloseHandle(userToken);
+
+	return sid;
 }
 
 

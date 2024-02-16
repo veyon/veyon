@@ -56,6 +56,8 @@ public:
 	static SessionList activeSessions();
 
 	static QString querySessionInformation( SessionId sessionId, SessionInfo sessionInfo );
+	static QString queryUserSid(SessionId sessionId);
+
 	static bool isRemote( SessionId sessionId );
 
 	static ProcessId findUserProcessId( const QString& userName );
