@@ -6,7 +6,7 @@ jobs:
       matrix:
         dist:
           - debian.bookworm
-          - fedora.38
+          - fedora.39
           - opensuse.tumbleweed
           - ubuntu.focal
     runs-on: ubuntu-latest
