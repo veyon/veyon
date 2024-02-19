@@ -321,8 +321,8 @@ bool LinuxUserFunctions::performLogon( const QString& username, const Password& 
 		sequence = QStringLiteral("%username%<Tab>%password%<Return>");
 	}
 
-	auto matchIterator = QRegularExpression( QStringLiteral("(<[\\w\\d_]+>|%username%|%password%|[\\w\\d]+)") )
-							 .globalMatch( sequence );
+	static const QRegularExpression keySequenceRX(QStringLiteral("(<[\\w\\d_]+>|%username%|%password%|[\\w\\d]+)"));
+	auto matchIterator = keySequenceRX.globalMatch(sequence);
 	if( matchIterator.hasNext() == false )
 	{
 		vCritical() << "invalid user login key sequence";

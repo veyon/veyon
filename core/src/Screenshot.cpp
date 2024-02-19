@@ -154,8 +154,8 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 
 QString Screenshot::constructFileName( const QString& user, const QString& hostAddress, QDate date, QTime time )
 {
-	const auto userSimplified = VeyonCore::stripDomain( user ).toLower().remove(
-				QRegularExpression( QStringLiteral("[^a-z0-9.]") ) );
+	static const QRegularExpression nonAllowedCharsRX{QStringLiteral("[^a-z0-9.]")};
+	const auto userSimplified = VeyonCore::stripDomain(user).toLower().remove(nonAllowedCharsRX);
 
 	return QStringLiteral( "%1_%2_%3_%4.png" ).arg( userSimplified,
 													hostAddress,

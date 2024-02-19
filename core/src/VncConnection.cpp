@@ -148,18 +148,25 @@ void VncConnection::setHost( const QString& host )
 	QMutexLocker locker( &m_globalMutex );
 	m_host = host;
 
+	static const QRegularExpression ipv6MappedRX1{QStringLiteral("^::[fF]{4}:(\\d+.\\d+.\\d+.\\d+)$")};
+	static const QRegularExpression ipv6MappedRX2{QStringLiteral("^::[fF]{4}:(\\d+.\\d+.\\d+.\\d+):(\\d+)$")};
+	static const QRegularExpression ipv6MappedRX3{QStringLiteral("^\\[::[fF]{4}:(\\d+.\\d+.\\d+.\\d+)\\]:(\\d+)$")};
+	static const QRegularExpression ipv6WithPortRX{QStringLiteral("^\\[([0-9a-fA-F:]+)\\]:(\\d+)$")};
+	static const QRegularExpression ipv6IrregularWithPortRX{QStringLiteral("^([0-9a-fA-F:]+):(\\d{5})$"), QRegularExpression::InvertedGreedinessOption};
+	static const QRegularExpression anyWithPortRX{QStringLiteral("^([^:]+):(\\d+)$")};
+
 	QRegularExpressionMatch match;
 	if(
 		// if IPv6-mapped IPv4 address use plain IPv4 address as libvncclient cannot handle IPv6-mapped IPv4 addresses on Windows properly
-		( match = QRegularExpression( QStringLiteral("^::[fF]{4}:(\\d+.\\d+.\\d+.\\d+)$") ).match( m_host ) ).hasMatch() ||
-		( match = QRegularExpression( QStringLiteral("^::[fF]{4}:(\\d+.\\d+.\\d+.\\d+):(\\d+)$") ).match( m_host ) ).hasMatch() ||
-		( match = QRegularExpression( QStringLiteral("^\\[::[fF]{4}:(\\d+.\\d+.\\d+.\\d+)\\]:(\\d+)$") ).match( m_host ) ).hasMatch() ||
+		(match = ipv6MappedRX1.match(m_host)).hasMatch() ||
+		(match = ipv6MappedRX2.match(m_host)).hasMatch() ||
+		(match = ipv6MappedRX3.match(m_host)).hasMatch() ||
 		// any other IPv6 address with port number
-		( match = QRegularExpression( QStringLiteral("^\\[([0-9a-fA-F:]+)\\]:(\\d+)$") ).match( m_host ) ).hasMatch() ||
+		(match = ipv6WithPortRX.match(m_host)).hasMatch() ||
 		// irregular IPv6 address + port number specification where port number can be identified if > 9999
-		( match = QRegularExpression( QStringLiteral("^([0-9a-fA-F:]+):(\\d{5})$"), QRegularExpression::InvertedGreedinessOption ).match( m_host ) ).hasMatch() ||
+		(match = ipv6IrregularWithPortRX.match(m_host)).hasMatch() ||
 		// any other notation with trailing port number
-		( match = QRegularExpression( QStringLiteral("^([^:]+):(\\d+)$") ).match( m_host ) ).hasMatch()
+		(match = anyWithPortRX.match(m_host)).hasMatch()
 		)
 	{
 		const auto matchedHost = match.captured( 1 );

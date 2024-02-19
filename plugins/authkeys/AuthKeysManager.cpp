@@ -53,7 +53,8 @@ AuthKeysManager::AuthKeysManager( AuthKeysConfiguration& configuration, QObject*
 
 bool AuthKeysManager::isKeyNameValid( const QString& authKeyName )
 {
-	return QRegularExpression( QStringLiteral("^[\\w-]+$") ).match( authKeyName ).hasMatch();
+	static const QRegularExpression keyNameRX{QStringLiteral("^[\\w-]+$")};
+	return keyNameRX.match(authKeyName).hasMatch();
 }
 
 
@@ -470,8 +471,8 @@ QString AuthKeysManager::exportedKeyFileName( const QString& name, const QString
 
 QString AuthKeysManager::keyNameFromExportedKeyFile( const QString& keyFile )
 {
-	const auto keyNameMatch = QRegularExpression( QStringLiteral("^(.*)_(.*)_key.pem$") )
-								  .match(QFileInfo(keyFile).fileName());
+	static const QRegularExpression keyNameRX{QStringLiteral("^(.*)_(.*)_key.pem$")};
+	const auto keyNameMatch = keyNameRX.match(QFileInfo(keyFile).fileName());
 
 	if( keyNameMatch.hasMatch() )
 	{
