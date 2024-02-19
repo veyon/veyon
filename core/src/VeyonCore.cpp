@@ -508,7 +508,8 @@ QString VeyonCore::screenName(const QScreen& screen, int index)
 
 bool VeyonCore::isAuthenticationKeyNameValid( const QString& authKeyName )
 {
-	return QRegularExpression( QStringLiteral("^[\\w-]+$") ).match( authKeyName ).hasMatch();
+	static const QRegularExpression keyNameRX{QStringLiteral("^[\\w-]+$")};
+	return keyNameRX.match( authKeyName ).hasMatch();
 }
 
 

@@ -241,8 +241,8 @@ bool VncClientProtocol::readProtocol()
 			return false;
 		}
 
-		const auto match = QRegularExpression{ QStringLiteral("RFB (\\d\\d\\d)\\.(\\d\\d\\d)\n") }
-							   .match( QString::fromUtf8( protocol ) );
+		static const QRegularExpression rfbRX{QStringLiteral("RFB (\\d\\d\\d)\\.(\\d\\d\\d)\n")};
+		const auto match = rfbRX.match(QString::fromUtf8(protocol));
 
 		if( match.hasMatch() == false ||
 			match.captured( 1 ).toInt() != 3 ||

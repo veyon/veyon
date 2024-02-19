@@ -42,8 +42,8 @@ bool TranslationLoader::load( const QString& resourceName )
 {
 	QLocale configuredLocale( QLocale::C );
 
-	const auto configuredLocaleMatch = QRegularExpression{ QStringLiteral( "[^(]*\\(([^)]*)\\)") }
-										   .match( VeyonCore::config().uiLanguage() );
+	static const QRegularExpression configuredLocaleRX{QStringLiteral( "[^(]*\\(([^)]*)\\)")};
+	const auto configuredLocaleMatch = configuredLocaleRX.match(VeyonCore::config().uiLanguage());
 	if( configuredLocaleMatch.hasMatch() )
 	{
 		configuredLocale = QLocale( configuredLocaleMatch.captured( 1 ) );

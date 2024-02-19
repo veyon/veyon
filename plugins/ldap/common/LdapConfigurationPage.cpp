@@ -73,13 +73,15 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 		ui->tlsCACertificateFile->setEnabled( ui->tlsVerifyMode->currentIndex() == LdapClient::TLSVerifyCustomCert );
 	} );
 
-	const auto browseButtons = findChildren<QPushButton *>( QRegularExpression( QStringLiteral("browse.*") ) );
+	static const QRegularExpression browseButtonsRX{QStringLiteral("browse.*")};
+	const auto browseButtons = findChildren<QPushButton *>(browseButtonsRX);
 	for( auto button : browseButtons )
 	{
 		button->setToolTip( tr( "Browse" ) );
 	}
 
-	const auto testButtons = findChildren<QPushButton *>( QRegularExpression( QStringLiteral("test.*") ) );
+	static const QRegularExpression testButtonsRX{QStringLiteral("test.*")};
+	const auto testButtons = findChildren<QPushButton *>( testButtonsRX );
 	for( auto button : testButtons )
 	{
 		button->setToolTip( tr( "Test" ) );

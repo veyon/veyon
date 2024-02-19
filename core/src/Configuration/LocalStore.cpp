@@ -63,7 +63,8 @@ static void loadSettingsTree( Object *obj, QSettings *s,
 	for( const auto& k : childKeys )
 	{
 		const auto stringValue = s->value( k ).toString();
-		const auto jsonValueMatch = QRegularExpression( QStringLiteral("^@JsonValue(\\(.*\\))$") ).match( stringValue );
+		static const QRegularExpression jsonValueRX(QStringLiteral("^@JsonValue(\\(.*\\))$"));
+		const auto jsonValueMatch = jsonValueRX.match(stringValue);
 
 		if( jsonValueMatch.hasMatch() )
 		{

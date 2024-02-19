@@ -130,8 +130,8 @@ bool VncServerProtocol::readProtocol()
 			return false;
 		}
 
-		if( QRegularExpression{ QStringLiteral("RFB (\\d\\d\\d)\\.(\\d\\d\\d)\n") }
-				.match( QString::fromUtf8( protocol ) ).hasMatch() == false )
+		static const QRegularExpression rfbRX{QStringLiteral("RFB (\\d\\d\\d)\\.(\\d\\d\\d)\n")};
+		if (rfbRX.match(QString::fromUtf8(protocol)).hasMatch() == false)
 		{
 			vCritical() << "invalid protocol version";
 			m_socket->close();

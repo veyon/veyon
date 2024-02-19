@@ -686,7 +686,8 @@ NetworkObject BuiltinDirectoryPlugin::toNetworkObject( const QString& line, cons
 													   QString& location )
 {
 	QStringList placeholders;
-	auto varDetectionMatchIterator = QRegularExpression{ QStringLiteral("\\((%\\w+%):[^)]+\\)") }.globalMatch( regExWithPlaceholders );
+	static const QRegularExpression varDetectionRX{QStringLiteral("\\((%\\w+%):[^)]+\\)")};
+	auto varDetectionMatchIterator = varDetectionRX.globalMatch(regExWithPlaceholders);
 
 	while( varDetectionMatchIterator.hasNext() )
 	{
