@@ -524,6 +524,8 @@ int VeyonCore::exec()
 
 	vDebug() << "Exit";
 
+	Q_EMIT exited();
+
 	return result;
 }
 

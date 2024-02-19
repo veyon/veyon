@@ -237,6 +237,7 @@ private:
 Q_SIGNALS:
 	void initialized();
 	void applicationLoaded();
+	void exited();
 
 };
 
