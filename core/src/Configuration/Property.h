@@ -145,7 +145,7 @@ public:
 
 	T value() const
 	{
-		return variantValue().value<T>();
+		return variantValue().template value<T>();
 	}
 
 	void setValue( Type value ) const
