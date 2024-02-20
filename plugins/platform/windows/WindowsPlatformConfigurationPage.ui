@@ -144,6 +144,13 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QCheckBox" name="useCustomPowerSchemeForScreenLock">
+        <property name="text">
+         <string>Use custom power scheme with disabled power button</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
