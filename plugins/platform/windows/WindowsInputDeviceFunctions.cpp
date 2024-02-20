@@ -29,12 +29,22 @@
 
 #include "ConfigurationManager.h"
 #include "PlatformServiceFunctions.h"
+#include "ProcessHelper.h"
 #include "VeyonConfiguration.h"
 #include "WindowsCoreFunctions.h"
 #include "WindowsInputDeviceFunctions.h"
 #include "WindowsKeyboardShortcutTrapper.h"
 #include "WindowsPlatformConfiguration.h"
 #include "WtsSessionManager.h"
+
+
+class Powercfg : public ProcessHelper
+{
+public:
+	Powercfg(const QStringList& arguments) : ProcessHelper(QStringLiteral("powercfg"), arguments)
+	{
+	}
+};
 
 
 static int interception_is_any( InterceptionDevice device )
@@ -62,6 +72,7 @@ void WindowsInputDeviceFunctions::enableInputDevices()
 	{
 		disableInterception();
 		restoreHIDService();
+		restorePowerScheme();
 
 		m_inputDevicesDisabled = false;
 	}
@@ -75,6 +86,7 @@ void WindowsInputDeviceFunctions::disableInputDevices()
 	{
 		enableInterception();
 		stopHIDService();
+		setCustomPowerScheme();
 
 		m_inputDevicesDisabled = true;
 	}
@@ -168,6 +180,43 @@ void WindowsInputDeviceFunctions::restoreHIDService()
 	if( m_hidServiceActivated )
 	{
 		VeyonCore::platform().serviceFunctions().start( m_hidServiceName );
+	}
+}
+
+
+
+void WindowsInputDeviceFunctions::setCustomPowerScheme()
+{
+	if (WindowsPlatformConfiguration(&VeyonCore::config()).useCustomPowerSchemeForScreenLock() == false ||
+		m_originalPowerSchemeId.isEmpty() == false)
+	{
+		return;
+	}
+
+	QUuid activeSchemeId{Powercfg{{QStringLiteral("/getactivescheme")}}.runAndReadAll().split(':').value(1).trimmed().split(' ').constFirst()};
+	if (activeSchemeId.isNull() || activeSchemeId == CustomPowerSchemeId)
+	{
+		return;
+	}
+
+	m_originalPowerSchemeId = activeSchemeId.toString(QUuid::WithoutBraces);
+	Powercfg{{QStringLiteral("/delete"), CustomPowerSchemeIdString}}.run();
+	Powercfg{{QStringLiteral("/duplicatescheme"), m_originalPowerSchemeId, CustomPowerSchemeIdString}}.run();
+	Powercfg{{QStringLiteral("/setacvalueindex"), CustomPowerSchemeIdString,
+					QStringLiteral("4f971e89-eebd-4455-a8de-9e59040e7347"), QStringLiteral("7648efa3-dd9c-4e3e-b566-50f929386280"), QStringLiteral("0")}}.run();
+	Powercfg{{QStringLiteral("/setdcvalueindex"), CustomPowerSchemeIdString,
+					QStringLiteral("4f971e89-eebd-4455-a8de-9e59040e7347"), QStringLiteral("7648efa3-dd9c-4e3e-b566-50f929386280"), QStringLiteral("0")}}.run();
+	Powercfg{{QStringLiteral("/setactive"), CustomPowerSchemeIdString}}.run();
+}
+
+
+
+void WindowsInputDeviceFunctions::restorePowerScheme()
+{
+	if (m_originalPowerSchemeId.isNull() == false)
+	{
+		Powercfg{{QStringLiteral("/setactive"), m_originalPowerSchemeId}}.run();
+		Powercfg{{QStringLiteral("/delete"), CustomPowerSchemeIdString}}.run();
 	}
 }
 

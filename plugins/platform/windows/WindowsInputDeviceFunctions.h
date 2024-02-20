@@ -46,6 +46,9 @@ public:
 	static void stopOnScreenKeyboard();
 
 private:
+	const QUuid CustomPowerSchemeId{QStringLiteral("2699bf3e-30c6-4c74-914a-47d4504203f6")};
+	const QString CustomPowerSchemeIdString = CustomPowerSchemeId.toString(QUuid::WithoutBraces);
+
 	static constexpr auto OnScreenKeyboardTerminateTimeout = 5000;
 
 	void enableInterception();
@@ -53,6 +56,8 @@ private:
 	void initHIDServiceStatus();
 	void stopHIDService();
 	void restoreHIDService();
+	void setCustomPowerScheme();
+	void restorePowerScheme();
 
 	static bool installInterception();
 	static bool uninstallInterception();
@@ -63,5 +68,6 @@ private:
 	QString m_hidServiceName{QStringLiteral("hidserv")};
 	bool m_hidServiceStatusInitialized{false};
 	bool m_hidServiceActivated{false};
+	QString m_originalPowerSchemeId{};
 
 };
