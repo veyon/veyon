@@ -1,7 +1,7 @@
 /*
  * MainWindow.h - main window of the Veyon Configurator
  *
- * Copyright (c) 2010-2023 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2010-2024 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

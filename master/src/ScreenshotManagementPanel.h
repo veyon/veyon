@@ -1,7 +1,7 @@
 /*
  * ScreenshotManagementPanel.h - declaration of screenshot management view
  *
- * Copyright (c) 2004-2023 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2004-2024 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

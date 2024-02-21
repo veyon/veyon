@@ -1,4 +1,4 @@
-# BuildVeyonFuzzer.cmake - Copyright (c) 2021-2023 Tobias Junghans
+# BuildVeyonFuzzer.cmake - Copyright (c) 2021-2024 Tobias Junghans
 #
 # description: build fuzzer test for Veyon component
 # usage: build_veyon_fuzzer(<NAME> <SOURCES>)

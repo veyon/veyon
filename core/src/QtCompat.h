@@ -1,7 +1,7 @@
 /*
  * QtCompat.h - functions and templates for compatibility with older Qt versions
  *
- * Copyright (c) 2017-2023 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2017-2024 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

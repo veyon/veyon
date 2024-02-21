@@ -1,7 +1,7 @@
 /*
  * StartAppDialog.h - declaration of class StartAppDialog
  *
- * Copyright (c) 2004-2023 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2004-2024 Tobias Junghans <tobydox@veyon.io>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public
