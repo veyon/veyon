@@ -1,7 +1,7 @@
 /*
  * SlideshowModel.cpp - implementation of SlideshowModel
  *
- * Copyright (c) 2020-2023 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2020-2024 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

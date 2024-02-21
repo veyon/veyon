@@ -1,7 +1,7 @@
 /*
  * AuthKeysConfigurationPage.cpp - implementation of the authentication configuration page
  *
- * Copyright (c) 2017-2023 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2017-2024 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

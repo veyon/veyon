@@ -1,7 +1,7 @@
 /*
  * Configuration/Store.h - ConfigurationStore class
  *
- * Copyright (c) 2009-2023 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2009-2024 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
