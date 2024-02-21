@@ -4332,6 +4332,10 @@ Typically this is required to support terminal servers.</source>
         <source>Use input device interception driver</source>
         <translation>使用輸入裝置攔截驅動程式</translation>
     </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>

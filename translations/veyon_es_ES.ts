@@ -4334,6 +4334,10 @@ Por lo general, esto es necesario para admitir servidores de terminales.</transl
         <source>Use input device interception driver</source>
         <translation>Utilice el controlador de interceptación del dispositivo de entrada</translation>
     </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>

@@ -280,7 +280,7 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation type="unfinished"/>
+        <translation>Lai pārbaudītu konfigurēto kārtulu kopu, lūdzu, ievadiet tālāk norādīto lietotāja un datora informāciju.</translation>
     </message>
     <message>
         <source>Local user:</source>
@@ -300,7 +300,7 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation type="unfinished"/>
+        <translation>Piekļuvei dotajā scenārijā ir nepieciešama no lietotāja, kurš šobrīd ir pierakstījies.</translation>
     </message>
     <message>
         <source>ERROR: Unknown action</source>
@@ -323,7 +323,7 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation type="unfinished"/>
+        <translation>Lai iestatītu atslēgas faila autentifikāciju, veiciet šādas darbības:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
@@ -362,7 +362,10 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation type="unfinished"/>
+        <translation>Autentifikācijas atslēgu pāris sastāv no divām savienotām kriptogrāfiskām atslēgām - privātas un publiskas atslēgas.
+Privātā atslēga ļauj lietotājiem galvenajā datorā piekļūt klientu datoriem.
+Ir svarīgi, lai piekļuve privātās atslēgas failam būtu tikai autorizētiem lietotājiem.
+Publiskā atslēga tiek izmantota klientu datoros, lai autentificētu ienākošā savienojuma pieprasījumu.</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -394,7 +397,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation type="unfinished"/>
+        <translation>Lūdzu, ievadiet tās lietotāju grupas vai lomas nosaukumu, kurai jāizveido autentifikācijas atslēgu pāris:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
@@ -406,7 +409,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation type="unfinished"/>
+        <translation>Lūdzu, ievadiet tās lietotāju grupas vai lomas nosaukumu, kurai importēt autentifikācijas atslēgu:</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
@@ -414,7 +417,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation type="unfinished"/>
+        <translation>Lūdzu, atlasiet lietotāju grupu, kurai piešķirt piekļuvi atslēgai “%1”:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
@@ -433,11 +436,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Norādīts nederīgs atslēgas tips! Lūdzu, norādiet “%1” vai “%2”.</translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
-        <translation type="unfinished"/>
+        <translation>Norādītā atslēga nepastāv! Lūdzu, izmantojiet komandu “list”, lai uzskaitītu visas instalētās atslēgas.</translation>
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
@@ -1862,7 +1865,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Update interval:</source>
-        <translation type="unfinished"/>
+        <translation>Atsvaidzināšanas intervāls:</translation>
     </message>
     <message>
         <source> seconds</source>
@@ -2835,7 +2838,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>Automātiski</translation>
     </message>
     <message>
         <source>About</source>
@@ -2982,7 +2985,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Background color</source>
-        <translation type="unfinished"/>
+        <translation>Fona krāsa</translation>
     </message>
     <message>
         <source>Thumbnail spacing</source>
@@ -2994,7 +2997,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>Automātiski</translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
@@ -3002,7 +3005,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation type="unfinished"/>
+        <translation>Datoru un lietotāju vārdi</translation>
     </message>
     <message>
         <source>Only user name</source>
@@ -3010,7 +3013,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Only computer name</source>
-        <translation type="unfinished"/>
+        <translation>Tikai datora vārds</translation>
     </message>
     <message>
         <source>User and computer name</source>
@@ -3022,7 +3025,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Sort order</source>
-        <translation type="unfinished"/>
+        <translation>Kārtošanas kārtība</translation>
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
@@ -3058,11 +3061,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Behaviour</source>
-        <translation type="unfinished"/>
+        <translation>Rīcība</translation>
     </message>
     <message>
         <source>Program start</source>
-        <translation type="unfinished"/>
+        <translation>Programmas izpilde</translation>
     </message>
     <message>
         <source>Perform access control</source>
@@ -3082,7 +3085,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer locations</source>
-        <translation type="unfinished"/>
+        <translation>Datoru atrašanās vietas</translation>
     </message>
     <message>
         <source>Show current location only</source>
@@ -3094,7 +3097,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Hide local computer</source>
-        <translation type="unfinished"/>
+        <translation>Slēpt lokālos datorus</translation>
     </message>
     <message>
         <source>Hide local session</source>
@@ -3110,7 +3113,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Modes and features</source>
-        <translation type="unfinished"/>
+        <translation>Režīmi un iespējas</translation>
     </message>
     <message>
         <source>Enforce selected mode for client computers</source>
@@ -3153,7 +3156,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation type="unfinished"/>
+        <translation>Uzraudzība</translation>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
@@ -3180,7 +3183,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
-        <translation type="unfinished"/>
+        <translation>Atrašanās vietas/Datori</translation>
     </message>
 </context>
 <context>
@@ -3191,15 +3194,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation type="unfinished"/>
+        <translation>piem. Veyon</translation>
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation type="unfinished"/>
+        <translation>Atcerēties un pievienot mājaslapu izvēlei</translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation type="unfinished"/>
+        <translation>piem. www.veyon.io</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -3276,7 +3279,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation type="unfinished"/>
+        <translation>Ieslēgt datoru izmantojot Wake-on-LAN (WOL)</translation>
     </message>
     <message>
         <source>Power on</source>
@@ -3292,7 +3295,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Noklikšķiniet uz šīs pogas, lai restartētu visus datorus.</translation>
     </message>
     <message>
         <source>Power down</source>
@@ -3300,7 +3303,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
-        <translation type="unfinished"/>
+        <translation>Noklikšķiniet uz šīs pogas, lai izslēgtu visus datorus. Tādējādi nav nepieciešams katru datoru izslēgt atsevišķi.</translation>
     </message>
     <message>
         <source>Power down now</source>
@@ -3308,15 +3311,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation type="unfinished"/>
+        <translation>Instalēt atjauninājumus un izslēgt datoru</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation type="unfinished"/>
+        <translation>Izslēgt datoru pēc lietotāja piekrišanas</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation type="unfinished"/>
+        <translation>Izslēgt pēc noteikta laika</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
@@ -3324,11 +3327,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation type="unfinished"/>
+        <translation>Šī komanda pārraida tīklā Wake-on-LAN (WOL) paketi, lai ieslēgtu datoru ar norādīto MAC adresi.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
+        <translation>Lūdzu, norādiet komandu, kurai parādīt palīdzību!</translation>
     </message>
     <message>
         <source>Confirm reboot</source>
@@ -3336,7 +3339,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>Vai tiešām vēlaties restartēt &lt;b&gt;ALL&lt;/b&gt; datorus?</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
@@ -3348,25 +3351,27 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>Vai tiešām vēlaties izslēgt &lt;b&gt;ALL&lt;/b&gt; datorus?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>Vai tiešām vēlaties izslēgt atlasītos datorus?</translation>
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
-        <translation type="unfinished"/>
+        <translation>Norādītā MAC adrese nav pareiza!</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation type="unfinished"/>
+        <translation>Datoram pieprasa attālināti izslēgties. Vai vēlaties izslēgt datoru tagad?</translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
-        <translation type="unfinished"/>
+        <translation>Dators tiks izslēgts pēc %1 minūtēm, %2 sekundēm.
+
+Lūdzu, saglabājiet savu darbu un aizveriet visas programmas.</translation>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
@@ -3374,7 +3379,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Commands for controlling power status of computers</source>
-        <translation type="unfinished"/>
+        <translation>Datoru statusa kontroles komandas</translation>
     </message>
 </context>
 <context>
@@ -3385,7 +3390,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
-        <translation type="unfinished"/>
+        <translation>Lūdzu, norādiet taimautu, lai izslēgtu atlasītos datorus:</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -3432,7 +3437,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation type="unfinished"/>
+        <translation>Datora attālā skatīšana vai vadība</translation>
     </message>
 </context>
 <context>
@@ -3443,7 +3448,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 attālā piekļuve</translation>
     </message>
 </context>
 <context>
@@ -3537,7 +3542,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
-        <translation type="unfinished"/>
+        <translation>Lai atgūtu visu lietotāja uzmanību, varat bloķēt viņu datorus, izmantojot šo pogu. Šajā režīmā visas ievades ierīces ir bloķētas un ekrāni ir melni.</translation>
     </message>
     <message>
         <source>Lock input devices</source>
@@ -3553,7 +3558,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
-        <translation type="unfinished"/>
+        <translation>Bloķēt datora ekrānu un ievadierīces.</translation>
     </message>
 </context>
 <context>
@@ -4305,6 +4310,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use input device interception driver</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
         <translation type="unfinished"/>
     </message>
 </context>

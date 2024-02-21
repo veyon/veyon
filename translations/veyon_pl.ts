@@ -4327,6 +4327,10 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
         <source>Use input device interception driver</source>
         <translation>Użyj sterownika przechwytywania urządzenia wejściowego</translation>
     </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>

@@ -591,7 +591,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Kérem, válaszd ki az a parancsot, melynek súgóját megjelenítsük.</translation>
     </message>
     <message>
         <source>NAME</source>
@@ -639,11 +639,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>A megadott parancs nem létezik vagy nincs hozzá segítség.</translation>
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation type="unfinished"/>
+        <translation>Kérem, add meg a kulcsnevet (pl. tanár/publikus) az első argumentumként.</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -872,7 +872,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>A megadott parancs nem létezik vagy nincs hozzá segítség.</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -1005,7 +1005,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <name>ComputerControlListModel</name>
     <message>
         <source>Name: %1</source>
-        <translation type="unfinished"/>
+        <translation>Név: %1</translation>
     </message>
     <message>
         <source>Location: %1</source>
@@ -1017,7 +1017,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>invalid</source>
-        <translation type="unfinished"/>
+        <translation>érvénytelen</translation>
     </message>
     <message>
         <source>Active features: %1</source>
@@ -1025,7 +1025,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>[no user]</source>
-        <translation type="unfinished"/>
+        <translation>[nincs felhasználó]</translation>
     </message>
     <message>
         <source>Online and connected</source>
@@ -1041,7 +1041,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"/>
+        <translation>Veyon szerver nem érhető el vagy nem fut</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
@@ -1061,7 +1061,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>[none]</source>
-        <translation type="unfinished"/>
+        <translation>[nincs]</translation>
     </message>
 </context>
 <context>
@@ -1096,7 +1096,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"/>
+        <translation>Aktív kapcsolatok</translation>
     </message>
 </context>
 <context>
@@ -1107,7 +1107,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Logged in since</source>
-        <translation type="unfinished"/>
+        <translation>Bejelentkezve ekkortól</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -1123,11 +1123,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>%1 days</source>
-        <translation type="unfinished"/>
+        <translation>%1 nap</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"/>
+        <translation>1 nap</translation>
     </message>
     <message>
         <source>Location detection failed</source>
@@ -1142,7 +1142,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <name>ComputerSelectPanel</name>
     <message>
         <source>Search computers</source>
-        <translation type="unfinished"/>
+        <translation>Számítógépek keresése</translation>
     </message>
     <message>
         <source>Add location</source>
@@ -1314,18 +1314,18 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Bandwidth limit</source>
-        <translation type="unfinished"/>
+        <translation>Sávszélesség korlátozása</translation>
     </message>
     <message>
         <source> MB/s</source>
-        <translation type="unfinished"/>
+        <translation> MB/s</translation>
     </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>Demo</translation>
     </message>
     <message>
         <source>Stop demo</source>
@@ -1333,11 +1333,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"/>
+        <translation>Oszd meg a képernyődet vagy engedélyezd egy felhasználónak, hogy megossza a képernyőjét a többiekkel.</translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>Teljes képernyős demó</translation>
     </message>
     <message>
         <source>Window demo</source>
@@ -1345,15 +1345,15 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Saját képernyőm megosztása teljes nézetben</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>Ebben a módban az összes számítógépén teljes képernyőn jelenik meg a képernyőd, egyúttal a felhasználók bemeneti eszközeit zároljuk.</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Saját képernyőm megosztása ablakban</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -1361,31 +1361,31 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Kiválasztott felhasználó képernyőjének megosztása teljes nézetben</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>Ebben a módban kiválasztott felhasználó képernyőképe az összes számítógépen teljes képernyőn jelenik meg a képernyőd, egyúttal a felhasználók bemeneti eszközeit zároljuk.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Kiválasztott felhasználó képernyőjének megosztása ablakban</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>Ebben a módban az összes számítógépen ablakban jelenik meg a kiválasztott felhasználó képernyőképe. A felhasználók eközben ablakot tudnak váltani.</translation>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Válaszd ki a megosztandó képernyőt.</translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Csak egy képernyőt válassz a megosztáshoz.</translation>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>Összes képernyő</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
@@ -1419,11 +1419,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Applications &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>Alkalmazások &amp; weboldalak</translation>
     </message>
     <message>
         <source>Predefined applications</source>
-        <translation type="unfinished"/>
+        <translation>Előre definiált alkalmazások</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1435,11 +1435,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Add new application</source>
-        <translation type="unfinished"/>
+        <translation>Új alkalmazás hozzáadása</translation>
     </message>
     <message>
         <source>Remove selected application</source>
-        <translation type="unfinished"/>
+        <translation>Kiválasztott alkalmazás eltávolítása</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1447,7 +1447,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Add new website</source>
-        <translation type="unfinished"/>
+        <translation>Új weboldal hozzáadása</translation>
     </message>
     <message>
         <source>Remove selected website</source>
@@ -1459,7 +1459,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>New application</source>
-        <translation type="unfinished"/>
+        <translation>Új alkalmazás</translation>
     </message>
     <message>
         <source>New website</source>
@@ -1470,11 +1470,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Alkalmazás indítása</translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Kattints erre a gombra, hogy az összes számítógépen elinduljon egy alkalmazás.</translation>
     </message>
     <message>
         <source>Open website</source>
@@ -1486,11 +1486,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; alkalmazás indítása</translation>
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>Egyéni alkalmazás</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
@@ -1502,7 +1502,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
-        <translation type="unfinished"/>
+        <translation>Alkalmazások indítása és a weboldalak megnyitása a felhasználói munkamenetekben</translation>
     </message>
 </context>
 <context>
@@ -1541,7 +1541,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>Egyéni alkalmazás</translation>
     </message>
     <message>
         <source>Handout</source>
@@ -1578,31 +1578,31 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <name>FeatureCommands</name>
     <message>
         <source>List names of all available features</source>
-        <translation type="unfinished"/>
+        <translation>Az összes elérhető tulajdonság nevének felsorolása</translation>
     </message>
     <message>
         <source>Show table with details of all available features</source>
-        <translation type="unfinished"/>
+        <translation>Megjelenít egy táblázatot az összes elérhető tulajdonság nevével.</translation>
     </message>
     <message>
         <source>Start a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>Funkció indítása egy távoli kiszolgálón</translation>
     </message>
     <message>
         <source>Stop a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>Funkció leállítása egy távoli kiszolgálón</translation>
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Kérem, válaszd ki az a parancsot, melynek súgóját megjelenítsük.</translation>
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
-        <translation type="unfinished"/>
+        <translation>Megjelenít egy felsorolást az összes elérhető tulajdonság nevével.</translation>
     </message>
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation type="unfinished"/>
+        <translation>Megjelenít egy táblázatot az összes elérhető funkció adataival. Ez tartalmazza a leírást, az UID-t, a funkciót biztosító beépülő modul nevét és néhány egyéb megvalósítással kapcsolatos részletet.</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -1610,43 +1610,43 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>FEATURE</source>
-        <translation type="unfinished"/>
+        <translation>TULAJDONSÁG</translation>
     </message>
     <message>
         <source>ARGUMENTS</source>
-        <translation type="unfinished"/>
+        <translation>ÉRVEK</translation>
     </message>
     <message>
         <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
-        <translation type="unfinished"/>
+        <translation>Elindítja a megadott szolgáltatást a megadott kiszolgálón a távolról futó Veyon-szerverhez való csatlakozással. A szolgáltatás névvel vagy UID-vel adható meg. Az összes elérhető funkció megtekintéséhez használja a ``show`` parancsot. A szolgáltatástól függően további argumentumokat (például a megjelenítendő szöveges üzenetet) kell megadni egyetlen JSON-karakterláncként kódolva. További információért tekintse meg a fejlesztői dokumentációt</translation>
     </message>
     <message>
         <source>Lock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Képernyő zárolása</translation>
     </message>
     <message>
         <source>Display a text message</source>
-        <translation type="unfinished"/>
+        <translation>Szöveges üzenet megjelenítése</translation>
     </message>
     <message>
         <source>Test message</source>
-        <translation type="unfinished"/>
+        <translation>Tesztüzenet</translation>
     </message>
     <message>
         <source>Start an application</source>
-        <translation type="unfinished"/>
+        <translation>Alkalmazás indítása</translation>
     </message>
     <message>
         <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
-        <translation type="unfinished"/>
+        <translation>Leállítja a megadott szolgáltatást a megadott kiszolgálón a távoli Veyon-szerverhez való csatlakozással. A szolgáltatás névvel vagy UID-vel adható meg. Az összes elérhető funkció megtekintéséhez használja a ``show`` parancsot.</translation>
     </message>
     <message>
         <source>Unlock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Képernyő zárolásának feloldása</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>A megadott parancs nem létezik vagy nincs hozzá segítség.</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1654,7 +1654,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Leírás</translation>
     </message>
     <message>
         <source>Master</source>
@@ -1666,43 +1666,43 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Worker</source>
-        <translation type="unfinished"/>
+        <translation>Dolgozó</translation>
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin</source>
-        <translation type="unfinished"/>
+        <translation>Bővítmény</translation>
     </message>
     <message>
         <source>Invalid feature name or UID specified</source>
-        <translation type="unfinished"/>
+        <translation>Érvénytelen tulajdonságnév vagy UID megadás</translation>
     </message>
     <message>
         <source>Error parsing the JSON-encoded arguments: %1</source>
-        <translation type="unfinished"/>
+        <translation>Hiba a JSON-kódolású argumentumok elemzése során: %1</translation>
     </message>
     <message>
         <source>Failed to initialize credentials</source>
-        <translation type="unfinished"/>
+        <translation>Nem sikerült inicializálni a hitelesítő adatokat</translation>
     </message>
     <message>
         <source>Could not establish a connection to host %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 kiszolgálóval nem sikerült kapcsolatot létesíteni.</translation>
     </message>
     <message>
         <source>Failed to send feature control message to host %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 kiszolgálóhoz nem sikerült elküldeni a funkcióvezérlő üzenetet.</translation>
     </message>
     <message>
         <source>Feature-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>Funkciókhoz kapcsolódó CLI műveletek</translation>
     </message>
     <message>
         <source>Commands for controlling features</source>
-        <translation type="unfinished"/>
+        <translation>Funkcióvezérlés parancsai</translation>
     </message>
 </context>
 <context>
@@ -1717,11 +1717,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Célmappa</translation>
     </message>
     <message>
         <source>Default source directory</source>
-        <translation type="unfinished"/>
+        <translation>Alapértelmezett forráskönyvtár</translation>
     </message>
     <message>
         <source>Options</source>
@@ -1729,11 +1729,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Remember last source directory</source>
-        <translation type="unfinished"/>
+        <translation>Emlékezz az utolsó forráskönyvtárra</translation>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
-        <translation type="unfinished"/>
+        <translation>Célmappa létrehozása, ha nem létezik</translation>
     </message>
 </context>
 <context>
@@ -1829,11 +1829,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Style:</source>
-        <translation type="unfinished"/>
+        <translation>Stílus:</translation>
     </message>
     <message>
         <source>Native</source>
-        <translation type="unfinished"/>
+        <translation>Natív</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -1976,7 +1976,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <name>HeadlessVncServer</name>
     <message>
         <source>Headless VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Headless VNC szerver</translation>
     </message>
 </context>
 <context>
@@ -2013,7 +2013,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Query timeout</source>
-        <translation type="unfinished"/>
+        <translation>Lekérdezési időtúllépés</translation>
     </message>
     <message>
         <source>Bind DN</source>
@@ -2245,11 +2245,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Query options</source>
-        <translation type="unfinished"/>
+        <translation>Lekérdezési lehetőségek</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
-        <translation type="unfinished"/>
+        <translation>Beágyazott felhasználói csoportok lekérdezése (csak az AD által támogatott)</translation>
     </message>
     <message>
         <source>Group member identification</source>
@@ -2717,11 +2717,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>User sessions</source>
-        <translation type="unfinished"/>
+        <translation>Felhasználói munkamenetek</translation>
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
-        <translation type="unfinished"/>
+        <translation>A munkamenet minimális élettartama a szerver indítása előtt</translation>
     </message>
     <message>
         <source>User login</source>
@@ -2729,7 +2729,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Login key sequence</source>
-        <translation type="unfinished"/>
+        <translation>Bejelentkezési billentyűsorozat</translation>
     </message>
 </context>
 <context>
@@ -2758,7 +2758,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Disable tooltips</source>
-        <translation type="unfinished"/>
+        <translation>Eszköztippek kikapcsolása</translation>
     </message>
     <message>
         <source>Show icons only</source>
@@ -2853,7 +2853,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"/>
+        <translation>Számítógépikonok automatikus mértezése</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2889,15 +2889,15 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>Diavetítés</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>Reflektorfény</translation>
     </message>
     <message>
         <source>Only show computers with logged on users</source>
-        <translation type="unfinished"/>
+        <translation>Csak olyan számítógépeket megjelenítése, melyekre bejelentkezett felhasználó.</translation>
     </message>
     <message>
         <source>toolBar</source>
@@ -3008,11 +3008,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
+        <translation>Indexkép térköze</translation>
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> px</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -3048,35 +3048,35 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"/>
+        <translation>Indexkép méretaránya</translation>
     </message>
     <message>
         <source>Highest</source>
-        <translation type="unfinished"/>
+        <translation>Legmagasabb</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished"/>
+        <translation>Magas</translation>
     </message>
     <message>
         <source>Medium</source>
-        <translation type="unfinished"/>
+        <translation>Közepes</translation>
     </message>
     <message>
         <source>Low</source>
-        <translation type="unfinished"/>
+        <translation>Alacsony</translation>
     </message>
     <message>
         <source>Lowest</source>
-        <translation type="unfinished"/>
+        <translation>Legalacsonyabb</translation>
     </message>
     <message>
         <source>Image quality in monitoring mode</source>
-        <translation type="unfinished"/>
+        <translation>Képminőség a monitorozási módban</translation>
     </message>
     <message>
         <source>Remote access image quality</source>
-        <translation type="unfinished"/>
+        <translation>Távoli hozzáférés képminősége</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3096,7 +3096,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"/>
+        <translation>Számítógépikon automatikus méretezése</translation>
     </message>
     <message>
         <source>Automatically open computer select panel</source>
@@ -3120,7 +3120,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Hide local session</source>
-        <translation type="unfinished"/>
+        <translation>Helyi munkamenet elrejtése</translation>
     </message>
     <message>
         <source>Hide empty locations</source>
@@ -3152,7 +3152,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
-        <translation type="unfinished"/>
+        <translation>A funkcióablakok megnyitása a főablakkal azonos képernyőn.</translation>
     </message>
     <message>
         <source>Features</source>
@@ -3183,15 +3183,15 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Query application version of the server</source>
-        <translation type="unfinished"/>
+        <translation>A szerver alkalmazásverziójának lekérdezése</translation>
     </message>
     <message>
         <source>Query active features</source>
-        <translation type="unfinished"/>
+        <translation>Aktív funkciók lekérdezése</translation>
     </message>
     <message>
         <source>Query properties of remotely available screens</source>
-        <translation type="unfinished"/>
+        <translation>A távolról elérhető képernyők tulajdonságainak lekérdezése</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3263,11 +3263,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <name>PluginCommands</name>
     <message>
         <source>List names of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Az összes elérhető bővítmény nevének felsorolása</translation>
     </message>
     <message>
         <source>Show table with details of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Az összes telepített bővítmény adatainak táblázata</translation>
     </message>
     <message>
         <source>Name</source>
@@ -3275,23 +3275,23 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Leírás</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Verzió</translation>
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>Bővítményekhez kapcsolódó CLI műveletek</translation>
     </message>
     <message>
         <source>Commands for managing plugins</source>
-        <translation type="unfinished"/>
+        <translation>Parancsok a bővítmények kezeléséhez</translation>
     </message>
 </context>
 <context>
@@ -3358,7 +3358,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>Biztos, hogy újraindítod az &lt;b&gt;ÖSSZES&lt;/b&gt; számítógépet?</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
@@ -3370,11 +3370,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>Biztos, hogy kikapcsolod az &lt;b&gt;ÖSSZES&lt;/b&gt; számítógépet?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>Biztos, hogy kikapcsolod a kiválasztott számítógépeket?</translation>
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
@@ -3438,7 +3438,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exchange clipboard contents</source>
-        <translation type="unfinished"/>
+        <translation>Vágólap tartalmának cseréje</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -3450,7 +3450,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
-        <translation type="unfinished"/>
+        <translation>Nem választottál számítógépet, így beírhatsz egy kiszolgálónevet vagy IP-címet az eléréshez:</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
@@ -3465,7 +3465,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 Távoli elérés</translation>
     </message>
 </context>
 <context>
@@ -3480,7 +3480,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Select screen</source>
-        <translation type="unfinished"/>
+        <translation>Képernyő kiválasztása</translation>
     </message>
     <message>
         <source>Send shortcut</source>
@@ -3540,11 +3540,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
+        <translation>Csatlakozás...</translation>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>Összes képernyő</translation>
     </message>
 </context>
 <context>
@@ -3567,11 +3567,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Unlock input devices</source>
-        <translation type="unfinished"/>
+        <translation>Beviteli eszközök zárolásának feloldása</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
-        <translation type="unfinished"/>
+        <translation>Az összes felhasználó figyelmének elnyerés érdekében evvel a gombbal zárolhatod számítógépüket. Ebben a módban az összes bemeneti eszközt zároljuk, a képernyő viszont továbbra is látható marad.</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
@@ -3594,7 +3594,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
-        <translation type="unfinished"/>
+        <translation>%1 képernyőkép fájl nem nyitható meg írásra.</translation>
     </message>
 </context>
 <context>
@@ -3656,7 +3656,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation type="unfinished"/>
+        <translation>Biztos, hogy eltávolítod a kiválasztott képernyőképeket?</translation>
     </message>
 </context>
 <context>
@@ -3699,11 +3699,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Session mode</source>
-        <translation type="unfinished"/>
+        <translation>Munkamenet mód</translation>
     </message>
     <message>
         <source>Local session mode (single server instance for primary local session)</source>
-        <translation type="unfinished"/>
+        <translation>Helyi munkamenet mód (egyetlen kiszolgálópéldány az elsődleges helyi munkamenethez)</translation>
     </message>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
@@ -3712,23 +3712,23 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation type="unfinished"/>
+        <translation>Aktív munkamenet mód (egyetlen kiszolgálópéldány az aktív hely vagy távoli munkamenethez)</translation>
     </message>
     <message>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
+        <translation>Többszörös munkamenet mód (különálló szerverpéldány minden helyi és távoli asztali munkamenethez)</translation>
     </message>
     <message>
         <source>Maximum session count</source>
-        <translation type="unfinished"/>
+        <translation>Maximális munkamenetszám</translation>
     </message>
     <message>
         <source>Network port numbers</source>
-        <translation type="unfinished"/>
+        <translation>Hálózati portok száma</translation>
     </message>
     <message>
         <source>Veyon server</source>
-        <translation type="unfinished"/>
+        <translation>Veyon szerver</translation>
     </message>
     <message>
         <source>Internal VNC server</source>
@@ -3744,7 +3744,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Miscellaneous settings</source>
-        <translation type="unfinished"/>
+        <translation>Egyéb beállítások</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
@@ -3756,7 +3756,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Disable clipboard synchronization</source>
-        <translation type="unfinished"/>
+        <translation>A vágólap szinkronizálásának kikapcsolása</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3857,7 +3857,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon CLI</source>
-        <translation type="unfinished"/>
+        <translation>Interaktív shell- és szkript-végrehajtás a Veyon CLI-hez</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -3868,57 +3868,57 @@ Typically this is required to support terminal servers.</source>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>Előző</translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation type="unfinished"/>
+        <translation>Indítás/szünet</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished"/>
+        <translation>Következő</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"/>
+        <translation>Időtartam:</translation>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation type="unfinished"/>
+        <translation>Számítógépek hozzáadásához kattints a középső egérgombbal vagy kattints a lenti első gombra.</translation>
     </message>
     <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Kiválasztott számítógép hozzáadása</translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Kiválasztott számítógép eltávolítása</translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"/>
+        <translation>Számítógépek valósidejű frissítése</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>Reflektorfény</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation type="unfinished"/>
+        <translation>Kérjük, válassz legalább egy számítógépet hozzáadáshoz.</translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
+        <translation>Kérjük, válassz legalább egy számítógépet az eltávolításhoz.</translation>
     </message>
 </context>
 <context>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Alkalmazás indítása</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -3930,7 +3930,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Remember and add to application menu</source>
-        <translation type="unfinished"/>
+        <translation>Ne felejtsd el és add hozzá az alkalmazás menüjéhez</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
@@ -3938,7 +3938,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
-        <translation type="unfinished"/>
+        <translation>Kérem, add meg a kiválasztott számítógépeken futtatandó alkalmazásokat. Több alkalmazást soronként adj meg.</translation>
     </message>
 </context>
 <context>
@@ -4008,7 +4008,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
+        <translation>Maximális CPU használat</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
@@ -4085,7 +4085,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation type="unfinished"/>
+        <translation>Biztos, hogy kijelentkezteted az &lt;b&gt;ÖSSZES&lt;/b&gt; felhasználót?</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
@@ -4164,7 +4164,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Screen %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 képernyő</translation>
     </message>
 </context>
 <context>
@@ -4178,7 +4178,7 @@ Typically this is required to support terminal servers.</source>
     <name>WebApiConfigurationPage</name>
     <message>
         <source>Web API</source>
-        <translation type="unfinished"/>
+        <translation>Web API</translation>
     </message>
     <message>
         <source>General</source>
@@ -4190,19 +4190,19 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>WebAPI-szerver bekapcsolása</translation>
     </message>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"/>
+        <translation>Csatlakozási beállítások</translation>
     </message>
     <message>
         <source>Lifetime</source>
-        <translation type="unfinished"/>
+        <translation>Élettartam</translation>
     </message>
     <message>
         <source> h</source>
-        <translation type="unfinished"/>
+        <translation>ó</translation>
     </message>
     <message>
         <source> s</source>
@@ -4210,27 +4210,27 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Idle timeout</source>
-        <translation type="unfinished"/>
+        <translation>Tétlenségi időtúllépés</translation>
     </message>
     <message>
         <source>Authentication timeout</source>
-        <translation type="unfinished"/>
+        <translation>Hitelesítési időtúllépés</translation>
     </message>
     <message>
         <source>Maximum number of open connections</source>
-        <translation type="unfinished"/>
+        <translation>Nyitott kapcsolatok maximális száma</translation>
     </message>
     <message>
         <source>Connection encryption</source>
-        <translation type="unfinished"/>
+        <translation>Kapcsolat titkosítása</translation>
     </message>
     <message>
         <source>TLS certificate file</source>
-        <translation type="unfinished"/>
+        <translation>TLS tanúsítványfájl</translation>
     </message>
     <message>
         <source>TLS private key file</source>
-        <translation type="unfinished"/>
+        <translation>TLS privát kulcs fájl</translation>
     </message>
     <message>
         <source>...</source>
@@ -4238,30 +4238,30 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
-        <translation type="unfinished"/>
+        <translation>HTTP helyett HTTPS használata TLS 1.3-mal</translation>
     </message>
 </context>
 <context>
     <name>WebApiPlugin</name>
     <message>
         <source>Run WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>WebAPI-szerver futtatása</translation>
     </message>
     <message>
         <source>Failed to start WebAPI server at port %1</source>
-        <translation type="unfinished"/>
+        <translation>Nem sikerült elindítani a WebAPI szervert a %1 porton</translation>
     </message>
     <message>
         <source>WebAPI server running at port %1</source>
-        <translation type="unfinished"/>
+        <translation>WebAPI szerver fut a %1 porton</translation>
     </message>
     <message>
         <source>Provide access to a computer via HTTP</source>
-        <translation type="unfinished"/>
+        <translation>HTTP-n keresztüli hozzáférés biztosítása egy számítógéphez</translation>
     </message>
     <message>
         <source>Commands for running the WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>Parancsok a WebAPI-szerver futtatásához</translation>
     </message>
 </context>
 <context>
@@ -4327,6 +4327,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use input device interception driver</source>
+        <translation>A beviteli eszköz elfogási illesztőprogramjának használata</translation>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4334,7 +4338,7 @@ Typically this is required to support terminal servers.</source>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Internal display</source>
-        <translation type="unfinished"/>
+        <translation>Belső képernyő</translation>
     </message>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
@@ -4349,11 +4353,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; szolgáltatás nem telepíthető (hiba: %2).</translation>
     </message>
     <message>
         <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
-        <translation type="unfinished"/>
+        <translation> &quot;%1&quot; szolgáltatás hibaeseményeinek konfigurációja nem módosítható (hiba: %2).</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
@@ -4361,7 +4365,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; szolgáltatás nem távolítható el (hiba: %2).</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
@@ -4369,7 +4373,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; szolgáltatás indítási típusa nem módosítható (hiba: %2).</translation>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>

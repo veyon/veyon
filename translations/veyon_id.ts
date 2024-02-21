@@ -4310,6 +4310,10 @@ Typically this is required to support terminal servers.</source>
         <source>Use input device interception driver</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
@@ -4330,7 +4334,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>Layanan &quot;%1&quot; tidak dapat dipasang (kesalahan %2).</translation>
     </message>
     <message>
         <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
@@ -4342,7 +4346,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>Layanan &quot;%1&quot; tidak dapat dilepaskan (kesalahan %2).</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
@@ -4354,7 +4358,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation type="unfinished"/>
+        <translation>Layanan &quot;%1&quot; tidak dapat ditemukan</translation>
     </message>
 </context>
 <context>

@@ -4331,6 +4331,10 @@ Typically this is required to support terminal servers.</source>
         <source>Use input device interception driver</source>
         <translation>Скористатися драйвером-перехоплювачем пристроїв введення</translation>
     </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation>Використати нетипову схему живлення із вимкненою кнопкою живлення</translation>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>

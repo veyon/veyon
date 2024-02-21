@@ -4332,6 +4332,10 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <source>Use input device interception driver</source>
         <translation>Kasutage sisendseadme pealtkuulamise draiverit</translation>
     </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>

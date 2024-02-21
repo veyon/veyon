@@ -4332,6 +4332,10 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <source>Use input device interception driver</source>
         <translation>Utiliser le pilote d&apos;interception du périphérique d&apos;entrée</translation>
     </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>

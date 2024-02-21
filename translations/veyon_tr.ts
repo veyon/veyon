@@ -4324,6 +4324,10 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
         <source>Use input device interception driver</source>
         <translation>Girdi cihazı müdahale sürücüsü kullan</translation>
     </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>

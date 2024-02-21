@@ -4336,6 +4336,10 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
         <source>Use input device interception driver</source>
         <translation>Gebruik het stuurprogramma voor het onderscheppen van invoerapparaten</translation>
     </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>

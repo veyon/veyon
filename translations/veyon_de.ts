@@ -4329,6 +4329,10 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <source>Use input device interception driver</source>
         <translation>Eingabegeräte-Interception-Treiber verwenden</translation>
     </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation>Benutzerdefiniertes Energieschema mit deaktiviertem Ein-/Ausschaltknopf verwenden</translation>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>

@@ -4313,6 +4313,10 @@ Typically this is required to support terminal servers.</source>
         <source>Use input device interception driver</source>
         <translation>入力デバイス遮断ドライバを使用する</translation>
     </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>

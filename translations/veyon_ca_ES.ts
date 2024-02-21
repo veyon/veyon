@@ -4332,6 +4332,10 @@ Normalment es requereix per a donar suport als servidors de terminals.</translat
         <source>Use input device interception driver</source>
         <translation>Utilitza el controlador d&apos;intercepció del dispositiu d&apos;entrada</translation>
     </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>

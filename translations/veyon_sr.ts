@@ -4332,6 +4332,10 @@ Obično je ovo zahtevano kao podrška trminal serverima.</translation>
         <source>Use input device interception driver</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>

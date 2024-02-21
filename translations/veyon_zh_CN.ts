@@ -1108,7 +1108,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Logged in since</source>
-        <translation type="unfinished"/>
+        <translation>登录自</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -1124,11 +1124,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>%1 days</source>
-        <translation type="unfinished"/>
+        <translation>%1 天</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"/>
+        <translation>1 天</translation>
     </message>
     <message>
         <source>Location detection failed</source>
@@ -1143,7 +1143,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>ComputerSelectPanel</name>
     <message>
         <source>Search computers</source>
-        <translation type="unfinished"/>
+        <translation>搜索计算机</translation>
     </message>
     <message>
         <source>Add location</source>
@@ -1315,18 +1315,18 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Bandwidth limit</source>
-        <translation type="unfinished"/>
+        <translation>带宽限制</translation>
     </message>
     <message>
         <source> MB/s</source>
-        <translation type="unfinished"/>
+        <translation>MB/s</translation>
     </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>屏幕演示</translation>
     </message>
     <message>
         <source>Stop demo</source>
@@ -1338,7 +1338,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>全屏演示</translation>
     </message>
     <message>
         <source>Window demo</source>
@@ -1460,7 +1460,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>New application</source>
-        <translation type="unfinished"/>
+        <translation>新程序</translation>
     </message>
     <message>
         <source>New website</source>
@@ -1475,7 +1475,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>点击此按钮，将在所有计算机上启动一个程序</translation>
     </message>
     <message>
         <source>Open website</source>
@@ -1611,7 +1611,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>FEATURE</source>
-        <translation type="unfinished"/>
+        <translation>功能</translation>
     </message>
     <message>
         <source>ARGUMENTS</source>
@@ -4331,6 +4331,10 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use input device interception driver</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
         <translation type="unfinished"/>
     </message>
 </context>
