@@ -114,7 +114,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 							   formatArgument(), QStringLiteral("\"%name%;%host%;%mac%\"") } },
 						   { tr( "Import CSV file with location name in first column" ),
 							 { QStringLiteral("computers-with-rooms.csv"),
-							   formatArgument(), QStringLiteral("\"%location%,%name%,%mac%\"") } },
+							   formatArgument(), QStringLiteral("\"%location%;%name%;%mac%\"") } },
 						   { tr( "Import text file with with key/value pairs using regular expressions" ),
 							 { QStringLiteral("hostlist.txt"),
 							   locationArgument(), exampleRoom(),
