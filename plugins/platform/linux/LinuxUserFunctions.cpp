@@ -223,7 +223,7 @@ QString LinuxUserFunctions::currentUser()
 {
 	QString username;
 
-	if (m_systemBus.isConnected())
+	if (VeyonCore::component() != VeyonCore::Component::CLI && m_systemBus.isConnected())
 	{
 		const auto sessionPath = LinuxSessionFunctions::currentSessionPath(true);
 		if (sessionPath.isEmpty() == false)
