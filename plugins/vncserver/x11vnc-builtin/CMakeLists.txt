@@ -1,5 +1,7 @@
 include(BuildVeyonPlugin)
 
+option(VEYON_X11VNC_EXTERNAL "Build with external x11vnc server" OFF)
+
 if(NOT VEYON_X11VNC_EXTERNAL)
 
 	get_property(HAVE_LIBVNCCLIENT GLOBAL PROPERTY HAVE_LIBVNCCLIENT)
