@@ -73,11 +73,13 @@ bool BuiltinX11VncServer::runServer( int serverPort, const Password& password )
 		cmdline.append( extraArguments.split( QLatin1Char(' ') ) );
 	}
 
+#ifndef VEYON_X11VNC_EXTERNAL
 	if( hasWorkingXShm() == false )
 	{
 		vDebug() << "X shared memory extension not available - passing -noshm to x11vnc";
 		cmdline.append( QStringLiteral("-noshm") );
 	}
+#endif
 
 	const auto systemEnv = QProcessEnvironment::systemEnvironment();
 
