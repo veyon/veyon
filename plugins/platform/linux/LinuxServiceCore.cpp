@@ -306,4 +306,13 @@ void LinuxServiceCore::checkSessionState( const QString& sessionPath )
 		vDebug() << "Stopping server for currently closing session" << sessionPath;
 		stopServer( sessionPath );
 	}
+	else
+	{
+		// restart server if crashed
+		const auto serverProcess = m_serverProcesses.value(sessionPath);
+		if (serverProcess && serverProcess->state() == QProcess::NotRunning)
+		{
+			QTimer::singleShot(ServerRestartInterval, serverProcess, [serverProcess]() { serverProcess->start(); });
+		}
+	}
 }
