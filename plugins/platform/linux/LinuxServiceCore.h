@@ -49,6 +49,7 @@ private:
 	static constexpr auto LoginManagerReconnectInterval = 3000;
 	static constexpr auto SessionEnvironmentProbingInterval = 1000;
 	static constexpr auto SessionStateProbingInterval = 1000;
+	static constexpr auto ServerRestartInterval = 5000;
 
 	void connectToLoginManager();
 	void startServers();
