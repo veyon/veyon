@@ -14,8 +14,8 @@ build-linux:
         - debian.buster
         - debian.bullseye
         - debian.bookworm
-        - fedora.38
         - fedora.39
+        - fedora.40
         - opensuse.15.4
         - opensuse.15.5
         - opensuse.tumbleweed
