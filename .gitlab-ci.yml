@@ -11,15 +11,15 @@ build-linux:
     matrix:
       - DISTRO:
         - centos.7.9
-        - debian.bullseye
-        - debian.bookworm
+        - debian.11
+        - debian.12
         - fedora.39
         - fedora.40
         - opensuse.15.4
         - opensuse.15.5
         - opensuse.tumbleweed
-        - ubuntu.focal
-        - ubuntu.jammy
+        - ubuntu.20.04
+        - ubuntu.22.04
         - ubuntu.24.04
   artifacts:
     paths: [ "veyon*" ]
@@ -39,7 +39,7 @@ build-windows:
 
 collect-artifacts:
   stage: collect
-  image: veyon/ci.linux.debian.bookworm:latest
+  image: veyon/ci.linux.debian.12:latest
   dependencies: [ build-linux ]
   only: [ tags ]
   script:

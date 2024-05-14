@@ -5,7 +5,7 @@ jobs:
     strategy:
       matrix:
         dist:
-          - debian.bookworm
+          - debian.12
           - fedora.40
           - opensuse.tumbleweed
           - ubuntu.24.04

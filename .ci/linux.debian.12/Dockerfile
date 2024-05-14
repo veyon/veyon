@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:bookworm-slim
 MAINTAINER Tobias Junghans <tobydox@veyon.io>
 
 RUN \
@@ -9,10 +9,11 @@ RUN \
 		qtbase5-dev qtbase5-private-dev qtbase5-dev-tools qttools5-dev qttools5-dev-tools qtdeclarative5-dev qtquickcontrols2-5-dev qtwebengine5-dev \
 		xorg-dev \
 		libfakekey-dev \
+		libpng-dev libjpeg-dev zlib1g-dev liblzo2-dev \
 		libvncserver-dev \
 		libssl-dev \
 		libpam0g-dev \
-		libprocps-dev \
+		libproc2-dev \
 		libldap2-dev \
 		libsasl2-dev \
 		libqca-qt5-2-dev libqca-qt5-2-plugins \
