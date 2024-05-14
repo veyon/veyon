@@ -15,7 +15,6 @@ build-linux:
         - debian.12
         - fedora.39
         - fedora.40
-        - opensuse.15.4
         - opensuse.15.5
         - opensuse.tumbleweed
         - ubuntu.20.04
