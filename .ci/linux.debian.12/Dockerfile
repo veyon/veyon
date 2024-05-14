@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM debian:bookworm-slim
 MAINTAINER Tobias Junghans <tobydox@veyon.io>
 
 RUN \
@@ -13,7 +13,7 @@ RUN \
 		libvncserver-dev \
 		libssl-dev \
 		libpam0g-dev \
-		libprocps-dev \
+		libproc2-dev \
 		libldap2-dev \
 		libsasl2-dev \
 		libqca-qt5-2-dev libqca-qt5-2-plugins \
