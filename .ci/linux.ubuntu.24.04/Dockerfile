@@ -6,7 +6,7 @@ RUN \
 	apt-get install --no-install-recommends -y \
 		dpkg-dev \
 		ca-certificates git binutils gcc g++ ninja-build cmake file fakeroot bzip2 \
-		qt6-base-dev qt6-5compat-dev qt6-l10n-tools qt6-declarative-dev qt6-httpserver-dev qt6-webengine-dev \
+		qt6-base-dev qt6-5compat-dev qt6-l10n-tools qt6-declarative-dev qt6-httpserver-dev qt6-websockets-dev qt6-webengine-dev \
 		xorg-dev \
 		libfakekey-dev \
 		libvncserver-dev \
