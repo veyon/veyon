@@ -6,9 +6,9 @@ jobs:
       matrix:
         dist:
           - debian.bookworm
-          - fedora.39
+          - fedora.40
           - opensuse.tumbleweed
-          - ubuntu.focal
+          - ubuntu.24.04
     runs-on: ubuntu-latest
     container: veyon/ci.linux.${{matrix.dist}}
     steps:
