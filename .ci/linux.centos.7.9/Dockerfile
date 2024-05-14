@@ -6,7 +6,7 @@ RUN \
 	yum install -y https://download1.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm && \
 	yum install -y centos-release-scl && \
 	yum install -y git devtoolset-7 ninja-build cmake3 rpm-build fakeroot \
-		qt5-qtbase-devel qt5-qtbase qt5-linguist qt5-qttools qt5-qtquickcontrols2-devel qt5-qtwebkit-devel \
+		qt5-qtbase-devel qt5-qtbase qt5-linguist qt5-qttools qt5-qtquickcontrols2-devel \
 		libXtst-devel libXrandr-devel libXinerama-devel libXcursor-devel libXrandr-devel libXdamage-devel libXcomposite-devel libXfixes-devel \
 		libjpeg-turbo-devel \
 		zlib-devel \
