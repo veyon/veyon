@@ -1,4 +1,4 @@
-FROM ubuntu:mantic
+FROM ubuntu:noble
 MAINTAINER Tobias Junghans <tobydox@veyon.io>
 
 RUN \
