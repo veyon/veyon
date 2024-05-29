@@ -644,7 +644,11 @@ bool BuiltinDirectoryPlugin::exportFile( QFile& outputFile, const QString& forma
 
 	for( auto it = networkObjects.constBegin(), end = networkObjects.constEnd(); it != end; ++it )
 	{
-		const NetworkObject networkObject( it->toObject() );
+		const NetworkObject networkObject{it->toObject()};
+		if (networkObject.type() != NetworkObject::Type::Host)
+		{
+			continue;
+		}
 
 		auto currentLocation = location;
 
