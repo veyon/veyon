@@ -144,6 +144,7 @@ CommandLinePluginInterface::RunResult BuiltinDirectoryPlugin::handle_help( const
 							   formatArgument(), QStringLiteral("\"%type%;%name%;%host%;%mac%\"") } },
 						   { tr( "Export all computers in a specific location to a CSV file" ),
 							 { QStringLiteral("computers.csv"),
+							   locationArgument(), exampleRoom(),
 							   formatArgument(), QStringLiteral("\"%name%;%host%;%mac%\"") } }
 					   } );
 
