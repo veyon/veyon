@@ -632,6 +632,11 @@ bool BuiltinDirectoryPlugin::exportFile( QFile& outputFile, const QString& forma
 	if( location.isEmpty() == false )
 	{
 		locationObject = objectManager.findByName( location );
+		if (locationObject.isValid() == false)
+		{
+			error(tr("Location \"%1\" not found." ).arg(location));
+			return false;
+		}
 	}
 
 	QStringList lines;
