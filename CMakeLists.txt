@@ -25,8 +25,6 @@ endif()
 
 if(VEYON_DEBUG)
 	add_definitions(-DVEYON_DEBUG)
-else()
-	add_definitions(-D_FORTIFY_SOURCE=2)
 endif()
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
@@ -232,6 +230,10 @@ endif()
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fstack-protector-strong ${CFLAGS}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector-strong -fno-exceptions ${CXXFLAGS}")
+
+if(NOT VEYON_DEBUG AND NOT CMAKE_C_FLAGS MATCHES "FORTIFY_SOURCE" AND NOT CMAKE_CXX_FLAGS MATCHES "FORTIFY_SOURCE")
+	add_definitions(-D_FORTIFY_SOURCE=2)
+endif()
 
 if(WITH_TESTS)
 	enable_testing(TRUE)
