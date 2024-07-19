@@ -983,6 +983,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>&quot;Computer 01&quot;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>

@@ -2610,7 +2610,7 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
 
 %3</source>
-        <translation>Es konnte keine %1 abgefragt werden. Bitte überprüfen Sie den/die Parameter %2 und geben Sie den Namen eines existierenden Objekts ein.
+        <translation>Es konnten keine %1 abgefragt werden. Bitte überprüfen Sie den/die Parameter %2 und geben Sie den Namen eines existierenden Objekts ein.
 
 %3</translation>
     </message>

@@ -386,7 +386,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation>File di chiave (*.pem)</translation>
+        <translation>File chiave (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
@@ -4320,7 +4320,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use custom power scheme with disabled power button</source>
-        <translation type="unfinished"/>
+        <translation>Utilizza lo schema di alimentazione personalizzato con il pulsante di accensione disabilitato</translation>
     </message>
 </context>
 <context>

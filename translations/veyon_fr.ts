@@ -3747,7 +3747,7 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>Miscellaneous settings</source>
-        <translation type="unfinished"/>
+        <translation>Paramètres divers</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
