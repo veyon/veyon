@@ -14,7 +14,6 @@ cd $BUILDDIR
 PREFIX=/usr/$1-w64-mingw32
 $PREFIX/bin/qt-cmake $BASEDIR \
 	-G Ninja \
-	-DWITH_QT6=ON \
 	-DQT_TRANSLATIONS_DIR=$PREFIX/translations \
 	$CMAKE_FLAGS
 
