@@ -76,4 +76,10 @@ void VeyonConfiguration::upgrade()
 	{
 		setApplicationVersion(VeyonCore::ApplicationVersion::Version_4_8);
 	}
+	else if (applicationVersion() < VeyonCore::ApplicationVersion::Version_4_9)
+	{
+		setUserGroupsBackend(legacyAccessControlUserGroupsBackend());
+		setUseDomainUserGroups(legacyDomainGroupsForAccessControlEnabled());
+		setApplicationVersion(VeyonCore::ApplicationVersion::Version_4_9);
+	}
 }

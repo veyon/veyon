@@ -73,6 +73,10 @@
 	OP( VeyonConfiguration, VeyonCore::config(), QStringList, enabledNetworkObjectDirectoryPlugins, setEnabledNetworkObjectDirectoryPlugins, "EnabledPlugins", "NetworkObjectDirectory", QStringList(), Configuration::Property::Flag::Standard ) \
 	OP( VeyonConfiguration, VeyonCore::config(), int, networkObjectDirectoryUpdateInterval, setNetworkObjectDirectoryUpdateInterval, "UpdateInterval", "NetworkObjectDirectory", NetworkObjectDirectory::DefaultUpdateInterval, Configuration::Property::Flag::Standard )			\
 
+#define FOREACH_VEYON_USER_GROUPS_BACKEND_CONFIG_PROPERTY(OP)				\
+	OP( VeyonConfiguration, VeyonCore::config(), QUuid, userGroupsBackend, setUserGroupsBackend, "Backend", "UserGroups", QUuid(), Configuration::Property::Flag::Standard )		\
+	OP( VeyonConfiguration, VeyonCore::config(), bool, useDomainUserGroups, setUseDomainUserGroups, "UseDomainUserGroups", "UserGroups", false, Configuration::Property::Flag::Standard )		\
+
 #define FOREACH_VEYON_FEATURES_CONFIG_PROPERTY(OP)				\
 	OP( VeyonConfiguration, VeyonCore::config(), QStringList, disabledFeatures, setDisabledFeatures, "DisabledFeatures", "Features", QStringList(), Configuration::Property::Flag::Standard )			\
 
@@ -137,14 +141,14 @@
 	OP( VeyonConfiguration, VeyonCore::config(), QStringList, enabledAuthenticationPlugins, setEnabledAuthenticationPlugins, "EnabledPlugins", "Authentication", QStringList(), Configuration::Property::Flag::Standard )	\
 
 #define FOREACH_VEYON_ACCESS_CONTROL_CONFIG_PROPERTY(OP)		\
-	OP( VeyonConfiguration, VeyonCore::config(), QUuid, accessControlUserGroupsBackend, setAccessControlUserGroupsBackend, "UserGroupsBackend", "AccessControl", QUuid(), Configuration::Property::Flag::Standard )		\
-	OP( VeyonConfiguration, VeyonCore::config(), bool, domainGroupsForAccessControlEnabled, setDomainGroupsForAccessControlEnabled, "DomainGroupsEnabled", "AccessControl", false, Configuration::Property::Flag::Standard )		\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, isAccessRestrictedToUserGroups, setAccessRestrictedToUserGroups, "AccessRestrictedToUserGroups", "AccessControl", false , Configuration::Property::Flag::Standard )		\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, isAccessControlRulesProcessingEnabled, setAccessControlRulesProcessingEnabled, "AccessControlRulesProcessingEnabled", "AccessControl", false, Configuration::Property::Flag::Standard )	\
 	OP( VeyonConfiguration, VeyonCore::config(), QStringList, authorizedUserGroups, setAuthorizedUserGroups, "AuthorizedUserGroups", "AccessControl", QStringList(), Configuration::Property::Flag::Standard )	\
 	OP( VeyonConfiguration, VeyonCore::config(), QJsonArray, accessControlRules, setAccessControlRules, "AccessControlRules", "AccessControl", QJsonArray(), Configuration::Property::Flag::Standard )	\
 
 #define FOREACH_VEYON_LEGACY_CONFIG_PROPERTY(OP) \
+	OP( VeyonConfiguration, VeyonCore::config(), QUuid, legacyAccessControlUserGroupsBackend, setLegacyAccessControlUserGroupsBackend, "UserGroupsBackend", "AccessControl", QUuid(), Configuration::Property::Flag::Standard )		\
+	OP( VeyonConfiguration, VeyonCore::config(), bool, legacyDomainGroupsForAccessControlEnabled, setLegacyDomainGroupsForAccessControlEnabled, "DomainGroupsEnabled", "AccessControl", false, Configuration::Property::Flag::Standard )		\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, legacyAutoAdjustGridSize, setLegacyAutoAdjustGridSize, "AutoAdjustGridSize", "Master", false, Configuration::Property::Flag::Legacy )	\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, legacyOpenComputerManagementAtStart, setLegacyOpenComputerManagementAtStart, "OpenComputerManagementAtStart", "Master", false, Configuration::Property::Flag::Legacy )	\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, legacyAutoSwitchToCurrentRoom, setLegacyAutoSwitchToCurrentRoom, "AutoSwitchToCurrentRoom", "Master", false, Configuration::Property::Flag::Legacy )	\
@@ -166,6 +170,7 @@
 	FOREACH_VEYON_LOGGING_CONFIG_PROPERTY(OP)			\
 	FOREACH_VEYON_TLS_CONFIG_PROPERTY(OP)				\
 	FOREACH_VEYON_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(OP)\
+	FOREACH_VEYON_USER_GROUPS_BACKEND_CONFIG_PROPERTY(OP)	\
 	FOREACH_VEYON_FEATURES_CONFIG_PROPERTY(OP)\
 	FOREACH_VEYON_VNC_SERVER_CONFIG_PROPERTY(OP)		\
 	FOREACH_VEYON_NETWORK_CONFIG_PROPERTY(OP)			\

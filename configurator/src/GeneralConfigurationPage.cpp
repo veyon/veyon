@@ -25,15 +25,17 @@
 #include <QDir>
 #include <QMessageBox>
 
+#include "AuthenticationCredentials.h"
 #include "Configuration/UiMapping.h"
 #include "GeneralConfigurationPage.h"
 #include "Filesystem.h"
 #include "FileSystemBrowser.h"
 #include "PlatformFilesystemFunctions.h"
-#include "PlatformUserFunctions.h"
+#include "PluginManager.h"
 #include "VeyonServiceControl.h"
 #include "VeyonCore.h"
 #include "VeyonConfiguration.h"
+#include "UserGroupsBackendManager.h"
 
 #include "ui_GeneralConfigurationPage.h"
 
@@ -80,6 +82,30 @@ GeneralConfigurationPage::GeneralConfigurationPage( QWidget* parent ) :
 
 	ui->uiLanguage->addItems( languages );
 
+	const auto backends = VeyonCore::userGroupsBackendManager().availableBackends();
+	if (backends.count() <= 0)
+	{
+		QMessageBox::critical(this,
+							  tr("Missing user groups backend"),
+							  tr("No user groups plugin was found. Please check your installation!"));
+		qFatal("GeneralConfigurationPage: missing user groups backend");
+	}
+
+	for (auto it = backends.constBegin(), end = backends.constEnd(); it != end; ++it)
+	{
+		ui->userGroupsBackend->addItem(it.value(), it.key());
+	}
+
+	connect( ui->userGroupsBackend, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this]() {
+		const auto selectedBackend = ui->userGroupsBackend->currentData().toUuid();
+
+		ui->useDomainUserGroups->setEnabled(VeyonCore::pluginManager().find<UserGroupsBackendInterface, PluginInterface>(
+												[&selectedBackend](const PluginInterface* plugin) {
+													return plugin->uid() == selectedBackend &&
+															plugin->flags().testFlag(Plugin::ProvidesDefaultImplementation);
+												}) != nullptr);
+	});
+
 	connect( ui->openLogFileDirectory, &QPushButton::clicked, this, &GeneralConfigurationPage::openLogFileDirectory );
 	connect( ui->clearLogFiles, &QPushButton::clicked, this, &GeneralConfigurationPage::clearLogFiles );
 }
@@ -97,6 +123,7 @@ void GeneralConfigurationPage::resetWidgets()
 {
 	FOREACH_VEYON_UI_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_VEYON_LOGGING_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+	FOREACH_VEYON_USER_GROUPS_BACKEND_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_VEYON_TLS_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 }
 
@@ -106,6 +133,7 @@ void GeneralConfigurationPage::connectWidgetsToProperties()
 {
 	FOREACH_VEYON_UI_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 	FOREACH_VEYON_LOGGING_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
+	FOREACH_VEYON_USER_GROUPS_BACKEND_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 	FOREACH_VEYON_TLS_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);
 }
 
@@ -113,6 +141,7 @@ void GeneralConfigurationPage::connectWidgetsToProperties()
 
 void GeneralConfigurationPage::applyConfiguration()
 {
+	VeyonCore::userGroupsBackendManager().reloadConfiguration();
 }
 
 

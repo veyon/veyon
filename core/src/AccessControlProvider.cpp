@@ -38,9 +38,10 @@
 
 
 AccessControlProvider::AccessControlProvider() :
-	m_userGroupsBackend( VeyonCore::userGroupsBackendManager().accessControlBackend() ),
-	m_networkObjectDirectory( VeyonCore::networkObjectDirectoryManager().configuredDirectory() ),
-	m_queryDomainGroups( VeyonCore::config().domainGroupsForAccessControlEnabled() )
+	m_accessControlRules(),
+	m_userGroupsBackend(VeyonCore::userGroupsBackendManager().configuredBackend()),
+	m_networkObjectDirectory(VeyonCore::networkObjectDirectoryManager().configuredDirectory()),
+	m_useDomainUserGroups(VeyonCore::config().useDomainUserGroups())
 {
 	const QJsonArray accessControlRules = VeyonCore::config().accessControlRules();
 
@@ -56,7 +57,7 @@ AccessControlProvider::AccessControlProvider() :
 
 QStringList AccessControlProvider::userGroups() const
 {
-	auto userGroupList = m_userGroupsBackend->userGroups( m_queryDomainGroups );
+	auto userGroupList = m_userGroupsBackend->userGroups(m_useDomainUserGroups);
 
 	std::sort( userGroupList.begin(), userGroupList.end() );
 
@@ -167,7 +168,7 @@ bool AccessControlProvider::processAuthorizedGroups( const QString& accessingUse
 {
 	vDebug() << "processing for user" << accessingUser;
 
-	const auto groupsOfAccessingUser = m_userGroupsBackend->groupsOfUser( accessingUser, m_queryDomainGroups );
+	const auto groupsOfAccessingUser = m_userGroupsBackend->groupsOfUser( accessingUser, m_useDomainUserGroups );
 	const auto authorizedUserGroups = VeyonCore::config().authorizedUserGroups();
 
 	vDebug() << groupsOfAccessingUser << authorizedUserGroups;
@@ -257,10 +258,10 @@ bool AccessControlProvider::isMemberOfUserGroup( const QString &user,
 
 	if( groupNameRX.isValid() )
 	{
-		return m_userGroupsBackend->groupsOfUser( user, m_queryDomainGroups ).indexOf( groupNameRX ) >= 0;
+		return m_userGroupsBackend->groupsOfUser( user, m_useDomainUserGroups ).indexOf( groupNameRX ) >= 0;
 	}
 
-	return m_userGroupsBackend->groupsOfUser( user, m_queryDomainGroups ).contains( groupName );
+	return m_userGroupsBackend->groupsOfUser( user, m_useDomainUserGroups ).contains( groupName );
 }
 
 
@@ -274,8 +275,8 @@ bool AccessControlProvider::isLocatedAt( const QString &computer, const QString 
 
 bool AccessControlProvider::haveGroupsInCommon( const QString &userOne, const QString &userTwo ) const
 {
-	const auto userOneGroups = m_userGroupsBackend->groupsOfUser( userOne, m_queryDomainGroups );
-	const auto userTwoGroups = m_userGroupsBackend->groupsOfUser( userTwo, m_queryDomainGroups );
+	const auto userOneGroups = m_userGroupsBackend->groupsOfUser( userOne, m_useDomainUserGroups );
+	const auto userTwoGroups = m_userGroupsBackend->groupsOfUser( userTwo, m_useDomainUserGroups );
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
 	const auto userOneGroupSet = QSet<QString>{ userOneGroups.begin(), userOneGroups.end() };
