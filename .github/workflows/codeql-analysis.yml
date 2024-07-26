@@ -53,7 +53,7 @@ jobs:
       run: |
         mkdir -p $GITHUB_WORKSPACE/build
         cd $GITHUB_WORKSPACE/build
-        cmake -G Ninja -DCMAKE_BUILD_TYPE=Debug -DWITH_LTO=OFF -DWITH_TRANSLATIONS=OFF ..
+        cmake -G Ninja -DCMAKE_BUILD_TYPE=Debug -DWITH_QT6=OFF -DWITH_LTO=OFF -DWITH_TRANSLATIONS=OFF ..
         ninja
 
     - name: Perform CodeQL Analysis
