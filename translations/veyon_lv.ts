@@ -57,10 +57,6 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
         <translation>Ierobežot piekļuvi konkrētas grupas lietotājiem</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Lietotāju grupas backends:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Tests</translation>
     </message>
@@ -71,10 +67,6 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Piešķirt piekļuvi katram autentificētam lietotājam (noklusējuma)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Iespējot domēnu grupas lietošanu</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     <message>
         <source>Move selected rule down</source>
         <translation>Pazemināt izvēlēto noteikumu</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Trūks lietotāju grupas backends</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Neviens pamata lietotāja grupas spraudnis netika atrasts. Lūdzu pārbaudi instalāciju.</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -985,6 +969,10 @@ Publiskā atslēga tiek izmantota klientu datoros, lai autentificētu ienākoš�
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;Dators 01&quot;</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1970,6 +1958,22 @@ Publiskā atslēga tiek izmantota klientu datoros, lai autentificētu ienākoš�
     <message>
         <source>Authentication test</source>
         <translation>Autentifikācijas tests</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Lietotāju grupas</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Trūks lietotāju grupas backends</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3311,11 +3315,11 @@ Publiskā atslēga tiek izmantota klientu datoros, lai autentificētu ienākoš�
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation>Instalēt atjauninājumus un izslēgt datoru</translation>
+        <translation>Instalēt atjauninājumus un izslēgt</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation>Izslēgt datoru pēc lietotāja piekrišanas</translation>
+        <translation>Izslēgt pēc lietotāja piekrišanas</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
@@ -3448,7 +3452,7 @@ Lūdzu, saglabājiet savu darbu un aizveriet visas programmas.</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation>%1 - %2 - %3 attālā piekļuve</translation>
+        <translation>%1 - %2 - %3 Attālā piekļuve</translation>
     </message>
 </context>
 <context>

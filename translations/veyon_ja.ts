@@ -57,10 +57,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>特定のグループのメンバーのアクセスを制限する</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>ユーザーグループのバックエンド</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>テスト</translation>
     </message>
@@ -71,10 +67,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>すべての認証されたユーザーにアクセスを許可（デフォルト）</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>ドメイングループの使用を有効にする</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,15 +107,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Move selected rule down</source>
         <translation>選択したルールを下げる</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>ユーザーグループのバックエンドが不明</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>ユーザーグループのプラグインが見つかりませんでした。
-インストール状況を確認してください!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -986,6 +969,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;コンピューター01&quot;</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1971,6 +1958,22 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Authentication test</source>
         <translation>認証テスト</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>ユーザーグループ</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>ユーザーグループのバックエンドが不明</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

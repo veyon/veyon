@@ -55,10 +55,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Zugriff auf Mitglieder bestimmter Benutzergruppen einschränken</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Benutzergruppen-Backend:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Testen</translation>
     </message>
@@ -69,10 +65,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Jedem authentifizierten Benutzer Zugriff erlauben (Standard)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Verwendung von Domaingruppen aktivieren</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -113,14 +105,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Move selected rule down</source>
         <translation>Gewählte Regel nach unten schieben</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Fehlendes Benutzergruppen-Backend</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Es wurde kein Benutzergruppen-Plugin gefunden. Bitte überprüfen Sie Ihre Installation!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -982,6 +966,10 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;Computer 01&quot;</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation>Standort &quot;%1&quot; nicht gefunden.</translation>
     </message>
 </context>
 <context>
@@ -1967,6 +1955,22 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Authentication test</source>
         <translation>Authentifizierungstest</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Benutzergruppen</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation>Benutzergruppen von Domain einbeziehen</translation>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Fehlendes Benutzergruppen-Backend</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation>Es wurde kein Benutzergruppen-Plugin gefunden. Bitte überprüfen Sie Ihre Installation!</translation>
     </message>
 </context>
 <context>

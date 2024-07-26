@@ -56,10 +56,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>گروه های کاربر:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>تست</translation>
     </message>
@@ -70,10 +66,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>دسترسی به هر کاربر معتبر (به طور پیش فرض) را تأیید کنید</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>استفاده از گروههای دامنه را فعال کنید</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -114,14 +106,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Move selected rule down</source>
         <translation>پایین بردن قانون انتخاب شده</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation> گروه های کاربری فاقد بخش مدیریت</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>هیچ پلاگین گروه کاربر پیش فرض یافت نشد لطفا نصب خود را بررسی کنید!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -980,6 +964,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1965,6 +1953,22 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication test</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation> گروه های کاربری فاقد بخش مدیریت</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
         <translation type="unfinished"/>
     </message>
 </context>

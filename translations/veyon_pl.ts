@@ -57,10 +57,6 @@ Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne 
         <translation>Ogranicz dostęp do członków wybranych grup</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Źródło grup użytkowników:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Test</translation>
     </message>
@@ -71,10 +67,6 @@ Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne 
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Zezwól na dostęp wszystkim uwierzytelnionym użytkownikom (domyślne)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Włącz użycie grup domenowych</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne 
     <message>
         <source>Move selected rule down</source>
         <translation>Przenieś regułę niżej</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Nieskonfigurowane źródło grup użytkowników</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Brak domyślnej wtyczki źródła grup użytkowników. Proszę sprawdzić poprawność instalacji programu!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -985,6 +969,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;Komputer 01&quot;</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1970,6 +1958,22 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Authentication test</source>
         <translation>Test uwierzytelnienia</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Nieskonfigurowane źródło grup użytkowników</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

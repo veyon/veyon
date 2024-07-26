@@ -11,7 +11,7 @@
     </message>
     <message>
         <source>Version:</source>
-        <translation>Versie:</translation>
+        <translation>Versie</translation>
     </message>
     <message>
         <source>Website:</source>
@@ -35,7 +35,7 @@
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
         <translation>Huidige taal is nog niet vertaald (of in moedertaal English).
 
-Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een andere taal of je de vertaling wilt verbeteren, neem dan contact op met een Veyon ontwikkelaar!</translation>
+Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een andere taal of de vertaling wilt verbeteren, neem dan contact op met een Veyon ontwikkelaar!</translation>
     </message>
     <message>
         <source>License</source>
@@ -57,10 +57,6 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een ande
         <translation>Beperk toegang tot leden van bepaalde groepen</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Gebruikersgroepen backend</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Test</translation>
     </message>
@@ -71,10 +67,6 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een ande
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Verleen toegang aan elke geauthenticeerde gebruiker (standaard)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Gebruik van domeingroepen inschakelen</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een ande
     <message>
         <source>Move selected rule down</source>
         <translation>Verplaats de geselecteerde regel naar beneden</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Ontbrekende gebruikersgroepen backend</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Er werd geen standaard gebruikersgroepplugin gevonden. Controleer de installatie!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -268,7 +252,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een ande
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation>Toegangzoekende gebruiker:</translation>
+        <translation>Toegang tot gebruiker:</translation>
     </message>
     <message>
         <source>Local computer:</source>
@@ -276,7 +260,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een ande
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation>Toegangzoekende computer:</translation>
+        <translation>Computer benaderen:</translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
@@ -288,7 +272,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een ande
     </message>
     <message>
         <source>Connected users:</source>
-        <translation>Geconnecteerde gebruikers:</translation>
+        <translation>Verbonden gebruikers:</translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
@@ -304,7 +288,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal, een ande
     </message>
     <message>
         <source>ERROR: Unknown action</source>
-        <translation>FOUT: onbekende actie</translation>
+        <translation>FOUT: Onbekende actie</translation>
     </message>
     <message>
         <source>Test result</source>
@@ -432,7 +416,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation>Key naam bevat niet toegestane karakters</translation>
+        <translation>Sleutel naam bevat ongeldige tekens!</translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -444,7 +428,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
-        <translation>Eén of meer key files bestaan al! Verwijder ze door gebruik te maken van het commando &quot;verwijder&quot;.</translation>
+        <translation>Eén of meer sleutelbestanden bestaan al! Verwijder ze met het commando &quot;delete&quot;.</translation>
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
@@ -456,11 +440,11 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation>Het nieuwe sleutelpaar is opgeslagen op &quot;%1&quot; en &quot;%2&quot;</translation>
+        <translation>Het nieuw aangemaakt sleutelpaar is opgeslagen in &quot;%1&quot; en &quot;%2&quot;</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation>Kan sleutelbestand &quot;%1&quot; niet verwijderen!</translation>
+        <translation>Kon sleutelbestand &quot;%1&quot; niet verwijderen!</translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
@@ -512,7 +496,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
-        <translation>Omzetten van private sleutel naar publieke sleutel is mislukt.</translation>
+        <translation>Het converteren van de private sleutel naar de publieke sleutel is mislukt</translation>
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
@@ -556,7 +540,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation>Lezen van het sleutelbestand is mislukt.</translation>
+        <translation>Het lezen van het sleutelbestand is mislukt.</translation>
     </message>
 </context>
 <context>
@@ -567,11 +551,11 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation>Verwijder authenticatie sleutel</translation>
+        <translation>Verwijder verificatiesleutel</translation>
     </message>
     <message>
         <source>List authentication keys</source>
-        <translation>Toon authenticatiesleutels</translation>
+        <translation>Lijst van verificatiesleutels</translation>
     </message>
     <message>
         <source>Import public or private key</source>
@@ -659,7 +643,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
-        <translation>Commando&apos;s om authenticatiesleutels te beheren</translation>
+        <translation>Commando&apos;s voor het beheren van authenticatiesleutels</translation>
     </message>
 </context>
 <context>
@@ -721,7 +705,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Add new location</source>
-        <translation>Nieuwe locatie toevoegen</translation>
+        <translation>Voeg nieuwe locatie toe</translation>
     </message>
     <message>
         <source>Remove selected location</source>
@@ -748,7 +732,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation>Voeg locatie of computer toe</translation>
+        <translation>Een locatie of computer toevoegen</translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
@@ -760,7 +744,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>List all locations and computers</source>
-        <translation>Toon alle lokalen en computers</translation>
+        <translation>Alle locaties en computers weergeven</translation>
     </message>
     <message>
         <source>Remove a location or computer</source>
@@ -768,11 +752,11 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Import objects from given file</source>
-        <translation>Importeer objecten van opgegeven bestand</translation>
+        <translation>Importeer objecten uit een opgegeven bestand</translation>
     </message>
     <message>
         <source>Export objects to given file</source>
-        <translation>Exporteer objecten van opgegeven bestand</translation>
+        <translation>Exporteer objecten naar een opgegeven bestand</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -904,7 +888,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Specified object not found.</source>
-        <translation>Gevraagd object niet gevonnden.</translation>
+        <translation>Het opgegeven object is niet gevonden.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
@@ -985,6 +969,10 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;Computer 01&quot;</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1115,7 +1103,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Er is geen standaard plugin voor netwerkobjecten gevonden. Controleer uw installatie of configureer een andere netwerk object directory backend via%1 Configurator.</translation>
+        <translation>Er is geen standaard plugin voor de netwerkobjectdirectory gevonden. Controleer uw installatie of configureer een andere netwerk object directory backend via %1 Configurator.</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1166,22 +1154,22 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation>Kon de computer en gebruikerslijst niet schrijven naar %1! Controleer de toegangsrechten voor het bestand.</translation>
+        <translation>Kon de computer- en gebruikerslijst niet schrijven naar %1! Controleer de toegangsrechten voor het bestand.</translation>
     </message>
 </context>
 <context>
     <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
-        <translation>Veyon-configuratie helemaal wissen</translation>
+        <translation>Veyon-configuratie voor het hele systeem wissen</translation>
     </message>
     <message>
         <source>List all configuration keys and values</source>
-        <translation>Lijst alle configuratie sleutels en waarden op</translation>
+        <translation>Alle configuratiesleutels en -waarden weergeven</translation>
     </message>
     <message>
         <source>Import configuration from given file</source>
-        <translation>Importeer configuratie van opgegeven bestand</translation>
+        <translation>Importeer configuratie uit opgegeven bestand</translation>
     </message>
     <message>
         <source>Export configuration to given file</source>
@@ -1189,15 +1177,15 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Read and output configuration value for given key</source>
-        <translation>Lees en lever configuratiewaarde voor de gegeven sleutel uit</translation>
+        <translation>Configuratiewaarde lezen en uitvoeren voor gegeven sleutel</translation>
     </message>
     <message>
         <source>Write given value to given configuration key</source>
-        <translation>Schrijf de gegeven waarde naar de gegeven configuratiesleutel</translation>
+        <translation>Schrijf een gegeven waarde naar een gegeven configuratiesleutel</translation>
     </message>
     <message>
         <source>Unset (remove) given configuration key</source>
-        <translation>Ontkoppel (verwijder) de gegeven configuratiesleutel</translation>
+        <translation>Ontkoppel (verwijder) een gegeven configuratiesleutel</translation>
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
@@ -1205,7 +1193,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Please specify an existing configuration file to import.</source>
-        <translation>Geef alstublieft een bestaand configuratiebestand op om te importeren.</translation>
+        <translation>Geef een bestaand configuratiebestand op om te importeren.</translation>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
@@ -1213,19 +1201,19 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Please specify a valid filename for the configuration export.</source>
-        <translation>Geef alstublieft een geldige bestandsnaam op voor de configuratie export.</translation>
+        <translation>Geef een geldige bestandsnaam op voor de configuratie-export.</translation>
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation>Uitvoerbestand is niet schrijfbaar!</translation>
+        <translation>Uitvoerbestand is niet beschrijfbaar!</translation>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation>Uitvoermap is niet schrijfbaar!</translation>
+        <translation>Uitvoermap is niet beschrijfbaar!</translation>
     </message>
     <message>
         <source>Please specify a valid key.</source>
-        <translation>Geef alstublief een geldige sleutel op.</translation>
+        <translation>Geef een geldige sleutel op.</translation>
     </message>
     <message>
         <source>Specified key does not exist in current configuration!</source>
@@ -1233,22 +1221,22 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Please specify a valid value.</source>
-        <translation>Geef alstublief een geldige waarde op.</translation>
+        <translation>Geef een geldige waarde op.</translation>
     </message>
     <message>
         <source>Configure Veyon at command line</source>
-        <translation>Configureer Veyon via opdrachtregel</translation>
+        <translation>Configureer Veyon via de opdrachtregel</translation>
     </message>
     <message>
         <source>Commands for managing the configuration of Veyon</source>
-        <translation>Commando&apos;s voor het beheren van de configuratie van Veyon</translation>
+        <translation>Commando&apos;s voor het beheer van de configuratie van Veyon</translation>
     </message>
 </context>
 <context>
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Kon de autostart eigenschap niet wijzigen voor de %1 service.</translation>
+        <translation>Kon de autostart eigenschap voor de %1 service niet wijzigen.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Server.</source>
@@ -1282,11 +1270,11 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Tunables</source>
-        <translation>Tunables</translation>
+        <translation>Afstembare</translation>
     </message>
     <message>
         <source> s</source>
-        <translation>s</translation>
+        <translation> s</translation>
     </message>
     <message>
         <source>Update interval</source>
@@ -1294,11 +1282,11 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <source> ms</source>
-        <translation>ms</translation>
+        <translation> ms</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
@@ -1357,7 +1345,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation>In deze modus wordt uw scherm in een venster op alle computers weergegeven. De gebruikers kunnen, indien nodig, overstappen naar andere vensters.</translation>
+        <translation>In deze modus wordt je scherm weergegeven in een venster op alle computers. De gebruikers kunnen naar behoefte naar andere vensters overschakelen.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
@@ -1389,7 +1377,7 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation>Geef een demonstratie door het uitzenden van het scherm</translation>
+        <translation>Geef een demonstratie door middel van schermuitzendingen</translation>
     </message>
 </context>
 <context>
@@ -1757,7 +1745,7 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
-        <translation>Overschrijf bestaande bestanden</translation>
+        <translation>Bestaande bestanden overschrijven</translation>
     </message>
     <message>
         <source>Transfer only</source>
@@ -1919,7 +1907,7 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation> MB</translation>
     </message>
     <message>
         <source>Limit log file size</source>
@@ -1967,11 +1955,27 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>Could not remove all log files.</source>
-        <translation>Kon alle log bestanden niet verwijderen.</translation>
+        <translation>Kon niet alle logbestanden verwijderen.</translation>
     </message>
     <message>
         <source>Authentication test</source>
         <translation>Authenticatietest</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Gebruikersgroepen</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Ontbrekende gebruikersgroepen backend</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2525,9 +2529,7 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation>Kon geen computer vinden met de hostnaam &quot;%1&quot;. Controleer de hostnaam of de computerstructuur parameter.
-
-</translation>
+        <translation>Kon geen computer vinden met de hostnaam &quot;%1&quot;. Controleer de hostnaam of de computerstructuur parameter.</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>

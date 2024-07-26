@@ -57,10 +57,6 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
         <translation>Restreindre l&apos;accès aux membres de groupes d&apos;utilisateurs spécifiques</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Groupes d&apos;utilisateurs de processus d&apos;arrière plan :</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Test</translation>
     </message>
@@ -71,10 +67,6 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Accorder l&apos;accès à tous les utilisateurs authentifiés (par défaut)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Activer l&apos;utilisation des groupes de domaine</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     <message>
         <source>Move selected rule down</source>
         <translation>Déplacer la règle sélectionnée vers le bas</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Groupes d&apos;utilisateurs de processus d&apos;arrière plan manquants</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Aucun greffon par défaut pour les groupes d&apos;utilisateurs n&apos;a été trouvé. Veuillez vérifier votre installation!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -985,6 +969,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;Ordinateur 01&quot;</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1970,6 +1958,22 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Authentication test</source>
         <translation>Test d&apos;authentification</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Groupes d&apos;utilisateurs</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Groupes d&apos;utilisateurs de processus d&apos;arrière plan manquants</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

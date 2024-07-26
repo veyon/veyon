@@ -57,10 +57,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>限制對指定使用者群組成員的存取</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>使用者群組後端:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>測試</translation>
     </message>
@@ -71,10 +67,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>每個已驗證的使用者授予存取權限 (預設值)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>啟用網域群組使用</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Move selected rule down</source>
         <translation>向下移動所選的規則</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>缺少使用者群組後端</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>找不到預設的使用者群組外掛程式。 請檢查您的安裝!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -986,6 +970,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;電腦 01&quot;</translation>
     </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1278,7 +1266,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>示範伺服器</translation>
+        <translation>演示伺服器</translation>
     </message>
     <message>
         <source>Tunables</source>
@@ -1970,6 +1958,22 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Authentication test</source>
         <translation>身份驗證測試</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>使用者群組</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>缺少使用者群組後端</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2666,7 +2670,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>顯示命令的說明</translation>
+        <translation>顯示有關命令的說明</translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
@@ -3444,7 +3448,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>顯示命令的說明</translation>
+        <translation>顯示有關命令的說明</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -3743,11 +3747,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Demo server</source>
-        <translation>示範伺服器</translation>
+        <translation>演示伺服器</translation>
     </message>
     <message>
         <source>Miscellaneous settings</source>
-        <translation type="unfinished"/>
+        <translation>雜項設定</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
@@ -3759,7 +3763,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Disable clipboard synchronization</source>
-        <translation type="unfinished"/>
+        <translation>停用剪貼簿同步</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3775,7 +3779,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>已成功儲存所有的設定。 為了生效 %1 服務需要重新啟動。 立即重新啟動它?</translation>
+        <translation>儲存所有的設定成功。 為了生效 %1 服務需要重新啟動。 立即重新啟動它?</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4310,7 +4314,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation>確認法律通知 (在使用者登入前顯示訊息)</translation>
+        <translation>確認法律聲明 (在使用者登入前顯示訊息)</translation>
     </message>
     <message>
         <source>Screen lock</source>
@@ -4334,7 +4338,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use custom power scheme with disabled power button</source>
-        <translation type="unfinished"/>
+        <translation>使用停用電源按鈕的自訂電源方案</translation>
     </message>
 </context>
 <context>

@@ -57,10 +57,6 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <translation>특정 그룹 사용자의 접근 제한</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>유저그룹 백엔드:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>테스트</translation>
     </message>
@@ -71,10 +67,6 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>인증된 모든 사용자에게 접근 허용(기본값)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>도메인 그룹 사용 허용</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <message>
         <source>Move selected rule down</source>
         <translation>선택된 규칙을 아래로 이동</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>유저그룹 백엔드 없음</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>디폴트 유저 그룹 플러그인이 없습니다. 설치상태를 확인하세요!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -985,6 +969,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;컴퓨터 01&quot;</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1970,6 +1958,22 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Authentication test</source>
         <translation>인증 테스트</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>유저그룹 백엔드 없음</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

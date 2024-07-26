@@ -57,10 +57,6 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
         <translation>Batasi akses ke pengguna dari grup pengguna tertentu</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Kelompok pengguna backend:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Tes</translation>
     </message>
@@ -71,10 +67,6 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Berikan akses ke setiap pengguna yang diautentikasi (bawaan)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Aktifkan penggunaan grup domain</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ Jika anda tertarik menerjemahkan Veyon pada bahasa lokal Anda atau bahasa lain a
     <message>
         <source>Move selected rule down</source>
         <translation>Pindahkan aturan yang dipilih ke bawah</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Backend grup pengguna tidak ada</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Tidak ditemukan pengaya grup pengguna bawaan. Sila cek instalasi Anda! </translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -984,6 +968,10 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1969,6 +1957,22 @@ Kunci publik digunakan pada komputer klien untuk mengautentikasi permintaan kone
     </message>
     <message>
         <source>Authentication test</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Backend grup pengguna tidak ada</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
         <translation type="unfinished"/>
     </message>
 </context>

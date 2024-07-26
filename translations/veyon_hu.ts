@@ -57,10 +57,6 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
         <translation>Hozzáférés tiltása meghatározott felhasználói csoport tagjainak</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Felhasználói csoportok háttere:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Tesztelés</translation>
     </message>
@@ -71,10 +67,6 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Hozzáférés engedélyezése az összes hitelesített felhasználó számára (alapértelmezett)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Domain csoportok használatának bekapcsolása</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
     <message>
         <source>Move selected rule down</source>
         <translation>Kijelölt szabály mozgatása lefelé</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Hiányzik a felhasználói csoportok háttere</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Nincs alapértelmezett felhasználóicsoport-bővítmény. Kérem, ellenőrizd telepítésed! </translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -986,6 +970,10 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;01 számítógép&quot;</translation>
     </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1349,7 +1337,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation>Ebben a módban az összes számítógépén teljes képernyőn jelenik meg a képernyőd, egyúttal a felhasználók bemeneti eszközeit zároljuk.</translation>
+        <translation>Ebben a módban az összes számítógépen teljes képernyőn jelenik meg a képernyőd, egyúttal a felhasználók bemeneti eszközeit zároljuk.</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
@@ -1365,7 +1353,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation>Ebben a módban kiválasztott felhasználó képernyőképe az összes számítógépen teljes képernyőn jelenik meg a képernyőd, egyúttal a felhasználók bemeneti eszközeit zároljuk.</translation>
+        <translation>Ebben a módban az összes számítógépen teljes képernyőn jelenik meg a kiválasztott felhasználó képernyőképe, egyúttal a felhasználók bemeneti eszközeit zároljuk.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
@@ -1502,7 +1490,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
-        <translation>Alkalmazások indítása és a weboldalak megnyitása a felhasználói munkamenetekben</translation>
+        <translation>Alkalmazások indítása és a weboldalak megnyitása felhasználói munkamenetekben</translation>
     </message>
 </context>
 <context>
@@ -1578,11 +1566,11 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <name>FeatureCommands</name>
     <message>
         <source>List names of all available features</source>
-        <translation>Az összes elérhető tulajdonság nevének felsorolása</translation>
+        <translation>Az összes elérhető funkció nevének felsorolása</translation>
     </message>
     <message>
         <source>Show table with details of all available features</source>
-        <translation>Megjelenít egy táblázatot az összes elérhető tulajdonság nevével.</translation>
+        <translation>Az összes elérhető funkció adatainak táblázata</translation>
     </message>
     <message>
         <source>Start a feature on a remote host</source>
@@ -1598,7 +1586,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
-        <translation>Megjelenít egy felsorolást az összes elérhető tulajdonság nevével.</translation>
+        <translation>Megjelenít egy felsorolást az összes elérhető funkció nevével.</translation>
     </message>
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
@@ -1970,6 +1958,22 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>Authentication test</source>
         <translation>Hitelesítési teszt</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Felhasználói csoportok</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Hiányzik a felhasználói csoportok háttere</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2853,7 +2857,7 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
-        <translation>Számítógépikonok automatikus mértezése</translation>
+        <translation>Számítógépikonok automatikus méretezése</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -3571,7 +3575,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
-        <translation>Az összes felhasználó figyelmének elnyerés érdekében evvel a gombbal zárolhatod számítógépüket. Ebben a módban az összes bemeneti eszközt zároljuk, a képernyő viszont továbbra is látható marad.</translation>
+        <translation>Az összes felhasználó figyelmének elnyerés érdekében evvel a gombbal zárolhatod számítógépüket. Ebben a módban az összes bemeneti eszközt zároljuk, a képernyők viszont továbbra is láthatók maradnak.</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
@@ -3938,7 +3942,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
-        <translation>Kérem, add meg a kiválasztott számítógépeken futtatandó alkalmazásokat. Több alkalmazást soronként adj meg.</translation>
+        <translation>Kérem, add meg a kiválasztott számítógépeken futtatandó alkalmazásokat. Több alkalmazást sorokkal válassz el.</translation>
     </message>
 </context>
 <context>
@@ -4357,7 +4361,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
-        <translation> &quot;%1&quot; szolgáltatás hibaeseményeinek konfigurációja nem módosítható (hiba: %2).</translation>
+        <translation>&quot;%1&quot; szolgáltatás hibaeseményeinek konfigurációja nem módosítható (hiba: %2).</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>

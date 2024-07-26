@@ -57,10 +57,6 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
         <translation>Määratud gruppide liikmete juurdepääsu keelamine</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Kasutajarühmade taustaprogramm:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Test</translation>
     </message>
@@ -71,10 +67,6 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Andke juurdepääs igale autentitud kasutajale (vaikimisi)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Domeeni gruppide juurdepääsu lubamine</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
     <message>
         <source>Move selected rule down</source>
         <translation>Teisalda valitud reegel alla</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Puuduvad kasutajagruppide taustaprogrammid</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Kasutajate rühmade vaikepistikprogrammi ei leitud. Palun kontrollige oma installimist!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -985,6 +969,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;Arvuti 01&quot;</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1970,6 +1958,22 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Authentication test</source>
         <translation>Autentimistest</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Kasutajagrupid</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Puuduvad kasutajagruppide taustaprogrammid</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

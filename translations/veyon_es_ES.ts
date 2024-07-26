@@ -59,10 +59,6 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
         <translation>Restringir el acceso a miembros de grupos de usuarios específicos</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Backend para grupos de usuarios:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Comprobar</translation>
     </message>
@@ -73,10 +69,6 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Conceder acceso a cada usuario autenticado (predeterminado)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Habilitar el uso de grupos de dominio</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -117,14 +109,6 @@ Si deseas mejorar la traducción actual, por favor, ¡contacta con un desarrolla
     <message>
         <source>Move selected rule down</source>
         <translation>Mover la regla seleccionada hacia abajo</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Falta backend para grupos de usuarios</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>No se encontró el plugin por defecto para grupos de usuarios. ¡Por favor, compruebe la instalación!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -987,6 +971,10 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;Equipo 01&quot;</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1972,6 +1960,22 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Authentication test</source>
         <translation>Prueba de autenticacion</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Grupos de usuarios</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Falta backend para grupos de usuarios</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -57,10 +57,6 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
         <translation>Limita l&apos;accesso a specifici membri di gruppi utenti </translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Backend del gruppo utenti:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Prova</translation>
     </message>
@@ -71,10 +67,6 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Garantire l&apos;accesso a tutti gli utenti autenticati (predefinito)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Abilitare l&apos;utilizzo di gruppi di dominio</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     <message>
         <source>Move selected rule down</source>
         <translation>Sposta la regola selezionata in basso</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Backend dei gruppi utente non presente</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Non è stato trovato alcun plug-in predefinito per gruppi di utenti. Per favore controlla la tua installazione!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -982,6 +966,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;Computer 01&quot;</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1967,6 +1955,22 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Authentication test</source>
         <translation>Test di autenticazione</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Gruppi utenti</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Backend dei gruppi utente non presente</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

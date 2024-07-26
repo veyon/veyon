@@ -57,10 +57,6 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
         <translation>Giriş yetkisini sadece belirli kullanıcı grup üyeleriyle sınırla</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Kullanıcı kümeleri arka ucu:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Sına</translation>
     </message>
@@ -71,10 +67,6 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Yetkilendirilmiş her kullanıcıya erişim ver (öntamılı)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Alan adı kümelerinin kullanımını etkinleştir</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     <message>
         <source>Move selected rule down</source>
         <translation>Seçilen rolü aşağı taşı</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Eksik kullanıcı kümeleri arka ucu</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Öntanımlı kullanıcı kümeleri eklentisi bulunamadı. Lütfen kurulumunuzu gözden geçirin!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -985,6 +969,10 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;Bilgisayar 01&quot;</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1970,6 +1958,22 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>Authentication test</source>
         <translation>Kimlik doğrulama testi</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Kullanıcı grupları</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Eksik kullanıcı kümeleri arka ucu</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

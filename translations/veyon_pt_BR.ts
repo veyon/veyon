@@ -57,10 +57,6 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
         <translation>Restringir acesso para membros de determinados grupos</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Back-end dos grupos de usuários:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Teste</translation>
     </message>
@@ -71,10 +67,6 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Conceder acesso para cada usuário autenticado (padrão)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Habilitar o uso de grupos de domínio</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     <message>
         <source>Move selected rule down</source>
         <translation>Mover para baixo a regra selecionada</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Sem Back-end dos grupos de usuários:</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Nenhum plugin padrão de grupos de usuários foi encontrado. Verifique sua instalação!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -985,6 +969,10 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;Computador 01&quot;</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1970,6 +1958,22 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Authentication test</source>
         <translation>Teste de autenticação</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Sem Back-end dos grupos de usuários:</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

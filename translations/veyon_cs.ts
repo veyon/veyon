@@ -57,10 +57,6 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
         <translation>Omezit přístup na členy konkrétních skupin uživatelů</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Podpůrná vrstva uživatelských skupin:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Vyzkoušet funkčnost</translation>
     </message>
@@ -71,10 +67,6 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Zpřístupnit všem ověřeným uživatelům (výchozí)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Používat doménové skupiny</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
     <message>
         <source>Move selected rule down</source>
         <translation>Posunout označené pravidlo níž</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Chybí podpůrná vrstva uživatelských skupin</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Nebyl nalezen žádný výchozí zásuvný modul uživatelských skupin. Zkontrolujte svou instalaci!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -985,6 +969,10 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>„Počítač 01“</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1970,6 +1958,22 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Authentication test</source>
         <translation>Vyzkoušení ověřování</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Chybí podpůrná vrstva uživatelských skupin</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

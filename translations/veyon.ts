@@ -57,10 +57,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation type="unfinished"></translation>
     </message>
@@ -70,10 +66,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -114,14 +106,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1970,6 +1954,22 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -57,10 +57,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>限制特定用户组成员的访问权限</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>用户组后端：</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>测试</translation>
     </message>
@@ -71,10 +67,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>允许任何方式通过验证的用户访问（默认）</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>允许使用域组(domain groups)</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Move selected rule down</source>
         <translation>下移选中的规则</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>缺少用户组后端</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>没有找到默认的用户组插件，请检查您的安装程序！</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -986,6 +970,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;计算机 01&quot;</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1971,6 +1959,22 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Authentication test</source>
         <translation>验证测试</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>用户组</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>缺少用户组后端</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3483,7 +3487,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Select screen</source>
-        <translation>选中屏幕</translation>
+        <translation>选择屏幕</translation>
     </message>
     <message>
         <source>Send shortcut</source>

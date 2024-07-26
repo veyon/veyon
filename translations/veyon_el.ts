@@ -57,10 +57,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Περιορισμός πρόσβασης σε μέλη συγκεκριμένης ομάδας χρηστών</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Υποστίρηξη ομάδων χρηστών</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Δοκιμή</translation>
     </message>
@@ -71,10 +67,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Παραχώρηση πρόσβασης σε όλους τους πιστοποιημένους χρήστες (προεπιλογή)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Ενεργοποιήση χρήσης ομάδων τομέων</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Move selected rule down</source>
         <translation>Μετακίνηση επιλεγμένου κανόνα προς τα κάτω</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Έλλειψη υποστίριξης ομαδών χρηστών</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Δεν βρέθηκε κάνένα πρόσθετο για ομάδες χρηστών. Παρακαλούμε ελέγχξται την εγκατάσταση σας!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -698,7 +682,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add new computer</source>
-        <translation>Προσθήκη υπολογιστή</translation>
+        <translation>Προσθήκη νέου υπολογιστή</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
@@ -710,7 +694,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation>Διεύθυνση ΙΡ</translation>
+        <translation>Διεύθυνση/ΙΡ κεντρικού υπολογιστή</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -718,7 +702,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add new location</source>
-        <translation>Π</translation>
+        <translation>Προσθήκη νέας τοποθεσίας</translation>
     </message>
     <message>
         <source>Remove selected location</source>
@@ -734,7 +718,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>New computer</source>
-        <translation>Καινούριος υπολογιστής</translation>
+        <translation>Νέος υπολογιστής</translation>
     </message>
 </context>
 <context>
@@ -981,6 +965,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1966,6 +1954,22 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication test</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Ομάδες χρηστών</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Έλλειψη υποστίριξης ομαδών χρηστών</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
         <translation type="unfinished"/>
     </message>
 </context>

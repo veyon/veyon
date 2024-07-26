@@ -57,10 +57,6 @@ Nếu bạn quan tâm đến việc dịch Veyon thành ngôn ngữ bản địa
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Backend nhóm người dùng:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Kiểm tra</translation>
     </message>
@@ -71,10 +67,6 @@ Nếu bạn quan tâm đến việc dịch Veyon thành ngôn ngữ bản địa
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Cấp truy cập cho mọi người dùng xác thực (mặc định)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Cho phép sử dụng nhóm miền</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ Nếu bạn quan tâm đến việc dịch Veyon thành ngôn ngữ bản địa
     <message>
         <source>Move selected rule down</source>
         <translation>Đưa quy tắc đã chọn xuống</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Thiếu backend nhóm người dùng</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Không tìm thấy plugin nhóm người dùng mặc định. Vui lòng kiểm tra bản cài đặt của bạn!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -984,6 +968,10 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1969,6 +1957,22 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     </message>
     <message>
         <source>Authentication test</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Thiếu backend nhóm người dùng</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
         <translation type="unfinished"/>
     </message>
 </context>

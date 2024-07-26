@@ -56,10 +56,6 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
         <translation>Apriboti prieigą speficinių grupių nariams</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Naudotojų grupių valdymas:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Testuoti</translation>
     </message>
@@ -70,10 +66,6 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Suteikti prieigą kiekvienam prijungtam naudotojui (numatytasis)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Įgalinti domenų grupių naudojimą</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -114,14 +106,6 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     <message>
         <source>Move selected rule down</source>
         <translation>Pakelti pasirinktą taisyklę žemyn</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Naudotojų grupių valdymas nerastas</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Nerasta standartinių naudotojų grupių plėtinio. Patikrinkite veyon programos įdiegimą!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -984,6 +968,10 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;Kompiuteris 01&quot;</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1969,6 +1957,22 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <message>
         <source>Authentication test</source>
         <translation>Autentifikacijos testas</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Naudotojų grupių valdymas nerastas</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

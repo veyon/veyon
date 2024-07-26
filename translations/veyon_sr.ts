@@ -57,10 +57,6 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
         <translation>Ograniči pristup članovima određjenih grupa korisnika</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Pozadina grupe korisnika:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Test</translation>
     </message>
@@ -71,10 +67,6 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Odobriti pristup autorizovanom korisniku (podrazumevano)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Omogući korišćenje domen grupa</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
     <message>
         <source>Move selected rule down</source>
         <translation>Pomeri obeleženo pravilo dole</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Nedostaje pozadina grupe korisnika</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Nije pronađjen nijedan dodatak za grupe korisnika. Molimo proverite vašu instalaciju!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -985,6 +969,10 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;Računar 01&quot;</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1970,6 +1958,22 @@ Javni ključ koristi se na klijentskim računarima za proveru dolaznog zahteva z
     <message>
         <source>Authentication test</source>
         <translation>Test provere autentičnosti</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Nedostaje pozadina grupe korisnika</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

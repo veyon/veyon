@@ -57,10 +57,6 @@ Se está interessado em traduzir o Veyon para o seu idioma ou quer melhorar uma 
         <translation>Restringir acesso a membros de grupos de utilizadores específicos</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Back-end de grupos de utilizador:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Teste</translation>
     </message>
@@ -71,10 +67,6 @@ Se está interessado em traduzir o Veyon para o seu idioma ou quer melhorar uma 
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Permite acesso a todos os utilizadores autenticados (por defeito)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Ativar a utilização de grupos de domínio</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ Se está interessado em traduzir o Veyon para o seu idioma ou quer melhorar uma 
     <message>
         <source>Move selected rule down</source>
         <translation>Mover para baixo a regra selecionada</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Back-end de grupos de utilizador em falta</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Nenhum plugin padrão de grupos de utilizador foi encontrado. Por favor verifique a sua instalação!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -985,6 +969,10 @@ A chave pública é usada em computadores clientes para autenticar solicitaçõe
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;Computador 01&quot;</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1971,6 +1959,22 @@ A chave pública é usada em computadores clientes para autenticar solicitaçõe
         <source>Authentication test</source>
         <translation>Teste de autenticação</translation>
     </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Back-end de grupos de utilizador em falta</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>HeadlessVncServer</name>
@@ -2149,7 +2153,7 @@ A chave pública é usada em computadores clientes para autenticar solicitaçõe
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation>Atributo de início de sessão de utilizador</translation>
+        <translation>Atributo do nome de início de sessão de utilizador</translation>
     </message>
     <message>
         <source>Computer location attribute</source>
@@ -2376,7 +2380,7 @@ A chave pública é usada em computadores clientes para autenticar solicitaçõe
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation>Insira um nome de início de sessão de utilizador (caracter * permitido) que deseja consultar:</translation>
+        <translation>Introduza um nome de início de sessão de utilizador (caracter * permitido) que deseja consultar:</translation>
     </message>
     <message>
         <source>user objects</source>
@@ -2484,7 +2488,7 @@ A chave pública é usada em computadores clientes para autenticar solicitaçõe
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
-        <translation>Introduza um nome de início de sessão de utilizador cujas associações de grupo serão consultadas:</translation>
+        <translation>Introduza um nome de início de sessão de utilizador cujas associações de grupo que deseja consultar:</translation>
     </message>
     <message>
         <source>groups of user</source>
@@ -2706,7 +2710,7 @@ A chave pública é usada em computadores clientes para autenticar solicitaçõe
     </message>
     <message>
         <source>User login</source>
-        <translation>Login de utilizador</translation>
+        <translation>Início de sessão de utilizador</translation>
     </message>
     <message>
         <source>Login key sequence</source>
@@ -4027,7 +4031,7 @@ Typically this is required to support terminal servers.</source>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation>Login de utilizador</translation>
+        <translation>Início de sessão de utilizador</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
@@ -4066,7 +4070,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation>Tem a certeza que quer desligar &lt;b&gt;TODOS&lt;/b&gt; os utilizadores?</translation>
+        <translation>Tem a certeza que quer terminar a sessão de &lt;b&gt;TODOS&lt;/b&gt; os utilizadores?</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
@@ -4133,7 +4137,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>USAGE</source>
-        <translation>UTILIZAÇÃO</translation>
+        <translation>USO</translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
@@ -4276,7 +4280,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>User login</source>
-        <translation>Login de utilizador</translation>
+        <translation>Início de sessão de utilizador</translation>
     </message>
     <message>
         <source>Input start delay</source>

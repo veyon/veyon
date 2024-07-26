@@ -57,10 +57,6 @@ Si esteu interessat a traduir el Veyon al vostre idioma local o a un altre o vol
         <translation>Restringeix l&apos;accés als membres de grups d&apos;usuaris específics</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Rerefons dels grups d&apos;usuaris:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Prova</translation>
     </message>
@@ -71,10 +67,6 @@ Si esteu interessat a traduir el Veyon al vostre idioma local o a un altre o vol
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Concedeix accés a cada usuari autenticat (per defecte)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Habilita l&apos;ús de grups de domini</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ Si esteu interessat a traduir el Veyon al vostre idioma local o a un altre o vol
     <message>
         <source>Move selected rule down</source>
         <translation>Mou avall la regla seleccionada</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Falta el rerefonss de grups d&apos;usuaris</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>No s&apos;ha trobat cap connector de grups d&apos;usuaris predeterminat. Comproveu la instal·lació!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -985,6 +969,10 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     <message>
         <source>&quot;Computer 01&quot;</source>
         <translation>«Ordinadors 01»</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1970,6 +1958,22 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     <message>
         <source>Authentication test</source>
         <translation>Prova d&apos;autenticació</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Falta el rerefonss de grups d&apos;usuaris</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

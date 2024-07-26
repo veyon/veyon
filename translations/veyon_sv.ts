@@ -57,10 +57,6 @@ Om du är intresserad av att översätta Veyon till ditt lokala eller ett ett an
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>Backend för användargrupper:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>Test</translation>
     </message>
@@ -71,10 +67,6 @@ Om du är intresserad av att översätta Veyon till ditt lokala eller ett ett an
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Bevilja åtkomst för alla autentiserade användare (standard)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>Aktivera användandet av domängrupper</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -115,14 +107,6 @@ Om du är intresserad av att översätta Veyon till ditt lokala eller ett ett an
     <message>
         <source>Move selected rule down</source>
         <translation>Flytta vald regel nedåt</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Saknad backend för användargrupper</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Inget standard användargrupp-plugin kunde hittas. Vänligen kontrollera din installation!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -981,6 +965,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1966,6 +1954,22 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication test</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Saknad backend för användargrupper</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
         <translation type="unfinished"/>
     </message>
 </context>

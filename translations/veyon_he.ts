@@ -55,10 +55,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>הגבל הרשאה לחברי קבוצה מסוימת</translation>
     </message>
     <message>
-        <source>User groups backend:</source>
-        <translation>שרת קבוצות משתמשים:</translation>
-    </message>
-    <message>
         <source>Test</source>
         <translation>בדיקה</translation>
     </message>
@@ -69,10 +65,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>תן גישה לכל משתמש רשום (ברירת מחדל)</translation>
-    </message>
-    <message>
-        <source>Enable usage of domain groups</source>
-        <translation>אפשר שימוש בקבוצות בתחום</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -113,14 +105,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Move selected rule down</source>
         <translation>הזזת כלל נבחר מטה</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>חסר שרת קבוצות משתמשים</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>לא נמצא פלאגין של קבוצות משתמשים. בדוק את ההתקנה שלך!</translation>
     </message>
     <message>
         <source>Enter username</source>
@@ -982,6 +966,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1968,6 +1956,22 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Authentication test</source>
         <translation>בדיקת התחברות</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>חסר שרת קבוצות משתמשים</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
