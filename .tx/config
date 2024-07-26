@@ -1,7 +1,7 @@
 [main]
 host = https://www.transifex.com
 
-[o:veyon-solutions:p:veyon:r:veyon_48]
+[o:veyon-solutions:p:veyon:r:veyon_49]
 file_filter = translations/veyon_<lang>.ts
 source_file = translations/veyon.ts
 source_lang = en
