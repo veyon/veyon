@@ -55,6 +55,11 @@ public:
 
 	NetworkObject::ModelId rootId() const;
 
+	const NetworkObject& rootObject() const
+	{
+		return m_rootObject;
+	}
+
 	virtual NetworkObjectList queryObjects( NetworkObject::Type type,
 											NetworkObject::Attribute attribute, const QVariant& value );
 	virtual NetworkObjectList queryParents( const NetworkObject& child );
