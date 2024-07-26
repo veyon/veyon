@@ -155,6 +155,32 @@
     </widget>
    </item>
    <item>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>User groups</string>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Backend:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="userGroupsBackend"/>
+      </item>
+      <item row="1" column="0" colspan="2">
+       <widget class="QCheckBox" name="useDomainUserGroups">
+        <property name="text">
+         <string>Include user groups from domain</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <widget class="QGroupBox" name="groupBox_7">
      <property name="title">
       <string>Logging</string>
@@ -366,6 +392,7 @@
   <tabstop>testAuthenticationButton</tabstop>
   <tabstop>networkObjectDirectoryPlugin</tabstop>
   <tabstop>networkObjectDirectoryUpdateInterval</tabstop>
+  <tabstop>userGroupsBackend</tabstop>
   <tabstop>logFileDirectory</tabstop>
   <tabstop>openLogFileDirectory</tabstop>
   <tabstop>logLevel</tabstop>

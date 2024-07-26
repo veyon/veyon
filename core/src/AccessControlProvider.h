@@ -81,6 +81,6 @@ private:
 	QList<AccessControlRule> m_accessControlRules;
 	UserGroupsBackendInterface* m_userGroupsBackend;
 	NetworkObjectDirectory* m_networkObjectDirectory;
-	bool m_queryDomainGroups;
+	bool m_useDomainUserGroups;
 
 } ;

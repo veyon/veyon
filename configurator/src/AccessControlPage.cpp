@@ -44,21 +44,6 @@ AccessControlPage::AccessControlPage() :
 {
 	ui->setupUi(this);
 
-	if( VeyonCore::userGroupsBackendManager().accessControlBackend() == nullptr )
-	{
-		QMessageBox::critical( this,
-							   tr( "Missing user groups backend" ),
-							   tr( "No default user groups plugin was found. "
-								   "Please check your installation!" ) );
-		qFatal( "AccessControlPage: missing default user groups backend" );
-	}
-
-	const auto backends = VeyonCore::userGroupsBackendManager().availableBackends();
-	for( auto it = backends.constBegin(), end = backends.constEnd(); it != end; ++it )
-	{
-		ui->accessControlUserGroupsBackend->addItem( it.value(), it.key() );
-	}
-
 	ui->accessControlRulesView->setModel( &m_accessControlRulesModel );
 
 	updateAccessGroupsLists();
@@ -95,8 +80,6 @@ void AccessControlPage::connectWidgetsToProperties()
 
 void AccessControlPage::applyConfiguration()
 {
-	VeyonCore::userGroupsBackendManager().reloadConfiguration();
-
 	resetWidgets();
 }
 
@@ -142,8 +125,10 @@ void AccessControlPage::updateAccessGroupsLists()
 	ui->allGroupsList->clear();
 	ui->accessGroupsList->clear();
 
-	const auto backend = VeyonCore::userGroupsBackendManager().accessControlBackend();
-	const auto groups = backend->userGroups( VeyonCore::config().domainGroupsForAccessControlEnabled() );
+	VeyonCore::userGroupsBackendManager().reloadConfiguration();
+
+	const auto backend = VeyonCore::userGroupsBackendManager().configuredBackend();
+	const auto groups = backend->userGroups(VeyonCore::config().useDomainUserGroups());
 
 	for( const auto& group : groups )
 	{

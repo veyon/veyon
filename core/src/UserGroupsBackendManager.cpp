@@ -70,24 +70,24 @@ QMap<Plugin::Uid, QString> UserGroupsBackendManager::availableBackends()
 
 
 
-UserGroupsBackendInterface* UserGroupsBackendManager::accessControlBackend()
+UserGroupsBackendInterface* UserGroupsBackendManager::configuredBackend()
 {
-	if( m_accessControlBackend == nullptr )
+	if (m_configuredBackend == nullptr)
 	{
 		reloadConfiguration();
 	}
 
-	return m_accessControlBackend;
+	return m_configuredBackend;
 }
 
 
 
 void UserGroupsBackendManager::reloadConfiguration()
 {
-	m_accessControlBackend = m_backends.value( VeyonCore::config().accessControlUserGroupsBackend() );
+	m_configuredBackend = m_backends.value(VeyonCore::config().userGroupsBackend());
 
-	if( m_accessControlBackend == nullptr )
+	if( m_configuredBackend == nullptr )
 	{
-		m_accessControlBackend = m_defaultBackend;
+		m_configuredBackend = m_defaultBackend;
 	}
 }

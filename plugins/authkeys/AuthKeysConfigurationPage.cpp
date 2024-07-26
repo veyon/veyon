@@ -29,7 +29,7 @@
 #include "AuthKeysConfigurationPage.h"
 #include "AuthKeysManager.h"
 #include "FileSystemBrowser.h"
-#include "PlatformUserFunctions.h"
+#include "UserGroupsBackendManager.h"
 #include "VeyonConfiguration.h"
 #include "Configuration/UiMapping.h"
 
@@ -223,7 +223,7 @@ void AuthKeysConfigurationPage::setAccessGroup()
 
 	if( key.isEmpty() == false )
 	{
-		const auto userGroups = VeyonCore::platform().userFunctions().userGroups( VeyonCore::config().domainGroupsForAccessControlEnabled() );
+		const auto userGroups = VeyonCore::userGroupsBackendManager().configuredBackend()->userGroups(VeyonCore::config().useDomainUserGroups());
 		const auto currentGroup = AuthKeysManager().accessGroup( key );
 
 		bool ok = false;
