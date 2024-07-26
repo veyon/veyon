@@ -166,7 +166,7 @@ endif()
 
 
 # find required Qt modules
-option(WITH_QT6 "Build for Qt 6" OFF)
+option(WITH_QT6 "Build for Qt 6" ON)
 if(WITH_QT6)
 	set(QT_MAJOR_VERSION 6)
 	find_package(Qt6 COMPONENTS
