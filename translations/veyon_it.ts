@@ -969,7 +969,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Location &quot;%1&quot; not found.</source>
-        <translation type="unfinished"/>
+        <translation>Posizione &quot;%1&quot; non trovata.</translation>
     </message>
 </context>
 <context>
@@ -1962,7 +1962,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Include user groups from domain</source>
-        <translation type="unfinished"/>
+        <translation>Includi gruppi di utenti dal dominio</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
@@ -1970,7 +1970,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>No user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Nessun plugin per gruppi di utenti è stato trovato. Controlla la tua installazione!</translation>
     </message>
 </context>
 <context>

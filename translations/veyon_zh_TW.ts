@@ -972,7 +972,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Location &quot;%1&quot; not found.</source>
-        <translation type="unfinished"/>
+        <translation>找不到位置 &quot;%1&quot;。</translation>
     </message>
 </context>
 <context>
@@ -1965,7 +1965,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Include user groups from domain</source>
-        <translation type="unfinished"/>
+        <translation>包含網域的使用者群組</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
@@ -1973,7 +1973,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>No user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>找不到使用者群組外掛程式。 請檢查您的安裝!</translation>
     </message>
 </context>
 <context>
