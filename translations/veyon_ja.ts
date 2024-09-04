@@ -1501,7 +1501,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Room %1</source>
-        <translation type="unfinished"/>
+        <translation>ルーム %1</translation>
     </message>
     <message>
         <source>generic-student-user</source>
@@ -1537,7 +1537,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Texts to read</source>
-        <translation type="unfinished"/>
+        <translation>テキストを読み上げる</translation>
     </message>
 </context>
 <context>
@@ -1614,7 +1614,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Display a text message</source>
-        <translation type="unfinished"/>
+        <translation>テキストメッセージを表示する</translation>
     </message>
     <message>
         <source>Test message</source>
