@@ -390,10 +390,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>โปรดเลือกกุญแจที่จะลบก่อน!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>กรุณาเลือกกุญแจที่จะส่งออกก่อน!</translation>
     </message>
@@ -403,6 +399,12 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
         <translation type="unfinished"/>
     </message>
 </context>

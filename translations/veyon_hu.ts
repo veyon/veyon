@@ -392,10 +392,6 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
         <translation>Kérem, válaszd ki a törlendő kulcsot!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Kérem, add meg a felhasználó csoport vagy szerep nevét, amely számára importálod a hitelesítési kulcsot: </translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Kérem, válaszd ki az importálandó kulcsot!</translation>
     </message>
@@ -406,6 +402,12 @@ A nyilvános kulcsrészt a kliens számítógépen használjuk a bejövő kapcso
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Kérem, válassz egy kulcsot, amelyhez hozzáférési csoportot állítasz be!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

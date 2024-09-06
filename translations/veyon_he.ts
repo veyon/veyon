@@ -390,10 +390,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>נא לבחור מפתח למחיקה!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>נא להזין את שם קבוצת המשתמשים או התפקיד עבורם יש לייבא את מפתח האימות:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>יש לבחור מפתח לייצוא!</translation>
     </message>
@@ -404,6 +400,12 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>נא לבחור מפתח עבורו יש להגדיר את קבוצת הגישה!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

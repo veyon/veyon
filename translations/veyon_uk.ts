@@ -389,10 +389,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Будь ласка, виберіть ключ для вилучення!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Будь ласка, вкажіть назву групи користувачів або роль, для якої слід імпортувати ключ розпізнавання:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Будь ласка, виберіть ключ для експортування!</translation>
     </message>
@@ -403,6 +399,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Будь ласка, виберіть ключ, доступ до якого слід встановити для групи!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation>Будь ласка, вкажіть назву групи користувачів або роль, для якої слід імпортувати ключ розпізнавання.
+
+Переконайтеся, що назви ключів, пов&apos;язаних один із одним, є однаковими на усіх комп&apos;ютерах.</translation>
     </message>
 </context>
 <context>

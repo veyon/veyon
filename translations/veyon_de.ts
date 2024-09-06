@@ -389,10 +389,6 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
         <translation>Bitte wählen Sie den zu löschenden Schlüssel!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Bitte geben Sie den Namen der Benutzergruppe oder -rolle ein, für die ein Authentifizierungsschlüssel importiert werden soll:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Bitte wählen Sie den zu exportierenden Schlüssel!</translation>
     </message>
@@ -403,6 +399,14 @@ Der öffentliche Schlüssel wird auf den Clientcomputern genutzt, um für jede e
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Bitte wählen Sie den Schlüssel, für den die Zugriffsgruppe gesetzt werden soll!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation>Bitte geben Sie den Namen der Benutzergruppe oder -rolle an, für die der Authentifizierungsschlüssel importiert werden soll.
+
+Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf allen Computern identisch sind.</translation>
     </message>
 </context>
 <context>

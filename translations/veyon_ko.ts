@@ -392,10 +392,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>삭제할 키를 선택하세요</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>접근 키를 불러올 사용자  그룹이나 역할의 이름을 입력하세요:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>내보낼 키를 선택하세요!</translation>
     </message>
@@ -406,6 +402,12 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>이 접근 그룹에 설정할 키를 선택하세요!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -392,10 +392,6 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
         <translation>Vui lòng chọn một khóa để xóa!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Vui lòng nhập tên của nhóm người dùng hoặc vai trò để nhập khóa xác thực:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Vui lòng chọn một khóa để xuất!</translation>
     </message>
@@ -406,6 +402,12 @@ Khóa công được sử dụng trên các máy tính khách để xác thực 
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Vui lòng chọn một khóa để đặt nhóm truy cập!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

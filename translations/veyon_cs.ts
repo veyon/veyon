@@ -392,10 +392,6 @@ Veřejná část je použita na klientských počítačích pro ověření pří
         <translation>Vyberte klíč, který chcete smazat!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Zadejte název uživatelské skupiny nebo role pro kterou chcete importovat ověřovací klíč:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Vyberte klíč který chcete exportovat!</translation>
     </message>
@@ -406,6 +402,12 @@ Veřejná část je použita na klientských počítačích pro ověření pří
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Vyberte klíč pro který nastavit přístupovou skupinu!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

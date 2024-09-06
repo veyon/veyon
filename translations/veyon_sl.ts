@@ -392,10 +392,6 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
         <translation>Prosimo, izberite ključ za brisanje!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Vnesite ime uporabniške skupine ali vzorca, za katero želite uvoziti ključ za preverjanje pristnosti:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Prosimo, izberite ključ za izvoz!</translation>
     </message>
@@ -406,6 +402,12 @@ Javni ključ se uporablja v odjemalskih računalnikih za preverjanje pristnosti 
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Izberite ključ, za katerega želite nastaviti skupino za dostop!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -392,10 +392,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Wybierz klucz do usunięcia!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Wprowadź nazwę grupy użytkowników lub roli, dla której chcesz zaimportować klucz uwierzytelniający:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Wybierz klucz do wyeksportowania!</translation>
     </message>
@@ -406,6 +402,12 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Wybierz klucz do którego chcesz przydzielić dostęp dla grupy!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

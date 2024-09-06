@@ -388,10 +388,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>لطفا یک کلید برای حذف انتخاب کنید!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>لطفا نام گروه کاربری یا نقش را برای وارد کردن کلید تأیید اعتبار وارد کنید.</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>لطفا یک کلید برای صدورانتخاب کنید!</translation>
     </message>
@@ -402,6 +398,12 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>لطفا یک کلید را برای تنظیم گروه دسترسی برای انتخاب کنید!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -389,10 +389,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Seleziona la chiave da eliminare! </translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Inserire il nome del gruppo o ruolo dell&apos;utente per il quale importare la chiave di autenticazione:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Seleziona la chiave da esportare!</translation>
     </message>
@@ -403,6 +399,12 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Si prega di selezionare una chiave per impostare il gruppo di accesso!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

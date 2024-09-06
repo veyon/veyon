@@ -391,10 +391,6 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
         <translation>Pasirinkite raktą kurį norite ištrinti!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Įveskite naudotojų grupės vardą arba rolę kuriai bus importuojama raktų pora:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Pasirinkite raktą kurį norite eksportuoti</translation>
     </message>
@@ -405,6 +401,12 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Pasirinkite vartotojų grupę kuriai norite nustatyti prieigos grupę</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -392,10 +392,6 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
         <translation>Seleccioneu una clau per suprimir!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Introduïu el nom del grup d&apos;usuaris o el rol per al qual s&apos;importarà la clau d&apos;autenticació:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Seleccioneu una clau per exportar!</translation>
     </message>
@@ -406,6 +402,12 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Seleccioneu una clau per a la qual establir el grup d&apos;accés!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

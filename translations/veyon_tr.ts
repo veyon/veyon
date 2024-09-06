@@ -392,10 +392,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Lütfen silinecek anahtar seçin!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Lütfen içe aktarılacak yetkilendirme anahtarı için kullanıcı kümesinin veya rolün adını girin:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Lütfen dışa aktarılacak anahtar seçin!</translation>
     </message>
@@ -406,6 +402,12 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Lütfen erişim grubunu ayarlamak için bir anahtar seçin!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

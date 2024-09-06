@@ -392,10 +392,6 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
         <translation>Por favor, selecione uma chave para deletar!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Por favor insira o nome do grupo de usuários ou função para o qual deseja importar a chave de autenticação:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Por favor, selecione uma chave para exportar!</translation>
     </message>
@@ -406,6 +402,12 @@ A chave pública é usada no computadores clientes para autenticar as requisiç�
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Selecione uma chave para a atribuir o grupo de acesso!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

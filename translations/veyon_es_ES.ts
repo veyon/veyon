@@ -394,10 +394,6 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
         <translation>Por favor, ¡seleccione clave a eliminar!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Introduzca el nombre del grupo de usuarios o rol para el cual importar la clave de autenticación:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Por favor, ¡seleccione una clave a exportar!</translation>
     </message>
@@ -408,6 +404,12 @@ La clave pública se usa en las computadoras cliente para autenticar la solicitu
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>¡Seleccione una clave para configurar el grupo que tenga acceso!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

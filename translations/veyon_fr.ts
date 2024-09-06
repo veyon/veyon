@@ -392,10 +392,6 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Veuillez sélectionner une clé à supprimer !</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Entrez le nom du groupe d&apos;utilisateurs ou du rôle pour lequel se fait l&apos;import de la clé d&apos;authentification :</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Veuillez sélectionner une clé à exporter !</translation>
     </message>
@@ -406,6 +402,12 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Veuillez sélectionner une clé pour accorder l&apos;accès groupe !</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

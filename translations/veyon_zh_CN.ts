@@ -393,10 +393,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>请选择要删除的密钥！</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>请输入要为其导入身份验证密钥的用户组或角色的名称：</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>请选择要导出的密钥！</translation>
     </message>
@@ -407,6 +403,12 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>请选择一个用于访问组的的密钥！</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
