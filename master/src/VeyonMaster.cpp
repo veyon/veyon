@@ -39,9 +39,7 @@
 #include "PluginManager.h"
 #include "UserConfig.h"
 #include "VeyonConfiguration.h"
-#include "VeyonConnection.h"
 #include "VeyonMaster.h"
-#include "VncConnection.h"
 
 
 VeyonMaster::VeyonMaster( QObject* parent ) :
