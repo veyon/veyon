@@ -57,4 +57,7 @@ public:
 	virtual ComputerControlInterfaceList selectedComputerControlInterfaces() const = 0;
 	virtual ComputerControlInterfaceList filteredComputerControlInterfaces() const = 0;
 
+Q_SIGNALS:
+	void computerControlListModelAboutToReset();
+
 };
