@@ -53,6 +53,9 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 	m_mainWindow( nullptr ),
 	m_currentMode( VeyonCore::builtinFeatures().monitoringMode().feature().uid() )
 {
+	connect(m_computerControlListModel, &ComputerControlListModel::modelAboutToBeReset,
+			this, &VeyonMaster::computerControlListModelAboutToReset);
+
 	if( VeyonCore::config().enforceSelectedModeForClients() )
 	{
 		connect( m_computerControlListModel, &ComputerControlListModel::activeFeaturesChanged,
