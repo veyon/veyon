@@ -7,6 +7,7 @@
   <action id="io.veyon.pkexec.veyon-configurator">
     <description>Veyon Configurator</description>
     <message>Authentication is required to run the Veyon Configurator</message>
+    <message xml:lang="de">Für die Ausführung des Veyon Configurators ist eine Authentifizierung erforderlich</message>
     <icon_name>veyon-configurator</icon_name>
     <defaults>
       <allow_any>auth_admin_keep</allow_any>
