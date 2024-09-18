@@ -408,6 +408,7 @@ void VncConnection::establishConnection()
 	while( isControlFlagSet( ControlFlag::TerminateThread ) == false &&
 		   state() != State::Connected ) // try to connect as long as the server allows
 	{
+		m_globalMutex.lock();
 		m_client = rfbGetClient( RfbBitsPerSample, RfbSamplesPerPixel, RfbBytesPerPixel );
 		m_client->canHandleNewFBSize = true;
 		m_client->MallocFrameBuffer = RfbClientCallback::wrap<&VncConnection::initFrameBuffer>;
@@ -424,6 +425,8 @@ void VncConnection::establishConnection()
 
 		m_client->connectTimeout = m_connectTimeout / 1000;
 		m_client->readTimeout = m_readTimeout / 1000;
+		m_globalMutex.unlock();
+
 		setClientData( VncConnectionTag, this );
 
 		Q_EMIT connectionPrepared();
