@@ -50,6 +50,9 @@ private Q_SLOTS:
 	void updateFilter();
 
 private:
+	void fetchAndExpandAll();
+	void fetchAll(const QModelIndex& index);
+
 	Ui::ComputerSelectPanel *ui;
 	ComputerManager& m_computerManager;
 	ComputerSelectModel* m_model;
