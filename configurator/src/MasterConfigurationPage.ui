@@ -419,6 +419,13 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QCheckBox" name="expandLocations">
+            <property name="text">
+             <string>Always expand all locations</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -586,6 +593,7 @@
   <tabstop>hideOwnSession</tabstop>
   <tabstop>hideEmptyLocations</tabstop>
   <tabstop>hideComputerFilter</tabstop>
+  <tabstop>expandLocations</tabstop>
   <tabstop>enforceSelectedModeForClients</tabstop>
   <tabstop>confirmUnsafeActions</tabstop>
   <tabstop>showFeatureWindowsOnSameScreen</tabstop>

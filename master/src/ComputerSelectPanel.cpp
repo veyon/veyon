@@ -67,6 +67,13 @@ ComputerSelectPanel::ComputerSelectPanel( ComputerManager& computerManager, QWid
 
 	connect( ui->filterLineEdit, &QLineEdit::textChanged,
 			 this, &ComputerSelectPanel::updateFilter );
+
+	if (VeyonCore::config().expandLocations())
+	{
+		connect(m_filterProxyModel, &QAbstractItemModel::modelReset,
+				this, &ComputerSelectPanel::fetchAndExpandAll);
+		fetchAndExpandAll();
+	}
 }
 
 
@@ -173,5 +180,29 @@ void ComputerSelectPanel::updateFilter()
 
 		m_filterProxyModel->setFilterWildcard( filter );
 		ui->treeView->expandAll();
+	}
+}
+
+
+
+void ComputerSelectPanel::fetchAndExpandAll()
+{
+	fetchAll(m_filterProxyModel->index(0, 0));
+	QTimer::singleShot(0, this, [this]{ui->treeView->expandAll();});
+}
+
+
+
+void ComputerSelectPanel::fetchAll(const QModelIndex& index)
+{
+	if (m_filterProxyModel->canFetchMore(index))
+	{
+		m_filterProxyModel->fetchMore(index);
+	}
+
+	const auto rowCount = m_filterProxyModel->rowCount(index);
+	for (int i = 0; i < rowCount; ++i)
+	{
+		fetchAll(m_filterProxyModel->index(i, 0, index));
 	}
 }
