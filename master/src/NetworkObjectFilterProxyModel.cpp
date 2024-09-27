@@ -66,6 +66,14 @@ void NetworkObjectFilterProxyModel::setEmptyGroupsExcluded(bool enabled)
 }
 
 
+void NetworkObjectFilterProxyModel::setComputersExcluded(bool enabled)
+{
+	beginResetModel();
+	m_excludeComputers = enabled;
+	endResetModel();
+}
+
+
 
 bool NetworkObjectFilterProxyModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const
 {
@@ -74,6 +82,11 @@ bool NetworkObjectFilterProxyModel::filterAcceptsRow( int sourceRow, const QMode
 
 	if (objectType == NetworkObject::Type::Host)
 	{
+		if (m_excludeComputers)
+		{
+			return false;
+		}
+
 		if( m_computerExcludeList.isEmpty() )
 		{
 			return true;
