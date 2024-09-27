@@ -61,6 +61,15 @@ void NetworkObjectFilterProxyModel::setComputerExcludeFilter( const QStringList&
 
 
 
+void NetworkObjectFilterProxyModel::setEmptyGroupsExcluded(bool enabled)
+{
+	beginResetModel();
+	m_excludeEmptyGroups = enabled;
+	endResetModel();
+}
+
+
+
 bool NetworkObjectFilterProxyModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const
 {
 	const auto rowIndex = sourceModel()->index(sourceRow, 0, sourceParent);
