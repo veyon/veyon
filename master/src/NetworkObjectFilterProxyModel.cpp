@@ -80,8 +80,26 @@ void NetworkObjectFilterProxyModel::setComputersExcluded(bool enabled)
 
 bool NetworkObjectFilterProxyModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const
 {
-	const auto rowIndex = sourceModel()->index(sourceRow, 0, sourceParent);
-	const auto objectType = NetworkObject::Type(sourceModel()->data(rowIndex, NetworkObjectModel::TypeRole).toInt());
+	const auto index = sourceModel()->index(sourceRow, 0, sourceParent);
+	const auto objectType = NetworkObject::Type(sourceModel()->data(index, NetworkObjectModel::TypeRole).toInt());
+	if (filterAcceptsRowRecursive(index, 0))
+	{
+		return true;
+	}
+
+	if (NetworkObject::isContainer(objectType))
+	{
+		return parentContainerAccepted(index);
+	}
+
+	return false;
+}
+
+
+
+bool NetworkObjectFilterProxyModel::filterAcceptsRowRecursive(const QModelIndex& index, int depth) const
+{
+	const auto objectType = NetworkObject::Type(sourceModel()->data(index, NetworkObjectModel::TypeRole).toInt());
 
 	if (objectType == NetworkObject::Type::Host)
 	{
@@ -95,18 +113,18 @@ bool NetworkObjectFilterProxyModel::filterAcceptsRow( int sourceRow, const QMode
 			return true;
 		}
 
-		const auto hostAddress = sourceModel()->data(rowIndex, NetworkObjectModel::HostAddressRole).toString();
+		const auto hostAddress = sourceModel()->data(index, NetworkObjectModel::HostAddressRole).toString();
 
 		return m_computerExcludeList.contains( hostAddress, Qt::CaseInsensitive ) == false;
 	}
 	else if (NetworkObject::isContainer(objectType))
 	{
-		if (sourceModel()->canFetchMore(rowIndex))
+		if (sourceModel()->canFetchMore(index))
 		{
-			sourceModel()->fetchMore(rowIndex);
+			sourceModel()->fetchMore(index);
 		}
 
-		const auto rows = sourceModel()->rowCount(rowIndex);
+		const auto rows = sourceModel()->rowCount(index);
 
 		if (m_excludeEmptyGroups && rows == 0)
 		{
@@ -120,17 +138,26 @@ bool NetworkObjectFilterProxyModel::filterAcceptsRow( int sourceRow, const QMode
 
 		for (int i = 0; i < rows; ++i)
 		{
-			const auto objectType = NetworkObject::Type(sourceModel()->data(sourceModel()->index(i, 0, rowIndex),
-																			NetworkObjectModel::TypeRole).toInt());
+			const auto rowIndex = sourceModel()->index(i, 0, index);
+			const auto objectType = NetworkObject::Type(sourceModel()->data(rowIndex, NetworkObjectModel::TypeRole).toInt());
 
-			if (NetworkObject::isContainer(objectType) && filterAcceptsRow(i, rowIndex))
+			if (NetworkObject::isContainer(objectType) && filterAcceptsRowRecursive(rowIndex, depth+1))
 			{
 				return true;
 			}
 		}
 
-		return m_groupList.contains(sourceModel()->data(rowIndex).toString());
+		return m_groupList.contains(sourceModel()->data(index).toString());
 	}
 
 	return true;
+}
+
+
+
+bool NetworkObjectFilterProxyModel::parentContainerAccepted(const QModelIndex& index) const
+{
+	return index.isValid() &&
+			(m_groupList.contains(sourceModel()->data(index).toString()) ||
+			 parentContainerAccepted(sourceModel()->parent(index)));
 }
