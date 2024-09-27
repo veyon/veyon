@@ -83,7 +83,7 @@ bool NetworkObjectFilterProxyModel::filterAcceptsRow( int sourceRow, const QMode
 
 		return m_computerExcludeList.contains( hostAddress, Qt::CaseInsensitive ) == false;
 	}
-	else if(NetworkObject::isContainer(objectType))
+	else if (NetworkObject::isContainer(objectType))
 	{
 		if (sourceModel()->canFetchMore(rowIndex))
 		{
@@ -107,12 +107,9 @@ bool NetworkObjectFilterProxyModel::filterAcceptsRow( int sourceRow, const QMode
 			const auto objectType = NetworkObject::Type(sourceModel()->data(sourceModel()->index(i, 0, rowIndex),
 																			NetworkObjectModel::TypeRole).toInt());
 
-			if (objectType == NetworkObject::Type::Location || objectType == NetworkObject::Type::DesktopGroup)
+			if (NetworkObject::isContainer(objectType) && filterAcceptsRow(i, rowIndex))
 			{
-				if (filterAcceptsRow(i, rowIndex))
-				{
-					return true;
-				}
+				return true;
 			}
 		}
 
