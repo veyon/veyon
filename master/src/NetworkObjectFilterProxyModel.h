@@ -41,8 +41,11 @@ protected:
 	bool filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const override;
 
 private:
-	QStringList m_groupList{};
-	QStringList m_computerExcludeList{};
+	bool filterAcceptsRowRecursive(const QModelIndex& index, int depth) const;
+	bool parentContainerAccepted(const QModelIndex& index) const;
+
+	QStringList m_groupList;
+	QStringList m_computerExcludeList;
 	bool m_excludeEmptyGroups = false;
 	bool m_excludeComputers = false;
 
