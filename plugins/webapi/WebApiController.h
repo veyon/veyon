@@ -125,15 +125,21 @@ public:
 	Response getUserInformation( const Request& request );
 	Response getSessionInformation(const Request& request);
 
-	static QString errorString( Error error );
+	QString getStatistics();
+	QString getConnectionDetails();
+	Response sleep(const Request& request, const int& seconds);
 
-	void dumpDebugInformation();
+	static QString errorString( Error error );
 
 private:
 	void removeConnection( QUuid connectionUuid );
 
+	void incrementVncFramebufferUpdatesCounter();
+	void updateStatistics();
+
 	static constexpr auto MillisecondsPerSecond = 1000;
 	static constexpr auto MillisecondsPerHour = MillisecondsPerSecond * 60 * 60;
+	static constexpr auto StatisticsUpdateIntervalSeconds = 10;
 
 	static QString k2s( Key key )
 	{
@@ -160,5 +166,16 @@ private:
 	const WebApiConfiguration& m_configuration;
 	QMap<QUuid, WebApiConnectionPointer> m_connections{};
 	QReadWriteLock m_connectionsLock;
+
+	QTimer m_updateStatisticsTimer{this};
+	QAtomicInt m_apiTotalRequestsCounter = 0;
+	QAtomicInt m_framebufferRequestsCounter = 0;
+	QAtomicInt m_vncFramebufferUpdatesCounter = 0;
+	QAtomicInt m_apiTotalRequestsLast = 0;
+	QAtomicInt m_framebufferRequestsLast = 0;
+	QAtomicInt m_vncFramebufferUpdatesLast = 0;
+	QAtomicInt m_apiTotalRequestsPerSecond = 0;
+	QAtomicInt m_framebufferRequestsPerSecond = 0;
+	QAtomicInt m_vncFramebufferUpdatesPerSecond = 0;
 
 };

@@ -30,11 +30,9 @@
 #include <QSslCertificate>
 #include <QSslKey>
 
-#ifdef Q_OS_LINUX
-#include <csignal>
-#endif
-
 #include "Filesystem.h"
+#include "HostAddress.h"
+#include "ProcessHelper.h"
 #include "WebApiHttpServer.h"
 #include "WebApiConfiguration.h"
 #include "WebApiController.h"
@@ -139,12 +137,6 @@ WebApiHttpServer::WebApiHttpServer( const WebApiConfiguration& configuration, QO
 	m_server( new QHttpServer( this ) )
 {
 	__serverInstance = this;
-
-#ifdef Q_OS_LINUX
-	::signal(SIGUSR1, [](int) {
-		__serverInstance->dumpDebugInformation();
-	});
-#endif
 
 	m_threadPool.setMaxThreadCount( m_configuration.connectionLimit() );
 }
@@ -317,6 +309,12 @@ bool WebApiHttpServer::start()
 	success &= addRoute<Method::Get>( QStringLiteral("user"), &WebApiController::getUserInformation );
 	success &= addRoute<Method::Get>(QStringLiteral("session"), &WebApiController::getSessionInformation);
 
+	if (m_debug)
+	{
+		success &= addRoute<Method::Get>(QStringLiteral("debug/sleep/<arg>"), &WebApiController::sleep);
+		success &= m_server->route(QStringLiteral("/api/v1/debug/info"), [this]() { return getDebugInformation(); });
+	}
+
 	success &= m_server->route( QStringLiteral(".*"), [] {
 		return QHttpServerResponse{
 			QByteArrayLiteral("text/plain"),
@@ -328,15 +326,6 @@ bool WebApiHttpServer::start()
 	vInfo() << "listening at port" << m_configuration.httpServerPort();
 
 	return success;
-}
-
-
-
-void WebApiHttpServer::dumpDebugInformation()
-{
-	waDebug() << "Number of active threads:" << m_threadPool.activeThreadCount() << "/" << m_threadPool.maxThreadCount();
-
-	m_controller->dumpDebugInformation();
 }
 
 
@@ -404,4 +393,39 @@ bool WebApiHttpServer::setupTls()
 	m_server->sslSetup( certificate, privateKey, QSsl::TlsV1_3OrLater );
 
 	return true;
+}
+
+
+
+QString WebApiHttpServer::getDebugInformation()
+{
+	const QString sysInfo =
+			QStringLiteral("Veyon WebAPI server version: %1<br/>\n").arg(VeyonCore::versionString()) +
+			QStringLiteral("Local hostname: %1<br/>\n").arg(HostAddress::localFQDN()) +
+			QStringLiteral("Operating system: %1 %2 %3<br/>\n").arg(QSysInfo::prettyProductName(), QSysInfo::productType(), QSysInfo::productVersion()) +
+			QStringLiteral("Kernel: %1 %2<br/>\n").arg(QSysInfo::kernelType(), QSysInfo::kernelVersion());
+	const QString processLimits =
+			QStringLiteral("<pre>%1</pre>\n").arg(QString::fromUtf8(ProcessHelper(QStringLiteral("prlimit"), {}).runAndReadAll()));
+	const QString stats =
+			QStringLiteral("Number of active HTTP server threads: %1 / %2\n<br/>").arg(m_threadPool.activeThreadCount()).arg(m_threadPool.maxThreadCount()) +
+			m_controller->getStatistics();
+
+	return QStringLiteral("<!DOCTYPE html>\n"
+						  "<html lang=\"en-US\">\n"
+						  "<head>\n"
+						  "<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
+						  "<title>Veyon WebAPI Debug Information</title>\n"
+						  "</head>\n"
+						  "<body>\n"
+						  "<h1>Veyon WebAPI Debug Information</h1>\n"
+						  "<h2>System</h2>\n"
+						  "%1\n"
+						  "<h2>Process limits</h2>\n"
+						  "%2\n"
+						  "<h2>Statistics</h2>\n"
+						  "%3"
+						  "<h2>Client connection details</h2>\n"
+						  "%4"
+						  "</body>\n"
+						  "</html>").arg(sysInfo, processLimits, stats, m_controller->getConnectionDetails());
 }

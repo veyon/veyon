@@ -26,7 +26,6 @@
 #include <QEventLoop>
 #include <QImageWriter>
 
-#include "CommandLineIO.h"
 #include "ComputerControlInterface.h"
 #include "FeatureManager.h"
 #include "WebApiAuthenticationProxy.h"
@@ -76,6 +75,8 @@ WebApiController::WebApiController( const WebApiConfiguration& configuration, QO
 	m_configuration( configuration ),
 	m_connectionsLock( QReadWriteLock::Recursive )
 {
+	connect(&m_updateStatisticsTimer, &QTimer::timeout, this, &WebApiController::updateStatistics);
+	m_updateStatisticsTimer.start(StatisticsUpdateIntervalSeconds * MillisecondsPerSecond);
 }
 
 
@@ -92,6 +93,8 @@ WebApiController::~WebApiController()
 
 WebApiController::Response WebApiController::getAuthenticationMethods( const Request& request, const QString& host )
 {
+	m_apiTotalRequestsCounter++;
+
 	Q_UNUSED(request)
 
 	WebApiConnection connection( host.isEmpty() ? QStringLiteral("localhost") : host );
@@ -130,6 +133,8 @@ WebApiController::Response WebApiController::getAuthenticationMethods( const Req
 
 WebApiController::Response WebApiController::performAuthentication( const Request& request, const QString& host )
 {
+	m_apiTotalRequestsCounter++;
+
 	QReadLocker connectionsReadLocker{&m_connectionsLock};
 
 	if( m_connections.size() >= m_configuration.connectionLimit() )
@@ -221,6 +226,9 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 		m_connections[uuid] = connection;
 		m_connectionsLock.unlock();
 
+		connect(connection->controlInterface().get(), &ComputerControlInterface::framebufferUpdated,
+				this, &WebApiController::incrementVncFramebufferUpdatesCounter);
+
 		const auto idleTimer = connection->idleTimer();
 		const auto lifetimeTimer = connection->lifetimeTimer();
 
@@ -248,6 +256,8 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 
 WebApiController::Response WebApiController::closeConnection( const Request& request, const QString& host )
 {
+	m_apiTotalRequestsCounter++;
+
 	Q_UNUSED(host)
 
 	Response checkResponse{};
@@ -265,6 +275,8 @@ WebApiController::Response WebApiController::closeConnection( const Request& req
 
 WebApiController::Response WebApiController::getFramebuffer( const Request& request )
 {
+	m_apiTotalRequestsCounter++;
+
 	Response checkResponse{};
 	if( ( checkResponse = checkConnection( request ) ).error != Error::NoError )
 	{
@@ -277,6 +289,8 @@ WebApiController::Response WebApiController::getFramebuffer( const Request& requ
 	{
 		return Error::FramebufferNotAvailable;
 	}
+
+	m_framebufferRequestsCounter++;
 
 	const auto width = request.data[k2s(Key::Width)].toInt();
 	const auto height = request.data[k2s(Key::Height)].toInt();
@@ -310,6 +324,8 @@ WebApiController::Response WebApiController::getFramebuffer( const Request& requ
 
 WebApiController::Response WebApiController::listFeatures( const Request& request )
 {
+	m_apiTotalRequestsCounter++;
+
 	Response checkResponse{};
 	if( ( checkResponse = checkConnection( request ) ).error != Error::NoError )
 	{
@@ -338,6 +354,8 @@ WebApiController::Response WebApiController::listFeatures( const Request& reques
 
 WebApiController::Response WebApiController::setFeatureStatus( const Request& request, const QString& feature )
 {
+	m_apiTotalRequestsCounter++;
+
 	Response checkResponse{};
 	if( ( checkResponse = checkConnection( request ) ).error != Error::NoError ||
 		( checkResponse = checkFeature( feature ) ).error != Error::NoError )
@@ -367,6 +385,8 @@ WebApiController::Response WebApiController::setFeatureStatus( const Request& re
 
 WebApiController::Response WebApiController::getFeatureStatus( const Request& request, const QString& feature )
 {
+	m_apiTotalRequestsCounter++;
+
 	Response checkResponse{};
 	if( ( checkResponse = checkConnection( request ) ).error != Error::NoError )
 	{
@@ -385,6 +405,8 @@ WebApiController::Response WebApiController::getFeatureStatus( const Request& re
 
 WebApiController::Response WebApiController::getUserInformation( const Request& request )
 {
+	m_apiTotalRequestsCounter++;
+
 	Response checkResponse{};
 	if( ( checkResponse = checkConnection( request ) ).error != Error::NoError )
 	{
@@ -413,6 +435,8 @@ WebApiController::Response WebApiController::getUserInformation( const Request& 
 
 WebApiController::Response WebApiController::getSessionInformation(const Request& request)
 {
+	m_apiTotalRequestsCounter++;
+
 	Response checkResponse{};
 	if((checkResponse = checkConnection(request)).error != Error::NoError)
 	{
@@ -433,6 +457,70 @@ WebApiController::Response WebApiController::getSessionInformation(const Request
 	};
 }
 
+
+
+QString WebApiController::getStatistics()
+{
+	QReadLocker connectionsLocker{&m_connectionsLock};
+
+	return QStringLiteral("Total API requests: %1 (%2/s in the past %3 s)\n<br/>").arg(m_apiTotalRequestsCounter).arg(m_apiTotalRequestsPerSecond).arg(StatisticsUpdateIntervalSeconds) +
+			QStringLiteral("Framebuffer requests: %1 (%2/s in the past %3 s)\n<br/>").arg(m_framebufferRequestsCounter).arg(m_framebufferRequestsPerSecond).arg(StatisticsUpdateIntervalSeconds) +
+			QStringLiteral("VNC framebuffer updates: %1 (%2/s in the past %3 s)\n<br/>").arg(m_vncFramebufferUpdatesCounter).arg(m_vncFramebufferUpdatesPerSecond).arg(StatisticsUpdateIntervalSeconds) +
+			QStringLiteral("Number of client connections: %1<br/>\n").arg(m_connections.count());
+}
+
+
+
+QString WebApiController::getConnectionDetails()
+{
+	QReadLocker connectionsLocker{&m_connectionsLock};
+
+	QStringList columns {QStringLiteral("Connection UUID"),
+					   QStringLiteral("State"),
+					   QStringLiteral("Host"),
+					   QStringLiteral("User"),
+					   QStringLiteral("Server version")
+					  };
+	QList<QStringList> rows;
+	rows.reserve(m_connections.count());
+	for (auto it = m_connections.constBegin(), end = m_connections.constEnd(); it != end; ++it)
+	{
+		const auto connection = it.value();
+
+		rows.append({uuidToString(it.key()),
+					 EnumHelper::toString(connection->controlInterface()->state()),
+					 connection->controlInterface()->computer().hostAddress(),
+					 connection->controlInterface()->userLoginName(),
+					 EnumHelper::toString(connection->controlInterface()->serverVersion()),
+					});
+	}
+
+	const auto rowToString = [](const QStringList& row, const QString& tag) {
+		return std::accumulate(row.constBegin(), row.constEnd(), QString{}, [&tag](const QString& acc, const QString& cell) -> QString {
+			return acc + QStringLiteral("<%1>%2</%1>").arg(tag, cell);
+		});
+	};
+
+	const auto tableHeader = QStringLiteral("<tr>%1</tr>\n").arg(rowToString(columns, QStringLiteral("th")));
+	const auto tableBody = std::accumulate(rows.constBegin(), rows.constEnd(), QString{},
+										   [&](const QString& acc, const QStringList& row) -> QString {
+		return acc + QStringLiteral("<tr>%1</tr>\n").arg(rowToString(row, QStringLiteral("td")));
+	});
+
+	return QStringLiteral("<table border=\"1\">\n%1%2</table>\n").arg(tableHeader, tableBody);
+}
+
+
+
+WebApiController::Response WebApiController::sleep(const Request& request, const int& seconds) // clazy:exclude=function-args-by-value
+{
+	Q_UNUSED(request)
+
+	m_apiTotalRequestsCounter++;
+	QThread::sleep(seconds);
+
+	return {""};
+}
 
 
 QString WebApiController::errorString( WebApiController::Error error )
@@ -459,38 +547,6 @@ QString WebApiController::errorString( WebApiController::Error error )
 
 
 
-void WebApiController::dumpDebugInformation()
-{
-	QReadLocker connectionsLocker{&m_connectionsLock};
-
-	waDebug() << "Number of connections:" << m_connections.count();
-	waDebug() << "Connection details:";
-
-	CommandLineIO::Table infoTable;
-	infoTable.first = {QStringLiteral("Connection UUID"),
-					   QStringLiteral("State"),
-					   QStringLiteral("Host"),
-					   QStringLiteral("User"),
-					   QStringLiteral("Server version")
-					  };
-	infoTable.second.reserve(m_connections.count());
-	for (auto it = m_connections.constBegin(), end = m_connections.constEnd(); it != end; ++it)
-	{
-		const auto connection = it.value();
-
-		infoTable.second.append({uuidToString(it.key()),
-								 EnumHelper::toString(connection->controlInterface()->state()),
-								 connection->controlInterface()->computer().hostAddress(),
-								 connection->controlInterface()->userLoginName(),
-								 EnumHelper::toString(connection->controlInterface()->serverVersion()),
-								});
-	}
-
-	CommandLineIO::printTable(infoTable);
-}
-
-
-
 void WebApiController::removeConnection( QUuid connectionUuid )
 {
 	// destroy connection in main thread
@@ -499,6 +555,26 @@ void WebApiController::removeConnection( QUuid connectionUuid )
 
 		m_connections.remove( connectionUuid );
 	} );
+}
+
+
+
+void WebApiController::incrementVncFramebufferUpdatesCounter()
+{
+	++m_vncFramebufferUpdatesCounter;
+}
+
+
+
+void WebApiController::updateStatistics()
+{
+	m_apiTotalRequestsPerSecond = (m_apiTotalRequestsCounter - m_apiTotalRequestsLast) / StatisticsUpdateIntervalSeconds;
+	m_framebufferRequestsPerSecond = (m_framebufferRequestsCounter - m_framebufferRequestsLast) / StatisticsUpdateIntervalSeconds;
+	m_vncFramebufferUpdatesPerSecond = (m_vncFramebufferUpdatesCounter - m_vncFramebufferUpdatesLast) / StatisticsUpdateIntervalSeconds;
+
+	m_apiTotalRequestsLast = m_apiTotalRequestsCounter;
+	m_framebufferRequestsPerSecond = m_framebufferRequestsLast;
+	m_vncFramebufferUpdatesPerSecond = m_vncFramebufferUpdatesLast;
 }
 
 

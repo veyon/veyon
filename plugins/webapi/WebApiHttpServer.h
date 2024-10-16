@@ -41,8 +41,6 @@ public:
 
 	bool start();
 
-	void dumpDebugInformation();
-
 private:
 	enum class Method {
 		Get,
@@ -61,11 +59,14 @@ private:
 				  WebApiController::Response(WebApiController::* controllerMethod)( const WebApiController::Request& request,
 																					  Args... args ) );
 
+	QString getDebugInformation();
+
 	const WebApiConfiguration& m_configuration;
 
 	QThreadPool m_threadPool{this};
 
 	WebApiController* m_controller{nullptr};
 	QHttpServer* m_server{nullptr};
+	bool m_debug = qEnvironmentVariableIsSet("VEYON_WEBAPI_DEBUG");
 
 };
