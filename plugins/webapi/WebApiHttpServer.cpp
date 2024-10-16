@@ -299,6 +299,7 @@ bool WebApiHttpServer::start()
 
 	auto success = true;
 
+	success &= addRoute<Method::Get>(QStringLiteral("hoststate/<arg>"), &WebApiController::getHostState);
 	success &= addRoute<Method::Get>( QStringLiteral("authentication/"), &WebApiController::getAuthenticationMethods );
 	success &= addRoute<Method::Post>( QStringLiteral("authentication/<arg>"), &WebApiController::performAuthentication );
 	success &= addRoute<Method::Delete>( QStringLiteral("authentication/<arg>"), &WebApiController::closeConnection );

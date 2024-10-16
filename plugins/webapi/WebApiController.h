@@ -112,6 +112,8 @@ public:
 	explicit WebApiController( const WebApiConfiguration& configuration, QObject* parent = nullptr );
 	~WebApiController() override;
 
+	Response getHostState(const Request& request, const QString& host);
+
 	Response getAuthenticationMethods( const Request& request, const QString& host );
 	Response performAuthentication( const Request& request, const QString& host );
 	Response closeConnection( const Request& request, const QString& host );

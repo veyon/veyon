@@ -22,12 +22,14 @@
  *
  */
 
+#include <QTcpSocket>
 #include <QBuffer>
 #include <QEventLoop>
 #include <QImageWriter>
 
 #include "ComputerControlInterface.h"
 #include "FeatureManager.h"
+#include "PlatformNetworkFunctions.h"
 #include "WebApiAuthenticationProxy.h"
 #include "WebApiConfiguration.h"
 #include "WebApiController.h"
@@ -86,6 +88,29 @@ WebApiController::~WebApiController()
 	QWriteLocker connectionsWriteLocker{ &m_connectionsLock };
 
 	m_connections.clear();
+}
+
+
+
+WebApiController::Response WebApiController::getHostState(const Request& request, const QString& host)
+{
+	Q_UNUSED(request);
+
+	m_apiTotalRequestsCounter++;
+
+	QTcpSocket socket;
+	socket.connectToHost(host, VeyonCore::config().veyonServerPort());
+	if (socket.waitForConnected(3000))
+	{
+		return QVariantMap{{k2s(Key::State), QByteArrayLiteral("online")}};
+	}
+
+	if (VeyonCore::platform().networkFunctions().ping(host))
+	{
+		return QByteArrayLiteral("up");
+	}
+
+	return QVariantMap{{k2s(Key::State), QByteArrayLiteral("down")}};
 }
 
 
