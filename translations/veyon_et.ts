@@ -407,7 +407,9 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Please enter the name of the user group or role for which to import the authentication key.
 
 Make sure that the names of the keys belonging to each other are identical on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Sisestage selle kasutajarühma või rolli nimi, mille autentimisvõti importida.
+
+Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites identsed.</translation>
     </message>
 </context>
 <context>
@@ -974,7 +976,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Location &quot;%1&quot; not found.</source>
-        <translation type="unfinished"/>
+        <translation>Asukohta &quot;%1&quot; ei leitud.</translation>
     </message>
 </context>
 <context>
@@ -1132,7 +1134,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerSelectPanel</name>
     <message>
         <source>Search computers</source>
-        <translation type="unfinished"/>
+        <translation>Otsige arvuteid</translation>
     </message>
     <message>
         <source>Add location</source>
@@ -1967,7 +1969,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Include user groups from domain</source>
-        <translation type="unfinished"/>
+        <translation>Kaasake domeeni kasutajarühmad</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
@@ -1975,7 +1977,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>No user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Ühtegi kasutajarühmade pistikprogrammi ei leitud. Palun kontrolli oma paigaldust!</translation>
     </message>
 </context>
 <context>
@@ -3078,11 +3080,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Image quality in monitoring mode</source>
-        <translation type="unfinished"/>
+        <translation>Pildikvaliteet jälgimisrežiimis</translation>
     </message>
     <message>
         <source>Remote access image quality</source>
-        <translation type="unfinished"/>
+        <translation>Kaugjuurdepääsu pildikvaliteet</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3175,6 +3177,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;no feature&gt;</translation>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3753,7 +3759,7 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>Miscellaneous settings</source>
-        <translation type="unfinished"/>
+        <translation>Mitmesugused seaded</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
@@ -3765,7 +3771,7 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>Disable clipboard synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Keela lõikelaua sünkroonimine</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -4340,7 +4346,7 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>Use custom power scheme with disabled power button</source>
-        <translation type="unfinished"/>
+        <translation>Kasutage kohandatud toiteskeemi koos keelatud toitenupuga</translation>
     </message>
 </context>
 <context>

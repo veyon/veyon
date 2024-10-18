@@ -3172,6 +3172,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>&lt;no feature&gt;</source>
         <translation>&lt;žádná funkce&gt;</translation>
     </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>

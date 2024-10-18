@@ -974,7 +974,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Location &quot;%1&quot; not found.</source>
-        <translation type="unfinished"/>
+        <translation>Helyszín &quot;%1&quot; nem található.</translation>
     </message>
 </context>
 <context>
@@ -3175,6 +3175,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;nincs szolgáltatás&gt;</translation>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

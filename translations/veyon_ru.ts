@@ -407,7 +407,9 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Please enter the name of the user group or role for which to import the authentication key.
 
 Make sure that the names of the keys belonging to each other are identical on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Введите имя группы пользователей или роли, для которой необходимо импортировать ключ аутентификации.
+
+Убедитесь, что имена ключей, принадлежащих друг другу, идентичны на всех компьютерах.</translation>
     </message>
 </context>
 <context>
@@ -974,7 +976,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Location &quot;%1&quot; not found.</source>
-        <translation type="unfinished"/>
+        <translation>Местоположение &quot;%1&quot; не найдено.</translation>
     </message>
 </context>
 <context>
@@ -1967,7 +1969,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Include user groups from domain</source>
-        <translation type="unfinished"/>
+        <translation>Включить группы пользователей из домена</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
@@ -1975,7 +1977,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>No user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Плагин групп пользователей не найден. Проверьте установку!</translation>
     </message>
 </context>
 <context>
@@ -3176,6 +3178,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>&lt;no feature&gt;</source>
         <translation>&lt;нет функции&gt;</translation>
     </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation>Всегда раскрывать все местоположения</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -4340,7 +4346,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Use custom power scheme with disabled power button</source>
-        <translation type="unfinished"/>
+        <translation>Использовать пользовательскую схему питания с отключенной кнопкой питания</translation>
     </message>
 </context>
 <context>

@@ -404,7 +404,9 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Please enter the name of the user group or role for which to import the authentication key.
 
 Make sure that the names of the keys belonging to each other are identical on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Inserisci il nome del gruppo di utenti o del ruolo per cui importare la chiave di autenticazione.
+
+Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra siano identici su tutti i computer.</translation>
     </message>
 </context>
 <context>
@@ -3162,6 +3164,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;nessuna funzionalita&apos;&gt;</translation>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation>Espandi sempre tutte le posizioni</translation>
     </message>
 </context>
 <context>

@@ -407,7 +407,9 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <source>Please enter the name of the user group or role for which to import the authentication key.
 
 Make sure that the names of the keys belonging to each other are identical on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Voer de naam in van de gebruikersgroep of rol waarvoor de verificatiesleutel moet worden geïmporteerd
+
+Zorg ervoor dat de namen van de sleutels die bij elkaar horen identiek zijn op alle computers.</translation>
     </message>
 </context>
 <context>
@@ -974,7 +976,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Location &quot;%1&quot; not found.</source>
-        <translation type="unfinished"/>
+        <translation>Locatie &quot;%1&quot; niet gevonden.</translation>
     </message>
 </context>
 <context>
@@ -1969,7 +1971,7 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>Include user groups from domain</source>
-        <translation type="unfinished"/>
+        <translation>Gebruikersgroepen uit domein opnemen</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
@@ -1977,7 +1979,7 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>No user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Er is geen plugin voor gebruikersgroepen gevonden. Controleer je installatie!</translation>
     </message>
 </context>
 <context>
@@ -3178,6 +3180,10 @@ Translated with DeepL</translation>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;no feature&gt;</translation>
     </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -4342,7 +4348,7 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     </message>
     <message>
         <source>Use custom power scheme with disabled power button</source>
-        <translation type="unfinished"/>
+        <translation>Aangepast voedingsschema gebruiken met uitgeschakelde aan/uit-knop</translation>
     </message>
 </context>
 <context>

@@ -3175,6 +3175,10 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <source>&lt;no feature&gt;</source>
         <translation>&lt;Keine Funktion&gt;</translation>
     </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation>Immer alle Standorte ausklappen</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>

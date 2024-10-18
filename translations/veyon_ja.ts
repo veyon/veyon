@@ -1644,7 +1644,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>説明</translation>
     </message>
     <message>
         <source>Master</source>
@@ -1660,7 +1660,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin</source>
@@ -2470,11 +2470,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>users</source>
-        <translation type="unfinished"/>
+        <translation>ユーザー</translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation type="unfinished"/>
+        <translation>ユーザーグループ</translation>
     </message>
     <message>
         <source>computers</source>
@@ -2620,7 +2620,9 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>%1 %2 が正常にクエリされました:
+
+%3</translation>
     </message>
     <message>
         <source>LDAP filter test failed</source>
@@ -3157,6 +3159,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>&lt;no feature&gt;</source>
         <translation>機能指定無し</translation>
     </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation>常にすべてのロケーションを展開する</translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3170,19 +3176,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Query application version of the server</source>
-        <translation type="unfinished"/>
+        <translation>サーバのアプリケーションバージョンを照会する</translation>
     </message>
     <message>
         <source>Query active features</source>
-        <translation type="unfinished"/>
+        <translation>有効な機能を照会する</translation>
     </message>
     <message>
         <source>Query properties of remotely available screens</source>
-        <translation type="unfinished"/>
+        <translation>リモートで利用可能な画面のプロパティを照会する</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
-        <translation type="unfinished"/>
+        <translation>組み込み監視モード</translation>
     </message>
 </context>
 <context>
@@ -3212,7 +3218,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation type="unfinished"/>
+        <translation>開くウェブサイトのURLを入力してください:</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -3250,11 +3256,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>PluginCommands</name>
     <message>
         <source>List names of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>インストールされているすべてのプラグインの名前を一覧表示</translation>
     </message>
     <message>
         <source>Show table with details of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>インストールされているすべてのプラグインの詳細を表で表示</translation>
     </message>
     <message>
         <source>Name</source>
@@ -3262,23 +3268,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>説明</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>バージョン</translation>
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>プラグイン関連のCLI操作</translation>
     </message>
     <message>
         <source>Commands for managing plugins</source>
-        <translation type="unfinished"/>
+        <translation>プラグインを管理するためのコマンド</translation>
     </message>
 </context>
 <context>

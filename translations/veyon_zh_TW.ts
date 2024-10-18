@@ -407,7 +407,9 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Please enter the name of the user group or role for which to import the authentication key.
 
 Make sure that the names of the keys belonging to each other are identical on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>請輸入要為其匯入身份驗證金鑰的使用者群組或角色的名稱。
+
+確保所有電腦上彼此所屬的金鑰名稱相同。</translation>
     </message>
 </context>
 <context>
@@ -3175,6 +3177,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>&lt;no feature&gt;</source>
         <translation>&lt;沒有功能&gt;</translation>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
