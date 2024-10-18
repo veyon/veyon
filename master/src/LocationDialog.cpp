@@ -46,6 +46,8 @@ LocationDialog::LocationDialog( QAbstractItemModel* locationListModel, QWidget* 
 
 	connect (ui->treeView->selectionModel(), &QItemSelectionModel::currentChanged,
 			 this, &LocationDialog::updateSelection);
+	connect (ui->treeView, &QTreeView::activated,
+			 this, &LocationDialog::accept);
 
 	updateSearchFilter();
 }
