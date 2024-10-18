@@ -27,20 +27,25 @@
 #include "ui_LocationDialog.h"
 
 LocationDialog::LocationDialog( QAbstractItemModel* locationListModel, QWidget* parent ) :
-	QDialog( parent ),
-	ui( new Ui::LocationDialog ),
-	m_sortFilterProxyModel( this )
+	QDialog(parent),
+	ui(new Ui::LocationDialog)
 {
 	ui->setupUi( this );
 
-	m_sortFilterProxyModel.setSourceModel( locationListModel );
+	m_networkObjectFilterProxyModel.setSourceModel(locationListModel);
+	m_networkObjectFilterProxyModel.setComputersExcluded(true);
+
+	m_sortFilterProxyModel.setSourceModel(&m_networkObjectFilterProxyModel);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+	m_sortFilterProxyModel.setRecursiveFilteringEnabled(true);
+#endif
 	m_sortFilterProxyModel.setFilterCaseSensitivity( Qt::CaseInsensitive );
 	m_sortFilterProxyModel.sort( 0 );
 
-	ui->listView->setModel( &m_sortFilterProxyModel );
+	ui->treeView->setModel(&m_sortFilterProxyModel);
 
-	connect( ui->listView->selectionModel(), &QItemSelectionModel::currentChanged,
-			 this, &LocationDialog::updateSelection );
+	connect (ui->treeView->selectionModel(), &QItemSelectionModel::currentChanged,
+			 this, &LocationDialog::updateSelection);
 
 	updateSearchFilter();
 }
@@ -56,13 +61,15 @@ LocationDialog::~LocationDialog()
 
 void LocationDialog::updateSearchFilter()
 {
+	ui->treeView->expandAll();
+
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 1)
 	m_sortFilterProxyModel.setFilterRegularExpression( ui->filterLineEdit->text() );
 #else
 	m_sortFilterProxyModel.setFilterRegExp( ui->filterLineEdit->text() );
 #endif
 
-	ui->listView->selectionModel()->setCurrentIndex( m_sortFilterProxyModel.index( 0, 0 ),
+	ui->treeView->selectionModel()->setCurrentIndex( m_sortFilterProxyModel.index( 0, 0 ),
 														 QItemSelectionModel::ClearAndSelect );
 }
 

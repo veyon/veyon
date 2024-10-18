@@ -25,7 +25,8 @@
 #pragma once
 
 #include <QDialog>
-#include <QSortFilterProxyModel>
+
+#include "NetworkObjectFilterProxyModel.h"
 
 namespace Ui {
 class LocationDialog;
@@ -50,6 +51,7 @@ private Q_SLOTS:
 private:
 	Ui::LocationDialog *ui;
 
-	QSortFilterProxyModel m_sortFilterProxyModel;
+	QSortFilterProxyModel m_sortFilterProxyModel{this};
+	NetworkObjectFilterProxyModel m_networkObjectFilterProxyModel{this};
 	QString m_selectedLocation;
 };

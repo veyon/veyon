@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>LocationDialog</class>
  <widget class="QDialog" name="LocationDialog">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>640</width>
-    <height>480</height>
-   </rect>
-  </property>
   <property name="minimumSize">
    <size>
     <width>640</width>
@@ -27,23 +19,20 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
-    <widget class="QListView" name="listView">
-     <property name="sizeAdjustPolicy">
-      <enum>QAbstractScrollArea::AdjustToContents</enum>
-     </property>
-     <property name="resizeMode">
-      <enum>QListView::Adjust</enum>
-     </property>
-    </widget>
-   </item>
    <item row="2" column="1">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
      <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QTreeView" name="treeView">
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::SizeAdjustPolicy::AdjustToContents</enum>
      </property>
     </widget>
    </item>
@@ -112,22 +101,6 @@
     <hint type="destinationlabel">
      <x>395</x>
      <y>57</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>listView</sender>
-   <signal>activated(QModelIndex)</signal>
-   <receiver>LocationDialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>312</x>
-     <y>134</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>396</x>
-     <y>143</y>
     </hint>
    </hints>
   </connection>
