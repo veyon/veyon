@@ -270,7 +270,8 @@ bool WindowsUserFunctions::authenticate( const QString& username, const Password
 			HANDLE token = nullptr;
 			result = LogonUserW(userWide.data(), domain.isEmpty() ? nullptr : domainWide.data(), passwordWide.data(),
 								LOGON32_LOGON_NETWORK, logonProvider, &token);
-			vDebug() << "LogonUserW()" << logonProvider << result << GetLastError();
+			const auto error = GetLastError();
+			vDebug() << "LogonUserW()" << logonProvider << result << error;
 			if (token)
 			{
 				CloseHandle(token);
@@ -281,7 +282,8 @@ bool WindowsUserFunctions::authenticate( const QString& username, const Password
 	else
 	{
 		result = SSPLogonUser( domainWide.data(), userWide.data(), passwordWide.data() );
-		vDebug() << "SSPLogonUser()" << result << GetLastError();
+		const auto error = GetLastError();
+		vDebug() << "SSPLogonUser()" << result << error;
 	}
 
 	return result;
