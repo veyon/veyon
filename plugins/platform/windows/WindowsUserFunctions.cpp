@@ -247,13 +247,17 @@ bool WindowsUserFunctions::authenticate( const QString& username, const Password
 
 	if( WindowsPlatformConfiguration( &VeyonCore::config() ).disableSSPIBasedUserAuthentication() )
 	{
-		HANDLE token = nullptr;
-		result = LogonUserW( userWide.data(), domainWide.data(), passwordWide.data(),
-							 LOGON32_LOGON_NETWORK, LOGON32_PROVIDER_DEFAULT, &token );
-		vDebug() << "LogonUserW()" << result << GetLastError();
-		if( token )
+		for (auto logonProvider: {LOGON32_PROVIDER_DEFAULT, LOGON32_PROVIDER_WINNT50, LOGON32_PROVIDER_WINNT40})
 		{
-			CloseHandle( token );
+			HANDLE token = nullptr;
+			result = LogonUserW(userWide.data(), domain.isEmpty() ? nullptr : domainWide.data(), passwordWide.data(),
+								LOGON32_LOGON_NETWORK, logonProvider, &token);
+			vDebug() << "LogonUserW()" << logonProvider << result << GetLastError();
+			if (token)
+			{
+				CloseHandle(token);
+				break;
+			}
 		}
 	}
 	else
