@@ -79,7 +79,7 @@ bool NetworkObjectFilterProxyModel::filterAcceptsRow( int sourceRow, const QMode
 {
 	const auto index = sourceModel()->index(sourceRow, 0, sourceParent);
 	const auto objectType = NetworkObject::Type(sourceModel()->data(index, NetworkObjectModel::TypeRole).toInt());
-	if (filterAcceptsRowRecursive(index, 0))
+	if (filterAcceptsRowRecursive(index))
 	{
 		return true;
 	}
@@ -94,7 +94,7 @@ bool NetworkObjectFilterProxyModel::filterAcceptsRow( int sourceRow, const QMode
 
 
 
-bool NetworkObjectFilterProxyModel::filterAcceptsRowRecursive(const QModelIndex& index, int depth) const
+bool NetworkObjectFilterProxyModel::filterAcceptsRowRecursive(const QModelIndex& index) const
 {
 	const auto objectType = NetworkObject::Type(sourceModel()->data(index, NetworkObjectModel::TypeRole).toInt());
 
@@ -145,7 +145,7 @@ bool NetworkObjectFilterProxyModel::filterAcceptsRowRecursive(const QModelIndex&
 			const auto rowIndex = sourceModel()->index(i, 0, index);
 			const auto objectType = NetworkObject::Type(sourceModel()->data(rowIndex, NetworkObjectModel::TypeRole).toInt());
 
-			if (NetworkObject::isContainer(objectType) && filterAcceptsRowRecursive(rowIndex, depth+1))
+			if (NetworkObject::isContainer(objectType) && filterAcceptsRowRecursive(rowIndex))
 			{
 				return true;
 			}

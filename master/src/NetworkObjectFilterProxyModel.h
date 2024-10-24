@@ -41,7 +41,7 @@ protected:
 	bool filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const override;
 
 private:
-	bool filterAcceptsRowRecursive(const QModelIndex& index, int depth) const;
+	bool filterAcceptsRowRecursive(const QModelIndex& index) const;
 	bool parentContainerAccepted(const QModelIndex& index) const;
 
 	QStringList m_groupList;
