@@ -381,11 +381,9 @@ QString ComputerManager::findLocationOfComputer(const QStringList& hostNames, co
 
 
 
-ComputerList ComputerManager::getComputersAtLocation(const QString& locationName, const QModelIndex& parent) const
+ComputerList ComputerManager::getComputersAtLocation(const QString& locationName, const QModelIndex& parent, bool parentMatches) const
 {
 	QAbstractItemModel* model = computerTreeModel();
-
-	const bool parentMatches = model->data(parent, NetworkObjectModel::NameRole).toString() == locationName;
 
 	int rows = model->rowCount( parent );
 
@@ -396,13 +394,13 @@ ComputerList ComputerManager::getComputersAtLocation(const QString& locationName
 	{
 		const auto entryIndex = model->index(i, 0, parent);
 		const auto objectType = NetworkObject::Type(model->data(entryIndex, NetworkObjectModel::TypeRole).toInt());
-
+		const auto objectName = model->data(entryIndex, NetworkObjectModel::NameRole).toString();
 		if( NetworkObject::isContainer(objectType) )
 		{
-			if (model->data(entryIndex, NetworkObjectModel::NameRole).toString() == locationName ||
-				hasSubLocations(entryIndex))
+			const auto currentLocationMatches = objectName == locationName;
+			if (parentMatches || currentLocationMatches || hasSubLocations(entryIndex))
 			{
-				computers += getComputersAtLocation( locationName, entryIndex );
+				computers += getComputersAtLocation(locationName, entryIndex, parentMatches || currentLocationMatches);
 			}
 		}
 		else if( objectType == NetworkObject::Type::Host )
@@ -410,7 +408,7 @@ ComputerList ComputerManager::getComputersAtLocation(const QString& locationName
 			if (parentMatches)
 			{
 				computers += Computer(model->data(entryIndex, NetworkObjectModel::UidRole).toUuid(),
-									  model->data(entryIndex, NetworkObjectModel::NameRole).toString(),
+									  objectName,
 									  model->data(entryIndex, NetworkObjectModel::HostAddressRole).toString(),
 									  model->data(entryIndex, NetworkObjectModel::MacAddressRole).toString());
 			}
