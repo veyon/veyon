@@ -105,6 +105,13 @@ bool NetworkObjectFilterProxyModel::filterAcceptsRowRecursive(const QModelIndex&
 			return false;
 		}
 
+		const auto parentAccepted = m_groupList.isEmpty() ||
+									parentContainerAccepted(sourceModel()->parent(index));
+		if (parentAccepted == false)
+		{
+			return false;
+		}
+
 		if( m_computerExcludeList.isEmpty() )
 		{
 			return true;
