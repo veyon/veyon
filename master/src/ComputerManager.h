@@ -75,7 +75,7 @@ private:
 	QString findLocationOfComputer(const QStringList& hostNames, const QList<QHostAddress>& hostAddresses,
 								   const QModelIndex& parent) const;
 
-	ComputerList getComputersAtLocation(const QString& locationName, const QModelIndex& parent = {}) const;
+	ComputerList getComputersAtLocation(const QString& locationName, const QModelIndex& parent = {}, bool parentMatches = false) const;
 	bool hasSubLocations(const QModelIndex& index) const;
 
 	QModelIndex findNetworkObject(NetworkObject::Uid networkObjectUid, const QModelIndex& parent = {}) const;
