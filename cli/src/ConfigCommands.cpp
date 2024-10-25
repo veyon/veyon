@@ -329,16 +329,16 @@ CommandLinePluginInterface::RunResult ConfigCommands::applyConfiguration()
 
 QString ConfigCommands::printableConfigurationValue( const QVariant& value )
 {
-	if( value.type() == QVariant::String ||
-		value.type() == QVariant::Uuid ||
-		value.type() == QVariant::UInt ||
-		value.type() == QVariant::Int ||
-		value.type() == QVariant::Bool )
+	if (value.userType() == QMetaType::QString ||
+		value.userType() == QMetaType::QUuid ||
+		value.userType() == QMetaType::UInt ||
+		value.userType() == QMetaType::Int ||
+		value.userType() == QMetaType::Bool)
 	{
 		return value.toString();
 	}
 
-	if( value.type() == QVariant::StringList )
+	if (value.userType() == QMetaType::QStringList)
 	{
 		return value.toStringList().join( QLatin1Char(';') );
 	}

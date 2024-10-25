@@ -59,7 +59,7 @@ public:
 	template<class InterfaceType, class FilterArgType = InterfaceType>
 	InterfaceType* find( const std::function<bool (const FilterArgType *)>& filter = []() { return true; } )
 	{
-		for( auto object : qAsConst(m_pluginObjects) )
+		for( auto object : std::as_const(m_pluginObjects) )
 		{
 			auto pluginInterface = qobject_cast<InterfaceType *>( object );
 			if( pluginInterface && filter( qobject_cast<FilterArgType *>( object ) ) )

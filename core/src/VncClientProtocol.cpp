@@ -278,7 +278,7 @@ bool VncClientProtocol::receiveSecurityTypes()
 		}
 
 		const auto securityTypeList = m_socket->read( securityTypeCount );
-		if( securityTypeList.count() != securityTypeCount )
+		if( securityTypeList.size() != securityTypeCount )
 		{
 			vCritical() << "could not read security types!";
 			m_socket->close();

@@ -82,7 +82,7 @@ void FlexibleListView::alignToGrid()
 		{
 			m_positions[uid] = QPointF( qMax<int>( 0, qRound( m_positions[uid].x() ) ),
 										qMax<int>( 0, qRound( m_positions[uid].y() ) ) );
-			setPositionForIndex( toItemPosition( qAsConst(m_positions)[uid] ), index );
+			setPositionForIndex( toItemPosition( std::as_const(m_positions)[uid] ), index );
 		}
 	}
 }
@@ -188,7 +188,7 @@ void FlexibleListView::restorePositions()
 
 		if( uid.isNull() == false && m_positions.contains( uid ) )
 		{
-			setPositionForIndex( toItemPosition( qAsConst(m_positions)[uid] ), index );
+			setPositionForIndex( toItemPosition( std::as_const(m_positions)[uid] ), index );
 		}
 	}
 }

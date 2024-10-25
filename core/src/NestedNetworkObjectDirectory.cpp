@@ -44,7 +44,7 @@ NetworkObjectList NestedNetworkObjectDirectory::queryObjects( NetworkObject::Typ
 {
 	NetworkObjectList objects;
 
-	for( auto* subDirectory : qAsConst(m_subDirectories) )
+	for( auto* subDirectory : std::as_const(m_subDirectories) )
 	{
 		objects += subDirectory->queryObjects( type, property, value );
 	}
@@ -71,7 +71,7 @@ void NestedNetworkObjectDirectory::update()
 	QStringList subDirectoryNames;
 	subDirectoryNames.reserve( m_subDirectories.count() );
 
-	for( auto* subDirectory : qAsConst(m_subDirectories) )
+	for( auto* subDirectory : std::as_const(m_subDirectories) )
 	{
 		subDirectoryNames.append( subDirectory->name() );
 		NetworkObject subDirectoryObject{this, NetworkObject::Type::SubDirectory, subDirectory->name(), {},

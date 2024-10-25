@@ -74,7 +74,7 @@ bool VncProxyServer::start( int vncServerPort, const Password& vncServerPassword
 
 void VncProxyServer::stop()
 {
-	for( auto connection : qAsConst( m_connections ) )
+	for( auto connection : std::as_const( m_connections ) )
 	{
 		delete connection;
 	}

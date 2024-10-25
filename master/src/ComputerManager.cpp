@@ -195,12 +195,12 @@ void ComputerManager::checkChangedData( const QModelIndex& topLeft, const QModel
 
 void ComputerManager::initLocations()
 {
-	for( const auto& hostName : qAsConst( m_localHostNames ) )
+	for( const auto& hostName : std::as_const( m_localHostNames ) )
 	{
 		vDebug() << "initializing locations for hostname" << hostName;
 	}
 
-	for( const auto& address : qAsConst( m_localHostAddresses ) )
+	for( const auto& address : std::as_const( m_localHostAddresses ) )
 	{
 		vDebug() << "initializing locations for host address" << address.toString();
 	}
@@ -254,7 +254,7 @@ void ComputerManager::initNetworkObjectLayer()
 
 		localHostNames.append( m_localHostNames );
 
-		for( const auto& address : qAsConst( m_localHostAddresses ) )
+		for( const auto& address : std::as_const( m_localHostAddresses ) )
 		{
 			localHostNames.append( address.toString() ); // clazy:exclude=reserve-candidates
 		}
@@ -267,7 +267,7 @@ void ComputerManager::initNetworkObjectLayer()
 			const auto sessionServerPort = QString::number( VeyonCore::config().veyonServerPort() +
 															 VeyonCore::sessionId() );
 
-			for( const auto& localHostName : qAsConst(localHostNames) )
+			for( const auto& localHostName : std::as_const(localHostNames) )
 			{
 				ownSessionNames.append( QStringLiteral("%1:%2").arg( localHostName, sessionServerPort ) );
 			}
@@ -297,7 +297,7 @@ void ComputerManager::initComputerTreeModel()
 	QJsonArray checkedNetworkObjects;
 	if( VeyonCore::config().autoSelectCurrentLocation() )
 	{
-		for( const auto& location : qAsConst( m_currentLocations ) )
+		for( const auto& location : std::as_const( m_currentLocations ) )
 		{
 			const auto computersAtLocation = getComputersAtLocation( location );
 			for( const auto& computer : computersAtLocation )

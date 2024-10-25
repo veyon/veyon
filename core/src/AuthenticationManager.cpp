@@ -33,7 +33,7 @@ AuthenticationManager::AuthenticationManager( QObject* parent ) :
 		{ LegacyAuthType::KeyFile, Plugin::Uid{QStringLiteral("0c69b301-81b4-42d6-8fae-128cdd113314")} }
 	} )
 {
-	for( auto pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )
+	for( auto pluginObject : std::as_const( VeyonCore::pluginManager().pluginObjects() ) )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 		auto authenticationPluginInterface = qobject_cast<AuthenticationPluginInterface *>( pluginObject );

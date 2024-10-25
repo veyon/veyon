@@ -53,7 +53,7 @@ void LdapNetworkObjectDirectory::update()
 {
 	const auto locations = m_ldapDirectory.computerLocations();
 
-	for( const auto& location : qAsConst( locations ) )
+	for( const auto& location : std::as_const( locations ) )
 	{
 		const NetworkObject locationObject{this, NetworkObject::Type::Location, location};
 
@@ -72,7 +72,7 @@ void LdapNetworkObjectDirectory::updateLocation( const NetworkObject& locationOb
 {
 	const auto computers = m_ldapDirectory.computerLocationEntries( locationObject.name() );
 
-	for( const auto& computer : qAsConst( computers ) )
+	for( const auto& computer : std::as_const( computers ) )
 	{
 		const auto hostObject = computerToObject( this, &m_ldapDirectory, computer );
 		if( hostObject.type() == NetworkObject::Type::Host )
@@ -154,7 +154,7 @@ NetworkObjectList LdapNetworkObjectDirectory::queryHosts( NetworkObject::Propert
 	NetworkObjectList hostObjects;
 	hostObjects.reserve( computers.size() );
 
-	for( const auto& computer : qAsConst(computers) )
+	for( const auto& computer : std::as_const(computers) )
 	{
 		const auto hostObject = computerToObject( this, &m_ldapDirectory, computer );
 		if( hostObject.isValid() )

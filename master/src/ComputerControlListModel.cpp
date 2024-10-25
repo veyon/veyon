@@ -145,7 +145,7 @@ bool ComputerControlListModel::setData( const QModelIndex& index, const QVariant
 		vCritical() << "index out of range!";
 	}
 
-	const auto computerControl = qAsConst(m_computerControlInterfaces)[index.row()];
+	const auto computerControl = std::as_const(m_computerControlInterfaces)[index.row()];
 
 	switch( role )
 	{

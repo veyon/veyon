@@ -163,7 +163,7 @@ QVariantList ComputerMonitoringItem::selectedObjects() const
 	QVariantList objects; // clazy:exclude=inefficient-qlist
 	objects.reserve(m_selectedObjects.size());
 
-	for( const auto& object : qAsConst(m_selectedObjects) )
+	for( const auto& object : std::as_const(m_selectedObjects) )
 	{
 		objects.append( object );
 	}

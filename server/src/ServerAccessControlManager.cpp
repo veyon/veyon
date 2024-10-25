@@ -77,7 +77,7 @@ void ServerAccessControlManager::removeClient( VncServerClient* client )
 	const VncServerClientList previousClients = m_clients;
 	m_clients.clear();
 
-	for( auto prevClient : qAsConst( previousClients ) )
+	for( auto prevClient : std::as_const( previousClients ) )
 	{
 		prevClient->setAccessControlState( VncServerClient::AccessControlState::Init );
 		addClient( prevClient );
@@ -147,7 +147,7 @@ VncServerClient::AccessControlState ServerAccessControlManager::confirmDesktopAc
 	// did we save a previous choice because user chose "always" or "never"?
 	if( m_desktopAccessChoices.contains( hostUserPair ) )
 	{
-		if( qAsConst(m_desktopAccessChoices)[hostUserPair] == DesktopAccessDialog::ChoiceAlways )
+		if( std::as_const(m_desktopAccessChoices)[hostUserPair] == DesktopAccessDialog::ChoiceAlways )
 		{
 			return VncServerClient::AccessControlState::Successful;
 		}

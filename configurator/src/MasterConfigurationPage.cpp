@@ -160,7 +160,7 @@ void MasterConfigurationPage::updateFeatureLists()
 	ui->allFeaturesListWidget->clear();
 	ui->disabledFeaturesListWidget->clear();
 
-	for( const auto& feature : qAsConst( VeyonCore::featureManager().features() ) )
+	for( const auto& feature : std::as_const( VeyonCore::featureManager().features() ) )
 	{
 		if( feature.testFlag( Feature::Flag::Master ) == false ||
 			feature.testFlag( Feature::Flag::Meta ) ||

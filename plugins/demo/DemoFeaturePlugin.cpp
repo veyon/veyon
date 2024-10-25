@@ -508,7 +508,7 @@ void DemoFeaturePlugin::updateFeatures()
 												   m_demoFeature.uid(), tr("All screens"), {}, {}, {} } );
 
 		int index = 1;
-		for( auto screen : qAsConst(m_screens) )
+		for( auto screen : std::as_const(m_screens) )
 		{
 			const auto name = QStringLiteral( "DemoScreen%1" ).arg( index );
 			const auto screenName = VeyonCore::screenName(*screen, index);

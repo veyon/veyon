@@ -250,8 +250,15 @@ void ComputerMonitoringWidget::addSubFeaturesToMenu( const Feature& parentFeatur
 
 	for( const auto& subFeature : subFeatures )
 	{
-		menu->addAction( QIcon( subFeature.iconUrl() ), subFeature.displayName(), m_featureMenu,
-						 [=]() { runFeature( subFeature ); }, subFeature.shortcut() );
+		menu->addAction(QIcon(subFeature.iconUrl()), subFeature.displayName(),
+#if QT_VERSION >= QT_VERSION_CHECK(6, 3, 0)
+						subFeature.shortcut(),
+#endif
+						this, [=]() { runFeature( subFeature ); }
+#if QT_VERSION < QT_VERSION_CHECK(6, 3, 0)
+		, subFeature.shortcut()
+#endif
+		);
 	}
 }
 

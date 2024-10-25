@@ -490,19 +490,27 @@ void MainWindow::addSubFeaturesToToolButton( QToolButton* button, const Feature&
 
 	for( const auto& subFeature : subFeatures )
 	{
-		auto action = menu->addAction( QIcon( subFeature.iconUrl() ), subFeature.displayName(), this,
-			[=]() {
-				m_master.runFeature( subFeature );
-				if( parentFeatureIsMode )
+		auto action = menu->addAction(QIcon(subFeature.iconUrl()), subFeature.displayName(),
+#if QT_VERSION >= QT_VERSION_CHECK(6, 3, 0)
+									  subFeature.shortcut(),
+#endif
+									  this, [=]()
+		{
+			m_master.runFeature( subFeature );
+			if( parentFeatureIsMode )
+			{
+				if( subFeature.testFlag( Feature::Flag::Option ) == false )
 				{
-					if( subFeature.testFlag( Feature::Flag::Option ) == false )
-					{
-						button->setChecked( true );
-					}
-					reloadSubFeatures();
+					button->setChecked( true );
 				}
-			},
-			subFeature.shortcut() );
+				reloadSubFeatures();
+			}
+		}
+#if QT_VERSION < QT_VERSION_CHECK(6, 3, 0)
+		, subFeature.shortcut()
+#endif
+		);
+
 		action->setToolTip( subFeature.description() );
 		action->setObjectName( subFeature.uid().toString() );
 
