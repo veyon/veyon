@@ -64,6 +64,24 @@ void AccessControlPage::resetWidgets()
 	FOREACH_VEYON_ACCESS_CONTROL_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 
 	m_accessGroups = VeyonCore::config().authorizedUserGroups();
+	auto cleanedUpAccessGroups = m_accessGroups;
+
+	const auto availableGroups = VeyonCore::userGroupsBackendManager().configuredBackend()->
+								 userGroups(VeyonCore::config().useDomainUserGroups());
+
+	const auto accessGroupNotAvailable = [&availableGroups](const QString& group) {
+		return availableGroups.contains(group) == false;
+	};
+#if QT_VERSION >= QT_VERSION_CHECK(6, 1, 0)
+	cleanedUpAccessGroups.removeIf(accessGroupNotAvailable);
+#else
+	cleanedUpAccessGroups.erase(std::remove_if(cleanedUpAccessGroups.begin(), cleanedUpAccessGroups.end(), accessGroupNotAvailable));
+#endif
+	if (m_accessGroups != cleanedUpAccessGroups)
+	{
+		m_accessGroups = cleanedUpAccessGroups;
+		VeyonCore::config().setAuthorizedUserGroups(m_accessGroups);
+	}
 
 	updateAccessGroupsLists();
 	updateAccessControlRules();
@@ -127,8 +145,8 @@ void AccessControlPage::updateAccessGroupsLists()
 
 	VeyonCore::userGroupsBackendManager().reloadConfiguration();
 
-	const auto backend = VeyonCore::userGroupsBackendManager().configuredBackend();
-	const auto groups = backend->userGroups(VeyonCore::config().useDomainUserGroups());
+	const auto groups = VeyonCore::userGroupsBackendManager().configuredBackend()->
+						userGroups(VeyonCore::config().useDomainUserGroups());
 
 	for( const auto& group : groups )
 	{
