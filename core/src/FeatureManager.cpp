@@ -45,7 +45,7 @@ FeatureManager::FeatureManager( QObject* parent ) :
 	qRegisterMetaType<Feature>();
 	qRegisterMetaType<FeatureMessage>();
 
-	for( const auto& pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )
+	for( const auto& pluginObject : std::as_const( VeyonCore::pluginManager().pluginObjects() ) )
 	{
 		auto featurePluginInterface = qobject_cast<FeatureProviderInterface *>( pluginObject );
 
@@ -156,7 +156,7 @@ void FeatureManager::controlFeature( Feature::Uid featureUid,
 									const QVariantMap& arguments,
 									const ComputerControlInterfaceList& computerControlInterfaces ) const
 {
-	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
+	for( auto featureInterface : std::as_const( m_featurePluginInterfaces ) )
 	{
 		featureInterface->controlFeature( featureUid, operation, arguments, computerControlInterfaces );
 	}
@@ -170,7 +170,7 @@ void FeatureManager::startFeature( VeyonMasterInterface& master,
 {
 	vDebug() << computerControlInterfaces << feature.name();
 
-	for( auto featureInterface : qAsConst( m_featurePluginInterfaces ) )
+	for( auto featureInterface : std::as_const( m_featurePluginInterfaces ) )
 	{
 		featureInterface->startFeature( master, feature, computerControlInterfaces );
 	}
@@ -192,7 +192,7 @@ void FeatureManager::stopFeature( VeyonMasterInterface& master,
 {
 	vDebug() << computerControlInterfaces << feature.name();
 
-	for( const auto& featureInterface : qAsConst( m_featurePluginInterfaces ) )
+	for( const auto& featureInterface : std::as_const( m_featurePluginInterfaces ) )
 	{
 		featureInterface->stopFeature( master, feature, computerControlInterfaces );
 	}
@@ -213,7 +213,7 @@ void FeatureManager::handleFeatureMessage(ComputerControlInterface::Pointer comp
 {
 	vDebug() << computerControlInterface << message;
 
-	for( const auto& featureInterface : qAsConst( m_featurePluginInterfaces ) )
+	for( const auto& featureInterface : std::as_const( m_featurePluginInterfaces ) )
 	{
 		featureInterface->handleFeatureMessage(computerControlInterface, message);
 	}
@@ -233,7 +233,7 @@ void FeatureManager::handleFeatureMessage(VeyonServerInterface& server,
 		return;
 	}
 
-	for( const auto& featureInterface : qAsConst( m_featurePluginInterfaces ) )
+	for( const auto& featureInterface : std::as_const( m_featurePluginInterfaces ) )
 	{
 		featureInterface->handleFeatureMessage(server, messageContext, message);
 	}
@@ -252,7 +252,7 @@ void FeatureManager::handleFeatureMessageFromWorker(VeyonServerInterface& server
 		return;
 	}
 
-	for (const auto& featureInterface : qAsConst(m_featurePluginInterfaces))
+	for (const auto& featureInterface : std::as_const(m_featurePluginInterfaces))
 	{
 		featureInterface->handleFeatureMessageFromWorker(server, message);
 	}
@@ -265,7 +265,7 @@ void FeatureManager::handleFeatureMessage(VeyonWorkerInterface& worker, const Fe
 {
 	vDebug() << "[WORKER]" << message;
 
-	for( const auto& featureInterface : qAsConst( m_featurePluginInterfaces ) )
+	for( const auto& featureInterface : std::as_const( m_featurePluginInterfaces ) )
 	{
 		featureInterface->handleFeatureMessage(worker, message);
 	}
@@ -277,7 +277,7 @@ void FeatureManager::sendAsyncFeatureMessages(VeyonServerInterface& server,
 												  const MessageContext& messageContext) const
 {
 
-	for (const auto& featureInterface : qAsConst(m_featurePluginInterfaces))
+	for (const auto& featureInterface : std::as_const(m_featurePluginInterfaces))
 	{
 		featureInterface->sendAsyncFeatureMessages(server, messageContext);
 	}
@@ -289,7 +289,7 @@ FeatureUidList FeatureManager::activeFeatures( VeyonServerInterface& server ) co
 {
 	FeatureUidList features;
 
-	for( const auto& featureInterface : qAsConst( m_featurePluginInterfaces ) )
+	for( const auto& featureInterface : std::as_const( m_featurePluginInterfaces ) )
 	{
 		for( const auto& feature : featureInterface->featureList() )
 		{

@@ -30,7 +30,7 @@
 UserGroupsBackendManager::UserGroupsBackendManager( QObject* parent ) :
 	QObject( parent )
 {
-	for( auto pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )
+	for( auto pluginObject : std::as_const( VeyonCore::pluginManager().pluginObjects() ) )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 		auto userGroupsBackendInterface = qobject_cast<UserGroupsBackendInterface *>( pluginObject );

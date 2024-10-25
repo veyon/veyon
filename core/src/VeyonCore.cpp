@@ -175,7 +175,11 @@ QString VeyonCore::translationsDirectory()
 
 QString VeyonCore::qtTranslationsDirectory()
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+	const auto path = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
+#else
 	const auto path = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+#endif
 	if( QDir{path}.exists() )
 	{
 		return path;

@@ -256,15 +256,15 @@ void ComputerMonitoringWidget::addSubFeaturesToMenu( const Feature& parentFeatur
 
 	for( const auto& subFeature : subFeatures )
 	{
-#if QT_VERSION < 0x050600
-#warning Building legacy compat code for unsupported version of Qt
-		auto action = menu->addAction( QIcon( subFeature.iconUrl() ), subFeature.displayName() );
-		action->setShortcut( subFeature.shortcut() );
-		connect( action, &QAction::triggered, this, [=] () { runFeature( subFeature ); } );
-#else
-		menu->addAction( QIcon( subFeature.iconUrl() ), subFeature.displayName(), this,
-						 [=]() { runFeature( subFeature ); }, subFeature.shortcut() );
+		menu->addAction(QIcon(subFeature.iconUrl()), subFeature.displayName(),
+				#if QT_VERSION >= QT_VERSION_CHECK(6, 3, 0)
+						subFeature.shortcut(),
+				#endif
+						 this, [=]() { runFeature( subFeature ); }
+#if QT_VERSION < QT_VERSION_CHECK(6, 3, 0)
+		, subFeature.shortcut()
 #endif
+		);
 	}
 }
 

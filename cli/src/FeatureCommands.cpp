@@ -147,7 +147,7 @@ CommandLinePluginInterface::RunResult FeatureCommands::handle_list( const QStrin
 	Q_UNUSED(arguments)
 
 	FeatureManager featureManager;
-	for( const auto& feature : qAsConst(featureManager.features()) )
+	for( const auto& feature : std::as_const(featureManager.features()) )
 	{
 		print( feature.name() );
 	}

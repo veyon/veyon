@@ -33,7 +33,7 @@ NetworkObjectDirectoryManager::NetworkObjectDirectoryManager( QObject* parent ) 
 	m_directoryPluginInterfaces(),
 	m_configuredDirectory( nullptr )
 {
-	for( auto pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )
+	for( auto pluginObject : std::as_const( VeyonCore::pluginManager().pluginObjects() ) )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 		auto directoryPluginInterface = qobject_cast<NetworkObjectDirectoryPluginInterface *>( pluginObject );

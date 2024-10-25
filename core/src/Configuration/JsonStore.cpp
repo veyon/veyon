@@ -98,23 +98,27 @@ static QJsonObject saveJsonTree( const Object::DataMap& dataMap )
 
 	for( auto it = dataMap.begin(); it != dataMap.end(); ++it )
 	{
-		if( it.value().type() == QVariant::Map )
+		if (it.value().userType() == QMetaType::QVariantMap)
 		{
 			jsonData[it.key()] = saveJsonTree( it.value().toMap() );
 		}
-		else if( static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonArray )
+		else if (it.value().userType() == QMetaType::QJsonArray)
 		{
 			QJsonObject jsonObj;
 			jsonObj[QStringLiteral("JsonStoreArray")] = it.value().toJsonArray();
 			jsonData[it.key()] = jsonObj;
 		}
-		else if( static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonObject )
+		else if (it.value().userType() == QMetaType::QJsonObject )
 		{
 			QJsonObject jsonObj;
 			jsonObj[QStringLiteral("JsonStoreObject")] = it.value().toJsonObject();
 			jsonData[it.key()] = jsonObj;
 		}
-		else if( QMetaType( it.value().userType() ).flags().testFlag( QMetaType::IsEnumeration ) )
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+		else if (it.value().metaType().flags().testFlag(QMetaType::IsEnumeration) )
+#else
+		else if (QMetaType(it.value().userType()).flags().testFlag(QMetaType::IsEnumeration) )
+#endif
 		{
 			jsonData[it.key()] = QJsonValue( it.value().toInt() );
 		}

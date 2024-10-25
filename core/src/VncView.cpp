@@ -370,7 +370,11 @@ void VncView::hoverEventHandler( QHoverEvent* event )
 {
 	if( event && m_viewOnly == false )
 	{
-		const auto pos = mapToFramebuffer( event->pos() );
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+		const auto pos = mapToFramebuffer(event->position().toPoint());
+#else
+		const auto pos = mapToFramebuffer(event->pos());
+#endif
 		m_connection->mouseEvent( pos.x(), pos.y(), m_buttonMask );
 	}
 }

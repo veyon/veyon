@@ -466,7 +466,7 @@ void DesktopServicesFeaturePlugin::updatePredefinedApplicationFeatures()
 	{
 		m_predefinedAppsFeatures.reserve( m_predefinedApps.size()+1 );
 
-		for( const auto& app : qAsConst(m_predefinedApps) )
+		for( const auto& app : std::as_const(m_predefinedApps) )
 		{
 			const auto appObject = DesktopServiceObject( app.toObject() );
 			m_predefinedAppsFeatures.append( Feature( m_startAppFeature.name(), Feature::Flag::Action | Feature::Flag::Master,
@@ -495,7 +495,7 @@ void DesktopServicesFeaturePlugin::updatePredefinedWebsiteFeatures()
 	{
 		m_predefinedWebsitesFeatures.reserve( m_predefinedWebsites.size()+1 );
 
-		for( const auto& website : qAsConst(m_predefinedWebsites) )
+		for( const auto& website : std::as_const(m_predefinedWebsites) )
 		{
 			const auto websiteObject = DesktopServiceObject( website.toObject() );
 			m_predefinedWebsitesFeatures.append( Feature( m_openWebsiteFeature.name(), Feature::Flag::Action | Feature::Flag::Master,

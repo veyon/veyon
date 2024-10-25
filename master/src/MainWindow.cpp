@@ -496,35 +496,26 @@ void MainWindow::addSubFeaturesToToolButton( QToolButton* button, const Feature&
 
 	for( const auto& subFeature : subFeatures )
 	{
-#if QT_VERSION < 0x050600
-#warning Building legacy compat code for unsupported version of Qt
-		auto action = menu->addAction( QIcon( subFeature.iconUrl() ), subFeature.displayName() );
-		action->setShortcut( subFeature.shortcut() );
-		connect( action, &QAction::triggered, this,
-			[=]() {
-				m_master.runFeature( subFeature );
-				if( parentFeatureIsMode )
+		auto action = menu->addAction(QIcon(subFeature.iconUrl()), subFeature.displayName(),
+							   #if QT_VERSION >= QT_VERSION_CHECK(6, 3, 0)
+									   subFeature.shortcut(),
+							   #endif
+									   this, [=]()
+		{
+			m_master.runFeature( subFeature );
+			if( parentFeatureIsMode )
+			{
+				if( subFeature.testFlag( Feature::Flag::Option ) == false )
 				{
 					button->setChecked( true );
-					reloadSubFeatures();
 				}
+				reloadSubFeatures();
 			}
-		);
-#else
-		auto action = menu->addAction( QIcon( subFeature.iconUrl() ), subFeature.displayName(), this,
-			[=]() {
-				m_master.runFeature( subFeature );
-				if( parentFeatureIsMode )
-				{
-					if( subFeature.testFlag( Feature::Flag::Option ) == false )
-					{
-						button->setChecked( true );
-					}
-					reloadSubFeatures();
-				}
-			},
-			subFeature.shortcut() );
+		}
+#if QT_VERSION < QT_VERSION_CHECK(6, 3, 0)
+		,subFeature.shortcut()
 #endif
+		);
 		action->setToolTip( subFeature.description() );
 		action->setObjectName( subFeature.uid().toString() );
 

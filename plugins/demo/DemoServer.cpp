@@ -301,7 +301,7 @@ qint64 DemoServer::framebufferUpdateMessageQueueSize() const
 {
 	qint64 size = 0;
 
-	for( const auto& message : qAsConst( m_framebufferUpdateMessages ) )
+	for( const auto& message : std::as_const( m_framebufferUpdateMessages ) )
 	{
 		size += message.size();
 	}

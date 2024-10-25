@@ -183,7 +183,7 @@ AccessControlRule::Action AccessControlProvider::processAccessControlRules( cons
 {
 	vDebug() << "processing rules for" << accessingUser << accessingComputer << localUser << localComputer << connectedUsers;
 
-	for( const auto& rule : qAsConst( m_accessControlRules ) )
+	for( const auto& rule : std::as_const( m_accessControlRules ) )
 	{
 		// rule disabled?
 		if( rule.action() == AccessControlRule::Action::None )
@@ -216,7 +216,7 @@ bool AccessControlProvider::isAccessToLocalComputerDenied() const
 		return false;
 	}
 
-	for( const auto& rule : qAsConst( m_accessControlRules ) )
+	for( const auto& rule : std::as_const( m_accessControlRules ) )
 	{
 		if( matchConditions( rule, {}, {},
 							 VeyonCore::platform().userFunctions().currentUser(), HostAddress::localFQDN(), {} ) )

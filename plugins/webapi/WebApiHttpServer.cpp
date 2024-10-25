@@ -29,6 +29,9 @@
 #include <QJsonDocument>
 #include <QSslCertificate>
 #include <QSslKey>
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+#include <QSslServer>
+#endif
 
 #include "Filesystem.h"
 #include "HostAddress.h"
@@ -52,6 +55,13 @@ static inline QByteArray toJson(const QList<QPair<QByteArray, QByteArray>>& head
 		data.append(QVariantList({it->first, it->second}));
 	}
 	return toJson(data);
+}
+#endif
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+static inline QByteArray toJson(const QHttpHeaders& headers)
+{
+	return toJson(headers.toListOfPairs());
 }
 #endif
 
@@ -256,7 +266,11 @@ bool WebApiHttpServer::addRoute( const QString& path,
 	QHttpServerFutureResponse
 #endif
 		{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+			const auto headers = request.headers().toListOfPairs();
+#else
 			const auto headers = request.headers();
+#endif
 			const auto data = dataFromRequest<M>( request );
 			const auto controllerRequest = WebApiController::Request{path, headers, data};
 
@@ -290,8 +304,19 @@ bool WebApiHttpServer::start()
 	{
 		return false;
 	}
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+	else
+	{
+		m_tcpServer = new QTcpServer(m_server);
+	}
+#endif
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+	if (m_tcpServer->listen(QHostAddress::Any, m_configuration.httpServerPort()) == false ||
+		m_server->bind(m_tcpServer) == false)
+#else
 	if( m_server->listen( QHostAddress::Any, m_configuration.httpServerPort() ) != m_configuration.httpServerPort() )
+#endif
 	{
 		vCritical() << "can't listen at port" << m_configuration.httpServerPort();
 		return false;
@@ -313,16 +338,16 @@ bool WebApiHttpServer::start()
 	if (m_debug)
 	{
 		success &= addRoute<Method::Get>(QStringLiteral("debug/sleep/<arg>"), &WebApiController::sleep);
-		success &= m_server->route(QStringLiteral("/api/v1/debug/info"), [this]() { return getDebugInformation(); });
+		success &= bool(m_server->route(QStringLiteral("/api/v1/debug/info"), [this]() { return getDebugInformation(); }));
 	}
 
-	success &= m_server->route( QStringLiteral(".*"), [] {
+	success &= bool(m_server->route(QStringLiteral(".*"), [] {
 		return QHttpServerResponse{
 			QByteArrayLiteral("text/plain"),
 			QStringLiteral("Invalid command or non-matching HTTP method").toUtf8(),
 			QHttpServerResponse::StatusCode::NotFound
 		};
-	} );
+	}));
 
 	vInfo() << "listening at port" << m_configuration.httpServerPort();
 
@@ -391,7 +416,18 @@ bool WebApiHttpServer::setupTls()
 		return false;
 	}
 
-	m_server->sslSetup( certificate, privateKey, QSsl::TlsV1_3OrLater );
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+	auto sslConfig = QSslConfiguration::defaultConfiguration();
+	sslConfig.setLocalCertificate(certificate);
+	sslConfig.setPrivateKey(QSslKey(&privateKeyFile, QSsl::Rsa));
+
+	auto sslServer = new QSslServer(this);
+	sslServer->setSslConfiguration(sslConfig);
+
+	m_tcpServer = sslServer;
+#else
+	m_server->sslSetup(certificate, privateKey, QSsl::TlsV1_3OrLater);
+#endif
 
 	return true;
 }

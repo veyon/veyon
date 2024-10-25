@@ -380,12 +380,12 @@ void LdapBrowseModel::populateNode( const QModelIndex& parent )
 		{
 			beginInsertRows( parent, 0, itemCount - 1 );
 
-			for( const auto& dn : qAsConst(dns) )
+			for( const auto& dn : std::as_const(dns) )
 			{
 				node->appendChild( new Node( Node::DN, dn, node ) );
 			}
 
-			for( const auto& attribute : qAsConst(attributes) )
+			for( const auto& attribute : std::as_const(attributes) )
 			{
 				node->appendChild( new Node( Node::Attribute, attribute, node ) );
 			}

@@ -49,7 +49,7 @@ PluginManager::~PluginManager()
 {
 	vDebug();
 
-	for( auto pluginLoader : qAsConst(m_pluginLoaders) )
+	for( auto pluginLoader : std::as_const(m_pluginLoaders) )
 	{
 		pluginLoader->unload();
 	}
@@ -78,7 +78,7 @@ void PluginManager::upgradePlugins()
 {
 	auto versions = VeyonCore::config().pluginVersions();
 
-	for( auto pluginInterface : qAsConst( m_pluginInterfaces ) )
+	for( auto pluginInterface : std::as_const( m_pluginInterfaces ) )
 	{
 		const auto pluginUid = pluginInterface->uid().toString();
 		auto previousPluginVersion = QVersionNumber::fromString( versions.value( pluginUid ).toString() );
@@ -121,7 +121,7 @@ PluginUidList PluginManager::pluginUids() const
 
 	pluginUidList.reserve( m_pluginInterfaces.size() );
 
-	for( auto pluginInterface : qAsConst( m_pluginInterfaces ) )
+	for( auto pluginInterface : std::as_const( m_pluginInterfaces ) )
 	{
 		pluginUidList += pluginInterface->uid();
 	}
@@ -133,7 +133,7 @@ PluginUidList PluginManager::pluginUids() const
 
 PluginInterface* PluginManager::pluginInterface( Plugin::Uid pluginUid )
 {
-	for( auto pluginInterface : qAsConst( m_pluginInterfaces ) )
+	for( auto pluginInterface : std::as_const( m_pluginInterfaces ) )
 	{
 		if( pluginInterface->uid() == pluginUid )
 		{
@@ -193,7 +193,7 @@ void PluginManager::initPluginSearchPath()
 void PluginManager::loadPlugins( const QString& nameFilter )
 {
 	QFileInfoList plugins;
-	for (const auto& pluginSearchPath : qAsConst(m_pluginSearchPaths))
+	for (const auto& pluginSearchPath : std::as_const(m_pluginSearchPaths))
 	{
 		plugins.append(QDir(pluginSearchPath).entryInfoList({nameFilter}));
 	}

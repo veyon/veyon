@@ -277,7 +277,7 @@ void LinuxServiceCore::stopServer( const QString& sessionPath )
 
 	vInfo() << "stopping server for removed session" << sessionPath;
 
-	auto serverProcess = qAsConst(m_serverProcesses)[sessionPath];
+	auto serverProcess = std::as_const(m_serverProcesses)[sessionPath];
 	serverProcess->disconnect(this);
 	serverProcess->stop();
 	serverProcess->deleteLater();

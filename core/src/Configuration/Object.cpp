@@ -99,7 +99,7 @@ static Object::DataMap operator+( Object::DataMap dst, Object::DataMap src )
 {
 	for( auto it = src.begin(), end = src.end(); it != end; ++it )
 	{
-		if( it.value().type() == QVariant::Map && dst.contains( it.key() ) )
+		if (it.value().userType() == QMetaType::QVariantMap && dst.contains(it.key()))
 		{
 			dst[it.key()] = dst[it.key()].toMap() + it.value().toMap();
 		}
@@ -138,8 +138,8 @@ bool Object::hasValue( const QString& key, const QString& parentKey ) const
 
 	for( const auto& level : subLevels )
 	{
-		if( currentMap.contains( level ) &&
-				currentMap[level].type() == QVariant::Map )
+		if (currentMap.contains(level) &&
+			currentMap[level].userType() == QMetaType::QVariantMap)
 		{
 			currentMap = currentMap[level].toMap();
 		}
@@ -175,8 +175,8 @@ QVariant Object::value( const QString& key, const QString& parentKey, const QVar
 	DataMap currentMap = m_data;
 	for( const auto& level : subLevels )
 	{
-		if( currentMap.contains( level ) &&
-				currentMap[level].type() == QVariant::Map )
+		if (currentMap.contains(level) &&
+			currentMap[level].userType() == QMetaType::QVariantMap)
 		{
 			currentMap = currentMap[level].toMap();
 		}
@@ -205,7 +205,7 @@ static Object::DataMap setValueRecursive( Object::DataMap data,
 	if( subLevels.isEmpty() )
 	{
 		// search for key in toplevel data map
-		if( !data.contains( key ) || data[key].type() != QVariant::Map )
+		if( !data.contains( key ) || data[key].userType() != QMetaType::QVariantMap)
 		{
 			data[key] = value;
 		}
@@ -220,7 +220,7 @@ static Object::DataMap setValueRecursive( Object::DataMap data,
 	const QString level = subLevels.takeFirst();
 	if( data.contains( level ) )
 	{
-		if( data[level].type() != QVariant::Map )
+		if( data[level].userType() != QMetaType::QVariantMap)
 		{
 			vWarning() << "parent key points doesn't point to a data map!";
 			return data;
@@ -272,7 +272,7 @@ static Object::DataMap removeValueRecursive( Object::DataMap data,
 	}
 
 	const QString level = subLevels.takeFirst();
-	if( data.contains( level ) && data[level].type() == QVariant::Map )
+	if (data.contains(level) && data[level].userType() != QMetaType::QVariantMap)
 	{
 		data[level] = removeValueRecursive( data[level].toMap(), subLevels, key );
 	}
@@ -304,7 +304,7 @@ static void addSubObjectRecursive( const Object::DataMap& dataMap,
 {
 	for( auto it = dataMap.begin(), end = dataMap.end(); it != end; ++it )
 	{
-		if( it.value().type() == QVariant::Map )
+		if (it.value().userType() != QMetaType::QVariantMap)
 		{
 			auto newParentKey = it.key();
 			if( parentKey.isEmpty() == false )

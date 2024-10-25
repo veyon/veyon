@@ -127,21 +127,25 @@ static void saveSettingsTree( const Object::DataMap &dataMap, QSettings *s )
 {
 	for( auto it = dataMap.begin(); it != dataMap.end(); ++it )
 	{
-		if( it.value().type() == QVariant::Map )
+		if (it.value().userType() == QMetaType::QVariantMap)
 		{
 			s->beginGroup( it.key() );
 			saveSettingsTree( it.value().toMap(), s );
 			s->endGroup();
 		}
-		else if( static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonArray )
+		else if (it.value().userType() == QMetaType::QJsonArray)
 		{
 			s->setValue( it.key(), serializeJsonValue( it.value().toJsonArray() ) );
 		}
-		else if( static_cast<QMetaType::Type>( it.value().type() ) == QMetaType::QJsonObject )
+		else if (it.value().userType() == QMetaType::QJsonObject)
 		{
 			s->setValue( it.key(), serializeJsonValue( it.value().toJsonObject() ) );
 		}
-		else if( QMetaType( it.value().userType() ).flags().testFlag( QMetaType::IsEnumeration ) )
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+		else if (it.value().metaType().flags().testFlag(QMetaType::IsEnumeration))
+#else
+		else if( QMetaType(it.value().userType()).flags().testFlag(QMetaType::IsEnumeration))
+#endif
 		{
 			s->setValue( it.key(), it.value().toInt() );
 		}

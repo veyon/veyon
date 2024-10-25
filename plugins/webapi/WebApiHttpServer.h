@@ -30,6 +30,7 @@
 
 class QHttpServer;
 class QHttpServerRequest;
+class QTcpServer;
 class WebApiConfiguration;
 
 class WebApiHttpServer : public QObject
@@ -67,6 +68,7 @@ private:
 
 	WebApiController* m_controller{nullptr};
 	QHttpServer* m_server{nullptr};
+	QTcpServer* m_tcpServer = nullptr;
 	bool m_debug = qEnvironmentVariableIsSet("VEYON_WEBAPI_DEBUG");
 
 };

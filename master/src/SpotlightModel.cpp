@@ -46,7 +46,7 @@ void SpotlightModel::setUpdateInRealtime( bool enabled )
 {
 	m_updateInRealtime = enabled;
 
-	for( const auto& controlInterface : qAsConst(m_controlInterfaces) )
+	for( const auto& controlInterface : std::as_const(m_controlInterfaces) )
 	{
 		controlInterface->setUpdateMode( m_updateInRealtime
 											 ? ComputerControlInterface::UpdateMode::Live

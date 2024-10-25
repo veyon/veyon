@@ -121,7 +121,7 @@ FeatureList VeyonMaster::allFeatures() const
 {
 	FeatureList featureList;
 
-	for( const auto& feature : qAsConst( features() ) )
+	for( const auto& feature : std::as_const( features() ) )
 	{
 		featureList.append(feature); // clazy:exclude=reserve-candidates
 		const auto modeSubFeatures = subFeatures( feature.uid() );
@@ -296,7 +296,7 @@ FeatureList VeyonMaster::featureList() const
 
 	const auto addFeatures = [&]( const std::function<bool(const Feature&)>& extraFilter )
 	{
-		for(const auto& pluginUid : qAsConst(pluginUids))
+		for(const auto& pluginUid : std::as_const(pluginUids))
 		{
 			for( const auto& feature : VeyonCore::featureManager().features( pluginUid ) )
 			{

@@ -30,7 +30,7 @@ PlatformPluginManager::PlatformPluginManager( PluginManager& pluginManager, QObj
 	QObject( parent ),
 	m_platformPlugin( nullptr )
 {
-	for( auto pluginObject : qAsConst( pluginManager.pluginObjects() ) )
+	for( auto pluginObject : std::as_const( pluginManager.pluginObjects() ) )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 		auto platformPluginInterface = qobject_cast<PlatformPluginInterface *>( pluginObject );

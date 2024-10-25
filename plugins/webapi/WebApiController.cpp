@@ -656,7 +656,7 @@ WebApiController::Response WebApiController::checkConnection( const Request& req
 			return Error::InvalidConnection;
 		}
 
-		const auto connection = qAsConst(m_connections)[connectionUuid];
+		const auto connection = std::as_const(m_connections)[connectionUuid];
 		m_connectionsLock.unlock();
 
 		connection->lock();

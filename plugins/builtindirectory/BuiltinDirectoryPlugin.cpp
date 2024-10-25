@@ -604,7 +604,7 @@ bool BuiltinDirectoryPlugin::importFile( QFile& inputFile,
 			parentLocationUid = parentLocation.uid();
 		}
 
-		for( const NetworkObject& networkObject : qAsConst(it.value()) )
+		for( const NetworkObject& networkObject : std::as_const(it.value()) )
 		{
 			objectManager.update( NetworkObject( networkObject.type(),
 												 networkObject.name(),
@@ -705,7 +705,7 @@ NetworkObject BuiltinDirectoryPlugin::toNetworkObject( const QString& line, cons
 	}
 
 	QString rxString = regExWithPlaceholders;
-	for( const auto& var : qAsConst(placeholders) )
+	for( const auto& var : std::as_const(placeholders) )
 	{
 		rxString.replace( QStringLiteral("%1:").arg( var ), QString() );
 	}

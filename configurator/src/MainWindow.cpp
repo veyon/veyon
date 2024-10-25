@@ -347,7 +347,7 @@ bool MainWindow::applyConfiguration()
 
 void MainWindow::loadConfigurationPagePlugins()
 {
-	for( auto pluginObject : qAsConst( VeyonCore::pluginManager().pluginObjects() ) )
+	for( auto pluginObject : std::as_const( VeyonCore::pluginManager().pluginObjects() ) )
 	{
 		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
 		auto configurationPagePluginInterface = qobject_cast<ConfigurationPagePluginInterface *>( pluginObject );
