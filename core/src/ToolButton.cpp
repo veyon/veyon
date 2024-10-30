@@ -49,6 +49,13 @@ ToolButton::ToolButton( const QIcon& icon,
 	setText(label);
 	setAutoRaise(true);
 	setToolButtonStyle(Qt::ToolButtonStyle::ToolButtonTextUnderIcon);
+
+	if (m_altLabel.length() > 0)
+	{
+		connect (this, &ToolButton::toggled, this, [this](bool checked) {
+			setText(checked ? m_altLabel : m_label);
+		});
+	}
 }
 
 
