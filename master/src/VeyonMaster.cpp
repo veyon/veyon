@@ -357,7 +357,9 @@ FeatureList VeyonMaster::featureList() const
 	const auto disabledFeatures = VeyonCore::config().disabledFeatures();
 	auto pluginUids = VeyonCore::pluginManager().pluginUids();
 
-	std::sort( pluginUids.begin(), pluginUids.end() );
+	std::sort(pluginUids.begin(), pluginUids.end(), [](const Plugin::Uid a, const Plugin::Uid b) {
+		return a.toString() < b.toString();
+	});
 
 	const auto addFeatures = [&]( const std::function<bool(const Feature&)>& extraFilter )
 	{
