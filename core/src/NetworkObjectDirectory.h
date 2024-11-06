@@ -80,21 +80,26 @@ protected:
 	void removeObjects( const NetworkObject& parent, const NetworkObjectFilter& removeObjectFilter );
 	void replaceObjects( const NetworkObjectList& objects, const NetworkObject& parent );
 	void setObjectPopulated( const NetworkObject& networkObject );
-	void propagateChildObjectChange(NetworkObject::ModelId objectId);
+	void propagateChildObjectChange(NetworkObject::ModelId objectId, int depth = 0);
+	void propagateChildObjectChanges();
 
 private:
+	static constexpr auto ObjectChangePropagationTimeout = 100;
+
 	const QString m_name;
-	QTimer* m_updateTimer{nullptr};
+	QTimer* m_updateTimer = nullptr;
+	QTimer* m_propagateChangedObjectsTimer = nullptr;
 	QHash<NetworkObject::ModelId, NetworkObjectList> m_objects{};
 	NetworkObject m_invalidObject{this, NetworkObject::Type::None};
 	NetworkObject m_rootObject{this, NetworkObject::Type::Root};
 	NetworkObjectList m_defaultObjectList{};
+	QList<NetworkObject::ModelId> m_changedObjectIds;
 
 Q_SIGNALS:
 	void objectsAboutToBeInserted(NetworkObject::ModelId parentId, int index, int count);
 	void objectsInserted();
 	void objectsAboutToBeRemoved(NetworkObject::ModelId parentId, int index, int count);
 	void objectsRemoved();
-	void objectChanged(NetworkObject::ModelId parentId, int index );
+	void objectChanged(NetworkObject::ModelId parentId, int index);
 
 };
