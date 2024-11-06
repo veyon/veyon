@@ -24,20 +24,24 @@
 
 #include <QTimer>
 
-#include "VeyonConfiguration.h"
-#include "VeyonCore.h"
 #include "NetworkObjectDirectory.h"
 
 
 NetworkObjectDirectory::NetworkObjectDirectory( QObject* parent ) :
 	QObject( parent ),
 	m_updateTimer( new QTimer( this ) ),
+	m_propagateChangedObjectsTimer(new QTimer(this)),
 	m_objects(),
 	m_invalidObject( NetworkObject::Type::None ),
 	m_rootObject( NetworkObject::Type::Root ),
 	m_defaultObjectList()
 {
 	connect( m_updateTimer, &QTimer::timeout, this, &NetworkObjectDirectory::update );
+
+	connect(m_propagateChangedObjectsTimer, &QTimer::timeout,
+			this, &NetworkObjectDirectory::propagateChildObjectChanges);
+	m_propagateChangedObjectsTimer->setInterval(ObjectChangePropagationTimeout);
+	m_propagateChangedObjectsTimer->setSingleShot(true);
 
 	// insert root item
 	m_objects[rootId()] = {};
@@ -374,14 +378,39 @@ void NetworkObjectDirectory::setObjectPopulated( const NetworkObject& networkObj
 
 
 
-void NetworkObjectDirectory::propagateChildObjectChange(NetworkObject::ModelId objectId)
+void NetworkObjectDirectory::propagateChildObjectChange(NetworkObject::ModelId objectId, int depth)
 {
 	if (objectId != 0)
 	{
-		const auto parentObjectId = parentId(objectId);
-		const auto childIndex = index(parentObjectId, objectId);
-		Q_EMIT objectChanged(parentObjectId, childIndex);
+		if (m_changedObjectIds.contains(objectId))
+		{
+			m_changedObjectIds.removeAll(objectId);
+		}
 
-		propagateChildObjectChange(parentObjectId);
+		m_changedObjectIds.append(objectId);
+
+		propagateChildObjectChange(parentId(objectId), depth+1);
+
+		if (depth == 0)
+		{
+			m_propagateChangedObjectsTimer->stop();
+			m_propagateChangedObjectsTimer->start();
+		}
 	}
+}
+
+
+
+void NetworkObjectDirectory::propagateChildObjectChanges()
+{
+	for (auto it = m_changedObjectIds.constBegin(), end = m_changedObjectIds.constEnd();
+		 it != end; ++it)
+	{
+		const auto parentObjectId = parentId(*it);
+		const auto childIndex = index(parentObjectId, *it);
+
+		Q_EMIT objectChanged(parentObjectId, childIndex);
+	}
+
+	m_changedObjectIds.clear();
 }
