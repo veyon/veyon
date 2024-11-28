@@ -13,8 +13,8 @@ build-linux:
         - centos.7.9
         - debian.11
         - debian.12
-        - fedora.39
         - fedora.40
+        - fedora.41
         - opensuse.15.5
         - opensuse.15.6
         - opensuse.tumbleweed
