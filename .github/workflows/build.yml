@@ -6,7 +6,7 @@ jobs:
       matrix:
         dist:
           - debian.12
-          - fedora.40
+          - fedora.41
           - opensuse.tumbleweed
           - ubuntu.24.04
     runs-on: ubuntu-latest

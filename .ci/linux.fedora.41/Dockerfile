@@ -1,8 +1,8 @@
-FROM fedora:39
+FROM fedora:41
 MAINTAINER Tobias Junghans <tobydox@veyon.io>
 
 RUN \
-	dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-39.noarch.rpm && \
+	dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-41.noarch.rpm && \
 	dnf install -y --setopt=install_weak_deps=False \
 		git gcc-c++ ninja-build cmake rpm-build fakeroot fakeroot-libs \
 		qt6-qtbase-devel qt6-qtbase qt6-qt5compat-devel qt6-linguist qt6-qttools-devel qt6-qtdeclarative-devel qt6-qthttpserver-devel \
