@@ -32,7 +32,9 @@
 #include "X11VncConfigurationWidget.h"
 
 extern "C" int x11vnc_main( int argc, char * * argv );
+#ifndef VEYON_X11VNC_EXTERNAL
 extern "C" int hasWorkingXShm();
+#endif
 
 
 BuiltinX11VncServer::BuiltinX11VncServer( QObject* parent ) :
