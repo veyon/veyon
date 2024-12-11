@@ -598,8 +598,8 @@ void WebApiController::updateStatistics()
 	m_vncFramebufferUpdatesPerSecond = (m_vncFramebufferUpdatesCounter - m_vncFramebufferUpdatesLast) / StatisticsUpdateIntervalSeconds;
 
 	m_apiTotalRequestsLast = m_apiTotalRequestsCounter;
-	m_framebufferRequestsPerSecond = m_framebufferRequestsLast;
-	m_vncFramebufferUpdatesPerSecond = m_vncFramebufferUpdatesLast;
+	m_framebufferRequestsLast = m_framebufferRequestsCounter;
+	m_vncFramebufferUpdatesLast = m_vncFramebufferUpdatesCounter;
 }
 
 
