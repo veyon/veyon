@@ -36,6 +36,11 @@ KExtraColumnsProxyModel::KExtraColumnsProxyModel(QObject *parent)
     : QIdentityProxyModel(parent)
     , d_ptr(new KExtraColumnsProxyModelPrivate(this))
 {
+    // The handling of persistent model indexes assumes mapToSource can be called for any index
+    // This breaks for the extra column, so we'll have to do it ourselves
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+    setHandleSourceLayoutChanges(false);
+#endif
 }
 
 KExtraColumnsProxyModel::~KExtraColumnsProxyModel()
@@ -88,6 +93,7 @@ void KExtraColumnsProxyModel::setSourceModel(QAbstractItemModel *model)
     if (model) {
         // The handling of persistent model indexes assumes mapToSource can be called for any index
         // This breaks for the extra column, so we'll have to do it ourselves
+#if QT_VERSION < QT_VERSION_CHECK(6, 8, 0)
         disconnect(model,
                    SIGNAL(layoutAboutToBeChanged(QList<QPersistentModelIndex>, QAbstractItemModel::LayoutChangeHint)),
                    this,
@@ -96,6 +102,7 @@ void KExtraColumnsProxyModel::setSourceModel(QAbstractItemModel *model)
                    SIGNAL(layoutChanged(QList<QPersistentModelIndex>, QAbstractItemModel::LayoutChangeHint)),
                    this,
                    SLOT(_q_sourceLayoutChanged(QList<QPersistentModelIndex>, QAbstractItemModel::LayoutChangeHint)));
+#endif
         connect(model,
                 SIGNAL(layoutAboutToBeChanged(QList<QPersistentModelIndex>, QAbstractItemModel::LayoutChangeHint)),
                 this,
