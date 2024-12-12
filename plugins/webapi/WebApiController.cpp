@@ -35,33 +35,6 @@
 #include "WebApiController.h"
 
 
-static void runInMainThread( const std::function<void()>& functor )
-{
-	if( QThread::currentThread() != VeyonCore::instance()->thread() )
-	{
-		QMetaObject::invokeMethod( VeyonCore::instance(), functor, Qt::BlockingQueuedConnection );
-	}
-	else
-	{
-		functor();
-	}
-}
-
-
-template<class T>
-static T runInMainThread( const std::function<T()>& functor )
-{
-	if( QThread::currentThread() != VeyonCore::instance()->thread() )
-	{
-		T retval{};
-		QMetaObject::invokeMethod( VeyonCore::instance(), functor, Qt::BlockingQueuedConnection, &retval );
-		return retval;
-	}
-
-	return functor();
-}
-
-
 static QString uuidToString( QUuid uuid )
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
@@ -79,6 +52,13 @@ WebApiController::WebApiController( const WebApiConfiguration& configuration, QO
 {
 	connect(&m_updateStatisticsTimer, &QTimer::timeout, this, &WebApiController::updateStatistics);
 	m_updateStatisticsTimer.start(StatisticsUpdateIntervalSeconds * MillisecondsPerSecond);
+
+	m_workerThread = new QThread(this);
+	m_workerThread->setObjectName(QStringLiteral("WebApiController Worker"));
+	m_workerThread->start();
+
+	m_workerObject = new QObject;
+	m_workerObject->moveToThread(m_workerThread);
 }
 
 
@@ -184,15 +164,14 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 	auto proxy = new WebApiAuthenticationProxy( m_configuration );
 
 	// create connection (including timer resources) in main thread
-	auto connection = runInMainThread<WebApiConnectionPointer>( [host, proxy]() {
+	auto connection = runInWorkerThread<WebApiConnectionPointer>([this, host, proxy]() {
 		auto connection = new WebApiConnection{host.isEmpty() ? QStringLiteral("localhost") : host};
-		connection->controlInterface()->start( {}, ComputerControlInterface::UpdateMode::Basic, proxy );
+		connection->controlInterface()->start({}, ComputerControlInterface::UpdateMode::Basic, proxy);
 
-		// make shared pointer destroy the connection in main thread again
-		return WebApiConnectionPointer{ connection,
-										[]( WebApiConnection* c ) { runInMainThread( [c] { delete c; } ); }
-		};
-	} );
+		// make shared pointer destroy the connection in management thread again
+		return WebApiConnectionPointer{connection,
+						  [this](WebApiConnection* c) { runInWorkerThreadNonBlocking([c] { delete c; }); } };
+	});
 
 	const auto authTimeout = m_configuration.connectionAuthenticationTimeout() * MillisecondsPerSecond;
 	if( proxy->waitForAuthenticationMethods( authTimeout ) == false )
@@ -263,10 +242,10 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 		const auto connectionIdleTimeout = m_configuration.connectionIdleTimeout() * MillisecondsPerSecond;
 		const auto connectionLifetime = m_configuration.connectionLifetime() * MillisecondsPerHour;
 
-		runInMainThread( [=] {
-			idleTimer->start( connectionIdleTimeout );
-			lifetimeTimer->start( connectionLifetime );
-		} );
+		runInWorkerThread([=] {
+			idleTimer->start(connectionIdleTimeout);
+			lifetimeTimer->start(connectionLifetime);
+		});
 
 		return QVariantMap{
 			{ QString::fromUtf8(connectionUidHeaderFieldName().toLower()), uuidToString(uuid) },
@@ -572,14 +551,43 @@ QString WebApiController::errorString( WebApiController::Error error )
 
 
 
+void WebApiController::runInMainThread(const std::function<void()>& functor)
+{
+	QMetaObject::invokeMethod(VeyonCore::instance(), functor, Qt::BlockingQueuedConnection);
+}
+
+
+
+void WebApiController::runInWorkerThread(const std::function<void()>& functor) const
+{
+	QMetaObject::invokeMethod(m_workerObject, functor, Qt::BlockingQueuedConnection);
+}
+
+
+
+void WebApiController::runInWorkerThreadNonBlocking(const std::function<void()>& functor) const
+{
+	QMetaObject::invokeMethod(m_workerObject, functor, Qt::QueuedConnection);
+}
+
+
+
+template<class T>
+T WebApiController::runInWorkerThread(const std::function<T()>& functor) const
+{
+	T retval{};
+	QMetaObject::invokeMethod(m_workerObject, functor, Qt::BlockingQueuedConnection, &retval );
+	return retval;
+}
+
+
+
 void WebApiController::removeConnection( QUuid connectionUuid )
 {
-	// destroy connection in main thread
-	runInMainThread( [=] {
-		QWriteLocker connectionsWriteLocker{ &m_connectionsLock };
+	QWriteLocker connectionsWriteLocker{ &m_connectionsLock };
 
-		m_connections.remove( connectionUuid );
-	} );
+	// deleter functor automatically performs actual deletion in worker thread
+	m_connections.remove(connectionUuid);
 }
 
 
@@ -648,7 +656,7 @@ WebApiController::Response WebApiController::checkConnection( const Request& req
 {
 	const QUuid connectionUuid{lookupHeaderField(request, connectionUidHeaderFieldName())};
 
-	return runInMainThread<WebApiController::Response>( [=]() -> WebApiController::Response {
+	return runInWorkerThread<WebApiController::Response>([=]() -> WebApiController::Response {
 		m_connectionsLock.lockForRead();
 		if( connectionUuid.isNull() || m_connections.contains( connectionUuid ) == false )
 		{

@@ -25,6 +25,7 @@
 #pragma once
 
 #include <QReadWriteLock>
+#include <QThread>
 
 #include "EnumHelper.h"
 #include "LockingPointer.h"
@@ -134,6 +135,14 @@ public:
 	static QString errorString( Error error );
 
 private:
+	static void runInMainThread(const std::function<void()>& functor);
+
+	void runInWorkerThread(const std::function<void()>& functor) const;
+	void runInWorkerThreadNonBlocking(const std::function<void()>& functor) const;
+
+	template<class T>
+	T runInWorkerThread(const std::function<T()>& functor) const;
+
 	void removeConnection( QUuid connectionUuid );
 
 	void incrementVncFramebufferUpdatesCounter();
@@ -168,6 +177,9 @@ private:
 	const WebApiConfiguration& m_configuration;
 	QMap<QUuid, WebApiConnectionPointer> m_connections{};
 	QReadWriteLock m_connectionsLock;
+
+	QThread* m_workerThread = nullptr;
+	QObject* m_workerObject = nullptr;
 
 	QTimer m_updateStatisticsTimer{this};
 	QAtomicInt m_apiTotalRequestsCounter = 0;
