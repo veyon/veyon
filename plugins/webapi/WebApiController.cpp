@@ -236,8 +236,14 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 		const auto idleTimer = connection->idleTimer();
 		const auto lifetimeTimer = connection->lifetimeTimer();
 
-		connect( idleTimer, &QTimer::timeout, this, [this, uuid]() { removeConnection( uuid ); } );
-		connect( lifetimeTimer, &QTimer::timeout, this, [this, uuid]() { removeConnection( uuid ); } );
+		connect( idleTimer, &QTimer::timeout, this, [this, uuid]() {
+			vInfo() << "idle time exceeded for connection" << uuid;
+			removeConnection(uuid);
+		} );
+		connect( lifetimeTimer, &QTimer::timeout, this, [this, uuid]() {
+			vInfo() << "lifetime exceeded for connection" << uuid;
+			removeConnection(uuid);
+		} );
 
 		const auto connectionIdleTimeout = m_configuration.connectionIdleTimeout() * MillisecondsPerSecond;
 		const auto connectionLifetime = m_configuration.connectionLifetime() * MillisecondsPerHour;
