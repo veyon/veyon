@@ -224,7 +224,7 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 
 	if( result )
 	{
-		LockingConnectionPointer connectionLock{connection};
+		connection->lock();
 
 		m_connectionsLock.lockForWrite();
 		m_connections[uuid] = connection;
@@ -241,6 +241,8 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 
 		const auto connectionIdleTimeout = m_configuration.connectionIdleTimeout() * MillisecondsPerSecond;
 		const auto connectionLifetime = m_configuration.connectionLifetime() * MillisecondsPerHour;
+
+		connection->unlock();
 
 		runInWorkerThread([=] {
 			idleTimer->start(connectionIdleTimeout);
