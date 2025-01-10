@@ -36,18 +36,18 @@ jobs:
         sudo apt-get update && sudo apt-get install --no-install-recommends -y
         cmake
         ninja-build
-        qtbase5-dev qtbase5-private-dev qtbase5-dev-tools qtdeclarative5-dev qtquickcontrols2-5-dev
+        qt6-base-dev qt6-5compat-dev qt6-l10n-tools qt6-tools-dev qt6-declarative-dev qt6-httpserver-dev qt6-websockets-dev \
         xorg-dev
         libfakekey-dev
         libjpeg-dev
         zlib1g-dev
         libssl-dev
         libpam0g-dev
-        libprocps-dev
+        libproc2-dev
         libldap2-dev libsasl2-dev
         libpng-dev
         liblzo2-dev
-        libqca-qt5-2-dev libqca-qt5-2-plugins
+        libqca-qt6-dev libqca-qt6-plugins
 
     - name: Build
       run: |
