@@ -5,6 +5,16 @@ find_package(PkgConfig QUIET)
 pkg_check_modules(procps libproc2)
 if(procps_FOUND)
 	add_definitions(-DHAVE_LIBPROC2)
+	check_cxx_source_compiles("#include <libproc2/pids.h>
+		int main()
+		{
+		pids_stack* stack = nullptr;
+		(void) PIDS_VAL(0, s_int, stack);
+		}
+		" LIBPROC2_PIDS_VAL_NEW_API)
+	if (NOT LIBPROC2_PIDS_VAL_NEW_API)
+		add_definitions(-DLIBPROC2_PIDS_VAL_OLD_API)
+	endif()
 else()
 	pkg_check_modules(procps libprocps)
 	if(procps_FOUND)

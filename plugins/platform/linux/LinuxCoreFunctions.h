@@ -31,6 +31,10 @@
 
 #ifdef HAVE_LIBPROC2
 #include <libproc2/pids.h>
+#ifdef LIBPROC2_PIDS_VAL_OLD_API
+#undef PIDS_VAL
+#define PIDS_VAL(relative_enum, type, stack) stack->head[relative_enum].result.type
+#endif
 #else
 struct proc_t;
 #endif
@@ -86,7 +90,7 @@ public:
 	static void restartDisplayManagers();
 
 #ifdef HAVE_LIBPROC2
-	static void forEachChildProcess(const std::function<bool(const pids_stack*, const pids_info*)>& visitor,
+	static void forEachChildProcess(const std::function<bool(const pids_stack*)>& visitor,
 									int parentPid, const std::vector<pids_item>& items, bool visitParent);
 #else
 	static void forEachChildProcess( const std::function<bool(proc_t *)>& visitor,

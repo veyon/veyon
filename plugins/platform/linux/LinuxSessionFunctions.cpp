@@ -376,11 +376,10 @@ QProcessEnvironment LinuxSessionFunctions::getSessionEnvironment( int sessionLea
 		},
 		sessionLeaderPid, PROC_FILLENV, true );
 #elif defined(HAVE_LIBPROC2)
-	LinuxCoreFunctions::forEachChildProcess([&sessionEnv](const pids_stack* stack, const pids_info* info)
+	LinuxCoreFunctions::forEachChildProcess([&sessionEnv](const pids_stack* stack)
 	{
-		Q_UNUSED(info)
 		static constexpr auto EnvironItemIndex = 2;
-		const auto environ = PIDS_VAL(EnvironItemIndex, strv, stack, info);
+		const auto environ = PIDS_VAL(EnvironItemIndex, strv, stack);
 
 		if (environ != nullptr)
 		{

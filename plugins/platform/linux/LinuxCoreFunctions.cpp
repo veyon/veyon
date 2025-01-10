@@ -486,7 +486,7 @@ void LinuxCoreFunctions::forEachChildProcess( const std::function<bool(proc_t*)>
 	closeproc( proc );
 }
 #elif defined(HAVE_LIBPROC2)
-void LinuxCoreFunctions::forEachChildProcess(const std::function<bool(const pids_stack*, const pids_info*)>& visitor,
+void LinuxCoreFunctions::forEachChildProcess(const std::function<bool(const pids_stack*)>& visitor,
 											 int parentPid, const std::vector<pids_item>& items, bool visitParent)
 {
 	QProcessEnvironment sessionEnv;
@@ -508,18 +508,18 @@ void LinuxCoreFunctions::forEachChildProcess(const std::function<bool(const pids
 
 	while ((stack = procps_pids_get(info, PIDS_FETCH_TASKS_ONLY)))
 	{
-		const auto ppid = PIDS_VAL(PPidItemIndex, s_int, stack, info);
+		const auto ppid = PIDS_VAL(PPidItemIndex, s_int, stack);
 
 		if (ppid == parentPid)
 		{
-			if (visitParent == false || visitor(stack, info))
+			if (visitParent == false || visitor(stack))
 			{
-				ppids.append(PIDS_VAL(PidItemIndex, s_int, stack, info));
+				ppids.append(PIDS_VAL(PidItemIndex, s_int, stack));
 			}
 		}
-		else if (ppids.contains(ppid) && visitor(stack, info))
+		else if (ppids.contains(ppid) && visitor(stack))
 		{
-			ppids.append(PIDS_VAL(PidItemIndex, s_int, stack, info));
+			ppids.append(PIDS_VAL(PidItemIndex, s_int, stack));
 		}
 	}
 

@@ -99,10 +99,9 @@ void LinuxServerProcess::stop()
 				},
 				pid, 0, true );
 #elif defined(HAVE_LIBPROC2)
-			LinuxCoreFunctions::forEachChildProcess([=](const pids_stack* stack, const pids_info* info)
+			LinuxCoreFunctions::forEachChildProcess([=](const pids_stack* stack)
 			{
-				Q_UNUSED(info)
-				const pid_t tid = PIDS_VAL(0, s_int, stack, info);
+				const pid_t tid = PIDS_VAL(0, s_int, stack);
 				if (tid > 0 && ::kill(tid, sig) < 0 && errno != ESRCH)
 				{
 					vCritical() << "kill() failed with" << errno;
