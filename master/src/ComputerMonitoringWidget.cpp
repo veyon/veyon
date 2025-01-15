@@ -28,8 +28,8 @@
 #include <QShowEvent>
 
 #include "ComputerControlListModel.h"
-#include "ComputerMonitoringWidget.h"
 #include "ComputerMonitoringModel.h"
+#include "ComputerMonitoringWidget.h"
 #include "VeyonMaster.h"
 #include "FeatureManager.h"
 #include "VeyonConfiguration.h"

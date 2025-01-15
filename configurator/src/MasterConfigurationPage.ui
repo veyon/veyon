@@ -330,9 +330,69 @@
         </widget>
        </item>
        <item>
+        <widget class="QGroupBox" name="advancedSettingsGroupBox">
+         <property name="title">
+          <string>Advanced</string>
+         </property>
+         <layout class="QFormLayout" name="formLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="computerNameSourceLabel">
+            <property name="text">
+             <string>Computer name source</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="computerNameSource">
+            <item>
+             <property name="text">
+              <string>Default</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Host address</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Session client address</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Session client name</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Session host name</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Session metadata</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Full name of user</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>User login name</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Orientation::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -493,7 +553,7 @@
        <item>
         <spacer name="verticalSpacer_2">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Orientation::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -534,7 +594,7 @@
            <item>
             <spacer name="verticalSpacer_15">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -563,7 +623,7 @@
            <item>
             <spacer name="verticalSpacer_16">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -603,6 +663,7 @@
   <tabstop>computerDisplayRoleContent</tabstop>
   <tabstop>computerMonitoringSortOrder</tabstop>
   <tabstop>computerMonitoringThumbnailSpacing</tabstop>
+  <tabstop>computerNameSource</tabstop>
   <tabstop>accessControlForMasterEnabled</tabstop>
   <tabstop>autoSelectCurrentLocation</tabstop>
   <tabstop>autoAdjustMonitoringIconSize</tabstop>

@@ -41,6 +41,19 @@ public:
 		MaximumUpdateInterval = 3600
 	};
 
+	enum class ComputerNameSource
+	{
+		Default,
+		HostAddress,
+		SessionClientAddress,
+		SessionClientName,
+		SessionHostName,
+		SessionMetaData,
+		UserFullName,
+		UserLoginName,
+	};
+	Q_ENUM(ComputerNameSource)
+
 	explicit NetworkObjectDirectory( QObject* parent );
 
 	void setUpdateInterval( int interval );
