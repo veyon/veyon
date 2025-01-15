@@ -70,7 +70,7 @@
         <item>
          <spacer name="horizontalSpacer_9">
           <property name="orientation">
-           <enum>Qt::Horizontal</enum>
+           <enum>Qt::Orientation::Horizontal</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
@@ -179,7 +179,7 @@ Typically this is required to support terminal servers.</string>
         <item>
          <spacer name="horizontalSpacer">
           <property name="orientation">
-           <enum>Qt::Horizontal</enum>
+           <enum>Qt::Orientation::Horizontal</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
@@ -200,6 +200,37 @@ Typically this is required to support terminal servers.</string>
       <string>Network port numbers</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_11">
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_13">
+        <property name="text">
+         <string>Demo server</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_15">
+        <property name="text">
+         <string>Internal VNC server</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_12">
+        <property name="text">
+         <string>Veyon server</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QSpinBox" name="demoServerPort">
+        <property name="minimum">
+         <number>1024</number>
+        </property>
+        <property name="maximum">
+         <number>65535</number>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="1">
        <widget class="QSpinBox" name="veyonServerPort">
         <property name="minimum">
@@ -210,8 +241,8 @@ Typically this is required to support terminal servers.</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
-       <widget class="QSpinBox" name="demoServerPort">
+      <item row="1" column="1">
+       <widget class="QSpinBox" name="vncServerPort">
         <property name="minimum">
          <number>1024</number>
         </property>
@@ -230,41 +261,10 @@ Typically this is required to support terminal servers.</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_12">
-        <property name="text">
-         <string>Veyon server</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_15">
-        <property name="text">
-         <string>Internal VNC server</string>
-        </property>
-       </widget>
-      </item>
       <item row="2" column="0">
        <widget class="QLabel" name="label_14">
         <property name="text">
          <string>Feature manager</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_13">
-        <property name="text">
-         <string>Demo server</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QSpinBox" name="vncServerPort">
-        <property name="minimum">
-         <number>1024</number>
-        </property>
-        <property name="maximum">
-         <number>65535</number>
         </property>
        </widget>
       </item>
@@ -332,9 +332,76 @@ Typically this is required to support terminal servers.</string>
     </widget>
    </item>
    <item>
+    <widget class="QGroupBox" name="sessionMetaDataGroupBox">
+     <property name="title">
+      <string>Session metadata</string>
+     </property>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="sessionMetaDataContentLabel">
+        <property name="text">
+         <string>Content</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="sessionMetaDataContent">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <item>
+         <property name="text">
+          <string>None</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Value of an environment variable</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Value of a registry key</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="sessionMetaDataEnvironmentVariableLabel">
+        <property name="text">
+         <string>Environment variable name:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="sessionMetaDataEnvironmentVariable"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="sessionMetaDataRegistryKeyLabel">
+        <property name="text">
+         <string>Registry key name:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="sessionMetaDataRegistryKey">
+        <property name="toolTip">
+         <string>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -365,6 +432,9 @@ Typically this is required to support terminal servers.</string>
   <tabstop>localConnectOnly</tabstop>
   <tabstop>clipboardSynchronizationDisabled</tabstop>
   <tabstop>vncServerPlugin</tabstop>
+  <tabstop>sessionMetaDataContent</tabstop>
+  <tabstop>sessionMetaDataEnvironmentVariable</tabstop>
+  <tabstop>sessionMetaDataRegistryKey</tabstop>
  </tabstops>
  <resources>
   <include location="../../core/resources/core.qrc"/>

@@ -28,8 +28,9 @@
 
 // clazy:excludeall=copyable-polymorphic
 
-class PlatformSessionFunctions
+class VEYON_CORE_EXPORT PlatformSessionFunctions
 {
+	Q_GADGET
 public:
 	using SessionId = int;
 	using SessionUptime = int;
@@ -41,13 +42,15 @@ public:
 		QString clientAddress;
 		QString clientName;
 		QString hostName;
+		QString metaData;
 		bool operator==(const SessionInfo& other) const
 		{
 			return other.id == id &&
 					other.uptime == uptime &&
 					other.clientAddress == clientAddress &&
 					other.clientName == clientName &&
-					other.hostName == hostName;
+					other.hostName == hostName &&
+					other.metaData == metaData;
 		}
 		bool operator!=(const SessionInfo& other) const
 		{
@@ -58,6 +61,14 @@ public:
 	static constexpr SessionId DefaultSessionId = 0;
 	static constexpr SessionId InvalidSessionId = -1;
 	static constexpr SessionUptime InvalidSessionUptime = -1;
+
+	enum class SessionMetaDataContent
+	{
+		None,
+		EnvironmentVariable,
+		RegistryKey,
+	};
+	Q_ENUM(SessionMetaDataContent)
 
 	virtual ~PlatformSessionFunctions() = default;
 

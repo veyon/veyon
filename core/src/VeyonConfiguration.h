@@ -25,7 +25,6 @@
 
 #pragma once
 
-#include "VeyonCore.h"
 #include "Configuration/Object.h"
 #include "Configuration/Property.h"
 

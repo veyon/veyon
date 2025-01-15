@@ -46,6 +46,7 @@ public:
 		SessionHostName,
 		SessionClientAddress,
 		SessionClientName,
+		SessionMetaData,
 		ActiveFeaturesList = 0 // for compatibility after migration from FeatureControl
 	};
 	Q_ENUM(Argument)
@@ -186,6 +187,10 @@ private:
 
 	QVariantList m_screenInfoList;
 	int m_screenInfoListVersion{0};
+
+	PlatformSessionFunctions::SessionMetaDataContent m_sessionMetaDataContent;
+	QString m_sessionMetaDataEnvironmentVariable;
+	QString m_sessionMetaDataRegistryKey;
 
 	QReadWriteLock m_sessionInfoLock;
 	PlatformSessionFunctions::SessionInfo m_sessionInfo{};
