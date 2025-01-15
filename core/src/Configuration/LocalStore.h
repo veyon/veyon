@@ -25,6 +25,7 @@
 #pragma once
 
 #include "Configuration/Store.h"
+#include "VeyonCore.h"
 
 class QSettings;
 

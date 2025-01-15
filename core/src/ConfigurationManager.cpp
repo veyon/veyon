@@ -26,7 +26,6 @@
 #include "ConfigurationManager.h"
 #include "Filesystem.h"
 #include "PlatformCoreFunctions.h"
-#include "PlatformInputDeviceFunctions.h"
 #include "PlatformNetworkFunctions.h"
 #include "VeyonConfiguration.h"
 #include "VeyonServiceControl.h"
