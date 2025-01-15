@@ -31,6 +31,27 @@
           <property name="horizontalSpacing">
            <number>10</number>
           </property>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="screenshotDirectory"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Screenshots</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QToolButton" name="openScreenshotDirectory">
+            <property name="icon">
+             <iconset resource="../../core/resources/core.qrc">
+              <normaloff>:/core/document-open.png</normaloff>:/core/document-open.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="userConfigurationDirectory"/>
+          </item>
           <item row="0" column="2">
            <widget class="QToolButton" name="openUserConfigurationDirectory">
             <property name="icon">
@@ -46,21 +67,18 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="userConfigurationDirectory"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label">
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_15">
             <property name="text">
-             <string>Screenshots</string>
+             <string>Configuration templates</string>
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="screenshotDirectory"/>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="configurationTemplatesDirectory"/>
           </item>
-          <item row="1" column="2">
-           <widget class="QToolButton" name="openScreenshotDirectory">
+          <item row="2" column="2">
+           <widget class="QToolButton" name="openConfigurationTemplatesDirectory">
             <property name="icon">
              <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/document-open.png</normaloff>:/core/document-open.png</iconset>
@@ -579,8 +597,10 @@
   <tabstop>tabWidget</tabstop>
   <tabstop>userConfigurationDirectory</tabstop>
   <tabstop>screenshotDirectory</tabstop>
+  <tabstop>configurationTemplatesDirectory</tabstop>
   <tabstop>openUserConfigurationDirectory</tabstop>
   <tabstop>openScreenshotDirectory</tabstop>
+  <tabstop>openConfigurationTemplatesDirectory</tabstop>
   <tabstop>computerMonitoringImageQuality</tabstop>
   <tabstop>remoteAccessImageQuality</tabstop>
   <tabstop>computerMonitoringUpdateInterval</tabstop>
