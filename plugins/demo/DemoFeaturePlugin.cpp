@@ -35,6 +35,7 @@
 #include "FeatureWorkerManager.h"
 #include "HostAddress.h"
 #include "Logger.h"
+#include "PlatformPluginInterface.h"
 #include "PlatformSessionFunctions.h"
 #include "VeyonConfiguration.h"
 #include "VeyonMasterInterface.h"

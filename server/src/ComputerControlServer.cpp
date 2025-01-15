@@ -31,6 +31,7 @@
 #include "FeatureManager.h"
 #include "FeatureMessage.h"
 #include "HostAddress.h"
+#include "PlatformPluginInterface.h"
 #include "VeyonConfiguration.h"
 #include "SystemTrayIcon.h"
 
