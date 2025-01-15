@@ -41,6 +41,19 @@ public:
 		MaximumUpdateInterval = 3600
 	};
 
+	enum class ComputerNameSource
+	{
+		Default,
+		HostAddress,
+		SessionClientAddress,
+		SessionClientName,
+		SessionHostName,
+		SessionMetaData,
+		UserFullName,
+		UserLoginName,
+	};
+	Q_ENUM(ComputerNameSource)
+
 	explicit NetworkObjectDirectory( const QString& name, QObject* parent );
 
 	const QString& name() const
