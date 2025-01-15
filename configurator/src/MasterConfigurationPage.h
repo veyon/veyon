@@ -48,6 +48,7 @@ private Q_SLOTS:
 private:
 	void openUserConfigurationDirectory();
 	void openScreenshotDirectory();
+	void openConfigurationTemplatesDirectory();
 	void populateFeatureComboBox();
 	void updateFeatureLists();
 

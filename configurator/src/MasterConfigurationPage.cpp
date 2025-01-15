@@ -41,11 +41,16 @@ MasterConfigurationPage::MasterConfigurationPage() :
 {
 	ui->setupUi(this);
 
-	connect( ui->openUserConfigurationDirectory, &QPushButton::clicked,
-			 this, &MasterConfigurationPage::openUserConfigurationDirectory );
+	Configuration::UiMapping::setFlags(ui->advancedSettingsGroupBox, Configuration::Property::Flag::Advanced);
 
-	connect( ui->openScreenshotDirectory, &QPushButton::clicked,
-			 this, &MasterConfigurationPage::openScreenshotDirectory );
+	connect(ui->openUserConfigurationDirectory, &QPushButton::clicked,
+			 this, &MasterConfigurationPage::openUserConfigurationDirectory);
+
+	connect(ui->openScreenshotDirectory, &QPushButton::clicked,
+			 this, &MasterConfigurationPage::openScreenshotDirectory);
+
+	connect(ui->openConfigurationTemplatesDirectory, &QPushButton::clicked,
+			 this, &MasterConfigurationPage::openConfigurationTemplatesDirectory);
 
 	populateFeatureComboBox();
 }
@@ -129,6 +134,13 @@ void MasterConfigurationPage::openUserConfigurationDirectory()
 void MasterConfigurationPage::openScreenshotDirectory()
 {
 	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).exec( ui->screenshotDirectory );
+}
+
+
+
+void MasterConfigurationPage::openConfigurationTemplatesDirectory()
+{
+	FileSystemBrowser(FileSystemBrowser::ExistingDirectory).exec(ui->configurationTemplatesDirectory);
 }
 
 
