@@ -78,6 +78,7 @@ private:
 	void update();
 
 	QModelIndex interfaceIndex( ComputerControlInterface* controlInterface ) const;
+	QVariant uidRoleData(const ComputerControlInterface::Pointer& controlInterface) const;
 
 	void updateState( const QModelIndex& index );
 	void updateScreen( const QModelIndex& index );

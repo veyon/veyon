@@ -393,6 +393,27 @@
             </item>
            </widget>
           </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="computerUidRoleContentLabel">
+            <property name="text">
+             <string>Computer UID role</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="computerUidRoleContent">
+            <item>
+             <property name="text">
+              <string>Default</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Session meta data hash</string>
+             </property>
+            </item>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -672,6 +693,7 @@
   <tabstop>computerMonitoringThumbnailSpacing</tabstop>
   <tabstop>modernUserInterface</tabstop>
   <tabstop>computerNameSource</tabstop>
+  <tabstop>computerUidRoleContent</tabstop>
   <tabstop>accessControlForMasterEnabled</tabstop>
   <tabstop>autoSelectCurrentLocation</tabstop>
   <tabstop>autoAdjustMonitoringIconSize</tabstop>

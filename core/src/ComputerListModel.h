@@ -49,6 +49,12 @@ public:
 	};
 	Q_ENUM(DisplayRoleContent)
 
+	enum class UidRoleContent {
+		NetworkObjectUid,
+		SessionMetaDataHash,
+	};
+	Q_ENUM(UidRoleContent)
+
 	enum class SortOrder {
 		ComputerAndUserName,
 		UserName,
@@ -79,6 +85,11 @@ public:
 		return m_displayRoleContent;
 	}
 
+	UidRoleContent uidRoleContent() const
+	{
+		return m_uidRoleContent;
+	}
+
 	SortOrder sortOrder() const
 	{
 		return m_sortOrder;
@@ -91,6 +102,7 @@ public:
 
 private:
 	DisplayRoleContent m_displayRoleContent;
+	UidRoleContent m_uidRoleContent;
 	SortOrder m_sortOrder;
 	AspectRatio m_aspectRatio;
 
