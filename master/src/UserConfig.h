@@ -39,7 +39,8 @@ class UserConfig : public Configuration::Object
 {
 	Q_OBJECT
 public:
-	UserConfig();
+	UserConfig(const QString& storeName);
+	explicit UserConfig(Configuration::Store* store);
 
 #define FOREACH_PERSONAL_CONFIG_PROPERTY(OP)						\
 	OP( UserConfig, VeyonMaster::userConfig(), QJsonArray, checkedNetworkObjects, setCheckedNetworkObjects, "CheckedNetworkObjects", "UI", QJsonArray(), Configuration::Property::Flag::Standard )	\
