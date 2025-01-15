@@ -23,10 +23,28 @@
  *
  */
 
+#include "Configuration/JsonStore.h"
+#include "Filesystem.h"
 #include "UserConfig.h"
+#include "VeyonConfiguration.h"
 
 
 UserConfig::UserConfig(const QString& storeName) :
 	Configuration::Object(Configuration::Store::Backend::JsonFile, Configuration::Store::Scope::User, storeName)
+{
+	const auto templateFileName = VeyonCore::filesystem().expandPath(VeyonCore::config().configurationTemplatesDirectory()) +
+								  QDir::separator() + storeName + QStringLiteral(".json");
+	if (QFileInfo(templateFileName).isReadable())
+	{
+		Configuration::JsonStore jsonStore(Configuration::Store::Scope::System, templateFileName);
+		*this += UserConfig(&jsonStore);
+		reloadFromStore();
+	}
+}
+
+
+
+UserConfig::UserConfig(Configuration::Store* store) :
+	Configuration::Object(store)
 {
 }
