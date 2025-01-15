@@ -102,6 +102,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), bool, localConnectOnly, setLocalConnectOnly, "LocalConnectOnly", "Network", false, Configuration::Property::Flag::Advanced )					\
 
 #define FOREACH_VEYON_DIRECTORIES_CONFIG_PROPERTY(OP) \
+	OP( VeyonConfiguration, VeyonCore::config(), QString, configurationTemplatesDirectory, setConfigurationTemplatesDirectory, "ConfigurationTemplates", "Directories", QDir::toNativeSeparators(QStringLiteral("%GLOBALAPPDATA%/Config/Templates")), Configuration::Property::Flag::Standard )	\
 	OP( VeyonConfiguration, VeyonCore::config(), QString, userConfigurationDirectory, setUserConfigurationDirectory, "UserConfiguration", "Directories", QDir::toNativeSeparators( QStringLiteral( "%APPDATA%/Config" ) ), Configuration::Property::Flag::Standard )	\
 	OP( VeyonConfiguration, VeyonCore::config(), QString, screenshotDirectory, setScreenshotDirectory, "Screenshots", "Directories", QDir::toNativeSeparators( QStringLiteral( "%APPDATA%/Screenshots" ) ), Configuration::Property::Flag::Standard )	\
 
