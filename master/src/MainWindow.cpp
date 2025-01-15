@@ -23,6 +23,8 @@
  */
 
 #include <QCloseEvent>
+#include <QFileDialog>
+#include <QJsonDocument>
 #include <QKeyEvent>
 #include <QHostAddress>
 #include <QMenu>
@@ -75,7 +77,7 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	ui->statusBar->addWidget( ui->gridSizeSlider, 2 );
 	ui->statusBar->addWidget( ui->autoAdjustComputerIconSizeButton );
 	ui->statusBar->addWidget( ui->spacerLabel3 );
-	ui->statusBar->addWidget( ui->useCustomComputerArrangementButton );
+	ui->statusBar->addWidget( ui->useCustomComputerPositionsButton );
 	ui->statusBar->addWidget( ui->alignComputersButton );
 	ui->statusBar->addWidget( ui->spacerLabel4 );
 	ui->statusBar->addWidget( ui->aboutButton );
@@ -231,11 +233,20 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	ui->computerMonitoringWidget->setComputerScreenSize( size );
 
 	// initialize computer placement controls
-	ui->useCustomComputerArrangementButton->setChecked( m_master.userConfig().useCustomComputerPositions() );
-	connect( ui->useCustomComputerArrangementButton, &QToolButton::toggled,
-			 ui->computerMonitoringWidget, &ComputerMonitoringWidget::setUseCustomComputerPositions );
-	connect( ui->alignComputersButton, &QToolButton::clicked,
-			 ui->computerMonitoringWidget, &ComputerMonitoringWidget::alignComputers );
+	auto customComputerPositionsControlMenu = new QMenu;
+	customComputerPositionsControlMenu->addAction(QIcon(QStringLiteral(":/core/document-open.png")),
+													tr("Load computer positions"),
+													this, &MainWindow::loadComputerPositions);
+	customComputerPositionsControlMenu->addAction(QIcon(QStringLiteral(":/core/document-save.png")),
+													tr("Save computer positions"),
+													this, &MainWindow::saveComputerPositions);
+	ui->useCustomComputerPositionsButton->setMenu(customComputerPositionsControlMenu);
+
+	ui->useCustomComputerPositionsButton->setChecked(m_master.userConfig().useCustomComputerPositions());
+	connect(ui->useCustomComputerPositionsButton, &QToolButton::toggled,
+			ui->computerMonitoringWidget, &ComputerMonitoringWidget::setUseCustomComputerPositions);
+	connect(ui->alignComputersButton, &QToolButton::clicked,
+			ui->computerMonitoringWidget, &ComputerMonitoringWidget::alignComputers);
 
 
 	const auto toolButtons = findChildren<QToolButton*>();
@@ -539,5 +550,51 @@ void MainWindow::updateModeButtonGroup()
 	if( m_master.currentMode() == monitoringMode.uid() )
 	{
 		m_modeGroup->button( buttonId( monitoringMode ) )->setChecked( true );
+	}
+}
+
+
+
+void MainWindow::loadComputerPositions()
+{
+	if (const auto fileName = QFileDialog::getOpenFileName(this, tr("Load computer positions"),
+														   QDir::homePath(), tr("JSON files (*.json)"));
+		!fileName.isEmpty())
+	{
+		if (QFile file(fileName); file.open(QFile::ReadOnly))
+		{
+			const auto& computerPositionsProperty = m_master.userConfig().computerPositionsProperty();
+			const auto config = QJsonDocument::fromJson(file.readAll()).object();
+			const auto uiConfig = config[computerPositionsProperty.parentKey()].toObject();
+			const auto computerPositions = uiConfig[computerPositionsProperty.key()].toObject()[QStringLiteral("JsonStoreArray")].toArray();
+
+			ui->computerMonitoringWidget->loadPositions(computerPositions);
+			ui->computerMonitoringWidget->setUseCustomComputerPositions(true);
+			ui->computerMonitoringWidget->doItemsLayout();
+		}
+	}
+}
+
+
+
+void MainWindow::saveComputerPositions()
+{
+	if (const auto fileName = QFileDialog::getSaveFileName(this, tr("Save computer positions"),
+														   QDir::homePath(), tr("JSON files (*.json)"));
+		!fileName.isEmpty())
+	{
+		if (QFile file(fileName); file.open(QFile::WriteOnly | QFile::Truncate))
+		{
+			const auto& computerPositionsProperty = m_master.userConfig().computerPositionsProperty();
+
+			// create structure identical to UserConfig so file with positions can be used as template for UserConfig
+			QJsonObject computerPositions;
+			computerPositions[QStringLiteral("JsonStoreArray")] = ui->computerMonitoringWidget->savePositions();
+			QJsonObject uiConfig;
+			uiConfig[computerPositionsProperty.key()] = computerPositions;
+			QJsonObject config;
+			config[computerPositionsProperty.parentKey()] = uiConfig;
+			file.write(QJsonDocument(config).toJson());
+		}
 	}
 }

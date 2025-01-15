@@ -84,7 +84,7 @@
         <number>150</number>
        </property>
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
       </widget>
       <widget class="QLabel" name="spacerLabel1">
@@ -176,7 +176,7 @@
          <normaloff>:/master/align-grid.png</normaloff>:/master/align-grid.png</iconset>
        </property>
       </widget>
-      <widget class="QToolButton" name="useCustomComputerArrangementButton">
+      <widget class="QToolButton" name="useCustomComputerPositionsButton">
        <property name="geometry">
         <rect>
          <x>1010</x>
@@ -186,7 +186,9 @@
         </rect>
        </property>
        <property name="toolTip">
-        <string>Use custom computer arrangement</string>
+        <string>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</string>
        </property>
        <property name="icon">
         <iconset resource="../resources/master.qrc">
@@ -240,7 +242,7 @@
          <number>0</number>
         </property>
         <property name="sizeConstraint">
-         <enum>QLayout::SetMinimumSize</enum>
+         <enum>QLayout::SizeConstraint::SetMinimumSize</enum>
         </property>
         <property name="leftMargin">
          <number>0</number>
@@ -267,7 +269,7 @@
            <bool>true</bool>
           </property>
           <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
+           <enum>Qt::ToolButtonStyle::ToolButtonTextBesideIcon</enum>
           </property>
           <attribute name="buttonGroup">
            <string notr="true">buttonGroup</string>
@@ -287,7 +289,7 @@
            <bool>true</bool>
           </property>
           <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
+           <enum>Qt::ToolButtonStyle::ToolButtonTextBesideIcon</enum>
           </property>
           <attribute name="buttonGroup">
            <string notr="true">buttonGroup</string>
@@ -307,7 +309,7 @@
            <bool>true</bool>
           </property>
           <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
+           <enum>Qt::ToolButtonStyle::ToolButtonTextBesideIcon</enum>
           </property>
          </widget>
         </item>
@@ -324,7 +326,7 @@
            <bool>true</bool>
           </property>
           <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
+           <enum>Qt::ToolButtonStyle::ToolButtonTextBesideIcon</enum>
           </property>
          </widget>
         </item>
@@ -402,7 +404,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>useCustomComputerArrangementButton</sender>
+   <sender>useCustomComputerPositionsButton</sender>
    <signal>toggled(bool)</signal>
    <receiver>alignComputersButton</receiver>
    <slot>setEnabled(bool)</slot>
