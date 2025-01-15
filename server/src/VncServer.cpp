@@ -28,6 +28,7 @@
 #include "AuthenticationCredentials.h"
 #include "CryptoCore.h"
 #include "VeyonConfiguration.h"
+#include "PlatformPluginInterface.h"
 #include "PlatformSessionFunctions.h"
 #include "PluginManager.h"
 #include "VncServer.h"

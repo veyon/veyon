@@ -24,7 +24,7 @@
 
 #pragma once
 
-#include "PlatformPluginInterface.h"
+#include "VeyonCore.h"
 
 // clazy:excludeall=copyable-polymorphic
 
