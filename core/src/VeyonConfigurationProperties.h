@@ -33,6 +33,7 @@
 #include "ComputerListModel.h"
 #include "Logger.h"
 #include "NetworkObjectDirectory.h"
+#include "PlatformSessionFunctions.h"
 #include "VncConnectionConfiguration.h"
 
 #define FOREACH_VEYON_CORE_CONFIG_PROPERTIES(OP)		\
@@ -68,6 +69,9 @@
 	OP( VeyonConfiguration, VeyonCore::config(), int, maximumSessionCount, setMaximumSessionCount, "MaximumSessionCount", "Service", 100, Configuration::Property::Flag::Standard ) \
 	OP( VeyonConfiguration, VeyonCore::config(), bool, autostartService, setServiceAutostart, "Autostart", "Service", true, Configuration::Property::Flag::Advanced )			\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, clipboardSynchronizationDisabled, setClipboardSynchronizationDisabled, "ClipboardSynchronizationDisabled", "Service", false, Configuration::Property::Flag::Advanced )					\
+	OP( VeyonConfiguration, VeyonCore::config(), PlatformSessionFunctions::SessionMetaDataContent, sessionMetaDataContent, setSessionMetaDataContent, "SessionMetaDataContent", "Service", QVariant::fromValue(PlatformSessionFunctions::SessionMetaDataContent::None), Configuration::Property::Flag::Advanced )	\
+	OP( VeyonConfiguration, VeyonCore::config(), QString, sessionMetaDataEnvironmentVariable, setSessionMetaDataEnvironmentVariable, "SessionMetaDataEnvironmentVariable", "Service", QString(), Configuration::Property::Flag::Advanced )	\
+	OP( VeyonConfiguration, VeyonCore::config(), QString, sessionMetaDataRegistryKey, setSessionMetaDataRegistryKey, "SessionMetaDataRegistryKey", "Service", QString(), Configuration::Property::Flag::Advanced )	\
 
 #define FOREACH_VEYON_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(OP)				\
 	OP( VeyonConfiguration, VeyonCore::config(), QUuid, networkObjectDirectoryPlugin, setNetworkObjectDirectoryPlugin, "Plugin", "NetworkObjectDirectory", QUuid(), Configuration::Property::Flag::Standard )			\

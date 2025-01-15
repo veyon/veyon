@@ -63,7 +63,10 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 						   Feature::Uid("d5bbc486-7bc5-4c36-a9a8-1566c8b0091a"),
 						   Feature::Uid(), tr("Query properties of remotely available screens"), {}, {} ),
 	m_features({ m_monitoringModeFeature, m_queryApplicationVersionFeature, m_queryActiveFeatures,
-			   m_queryUserInfoFeature, m_querySessionInfoFeature, m_queryScreensFeature})
+			   m_queryUserInfoFeature, m_querySessionInfoFeature, m_queryScreensFeature}),
+	m_sessionMetaDataContent(VeyonCore::config().sessionMetaDataContent()),
+	m_sessionMetaDataEnvironmentVariable(VeyonCore::config().sessionMetaDataEnvironmentVariable()),
+	m_sessionMetaDataRegistryKey(VeyonCore::config().sessionMetaDataRegistryKey())
 {
 	if(VeyonCore::component() == VeyonCore::Component::Server)
 	{
@@ -187,7 +190,8 @@ bool MonitoringMode::handleFeatureMessage( ComputerControlInterface::Pointer com
 													 message.argument(Argument::SessionUptime).toInt(),
 													 message.argument(Argument::SessionClientAddress).toString(),
 													 message.argument(Argument::SessionClientName).toString(),
-													 message.argument(Argument::SessionHostName).toString()
+													 message.argument(Argument::SessionHostName).toString(),
+													 message.argument(Argument::SessionMetaData).toString(),
 												 });
 
 		return true;
@@ -350,6 +354,7 @@ bool MonitoringMode::sendSessionInfo(VeyonServerInterface& server, const Message
 	message.addArgument(Argument::SessionClientAddress, m_sessionInfo.clientAddress);
 	message.addArgument(Argument::SessionClientName, m_sessionInfo.clientName);
 	message.addArgument(Argument::SessionHostName, m_sessionInfo.hostName);
+	message.addArgument(Argument::SessionMetaData, m_sessionInfo.metaData);
 	m_sessionInfoLock.unlock();
 
 	return server.sendFeatureMessageReply(messageContext,message);
@@ -418,12 +423,26 @@ void MonitoringMode::updateUserData()
 void MonitoringMode::updateSessionInfo()
 {
 	(void) QtConcurrent::run([=]() {
+		QString sessionMetaData;
+		switch (m_sessionMetaDataContent)
+		{
+		case PlatformSessionFunctions::SessionMetaDataContent::EnvironmentVariable:
+			sessionMetaData = VeyonCore::platform().sessionFunctions().currentSessionEnvironmentVariables().value(m_sessionMetaDataEnvironmentVariable);
+			break;
+		case PlatformSessionFunctions::SessionMetaDataContent::RegistryKey:
+			sessionMetaData = VeyonCore::platform().sessionFunctions().querySettingsValueInCurrentSession(m_sessionMetaDataRegistryKey).toString();
+			break;
+		case PlatformSessionFunctions::SessionMetaDataContent::None:
+			break;
+		}
+
 		const PlatformSessionFunctions::SessionInfo currentSessionInfo{
 			VeyonCore::sessionId(),
 					VeyonCore::platform().sessionFunctions().currentSessionUptime(),
 					VeyonCore::platform().sessionFunctions().currentSessionClientAddress(),
 					VeyonCore::platform().sessionFunctions().currentSessionClientName(),
-					VeyonCore::platform().sessionFunctions().currentSessionHostName()
+					VeyonCore::platform().sessionFunctions().currentSessionHostName(),
+					sessionMetaData
 		};
 
 		m_sessionInfoLock.lockForWrite();
