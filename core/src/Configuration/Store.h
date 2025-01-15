@@ -28,8 +28,6 @@
 #include <QtCore/QString>
 #include <QtCore/QVariant>
 
-#include "VeyonCore.h"
-
 namespace Configuration
 {
 
