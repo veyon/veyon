@@ -100,7 +100,7 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 		return computerSortRole( computerControl );
 
 	case UidRole:
-		return computerControl->computer().networkObjectUid();
+		return uidRoleData(computerControl);
 
 	case StateRole:
 		return QVariant::fromValue( computerControl->state() );
@@ -182,14 +182,11 @@ void ComputerControlListModel::reload()
 	m_computerControlInterfaces.clear();
 	m_computerControlInterfaces.reserve( computerList.size() );
 
-	int row = 0;
-
 	for( const auto& computer : computerList )
 	{
 		const auto controlInterface = ComputerControlInterface::Pointer::create( computer );
 		m_computerControlInterfaces.append( controlInterface );
 		startComputerControlInterface( controlInterface.data() );
-		++row;
 	}
 
 	endResetModel();
@@ -252,6 +249,23 @@ void ComputerControlListModel::update()
 QModelIndex ComputerControlListModel::interfaceIndex( ComputerControlInterface* controlInterface ) const
 {
 	return ComputerListModel::index( m_computerControlInterfaces.indexOf( controlInterface->weakPointer() ), 0 );
+}
+
+
+
+QVariant ComputerControlListModel::uidRoleData(const ComputerControlInterface::Pointer& controlInterface) const
+{
+	static const QUuid uidRoleNamespace(QStringLiteral("7480c1c0-2b9f-46f1-92a6-0978bbfcd191"));
+
+	switch (uidRoleContent())
+	{
+	case UidRoleContent::NetworkObjectUid:
+		return controlInterface->computer().networkObjectUid();
+	case UidRoleContent::SessionMetaDataHash:
+		return QUuid::createUuidV5(uidRoleNamespace, controlInterface->sessionInfo().metaData);
+	}
+
+	return {};
 }
 
 
