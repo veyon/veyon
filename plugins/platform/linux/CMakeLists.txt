@@ -5,6 +5,7 @@ find_package(PkgConfig QUIET)
 pkg_check_modules(procps libproc2)
 if(procps_FOUND)
 	add_definitions(-DHAVE_LIBPROC2)
+	include(CheckCXXSourceCompiles)
 	check_cxx_source_compiles("#include <libproc2/pids.h>
 		int main()
 		{
