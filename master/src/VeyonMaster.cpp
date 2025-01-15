@@ -26,6 +26,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include <QQuickStyle>
+#include <QMessageBox>
 
 #include "BuiltinFeatures.h"
 #include "ComputerControlListModel.h"
@@ -44,7 +45,7 @@
 
 VeyonMaster::VeyonMaster( QObject* parent ) :
 	VeyonMasterInterface( parent ),
-	m_userConfig(new UserConfig),
+	m_userConfig(new UserConfig(QStringLiteral("VeyonMaster"))),
 	m_features( featureList() ),
 	m_featureListModel( new FeatureListModel( this ) ),
 	m_computerManager( new ComputerManager( *m_userConfig, this ) ),
@@ -59,6 +60,14 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 									this ),
 	m_currentMode( VeyonCore::builtinFeatures().monitoringMode().feature().uid() )
 {
+	if (m_userConfig->isStoreWritable() == false)
+	{
+		QMessageBox::information(nullptr,
+								 tr("No write access"),
+								 tr("Could not save your personal settings! Please check the user configuration "
+									"file path using the %1 Configurator.").arg(VeyonCore::applicationName()));
+	}
+
 	connect(m_computerControlListModel, &ComputerControlListModel::modelAboutToBeReset,
 			this, &VeyonMaster::computerControlListModelAboutToReset);
 
