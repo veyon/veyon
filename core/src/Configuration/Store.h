@@ -39,26 +39,25 @@ class Object;
 
 class Store
 {
+	Q_GADGET
 public:
-	enum Backends
+	enum class Backend
 	{
-		LocalBackend,	// registry or similiar
+		Local,	// registry or similar
 		JsonFile,
-		NoBackend
-	} ;
-	using Backend = Backends;
+		None
+	};
+	Q_ENUM(Backend)
 
-	enum Scopes
+	enum class Scope
 	{
 		User,		// for current user
 		System,		// system-wide (service settings etc.)
-	} ;
-	using Scope = Scopes;
+	};
 
-
-	Store( Backend backend, Scope scope ) :
-		m_backend( backend ),
-		m_scope( scope )
+	Store(Backend backend, Scope scope) :
+		m_backend(backend),
+		m_scope(scope)
 	{
 	}
 
@@ -76,10 +75,10 @@ public:
 
 	QString configurationNameFromScope() const
 	{
-		switch( scope() )
+		switch (scope())
 		{
-			case User: return QStringLiteral( "UserConfig" );
-			case System: return QStringLiteral( "SystemConfig" );
+			case Scope::User: return QStringLiteral("UserConfig");
+			case Scope::System: return QStringLiteral("SystemConfig");
 		}
 
 		return {};

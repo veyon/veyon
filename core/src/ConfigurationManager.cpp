@@ -43,7 +43,7 @@ ConfigurationManager::ConfigurationManager( QObject* parent ) :
 
 bool ConfigurationManager::clearConfiguration()
 {
-	Configuration::LocalStore( Configuration::LocalStore::System ).clear();
+	Configuration::LocalStore(Configuration::LocalStore::Scope::System).clear();
 
 	return true;
 }
@@ -99,7 +99,7 @@ bool ConfigurationManager::applyConfiguration()
 bool ConfigurationManager::saveConfiguration()
 {
 	// write global configuration
-	Configuration::LocalStore localStore( Configuration::LocalStore::System );
+	Configuration::LocalStore localStore(Configuration::LocalStore::Scope::System);
 	if( localStore.isWritable() == false )
 	{
 		m_errorString = tr( "Configuration is not writable. Please check your permissions!" );

@@ -39,7 +39,7 @@ class UserConfig : public Configuration::Object
 {
 	Q_OBJECT
 public:
-	explicit UserConfig( Configuration::Store::Backend backend );
+	UserConfig();
 
 #define FOREACH_PERSONAL_CONFIG_PROPERTY(OP)						\
 	OP( UserConfig, VeyonMaster::userConfig(), QJsonArray, checkedNetworkObjects, setCheckedNetworkObjects, "CheckedNetworkObjects", "UI", QJsonArray(), Configuration::Property::Flag::Standard )	\

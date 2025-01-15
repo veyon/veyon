@@ -44,7 +44,7 @@
 
 VeyonMaster::VeyonMaster( QObject* parent ) :
 	VeyonMasterInterface( parent ),
-	m_userConfig( new UserConfig( Configuration::Store::JsonFile ) ),
+	m_userConfig(new UserConfig),
 	m_features( featureList() ),
 	m_featureListModel( new FeatureListModel( this ) ),
 	m_computerManager( new ComputerManager( *m_userConfig, this ) ),

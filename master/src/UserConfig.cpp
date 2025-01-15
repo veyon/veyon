@@ -29,15 +29,15 @@
 #include "UserConfig.h"
 
 
-UserConfig::UserConfig( Configuration::Store::Backend backend ) :
-	Configuration::Object( backend, Configuration::Store::User, QStringLiteral("VeyonMaster") )
+UserConfig::UserConfig() :
+	Configuration::Object(Configuration::Store::Backend::JsonFile, Configuration::Store::Scope::User, QStringLiteral("VeyonMaster"))
 {
-	if( isStoreWritable() == false )
+	if (isStoreWritable() == false)
 	{
-		QMessageBox::information( nullptr,
-								  tr( "No write access" ),
-								  tr( "Could not save your personal settings! "
-									  "Please check the user configuration "
-									  "file path using the %1 Configurator." ).arg( VeyonCore::applicationName() ) );
+		QMessageBox::information(nullptr,
+								 tr("No write access"),
+								 tr("Could not save your personal settings! "
+									 "Please check the user configuration "
+									 "file path using the %1 Configurator.").arg(VeyonCore::applicationName()));
 	}
 }

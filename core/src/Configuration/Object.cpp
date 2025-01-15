@@ -331,9 +331,9 @@ Store* Object::createStore( Store::Backend backend, Store::Scope scope )
 {
 	switch( backend )
 	{
-	case Store::LocalBackend: return new LocalStore( scope );
-	case Store::JsonFile: return new JsonStore( scope );
-	case Store::NoBackend:
+	case Store::Backend::Local: return new LocalStore(scope);
+	case Store::Backend::JsonFile: return new JsonStore(scope);
+	case Store::Backend::None:
 		break;
 	default:
 		vCritical() << "invalid store" << backend << "selected";

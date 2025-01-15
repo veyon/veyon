@@ -32,8 +32,8 @@
 
 
 VeyonConfiguration::VeyonConfiguration() :
-	Configuration::Object( Configuration::Store::LocalBackend,
-						   Configuration::Store::System )
+	Configuration::Object(Configuration::Store::Backend::Local,
+						  Configuration::Store::Scope::System)
 {
 }
 
