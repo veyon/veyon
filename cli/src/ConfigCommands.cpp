@@ -113,7 +113,7 @@ CommandLinePluginInterface::RunResult ConfigCommands::handle_import( const QStri
 		return operationError( tr( "Configuration file is not readable!" ) );
 	}
 
-	Configuration::JsonStore xs( Configuration::JsonStore::System, fileName );
+	Configuration::JsonStore xs(Configuration::Store::Scope::System, fileName);
 
 	// merge configuration
 	VeyonCore::config() += VeyonConfiguration( &xs );
@@ -144,7 +144,7 @@ CommandLinePluginInterface::RunResult ConfigCommands::handle_export( const QStri
 	}
 
 	// write current configuration to output file
-	Configuration::JsonStore( Configuration::JsonStore::System, fileName ).flush( &VeyonCore::config() );
+	Configuration::JsonStore(Configuration::Store::Scope::System, fileName).flush( &VeyonCore::config() );
 
 	return Successful;
 }

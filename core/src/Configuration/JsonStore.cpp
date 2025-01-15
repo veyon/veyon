@@ -37,8 +37,8 @@
 namespace Configuration
 {
 
-JsonStore::JsonStore( Scope scope, const QString &file ) :
-	Store( Store::JsonFile, scope ),
+JsonStore::JsonStore(Scope scope, const QString &file) :
+	Store(Store::Backend::JsonFile, scope),
 	m_file( file )
 {
 }
@@ -170,18 +170,18 @@ void JsonStore::clear()
 
 QString JsonStore::configurationFilePath() const
 {
-	if( m_file.isEmpty() == false )
+	if (m_file.isEmpty() == false)
 	{
 		return m_file;
 	}
 
 	QString base;
-	switch( scope() )
+	switch (scope())
 	{
-	case User:
+	case Scope::User:
 		base = VeyonCore::config().userConfigurationDirectory();
 		break;
-	case System:
+	case Scope::System:
 		base = VeyonCore::platform().filesystemFunctions().globalAppDataPath();
 		break;
 	}

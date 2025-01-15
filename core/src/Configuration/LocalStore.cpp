@@ -37,7 +37,7 @@ namespace Configuration
 {
 
 LocalStore::LocalStore( Scope scope ) :
-	Store( Store::LocalBackend, scope )
+	Store(Store::Backend::Local, scope)
 {
 }
 
@@ -199,7 +199,7 @@ QSettings *LocalStore::createSettingsObject() const
 #else
 				QSettings::NativeFormat,
 #endif
-				scope() == System ? QSettings::SystemScope : QSettings::UserScope,
+				scope() == Scope::System ? QSettings::SystemScope : QSettings::UserScope,
 				QCoreApplication::organizationName(),
 				QCoreApplication::applicationName());
 }
