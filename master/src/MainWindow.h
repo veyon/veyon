@@ -82,6 +82,9 @@ private:
 
 	void updateModeButtonGroup();
 
+	void loadComputerPositions();
+	void saveComputerPositions();
+
 	Ui::MainWindow* ui;
 
 	VeyonMaster& m_master;
