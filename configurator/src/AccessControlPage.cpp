@@ -75,7 +75,7 @@ void AccessControlPage::resetWidgets()
 #if QT_VERSION >= QT_VERSION_CHECK(6, 1, 0)
 	cleanedUpAccessGroups.removeIf(accessGroupNotAvailable);
 #else
-	cleanedUpAccessGroups.erase(std::remove_if(cleanedUpAccessGroups.begin(), cleanedUpAccessGroups.end(), accessGroupNotAvailable));
+	cleanedUpAccessGroups.erase(std::remove_if(cleanedUpAccessGroups.begin(), cleanedUpAccessGroups.end(), accessGroupNotAvailable), cleanedUpAccessGroups.end());
 #endif
 	if (m_accessGroups != cleanedUpAccessGroups)
 	{
