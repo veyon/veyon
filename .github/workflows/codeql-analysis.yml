@@ -9,7 +9,7 @@ on:
 jobs:
   analyze:
     name: Analyze
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       actions: read
       contents: read
@@ -22,12 +22,12 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         submodules: true
 
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v2
+      uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
 
@@ -36,7 +36,7 @@ jobs:
         sudo apt-get update && sudo apt-get install --no-install-recommends -y
         cmake
         ninja-build
-        qt6-base-dev qt6-5compat-dev qt6-l10n-tools qt6-tools-dev qt6-declarative-dev qt6-httpserver-dev qt6-websockets-dev \
+        qt6-base-dev qt6-5compat-dev qt6-l10n-tools qt6-tools-dev qt6-declarative-dev qt6-httpserver-dev qt6-websockets-dev
         xorg-dev
         libfakekey-dev
         libjpeg-dev
@@ -53,8 +53,8 @@ jobs:
       run: |
         mkdir -p $GITHUB_WORKSPACE/build
         cd $GITHUB_WORKSPACE/build
-        cmake -G Ninja -DCMAKE_BUILD_TYPE=Debug -DWITH_QT6=OFF -DWITH_LTO=OFF -DWITH_TRANSLATIONS=OFF ..
+        cmake -G Ninja -DCMAKE_BUILD_TYPE=Debug -DWITH_QT6=ON -DWITH_LTO=OFF -DWITH_TRANSLATIONS=OFF ..
         ninja
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
+      uses: github/codeql-action/analyze@v3
