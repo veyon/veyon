@@ -7,5 +7,5 @@
 #include <QDebug>
 #include <QLoggingCategory>
 
-Q_DECLARE_LOGGING_CATEGORY(LDAP_LOG);
+Q_DECLARE_LOGGING_CATEGORY(LDAP_CORE_LOG);
 
