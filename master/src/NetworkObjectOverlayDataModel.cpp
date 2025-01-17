@@ -99,7 +99,7 @@ QVariant NetworkObjectOverlayDataModel::extraColumnData(const QModelIndex &paren
 {
 	if (role != m_overlayDataRole)
 	{
-		return QVariant();
+		return {};
 	}
 
 	const auto networkObjectUid = lookupNetworkObjectId(parent, row);
@@ -109,7 +109,7 @@ QVariant NetworkObjectOverlayDataModel::extraColumnData(const QModelIndex &paren
 		return m_extraColumnsData[networkObjectUid].value(extraColumn);
 	}
 
-	return QVariant();
+	return {};
 }
 
 

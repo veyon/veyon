@@ -74,7 +74,7 @@ QVariant CheckableItemProxyModel::data( const QModelIndex& index, int role ) con
 {
 	if( !index.isValid() )
 	{
-		return QVariant();
+		return {};
 	}
 
 	if( role == Qt::CheckStateRole && index.column() == 0 &&

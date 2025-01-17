@@ -73,7 +73,7 @@ QVariant AccessControlRuleListModel::data(const QModelIndex &index, int role) co
 {
 	if (!index.isValid() || index.row() > rowCount() )
 	{
-		return QVariant();
+		return {};
 	}
 
 	const AccessControlRule& rule = m_accessControlRules[index.row()];
@@ -97,5 +97,5 @@ QVariant AccessControlRuleListModel::data(const QModelIndex &index, int role) co
 		return rule.description();
 	}
 
-	return QVariant();
+	return {};
 }

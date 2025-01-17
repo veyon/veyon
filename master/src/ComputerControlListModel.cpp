@@ -75,7 +75,7 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 {
 	if( index.isValid() == false )
 	{
-		return QVariant();
+		return {};
 	}
 
 	if( index.row() >= m_computerControlInterfaces.count() )

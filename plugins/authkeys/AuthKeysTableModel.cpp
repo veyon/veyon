@@ -74,7 +74,7 @@ QVariant AuthKeysTableModel::data( const QModelIndex& index, int role ) const
 {
 	if( index.isValid() == false || role != Qt::DisplayRole )
 	{
-		return QVariant();
+		return {};
 	}
 
 	const auto& key = m_keys[index.row()];
@@ -88,7 +88,7 @@ QVariant AuthKeysTableModel::data( const QModelIndex& index, int role ) const
 	default: break;
 	}
 
-	return QVariant();
+	return {};
 }
 
 
@@ -97,7 +97,7 @@ QVariant AuthKeysTableModel::headerData( int section, Qt::Orientation orientatio
 {
 	if( orientation != Qt::Horizontal || role != Qt::DisplayRole )
 	{
-		return QVariant();
+		return {};
 	}
 
 	switch( section )
@@ -110,5 +110,5 @@ QVariant AuthKeysTableModel::headerData( int section, Qt::Orientation orientatio
 		break;
 	}
 
-	return QVariant();
+	return {};
 }
