@@ -2,7 +2,7 @@
  * VncServer.h - class VncServer, a VNC server abstraction for
  *                    platform-independent VNC server usage
  *
- * Copyright (c) 2006-2024 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2006-2025 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

@@ -1,7 +1,7 @@
 /*
  * AccessControlPage.cpp - implementation of the access control page
  *
- * Copyright (c) 2016-2024 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2016-2025 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
