@@ -536,7 +536,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>לא</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
@@ -579,7 +579,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>שם</translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
@@ -587,7 +587,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>KEY</source>
-        <translation type="unfinished"/>
+        <translation>מפתח</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
@@ -595,7 +595,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>קובץ</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
@@ -631,7 +631,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>סוג</translation>
     </message>
     <message>
         <source>PAIR ID</source>
@@ -681,7 +681,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Locations</source>
-        <translation type="unfinished"/>
+        <translation>מיקומים</translation>
     </message>
     <message>
         <source>Add new computer</source>
@@ -705,11 +705,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add new location</source>
-        <translation type="unfinished"/>
+        <translation>הוסף מיקום חדש</translation>
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation type="unfinished"/>
+        <translation>הסר את המיקום שנבחר</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -717,7 +717,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>New location</source>
-        <translation type="unfinished"/>
+        <translation>מיקום חדש</translation>
     </message>
     <message>
         <source>New computer</source>
@@ -732,7 +732,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>הוסף מיקום או מחשב</translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
@@ -748,7 +748,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Remove a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>הסר מיקום או מחשב</translation>
     </message>
     <message>
         <source>Import objects from given file</source>
@@ -760,11 +760,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>קובץ</translation>
     </message>
     <message>
         <source>LOCATION</source>
-        <translation type="unfinished"/>
+        <translation>מיקום</translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
@@ -808,11 +808,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>סוג</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>שם</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -824,7 +824,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>PARENT</source>
-        <translation type="unfinished"/>
+        <translation>הורה</translation>
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
@@ -832,7 +832,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add a room</source>
-        <translation type="unfinished"/>
+        <translation>הוסף חדר</translation>
     </message>
     <message>
         <source>Add a computer to room %1</source>
@@ -840,7 +840,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>OBJECT</source>
-        <translation type="unfinished"/>
+        <translation>חפץ</translation>
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
@@ -928,7 +928,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>כלום</translation>
     </message>
     <message>
         <source>Invalid</source>
@@ -952,7 +952,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished"/>
+        <translation>מיקום</translation>
     </message>
     <message>
         <source>Computer</source>
@@ -964,11 +964,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>&quot;Room 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;חדר 01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;מחשב 01&quot;</translation>
     </message>
     <message>
         <source>Location &quot;%1&quot; not found.</source>
@@ -997,7 +997,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Location: %1</source>
-        <translation type="unfinished"/>
+        <translation>מיקום: %1</translation>
     </message>
     <message>
         <source>Host/IP address: %1</source>
@@ -1134,7 +1134,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add location</source>
-        <translation type="unfinished"/>
+        <translation>הוסף מיקום</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1150,7 +1150,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>File error</source>
-        <translation type="unfinished"/>
+        <translation>שגיאת קובץ</translation>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
@@ -1270,7 +1270,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Tunables</source>
-        <translation type="unfinished"/>
+        <translation>מכוונים</translation>
     </message>
     <message>
         <source> s</source>
@@ -1313,7 +1313,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>הדגמה</translation>
     </message>
     <message>
         <source>Stop demo</source>
@@ -1325,7 +1325,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>הדגמה במסך מלא</translation>
     </message>
     <message>
         <source>Window demo</source>
@@ -1341,7 +1341,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>שתף מסך שלך בחלון</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -1349,7 +1349,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>שתף את המסך של המשתמש שנבחר במצב מסך מלא</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
@@ -1357,7 +1357,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>שתף את המסך של המשתמש שנבחר בחלון</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -1373,7 +1373,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>כל המסכים </translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
@@ -1407,7 +1407,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Applications &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>אפליקציה ואתר</translation>
     </message>
     <message>
         <source>Predefined applications</source>
@@ -1423,7 +1423,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add new application</source>
-        <translation type="unfinished"/>
+        <translation>הוסף אפליקציה חדשה</translation>
     </message>
     <message>
         <source>Remove selected application</source>
@@ -1435,30 +1435,30 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add new website</source>
-        <translation type="unfinished"/>
+        <translation>הוסף אתר חדש</translation>
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation type="unfinished"/>
+        <translation>הסר את האתר הנבחר</translation>
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>קישור</translation>
     </message>
     <message>
         <source>New application</source>
-        <translation type="unfinished"/>
+        <translation>אפליקציה חדשה</translation>
     </message>
     <message>
         <source>New website</source>
-        <translation type="unfinished"/>
+        <translation>אתר חדש</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>התחל אפליקציה</translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
@@ -1478,7 +1478,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>אפליקציה מותאם אישית</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
@@ -1486,7 +1486,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Custom website</source>
-        <translation type="unfinished"/>
+        <translation>אתר מותאם אישית</translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
@@ -1497,11 +1497,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DocumentationFigureCreator</name>
     <message>
         <source>Teacher</source>
-        <translation type="unfinished"/>
+        <translation>מורה</translation>
     </message>
     <message>
         <source>Room %1</source>
-        <translation type="unfinished"/>
+        <translation>חדר %1</translation>
     </message>
     <message>
         <source>generic-student-user</source>
@@ -1513,7 +1513,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Custom website</source>
-        <translation type="unfinished"/>
+        <translation>אתר מותאם אישית</translation>
     </message>
     <message>
         <source>Open file manager</source>
@@ -1529,11 +1529,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>אפליקציה מותאם אישית</translation>
     </message>
     <message>
         <source>Handout</source>
-        <translation type="unfinished"/>
+        <translation>למסור</translation>
     </message>
     <message>
         <source>Texts to read</source>
@@ -1642,11 +1642,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>תאור</translation>
     </message>
     <message>
         <source>Master</source>
-        <translation type="unfinished"/>
+        <translation>מנהל</translation>
     </message>
     <message>
         <source>Service</source>
@@ -1654,7 +1654,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Worker</source>
-        <translation type="unfinished"/>
+        <translation>עובד</translation>
     </message>
     <message>
         <source>UID</source>
@@ -1697,11 +1697,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>העברת קבצים</translation>
     </message>
     <message>
         <source>Directories</source>
-        <translation type="unfinished"/>
+        <translation>מדריכים</translation>
     </message>
     <message>
         <source>Destination directory</source>
@@ -1713,7 +1713,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>אפשרויות</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1735,11 +1735,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>העברת קבצים</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>אפשרויות</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -1759,18 +1759,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished"/>
+        <translation>קובץ</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished"/>
+        <translation>התחל</translation>
     </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>העברת קבצים</translation>
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
@@ -1861,7 +1861,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Logging</source>
-        <translation type="unfinished"/>
+        <translation>רישום</translation>
     </message>
     <message>
         <source>Log file directory</source>
@@ -1949,7 +1949,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>שגיאה</translation>
     </message>
     <message>
         <source>Could not remove all log files.</source>
@@ -2061,7 +2061,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>כלום</translation>
     </message>
     <message>
         <source>TLS</source>
@@ -2313,7 +2313,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>לדפדף</translation>
     </message>
     <message>
         <source>Test</source>
@@ -2608,7 +2608,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>and</source>
-        <translation type="unfinished"/>
+        <translation>ו</translation>
     </message>
     <message>
         <source>LDAP test successful</source>
@@ -2766,7 +2766,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Master</source>
-        <translation type="unfinished"/>
+        <translation>מנהל</translation>
     </message>
     <message>
         <source>Access control</source>
@@ -2774,11 +2774,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;קובץ</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;עזרה</translation>
     </message>
     <message>
         <source>&amp;View</source>
@@ -2826,7 +2826,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation type="unfinished"/>
+        <translation>&amp;רגיל</translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
@@ -2842,7 +2842,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>אוטומטי</translation>
     </message>
     <message>
         <source>About</source>
@@ -2854,10 +2854,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Align computers to grid</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Use custom computer arrangement</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2874,11 +2870,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>מצגת</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>זרקוֹר</translation>
     </message>
     <message>
         <source>Only show computers with logged on users</source>
@@ -2886,7 +2882,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>toolBar</source>
-        <translation type="unfinished"/>
+        <translation>סרגל כלים</translation>
     </message>
     <message>
         <source>%1 Configurator %2</source>
@@ -2956,6 +2952,20 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -2965,7 +2975,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Directories</source>
-        <translation type="unfinished"/>
+        <translation>מדריכים</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -3001,7 +3011,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>אוטומטי</translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
@@ -3065,7 +3075,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Behaviour</source>
-        <translation type="unfinished"/>
+        <translation>התנהגות</translation>
     </message>
     <message>
         <source>Program start</source>
@@ -3159,12 +3169,64 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Always expand all locations</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation type="unfinished"/>
+        <translation>פיקוח</translation>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
@@ -3191,7 +3253,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
-        <translation type="unfinished"/>
+        <translation>מיקומים/מחשבים</translation>
     </message>
 </context>
 <context>
@@ -3218,7 +3280,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>שם:</translation>
     </message>
 </context>
 <context>
@@ -3264,7 +3326,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>תאור</translation>
     </message>
     <message>
         <source>Version</source>
@@ -3400,11 +3462,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>דקות</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>שניות</translation>
     </message>
 </context>
 <context>
@@ -3489,7 +3551,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>יציאה</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
@@ -3529,11 +3591,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
+        <translation>מתחבר...</translation>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>כל המסכים </translation>
     </message>
 </context>
 <context>
@@ -3767,6 +3829,40 @@ Typically this is required to support terminal servers.</source>
         <source>Running</source>
         <translation>רץ</translation>
     </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>כלום</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -3892,7 +3988,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>זרקוֹר</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
@@ -3907,11 +4003,11 @@ Typically this is required to support terminal servers.</source>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>התחל אפליקציה</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>שם:</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
@@ -4018,17 +4114,6 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
         <translation>אפשר לכידה של חלונות בעלי שכבות (שקופים חלקית)</translation>
-    </message>
-</context>
-<context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>אין גישת כתיבה</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4153,6 +4238,17 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Screen %1</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>אין גישת כתיבה</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -2880,10 +2880,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Выравнивать компьютеры по сетке</translation>
     </message>
     <message>
-        <source>Use custom computer arrangement</source>
-        <translation>Использовать нестандартное расположение компьютеров</translation>
-    </message>
-    <message>
         <source>Only show powered on computers</source>
         <translation>Показывать только работающие компьютеры</translation>
     </message>
@@ -2978,6 +2974,20 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation>Функция &quot;%1&quot; всё ещё активна. Пожалуйста, остановите её перед закрытием %2.</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3181,6 +3191,58 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Always expand all locations</source>
         <translation>Всегда раскрывать все местоположения</translation>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Адрес хоста</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3793,6 +3855,40 @@ Typically this is required to support terminal servers.</source>
         <source>Running</source>
         <translation>Работает</translation>
     </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Нет</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -4047,17 +4143,6 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>Нет доступа на запись</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Не удалось сохранить ваши личные настройки! Пожалуйста, проверьте, правильно ли указан путь к файлу настроек пользователей с помощью конфигуратора %1.</translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4180,6 +4265,17 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Screen %1</source>
         <translation>Экран %1</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>Нет доступа на запись</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>Не удалось сохранить ваши личные настройки! Пожалуйста, проверьте, правильно ли указан путь к файлу настроек пользователей с помощью конфигуратора %1.</translation>
     </message>
 </context>
 <context>

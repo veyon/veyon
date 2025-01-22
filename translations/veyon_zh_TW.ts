@@ -2880,10 +2880,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>將電腦對齊格線</translation>
     </message>
     <message>
-        <source>Use custom computer arrangement</source>
-        <translation>使用自訂電腦排列</translation>
-    </message>
-    <message>
         <source>Only show powered on computers</source>
         <translation>只顯示開機的電腦</translation>
     </message>
@@ -2978,6 +2974,20 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation>功能 &quot;%1&quot; 仍使用中。 請先停止它再關閉 %2。</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3180,6 +3190,58 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Always expand all locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>預設值</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>主機位址</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation>工作階段用戶端位址</translation>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation>工作階段用戶端名稱</translation>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>使用者的全名</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>使用者登入名稱</translation>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3793,6 +3855,42 @@ Typically this is required to support terminal servers.</source>
         <source>Running</source>
         <translation>執行中</translation>
     </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>無</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation>環境變數名稱:</translation>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation>登錄檔機碼名稱:</translation>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation>(可選) 輸入含擷取的正規表示式，以擷取電腦名稱的一部分並將其用於電腦的顯示名稱。
+
+例如: [^-]*-(PC[0-9]*)</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -4047,17 +4145,6 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>沒有寫入存取</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>無法儲存您的個人設定! 請檢查使用 %1 組態的使用者設定檔路徑。</translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4180,6 +4267,17 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Screen %1</source>
         <translation>螢幕 %1</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>沒有寫入存取</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>無法儲存您的個人設定! 請檢查使用 %1 組態的使用者設定檔路徑。</translation>
     </message>
 </context>
 <context>

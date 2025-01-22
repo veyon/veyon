@@ -2876,10 +2876,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Lerrokatu ordenagailuak saretarekin</translation>
     </message>
     <message>
-        <source>Use custom computer arrangement</source>
-        <translation>Erabili ordenagailuen antolaketa pertsonalizatua</translation>
-    </message>
-    <message>
         <source>Only show powered on computers</source>
         <translation>Erakutsi bakarrik piztuta dauden ordenagailuak</translation>
     </message>
@@ -2974,6 +2970,20 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation>&quot;%1&quot; funtzioa aktibo dago oraindik. Mesedez, gelditu %2 itxi aurretik.</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3176,6 +3186,58 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Always expand all locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Ostalariaren helbidea</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3789,6 +3851,40 @@ Normalean hori beharrezkoa da terminal zerbitzariak onartzeko.</translation>
         <source>Running</source>
         <translation>Martxan</translation>
     </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Bat ere ez</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -4043,17 +4139,6 @@ Normalean hori beharrezkoa da terminal zerbitzariak onartzeko.</translation>
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>Ez dago idazteko sarbiderik</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Ezin izan dira zure ezarpen pertsonalak gorde! Mesedez, egiaztatu erabiltzailearen konfigurazio fitxategiaren bidea %1 konfiguratzailea erabiliz.</translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4176,6 +4261,17 @@ Normalean hori beharrezkoa da terminal zerbitzariak onartzeko.</translation>
     <message>
         <source>Screen %1</source>
         <translation>%1 pantaila</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>Ez dago idazteko sarbiderik</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>Ezin izan dira zure ezarpen pertsonalak gorde! Mesedez, egiaztatu erabiltzailearen konfigurazio fitxategiaren bidea %1 konfiguratzailea erabiliz.</translation>
     </message>
 </context>
 <context>

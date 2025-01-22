@@ -2879,10 +2879,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Вирівняти комп&apos;ютери за ґраткою</translation>
     </message>
     <message>
-        <source>Use custom computer arrangement</source>
-        <translation>Нетипове розташування комп&apos;ютерів</translation>
-    </message>
-    <message>
         <source>Only show powered on computers</source>
         <translation>Показувати лише увімкнені комп&apos;ютери</translation>
     </message>
@@ -2977,6 +2973,22 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation>Задіяно можливість «%1». Будь ласка, вимкніть її, перш ніж завершувати роботу %2.</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation>Використати нетипову конфігурацію комп&apos;ютерів.
+
+Натисніть і утримуйте, щоб завантажити конфігурацію з файла або зберегти конфігурацію до файла.</translation>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation>Звантажити місця комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation>Зберегти місця комп&apos;ютерів</translation>
     </message>
 </context>
 <context>
@@ -3180,6 +3192,58 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Always expand all locations</source>
         <translation>Завжди розгортати усі місця</translation>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation>Шаблони налаштувань</translation>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation>Додатково</translation>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation>Джерело назв комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Типове</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Адреса вузла</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation>Адреса клієнта сеансу</translation>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation>Назва клієнта сеансу</translation>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation>Назва вузла сеансу</translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation>Метадані сеансу</translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Повне ім&apos;я користувача</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Назва запису користувача</translation>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation>Роль UID комп&apos;ютера</translation>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation>Хеш-сума метаданих сеансу</translation>
     </message>
 </context>
 <context>
@@ -3792,6 +3856,42 @@ Typically this is required to support terminal servers.</source>
         <source>Running</source>
         <translation>Запущено</translation>
     </message>
+    <message>
+        <source>Session metadata</source>
+        <translation>Метадані сеансу</translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation>Дані</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Немає</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation>Значення змінної середовища</translation>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation>Значення ключа реєстру</translation>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation>Назва змінної середовища:</translation>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation>Назва ключа реєстра:</translation>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation>Якщо хочете, введіть формальний вираз із використанням захоплення даних для видобування частини назви комп&apos;ютера і використання її як показану назву комп&apos;ютера.
+
+Приклад: [^-]*-(PC[0-9]*)</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -4046,17 +4146,6 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>Немає доступу на запис</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Не вдалося зберегти ваші особисті параметри! Будь ласка, перевірте, чи правильно вказано шлях до файла налаштувань користувачів за допомогою засобу налаштовування %1.</translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4179,6 +4268,17 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Screen %1</source>
         <translation>Екран %1</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>Немає доступу на запис</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>Не вдалося зберегти ваші особисті параметри! Будь ласка, перевірте, чи правильно вказано шлях до файла налаштувань користувачів за допомогою засобу налаштовування %1.</translation>
     </message>
 </context>
 <context>

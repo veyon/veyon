@@ -2878,10 +2878,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Számítógépek rácsba illesztése</translation>
     </message>
     <message>
-        <source>Use custom computer arrangement</source>
-        <translation>Egyéni számítógép-elhelyezés használata</translation>
-    </message>
-    <message>
         <source>Only show powered on computers</source>
         <translation>Csak a bekapcsolt számítógépek megjelenítése</translation>
     </message>
@@ -2976,6 +2972,20 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation>&quot;%1&quot; szolgáltatás még aktív. Kérem, állítsa le, mielőtt %2-t bezárja </translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3178,6 +3188,58 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Always expand all locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Alap</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Kiszolgáló címe</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation>Munkamenet kliens címe</translation>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation>Munkamenet ügyfél neve</translation>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>A felhasználók teljes neve</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>A felhasználó bejelentkezési neve</translation>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3788,6 +3850,42 @@ Typically this is required to support terminal servers.</source>
         <source>Running</source>
         <translation>Jelenleg fut</translation>
     </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Egyik sem</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation>Környezeti változó neve:</translation>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation>Rendszerleíró kulcs neve:</translation>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation>Opcionálisan írj egy reguláris kifejezést a számítógépnév egy részének kinyeréséhez, és használd ezt a számítógép megjelenített neveként.
+
+Példa: [^-]*-(PC[0-9]*)</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -4042,17 +4140,6 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>Nincs írási hozzáférés</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Személyes beállításait nem sikerült menteni! Kérem, ellenőrizd a felhasználói konfigurációs fájl útvonalát %1 Konfigurátorban.</translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4175,6 +4262,17 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Screen %1</source>
         <translation>%1 képernyő</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>Nincs írási hozzáférés</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>Személyes beállításait nem sikerült menteni! Kérem, ellenőrizd a felhasználói konfigurációs fájl útvonalát %1 Konfigurátorban.</translation>
     </message>
 </context>
 <context>

@@ -2882,10 +2882,6 @@ Translated with DeepL</translation>
         <translation>Computers uitlijnen op rooster</translation>
     </message>
     <message>
-        <source>Use custom computer arrangement</source>
-        <translation>Aangepaste computeropstelling gebruiken</translation>
-    </message>
-    <message>
         <source>Only show powered on computers</source>
         <translation>Toon alleen de ingeschakelde computers</translation>
     </message>
@@ -2980,6 +2976,20 @@ Translated with DeepL</translation>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation>Het programma %1 is nog steeds actief. Stop het alvorens %2 af te sluiten.</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3182,6 +3192,58 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>Always expand all locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Standaard</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Host adres</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation>Sessie-clientadres</translation>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation>Sessie-clientnaam</translation>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Volledige naam van gebruiker</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Loginnaam gebruiker</translation>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3795,6 +3857,42 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
         <source>Running</source>
         <translation>Gestart</translation>
     </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Geen</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation>Naam omgevingsvariabele:</translation>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation>Naam registersleutel:</translation>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation>Voer optioneel een reguliere expressie met een capture in om een deel van de computernaam te extraheren en te gebruiken als weergavenaam voor de computer.
+
+Voorbeeld: [^-]*-(PC[0-9]*)</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -4049,17 +4147,6 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>Geen schrijftoegang</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Kon uw persoonlijke instellingen niet opslaan! Controleer het gebruikersconfiguratiebestandspad door gebruik te maken van de %1 Configurator.</translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4182,6 +4269,17 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     <message>
         <source>Screen %1</source>
         <translation>Scherm %1</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>Geen schrijftoegang</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>Kon uw persoonlijke instellingen niet opslaan! Controleer het gebruikersconfiguratiebestandspad door gebruik te maken van de %1 Configurator.</translation>
     </message>
 </context>
 <context>

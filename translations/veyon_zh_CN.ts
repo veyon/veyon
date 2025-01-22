@@ -1569,19 +1569,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FeatureCommands</name>
     <message>
         <source>List names of all available features</source>
-        <translation type="unfinished"/>
+        <translation>列出所有可用功能的名称</translation>
     </message>
     <message>
         <source>Show table with details of all available features</source>
-        <translation type="unfinished"/>
+        <translation>显示含有所有可用功能的详细信息表格</translation>
     </message>
     <message>
         <source>Start a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>启动远程主机功能</translation>
     </message>
     <message>
         <source>Stop a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>停止远程主机功能</translation>
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
@@ -1657,11 +1657,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Worker</source>
-        <translation type="unfinished"/>
+        <translation>Worker</translation>
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin</source>
@@ -1677,11 +1677,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Failed to initialize credentials</source>
-        <translation type="unfinished"/>
+        <translation>初始化认证失败</translation>
     </message>
     <message>
         <source>Could not establish a connection to host %1</source>
-        <translation type="unfinished"/>
+        <translation>无法建立到主机 %1 的连接</translation>
     </message>
     <message>
         <source>Failed to send feature control message to host %1</source>
@@ -2879,10 +2879,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>将计算机图标与网格对齐</translation>
     </message>
     <message>
-        <source>Use custom computer arrangement</source>
-        <translation>使用自定义的计算机排序</translation>
-    </message>
-    <message>
         <source>Only show powered on computers</source>
         <translation>仅显示开机的计算机</translation>
     </message>
@@ -2978,6 +2974,20 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation>功能 &quot;%1&quot; 仍处于活动状态。 请在关闭 &quot;%2&quot; 之前停止它。</translation>
     </message>
+    <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3019,7 +3029,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation>px</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -3127,7 +3137,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Hide local session</source>
-        <translation type="unfinished"/>
+        <translation>隐藏本机会话</translation>
     </message>
     <message>
         <source>Hide empty locations</source>
@@ -3179,6 +3189,58 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Always expand all locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>主机地址</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3294,7 +3356,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
@@ -3369,7 +3431,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>您真的要重新启动&lt;b&gt;全部&lt;/b&gt;计算机？</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
@@ -3381,7 +3443,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>您真的要关闭&lt;b&gt;所有的&lt;/b&gt;计算机？</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
@@ -3792,6 +3854,40 @@ Typically this is required to support terminal servers.</source>
         <source>Running</source>
         <translation>正在运行</translation>
     </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>无</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -4046,17 +4142,6 @@ Typically this is required to support terminal servers.</source>
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>没有写入权限</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>无法保存您的个人设置！ 请使用 %1 配置器检查用户配置文件路径。</translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4099,11 +4184,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation>您确定要注销 &lt;b&gt;所有&lt;/b&gt; 用户吗？</translation>
+        <translation>您确定要注销 &lt;b&gt;所有&lt;/b&gt; 用户？</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation>您确定要注销选定的用户吗？</translation>
+        <translation>您确定要注销选定的用户？</translation>
     </message>
     <message>
         <source>User session control</source>
@@ -4114,15 +4199,15 @@ Typically this is required to support terminal servers.</source>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation>[OK]</translation>
+        <translation>[正常]</translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation>[FAIL]</translation>
+        <translation>[失败]</translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation>无效的命！</translation>
+        <translation>无效的命令！</translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
@@ -4179,6 +4264,17 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Screen %1</source>
         <translation>屏幕 %1</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>没有写入权限</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>无法保存您的个人设置！ 请使用 %1 配置器检查用户配置文件路径。</translation>
     </message>
 </context>
 <context>

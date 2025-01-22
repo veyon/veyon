@@ -2877,10 +2877,6 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Computer an Gitter ausrichten</translation>
     </message>
     <message>
-        <source>Use custom computer arrangement</source>
-        <translation>Benutzerdefinierte Computeranordnung verwenden</translation>
-    </message>
-    <message>
         <source>Only show powered on computers</source>
         <translation>Nur eingeschaltete Computer anzeigen</translation>
     </message>
@@ -2975,6 +2971,22 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation>Die Funktion &quot;%1&quot; ist noch aktiv. Bitte beenden Sie diese bevor Sie %2 schließen.</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation>Benutzerdefinierte Computeranordnung verwenden.
+
+Gedrückt halten, um die Anordnung aus einer Datei zu laden oder die aktuelle Anordnung in einer Datei zu speichern.</translation>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation>Computerpositionen laden</translation>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation>Computerpositionen speichern</translation>
     </message>
 </context>
 <context>
@@ -3178,6 +3190,58 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
     <message>
         <source>Always expand all locations</source>
         <translation>Immer alle Standorte ausklappen</translation>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation>Konfigurationsvorlagen</translation>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation>Erweitert</translation>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation>Quelle für Computernamen</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Standard</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Hostadresse</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation>Adresse des Sitzungsclients</translation>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation>Name des Sitzungsclients</translation>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation>Sitzungshostname</translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation>Sitzungsmetadaten</translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Voller Name des Benutzers</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Benutzeranmeldename</translation>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation>Computer-UID-Rolle</translation>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation>Hash über Sitzungsmetadaten</translation>
     </message>
 </context>
 <context>
@@ -3790,6 +3854,42 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <source>Running</source>
         <translation>Läuft</translation>
     </message>
+    <message>
+        <source>Session metadata</source>
+        <translation>Sitzungsmetadaten</translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation>Inhalt</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Keine</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation>Wert einer Umgebungsvariable</translation>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation>Wert eines Registryschlüssels</translation>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation>Name der Umgebungsvariable:</translation>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation>Name des Registryschlüssels:</translation>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation>Geben Sie optional einen regulären Ausdruck mit einem Capture ein, um einen Teil des Computernamens zu extrahieren und ihn als Anzeigenamen für den Computer zu verwenden.
+
+Beispiel: [^-]*-(PC[0-9]*)</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -4044,17 +4144,6 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>Kein Schreibzugriff</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Ihre persönlichen Einstellungen konnten nicht gespeichert werden! Bitte überprüfen Sie den Pfad für die Benutzerkonfiguration mit Hilfe des %1 Configurators.</translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4177,6 +4266,17 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
     <message>
         <source>Screen %1</source>
         <translation>Bildschirm %1</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>Kein Schreibzugriff</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>Ihre persönlichen Einstellungen konnten nicht gespeichert werden! Bitte überprüfen Sie den Pfad für die Benutzerkonfiguration mit Hilfe des %1 Configurators.</translation>
     </message>
 </context>
 <context>

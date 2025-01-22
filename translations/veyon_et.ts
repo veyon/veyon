@@ -2880,10 +2880,6 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation>Joondage arvutid</translation>
     </message>
     <message>
-        <source>Use custom computer arrangement</source>
-        <translation>Kasutage kohandatud arvutikorraldust</translation>
-    </message>
-    <message>
         <source>Only show powered on computers</source>
         <translation>Näita ainult töötavaid arvuteid</translation>
     </message>
@@ -2978,6 +2974,20 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
         <translation>Funktsioon &quot;%1&quot; on endiselt aktiivne. Enne %2 sulgemist peatage see.</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3180,6 +3190,58 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     </message>
     <message>
         <source>Always expand all locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Vaikimisi</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Seadme aadress</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation>Seansi kliendi aadress</translation>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation>Seansi kliendi nimi</translation>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Kasutaja täisnimi</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Kasutaja sisselogimisnimi</translation>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3793,6 +3855,42 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <source>Running</source>
         <translation>Käib</translation>
     </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Puudub</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation>Keskkonna muutuja nimi</translation>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation>Registrivõtme nimi</translation>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation>Soovi korral sisestage fikseeritud regulaaravaldis, et eraldada osa arvuti nimest ja kasutada seda arvuti kuvanimena.
+
+Näide: [^-]*-(PC[0-9]*)</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
@@ -4047,17 +4145,6 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>Kirjutusjuurdepääs puudub</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Teie isiklikke seadeid ei õnnestunud salvestada! Kontrollige kasutaja konfiguratsioonifaili teed %1 Konfiguraatori abil</translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4180,6 +4267,17 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     <message>
         <source>Screen %1</source>
         <translation>Ekraan %1</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>Kirjutusjuurdepääs puudub</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>Teie isiklikke seadeid ei õnnestunud salvestada! Kontrollige kasutaja konfiguratsioonifaili teed %1 Konfiguraatori abil</translation>
     </message>
 </context>
 <context>
