@@ -1,7 +1,7 @@
 /*
  *  Screenshot.cpp - class representing a screenshot
  *
- *  Copyright (c) 2010-2024 Tobias Junghans <tobydox@veyon.io>
+ *  Copyright (c) 2010-2025 Tobias Junghans <tobydox@veyon.io>
  *
  *  This file is part of Veyon - https://veyon.io
  *

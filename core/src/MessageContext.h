@@ -1,7 +1,7 @@
 /*
  * MessageContext.h - header for transporting context for message I/O
  *
- * Copyright (c) 2018-2024 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2018-2025 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
