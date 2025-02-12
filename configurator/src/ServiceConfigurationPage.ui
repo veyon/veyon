@@ -129,8 +129,7 @@
       <item>
        <widget class="QRadioButton" name="activeSessionModeEnabled">
         <property name="toolTip">
-         <string>Enabling this option will make the service launch a server process for every interactive session on a computer.
-Typically this is required to support terminal servers.</string>
+         <string>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</string>
         </property>
         <property name="text">
          <string>Active session mode (single server instance for active local or remote session)</string>
