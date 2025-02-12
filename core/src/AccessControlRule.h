@@ -87,10 +87,10 @@ public:
 
 	using ConditionParameterMap = QMap<Condition, ConditionParameters>;
 
+	using Pointer = QSharedPointer<AccessControlRule>;
 
 	AccessControlRule();
-	AccessControlRule( const AccessControlRule& other );
-	explicit AccessControlRule( const QJsonValue& jsonValue );
+	explicit AccessControlRule(const QJsonValue& jsonValue);
 
 	~AccessControlRule() = default;
 

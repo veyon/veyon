@@ -308,7 +308,7 @@ bool MainWindow::initAccessControl()
 													 QHostAddress( QHostAddress::LocalHost ).toString(),
 													 QStringList(),
 													 authMethodUid );
-		if( accessControlResult == AccessControlProvider::Access::Deny )
+		if (accessControlResult.access == AccessControlProvider::Access::Deny)
 		{
 			vWarning() << "user" << username << "is not allowed to access computers";
 			QMessageBox::critical( nullptr, tr( "Access denied" ),

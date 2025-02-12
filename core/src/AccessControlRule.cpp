@@ -37,17 +37,6 @@ AccessControlRule::AccessControlRule() :
 
 
 
-AccessControlRule::AccessControlRule(const AccessControlRule &other) :
-	m_name( other.name() ),
-	m_description( other.description() ),
-	m_action( other.action() ),
-	m_parameters( other.parameters() ),
-	m_ignoreConditions( other.areConditionsIgnored() )
-{
-}
-
-
-
 AccessControlRule::AccessControlRule( const QJsonValue& jsonValue ) :
 	m_name(),
 	m_description(),

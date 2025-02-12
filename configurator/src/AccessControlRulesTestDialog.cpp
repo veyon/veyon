@@ -84,7 +84,7 @@ void AccessControlRulesTestDialog::accept()
 														Plugin::Uid{ui->authenticationMethodsComboBox->currentData().toString()} );
 	QString resultText;
 
-	switch( result )
+	switch (result ? result->action() : AccessControlRule::Action::None)
 	{
 	case AccessControlRule::Action::Allow:
 		resultText = tr( "The access in the given scenario is allowed." );
