@@ -55,6 +55,11 @@ public:
 		AccessFromLocalUser,
 		AccessFromAlreadyConnectedUser,
 		NoUserLoggedOn,
+		NoUserLoggedInRemotely,
+		AccessedUserLoggedInLocally,
+		UserSession,
+		AuthenticationMethod,
+		ComputerAlreadyBeingAccessed,
 	} ;
 
 	Q_ENUM(Condition)
