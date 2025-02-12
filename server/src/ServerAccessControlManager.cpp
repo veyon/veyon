@@ -60,6 +60,7 @@ void ServerAccessControlManager::addClient( VncServerClient* client )
 	default:
 		// reject unknown auth type
 		client->setAccessControlState( VncServerClient::AccessControlState::Failed );
+		client->setAccessControlDetails(tr("Requested authentication method not available"));
 		break;
 	}
 
@@ -121,6 +122,8 @@ void ServerAccessControlManager::performAccessControl( VncServerClient* client )
 	const auto checkResult = accessControlProvider.checkAccess(client->username(),
 															   client->hostAddress(),
 															   connectedUsers());
+
+	client->setAccessControlDetails(checkResult.details());
 
 	switch (checkResult.access)
 	{
@@ -211,6 +214,7 @@ void ServerAccessControlManager::finishDesktopAccessConfirmation( VncServerClien
 	{
 		client->setAccessControlState( VncServerClient::AccessControlState::Failed );
 		client->setProtocolState( VncServerProtocol::Close );
+		client->setAccessControlDetails(tr("User did not confirm access."));
 	}
 }
 
