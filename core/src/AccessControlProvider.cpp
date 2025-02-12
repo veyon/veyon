@@ -249,7 +249,7 @@ bool AccessControlProvider::isMemberOfUserGroup( const QString &user,
 
 bool AccessControlProvider::isLocatedAt( const QString &computer, const QString &locationName ) const
 {
-	return locationsOfComputer( computer ).contains( locationName );
+	return matchList(locationsOfComputer(computer), locationName);
 }
 
 
