@@ -58,7 +58,8 @@ public:
 		NoUserLoggedInRemotely,
 		AccessedUserLoggedInLocally,
 		UserSession,
-		AuthenticationMethod
+		AuthenticationMethod,
+		ComputerAlreadyBeingAccessed,
 	} ;
 
 	Q_ENUM(Condition)
