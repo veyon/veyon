@@ -81,6 +81,7 @@ private:
 						  Plugin::Uid authMethodUid ) const;
 
 	static QStringList objectNames( const NetworkObjectList& objects );
+	static bool matchList(const QStringList& list, const QString& pattern);
 
 	QList<AccessControlRule> m_accessControlRules{};
 	UserGroupsBackendInterface* m_userGroupsBackend;

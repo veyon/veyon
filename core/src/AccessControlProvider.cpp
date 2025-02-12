@@ -515,3 +515,25 @@ QStringList AccessControlProvider::objectNames( const NetworkObjectList& objects
 
 	return nameList;
 }
+
+
+
+bool AccessControlProvider::matchList(const QStringList& list, const QString& pattern)
+{
+	if (pattern.startsWith(QLatin1Char('/')) && pattern.endsWith(QLatin1Char('/')) &&
+		pattern.length() > 2)
+	{
+		return list.indexOf(QRegularExpression(pattern.mid(1, pattern.length() - 2))) >= 0;
+	}
+
+	if (pattern.endsWith(QLatin1Char('*')))
+	{
+		const QRegularExpression rx(pattern);
+		if (rx.isValid())
+		{
+			return list.indexOf(rx) >= 0;
+		}
+	}
+
+	return list.contains(pattern);
+}
