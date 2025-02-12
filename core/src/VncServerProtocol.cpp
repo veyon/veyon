@@ -28,7 +28,6 @@
 #include <QRegularExpression>
 #include <QTcpSocket>
 
-#include "AuthenticationCredentials.h"
 #include "VariantArrayMessage.h"
 #include "VncServerClient.h"
 #include "VncServerProtocol.h"
