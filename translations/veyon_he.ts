@@ -932,7 +932,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Invalid</source>
-        <translation type="unfinished"/>
+        <translation>לא בתוקף</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
@@ -1005,7 +1005,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>invalid</source>
-        <translation type="unfinished"/>
+        <translation>לא בתוקף</translation>
     </message>
     <message>
         <source>Active features: %1</source>
@@ -1650,7 +1650,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"/>
+        <translation>שרות</translation>
     </message>
     <message>
         <source>Worker</source>
@@ -1825,7 +1825,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"/>
+        <translation>אימות</translation>
     </message>
     <message>
         <source>Method:</source>
@@ -1873,7 +1873,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Nothing</source>
-        <translation type="unfinished"/>
+        <translation>כלום</translation>
     </message>
     <message>
         <source>Only critical messages</source>
@@ -2762,7 +2762,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"/>
+        <translation>שרות</translation>
     </message>
     <message>
         <source>Master</source>
@@ -3151,7 +3151,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Features</source>
-        <translation type="unfinished"/>
+        <translation>תכונות</translation>
     </message>
     <message>
         <source>All features</source>
@@ -3330,7 +3330,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>גרסה</translation>
     </message>
     <message>
         <source>UID</source>
@@ -3579,7 +3579,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>תפריט</translation>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>

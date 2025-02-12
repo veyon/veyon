@@ -1132,7 +1132,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerSelectPanel</name>
     <message>
         <source>Search computers</source>
-        <translation type="unfinished"/>
+        <translation>Wyszukiwanie komputerów</translation>
     </message>
     <message>
         <source>Add location</source>
@@ -1608,7 +1608,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
-        <translation type="unfinished"/>
+        <translation>Uruchamia określoną funkcję na określonym hoście, łącząc się ze zdalnie uruchomionym serwerem Veyon Server. Funkcja może być określona przez nazwę lub UID. Użyj polecenia ``show``, aby zobaczyć wszystkie dostępne funkcje. W zależności od funkcji należy określić dodatkowe argumenty (takie jak wiadomość tekstowa do wyświetlenia) zakodowane jako pojedynczy ciąg JSON. Więcej informacji można znaleźć w dokumentacji deweloperskiej</translation>
     </message>
     <message>
         <source>Lock the screen</source>

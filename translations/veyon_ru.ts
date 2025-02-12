@@ -1725,7 +1725,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
-        <translation>Создайте целевой каталог, если он не существует</translation>
+        <translation>Создать целевой каталог, если он не существует</translation>
     </message>
 </context>
 <context>
@@ -2885,7 +2885,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation>Места &amp;&amp; компьютеры</translation>
+        <translation>Места и компьютеры</translation>
     </message>
     <message>
         <source>Screenshots</source>
@@ -2979,15 +2979,17 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Use custom computer arrangement.
 
 Press and hold to load arrangement from a file or save current arrangement to a file.</source>
-        <translation type="unfinished"/>
+        <translation>Использовать пользовательское расположение компьютеров.
+
+Нажмите и удерживайте, чтобы загрузить расположение из файла или сохранить текущее расположение в файл.</translation>
     </message>
     <message>
         <source>Load computer positions</source>
-        <translation type="unfinished"/>
+        <translation>Загрузить позиции компьютеров</translation>
     </message>
     <message>
         <source>Save computer positions</source>
-        <translation type="unfinished"/>
+        <translation>Сохранить позиции компьютеров</translation>
     </message>
 </context>
 <context>
@@ -3194,19 +3196,19 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Configuration templates</source>
-        <translation type="unfinished"/>
+        <translation>Шаблоны конфигурации</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished"/>
+        <translation>Расширенный</translation>
     </message>
     <message>
         <source>Computer name source</source>
-        <translation type="unfinished"/>
+        <translation>Источник имени компьютера</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>По умолчанию</translation>
     </message>
     <message>
         <source>Host address</source>
@@ -3214,35 +3216,35 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Session client address</source>
-        <translation type="unfinished"/>
+        <translation>Адрес клиента сеанса</translation>
     </message>
     <message>
         <source>Session client name</source>
-        <translation type="unfinished"/>
+        <translation>Имя клиента сеанса</translation>
     </message>
     <message>
         <source>Session host name</source>
-        <translation type="unfinished"/>
+        <translation>Имя хоста сеанса</translation>
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>Метаданные сеанса</translation>
     </message>
     <message>
         <source>Full name of user</source>
-        <translation type="unfinished"/>
+        <translation>Полное имя пользователя</translation>
     </message>
     <message>
         <source>User login name</source>
-        <translation type="unfinished"/>
+        <translation>Имя пользователя (логин)</translation>
     </message>
     <message>
         <source>Computer UID role</source>
-        <translation type="unfinished"/>
+        <translation>Роль UID компьютера</translation>
     </message>
     <message>
         <source>Session meta data hash</source>
-        <translation type="unfinished"/>
+        <translation>Хеш метаданных сеанса</translation>
     </message>
 </context>
 <context>
@@ -3857,11 +3859,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>Метаданные сеанса</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"/>
+        <translation>Содержимое</translation>
     </message>
     <message>
         <source>None</source>
@@ -3869,25 +3871,27 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Value of an environment variable</source>
-        <translation type="unfinished"/>
+        <translation>Значение переменной среды</translation>
     </message>
     <message>
         <source>Value of a registry key</source>
-        <translation type="unfinished"/>
+        <translation>Значение ключа реестра</translation>
     </message>
     <message>
         <source>Environment variable name:</source>
-        <translation type="unfinished"/>
+        <translation>Имя переменной среды:</translation>
     </message>
     <message>
         <source>Registry key name:</source>
-        <translation type="unfinished"/>
+        <translation>Имя ключа реестра:</translation>
     </message>
     <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
 
 Example: [^-]*-(PC[0-9]*)</source>
-        <translation type="unfinished"/>
+        <translation>При необходимости введите регулярное выражение с захватом, чтобы извлечь часть имени компьютера и использовать её в качестве отображаемого имени компьютера.
+
+Пример: [^-]*-(PC[0-9]*)</translation>
     </message>
 </context>
 <context>
