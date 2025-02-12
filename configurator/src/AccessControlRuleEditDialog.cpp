@@ -97,6 +97,7 @@ AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule
 	loadCondition ( ui->isNoUserLoggedInLocally, ui->invertIsNoUserLoggedInLocally, AccessControlRule::Condition::NoUserLoggedInLocally );
 	loadCondition ( ui->isNoUserLoggedInRemotely, ui->invertIsNoUserLoggedInRemotely, AccessControlRule::Condition::NoUserLoggedInRemotely );
 	loadCondition ( ui->isUserSession, ui->invertIsUserSession, AccessControlRule::Condition::UserSession );
+	loadCondition(ui->computerAlreadyBeingAccessed, ui->invertComputerAlreadyBeingAccessed, AccessControlRule::Condition::ComputerAlreadyBeingAccessed);
 
 	// load selected condition subjects
 	ui->isMemberOfGroupSubject->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::Condition::MemberOfGroup ) ) );
@@ -175,6 +176,8 @@ void AccessControlRuleEditDialog::accept()
 	saveCondition( ui->isNoUserLoggedInLocally, ui->invertIsNoUserLoggedInLocally, AccessControlRule::Condition::NoUserLoggedInLocally );
 	saveCondition( ui->isNoUserLoggedInRemotely, ui->invertIsNoUserLoggedInRemotely, AccessControlRule::Condition::NoUserLoggedInRemotely );
 	saveCondition( ui->isUserSession, ui->invertIsUserSession, AccessControlRule::Condition::UserSession );
+
+	saveCondition(ui->computerAlreadyBeingAccessed, ui->invertComputerAlreadyBeingAccessed, AccessControlRule::Condition::ComputerAlreadyBeingAccessed);
 
 	// save action
 	if( ui->actionAllowRadioButton->isChecked() )

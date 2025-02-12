@@ -446,6 +446,30 @@
        </layout>
       </item>
       <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_14" stretch="0,1">
+        <item>
+         <widget class="QCheckBox" name="computerAlreadyBeingAccessed"/>
+        </item>
+        <item>
+         <widget class="QComboBox" name="invertComputerAlreadyBeingAccessed">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <item>
+           <property name="text">
+            <string>Local computer is already being accessed</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Local computer is not yet being accessed</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
        <widget class="QLabel" name="label">
         <property name="font">
          <font>
@@ -887,6 +911,22 @@
     <hint type="destinationlabel">
      <x>492</x>
      <y>761</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>computerAlreadyBeingAccessed</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>invertComputerAlreadyBeingAccessed</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>28</x>
+     <y>585</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>334</x>
+     <y>585</y>
     </hint>
    </hints>
   </connection>
