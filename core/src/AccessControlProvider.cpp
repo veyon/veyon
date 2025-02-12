@@ -421,6 +421,16 @@ bool AccessControlProvider::matchConditions( const AccessControlRule &rule,
 		}
 	}
 
+	if (rule.isConditionEnabled(AccessControlRule::Condition::ComputerAlreadyBeingAccessed))
+	{
+		hasConditions = true;
+
+		if (!connectedUsers.isEmpty() != matchResult)
+		{
+			return false;
+		}
+	}
+
 	// do not match the rule if no conditions are set at all
 	if( hasConditions == false )
 	{
