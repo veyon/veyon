@@ -117,12 +117,12 @@ void ServerAccessControlManager::performAccessControl( VncServerClient* client )
 		break;
 	}
 
-	const auto accessResult =
-			AccessControlProvider().checkAccess( client->username(),
-												 client->hostAddress(),
-												 connectedUsers() );
+	AccessControlProvider accessControlProvider;
+	const auto checkResult = accessControlProvider.checkAccess(client->username(),
+															   client->hostAddress(),
+															   connectedUsers());
 
-	switch( accessResult )
+	switch (checkResult.access)
 	{
 	case AccessControlProvider::Access::Allow:
 		client->setAccessControlState( VncServerClient::AccessControlState::Successful );

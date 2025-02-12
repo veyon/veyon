@@ -315,7 +315,7 @@ bool MainWindow::initAccessControl()
 		const auto accessControlResult = AccessControlProvider().checkAccess(accessingUser,
 																			 QHostAddress(QHostAddress::LocalHost).toString(),
 																			 {});
-		if( accessControlResult == AccessControlProvider::Access::Deny )
+		if( accessControlResult.access == AccessControlProvider::Access::Deny )
 		{
 			vWarning() << "user" << VeyonCore::authenticationCredentials().logonUsername()
 					   << "is not allowed to access computers";

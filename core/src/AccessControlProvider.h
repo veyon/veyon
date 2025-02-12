@@ -39,22 +39,31 @@ public:
 		ToBeConfirmed,
 	} ;
 
+	struct CheckResult {
+		Access access = Access::Deny;
+		AccessControlRule::Pointer matchedRule = nullptr;
+		QString details() const
+		{
+			return matchedRule ? matchedRule->description() : QString{};
+		}
+	};
+
 	AccessControlProvider();
 
 	QStringList userGroups() const;
 	QStringList locations() const;
 	QStringList locationsOfComputer( const QString& computer ) const;
 
-	Access checkAccess( const QString& accessingUser, const QString& accessingComputer,
-						const QStringList& connectedUsers );
+	CheckResult checkAccess(const QString& accessingUser, const QString& accessingComputer,
+							const QStringList& connectedUsers);
 
 	bool processAuthorizedGroups( const QString& accessingUser );
 
-	AccessControlRule::Action processAccessControlRules( const QString& accessingUser,
+	AccessControlRule::Pointer processAccessControlRules(const QString& accessingUser,
 														 const QString& accessingComputer,
 														 const QString& localUser,
 														 const QString& localComputer,
-														 const QStringList& connectedUsers );
+														 const QStringList& connectedUsers);
 
 	bool isAccessToLocalComputerDenied() const;
 
@@ -79,7 +88,7 @@ private:
 	static QStringList objectNames( const NetworkObjectList& objects );
 	static bool matchList(const QStringList& list, const QString& pattern);
 
-	QList<AccessControlRule> m_accessControlRules;
+	QList<AccessControlRule::Pointer> m_accessControlRules{};
 	UserGroupsBackendInterface* m_userGroupsBackend;
 	NetworkObjectDirectory* m_networkObjectDirectory;
 	bool m_useDomainUserGroups;

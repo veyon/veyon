@@ -37,7 +37,6 @@
 
 
 AccessControlProvider::AccessControlProvider() :
-	m_accessControlRules(),
 	m_userGroupsBackend(VeyonCore::userGroupsBackendManager().configuredBackend()),
 	m_networkObjectDirectory(VeyonCore::networkObjectDirectoryManager().configuredDirectory()),
 	m_useDomainUserGroups(VeyonCore::config().useDomainUserGroups())
@@ -46,9 +45,9 @@ AccessControlProvider::AccessControlProvider() :
 
 	m_accessControlRules.reserve( accessControlRules.size() );
 
-	for( const auto& accessControlRule : accessControlRules )
+	for (const auto& accessControlRule : accessControlRules)
 	{
-		m_accessControlRules.append( AccessControlRule( accessControlRule ) );
+		m_accessControlRules.append(AccessControlRule::Pointer::create(accessControlRule));
 	}
 }
 
@@ -118,31 +117,34 @@ QStringList AccessControlProvider::locationsOfComputer( const QString& computer 
 
 
 
-AccessControlProvider::Access AccessControlProvider::checkAccess( const QString& accessingUser,
-																  const QString& accessingComputer,
-																  const QStringList& connectedUsers )
+AccessControlProvider::CheckResult AccessControlProvider::checkAccess(const QString& accessingUser,
+																	  const QString& accessingComputer,
+																	  const QStringList& connectedUsers)
 {
-	if( VeyonCore::config().isAccessRestrictedToUserGroups() )
+	if (VeyonCore::config().isAccessRestrictedToUserGroups())
 	{
-		if( processAuthorizedGroups( accessingUser ) )
+		if (processAuthorizedGroups(accessingUser))
 		{
-			return Access::Allow;
+			return {Access::Allow};
 		}
 	}
-	else if( VeyonCore::config().isAccessControlRulesProcessingEnabled() )
+	else if (VeyonCore::config().isAccessControlRulesProcessingEnabled())
 	{
-		auto action = processAccessControlRules( accessingUser,
-												 accessingComputer,
-												 VeyonCore::platform().userFunctions().currentUser(),
-												 HostAddress::localFQDN(),
-												 connectedUsers );
-		switch( action )
+		const auto rule = processAccessControlRules(accessingUser,
+													accessingComputer,
+													VeyonCore::platform().userFunctions().currentUser(),
+													HostAddress::localFQDN(),
+													connectedUsers);
+		if (rule)
 		{
-		case AccessControlRule::Action::Allow:
-			return Access::Allow;
-		case AccessControlRule::Action::AskForPermission:
-			return Access::ToBeConfirmed;
-		default: break;
+			switch(rule->action())
+			{
+			case AccessControlRule::Action::Allow:
+				return {Access::Allow, rule};
+			case AccessControlRule::Action::AskForPermission:
+				return {Access::ToBeConfirmed, rule};
+			default: break;
+			}
 		}
 	}
 	else
@@ -150,13 +152,13 @@ AccessControlProvider::Access AccessControlProvider::checkAccess( const QString&
 		vDebug() << "no access control method configured, allowing access.";
 
 		// no access control method configured, therefore grant access
-		return Access::Allow;
+		return {Access::Allow};
 	}
 
 	vDebug() << "configured access control method did not succeed, denying access.";
 
 	// configured access control method did not succeed, therefore deny access
-	return Access::Deny;
+	return {Access::Deny};
 }
 
 
@@ -175,34 +177,34 @@ bool AccessControlProvider::processAuthorizedGroups( const QString& accessingUse
 
 
 
-AccessControlRule::Action AccessControlProvider::processAccessControlRules( const QString& accessingUser,
+AccessControlRule::Pointer AccessControlProvider::processAccessControlRules(const QString& accessingUser,
 																			const QString& accessingComputer,
 																			const QString& localUser,
 																			const QString& localComputer,
-																			const QStringList& connectedUsers )
+																			const QStringList& connectedUsers)
 {
 	vDebug() << "processing rules for" << accessingUser << accessingComputer << localUser << localComputer << connectedUsers;
 
-	for( const auto& rule : std::as_const( m_accessControlRules ) )
+	for (const auto& rule : std::as_const(m_accessControlRules))
 	{
 		// rule disabled?
-		if( rule.action() == AccessControlRule::Action::None )
+		if (rule->action() == AccessControlRule::Action::None)
 		{
 			// then continue with next rule
 			continue;
 		}
 
-		if( rule.areConditionsIgnored() ||
-			matchConditions( rule, accessingUser, accessingComputer, localUser, localComputer, connectedUsers ) )
+		if (rule->areConditionsIgnored() ||
+			matchConditions(*rule, accessingUser, accessingComputer, localUser, localComputer, connectedUsers))
 		{
-			vDebug() << "rule" << rule.name() << "matched with action" << rule.action();
-			return rule.action();
+			vDebug() << "rule" << rule->name() << "matched with action" << rule->action();
+			return rule;
 		}
 	}
 
 	vDebug() << "no matching rule, denying access";
 
-	return AccessControlRule::Action::Deny;
+	return nullptr;
 }
 
 
@@ -216,12 +218,12 @@ bool AccessControlProvider::isAccessToLocalComputerDenied() const
 		return false;
 	}
 
-	for( const auto& rule : std::as_const( m_accessControlRules ) )
+	for (const auto& rule : std::as_const(m_accessControlRules))
 	{
-		if( matchConditions( rule, {}, {},
-							 VeyonCore::platform().userFunctions().currentUser(), HostAddress::localFQDN(), {} ) )
+		if (matchConditions(*rule, {}, {},
+							VeyonCore::platform().userFunctions().currentUser(), HostAddress::localFQDN(), {}))
 		{
-			switch( rule.action() )
+			switch (rule->action())
 			{
 			case AccessControlRule::Action::Deny:
 				return true;

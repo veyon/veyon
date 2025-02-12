@@ -73,7 +73,7 @@ void AccessControlRulesTestDialog::accept()
 																   ui->connectedUsersLineEdit->text().split(QLatin1Char(',')));
 	QString resultText;
 
-	switch( result )
+	switch (result ? result->action() : AccessControlRule::Action::None)
 	{
 	case AccessControlRule::Action::Allow:
 		resultText = tr( "The access in the given scenario is allowed." );
