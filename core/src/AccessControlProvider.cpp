@@ -242,14 +242,7 @@ bool AccessControlProvider::isAccessToLocalComputerDenied() const
 bool AccessControlProvider::isMemberOfUserGroup( const QString &user,
 												 const QString &groupName ) const
 {
-	const QRegularExpression groupNameRX( groupName );
-
-	if( groupNameRX.isValid() )
-	{
-		return m_userGroupsBackend->groupsOfUser( user, m_useDomainUserGroups ).indexOf( groupNameRX ) >= 0;
-	}
-
-	return m_userGroupsBackend->groupsOfUser( user, m_useDomainUserGroups ).contains( groupName );
+	return matchList(m_userGroupsBackend->groupsOfUser(user, m_useDomainUserGroups), groupName);
 }
 
 
