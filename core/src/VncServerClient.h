@@ -102,6 +102,16 @@ public:
 		m_accessControlState = accessControlState;
 	}
 
+	const QString& accessControlDetails() const
+	{
+		return m_accessControlDetails;
+	}
+
+	void setAccessControlDetails(const QString& details)
+	{
+		m_accessControlDetails = details;
+	}
+
 	QElapsedTimer& accessControlTimer()
 	{
 		return m_accessControlTimer;
@@ -161,6 +171,7 @@ private:
 	AuthState m_authState;
 	Plugin::Uid m_authMethodUid;
 	AccessControlState m_accessControlState;
+	QString m_accessControlDetails;
 	QElapsedTimer m_accessControlTimer;
 	QString m_username;
 	QString m_hostAddress;

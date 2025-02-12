@@ -57,6 +57,7 @@ void ServerAccessControlManager::addClient( VncServerClient* client )
 	else
 	{
 		client->setAccessControlState( VncServerClient::AccessControlState::Failed );
+		client->setAccessControlDetails(tr("Requested authentication method not available"));
 	}
 
 	if( client->accessControlState() == VncServerClient::AccessControlState::Successful )
@@ -118,6 +119,8 @@ void ServerAccessControlManager::performAccessControl( VncServerClient* client )
 															   client->hostAddress(),
 															   connectedUsers(),
 															   client->authMethodUid());
+
+	client->setAccessControlDetails(checkResult.details());
 
 	switch (checkResult.access)
 	{
@@ -207,6 +210,7 @@ void ServerAccessControlManager::finishDesktopAccessConfirmation( VncServerClien
 	else
 	{
 		client->setAccessControlState( VncServerClient::AccessControlState::Failed );
+		client->setAccessControlDetails(tr("User did not confirm access."));
 		client->setProtocolState( VncServerProtocol::State::Close );
 	}
 }
