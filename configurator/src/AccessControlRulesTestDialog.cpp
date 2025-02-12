@@ -67,7 +67,10 @@ void AccessControlRulesTestDialog::accept()
 															   ui->accessingComputerLineEdit->text(),
 															   ui->localUserLineEdit->text(),
 															   ui->localComputerLineEdit->text(),
-															   ui->connectedUsersLineEdit->text().split( QLatin1Char(',') ) );
+															   ui->connectedUsersLineEdit->text().isEmpty() ?
+																   QStringList()
+																 :
+																   ui->connectedUsersLineEdit->text().split(QLatin1Char(',')));
 	QString resultText;
 
 	switch( result )
