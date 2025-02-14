@@ -60,6 +60,7 @@ public:
 
 	void updateUser(const ComputerControlInterface::Pointer& controlInterface) const;
 	void updateSessionInfo(const ComputerControlInterface::Pointer& controlInterface) const;
+	void clearOverlayModelData(const ComputerControlInterface::Pointer& controlInterface) const;
 
 Q_SIGNALS:
 	void computerSelectionReset();

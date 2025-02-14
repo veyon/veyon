@@ -226,6 +226,21 @@ void ComputerManager::updateSessionInfo(const ComputerControlInterface::Pointer&
 }
 
 
+
+void ComputerManager::clearOverlayModelData(const ComputerControlInterface::Pointer& controlInterface) const
+{
+	const auto networkObjectIndex = findNetworkObject(controlInterface->computer().networkObjectUid());
+
+	if (networkObjectIndex.isValid())
+	{
+		m_networkObjectOverlayDataModel->setData(mapToUserNameModelIndex(networkObjectIndex), {});
+		m_networkObjectOverlayDataModel->setData(mapToSessionUptimeModelIndex(networkObjectIndex), {});
+		m_networkObjectOverlayDataModel->setData(m_networkObjectOverlayDataModel->mapFromSource(networkObjectIndex), {});
+	}
+}
+
+
+
 void ComputerManager::checkChangedData( const QModelIndex& topLeft, const QModelIndex& bottomRight, const QVector<int>& roles )
 {
 	Q_UNUSED(topLeft);
