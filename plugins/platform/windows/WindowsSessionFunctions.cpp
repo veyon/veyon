@@ -131,13 +131,19 @@ QVariant WindowsSessionFunctions::querySettingsValueInCurrentSession(const QStri
 			return {};
 		}
 
+		auto keyParts = key.split(QLatin1Char('\\'));
+		if (keyParts.constFirst() == QStringLiteral("HKEY_CURRENT_USER"))
+		{
+			keyParts[0] = WtsSessionManager::queryUserSid(sessionId);
+			keyParts.prepend(QStringLiteral("HKEY_USERS"));
+		}
+
 		if (ImpersonateLoggedOnUser(userToken) == false)
 		{
 			vCritical() << "could not impersonate session user";
 			return {};
 		}
 
-		const auto keyParts = key.split(QLatin1Char('\\'));
 		const auto value = QSettings(keyParts.mid(0, keyParts.length()-1).join(QLatin1Char('\\')), QSettings::NativeFormat)
 						   .value(keyParts.constLast());
 
