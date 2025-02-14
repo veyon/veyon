@@ -633,6 +633,10 @@ QStringList WindowsCoreFunctions::queryProcessEnvironmentVariables(DWORD process
 		++envPos;
 	}
 
+	DestroyEnvironmentBlock(envBlock);
+	CloseHandle(processHandle);
+	CloseHandle(processToken);
+
 	return envVars;
 }
 
