@@ -61,7 +61,11 @@ QVariant NetworkObjectOverlayDataModel::data(const QModelIndex& index, int role)
 		const auto& overlayData = std::as_const(m_overlayData)[networkObjectUid];
 		if (overlayData.contains(role))
 		{
-			return std::as_const(overlayData)[role];
+			const auto value = std::as_const(overlayData)[role];
+			if (value.isValid())
+			{
+				return value;
+			}
 		}
 	}
 
