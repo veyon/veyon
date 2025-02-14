@@ -434,10 +434,7 @@ void ComputerControlListModel::stopComputerControlInterface( const ComputerContr
 	controlInterface->disconnect(this);
 	controlInterface->disconnect( &m_master->computerManager() );
 
-	controlInterface->setUserInformation({}, {});
-	controlInterface->setSessionInfo({});
-
-	m_master->computerManager().updateUser( controlInterface );
+	m_master->computerManager().clearOverlayModelData(controlInterface);
 }
 
 
