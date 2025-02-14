@@ -243,6 +243,10 @@ Si esteu interessat a traduir el Veyon al vostre idioma local o a un altre o vol
         <source>Local computer</source>
         <translation>Ordinador local</translation>
     </message>
+    <message>
+        <source>Local computer is already being accessed</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -3885,6 +3889,10 @@ Normalment es requereix per a donar suport als servidors de terminals.</translat
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
 
 Example: [^-]*-(PC[0-9]*)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
         <translation type="unfinished"/>
     </message>
 </context>

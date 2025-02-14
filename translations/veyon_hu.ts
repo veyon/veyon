@@ -243,6 +243,10 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
         <source>Local computer</source>
         <translation>Helyi számítógép</translation>
     </message>
+    <message>
+        <source>Local computer is already being accessed</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -3885,6 +3889,10 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Opcionálisan írj egy reguláris kifejezést a számítógépnév egy részének kinyeréséhez, és használd ezt a számítógép megjelenített neveként.
 
 Példa: [^-]*-(PC[0-9]*)</translation>
+    </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

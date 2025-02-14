@@ -243,6 +243,10 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
         <source>Local computer</source>
         <translation>Kohalik arvuti</translation>
     </message>
+    <message>
+        <source>Local computer is already being accessed</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -3890,6 +3894,10 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Soovi korral sisestage fikseeritud regulaaravaldis, et eraldada osa arvuti nimest ja kasutada seda arvuti kuvanimena.
 
 Näide: [^-]*-(PC[0-9]*)</translation>
+    </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

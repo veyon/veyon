@@ -241,6 +241,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Local computer</source>
         <translation>Lokaler Computer</translation>
     </message>
+    <message>
+        <source>Local computer is already being accessed</source>
+        <translation>Auf den lokalen Computer wird bereits zugegriffen</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -3889,6 +3893,10 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Geben Sie optional einen regulären Ausdruck mit einem Capture ein, um einen Teil des Computernamens zu extrahieren und ihn als Anzeigenamen für den Computer zu verwenden.
 
 Beispiel: [^-]*-(PC[0-9]*)</translation>
+    </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation>Aktivieren, wenn eine einzelne Veyon Server-Instanz für die gerade aktive Sitzung gestartet werden soll, egal ob lokal oder remote.</translation>
     </message>
 </context>
 <context>
