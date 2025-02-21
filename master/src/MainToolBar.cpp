@@ -35,7 +35,7 @@ MainToolBar::MainToolBar( QWidget* parent ) :
 	QToolBar( tr( "Configuration" ), parent ),
 	m_mainWindow( dynamic_cast<MainWindow *>( parent ) )
 {
-	setIconSize(QSize(48, 48) / qGuiApp->devicePixelRatio());
+	setIconSize(QSize(32, 32));
 
 	ToolButton::setToolTipsDisabled( m_mainWindow->masterCore().userConfig().noToolTips() );
 	ToolButton::setIconOnlyMode( m_mainWindow, m_mainWindow->masterCore().userConfig().toolButtonIconOnlyMode() );

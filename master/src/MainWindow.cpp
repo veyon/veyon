@@ -249,7 +249,7 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	const auto toolButtons = findChildren<QToolButton*>();
 	for(auto* btn : toolButtons)
 	{
-		btn->setIconSize(QSize(32, 32) / qGuiApp->devicePixelRatio());
+		btn->setIconSize(QSize(20, 20));
 	}
 
 	// create the main toolbar
