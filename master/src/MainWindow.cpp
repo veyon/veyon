@@ -44,6 +44,7 @@
 #include "MonitoringMode.h"
 #include "NetworkObjectDirectory.h"
 #include "NetworkObjectDirectoryManager.h"
+#include "PlatformUserFunctions.h"
 #include "SlideshowPanel.h"
 #include "SpotlightPanel.h"
 #include "ToolButton.h"
@@ -306,13 +307,14 @@ bool MainWindow::initAuthentication()
 
 bool MainWindow::initAccessControl()
 {
-	if( VeyonCore::config().accessControlForMasterEnabled() &&
-			VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Type::UserLogon ) )
+	if (VeyonCore::config().accessControlForMasterEnabled())
 	{
-		const auto accessControlResult =
-				AccessControlProvider().checkAccess( VeyonCore::authenticationCredentials().logonUsername(),
-													 QHostAddress( QHostAddress::LocalHost ).toString(),
-													 QStringList() );
+		const auto accessingUser = VeyonCore::authenticationCredentials().hasCredentials(AuthenticationCredentials::Type::UserLogon) ?
+									   VeyonCore::authenticationCredentials().logonUsername() :
+									   VeyonCore::platform().userFunctions().currentUser();
+		const auto accessControlResult = AccessControlProvider().checkAccess(accessingUser,
+																			 QHostAddress(QHostAddress::LocalHost).toString(),
+																			 {});
 		if( accessControlResult == AccessControlProvider::Access::Deny )
 		{
 			vWarning() << "user" << VeyonCore::authenticationCredentials().logonUsername()
