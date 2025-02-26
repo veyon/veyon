@@ -262,6 +262,10 @@ QVariant ComputerControlListModel::uidRoleData(const ComputerControlInterface::P
 	case UidRoleContent::NetworkObjectUid:
 		return controlInterface->computer().networkObjectUid();
 	case UidRoleContent::SessionMetaDataHash:
+		if (controlInterface->sessionInfo().metaData.isEmpty())
+		{
+			return controlInterface->computer().networkObjectUid();
+		}
 		return QUuid::createUuidV5(uidRoleNamespace, controlInterface->sessionInfo().metaData);
 	}
 
