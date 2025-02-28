@@ -43,6 +43,8 @@
 #include "VncEvents.h"
 
 
+VncConnection::RfbLogMessageReader VncConnection::s_rfbLogMessageReader = [](const QByteArray&) { };
+
 VncConnection::VncConnection( QObject* parent ) :
 	QThread( parent ),
 	m_verifyServerCertificate( VeyonCore::config().tlsUseCertificateAuthority() ),
@@ -96,6 +98,13 @@ void VncConnection::initLogging( bool debug )
 		rfbClientLog = rfbClientLogNone;
 		rfbClientErr = rfbClientLogNone;
 	}
+}
+
+
+
+void VncConnection::registerRfbLogMessageReader(const RfbLogMessageReader& reader)
+{
+	s_rfbLogMessageReader = reader;
 }
 
 
