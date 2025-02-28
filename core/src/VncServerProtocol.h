@@ -91,6 +91,8 @@ private:
 	bool processAuthentication( VariantArrayMessage& message );
 	bool processAccessControl();
 
+	void sendFailedAccessControlMessage();
+
 	bool processFramebufferInit();
 
 private:

@@ -28,6 +28,7 @@
 #include <QRegularExpression>
 #include <QTcpSocket>
 
+#include "AccessControlProvider.h"
 #include "VariantArrayMessage.h"
 #include "VncServerClient.h"
 #include "VncServerProtocol.h"
@@ -295,12 +296,32 @@ bool VncServerProtocol::processAccessControl()
 		break;
 
 	default:
+		sendFailedAccessControlMessage();
 		vCritical() << "access control failed - closing connection";
 		m_socket->close();
+		return true;
 		break;
 	}
 
 	return false;
+}
+
+
+
+void VncServerProtocol::sendFailedAccessControlMessage()
+{
+	auto name = client()->accessControlDetails().toUtf8();
+	if (name.length() > 0)
+	{
+		name.prepend(AccessControlProvider::accessControlMessageScheme());
+
+		rfbServerInitMsg msg{};
+		msg.format.bitsPerPixel = 255;
+		msg.nameLength = qToBigEndian<uint32_t>(name.length());
+
+		m_socket->write(reinterpret_cast<const char *>(&msg), sizeof(msg));
+		m_socket->write(name);
+	}
 }
 
 
