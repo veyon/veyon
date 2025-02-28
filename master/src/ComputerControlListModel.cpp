@@ -365,6 +365,13 @@ void ComputerControlListModel::updateState( const QModelIndex& index )
 
 
 
+void ComputerControlListModel::updateAccessControlMessage(const QModelIndex& index)
+{
+	Q_EMIT dataChanged(index, index, { Qt::ToolTipRole });
+}
+
+
+
 void ComputerControlListModel::updateScreen( const QModelIndex& index )
 {
 	Q_EMIT dataChanged( index, index, { Qt::DecorationRole, ImageIdRole, FramebufferRole } );
@@ -427,6 +434,9 @@ void ComputerControlListModel::startComputerControlInterface( ComputerControlInt
 
 	connect(controlInterface, &ComputerControlInterface::sessionInfoChanged,
 			 this, [=]() { updateSessionInfo(interfaceIndex(controlInterface)); });
+
+	connect(controlInterface, &ComputerControlInterface::accessControlMessageChanged,
+			this, [=] () { updateAccessControlMessage(interfaceIndex(controlInterface)); });
 }
 
 
@@ -576,6 +586,11 @@ QString ComputerControlListModel::computerStateDescription( const ComputerContro
 
 	default:
 		break;
+	}
+
+	if (controlInterface->accessControlMessage().isEmpty() == false)
+	{
+		return controlInterface->accessControlMessage();
 	}
 
 	return tr( "Disconnected" );
