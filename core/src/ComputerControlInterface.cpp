@@ -105,6 +105,7 @@ void ComputerControlInterface::start( QSize scaledFramebufferSize, UpdateMode up
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateScreens );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::stateChanged );
 
+		connect(m_connection, &VeyonConnection::accessControlMessageReceived, this, &ComputerControlInterface::setAccessControlMessage);
 		connect( m_connection, &VeyonConnection::featureMessageReceived, this, &ComputerControlInterface::handleFeatureMessage );
 		connect( m_connection, &VeyonConnection::featureMessageReceived, this, &ComputerControlInterface::resetWatchdog );
 
@@ -191,6 +192,17 @@ QImage ComputerControlInterface::framebuffer() const
 	}
 
 	return {};
+}
+
+
+
+void ComputerControlInterface::setAccessControlMessage(const QString& accessControlMessage)
+{
+	lock();
+	m_accessControlMessage = accessControlMessage;
+	unlock();
+
+	Q_EMIT accessControlMessageChanged();
 }
 
 
