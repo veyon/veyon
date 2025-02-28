@@ -63,6 +63,11 @@ public:
 
 	bool isAccessToLocalComputerDenied() const;
 
+	static QByteArray accessControlMessageScheme()
+	{
+		return QByteArrayLiteral("vacm://");
+	}
+
 private:
 	bool isMemberOfUserGroup( const QString& user, const QString& groupName ) const;
 	bool isLocatedAt( const QString& computer, const QString& locationName ) const;
