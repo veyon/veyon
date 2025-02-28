@@ -121,6 +121,7 @@ AccessControlProvider::CheckResult AccessControlProvider::checkAccess(const QStr
 																	  const QString& accessingComputer,
 																	  const QStringList& connectedUsers)
 {
+	CheckResult denyAccessCheckResult{Access::Deny};
 	if (VeyonCore::config().isAccessRestrictedToUserGroups())
 	{
 		if (processAuthorizedGroups(accessingUser))
@@ -145,6 +146,7 @@ AccessControlProvider::CheckResult AccessControlProvider::checkAccess(const QStr
 				return {Access::ToBeConfirmed, rule};
 			default: break;
 			}
+			denyAccessCheckResult.matchedRule = rule;
 		}
 	}
 	else
@@ -158,7 +160,7 @@ AccessControlProvider::CheckResult AccessControlProvider::checkAccess(const QStr
 	vDebug() << "configured access control method did not succeed, denying access.";
 
 	// configured access control method did not succeed, therefore deny access
-	return {Access::Deny};
+	return denyAccessCheckResult;
 }
 
 
