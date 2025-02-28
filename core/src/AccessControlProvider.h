@@ -43,10 +43,6 @@ public:
 	struct CheckResult {
 		Access access = Access::Deny;
 		AccessControlRule::Pointer matchedRule = nullptr;
-		QString details() const
-		{
-			return matchedRule ? matchedRule->description() : QString{};
-		}
 	};
 
 	AccessControlProvider();

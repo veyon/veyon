@@ -120,12 +120,14 @@ void ServerAccessControlManager::performAccessControl( VncServerClient* client )
 															   connectedUsers(),
 															   client->authMethodUid());
 
-	client->setAccessControlDetails(checkResult.details());
-
 	switch (checkResult.access)
 	{
 	case AccessControlProvider::Access::Allow:
 		client->setAccessControlState( VncServerClient::AccessControlState::Successful );
+		if (checkResult.matchedRule)
+		{
+			client->setAccessControlDetails(tr("Access allowed by rule \"%1\"").arg(checkResult.matchedRule->name()));
+		}
 		break;
 
 	case AccessControlProvider::Access::ToBeConfirmed:
@@ -135,6 +137,10 @@ void ServerAccessControlManager::performAccessControl( VncServerClient* client )
 	default:
 		client->setAccessControlState( VncServerClient::AccessControlState::Failed );
 		client->setProtocolState( VncServerProtocol::State::Close );
+		if (checkResult.matchedRule)
+		{
+			client->setAccessControlDetails(tr("Access denied by rule \"%1\"").arg(checkResult.matchedRule->name()));
+		}
 		break;
 	}
 
@@ -205,6 +211,7 @@ void ServerAccessControlManager::finishDesktopAccessConfirmation( VncServerClien
 	if( choice == DesktopAccessDialog::ChoiceYes || choice == DesktopAccessDialog::ChoiceAlways )
 	{
 		client->setAccessControlState( VncServerClient::AccessControlState::Successful );
+		client->setAccessControlDetails(tr("User confirmed access."));
 		m_clients.append( client );
 	}
 	else
