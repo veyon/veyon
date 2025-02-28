@@ -36,6 +36,11 @@ class VEYON_CORE_EXPORT VeyonConnection : public QObject
 {
 	Q_OBJECT
 public:
+	using Instances = struct {
+		QMutex mutex;
+		QHash<QThread *, VeyonConnection *> connections;
+	};
+
 	VeyonConnection();
 
 	void stopAndDeleteLater();
@@ -78,9 +83,12 @@ public:
 
 
 Q_SIGNALS:
+	void accessControlMessageReceived(const QString& message);
 	void featureMessageReceived( const FeatureMessage& );
 
 private:
+	static Instances instances;
+
 	~VeyonConnection() override;
 
 	void registerConnection();
@@ -92,10 +100,13 @@ private:
 
 	AuthenticationCredentials authenticationCredentials() const;
 
+	static void evalRfbClientLogMessage(const QByteArray& message);
+
 	VncConnection* m_vncConnection{new VncConnection};
 
 	RfbVeyonAuth::Type m_veyonAuthType;
 
 	AuthenticationProxy* m_authenticationProxy{nullptr};
+	QString m_accessControlMessage;
 
 } ;

@@ -24,6 +24,7 @@
 
 #include "rfb/rfbclient.h"
 
+#include "AccessControlProvider.h"
 #include "AuthenticationProxy.h"
 #include "CryptoCore.h"
 #include "PlatformUserFunctions.h"
@@ -36,6 +37,9 @@
 
 static rfbClientProtocolExtension* __veyonProtocolExt = nullptr;
 static const uint32_t __veyonSecurityTypes[2] = { rfbSecTypeVeyon, 0 };
+
+
+VeyonConnection::Instances VeyonConnection::instances;
 
 
 rfbBool handleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg )
@@ -64,12 +68,18 @@ VeyonConnection::VeyonConnection() :
 		__veyonProtocolExt->handleAuthentication = handleSecTypeVeyon;
 
 		rfbClientRegisterExtension( __veyonProtocolExt );
+
+		VncConnection::registerRfbLogMessageReader(VeyonConnection::evalRfbClientLogMessage);
 	}
 
 	if( VeyonCore::config().authenticationMethod() == VeyonCore::AuthenticationMethod::KeyFileAuthentication )
 	{
 		m_veyonAuthType = RfbVeyonAuth::KeyFile;
 	}
+
+	instances.mutex.lock();
+	instances.connections[m_vncConnection] = this;
+	instances.mutex.unlock();
 
 	connect( m_vncConnection, &VncConnection::connectionPrepared, this, &VeyonConnection::registerConnection, Qt::DirectConnection );
 	connect( m_vncConnection, &VncConnection::destroyed, VeyonCore::instance(), [this]() {
@@ -82,6 +92,10 @@ VeyonConnection::VeyonConnection() :
 VeyonConnection::~VeyonConnection()
 {
 	delete m_authenticationProxy;
+
+	instances.mutex.lock();
+	instances.connections.remove(m_vncConnection);
+	instances.mutex.unlock();
 }
 
 
@@ -366,4 +380,25 @@ AuthenticationCredentials VeyonConnection::authenticationCredentials() const
 	}
 
 	return VeyonCore::authenticationCredentials();
+}
+
+
+
+void VeyonConnection::evalRfbClientLogMessage(const QByteArray& message)
+{
+	static const QByteArray accessControlMessageMatchPattern = QByteArrayLiteral("Desktop name \"") +
+															   AccessControlProvider::accessControlMessageScheme();
+
+	if (message.startsWith(accessControlMessageMatchPattern))
+	{
+		QMutexLocker m(&instances.mutex);
+		const auto connection = instances.connections.value(QThread::currentThread());
+		if (connection)
+		{
+			Q_EMIT connection->accessControlMessageReceived(
+						QString::fromUtf8(
+							message.mid(accessControlMessageMatchPattern.size(),
+							message.length() - accessControlMessageMatchPattern.size() - 2)));
+		}
+	}
 }
