@@ -33,14 +33,19 @@ class PlatformNetworkFunctions
 public:
 	using Socket = uintptr_t;
 
-	enum {
-		PingTimeout = 1000,
-		PingProcessTimeout = PingTimeout*2
+	static constexpr int PingTimeout = 1000;
+	static constexpr int PingProcessTimeout = 5000;
+
+	enum class PingResult {
+		Unknown,
+		ReplyReceived,
+		TimedOut,
+		NameResolutionFailed
 	};
 
 	virtual ~PlatformNetworkFunctions() = default;
 
-	virtual bool ping( const QString& hostAddress ) = 0;
+	virtual PingResult ping(const QString& hostAddress) = 0;
 	virtual bool configureFirewallException( const QString& applicationPath, const QString& description, bool enabled ) = 0;
 
 	virtual bool configureSocketKeepalive( Socket socket, bool enabled, int idleTime, int interval, int probes ) = 0;

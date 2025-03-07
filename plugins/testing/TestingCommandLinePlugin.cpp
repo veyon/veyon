@@ -133,5 +133,5 @@ CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_ping( con
 		return NotEnoughArguments;
 	}
 
-	return VeyonCore::platform().networkFunctions().ping( arguments.first() ) ? Successful : Failed;
+	return VeyonCore::platform().networkFunctions().ping( arguments.first() ) == PlatformNetworkFunctions::PingResult::ReplyReceived ? Successful : Failed;
 }
