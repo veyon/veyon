@@ -85,7 +85,7 @@ WebApiController::Response WebApiController::getHostState(const Request& request
 		return QVariantMap{{k2s(Key::State), QByteArrayLiteral("online")}};
 	}
 
-	if (VeyonCore::platform().networkFunctions().ping(host))
+	if (VeyonCore::platform().networkFunctions().ping(host) == PlatformNetworkFunctions::PingResult::ReplyReceived)
 	{
 		return QByteArrayLiteral("up");
 	}

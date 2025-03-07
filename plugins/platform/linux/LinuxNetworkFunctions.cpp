@@ -29,13 +29,23 @@
 
 #include "LinuxNetworkFunctions.h"
 
-bool LinuxNetworkFunctions::ping( const QString& hostAddress )
+LinuxNetworkFunctions::PingResult LinuxNetworkFunctions::ping(const QString& hostAddress)
 {
 	QProcess pingProcess;
 	pingProcess.start( QStringLiteral("ping"), { QStringLiteral("-c"), QStringLiteral("1"), QStringLiteral("-w"), QString::number( PingTimeout / 1000 ), hostAddress } );
-	pingProcess.waitForFinished( PingProcessTimeout );
+	if (pingProcess.waitForFinished(PingProcessTimeout))
+	{
+		switch (pingProcess.exitCode())
+		{
+		case 0: return PingResult::ReplyReceived;
+		case 1: return PingResult::TimedOut;
+		case 2: return PingResult::NameResolutionFailed;
+		default:
+			break;
+		}
+	}
 
-	return pingProcess.exitCode() == 0;
+	return PingResult::Unknown;
 }
 
 

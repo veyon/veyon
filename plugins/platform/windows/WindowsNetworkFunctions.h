@@ -35,7 +35,7 @@ class WindowsNetworkFunctions : public PlatformNetworkFunctions
 public:
 	WindowsNetworkFunctions();
 
-	bool ping( const QString& hostAddress ) override;
+	PingResult ping(const QString& hostAddress) override;
 	bool configureFirewallException( const QString& applicationPath, const QString& description, bool enabled ) override;
 
 	bool configureSocketKeepalive( Socket socket, bool enabled, int idleTime, int interval, int probes ) override;
@@ -43,8 +43,8 @@ public:
 	static constexpr auto WindowsFirewallServiceError = HRESULT(0x800706D9);
 
 private:
-	bool pingIPv4Address( const QString& hostAddress, bool* result );
-	bool pingIPv6Address( const QString& hostAddress, bool* result );
-	bool pingViaUtility( const QString& hostAddress );
+	bool pingIPv4Address(const QString& hostAddress, PingResult* result);
+	bool pingIPv6Address(const QString& hostAddress, PingResult* result);
+	bool pingViaUtility(const QString& hostAddress, PingResult* result);
 
 };

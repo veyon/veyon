@@ -224,24 +224,32 @@ WindowsNetworkFunctions::WindowsNetworkFunctions() : PlatformNetworkFunctions()
 
 
 
-bool WindowsNetworkFunctions::ping( const QString& hostAddress )
+WindowsNetworkFunctions::PingResult WindowsNetworkFunctions::ping(const QString& hostAddress)
 {
-	bool result;
+	auto result = PingResult::Unknown;
 
-	const auto convertedAddress = HostAddress(hostAddress).tryConvert(HostAddress::Type::IpAddress);
-	const auto addressProtocol = QHostAddress(convertedAddress).protocol();
+	const auto ipAddress = HostAddress(hostAddress).convert(HostAddress::Type::IpAddress);
+	if (ipAddress.isEmpty() == false)
+	{
+		const auto addressProtocol = QHostAddress(ipAddress).protocol();
 
-	if( addressProtocol == QAbstractSocket::IPv4Protocol && pingIPv4Address(convertedAddress, &result) )
+		if (addressProtocol == QAbstractSocket::IPv4Protocol && pingIPv4Address(ipAddress, &result))
+		{
+			return result;
+		}
+
+		if (addressProtocol == QAbstractSocket::IPv6Protocol && pingIPv6Address(ipAddress, &result))
+		{
+			return result;
+		}
+	}
+
+	if (pingViaUtility(hostAddress, &result))
 	{
 		return result;
 	}
 
-	if( addressProtocol == QAbstractSocket::IPv6Protocol && pingIPv6Address(convertedAddress, &result) )
-	{
-		return result;
-	}
-
-	return pingViaUtility(hostAddress);
+	return PingResult::Unknown;
 }
 
 
@@ -328,14 +336,14 @@ bool WindowsNetworkFunctions::configureSocketKeepalive( Socket socket, bool enab
 
 
 
-bool WindowsNetworkFunctions::pingIPv4Address( const QString& hostAddress, bool* result )
+bool WindowsNetworkFunctions::pingIPv4Address(const QString& hostAddress, PingResult* result)
 {
 	if( result == nullptr )
 	{
 		return false;
 	}
 
-	*result = false;
+	*result = PingResult::Unknown;
 
 	const IPAddr ipAddress = inet_addr(hostAddress.toLatin1().constData());
 	if( ipAddress == INADDR_NONE )
@@ -363,23 +371,29 @@ bool WindowsNetworkFunctions::pingIPv4Address( const QString& hostAddress, bool*
 
 	if( success )
 	{
-		*result = true;
+		*result = PingResult::ReplyReceived;
 		return true;
 	}
 
-	return error == IP_REQ_TIMED_OUT;
+	if (error == IP_REQ_TIMED_OUT)
+	{
+		*result = PingResult::TimedOut;
+		return true;
+	}
+
+	return false;
 }
 
 
 
-bool WindowsNetworkFunctions::pingIPv6Address( const QString& hostAddress, bool* result )
+bool WindowsNetworkFunctions::pingIPv6Address(const QString& hostAddress, PingResult* result)
 {
 	if( result == nullptr )
 	{
 		return false;
 	}
 
-	*result = false;
+	*result = PingResult::Unknown;
 
 	SOCKADDR_IN6 icmp6LocalAddr{};
 	icmp6LocalAddr.sin6_addr = in6addr_any;
@@ -446,20 +460,61 @@ bool WindowsNetworkFunctions::pingIPv6Address( const QString& hostAddress, bool*
 
 	if( success )
 	{
-		*result = true;
+		*result = PingResult::ReplyReceived;
 		return true;
 	}
 
-	return error == IP_REQ_TIMED_OUT;
+	if (error == IP_REQ_TIMED_OUT)
+	{
+		*result = PingResult::TimedOut;
+		return true;
+	}
+
+	return false;
 }
 
 
 
-bool WindowsNetworkFunctions::pingViaUtility( const QString& hostAddress )
+bool WindowsNetworkFunctions::pingViaUtility(const QString& hostAddress, PingResult* result)
 {
-	QProcess pingProcess;
-	pingProcess.start( QStringLiteral("ping"), { QStringLiteral("-n"), QStringLiteral("1"), QStringLiteral("-w"), QString::number( PingTimeout ), hostAddress } );
-	pingProcess.waitForFinished( PingProcessTimeout );
+	if (result == nullptr)
+	{
+		return false;
+	}
 
-	return pingProcess.exitCode() == 0;
+	*result = PingResult::Unknown;
+
+	const QStringList pingArguments = {
+		QStringLiteral("-n"), QStringLiteral("1"),
+		QStringLiteral("-w"), QString::number(PingTimeout),
+		hostAddress
+	};
+
+	QProcess pingProcess;
+	pingProcess.start(QStringLiteral("ping"), pingArguments);
+	if (pingProcess.waitForStarted(PingProcessTimeout))
+	{
+		if (pingProcess.waitForFinished(PingProcessTimeout))
+		{
+			if (QString::fromUtf8(pingProcess.readAll()).split(QLatin1Char('\n')).filter(QStringLiteral("=")).size() >= 2)
+			{
+				*result = PingResult::ReplyReceived;
+			}
+			else if (pingProcess.exitCode() == 1)
+			{
+				*result = PingResult::NameResolutionFailed;
+			}
+			else
+			{
+				*result = PingResult::TimedOut;
+			}
+		}
+		else
+		{
+			*result = PingResult::NameResolutionFailed;
+		}
+		return true;
+	}
+
+	return false;
 }
