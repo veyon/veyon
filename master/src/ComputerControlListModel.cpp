@@ -578,6 +578,9 @@ QString ComputerControlListModel::computerStateDescription( const ComputerContro
 	case ComputerControlInterface::State::HostOffline:
 		return tr( "Computer offline or switched off" );
 
+	case ComputerControlInterface::State::HostNameResolutionFailed:
+		return tr("Hostname could not be resolved");
+
 	case ComputerControlInterface::State::ServerNotRunning:
 		return tr( "Veyon Server unreachable or not running" );
 
