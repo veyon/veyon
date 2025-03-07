@@ -38,7 +38,7 @@ public:
 
 	struct SessionInfo {
 		SessionId id = InvalidSessionId;
-		SessionUptime uptime;
+		SessionUptime uptime = 0;
 		QString clientAddress;
 		QString clientName;
 		QString hostName;
