@@ -67,6 +67,7 @@ public:
 		Disconnected,
 		Connecting,
 		HostOffline,
+		HostNameResolutionFailed,
 		ServerNotRunning,
 		AuthenticationFailed,
 		ConnectionFailed,

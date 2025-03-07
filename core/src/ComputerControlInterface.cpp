@@ -466,6 +466,7 @@ void ComputerControlInterface::updateState()
 		case VncConnection::State::Connecting: m_state = State::Connecting; break;
 		case VncConnection::State::Connected: m_state = State::Connected; break;
 		case VncConnection::State::HostOffline: m_state = State::HostOffline; break;
+		case VncConnection::State::HostNameResolutionFailed: m_state = State::HostNameResolutionFailed; break;
 		case VncConnection::State::ServerNotRunning: m_state = State::ServerNotRunning; break;
 		case VncConnection::State::AuthenticationFailed: m_state = State::AuthenticationFailed; break;
 		default: m_state = VncConnection::State::Disconnected; break;

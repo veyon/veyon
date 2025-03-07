@@ -559,15 +559,26 @@ void VncConnection::establishConnection()
 			// guess reason why connection failed
 			if( isControlFlagSet( ControlFlag::ServerReachable ) == false )
 			{
-				if( isControlFlagSet( ControlFlag::SkipHostPing ) ||
-					VeyonCore::platform().networkFunctions().ping( m_host ) == false )
+				if (isControlFlagSet(ControlFlag::SkipHostPing))
 				{
-					setState( State::HostOffline );
+					setState(State::HostOffline);
 				}
 				else
 				{
-					setState( State::ServerNotRunning );
+					const auto pingResult = VeyonCore::platform().networkFunctions().ping(m_host);
+					switch (pingResult)
+					{
+					case PlatformNetworkFunctions::PingResult::ReplyReceived:
+						setState(State::ServerNotRunning);
+						break;
+					case PlatformNetworkFunctions::PingResult::NameResolutionFailed:
+						setState(State::HostNameResolutionFailed);
+						break;
+					default:
+						setState(State::HostOffline);
+					}
 				}
+
 			}
 			else if( m_framebufferState == FramebufferState::Invalid )
 			{
