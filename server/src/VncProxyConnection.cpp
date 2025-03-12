@@ -39,7 +39,6 @@ VncProxyConnection::VncProxyConnection( QTcpSocket* clientSocket,
 	m_proxyClientSocket( clientSocket ),
 	m_vncServerSocket( new QTcpSocket( this ) ),
 	m_rfbClientToServerMessageSizes( {
-		{ rfbSetPixelFormat, sz_rfbSetPixelFormatMsg },
 		{ rfbFramebufferUpdateRequest, sz_rfbFramebufferUpdateRequestMsg },
 		{ rfbKeyEvent, sz_rfbKeyEventMsg },
 		{ rfbPointerEvent, sz_rfbPointerEventMsg },
@@ -218,6 +217,23 @@ bool VncProxyConnection::receiveClientMessage()
 					return false;
 				}
 				return forwardDataToServer( sz_rfbSetEncodingsMsg + nEncodings * sizeof(uint32_t) );
+			}
+		}
+		break;
+
+	case rfbSetPixelFormat:
+		if (socket->bytesAvailable() >= sz_rfbSetPixelFormatMsg)
+		{
+			rfbSetPixelFormatMsg setPixelFormatMessage;
+			if (socket->peek(reinterpret_cast<char *>(&setPixelFormatMessage), sz_rfbSetPixelFormatMsg) == sz_rfbSetPixelFormatMsg)
+			{
+				auto format = setPixelFormatMessage.format;
+				format.redMax = qFromBigEndian(format.redMax);
+				format.greenMax = qFromBigEndian(format.greenMax);
+				format.blueMax = qFromBigEndian(format.blueMax);
+				clientProtocol().setPixelFormat(format);
+
+				return forwardDataToServer(sz_rfbSetPixelFormatMsg);
 			}
 		}
 		break;
