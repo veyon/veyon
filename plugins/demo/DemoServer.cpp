@@ -344,7 +344,9 @@ bool DemoServer::setVncServerPixelFormat()
 	format.pad1 = 0;
 	format.pad2 = 0;
 
-	return m_vncClientProtocol->setPixelFormat( format );
+	m_vncClientProtocol->setPixelFormat(format);
+
+	return m_vncClientProtocol->sendPixelFormat();
 }
 
 
@@ -353,20 +355,21 @@ bool DemoServer::setVncServerEncodings(int quality)
 {
 	m_quality = quality;
 
-	return m_vncClientProtocol->
-			setEncodings( {
-							  rfbEncodingTight,
-							  rfbEncodingZYWRLE,
-							  rfbEncodingZRLE,
-							  rfbEncodingUltra,
-							  rfbEncodingCopyRect,
-							  rfbEncodingHextile,
-							  rfbEncodingCoRRE,
-							  rfbEncodingRRE,
-							  rfbEncodingRaw,
-							  rfbEncodingCompressLevel9,
-							  rfbEncodingQualityLevel0 + quality,
-							  rfbEncodingNewFBSize,
-							  rfbEncodingLastRect
-						  } );
+	m_vncClientProtocol->setEncodings({
+										  rfbEncodingTight,
+										  rfbEncodingZYWRLE,
+										  rfbEncodingZRLE,
+										  rfbEncodingUltra,
+										  rfbEncodingCopyRect,
+										  rfbEncodingHextile,
+										  rfbEncodingCoRRE,
+										  rfbEncodingRRE,
+										  rfbEncodingRaw,
+										  rfbEncodingCompressLevel9,
+										  rfbEncodingQualityLevel0 + quality,
+										  rfbEncodingNewFBSize,
+										  rfbEncodingLastRect
+									  });
+
+	return m_vncClientProtocol->sendEncodings();
 }

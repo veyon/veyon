@@ -114,24 +114,40 @@ bool VncClientProtocol::read() // Flawfinder: ignore
 
 
 
-bool VncClientProtocol::setPixelFormat( rfbPixelFormat pixelFormat )
+void VncClientProtocol::setPixelFormat(rfbPixelFormat pixelFormat)
 {
-	rfbSetPixelFormatMsg spf{};
-
-	spf.type = rfbSetPixelFormat;
-	spf.format = pixelFormat;
-	spf.format.redMax = qFromBigEndian(pixelFormat.redMax);
-	spf.format.greenMax = qFromBigEndian(pixelFormat.greenMax);
-	spf.format.blueMax = qFromBigEndian(pixelFormat.blueMax);
-
-	return m_socket->write( reinterpret_cast<const char *>( &spf ), sz_rfbSetPixelFormatMsg ) == sz_rfbSetPixelFormatMsg;
+	m_pixelFormat = pixelFormat;
 }
 
 
 
-bool VncClientProtocol::setEncodings( const QVector<uint32_t>& encodings )
+void VncClientProtocol::setEncodings(const QVector<uint32_t>& encodings)
 {
-	if( encodings.size() > MAX_ENCODINGS )
+	m_encodings = encodings;
+}
+
+
+
+bool VncClientProtocol::sendPixelFormat()
+{
+	rfbSetPixelFormatMsg spf{};
+
+	spf.type = rfbSetPixelFormat;
+	spf.pad1 = 0;
+	spf.pad2 = 0;
+	spf.format = m_pixelFormat;
+	spf.format.redMax = qToBigEndian(spf.format.redMax);
+	spf.format.greenMax = qToBigEndian(spf.format.greenMax);
+	spf.format.blueMax = qToBigEndian(spf.format.blueMax);
+
+	return m_socket->write(reinterpret_cast<const char *>(&spf), sz_rfbSetPixelFormatMsg) == sz_rfbSetPixelFormatMsg;
+}
+
+
+
+bool VncClientProtocol::sendEncodings()
+{
+	if (m_encodings.size() > MAX_ENCODINGS)
 	{
 		return false;
 	}
@@ -141,18 +157,17 @@ bool VncClientProtocol::setEncodings( const QVector<uint32_t>& encodings )
 
 	std::array<uint32_t, MAX_ENCODINGS> encs{};
 
-	for( auto encoding : encodings )
+	for (const auto encoding : std::as_const(m_encodings))
 	{
-		encs.at(setEncodingsMsg.nEncodings++) = qFromBigEndian<uint32_t>( encoding );
+		encs.at(setEncodingsMsg.nEncodings++) = qToBigEndian<uint32_t>( encoding );
 	}
 
 	const auto len = setEncodingsMsg.nEncodings * 4;
 
-	setEncodingsMsg.nEncodings = qFromBigEndian(setEncodingsMsg.nEncodings);
+	setEncodingsMsg.nEncodings = qToBigEndian(setEncodingsMsg.nEncodings);
 
-	return m_socket->write( reinterpret_cast<const char *>( &setEncodingsMsg ), sz_rfbSetEncodingsMsg) ==
-			   sz_rfbSetEncodingsMsg &&
-		   m_socket->write( reinterpret_cast<const char *>( encs.data() ), len ) == len;
+	return m_socket->write(reinterpret_cast<const char *>(&setEncodingsMsg), sz_rfbSetEncodingsMsg) == sz_rfbSetEncodingsMsg &&
+		   m_socket->write(reinterpret_cast<const char *>(encs.data()), len) == len;
 }
 
 
@@ -374,8 +389,8 @@ bool VncClientProtocol::receiveServerInitMessage()
 {
 	rfbServerInitMsg message;
 
-	if( m_socket->bytesAvailable() >= sz_rfbServerInitMsg &&
-			m_socket->peek( reinterpret_cast<char *>( &message ), sz_rfbServerInitMsg ) == sz_rfbServerInitMsg )
+	if (m_socket->bytesAvailable() >= sz_rfbServerInitMsg &&
+		m_socket->peek(reinterpret_cast<char *>(&message), sz_rfbServerInitMsg) == sz_rfbServerInitMsg)
 	{
 		const auto nameLength = qFromBigEndian( message.nameLength );
 
@@ -664,8 +679,8 @@ bool VncClientProtocol::handleRectEncodingCoRRE( QBuffer& buffer, uint bytesPerP
 
 
 bool VncClientProtocol::handleRectEncodingHextile( QBuffer& buffer,
-													const rfbFramebufferUpdateRectHeader rectHeader,
-													uint bytesPerPixel )
+												   const rfbFramebufferUpdateRectHeader rectHeader,
+												   uint bytesPerPixel )
 {
 	const uint rx = rectHeader.r.x;
 	const uint ry = rectHeader.r.y;
@@ -845,7 +860,7 @@ bool VncClientProtocol::handleRectEncodingTight(QBuffer& buffer,
 
 	if ((compCtl & rfbTightNoZlib) == rfbTightNoZlib)
 	{
-	   compCtl &= ~(rfbTightNoZlib);
+		compCtl &= ~(rfbTightNoZlib);
 	}
 
 	if (compCtl == rfbTightFill)
