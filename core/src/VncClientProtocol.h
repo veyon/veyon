@@ -74,8 +74,11 @@ public:
 		return m_framebufferHeight;
 	}
 
-	bool setPixelFormat( rfbPixelFormat pixelFormat );
-	bool setEncodings( const QVector<uint32_t>& encodings );
+	void setPixelFormat(rfbPixelFormat pixelFormat);
+	void setEncodings(const QVector<uint32_t>& encodings);
+
+	bool sendPixelFormat();
+	bool sendEncodings();
 
 	void requestFramebufferUpdate( bool incremental );
 
@@ -143,7 +146,8 @@ private:
 
 	QByteArray m_serverInitMessage;
 
-	rfbPixelFormat m_pixelFormat;
+	rfbPixelFormat m_pixelFormat{};
+	QVector<uint32_t> m_encodings{};
 
 	quint16 m_framebufferWidth;
 	quint16 m_framebufferHeight;
