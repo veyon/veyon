@@ -120,7 +120,7 @@ bool ComputerManager::saveComputerAndUsersList( const QString& fileName )
 			// fetch user
 			const auto user = m_networkObjectOverlayDataModel->data( mapToUserNameModelIndex( networkObjectIndex ) ).toString();
 			// create new line with computer and user
-			lines += computer.name() + QLatin1Char(';') + computer.hostAddress() + QLatin1Char(';') + user; // clazy:exclude=reserve-candidates
+			lines += computer.displayName() + QLatin1Char(';') + computer.hostAddress() + QLatin1Char(';') + user; // clazy:exclude=reserve-candidates
 		}
 	}
 

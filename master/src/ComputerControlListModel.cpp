@@ -437,7 +437,7 @@ QImage ComputerControlListModel::computerDecorationRole( const ComputerControlIn
 QString ComputerControlListModel::computerToolTipRole( const ComputerControlInterface::Pointer& controlInterface ) const
 {
 	const QString state( computerStateDescription( controlInterface ) );
-	const QString name( tr( "Name: %1" ).arg( controlInterface->computer().name() ) );
+	const QString displayName(tr("Name: %1").arg(controlInterface->computer().displayName()));
 	const QString location( tr( "Location: %1" ).arg( controlInterface->computer().location() ) );
 	const QString host( tr( "Host/IP address: %1" ).arg( controlInterface->computer().hostAddress().isEmpty()
 															 ? QStringLiteral("&lt;%1&gt;").arg( tr("invalid") )
@@ -447,10 +447,10 @@ QString ComputerControlListModel::computerToolTipRole( const ComputerControlInte
 
 	if( user.isEmpty() )
 	{
-		return QStringLiteral("<b>%1</b><br>%2<br>%3<br>%4<br>%5").arg(state, name, location, host, features);
+		return QStringLiteral("<b>%1</b><br>%2<br>%3<br>%4<br>%5").arg(state, displayName, location, host, features);
 	}
 
-	return QStringLiteral("<b>%1</b><br>%2<br>%3<br>%4<br>%5<br>%6").arg(state, name, location, host, features, user);
+	return QStringLiteral("<b>%1</b><br>%2<br>%3<br>%4<br>%5<br>%6").arg(state, displayName, location, host, features, user);
 }
 
 
@@ -471,15 +471,13 @@ QString ComputerControlListModel::computerDisplayRole( const ComputerControlInte
 		{
 			return user;
 		}
-		else
-		{
-			return QStringLiteral("%1 - %2").arg( user, controlInterface->computer().name() );
-		}
+
+		return QStringLiteral("%1 - %2").arg(user, controlInterface->computer().displayName());
 	}
 
 	if( displayRoleContent() != DisplayRoleContent::UserName )
 	{
-		return controlInterface->computer().name();
+		return controlInterface->computer().displayName();
 	}
 
 	return tr("[no user]");
@@ -492,11 +490,11 @@ QString ComputerControlListModel::computerSortRole( const ComputerControlInterfa
 	switch( sortOrder() )
 	{
 	case SortOrder::ComputerAndUserName:
-		return controlInterface->computer().location() + controlInterface->computer().name() +
+		return controlInterface->computer().location() + controlInterface->computer().displayName() +
 				controlInterface->computer().hostAddress() + controlInterface->userLoginName();
 
 	case SortOrder::ComputerName:
-		return controlInterface->computer().location() + controlInterface->computer().name() +
+		return controlInterface->computer().location() + controlInterface->computer().displayName() +
 				controlInterface->computer().hostAddress();
 
 	case SortOrder::UserName:
