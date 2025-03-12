@@ -24,7 +24,7 @@
 
 #pragma once
 
-#include "VeyonCore.h"
+#include <QObject>
 
 class QBuffer;
 class QTcpSocket;
