@@ -129,8 +129,9 @@ AccessControlProvider::CheckResult AccessControlProvider::checkAccess( const QSt
 	{
 		if (processAuthorizedGroups(accessingUser))
 		{
-			return {Access::Allow};
+			return {Access::Allow, Reason::UserInAuthorizedUserGroups};
 		}
+		denyAccessCheckResult.reason = Reason::UserNotInAuthorizedUserGroups;
 	}
 	else if (VeyonCore::config().isAccessControlRulesProcessingEnabled())
 	{
@@ -145,12 +146,17 @@ AccessControlProvider::CheckResult AccessControlProvider::checkAccess( const QSt
 			switch(rule->action())
 			{
 			case AccessControlRule::Action::Allow:
-				return {Access::Allow, rule};
+				return {Access::Allow, Reason::AccessControlRuleMatched};
 			case AccessControlRule::Action::AskForPermission:
-				return {Access::ToBeConfirmed, rule};
+				return {Access::ToBeConfirmed};
 			default: break;
 			}
+			denyAccessCheckResult.reason = Reason::AccessControlRuleMatched;
 			denyAccessCheckResult.matchedRule = rule;
+		}
+		else
+		{
+			denyAccessCheckResult.reason = Reason::NoAccessControlRuleMatched;
 		}
 	}
 	else
