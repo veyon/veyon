@@ -137,9 +137,13 @@ void ServerAccessControlManager::performAccessControl( VncServerClient* client )
 	default:
 		client->setAccessControlState( VncServerClient::AccessControlState::Failed );
 		client->setProtocolState( VncServerProtocol::State::Close );
-		if (checkResult.matchedRule)
+		if (checkResult.reason == AccessControlProvider::Reason::AccessControlRuleMatched && checkResult.matchedRule)
 		{
 			client->setAccessControlDetails(tr("Access denied by rule \"%1\"").arg(checkResult.matchedRule->name()));
+		}
+		else if (checkResult.reason == AccessControlProvider::Reason::NoAccessControlRuleMatched)
+		{
+			client->setAccessControlDetails(tr("No rule allowed access"));
 		}
 		break;
 	}
