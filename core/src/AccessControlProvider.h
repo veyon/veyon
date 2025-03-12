@@ -39,8 +39,19 @@ public:
 		ToBeConfirmed,
 	} ;
 
+	enum class Reason {
+		Unknown,
+		NoAccessControlRuleMatched,
+		AccessControlRuleMatched,
+		NotConfirmedByUser,
+		ConfirmedByUser,
+		UserNotInAuthorizedUserGroups,
+		UserInAuthorizedUserGroups,
+	};
+
 	struct CheckResult {
 		Access access = Access::Deny;
+		Reason reason = Reason::Unknown;
 		AccessControlRule::Pointer matchedRule = nullptr;
 	};
 
