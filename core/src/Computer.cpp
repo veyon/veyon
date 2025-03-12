@@ -26,12 +26,13 @@
 
 Computer::Computer( NetworkObject::Uid networkObjectUid,
 					const QString& displayName,
-					const QString& hostName,
+					const QString& hostAddress,
 					const QString& macAddress,
 					const QString& location ) :
 	m_networkObjectUid( networkObjectUid ),
 	m_displayName(displayName),
-	m_hostName(hostName),
+	m_hostName(hostAddress),
+	m_hostAddress(hostAddress),
 	m_macAddress( macAddress ),
 	m_location( location )
 {
