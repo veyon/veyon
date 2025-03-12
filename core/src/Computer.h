@@ -24,7 +24,7 @@
 
 #pragma once
 
-#include <QString>
+#include <QHostAddress>
 #include <QVector>
 
 #include "NetworkObject.h"
