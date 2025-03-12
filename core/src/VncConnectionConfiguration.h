@@ -47,7 +47,8 @@ public:
 	static constexpr int DefaultConnectionRetryInterval = 1000;
 	static constexpr int DefaultMessageWaitTimeout = 500;
 	static constexpr int DefaultFastFramebufferUpdateInterval = 100;
-	static constexpr int DefaultFramebufferUpdateWatchdogTimeout = 10000;
+	static constexpr int DefaultInitialFramebufferUpdateTimeout = 10000;
+	static constexpr int DefaultFramebufferUpdateTimeout = 60000;
 	static constexpr int DefaultSocketKeepaliveIdleTime = 1000;
 	static constexpr int DefaultSocketKeepaliveInterval = 500;
 	static constexpr int DefaultSocketKeepaliveCount = 5;

@@ -211,6 +211,9 @@ private:
 	void requestFrameufferUpdate(FramebufferUpdateType updateType);
 	void finishFrameBufferUpdate();
 
+	int fullFramebufferUpdateTimeout() const;
+	int incrementalFramebufferUpdateTimeout() const;
+
 	void updateEncodingSettingsFromQuality();
 
 	rfbBool updateCursorPosition( int x, int y );
@@ -239,7 +242,8 @@ private:
 	int m_connectionRetryInterval{VncConnectionConfiguration::DefaultConnectionRetryInterval};
 	int m_messageWaitTimeout{VncConnectionConfiguration::DefaultMessageWaitTimeout};
 	int m_fastFramebufferUpdateInterval{VncConnectionConfiguration::DefaultFastFramebufferUpdateInterval};
-	int m_framebufferUpdateWatchdogTimeout{VncConnectionConfiguration::DefaultFramebufferUpdateWatchdogTimeout};
+	int m_initialFramebufferUpdateTimeout{VncConnectionConfiguration::DefaultInitialFramebufferUpdateTimeout};
+	int m_framebufferUpdateTimeout{VncConnectionConfiguration::DefaultFramebufferUpdateTimeout};
 	int m_socketKeepaliveIdleTime{VncConnectionConfiguration::DefaultSocketKeepaliveIdleTime};
 	int m_socketKeepaliveInterval{VncConnectionConfiguration::DefaultSocketKeepaliveInterval};
 	int m_socketKeepaliveCount{VncConnectionConfiguration::DefaultSocketKeepaliveCount};
@@ -265,7 +269,8 @@ private:
 	QMutex m_eventQueueMutex{};
 	QWaitCondition m_updateIntervalSleeper{};
 	QAtomicInt m_framebufferUpdateInterval{0};
-	QElapsedTimer m_framebufferUpdateWatchdog{};
+	QElapsedTimer m_fullFramebufferUpdateTimer{};
+	QElapsedTimer m_incrementalFramebufferUpdateTimer{};
 
 	// queue for RFB and custom events
 	QQueue<VncEvent *> m_eventQueue{};
