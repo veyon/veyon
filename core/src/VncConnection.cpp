@@ -472,9 +472,17 @@ void VncConnection::run()
 {
 	while( isControlFlagSet( ControlFlag::TerminateThread ) == false )
 	{
+		QElapsedTimer connectionTimer;
+		connectionTimer.start();
+
 		establishConnection();
 		handleConnection();
 		closeConnection();
+
+		const auto minimumConnectionTime = m_framebufferUpdateInterval > 0 ?
+											   int(m_framebufferUpdateInterval) :
+											   m_connectionRetryInterval;
+		QThread::msleep(std::max<int>(0, minimumConnectionTime - connectionTimer.elapsed()));
 	}
 
 	if( isControlFlagSet( ControlFlag::DeleteAfterFinished ) )
