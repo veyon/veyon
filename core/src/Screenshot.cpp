@@ -73,7 +73,7 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 	}
 
 	// construct filename
-	m_fileName = dir + QDir::separator() + constructFileName( userLogin, computerControlInterface->computer().hostAddress() );
+	m_fileName = dir + QDir::separator() + constructFileName(userLogin, computerControlInterface->computer().hostName());
 
 	QFile outputFile( m_fileName );
 	if( VeyonCore::platform().filesystemFunctions().openFileSafely(
@@ -98,7 +98,7 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 		user = QStringLiteral( "%1 (%2)" ).arg( userLogin, computerControlInterface->userFullName() );
 	}
 
-	const auto host = computerControlInterface->computer().hostAddress();
+	const auto host = computerControlInterface->computer().hostName();
 	const auto date = QDate::currentDate().toString( Qt::ISODate );
 	const auto time = QTime::currentTime().toString( Qt::ISODate );
 

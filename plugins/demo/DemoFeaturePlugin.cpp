@@ -212,7 +212,7 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 		auto demoServerPort = VeyonCore::config().demoServerPort();
 
 		const auto& demoServerInterface = selectedComputerControlInterfaces.constFirst();
-		const auto demoServerHost = demoServerInterface->computer().hostAddress();
+		const auto demoServerHost = demoServerInterface->computer().hostName();
 		const auto primaryServerPort = HostAddress::parsePortNumber( demoServerHost );
 
 		if( primaryServerPort > 0 )

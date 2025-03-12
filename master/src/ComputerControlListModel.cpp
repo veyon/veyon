@@ -493,9 +493,10 @@ QString ComputerControlListModel::computerToolTipRole( const ComputerControlInte
 	const QString state( computerStateDescription( controlInterface ) );
 	const QString displayName(tr("Name: %1").arg(controlInterface->computer().displayName()));
 	const QString location( tr( "Location: %1" ).arg( controlInterface->computer().location() ) );
-	const QString host( tr( "Host/IP address: %1" ).arg( controlInterface->computer().hostAddress().isEmpty()
-															 ? QStringLiteral("&lt;%1&gt;").arg( tr("invalid") )
-															 : controlInterface->computer().hostAddress() ) );
+	const QString host(tr("Host/IP address: %1").arg(controlInterface->computer().hostName().isEmpty() ?
+														 QStringLiteral("&lt;%1&gt;").arg(tr("invalid"))
+													   :
+														 controlInterface->computer().hostName()));
 	const QString user( userInformation( controlInterface ) );
 	const QString features( tr( "Active features: %1" ).arg( activeFeatures( controlInterface ) ) );
 
@@ -545,11 +546,11 @@ QString ComputerControlListModel::computerSortRole( const ComputerControlInterfa
 	{
 	case SortOrder::ComputerAndUserName:
 		return controlInterface->computer().location() + controlInterface->computer().displayName() +
-				controlInterface->computer().hostAddress() + controlInterface->userLoginName();
+				controlInterface->computer().hostName() + controlInterface->userLoginName();
 
 	case SortOrder::ComputerName:
 		return controlInterface->computer().location() + controlInterface->computer().displayName() +
-				controlInterface->computer().hostAddress();
+				controlInterface->computer().hostName();
 
 	case SortOrder::UserName:
 		if( controlInterface->userFullName().isEmpty() == false )

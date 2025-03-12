@@ -270,7 +270,7 @@ CommandLinePluginInterface::RunResult FeatureCommands::controlComputer( FeatureP
 	}
 
 	Computer computer;
-	computer.setHostAddress( host );
+	computer.setHostName(host);
 
 	auto computerControlInterface = ComputerControlInterface::Pointer::create( computer );
 	computerControlInterface->start();
