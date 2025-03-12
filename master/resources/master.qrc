@@ -2,9 +2,11 @@
     <qresource prefix="/master">
         <file>zoom-fit-best.png</file>
         <file>camera-photo.png</file>
-        <file>preferences-desktop-display-orange.png</file>
-        <file>preferences-desktop-display-gray.png</file>
-        <file>preferences-desktop-display-red.png</file>
+        <file>host-offline.png</file>
+        <file>host-online.png</file>
+        <file>host-dns-error.png</file>
+        <file>host-service-error.png</file>
+        <file>host-access-denied.png</file>
         <file>splash.png</file>
         <file>computers.png</file>
         <file>align-grid.png</file>

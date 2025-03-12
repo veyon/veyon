@@ -41,9 +41,11 @@ ComputerControlListModel::ComputerControlListModel( VeyonMaster* masterCore, QOb
 	ComputerListModel( parent ),
 	m_master( masterCore ),
 	m_imageProvider( new ComputerImageProvider( this ) ),
-	m_iconDefault( QStringLiteral(":/master/preferences-desktop-display-gray.png") ),
-	m_iconConnectionProblem( QStringLiteral(":/master/preferences-desktop-display-red.png") ),
-	m_iconServerNotRunning( QStringLiteral(":/master/preferences-desktop-display-orange.png") )
+	m_iconHostOffline(QStringLiteral(":/master/host-offline.png")),
+	m_iconHostOnline(QStringLiteral(":/master/host-online.png")),
+	m_iconHostNameReslutionFailed(QStringLiteral(":/master/host-dns-error.png")),
+	m_iconHostAccessDenied(QStringLiteral(":/master/host-access-denied.png")),
+	m_iconHostServiceError(QStringLiteral(":/master/host-service-error.png"))
 {
 #if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
@@ -239,20 +241,28 @@ QImage ComputerControlListModel::computerDecorationRole( const ComputerControlIn
 			return image;
 		}
 
-		return scaleAndAlignIcon( m_iconDefault, controlInterface->scaledFramebufferSize() );
+		return scaleAndAlignIcon(m_iconHostOnline, controlInterface->scaledFramebufferSize());
 	}
 
+	case ComputerControlInterface::State::HostNameResolutionFailed:
+		return scaleAndAlignIcon(m_iconHostNameReslutionFailed, controlInterface->scaledFramebufferSize());
+
 	case ComputerControlInterface::State::ServerNotRunning:
-		return scaleAndAlignIcon( m_iconServerNotRunning, controlInterface->scaledFramebufferSize() );
+		return scaleAndAlignIcon(m_iconHostServiceError, controlInterface->scaledFramebufferSize());
 
 	case ComputerControlInterface::State::AuthenticationFailed:
-		return scaleAndAlignIcon( m_iconConnectionProblem, controlInterface->scaledFramebufferSize() );
+		return scaleAndAlignIcon(m_iconHostAccessDenied, controlInterface->scaledFramebufferSize());
 
 	default:
 		break;
 	}
 
-	return scaleAndAlignIcon( m_iconDefault, controlInterface->scaledFramebufferSize() );
+	if (controlInterface->accessControlMessage().isEmpty() == false)
+	{
+		return scaleAndAlignIcon(m_iconHostAccessDenied, controlInterface->scaledFramebufferSize());
+	}
+
+	return scaleAndAlignIcon(m_iconHostOffline, controlInterface->scaledFramebufferSize());
 }
 
 
