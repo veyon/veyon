@@ -91,9 +91,11 @@ private:
 
 	VeyonMaster* m_master;
 
-	QImage m_iconDefault;
-	QImage m_iconConnectionProblem;
-	QImage m_iconServerNotRunning;
+	QImage m_iconHostOffline;
+	QImage m_iconHostOnline;
+	QImage m_iconHostNameReslutionFailed;
+	QImage m_iconHostAccessDenied;
+	QImage m_iconHostServiceError;
 
 	QSize m_computerScreenSize{};
 
