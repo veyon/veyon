@@ -501,7 +501,7 @@ QString WebApiController::getConnectionDetails()
 
 		rows.append({uuidToString(it.key()),
 					 EnumHelper::toString(connection->controlInterface()->state()),
-					 connection->controlInterface()->computer().hostAddress(),
+					 connection->controlInterface()->computer().hostName(),
 					 connection->controlInterface()->userLoginName(),
 					 EnumHelper::toString(connection->controlInterface()->serverVersion()),
 					});

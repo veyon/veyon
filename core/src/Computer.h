@@ -36,7 +36,7 @@ class VEYON_CORE_EXPORT Computer
 public:
 	explicit Computer( NetworkObject::Uid networkObjectUid = NetworkObject::Uid(),
 					   const QString& displayName = {},
-					   const QString& hostAddress = {},
+					   const QString& hostName = {},
 					   const QString& macAddress = {},
 					   const QString& location = {} );
 
@@ -65,14 +65,14 @@ public:
 		return m_displayName;
 	}
 
-	void setHostAddress( const QString& hostAddress )
+	void setHostName(const QString& hostName)
 	{
-		m_hostAddress = hostAddress;
+		m_hostName = hostName;
 	}
 
-	QString hostAddress() const
+	QString hostName() const
 	{
-		return m_hostAddress;
+		return m_hostName;
 	}
 
 	void setMacAddress( const QString& macAddress )
@@ -98,7 +98,7 @@ public:
 private:
 	NetworkObject::Uid m_networkObjectUid;
 	QString m_displayName;
-	QString m_hostAddress;
+	QString m_hostName;
 	QString m_macAddress;
 	QString m_location;
 

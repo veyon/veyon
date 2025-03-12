@@ -74,13 +74,13 @@ void ComputerControlInterface::start( QSize scaledFramebufferSize, UpdateMode up
 
 	m_scaledFramebufferSize = scaledFramebufferSize;
 
-	if( m_computer.hostAddress().isEmpty() == false )
+	if (m_computer.hostName().isEmpty() == false)
 	{
 		m_connection = new VeyonConnection;
 		m_connection->setAuthenticationProxy( authenticationProxy );
 
 		auto vncConnection = m_connection->vncConnection();
-		vncConnection->setHost( m_computer.hostAddress() );
+		vncConnection->setHost(m_computer.hostName());
 		if( m_port > 0 )
 		{
 			vncConnection->setPort( m_port );
@@ -587,7 +587,7 @@ QDebug operator<<(QDebug stream, ComputerControlInterface::Pointer computerContr
 {
 	if (computerControlInterface.isNull() == false)
 	{
-		stream << qUtf8Printable(computerControlInterface->computer().hostAddress());
+		stream << qUtf8Printable(computerControlInterface->computer().hostName());
 	}
 	return stream;
 }
@@ -602,7 +602,7 @@ QDebug operator<<(QDebug stream, const ComputerControlInterfaceList& computerCon
 	{
 		if (computerControlInterface.isNull() == false)
 		{
-			hostAddresses.append(computerControlInterface->computer().hostAddress());
+			hostAddresses.append(computerControlInterface->computer().hostName());
 		}
 	}
 

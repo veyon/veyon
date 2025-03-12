@@ -133,7 +133,7 @@ bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 		}
 
 		Computer customComputer;
-		customComputer.setHostAddress( hostName );
+		customComputer.setHostName(hostName);
 		customComputer.setDisplayName(hostName);
 
 		createRemoteAccessWindow(ComputerControlInterface::Pointer::create(customComputer), viewOnly);
@@ -346,7 +346,7 @@ bool RemoteAccessFeaturePlugin::remoteAccess( const QString& hostAddress, bool v
 
 	Computer remoteComputer;
 	remoteComputer.setDisplayName(hostAddress);
-	remoteComputer.setHostAddress( hostAddress );
+	remoteComputer.setHostName(hostAddress);
 
 	if( remoteControlEnabled() == false )
 	{
