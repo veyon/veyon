@@ -407,12 +407,15 @@ void VncConnection::setFramebufferUpdateInterval( int interval )
 {
 	m_framebufferUpdateInterval = interval;
 
-	if (m_framebufferUpdateInterval <= 0)
+	if (state() == State::Connected)
 	{
-		setControlFlag(ControlFlag::TriggerFramebufferUpdate, true);
-	}
+		if (m_framebufferUpdateInterval <= 0)
+		{
+			setControlFlag(ControlFlag::TriggerFramebufferUpdate, true);
+		}
 
-	m_updateIntervalSleeper.wakeAll();
+		m_updateIntervalSleeper.wakeAll();
+	}
 }
 
 
