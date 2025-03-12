@@ -483,7 +483,7 @@ double ComputerControlListModel::averageAspectRatio() const
 
 QImage ComputerControlListModel::scaleAndAlignIcon( const QImage& icon, QSize size ) const
 {
-	const auto scaledIcon = icon.scaled( size.width(), size.height(), Qt::KeepAspectRatio );
+	const auto scaledIcon = icon.scaled(size.width(), size.height(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
 	QImage scaledAndAlignedIcon( size, QImage::Format_ARGB32 );
 	scaledAndAlignedIcon.fill( Qt::transparent );
