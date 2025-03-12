@@ -200,7 +200,8 @@ VncConnection::VncConnection( QObject* parent ) :
 		m_connectionRetryInterval = VeyonCore::config().vncConnectionRetryInterval();
 		m_messageWaitTimeout = VeyonCore::config().vncConnectionMessageWaitTimeout();
 		m_fastFramebufferUpdateInterval = VeyonCore::config().vncConnectionFastFramebufferUpdateInterval();
-		m_framebufferUpdateWatchdogTimeout = VeyonCore::config().vncConnectionFramebufferUpdateWatchdogTimeout();
+		m_initialFramebufferUpdateTimeout = VeyonCore::config().vncConnectionInitialFramebufferUpdateTimeout();
+		m_framebufferUpdateTimeout = VeyonCore::config().vncConnectionFramebufferUpdateTimeout();
 		m_socketKeepaliveIdleTime = VeyonCore::config().vncConnectionSocketKeepaliveIdleTime();
 		m_socketKeepaliveInterval = VeyonCore::config().vncConnectionSocketKeepaliveInterval();
 		m_socketKeepaliveCount = VeyonCore::config().vncConnectionSocketKeepaliveCount();
@@ -546,7 +547,8 @@ void VncConnection::establishConnection()
 
 		if( clientInitialized )
 		{
-			m_framebufferUpdateWatchdog.restart();
+			m_fullFramebufferUpdateTimer.restart();
+			m_incrementalFramebufferUpdateTimer.restart();
 
 			VeyonCore::platform().networkFunctions().
 					configureSocketKeepalive( static_cast<PlatformNetworkFunctions::Socket>( m_client->sock ), true,
@@ -643,16 +645,16 @@ void VncConnection::handleConnection()
 				break;
 			}
 		}
-		else if (m_framebufferUpdateWatchdog.elapsed() >=
-				 qMax<qint64>(2*m_framebufferUpdateInterval, m_framebufferUpdateWatchdogTimeout))
+		else if (m_fullFramebufferUpdateTimer.elapsed() >= fullFramebufferUpdateTimeout())
 		{
 			requestFrameufferUpdate(FramebufferUpdateType::Full);
-			m_framebufferUpdateWatchdog.restart();
+			m_fullFramebufferUpdateTimer.restart();
 		}
-		else if (m_framebufferUpdateInterval > 0 && m_framebufferUpdateWatchdog.elapsed() > m_framebufferUpdateInterval)
+		else if (m_framebufferUpdateInterval > 0 &&
+				 m_incrementalFramebufferUpdateTimer.elapsed() > incrementalFramebufferUpdateTimeout())
 		{
 			requestFrameufferUpdate(FramebufferUpdateType::Incremental);
-			m_framebufferUpdateWatchdog.restart();
+			m_incrementalFramebufferUpdateTimer.restart();
 		}
 		else if (isControlFlagSet(ControlFlag::TriggerFramebufferUpdate))
 		{
@@ -786,12 +788,33 @@ void VncConnection::requestFrameufferUpdate(FramebufferUpdateType updateType)
 
 void VncConnection::finishFrameBufferUpdate()
 {
-	m_framebufferUpdateWatchdog.restart();
+	m_incrementalFramebufferUpdateTimer.restart();
+	m_fullFramebufferUpdateTimer.restart();
 
 	m_framebufferState = FramebufferState::Valid;
 	setControlFlag( ControlFlag::ScaledFramebufferNeedsUpdate, true );
 
 	Q_EMIT framebufferUpdateComplete();
+}
+
+
+
+int VncConnection::fullFramebufferUpdateTimeout() const
+{
+	return m_framebufferState == FramebufferState::Valid ?
+				m_framebufferUpdateTimeout
+			  :
+				std::max(int(m_framebufferUpdateInterval), m_initialFramebufferUpdateTimeout);
+}
+
+
+
+int VncConnection::incrementalFramebufferUpdateTimeout() const
+{
+	return m_framebufferState == FramebufferState::Valid ?
+				int(m_framebufferUpdateInterval)
+			  :
+				std::min(int(m_framebufferUpdateInterval), m_initialFramebufferUpdateTimeout);
 }
 
 
