@@ -50,7 +50,7 @@ public:
 
 	QString computerName() const
 	{
-		return m_computerControlInterface->computer().name();
+		return m_computerControlInterface->computer().displayName();
 	}
 
 	QQuickItem* view() const;
