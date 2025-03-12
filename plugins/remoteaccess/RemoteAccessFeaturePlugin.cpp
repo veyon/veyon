@@ -123,18 +123,18 @@ bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 	}
 	else
 	{
-		const auto hostName = QInputDialog::getText( master.mainWindow(),
-													 tr( "Remote access" ),
-													 tr( "No computer has been selected so you can enter a hostname "
-														 "or IP address of a computer for manual access:" ) );
-		if( hostName.isEmpty() )
+		const auto hostAddress = QInputDialog::getText(master.mainWindow(),
+													   tr("Remote access"),
+													   tr("No computer has been selected so you can enter a hostname "
+														  "or IP address of a computer for manual access:"));
+		if (hostAddress.isEmpty())
 		{
 			return false;
 		}
 
 		Computer customComputer;
-		customComputer.setHostName(hostName);
-		customComputer.setDisplayName(hostName);
+		customComputer.setHostAddress(hostAddress);
+		customComputer.setDisplayName(hostAddress);
 
 		createRemoteAccessWindow(ComputerControlInterface::Pointer::create(customComputer), viewOnly);
 	}
@@ -346,7 +346,7 @@ bool RemoteAccessFeaturePlugin::remoteAccess( const QString& hostAddress, bool v
 
 	Computer remoteComputer;
 	remoteComputer.setDisplayName(hostAddress);
-	remoteComputer.setHostName(hostAddress);
+	remoteComputer.setHostAddress(hostAddress);
 
 	if( remoteControlEnabled() == false )
 	{
