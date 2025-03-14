@@ -26,6 +26,7 @@
 
 #include "VeyonCore.h"
 
+class AccessControlProvider;
 class DesktopAccessDialog;
 class MonitoringMode;
 class SystemTrayIcon;
@@ -53,8 +54,15 @@ public:
 		return *m_desktopAccessDialog;
 	}
 
+	AccessControlProvider& accessControlProvider()
+	{
+		return *m_accessControlProvider;
+	}
+
 private:
 	SystemTrayIcon* m_systemTrayIcon;
 	MonitoringMode* m_monitoringMode;
 	DesktopAccessDialog* m_desktopAccessDialog;
+	AccessControlProvider* m_accessControlProvider;
+
 };

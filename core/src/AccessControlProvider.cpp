@@ -41,7 +41,10 @@ AccessControlProvider::AccessControlProvider() :
 	m_accessControlRules(),
 	m_userGroupsBackend(VeyonCore::userGroupsBackendManager().configuredBackend()),
 	m_networkObjectDirectory(VeyonCore::networkObjectDirectoryManager().configuredDirectory()),
-	m_useDomainUserGroups(VeyonCore::config().useDomainUserGroups())
+	m_useDomainUserGroups(VeyonCore::config().useDomainUserGroups()),
+	m_accessControlFeature(QLatin1String(staticMetaObject.className()),
+						   Feature::Flag::Meta | Feature::Flag::Builtin,
+						   Feature::Uid{QStringLiteral("1815941e-eaef-43ab-b9cd-5403dca3f749")}, {}, {}, {}, {}, {})
 {
 	const QJsonArray accessControlRules = VeyonCore::config().accessControlRules();
 

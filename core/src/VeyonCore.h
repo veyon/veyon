@@ -218,6 +218,7 @@ private:
 	void initAuthenticationCredentials();
 	void initPlugins();
 	void initManagers();
+	void initFeatures();
 	void initLocalComputerControlInterface();
 	void initSystemInfo();
 	void initTlsConfiguration();
