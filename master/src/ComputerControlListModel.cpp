@@ -253,13 +253,11 @@ QImage ComputerControlListModel::computerDecorationRole( const ComputerControlIn
 	case ComputerControlInterface::State::AuthenticationFailed:
 		return scaleAndAlignIcon(m_iconHostAccessDenied, controlInterface->scaledFramebufferSize());
 
+	case ComputerControlInterface::State::AccessControlFailed:
+		return scaleAndAlignIcon(m_iconHostAccessDenied, controlInterface->scaledFramebufferSize());
+
 	default:
 		break;
-	}
-
-	if (controlInterface->accessControlMessage().isEmpty() == false)
-	{
-		return scaleAndAlignIcon(m_iconHostAccessDenied, controlInterface->scaledFramebufferSize());
 	}
 
 	return scaleAndAlignIcon(m_iconHostOffline, controlInterface->scaledFramebufferSize());
@@ -375,7 +373,7 @@ void ComputerControlListModel::updateState( const QModelIndex& index )
 
 
 
-void ComputerControlListModel::updateAccessControlMessage(const QModelIndex& index)
+void ComputerControlListModel::updateAccessControlDetails(const QModelIndex& index)
 {
 	Q_EMIT dataChanged(index, index, { Qt::ToolTipRole });
 }
@@ -445,8 +443,8 @@ void ComputerControlListModel::startComputerControlInterface( ComputerControlInt
 	connect(controlInterface, &ComputerControlInterface::sessionInfoChanged,
 			 this, [=]() { updateSessionInfo(interfaceIndex(controlInterface)); });
 
-	connect(controlInterface, &ComputerControlInterface::accessControlMessageChanged,
-			this, [=] () { updateAccessControlMessage(interfaceIndex(controlInterface)); });
+	connect(controlInterface, &ComputerControlInterface::accessControlDetailsChanged,
+			this, [=] () { updateAccessControlDetails(interfaceIndex(controlInterface)); });
 }
 
 
@@ -602,13 +600,11 @@ QString ComputerControlListModel::computerStateDescription( const ComputerContro
 	case ComputerControlInterface::State::AuthenticationFailed:
 		return tr( "Authentication failed or access denied" );
 
+	case ComputerControlInterface::State::AccessControlFailed:
+		return controlInterface->accessControlDetails();
+
 	default:
 		break;
-	}
-
-	if (controlInterface->accessControlMessage().isEmpty() == false)
-	{
-		return controlInterface->accessControlMessage();
 	}
 
 	return tr( "Disconnected" );

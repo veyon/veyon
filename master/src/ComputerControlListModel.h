@@ -81,7 +81,7 @@ private:
 	QVariant uidRoleData(const ComputerControlInterface::Pointer& controlInterface) const;
 
 	void updateState( const QModelIndex& index );
-	void updateAccessControlMessage(const QModelIndex& index);
+	void updateAccessControlDetails(const QModelIndex& index);
 	void updateScreen( const QModelIndex& index );
 	void updateActiveFeatures( const QModelIndex& index );
 	void updateUser( const QModelIndex& index );

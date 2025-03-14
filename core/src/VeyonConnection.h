@@ -67,12 +67,9 @@ public:
 
 
 Q_SIGNALS:
-	void accessControlMessageReceived(const QString& message);
 	void featureMessageReceived( const FeatureMessage& );
 
 private:
-	static Instances instances;
-
 	~VeyonConnection() override;
 
 	void registerConnection();
@@ -81,8 +78,6 @@ private:
 	// authentication
 	static int8_t handleSecTypeVeyon( rfbClient* client, uint32_t authScheme );
 	static void hookPrepareAuthentication( rfbClient* client );
-
-	static void evalRfbClientLogMessage(const QByteArray& message);
 
 	VncConnection* m_vncConnection{new VncConnection};
 

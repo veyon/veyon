@@ -303,11 +303,11 @@ bool MainWindow::initAccessControl()
 	{
 		const auto username = VeyonCore::authenticationManager().initializedPlugin()->accessControlUser();
 		const auto authMethodUid = VeyonCore::authenticationManager().toUid( VeyonCore::authenticationManager().initializedPlugin() );
-		const auto accessControlResult =
-				AccessControlProvider().checkAccess( username,
-													 QHostAddress( QHostAddress::LocalHost ).toString(),
-													 QStringList(),
-													 authMethodUid );
+		const auto accessControlResult = VeyonCore::builtinFeatures().accessControlProvider()
+										 .checkAccess( username,
+													   QHostAddress( QHostAddress::LocalHost ).toString(),
+													   QStringList(),
+													   authMethodUid );
 		if (accessControlResult.access == AccessControlProvider::Access::Deny)
 		{
 			vWarning() << "user" << username << "is not allowed to access computers";

@@ -265,6 +265,28 @@ bool AccessControlProvider::isAccessToLocalComputerDenied() const
 
 
 
+bool AccessControlProvider::handleFeatureMessage(ComputerControlInterface::Pointer computerControlInterface, const FeatureMessage& message)
+{
+	if (message.featureUid() == m_accessControlFeature.uid())
+	{
+		computerControlInterface->setAccessControlFailed(message.argument(Argument::Details).toString());
+		return true;
+	}
+
+	return false;
+}
+
+
+
+void AccessControlProvider::sendDetails(QIODevice* ioDevice, const QString& details)
+{
+	FeatureMessage{m_accessControlFeature.uid()}.addArgument(
+				AccessControlProvider::Argument::Details, details)
+			.sendAsRfbMessage(ioDevice);
+}
+
+
+
 bool AccessControlProvider::isMemberOfUserGroup( const QString &user,
 												 const QString &groupName ) const
 {

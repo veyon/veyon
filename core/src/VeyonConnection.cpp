@@ -24,7 +24,6 @@
 
 #include "rfb/rfbclient.h"
 
-#include "AccessControlProvider.h"
 #include "AuthenticationManager.h"
 #include "PlatformUserFunctions.h"
 #include "SocketDevice.h"
@@ -36,9 +35,6 @@
 
 static rfbClientProtocolExtension* __veyonProtocolExt = nullptr;
 static constexpr std::array<uint32_t, 2> __veyonSecurityTypes = { VeyonCore::RfbSecurityTypeVeyon, 0 };
-
-
-VeyonConnection::Instances VeyonConnection::instances;
 
 
 rfbBool handleVeyonMessage( rfbClient* client, rfbServerToClientMsg* msg )
@@ -66,13 +62,7 @@ VeyonConnection::VeyonConnection()
 		__veyonProtocolExt->handleAuthentication = handleSecTypeVeyon;
 
 		rfbClientRegisterExtension( __veyonProtocolExt );
-
-		VncConnection::registerRfbLogMessageReader(VeyonConnection::evalRfbClientLogMessage);
 	}
-
-	instances.mutex.lock();
-	instances.connections[m_vncConnection] = this;
-	instances.mutex.unlock();
 
 	connect( m_vncConnection, &VncConnection::connectionPrepared, this, &VeyonConnection::registerConnection, Qt::DirectConnection );
 	connect( m_vncConnection, &VncConnection::destroyed, VeyonCore::instance(), [this]() {
@@ -84,9 +74,6 @@ VeyonConnection::VeyonConnection()
 
 VeyonConnection::~VeyonConnection()
 {
-	instances.mutex.lock();
-	instances.connections.remove(m_vncConnection);
-	instances.mutex.unlock();
 }
 
 
@@ -272,26 +259,5 @@ void VeyonConnection::hookPrepareAuthentication( rfbClient* client )
 		// set our internal flag which indicates that we basically have communication with the client
 		// which means that the host is reachable
 		connection->setServerReachable();
-	}
-}
-
-
-
-void VeyonConnection::evalRfbClientLogMessage(const QByteArray& message)
-{
-	static const QByteArray accessControlMessageMatchPattern = QByteArrayLiteral("Desktop name \"") +
-															   AccessControlProvider::accessControlMessageScheme();
-
-	if (message.startsWith(accessControlMessageMatchPattern))
-	{
-		QMutexLocker m(&instances.mutex);
-		const auto connection = instances.connections.value(QThread::currentThread());
-		if (connection)
-		{
-			Q_EMIT connection->accessControlMessageReceived(
-						QString::fromUtf8(
-							message.mid(accessControlMessageMatchPattern.size(),
-							message.length() - accessControlMessageMatchPattern.size() - 2)));
-		}
 	}
 }

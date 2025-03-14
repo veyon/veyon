@@ -29,23 +29,19 @@
 #include <QTcpSocket>
 
 #include "AccessControlProvider.h"
+#include "BuiltinFeatures.h"
 #include "VariantArrayMessage.h"
 #include "VncServerClient.h"
 #include "VncServerProtocol.h"
 
 
 
-VncServerProtocol::VncServerProtocol( QIODevice* socket,
-									  VncServerClient* client ) :
+VncServerProtocol::VncServerProtocol(QTcpSocket* socket, VncServerClient* client) :
 	m_socket( socket ),
 	m_client( client ),
 	m_serverInitMessage()
 {
-	auto qtcpSocket = qobject_cast<QTcpSocket *>(socket);
-	if (qtcpSocket)
-	{
-		m_client->setHostAddress(qtcpSocket->peerAddress().toString());
-	}
+	m_client->setHostAddress(m_socket->peerAddress().toString());
 	m_client->setAccessControlState( VncServerClient::AccessControlState::Init );
 }
 
@@ -100,6 +96,17 @@ bool VncServerProtocol::read()
 		vDebug() << "closing connection per protocol state";
 		m_socket->close();
 		break;
+
+	case State::Closing:
+		if (m_socket->isOpen())
+		{
+			m_socket->readAll();
+		}
+		else
+		{
+			setState(State::Close);
+		}
+		return false;
 
 	default:
 		break;
@@ -297,11 +304,11 @@ bool VncServerProtocol::processAccessControl()
 		break;
 
 	default:
-		sendFailedAccessControlMessage();
 		vCritical() << "access control failed - closing connection";
-		m_socket->close();
+		m_socket->read(sz_rfbClientInitMsg);
+		sendEmptyServerInitMessage();
+		sendFailedAccessControlDetails();
 		return true;
-		break;
 	}
 
 	return false;
@@ -309,20 +316,25 @@ bool VncServerProtocol::processAccessControl()
 
 
 
-void VncServerProtocol::sendFailedAccessControlMessage()
+void VncServerProtocol::sendFailedAccessControlDetails()
 {
-	auto name = client()->accessControlDetails().toUtf8();
-	if (name.length() > 0)
-	{
-		name.prepend(AccessControlProvider::accessControlMessageScheme());
+	VeyonCore::builtinFeatures().accessControlProvider().sendDetails(m_socket, client()->accessControlDetails());
 
-		rfbServerInitMsg msg{};
-		msg.format.bitsPerPixel = 255;
-		msg.nameLength = qToBigEndian<uint32_t>(name.length());
+	QObject::connect (&m_accessControlDetailsSendTimer, &QTimer::timeout, m_socket, [this]() {
+		VeyonCore::builtinFeatures().accessControlProvider().sendDetails(m_socket, client()->accessControlDetails());
+	});
+	QTimer::singleShot(AccessControlCloseDelay, m_socket, &QAbstractSocket::close);
+	m_accessControlDetailsSendTimer.start(AccessControlDetailsSendInterval);
 
-		m_socket->write(reinterpret_cast<const char *>(&msg), sizeof(msg));
-		m_socket->write(name);
-	}
+	setState(State::Closing);
+}
+
+
+
+void VncServerProtocol::sendEmptyServerInitMessage()
+{
+	rfbServerInitMsg message{};
+	m_socket->write(reinterpret_cast<const char *>(&message), sizeof(message));
 }
 
 

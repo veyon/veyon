@@ -22,6 +22,7 @@
  *
  */
 
+#include "AccessControlProvider.h"
 #include "BuiltinFeatures.h"
 #include "ComputerControlInterface.h"
 #include "Computer.h"
@@ -105,7 +106,6 @@ void ComputerControlInterface::start( QSize scaledFramebufferSize, UpdateMode up
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateScreens );
 		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::stateChanged );
 
-		connect(m_connection, &VeyonConnection::accessControlMessageReceived, this, &ComputerControlInterface::setAccessControlMessage);
 		connect( m_connection, &VeyonConnection::featureMessageReceived, this, &ComputerControlInterface::handleFeatureMessage );
 		connect( m_connection, &VeyonConnection::featureMessageReceived, this, &ComputerControlInterface::resetWatchdog );
 
@@ -196,13 +196,20 @@ QImage ComputerControlInterface::framebuffer() const
 
 
 
-void ComputerControlInterface::setAccessControlMessage(const QString& accessControlMessage)
+void ComputerControlInterface::setAccessControlFailed(const QString& details)
 {
 	lock();
-	m_accessControlMessage = accessControlMessage;
+	m_accessControlDetails = details;
+	m_state = State::AccessControlFailed;
+
+	if (vncConnection())
+	{
+		vncConnection()->stop();
+	}
 	unlock();
 
-	Q_EMIT accessControlMessageChanged();
+	Q_EMIT accessControlDetailsChanged();
+	Q_EMIT stateChanged();
 }
 
 
@@ -441,7 +448,7 @@ void ComputerControlInterface::setQuality()
 
 void ComputerControlInterface::resetWatchdog()
 {
-	if( state() == State::Connected )
+	if (state() == State::Connected || state() == State::AccessControlFailed)
 	{
 		m_pingTimer.start();
 		m_connectionWatchdogTimer.start();
@@ -467,18 +474,11 @@ void ComputerControlInterface::updateState()
 {
 	lock();
 
-	if( vncConnection() )
+	if (vncConnection())
 	{
-		switch( vncConnection()->state() )
+		if (!(m_state == State::AccessControlFailed && vncConnection()->state() == VncConnection::State::Disconnected))
 		{
-		case VncConnection::State::Disconnected: m_state = State::Disconnected; break;
-		case VncConnection::State::Connecting: m_state = State::Connecting; break;
-		case VncConnection::State::Connected: m_state = State::Connected; break;
-		case VncConnection::State::HostOffline: m_state = State::HostOffline; break;
-		case VncConnection::State::HostNameResolutionFailed: m_state = State::HostNameResolutionFailed; break;
-		case VncConnection::State::ServerNotRunning: m_state = State::ServerNotRunning; break;
-		case VncConnection::State::AuthenticationFailed: m_state = State::AuthenticationFailed; break;
-		default: m_state = VncConnection::State::Disconnected; break;
+			m_state = vncConnection()->state();
 		}
 	}
 	else
