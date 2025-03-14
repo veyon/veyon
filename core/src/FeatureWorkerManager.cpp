@@ -343,7 +343,7 @@ void FeatureWorkerManager::sendPendingMessages()
 
 		while( worker.socket && worker.pendingMessages.isEmpty() == false )
 		{
-			worker.pendingMessages.first().send( worker.socket );
+			worker.pendingMessages.first().sendPlain(worker.socket);
 			worker.pendingMessages.removeFirst();
 		}
 	}

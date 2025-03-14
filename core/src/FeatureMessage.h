@@ -106,7 +106,8 @@ public:
 		return m_arguments[EnumHelper::toString(index)];
 	}
 
-	bool send( QIODevice* ioDevice ) const;
+	bool sendPlain(QIODevice* ioDevice) const;
+	bool sendAsRfbMessage(QIODevice* ioDevice) const;
 
 	bool isReadyForReceive( QIODevice* ioDevice );
 
