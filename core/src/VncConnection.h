@@ -70,6 +70,7 @@ public:
 		HostNameResolutionFailed,
 		ServerNotRunning,
 		AuthenticationFailed,
+		AccessControlFailed,
 		ConnectionFailed,
 		Connected
 	} ;

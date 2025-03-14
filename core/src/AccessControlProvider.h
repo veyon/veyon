@@ -52,6 +52,11 @@ public:
 		UserInAuthorizedUserGroups,
 	};
 
+	enum class Argument
+	{
+		Details,
+	};
+
 	struct CheckResult {
 		Access access = Access::Deny;
 		Reason reason = Reason::Unknown;
@@ -127,6 +132,11 @@ public:
 
 		return false;
 	}
+
+	bool handleFeatureMessage(ComputerControlInterface::Pointer computerControlInterface,
+							  const FeatureMessage& message) override;
+
+	void sendDetails(QIODevice* ioDevice, const QString& details);
 
 private:
 	bool isMemberOfUserGroup( const QString& user, const QString& groupName ) const;

@@ -101,12 +101,12 @@ public:
 
 	QImage framebuffer() const;
 
-	const QString& accessControlMessage() const
+	const QString& accessControlDetails() const
 	{
-		return m_accessControlMessage;
+		return m_accessControlDetails;
 	}
 
-	void setAccessControlMessage(const QString& accessControlMessage);
+	void setAccessControlFailed(const QString& details);
 
 	VeyonCore::ApplicationVersion serverVersion() const
 	{
@@ -228,13 +228,13 @@ private:
 	VeyonCore::ApplicationVersion m_serverVersion{VeyonCore::ApplicationVersion::Unknown};
 	QTimer m_serverVersionQueryTimer{this};
 
-	QString m_accessControlMessage{};
+	QString m_accessControlDetails{};
 	QTimer m_statePollingTimer{this};
 
 	QMap<QUuid, QVariant> m_properties;
 
 Q_SIGNALS:
-	void accessControlMessageChanged();
+	void accessControlDetailsChanged();
 	void framebufferSizeChanged();
 	void framebufferUpdated();
 	void userChanged();

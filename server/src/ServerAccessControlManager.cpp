@@ -24,11 +24,10 @@
 
 #include "VeyonCore.h"
 
+#include "BuiltinFeatures.h"
 #include "ServerAccessControlManager.h"
 #include "AccessControlProvider.h"
 #include "DesktopAccessDialog.h"
-#include "VeyonConfiguration.h"
-#include "VariantArrayMessage.h"
 
 
 ServerAccessControlManager::ServerAccessControlManager( FeatureWorkerManager& featureWorkerManager,
@@ -118,10 +117,10 @@ void ServerAccessControlManager::performAccessControl( VncServerClient* client )
 		break;
 	}
 
-	AccessControlProvider accessControlProvider;
-	const auto checkResult = accessControlProvider.checkAccess(client->username(),
-															   client->hostAddress(),
-															   connectedUsers());
+	const auto checkResult = VeyonCore::builtinFeatures().accessControlProvider()
+							 .checkAccess(client->username(),
+										  client->hostAddress(),
+										  connectedUsers());
 
 	switch (checkResult.access)
 	{
@@ -148,6 +147,10 @@ void ServerAccessControlManager::performAccessControl( VncServerClient* client )
 		{
 			client->setAccessControlDetails(tr("No rule allowed access"));
 		}
+		else if (checkResult.reason == AccessControlProvider::Reason::UserNotInAuthorizedUserGroups)
+		{
+			client->setAccessControlDetails(tr("Accessing user not member of an authorized user group"));
+		}
 		break;
 	}
 
@@ -168,6 +171,7 @@ VncServerClient::AccessControlState ServerAccessControlManager::confirmDesktopAc
 			return VncServerClient::AccessControlState::Successful;
 		}
 
+		client->setAccessControlDetails(tr("User did not confirm access"));
 		return VncServerClient::AccessControlState::Failed;
 	}
 
@@ -218,14 +222,13 @@ void ServerAccessControlManager::finishDesktopAccessConfirmation( VncServerClien
 	if( choice == DesktopAccessDialog::ChoiceYes || choice == DesktopAccessDialog::ChoiceAlways )
 	{
 		client->setAccessControlState( VncServerClient::AccessControlState::Successful );
-		client->setAccessControlDetails(tr("User confirmed access."));
+		client->setAccessControlDetails(tr("User confirmed access"));
 		m_clients.append( client );
 	}
 	else
 	{
 		client->setAccessControlState( VncServerClient::AccessControlState::Failed );
-		client->setProtocolState( VncServerProtocol::State::Close );
-		client->setAccessControlDetails(tr("User did not confirm access."));
+		client->setAccessControlDetails(tr("User did not confirm access"));
 	}
 }
 

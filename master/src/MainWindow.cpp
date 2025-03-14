@@ -312,9 +312,10 @@ bool MainWindow::initAccessControl()
 		const auto accessingUser = VeyonCore::authenticationCredentials().hasCredentials(AuthenticationCredentials::Type::UserLogon) ?
 									   VeyonCore::authenticationCredentials().logonUsername() :
 									   VeyonCore::platform().userFunctions().currentUser();
-		const auto accessControlResult = AccessControlProvider().checkAccess(accessingUser,
-																			 QHostAddress(QHostAddress::LocalHost).toString(),
-																			 {});
+		const auto accessControlResult = VeyonCore::builtinFeatures().accessControlProvider()
+										 .checkAccess(accessingUser,
+													  QHostAddress(QHostAddress::LocalHost).toString(),
+													  {});
 		if( accessControlResult.access == AccessControlProvider::Access::Deny )
 		{
 			vWarning() << "user" << VeyonCore::authenticationCredentials().logonUsername()

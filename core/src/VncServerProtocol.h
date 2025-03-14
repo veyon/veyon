@@ -26,7 +26,7 @@
 
 #include "RfbVeyonAuth.h"
 
-class QIODevice;
+class QTcpSocket;
 
 class VariantArrayMessage;
 class VncServerClient;
@@ -47,11 +47,11 @@ public:
 		FramebufferInit,
 		Running,
 		Close,
+		Closing,
 		StateCount
 	} ;
 
-	VncServerProtocol( QIODevice* socket,
-					   VncServerClient* client );
+	VncServerProtocol(QTcpSocket* socket, VncServerClient* client);
 	virtual ~VncServerProtocol() = default;
 
 	State state() const;
@@ -69,7 +69,7 @@ protected:
 	virtual void processAuthenticationMessage( VariantArrayMessage& message ) = 0;
 	virtual void performAccessControl() = 0;
 
-	QIODevice* socket()
+	QTcpSocket* socket()
 	{
 		return m_socket;
 	}
@@ -92,14 +92,21 @@ private:
 	bool processAuthentication( VariantArrayMessage& message );
 	bool processAccessControl();
 
-	void sendFailedAccessControlMessage();
+	void sendFailedAccessControlDetails();
+
+	void sendEmptyServerInitMessage();
 
 	bool processFramebufferInit();
 
 private:
-	QIODevice* m_socket;
+	static constexpr auto AccessControlCloseDelay = 10000;
+	static constexpr auto AccessControlDetailsSendInterval = 100;
+
+	QTcpSocket* m_socket;
 	VncServerClient* m_client;
 
 	QByteArray m_serverInitMessage;
+
+	QTimer m_accessControlDetailsSendTimer;
 
 } ;
