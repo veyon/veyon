@@ -111,7 +111,15 @@ QImage VncConnection::image()
 
 void VncConnection::restart()
 {
-	setControlFlag( ControlFlag::RestartConnection, true );
+	if (isRunning())
+	{
+		setControlFlag(ControlFlag::RestartConnection, true);
+	}
+	else
+	{
+		setControlFlag(ControlFlag::TerminateThread, false);
+		start();
+	}
 }
 
 
