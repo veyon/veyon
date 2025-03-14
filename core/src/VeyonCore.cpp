@@ -99,6 +99,8 @@ VeyonCore::VeyonCore( QCoreApplication* application, Component component, const 
 
 	initManagers();
 
+	initFeatures();
+
 	initSystemInfo();
 
 	Q_EMIT initialized(); // clazy:exclude=incorrect-emit
@@ -113,14 +115,14 @@ VeyonCore::~VeyonCore()
 	delete m_featureManager;
 	m_featureManager = nullptr;
 
+	delete m_builtinFeatures;
+	m_builtinFeatures = nullptr;
+
 	delete m_userGroupsBackendManager;
 	m_userGroupsBackendManager = nullptr;
 
 	delete m_authenticationCredentials;
 	m_authenticationCredentials = nullptr;
-
-	delete m_builtinFeatures;
-	m_builtinFeatures = nullptr;
 
 	delete m_logger;
 	m_logger = nullptr;
@@ -680,17 +682,22 @@ void VeyonCore::initPlugins()
 	// load all other (non-platform) plugins
 	m_pluginManager->loadPlugins();
 	m_pluginManager->upgradePlugins();
-
-	m_builtinFeatures = new BuiltinFeatures();
 }
 
 
 
 void VeyonCore::initManagers()
 {
-	m_featureManager = new FeatureManager(this);
 	m_userGroupsBackendManager = new UserGroupsBackendManager( this );
 	m_networkObjectDirectoryManager = new NetworkObjectDirectoryManager( this );
+}
+
+
+
+void VeyonCore::initFeatures()
+{
+	m_builtinFeatures = new BuiltinFeatures();
+	m_featureManager = new FeatureManager(this);
 }
 
 

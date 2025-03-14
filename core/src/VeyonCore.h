@@ -209,6 +209,7 @@ private:
 	void initAuthenticationCredentials();
 	void initPlugins();
 	void initManagers();
+	void initFeatures();
 	void initLocalComputerControlInterface();
 	bool initLogonAuthentication();
 	bool initKeyFileAuthentication();
