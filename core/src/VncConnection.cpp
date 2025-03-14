@@ -316,7 +316,7 @@ void VncConnection::rescaleFramebuffer()
 
 	QReadLocker locker( &m_imgLock );
 
-	if( m_image.size().isValid() == false )
+	if (m_image.isNull() || m_image.size().isValid() == false)
 	{
 		return;
 	}
