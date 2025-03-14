@@ -62,7 +62,7 @@ bool FeatureWorkerManagerConnection::sendMessage( const FeatureMessage& message 
 {
 	vDebug() << message;
 
-	return message.send( &m_socket );
+	return message.sendPlain(&m_socket);
 }
 
 
@@ -86,7 +86,7 @@ void FeatureWorkerManagerConnection::sendInitMessage()
 
 	m_connectTimer.stop();
 
-	FeatureMessage( m_featureUid, FeatureMessage::InitCommand ).send( &m_socket );
+	FeatureMessage(m_featureUid, FeatureMessage::InitCommand).sendPlain(&m_socket);
 }
 
 

@@ -143,12 +143,9 @@ bool ComputerControlServer::sendFeatureMessageReply( const MessageContext& conte
 {
 	vDebug() << reply;
 
-	if( context.ioDevice() )
+	if (context.ioDevice())
 	{
-		char rfbMessageType = FeatureMessage::RfbMessageType;
-		context.ioDevice()->write( &rfbMessageType, sizeof(rfbMessageType) );
-
-		return reply.send( context.ioDevice() );
+		return reply.sendAsRfbMessage(context.ioDevice());
 	}
 
 	return false;

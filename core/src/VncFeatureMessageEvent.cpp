@@ -42,8 +42,6 @@ void VncFeatureMessageEvent::fire( rfbClient* client )
 			 << m_featureMessage;
 
 	SocketDevice socketDevice( VncConnection::libvncClientDispatcher, client );
-	const char messageType = FeatureMessage::RfbMessageType;
-	socketDevice.write( &messageType, sizeof(messageType) );
 
-	m_featureMessage.send( &socketDevice );
+	m_featureMessage.sendAsRfbMessage(&socketDevice);
 }

@@ -27,17 +27,34 @@
 #include "VariantArrayMessage.h"
 
 
-bool FeatureMessage::send( QIODevice* ioDevice ) const
+bool FeatureMessage::sendPlain(QIODevice* ioDevice) const
 {
-	if( ioDevice )
+	if (ioDevice)
 	{
-		VariantArrayMessage message( ioDevice );
+		VariantArrayMessage message(ioDevice);
 
 		message.write( m_featureUid );
 		message.write( m_command );
 		message.write( m_arguments );
 
 		return message.send();
+	}
+
+	vCritical() << "no IO device!";
+
+	return false;
+}
+
+
+
+bool FeatureMessage::sendAsRfbMessage(QIODevice* ioDevice) const
+{
+	if (ioDevice)
+	{
+		const char rfbMessageType = FeatureMessage::RfbMessageType;
+		ioDevice->write(&rfbMessageType, sizeof(rfbMessageType));
+
+		return sendPlain(ioDevice);
 	}
 
 	vCritical() << "no IO device!";
