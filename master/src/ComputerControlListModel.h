@@ -105,7 +105,7 @@ private:
 	ComputerImageProvider* m_imageProvider;
 	QImage m_iconHostOffline;
 	QImage m_iconHostOnline;
-	QImage m_iconHostNameReslutionFailed;
+	QImage m_iconHostNameResolutionFailed;
 	QImage m_iconHostAccessDenied;
 	QImage m_iconHostServiceError;
 
