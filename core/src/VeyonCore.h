@@ -26,7 +26,6 @@
 
 #include <QObject>
 #include <QtEndian>
-#include <QVersionNumber>
 #include <QDebug>
 
 #include <array>
