@@ -41,7 +41,7 @@ ComputerControlListModel::ComputerControlListModel( VeyonMaster* masterCore, QOb
 	m_master( masterCore ),
 	m_iconHostOffline(QStringLiteral(":/master/host-offline.png")),
 	m_iconHostOnline(QStringLiteral(":/master/host-online.png")),
-	m_iconHostNameReslutionFailed(QStringLiteral(":/master/host-dns-error.png")),
+	m_iconHostNameResolutionFailed(QStringLiteral(":/master/host-dns-error.png")),
 	m_iconHostAccessDenied(QStringLiteral(":/master/host-access-denied.png")),
 	m_iconHostServiceError(QStringLiteral(":/master/host-service-error.png"))
 {
@@ -422,7 +422,7 @@ QImage ComputerControlListModel::computerDecorationRole( const ComputerControlIn
 	}
 
 	case ComputerControlInterface::State::HostNameResolutionFailed:
-		return scaleAndAlignIcon(m_iconHostNameReslutionFailed, controlInterface->scaledFramebufferSize());
+		return scaleAndAlignIcon(m_iconHostNameResolutionFailed, controlInterface->scaledFramebufferSize());
 
 	case ComputerControlInterface::State::ServerNotRunning:
 		return scaleAndAlignIcon(m_iconHostServiceError, controlInterface->scaledFramebufferSize());
