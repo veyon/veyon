@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include <QTimer>
+
 #include "VeyonCore.h"
 #include "Plugin.h"
 
