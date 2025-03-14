@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include <QTimer>
+
 #include "RfbVeyonAuth.h"
 
 class QTcpSocket;
