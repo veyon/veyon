@@ -41,8 +41,6 @@
 #include "VncEvents.h"
 
 
-VncConnection::RfbLogMessageReader VncConnection::s_rfbLogMessageReader = [](const QByteArray&) { };
-
 rfbBool VncConnection::hookInitFrameBuffer( rfbClient* client )
 {
 	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
@@ -134,38 +132,25 @@ void VncConnection::hookCutText( rfbClient* client, const char* text, int textle
 void VncConnection::rfbClientLogDebug( const char* format, ... )
 {
 	va_list args;
-	va_start(args, format);
+	va_start( args, format );
 
-	const auto message = readRfbClientLogMessage(format, args);
+	static constexpr int MaxMessageLength = 256;
+	char message[MaxMessageLength];
+
+	vsnprintf( message, sizeof(message), format, args );
+	message[MaxMessageLength-1] = 0;
 
 	va_end(args);
 
-	vDebug() << QThread::currentThreadId() << message.data();
+	vDebug() << QThread::currentThreadId() << message;
 }
+
 
 
 
 void VncConnection::rfbClientLogNone( const char* format, ... )
 {
-	va_list args;
-	va_start(args, format);
-
-	readRfbClientLogMessage(format, args);
-
-	va_end(args);
-}
-
-
-
-VncConnection::RfbLogMessage VncConnection::readRfbClientLogMessage(const char* format, va_list args)
-{
-	RfbLogMessage message;
-	vsnprintf(message.data(), message.size(), format, args);
-	message[message.size()-1] = 0;
-
-	s_rfbLogMessageReader(QByteArray::fromRawData(message.data(), qstrlen(message.data())));
-
-	return message;
+	Q_UNUSED(format);
 }
 
 
@@ -241,13 +226,6 @@ void VncConnection::initLogging( bool debug )
 		rfbClientLog = rfbClientLogNone;
 		rfbClientErr = rfbClientLogNone;
 	}
-}
-
-
-
-void VncConnection::registerRfbLogMessageReader(const RfbLogMessageReader& reader)
-{
-	s_rfbLogMessageReader = reader;
 }
 
 
