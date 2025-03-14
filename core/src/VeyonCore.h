@@ -26,8 +26,6 @@
 
 #include <QObject>
 #include <QtEndian>
-#include <QVersionNumber>
-#include <QString>
 #include <QDebug>
 
 #include <atomic>
