@@ -529,7 +529,11 @@ QString ComputerControlListModel::computerStateDescription( const ComputerContro
 	switch( controlInterface->state() )
 	{
 	case ComputerControlInterface::State::Connected:
-		return tr( "Online and connected" );
+		if (controlInterface->hasValidFramebuffer())
+		{
+			return tr("Online and connected");
+		}
+		[[fallthrough]];
 
 	case ComputerControlInterface::State::Connecting:
 		return tr( "Establishing connection" );
