@@ -81,10 +81,7 @@ public:
 
 	explicit VncConnection( QObject *parent = nullptr );
 
-	using RfbLogMessageReader = std::function<void(const QByteArray& message)>;
-
 	static void initLogging( bool debug );
-	static void registerRfbLogMessageReader(const RfbLogMessageReader& reader);
 
 	QImage image();
 
@@ -179,9 +176,6 @@ private:
 	static constexpr int RfbBitsPerSample = 8;
 	static constexpr int RfbSamplesPerPixel = 3;
 	static constexpr int RfbBytesPerPixel = sizeof(RfbPixel);
-	static constexpr int RfbLogMessageMaxLength = 256;
-
-	static RfbLogMessageReader s_rfbLogMessageReader;
 
 	enum class ControlFlag {
 		ScaledFramebufferNeedsUpdate = 0x01,
@@ -194,8 +188,6 @@ private:
 		TriggerFramebufferUpdate = 0x80,
 		SkipFramebufferUpdates = 0x100
 	};
-
-	using RfbLogMessage = std::array<char, RfbLogMessageMaxLength>;
 
 	~VncConnection() override;
 
@@ -227,8 +219,6 @@ private:
 
 	static void rfbClientLogDebug( const char* format, ... );
 	static void rfbClientLogNone( const char* format, ... );
-	static RfbLogMessage readRfbClientLogMessage(const char* format, va_list args);
-
 	static void framebufferCleanup( void* framebuffer );
 
 	rfbSocket openTlsSocket( const char* hostname, int port );
