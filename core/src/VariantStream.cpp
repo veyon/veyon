@@ -22,7 +22,9 @@
  *
  */
 
+#include <QIODevice>
 #include <QUuid>
+#include <QVariant>
 
 #include "VariantStream.h"
 
