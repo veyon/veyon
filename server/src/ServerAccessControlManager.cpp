@@ -169,7 +169,7 @@ VncServerClient::AccessControlState ServerAccessControlManager::confirmDesktopAc
 			return VncServerClient::AccessControlState::Successful;
 		}
 
-		client->setAccessControlDetails(tr("User did not confirm access"));
+		client->setAccessControlDetails(tr("User has denied access"));
 		return VncServerClient::AccessControlState::Failed;
 	}
 
