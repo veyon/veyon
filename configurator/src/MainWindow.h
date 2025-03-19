@@ -66,7 +66,6 @@ private:
 	void switchToStandardView();
 	void switchToAdvancedView();
 
-	bool applyConfiguration();
 	void loadConfigurationPagePlugins();
 
 	Ui::MainWindow *ui;

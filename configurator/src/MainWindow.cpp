@@ -134,8 +134,23 @@ void MainWindow::reset( bool onlyUI )
 
 void MainWindow::apply()
 {
-	if( applyConfiguration() )
+	const auto showError = [this](const ConfigurationManager& configurationManager) {
+		vCritical() << configurationManager.errorString().toUtf8().constData();
+
+		QMessageBox::critical(this,
+							  tr("%1 Configurator").arg(VeyonCore::applicationName()),
+							  configurationManager.errorString());
+
+	};
+
+	ConfigurationManager configurationManager;
+	if (configurationManager.saveConfiguration())
 	{
+		if (configurationManager.applyConfiguration() == false)
+		{
+			showError(configurationManager);
+		}
+
 		const auto pages = findChildren<ConfigurationPage *>();
 		for( auto page : pages )
 		{
@@ -144,6 +159,10 @@ void MainWindow::apply()
 
 		ui->buttonBox->setEnabled( false );
 		m_configChanged = false;
+	}
+	else
+	{
+		showError(configurationManager);
 	}
 }
 
@@ -348,26 +367,6 @@ void MainWindow::switchToAdvancedView()
 		ui->pageSelector->setRowHidden( i, false );
 		ui->configPages->widget( i )->setVisible( i == ui->pageSelector->currentRow() );
 	}
-}
-
-
-
-bool MainWindow::applyConfiguration()
-{
-	ConfigurationManager configurationManager;
-
-	if( configurationManager.saveConfiguration() == false ||
-		configurationManager.applyConfiguration() == false )
-	{
-		vCritical() << configurationManager.errorString().toUtf8().constData();
-
-		QMessageBox::critical( nullptr,
-							   tr( "%1 Configurator" ).arg( VeyonCore::applicationName() ),
-							   configurationManager.errorString() );
-		return false;
-	}
-
-	return true;
 }
 
 
