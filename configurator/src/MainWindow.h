@@ -60,7 +60,6 @@ private:
 	void switchToStandardView();
 	void switchToAdvancedView();
 
-	bool applyConfiguration();
 	void loadConfigurationPagePlugins();
 
 	void closeEvent( QCloseEvent *closeEvent ) override;
