@@ -53,9 +53,9 @@ public:
 
 private:
 	using Operation = QFuture<void>;
-	void serviceControl( const QString& title, const Operation& operation );
-	void graphicalFeedback( const QString &title, const Operation& operation );
-	void textFeedback( const QString &title, const Operation& operation );
+	void serviceControl(const QString& title, Operation&& operation);
+	void graphicalFeedback(const QString &title, Operation&& operation);
+	void textFeedback(const QString &title, Operation&& operation);
 
 	const QString m_name;
 	const QString m_filePath;
