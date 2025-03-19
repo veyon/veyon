@@ -27,5 +27,10 @@
     <file>media-playback-start.png</file>
     <file>media-playback-stop.png</file>
     <file>media-record.png</file>
+    <file>toast-close.png</file>
+    <file>toast-error.png</file>
+    <file>toast-information.png</file>
+    <file>toast-success.png</file>
+    <file>toast-warning.png</file>
   </qresource>
 </RCC>
