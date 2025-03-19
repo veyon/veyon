@@ -23,7 +23,7 @@
  */
 
 #include <QCoreApplication>
-#include <QtConcurrent>
+#include <QtConcurrent/QtConcurrent>
 
 #include "PlatformServiceFunctions.h"
 #include "ServiceControl.h"
@@ -106,21 +106,21 @@ void ServiceControl::unregisterService()
 
 
 
-void ServiceControl::serviceControl(const QString& title, Operation&& operation)
+void ServiceControl::serviceControl(const QString& title, const Operation& operation)
 {
 	if (m_parent)
 	{
-		graphicalFeedback(title, std::move(operation));
+		graphicalFeedback(title, operation);
 	}
 	else
 	{
-		textFeedback(title, std::move(operation));
+		textFeedback(title, operation);
 	}
 }
 
 
 
-void ServiceControl::graphicalFeedback(const QString& title, Operation&& operation)
+void ServiceControl::graphicalFeedback(const QString& title, const Operation& operation)
 {
 	auto toast = new Toast(m_parent);
 	toast->setTitle(tr("Service control"));
@@ -129,18 +129,18 @@ void ServiceControl::graphicalFeedback(const QString& title, Operation&& operati
 	toast->setDuration(0);
 	toast->show();
 
-#if QT_VERSION >= QT_VERSION_CHECK(6, 1, 0)
-	operation.then(toast, [=]() { toast->hide(); });
-#else
-	operation.waitForFinished();
-	toast->hide();
-#endif
+	while (operation.isRunning())
+	{
+		QCoreApplication::processEvents();
+		QThread::msleep(10);
+	}
 
+	toast->hide();
 }
 
 
 
-void ServiceControl::textFeedback(const QString& title, Operation&& operation)
+void ServiceControl::textFeedback(const QString& title, const Operation& operation)
 {
 	printf( "%s", qUtf8Printable( title ) );
 
