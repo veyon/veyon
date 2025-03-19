@@ -126,21 +126,21 @@ void MasterConfigurationPage::disableFeature()
 
 void MasterConfigurationPage::openUserConfigurationDirectory()
 {
-	FileSystemBrowser(FileSystemBrowser::ExistingDirectory).exec(ui->userConfigurationDirectory);
+	FileSystemBrowser(FileSystemBrowser::ExistingDirectory, this).exec(ui->userConfigurationDirectory);
 }
 
 
 
 void MasterConfigurationPage::openScreenshotDirectory()
 {
-	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).exec( ui->screenshotDirectory );
+	FileSystemBrowser(FileSystemBrowser::ExistingDirectory, this).exec(ui->screenshotDirectory);
 }
 
 
 
 void MasterConfigurationPage::openConfigurationTemplatesDirectory()
 {
-	FileSystemBrowser(FileSystemBrowser::ExistingDirectory).exec(ui->configurationTemplatesDirectory);
+	FileSystemBrowser(FileSystemBrowser::ExistingDirectory, this).exec(ui->configurationTemplatesDirectory);
 }
 
 

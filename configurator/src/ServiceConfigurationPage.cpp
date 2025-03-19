@@ -25,7 +25,6 @@
 #include <QMessageBox>
 #include <QTimer>
 
-#include "FileSystemBrowser.h"
 #include "VeyonConfiguration.h"
 #include "PluginManager.h"
 #include "ServiceConfigurationPage.h"

@@ -49,15 +49,15 @@ GeneralConfigurationPage::GeneralConfigurationPage( QWidget* parent ) :
 	Configuration::UiMapping::setFlags( ui->tlsConfigGroupBox, Configuration::Property::Flag::Advanced );
 
 	connect( ui->browseTlsCaCertificateFile, &QAbstractButton::clicked, this, [this]() {
-		FileSystemBrowser( FileSystemBrowser::ExistingFile ).exec( ui->tlsCaCertificateFile );
+		FileSystemBrowser(FileSystemBrowser::ExistingFile, this).exec(ui->tlsCaCertificateFile);
 	} );
 
 	connect( ui->browseTlsHostCertificateFile, &QAbstractButton::clicked, this, [this]() {
-		FileSystemBrowser( FileSystemBrowser::ExistingFile ).exec( ui->tlsHostCertificateFile );
+		FileSystemBrowser(FileSystemBrowser::ExistingFile, this).exec(ui->tlsHostCertificateFile);
 	} );
 
 	connect( ui->browseTlsHostPrivateKeyFile, &QAbstractButton::clicked, this, [this]() {
-		FileSystemBrowser( FileSystemBrowser::ExistingFile ).exec( ui->tlsHostPrivateKeyFile );
+		FileSystemBrowser(FileSystemBrowser::ExistingFile, this).exec(ui->tlsHostPrivateKeyFile);
 	} );
 
 	// retrieve list of builtin translations and populate language combobox
@@ -150,8 +150,7 @@ void GeneralConfigurationPage::applyConfiguration()
 
 void GeneralConfigurationPage::openLogFileDirectory()
 {
-	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
-			exec( ui->logFileDirectory );
+	FileSystemBrowser(FileSystemBrowser::ExistingDirectory, this).exec(ui->logFileDirectory);
 }
 
 
