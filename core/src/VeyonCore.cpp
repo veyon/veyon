@@ -37,6 +37,7 @@
 #include <QSslConfiguration>
 #include <QSslKey>
 #include <QStyleFactory>
+#include <QStyleHints>
 #include <QSysInfo>
 #include <QToolTip>
 
@@ -285,6 +286,29 @@ void VeyonCore::enforceBranding( QWidget *topLevelWidget )
 	}
 
 	topLevelWidget->setWindowTitle( topLevelWidget->windowTitle().replace( appName, VeyonCore::applicationName() ) );
+}
+
+
+
+bool VeyonCore::useDarkMode()
+{
+	const auto colorScheme = config().uiColorScheme();
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
+	if (colorScheme == UiColorScheme::System &&
+		QGuiApplication::styleHints() &&
+		QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
+	{
+		return true;
+	}
+#endif
+
+	if (colorScheme == UiColorScheme::Dark)
+	{
+		return true;
+	}
+
+	return false;
 }
 
 
@@ -645,6 +669,20 @@ void VeyonCore::initUi()
 		toolTipPalette.setColor(QPalette::ToolTipBase, toolTipBackgroundColor);
 		toolTipPalette.setColor(QPalette::ToolTipText, Qt::white);
 		QToolTip::setPalette(toolTipPalette);
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+		switch (config().uiColorScheme())
+		{
+		case UiColorScheme::Dark:
+			QGuiApplication::styleHints()->setColorScheme(Qt::ColorScheme::Dark);
+			break;
+		case UiColorScheme::Light:
+			QGuiApplication::styleHints()->setColorScheme(Qt::ColorScheme::Light);
+			break;
+		default:
+			break;
+		}
+#endif
 	}
 }
 

@@ -21,7 +21,6 @@
  *  USA.
  */
 
-#include <QGuiApplication>
 #include <QMenu>
 
 #include "MainToolBar.h"

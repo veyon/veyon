@@ -226,10 +226,11 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 
 	// initialize computer placement controls
 	auto customComputerPositionsControlMenu = new QMenu;
-	customComputerPositionsControlMenu->addAction(QIcon(QStringLiteral(":/core/document-open.png")),
+	const auto darkSuffix = VeyonCore::useDarkMode() ? QStringLiteral("-dark") : QString();
+	customComputerPositionsControlMenu->addAction(QIcon(QStringLiteral(":/core/document-open%1.png").arg(darkSuffix)),
 													tr("Load computer positions"),
 													this, &MainWindow::loadComputerPositions);
-	customComputerPositionsControlMenu->addAction(QIcon(QStringLiteral(":/core/document-save.png")),
+	customComputerPositionsControlMenu->addAction(QIcon(QStringLiteral(":/core/document-save%1.png").arg(darkSuffix)),
 													tr("Save computer positions"),
 													this, &MainWindow::saveComputerPositions);
 	ui->useCustomComputerPositionsButton->setMenu(customComputerPositionsControlMenu);
@@ -250,6 +251,16 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	for(auto* btn : toolButtons)
 	{
 		btn->setIconSize(QSize(20, 20));
+	}
+
+	if (VeyonCore::useDarkMode())
+	{
+		ui->aboutButton->setIcon(QIcon(QStringLiteral(":/core/help-about-dark.png")));
+		ui->filterComputersWithLoggedOnUsersButton->setIcon(QIcon(QStringLiteral(":/core/user-group-new-dark.png")));
+		ui->autoAdjustComputerIconSizeButton->setIcon(QIcon(QStringLiteral(":/master/zoom-fit-best-dark.png")));
+		ui->alignComputersButton->setIcon(QIcon(QStringLiteral(":/master/homerun-dark.png")));
+		ui->useCustomComputerPositionsButton->setIcon(QIcon(QStringLiteral(":/master/exchange-positions-zorder-dark.png")));
+		ui->filterPoweredOnComputersButton->setIcon(QIcon(QStringLiteral(":/master/powered-on-dark.png")));
 	}
 
 	// create the main toolbar

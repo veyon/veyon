@@ -1187,9 +1187,10 @@ void Toast::applyPreset(Preset preset)
 	}
 
 	if (
-	#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
-		QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark ||
-	#endif
+#if QT_VERSION >= QT_VERSION_CHECK(6, 5, 0)
+		(QGuiApplication::styleHints() &&
+		 QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark) ||
+#endif
 		VeyonCore::useDarkMode())
 	{
 		setBackgroundColor(sc_defaultBackgroundColorDark);

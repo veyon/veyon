@@ -62,6 +62,11 @@ ScreenshotManagementPanel::ScreenshotManagementPanel( QWidget *parent ) :
 	connect( ui->showBtn, &QPushButton::clicked, this, &ScreenshotManagementPanel::showScreenshot );
 	connect( ui->deleteBtn, &QPushButton::clicked, this, &ScreenshotManagementPanel::deleteScreenshot );
 
+	if (VeyonCore::useDarkMode())
+	{
+		ui->showBtn->setIcon(QIcon(QStringLiteral(":/core/edit-find-dark.png")));
+	}
+
 	updateModel();
 }
 

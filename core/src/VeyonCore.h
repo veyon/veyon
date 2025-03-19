@@ -101,6 +101,13 @@ public:
 	};
 	Q_ENUM(UiStyle)
 
+	enum class UiColorScheme {
+		System,
+		Light,
+		Dark
+	};
+	Q_ENUM(UiColorScheme)
+
 	static constexpr char RfbSecurityTypeVeyon = 40;
 
 	VeyonCore( QCoreApplication* application, Component component, const QString& appComponentName );
@@ -191,6 +198,7 @@ public:
 
 	static QString applicationName();
 	static void enforceBranding( QWidget* topLevelWidget );
+	static bool useDarkMode();
 
 	static bool isDebugging();
 
