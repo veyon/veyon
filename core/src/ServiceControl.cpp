@@ -23,12 +23,11 @@
  */
 
 #include <QCoreApplication>
-#include <QProgressBar>
-#include <QProgressDialog>
 #include <QtConcurrent>
 
 #include "PlatformServiceFunctions.h"
 #include "ServiceControl.h"
+#include "Toast.h"
 
 
 ServiceControl::ServiceControl( const QString& name,
@@ -96,45 +95,41 @@ void ServiceControl::unregisterService()
 
 
 
-void ServiceControl::serviceControl( const QString& title, const Operation& operation )
+void ServiceControl::serviceControl(const QString& title, Operation&& operation)
 {
-	if( m_parent )
+	if (m_parent)
 	{
-		graphicalFeedback( title, operation );
+		graphicalFeedback(title, std::move(operation));
 	}
 	else
 	{
-		textFeedback( title, operation );
+		textFeedback(title, std::move(operation));
 	}
 }
 
 
 
-void ServiceControl::graphicalFeedback( const QString& title, const Operation& operation )
+void ServiceControl::graphicalFeedback(const QString& title, Operation&& operation)
 {
-	QProgressDialog pd( title, {}, 0, 0, m_parent );
-	pd.setWindowTitle( tr( "Service control" ) );
+	auto toast = new Toast(m_parent);
+	toast->setTitle(tr("Service control"));
+	toast->setText(title);
+	toast->applyPreset(Toast::Preset::Information);
+	toast->setDuration(0);
+	toast->show();
 
-	auto b = new QProgressBar( &pd );
-	b->setMaximum( 100 );
-	b->setTextVisible( false );
-	pd.setBar( b );
-	b->show();
-	pd.setWindowModality( Qt::WindowModal );
-	pd.show();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 1, 0)
+	operation.then(toast, [=]() { toast->hide(); });
+#else
+	operation.waitForFinished();
+	toast->hide();
+#endif
 
-	int j = 0;
-	while( operation.isFinished() == false )
-	{
-		QCoreApplication::processEvents();
-		b->setValue( ++j % 100 );
-		QThread::msleep( 10 );
-	}
 }
 
 
 
-void ServiceControl::textFeedback( const QString& title, const Operation& operation )
+void ServiceControl::textFeedback(const QString& title, Operation&& operation)
 {
 	printf( "%s", qUtf8Printable( title ) );
 
