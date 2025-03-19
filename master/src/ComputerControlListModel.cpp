@@ -455,12 +455,12 @@ QString ComputerControlListModel::computerToolTipRole( const ComputerControlInte
 										   controlInterface->computer().hostName())
 			  :
 				tr("IP address: %1").arg(controlInterface->computer().hostAddress().toString());
-	const QString user( userInformation( controlInterface ) );
-	const QString features( tr( "Active features: %1" ).arg( activeFeatures( controlInterface ) ) );
+	const QString user(userInformation(controlInterface));
+	const QString features = activeFeaturesInformation(controlInterface);
 
-	if( user.isEmpty() )
+	if (controlInterface->state() != ComputerControlInterface::State::Connected)
 	{
-		return QStringLiteral("<b>%1</b><br>%2<br>%3<br>%4<br>%5").arg(state, displayName, location, host, features);
+		return QStringLiteral("<b>%1</b><br>%2<br>%3<br>%4").arg(state, displayName, location, host);
 	}
 
 	return QStringLiteral("<b>%1</b><br>%2<br>%3<br>%4<br>%5<br>%6").arg(state, displayName, location, host, features, user);
@@ -564,47 +564,41 @@ QString ComputerControlListModel::computerStateDescription( const ComputerContro
 
 QString ComputerControlListModel::userInformation(const ComputerControlInterface::Pointer& controlInterface)
 {
-	if( controlInterface->state() == ComputerControlInterface::State::Connected )
+	if (controlInterface->userLoginName().isEmpty())
 	{
-		if( controlInterface->userLoginName().isEmpty() )
-		{
-			return tr( "No user logged on" );
-		}
-
-		auto user = controlInterface->userLoginName();
-		if( controlInterface->userFullName().isEmpty() == false )
-		{
-			user = QStringLiteral("%1 (%2)").arg(controlInterface->userFullName(), user);
-		}
-
-		return tr( "Logged on user: %1" ).arg( user );
+		return tr("No user logged on");
 	}
 
-	return {};
+	auto user = controlInterface->userLoginName();
+	if (controlInterface->userFullName().isEmpty() == false)
+	{
+		user = QStringLiteral("%1 (%2)").arg(controlInterface->userFullName(), user);
+	}
+
+	return tr("Logged on user: %1").arg(user);
 }
 
 
 
-QString ComputerControlListModel::activeFeatures( const ComputerControlInterface::Pointer& controlInterface ) const
+QString ComputerControlListModel::activeFeaturesInformation(const ComputerControlInterface::Pointer& controlInterface)
 {
 	QStringList featureNames;
-	featureNames.reserve( controlInterface->activeFeatures().size() );
+	featureNames.reserve(controlInterface->activeFeatures().size());
 
-	for( const auto& feature : VeyonCore::featureManager().features() )
+	for (const auto& feature : VeyonCore::featureManager().features())
 	{
-		if( feature.testFlag( Feature::Flag::Master ) &&
-			controlInterface->activeFeatures().contains( feature.uid() ) )
+		if (feature.testFlag(Feature::Flag::Master) &&
+			feature.displayName().isEmpty() == false &&
+			controlInterface->activeFeatures().contains(feature.uid()))
 		{
-			featureNames.append( feature.displayName() );
+			featureNames.append(feature.displayName());
 		}
 	}
 
-	featureNames.removeAll( {} );
-
-	if( featureNames.isEmpty() )
+	if (featureNames.isEmpty())
 	{
-		return tr("[none]");
+		return tr("No features active");
 	}
 
-	return featureNames.join( QStringLiteral(", ") );
+	return tr("Active features: %1").arg(featureNames.join(QStringLiteral(", ")));
 }
