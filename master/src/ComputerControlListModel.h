@@ -98,7 +98,7 @@ private:
 	QString computerSortRole( const ComputerControlInterface::Pointer& controlInterface ) const;
 	static QString computerStateDescription( const ComputerControlInterface::Pointer& controlInterface );
 	static QString userInformation(const ComputerControlInterface::Pointer& controlInterface);
-	QString activeFeatures( const ComputerControlInterface::Pointer& controlInterface ) const;
+	static QString activeFeaturesInformation(const ComputerControlInterface::Pointer& controlInterface);
 
 	VeyonMaster* m_master;
 
