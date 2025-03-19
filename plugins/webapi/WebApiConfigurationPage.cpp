@@ -37,11 +37,11 @@ WebApiConfigurationPage::WebApiConfigurationPage( WebApiConfiguration& configura
 	ui->setupUi(this);
 
 	connect( ui->browseTlsCertificateFile, &QAbstractButton::clicked, this, [this]() {
-		FileSystemBrowser( FileSystemBrowser::ExistingFile ).exec( ui->tlsCertificateFile );
+		FileSystemBrowser(FileSystemBrowser::ExistingFile, this).exec(ui->tlsCertificateFile);
 	} );
 
 	connect( ui->browseTlsPrivateKeyFile, &QAbstractButton::clicked, this, [this]() {
-		FileSystemBrowser( FileSystemBrowser::ExistingFile ).exec( ui->tlsPrivateKeyFile );
+		FileSystemBrowser(FileSystemBrowser::ExistingFile, this ).exec(ui->tlsPrivateKeyFile);
 	} );
 
 	Configuration::UiMapping::setFlags( this, Configuration::Property::Flag::Advanced );

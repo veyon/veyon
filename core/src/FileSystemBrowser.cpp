@@ -66,18 +66,16 @@ QString FileSystemBrowser::exec( const QString &path,
 	switch( m_browseMode )
 	{
 		case ExistingDirectory:
-			chosenPath = QFileDialog::getExistingDirectory( nullptr, title,
+			chosenPath = QFileDialog::getExistingDirectory(m_parent, title,
 								browsePath,
 								QFileDialog::ShowDirsOnly |
 									QFileDialog::DontResolveSymlinks );
 			break;
 		case ExistingFile:
-			chosenPath = QFileDialog::getOpenFileName( nullptr, title,
-														browsePath, filter );
+			chosenPath = QFileDialog::getOpenFileName(m_parent, title, browsePath, filter);
 			break;
 		case SaveFile:
-			chosenPath = QFileDialog::getSaveFileName( nullptr, title,
-														browsePath, filter );
+			chosenPath = QFileDialog::getSaveFileName(m_parent, title, browsePath, filter);
 			break;
 
 		default: break;

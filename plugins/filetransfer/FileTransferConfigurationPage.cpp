@@ -75,12 +75,12 @@ void FileTransferConfigurationPage::applyConfiguration()
 
 void FileTransferConfigurationPage::browseDefaultSourceDirectory()
 {
-	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).exec( ui->fileTransferDefaultSourceDirectory );
+	FileSystemBrowser(FileSystemBrowser::ExistingDirectory, this).exec(ui->fileTransferDefaultSourceDirectory);
 }
 
 
 
 void FileTransferConfigurationPage::browseDestinationDirectory()
 {
-	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).exec( ui->fileTransferDestinationDirectory );
+	FileSystemBrowser(FileSystemBrowser::ExistingDirectory, this).exec(ui->fileTransferDestinationDirectory);
 }

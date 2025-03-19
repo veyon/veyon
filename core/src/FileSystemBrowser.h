@@ -40,7 +40,8 @@ public:
 	} ;
 	using BrowseMode = BrowseModes;
 
-	explicit FileSystemBrowser( BrowseMode m ) :
+	explicit FileSystemBrowser(BrowseMode m, QWidget* parent) :
+		m_parent(parent),
 		m_browseMode( m ),
 		m_expandPath( true ),
 		m_shrinkPath( true )
@@ -64,6 +65,7 @@ public:
 
 
 private:
+	QWidget* m_parent;
 	BrowseMode m_browseMode;
 	bool m_expandPath;
 	bool m_shrinkPath;

@@ -183,8 +183,7 @@ bool GeneralConfigurationPage::testKeyFileAuthentication()
 
 void GeneralConfigurationPage::openLogFileDirectory()
 {
-	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
-			exec( ui->logFileDirectory );
+	FileSystemBrowser(FileSystemBrowser::ExistingDirectory, this).exec(ui->logFileDirectory);
 }
 
 

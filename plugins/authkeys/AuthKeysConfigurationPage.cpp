@@ -94,16 +94,14 @@ void AuthKeysConfigurationPage::applyConfiguration()
 
 void AuthKeysConfigurationPage::openPublicKeyBaseDir()
 {
-	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
-												exec( ui->publicKeyBaseDir );
+	FileSystemBrowser(FileSystemBrowser::ExistingDirectory, this).exec(ui->publicKeyBaseDir);
 }
 
 
 
 void AuthKeysConfigurationPage::openPrivateKeyBaseDir()
 {
-	FileSystemBrowser( FileSystemBrowser::ExistingDirectory ).
-			exec( ui->privateKeyBaseDir );
+	FileSystemBrowser(FileSystemBrowser::ExistingDirectory, this).exec(ui->privateKeyBaseDir);
 }
 
 
