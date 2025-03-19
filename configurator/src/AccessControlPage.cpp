@@ -63,6 +63,12 @@ void AccessControlPage::resetWidgets()
 {
 	FOREACH_VEYON_ACCESS_CONTROL_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 
+	if (VeyonCore::config().isAccessControlRulesProcessingEnabled() == false &&
+		VeyonCore::config().isAccessRestrictedToUserGroups() == false)
+	{
+		ui->skipAccessControl->setChecked(true);
+	}
+
 	m_accessGroups = VeyonCore::config().authorizedUserGroups();
 	auto cleanedUpAccessGroups = m_accessGroups;
 
