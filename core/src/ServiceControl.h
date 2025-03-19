@@ -49,7 +49,7 @@ public:
 
 	void startService();
 	void stopService();
-
+	void restartService();
 
 private:
 	using Operation = QFuture<void>;

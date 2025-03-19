@@ -75,6 +75,17 @@ void ServiceControl::stopService()
 
 
 
+void ServiceControl::restartService()
+{
+	serviceControl(tr("Restarting service %1").arg(m_name),
+				   QtConcurrent::run([=]() {
+		VeyonCore::platform().serviceFunctions().stop(m_name);
+		VeyonCore::platform().serviceFunctions().start(m_name);
+	}));
+}
+
+
+
 void ServiceControl::registerService()
 {
 	serviceControl( tr( "Registering service %1" ).arg( m_name ),
