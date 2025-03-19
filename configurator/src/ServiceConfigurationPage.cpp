@@ -83,7 +83,7 @@ void ServiceConfigurationPage::connectWidgetsToProperties()
 
 void ServiceConfigurationPage::applyConfiguration()
 {
-	VeyonServiceControl serviceControl( this );
+	VeyonServiceControl serviceControl(this);
 
 	if( serviceControl.isServiceRunning() &&
 		QMessageBox::question( this, tr( "Restart %1 Service" ).arg( VeyonCore::applicationName() ),
@@ -92,8 +92,7 @@ void ServiceConfigurationPage::applyConfiguration()
 				"Restart it now?" ).arg( VeyonCore::applicationName() ),
 			QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes ) == QMessageBox::Yes )
 	{
-		serviceControl.stopService();
-		serviceControl.startService();
+		serviceControl.restartService();
 	}
 }
 
@@ -101,7 +100,7 @@ void ServiceConfigurationPage::applyConfiguration()
 
 void ServiceConfigurationPage::startService()
 {
-	VeyonServiceControl( this ).startService();
+	VeyonServiceControl(this).startService();
 
 	updateServiceControl();
 }
@@ -110,7 +109,7 @@ void ServiceConfigurationPage::startService()
 
 void ServiceConfigurationPage::stopService()
 {
-	VeyonServiceControl( this ).stopService();
+	VeyonServiceControl(this).stopService();
 
 	updateServiceControl();
 }
