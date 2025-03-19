@@ -5,27 +5,39 @@
     <file>application-x-pem-key.png</file>
     <file>license.png</file>
     <file>user-group-new.png</file>
+    <file>user-group-new-dark.png</file>
     <file>languages.png</file>
     <file>presentation-none.png</file>
     <file>icon16.png</file>
     <file>icon22.png</file>
     <file>icon32.png</file>
     <file>document-open.png</file>
+    <file>document-open-dark.png</file>
     <file>document-save.png</file>
+    <file>document-save-dark.png</file>
     <file>list-add.png</file>
     <file>edit-delete.png</file>
     <file>edit-find.png</file>
+    <file>edit-find-dark.png</file>
     <file>help-about.png</file>
+    <file>help-about-dark.png</file>
     <file>dialog-ok-apply.png</file>
     <file>document-edit.png</file>
     <file>default-pkey.pem</file>
     <file>go-up.png</file>
+    <file>go-up-dark.png</file>
     <file>go-down.png</file>
+    <file>go-down-dark.png</file>
     <file>go-previous.png</file>
+    <file>go-previous-dark.png</file>
     <file>go-next.png</file>
+    <file>go-next-dark.png</file>
     <file>media-playback-pause.png</file>
+    <file>media-playback-pause-dark.png</file>
     <file>media-playback-start.png</file>
+    <file>media-playback-start-dark.png</file>
     <file>media-playback-stop.png</file>
+    <file>media-playback-stop-dark.png</file>
     <file>media-record.png</file>
     <file>toast-close.png</file>
     <file>toast-error.png</file>

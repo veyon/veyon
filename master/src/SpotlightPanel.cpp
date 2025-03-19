@@ -50,6 +50,16 @@ SpotlightPanel::SpotlightPanel( UserConfig& config, ComputerMonitoringWidget* co
 	ui->monitoringWidget->setIgnoreWheelEvent( true );
 	ui->monitoringWidget->setModel( m_model );
 
+	if (VeyonCore::useDarkMode())
+	{
+		QIcon realtimeViewIcon;
+		realtimeViewIcon.addPixmap(QPixmap(QStringLiteral(":/master/update-realtime-enabled-dark.png")), QIcon::Mode::Normal, QIcon::State::On);
+		realtimeViewIcon.addPixmap(QPixmap(QStringLiteral(":/master/update-realtime-disabled-dark.png")), QIcon::Mode::Normal, QIcon::State::Off);
+		ui->realtimeViewButton->setIcon(realtimeViewIcon);
+		ui->addButton->setIcon(QIcon(QStringLiteral(":/core/go-up-dark.png")));
+		ui->removeButton->setIcon(QIcon(QStringLiteral(":/core/go-down-dark.png")));
+	}
+
 	connect( ui->addButton, &QAbstractButton::clicked, this, &SpotlightPanel::add );
 	connect( ui->removeButton, &QAbstractButton::clicked, this, &SpotlightPanel::remove );
 	connect( ui->realtimeViewButton, &QAbstractButton::toggled, this, &SpotlightPanel::setRealtimeView );

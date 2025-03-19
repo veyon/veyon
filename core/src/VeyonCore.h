@@ -94,6 +94,13 @@ public:
 	};
 	Q_ENUM(UiStyle)
 
+	enum class UiColorScheme {
+		System,
+		Light,
+		Dark
+	};
+	Q_ENUM(UiColorScheme)
+
 	VeyonCore( QCoreApplication* application, Component component, const QString& appComponentName );
 	~VeyonCore() override;
 
@@ -173,6 +180,7 @@ public:
 
 	static QString applicationName();
 	static void enforceBranding( QWidget* topLevelWidget );
+	static bool useDarkMode();
 
 	static bool isDebugging();
 

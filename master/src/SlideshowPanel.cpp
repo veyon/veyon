@@ -47,6 +47,16 @@ SlideshowPanel::SlideshowPanel( UserConfig& config, ComputerMonitoringWidget* co
 	ui->monitoringWidget->setSelectionMode( QListView::SingleSelection );
 	ui->monitoringWidget->setModel( m_model );
 
+	if (VeyonCore::useDarkMode())
+	{
+		QIcon startStopIcon;
+		startStopIcon.addPixmap(QPixmap(QStringLiteral(":/core/media-playback-pause-dark.png")), QIcon::Mode::Normal, QIcon::State::On);
+		startStopIcon.addPixmap(QPixmap(QStringLiteral(":/core/media-playback-start-dark.png")), QIcon::Mode::Normal, QIcon::State::Off);
+		ui->startStopButton->setIcon(startStopIcon);
+		ui->showPreviousButton->setIcon(QIcon(QStringLiteral(":/core/go-previous-dark.png")));
+		ui->showNextButton->setIcon(QIcon(QStringLiteral(":/core/go-next-dark.png")));
+	}
+
 	connect( ui->startStopButton, &QAbstractButton::toggled, this, &SlideshowPanel::updateDuration );
 	connect( ui->durationSlider, &QSlider::valueChanged, this, &SlideshowPanel::updateDuration );
 

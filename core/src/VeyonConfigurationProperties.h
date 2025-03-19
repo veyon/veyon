@@ -59,7 +59,8 @@
 #define FOREACH_VEYON_UI_CONFIG_PROPERTY(OP)				\
 	OP( VeyonConfiguration, VeyonCore::config(), QString, applicationName, setApplicationName, "ApplicationName", "UI", QStringLiteral("Veyon"), Configuration::Property::Flag::Hidden )			\
 	OP( VeyonConfiguration, VeyonCore::config(), QString, uiLanguage, setUiLanguage, "Language", "UI", QString(), Configuration::Property::Flag::Standard ) \
-	OP( VeyonConfiguration, VeyonCore::config(), VeyonCore::UiStyle, uiStyle, setUiStyle, "Style", "UI", QVariant::fromValue(VeyonCore::UiStyle::Fusion), Configuration::Property::Flag::Standard )
+	OP( VeyonConfiguration, VeyonCore::config(), VeyonCore::UiStyle, uiStyle, setUiStyle, "Style", "UI", QVariant::fromValue(VeyonCore::UiStyle::Fusion), Configuration::Property::Flag::Standard ) \
+	OP( VeyonConfiguration, VeyonCore::config(), VeyonCore::UiColorScheme, uiColorScheme, setUiColorScheme, "ColorScheme", "UI", QVariant::fromValue(VeyonCore::UiColorScheme::System), Configuration::Property::Flag::Standard )
 
 #define FOREACH_VEYON_SERVICE_CONFIG_PROPERTY(OP)				\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, isTrayIconHidden, setTrayIconHidden, "HideTrayIcon", "Service", false, Configuration::Property::Flag::Advanced )			\

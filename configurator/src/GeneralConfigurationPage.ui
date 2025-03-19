@@ -68,6 +68,32 @@
         </item>
        </widget>
       </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_42">
+        <property name="text">
+         <string>Color scheme:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QComboBox" name="uiColorScheme">
+        <item>
+         <property name="text">
+          <string notr="true">System</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Light</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Dark</string>
+         </property>
+        </item>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -388,6 +414,7 @@
   <tabstop>applicationName</tabstop>
   <tabstop>uiLanguage</tabstop>
   <tabstop>uiStyle</tabstop>
+  <tabstop>uiColorScheme</tabstop>
   <tabstop>authenticationMethod</tabstop>
   <tabstop>testAuthenticationButton</tabstop>
   <tabstop>networkObjectDirectoryPlugin</tabstop>

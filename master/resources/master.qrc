@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/master">
         <file>zoom-fit-best.png</file>
+        <file>zoom-fit-best-dark.png</file>
         <file>camera-photo.png</file>
         <file>host-offline.png</file>
         <file>host-online.png</file>
@@ -10,11 +11,16 @@
         <file>splash.png</file>
         <file>computers.png</file>
         <file>align-grid.png</file>
+        <file>align-grid-dark.png</file>
         <file>exchange-positions-zorder.png</file>
+        <file>exchange-positions-zorder-dark.png</file>
         <file>powered-on.png</file>
+        <file>powered-on-dark.png</file>
         <file>computer-slideshow.png</file>
         <file>spotlight.png</file>
         <file>update-realtime-enabled.png</file>
+        <file>update-realtime-enabled-dark.png</file>
         <file>update-realtime-disabled.png</file>
+        <file>update-realtime-disabled-dark.png</file>
     </qresource>
 </RCC>
