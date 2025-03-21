@@ -134,6 +134,13 @@ Veyon zure tokiko hizkuntzara edo beste hizkuntza batera itzultzeko interesa bad
     </message>
 </context>
 <context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
@@ -245,7 +252,7 @@ Veyon zure tokiko hizkuntzara edo beste hizkuntza batera itzultzeko interesa bad
     </message>
     <message>
         <source>Local computer is already being accessed</source>
-        <translation type="unfinished"/>
+        <translation>Tokiko ordenagailua sartzen ari da dagoeneko</translation>
     </message>
 </context>
 <context>
@@ -411,7 +418,9 @@ Gako publikoa ordenagailu bezeroetan erabiltzen da sarrerako konexio eskaera aut
         <source>Please enter the name of the user group or role for which to import the authentication key.
 
 Make sure that the names of the keys belonging to each other are identical on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Idatzi autentifikazio gakoa inportatzeko erabiltzaile taldearen edo rolaren izena.
+
+Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
 </context>
 <context>
@@ -1006,14 +1015,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Kokalekua: %1</translation>
     </message>
     <message>
-        <source>Host/IP address: %1</source>
-        <translation>Ostalaria/IP helbidea: %1</translation>
-    </message>
-    <message>
-        <source>invalid</source>
-        <translation>baliogabea</translation>
-    </message>
-    <message>
         <source>Active features: %1</source>
         <translation>Funtzio aktiboak: %1</translation>
     </message>
@@ -1054,8 +1055,24 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Saioa hasi duen erabiltzailea: %1</translation>
     </message>
     <message>
-        <source>[none]</source>
-        <translation>[none]</translation>
+        <source>Hostname: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>ezezaguna</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No features active</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1980,6 +1997,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>No user groups plugin was found. Please check your installation!</source>
         <translation>Ez da aurkitu erabiltzaile taldeen pluginik. Mesedez, egiaztatu zure instalazioa!</translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2979,15 +3008,17 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Use custom computer arrangement.
 
 Press and hold to load arrangement from a file or save current arrangement to a file.</source>
-        <translation type="unfinished"/>
+        <translation>Ordenagailuaren antolamendu pertsonalizatua erabili.
+
+Luze sakatu fitxategi batetik kargatzeko edo uneko antolamendua fitxategi batera gordetzeko.</translation>
     </message>
     <message>
         <source>Load computer positions</source>
-        <translation type="unfinished"/>
+        <translation>Kargatu ordenagailuen kokapenak</translation>
     </message>
     <message>
         <source>Save computer positions</source>
-        <translation type="unfinished"/>
+        <translation>Gorde ordenagailuen kokapenak</translation>
     </message>
 </context>
 <context>
@@ -3190,23 +3221,23 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Always expand all locations</source>
-        <translation type="unfinished"/>
+        <translation>Zabaldu beti kokapen guztiak</translation>
     </message>
     <message>
         <source>Configuration templates</source>
-        <translation type="unfinished"/>
+        <translation>Konfigurazio txantiloiak</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished"/>
+        <translation>Aurreratuak</translation>
     </message>
     <message>
         <source>Computer name source</source>
-        <translation type="unfinished"/>
+        <translation>Ordenagailuen izenen iturria</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Lehenetsia</translation>
     </message>
     <message>
         <source>Host address</source>
@@ -3214,31 +3245,31 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Session client address</source>
-        <translation type="unfinished"/>
+        <translation>Saioaren bezeroen helbideak</translation>
     </message>
     <message>
         <source>Session client name</source>
-        <translation type="unfinished"/>
+        <translation>Saioaren bezeroen izenak</translation>
     </message>
     <message>
         <source>Session host name</source>
-        <translation type="unfinished"/>
+        <translation>Saioaren ostatu-izena</translation>
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>Saioaren metadatuak</translation>
     </message>
     <message>
         <source>Full name of user</source>
-        <translation type="unfinished"/>
+        <translation>Erabiltzailearen izen osoa</translation>
     </message>
     <message>
         <source>User login name</source>
-        <translation type="unfinished"/>
+        <translation>Erabiltzailearen saioa hasteko izena</translation>
     </message>
     <message>
         <source>Computer UID role</source>
-        <translation type="unfinished"/>
+        <translation>Ordenagailuen UID rola</translation>
     </message>
     <message>
         <source>Session meta data hash</source>
@@ -3736,6 +3767,37 @@ Mesedez, gorde zure lana eta itxi programa guztiak.</translation>
     </message>
 </context>
 <context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
@@ -3857,11 +3919,11 @@ Normalean hori beharrezkoa da terminal zerbitzariak onartzeko.</translation>
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>Saioaren metadatuak</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"/>
+        <translation>Edukia</translation>
     </message>
     <message>
         <source>None</source>
@@ -3869,52 +3931,58 @@ Normalean hori beharrezkoa da terminal zerbitzariak onartzeko.</translation>
     </message>
     <message>
         <source>Value of an environment variable</source>
-        <translation type="unfinished"/>
+        <translation>Inguruko aldagai baten balioa</translation>
     </message>
     <message>
         <source>Value of a registry key</source>
-        <translation type="unfinished"/>
+        <translation>Erregistro gako baten balioa</translation>
     </message>
     <message>
         <source>Environment variable name:</source>
-        <translation type="unfinished"/>
+        <translation>Inguruko aldagaiaren izena:</translation>
     </message>
     <message>
         <source>Registry key name:</source>
-        <translation type="unfinished"/>
+        <translation>Erregistro gakoaren izena:</translation>
     </message>
     <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
 
 Example: [^-]*-(PC[0-9]*)</source>
-        <translation type="unfinished"/>
+        <translation>Aukeran, sartu adierazpen erregular bat ordenagailuaren izenaren zati batekin eta erabili ordenagailuaren bistaratzeko izen gisa.
+
+Adibidea: [^ -] * - (PC [0-9] *)</translation>
     </message>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
-        <translation type="unfinished"/>
+        <translation>Gaitu Veyon Zerbitzari instantzia bat abiarazi behar bada une honetan aktibo dagoen saiorako, ez dio axola tokiko edo urruneko.</translation>
     </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>% 1 zerbitzua abiarazten</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>% 1 zerbitzua gelditzen</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>%1 zerbitzua erregistratzen</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>%1 zerbitzuaren erregistroa kentzen</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>Zerbitzuaren kontrola</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -132,6 +132,13 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation>Anbieter für Zugriffskontrollfunktionen</translation>
+    </message>
+</context>
+<context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
@@ -1005,14 +1012,6 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Standort: %1</translation>
     </message>
     <message>
-        <source>Host/IP address: %1</source>
-        <translation>Host-/IP-Adresse: %1</translation>
-    </message>
-    <message>
-        <source>invalid</source>
-        <translation>ungültig</translation>
-    </message>
-    <message>
         <source>Active features: %1</source>
         <translation>Aktive Funktionen: %1</translation>
     </message>
@@ -1053,8 +1052,24 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Angemeldeter Benutzer: %1</translation>
     </message>
     <message>
-        <source>[none]</source>
-        <translation>[keine]</translation>
+        <source>Hostname: %1</source>
+        <translation>Hostname: %1</translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>unbekannt</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation>IP-Adresse: %1</translation>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation>Hostname konnte nicht aufgelöst werden</translation>
+    </message>
+    <message>
+        <source>No features active</source>
+        <translation>Keine Funktionen aktiv</translation>
     </message>
 </context>
 <context>
@@ -1979,6 +1994,18 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
     <message>
         <source>No user groups plugin was found. Please check your installation!</source>
         <translation>Es wurde kein Benutzergruppen-Plugin gefunden. Bitte überprüfen Sie Ihre Installation!</translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation>Farbschema:</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation>Hell</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Dunkel</translation>
     </message>
 </context>
 <context>
@@ -3739,6 +3766,37 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
     </message>
 </context>
 <context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation>Angeforderte Authentifizierungsmethode nicht verfügbar</translation>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation>Zugriff erlaubt durch Regel &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation>Zugriff verweigert durch Regel &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation>Keine Regel erlaubt Zugriff</translation>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation>Zugreifender Benutzer ist nicht Mitglied einer autorisierten Benutzergruppe</translation>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation>Benutzer hat den Zugriff abgelehnt</translation>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation>Benutzer hat den Zugriff bestätigt</translation>
+    </message>
+</context>
+<context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
@@ -3902,24 +3960,28 @@ Beispiel: [^-]*-(PC[0-9]*)</translation>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>Starte Dienst %1</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>Beende Dienst %1</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>Registriere Dienst %1</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>Deregistriere Dienst %1</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>Dienststeuerung</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation>Starte %1</translation>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation>Beende %1</translation>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation>Starte %1 neu</translation>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation>Registriere %1</translation>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation>Deregistriere %1</translation>
     </message>
 </context>
 <context>

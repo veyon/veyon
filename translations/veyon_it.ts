@@ -134,6 +134,13 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
 </context>
 <context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation>Fornitore di funzionalità di controllo degli accessi</translation>
+    </message>
+</context>
+<context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
@@ -1005,14 +1012,6 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Posizione: %1</translation>
     </message>
     <message>
-        <source>Host/IP address: %1</source>
-        <translation>Host/indirizzo IP: %1</translation>
-    </message>
-    <message>
-        <source>invalid</source>
-        <translation>non valido</translation>
-    </message>
-    <message>
         <source>Active features: %1</source>
         <translation>Funzioni attive: %1</translation>
     </message>
@@ -1053,8 +1052,24 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Utente connesso: %1</translation>
     </message>
     <message>
-        <source>[none]</source>
-        <translation>[nessuno]</translation>
+        <source>Hostname: %1</source>
+        <translation>Nome host: %1</translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>sconosciuto</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation>Indirizzo IP: %1</translation>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation>Il nome host non può essere risolto</translation>
+    </message>
+    <message>
+        <source>No features active</source>
+        <translation>Nessuna funzione attiva</translation>
     </message>
 </context>
 <context>
@@ -1979,6 +1994,18 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     <message>
         <source>No user groups plugin was found. Please check your installation!</source>
         <translation>Nessun plugin per gruppi di utenti è stato trovato. Controlla la tua installazione!</translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation>Schema di colori:</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Scuro</translation>
     </message>
 </context>
 <context>
@@ -3729,6 +3756,37 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     </message>
 </context>
 <context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation>Metodo di autenticazione richiesto non disponibile</translation>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation>Accesso consentito dalla regola &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation>Accesso negato dalla regola &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation>Nessuna regola ha consentito l&apos;accesso</translation>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation>L&apos;utente che accede non è membro di un gruppo di utenti autorizzati</translation>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation>L&apos;utente ha rifiutato l&apos;accesso</translation>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation>L&apos;utente ha confermato l&apos;accesso</translation>
+    </message>
+</context>
+<context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
@@ -3891,24 +3949,28 @@ Esempio: [^-]*-(PC[0-9]*)</translation>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>Avvio del servizio%1</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>Arresto del servizio%1</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>Registrazione del servizio%1</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>Servizio di annullamento della registrazione%1</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>Controllo del servizio</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation>Avvio %1</translation>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation>Arresto %1</translation>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation>Riavvio %1</translation>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation>Registrazione di %1</translation>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation>Disregistrazione di %1</translation>
     </message>
 </context>
 <context>

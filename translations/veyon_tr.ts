@@ -15,7 +15,7 @@
     </message>
     <message>
         <source>Website:</source>
-        <translation>Web Sitesi:</translation>
+        <translation>İnternet Sitesi:</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
@@ -134,6 +134,13 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
 </context>
 <context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation>Erişim denetimi özellikleri sağlayıcısı</translation>
+    </message>
+</context>
+<context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
@@ -245,7 +252,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Local computer is already being accessed</source>
-        <translation type="unfinished"/>
+        <translation>Yerel bilgisayara zaten erişiliyor</translation>
     </message>
 </context>
 <context>
@@ -411,7 +418,9 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <source>Please enter the name of the user group or role for which to import the authentication key.
 
 Make sure that the names of the keys belonging to each other are identical on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen kimlik doğrulama anahtarının içe aktarılacağı kullanıcı grubu veya rolünün adını girin.
+
+Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan emin olun.</translation>
     </message>
 </context>
 <context>
@@ -581,7 +590,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen yardımın görüntüleneceği komutu belirtin.</translation>
     </message>
     <message>
         <source>NAME</source>
@@ -629,11 +638,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>Belirtilen komut mevcut değil veya bu komut için yardım mevcut değil.</translation>
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen ilk argüman olarak anahtar adını belirtin (örneğin &quot;öğretmen/genel&quot;).</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -645,7 +654,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Kimlik doğrulama anahtarlarını yönetmek için komut satırı desteği</translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
@@ -774,11 +783,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
-        <translation type="unfinished"/>
+        <translation>BİÇİMLENDİRME-DİZİSİ-YER-TUTUCULARLA</translation>
     </message>
     <message>
         <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
-        <translation type="unfinished"/>
+        <translation>DÜZENLİ-İFADE-YER-TUTUCULU</translation>
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
@@ -862,7 +871,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>Belirtilen komut mevcut değil veya bu komut için yardım mevcut değil.</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -978,7 +987,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Location &quot;%1&quot; not found.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; konumu bulunamadı.</translation>
     </message>
 </context>
 <context>
@@ -999,19 +1008,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerControlListModel</name>
     <message>
         <source>Name: %1</source>
-        <translation type="unfinished"/>
+        <translation>İsim: %1</translation>
     </message>
     <message>
         <source>Location: %1</source>
         <translation>Konum: %1</translation>
-    </message>
-    <message>
-        <source>Host/IP address: %1</source>
-        <translation>Ana makine/IP adresi: %1</translation>
-    </message>
-    <message>
-        <source>invalid</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Active features: %1</source>
@@ -1019,7 +1020,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>[no user]</source>
-        <translation type="unfinished"/>
+        <translation>[kullanıcı yok]</translation>
     </message>
     <message>
         <source>Online and connected</source>
@@ -1035,7 +1036,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Sunucusuna erişilemiyor veya çalışmıyor</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
@@ -1054,7 +1055,23 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Oturum açan kullanıcı: %1</translation>
     </message>
     <message>
-        <source>[none]</source>
+        <source>Hostname: %1</source>
+        <translation>Ana bilgisayar adı: %1</translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>bilinmeyen</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation>IP adresi: %1</translation>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation>Ana bilgisayar adı çözülemedi</translation>
+    </message>
+    <message>
+        <source>No features active</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1101,7 +1118,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Logged in since</source>
-        <translation type="unfinished"/>
+        <translation>beri giriş yapıldı</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -1117,11 +1134,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>%1 days</source>
-        <translation type="unfinished"/>
+        <translation>%1 gün</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"/>
+        <translation>1 gün</translation>
     </message>
     <message>
         <source>Location detection failed</source>
@@ -1136,7 +1153,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerSelectPanel</name>
     <message>
         <source>Search computers</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayarları ara</translation>
     </message>
     <message>
         <source>Add location</source>
@@ -1308,18 +1325,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Bandwidth limit</source>
-        <translation type="unfinished"/>
+        <translation>Bant genişliği sınırı</translation>
     </message>
     <message>
         <source> MB/s</source>
-        <translation type="unfinished"/>
+        <translation> MB/s</translation>
     </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>Gösteri</translation>
     </message>
     <message>
         <source>Stop demo</source>
@@ -1327,11 +1344,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"/>
+        <translation>Ekranınızı paylaşın veya bir kullanıcının ekranını diğer kullanıcılarla paylaşmasına izin verin.</translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>Tam ekran demosu</translation>
     </message>
     <message>
         <source>Window demo</source>
@@ -1339,15 +1356,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Kendi ekranınızı tam ekran modunda paylaşın</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>Bu modda ekranınız tüm bilgisayarlarda tam ekran modunda görüntülenirken kullanıcıların giriş cihazları kilitlidir.</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Kendi ekranınızı bir pencerede paylaşın</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -1355,31 +1372,31 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Seçili kullanıcının ekranını tam ekran modunda paylaşın</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>Bu modda, seçili kullanıcının ekranı tüm bilgisayarlarda tam ekran modunda görüntülenirken, kullanıcıların giriş cihazları kilitlidir.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Seçili kullanıcının ekranını bir pencerede paylaş</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>Bu modda seçili kullanıcının ekranı tüm bilgisayarlarda bir pencerede görüntülenir. Kullanıcılar ihtiyaç duyduklarında diğer pencerelere geçebilirler.</translation>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen paylaşmak için bir kullanıcı ekranı seçin.</translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen paylaşmak için yalnızca bir kullanıcı ekranı seçin.</translation>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>Tüm ekranlar</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
@@ -1413,11 +1430,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Applications &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>Uygulamalar ve internet siteleri</translation>
     </message>
     <message>
         <source>Predefined applications</source>
-        <translation type="unfinished"/>
+        <translation>Önceden tanımlanmış uygulamalar</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1429,23 +1446,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add new application</source>
-        <translation type="unfinished"/>
+        <translation>Yeni uygulama ekle</translation>
     </message>
     <message>
         <source>Remove selected application</source>
-        <translation type="unfinished"/>
+        <translation>Seçili uygulamayı kaldır</translation>
     </message>
     <message>
         <source>Predefined websites</source>
-        <translation>Önceden tanımlanmış web siteleri</translation>
+        <translation>Önceden tanımlanmış İnternet siteleri</translation>
     </message>
     <message>
         <source>Add new website</source>
-        <translation type="unfinished"/>
+        <translation>Yeni internet sitesi ekle</translation>
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation>Seçilen web sitesini kaldır</translation>
+        <translation>Seçilen internet sitesini kaldır</translation>
     </message>
     <message>
         <source>URL</source>
@@ -1453,50 +1470,50 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>New application</source>
-        <translation type="unfinished"/>
+        <translation>Yeni uygulama</translation>
     </message>
     <message>
         <source>New website</source>
-        <translation>Yeni web sitesi</translation>
+        <translation>Yeni internet sitesi</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Uygulamayı başlat</translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Bir uygulamayı tüm bilgisayarlarda başlatmak için bu butona tıklayın.</translation>
     </message>
     <message>
         <source>Open website</source>
-        <translation>Web sitesi aç</translation>
+        <translation>İnternet sitesi aç</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>Tüm bilgisayarlarda bir web sitesi açmak için bu düğmeye tıklayın.</translation>
+        <translation>Tüm bilgisayarlarda bir internet sitesi açmak için bu düğmeye tıklayın.</translation>
     </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; uygulamasını başlat</translation>
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>Özel uygulama</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation>Web sitesini &quot;%1&quot; açın</translation>
+        <translation>&quot;%1&quot; internet sitesini aç</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation>Özel web sitesi</translation>
+        <translation>Özel internet sitesi</translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı oturumlarında uygulamaları başlatın ve internet sitelerini açın</translation>
     </message>
 </context>
 <context>
@@ -1519,7 +1536,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Custom website</source>
-        <translation>Özel web sitesi</translation>
+        <translation>Özel internet sitesi</translation>
     </message>
     <message>
         <source>Open file manager</source>
@@ -1535,7 +1552,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>Özel uygulama</translation>
     </message>
     <message>
         <source>Handout</source>
@@ -1572,31 +1589,31 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FeatureCommands</name>
     <message>
         <source>List names of all available features</source>
-        <translation type="unfinished"/>
+        <translation>Mevcut tüm özelliklerin adlarını listeleyin</translation>
     </message>
     <message>
         <source>Show table with details of all available features</source>
-        <translation type="unfinished"/>
+        <translation>Tüm mevcut özelliklerin ayrıntılarını içeren tabloyu göster</translation>
     </message>
     <message>
         <source>Start a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>Uzak bir ana bilgisayarda bir özelliği başlatın</translation>
     </message>
     <message>
         <source>Stop a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>Uzak bir ana bilgisayarda bir özelliği durdurun</translation>
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen yardımın görüntüleneceği komutu belirtin.</translation>
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
-        <translation type="unfinished"/>
+        <translation>Mevcut tüm özelliklerin adlarını içeren bir liste görüntüler.</translation>
     </message>
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation type="unfinished"/>
+        <translation>Mevcut tüm özellikler hakkında ayrıntılı bilgi içeren bir tablo görüntüler. Bu bilgiler bir açıklama, UID, ilgili özelliği sağlayan eklentinin adı ve diğer bazı uygulamayla ilgili ayrıntıları içerir.</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -1604,43 +1621,43 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>FEATURE</source>
-        <translation type="unfinished"/>
+        <translation>ÖZELLİK</translation>
     </message>
     <message>
         <source>ARGUMENTS</source>
-        <translation type="unfinished"/>
+        <translation>ARGÜMANLAR</translation>
     </message>
     <message>
         <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
-        <translation type="unfinished"/>
+        <translation>Belirtilen özelliği belirtilen ana bilgisayarda uzaktan çalışan Veyon Sunucusuna bağlanarak başlatır. Özellik, ad veya UID ile belirtilebilir. Tüm kullanılabilir özellikleri görmek için ``show`` komutunu kullanın. Özelliğe bağlı olarak, tek bir JSON dizesi olarak kodlanmış ek argümanlar (görüntülenecek metin mesajı gibi) belirtilmelidir. Daha fazla bilgi için lütfen geliştirici belgelerine bakın</translation>
     </message>
     <message>
         <source>Lock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Ekranı kilitle</translation>
     </message>
     <message>
         <source>Display a text message</source>
-        <translation type="unfinished"/>
+        <translation>Bir metin mesajı görüntüle</translation>
     </message>
     <message>
         <source>Test message</source>
-        <translation type="unfinished"/>
+        <translation>Test mesajı</translation>
     </message>
     <message>
         <source>Start an application</source>
-        <translation type="unfinished"/>
+        <translation>Bir uygulamayı başlat</translation>
     </message>
     <message>
         <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
-        <translation type="unfinished"/>
+        <translation>Uzaktan çalışan Veyon Sunucusuna bağlanarak belirtilen ana bilgisayarda belirtilen özelliği durdurur. Özellik ad veya UID ile belirtilebilir. Kullanılabilir tüm özellikleri görmek için ``show`` komutunu kullanın.</translation>
     </message>
     <message>
         <source>Unlock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Ekranın kilidini aç</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>Belirtilen komut mevcut değil veya bu komut için yardım mevcut değil.</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1660,7 +1677,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Worker</source>
-        <translation type="unfinished"/>
+        <translation>Çalışan</translation>
     </message>
     <message>
         <source>UID</source>
@@ -1668,35 +1685,35 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Plugin</source>
-        <translation type="unfinished"/>
+        <translation>Eklenti</translation>
     </message>
     <message>
         <source>Invalid feature name or UID specified</source>
-        <translation type="unfinished"/>
+        <translation>Geçersiz özellik adı veya UID belirtildi</translation>
     </message>
     <message>
         <source>Error parsing the JSON-encoded arguments: %1</source>
-        <translation type="unfinished"/>
+        <translation>JSON kodlu argümanları ayrıştırırken hata oluştu: %1</translation>
     </message>
     <message>
         <source>Failed to initialize credentials</source>
-        <translation type="unfinished"/>
+        <translation>Kimlik bilgileri başlatılamadı</translation>
     </message>
     <message>
         <source>Could not establish a connection to host %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 ana makinesine bağlantı kurulamadı</translation>
     </message>
     <message>
         <source>Failed to send feature control message to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Özellik kontrol mesajı %1 ana bilgisayarına gönderilemedi</translation>
     </message>
     <message>
         <source>Feature-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>Özellik ile ilgili CLI işlemleri</translation>
     </message>
     <message>
         <source>Commands for controlling features</source>
-        <translation type="unfinished"/>
+        <translation>Özellikleri kontrol etmek için komutlar</translation>
     </message>
 </context>
 <context>
@@ -1711,11 +1728,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Hedef dizin</translation>
     </message>
     <message>
         <source>Default source directory</source>
-        <translation type="unfinished"/>
+        <translation>Varsayılan kaynak dizini</translation>
     </message>
     <message>
         <source>Options</source>
@@ -1723,11 +1740,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Remember last source directory</source>
-        <translation type="unfinished"/>
+        <translation>Son kaynak dizinini hatırla</translation>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
-        <translation type="unfinished"/>
+        <translation>Hedef dizin yoksa oluşturun</translation>
     </message>
 </context>
 <context>
@@ -1823,11 +1840,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Style:</source>
-        <translation type="unfinished"/>
+        <translation>Stil:</translation>
     </message>
     <message>
         <source>Native</source>
-        <translation type="unfinished"/>
+        <translation>Yerel</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -1935,7 +1952,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Authentication keys are not set up properly on this computer.</source>
-        <translation type="unfinished"/>
+        <translation>Bu bilgisayarda kimlik doğrulama anahtarları düzgün şekilde ayarlanmamış.</translation>
     </message>
     <message>
         <source>%1 service</source>
@@ -1971,7 +1988,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Include user groups from domain</source>
-        <translation type="unfinished"/>
+        <translation>Etki alanından kullanıcı gruplarını dahil et</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
@@ -1979,6 +1996,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>No user groups plugin was found. Please check your installation!</source>
+        <translation>Hiçbir kullanıcı grubu eklentisi bulunamadı. Lütfen kurulumunuzu kontrol edin!</translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dark</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1986,7 +2015,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>HeadlessVncServer</name>
     <message>
         <source>Headless VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Başlıksız VNC sunucusu</translation>
     </message>
 </context>
 <context>
@@ -2023,7 +2052,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Query timeout</source>
-        <translation type="unfinished"/>
+        <translation>Sorgu zaman aşımı</translation>
     </message>
     <message>
         <source>Bind DN</source>
@@ -2151,7 +2180,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation type="unfinished"/>
+        <translation>Tam nitelikli alan adları (FQDN, örn. myhost.example.org) olarak depolanan ana bilgisayar adları</translation>
     </message>
     <message>
         <source>e.g. room or computerLab</source>
@@ -2203,7 +2232,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. cn or displayName</source>
-        <translation type="unfinished"/>
+        <translation>ör. cn veya displayName</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -2243,7 +2272,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation type="unfinished"/>
+        <translation>e.g. (objectClass=room) VEYA (objectClass=computerLab)</translation>
     </message>
     <message>
         <source>Filter for computer containers</source>
@@ -2251,15 +2280,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation type="unfinished"/>
+        <translation>ör. (objectClass=container) veya (objectClass=organizationalUnit)</translation>
     </message>
     <message>
         <source>Query options</source>
-        <translation type="unfinished"/>
+        <translation>Sorgu seçenekleri</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
-        <translation type="unfinished"/>
+        <translation>İç içe geçmiş kullanıcı gruplarını sorgula (yalnızca AD tarafından desteklenir)</translation>
     </message>
     <message>
         <source>Group member identification</source>
@@ -2271,7 +2300,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı oturum açma adı veya bilgisayar ana bilgisayar adı için yapılandırılmış öznitelik (OpenLDAP)</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
@@ -2287,11 +2316,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Computer containers or OUs</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar konteynerleri veya OU&apos;lar</translation>
     </message>
     <message>
         <source>Location attribute in computer objects</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar nesnelerindeki konum niteliği</translation>
     </message>
     <message>
         <source>Integration tests</source>
@@ -2345,7 +2374,9 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP temel DN&apos;si başarıyla sorgulandı. Aşağıdaki girdiler bulundu::
+
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test failed</source>
@@ -2355,7 +2386,9 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Adlandırma bağlamları aracılığıyla temel DN sorgulanamadı. Lütfen adlandırma bağlamı öznitelik parametresini kontrol edin.
+
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
@@ -2433,7 +2466,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen sorgulanacak bir bilgisayar adı girin:</translation>
     </message>
     <message>
         <source>Invalid hostname</source>
@@ -2441,11 +2474,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar ana bilgisayar adlarını tam nitelikli etki alanı adları (FQDN) olarak depolanacak şekilde yapılandırdınız ancak etki alanı olmayan bir ana bilgisayar adı girdiniz.</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar ana bilgisayar adlarını, etki alanı adı olmadan basit ana bilgisayar adları olarak depolanacak şekilde yapılandırdınız ancak etki alanı adı kısmı olan bir ana bilgisayar adı girdiniz.</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
@@ -2465,7 +2498,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen bilgisayar konumunun adını girin (joker karakterlere izin verilir):</translation>
     </message>
     <message>
         <source>computer locations</source>
@@ -2509,7 +2542,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; adlı bir kullanıcı bulunamadı. Lütfen kullanıcı adını veya kullanıcı ağacı parametresini kontrol edin.</translation>
     </message>
     <message>
         <source>Enter hostname</source>
@@ -2517,7 +2550,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen sorgulanacak grup üyeliklerinin bulunduğu bilgisayarın adını girin:</translation>
     </message>
     <message>
         <source>groups of computer</source>
@@ -2529,7 +2562,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; ana bilgisayar adına sahip bir bilgisayar bulunamadı. Lütfen ana bilgisayar adını veya bilgisayar ağacı parametresini kontrol edin.</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2545,11 +2578,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation type="unfinished"/>
+        <translation>IP adresi %1 için ana bilgisayar adı bulunamadı. Lütfen DNS sunucu ayarlarınızı kontrol edin.</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen sorgulanacak girişlerin bulunduğu konumun adını girin:</translation>
     </message>
     <message>
         <source>location entries</source>
@@ -2599,7 +2632,9 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Yapılandırılan %1&apos;deki hiçbir girdi sorgulanamadı. Lütfen &quot;%2&quot; parametresini kontrol edin.
+
+%3</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
@@ -2617,7 +2652,9 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>%1 sorgulanamadı. Lütfen %2 parametresini kontrol edin ve var olan bir nesnenin adını girin.
+
+%3</translation>
     </message>
     <message>
         <source>and</source>
@@ -2672,23 +2709,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen şemayı takip eden geçerli bir LDAP URL&apos;si belirtin&quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</translation>
     </message>
     <message>
         <source>No naming context attribute name given - falling back to configured value.</source>
-        <translation type="unfinished"/>
+        <translation>Adlandırma bağlamı özniteliği adı verilmedi - yapılandırılmış değere geri dönülüyor.</translation>
     </message>
     <message>
         <source>Could not query base DN. Please check your LDAP configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Temel DN sorgulanamadı. Lütfen LDAP yapılandırmanızı kontrol edin.</translation>
     </message>
     <message>
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
-        <translation type="unfinished"/>
+        <translation>%1&apos;i temel DN olarak yapılandırıyor ve adlandırma bağlamı sorgularını devre dışı bırakıyor.</translation>
     </message>
     <message>
         <source>Basic LDAP/AD support for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon için temel LDAP/AD desteği</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
@@ -2696,11 +2733,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (LDAP/AD&apos;den bilgisayarlar ve konumlar yükleme)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (LDAP/AD&apos;den kullanıcıları ve grupları yükleme)</translation>
     </message>
 </context>
 <context>
@@ -2719,11 +2756,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User sessions</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı oturumları</translation>
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
-        <translation type="unfinished"/>
+        <translation>Sunucu başlamadan önceki minimum oturum ömrü</translation>
     </message>
     <message>
         <source>User login</source>
@@ -2731,7 +2768,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Login key sequence</source>
-        <translation type="unfinished"/>
+        <translation>Oturum açma anahtarı dizisi</translation>
     </message>
 </context>
 <context>
@@ -2760,7 +2797,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Disable tooltips</source>
-        <translation type="unfinished"/>
+        <translation>Araç ipuçlarını devre dışı bırak</translation>
     </message>
     <message>
         <source>Show icons only</source>
@@ -2855,7 +2892,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar simgelerinin boyutunu otomatik olarak ayarla</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -2887,15 +2924,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>Slayt gösterisi</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>Spot ışığı</translation>
     </message>
     <message>
         <source>Only show computers with logged on users</source>
-        <translation type="unfinished"/>
+        <translation>Yalnızca oturum açmış kullanıcıların olduğu bilgisayarları göster</translation>
     </message>
     <message>
         <source>toolBar</source>
@@ -2973,15 +3010,17 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Use custom computer arrangement.
 
 Press and hold to load arrangement from a file or save current arrangement to a file.</source>
-        <translation type="unfinished"/>
+        <translation>Özel bilgisayar düzenlemesini kullanın.
+
+Düzenlemeyi bir dosyadan yüklemek veya mevcut düzenlemeyi bir dosyaya kaydetmek için basılı tutun.</translation>
     </message>
     <message>
         <source>Load computer positions</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar pozisyonlarını yükle</translation>
     </message>
     <message>
         <source>Save computer positions</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar pozisyonlarını kaydet</translation>
     </message>
 </context>
 <context>
@@ -3020,11 +3059,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
+        <translation>Küçük resim aralığı</translation>
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> px</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -3060,35 +3099,35 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"/>
+        <translation>Küçük resim en boy oranı</translation>
     </message>
     <message>
         <source>Highest</source>
-        <translation type="unfinished"/>
+        <translation>En yüksek</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished"/>
+        <translation>Yüksek</translation>
     </message>
     <message>
         <source>Medium</source>
-        <translation type="unfinished"/>
+        <translation>Orta</translation>
     </message>
     <message>
         <source>Low</source>
-        <translation type="unfinished"/>
+        <translation>Düşük</translation>
     </message>
     <message>
         <source>Lowest</source>
-        <translation type="unfinished"/>
+        <translation>En düşük</translation>
     </message>
     <message>
         <source>Image quality in monitoring mode</source>
-        <translation type="unfinished"/>
+        <translation>İzleme modunda görüntü kalitesi</translation>
     </message>
     <message>
         <source>Remote access image quality</source>
-        <translation type="unfinished"/>
+        <translation>Uzaktan erişim görüntü kalitesi</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3108,7 +3147,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar simgesi boyutunu otomatik olarak ayarla</translation>
     </message>
     <message>
         <source>Automatically open computer select panel</source>
@@ -3132,7 +3171,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Hide local session</source>
-        <translation type="unfinished"/>
+        <translation>Yerel oturumu gizle</translation>
     </message>
     <message>
         <source>Hide empty locations</source>
@@ -3164,7 +3203,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
-        <translation type="unfinished"/>
+        <translation>Özellik pencerelerini ana pencereyle aynı ekranda açın</translation>
     </message>
     <message>
         <source>Features</source>
@@ -3184,23 +3223,23 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Always expand all locations</source>
-        <translation type="unfinished"/>
+        <translation>Her zaman tüm konumları genişlet</translation>
     </message>
     <message>
         <source>Configuration templates</source>
-        <translation type="unfinished"/>
+        <translation>Yapılandırma şablonları</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished"/>
+        <translation>Gelişmiş</translation>
     </message>
     <message>
         <source>Computer name source</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar adı kaynağı</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Varsayılan</translation>
     </message>
     <message>
         <source>Host address</source>
@@ -3208,35 +3247,35 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Session client address</source>
-        <translation type="unfinished"/>
+        <translation>Oturum istemci adresi</translation>
     </message>
     <message>
         <source>Session client name</source>
-        <translation type="unfinished"/>
+        <translation>Oturum istemci adı</translation>
     </message>
     <message>
         <source>Session host name</source>
-        <translation type="unfinished"/>
+        <translation>Oturum ana bilgisayar adı</translation>
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>Oturum meta verileri</translation>
     </message>
     <message>
         <source>Full name of user</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcının tam adı</translation>
     </message>
     <message>
         <source>User login name</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı oturum açma adı</translation>
     </message>
     <message>
         <source>Computer UID role</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar UID rolü</translation>
     </message>
     <message>
         <source>Session meta data hash</source>
-        <translation type="unfinished"/>
+        <translation>Oturum meta verileri karma değeri</translation>
     </message>
 </context>
 <context>
@@ -3251,15 +3290,15 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Query application version of the server</source>
-        <translation type="unfinished"/>
+        <translation>Sunucunun uygulama sürümünü sorgula</translation>
     </message>
     <message>
         <source>Query active features</source>
-        <translation type="unfinished"/>
+        <translation>Etkin özellikleri sorgula</translation>
     </message>
     <message>
         <source>Query properties of remotely available screens</source>
-        <translation type="unfinished"/>
+        <translation>Uzaktan erişilebilen ekranların sorgu özellikleri</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3277,7 +3316,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>OpenWebsiteDialog</name>
     <message>
         <source>Open website</source>
-        <translation>Web sitesi aç</translation>
+        <translation>İnternet sitesi aç</translation>
     </message>
     <message>
         <source>e.g. Veyon</source>
@@ -3285,7 +3324,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation>Unutmayın ve web sitesi menüsüne ekleyin</translation>
+        <translation>Hatırla ve internet sitesi menüsüne ekle</translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
@@ -3293,7 +3332,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation>Lütfen açılacak web sitesinin URL&apos;sini girin:</translation>
+        <translation>Lütfen açılacak internet sitesinin URL&apos;sini girin:</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -3426,7 +3465,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>Gerçekten &lt;b&gt;TÜM&lt;/b&gt; bilgisayarları yeniden başlatmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
@@ -3438,11 +3477,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>Gerçekten &lt;b&gt;TÜM&lt;/b&gt; bilgisayarları kapatmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>Seçili bilgisayarların gerçekten kapanmasını istiyor musunuz?</translation>
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
@@ -3508,7 +3547,7 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     </message>
     <message>
         <source>Exchange clipboard contents</source>
-        <translation type="unfinished"/>
+        <translation>Panodaki içerikleri değiştir</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -3520,7 +3559,7 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
-        <translation type="unfinished"/>
+        <translation>Hiçbir bilgisayar seçilmediğinden manuel erişim için bir bilgisayarın ana bilgisayar adını veya IP adresini girebilirsiniz:</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
@@ -3535,7 +3574,7 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 Uzaktan Erişim</translation>
     </message>
 </context>
 <context>
@@ -3550,7 +3589,7 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     </message>
     <message>
         <source>Select screen</source>
-        <translation type="unfinished"/>
+        <translation>Ekran seç</translation>
     </message>
     <message>
         <source>Send shortcut</source>
@@ -3610,11 +3649,11 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
+        <translation>Bağlanıyor...</translation>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>Tüm ekranlar</translation>
     </message>
 </context>
 <context>
@@ -3633,15 +3672,15 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     </message>
     <message>
         <source>Lock input devices</source>
-        <translation type="unfinished"/>
+        <translation>Giriş aygıtlarını kilitle</translation>
     </message>
     <message>
         <source>Unlock input devices</source>
-        <translation type="unfinished"/>
+        <translation>Giriş aygıtlarının kilidini aç</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
-        <translation type="unfinished"/>
+        <translation>Tüm kullanıcıların tüm dikkatini geri kazanmak için bu düğmeyi kullanarak bilgisayarlarını kilitleyebilirsiniz. Bu modda masaüstü hala görünürken tüm giriş aygıtları kilitlenir.</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
@@ -3726,7 +3765,38 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
+        <translation>Seçili tüm ekran görüntülerini gerçekten silmek istiyor musunuz?</translation>
+    </message>
+</context>
+<context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation>İstenen kimlik doğrulama yöntemi mevcut değil</translation>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation>&quot;%1&quot; kuralı tarafından erişime izin verildi</translation>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation>Erişim &quot;%1&quot; kuralı tarafından engellendi</translation>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation>Hiçbir kurala erişime izin verilmiyor</translation>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation>Yetkili bir kullanıcı grubunun üyesi olmayan kullanıcıya erişim</translation>
+    </message>
+    <message>
+        <source>User has denied access</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation>Kullanıcı erişimi onayladı</translation>
     </message>
 </context>
 <context>
@@ -3769,11 +3839,11 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     </message>
     <message>
         <source>Session mode</source>
-        <translation type="unfinished"/>
+        <translation>Oturum modu</translation>
     </message>
     <message>
         <source>Local session mode (single server instance for primary local session)</source>
-        <translation type="unfinished"/>
+        <translation>Yerel oturum modu (birincil yerel oturum için tek sunucu örneği)</translation>
     </message>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
@@ -3783,31 +3853,31 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     </message>
     <message>
         <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation type="unfinished"/>
+        <translation>Etkin oturum modu (etkin yerel veya uzak oturum için tek sunucu örneği)</translation>
     </message>
     <message>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
+        <translation>Çoklu oturum modu (her yerel ve uzak masaüstü oturumu için ayrı sunucu örneği)</translation>
     </message>
     <message>
         <source>Maximum session count</source>
-        <translation type="unfinished"/>
+        <translation>Maksimum oturum sayısı</translation>
     </message>
     <message>
         <source>Network port numbers</source>
-        <translation type="unfinished"/>
+        <translation>Ağ bağlantı noktası numaraları</translation>
     </message>
     <message>
         <source>Veyon server</source>
-        <translation type="unfinished"/>
+        <translation>Veyon sunucusu</translation>
     </message>
     <message>
         <source>Internal VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Dahili VNC sunucusu</translation>
     </message>
     <message>
         <source>Feature manager</source>
-        <translation type="unfinished"/>
+        <translation>Özellik yöneticisi</translation>
     </message>
     <message>
         <source>Demo server</source>
@@ -3815,7 +3885,7 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     </message>
     <message>
         <source>Miscellaneous settings</source>
-        <translation type="unfinished"/>
+        <translation>Çeşitli ayarlar</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
@@ -3827,7 +3897,7 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     </message>
     <message>
         <source>Disable clipboard synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Pano senkronizasyonunu devre dışı bırak</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -3851,11 +3921,11 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>Oturum meta verileri</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"/>
+        <translation>İçerik</translation>
     </message>
     <message>
         <source>None</source>
@@ -3863,52 +3933,58 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     </message>
     <message>
         <source>Value of an environment variable</source>
-        <translation type="unfinished"/>
+        <translation>Bir ortam değişkeninin değeri</translation>
     </message>
     <message>
         <source>Value of a registry key</source>
-        <translation type="unfinished"/>
+        <translation>Bir kayıt defteri anahtarının değeri</translation>
     </message>
     <message>
         <source>Environment variable name:</source>
-        <translation type="unfinished"/>
+        <translation>Ortam değişkeni adı:</translation>
     </message>
     <message>
         <source>Registry key name:</source>
-        <translation type="unfinished"/>
+        <translation>Kayıt anahtarı adı:</translation>
     </message>
     <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
 
 Example: [^-]*-(PC[0-9]*)</source>
-        <translation type="unfinished"/>
+        <translation>İsteğe bağlı olarak, bilgisayar adının bir kısmını çıkarmak ve bunu bilgisayar için görüntü adı olarak kullanmak üzere bir yakalama içeren düzenli bir ifade girin.
+
+Örnek: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
-        <translation type="unfinished"/>
+        <translation>Yerel veya uzak olması fark etmeksizin, geçerli etkin oturum için tek bir Veyon Sunucu örneğinin başlatılması gerekiyorsa etkinleştirin.</translation>
     </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>Hizmet başlatılıyor %1</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>Hizmet durduruluyor %1</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>Hizmet kaydediliyor %1</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>Hizmet kaydedilimiyor %1</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>Hizmet kontrolü</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3966,7 +4042,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon CLI</source>
-        <translation type="unfinished"/>
+        <translation>Veyon CLI için etkileşimli kabuk ve betik yürütme</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -3977,57 +4053,57 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>Önceki</translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation type="unfinished"/>
+        <translation>Başlat/duraklat</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished"/>
+        <translation>Sonraki</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"/>
+        <translation>Süre:</translation>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation type="unfinished"/>
+        <translation>Orta fare tuşuna tıklayarak veya alttaki ilk butona tıklayarak bilgisayarları ekleyin.</translation>
     </message>
     <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Seçili bilgisayarları ekle</translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Seçili bilgisayarları kaldır</translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayarları gerçek zamanlı olarak güncelle</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>Spot ışığı</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen eklemek için en az bir bilgisayar seçin.</translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen kaldırmak için en az bir bilgisayar seçin.</translation>
     </message>
 </context>
 <context>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Uygulamayı başlat</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -4039,7 +4115,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Remember and add to application menu</source>
-        <translation type="unfinished"/>
+        <translation>Hatırla ve uygulama menüsüne ekle</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
@@ -4047,7 +4123,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen seçili bilgisayarlarda başlatılacak uygulamaları girin. Birden fazla uygulamayı satırla ayırabilirsiniz.</translation>
     </message>
 </context>
 <context>
@@ -4117,7 +4193,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
+        <translation>Maksimum işlemci kullanımı</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
@@ -4183,7 +4259,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation type="unfinished"/>
+        <translation>Gerçekten &lt;b&gt;TÜM&lt;/b&gt; kullanıcıların oturumunu kapatmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
@@ -4262,7 +4338,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Screen %1</source>
-        <translation type="unfinished"/>
+        <translation>Ekran %1</translation>
     </message>
 </context>
 <context>
@@ -4287,7 +4363,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>WebApiConfigurationPage</name>
     <message>
         <source>Web API</source>
-        <translation type="unfinished"/>
+        <translation>Ağ API</translation>
     </message>
     <message>
         <source>General</source>
@@ -4295,23 +4371,23 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Network port</source>
-        <translation type="unfinished"/>
+        <translation>Ağ bağlantı noktası</translation>
     </message>
     <message>
         <source>Enable WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>WebAPI sunucusunu etkinleştir</translation>
     </message>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"/>
+        <translation>Bağlantı ayarları</translation>
     </message>
     <message>
         <source>Lifetime</source>
-        <translation type="unfinished"/>
+        <translation>Ömür boyu</translation>
     </message>
     <message>
         <source> h</source>
-        <translation type="unfinished"/>
+        <translation>s</translation>
     </message>
     <message>
         <source> s</source>
@@ -4319,27 +4395,27 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Idle timeout</source>
-        <translation type="unfinished"/>
+        <translation>Boşta kalma zaman aşımı</translation>
     </message>
     <message>
         <source>Authentication timeout</source>
-        <translation type="unfinished"/>
+        <translation>Kimlik doğrulama zaman aşımı</translation>
     </message>
     <message>
         <source>Maximum number of open connections</source>
-        <translation type="unfinished"/>
+        <translation>Maksimum açık bağlantı sayısı</translation>
     </message>
     <message>
         <source>Connection encryption</source>
-        <translation type="unfinished"/>
+        <translation>Bağlantı şifrelemesi</translation>
     </message>
     <message>
         <source>TLS certificate file</source>
-        <translation type="unfinished"/>
+        <translation>TLS sertifika dosyası</translation>
     </message>
     <message>
         <source>TLS private key file</source>
-        <translation type="unfinished"/>
+        <translation>TLS özel anahtar dosyası</translation>
     </message>
     <message>
         <source>...</source>
@@ -4347,30 +4423,30 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
-        <translation type="unfinished"/>
+        <translation>HTTP yerine TLS 1.3 ile HTTPS kullanın</translation>
     </message>
 </context>
 <context>
     <name>WebApiPlugin</name>
     <message>
         <source>Run WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>WebAPI sunucusunu çalıştır</translation>
     </message>
     <message>
         <source>Failed to start WebAPI server at port %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 bağlantı noktasında WebAPI sunucusu başlatılamadı</translation>
     </message>
     <message>
         <source>WebAPI server running at port %1</source>
-        <translation type="unfinished"/>
+        <translation>WebAPI sunucusu %1 bağlantı noktasında çalışıyor</translation>
     </message>
     <message>
         <source>Provide access to a computer via HTTP</source>
-        <translation type="unfinished"/>
+        <translation>HTTP aracılığıyla bir bilgisayara erişim sağlayın</translation>
     </message>
     <message>
         <source>Commands for running the WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>WebAPI sunucusunu çalıştırma komutları</translation>
     </message>
 </context>
 <context>
@@ -4440,14 +4516,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Use custom power scheme with disabled power button</source>
-        <translation type="unfinished"/>
+        <translation>Güç düğmesi devre dışıyken özel güç şemasını kullan</translation>
     </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Internal display</source>
-        <translation type="unfinished"/>
+        <translation>Dahili ekran</translation>
     </message>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
@@ -4462,11 +4538,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; hizmeti yüklenemedi (hata %2).</translation>
     </message>
     <message>
         <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; hizmeti için hata eylemleri yapılandırması değiştirilemedi (hata %2).</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
@@ -4474,7 +4550,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; hizmeti kaldırılamadı (hata %2).</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
@@ -4482,7 +4558,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; hizmetinin başlangıç ​​türü değiştirilemedi (hata %2).</translation>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>

@@ -134,6 +134,13 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
 </context>
 <context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation>Надавач можливостей керування доступом</translation>
+    </message>
+</context>
+<context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
@@ -1005,14 +1012,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Місце: %1</translation>
     </message>
     <message>
-        <source>Host/IP address: %1</source>
-        <translation>Вузол/IP-адреса: %1</translation>
-    </message>
-    <message>
-        <source>invalid</source>
-        <translation>некоректний</translation>
-    </message>
-    <message>
         <source>Active features: %1</source>
         <translation>Задіяні можливості: %1</translation>
     </message>
@@ -1053,8 +1052,24 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Користувач у системі: %1</translation>
     </message>
     <message>
-        <source>[none]</source>
-        <translation>[немає]</translation>
+        <source>Hostname: %1</source>
+        <translation>Назва вузла: %1</translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>невідомий</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation>IP-адреса: %1</translation>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation>Не вдалося визначити адресу за назвою вузла</translation>
+    </message>
+    <message>
+        <source>No features active</source>
+        <translation>Немає активних можливостей</translation>
     </message>
 </context>
 <context>
@@ -1979,6 +1994,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>No user groups plugin was found. Please check your installation!</source>
         <translation>Не знайдено додатка груп користувачів. Будь ласка, перевірте, чи належним чином встановлено програму!</translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation>Схема кольорів:</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation>Світла</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Темна</translation>
     </message>
 </context>
 <context>
@@ -3741,6 +3768,37 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation>Запитаний спосіб розпізнавання недоступний</translation>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation>Доступ дозволено за правилом «%1»</translation>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation>Доступ заборонено за правилом «%1»</translation>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation>Жодне правило не надає доступу</translation>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation>Доступ для користувача, який не є учасником уповноваженої групи користувачів</translation>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation>Доступ користувачеві заборонено</translation>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation>Доступ підтверджено користувачем</translation>
+    </message>
+</context>
+<context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
@@ -3904,24 +3962,28 @@ Example: [^-]*-(PC[0-9]*)</source>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>Запускаємо службу %1</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>Зупиняємо службу %1</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>Реєструємо службу %1</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>Скасовуємо реєстрацію служби %1</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>Керування службами</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation>Запускаємо %1</translation>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation>Зупиняємо %1</translation>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation>Перезапускаємо %1</translation>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation>Реєструємо %1</translation>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation>Скасовуємо реєстрацію %1</translation>
     </message>
 </context>
 <context>

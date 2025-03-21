@@ -134,6 +134,13 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
 </context>
 <context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
@@ -1008,14 +1015,6 @@ Zorg ervoor dat de namen van de sleutels die bij elkaar horen identiek zijn op a
         <translation>Locatie: %1</translation>
     </message>
     <message>
-        <source>Host/IP address: %1</source>
-        <translation>Host/IP adres: %1</translation>
-    </message>
-    <message>
-        <source>invalid</source>
-        <translation>ongeldig</translation>
-    </message>
-    <message>
         <source>Active features: %1</source>
         <translation>Actieve functies: %1</translation>
     </message>
@@ -1056,8 +1055,24 @@ Zorg ervoor dat de namen van de sleutels die bij elkaar horen identiek zijn op a
         <translation>Ingelogde gebruiker: %1</translation>
     </message>
     <message>
-        <source>[none]</source>
-        <translation>[geen]</translation>
+        <source>Hostname: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>onbekend</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No features active</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1984,6 +1999,18 @@ Translated with DeepL</translation>
     <message>
         <source>No user groups plugin was found. Please check your installation!</source>
         <translation>Er is geen plugin voor gebruikersgroepen gevonden. Controleer je installatie!</translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3742,6 +3769,37 @@ Sla je werk op en sluit alle programma&apos;s af.</translation>
     </message>
 </context>
 <context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
@@ -3905,24 +3963,28 @@ Voorbeeld: [^-]*-(PC[0-9]*)</translation>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>Service %1 wordt gestart</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>Service %1 wordt gestopt</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>Service %1 wordt geregistreerd</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>Dienst %1 afmelden</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>Servicecontrole</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

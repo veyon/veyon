@@ -134,6 +134,13 @@ Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne 
     </message>
 </context>
 <context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
@@ -1006,14 +1013,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Lokalizacja: %1</translation>
     </message>
     <message>
-        <source>Host/IP address: %1</source>
-        <translation>Host/adres IP: %1</translation>
-    </message>
-    <message>
-        <source>invalid</source>
-        <translation>nieprawidłowy</translation>
-    </message>
-    <message>
         <source>Active features: %1</source>
         <translation>Aktywne funkcje: %1</translation>
     </message>
@@ -1054,7 +1053,23 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Zalogowano użytkownika: %1</translation>
     </message>
     <message>
-        <source>[none]</source>
+        <source>Hostname: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>nieznane</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No features active</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1979,6 +1994,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dark</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3733,6 +3760,37 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     </message>
 </context>
 <context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
@@ -3894,24 +3952,28 @@ Example: [^-]*-(PC[0-9]*)</source>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>Uruchamianie usługi %1</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>Zatrzymywanie usługi %1</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>Rejestrowanie usługi %1</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>Wyrejestrowywanie usługi %1</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>Zarządzenie usługą</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

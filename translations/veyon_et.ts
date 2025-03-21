@@ -134,6 +134,13 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
     </message>
 </context>
 <context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
@@ -1008,14 +1015,6 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation>Asukoht: %1</translation>
     </message>
     <message>
-        <source>Host/IP address: %1</source>
-        <translation>Host/IP aadress: %1</translation>
-    </message>
-    <message>
-        <source>invalid</source>
-        <translation>kehtetu</translation>
-    </message>
-    <message>
         <source>Active features: %1</source>
         <translation>Aktiivsed funktsioonid: %1</translation>
     </message>
@@ -1056,8 +1055,24 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation>Sisseloginud kasutaja: %1</translation>
     </message>
     <message>
-        <source>[none]</source>
-        <translation>[pole]</translation>
+        <source>Hostname: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>tundmatu</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No features active</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1982,6 +1997,18 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     <message>
         <source>No user groups plugin was found. Please check your installation!</source>
         <translation>Ühtegi kasutajarühmade pistikprogrammi ei leitud. Palun kontrolli oma paigaldust!</translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3740,6 +3767,37 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     </message>
 </context>
 <context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
@@ -3903,24 +3961,28 @@ Näide: [^-]*-(PC[0-9]*)</translation>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>Käivita teenus %1</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>Teenuse peatamine %1</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>Teenuse registreerimine %1</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>Teenuse registreerimise tühistamine %1</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>Teenuse juhtimine</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
