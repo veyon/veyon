@@ -43,7 +43,8 @@ void ComputerItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem& 
 
 	if (index.isValid() && index.model())
 	{
-		drawFeatureIcons(painter, index.model()->data(index, ComputerControlListModel::ControlInterfaceRole).value<ComputerControlInterface::Pointer>());
+		drawFeatureIcons(painter, option.rect.topLeft(),
+						 index.model()->data(index, ComputerControlListModel::ControlInterfaceRole).value<ComputerControlInterface::Pointer>());
 	}
 }
 
@@ -62,7 +63,7 @@ void ComputerItemDelegate::initFeaturePixmaps()
 
 
 
-void ComputerItemDelegate::drawFeatureIcons(QPainter* painter, ComputerControlInterface::Pointer controlInterface) const
+void ComputerItemDelegate::drawFeatureIcons(QPainter* painter, const QPoint& pos, ComputerControlInterface::Pointer controlInterface) const
 {
 	if (painter &&
 		controlInterface &&
@@ -82,21 +83,21 @@ void ComputerItemDelegate::drawFeatureIcons(QPainter* painter, ComputerControlIn
 			return;
 		}
 
+		int x = pos.x() + OverlayIconsPadding;
+		const int y = pos.y() + OverlayIconsPadding;
+
 		painter->setRenderHint(QPainter::Antialiasing);
 		painter->setBrush(QColor(255, 255, 255, 192));
 		painter->setPen(QColor(25, 140, 179));
-		painter->drawRoundedRect(QRect(OverlayIconsPadding, OverlayIconsPadding,
-									   count * (OverlayIconSize + OverlayIconSpacing), OverlayIconSize),
+		painter->drawRoundedRect(QRect(x, y, count * (OverlayIconSize + OverlayIconSpacing), OverlayIconSize),
 								 OverlayIconsRadius, OverlayIconsRadius);
-
-		int x = OverlayIconsPadding;
 
 		for (const auto& feature : controlInterface->activeFeatures())
 		{
 			const auto it = m_featurePixmaps.find(feature);
 			if (it != m_featurePixmaps.constEnd())
 			{
-				painter->drawPixmap(QPoint(x, OverlayIconsPadding), *it);
+				painter->drawPixmap(QPoint(x, y), *it);
 				x += OverlayIconSize + OverlayIconSpacing;
 			}
 		}
