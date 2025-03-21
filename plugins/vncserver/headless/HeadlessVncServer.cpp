@@ -64,6 +64,17 @@ void HeadlessVncServer::prepareServer()
 
 bool HeadlessVncServer::runServer( int serverPort, const Password& password )
 {
+	if (VeyonCore::isDebugging())
+	{
+		rfbLog = rfbLogDebug;
+		rfbErr = rfbLogDebug;
+	}
+	else
+	{
+		rfbLog = rfbLogNone;
+		rfbErr = rfbLogNone;
+	}
+
 	HeadlessVncScreen screen;
 
 	if( initScreen( &screen ) == false ||
@@ -145,6 +156,31 @@ bool HeadlessVncServer::initVncServer( int serverPort, const VncServerPluginInte
 	screen->rfbScreen = rfbScreen;
 
 	return true;
+}
+
+
+
+void HeadlessVncServer::rfbLogDebug(const char* format, ...)
+{
+	va_list args;
+	va_start(args, format);
+
+	static constexpr int MaxMessageLength = 256;
+	char message[MaxMessageLength];
+
+	vsnprintf(message, sizeof(message), format, args);
+	message[MaxMessageLength-1] = 0;
+
+	va_end(args);
+
+	vDebug() << message;
+}
+
+
+
+void HeadlessVncServer::rfbLogNone(const char* format, ...)
+{
+	Q_UNUSED(format);
 }
 
 

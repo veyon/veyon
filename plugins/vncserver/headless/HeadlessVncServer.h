@@ -108,6 +108,9 @@ private:
 
 	bool handleScreenChanges( HeadlessVncScreen* screen );
 
+	static void rfbLogDebug(const char* format, ...);
+	static void rfbLogNone(const char* format, ...);
+
 	HeadlessVncConfiguration m_configuration;
 
 };
