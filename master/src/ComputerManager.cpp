@@ -50,8 +50,7 @@ ComputerManager::ComputerManager( UserConfig& config, QObject* parent ) :
 	m_computerTreeModel( new CheckableItemProxyModel( NetworkObjectModel::UidRole, this ) ),
 	m_networkObjectFilterProxyModel( new NetworkObjectFilterProxyModel( this ) ),
 	m_localHostNames( QHostInfo::localHostName().toLower() ),
-	m_localHostAddresses(QHostInfo::fromName(QHostInfo::localHostName()).addresses()),
-	m_computerNameSource(VeyonCore::config().computerNameSource())
+	m_localHostAddresses(QHostInfo::fromName(QHostInfo::localHostName()).addresses())
 {
 	if( m_networkObjectDirectory == nullptr )
 	{
@@ -156,23 +155,15 @@ void ComputerManager::updateUser(const ComputerControlInterface::Pointer& contro
 		}
 		m_networkObjectOverlayDataModel->setData(mapToUserNameModelIndex(networkObjectIndex), user);
 
-		QString computerName;
-		switch (m_computerNameSource)
+		if (controlInterface->computerNameSource() == Computer::NameSource::UserFullName ||
+			controlInterface->computerNameSource() == Computer::NameSource::UserLoginName)
 		{
-		case NetworkObjectDirectory::ComputerNameSource::UserFullName:
-			computerName = controlInterface->userFullName();
-			break;
-		case NetworkObjectDirectory::ComputerNameSource::UserLoginName:
-			computerName = controlInterface->userLoginName();
-			break;
-		default:
-			break;
-		}
-
-		if (computerName.isEmpty() == false)
-		{
-			m_networkObjectOverlayDataModel->setData(m_networkObjectOverlayDataModel->mapFromSource(networkObjectIndex),
-													 computerName);
+			const auto computerName = controlInterface->computerName();
+			if (computerName.isEmpty() == false)
+			{
+				m_networkObjectOverlayDataModel->setData(m_networkObjectOverlayDataModel->mapFromSource(networkObjectIndex),
+														 computerName);
+			}
 		}
 	}
 }
@@ -194,33 +185,25 @@ void ComputerManager::updateSessionInfo(const ComputerControlInterface::Pointer&
 		m_networkObjectOverlayDataModel->setData(mapToSessionUptimeModelIndex(networkObjectIndex),
 												  uptimeString,
 												  Qt::DisplayRole);
-		QString computerName;
 
-		switch (m_computerNameSource)
+		switch (controlInterface->computerNameSource())
 		{
-		case NetworkObjectDirectory::ComputerNameSource::HostAddress:
-			computerName = controlInterface->computer().hostName();
-			break;
-		case NetworkObjectDirectory::ComputerNameSource::SessionClientName:
-			computerName = controlInterface->sessionInfo().clientName;
-			break;
-		case NetworkObjectDirectory::ComputerNameSource::SessionClientAddress:
-			computerName = controlInterface->sessionInfo().clientAddress;
-			break;
-		case NetworkObjectDirectory::ComputerNameSource::SessionHostName:
-			computerName = controlInterface->sessionInfo().hostName;
-			break;
-		case NetworkObjectDirectory::ComputerNameSource::SessionMetaData:
-			computerName = controlInterface->sessionInfo().metaData;
-			break;
-		default:
+		case Computer::NameSource::HostAddress:
+		case Computer::NameSource::SessionClientName:
+		case Computer::NameSource::SessionClientAddress:
+		case Computer::NameSource::SessionHostName:
+		case Computer::NameSource::SessionMetaData:
+		{
+			const auto computerName = controlInterface->computerName();
+			if (computerName.isEmpty() == false)
+			{
+				m_networkObjectOverlayDataModel->setData(m_networkObjectOverlayDataModel->mapFromSource(networkObjectIndex),
+														 computerName);
+			}
 			break;
 		}
-
-		if (computerName.isEmpty() == false)
-		{
-			m_networkObjectOverlayDataModel->setData(m_networkObjectOverlayDataModel->mapFromSource(networkObjectIndex),
-													 computerName);
+		default:
+			break;
 		}
 	}
 }

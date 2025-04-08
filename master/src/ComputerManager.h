@@ -102,6 +102,4 @@ private:
 	QStringList m_localHostNames;
 	QList<QHostAddress> m_localHostAddresses;
 
-	NetworkObjectDirectory::ComputerNameSource m_computerNameSource;
-
 };
