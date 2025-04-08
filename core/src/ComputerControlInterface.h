@@ -81,6 +81,13 @@ public:
 		return m_computer;
 	}
 
+	QString computerName() const;
+
+	Computer::NameSource computerNameSource() const
+	{
+		return m_computerNameSource;
+	}
+
 	State state() const
 	{
 		return m_state;
@@ -209,6 +216,7 @@ private:
 	const int m_port;
 
 	UpdateMode m_updateMode{UpdateMode::Disabled};
+	Computer::NameSource m_computerNameSource{Computer::NameSource::Default};
 
 	State m_state{State::Disconnected};
 	QString m_userLoginName{};

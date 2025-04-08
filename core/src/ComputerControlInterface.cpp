@@ -36,7 +36,8 @@
 ComputerControlInterface::ComputerControlInterface( const Computer& computer, int port, QObject* parent ) :
 	QObject( parent ),
 	m_computer( computer ),
-	m_port( port )
+	m_port(port),
+	m_computerNameSource(VeyonCore::config().computerNameSource())
 {
 	m_pingTimer.setInterval(ConnectionWatchdogPingDelay);
 	m_pingTimer.setSingleShot(true);
@@ -128,6 +129,34 @@ void ComputerControlInterface::stop()
 	m_connectionWatchdogTimer.stop();
 
 	m_state = State::Disconnected;
+}
+
+
+
+QString ComputerControlInterface::computerName() const
+{
+	const auto propertyOrFallback = [this](const QString& value)
+	{
+		return value.isEmpty() ?
+					(computer().displayName().isEmpty() ? computer().hostName() : computer().displayName())
+				  :
+					value;
+	};
+
+	switch (computerNameSource())
+	{
+	case Computer::NameSource::HostAddress: return propertyOrFallback(computer().hostName());
+	case Computer::NameSource::SessionClientName: return propertyOrFallback(sessionInfo().clientName);
+	case Computer::NameSource::SessionClientAddress: return propertyOrFallback(sessionInfo().clientAddress);
+	case Computer::NameSource::SessionHostName: return propertyOrFallback(sessionInfo().hostName);
+	case Computer::NameSource::SessionMetaData: return propertyOrFallback(sessionInfo().metaData);
+	case Computer::NameSource::UserFullName: return propertyOrFallback(userFullName());
+	case Computer::NameSource::UserLoginName: return propertyOrFallback(userLoginName());
+	default:
+		break;
+	}
+
+	return propertyOrFallback({});
 }
 
 
