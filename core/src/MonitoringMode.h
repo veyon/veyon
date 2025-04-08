@@ -167,6 +167,7 @@ private:
 
 	static constexpr int ActiveFeaturesUpdateInterval = 250;
 	static constexpr int SessionInfoUpdateInterval = 1000;
+	static constexpr int UserInfoUpdateRetryInterval = 1000;
 
 	const Feature m_monitoringModeFeature;
 	const Feature m_queryApplicationVersionFeature;
