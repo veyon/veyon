@@ -126,7 +126,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>L&apos;utente indicato non è abilitato ad accedere a computer con questa confiugurazione.</translation>
+        <translation>L&apos;utente indicato non è abilitato ad accedere a computer con questa configurazione.</translation>
     </message>
     <message>
         <source>Enable usage of domain groups</source>
@@ -861,7 +861,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Simple password authentication</source>
-        <translation>La password fornita è errata. Inserisci la password corretta o passa un altro metodo di autenticazione usato Veyon Configurator.</translation>
+        <translation>La password fornita è errata. Inserisci la password corretta o passa a un altro metodo di autenticazione usato Veyon Configurator.</translation>
     </message>
     <message>
         <source>Simple password</source>
@@ -3827,7 +3827,7 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation>Sbloccca</translation>
+        <translation>Sblocca</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
