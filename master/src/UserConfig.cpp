@@ -38,7 +38,6 @@ UserConfig::UserConfig(const QString& storeName) :
 	{
 		Configuration::JsonStore jsonStore(Configuration::Store::Scope::System, templateFileName);
 		*this += UserConfig(&jsonStore);
-		reloadFromStore();
 	}
 }
 
