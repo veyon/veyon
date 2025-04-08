@@ -415,6 +415,13 @@ void MonitoringMode::updateUserInfo()
 			}
 			m_userDataLock.unlock();
 		}
+
+		m_userDataLock.lockForRead();
+		if (m_userLoginName.isEmpty() && m_userFullName.isEmpty())
+		{
+			QTimer::singleShot(UserInfoUpdateRetryInterval, this, &MonitoringMode::updateUserInfo);
+		}
+		m_userDataLock.unlock();
 	} );
 }
 
