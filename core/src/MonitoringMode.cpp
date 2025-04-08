@@ -76,7 +76,7 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 		connect(&m_sessionInfoUpdateTimer, &QTimer::timeout, this, &MonitoringMode::updateSessionInfo);
 		m_sessionInfoUpdateTimer.start(SessionInfoUpdateInterval);
 
-		updateUserData();
+		updateUserInfo();
 		updateSessionInfo();
 		updateScreenInfoList();
 
@@ -328,7 +328,7 @@ bool MonitoringMode::sendUserInformation(VeyonServerInterface& server, const Mes
 	m_userDataLock.lockForRead();
 	if (m_userLoginName.isEmpty())
 	{
-		updateUserData();
+		updateUserInfo();
 		message.addArgument(Argument::UserLoginName, QString{});
 		message.addArgument(Argument::UserFullName, QString{});
 	}
@@ -396,7 +396,7 @@ void MonitoringMode::updateActiveFeatures()
 
 
 
-void MonitoringMode::updateUserData()
+void MonitoringMode::updateUserInfo()
 {
 	// asynchronously query information about logged on user (which might block
 	// due to domain controller queries and timeouts etc.)
