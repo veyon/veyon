@@ -153,6 +153,11 @@ void FlexibleListView::dataChanged( const QModelIndex& topLeft, const QModelInde
 {
 	QListView::dataChanged( topLeft, bottomRight, roles );
 
+	if (roles.contains(m_uidRole))
+	{
+		restorePositions();
+	}
+
 	if( m_toolTipPos.isNull() == false && ( roles.isEmpty() || roles.contains(Qt::ToolTipRole) ) )
 	{
 		if( viewport()->mapToGlobal(m_toolTipPos) != QCursor::pos() )
