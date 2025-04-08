@@ -33,7 +33,21 @@
 
 class VEYON_CORE_EXPORT Computer
 {
+	Q_GADGET
 public:
+	enum class NameSource
+	{
+		Default,
+		HostAddress,
+		SessionClientAddress,
+		SessionClientName,
+		SessionHostName,
+		SessionMetaData,
+		UserFullName,
+		UserLoginName,
+	};
+	Q_ENUM(NameSource)
+
 	explicit Computer( NetworkObject::Uid networkObjectUid = NetworkObject::Uid(),
 					   const QString& displayName = {},
 					   const QString& hostAddress = {},
