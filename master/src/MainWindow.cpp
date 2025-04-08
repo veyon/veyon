@@ -197,15 +197,15 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 		ui->computerSelectPanelButton->setChecked( true );
 	}
 
-	// initialize search filter
-	ui->filterPoweredOnComputersButton->setChecked( m_master.userConfig().filterPoweredOnComputers() );
-	ui->filterComputersWithLoggedOnUsersButton->setChecked( m_master.userConfig().filterComputersWithLoggedOnUsers() );
+	// initialize filter controls
 	connect( ui->filterLineEdit, &QLineEdit::textChanged,
 			 this, [this]( const QString& filter ) { ui->computerMonitoringWidget->setSearchFilter( filter ); } );
 	connect( ui->filterPoweredOnComputersButton, &QToolButton::toggled,
 			 this, [this]( bool enabled ) { ui->computerMonitoringWidget->setFilterPoweredOnComputers( enabled ); } );
 	connect( ui->filterComputersWithLoggedOnUsersButton, &QToolButton::toggled,
 			 this, [this]( bool enabled ) { ui->computerMonitoringWidget->setFilterComputersWithLoggedOnUsers( enabled ); } );
+	ui->filterPoweredOnComputersButton->setChecked(m_master.userConfig().filterPoweredOnComputers());
+	ui->filterComputersWithLoggedOnUsersButton->setChecked(m_master.userConfig().filterComputersWithLoggedOnUsers());
 
 	// initialize monitoring screen size slider
 	ui->gridSizeSlider->setMinimum( ComputerMonitoringWidget::MinimumComputerScreenSize );
