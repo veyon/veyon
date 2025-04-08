@@ -155,7 +155,7 @@ private:
 	}
 
 	void updateActiveFeatures();
-	void updateUserData();
+	void updateUserInfo();
 	void updateSessionInfo();
 	void updateScreenInfoList();
 
