@@ -320,7 +320,15 @@ void ComputerControlListModel::updateUser( const QModelIndex& index )
 
 void ComputerControlListModel::updateSessionInfo(const QModelIndex& index)
 {
-	Q_EMIT dataChanged(index, index, {Qt::ToolTipRole});
+	if (uidRoleContent() == UidRoleContent::SessionMetaDataHash)
+	{
+		Q_EMIT dataChanged(index, index, {Qt::ToolTipRole, UidRole});
+	}
+	else
+	{
+		Q_EMIT dataChanged(index, index, {Qt::ToolTipRole});
+
+	}
 
 	auto controlInterface = computerControlInterface( index );
 	if (controlInterface.isNull() == false)
