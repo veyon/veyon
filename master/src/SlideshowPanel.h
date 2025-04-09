@@ -49,10 +49,12 @@ protected:
 
 private:
 	void updateDuration();
+	void switchViewMode();
 
 	Ui::SlideshowPanel* ui;
 
 	UserConfig& m_config;
 	SlideshowModel* m_model;
+	QWidget* m_originalParent = nullptr;
 
 } ;
