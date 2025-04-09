@@ -55,6 +55,7 @@ SlideshowPanel::SlideshowPanel( UserConfig& config, ComputerMonitoringWidget* co
 		ui->startStopButton->setIcon(startStopIcon);
 		ui->showPreviousButton->setIcon(QIcon(QStringLiteral(":/core/go-previous-dark.png")));
 		ui->showNextButton->setIcon(QIcon(QStringLiteral(":/core/go-next-dark.png")));
+		ui->viewInSeparateWindowButton->setIcon(QIcon(QStringLiteral(":/core/view-fullscreen-dark.png")));
 	}
 
 	connect( ui->startStopButton, &QAbstractButton::toggled, this, &SlideshowPanel::updateDuration );
@@ -62,6 +63,8 @@ SlideshowPanel::SlideshowPanel( UserConfig& config, ComputerMonitoringWidget* co
 
 	connect( ui->showPreviousButton, &QAbstractButton::clicked, m_model, &SlideshowModel::showPrevious );
 	connect( ui->showNextButton, &QAbstractButton::clicked, m_model, &SlideshowModel::showNext );
+
+	connect(ui->viewInSeparateWindowButton, &QToolButton::toggled, this, &SlideshowPanel::switchViewMode);
 
 	ui->durationSlider->setValue( m_config.slideshowDuration() );
 
@@ -102,4 +105,22 @@ void SlideshowPanel::updateDuration()
 	m_config.setSlideshowDuration( duration );
 
 	ui->durationLabel->setText( QStringLiteral("%1 s").arg( duration / 1000 ) );
+}
+
+
+
+void SlideshowPanel::switchViewMode()
+{
+	if (ui->viewInSeparateWindowButton->isChecked())
+	{
+		m_originalParent = parentWidget();
+		setParent(nullptr);
+		setWindowTitle(tr("%1 Master – Slideshow").arg(VeyonCore::applicationName()));
+		showMaximized();
+	}
+	else
+	{
+		setParent(m_originalParent);
+		m_originalParent = nullptr;
+	}
 }

@@ -2,6 +2,10 @@
 <ui version="4.0">
  <class>SlideshowPanel</class>
  <widget class="QWidget" name="SlideshowPanel">
+  <property name="windowIcon">
+   <iconset resource="../resources/master.qrc">
+    <normaloff>:/master/computer-slideshow.png</normaloff>:/master/computer-slideshow.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
     <number>0</number>
@@ -125,6 +129,20 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QToolButton" name="viewInSeparateWindowButton">
+        <property name="toolTip">
+         <string>View in separate window</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../../core/resources/core.qrc">
+          <normaloff>:/core/view-fullscreen.png</normaloff>:/core/view-fullscreen.png</iconset>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -140,6 +158,7 @@
  </customwidgets>
  <resources>
   <include location="../../core/resources/core.qrc"/>
+  <include location="../resources/master.qrc"/>
  </resources>
  <connections/>
 </ui>
