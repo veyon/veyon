@@ -44,5 +44,7 @@
     <file>toast-information.png</file>
     <file>toast-success.png</file>
     <file>toast-warning.png</file>
+    <file>view-fullscreen.png</file>
+    <file>view-fullscreen-dark.png</file>
   </qresource>
 </RCC>
