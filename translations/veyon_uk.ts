@@ -298,12 +298,12 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Доступ за вказаним сценарієм потребує дозволу від користувача, який увійшов до системи.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>ПОМИЛКА: невідома дія</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Результат тестування</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4065,6 +4065,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Duration:</source>
         <translation>Тривалість:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation>Переглянути в окремому вікні</translation>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation>Основне керування %1 – Показ слайдів</translation>
     </message>
 </context>
 <context>

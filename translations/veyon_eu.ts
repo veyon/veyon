@@ -298,12 +298,12 @@ Veyon zure tokiko hizkuntzara edo beste hizkuntza batera itzultzeko interesa bad
         <translation>Zehaztutako egoeran sartzeak saioa hasita duen erabiltzailearen baimena behar du.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>ERROREA: ekintza ezezaguna</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Probaren emaitza</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4064,6 +4064,14 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
     <message>
         <source>Duration:</source>
         <translation>Iraupena:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

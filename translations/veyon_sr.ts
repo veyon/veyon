@@ -298,12 +298,12 @@ Ako ste zainteresovani za prevodjenje Veyon na vaš lokalni ili drugi jezik ili 
         <translation>Za pristup datom scenariju potrebne su dozvole prijavljenog korisnika.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>GREŠKA: Nepoznata akcija</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Rezultati testa</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4059,6 +4059,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Duration:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
         <translation type="unfinished"/>
     </message>
 </context>

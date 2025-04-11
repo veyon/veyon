@@ -298,12 +298,12 @@ Si esteu interessat a traduir el Veyon al vostre idioma local o a un altre o vol
         <translation>L&apos;accés a l&apos;escenari indicat necessita el permís de l&apos;usuari connectat.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>ERROR: acció desconeguda</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Resultat de la prova</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4060,6 +4060,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Duration:</source>
         <translation>Duració:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

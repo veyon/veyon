@@ -252,7 +252,7 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
     </message>
     <message>
         <source>Local computer is already being accessed</source>
-        <translation type="unfinished"/>
+        <translation>Computador local já está sendo acessado</translation>
     </message>
 </context>
 <context>
@@ -298,12 +298,12 @@ Se você tem interesse em traduzir o Veyon para o seu idioma local, ou outro idi
         <translation>O acesso na configuração atual requer a permissão de um usuário logado.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>ERRO: Ação desconhecida</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Resultado do teste</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -745,11 +745,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>Adicione um local ou um computador</translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
-        <translation type="unfinished"/>
+        <translation>Remova todas as localizações e computadores</translation>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
@@ -777,7 +777,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>LOCATION</source>
-        <translation type="unfinished"/>
+        <translation>LOCAL</translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
@@ -1034,7 +1034,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"/>
+        <translation>Servidor Veyon inacessível ou não está sendo executado</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
@@ -1054,7 +1054,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Hostname: %1</source>
-        <translation type="unfinished"/>
+        <translation>Nome do host: %1</translation>
     </message>
     <message>
         <source>unknown</source>
@@ -1062,7 +1062,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>Endereço IP: %1</translation>
     </message>
     <message>
         <source>Hostname could not be resolved</source>
@@ -1070,7 +1070,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>No features active</source>
-        <translation type="unfinished"/>
+        <translation>Nenhum recurso ativado</translation>
     </message>
 </context>
 <context>
@@ -1105,7 +1105,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Active connections:</source>
-        <translation type="unfinished"/>
+        <translation>Conecções ativas:</translation>
     </message>
 </context>
 <context>
@@ -1116,7 +1116,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Logged in since</source>
-        <translation type="unfinished"/>
+        <translation>Conectado desde</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -1132,15 +1132,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>%1 days</source>
-        <translation type="unfinished"/>
+        <translation>1% dias</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"/>
+        <translation>1 dia</translation>
     </message>
     <message>
         <source>Location detection failed</source>
-        <translation type="unfinished"/>
+        <translation>Falha na detecção do local</translation>
     </message>
     <message>
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
@@ -1151,7 +1151,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerSelectPanel</name>
     <message>
         <source>Search computers</source>
-        <translation type="unfinished"/>
+        <translation>Procurar computadores</translation>
     </message>
     <message>
         <source>Add location</source>
@@ -1323,11 +1323,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Bandwidth limit</source>
-        <translation type="unfinished"/>
+        <translation>Limite de rede</translation>
     </message>
     <message>
         <source> MB/s</source>
-        <translation type="unfinished"/>
+        <translation>MB/s</translation>
     </message>
 </context>
 <context>
@@ -1428,11 +1428,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Applications &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>Aplicativos &amp; websites</translation>
     </message>
     <message>
         <source>Predefined applications</source>
-        <translation type="unfinished"/>
+        <translation>Aplicativos pré-definidos</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1444,11 +1444,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add new application</source>
-        <translation type="unfinished"/>
+        <translation>Adicionar novo aplicativo</translation>
     </message>
     <message>
         <source>Remove selected application</source>
-        <translation type="unfinished"/>
+        <translation>Remover aplicativo selecionado</translation>
     </message>
     <message>
         <source>Predefined websites</source>
@@ -1456,7 +1456,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add new website</source>
-        <translation type="unfinished"/>
+        <translation>Adicionar novo website</translation>
     </message>
     <message>
         <source>Remove selected website</source>
@@ -1468,7 +1468,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>New application</source>
-        <translation type="unfinished"/>
+        <translation>Novo aplicativo</translation>
     </message>
     <message>
         <source>New website</source>
@@ -1479,11 +1479,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Iniciar aplicativo</translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Clique nesse botão para iniciar um aplicativo em todos os computadores</translation>
     </message>
     <message>
         <source>Open website</source>
@@ -1495,11 +1495,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Iniciar aplicativo &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>Aplicativo customizado</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
@@ -1550,7 +1550,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>Aplicativo customizado</translation>
     </message>
     <message>
         <source>Handout</source>
@@ -1615,15 +1615,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>HOST ADDRESS</source>
-        <translation>Endereço host</translation>
+        <translation>ENDEREÇO HOST</translation>
     </message>
     <message>
         <source>FEATURE</source>
-        <translation type="unfinished"/>
+        <translation>RECURSO</translation>
     </message>
     <message>
         <source>ARGUMENTS</source>
-        <translation type="unfinished"/>
+        <translation>ARGUMENTOS</translation>
     </message>
     <message>
         <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
@@ -1631,19 +1631,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Lock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Bloquear a tela</translation>
     </message>
     <message>
         <source>Display a text message</source>
-        <translation type="unfinished"/>
+        <translation>Mostrar uma mensagem de texto</translation>
     </message>
     <message>
         <source>Test message</source>
-        <translation type="unfinished"/>
+        <translation>Mensagem de teste</translation>
     </message>
     <message>
         <source>Start an application</source>
-        <translation type="unfinished"/>
+        <translation>Iniciar um aplicativo</translation>
     </message>
     <message>
         <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
@@ -1651,7 +1651,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Unlock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Desbloquear a tela</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
@@ -1663,7 +1663,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Descrição</translation>
     </message>
     <message>
         <source>Master</source>
@@ -1683,7 +1683,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Plugin</source>
-        <translation type="unfinished"/>
+        <translation>Plugin</translation>
     </message>
     <message>
         <source>Invalid feature name or UID specified</source>
@@ -1838,11 +1838,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Style:</source>
-        <translation type="unfinished"/>
+        <translation>Estilo:</translation>
     </message>
     <message>
         <source>Native</source>
-        <translation type="unfinished"/>
+        <translation>Nativo</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -1982,7 +1982,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User groups</source>
-        <translation type="unfinished"/>
+        <translation>Grupo de usuários</translation>
     </message>
     <message>
         <source>Include user groups from domain</source>
@@ -2002,11 +2002,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>Claro</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>Escuro</translation>
     </message>
 </context>
 <context>
@@ -2728,7 +2728,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
-        <translation type="unfinished"/>
+        <translation>Linux</translation>
     </message>
     <message>
         <source>User authentication</source>
@@ -3045,7 +3045,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation>px</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -3364,7 +3364,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Descrição</translation>
     </message>
     <message>
         <source>Version</source>
@@ -4046,6 +4046,14 @@ Exemplo: [^-]*-(PC[0-9]*)</translation>
         <source>Duration:</source>
         <translation>Duração:</translation>
     </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
@@ -4082,7 +4090,7 @@ Exemplo: [^-]*-(PC[0-9]*)</translation>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Iniciar aplicativo</translation>
     </message>
     <message>
         <source>Name:</source>

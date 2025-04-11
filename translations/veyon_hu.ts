@@ -298,12 +298,12 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
         <translation>Az adott esetben a hozzáféréshez a bejelentkezett felhasználó jogosultságára van szükség.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>HIBA: Ismeretlen művelet</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Teszt eredménye:</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4059,6 +4059,14 @@ Példa: [^-]*-(PC[0-9]*)</translation>
     <message>
         <source>Duration:</source>
         <translation>Időtartam:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

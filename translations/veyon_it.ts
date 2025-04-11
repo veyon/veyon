@@ -130,7 +130,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>L&apos;utente indicato non è abilitato ad accedere a computer con questa confiugurazione.</translation>
+        <translation>L&apos;utente indicato non è abilitato ad accedere a computer con questa configurazione.</translation>
     </message>
 </context>
 <context>
@@ -298,12 +298,12 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
         <translation>L&apos;accesso allo scenario fornito richiede l&apos;autorizzazione dell&apos;utente connesso.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>ERRORE: azione sconosciuta</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Risultati del test</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation>Non esiste una regola corrispondente con un&apos;azione valida. L&apos;accesso è quindi negato.</translation>
     </message>
 </context>
 <context>
@@ -2001,7 +2001,7 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>Leggero</translation>
     </message>
     <message>
         <source>Dark</source>
@@ -3651,7 +3651,7 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation>Sbloccca</translation>
+        <translation>Sblocca</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
@@ -4052,6 +4052,14 @@ Esempio: [^-]*-(PC[0-9]*)</translation>
     <message>
         <source>Duration:</source>
         <translation>Durata:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation>Visualizzazione in finestra separata</translation>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation>%1 Master – Presentazione</translation>
     </message>
 </context>
 <context>

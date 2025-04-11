@@ -296,11 +296,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
+        <source>Test result</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Test result</source>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4032,6 +4032,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Duration:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
         <translation type="unfinished"/>
     </message>
 </context>

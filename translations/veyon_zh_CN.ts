@@ -298,12 +298,12 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>指定场景中的访问需要登录用户的权限。</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>错误：未知的操作</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>测试规则</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4061,6 +4061,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Duration:</source>
         <translation>持续时间：</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

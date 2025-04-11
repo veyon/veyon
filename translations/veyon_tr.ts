@@ -298,12 +298,12 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
         <translation>Verilen senaryodaki erişim, oturum açmış kullanıcının iznini gerektiriyor.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>HATA: Bilinmeyen eylem</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Sınama sonuçları</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1072,7 +1072,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>No features active</source>
-        <translation type="unfinished"/>
+        <translation>Hiçbir özellik etkin değil</translation>
     </message>
 </context>
 <context>
@@ -2000,15 +2000,15 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished"/>
+        <translation>Renk şeması:</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>Aydınlık</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>Karanlık</translation>
     </message>
 </context>
 <context>
@@ -3792,7 +3792,7 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     </message>
     <message>
         <source>User has denied access</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcının erişimi engellendi</translation>
     </message>
     <message>
         <source>User confirmed access</source>
@@ -3968,23 +3968,23 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Starting %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 başlatılıyor</translation>
     </message>
     <message>
         <source>Stopping %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 durduruluyor</translation>
     </message>
     <message>
         <source>Restarting %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 tekrar başlatılıyor</translation>
     </message>
     <message>
         <source>Registering %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 kayıt oluyor</translation>
     </message>
     <message>
         <source>Unregistering %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 kaydı siliniyor</translation>
     </message>
 </context>
 <context>
@@ -4066,6 +4066,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Duration:</source>
         <translation>Süre:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

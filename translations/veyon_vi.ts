@@ -298,12 +298,12 @@ Nếu bạn quan tâm đến việc dịch Veyon thành ngôn ngữ bản địa
         <translation>Truy cập trong tình huống đã cho cần quyền của người dùng đã đăng nhập.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>LỖI: Hành động không xác định</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Kết quả kiểm tra</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4037,6 +4037,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Duration:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
         <translation type="unfinished"/>
     </message>
 </context>

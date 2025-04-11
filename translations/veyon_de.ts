@@ -296,12 +296,12 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Der Zugriff benötigt im angegebenen Szenario die Erlaubnis des angemeldeten Benutzers.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>FEHLER: Unbekannte Aktion</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Testergebnis</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation>Es gibt keine zutreffende Regel mit einer gültigen Aktion. Der Zugriff wird daher verweigert.</translation>
     </message>
 </context>
 <context>
@@ -4063,6 +4063,14 @@ Beispiel: [^-]*-(PC[0-9]*)</translation>
     <message>
         <source>Duration:</source>
         <translation>Dauer:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation>Ansicht in separatem Fenster</translation>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation>%1 Master – Diashow</translation>
     </message>
 </context>
 <context>

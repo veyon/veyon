@@ -298,12 +298,12 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <translation>주어진 상황에 대한 접근은 로그온된 사용자의 허가가 필요함.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>ERROR: 정의되지 않은 작업</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>시험 결과</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4057,6 +4057,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Duration:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
         <translation type="unfinished"/>
     </message>
 </context>

@@ -137,7 +137,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlProvider</name>
     <message>
         <source>Provider for access control features</source>
-        <translation type="unfinished"/>
+        <translation>Поставщик функций контроля доступа</translation>
     </message>
 </context>
 <context>
@@ -252,7 +252,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local computer is already being accessed</source>
-        <translation type="unfinished"/>
+        <translation>К локальному компьютеру уже осуществляется доступ</translation>
     </message>
 </context>
 <context>
@@ -298,12 +298,12 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Доступ в данном сценарии требует разрешения зарегистрированного пользователя.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>ОШИБКА: Неизвестное действие</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Результат испытаний</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1056,7 +1056,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Hostname: %1</source>
-        <translation type="unfinished"/>
+        <translation>Имя хоста: %1</translation>
     </message>
     <message>
         <source>unknown</source>
@@ -1064,15 +1064,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>IP-адрес: %1</translation>
     </message>
     <message>
         <source>Hostname could not be resolved</source>
-        <translation type="unfinished"/>
+        <translation>Имя хоста не может быть разрешено</translation>
     </message>
     <message>
         <source>No features active</source>
-        <translation type="unfinished"/>
+        <translation>Нет активных функций</translation>
     </message>
 </context>
 <context>
@@ -2000,15 +2000,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished"/>
+        <translation>Цветовая схема:</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>Светлая</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>Тёмная</translation>
     </message>
 </context>
 <context>
@@ -2092,7 +2092,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Custom CA certificate file</source>
-        <translation>Необычный файл службы сертификации (CA)</translation>
+        <translation>Пользовательский файл сертификата CA</translation>
     </message>
     <message>
         <source>None</source>
@@ -3772,31 +3772,31 @@ Please save your work and close all programs.</source>
     <name>ServerAccessControlManager</name>
     <message>
         <source>Requested authentication method not available</source>
-        <translation type="unfinished"/>
+        <translation>Запрошенный метод аутентификации недоступен</translation>
     </message>
     <message>
         <source>Access allowed by rule &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Доступ разрешен правилом &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Access denied by rule &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Доступ запрещён правилом &quot;%1&quot;</translation>
     </message>
     <message>
         <source>No rule allowed access</source>
-        <translation type="unfinished"/>
+        <translation>Ни одно правило не разрешает доступ</translation>
     </message>
     <message>
         <source>Accessing user not member of an authorized user group</source>
-        <translation type="unfinished"/>
+        <translation>Доступ пользователя, не являющегося членом авторизованной группы пользователей</translation>
     </message>
     <message>
         <source>User has denied access</source>
-        <translation type="unfinished"/>
+        <translation>Пользователю отказано в доступе</translation>
     </message>
     <message>
         <source>User confirmed access</source>
-        <translation type="unfinished"/>
+        <translation>Пользователь подтвердил доступ</translation>
     </message>
 </context>
 <context>
@@ -3957,7 +3957,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
-        <translation type="unfinished"/>
+        <translation>Включите этот параметр, если необходимо запустить один экземпляр сервера Veyon для текущего активного сеанса, независимо от того, локальный он или удаленный.</translation>
     </message>
 </context>
 <context>
@@ -3968,23 +3968,23 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Starting %1</source>
-        <translation type="unfinished"/>
+        <translation>Запуск %1</translation>
     </message>
     <message>
         <source>Stopping %1</source>
-        <translation type="unfinished"/>
+        <translation>Остановка %1</translation>
     </message>
     <message>
         <source>Restarting %1</source>
-        <translation type="unfinished"/>
+        <translation>Перезапуск %1</translation>
     </message>
     <message>
         <source>Registering %1</source>
-        <translation type="unfinished"/>
+        <translation>Регистрация %1</translation>
     </message>
     <message>
         <source>Unregistering %1</source>
-        <translation type="unfinished"/>
+        <translation>Отмена регистрации %1</translation>
     </message>
 </context>
 <context>
@@ -3995,7 +3995,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation>Отмена регистрация сервиса Veyon</translation>
+        <translation>Отмена регистрации сервиса Veyon</translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
@@ -4066,6 +4066,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Duration:</source>
         <translation>Продолжительность:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4573,7 +4581,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Custom x11vnc parameters:</source>
-        <translation>Нетипичные параметры x11vnc:</translation>
+        <translation>Пользовательские параметры x11vnc:</translation>
     </message>
     <message>
         <source>Do not use X Damage extension</source>

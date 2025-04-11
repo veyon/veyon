@@ -298,12 +298,12 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
         <translation>Piekļuvei dotajā scenārijā ir nepieciešama no lietotāja, kurš šobrīd ir pierakstījies.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>Errors: Nezināma darbība</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Testa rezultāti</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4040,6 +4040,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Duration:</source>
         <translation>Ilgums:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

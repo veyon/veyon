@@ -137,7 +137,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlProvider</name>
     <message>
         <source>Provider for access control features</source>
-        <translation type="unfinished"/>
+        <translation>存取控制功能的提供者</translation>
     </message>
 </context>
 <context>
@@ -252,7 +252,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local computer is already being accessed</source>
-        <translation type="unfinished"/>
+        <translation>已經存取本機電腦</translation>
     </message>
 </context>
 <context>
@@ -298,12 +298,12 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>在給予情境中存取。需要登入使用者的權限。</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>錯誤: 未知的動作</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>測試結果</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -420,7 +420,7 @@ The public key is used on client computers to authenticate incoming connection r
 Make sure that the names of the keys belonging to each other are identical on all computers.</source>
         <translation>請輸入要為其匯入身份驗證金鑰的使用者群組或角色的名稱。
 
-確保所有電腦上彼此所屬的金鑰名稱相同。</translation>
+確認所有電腦上彼此所屬的金鑰名稱相同。</translation>
     </message>
 </context>
 <context>
@@ -1056,7 +1056,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Hostname: %1</source>
-        <translation type="unfinished"/>
+        <translation>主機名稱: %1</translation>
     </message>
     <message>
         <source>unknown</source>
@@ -1064,15 +1064,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>IP 位址: %1</translation>
     </message>
     <message>
         <source>Hostname could not be resolved</source>
-        <translation type="unfinished"/>
+        <translation>無法解析主機名稱</translation>
     </message>
     <message>
         <source>No features active</source>
-        <translation type="unfinished"/>
+        <translation>沒有功能啟用</translation>
     </message>
 </context>
 <context>
@@ -1282,7 +1282,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DemoClient</name>
     <message>
         <source>%1 Demo</source>
-        <translation>%1 示範</translation>
+        <translation>%1 演示</translation>
     </message>
 </context>
 <context>
@@ -1313,7 +1313,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation>示範執行時，縮圖更新速度變慢</translation>
+        <translation>演示執行時，縮圖更新速度變慢</translation>
     </message>
     <message>
         <source>Memory limit</source>
@@ -1336,11 +1336,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Demo</source>
-        <translation>示範</translation>
+        <translation>演示</translation>
     </message>
     <message>
         <source>Stop demo</source>
-        <translation>停止示範</translation>
+        <translation>停止演示</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
@@ -1348,11 +1348,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation>全螢幕示範</translation>
+        <translation>全螢幕演示</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>視窗示範</translation>
+        <translation>視窗演示</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
@@ -1400,7 +1400,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation>透過螢幕廣播給予示範</translation>
+        <translation>透過螢幕廣播給予演示</translation>
     </message>
 </context>
 <context>
@@ -1988,7 +1988,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Include user groups from domain</source>
-        <translation>包含網域的使用者群組</translation>
+        <translation>包含網域中的使用者群組</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
@@ -2000,15 +2000,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished"/>
+        <translation>色彩架構:</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>淺色</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>深色</translation>
     </message>
 </context>
 <context>
@@ -2916,7 +2916,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation>地點 &amp;&amp;&amp; 電腦</translation>
+        <translation>位置 &amp;&amp; 電腦</translation>
     </message>
     <message>
         <source>Screenshots</source>
@@ -3010,15 +3010,17 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Use custom computer arrangement.
 
 Press and hold to load arrangement from a file or save current arrangement to a file.</source>
-        <translation type="unfinished"/>
+        <translation>使用自訂電腦安排。
+
+按住不放以從檔案載入安排或將目前安排儲存到檔案。</translation>
     </message>
     <message>
         <source>Load computer positions</source>
-        <translation type="unfinished"/>
+        <translation>載入電腦位置</translation>
     </message>
     <message>
         <source>Save computer positions</source>
-        <translation type="unfinished"/>
+        <translation>儲存電腦位置</translation>
     </message>
 </context>
 <context>
@@ -3121,7 +3123,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Image quality in monitoring mode</source>
-        <translation>圖片品質在監控模式</translation>
+        <translation>監控模式中圖片品質</translation>
     </message>
     <message>
         <source>Remote access image quality</source>
@@ -3221,19 +3223,19 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Always expand all locations</source>
-        <translation type="unfinished"/>
+        <translation>始終展開所有位置</translation>
     </message>
     <message>
         <source>Configuration templates</source>
-        <translation type="unfinished"/>
+        <translation>組態範本</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished"/>
+        <translation>進階</translation>
     </message>
     <message>
         <source>Computer name source</source>
-        <translation type="unfinished"/>
+        <translation>電腦名稱來源</translation>
     </message>
     <message>
         <source>Default</source>
@@ -3253,11 +3255,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Session host name</source>
-        <translation type="unfinished"/>
+        <translation>工作階段主機名稱</translation>
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>工作階段中繼資料</translation>
     </message>
     <message>
         <source>Full name of user</source>
@@ -3269,11 +3271,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Computer UID role</source>
-        <translation type="unfinished"/>
+        <translation>電腦 UID 角色</translation>
     </message>
     <message>
         <source>Session meta data hash</source>
-        <translation type="unfinished"/>
+        <translation>工作階段中繼資料雜湊</translation>
     </message>
 </context>
 <context>
@@ -3770,31 +3772,31 @@ Please save your work and close all programs.</source>
     <name>ServerAccessControlManager</name>
     <message>
         <source>Requested authentication method not available</source>
-        <translation type="unfinished"/>
+        <translation>請求的身份驗證方法不可用</translation>
     </message>
     <message>
         <source>Access allowed by rule &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>規則「%1」允許存取</translation>
     </message>
     <message>
         <source>Access denied by rule &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>規則「%1」拒絕存取</translation>
     </message>
     <message>
         <source>No rule allowed access</source>
-        <translation type="unfinished"/>
+        <translation>無規則允許存取</translation>
     </message>
     <message>
         <source>Accessing user not member of an authorized user group</source>
-        <translation type="unfinished"/>
+        <translation>存取使用者不是授權使用者群組的成員</translation>
     </message>
     <message>
         <source>User has denied access</source>
-        <translation type="unfinished"/>
+        <translation>使用者拒絕存取</translation>
     </message>
     <message>
         <source>User confirmed access</source>
-        <translation type="unfinished"/>
+        <translation>使用者確認存取</translation>
     </message>
 </context>
 <context>
@@ -3919,11 +3921,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>工作階段中繼資料</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"/>
+        <translation>內文</translation>
     </message>
     <message>
         <source>None</source>
@@ -3931,11 +3933,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Value of an environment variable</source>
-        <translation type="unfinished"/>
+        <translation>環境變數的值</translation>
     </message>
     <message>
         <source>Value of a registry key</source>
-        <translation type="unfinished"/>
+        <translation>登錄檔機碼的值</translation>
     </message>
     <message>
         <source>Environment variable name:</source>
@@ -3955,7 +3957,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
-        <translation type="unfinished"/>
+        <translation>如果應該為目前活動會話啟動單一 Veyon Server 實例 (無論是本機還是遠端)，則啟用。</translation>
     </message>
 </context>
 <context>
@@ -3966,23 +3968,23 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Starting %1</source>
-        <translation type="unfinished"/>
+        <translation>正在啟動 %1</translation>
     </message>
     <message>
         <source>Stopping %1</source>
-        <translation type="unfinished"/>
+        <translation>正在停止 %1</translation>
     </message>
     <message>
         <source>Restarting %1</source>
-        <translation type="unfinished"/>
+        <translation>正在重新啟動 %1</translation>
     </message>
     <message>
         <source>Registering %1</source>
-        <translation type="unfinished"/>
+        <translation>正在註冊 %1</translation>
     </message>
     <message>
         <source>Unregistering %1</source>
-        <translation type="unfinished"/>
+        <translation>正在取消註冊 %1</translation>
     </message>
 </context>
 <context>
@@ -4064,6 +4066,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Duration:</source>
         <translation>持續時間:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4421,7 +4431,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
-        <translation>將 HTTPS 與 TLS 1.3 而不是 HTTP 一起使用</translation>
+        <translation>使用含 TLS 1.3 的 HTTPS 而不是 HTTP</translation>
     </message>
 </context>
 <context>

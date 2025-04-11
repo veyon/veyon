@@ -4036,6 +4036,14 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Duration:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SpotlightPanel</name>

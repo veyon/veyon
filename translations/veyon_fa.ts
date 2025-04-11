@@ -297,12 +297,12 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>دسترسی به سناریو داده شده نیاز به اجازه ورود کاربر دارد.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>خطا: اقدام ناشناخته</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>نتیجه تست</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4033,6 +4033,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Duration:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
         <translation type="unfinished"/>
     </message>
 </context>

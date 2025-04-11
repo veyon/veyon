@@ -298,12 +298,12 @@ Om du är intresserad av att översätta Veyon till ditt lokala eller ett ett an
         <translation>Åtkomsten i det givna scenariot kräver tillstånd från den inloggade användaren.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>ERROR: Okänd åtgärd</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Testresultat</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4066,6 +4066,14 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
     <message>
         <source>Duration:</source>
         <translation>Varaktighet:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

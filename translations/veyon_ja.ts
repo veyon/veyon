@@ -298,12 +298,12 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>このシナリオでのアクセスにはログインしているユーザーの許可が必要です。</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>エラー:不明のアクション</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>テスト結果</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4041,6 +4041,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Duration:</source>
         <translation>期限:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
