@@ -24,6 +24,7 @@
 
 #pragma once
 
+#include <QJsonObject>
 #include <QUuid>
 #include <QString>
 
