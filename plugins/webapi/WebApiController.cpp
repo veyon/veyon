@@ -559,13 +559,6 @@ QString WebApiController::errorString( WebApiController::Error error )
 
 
 
-void WebApiController::runInMainThread(const std::function<void()>& functor)
-{
-	QMetaObject::invokeMethod(VeyonCore::instance(), functor, Qt::BlockingQueuedConnection);
-}
-
-
-
 void WebApiController::runInWorkerThread(const std::function<void()>& functor) const
 {
 	QMetaObject::invokeMethod(m_workerObject, functor, Qt::BlockingQueuedConnection);

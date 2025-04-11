@@ -135,8 +135,6 @@ public:
 	static QString errorString( Error error );
 
 private:
-	static void runInMainThread(const std::function<void()>& functor);
-
 	void runInWorkerThread(const std::function<void()>& functor) const;
 	void runInWorkerThreadNonBlocking(const std::function<void()>& functor) const;
 
