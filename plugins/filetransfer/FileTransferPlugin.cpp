@@ -22,6 +22,7 @@
  *
  */
 
+#include <QCoreApplication>
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QFileInfo>
@@ -262,6 +263,10 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 			QDesktopServices::openUrl( QUrl::fromLocalFile( destinationDirectory() ) );
 			return true;
 
+		case StopWorker:
+			QCoreApplication::quit();
+			return true;
+
 		default:
 			break;
 		}
@@ -318,6 +323,13 @@ void FileTransferPlugin::sendFinishMessage( QUuid transferId, const QString& fil
 void FileTransferPlugin::sendOpenTransferFolderMessage( const ComputerControlInterfaceList& interfaces )
 {
 	sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), OpenTransferFolder ), interfaces );
+}
+
+
+
+void FileTransferPlugin::sendStopWorkerMessage(const ComputerControlInterfaceList& interfaces)
+{
+	sendFeatureMessage(FeatureMessage(m_fileTransferFeature.uid(), Commands::StopWorker), interfaces);
 }
 
 
