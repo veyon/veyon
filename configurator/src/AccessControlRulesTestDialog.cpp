@@ -96,7 +96,7 @@ void AccessControlRulesTestDialog::accept()
 		resultText = tr( "The access in the given scenario needs permission of the logged on user." );
 		break;
 	default:
-		resultText = tr( "ERROR: Unknown action" );
+		resultText = tr("There is no matching rule with a valid action. The access is therefore denied.");
 		break;
 	}
 
