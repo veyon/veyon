@@ -386,7 +386,7 @@ WebApiController::Response WebApiController::setFeatureStatus( const Request& re
 																	 : FeatureProviderInterface::Operation::Stop;
 	const auto arguments = request.data[k2s(Key::Arguments)].toMap();
 
-	runInMainThread([&] {
+	runInWorkerThread([&] {
 		VeyonCore::featureManager().controlFeature(Feature::Uid{feature}, operation, arguments, {connection->controlInterface()});
 	});
 
