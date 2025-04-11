@@ -54,6 +54,10 @@ Configuration::Property::Property( Proxy* proxy, const QString& key, const QStri
 	m_defaultValue( defaultValue ),
 	m_flags( flags )
 {
+	connect (proxy, &QObject::destroyed, this, [this]() {
+		setParent(nullptr);
+		deleteLater();
+	});
 }
 
 
