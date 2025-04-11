@@ -156,6 +156,8 @@ void FileTransferController::process()
 				m_plugin->sendOpenTransferFolderMessage( m_interfaces );
 			}
 
+			m_plugin->sendStopWorkerMessage(m_interfaces);
+
 			m_processTimer.stop();
 			Q_EMIT finished();
 		}

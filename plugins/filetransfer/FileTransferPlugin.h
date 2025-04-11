@@ -111,6 +111,7 @@ public:
 	void sendFinishMessage( QUuid transferId, const QString& fileName,
 							bool openFileInApplication, const ComputerControlInterfaceList& interfaces );
 	void sendOpenTransferFolderMessage( const ComputerControlInterfaceList& interfaces );
+	void sendStopWorkerMessage(const ComputerControlInterfaceList& interfaces);
 
 	ConfigurationPage* createConfigurationPage() override;
 
@@ -132,6 +133,7 @@ private:
 		FileTransferCancelCommand,
 		FileTransferFinishCommand,
 		OpenTransferFolder,
+		StopWorker,
 		CommandCount
 	};
 
