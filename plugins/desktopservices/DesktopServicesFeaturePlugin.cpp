@@ -22,6 +22,7 @@
  *
  */
 
+#include <QCoreApplication>
 #include <QDesktopServices>
 #include <QKeyEvent>
 #include <QMenu>
@@ -185,6 +186,7 @@ bool DesktopServicesFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& w
 	if( message.featureUid() == m_openWebsiteFeature.uid() )
 	{
 		openWebsite( message.argument( Argument::WebsiteUrls ).toString() );
+		QCoreApplication::quit();
 		return true;
 	}
 
