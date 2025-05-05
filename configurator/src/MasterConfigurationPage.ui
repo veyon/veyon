@@ -187,6 +187,11 @@
             </item>
             <item>
              <property name="text">
+              <string>Only last part of user name (hopefully surname)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
               <string>Only computer name</string>
              </property>
             </item>

@@ -58,6 +58,7 @@ public:
 	enum class SortOrder {
 		ComputerAndUserName,
 		UserName,
+		LastPartOfUserName,
 		ComputerName,
 	};
 	Q_ENUM(SortOrder)
