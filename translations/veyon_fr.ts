@@ -3082,6 +3082,10 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Uniquement le nom d&apos;utilisateur</translation>
     </message>
     <message>
+        <source>Only last part of user name</source>
+        <translation>Uniquement la dernière partie du nom d&apos;utilisateur</translation>
+    </message>
+    <message>
         <source>Only computer name</source>
         <translation>Nom d&apos;ordinateur seulement</translation>
     </message>

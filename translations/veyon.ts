@@ -3060,6 +3060,10 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Only last part of user name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Only computer name</source>
         <translation type="unfinished"></translation>
     </message>
