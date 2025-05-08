@@ -3365,6 +3365,10 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <translation>Uniquement le nom d&apos;utilisateur</translation>
     </message>
     <message>
+        <source>Only last part of user name</source>
+        <translation>Uniquement la dernière partie du nom d&apos;utilisateur</translation>
+    </message>
+    <message>
         <source>Only computer name</source>
         <translation>Nom d&apos;ordinateur seulement</translation>
     </message>
