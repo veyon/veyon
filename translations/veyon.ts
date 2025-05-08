@@ -3207,6 +3207,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Only last part of user name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Only computer name</source>
         <translation type="unfinished"></translation>
     </message>
