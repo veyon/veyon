@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ru" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ru">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -137,16 +137,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Группы пользователей:</translation>
     </message>
     <message>
-        <source>Missing user groups backend</source>
-        <translation>Отсутствующие группы пользователей</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Не был найден плагин по умолчанию для пользовательских групп. Проверьте свою установку!</translation>
-    </message>
-    <message>
         <source>Restrict access to members of specific user groups</source>
         <translation>Ограничить доступ участникам указанных групп пользователей</translation>
+    </message>
+</context>
+<context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation>Поставщик функций контроля доступа</translation>
     </message>
 </context>
 <context>
@@ -323,6 +322,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Session being accessed is a login screen</source>
         <translation>Сеанс для доступа является экраном входа</translation>
     </message>
+    <message>
+        <source>Local computer is already being accessed</source>
+        <translation>К локальному компьютеру уже осуществляется доступ</translation>
+    </message>
+    <message>
+        <source>Local computer is not yet being accessed</source>
+        <translation>Локальный компьютер пока недоступен</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -367,16 +374,16 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Доступ в данном сценарии требует разрешения зарегистрированного пользователя.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>ОШИБКА: Неизвестное действие</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Результат испытаний</translation>
     </message>
     <message>
         <source>Authentication method</source>
         <translation>Метод проверки подлинности</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -472,10 +479,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Выберите ключ для удаления!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Введите имя группы пользователей или роли, для которой необходимо импортировать ключ аутентификации:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Выберите ключ для экспорта!</translation>
     </message>
@@ -486,6 +489,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Выберите ключ, для которого необходимо установить группу доступа!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation>Введите имя группы пользователей или роли, для которой необходимо импортировать ключ аутентификации.
+
+Убедитесь, что имена ключей, принадлежащих друг другу, идентичны на всех компьютерах.</translation>
     </message>
 </context>
 <context>
@@ -1201,6 +1212,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>The specified command does not exist or no help is available for it.</source>
         <translation>Указанная команда не существует, или для неё недоступна справка.</translation>
     </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation>Местоположение &quot;%1&quot; не найдено.</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1218,10 +1233,6 @@ The public key is used on client computers to authenticate incoming connection r
 </context>
 <context>
     <name>ComputerControlListModel</name>
-    <message>
-        <source>Host/IP address: %1</source>
-        <translation>Хост/IP-адрес: %1</translation>
-    </message>
     <message>
         <source>Active features: %1</source>
         <translation>Задействованные возможности: %1</translation>
@@ -1271,12 +1282,24 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Имя: %1</translation>
     </message>
     <message>
-        <source>invalid</source>
-        <translation>некорректно</translation>
+        <source>Hostname: %1</source>
+        <translation>Имя хоста: %1</translation>
     </message>
     <message>
-        <source>[none]</source>
-        <translation>[нет]</translation>
+        <source>unknown</source>
+        <translation>неизвестный</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation>IP-адрес: %1</translation>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation>Имя хоста не может быть разрешено</translation>
+    </message>
+    <message>
+        <source>No features active</source>
+        <translation>Нет активных функций</translation>
     </message>
 </context>
 <context>
@@ -1347,6 +1370,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>Не удалось определить место этого компьютера. Это означает, что в настройках системы есть проблемы. На панели выбора компьютера будут показаны все места.</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation>Вошел в систему с</translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation>%1 дн.</translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation>1 день</translation>
+    </message>
 </context>
 <context>
     <name>ComputerMonitoring</name>
@@ -1404,6 +1439,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Не удалось записать список компьютеров и пользователей в %1! Пожалуйста, проверьте права доступа к файлу.</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation>Поиск компьютеров</translation>
     </message>
 </context>
 <context>
@@ -1552,6 +1591,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Замедлить обновление миниатюр, пока запущена демонстрация</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation>Ограничение пропускной способности</translation>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation>МБ/с</translation>
     </message>
 </context>
 <context>
@@ -2178,6 +2225,46 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Host private key file</source>
         <translation>Файл закрытого ключа хоста</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation>Стиль:</translation>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation>Нативный</translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation>Цветовая схема:</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation>Светлая</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Тёмная</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Группы пользователей</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Бэкэнд:</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation>Включить группы пользователей из домена</translation>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Отсутствующие группы пользователей</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation>Плагин групп пользователей не найден. Проверьте установку!</translation>
     </message>
 </context>
 <context>
@@ -2928,6 +3015,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Query nested user groups (supported by AD only)</source>
         <translation>Опросить вложенные группы пользователей (поддерживается только AD)</translation>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation>Время ожидания запроса</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>мс</translation>
+    </message>
 </context>
 <context>
     <name>LdapNetworkObjectDirectoryConfigurationPage</name>
@@ -3055,12 +3150,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Конфигурация</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>Отключить всплывающие подсказки</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>Показывать только значки</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation>Отключить всплывающие подсказки</translation>
     </message>
 </context>
 <context>
@@ -3270,8 +3365,24 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Места и компьютеры</translation>
     </message>
     <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation>Использовать пользовательское расположение компьютеров.
+
+Нажмите и удерживайте, чтобы загрузить расположение из файла или сохранить текущее расположение в файл.</translation>
+    </message>
+    <message>
         <source>Only show computers with logged on users</source>
         <translation>Показывать только те компьютеры, где пользователи выполнили вход в систему</translation>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation>Загрузить позиции компьютеров</translation>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation>Сохранить позиции компьютеров</translation>
     </message>
 </context>
 <context>
@@ -3365,6 +3476,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Только имя пользователя</translation>
     </message>
     <message>
+        <source>Only last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Only computer name</source>
         <translation>Только имя компьютера</translation>
     </message>
@@ -3447,6 +3562,94 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Open feature windows on the same screen as the main window</source>
         <translation>Открывать окно функций на том же экране, что и главное окно</translation>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation>Шаблоны конфигурации</translation>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation>Качество изображения в режиме мониторинга</translation>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation>Самое высокое</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation>Высокое</translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation>Среднее</translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation>Низкое</translation>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation>Самое низкое</translation>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation>Качество изображения удаленного доступа</translation>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation>Расширенный</translation>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation>Источник имени компьютера</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>По умолчанию</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Адрес хоста</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation>Адрес клиента сеанса</translation>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation>Имя клиента сеанса</translation>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation>Имя хоста сеанса</translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation>Метаданные сеанса</translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Полное имя пользователя</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Имя пользователя (логин)</translation>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation>Роль UID компьютера</translation>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation>Хеш метаданных сеанса</translation>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation>Всегда раскрывать все местоположения</translation>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Качество изображения</translation>
     </message>
 </context>
 <context>
@@ -3727,12 +3930,16 @@ Please save your work and close all programs.</source>
         <translation>Удалённый просмотр или управление компьютером</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>Пожалуйста, укажите имя хоста или IP-адрес компьютера, доступ к которому необходимо получить:</translation>
-    </message>
-    <message>
         <source>Show help about command</source>
         <translation>Показать помощь по команде</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
+        <translation>Обмен содержимым буфера обмена</translation>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation>Компьютер не выбран, поэтому вы можете ввести имя хоста или IP-адрес компьютера для доступа к нему:</translation>
     </message>
 </context>
 <context>
@@ -3952,6 +4159,37 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation>Запрошенный метод аутентификации недоступен</translation>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation>Доступ разрешен правилом &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation>Доступ запрещён правилом &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation>Ни одно правило не разрешает доступ</translation>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation>Доступ пользователя, не являющегося членом авторизованной группы пользователей</translation>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation>Пользователю отказано в доступе</translation>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation>Пользователь подтвердил доступ</translation>
+    </message>
+</context>
+<context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
@@ -4067,28 +4305,80 @@ Typically this is required to support terminal servers.</source>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation>Режим мультисеанса (отдельный экземпляр сервера для каждого сеанса локального и удалённого рабочего стола)</translation>
     </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation>Включите этот параметр, если необходимо запустить один экземпляр сервера Veyon для текущего активного сеанса, независимо от того, локальный он или удаленный.</translation>
+    </message>
+    <message>
+        <source>Miscellaneous settings</source>
+        <translation>Дополнительные настройки</translation>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
+        <translation>Отключить синхронизацию буфера обмена</translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation>Метаданные сеанса</translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation>Содержимое</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Нет</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation>Значение переменной среды</translation>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation>Значение ключа реестра</translation>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation>Имя переменной среды:</translation>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation>Имя ключа реестра:</translation>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation>При необходимости введите регулярное выражение с захватом, чтобы извлечь часть имени компьютера и использовать её в качестве отображаемого имени компьютера.
+
+Пример: [^-]*-(PC[0-9]*)</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>Запускаем сервис %1</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>Останавливаем сервис %1</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>Регистрируем сервис %1</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>Отменяем регистрацию сервиса %1</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>Управление сервисам</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation>Запуск %1</translation>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation>Остановка %1</translation>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation>Перезапуск %1</translation>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation>Регистрация %1</translation>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation>Отмена регистрации %1</translation>
     </message>
 </context>
 <context>
@@ -4170,6 +4460,14 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Duration:</source>
         <translation>Продолжительность:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4323,17 +4621,6 @@ The second button removes the selected or last computer.</source>
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>Нет доступа на запись</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Не удалось сохранить ваши личные настройки! Пожалуйста, проверьте, правильно ли указан путь к файлу настроек пользователей с помощью конфигуратора %1.</translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4463,6 +4750,17 @@ The second button removes the selected or last computer.</source>
     </message>
 </context>
 <context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>Нет доступа на запись</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>Не удалось сохранить ваши личные настройки! Пожалуйста, проверьте, правильно ли указан путь к файлу настроек пользователей с помощью конфигуратора %1.</translation>
+    </message>
+</context>
+<context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
@@ -4533,6 +4831,10 @@ The second button removes the selected or last computer.</source>
     <message>
         <source>Use input device interception driver</source>
         <translation>Использовать драйвер перехвата устройства ввода</translation>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation>Использовать пользовательскую схему питания с отключенной кнопкой питания</translation>
     </message>
 </context>
 <context>

@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="uk" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="uk">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -137,16 +137,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Модуль груп користувачів:</translation>
     </message>
     <message>
-        <source>Missing user groups backend</source>
-        <translation>Не вистачає модуля обробки груп користувачів</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Не знайдено типового додатка груп користувачів. Будь ласка, перевірте, чи належним чином встановлено програму!</translation>
-    </message>
-    <message>
         <source>Restrict access to members of specific user groups</source>
         <translation>Обмежити доступ учасникам вказаних груп користувачів</translation>
+    </message>
+</context>
+<context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation>Надавач можливостей керування доступом</translation>
     </message>
 </context>
 <context>
@@ -323,6 +322,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Session being accessed is a login screen</source>
         <translation>Сеанс доступу є вікном вітання</translation>
     </message>
+    <message>
+        <source>Local computer is already being accessed</source>
+        <translation>Доступ до локального комп&apos;ютера вже здійснюється</translation>
+    </message>
+    <message>
+        <source>Local computer is not yet being accessed</source>
+        <translation>Доступ до локального комп&apos;ютера ще не здійснюється</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -367,16 +374,16 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Доступ за вказаним сценарієм потребує дозволу від користувача, який увійшов до системи.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>ПОМИЛКА: невідома дія</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Результат тестування</translation>
     </message>
     <message>
         <source>Authentication method</source>
         <translation>Метод розпізнавання</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation>Немає відповідного правила із коректною дією. Через це у доступі відмовлено.</translation>
     </message>
 </context>
 <context>
@@ -469,10 +476,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Будь ласка, виберіть ключ для вилучення!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Будь ласка, вкажіть назву групи користувачів або роль, для якої слід імпортувати ключ розпізнавання:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Будь ласка, виберіть ключ для експортування!</translation>
     </message>
@@ -483,6 +486,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Будь ласка, виберіть ключ, доступ до якого слід встановити для групи!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation>Будь ласка, вкажіть назву групи користувачів або роль, для якої слід імпортувати ключ розпізнавання.
+
+Переконайтеся, що назви ключів, пов&apos;язаних один із одним, є однаковими на усіх комп&apos;ютерах.</translation>
     </message>
 </context>
 <context>
@@ -1198,6 +1209,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>The specified command does not exist or no help is available for it.</source>
         <translation>Вказаної команди не існує або немає доступу до довідки до неї.</translation>
     </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation>Місце «%1» не знайдено.</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1215,10 +1230,6 @@ The public key is used on client computers to authenticate incoming connection r
 </context>
 <context>
     <name>ComputerControlListModel</name>
-    <message>
-        <source>Host/IP address: %1</source>
-        <translation>Вузол/IP-адреса: %1</translation>
-    </message>
     <message>
         <source>Active features: %1</source>
         <translation>Задіяні можливості: %1</translation>
@@ -1268,12 +1279,24 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Назва: %1</translation>
     </message>
     <message>
-        <source>invalid</source>
-        <translation>некоректний</translation>
+        <source>Hostname: %1</source>
+        <translation>Назва вузла: %1</translation>
     </message>
     <message>
-        <source>[none]</source>
-        <translation>[немає]</translation>
+        <source>unknown</source>
+        <translation>невідомий</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation>IP-адреса: %1</translation>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation>Не вдалося визначити адресу за назвою вузла</translation>
+    </message>
+    <message>
+        <source>No features active</source>
+        <translation>Немає активних можливостей</translation>
     </message>
 </context>
 <context>
@@ -1344,6 +1367,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>Не вдалося визначити місце цього комп&apos;ютера. Це означає, що у налаштуваннях системи є проблеми. На панелі вибору комп&apos;ютера буде показано усі місця.</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation>Працює у системі протягом</translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation>%1 днів</translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation>1 дня</translation>
+    </message>
 </context>
 <context>
     <name>ComputerMonitoring</name>
@@ -1401,6 +1436,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Не вдалося записати список комп’ютерів і користувачів до %1! Будь ласка, перевірте, чи є у вас належні права для доступу до цього файла.</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation>Шукати комп&apos;ютери</translation>
     </message>
 </context>
 <context>
@@ -1549,6 +1588,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Уповільнити оновлення мініатюр, доки запущено демонстрацію</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation>Обмеження потоку даних</translation>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation>МБ/с</translation>
     </message>
 </context>
 <context>
@@ -2175,6 +2222,46 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Host private key file</source>
         <translation>Файл закритого ключа вузла</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation>Стиль:</translation>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation>Природний</translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation>Схема кольорів:</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation>Світла</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Темна</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Групи користувачів</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Модуль:</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation>Включити групи користувачів з домену</translation>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Не вистачає модуля обробки груп користувачів</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation>Не знайдено додатка груп користувачів. Будь ласка, перевірте, чи належним чином встановлено програму!</translation>
     </message>
 </context>
 <context>
@@ -2927,6 +3014,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Query nested user groups (supported by AD only)</source>
         <translation>Опитати вкладені групи користувачів (лише для AD)</translation>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation>Перевищення часу очікування на виконання запиту</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>мс</translation>
+    </message>
 </context>
 <context>
     <name>LdapNetworkObjectDirectoryConfigurationPage</name>
@@ -3054,12 +3149,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Налаштування</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>Вимкнути панелі підказок</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>Показати лише піктограми</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation>Вимкнути підказки</translation>
     </message>
 </context>
 <context>
@@ -3269,8 +3364,24 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Місця і комп&apos;ютери</translation>
     </message>
     <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation>Використати нетипову конфігурацію комп&apos;ютерів.
+
+Натисніть і утримуйте, щоб завантажити конфігурацію з файла або зберегти конфігурацію до файла.</translation>
+    </message>
+    <message>
         <source>Only show computers with logged on users</source>
         <translation>Показувати лише комп&apos;ютери із користувачами у системі</translation>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation>Звантажити місця комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation>Зберегти місця комп&apos;ютерів</translation>
     </message>
 </context>
 <context>
@@ -3364,6 +3475,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Лише ім&apos;я користувача</translation>
     </message>
     <message>
+        <source>Only last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Only computer name</source>
         <translation>Лише назва комп&apos;ютера</translation>
     </message>
@@ -3446,6 +3561,94 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Open feature windows on the same screen as the main window</source>
         <translation>Відкривати вікна додатків на тому самому екрані, що і головне вікно</translation>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation>Шаблони налаштувань</translation>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation>Якість зображення у режимі стеження</translation>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation>Найвища</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation>Висока</translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation>Середня</translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation>Низька</translation>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation>Найнижча</translation>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation>Якість зображення віддаленого доступу</translation>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation>Додатково</translation>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation>Джерело назв комп&apos;ютерів</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Типове</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Адреса вузла</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation>Адреса клієнта сеансу</translation>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation>Назва клієнта сеансу</translation>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation>Назва вузла сеансу</translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation>Метадані сеансу</translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Повне ім&apos;я користувача</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Назва запису користувача</translation>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation>Роль UID комп&apos;ютера</translation>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation>Хеш-сума метаданих сеансу</translation>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation>Завжди розгортати усі місця</translation>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Якість зображення</translation>
     </message>
 </context>
 <context>
@@ -3726,12 +3929,16 @@ Please save your work and close all programs.</source>
         <translation>Віддалений перегляд або керування комп’ютером</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>Будь ласка, вкажіть назву вузла або IP-адресу комп’ютера, доступ до якого слід отримати:</translation>
-    </message>
-    <message>
         <source>Show help about command</source>
         <translation>Показати довідку щодо команди</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
+        <translation>Обмін вмістом буфера обміну даними</translation>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation>Не вибрано жодного комп&apos;ютера. Ви можете ввести назву вузла або IP-адресу комп&apos;ютера для доступу вручну:</translation>
     </message>
 </context>
 <context>
@@ -3951,6 +4158,37 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation>Запитаний спосіб розпізнавання недоступний</translation>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation>Доступ дозволено за правилом «%1»</translation>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation>Доступ заборонено за правилом «%1»</translation>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation>Жодне правило не надає доступу</translation>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation>Доступ для користувача, який не є учасником уповноваженої групи користувачів</translation>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation>Доступ користувачеві заборонено</translation>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation>Доступ підтверджено користувачем</translation>
+    </message>
+</context>
+<context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
@@ -4066,28 +4304,80 @@ Typically this is required to support terminal servers.</source>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation>Режим багатьох сеансів (окремий екземпляр сервера для кожного локального і віддаленого стільничного сеансу)</translation>
     </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation>Увімкніть, якщо єдиний екземпляр Veyon Server має бути запущено для поточного активного сеансу, локального чи віддаленого.</translation>
+    </message>
+    <message>
+        <source>Miscellaneous settings</source>
+        <translation>Інші параметри</translation>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
+        <translation>Вимкнути синхронізацію буфера обміну</translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation>Метадані сеансу</translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation>Дані</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Немає</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation>Значення змінної середовища</translation>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation>Значення ключа реєстру</translation>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation>Назва змінної середовища:</translation>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation>Назва ключа реєстра:</translation>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation>Якщо хочете, введіть формальний вираз із використанням захоплення даних для видобування частини назви комп&apos;ютера і використання її як показану назву комп&apos;ютера.
+
+Приклад: [^-]*-(PC[0-9]*)</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>Запускаємо службу %1</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>Зупиняємо службу %1</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>Реєструємо службу %1</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>Скасовуємо реєстрацію служби %1</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>Керування службами</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation>Запускаємо %1</translation>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation>Зупиняємо %1</translation>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation>Перезапускаємо %1</translation>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation>Реєструємо %1</translation>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation>Скасовуємо реєстрацію %1</translation>
     </message>
 </context>
 <context>
@@ -4169,6 +4459,14 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Duration:</source>
         <translation>Тривалість:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation>Переглянути в окремому вікні</translation>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation>Основне керування %1 – Показ слайдів</translation>
     </message>
 </context>
 <context>
@@ -4322,17 +4620,6 @@ The second button removes the selected or last computer.</source>
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>Немає доступу на запис</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Не вдалося зберегти ваші особисті параметри! Будь ласка, перевірте, чи правильно вказано шлях до файла налаштувань користувачів за допомогою засобу налаштовування %1.</translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4462,6 +4749,17 @@ The second button removes the selected or last computer.</source>
     </message>
 </context>
 <context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>Немає доступу на запис</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>Не вдалося зберегти ваші особисті параметри! Будь ласка, перевірте, чи правильно вказано шлях до файла налаштувань користувачів за допомогою засобу налаштовування %1.</translation>
+    </message>
+</context>
+<context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
@@ -4532,6 +4830,10 @@ The second button removes the selected or last computer.</source>
     <message>
         <source>Use input device interception driver</source>
         <translation>Скористатися драйвером-перехоплювачем пристроїв введення</translation>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation>Використати нетипову схему живлення із вимкненою кнопкою живлення</translation>
     </message>
 </context>
 <context>

@@ -137,15 +137,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Missing user groups backend</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Restrict access to members of specific user groups</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -323,6 +322,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Session being accessed is a login screen</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Local computer is already being accessed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Local computer is not yet being accessed</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -367,15 +374,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authentication method</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -469,10 +476,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -482,6 +485,12 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -683,10 +692,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>TYPE</source>
         <translation type="unfinished"></translation>
     </message>
@@ -724,6 +729,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1190,6 +1203,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>MAC ADDRESS</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1207,10 +1228,6 @@ The public key is used on client computers to authenticate incoming connection r
 </context>
 <context>
     <name>ComputerControlListModel</name>
-    <message>
-        <source>Host/IP address: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Active features: %1</source>
         <translation type="unfinished"></translation>
@@ -1260,7 +1277,23 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>invalid</source>
+        <source>Hostname: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No features active</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1332,6 +1365,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ComputerMonitoring</name>
@@ -1388,6 +1433,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search computers</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1538,6 +1587,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Slow down thumbnail updates while demo is running</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
@@ -1607,10 +1664,6 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Screen %1 [%2]</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1797,9 +1850,133 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>FeatureControl</name>
+    <name>FeatureCommands</name>
     <message>
-        <source>Feature control</source>
+        <source>List names of all available features</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show table with details of all available features</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start a feature on a remote host</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stop a feature on a remote host</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please specify the command to display help for.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Displays a list with the names of all available features.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HOST ADDRESS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>FEATURE</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ARGUMENTS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lock the screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Display a text message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start an application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unlock the screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Master</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Worker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>UID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Plugin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid feature name or UID specified</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error parsing the JSON-encoded arguments: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to initialize credentials</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not establish a connection to host %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to send feature control message to host %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Feature-related CLI operations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Commands for controlling features</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2042,6 +2219,46 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Host private key file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2774,6 +2991,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Query nested user groups (supported by AD only)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LdapNetworkObjectDirectoryConfigurationPage</name>
@@ -2901,11 +3126,11 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
+        <source>Show icons only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Show icons only</source>
+        <source>Disable tooltips</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3115,6 +3340,24 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Locations &amp; computers</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
@@ -3294,6 +3537,94 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Open feature windows on the same screen as the main window</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
@@ -3307,6 +3638,18 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Query application version of the server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Query active features</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Query properties of remotely available screens</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3374,7 +3717,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
 </context>
 <context>
-    <name>PluginsCommands</name>
+    <name>PluginCommands</name>
     <message>
         <source>List names of all installed plugins</source>
         <translation type="unfinished"></translation>
@@ -3559,11 +3902,15 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
+        <source>Show help about command</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Show help about command</source>
+        <source>Exchange clipboard contents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3653,6 +4000,14 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Connecting...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All screens</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3776,6 +4131,37 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
@@ -3890,44 +4276,82 @@ Typically this is required to support terminal servers.</source>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Miscellaneous settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Service control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>ServiceControlPlugin</name>
-    <message>
-        <source>Service is running</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Service is not running</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Configure and control Veyon service</source>
-        <translation type="unfinished"></translation>
-    </message>
+    <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
         <translation type="unfinished"></translation>
@@ -3953,12 +4377,24 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Service is running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Service is not running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Configure and control Veyon service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Commands for configuring and controlling Veyon Service</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
-    <name>ShellCommandLinePlugin</name>
+    <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
         <translation type="unfinished"></translation>
@@ -3968,7 +4404,7 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Interactive shell and script execution for Veyon Control</source>
+        <source>Interactive shell and script execution for Veyon CLI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3992,6 +4428,14 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Duration:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4145,17 +4589,6 @@ The second button removes the selected or last computer.</source>
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4279,6 +4712,21 @@ The second button removes the selected or last computer.</source>
         <source>Authentication test</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Screen %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
@@ -4363,6 +4811,10 @@ The second button removes the selected or last computer.</source>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Internal display</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WindowsServiceControl</name>
@@ -4371,15 +4823,7 @@ The second button removes the selected or last computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The service &quot;%1&quot; could not be installed.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The service &quot;%1&quot; could not be uninstalled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4387,11 +4831,23 @@ The second button removes the selected or last computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The start type of service &quot;%1&quot; could not be changed.</source>
+        <source>Service &quot;%1&quot; could not be found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Service &quot;%1&quot; could not be found.</source>
+        <source>The service &quot;%1&quot; could not be installed (error %2).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

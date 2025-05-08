@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="he" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="he">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -135,16 +135,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>שרת קבוצות משתמשים:</translation>
     </message>
     <message>
-        <source>Missing user groups backend</source>
-        <translation>חסר שרת קבוצות משתמשים</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>לא נמצא פלאגין של קבוצות משתמשים. בדוק את ההתקנה שלך!</translation>
-    </message>
-    <message>
         <source>Restrict access to members of specific user groups</source>
         <translation>הגבל הרשאה לחברי קבוצה מסוימת</translation>
+    </message>
+</context>
+<context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -321,6 +320,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Session being accessed is a login screen</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Local computer is already being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local computer is not yet being accessed</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -365,16 +372,16 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>הגישה במקרה הניתן דורשת הרשאה מצד המשתמש המחובר.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>שגיאה: פעולה לא ידועה</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>תוצאות בדיקה</translation>
     </message>
     <message>
         <source>Authentication method</source>
         <translation>שיטת התחברות</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -470,10 +477,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>נא לבחור מפתח למחיקה!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>נא להזין את שם קבוצת המשתמשים או התפקיד עבורם יש לייבא את מפתח האימות:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>יש לבחור מפתח לייצוא!</translation>
     </message>
@@ -484,6 +487,12 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>נא לבחור מפתח עבורו יש להגדיר את קבוצת הגישה!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -614,7 +623,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>לא</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
@@ -653,7 +662,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>KEY</source>
-        <translation type="unfinished"/>
+        <translation>מפתח</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
@@ -665,11 +674,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>שם</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>קובץ</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
@@ -685,7 +694,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>סוג</translation>
     </message>
     <message>
         <source>PAIR ID</source>
@@ -717,7 +726,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key file</source>
-        <translation type="unfinished"/>
+        <translation>קובץ מפתח</translation>
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
@@ -832,7 +841,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Logon</source>
-        <translation type="unfinished"/>
+        <translation>התחברות</translation>
     </message>
 </context>
 <context>
@@ -880,7 +889,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthenticationPageTab</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"/>
+        <translation>מופעל</translation>
     </message>
     <message>
         <source>Test</source>
@@ -930,19 +939,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Locations</source>
-        <translation type="unfinished"/>
+        <translation>מיקומים</translation>
     </message>
     <message>
         <source>Add new location</source>
-        <translation type="unfinished"/>
+        <translation>הוסף מיקום חדש</translation>
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation type="unfinished"/>
+        <translation>הסר את המיקום שנבחר</translation>
     </message>
     <message>
         <source>New location</source>
-        <translation type="unfinished"/>
+        <translation>מיקום חדש</translation>
     </message>
     <message>
         <source>Directory name</source>
@@ -1013,7 +1022,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>כלום</translation>
     </message>
     <message>
         <source>Computer</source>
@@ -1025,7 +1034,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid</source>
-        <translation type="unfinished"/>
+        <translation>לא בתוקף</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
@@ -1061,7 +1070,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>הוסף מיקום או מחשב</translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
@@ -1077,7 +1086,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Remove a location or computer</source>
-        <translation type="unfinished"/>
+        <translation>הסר מיקום או מחשב</translation>
     </message>
     <message>
         <source>Location &quot;%1&quot;</source>
@@ -1089,15 +1098,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished"/>
+        <translation>מיקום</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>קובץ</translation>
     </message>
     <message>
         <source>LOCATION</source>
-        <translation type="unfinished"/>
+        <translation>מיקום</translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
@@ -1141,15 +1150,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>סוג</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>שם</translation>
     </message>
     <message>
         <source>PARENT</source>
-        <translation type="unfinished"/>
+        <translation>הורה</translation>
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
@@ -1157,7 +1166,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add a room</source>
-        <translation type="unfinished"/>
+        <translation>הוסף חדר</translation>
     </message>
     <message>
         <source>Add a computer to room %1</source>
@@ -1165,7 +1174,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>OBJECT</source>
-        <translation type="unfinished"/>
+        <translation>חפץ</translation>
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
@@ -1181,11 +1190,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&quot;Room 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;חדר 01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;מחשב 01&quot;</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -1197,6 +1206,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1216,10 +1229,6 @@ The public key is used on client computers to authenticate incoming connection r
 </context>
 <context>
     <name>ComputerControlListModel</name>
-    <message>
-        <source>Host/IP address: %1</source>
-        <translation type="unfinished"/>
-    </message>
     <message>
         <source>Active features: %1</source>
         <translation type="unfinished"/>
@@ -1254,7 +1263,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Location: %1</source>
-        <translation type="unfinished"/>
+        <translation>מיקום: %1</translation>
     </message>
     <message>
         <source>[no user]</source>
@@ -1269,11 +1278,23 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>invalid</source>
+        <source>Hostname: %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>[none]</source>
+        <source>unknown</source>
+        <translation>לא ידוע</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No features active</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1345,6 +1366,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerMonitoring</name>
@@ -1366,22 +1399,22 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add to group</source>
-        <translation type="unfinished"/>
+        <translation>הוסף לקבוצה</translation>
     </message>
     <message>
         <source>Remove from group</source>
-        <translation type="unfinished"/>
+        <translation>הסר מקבוצה</translation>
     </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
     <message>
         <source>Computer search</source>
-        <translation type="unfinished"/>
+        <translation>חיפוש מחשב</translation>
     </message>
     <message>
         <source>Add location</source>
-        <translation type="unfinished"/>
+        <translation>הוסף מיקום</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1397,10 +1430,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>File error</source>
-        <translation type="unfinished"/>
+        <translation>שגיאת קובץ</translation>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Search computers</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1521,7 +1558,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Tunables</source>
-        <translation type="unfinished"/>
+        <translation>מכוונים</translation>
     </message>
     <message>
         <source> ms</source>
@@ -1551,6 +1588,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Slow down thumbnail updates while demo is running</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
@@ -1572,7 +1617,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>הדגמה</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
@@ -1580,7 +1625,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>הדגמה במסך מלא</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
@@ -1592,11 +1637,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>שתף מסך שלך בחלון</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>שתף את המסך של המשתמש שנבחר במצב מסך מלא</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
@@ -1604,7 +1649,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>שתף את המסך של המשתמש שנבחר בחלון</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -1620,7 +1665,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>כל המסכים </translation>
     </message>
 </context>
 <context>
@@ -1663,19 +1708,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation type="unfinished"/>
+        <translation>הסר את האתר הנבחר</translation>
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished"/>
+        <translation>קישור</translation>
     </message>
     <message>
         <source>New website</source>
-        <translation type="unfinished"/>
+        <translation>אתר חדש</translation>
     </message>
     <message>
         <source>Applications &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>אפליקציה ואתר</translation>
     </message>
     <message>
         <source>Predefined applications</source>
@@ -1683,7 +1728,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add new application</source>
-        <translation type="unfinished"/>
+        <translation>הוסף אפליקציה חדשה</translation>
     </message>
     <message>
         <source>Remove selected application</source>
@@ -1691,11 +1736,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add new website</source>
-        <translation type="unfinished"/>
+        <translation>הוסף אתר חדש</translation>
     </message>
     <message>
         <source>New application</source>
-        <translation type="unfinished"/>
+        <translation>אפליקציה חדשה</translation>
     </message>
 </context>
 <context>
@@ -1714,11 +1759,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom website</source>
-        <translation type="unfinished"/>
+        <translation>אתר מותאם אישית</translation>
     </message>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>התחל אפליקציה</translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
@@ -1730,7 +1775,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>אפליקציה מותאם אישית</translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
@@ -1741,11 +1786,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DocumentationFigureCreator</name>
     <message>
         <source>Teacher</source>
-        <translation type="unfinished"/>
+        <translation>מורה</translation>
     </message>
     <message>
         <source>Room %1</source>
-        <translation type="unfinished"/>
+        <translation>חדר %1</translation>
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
@@ -1753,7 +1798,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom website</source>
-        <translation type="unfinished"/>
+        <translation>אתר מותאם אישית</translation>
     </message>
     <message>
         <source>Open file manager</source>
@@ -1769,7 +1814,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Handout</source>
-        <translation type="unfinished"/>
+        <translation>למסור</translation>
     </message>
     <message>
         <source>Texts to read</source>
@@ -1781,7 +1826,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>אפליקציה מותאם אישית</translation>
     </message>
 </context>
 <context>
@@ -1886,19 +1931,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>תאור</translation>
     </message>
     <message>
         <source>Master</source>
-        <translation type="unfinished"/>
+        <translation>מנהל</translation>
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"/>
+        <translation>שרות</translation>
     </message>
     <message>
         <source>Worker</source>
-        <translation type="unfinished"/>
+        <translation>עובד</translation>
     </message>
     <message>
         <source>UID</source>
@@ -1941,11 +1986,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>העברת קבצים</translation>
     </message>
     <message>
         <source>Directories</source>
-        <translation type="unfinished"/>
+        <translation>מדריכים</translation>
     </message>
     <message>
         <source>Destination directory</source>
@@ -1957,7 +2002,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>אפשרויות</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1979,11 +2024,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>העברת קבצים</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>אפשרויות</translation>
     </message>
     <message>
         <source>Transfer only</source>
@@ -1999,11 +2044,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished"/>
+        <translation>קובץ</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished"/>
+        <translation>התחל</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -2021,7 +2066,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FileTransferPlugin</name>
     <message>
         <source>File transfer</source>
-        <translation type="unfinished"/>
+        <translation>העברת קבצים</translation>
     </message>
     <message>
         <source>Click this button to transfer files from your computer to all computers.</source>
@@ -2068,7 +2113,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Logging</source>
-        <translation type="unfinished"/>
+        <translation>רישום</translation>
     </message>
     <message>
         <source>Log file directory</source>
@@ -2080,7 +2125,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Nothing</source>
-        <translation type="unfinished"/>
+        <translation>כלום</translation>
     </message>
     <message>
         <source>Only critical messages</source>
@@ -2132,7 +2177,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>שגיאה</translation>
     </message>
     <message>
         <source>Could not remove all log files.</source>
@@ -2176,6 +2221,46 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Host private key file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>חסר שרת קבוצות משתמשים</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2475,7 +2560,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>and</source>
-        <translation type="unfinished"/>
+        <translation>ו</translation>
     </message>
     <message>
         <source>LDAP test successful</source>
@@ -2762,7 +2847,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>כלום</translation>
     </message>
     <message>
         <source>TLS</source>
@@ -2862,7 +2947,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>לדפדף</translation>
     </message>
     <message>
         <source>Test</source>
@@ -2906,6 +2991,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3035,11 +3128,11 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>הגדרות</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
+        <source>Show icons only</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show icons only</source>
+        <source>Disable tooltips</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3051,7 +3144,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>toolBar</source>
-        <translation type="unfinished"/>
+        <translation>סרגל כלים</translation>
     </message>
     <message>
         <source>General</source>
@@ -3059,11 +3152,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;קובץ</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;עזרה</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
@@ -3115,11 +3208,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Service</source>
-        <translation type="unfinished"/>
+        <translation>שרות</translation>
     </message>
     <message>
         <source>Master</source>
-        <translation type="unfinished"/>
+        <translation>מנהל</translation>
     </message>
     <message>
         <source>Access control</source>
@@ -3131,7 +3224,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>אוטומטי</translation>
     </message>
     <message>
         <source>About</source>
@@ -3211,7 +3304,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation type="unfinished"/>
+        <translation>&amp;רגיל</translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
@@ -3227,7 +3320,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished"/>
+        <translation>אימות</translation>
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
@@ -3235,11 +3328,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>מצגת</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>זרקוֹר</translation>
     </message>
     <message>
         <source>Veyon Master</source>
@@ -3250,7 +3343,21 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer positions</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3258,7 +3365,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>MasterConfigurationPage</name>
     <message>
         <source>Directories</source>
-        <translation type="unfinished"/>
+        <translation>מדריכים</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -3270,7 +3377,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Features</source>
-        <translation type="unfinished"/>
+        <translation>תכונות</translation>
     </message>
     <message>
         <source>All features</source>
@@ -3294,7 +3401,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Behaviour</source>
-        <translation type="unfinished"/>
+        <translation>התנהגות</translation>
     </message>
     <message>
         <source>Enforce selected mode for client computers</source>
@@ -3342,6 +3449,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Only user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Only last part of user name</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3414,7 +3525,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>אוטומטי</translation>
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
@@ -3428,12 +3539,100 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Open feature windows on the same screen as the main window</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation type="unfinished"/>
+        <translation>פיקוח</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3478,14 +3677,14 @@ The public key is used on client computers to authenticate incoming connection r
     <name>NetworkObjectDirectoryConfigurationPageTab</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"/>
+        <translation>מופעל</translation>
     </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
-        <translation type="unfinished"/>
+        <translation>מיקומים/מחשבים</translation>
     </message>
 </context>
 <context>
@@ -3512,7 +3711,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>שם:</translation>
     </message>
     <message>
         <source>Website name</source>
@@ -3535,11 +3734,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>תאור</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>גרסה</translation>
     </message>
     <message>
         <source>UID</source>
@@ -3671,11 +3870,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished"/>
+        <translation>דקות</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>שניות</translation>
     </message>
 </context>
 <context>
@@ -3705,11 +3904,15 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
+        <source>Show help about command</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show help about command</source>
+        <source>Exchange clipboard contents</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3779,7 +3982,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"/>
+        <translation>תפריט</translation>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
@@ -3795,11 +3998,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"/>
+        <translation>יציאה</translation>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
+        <translation>מתחבר...</translation>
     </message>
     <message>
         <source>Select screen</source>
@@ -3807,7 +4010,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>כל המסכים </translation>
     </message>
 </context>
 <context>
@@ -3930,6 +4133,37 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
@@ -4044,28 +4278,78 @@ Typically this is required to support terminal servers.</source>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Miscellaneous settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>כלום</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>שליטה בשירות</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4148,6 +4432,14 @@ Typically this is required to support terminal servers.</source>
         <source>Duration:</source>
         <translation>משך זמן:</translation>
     </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
@@ -4165,7 +4457,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>זרקוֹר</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
@@ -4181,7 +4473,7 @@ The second button removes the selected or last computer.</source>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>התחל אפליקציה</translation>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
@@ -4201,7 +4493,7 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"/>
+        <translation>שם:</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
@@ -4295,17 +4587,6 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>אין גישת כתיבה</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4439,6 +4720,17 @@ The second button removes the selected or last computer.</source>
     </message>
 </context>
 <context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>אין גישת כתיבה</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
@@ -4508,6 +4800,10 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Use input device interception driver</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
         <translation type="unfinished"/>
     </message>
 </context>

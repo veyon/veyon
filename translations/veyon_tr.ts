@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="tr">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -27,7 +27,7 @@
     </message>
     <message>
         <source>Website:</source>
-        <translation>Web Sitesi:</translation>
+        <translation>İnternet Sitesi:</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
@@ -58,7 +58,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Test</source>
-        <translation>Sına</translation>
+        <translation>Test</translation>
     </message>
     <message>
         <source>Process access control rules</source>
@@ -66,19 +66,19 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation>Bilgisayar erişimi için yetkili kullanıcı kümeleri</translation>
+        <translation>Bilgisayar erişimi için yetkilendirilmiş kullanıcı grupları</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation>Veyon ağınızdaki bilgisayarlara erişmeye yetkili olacak kullanıcıları içeren kümeleri ekleyin.</translation>
+        <translation>Lütfen Veyon ağınızdaki bilgisayarlara erişim yetkisi verilmesi gereken üyelerin gruplarını ekleyin.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation>Yetkili kullanıcı kümeleri</translation>
+        <translation>Yetkili kullanıcı grupları</translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation>Tüm kümeler</translation>
+        <translation>Tüm gruplar</translation>
     </message>
     <message>
         <source>Access control rules</source>
@@ -110,7 +110,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation>Sınamak için izinlere erişecek bir kullanıcı giriş adı girin:</translation>
+        <translation>Lütfen test etmek için erişim izinlerine sahip bir kullanıcı oturum açma adı girin:</translation>
     </message>
     <message>
         <source>Access allowed</source>
@@ -130,23 +130,22 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation>Alan adı kümelerinin kullanımını etkinleştir</translation>
+        <translation>Etki alanı gruplarının kullanımını etkinleştir</translation>
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation>Kullanıcı kümeleri arka ucu:</translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Eksik kullanıcı kümeleri arka ucu</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Öntanımlı kullanıcı kümeleri eklentisi bulunamadı. Lütfen kurulumunuzu gözden geçirin!</translation>
+        <translation>Kullanıcı grupları arka ucu:</translation>
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
         <translation>Giriş yetkisini sadece belirli kullanıcı grup üyeleriyle sınırla</translation>
+    </message>
+</context>
+<context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation>Erişim denetimi özellikleri sağlayıcısı</translation>
     </message>
 </context>
 <context>
@@ -217,35 +216,35 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Accessing computer and local computer</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayara ve yerel bilgisayara erişim</translation>
     </message>
     <message>
         <source>User being accessed</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcıya erişiliyor</translation>
     </message>
     <message>
         <source>is logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>yerel olarak oturum açıldı</translation>
     </message>
     <message>
         <source>is logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>uzaktan oturum açıldı</translation>
     </message>
     <message>
         <source>No user is logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>Yerel olarak oturum açmış kullanıcı yok</translation>
     </message>
     <message>
         <source>One or multiple users are logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>Bir veya birden fazla kullanıcı yerel olarak oturum açmış durumda</translation>
     </message>
     <message>
         <source>No user is logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>Uzaktan oturum açmış kullanıcı yok</translation>
     </message>
     <message>
         <source>One or multiple users are logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>Bir veya birden fazla kullanıcı uzaktan oturum açtı</translation>
     </message>
     <message>
         <source>is located at</source>
@@ -253,75 +252,83 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>is not located at</source>
-        <translation type="unfinished"/>
+        <translation>konumda bulunmuyor</translation>
     </message>
     <message>
         <source>are located at the same location</source>
-        <translation type="unfinished"/>
+        <translation>aynı yerde bulunmaktadır</translation>
     </message>
     <message>
         <source>are not located the same location</source>
-        <translation type="unfinished"/>
+        <translation>aynı yerde bulunmuyor</translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation>kümenin üyesidir</translation>
+        <translation>grubun üyesidir</translation>
     </message>
     <message>
         <source>is not member of group</source>
-        <translation type="unfinished"/>
+        <translation>grubun üyesi değil</translation>
     </message>
     <message>
         <source>is authenticated via</source>
-        <translation type="unfinished"/>
+        <translation>aracılığıyla doğrulandı</translation>
     </message>
     <message>
         <source>is not authenticated via</source>
-        <translation type="unfinished"/>
+        <translation>aracılığıyla doğrulanmadı</translation>
     </message>
     <message>
         <source>has one or more groups in common with user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>erişilen kullanıcıyla ortak bir veya daha fazla gruba sahip</translation>
     </message>
     <message>
         <source>has no groups in common with user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>erişilen kullanıcıyla ortak hiçbir grup yok</translation>
     </message>
     <message>
         <source>equals user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>erişilen kullanıcıya eşittir</translation>
     </message>
     <message>
         <source>is different from user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>erişilen kullanıcıdan farklıdır</translation>
     </message>
     <message>
         <source>is already connected</source>
-        <translation type="unfinished"/>
+        <translation>zaten bağlı</translation>
     </message>
     <message>
         <source>is not connected</source>
-        <translation type="unfinished"/>
+        <translation>bağlı değil</translation>
     </message>
     <message>
         <source>is local computer</source>
-        <translation type="unfinished"/>
+        <translation>yerel bilgisayar</translation>
     </message>
     <message>
         <source>is not local computer</source>
-        <translation type="unfinished"/>
+        <translation>yerel bilgisayar değil</translation>
     </message>
     <message>
         <source>Computer being accessed</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayara erişiliyor</translation>
     </message>
     <message>
         <source>Session being accessed is a user session</source>
-        <translation type="unfinished"/>
+        <translation>Erişilen oturum bir kullanıcı oturumudur</translation>
     </message>
     <message>
         <source>Session being accessed is a login screen</source>
-        <translation type="unfinished"/>
+        <translation>Erişilen oturum bir giriş ekranıdır</translation>
+    </message>
+    <message>
+        <source>Local computer is already being accessed</source>
+        <translation>Yerel bilgisayara zaten erişiliyor</translation>
+    </message>
+    <message>
+        <source>Local computer is not yet being accessed</source>
+        <translation>Yerel bilgisayara henüz erişilemiyor</translation>
     </message>
 </context>
 <context>
@@ -367,16 +374,16 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
         <translation>Verilen senaryodaki erişim, oturum açmış kullanıcının iznini gerektiriyor.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>HATA: Bilinmeyen eylem</translation>
-    </message>
-    <message>
         <source>Test result</source>
-        <translation>Sınama sonuçları</translation>
+        <translation>Test sonucu</translation>
     </message>
     <message>
         <source>Authentication method</source>
         <translation>Kimlik doğrulama yöntemi</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -461,7 +468,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation>Lütfen yetkilendirme anahtarı çifti oluşturulacak kullanıcı kümesinin veya rolün adını girin:</translation>
+        <translation>Lütfen kimlik doğrulama anahtar çifti oluşturmak istediğiniz kullanıcı grubu veya rolünün adını girin:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
@@ -470,10 +477,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>Please select a key to delete!</source>
         <translation>Lütfen silinecek anahtar seçin!</translation>
-    </message>
-    <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Lütfen içe aktarılacak yetkilendirme anahtarı için kullanıcı kümesinin veya rolün adını girin:</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
@@ -486,6 +489,14 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Lütfen erişim grubunu ayarlamak için bir anahtar seçin!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation>Lütfen kimlik doğrulama anahtarının içe aktarılacağı kullanıcı grubu veya rolünün adını girin.
+
+Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan emin olun.</translation>
     </message>
 </context>
 <context>
@@ -723,15 +734,15 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen ilk argüman olarak anahtar adını belirtin (örneğin &quot;öğretmen/genel&quot;).</translation>
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen yardımın görüntüleneceği komutu belirtin.</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>Belirtilen komut mevcut değil veya bu komut için yardım mevcut değil.</translation>
     </message>
 </context>
 <context>
@@ -886,7 +897,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Test</source>
-        <translation>Sına</translation>
+        <translation>Test</translation>
     </message>
 </context>
 <context>
@@ -920,7 +931,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation>Seçilen bilgisayarı kaldır</translation>
+        <translation>Seçili bilgisayarı kaldır</translation>
     </message>
     <message>
         <source>New computer</source>
@@ -948,11 +959,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Directory name</source>
-        <translation type="unfinished"/>
+        <translation>Dizin adı</translation>
     </message>
     <message>
         <source>Importing CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>CSV dosyalarının içe aktarılması komut satırı arayüzü aracılığıyla mümkündür. Daha fazla bilgi için &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;çevrimiçi belgelere&lt;/a&gt; bakın.</translation>
     </message>
 </context>
 <context>
@@ -1103,11 +1114,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
-        <translation type="unfinished"/>
+        <translation>BİÇİMLENDİRME-DİZİSİYLE-YER-TUTUCULAR</translation>
     </message>
     <message>
         <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
-        <translation type="unfinished"/>
+        <translation>DÜZENLİ-İFADE-YER-TUTUCULU</translation>
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
@@ -1151,7 +1162,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>PARENT</source>
-        <translation>VELİ</translation>
+        <translation>AİLE</translation>
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
@@ -1199,7 +1210,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>Belirtilen komut mevcut değil veya bu komut için yardım mevcut değil.</translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation>&quot;%1&quot; konumu bulunamadı.</translation>
     </message>
 </context>
 <context>
@@ -1218,10 +1233,6 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
 </context>
 <context>
     <name>ComputerControlListModel</name>
-    <message>
-        <source>Host/IP address: %1</source>
-        <translation>Ana makine/IP adresi: %1</translation>
-    </message>
     <message>
         <source>Active features: %1</source>
         <translation>Etkin özellikler: %1</translation>
@@ -1260,23 +1271,35 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>[no user]</source>
-        <translation type="unfinished"/>
+        <translation>[kullanıcı yok]</translation>
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Sunucusuna erişilemiyor veya çalışmıyor</translation>
     </message>
     <message>
         <source>Name: %1</source>
-        <translation type="unfinished"/>
+        <translation>İsim: %1</translation>
     </message>
     <message>
-        <source>invalid</source>
-        <translation type="unfinished"/>
+        <source>Hostname: %1</source>
+        <translation>Ana bilgisayar adı: %1</translation>
     </message>
     <message>
-        <source>[none]</source>
-        <translation type="unfinished"/>
+        <source>unknown</source>
+        <translation>bilinmeyen</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation>IP adresi: %1</translation>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation>Ana bilgisayar adı çözülemedi</translation>
+    </message>
+    <message>
+        <source>No features active</source>
+        <translation>Hiçbir özellik etkin değil</translation>
     </message>
 </context>
 <context>
@@ -1347,6 +1370,18 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>Bu bilgisayarın konumu belirlenemedi. Bu, sistem yapılandırmasında bir sorun olduğunu gösterir. Bunun yerine tüm konumlar bilgisayar seçim panelinde gösterilir.</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation>den beri giriş yapıldı</translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation>%1 gün</translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation>1 gün</translation>
+    </message>
 </context>
 <context>
     <name>ComputerMonitoring</name>
@@ -1405,6 +1440,10 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Bilgisayar ve kullanıcı listesi %1 konumuna yazılamadı! Lütfen dosya erişim izinlerini gözden geçirin.</translation>
     </message>
+    <message>
+        <source>Search computers</source>
+        <translation>Bilgisayarları ara</translation>
+    </message>
 </context>
 <context>
     <name>ConfigCommands</name>
@@ -1434,7 +1473,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Unset (remove) given configuration key</source>
-        <translation>Verilen yapılandırma anahtarını kaldır</translation>
+        <translation>Verilen yapılandırma anahtarını kaldır (ayarını kaldır)</translation>
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
@@ -1512,14 +1551,14 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <name>DemoClient</name>
     <message>
         <source>%1 Demo</source>
-        <translation>%1 Tanıtımı</translation>
+        <translation>%1 Gösteri</translation>
     </message>
 </context>
 <context>
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>Tanıtım sunucusu</translation>
+        <translation>Gösteri sunucusu</translation>
     </message>
     <message>
         <source>Tunables</source>
@@ -1551,22 +1590,30 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation>Demo çalışırken küçük resim güncellemelerini yavaşlatın</translation>
+        <translation>Gösteri çalışırken küçük resim güncellemelerini yavaşlatın</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation>Bant genişliği sınırı</translation>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation> MB/s</translation>
     </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Stop demo</source>
-        <translation>Tanıtımı durdur</translation>
+        <translation>Gösteriyi durdur</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>Pencere kipinde gösterim</translation>
+        <translation>Pencere kipinde gösteri</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation>Ekran yayını ile bir tanıtım gerçekleştir</translation>
+        <translation>Ekran yayını ile bir gösteri gerçekleştir</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -1574,55 +1621,55 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>Gösteri</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation type="unfinished"/>
+        <translation>Ekranınızı paylaşın veya bir kullanıcının ekranını diğer kullanıcılarla paylaşmasına izin verin.</translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>Tam ekran gösterisi</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Kendi ekranınızı tam ekran modunda paylaş</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>Bu modda ekranınız tüm bilgisayarlarda tam ekran modunda görüntülenirken kullanıcıların giriş cihazları kilitlidir.</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Kendi ekranınızı bir pencerede paylaş</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>Seçili kullanıcının ekranını tam ekran modunda paylaş</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>Bu modda, seçili kullanıcının ekranı tüm bilgisayarlarda tam ekran modunda görüntülenirken, kullanıcıların giriş cihazları kilitlidir.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>Seçili kullanıcının ekranını bir pencerede paylaş</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>Bu modda seçili kullanıcının ekranı tüm bilgisayarlarda bir pencerede görüntülenir. Kullanıcılar ihtiyaç duyduklarında diğer pencerelere geçebilirler.</translation>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen paylaşmak için bir kullanıcı ekranı seçin.</translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen paylaşmak için yalnızca bir kullanıcı ekranı seçin.</translation>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>Tüm ekranlar</translation>
     </message>
 </context>
 <context>
@@ -1660,11 +1707,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Predefined websites</source>
-        <translation>Önceden tanımlanmış web siteleri</translation>
+        <translation>Önceden tanımlanmış internet siteleri</translation>
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation>Seçilen web sitesini kaldır</translation>
+        <translation>Seçilen internet sitesini kaldır</translation>
     </message>
     <message>
         <source>URL</source>
@@ -1672,70 +1719,70 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>New website</source>
-        <translation>Yeni web sitesi</translation>
+        <translation>Yeni internet sitesi</translation>
     </message>
     <message>
         <source>Applications &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>Uygulamalar ve internet siteleri</translation>
     </message>
     <message>
         <source>Predefined applications</source>
-        <translation type="unfinished"/>
+        <translation>Önceden tanımlanmış uygulamalar</translation>
     </message>
     <message>
         <source>Add new application</source>
-        <translation type="unfinished"/>
+        <translation>Yeni uygulama ekle</translation>
     </message>
     <message>
         <source>Remove selected application</source>
-        <translation type="unfinished"/>
+        <translation>Seçili uygulamayı kaldır</translation>
     </message>
     <message>
         <source>Add new website</source>
-        <translation type="unfinished"/>
+        <translation>Yeni internet sitesi ekle</translation>
     </message>
     <message>
         <source>New application</source>
-        <translation type="unfinished"/>
+        <translation>Yeni uygulama</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Open website</source>
-        <translation>Web sitesi aç</translation>
+        <translation>İnternet sitesi aç</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>Tüm bilgisayarlarda bir web sitesi açmak için bu düğmeye tıklayın.</translation>
+        <translation>Tüm bilgisayarlarda bir internet sitesi açmak için bu düğmeye tıklayın.</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation>Web sitesini &quot;%1&quot; açın</translation>
+        <translation>&quot;%1&quot; internet sitesini aç</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation>Özel web sitesi</translation>
+        <translation>Özel internet sitesi</translation>
     </message>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Uygulama başlat</translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Bir uygulamayı tüm bilgisayarlarda başlatmak için bu butona tıklayın.</translation>
     </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; uygulamasını başlat</translation>
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>Özel uygulama</translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı oturumlarında uygulamaları başlatın ve internet sitelerini açın</translation>
     </message>
 </context>
 <context>
@@ -1754,7 +1801,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Custom website</source>
-        <translation>Özel web sitesi</translation>
+        <translation>Özel internet sitesi</translation>
     </message>
     <message>
         <source>Open file manager</source>
@@ -1782,7 +1829,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>Özel uygulama</translation>
     </message>
 </context>
 <context>
@@ -1811,31 +1858,31 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <name>FeatureCommands</name>
     <message>
         <source>List names of all available features</source>
-        <translation type="unfinished"/>
+        <translation>Mevcut tüm özelliklerin adlarını listeleyin</translation>
     </message>
     <message>
         <source>Show table with details of all available features</source>
-        <translation type="unfinished"/>
+        <translation>Tüm mevcut özelliklerin ayrıntılarını içeren tabloyu göster</translation>
     </message>
     <message>
         <source>Start a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>Uzak bir ana bilgisayarda bir özelliği başlatın</translation>
     </message>
     <message>
         <source>Stop a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>Uzak bir ana bilgisayarda bir özelliği durdurun</translation>
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen yardımın görüntüleneceği komutu belirtin.</translation>
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
-        <translation type="unfinished"/>
+        <translation>Mevcut tüm özelliklerin adlarını içeren bir liste görüntüler.</translation>
     </message>
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation type="unfinished"/>
+        <translation>Mevcut tüm özellikler hakkında ayrıntılı bilgi içeren bir tablo görüntüler. Bu bilgiler bir açıklama, UID, ilgili özelliği sağlayan eklentinin adı ve diğer bazı uygulamayla ilgili ayrıntıları içerir.</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -1843,43 +1890,43 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>FEATURE</source>
-        <translation type="unfinished"/>
+        <translation>ÖZELLİK</translation>
     </message>
     <message>
         <source>ARGUMENTS</source>
-        <translation type="unfinished"/>
+        <translation>ARGÜMANLAR</translation>
     </message>
     <message>
         <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
-        <translation type="unfinished"/>
+        <translation>Belirtilen özelliği belirtilen ana bilgisayarda uzaktan çalışan Veyon Sunucusuna bağlanarak başlatır. Özellik, ad veya UID ile belirtilebilir. Tüm kullanılabilir özellikleri görmek için ``show`` komutunu kullanın. Özelliğe bağlı olarak, tek bir JSON dizesi olarak kodlanmış ek argümanlar (görüntülenecek metin mesajı gibi) belirtilmelidir. Daha fazla bilgi için lütfen geliştirici belgelerine bakın</translation>
     </message>
     <message>
         <source>Lock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Ekranı kilitle</translation>
     </message>
     <message>
         <source>Display a text message</source>
-        <translation type="unfinished"/>
+        <translation>Bir metin mesajı görüntüle</translation>
     </message>
     <message>
         <source>Test message</source>
-        <translation type="unfinished"/>
+        <translation>Test mesajı</translation>
     </message>
     <message>
         <source>Start an application</source>
-        <translation type="unfinished"/>
+        <translation>Bir uygulamayı başlat</translation>
     </message>
     <message>
         <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
-        <translation type="unfinished"/>
+        <translation>Uzaktan çalışan Veyon Sunucusuna bağlanarak belirtilen ana bilgisayarda belirtilen özelliği durdurur. Özellik ad veya UID ile belirtilebilir. Kullanılabilir tüm özellikleri görmek için ``show`` komutunu kullanın.</translation>
     </message>
     <message>
         <source>Unlock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Ekranın kilidini aç</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>Belirtilen komut mevcut değil veya bu komut için yardım mevcut değil.</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1899,7 +1946,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Worker</source>
-        <translation type="unfinished"/>
+        <translation>Çalışan</translation>
     </message>
     <message>
         <source>UID</source>
@@ -1907,35 +1954,35 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Plugin</source>
-        <translation type="unfinished"/>
+        <translation>Eklenti</translation>
     </message>
     <message>
         <source>Invalid feature name or UID specified</source>
-        <translation type="unfinished"/>
+        <translation>Geçersiz özellik adı veya UID belirtildi</translation>
     </message>
     <message>
         <source>Error parsing the JSON-encoded arguments: %1</source>
-        <translation type="unfinished"/>
+        <translation>JSON kodlu argümanları ayrıştırırken hata oluştu: %1</translation>
     </message>
     <message>
         <source>Failed to initialize credentials</source>
-        <translation type="unfinished"/>
+        <translation>Kimlik bilgileri başlatılamadı</translation>
     </message>
     <message>
         <source>Could not establish a connection to host %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 ana makinesine bağlantı kurulamadı</translation>
     </message>
     <message>
         <source>Failed to send feature control message to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Özellik kontrol mesajı %1 ana bilgisayarına gönderilemedi</translation>
     </message>
     <message>
         <source>Feature-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>Özellik ile ilgili CLI işlemleri</translation>
     </message>
     <message>
         <source>Commands for controlling features</source>
-        <translation type="unfinished"/>
+        <translation>Özellikleri kontrol etmek için komutlar</translation>
     </message>
 </context>
 <context>
@@ -1950,11 +1997,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Hedef dizin</translation>
     </message>
     <message>
         <source>Default source directory</source>
-        <translation type="unfinished"/>
+        <translation>Varsayılan kaynak dizini</translation>
     </message>
     <message>
         <source>Options</source>
@@ -1962,11 +2009,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Remember last source directory</source>
-        <translation type="unfinished"/>
+        <translation>Son kaynak dizinini hatırla</translation>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
-        <translation type="unfinished"/>
+        <translation>Hedef dizin yoksa oluşturun</translation>
     </message>
 </context>
 <context>
@@ -1992,7 +2039,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
-        <translation>İlişkili programla dosya aktarma ve açma</translation>
+        <translation>İlgili programla dosya(ları) aktarın ve açın</translation>
     </message>
     <message>
         <source>Transfer and open destination folder</source>
@@ -2157,15 +2204,15 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>TLS configuration</source>
-        <translation type="unfinished"/>
+        <translation>TLS yapılandırması</translation>
     </message>
     <message>
         <source>Use certificate authority for TLS connections</source>
-        <translation type="unfinished"/>
+        <translation>TLS bağlantıları için sertifika yetkilisini kullan</translation>
     </message>
     <message>
         <source>CA certificate file</source>
-        <translation type="unfinished"/>
+        <translation>CA sertifika dosyası</translation>
     </message>
     <message>
         <source>...</source>
@@ -2173,18 +2220,58 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Host certificate file</source>
-        <translation type="unfinished"/>
+        <translation>Ana bilgisayar sertifika dosyası</translation>
     </message>
     <message>
         <source>Host private key file</source>
-        <translation type="unfinished"/>
+        <translation>Özel anahtar dosyasını barındır</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation>Stil:</translation>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation>Yerel</translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation>Renk şeması:</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation>Aydınlık</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Karanlık</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Kullanıcı grupları</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Arka uç:</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation>Etki alanından kullanıcı gruplarını dahil et</translation>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Eksik kullanıcı grupları arka ucu</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation>Hiçbir kullanıcı grubu eklentisi bulunamadı. Lütfen kurulumunuzu kontrol edin!</translation>
     </message>
 </context>
 <context>
     <name>HeadlessVncServer</name>
     <message>
         <source>Headless VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Başlıksız VNC sunucusu</translation>
     </message>
 </context>
 <context>
@@ -2237,7 +2324,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>LDAP base DN test failed</source>
-        <translation>LDAP temel DN sınaması başarısız</translation>
+        <translation>LDAP tabanlı DN testi başarısız oldu</translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
@@ -2249,27 +2336,31 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>LDAP base DN test successful</source>
-        <translation>LDAP temel DN sınaması başarılı</translation>
+        <translation>LDAP tabanlı DN testi başarılı</translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP temel DN&apos;si başarıyla sorgulandı. Aşağıdaki girdiler bulundu::
+
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test failed</source>
-        <translation>LDAP adlandırma bağlamı sınaması başarısız</translation>
+        <translation>LDAP adlandırma bağlamı testi başarısız oldu</translation>
     </message>
     <message>
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Adlandırma bağlamları aracılığıyla temel DN sorgulanamadı. Lütfen adlandırma bağlamı öznitelik parametresini kontrol edin.
+
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
-        <translation>LDAP adlandırma bağlamı sınaması başarılı</translation>
+        <translation>LDAP adlandırma bağlamı testi başarılı</translation>
     </message>
     <message>
         <source>The LDAP naming context has been queried successfully. The following base DN was found:
@@ -2287,11 +2378,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>group tree</source>
-        <translation>küme ağacı</translation>
+        <translation>grup ağacı</translation>
     </message>
     <message>
         <source>Group tree</source>
-        <translation>Küme ağacı</translation>
+        <translation>Grup ağacı</translation>
     </message>
     <message>
         <source>computer tree</source>
@@ -2303,11 +2394,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>computer group tree</source>
-        <translation>bilgisayar kümesi ağacı</translation>
+        <translation>bilgisayar grup ağacı</translation>
     </message>
     <message>
         <source>Computer group tree</source>
-        <translation>Bilgisayar kümesi ağacı</translation>
+        <translation>Bilgisayar grup ağacı</translation>
     </message>
     <message>
         <source>user objects</source>
@@ -2319,19 +2410,19 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>group members</source>
-        <translation>küme üyeleri</translation>
+        <translation>grup üyeleri</translation>
     </message>
     <message>
         <source>Group member attribute</source>
-        <translation>Küme üyesi özniteliği</translation>
+        <translation>Grup üyesi özniteliği</translation>
     </message>
     <message>
         <source>Group not found</source>
-        <translation>Küme bulunamadı</translation>
+        <translation>Grup bulunamadı</translation>
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation>&quot;%1&quot; adlı bir küme bulunamadı.. Lütfen küme adını veya küme ağacı parametresini gözden geçirin.</translation>
+        <translation>&quot;%1&quot; adında bir grup bulunamadı. Lütfen grup adını veya grup ağacı parametresini kontrol edin.</translation>
     </message>
     <message>
         <source>computer objects</source>
@@ -2347,11 +2438,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar ana bilgisayar adlarını tam nitelikli etki alanı adları (FQDN) olarak depolanacak şekilde yapılandırdınız ancak etki alanı olmayan bir ana bilgisayar adı girdiniz.</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar ana bilgisayar adlarını, etki alanı adı olmadan basit ana bilgisayar adları olarak depolanacak şekilde yapılandırdınız ancak etki alanı adı kısmı olan bir ana bilgisayar adı girdiniz.</translation>
     </message>
     <message>
         <source>Computer hostname attribute</source>
@@ -2383,7 +2474,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>user groups</source>
-        <translation>kullanıcı kümeleri</translation>
+        <translation>kullanıcı grupları</translation>
     </message>
     <message>
         <source>computers</source>
@@ -2391,7 +2482,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>computer groups</source>
-        <translation>bilgisayar kümeleri</translation>
+        <translation>bilgisayar grupları</translation>
     </message>
     <message>
         <source>computer containers</source>
@@ -2399,7 +2490,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>groups of user</source>
-        <translation>kullanıcı kümeleri</translation>
+        <translation>kullanıcı grupları</translation>
     </message>
     <message>
         <source>User not found</source>
@@ -2407,11 +2498,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; adlı bir kullanıcı bulunamadı. Lütfen kullanıcı adını veya kullanıcı ağacı parametresini kontrol edin.</translation>
     </message>
     <message>
         <source>groups of computer</source>
-        <translation>bilgisayar kümeleri</translation>
+        <translation>bilgisayar grupları</translation>
     </message>
     <message>
         <source>Computer not found</source>
@@ -2419,7 +2510,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; ana bilgisayar adına sahip bir bilgisayar bulunamadı. Lütfen ana bilgisayar adını veya bilgisayar ağacı parametresini kontrol edin.</translation>
     </message>
     <message>
         <source>Hostname lookup failed</source>
@@ -2427,7 +2518,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation type="unfinished"/>
+        <translation>IP adresi %1 için ana bilgisayar adı bulunamadı. Lütfen DNS sunucu ayarlarınızı kontrol edin.</translation>
     </message>
     <message>
         <source>location entries</source>
@@ -2443,7 +2534,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Filter for computer groups</source>
-        <translation>Bilgisayar kümeleri için süzme</translation>
+        <translation>Bilgisayar grupları için filtre</translation>
     </message>
     <message>
         <source>Invalid test value</source>
@@ -2455,17 +2546,19 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>LDAP %1 test failed</source>
-        <translation>LDAP %1 sınaması başarısız</translation>
+        <translation>LDAP %1 testi başarısız oldu</translation>
     </message>
     <message>
         <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Yapılandırılan %1&apos;deki hiçbir girdi sorgulanamadı. Lütfen &quot;%2&quot; parametresini kontrol edin.
+
+%3</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
-        <translation>LDAP %1 sınaması başarılı</translation>
+        <translation>LDAP %1 testi başarılı</translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
@@ -2479,7 +2572,9 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>%1 sorgulanamadı. Lütfen %2 parametresini(lerini) kontrol edin ve var olan bir nesnenin adını girin.
+
+%3</translation>
     </message>
     <message>
         <source>and</source>
@@ -2499,27 +2594,27 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>LDAP filter test failed</source>
-        <translation>LDAP süzgeç sınaması başarısız</translation>
+        <translation>LDAP filtre testi başarısız oldu</translation>
     </message>
     <message>
         <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
 
 %2</source>
-        <translation>Yapılandırılmış süzgeç kullanılarak herhangi bir %1 sorgulanamadı. Lütfen %1 için LDAP süzgecini denetleyin.
+        <translation>Yapılandırılmış filtre kullanılarak herhangi bir %1 sorgulanamadı. Lütfen %1 için LDAP filtresini kontrol edin.
 
 %2</translation>
     </message>
     <message>
         <source>LDAP filter test successful</source>
-        <translation>LDAP süzgeç sınaması başarılı</translation>
+        <translation>LDAP filtre testi başarılı</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation>Yapılandırılmış süzgeç kullanılarak %1 %2 başarıyla sorgulandı.</translation>
+        <translation>%1 %2 yapılandırılmış filtre kullanılarak başarıyla sorgulandı.</translation>
     </message>
     <message>
         <source>LDAP directory</source>
-        <translation type="unfinished"/>
+        <translation>LDAP dizini</translation>
     </message>
 </context>
 <context>
@@ -2586,7 +2681,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>e.g. OU=Groups</source>
-        <translation>örn. OU=Kümeler</translation>
+        <translation>örn. OU=Gruplar</translation>
     </message>
     <message>
         <source>User tree</source>
@@ -2602,7 +2697,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Group tree</source>
-        <translation>Küme ağacı</translation>
+        <translation>Grup ağacı</translation>
     </message>
     <message>
         <source>Perform recursive search operations in object trees</source>
@@ -2630,7 +2725,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Group member attribute</source>
-        <translation>Küme üyesi özniteliği</translation>
+        <translation>Grup üyesi özniteliği</translation>
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
@@ -2642,23 +2737,23 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Optional object filters</source>
-        <translation>İsteğe bağlı nesne süzgeçleri</translation>
+        <translation>İsteğe bağlı nesne filtreleri</translation>
     </message>
     <message>
         <source>Filter for user groups</source>
-        <translation>Kullanıcı kümeleri için süzgeç</translation>
+        <translation>Kullanıcı grupları için filtre</translation>
     </message>
     <message>
         <source>Filter for users</source>
-        <translation>Kullanıcılar için süzme</translation>
+        <translation>Kullanıcılar için filtre</translation>
     </message>
     <message>
         <source>Filter for computer groups</source>
-        <translation>Bilgisayar kümeleri için süzme</translation>
+        <translation>Bilgisayar grupları için filtre</translation>
     </message>
     <message>
         <source>Group member identification</source>
-        <translation>Küme üyesi kimliği</translation>
+        <translation>Grup üye tanımlaması</translation>
     </message>
     <message>
         <source>Distinguished name (Samba/AD)</source>
@@ -2666,11 +2761,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>List all groups of a user</source>
-        <translation>Kullanıcının tüm kümelerini listele</translation>
+        <translation>Bir kullanıcının tüm gruplarını listele</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
-        <translation>Bilgisayarın tüm kümelerini listele</translation>
+        <translation>Bir bilgisayarın tüm gruplarını listele</translation>
     </message>
     <message>
         <source>Get computer object by IP address</source>
@@ -2686,11 +2781,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Enter group name</source>
-        <translation>Küme adı gir</translation>
+        <translation>Grup adını girin</translation>
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
-        <translation>Üyeleri sorgulanacak küme adını girin:</translation>
+        <translation>Lütfen üyelerini sorgulamak istediğiniz grubun adını girin:</translation>
     </message>
     <message>
         <source>Enter computer name</source>
@@ -2706,7 +2801,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
-        <translation>Küme üyelikleri sorgulanacak kullanıcı giriş adı girin:</translation>
+        <translation>Lütfen sorgulanacak grup üyeliklerinin kullanıcı adını girin:</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2718,11 +2813,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>(only if different from group tree)</source>
-        <translation>(eğer yalnızca küme ağacından farklıysa)</translation>
+        <translation>(sadece grup ağacından farklıysa)</translation>
     </message>
     <message>
         <source>Computer group tree</source>
-        <translation>Bilgisayar kümesi ağacı</translation>
+        <translation>Bilgisayar grubu ağacı</translation>
     </message>
     <message>
         <source>Filter for computers</source>
@@ -2734,11 +2829,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Integration tests</source>
-        <translation>Tümleştirme sınamaları</translation>
+        <translation>Entegrasyon testleri</translation>
     </message>
     <message>
         <source>Computer groups</source>
-        <translation>Bilgisayar kümeleri</translation>
+        <translation>Bilgisayar grupları</translation>
     </message>
     <message>
         <source>e.g. name or description</source>
@@ -2750,7 +2845,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Computer containers or OUs</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar konteynerleri veya OU&apos;lar</translation>
     </message>
     <message>
         <source>Connection security</source>
@@ -2790,7 +2885,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>e.g. (objectClass=group)</source>
-        <translation>örnek: (nesneSınıfı=grup)</translation>
+        <translation>ör. (objectClass=grup)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
@@ -2798,11 +2893,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation type="unfinished"/>
+        <translation>ör. (objectClass=room) VEYA (objectClass=computerLab)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation type="unfinished"/>
+        <translation>ör. (objectClass=container) veya (objectClass=organizationalUnit)</translation>
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
@@ -2826,7 +2921,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>e.g. cn or displayName</source>
-        <translation type="unfinished"/>
+        <translation>ör. cn veya ekranAdı</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
@@ -2838,7 +2933,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Location attribute in computer objects</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar nesnelerindeki konum niteliği</translation>
     </message>
     <message>
         <source>List all entries of a location</source>
@@ -2862,7 +2957,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen bilgisayar konumunun adını girin (joker karakterlere izin verilir):</translation>
     </message>
     <message>
         <source>Enter location name</source>
@@ -2870,7 +2965,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen sorgulanacak girişlerin bulunduğu konumun adını girin:</translation>
     </message>
     <message>
         <source>Browse</source>
@@ -2878,11 +2973,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Test</source>
-        <translation>Sına</translation>
+        <translation>Test</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation type="unfinished"/>
+        <translation>Tam nitelikli alan adları (FQDN, örn. myhost.example.org) olarak depolanan ana bilgisayar adları</translation>
     </message>
     <message>
         <source>Computer hostname attribute</source>
@@ -2890,7 +2985,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen sorgulanacak bir bilgisayar adı girin:</translation>
     </message>
     <message>
         <source>Enter hostname</source>
@@ -2898,7 +2993,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen sorgulanacak grup üyeliklerinin bulunduğu bilgisayarın adını girin:</translation>
     </message>
     <message>
         <source>User login name attribute</source>
@@ -2906,19 +3001,27 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı oturum açma adı veya bilgisayar ana bilgisayar adı için yapılandırılmış öznitelik (OpenLDAP)</translation>
     </message>
     <message>
         <source>Directory name</source>
-        <translation type="unfinished"/>
+        <translation>Dizin adı</translation>
     </message>
     <message>
         <source>Query options</source>
-        <translation type="unfinished"/>
+        <translation>Sorgu seçenekleri</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
-        <translation type="unfinished"/>
+        <translation>İç içe geçmiş kullanıcı gruplarını sorgula (yalnızca AD tarafından desteklenir)</translation>
+    </message>
+    <message>
+        <source>Query timeout</source>
+        <translation>Sorgu zaman aşımı</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
     </message>
 </context>
 <context>
@@ -2929,7 +3032,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Please use the global LDAP configuration page to configure how to retrieve locations and computers from your LDAP-based directory service.</source>
-        <translation type="unfinished"/>
+        <translation>Konumları ve bilgisayarları LDAP tabanlı dizin hizmetinizden nasıl alacağınızı yapılandırmak için lütfen genel LDAP yapılandırma sayfasını kullanın.</translation>
     </message>
 </context>
 <context>
@@ -2948,35 +3051,35 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation>LDAP/AD tümelemesini yapılandırmak ve sınamak için komutlar</translation>
+        <translation>LDAP/AD entegrasyonunu yapılandırma ve test etme komutları</translation>
     </message>
     <message>
         <source>Basic LDAP/AD support for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon için temel LDAP/AD desteği</translation>
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (LDAP/AD&apos;den bilgisayarlar ve konumlar yükleme)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (LDAP/AD&apos;den kullanıcıları ve grupları yükleme)</translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen şemayı takip eden geçerli bir LDAP URL&apos;si belirtin&quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</translation>
     </message>
     <message>
         <source>No naming context attribute name given - falling back to configured value.</source>
-        <translation type="unfinished"/>
+        <translation>Adlandırma bağlamı özniteliği adı verilmedi - yapılandırılmış değere geri dönülüyor.</translation>
     </message>
     <message>
         <source>Could not query base DN. Please check your LDAP configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Temel DN sorgulanamadı. Lütfen LDAP yapılandırmanızı kontrol edin.</translation>
     </message>
     <message>
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
-        <translation type="unfinished"/>
+        <translation>%1&apos;i temel DN olarak yapılandırıyor ve adlandırma bağlamı sorgularını devre dışı bırakıyor.</translation>
     </message>
     <message>
         <source>Test binding to an LDAP server</source>
@@ -3007,11 +3110,11 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>User sessions</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı oturumları</translation>
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
-        <translation type="unfinished"/>
+        <translation>Sunucu başlamadan önceki minimum oturum ömrü</translation>
     </message>
     <message>
         <source>User login</source>
@@ -3019,7 +3122,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Login key sequence</source>
-        <translation type="unfinished"/>
+        <translation>Oturum açma anahtarı dizisi</translation>
     </message>
 </context>
 <context>
@@ -3037,7 +3140,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation>arama süzgeci gir...</translation>
+        <translation>arama filtresine girin...</translation>
     </message>
 </context>
 <context>
@@ -3047,12 +3150,12 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Yapılandırma</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>Balon iouçlarını devre dışı bırak</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>Yalnızca simgeleri göster</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation>Araç ipuçlarını devre dışı bırak</translation>
     </message>
 </context>
 <context>
@@ -3131,7 +3234,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Master</source>
-        <translation>Usta</translation>
+        <translation>Master</translation>
     </message>
     <message>
         <source>Access control</source>
@@ -3243,15 +3346,15 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar simgelerinin boyutunu otomatik olarak ayarla</translation>
     </message>
     <message>
         <source>Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>Slayt gösterisi</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>Spot ışığı</translation>
     </message>
     <message>
         <source>Veyon Master</source>
@@ -3262,8 +3365,24 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
         <translation>Konumlar ve bilgisayarlar</translation>
     </message>
     <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation>Özel bilgisayar düzenlemesini kullanın.
+
+Düzenlemeyi bir dosyadan yüklemek veya mevcut düzenlemeyi bir dosyaya kaydetmek için basılı tutun.</translation>
+    </message>
+    <message>
         <source>Only show computers with logged on users</source>
-        <translation type="unfinished"/>
+        <translation>Yalnızca oturum açmış kullanıcıların olduğu bilgisayarları göster</translation>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation>Bilgisayar pozisyonlarını yükle</translation>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation>Bilgisayar pozisyonlarını kaydet</translation>
     </message>
 </context>
 <context>
@@ -3318,7 +3437,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Hide computer filter field</source>
-        <translation>Bilgisayar süzme alanını gizle</translation>
+        <translation>Bilgisayar filtre alanını gizle</translation>
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
@@ -3355,6 +3474,10 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <message>
         <source>Only user name</source>
         <translation>Yalnızca kullanıcı adı</translation>
+    </message>
+    <message>
+        <source>Only last part of user name</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Only computer name</source>
@@ -3414,15 +3537,15 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
+        <translation>Küçük resim aralığı</translation>
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> px</translation>
     </message>
     <message>
         <source>Hide local session</source>
-        <translation type="unfinished"/>
+        <translation>Yerel oturumu gizle</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -3430,15 +3553,103 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"/>
+        <translation>Küçük resim en boy oranı</translation>
     </message>
     <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayar simgesi boyutunu otomatik olarak ayarla</translation>
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
-        <translation type="unfinished"/>
+        <translation>Özellik pencerelerini ana pencereyle aynı ekranda açın</translation>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation>Yapılandırma şablonları</translation>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation>İzleme modunda görüntü kalitesi</translation>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation>En yüksek</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation>Yüksek</translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation>Orta</translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation>Düşük</translation>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation>En düşük</translation>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation>Uzaktan erişim görüntü kalitesi</translation>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation>Gelişmiş</translation>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation>Bilgisayar adı kaynağı</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Varsayılan</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Host adresi</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation>Oturum istemci adresi</translation>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation>Oturum istemci adı</translation>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation>Oturum ana bilgisayar adı</translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation>Oturum meta verileri</translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Kullanıcının tam adı</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Kullanıcı oturum açma adı</translation>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation>Bilgisayar UID rolü</translation>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation>Oturum meta verileri karma değeri</translation>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation>Her zaman tüm konumları genişlet</translation>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Görüntü kalitesi</translation>
     </message>
 </context>
 <context>
@@ -3457,22 +3668,22 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Query application version of the server</source>
-        <translation type="unfinished"/>
+        <translation>Sunucunun uygulama sürümünü sorgula</translation>
     </message>
     <message>
         <source>Query active features</source>
-        <translation type="unfinished"/>
+        <translation>Etkin özellikleri sorgula</translation>
     </message>
     <message>
         <source>Query properties of remotely available screens</source>
-        <translation type="unfinished"/>
+        <translation>Uzaktan erişilebilen ekranların sorgu özellikleri</translation>
     </message>
 </context>
 <context>
     <name>NestedNetworkObjectDirectory</name>
     <message>
         <source>All directories</source>
-        <translation type="unfinished"/>
+        <translation>Tüm dizinler</translation>
     </message>
 </context>
 <context>
@@ -3504,7 +3715,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     <name>OpenWebsiteDialog</name>
     <message>
         <source>Open website</source>
-        <translation>Web sitesi aç</translation>
+        <translation>İnternet sitesi aç</translation>
     </message>
     <message>
         <source>e.g. Veyon</source>
@@ -3512,7 +3723,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation>Unutmayın ve web sitesi menüsüne ekleyin</translation>
+        <translation>Hatırla ve internet sitesi menüsüne ekle</translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
@@ -3520,7 +3731,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation>Lütfen açılacak web sitesinin URL&apos;sini girin:</translation>
+        <translation>Lütfen açılacak internet sitesinin URL&apos;sini girin:</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -3528,7 +3739,7 @@ Genel anahtar, istemci bilgisayarlarda gelen bağlantı isteğinin kimliğini do
     </message>
     <message>
         <source>Website name</source>
-        <translation type="unfinished"/>
+        <translation>İnternet sitesi adı</translation>
     </message>
 </context>
 <context>
@@ -3662,15 +3873,15 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>Gerçekten &lt;b&gt;TÜM&lt;/b&gt; bilgisayarları yeniden başlatmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>Gerçekten &lt;b&gt;TÜM&lt;/b&gt; bilgisayarları kapatmak istiyor musunuz?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>Seçili bilgisayarların gerçekten kapanmasını istiyor musunuz?</translation>
     </message>
 </context>
 <context>
@@ -3719,12 +3930,16 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
         <translation>Bilgisayarı uzaktan görüntüle veya denetle</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>Bilgisayara erişim için lütfen bir ana makine adı veya IP adresi giriniz:</translation>
-    </message>
-    <message>
         <source>Show help about command</source>
         <translation>Komut hakkında bilgi göster</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
+        <translation>Panodaki içerikleri değiştir</translation>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation>Hiçbir bilgisayar seçilmediğinden manuel erişim için bir bilgisayarın ana bilgisayar adını veya IP adresini girebilirsiniz:</translation>
     </message>
 </context>
 <context>
@@ -3742,7 +3957,7 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 Uzaktan Erişim</translation>
     </message>
 </context>
 <context>
@@ -3813,15 +4028,15 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
+        <translation>Bağlanıyor...</translation>
     </message>
     <message>
         <source>Select screen</source>
-        <translation type="unfinished"/>
+        <translation>Ekran seç</translation>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>Tüm ekranlar</translation>
     </message>
 </context>
 <context>
@@ -3844,15 +4059,15 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     </message>
     <message>
         <source>Lock input devices</source>
-        <translation type="unfinished"/>
+        <translation>Giriş aygıtlarını kilitle</translation>
     </message>
     <message>
         <source>Unlock input devices</source>
-        <translation type="unfinished"/>
+        <translation>Giriş aygıtlarının kilidini aç</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
-        <translation type="unfinished"/>
+        <translation>Tüm kullanıcıların tüm dikkatini geri kazanmak için bu düğmeyi kullanarak bilgisayarlarını kilitleyebilirsiniz. Bu modda masaüstü hala görünürken tüm giriş aygıtları kilitlenir.</translation>
     </message>
 </context>
 <context>
@@ -3940,7 +4155,38 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation type="unfinished"/>
+        <translation>Seçili tüm ekran görüntülerini gerçekten silmek istiyor musunuz?</translation>
+    </message>
+</context>
+<context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation>İstenen kimlik doğrulama yöntemi mevcut değil</translation>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation>&quot;%1&quot; kuralı tarafından erişime izin verildi</translation>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation>Erişim &quot;%1&quot; kuralı tarafından engellendi</translation>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation>Hiçbir kurala erişime izin verilmiyor</translation>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation>Yetkili bir kullanıcı grubunun üyesi olmayan kullanıcıya erişim</translation>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation>Kullanıcının erişimi engellendi</translation>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation>Kullanıcı erişimi onayladı</translation>
     </message>
 </context>
 <context>
@@ -4017,70 +4263,122 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     </message>
     <message>
         <source>Maximum session count</source>
-        <translation type="unfinished"/>
+        <translation>Maksimum oturum sayısı</translation>
     </message>
     <message>
         <source>Network port numbers</source>
-        <translation type="unfinished"/>
+        <translation>Ağ bağlantı noktası numaraları</translation>
     </message>
     <message>
         <source>Veyon server</source>
-        <translation type="unfinished"/>
+        <translation>Veyon sunucusu</translation>
     </message>
     <message>
         <source>Internal VNC server</source>
-        <translation type="unfinished"/>
+        <translation>Dahili VNC sunucusu</translation>
     </message>
     <message>
         <source>Feature manager</source>
-        <translation type="unfinished"/>
+        <translation>Özellik yöneticisi</translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation>Tanıtım sunucusu</translation>
+        <translation>Gösteri sunucusu</translation>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
-        <translation type="unfinished"/>
+        <translation>Çeşitli ağ ayarları</translation>
     </message>
     <message>
         <source>Session mode</source>
-        <translation type="unfinished"/>
+        <translation>Oturum modu</translation>
     </message>
     <message>
         <source>Local session mode (single server instance for primary local session)</source>
-        <translation type="unfinished"/>
+        <translation>Yerel oturum modu (birincil yerel oturum için tek sunucu örneği)</translation>
     </message>
     <message>
         <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation type="unfinished"/>
+        <translation>Etkin oturum modu (etkin yerel veya uzak oturum için tek sunucu örneği)</translation>
     </message>
     <message>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
+        <translation>Çoklu oturum modu (her yerel ve uzak masaüstü oturumu için ayrı sunucu örneği)</translation>
+    </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation>Yerel veya uzak olması fark etmeksizin, geçerli etkin oturum için tek bir Veyon Sunucu örneğinin başlatılması gerekiyorsa etkinleştirin.</translation>
+    </message>
+    <message>
+        <source>Miscellaneous settings</source>
+        <translation>Çeşitli ayarlar</translation>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
+        <translation>Pano senkronizasyonunu devre dışı bırak</translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation>Oturum meta verileri</translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation>İçerik</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Yok</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation>Bir ortam değişkeninin değeri</translation>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation>Bir kayıt defteri anahtarının değeri</translation>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation>Ortam değişkeni adı:</translation>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation>Kayıt anahtarı adı:</translation>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation>İsteğe bağlı olarak, bilgisayar adının bir kısmını çıkarmak ve bunu bilgisayar için görüntü adı olarak kullanmak üzere bir yakalama içeren düzenli bir ifade girin.
+
+Örnek: [^-]*-(PC[0-9]*)</translation>
     </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>Hizmet başlatılıyor %1</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>Hizmet durduruluyor %1</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>Hizmet kaydediliyor %1</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>Hizmet kaydedilimiyor %1</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>Hizmet kontrolü</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation>%1 başlatılıyor</translation>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation>%1 durduruluyor</translation>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation>%1 tekrar başlatılıyor</translation>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation>%1 kayıt oluyor</translation>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation>%1 kaydı siliniyor</translation>
     </message>
 </context>
 <context>
@@ -4138,7 +4436,7 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon CLI</source>
-        <translation type="unfinished"/>
+        <translation>Veyon CLI için etkileşimli kabuk ve betik yürütme</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -4149,18 +4447,26 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>Önceki</translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation type="unfinished"/>
+        <translation>Başlat/duraklat</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished"/>
+        <translation>Sonraki</translation>
     </message>
     <message>
         <source>Duration:</source>
+        <translation>Süre:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4168,39 +4474,40 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     <name>SpotlightPanel</name>
     <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Seçili bilgisayarları ekle</translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Seçili bilgisayarları kaldır</translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"/>
+        <translation>Bilgisayarları gerçek zamanlı olarak güncelle</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>Spot ışığı</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen eklemek için en az bir bilgisayar seçin.</translation>
     </message>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.
 The second button removes the selected or last computer.</source>
-        <translation type="unfinished"/>
+        <translation>Orta fare düğmesine tıklayarak veya alttaki ilk düğmeye tıklayarak bilgisayar ekleyin.
+İkinci buton seçili veya son bilgisayarı kaldırır.</translation>
     </message>
 </context>
 <context>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Uygulama başlat</translation>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen seçili bilgisayarlarda başlatılacak uygulamaları girin. Birden fazla uygulamayı satırla ayırabilirsiniz.</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
@@ -4208,11 +4515,11 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Remember and add to application menu</source>
-        <translation type="unfinished"/>
+        <translation>Hatırla ve uygulama menüsüne ekle</translation>
     </message>
     <message>
         <source>Application name</source>
-        <translation type="unfinished"/>
+        <translation>Uygulama adı</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -4260,7 +4567,7 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Please enter your message which send to all selected users.</source>
-        <translation type="unfinished"/>
+        <translation>Lütfen seçili tüm kullanıcılara gönderilecek mesajınızı girin.</translation>
     </message>
 </context>
 <context>
@@ -4310,18 +4617,7 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>Erişim izni yok</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Kişisel ayarlarınız kaydedilemedi! Lütfen kullanıcı yapılandırma dosyasının yolunu, %1 Yapılandırıcıyı kullanarak gözden geçirin.</translation>
+        <translation>Maksimum işlemci kullanımı</translation>
     </message>
 </context>
 <context>
@@ -4375,7 +4671,7 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation type="unfinished"/>
+        <translation>Gerçekten &lt;b&gt;TÜM&lt;/b&gt; kullanıcıların oturumunu kapatmak istiyor musunuz?</translation>
     </message>
 </context>
 <context>
@@ -4450,7 +4746,18 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Screen %1</source>
-        <translation type="unfinished"/>
+        <translation>Ekran %1</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>Erişim izni yok</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>Kişisel ayarlarınız kaydedilemedi! Lütfen kullanıcı yapılandırma dosyasının yolunu, %1 Yapılandırıcıyı kullanarak gözden geçirin.</translation>
     </message>
 </context>
 <context>
@@ -4471,7 +4778,7 @@ The second button removes the selected or last computer.</source>
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation>Pencereler</translation>
+        <translation>Windows</translation>
     </message>
     <message>
         <source>General</source>
@@ -4525,6 +4832,10 @@ The second button removes the selected or last computer.</source>
         <source>Use input device interception driver</source>
         <translation>Girdi cihazı müdahale sürücüsü kullan</translation>
     </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation>Güç düğmesi devre dışıyken özel güç şemasını kullan</translation>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
@@ -4534,7 +4845,7 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Internal display</source>
-        <translation type="unfinished"/>
+        <translation>Dahili ekran</translation>
     </message>
 </context>
 <context>
@@ -4557,19 +4868,19 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; hizmeti yüklenemedi (hata %2).</translation>
     </message>
     <message>
         <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; hizmeti için hata eylemleri yapılandırması değiştirilemedi (hata %2).</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; hizmeti kaldırılamadı (hata %2).</translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; hizmetinin başlangıç ​​türü değiştirilemedi (hata %2).</translation>
     </message>
 </context>
 <context>

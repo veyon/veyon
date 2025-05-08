@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="pl" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pl">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -137,16 +137,15 @@ Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne 
         <translation>Zarządzanie grupami użytkowników:</translation>
     </message>
     <message>
-        <source>Missing user groups backend</source>
-        <translation>Nieskonfigurowane źródło grup użytkowników</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Brak domyślnej wtyczki źródła grup użytkowników. Proszę sprawdzić poprawność instalacji programu!</translation>
-    </message>
-    <message>
         <source>Restrict access to members of specific user groups</source>
         <translation>Ogranicz dostęp do członków wybranych grup</translation>
+    </message>
+</context>
+<context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -257,7 +256,7 @@ Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne 
     </message>
     <message>
         <source>are located at the same location</source>
-        <translation type="unfinished"/>
+        <translation>znajdują się w tym samym miejscu</translation>
     </message>
     <message>
         <source>are not located the same location</source>
@@ -273,7 +272,7 @@ Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne 
     </message>
     <message>
         <source>is authenticated via</source>
-        <translation type="unfinished"/>
+        <translation>jest uwierzytelniany przez</translation>
     </message>
     <message>
         <source>is not authenticated via</source>
@@ -323,6 +322,14 @@ Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne 
         <source>Session being accessed is a login screen</source>
         <translation>Dostęp do sesji to ekran logowania</translation>
     </message>
+    <message>
+        <source>Local computer is already being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local computer is not yet being accessed</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -367,16 +374,16 @@ Jeśli chcesz przetłumaczyć Veyon na swój język lub chcesz poprawić obecne 
         <translation>Dostęp w danym scenariuszu wymaga zgody zalogowanego użytkownika.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>Błąd: nieznana akcja.</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Wynik testu</translation>
     </message>
     <message>
         <source>Authentication method</source>
         <translation>Metoda uwierzytelnienia</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -472,10 +479,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Wybierz klucz do usunięcia!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Wprowadź nazwę grupy użytkowników lub roli, dla której chcesz zaimportować klucz uwierzytelniający:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Wybierz klucz do wyeksportowania!</translation>
     </message>
@@ -486,6 +489,12 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Wybierz klucz do którego chcesz przydzielić dostęp dla grupy!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1201,6 +1210,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>The specified command does not exist or no help is available for it.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1218,10 +1231,6 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
 </context>
 <context>
     <name>ComputerControlListModel</name>
-    <message>
-        <source>Host/IP address: %1</source>
-        <translation>Host/adres IP: %1</translation>
-    </message>
     <message>
         <source>Active features: %1</source>
         <translation>Aktywne funkcje: %1</translation>
@@ -1260,7 +1269,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>[no user]</source>
-        <translation type="unfinished"/>
+        <translation>[no user]</translation>
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
@@ -1271,11 +1280,23 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>invalid</source>
-        <translation>nieprawidłowy</translation>
+        <source>Hostname: %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>[none]</source>
+        <source>unknown</source>
+        <translation>nieznane</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No features active</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1347,6 +1368,18 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>Nie można określić lokalizacji tego komputera. Wskazuje to na problem z konfiguracją systemu. W panelu wyboru komputera pokazane zostaną wszystkie lokalizacje.</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerMonitoring</name>
@@ -1404,6 +1437,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Nie można zapisać listy komputerów i użytkowników w %1! Sprawdź prawa dostępu do pliku</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation>Wyszukiwanie komputerów</translation>
     </message>
 </context>
 <context>
@@ -1552,6 +1589,14 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Spowalniaj aktualizacje miniatur podczas działania wersji demonstracyjnej</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1851,7 +1896,7 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     </message>
     <message>
         <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
-        <translation type="unfinished"/>
+        <translation>Uruchamia określoną funkcję na określonym hoście, łącząc się ze zdalnie uruchomionym serwerem Veyon Server. Funkcja może być określona przez nazwę lub UID. Użyj polecenia ``show``, aby zobaczyć wszystkie dostępne funkcje. W zależności od funkcji należy określić dodatkowe argumenty (takie jak wiadomość tekstowa do wyświetlenia) zakodowane jako pojedynczy ciąg JSON. Więcej informacji można znaleźć w dokumentacji deweloperskiej</translation>
     </message>
     <message>
         <source>Lock the screen</source>
@@ -2178,6 +2223,46 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Host private key file</source>
         <translation>Plik klucza prywatnego hosta</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Zaplecze:</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Nieskonfigurowane źródło grup użytkowników</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2923,6 +3008,14 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <source>Query nested user groups (supported by AD only)</source>
         <translation>Zapytanie o zagnieżdżone grupy użytkowników (obsługiwane tylko przez AD)</translation>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>ms</translation>
+    </message>
 </context>
 <context>
     <name>LdapNetworkObjectDirectoryConfigurationPage</name>
@@ -3050,12 +3143,12 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Konfiguracja</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>Wyłącz dymki z podpowiedziami</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>Pokaż tylko ikony</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3265,7 +3358,21 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Sale i komputery</translation>
     </message>
     <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer positions</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3360,6 +3467,10 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
         <translation>Tylko nazwa użytkownika</translation>
     </message>
     <message>
+        <source>Only last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Only computer name</source>
         <translation>Tylko nazwa komputera</translation>
     </message>
@@ -3442,6 +3553,94 @@ Klucz publiczny jest używany na komputerach klienta do uwierzytelnienia połąc
     <message>
         <source>Open feature windows on the same screen as the main window</source>
         <translation>Otwieraj okna funkcji na tym samym ekranie, co okno główne </translation>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Adres hosta</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Nazwa użytkownika</translation>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3722,12 +3921,16 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
         <translation>Zdalny podgląd lub sterowanie komputerem</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>Wprowadź nazwę lub adres IP komputera, do którego chcesz uzyskać dostęp:</translation>
-    </message>
-    <message>
         <source>Show help about command</source>
         <translation>Pokaż pomoc dotyczącą komendy</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation>Nie zaznaczono komputera, wpisz nazwę lub adres IP komputera do dostępu ręcznego</translation>
     </message>
 </context>
 <context>
@@ -3947,6 +4150,37 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     </message>
 </context>
 <context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
@@ -4062,28 +4296,78 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Miscellaneous settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Brak</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>Uruchamianie usługi %1</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>Zatrzymywanie usługi %1</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>Rejestrowanie usługi %1</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>Wyrejestrowywanie usługi %1</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>Zarządzenie usługą</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4165,6 +4449,14 @@ Zazwyczaj jest to wymagane do obsługi serwerów terminali.</translation>
     <message>
         <source>Duration:</source>
         <translation>Czas trwania:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4317,17 +4609,6 @@ The second button removes the selected or last computer.</source>
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>Brak prawa edycji</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Nie można zapisać ustawień osobistych! Sprawdź ścieżkę pliku konfiguracji użytkownika za pomocą Konfiguratora %1.</translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4457,6 +4738,17 @@ The second button removes the selected or last computer.</source>
     </message>
 </context>
 <context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>Brak prawa edycji</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>Nie można zapisać ustawień osobistych! Sprawdź ścieżkę pliku konfiguracji użytkownika za pomocą Konfiguratora %1.</translation>
+    </message>
+</context>
+<context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
@@ -4527,6 +4819,10 @@ The second button removes the selected or last computer.</source>
     <message>
         <source>Use input device interception driver</source>
         <translation>Użyj sterownika przechwytywania urządzenia wejściowego</translation>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

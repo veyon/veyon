@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_CN" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_CN">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -137,16 +137,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>用户组后端：</translation>
     </message>
     <message>
-        <source>Missing user groups backend</source>
-        <translation>缺少用户组后端</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>没有找到默认的用户组插件，请检查您的安装程序！</translation>
-    </message>
-    <message>
         <source>Restrict access to members of specific user groups</source>
         <translation>限制特定用户组成员的访问权限</translation>
+    </message>
+</context>
+<context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -323,6 +322,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Session being accessed is a login screen</source>
         <translation>正在被访问的会话是登录界面</translation>
     </message>
+    <message>
+        <source>Local computer is already being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local computer is not yet being accessed</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -367,16 +374,16 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>指定场景中的访问需要登录用户的权限。</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>错误：未知的操作</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>测试规则</translation>
     </message>
     <message>
         <source>Authentication method</source>
         <translation>验证模式</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -473,10 +480,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>请选择要删除的密钥！</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>请输入要为其导入身份验证密钥的用户组或角色的名称：</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>请选择要导出的密钥！</translation>
     </message>
@@ -487,6 +490,12 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>请选择一个用于访问组的的密钥！</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1202,6 +1211,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>The specified command does not exist or no help is available for it.</source>
         <translation>指定的命令不存在或没有它的说明可以使用。</translation>
     </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1219,10 +1232,6 @@ The public key is used on client computers to authenticate incoming connection r
 </context>
 <context>
     <name>ComputerControlListModel</name>
-    <message>
-        <source>Host/IP address: %1</source>
-        <translation>主机/IP 地址: %1</translation>
-    </message>
     <message>
         <source>Active features: %1</source>
         <translation>激活的功能: %1</translation>
@@ -1272,12 +1281,24 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>名称：%1</translation>
     </message>
     <message>
-        <source>invalid</source>
-        <translation>无效</translation>
+        <source>Hostname: %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>[none]</source>
-        <translation>[无]</translation>
+        <source>unknown</source>
+        <translation>未知</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No features active</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1348,6 +1369,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>无法确定此计算机的地点。这表明系统配置存在问题。所有地点都将显示在计算机选择面板中。</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation>登录自</translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation>%1 天</translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation>1 天</translation>
+    </message>
 </context>
 <context>
     <name>ComputerMonitoring</name>
@@ -1405,6 +1438,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>无法将计算机和用户列表写入 %1！请检查文件访问权限。</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation>搜索计算机</translation>
     </message>
 </context>
 <context>
@@ -1554,6 +1591,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>当演示正在运行时降低缩略图更新频率</translation>
     </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation>带宽限制</translation>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation>MB/s</translation>
+    </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
@@ -1575,7 +1620,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>屏幕演示</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
@@ -1583,7 +1628,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>全屏演示</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
@@ -1697,7 +1742,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>New application</source>
-        <translation type="unfinished"/>
+        <translation>新程序</translation>
     </message>
 </context>
 <context>
@@ -1724,7 +1769,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>点击此按钮，将在所有计算机上启动一个程序</translation>
     </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
@@ -1812,19 +1857,19 @@ The public key is used on client computers to authenticate incoming connection r
     <name>FeatureCommands</name>
     <message>
         <source>List names of all available features</source>
-        <translation type="unfinished"/>
+        <translation>列出所有可用功能的名称</translation>
     </message>
     <message>
         <source>Show table with details of all available features</source>
-        <translation type="unfinished"/>
+        <translation>显示含有所有可用功能的详细信息表格</translation>
     </message>
     <message>
         <source>Start a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>启动远程主机功能</translation>
     </message>
     <message>
         <source>Stop a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>停止远程主机功能</translation>
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
@@ -1844,7 +1889,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>FEATURE</source>
-        <translation type="unfinished"/>
+        <translation>功能</translation>
     </message>
     <message>
         <source>ARGUMENTS</source>
@@ -1900,11 +1945,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Worker</source>
-        <translation type="unfinished"/>
+        <translation>Worker</translation>
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin</source>
@@ -1920,11 +1965,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Failed to initialize credentials</source>
-        <translation type="unfinished"/>
+        <translation>初始化认证失败</translation>
     </message>
     <message>
         <source>Could not establish a connection to host %1</source>
-        <translation type="unfinished"/>
+        <translation>无法建立到主机 %1 的连接</translation>
     </message>
     <message>
         <source>Failed to send feature control message to host %1</source>
@@ -2180,6 +2225,46 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Host private key file</source>
         <translation>主机私钥文件</translation>
     </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>用户组</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>后端：</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>缺少用户组后端</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>HeadlessVncServer</name>
@@ -2348,7 +2433,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid hostname</source>
-        <translation>无效的主机名</translation>
+        <translation>主机名无效</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
@@ -2440,7 +2525,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Computer groups filter</source>
-        <translation type="unfinished"/>
+        <translation>计算机组筛选器</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
@@ -2452,7 +2537,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid test value</source>
-        <translation type="unfinished"/>
+        <translation>测试值无效</translation>
     </message>
     <message>
         <source>An empty or invalid value has been supplied for this test.</source>
@@ -2528,7 +2613,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>LDAP directory</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 目录</translation>
     </message>
 </context>
 <context>
@@ -2929,6 +3014,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Query nested user groups (supported by AD only)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>毫秒</translation>
+    </message>
 </context>
 <context>
     <name>LdapNetworkObjectDirectoryConfigurationPage</name>
@@ -2997,7 +3090,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>LDAP bind</source>
-        <translation type="unfinished"/>
+        <translation>LDAP 绑定</translation>
     </message>
 </context>
 <context>
@@ -3056,12 +3149,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>配置</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>禁用气球浮动提示</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>仅显示图标</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3271,7 +3364,21 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>地点及计算机</translation>
     </message>
     <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer positions</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3366,6 +3473,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>仅用户名</translation>
     </message>
     <message>
+        <source>Only last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Only computer name</source>
         <translation>仅计算机名称</translation>
     </message>
@@ -3427,11 +3538,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation>px</translation>
     </message>
     <message>
         <source>Hide local session</source>
-        <translation type="unfinished"/>
+        <translation>隐藏本机会话</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -3447,6 +3558,94 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>主机地址</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3564,7 +3763,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
@@ -3671,11 +3870,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>您真的要重新启动&lt;b&gt;所有的&lt;/b&gt;计算机？</translation>
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>您真的要关闭&lt;b&gt;所有的&lt;/b&gt;计算机？</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
@@ -3728,12 +3927,16 @@ Please save your work and close all programs.</source>
         <translation>远程查看或控制电脑</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>请输入要访问的计算机的主机名或IP地址：</translation>
-    </message>
-    <message>
         <source>Show help about command</source>
         <translation>显此命令的帮助信息</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3953,6 +4156,37 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
@@ -4068,28 +4302,78 @@ Typically this is required to support terminal servers.</source>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Miscellaneous settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>无</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>启动服务 %1</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>停止服务 %1</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>注册服务 %1</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>反注册服务 %1</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>服务控制</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4171,6 +4455,14 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Duration:</source>
         <translation>持续时间：</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4323,17 +4615,6 @@ The second button removes the selected or last computer.</source>
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>没有写入权限</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>无法保存您的个人设置！ 请使用 %1 配置器检查用户配置文件路径。</translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4463,6 +4744,17 @@ The second button removes the selected or last computer.</source>
     </message>
 </context>
 <context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>没有写入权限</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>无法保存您的个人设置！ 请使用 %1 配置器检查用户配置文件路径。</translation>
+    </message>
+</context>
+<context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
@@ -4532,6 +4824,10 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Use input device interception driver</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
         <translation type="unfinished"/>
     </message>
 </context>

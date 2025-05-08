@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ca_ES" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ca_ES">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -137,16 +137,15 @@ Si esteu interessat a traduir el Veyon al vostre idioma local o a un altre o vol
         <translation>Rerefons dels grups d&apos;usuaris:</translation>
     </message>
     <message>
-        <source>Missing user groups backend</source>
-        <translation>Falta el rerefonss de grups d&apos;usuaris</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>No s&apos;ha trobat cap connector de grups d&apos;usuaris predeterminat. Comproveu la instal·lació!</translation>
-    </message>
-    <message>
         <source>Restrict access to members of specific user groups</source>
         <translation>Restringeix l&apos;accés als membres de grups d&apos;usuaris específics</translation>
+    </message>
+</context>
+<context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -323,6 +322,14 @@ Si esteu interessat a traduir el Veyon al vostre idioma local o a un altre o vol
         <source>Session being accessed is a login screen</source>
         <translation>La sessió que s&apos;està accedint és una pantalla d&apos;inici de sessió</translation>
     </message>
+    <message>
+        <source>Local computer is already being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local computer is not yet being accessed</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -367,16 +374,16 @@ Si esteu interessat a traduir el Veyon al vostre idioma local o a un altre o vol
         <translation>L&apos;accés a l&apos;escenari indicat necessita el permís de l&apos;usuari connectat.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>ERROR: acció desconeguda</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Resultat de la prova</translation>
     </message>
     <message>
         <source>Authentication method</source>
         <translation>Mètode d&apos;autenticació</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -472,10 +479,6 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
         <translation>Seleccioneu una clau per suprimir!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Introduïu el nom del grup d&apos;usuaris o el rol per al qual s&apos;importarà la clau d&apos;autenticació:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Seleccioneu una clau per exportar!</translation>
     </message>
@@ -486,6 +489,12 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Seleccioneu una clau per a la qual establir el grup d&apos;accés!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1201,6 +1210,10 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
         <source>The specified command does not exist or no help is available for it.</source>
         <translation>L&apos;ordre indicada no existeix o no hi ha cap ajuda disponible per a ella.</translation>
     </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1218,10 +1231,6 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
 </context>
 <context>
     <name>ComputerControlListModel</name>
-    <message>
-        <source>Host/IP address: %1</source>
-        <translation>Adreça IP/amfitrió: %1</translation>
-    </message>
     <message>
         <source>Active features: %1</source>
         <translation>Característiques actives: %1</translation>
@@ -1271,12 +1280,24 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
         <translation>Nom: %1</translation>
     </message>
     <message>
-        <source>invalid</source>
-        <translation>no vàlid</translation>
+        <source>Hostname: %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>[none]</source>
-        <translation>[cap]</translation>
+        <source>unknown</source>
+        <translation>desconegut</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No features active</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1347,6 +1368,18 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>No s&apos;ha pogut determinar la ubicació d&apos;aquest ordinador. Això indica un problema amb la configuració del sistema. Totes les ubicacions es mostraran al plafó de selecció de l&apos;ordinador.</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerMonitoring</name>
@@ -1404,6 +1437,10 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>No s&apos;ha pogut escriure la llista d&apos;ordinadors i usuaris a %1! Comproveu els permisos d&apos;accés als fitxers.</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1552,6 +1589,14 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Alenteix les actualitzacions de miniatures mentre s&apos;està executant la demostració</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2178,6 +2223,46 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     <message>
         <source>Host private key file</source>
         <translation>Fitxer de clau privada de l&apos;amfitrió</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Dorsal:</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Falta el rerefonss de grups d&apos;usuaris</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2928,6 +3013,14 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
         <source>Query nested user groups (supported by AD only)</source>
         <translation>Consulta els grups d&apos;usuaris imbricats (disponible només AD)</translation>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
 </context>
 <context>
     <name>LdapNetworkObjectDirectoryConfigurationPage</name>
@@ -3055,12 +3148,12 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
         <translation>Configuració</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>Desactiva els consells d&apos;eina de globus</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>Mostra només les icones</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3270,8 +3363,22 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
         <translation>Ubicacions i ordinadors</translation>
     </message>
     <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Only show computers with logged on users</source>
         <translation>Mostra només els ordinadors amb usuaris connectats</translation>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3365,6 +3472,10 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
         <translation>Només nom d&apos;usuari</translation>
     </message>
     <message>
+        <source>Only last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Only computer name</source>
         <translation>Només nom de l&apos;ordinador</translation>
     </message>
@@ -3447,6 +3558,94 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
     <message>
         <source>Open feature windows on the same screen as the main window</source>
         <translation>Obre les finestres de les característiques a la mateixa pantalla que la finestra principal</translation>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Adreça de l&apos;amfitrió</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3727,12 +3926,16 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
         <translation>Visualització remota o control remot a un ordinador</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>Introduïu el nom d&apos;amfitrió o l&apos;adreça IP de l&apos;ordinador on voleu accedir:</translation>
-    </message>
-    <message>
         <source>Show help about command</source>
         <translation>Mostra l&apos;ajuda sobre l&apos;ordre</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3952,6 +4155,37 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
     </message>
 </context>
 <context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
@@ -4067,28 +4301,78 @@ Normalment es requereix per a donar suport als servidors de terminals.</translat
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation>Mode de sessió múltiple (instàncies del servidor diferents per a cada sessió d&apos;escriptori local i remot)</translation>
     </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Miscellaneous settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Cap</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>S&apos;està iniciant el servei %1</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>S&apos;està aturant el servei %1</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>S&apos;està registrant el servei %1</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>S&apos;està cancel·lant el registre del servei %1</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>Control del servei</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4170,6 +4454,14 @@ Normalment es requereix per a donar suport als servidors de terminals.</translat
     <message>
         <source>Duration:</source>
         <translation>Duració:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4323,17 +4615,6 @@ El segon botó elimina l&apos;ordinador seleccionat o l&apos;últim.</translatio
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>Sense permís d&apos;escriptura</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>No s&apos;ha pogut desar la vostra configuració personal! Comproveu el camí del fitxer de configuració de l&apos;usuari utilitzant el configurador de %1.</translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4463,6 +4744,17 @@ El segon botó elimina l&apos;ordinador seleccionat o l&apos;últim.</translatio
     </message>
 </context>
 <context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>Sense permís d&apos;escriptura</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>No s&apos;ha pogut desar la vostra configuració personal! Comproveu el camí del fitxer de configuració de l&apos;usuari utilitzant el configurador de %1.</translation>
+    </message>
+</context>
+<context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
@@ -4533,6 +4825,10 @@ El segon botó elimina l&apos;ordinador seleccionat o l&apos;últim.</translatio
     <message>
         <source>Use input device interception driver</source>
         <translation>Utilitza el controlador d&apos;intercepció del dispositiu d&apos;entrada</translation>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

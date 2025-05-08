@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="nl" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="nl">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -137,16 +137,15 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
         <translation>Gebruikersgroepen backend</translation>
     </message>
     <message>
-        <source>Missing user groups backend</source>
-        <translation>Ontbrekende gebruikersgroepen backend</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Er werd geen standaard gebruikersgroepplugin gevonden. Controleer de installatie!</translation>
-    </message>
-    <message>
         <source>Restrict access to members of specific user groups</source>
         <translation>Beperk toegang tot leden van bepaalde groepen</translation>
+    </message>
+</context>
+<context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -323,6 +322,14 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
         <source>Session being accessed is a login screen</source>
         <translation>De sessie die wordt geopend is een inlogscherm</translation>
     </message>
+    <message>
+        <source>Local computer is already being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local computer is not yet being accessed</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -367,16 +374,16 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
         <translation>De toegang in het gegeven scenario heeft toestemming van de ingelogde gebruiker nodig.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>FOUT: Onbekende actie</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Testresultaat</translation>
     </message>
     <message>
         <source>Authentication method</source>
         <translation>Authenticatiemethode</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -472,10 +479,6 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <translation>Gelieve de sleutel aan te duiden die u wilt verwijderen!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Geef de naam van de gebruikers groep of rol waarvoor u een authenticatie sleutel wil importeren:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Gelieve de sleutel aan te duiden die u wilt exporteren!</translation>
     </message>
@@ -486,6 +489,14 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Gelieve de sleutel aan te duiden waarvoor u de toegangsgroep wil instellen!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation>Voer de naam in van de gebruikersgroep of rol waarvoor de verificatiesleutel moet worden geïmporteerd
+
+Zorg ervoor dat de namen van de sleutels die bij elkaar horen identiek zijn op alle computers.</translation>
     </message>
 </context>
 <context>
@@ -1201,6 +1212,10 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <source>The specified command does not exist or no help is available for it.</source>
         <translation>De opgegeven opdracht bestaat niet of er is geen hulp voor beschikbaar.</translation>
     </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation>Locatie &quot;%1&quot; niet gevonden.</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1218,10 +1233,6 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
 </context>
 <context>
     <name>ComputerControlListModel</name>
-    <message>
-        <source>Host/IP address: %1</source>
-        <translation>Host/IP adres: %1</translation>
-    </message>
     <message>
         <source>Active features: %1</source>
         <translation>Actieve functies: %1</translation>
@@ -1271,12 +1282,24 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <translation>Naam: %1</translation>
     </message>
     <message>
-        <source>invalid</source>
-        <translation>ongeldig</translation>
+        <source>Hostname: %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>[none]</source>
-        <translation>[geen]</translation>
+        <source>unknown</source>
+        <translation>onbekend</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No features active</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1347,6 +1370,18 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>Kan de locatie van deze computer niet bepalen. Dit wijst op een probleem met de systeemconfiguratie. In plaats daarvan worden alle locaties weergegeven in het selectiepaneel van de computer.</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation>Aangemeld sinds</translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation>%1 dagen</translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation>1 dag</translation>
+    </message>
 </context>
 <context>
     <name>ComputerMonitoring</name>
@@ -1404,6 +1439,10 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Kon de computer- en gebruikerslijst niet schrijven naar %1! Controleer de toegangsrechten voor het bestand.</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation>Zoek computers</translation>
     </message>
 </context>
 <context>
@@ -1552,6 +1591,14 @@ De publieke sleutel wordt gebruikt op clientcomputers om inkomende verbindingsaa
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Vertraag thumbnailupdates terwijl demo draait</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation>Bandbreedtelimiet</translation>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation> MB/s</translation>
     </message>
 </context>
 <context>
@@ -2180,6 +2227,46 @@ Translated with DeepL</translation>
     <message>
         <source>Host private key file</source>
         <translation>Host privé sleutelbestand</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation>Stijl:</translation>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation>Eigen</translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Gebruikersgroepen</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Backend:</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation>Gebruikersgroepen uit domein opnemen</translation>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Ontbrekende gebruikersgroepen backend</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation>Er is geen plugin voor gebruikersgroepen gevonden. Controleer je installatie!</translation>
     </message>
 </context>
 <context>
@@ -2932,6 +3019,14 @@ Translated with DeepL</translation>
         <source>Query nested user groups (supported by AD only)</source>
         <translation>Geneste gebruikersgroepen opvragen (alleen ondersteund door AD)</translation>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation>Time-out zoekopdracht</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>ms</translation>
+    </message>
 </context>
 <context>
     <name>LdapNetworkObjectDirectoryConfigurationPage</name>
@@ -3059,12 +3154,12 @@ Translated with DeepL</translation>
         <translation>Configuratie</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>Schakel ballontooltips uit</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>Toon enkel iconen</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation>Tooltips uitschakelen</translation>
     </message>
 </context>
 <context>
@@ -3274,8 +3369,22 @@ Translated with DeepL</translation>
         <translation>Locaties &amp; computers</translation>
     </message>
     <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Only show computers with logged on users</source>
         <translation>Toon alleen computers met aangemelde gebruikers</translation>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3369,6 +3478,10 @@ Translated with DeepL</translation>
         <translation>Alleen gebruikersnaam</translation>
     </message>
     <message>
+        <source>Only last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Only computer name</source>
         <translation>Alleen computernaam</translation>
     </message>
@@ -3451,6 +3564,94 @@ Translated with DeepL</translation>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
         <translation>Functievensters openen op hetzelfde scherm als het hoofdvenster</translation>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation>Beeldkwaliteit in bewakingsmodus</translation>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation>Hoogste</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation>Hoog</translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation>Medium</translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation>Laag</translation>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation>Laagste</translation>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation>Beeldkwaliteit van externe toegang</translation>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Standaard</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Host adres</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation>Sessie-clientadres</translation>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation>Sessie-clientnaam</translation>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Volledige naam van gebruiker</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Loginnaam gebruiker</translation>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Beeldkwaliteit</translation>
     </message>
 </context>
 <context>
@@ -3731,12 +3932,16 @@ Sla je werk op en sluit alle programma&apos;s af.</translation>
         <translation>Meekijken of overnemen op afstand</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>Voer de hostnaam of het IP-adres van de computer in waartoe u toegang wil:</translation>
-    </message>
-    <message>
         <source>Show help about command</source>
         <translation>Toon hulp over commando</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
+        <translation>Inhoud klembord uitwisselen</translation>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation>Er is geen computer geselecteerd, dus je kunt een hostnaam of IP-adres van een computer invoeren voor handmatige toegang:</translation>
     </message>
 </context>
 <context>
@@ -3956,6 +4161,37 @@ Sla je werk op en sluit alle programma&apos;s af.</translation>
     </message>
 </context>
 <context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
@@ -4071,28 +4307,80 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation>Modus voor meerdere sessies (afzonderlijke serverinstantie voor elke lokale en externe desktopsessie)</translation>
     </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Miscellaneous settings</source>
+        <translation>Diverse instellingen</translation>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
+        <translation>Klembordsynchronisatie uitschakelen</translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Geen</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation>Naam omgevingsvariabele:</translation>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation>Naam registersleutel:</translation>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation>Voer optioneel een reguliere expressie met een capture in om een deel van de computernaam te extraheren en te gebruiken als weergavenaam voor de computer.
+
+Voorbeeld: [^-]*-(PC[0-9]*)</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>Service %1 wordt gestart</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>Service %1 wordt gestopt</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>Service %1 wordt geregistreerd</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>Dienst %1 afmelden</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>Servicecontrole</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4174,6 +4462,14 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     <message>
         <source>Duration:</source>
         <translation>Duur:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4327,17 +4623,6 @@ De tweede knop verwijdert de geselecteerde of laatste computer.</translation>
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>Geen schrijftoegang</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Kon uw persoonlijke instellingen niet opslaan! Controleer het gebruikersconfiguratiebestandspad door gebruik te maken van de %1 Configurator.</translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4467,6 +4752,17 @@ De tweede knop verwijdert de geselecteerde of laatste computer.</translation>
     </message>
 </context>
 <context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>Geen schrijftoegang</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>Kon uw persoonlijke instellingen niet opslaan! Controleer het gebruikersconfiguratiebestandspad door gebruik te maken van de %1 Configurator.</translation>
+    </message>
+</context>
+<context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
@@ -4537,6 +4833,10 @@ De tweede knop verwijdert de geselecteerde of laatste computer.</translation>
     <message>
         <source>Use input device interception driver</source>
         <translation>Gebruik het stuurprogramma voor het onderscheppen van invoerapparaten</translation>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation>Aangepast voedingsschema gebruiken met uitgeschakelde aan/uit-knop</translation>
     </message>
 </context>
 <context>

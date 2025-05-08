@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ko" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ko">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -137,16 +137,15 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <translation>유저그룹 백엔드:</translation>
     </message>
     <message>
-        <source>Missing user groups backend</source>
-        <translation>유저그룹 백엔드 없음</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>디폴트 유저 그룹 플러그인이 없습니다. 설치상태를 확인하세요!</translation>
-    </message>
-    <message>
         <source>Restrict access to members of specific user groups</source>
         <translation>특정 그룹 사용자의 접근 제한</translation>
+    </message>
+</context>
+<context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -323,6 +322,14 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <source>Session being accessed is a login screen</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Local computer is already being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local computer is not yet being accessed</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -367,15 +374,15 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
         <translation>주어진 상황에 대한 접근은 로그온된 사용자의 허가가 필요함.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>ERROR: 정의되지 않은 작업</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>시험 결과</translation>
     </message>
     <message>
         <source>Authentication method</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -472,10 +479,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>삭제할 키를 선택하세요</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>접근 키를 불러올 사용자  그룹이나 역할의 이름을 입력하세요:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>내보낼 키를 선택하세요!</translation>
     </message>
@@ -486,6 +489,12 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>이 접근 그룹에 설정할 키를 선택하세요!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -719,7 +728,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key file</source>
-        <translation type="unfinished"/>
+        <translation>키 파일</translation>
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
@@ -1201,6 +1210,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>The specified command does not exist or no help is available for it.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1218,10 +1231,6 @@ The public key is used on client computers to authenticate incoming connection r
 </context>
 <context>
     <name>ComputerControlListModel</name>
-    <message>
-        <source>Host/IP address: %1</source>
-        <translation>호스트/IP 주소: %1</translation>
-    </message>
     <message>
         <source>Active features: %1</source>
         <translation>활성화된 기능들: %1</translation>
@@ -1271,11 +1280,23 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>invalid</source>
+        <source>Hostname: %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>[none]</source>
+        <source>unknown</source>
+        <translation>알수없음</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No features active</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1347,6 +1368,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>이 컴퓨터의 위치를 찾을 수 없음. 시스템 설정에 문제가 있어 보입니다. 대신 모든  위치는 컴퓨터 선정 패널에 표시됩니다.</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerMonitoring</name>
@@ -1404,6 +1437,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>컴퓨터와 사용자 리스트를 %1에 저장하지 못함. 접근 권한을 확인하세요.</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1552,6 +1589,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>데모가 실행중일 때 썸네일 업데이트 속도를 늦춤</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2177,6 +2222,46 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Host private key file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>백엔드:</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>유저그룹 백엔드 없음</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2920,11 +3005,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Query options</source>
-        <translation type="unfinished"/>
+        <translation>조회 옵션</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
+        <translation>유저 그룹 중첩 조회(AD에서만 사용 가능)</translation>
+    </message>
+    <message>
+        <source>Query timeout</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
     </message>
 </context>
 <context>
@@ -3053,12 +3146,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>설정</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>풍선 툴팁기능 해제</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>아이콘만 보여주기</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3268,7 +3361,21 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>위치 및 컴퓨터들</translation>
     </message>
     <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer positions</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3363,6 +3470,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>전용 사용자 이름</translation>
     </message>
     <message>
+        <source>Only last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Only computer name</source>
         <translation>전용 컴퓨터 이름</translation>
     </message>
@@ -3444,6 +3555,94 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>호스트 주소</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3725,12 +3924,16 @@ Please save your work and close all programs.</source>
         <translation>감시화면 또는 컴퓨터 제어</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>연결할 컴퓨터의 호스트 이름 또는 IP를 입력하세요:</translation>
-    </message>
-    <message>
         <source>Show help about command</source>
         <translation>명령어에 대한 도움말 보여줌</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3950,6 +4153,37 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
@@ -4065,28 +4299,78 @@ Typically this is required to support terminal servers.</source>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Miscellaneous settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>없음</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>서비스 %1 시작중</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>서비스 %1 중지중</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>서비스 %1 를 등록중</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>서비스 %1 를 등록 해제중</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>서비스 제어</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4167,6 +4451,14 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Duration:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4320,17 +4612,6 @@ The second button removes the selected or last computer.</source>
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>쓰기 권한 없음</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>개인 설정을 저장할 수 없음. %1 설정자를 이용하여 사용자 설정 화일을 경로를 확인하세요</translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4460,6 +4741,17 @@ The second button removes the selected or last computer.</source>
     </message>
 </context>
 <context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>쓰기 권한 없음</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>개인 설정을 저장할 수 없음. %1 설정자를 이용하여 사용자 설정 화일을 경로를 확인하세요</translation>
+    </message>
+</context>
+<context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
@@ -4529,6 +4821,10 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Use input device interception driver</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
         <translation type="unfinished"/>
     </message>
 </context>

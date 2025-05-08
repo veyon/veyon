@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_TW" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_TW">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -137,16 +137,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>使用者群組後端:</translation>
     </message>
     <message>
-        <source>Missing user groups backend</source>
-        <translation>缺少使用者群組後端</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>找不到預設的使用者群組外掛程式。 請檢查您的安裝!</translation>
-    </message>
-    <message>
         <source>Restrict access to members of specific user groups</source>
         <translation>限制對指定使用者群組成員的存取</translation>
+    </message>
+</context>
+<context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation>存取控制功能的提供者</translation>
     </message>
 </context>
 <context>
@@ -323,6 +322,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Session being accessed is a login screen</source>
         <translation>正在存取的工作階段是登入畫面</translation>
     </message>
+    <message>
+        <source>Local computer is already being accessed</source>
+        <translation>已經存取本機電腦</translation>
+    </message>
+    <message>
+        <source>Local computer is not yet being accessed</source>
+        <translation>尚未存取本機電腦</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -367,16 +374,16 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>在給予情境中存取。需要登入使用者的權限。</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>錯誤: 未知的動作</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>測試結果</translation>
     </message>
     <message>
         <source>Authentication method</source>
         <translation>身份驗證方法</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -472,10 +479,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>請選取要刪除的金鑰!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>請輸入要為其匯入身份驗證金鑰的使用者群組或角色的名稱:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>請選擇要匯出的金鑰!</translation>
     </message>
@@ -486,6 +489,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>請選擇要為其設定存取群組的金鑰!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation>請輸入要為其匯入身份驗證金鑰的使用者群組或角色的名稱。
+
+確認所有電腦上彼此所屬的金鑰名稱相同。</translation>
     </message>
 </context>
 <context>
@@ -1201,6 +1212,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>The specified command does not exist or no help is available for it.</source>
         <translation>指定的命令不存在或沒有它的說明可以使用。</translation>
     </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation>找不到位置 &quot;%1&quot;。</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1218,10 +1233,6 @@ The public key is used on client computers to authenticate incoming connection r
 </context>
 <context>
     <name>ComputerControlListModel</name>
-    <message>
-        <source>Host/IP address: %1</source>
-        <translation>主機/IP 位址: %1</translation>
-    </message>
     <message>
         <source>Active features: %1</source>
         <translation>可用功能: %1</translation>
@@ -1271,12 +1282,24 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>名稱: %1</translation>
     </message>
     <message>
-        <source>invalid</source>
-        <translation>無效</translation>
+        <source>Hostname: %1</source>
+        <translation>主機名稱: %1</translation>
     </message>
     <message>
-        <source>[none]</source>
-        <translation>[無]</translation>
+        <source>unknown</source>
+        <translation>未知</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation>IP 位址: %1</translation>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation>無法解析主機名稱</translation>
+    </message>
+    <message>
+        <source>No features active</source>
+        <translation>沒有功能啟用</translation>
     </message>
 </context>
 <context>
@@ -1347,6 +1370,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>無法確定這部電腦的位置。 這表示系統組態有問題。 所有位置將顯示在電腦選取面板中。</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation>登入自</translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation>%1 天</translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation>1 天</translation>
+    </message>
 </context>
 <context>
     <name>ComputerMonitoring</name>
@@ -1391,7 +1426,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Select output filename</source>
-        <translation>選擇輸出檔案名稱</translation>
+        <translation>選取輸出檔案名稱</translation>
     </message>
     <message>
         <source>CSV files (*.csv)</source>
@@ -1404,6 +1439,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>無法寫入電腦和使用者清單到 %1! 請檢查檔案的存取權限。</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation>搜尋電腦</translation>
     </message>
 </context>
 <context>
@@ -1512,14 +1551,14 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DemoClient</name>
     <message>
         <source>%1 Demo</source>
-        <translation>%1 示範</translation>
+        <translation>%1 演示</translation>
     </message>
 </context>
 <context>
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>示範伺服器</translation>
+        <translation>演示伺服器</translation>
     </message>
     <message>
         <source>Tunables</source>
@@ -1551,22 +1590,30 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation>示範執行時，縮圖更新速度變慢</translation>
+        <translation>演示執行時，縮圖更新速度變慢</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation>頻寬限制</translation>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation> MB/秒</translation>
     </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Stop demo</source>
-        <translation>停止示範</translation>
+        <translation>停止演示</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>視窗示範</translation>
+        <translation>視窗演示</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation>透過螢幕廣播給予示範</translation>
+        <translation>透過螢幕廣播給予演示</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -1574,7 +1621,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Demo</source>
-        <translation>示範</translation>
+        <translation>演示</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
@@ -1582,7 +1629,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation>全螢幕示範</translation>
+        <translation>全螢幕演示</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
@@ -1851,7 +1898,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
-        <translation>透過連線到遠端執行的 veyon 伺服器來啟動指定主機的指定功能。 該功能可以由名稱或 UID 指定。 使用「show」命令查看所有的可用功能。 根據功能，必須指定編碼為單一 JSON 字串的附加引數 (比如顯示的文字訊息)。 請參閱開發人員文件取得更多資訊</translation>
+        <translation>透過連線到遠端執行的 Veyon 伺服器來啟動指定主機的指定功能。 該功能可以由名稱或 UID 指定。 使用「show」命令查看所有的可用功能。 根據功能，必須指定編碼為單一 JSON 字串的附加引數 (比如顯示的文字訊息)。 請參閱開發人員文件取得更多資訊</translation>
     </message>
     <message>
         <source>Lock the screen</source>
@@ -1871,7 +1918,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
-        <translation>透過連線到遠端執行的 veyon 伺服器來停止指定主機的指定功能。 該功能可以由名稱或 UID 指定。 使用「show」命令查看所有的可用功能。</translation>
+        <translation>透過連線到遠端執行的 Veyon 伺服器來停止指定主機的指定功能。 該功能可以由名稱或 UID 指定。 使用「show」命令查看所有的可用功能。</translation>
     </message>
     <message>
         <source>Unlock the screen</source>
@@ -2178,6 +2225,46 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Host private key file</source>
         <translation>主機私密金鑰檔</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation>樣式:</translation>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation>原生</translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation>色彩架構:</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation>淺色</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>深色</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>使用者群組</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>後端:</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation>包含網域中的使用者群組</translation>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>缺少使用者群組後端</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation>找不到使用者群組外掛程式。 請檢查您的安裝!</translation>
     </message>
 </context>
 <context>
@@ -2928,6 +3015,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Query nested user groups (supported by AD only)</source>
         <translation>查詢巢狀使用者群組 (只有 AD 支援)</translation>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation>查詢逾時</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> 毫秒</translation>
+    </message>
 </context>
 <context>
     <name>LdapNetworkObjectDirectoryConfigurationPage</name>
@@ -2952,7 +3047,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>顯示命令的說明</translation>
+        <translation>顯示有關命令的說明</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
@@ -3055,12 +3150,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>組態</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>停用氣球工具提示</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>只顯示圖示</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation>停用工具提示</translation>
     </message>
 </context>
 <context>
@@ -3179,7 +3274,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>螢幕截圖</translation>
+        <translation>螢幕快照</translation>
     </message>
     <message>
         <source>Feature active</source>
@@ -3239,11 +3334,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Use custom computer arrangement</source>
-        <translation>使用自訂電腦排列</translation>
+        <translation>使用自訂電腦安排</translation>
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation>地點 &amp;&amp; 電腦</translation>
+        <translation>位置 &amp;&amp; 電腦</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -3270,8 +3365,24 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>位置 &amp; 電腦</translation>
     </message>
     <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation>使用自訂電腦安排。
+
+按住不放以從檔案載入安排或將目前安排儲存到檔案。</translation>
+    </message>
+    <message>
         <source>Only show computers with logged on users</source>
         <translation>只顯示已登入使用者的電腦</translation>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation>載入電腦位置</translation>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation>儲存電腦位置</translation>
     </message>
 </context>
 <context>
@@ -3302,7 +3413,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>螢幕截圖</translation>
+        <translation>螢幕快照</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
@@ -3363,6 +3474,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Only user name</source>
         <translation>僅使用者名稱</translation>
+    </message>
+    <message>
+        <source>Only last part of user name</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Only computer name</source>
@@ -3447,6 +3562,94 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Open feature windows on the same screen as the main window</source>
         <translation>在與主視窗同一螢幕上開啟功能視窗</translation>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation>組態範本</translation>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation>監控模式中圖片品質</translation>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation>最高</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation>高</translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation>中</translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation>低</translation>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation>最低</translation>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation>遠端存取圖片品質</translation>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation>進階</translation>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation>電腦名稱來源</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>預設值</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>主機位址</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation>工作階段用戶端位址</translation>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation>工作階段用戶端名稱</translation>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation>工作階段主機名稱</translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation>工作階段中繼資料</translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>使用者的全名</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>使用者登入名稱</translation>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation>電腦 UID 角色</translation>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation>工作階段中繼資料雜湊</translation>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation>一律展開所有位置</translation>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>圖片品質</translation>
     </message>
 </context>
 <context>
@@ -3727,12 +3930,16 @@ Please save your work and close all programs.</source>
         <translation>遠端檢視或控制電腦</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>請輸入主機名稱或電腦的 IP 位址來存取:</translation>
+        <source>Show help about command</source>
+        <translation>顯示有關命令的說明</translation>
     </message>
     <message>
-        <source>Show help about command</source>
-        <translation>顯示命令的說明</translation>
+        <source>Exchange clipboard contents</source>
+        <translation>交換剪貼簿內容</translation>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation>未選取電腦，因此您可以輸入電腦的主機名稱或 IP 地址以手動存取:</translation>
     </message>
 </context>
 <context>
@@ -3909,7 +4116,7 @@ Please save your work and close all programs.</source>
     <name>ScreenshotManagementPage</name>
     <message>
         <source>Screenshots</source>
-        <translation>螢幕截圖</translation>
+        <translation>螢幕快照</translation>
     </message>
 </context>
 <context>
@@ -3949,6 +4156,37 @@ Please save your work and close all programs.</source>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
         <translation>您真的要刪除所有的螢幕快照嗎?</translation>
+    </message>
+</context>
+<context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation>請求的身份驗證方法不可用</translation>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation>規則「%1」允許存取</translation>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation>規則「%1」拒絕存取</translation>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation>無規則允許存取</translation>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation>存取使用者不是授權使用者群組的成員</translation>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation>使用者拒絕存取</translation>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation>使用者確認存取</translation>
     </message>
 </context>
 <context>
@@ -4003,7 +4241,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>已成功儲存所有的設定。 為了生效 %1 服務需要重新啟動。 立即重新啟動它?</translation>
+        <translation>儲存所有的設定成功。 為了生效 %1 服務需要重新啟動。 立即重新啟動它?</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4045,7 +4283,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Demo server</source>
-        <translation>示範伺服器</translation>
+        <translation>演示伺服器</translation>
     </message>
     <message>
         <source>Miscellaneous network settings</source>
@@ -4067,28 +4305,80 @@ Typically this is required to support terminal servers.</source>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation>多工作階段模式 (每個本機和遠端桌面工作階段的不同伺服器實例)</translation>
     </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation>如果應該為目前活動會話啟動單一 Veyon Server 實例 (無論是本機還是遠端)，則啟用。</translation>
+    </message>
+    <message>
+        <source>Miscellaneous settings</source>
+        <translation>雜項設定</translation>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
+        <translation>停用剪貼簿同步</translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation>工作階段中繼資料</translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation>內文</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>無</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation>環境變數的值</translation>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation>登錄檔機碼的值</translation>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation>環境變數名稱:</translation>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation>登錄檔機碼名稱:</translation>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation>(可選) 輸入含擷取的正規表示式，以擷取電腦名稱的一部分並將其用於電腦的顯示名稱。
+
+例如: [^-]*-(PC[0-9]*)</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>正在啟動服務 %1</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>正在停止服務 %1</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>註冊服務 %1</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>取消註冊服務 %1</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>服務控制</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation>正在啟動 %1</translation>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation>正在停止 %1</translation>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation>正在重新啟動 %1</translation>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation>正在註冊 %1</translation>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation>正在取消註冊 %1</translation>
     </message>
 </context>
 <context>
@@ -4170,6 +4460,14 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Duration:</source>
         <translation>持續時間:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4323,17 +4621,6 @@ The second button removes the selected or last computer.</source>
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>沒有寫入存取</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>無法儲存您的個人設定! 請檢查使用 %1 組態的使用者設定檔路徑。</translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4463,6 +4750,17 @@ The second button removes the selected or last computer.</source>
     </message>
 </context>
 <context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>沒有寫入存取</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>無法儲存您的個人設定! 請檢查使用 %1 組態的使用者設定檔路徑。</translation>
+    </message>
+</context>
+<context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
@@ -4528,11 +4826,15 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation>確認法律通知 (在使用者登入前顯示訊息)</translation>
+        <translation>確認法律聲明 (在使用者登入前顯示訊息)</translation>
     </message>
     <message>
         <source>Use input device interception driver</source>
         <translation>使用輸入裝置攔截驅動程式</translation>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation>使用停用電源按鈕的自訂電源方案</translation>
     </message>
 </context>
 <context>

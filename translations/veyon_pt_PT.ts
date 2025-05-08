@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt_PT" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pt_PT">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -110,7 +110,7 @@ Se está interessado em traduzir o Veyon para o seu idioma ou quer melhorar uma 
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation type="unfinished"/>
+        <translation>Por favor introduza o nome de utilizador cujas permissões serão testadas:</translation>
     </message>
     <message>
         <source>Access allowed</source>
@@ -130,22 +130,21 @@ Se está interessado em traduzir o Veyon para o seu idioma ou quer melhorar uma 
     </message>
     <message>
         <source>Enable usage of domain groups</source>
-        <translation type="unfinished"/>
+        <translation>Ativar a utilização de grupos de domínio</translation>
     </message>
     <message>
         <source>User groups backend:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Back-end de grupos de utilizador:</translation>
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
+        <translation>Restringir acesso a membros de grupos de utilizadores específicos</translation>
+    </message>
+</context>
+<context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -181,7 +180,7 @@ Se está interessado em traduzir o Veyon para o seu idioma ou quer melhorar uma 
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation type="unfinished"/>
+        <translation>Se mais do que uma condição for ativada, cada condição deve ser atendida para que a regra seja aplicada (E lógico). Se apenas uma das várias condições precisar ser atendida (OR lógico), por favor crie várias regras de controle de acesso.</translation>
     </message>
     <message>
         <source>Action</source>
@@ -197,7 +196,7 @@ Se está interessado em traduzir o Veyon para o seu idioma ou quer melhorar uma 
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation type="unfinished"/>
+        <translation>Pedir permissão a um utilizador ligado</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
@@ -217,51 +216,51 @@ Se está interessado em traduzir o Veyon para o seu idioma ou quer melhorar uma 
     </message>
     <message>
         <source>Accessing computer and local computer</source>
-        <translation type="unfinished"/>
+        <translation>A aceder ao computador e ao computador local</translation>
     </message>
     <message>
         <source>User being accessed</source>
-        <translation type="unfinished"/>
+        <translation>Utilizador a ser acedido</translation>
     </message>
     <message>
         <source>is logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>está ligado localmente</translation>
     </message>
     <message>
         <source>is logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>está ligado remotamente</translation>
     </message>
     <message>
         <source>No user is logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>Nenhum utilizador ligado localmente</translation>
     </message>
     <message>
         <source>One or multiple users are logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>Um ou vários utilizadores ligados localmente</translation>
     </message>
     <message>
         <source>No user is logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>Nenhum utilizador ligado remotamente</translation>
     </message>
     <message>
         <source>One or multiple users are logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>Um ou vários utilizadores ligados remotamente</translation>
     </message>
     <message>
         <source>is located at</source>
-        <translation type="unfinished"/>
+        <translation>está localizado em</translation>
     </message>
     <message>
         <source>is not located at</source>
-        <translation type="unfinished"/>
+        <translation>não está localizado em</translation>
     </message>
     <message>
         <source>are located at the same location</source>
-        <translation type="unfinished"/>
+        <translation>estão localizados no mesmo local</translation>
     </message>
     <message>
         <source>are not located the same location</source>
-        <translation type="unfinished"/>
+        <translation>não estão localizados no mesmo local</translation>
     </message>
     <message>
         <source>is member of group</source>
@@ -269,58 +268,66 @@ Se está interessado em traduzir o Veyon para o seu idioma ou quer melhorar uma 
     </message>
     <message>
         <source>is not member of group</source>
-        <translation type="unfinished"/>
+        <translation>não é membro do grupo</translation>
     </message>
     <message>
         <source>is authenticated via</source>
-        <translation type="unfinished"/>
+        <translation>está autenticado através de</translation>
     </message>
     <message>
         <source>is not authenticated via</source>
-        <translation type="unfinished"/>
+        <translation>não está autenticado através de</translation>
     </message>
     <message>
         <source>has one or more groups in common with user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>tem um ou mais grupos em comum com o utilizador que está a ser acedido</translation>
     </message>
     <message>
         <source>has no groups in common with user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>não tem grupos em comum com o utilizador que está a ser acedido</translation>
     </message>
     <message>
         <source>equals user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>é igual ao utilizador que está a ser acedido</translation>
     </message>
     <message>
         <source>is different from user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>é diferente do utilizador que está a ser acedido</translation>
     </message>
     <message>
         <source>is already connected</source>
-        <translation type="unfinished"/>
+        <translation>já está ligado</translation>
     </message>
     <message>
         <source>is not connected</source>
-        <translation type="unfinished"/>
+        <translation>não está ligado</translation>
     </message>
     <message>
         <source>is local computer</source>
-        <translation type="unfinished"/>
+        <translation>é um computador local</translation>
     </message>
     <message>
         <source>is not local computer</source>
-        <translation type="unfinished"/>
+        <translation>não é um computador local</translation>
     </message>
     <message>
         <source>Computer being accessed</source>
-        <translation type="unfinished"/>
+        <translation>Computador a ser acedido</translation>
     </message>
     <message>
         <source>Session being accessed is a user session</source>
-        <translation type="unfinished"/>
+        <translation>A sessão a ser acedida é uma sessão de utilizador</translation>
     </message>
     <message>
         <source>Session being accessed is a login screen</source>
+        <translation>A sessão a ser acedida é um ecrã de início de sessão</translation>
+    </message>
+    <message>
+        <source>Local computer is already being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local computer is not yet being accessed</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -344,7 +351,7 @@ Se está interessado em traduzir o Veyon para o seu idioma ou quer melhorar uma 
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation type="unfinished"/>
+        <translation>Por favor introduza as seguintes informações de utilizador e computador para poder testar o conjunto de regras configurado.</translation>
     </message>
     <message>
         <source>Local user:</source>
@@ -356,26 +363,26 @@ Se está interessado em traduzir o Veyon para o seu idioma ou quer melhorar uma 
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation type="unfinished"/>
+        <translation>O acesso no cenário determinado é permitido.</translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation type="unfinished"/>
+        <translation>O acesso no cenário determinado não é permitido.</translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>ERROR: Unknown action</source>
-        <translation type="unfinished"/>
+        <translation>O acesso no cenário determinado necessita permissão do utilizador ligado.</translation>
     </message>
     <message>
         <source>Test result</source>
-        <translation type="unfinished"/>
+        <translation>Resultado do teste</translation>
     </message>
     <message>
         <source>Authentication method</source>
+        <translation>Método de autenticação</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -383,78 +390,81 @@ Se está interessado em traduzir o Veyon para o seu idioma ou quer melhorar uma 
     <name>AuthKeysConfigurationWidget</name>
     <message>
         <source>Introduction</source>
-        <translation type="unfinished"/>
+        <translation>Introdução</translation>
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation type="unfinished"/>
+        <translation>Execute as seguintes etapas para configurar a autenticação do ficheiro de chave:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation type="unfinished"/>
+        <translation>1) Crie um par de chaves no computador principal.</translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation type="unfinished"/>
+        <translation>2) Defina um grupo de acesso cujos membros devem ter permissão para aceder a outros computadores.</translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation type="unfinished"/>
+        <translation>3) Exporte a chave pública e importe-a em todos os computadores clientes com o mesmo nome.</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation type="unfinished"/>
+        <translation>Consulte o &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Manual do Administrador Veyon&lt;/a&gt; para mais informação.</translation>
     </message>
     <message>
         <source>Key file directories</source>
-        <translation type="unfinished"/>
+        <translation>Diretório de ficheiros de chave</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation type="unfinished"/>
+        <translation>Diretório base de chave pública</translation>
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation type="unfinished"/>
+        <translation>Diretório base de chave privada</translation>
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation type="unfinished"/>
+        <translation>Chaves de autenticação disponíveis</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation type="unfinished"/>
+        <translation>Um par de chaves de autenticação consiste em duas chaves criptográficas acopladas, uma chave privada e uma pública.
+Uma chave privada permite que os utilizadores do computador mestre acedam a computadores clientes.
+É importante que apenas utilizadores autorizados tenham acesso de leitura ao arquivo de chave privada.
+A chave pública é usada em computadores clientes para autenticar solicitações de conexão de entrada.</translation>
     </message>
     <message>
         <source>Create key pair</source>
-        <translation type="unfinished"/>
+        <translation>Criar par de chaves</translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation type="unfinished"/>
+        <translation>Eliminar chave</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation type="unfinished"/>
+        <translation>Importar chave</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation type="unfinished"/>
+        <translation>Exportar chave</translation>
     </message>
     <message>
         <source>Set access group</source>
-        <translation type="unfinished"/>
+        <translation>Definir grupo de acesso</translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation type="unfinished"/>
+        <translation>Ficheiros de chave (*.pem)</translation>
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation type="unfinished"/>
+        <translation>Nome da chave de autenticação</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
@@ -466,15 +476,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation type="unfinished"/>
+        <translation>Por favor selecione uma chave para eliminar!</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation type="unfinished"/>
+        <translation>Por favor selecione uma chave para exportar!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
@@ -484,12 +490,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Please select a key which to set the access group for!</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation type="unfinished"/>
+        <translation>Por favor verifique as suas permissões.</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
@@ -509,7 +521,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>A criar um novo par de chaves para &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
@@ -533,7 +545,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation type="unfinished"/>
+        <translation>O ficheiro &quot;%1&quot; já existe.</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
@@ -613,7 +625,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;N/D&gt;</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
@@ -624,7 +636,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthKeysPlugin</name>
     <message>
         <source>Create new authentication key pair</source>
-        <translation type="unfinished"/>
+        <translation>Criar novo par de chaves de autenticação</translation>
     </message>
     <message>
         <source>Delete authentication key</source>
@@ -652,11 +664,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>KEY</source>
-        <translation type="unfinished"/>
+        <translation>CHAVE</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation type="unfinished"/>
+        <translation>GRUPO DE ACESSO</translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
@@ -664,11 +676,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>NOME</translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>FICHEIRO</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
@@ -684,11 +696,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>TIPO</translation>
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation type="unfinished"/>
+        <translation>ID DO PAR</translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
@@ -735,19 +747,19 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthKeysTableModel</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Nome</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>Tipo</translation>
     </message>
     <message>
         <source>Access group</source>
-        <translation type="unfinished"/>
+        <translation>Grupo de acesso</translation>
     </message>
     <message>
         <source>Pair ID</source>
-        <translation type="unfinished"/>
+        <translation>ID do par</translation>
     </message>
 </context>
 <context>
@@ -769,7 +781,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthLdapDialog</name>
     <message>
         <source>Veyon Logon</source>
-        <translation type="unfinished"/>
+        <translation>Logon do Veyon</translation>
     </message>
     <message>
         <source>Please enter your domain/LDAP username and password in order to access computers.</source>
@@ -777,15 +789,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Nome de utilizador</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Palavra-passe</translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>Erro de autenticação</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
@@ -796,7 +808,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthLogonDialog</name>
     <message>
         <source>Veyon Logon</source>
-        <translation type="unfinished"/>
+        <translation>Logon do Veyon</translation>
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
@@ -804,15 +816,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Nome de utilizador</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Palavra-passe</translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>Erro de autenticação</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
@@ -827,26 +839,26 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation type="unfinished"/>
+        <translation>Autenticação de logon</translation>
     </message>
     <message>
         <source>Logon</source>
-        <translation type="unfinished"/>
+        <translation>Logon</translation>
     </message>
 </context>
 <context>
     <name>AuthSimpleDialog</name>
     <message>
         <source>Veyon Logon</source>
-        <translation type="unfinished"/>
+        <translation>Logon do Veyon</translation>
     </message>
     <message>
         <source>Please enter the Veyon password:</source>
-        <translation type="unfinished"/>
+        <translation>Por favor introduza a palavra-passe do Veyon</translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>Erro de autenticação</translation>
     </message>
     <message>
         <source>Logon failed with given password. Please try again!</source>
@@ -897,11 +909,11 @@ The public key is used on client computers to authenticate incoming connection r
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
         <source>Computers</source>
-        <translation type="unfinished"/>
+        <translation>Computadores</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Nome</translation>
     </message>
     <message>
         <source>Host address/IP</source>
@@ -909,11 +921,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>MAC address</source>
-        <translation type="unfinished"/>
+        <translation>Endereço MAC</translation>
     </message>
     <message>
         <source>Add new computer</source>
-        <translation type="unfinished"/>
+        <translation>Adicionar computador novo</translation>
     </message>
     <message>
         <source>Remove selected computer</source>
@@ -921,7 +933,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>New computer</source>
-        <translation type="unfinished"/>
+        <translation>Computador novo</translation>
     </message>
     <message>
         <source>Builtin directory</source>
@@ -929,11 +941,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Locations</source>
-        <translation type="unfinished"/>
+        <translation>Localizações</translation>
     </message>
     <message>
         <source>Add new location</source>
-        <translation type="unfinished"/>
+        <translation>Adicionar localização nova</translation>
     </message>
     <message>
         <source>Remove selected location</source>
@@ -941,7 +953,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>New location</source>
-        <translation type="unfinished"/>
+        <translation>Localização nova</translation>
     </message>
     <message>
         <source>Directory name</source>
@@ -972,19 +984,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"/>
+        <translation>Tipo</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Nome</translation>
     </message>
     <message>
         <source>Host address</source>
-        <translation type="unfinished"/>
+        <translation>Endereço do anfitrião</translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation type="unfinished"/>
+        <translation>Endereço MAC</translation>
     </message>
     <message>
         <source>Specified object not found.</source>
@@ -1012,19 +1024,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Nenhum</translation>
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished"/>
+        <translation>Computador</translation>
     </message>
     <message>
         <source>Root</source>
-        <translation type="unfinished"/>
+        <translation>Raiz</translation>
     </message>
     <message>
         <source>Invalid</source>
-        <translation type="unfinished"/>
+        <translation>Inválido</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
@@ -1092,11 +1104,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>FILE</source>
-        <translation type="unfinished"/>
+        <translation>FICHEIRO</translation>
     </message>
     <message>
         <source>LOCATION</source>
-        <translation type="unfinished"/>
+        <translation>LOCALIZAÇÃO</translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
@@ -1140,15 +1152,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>TYPE</source>
-        <translation type="unfinished"/>
+        <translation>TIPO</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation type="unfinished"/>
+        <translation>NOME</translation>
     </message>
     <message>
         <source>PARENT</source>
-        <translation type="unfinished"/>
+        <translation>PARENTE</translation>
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
@@ -1156,15 +1168,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Add a room</source>
-        <translation type="unfinished"/>
+        <translation>Adicionar uma sala</translation>
     </message>
     <message>
         <source>Add a computer to room %1</source>
-        <translation type="unfinished"/>
+        <translation>Adicionar um computador à sala %1</translation>
     </message>
     <message>
         <source>OBJECT</source>
-        <translation type="unfinished"/>
+        <translation>OBJETO</translation>
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
@@ -1180,15 +1192,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>&quot;Room 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Sala 01&quot;</translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;Computador 01&quot;</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>ENDEREÇO DO ANFITRIÃO</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
@@ -1196,6 +1208,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1215,10 +1231,6 @@ The public key is used on client computers to authenticate incoming connection r
 </context>
 <context>
     <name>ComputerControlListModel</name>
-    <message>
-        <source>Host/IP address: %1</source>
-        <translation type="unfinished"/>
-    </message>
     <message>
         <source>Active features: %1</source>
         <translation type="unfinished"/>
@@ -1268,11 +1280,23 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>invalid</source>
+        <source>Hostname: %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>[none]</source>
+        <source>unknown</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No features active</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1284,7 +1308,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Authentication error</source>
-        <translation type="unfinished"/>
+        <translation>Erro de autenticação</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -1344,12 +1368,24 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ComputerMonitoring</name>
     <message>
         <source>Computers</source>
-        <translation type="unfinished"/>
+        <translation>Computadores</translation>
     </message>
     <message>
         <source>Search users and computers</source>
@@ -1400,6 +1436,10 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Search computers</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1550,6 +1590,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Slow down thumbnail updates while demo is running</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
@@ -1649,7 +1697,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Nome</translation>
     </message>
     <message>
         <source>Path</source>
@@ -1836,7 +1884,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>HOST ADDRESS</source>
-        <translation type="unfinished"/>
+        <translation>ENDEREÇO DO ANFITRIÃO</translation>
     </message>
     <message>
         <source>FEATURE</source>
@@ -1880,7 +1928,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Nome</translation>
     </message>
     <message>
         <source>Description</source>
@@ -1888,7 +1936,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Master</source>
-        <translation type="unfinished"/>
+        <translation>Principal</translation>
     </message>
     <message>
         <source>Service</source>
@@ -2176,6 +2224,46 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Host private key file</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Back-end de grupos de utilizador em falta</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>HeadlessVncServer</name>
@@ -2305,7 +2393,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Atributo do nome de início de sessão de utilizador</translation>
     </message>
     <message>
         <source>group members</source>
@@ -2668,7 +2756,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation type="unfinished"/>
+        <translation>Introduza um nome de início de sessão de utilizador (caracter * permitido) que deseja consultar:</translation>
     </message>
     <message>
         <source>Enter group name</source>
@@ -2692,7 +2780,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>Introduza um nome de início de sessão de utilizador cujas associações de grupo que deseja consultar:</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2760,7 +2848,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>Nenhum</translation>
     </message>
     <message>
         <source>TLS</source>
@@ -2888,11 +2976,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation type="unfinished"/>
+        <translation>Atributo do nome de início de sessão de utilizador</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation type="unfinished"/>
+        <translation>Atributo configurado para o nome de início de sessão do utilizador ou o nome de host do computador (OpenLDAP)</translation>
     </message>
     <message>
         <source>Directory name</source>
@@ -2904,6 +2992,14 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Query timeout</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source> ms</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2989,7 +3085,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>Autenticação de utilizador</translation>
     </message>
     <message>
         <source>User sessions</source>
@@ -3001,11 +3097,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Início de sessão de utilizador</translation>
     </message>
     <message>
         <source>Login key sequence</source>
-        <translation type="unfinished"/>
+        <translation>Sequência de chaves de início de sessão</translation>
     </message>
 </context>
 <context>
@@ -3033,11 +3129,11 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
+        <source>Show icons only</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show icons only</source>
+        <source>Disable tooltips</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3117,7 +3213,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Master</source>
-        <translation type="unfinished"/>
+        <translation>Principal</translation>
     </message>
     <message>
         <source>Access control</source>
@@ -3241,14 +3337,28 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Veyon Master</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Principal</translation>
     </message>
     <message>
         <source>Locations &amp; computers</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer positions</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3343,6 +3453,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Only last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Only computer name</source>
         <translation type="unfinished"/>
     </message>
@@ -3424,6 +3538,94 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Endereço do anfitrião</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3529,7 +3731,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"/>
+        <translation>Nome</translation>
     </message>
     <message>
         <source>Description</source>
@@ -3703,11 +3905,15 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
+        <source>Show help about command</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Show help about command</source>
+        <source>Exchange clipboard contents</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3928,6 +4134,37 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
@@ -4042,27 +4279,77 @@ Typically this is required to support terminal servers.</source>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Miscellaneous settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Nenhum</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Service control</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4144,6 +4431,14 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Duration:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4297,40 +4592,29 @@ The second button removes the selected or last computer.</source>
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Início de sessão de utilizador</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Por favor introduza o nome de utilizador e palavra-passe para início de sessão automático em todos os computadores.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished"/>
+        <translation>Nome de utilizador</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"/>
+        <translation>Palavra-passe</translation>
     </message>
 </context>
 <context>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation type="unfinished"/>
+        <translation>Iniciar sessão</translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
@@ -4338,7 +4622,7 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Log off</source>
-        <translation type="unfinished"/>
+        <translation>Terminar sessão</translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
@@ -4358,18 +4642,18 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation type="unfinished"/>
+        <translation>Tem a certeza que quer terminar a sessão de &lt;b&gt;TODOS&lt;/b&gt; os utilizadores?</translation>
     </message>
 </context>
 <context>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation type="unfinished"/>
+        <translation>[OK]</translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation type="unfinished"/>
+        <translation>[FALHA]</translation>
     </message>
     <message>
         <source>Invalid command!</source>
@@ -4393,7 +4677,7 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Available modules:</source>
-        <translation type="unfinished"/>
+        <translation>Módulos disponíveis</translation>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
@@ -4405,34 +4689,45 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>INFO</source>
-        <translation type="unfinished"/>
+        <translation>INFO</translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation type="unfinished"/>
+        <translation>ERRO</translation>
     </message>
     <message>
         <source>USAGE</source>
-        <translation type="unfinished"/>
+        <translation>USO</translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation type="unfinished"/>
+        <translation>DESCRIÇÃO</translation>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation type="unfinished"/>
+        <translation>EXEMPLOS</translation>
     </message>
     <message>
         <source>WARNING</source>
-        <translation type="unfinished"/>
+        <translation>AVISO</translation>
     </message>
     <message>
         <source>Authentication test</source>
-        <translation type="unfinished"/>
+        <translation>Teste de autenticação</translation>
     </message>
     <message>
         <source>Screen %1</source>
+        <translation>Ecrã %1</translation>
+    </message>
+</context>
+<context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4440,7 +4735,7 @@ The second button removes the selected or last computer.</source>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Serviço Veyon</translation>
     </message>
 </context>
 <context>
@@ -4454,7 +4749,7 @@ The second button removes the selected or last computer.</source>
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>Windows</translation>
     </message>
     <message>
         <source>General</source>
@@ -4466,23 +4761,23 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation type="unfinished"/>
+        <translation>Bloquear ecrã</translation>
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation type="unfinished"/>
+        <translation>Ocultar a barra de tarefas</translation>
     </message>
     <message>
         <source>Hide start menu</source>
-        <translation type="unfinished"/>
+        <translation>Ocultar o menú iniciar</translation>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation type="unfinished"/>
+        <translation>Ocultar o ambiente de trabalho</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation type="unfinished"/>
+        <translation>Autenticação de utilizador</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
@@ -4490,7 +4785,7 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>User login</source>
-        <translation type="unfinished"/>
+        <translation>Início de sessão de utilizador</translation>
     </message>
     <message>
         <source>Input start delay</source>
@@ -4506,6 +4801,10 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Use input device interception driver</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
         <translation type="unfinished"/>
     </message>
 </context>

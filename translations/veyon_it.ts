@@ -1,9 +1,9 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="it" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="it">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About</source>
-        <translation>Informazioni su</translation>
+        <translation>Informazioni </translation>
     </message>
     <message>
         <source>Translation</source>
@@ -126,7 +126,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>L&apos;utente indicato non è abilitato ad accedere a computer con questa confiugurazione.</translation>
+        <translation>L&apos;utente indicato non è abilitato ad accedere a computer con questa configurazione.</translation>
     </message>
     <message>
         <source>Enable usage of domain groups</source>
@@ -137,16 +137,15 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
         <translation>Backend del gruppo utenti:</translation>
     </message>
     <message>
-        <source>Missing user groups backend</source>
-        <translation>Backend dei gruppi utente non presente</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Non è stato trovato alcun plug-in predefinito per gruppi di utenti. Per favore controlla la tua installazione!</translation>
-    </message>
-    <message>
         <source>Restrict access to members of specific user groups</source>
         <translation>Limita l&apos;accesso a specifici membri di gruppi utenti </translation>
+    </message>
+</context>
+<context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation>Fornitore di funzionalità di controllo degli accessi</translation>
     </message>
 </context>
 <context>
@@ -323,6 +322,14 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
         <source>Session being accessed is a login screen</source>
         <translation>La sessione a cui si accede è una schermata di accesso</translation>
     </message>
+    <message>
+        <source>Local computer is already being accessed</source>
+        <translation>È già in corso l&apos;accesso al computer locale</translation>
+    </message>
+    <message>
+        <source>Local computer is not yet being accessed</source>
+        <translation>Il computer locale non è ancora in fase di accesso</translation>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -367,16 +374,16 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
         <translation>L&apos;accesso allo scenario fornito richiede l&apos;autorizzazione dell&apos;utente connesso.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>ERRORE: azione sconosciuta</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Risultati del test</translation>
     </message>
     <message>
         <source>Authentication method</source>
         <translation>Metodo di autenticazione</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation>Non esiste una regola corrispondente con un&apos;azione valida. L&apos;accesso è quindi negato.</translation>
     </message>
 </context>
 <context>
@@ -469,10 +476,6 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Seleziona la chiave da eliminare! </translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Inserire il nome del gruppo o ruolo dell&apos;utente per il quale importare la chiave di autenticazione:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Seleziona la chiave da esportare!</translation>
     </message>
@@ -483,6 +486,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Si prega di selezionare una chiave per impostare il gruppo di accesso!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation>Inserisci il nome del gruppo di utenti o del ruolo per cui importare la chiave di autenticazione.
+
+Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra siano identici su tutti i computer.</translation>
     </message>
 </context>
 <context>
@@ -1198,6 +1209,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>The specified command does not exist or no help is available for it.</source>
         <translation>Il comando specificato non esiste o non è disponibile alcun aiuto.</translation>
     </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation>Posizione &quot;%1&quot; non trovata.</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1215,10 +1230,6 @@ The public key is used on client computers to authenticate incoming connection r
 </context>
 <context>
     <name>ComputerControlListModel</name>
-    <message>
-        <source>Host/IP address: %1</source>
-        <translation>Host/indirizzo IP: %1</translation>
-    </message>
     <message>
         <source>Active features: %1</source>
         <translation>Funzioni attive: %1</translation>
@@ -1268,12 +1279,24 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Nome: %1</translation>
     </message>
     <message>
-        <source>invalid</source>
-        <translation>non valido</translation>
+        <source>Hostname: %1</source>
+        <translation>Nome host: %1</translation>
     </message>
     <message>
-        <source>[none]</source>
-        <translation>[nessuno]</translation>
+        <source>unknown</source>
+        <translation>sconosciuto</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation>Indirizzo IP: %1</translation>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation>Il nome host non può essere risolto</translation>
+    </message>
+    <message>
+        <source>No features active</source>
+        <translation>Nessuna funzione attiva</translation>
     </message>
 </context>
 <context>
@@ -1344,6 +1367,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>Impossibile determinare la posizione di questo computer. Questo indica un problema con la configurazione del sistema. Tutte le posizioni verranno visualizzate nel pannello di selezione del computer.</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation>Collegato dal</translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation>%1 giorni</translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation>1 giorno</translation>
+    </message>
 </context>
 <context>
     <name>ComputerMonitoring</name>
@@ -1401,6 +1436,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Impossibile scrivere l&apos;elenco computer e utenti su %1! Controllare i permessi di accesso al file.</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation>Cerca computer</translation>
     </message>
 </context>
 <context>
@@ -1549,6 +1588,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Rallenta gli aggiornamenti delle miniature mentre la demo è in esecuzione</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation>Limite di larghezza di banda</translation>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation>MB/s</translation>
     </message>
 </context>
 <context>
@@ -2175,6 +2222,46 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Host private key file</source>
         <translation>File della chiave privata dell&apos;host</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation>Stile:</translation>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation>Nativo</translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation>Schema di colori:</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation>Leggero</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Scuro</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Gruppi utenti</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Backend:</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation>Includi gruppi di utenti dal dominio</translation>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Backend dei gruppi utente non presente</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation>Nessun plugin per gruppi di utenti è stato trovato. Controlla la tua installazione!</translation>
     </message>
 </context>
 <context>
@@ -2915,6 +3002,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Query nested user groups (supported by AD only)</source>
         <translation>Interroga gruppi di utenti annidati (supportato solo da AD)</translation>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation>Timeout query</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>ms</translation>
+    </message>
 </context>
 <context>
     <name>LdapNetworkObjectDirectoryConfigurationPage</name>
@@ -3042,12 +3137,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Configurazione</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>Disabilita tooltip dei palloncini</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>Mostra solamente le icone</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation>Disabilita i tooltip</translation>
     </message>
 </context>
 <context>
@@ -3257,8 +3352,24 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Posizioni e computers</translation>
     </message>
     <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation>Utilizza la disposizione personalizzata del computer.
+
+Tieni premuto per caricare la disposizione da un file o salvare la disposizione corrente in un file.</translation>
+    </message>
+    <message>
         <source>Only show computers with logged on users</source>
         <translation>Mostra solo computer con utenti connessi</translation>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation>Carica le posizioni del computer</translation>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation>Salva le posizioni del computer</translation>
     </message>
 </context>
 <context>
@@ -3352,6 +3463,10 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Solo il nome utente</translation>
     </message>
     <message>
+        <source>Only last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Only computer name</source>
         <translation>Solo il nome del computer</translation>
     </message>
@@ -3434,6 +3549,94 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Open feature windows on the same screen as the main window</source>
         <translation>Apri le finestre delle funzioni sulla stessa schermata della finestra principale</translation>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation>Modelli di configurazione</translation>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation>Qualità dell&apos;immagine in modalità di monitoraggio</translation>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation>Più alto</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation>Alta</translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation>Media</translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation>Bassa</translation>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation>Minima</translation>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation>Qualità dell&apos;immagine per l&apos;accesso remoto</translation>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation>Avanzato</translation>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation>Origine del nome del computer</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Predefinito</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Indirizzo dell&apos;host</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation>Indirizzo del client di sessione</translation>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation>Nome del cliente di sessione</translation>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation>Nome host della sessione</translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation>Metadati di sessione</translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Nome completo dell&apos;utente</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Nome completo dell&apos;utente</translation>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation>Ruolo UID del computer</translation>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation>Hash dei metadati della sessione</translation>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation>Espandi sempre tutte le posizioni</translation>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Qualità dell&apos;immagine</translation>
     </message>
 </context>
 <context>
@@ -3714,12 +3917,16 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
         <translation>Vista o controllo remoto di un computer</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>Inserisci l&apos;hostname o l&apos;indirizzo IP del computer al quale vuoi accedere:</translation>
-    </message>
-    <message>
         <source>Show help about command</source>
         <translation>Mostra aiuto per i comandi</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
+        <translation>Scambia il contenuto degli appunti</translation>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation>Nessun computer è stato selezionato, quindi puoi inserire un nome host o un indirizzo IP di un computer per l&apos;accesso manuale:</translation>
     </message>
 </context>
 <context>
@@ -3827,7 +4034,7 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation>Sbloccca</translation>
+        <translation>Sblocca</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
@@ -3936,6 +4143,37 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
         <translation>Vuoi davvero eliminare tutti gli screenshot selezionati?</translation>
+    </message>
+</context>
+<context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation>Metodo di autenticazione richiesto non disponibile</translation>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation>Accesso consentito dalla regola &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation>Accesso negato dalla regola &quot;%1&quot;</translation>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation>Nessuna regola ha consentito l&apos;accesso</translation>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation>L&apos;utente che accede non è membro di un gruppo di utenti autorizzati</translation>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation>L&apos;utente ha rifiutato l&apos;accesso</translation>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation>L&apos;utente ha confermato l&apos;accesso</translation>
     </message>
 </context>
 <context>
@@ -4053,28 +4291,80 @@ Typically this is required to support terminal servers.</source>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation>Modalità multisessione (istanza del server distinta per ogni sessione desktop locale e remota)</translation>
     </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation>Abilita questa opzione se deve essere avviata una singola istanza di Veyon Server per la sessione attualmente attiva, indipendentemente dal fatto che sia locale o remota.</translation>
+    </message>
+    <message>
+        <source>Miscellaneous settings</source>
+        <translation>Impostazioni varie</translation>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
+        <translation>Disabilita la sincronizzazione degli appunti</translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation>Metadati di sessione</translation>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation>Contenuto</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Nessuna</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation>Valore di una variabile d&apos;ambiente</translation>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation>Valore di una chiave di registro</translation>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation>Nome della variabile d&apos;ambiente:</translation>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation>Nome della chiave di registro:</translation>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation>Facoltativamente, inserisci un&apos;espressione regolare con un&apos;acquisizione per estrarre una parte del nome del computer e utilizzarla come nome visualizzato per il computer.
+
+Esempio: [^-]*-(PC[0-9]*)</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>Avvio del servizio%1</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>Arresto del servizio%1</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>Registrazione del servizio%1</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>Servizio di annullamento della registrazione%1</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>Controllo del servizio</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation>Avvio %1</translation>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation>Arresto %1</translation>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation>Riavvio %1</translation>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation>Registrazione di %1</translation>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation>Disregistrazione di %1</translation>
     </message>
 </context>
 <context>
@@ -4156,6 +4446,14 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Duration:</source>
         <translation>Durata:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation>Visualizzazione in finestra separata</translation>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation>%1 Master – Presentazione</translation>
     </message>
 </context>
 <context>
@@ -4309,17 +4607,6 @@ Il secondo pulsante rimuove il computer selezionato o l&apos;ultimo.</translatio
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>Nessun accesso in scrittura</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Impossibile salvare le tue impostazioni personali. Controlla il percorso file di configurazione utente utilizzando il Configuratore %1</translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4449,6 +4736,17 @@ Il secondo pulsante rimuove il computer selezionato o l&apos;ultimo.</translatio
     </message>
 </context>
 <context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>Nessun accesso in scrittura</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>Impossibile salvare le tue impostazioni personali. Controlla il percorso file di configurazione utente utilizzando il Configuratore %1</translation>
+    </message>
+</context>
+<context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
@@ -4519,6 +4817,10 @@ Il secondo pulsante rimuove il computer selezionato o l&apos;ultimo.</translatio
     <message>
         <source>Use input device interception driver</source>
         <translation>Usa il driver di intercettazione del dispositivo di input</translation>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation>Utilizza lo schema di alimentazione personalizzato con il pulsante di accensione disabilitato</translation>
     </message>
 </context>
 <context>

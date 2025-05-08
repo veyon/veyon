@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="et" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="et">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -137,16 +137,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Kasutajarühmade taustaprogramm:</translation>
     </message>
     <message>
-        <source>Missing user groups backend</source>
-        <translation>Puuduvad kasutajagruppide taustaprogrammid</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Kasutajate rühmade vaikepistikprogrammi ei leitud. Palun kontrollige oma installimist!</translation>
-    </message>
-    <message>
         <source>Restrict access to members of specific user groups</source>
         <translation>Määratud gruppide liikmete juurdepääsu keelamine</translation>
+    </message>
+</context>
+<context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -323,6 +322,14 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Session being accessed is a login screen</source>
         <translation>Seanss, millele pääseb juurde, on sisselogimisekraan</translation>
     </message>
+    <message>
+        <source>Local computer is already being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local computer is not yet being accessed</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
@@ -367,16 +374,16 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Antud stsenaariumi korral vajab juurdepääs sisseloginud kasutaja luba.</translation>
     </message>
     <message>
-        <source>ERROR: Unknown action</source>
-        <translation>Viga: Tundmatu tegevus</translation>
-    </message>
-    <message>
         <source>Test result</source>
         <translation>Testi tulemus</translation>
     </message>
     <message>
         <source>Authentication method</source>
         <translation>Autentimismeetod</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -472,10 +479,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Valige kustutamiseks võti!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation>Sisestage kasutajagrupi või rolli nimi, mille jaoks autentimisvõtit importida:</translation>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Valige eksportimiseks võti!</translation>
     </message>
@@ -486,6 +489,14 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Valige võti, millele juurdepääsugrupp määrata!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation>Sisestage selle kasutajarühma või rolli nimi, mille autentimisvõti importida.
+
+Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites identsed.</translation>
     </message>
 </context>
 <context>
@@ -1201,6 +1212,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>The specified command does not exist or no help is available for it.</source>
         <translation>Määratud käsku pole olemas või selle jaoks pole abi saadaval.</translation>
     </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation>Asukohta &quot;%1&quot; ei leitud.</translation>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1218,10 +1233,6 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
 </context>
 <context>
     <name>ComputerControlListModel</name>
-    <message>
-        <source>Host/IP address: %1</source>
-        <translation>Host/IP aadress: %1</translation>
-    </message>
     <message>
         <source>Active features: %1</source>
         <translation>Aktiivsed funktsioonid: %1</translation>
@@ -1271,12 +1282,24 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Nimi: %1</translation>
     </message>
     <message>
-        <source>invalid</source>
-        <translation>kehtetu</translation>
+        <source>Hostname: %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>[none]</source>
-        <translation>[pole]</translation>
+        <source>unknown</source>
+        <translation>tundmatu</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No features active</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1347,6 +1370,18 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation>Selle arvuti asukohta ei õnnestunud kindlaks teha. See viitab probleemile süsteemi konfiguratsioonis. Kõik asukohad kuvatakse selle asemel arvuti valimise paneelil.</translation>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation>Sisse logitud alates</translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation>%1 päeva</translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation>1 päev</translation>
+    </message>
 </context>
 <context>
     <name>ComputerMonitoring</name>
@@ -1404,6 +1439,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation>Arvutit ja kasutajate loendi %1 kirjutamine nurjus! Kontrollige failidele juurdepääsu õigusi.</translation>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation>Otsige arvuteid</translation>
     </message>
 </context>
 <context>
@@ -1552,6 +1591,14 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation>Demo töötamise ajal pidurdage pisipiltide värskendusi</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation>Ribalaiuse piirang</translation>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation> MB/s</translation>
     </message>
 </context>
 <context>
@@ -2178,6 +2225,46 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Host private key file</source>
         <translation>Hosti privaatvõtme fail</translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation>Stiil:</translation>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation>Kohalik</translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Kasutajagrupid</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation>Taustaprogramm:</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation>Kaasake domeeni kasutajarühmad</translation>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Puuduvad kasutajagruppide taustaprogrammid</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation>Ühtegi kasutajarühmade pistikprogrammi ei leitud. Palun kontrolli oma paigaldust!</translation>
     </message>
 </context>
 <context>
@@ -2928,6 +3015,14 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <source>Query nested user groups (supported by AD only)</source>
         <translation>Pesastatud kasutajarühmade päring (toetab ainult AD)</translation>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation>Päringu ajalõpp</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation> ms</translation>
+    </message>
 </context>
 <context>
     <name>LdapNetworkObjectDirectoryConfigurationPage</name>
@@ -3055,12 +3150,12 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Konfiguratsioon</translation>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation>Keelake tööriistavihjed</translation>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>Kuva ainult ikoone</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation>Keela tööriistavihjed</translation>
     </message>
 </context>
 <context>
@@ -3270,8 +3365,22 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Asukohad&amp;arvutid</translation>
     </message>
     <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Only show computers with logged on users</source>
         <translation>Kuva ainult arvutid, mille kasutajad on sisse logitud</translation>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3365,6 +3474,10 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
         <translation>Vaid kasutaja nimi</translation>
     </message>
     <message>
+        <source>Only last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Only computer name</source>
         <translation>Vaid arvuti nimi</translation>
     </message>
@@ -3447,6 +3560,94 @@ Avalikku võtit kasutatakse klientarvutites sissetuleva ühenduse päringu auten
     <message>
         <source>Open feature windows on the same screen as the main window</source>
         <translation>Avage funktsiooniaknad peaaknaga samal ekraanil</translation>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation>Pildikvaliteet jälgimisrežiimis</translation>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation>Kõrgeim</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation>Kõrge</translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation>Keskmine</translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation>Madal</translation>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation>Madalaim</translation>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation>Kaugjuurdepääsu pildikvaliteet</translation>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Vaikimisi</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Seadme aadress</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation>Seansi kliendi aadress</translation>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation>Seansi kliendi nimi</translation>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Kasutaja täisnimi</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Kasutaja sisselogimisnimi</translation>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Pildikvaliteet</translation>
     </message>
 </context>
 <context>
@@ -3727,12 +3928,16 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
         <translation>Kaugvaatamine või arvuti kaughaldus</translation>
     </message>
     <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation>Palun sisestage juurdepääsuks arvuti hostinimi või IP-aadress:</translation>
-    </message>
-    <message>
         <source>Show help about command</source>
         <translation>Näita abi käsu kohta</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
+        <translation>Vahetage lõikepuhvri sisu</translation>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation>Ühtegi arvutit pole valitud, nii et saate käsitsi juurdepääsuks sisestada arvuti hostinime või IP-aadressi:</translation>
     </message>
 </context>
 <context>
@@ -3952,6 +4157,37 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     </message>
 </context>
 <context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User confirmed access</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
@@ -4067,28 +4303,80 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation>Mitme seansi režiim (iga kohaliku ja kaugtöölaua seansi jaoks eraldi serveri eksemplar)</translation>
     </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Miscellaneous settings</source>
+        <translation>Mitmesugused seaded</translation>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
+        <translation>Keela lõikelaua sünkroonimine</translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Puudub</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation>Keskkonna muutuja nimi</translation>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation>Registrivõtme nimi</translation>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation>Soovi korral sisestage fikseeritud regulaaravaldis, et eraldada osa arvuti nimest ja kasutada seda arvuti kuvanimena.
+
+Näide: [^-]*-(PC[0-9]*)</translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>Käivita teenus %1</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>Teenuse peatamine %1</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>Teenuse registreerimine %1</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>Teenuse registreerimise tühistamine %1</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>Teenuse juhtimine</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4170,6 +4458,14 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     <message>
         <source>Duration:</source>
         <translation>Kestus:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4323,17 +4619,6 @@ Teine nupp eemaldab valitud või viimase arvuti.</translation>
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>Kirjutusjuurdepääs puudub</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Teie isiklikke seadeid ei õnnestunud salvestada! Kontrollige kasutaja konfiguratsioonifaili teed %1 Konfiguraatori abil</translation>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4463,6 +4748,17 @@ Teine nupp eemaldab valitud või viimase arvuti.</translation>
     </message>
 </context>
 <context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>Kirjutusjuurdepääs puudub</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation>Teie isiklikke seadeid ei õnnestunud salvestada! Kontrollige kasutaja konfiguratsioonifaili teed %1 Konfiguraatori abil</translation>
+    </message>
+</context>
+<context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
@@ -4533,6 +4829,10 @@ Teine nupp eemaldab valitud või viimase arvuti.</translation>
     <message>
         <source>Use input device interception driver</source>
         <translation>Kasutage sisendseadme pealtkuulamise draiverit</translation>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
+        <translation>Kasutage kohandatud toiteskeemi koos keelatud toitenupuga</translation>
     </message>
 </context>
 <context>

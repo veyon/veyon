@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="lv" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="lv">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -137,16 +137,15 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
         <translation>Lietotāju grupas backends:</translation>
     </message>
     <message>
-        <source>Missing user groups backend</source>
-        <translation>Trūks lietotāju grupas backends</translation>
-    </message>
-    <message>
-        <source>No default user groups plugin was found. Please check your installation!</source>
-        <translation>Neviens pamata lietotāja grupas spraudnis netika atrasts. Lūdzu pārbaudi instalāciju.</translation>
-    </message>
-    <message>
         <source>Restrict access to members of specific user groups</source>
         <translation>Ierobežot piekļuvi konkrētas grupas lietotājiem</translation>
+    </message>
+</context>
+<context>
+    <name>AccessControlProvider</name>
+    <message>
+        <source>Provider for access control features</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -217,7 +216,7 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     </message>
     <message>
         <source>Accessing computer and local computer</source>
-        <translation type="unfinished"/>
+        <translation>Piekļūt datoram un lokālajam datoram</translation>
     </message>
     <message>
         <source>User being accessed</source>
@@ -233,19 +232,19 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     </message>
     <message>
         <source>No user is logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>Neviens lietotājs nav pieteicies lokāli</translation>
     </message>
     <message>
         <source>One or multiple users are logged in locally</source>
-        <translation type="unfinished"/>
+        <translation>Neviens lietotājs nav pieteicies lokāli</translation>
     </message>
     <message>
         <source>No user is logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>Neviens lietotājs nav pieteicies</translation>
     </message>
     <message>
         <source>One or multiple users are logged in remotely</source>
-        <translation type="unfinished"/>
+        <translation>Viens vai vairāki lietotāji ir pieteikušies attālināti</translation>
     </message>
     <message>
         <source>is located at</source>
@@ -253,15 +252,15 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     </message>
     <message>
         <source>is not located at</source>
-        <translation type="unfinished"/>
+        <translation>neatrodas</translation>
     </message>
     <message>
         <source>are located at the same location</source>
-        <translation type="unfinished"/>
+        <translation>atrodas vienā atrašanās vietā</translation>
     </message>
     <message>
         <source>are not located the same location</source>
-        <translation type="unfinished"/>
+        <translation>neatrodas vienā atrašanās vietā</translation>
     </message>
     <message>
         <source>is member of group</source>
@@ -269,58 +268,66 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     </message>
     <message>
         <source>is not member of group</source>
-        <translation type="unfinished"/>
+        <translation>nav grupas dalībnieks</translation>
     </message>
     <message>
         <source>is authenticated via</source>
-        <translation type="unfinished"/>
+        <translation>ir autentificēts ar</translation>
     </message>
     <message>
         <source>is not authenticated via</source>
-        <translation type="unfinished"/>
+        <translation>nav autentificēts ar</translation>
     </message>
     <message>
         <source>has one or more groups in common with user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>ir viena vai vairākas grupas, kas ir kopīgas lietotājam, kurām var piekļūt</translation>
     </message>
     <message>
         <source>has no groups in common with user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>nav kopīgu grupu ar lietotāju, kuram var piekļūt</translation>
     </message>
     <message>
         <source>equals user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>vienāds ar lietotāju, kuram piekļūst</translation>
     </message>
     <message>
         <source>is different from user being accessed</source>
-        <translation type="unfinished"/>
+        <translation>atšķiras no lietotāja, kuram tiek piekļūts</translation>
     </message>
     <message>
         <source>is already connected</source>
-        <translation type="unfinished"/>
+        <translation>jau ir izveidots savienojums</translation>
     </message>
     <message>
         <source>is not connected</source>
-        <translation type="unfinished"/>
+        <translation>nav savienots</translation>
     </message>
     <message>
         <source>is local computer</source>
-        <translation type="unfinished"/>
+        <translation>ir lokālais dators</translation>
     </message>
     <message>
         <source>is not local computer</source>
-        <translation type="unfinished"/>
+        <translation>nav lokālais dators</translation>
     </message>
     <message>
         <source>Computer being accessed</source>
-        <translation type="unfinished"/>
+        <translation>Dators, kuram piekļūst</translation>
     </message>
     <message>
         <source>Session being accessed is a user session</source>
-        <translation type="unfinished"/>
+        <translation>Sesija, kurai piekļūst, ir lietotāja sesija</translation>
     </message>
     <message>
         <source>Session being accessed is a login screen</source>
+        <translation>Sesija, kurai piekļūst, ir pieteikšanās ekrāns</translation>
+    </message>
+    <message>
+        <source>Local computer is already being accessed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local computer is not yet being accessed</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -344,7 +351,7 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation type="unfinished"/>
+        <translation>Lai pārbaudītu konfigurēto kārtulu kopu, lūdzu, ievadiet tālāk norādīto lietotāja un datora informāciju.</translation>
     </message>
     <message>
         <source>Local user:</source>
@@ -364,11 +371,7 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>ERROR: Unknown action</source>
-        <translation>Errors: Nezināma darbība</translation>
+        <translation>Piekļuvei dotajā scenārijā ir nepieciešama no lietotāja, kurš šobrīd ir pierakstījies.</translation>
     </message>
     <message>
         <source>Test result</source>
@@ -376,6 +379,10 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     </message>
     <message>
         <source>Authentication method</source>
+        <translation>Autentifikācijas metode</translation>
+    </message>
+    <message>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -387,7 +394,7 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation type="unfinished"/>
+        <translation>Lai iestatītu atslēgas faila autentifikāciju, veiciet šādas darbības:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
@@ -426,7 +433,10 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation type="unfinished"/>
+        <translation>Autentifikācijas atslēgu pāris sastāv no divām savienotām kriptogrāfiskām atslēgām - privātas un publiskas atslēgas.
+Privātā atslēga ļauj lietotājiem galvenajā datorā piekļūt klientu datoriem.
+Ir svarīgi, lai piekļuve privātās atslēgas failam būtu tikai autorizētiem lietotājiem.
+Publiskā atslēga tiek izmantota klientu datoros, lai autentificētu ienākošā savienojuma pieprasījumu.</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -458,7 +468,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation type="unfinished"/>
+        <translation>Lūdzu, ievadiet tās lietotāju grupas vai lomas nosaukumu, kurai jāizveido autentifikācijas atslēgu pāris:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
@@ -469,20 +479,22 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Lūdzu, izvēlieties atslēgu kuru izdzēst!</translation>
     </message>
     <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Please select a key to export!</source>
         <translation>Lūdzu, izvēlieties atslēgfailu, kuru izvadīt!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation type="unfinished"/>
+        <translation>Lūdzu, atlasiet lietotāju grupu, kurai piešķirt piekļuvi atslēgai “%1”:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Izvēlies atslēgu kuru piešķirt piekļuves grupai!</translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -497,11 +509,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Norādīts nederīgs atslēgas tips! Lūdzu, norādiet “%1” vai “%2”.</translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
-        <translation type="unfinished"/>
+        <translation>Norādītā atslēga nepastāv! Lūdzu, izmantojiet komandu “list”, lai uzskaitītu visas instalētās atslēgas.</translation>
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
@@ -879,7 +891,7 @@ The public key is used on client computers to authenticate incoming connection r
     <name>AuthenticationPageTab</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"/>
+        <translation>Iespējots</translation>
     </message>
     <message>
         <source>Test</source>
@@ -1198,6 +1210,10 @@ The public key is used on client computers to authenticate incoming connection r
         <source>The specified command does not exist or no help is available for it.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
@@ -1215,10 +1231,6 @@ The public key is used on client computers to authenticate incoming connection r
 </context>
 <context>
     <name>ComputerControlListModel</name>
-    <message>
-        <source>Host/IP address: %1</source>
-        <translation>Dalībnieku adreses/IP: %1</translation>
-    </message>
     <message>
         <source>Active features: %1</source>
         <translation>Aktīvās iespējas: %1</translation>
@@ -1268,12 +1280,24 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Vārds: %1</translation>
     </message>
     <message>
-        <source>invalid</source>
-        <translation>nederīgs</translation>
+        <source>Hostname: %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>[none]</source>
-        <translation>[neviens]</translation>
+        <source>unknown</source>
+        <translation>nezināms</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No features active</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1344,6 +1368,18 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Logged in since</source>
+        <translation>Pieslēdzies kopš</translation>
+    </message>
+    <message>
+        <source>%1 days</source>
+        <translation>%1 days</translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation>1 diena</translation>
+    </message>
 </context>
 <context>
     <name>ComputerMonitoring</name>
@@ -1401,6 +1437,10 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Search computers</source>
+        <translation>Meklēt darorus</translation>
     </message>
 </context>
 <context>
@@ -1549,6 +1589,14 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation>Joslas platuma limits</translation>
+    </message>
+    <message>
+        <source> MB/s</source>
+        <translation> MB/s</translation>
     </message>
 </context>
 <context>
@@ -2174,6 +2222,46 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Host private key file</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Lietotāju grupas</translation>
+    </message>
+    <message>
+        <source>Backend:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation>Trūks lietotāju grupas backends</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2906,6 +2994,14 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Query nested user groups (supported by AD only)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Query timeout</source>
+        <translation>Pieprasījuma noilgums</translation>
+    </message>
+    <message>
+        <source> ms</source>
+        <translation>ms</translation>
+    </message>
 </context>
 <context>
     <name>LdapNetworkObjectDirectoryConfigurationPage</name>
@@ -3033,12 +3129,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Disable balloon tooltips</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Show icons only</source>
         <translation>Rādīt ikonas tikai</translation>
+    </message>
+    <message>
+        <source>Disable tooltips</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3129,7 +3225,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>Automātiski</translation>
     </message>
     <message>
         <source>About</source>
@@ -3248,7 +3344,21 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Vietas un datori</translation>
     </message>
     <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Only show computers with logged on users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Save computer positions</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3292,7 +3402,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Behaviour</source>
-        <translation type="unfinished"/>
+        <translation>Rīcība</translation>
     </message>
     <message>
         <source>Enforce selected mode for client computers</source>
@@ -3300,7 +3410,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Hide local computer</source>
-        <translation type="unfinished"/>
+        <translation>Slēpt lokālos datorus</translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
@@ -3316,7 +3426,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Background color</source>
-        <translation type="unfinished"/>
+        <translation>Fona krāsa</translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>
@@ -3328,11 +3438,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Program start</source>
-        <translation type="unfinished"/>
+        <translation>Programmas izpilde</translation>
     </message>
     <message>
         <source>Modes and features</source>
-        <translation type="unfinished"/>
+        <translation>Režīmi un iespējas</translation>
     </message>
     <message>
         <source>User and computer name</source>
@@ -3343,8 +3453,12 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Tikai lietotāja vārdu</translation>
     </message>
     <message>
-        <source>Only computer name</source>
+        <source>Only last part of user name</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Only computer name</source>
+        <translation>Tikai datora vārds</translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
@@ -3356,15 +3470,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Sort order</source>
-        <translation type="unfinished"/>
+        <translation>Kārtošanas kārtība</translation>
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation type="unfinished"/>
+        <translation>Datoru un lietotāju vārdi</translation>
     </message>
     <message>
         <source>Computer locations</source>
-        <translation type="unfinished"/>
+        <translation>Datoru atrašanās vietas</translation>
     </message>
     <message>
         <source>Show current location only</source>
@@ -3412,7 +3526,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>Automātiski</translation>
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
@@ -3426,12 +3540,100 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Open feature windows on the same screen as the main window</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality in monitoring mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>High</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Dalībnieku adreses</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation type="unfinished"/>
+        <translation>Uzraudzība</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3458,14 +3660,14 @@ The public key is used on client computers to authenticate incoming connection r
     <name>NestedNetworkObjectDirectory</name>
     <message>
         <source>All directories</source>
-        <translation type="unfinished"/>
+        <translation>Visas direktorijas</translation>
     </message>
 </context>
 <context>
     <name>NetworkObjectDirectoryConfigurationPage</name>
     <message>
         <source>Update interval:</source>
-        <translation type="unfinished"/>
+        <translation>Atsvaidzināšanas intervāls:</translation>
     </message>
     <message>
         <source> seconds</source>
@@ -3476,14 +3678,14 @@ The public key is used on client computers to authenticate incoming connection r
     <name>NetworkObjectDirectoryConfigurationPageTab</name>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished"/>
+        <translation>Iespējots</translation>
     </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
-        <translation type="unfinished"/>
+        <translation>Atrašanās vietas/Datori</translation>
     </message>
 </context>
 <context>
@@ -3494,15 +3696,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation type="unfinished"/>
+        <translation>piem. Veyon</translation>
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation type="unfinished"/>
+        <translation>Atcerēties un pievienot mājaslapu izvēlei</translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation type="unfinished"/>
+        <translation>piem. www.veyon.io</translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -3514,7 +3716,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Website name</source>
-        <translation type="unfinished"/>
+        <translation>Mājaslapas nosaukums</translation>
     </message>
 </context>
 <context>
@@ -3568,7 +3770,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Noklikšķiniet uz šīs pogas, lai restartētu visus datorus.</translation>
     </message>
     <message>
         <source>Power down</source>
@@ -3576,7 +3778,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
-        <translation type="unfinished"/>
+        <translation>Noklikšķiniet uz šīs pogas, lai izslēgtu visus datorus. Tādējādi nav nepieciešams katru datoru izslēgt atsevišķi.</translation>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
@@ -3596,7 +3798,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation type="unfinished"/>
+        <translation>Ieslēgt datoru izmantojot Wake-on-LAN (WOL)</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
@@ -3604,19 +3806,19 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation type="unfinished"/>
+        <translation>Šī komanda pārraida tīklā Wake-on-LAN (WOL) paketi, lai ieslēgtu datoru ar norādīto MAC adresi.</translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
+        <translation>Lūdzu, norādiet komandu, kurai parādīt palīdzību!</translation>
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
-        <translation type="unfinished"/>
+        <translation>Norādītā MAC adrese nav pareiza!</translation>
     </message>
     <message>
         <source>Commands for controlling power status of computers</source>
-        <translation type="unfinished"/>
+        <translation>Datoru statusa kontroles komandas</translation>
     </message>
     <message>
         <source>Power down now</source>
@@ -3624,37 +3826,39 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation type="unfinished"/>
+        <translation>Instalēt atjauninājumus un izslēgt</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation type="unfinished"/>
+        <translation>Izslēgt pēc lietotāja piekrišanas</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation type="unfinished"/>
+        <translation>Izslēgt pēc noteikta laika</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation type="unfinished"/>
+        <translation>Datoram pieprasa attālināti izslēgties. Vai vēlaties izslēgt datoru tagad?</translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
-        <translation type="unfinished"/>
+        <translation>Dators tiks izslēgts pēc %1 minūtēm, %2 sekundēm.
+
+Lūdzu, saglabājiet savu darbu un aizveriet visas programmas.</translation>
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>Vai tiešām vēlaties restartēt &lt;b&gt;ALL&lt;/b&gt; datorus?</translation>
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>Vai tiešām vēlaties izslēgt &lt;b&gt;ALL&lt;/b&gt; datorus?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>Vai tiešām vēlaties izslēgt atlasītos datorus?</translation>
     </message>
 </context>
 <context>
@@ -3665,7 +3869,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
-        <translation type="unfinished"/>
+        <translation>Lūdzu, norādiet taimautu, lai izslēgtu atlasītos datorus:</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -3700,22 +3904,26 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Please enter the hostname or IP address of the computer to access:</source>
-        <translation type="unfinished"/>
+        <translation>Datora attālā skatīšana vai vadība</translation>
     </message>
     <message>
         <source>Show help about command</source>
         <translation>Parādīt palīdzību par komandu</translation>
+    </message>
+    <message>
+        <source>Exchange clipboard contents</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>RemoteAccessPage</name>
     <message>
         <source>Remote access: %1</source>
-        <translation type="unfinished"/>
+        <translation>Attālā piekļuve: %1</translation>
     </message>
 </context>
 <context>
@@ -3726,7 +3934,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - %3 Attālā piekļuve</translation>
     </message>
 </context>
 <context>
@@ -3820,11 +4028,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
-        <translation type="unfinished"/>
+        <translation>Bloķēt datora ekrānu un ievadierīces.</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
-        <translation type="unfinished"/>
+        <translation>Lai atgūtu visu lietotāja uzmanību, varat bloķēt viņu datorus, izmantojot šo pogu. Šajā režīmā visas ievades ierīces ir bloķētas un ekrāni ir melni.</translation>
     </message>
     <message>
         <source>Lock input devices</source>
@@ -3924,6 +4132,37 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>ServerAccessControlManager</name>
+    <message>
+        <source>Requested authentication method not available</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access allowed by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Access denied by rule &quot;%1&quot;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No rule allowed access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Accessing user not member of an authorized user group</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User has denied access</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User confirmed access</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4042,28 +4281,78 @@ Typically this is required to support terminal servers.</source>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Miscellaneous settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Content</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Nav</translation>
+    </message>
+    <message>
+        <source>Value of an environment variable</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Value of a registry key</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment variable name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registry key name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
-        <source>Starting service %1</source>
-        <translation>Palaižas pakalpojums %1</translation>
-    </message>
-    <message>
-        <source>Stopping service %1</source>
-        <translation>Apstājas pakalpojums %1</translation>
-    </message>
-    <message>
-        <source>Registering service %1</source>
-        <translation>Reģistrēt pakalpojumu %1</translation>
-    </message>
-    <message>
-        <source>Unregistering service %1</source>
-        <translation>Atcelt reģistrāciju pakalpojumam %1</translation>
-    </message>
-    <message>
         <source>Service control</source>
         <translation>Pakalpojuma kontrole</translation>
+    </message>
+    <message>
+        <source>Starting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Stopping %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Restarting %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registering %1</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unregistering %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4145,6 +4434,14 @@ Typically this is required to support terminal servers.</source>
     <message>
         <source>Duration:</source>
         <translation>Ilgums:</translation>
+    </message>
+    <message>
+        <source>View in separate window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4297,17 +4594,6 @@ The second button removes the selected or last computer.</source>
     </message>
 </context>
 <context>
-    <name>UserConfig</name>
-    <message>
-        <source>No write access</source>
-        <translation>Nav rakstīšanas atļauja</translation>
-    </message>
-    <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation type="unfinished"/>
-    </message>
-</context>
-<context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
@@ -4437,6 +4723,17 @@ The second button removes the selected or last computer.</source>
     </message>
 </context>
 <context>
+    <name>VeyonMaster</name>
+    <message>
+        <source>No write access</source>
+        <translation>Nav rakstīšanas atļauja</translation>
+    </message>
+    <message>
+        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
@@ -4506,6 +4803,10 @@ The second button removes the selected or last computer.</source>
     </message>
     <message>
         <source>Use input device interception driver</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power button</source>
         <translation type="unfinished"/>
     </message>
 </context>
