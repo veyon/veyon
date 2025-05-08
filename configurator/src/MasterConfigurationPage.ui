@@ -187,7 +187,7 @@
             </item>
             <item>
              <property name="text">
-              <string>Only last part of user name (hopefully surname)</string>
+              <string>Only last part of user name</string>
              </property>
             </item>
             <item>

@@ -583,7 +583,7 @@ QString ComputerControlListModel::computerSortRole( const ComputerControlInterfa
 	case SortOrder::LastPartOfUserName:
 		if( controlInterface->userFullName().isEmpty() == false )
 		{
-			return controlInterface->userFullName().split(QStringLiteral(" "), Qt::SkipEmptyParts).last();
+			return controlInterface->userFullName().split(QLatin1Char(" "), Qt::SkipEmptyParts).constlast();
 		}
 
 		return controlInterface->userLoginName();
