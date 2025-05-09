@@ -130,7 +130,7 @@ void LdapNetworkObjectDirectory::updateObjects(const NetworkObject& parent)
 
 		removeObjects(parent, [&computerDns](const NetworkObject& object) {
 			return object.type() == NetworkObject::Type::Host &&
-					computerDns.contains(object.property(NetworkObject::Property::DirectoryAddress)) == false;
+					computerDns.contains(object.property(NetworkObject::Property::DirectoryAddress).toString()) == false;
 		});
 	}
 }
@@ -244,7 +244,7 @@ void LdapNetworkObjectDirectory::updateLocations(const NetworkObject& parent)
 
 	removeObjects(parent, [locationDNs](const NetworkObject& object) {
 		return object.type() == NetworkObject::Type::Location &&
-				locationDNs.contains(object.property(NetworkObject::Property::DirectoryAddress)) == false; });
+				locationDNs.contains(object.property(NetworkObject::Property::DirectoryAddress).toString()) == false; });
 }
 
 
@@ -298,7 +298,7 @@ void LdapNetworkObjectDirectory::updateComputers(const NetworkObject& parent)
 
 	removeObjects(parent, [computerDns](const NetworkObject& object) {
 		return object.type() == NetworkObject::Type::Host &&
-				computerDns.contains(object.property(NetworkObject::Property::DirectoryAddress)) == false;
+				computerDns.contains(object.property(NetworkObject::Property::DirectoryAddress).toString()) == false;
 	});
 }
 
