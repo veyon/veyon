@@ -371,7 +371,7 @@ Typically this is required to support terminal servers.</string>
       <item row="1" column="0">
        <widget class="QLabel" name="sessionMetaDataEnvironmentVariableLabel">
         <property name="text">
-         <string>Environment variable name:</string>
+         <string>Environment variable name</string>
         </property>
        </widget>
       </item>
@@ -381,7 +381,7 @@ Typically this is required to support terminal servers.</string>
       <item row="2" column="0">
        <widget class="QLabel" name="sessionMetaDataRegistryKeyLabel">
         <property name="text">
-         <string>Registry key name:</string>
+         <string>Registry key name</string>
         </property>
        </widget>
       </item>
