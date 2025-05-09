@@ -143,9 +143,9 @@ bool NetworkObjectFilterProxyModel::filterAcceptsRowRecursive(const QModelIndex&
 		for (int i = 0; i < rows; ++i)
 		{
 			const auto rowIndex = sourceModel()->index(i, 0, index);
-			const auto objectType = NetworkObject::Type(sourceModel()->data(rowIndex, NetworkObjectModel::TypeRole).toInt());
+			const auto rowObjectType = NetworkObject::Type(sourceModel()->data(rowIndex, NetworkObjectModel::TypeRole).toInt());
 
-			if (NetworkObject::isContainer(objectType) && filterAcceptsRowRecursive(rowIndex))
+			if (NetworkObject::isContainer(rowObjectType) && filterAcceptsRowRecursive(rowIndex))
 			{
 				return true;
 			}
