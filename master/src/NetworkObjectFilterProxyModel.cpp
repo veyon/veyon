@@ -106,7 +106,7 @@ bool NetworkObjectFilterProxyModel::filterAcceptsRowRecursive(const QModelIndex&
 		}
 
 		const auto parentAccepted = m_groupList.isEmpty() ||
-									parentContainerAccepted(sourceModel()->parent(index));
+									parentContainerAccepted(index.parent());
 		if (parentAccepted == false)
 		{
 			return false;
@@ -163,5 +163,5 @@ bool NetworkObjectFilterProxyModel::parentContainerAccepted(const QModelIndex& i
 {
 	return index.isValid() &&
 			(m_groupList.contains(sourceModel()->data(index).toString()) ||
-			 parentContainerAccepted(sourceModel()->parent(index)));
+			 parentContainerAccepted(index.parent()));
 }
