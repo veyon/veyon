@@ -58,6 +58,8 @@ LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, QObject* p
 	m_computerLocationsByContainer = m_configuration.computerLocationsByContainer();
 	m_computerLocationsByAttribute = m_configuration.computerLocationsByAttribute();
 	m_computerLocationAttribute = m_configuration.computerLocationAttribute();
+
+	m_mapContainerStructureToLocations = m_configuration.mapContainerStructureToLocations();
 }
 
 

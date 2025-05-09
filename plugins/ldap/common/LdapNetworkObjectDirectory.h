@@ -11,21 +11,26 @@ class LDAP_COMMON_EXPORT LdapNetworkObjectDirectory : public NetworkObjectDirect
 {
 	Q_OBJECT
 public:
-	LdapNetworkObjectDirectory( const LdapConfiguration& ldapConfiguration, QObject* parent );
+	LdapNetworkObjectDirectory(const LdapConfiguration& ldapConfiguration, QObject* parent);
 
-	NetworkObjectList queryObjects( NetworkObject::Type type,
-									NetworkObject::Property property, const QVariant& value ) override;
-	NetworkObjectList queryParents( const NetworkObject& childId ) override;
+	NetworkObjectList queryObjects(NetworkObject::Type type,
+								   NetworkObject::Property property, const QVariant& value) override;
+	NetworkObjectList queryParents(const NetworkObject& childId) override;
 
-	static NetworkObject computerToObject( NetworkObjectDirectory* directory,
-						  LdapDirectory* ldapDirectory, const QString& computerDn );
+	NetworkObject computerToObject(const QString& computerDn);
 
 private:
 	void update() override;
-	void updateLocation( const NetworkObject& locationObject );
+	void fetchObjects(const NetworkObject& parent) override;
 
-	NetworkObjectList queryLocations( NetworkObject::Property property, const QVariant& value );
-	NetworkObjectList queryHosts( NetworkObject::Property property, const QVariant& value );
+	void updateObjects(const NetworkObject& parent);
+
+	NetworkObjectList queryLocations(NetworkObject::Property property, const QVariant& value);
+	NetworkObjectList queryHosts(NetworkObject::Property property, const QVariant& value);
+
+	void updateLocations(const NetworkObject& parent);
+	void updateComputers(const NetworkObject& parent);
 
 	LdapDirectory m_ldapDirectory;
+
 };

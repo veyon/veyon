@@ -2999,6 +2999,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source> ms</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LdapNetworkObjectDirectoryConfigurationPage</name>
