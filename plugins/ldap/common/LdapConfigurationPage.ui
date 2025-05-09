@@ -862,6 +862,13 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QCheckBox" name="mapContainerStructureToLocations">
+            <property name="text">
+             <string>Map container/OU structure 1:1 to locations</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -1109,6 +1116,7 @@
   <tabstop>testComputerGroupsFilter</tabstop>
   <tabstop>testComputerContainersFilter</tabstop>
   <tabstop>queryNestedUserGroups</tabstop>
+  <tabstop>mapContainerStructureToLocations</tabstop>
   <tabstop>identifyGroupMembersByDN</tabstop>
   <tabstop>identifyGroupMembersByNameAttribute</tabstop>
   <tabstop>computerLocationsByGroups</tabstop>
@@ -1394,6 +1402,22 @@
     <hint type="destinationlabel">
      <x>810</x>
      <y>292</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>computerLocationsByContainer</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>mapContainerStructureToLocations</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>536</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>309</y>
     </hint>
    </hints>
   </connection>

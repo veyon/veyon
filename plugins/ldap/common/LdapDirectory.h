@@ -98,6 +98,11 @@ public:
 		return m_computerLocationsByContainer;
 	}
 
+	bool mapContainerStructureToLocations() const
+	{
+		return m_mapContainerStructureToLocations;
+	}
+
 private:
 	LdapClient::Scope computerSearchScope() const;
 
@@ -131,5 +136,7 @@ private:
 	bool m_computerLocationsByContainer = false;
 	bool m_computerLocationsByAttribute = false;
 	bool m_computerHostNameAsFQDN = false;
+
+	bool m_mapContainerStructureToLocations = false;
 
 };
