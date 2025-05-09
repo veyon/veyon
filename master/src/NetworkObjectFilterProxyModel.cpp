@@ -78,12 +78,12 @@ void NetworkObjectFilterProxyModel::setComputersExcluded(bool enabled)
 bool NetworkObjectFilterProxyModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const
 {
 	const auto index = sourceModel()->index(sourceRow, 0, sourceParent);
-	const auto objectType = NetworkObject::Type(sourceModel()->data(index, NetworkObjectModel::TypeRole).toInt());
 	if (filterAcceptsRowRecursive(index))
 	{
 		return true;
 	}
 
+	const auto objectType = NetworkObject::Type(sourceModel()->data(index, NetworkObjectModel::TypeRole).toInt());
 	if (NetworkObject::isContainer(objectType))
 	{
 		return parentContainerAccepted(index);
