@@ -170,8 +170,6 @@ QString WtsSessionManager::querySessionInformation(SessionId sessionId, SessionI
 
 	WTSFreeMemory(queryBuffer);
 
-	vDebug() << sessionId << sessionInfo << result;
-
 	return result;
 }
 
