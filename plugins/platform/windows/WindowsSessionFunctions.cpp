@@ -30,8 +30,21 @@
 
 #include "WindowsCoreFunctions.h"
 #include "PlatformSessionManager.h"
+#include "VeyonConfiguration.h"
+#include "WindowsPlatformConfiguration.h"
 #include "WindowsSessionFunctions.h"
 #include "WtsSessionManager.h"
+
+
+WindowsSessionFunctions::WindowsSessionFunctions()
+{
+	if (VeyonCore::component() == VeyonCore::Component::Server)
+	{
+		QObject::connect (VeyonCore::instance(), &VeyonCore::initialized,
+						  VeyonCore::instance(), [this]() { initDesktopWindowsRectifier(); });
+	}
+}
+
 
 
 WindowsSessionFunctions::SessionId WindowsSessionFunctions::currentSessionId()
@@ -154,4 +167,75 @@ QVariant WindowsSessionFunctions::querySettingsValueInCurrentSession(const QStri
 	}
 
 	return QSettings(QSettings::UserScope, QCoreApplication::organizationName(), QCoreApplication::applicationName()).value(key);
+}
+
+
+void WindowsSessionFunctions::initDesktopWindowsRectifier()
+{
+	WindowsPlatformConfiguration config(&VeyonCore::config());
+
+	m_rectifyInterferingWindows = config.rectifyInterferingWindows();
+	m_terminateInterferingProcesses = config.terminateInterferingProcesses();
+
+	if (m_rectifyInterferingWindows || m_terminateInterferingProcesses)
+	{
+		QObject::connect (&m_desktopWindowsInspectionTimer, &QTimer::timeout, &m_desktopWindowsInspectionTimer, [this]() {
+			inspectDesktopWindows();
+		});
+		m_desktopWindowsInspectionTimer.start(DesktopWindowsInspectionInterval);
+	}
+}
+
+
+
+void WindowsSessionFunctions::inspectDesktopWindows()
+{
+	EnumWindows([](HWND window, LPARAM instance) -> WINBOOL {
+		const auto _this = reinterpret_cast<WindowsSessionFunctions *>(instance);
+		return _this->inspectDesktopWindow(window);
+	}, LPARAM(this));
+}
+
+
+
+WINBOOL WindowsSessionFunctions::inspectDesktopWindow(HWND window)
+{
+	const auto windowStyle = GetWindowLong(window, GWL_EXSTYLE);
+	if (windowStyle & (WS_EX_TOPMOST | WS_EX_TRANSPARENT | WS_EX_LAYERED)) {
+		COLORREF crKey;
+		BYTE alpha;
+		DWORD flags;
+		if (GetLayeredWindowAttributes(window, &crKey, &alpha, &flags) && (flags & LWA_COLORKEY))
+		{
+			if (m_rectifyInterferingWindows)
+			{
+				vDebug() << "rectifying window" << window << flags << crKey << alpha;
+				SetLayeredWindowAttributes(window, 0, 255, LWA_COLORKEY | LWA_ALPHA);
+				SetWindowLong(window, GWL_EXSTYLE,
+							  windowStyle & ~(WS_EX_TRANSPARENT | WS_EX_LAYERED | WS_EX_TOPMOST));
+				RedrawWindow(window, NULL, NULL, RDW_ERASE | RDW_INVALIDATE | RDW_FRAME | RDW_ALLCHILDREN);
+				ShowWindow(window, SW_HIDE);
+			}
+
+			if (m_terminateInterferingProcesses)
+			{
+				vDebug() << "terminating process of window" << window << flags << crKey << alpha;
+				DWORD processId = 0;
+				if (GetWindowThreadProcessId(window, &processId))
+				{
+					const auto processHandle = OpenProcess(PROCESS_TERMINATE, 0, processId);
+					if (processHandle)
+					{
+						TerminateProcess(processHandle, 0);
+						CloseHandle(processHandle);
+					}
+					else
+					{
+						PostMessage(window, WM_QUIT, 0, 0);
+					}
+				}
+			}
+		}
+	}
+	return TRUE;
 }

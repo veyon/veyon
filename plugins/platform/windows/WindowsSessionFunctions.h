@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include <QTimer>
+
 #include "PlatformSessionFunctions.h"
 
 // clazy:excludeall=copyable-polymorphic
@@ -31,6 +33,8 @@
 class WindowsSessionFunctions : public PlatformSessionFunctions
 {
 public:
+	WindowsSessionFunctions();
+
 	SessionId currentSessionId() override;
 
 	SessionUptime currentSessionUptime() const override;
@@ -43,5 +47,16 @@ public:
 
 	EnvironmentVariables currentSessionEnvironmentVariables() const override;
 	QVariant querySettingsValueInCurrentSession(const QString& key) const override;
+
+private:
+	void initDesktopWindowsRectifier();
+	void inspectDesktopWindows();
+	WINBOOL inspectDesktopWindow(HWND window);
+
+	static constexpr auto DesktopWindowsInspectionInterval = 1000;
+
+	QTimer m_desktopWindowsInspectionTimer;
+	bool m_rectifyInterferingWindows = false;
+	bool m_terminateInterferingProcesses = false;
 
 };

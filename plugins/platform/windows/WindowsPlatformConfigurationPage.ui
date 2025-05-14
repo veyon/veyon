@@ -29,6 +29,20 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QCheckBox" name="rectifyInterferingWindows">
+        <property name="text">
+         <string>Rectify windows that interfere with screen capture</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="terminateInterferingProcesses">
+        <property name="text">
+         <string>Terminate processes that interfere with screen capture</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -157,7 +171,7 @@
    <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -171,6 +185,8 @@
  </widget>
  <tabstops>
   <tabstop>isSoftwareSASEnabled</tabstop>
+  <tabstop>rectifyInterferingWindows</tabstop>
+  <tabstop>terminateInterferingProcesses</tabstop>
   <tabstop>disableSSPIBasedUserAuthentication</tabstop>
   <tabstop>logonInputStartDelay</tabstop>
   <tabstop>logonKeyPressInterval</tabstop>
@@ -178,6 +194,8 @@
   <tabstop>hideTaskbarForScreenLock</tabstop>
   <tabstop>hideStartMenuForScreenLock</tabstop>
   <tabstop>hideDesktopForScreenLock</tabstop>
+  <tabstop>useInterceptionDriver</tabstop>
+  <tabstop>useCustomPowerSchemeForScreenLock</tabstop>
  </tabstops>
  <resources>
   <include location="windows.qrc"/>
