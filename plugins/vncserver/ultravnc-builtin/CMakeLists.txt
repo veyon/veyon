@@ -10,12 +10,13 @@ find_package(LZO REQUIRED)
 
 set(ultravnc_CXX_SOURCES
 	${ultravnc_DIR}/common/Clipboard.cpp
+	${ultravnc_DIR}/common/inifile.cpp
 	${ultravnc_DIR}/common/UltraVncZ.cpp
 	${ultravnc_DIR}/common/win32_helpers.cpp
 	${ultravnc_DIR}/rdr/ZlibInStream.cxx
 	${ultravnc_DIR}/rdr/ZlibOutStream.cxx
 	${ultravnc_DIR}/rfb/dh.cpp
-	${ultravnc_DIR}/winvnc/omnithread/nt.cpp
+	${ultravnc_DIR}/omnithread/nt.cpp
 	${ultravnc_DIR}/winvnc/winvnc/benchmark.cpp
 	${ultravnc_DIR}/winvnc/winvnc/buildtime.cpp
 	${ultravnc_DIR}/winvnc/winvnc/CpuUsage.cpp
@@ -23,7 +24,6 @@ set(ultravnc_CXX_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/DeskdupEngine.cpp
 	${ultravnc_DIR}/winvnc/winvnc/HelperFunctions.cpp
 	${ultravnc_DIR}/winvnc/winvnc/HideDesktop.cpp
-	${ultravnc_DIR}/winvnc/winvnc/inifile.cpp
 	${ultravnc_DIR}/winvnc/winvnc/IPC.cpp
 	${ultravnc_DIR}/winvnc/winvnc/MouseSimulator.cpp
 	${ultravnc_DIR}/winvnc/winvnc/rfbRegion_win32.cpp
@@ -59,8 +59,6 @@ set(ultravnc_CXX_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/vnclog.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vncMultiMonitor.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vncOSVersion.cpp
-	${ultravnc_DIR}/winvnc/winvnc/vncproperties.cpp
-	${ultravnc_DIR}/winvnc/winvnc/vncpropertiesPoll.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vncserver.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vncsetauth.cpp
 	${ultravnc_DIR}/winvnc/winvnc/vncsockconnect.cpp
@@ -69,7 +67,7 @@ set(ultravnc_CXX_SOURCES
 	)
 
 set(ultravnc_C_SOURCES
-	${ultravnc_DIR}/winvnc/winvnc/d3des.c
+	${ultravnc_DIR}/common/d3des.c
 	${ultravnc_DIR}/winvnc/winvnc/vncauth.c
 	)
 
@@ -92,13 +90,14 @@ target_link_libraries(builtin-ultravnc-server PRIVATE -lws2_32 -luserenv -lole32
 target_include_directories(builtin-ultravnc-server PRIVATE
 	${ultravnc_DIR}
 	${ultravnc_DIR}/common
+	${ultravnc_DIR}/omnithread
 	${ultravnc_DIR}/winvnc
-	${ultravnc_DIR}/winvnc/omnithread
 	${ultravnc_DIR}/winvnc/winvnc
 	)
 
 target_compile_definitions(builtin-ultravnc-server PRIVATE
 	ULTRAVNC_VEYON_SUPPORT
+	_VCPKG
 	_INTERNALLIB
 	_USE_DESKTOPDUPLICATION
 )
