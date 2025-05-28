@@ -30,18 +30,39 @@
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="rectifyInterferingWindows">
-        <property name="text">
-         <string>Rectify windows that interfere with screen capture</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="terminateInterferingProcesses">
-        <property name="text">
-         <string>Terminate processes that interfere with screen capture</string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="interferingWindowHandlingLabel">
+          <property name="text">
+           <string>Handling of interfering windows</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="interferingWindowHandling">
+          <item>
+           <property name="text">
+            <string>None</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Fix window attributes</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Terminate related process</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Close session</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>
@@ -185,8 +206,7 @@
  </widget>
  <tabstops>
   <tabstop>isSoftwareSASEnabled</tabstop>
-  <tabstop>rectifyInterferingWindows</tabstop>
-  <tabstop>terminateInterferingProcesses</tabstop>
+  <tabstop>interferingWindowHandling</tabstop>
   <tabstop>disableSSPIBasedUserAuthentication</tabstop>
   <tabstop>logonInputStartDelay</tabstop>
   <tabstop>logonKeyPressInterval</tabstop>

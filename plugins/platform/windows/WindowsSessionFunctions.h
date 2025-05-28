@@ -32,7 +32,16 @@
 
 class WindowsSessionFunctions : public PlatformSessionFunctions
 {
+	Q_GADGET
 public:
+	enum class InterferingWindowHandling {
+		None,
+		FixWindowAttributes,
+		TerminateProcess,
+		CloseSession
+	};
+	Q_ENUM(InterferingWindowHandling)
+
 	WindowsSessionFunctions();
 
 	SessionId currentSessionId() override;
@@ -49,14 +58,13 @@ public:
 	QVariant querySettingsValueInCurrentSession(const QString& key) const override;
 
 private:
-	void initDesktopWindowsRectifier();
+	void initInterferingWindowHandling();
 	void inspectDesktopWindows();
 	WINBOOL inspectDesktopWindow(HWND window);
 
 	static constexpr auto DesktopWindowsInspectionInterval = 1000;
 
+	InterferingWindowHandling m_interferingWindowHandling = InterferingWindowHandling::None;
 	QTimer m_desktopWindowsInspectionTimer;
-	bool m_rectifyInterferingWindows = false;
-	bool m_terminateInterferingProcesses = false;
 
 };
