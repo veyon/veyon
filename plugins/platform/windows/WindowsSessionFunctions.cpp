@@ -30,6 +30,7 @@
 
 #include "WindowsCoreFunctions.h"
 #include "PlatformSessionManager.h"
+#include "PlatformUserFunctions.h"
 #include "VeyonConfiguration.h"
 #include "WindowsPlatformConfiguration.h"
 #include "WindowsSessionFunctions.h"
@@ -41,7 +42,7 @@ WindowsSessionFunctions::WindowsSessionFunctions()
 	if (VeyonCore::component() == VeyonCore::Component::Server)
 	{
 		QObject::connect (VeyonCore::instance(), &VeyonCore::initialized,
-						  VeyonCore::instance(), [this]() { initDesktopWindowsRectifier(); });
+						  VeyonCore::instance(), [this]() { initInterferingWindowHandling(); });
 	}
 }
 
@@ -177,14 +178,13 @@ QVariant WindowsSessionFunctions::querySettingsValueInCurrentSession(const QStri
 }
 
 
-void WindowsSessionFunctions::initDesktopWindowsRectifier()
+void WindowsSessionFunctions::initInterferingWindowHandling()
 {
 	WindowsPlatformConfiguration config(&VeyonCore::config());
 
-	m_rectifyInterferingWindows = config.rectifyInterferingWindows();
-	m_terminateInterferingProcesses = config.terminateInterferingProcesses();
+	m_interferingWindowHandling = config.interferingWindowHandling();
 
-	if (m_rectifyInterferingWindows || m_terminateInterferingProcesses)
+	if (m_interferingWindowHandling != InterferingWindowHandling::None)
 	{
 		QObject::connect (&m_desktopWindowsInspectionTimer, &QTimer::timeout, &m_desktopWindowsInspectionTimer, [this]() {
 			inspectDesktopWindows();
@@ -214,19 +214,22 @@ WINBOOL WindowsSessionFunctions::inspectDesktopWindow(HWND window)
 		DWORD flags;
 		if (GetLayeredWindowAttributes(window, &crKey, &alpha, &flags) && (flags & LWA_COLORKEY))
 		{
-			if (m_rectifyInterferingWindows)
+			std::wstring windowTitle(GetWindowTextLength(window) + 1, L'\0');
+			GetWindowTextW(window, &windowTitle[0], windowTitle.size());
+
+			switch (m_interferingWindowHandling)
 			{
-				vDebug() << "rectifying window" << window << flags << crKey << alpha;
+			case InterferingWindowHandling::FixWindowAttributes:
+				vDebug() << "fixing attributes of interfering window" << window << windowTitle << flags << crKey << alpha;
 				SetLayeredWindowAttributes(window, 0, 255, LWA_COLORKEY | LWA_ALPHA);
 				SetWindowLong(window, GWL_EXSTYLE,
 							  windowStyle & ~(WS_EX_TRANSPARENT | WS_EX_LAYERED | WS_EX_TOPMOST));
 				RedrawWindow(window, NULL, NULL, RDW_ERASE | RDW_INVALIDATE | RDW_FRAME | RDW_ALLCHILDREN);
 				ShowWindow(window, SW_HIDE);
-			}
-
-			if (m_terminateInterferingProcesses)
+				break;
+			case InterferingWindowHandling::TerminateProcess:
 			{
-				vDebug() << "terminating process of window" << window << flags << crKey << alpha;
+				vDebug() << "terminating process of interfering window" << window << windowTitle << flags << crKey << alpha;
 				DWORD processId = 0;
 				if (GetWindowThreadProcessId(window, &processId))
 				{
@@ -241,6 +244,14 @@ WINBOOL WindowsSessionFunctions::inspectDesktopWindow(HWND window)
 						PostMessage(window, WM_QUIT, 0, 0);
 					}
 				}
+				break;
+			}
+			case InterferingWindowHandling::CloseSession:
+				vDebug() << "closing session due to interfering window" << window << windowTitle << flags << crKey << alpha;
+				VeyonCore::platform().userFunctions().logoff();
+				break;
+			default:
+				break;
 			}
 		}
 	}

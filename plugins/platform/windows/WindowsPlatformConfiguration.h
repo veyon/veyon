@@ -25,11 +25,11 @@
 #pragma once
 
 #include "Configuration/Proxy.h"
+#include "WindowsSessionFunctions.h"
 
 #define FOREACH_WINDOWS_PLATFORM_CONFIG_PROPERTY(OP) \
 	OP( WindowsPlatformConfiguration, m_configuration, bool, isSoftwareSASEnabled, setSoftwareSASEnabled, "SoftwareSASEnabled", "Windows", true, Configuration::Property::Flag::Advanced ) \
-	OP( WindowsPlatformConfiguration, m_configuration, bool, rectifyInterferingWindows, setRectifyInterferingWindows, "RectifyInterferingWindows", "Windows", true, Configuration::Property::Flag::Advanced ) \
-	OP( WindowsPlatformConfiguration, m_configuration, bool, terminateInterferingProcesses, setTerminateInterferingProcesses, "TerminateInterferingProcesses", "Windows", false, Configuration::Property::Flag::Advanced ) \
+	OP( WindowsPlatformConfiguration, m_configuration, WindowsSessionFunctions::InterferingWindowHandling, interferingWindowHandling, setInterferingWindowHandling, "InterferingWindowHandling", "Windows", QVariant::fromValue(WindowsSessionFunctions::InterferingWindowHandling::FixWindowAttributes), Configuration::Property::Flag::Advanced ) \
 	OP( WindowsPlatformConfiguration, m_configuration, bool, disableSSPIBasedUserAuthentication, setDisableSSPIBasedUserAuthentication, "DisableSSPIBasedUserAuthentication", "Windows", false, Configuration::Property::Flag::Advanced ) \
 	OP( WindowsPlatformConfiguration, m_configuration, bool, hideDesktopForScreenLock, setHideDesktopForScreenLock, "HideDesktopForScreenLock", "Windows", true, Configuration::Property::Flag::Advanced ) \
 	OP( WindowsPlatformConfiguration, m_configuration, bool, hideTaskbarForScreenLock, setHideTaskbarForScreenLock, "HideTaskbarForScreenLock", "Windows", true, Configuration::Property::Flag::Advanced ) \
