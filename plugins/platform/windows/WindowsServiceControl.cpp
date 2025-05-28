@@ -22,8 +22,6 @@
  *
  */
 
-#include <QOperatingSystemVersion>
-
 #include "WindowsCoreFunctions.h"
 #include "WindowsServiceControl.h"
 
@@ -193,9 +191,7 @@ bool WindowsServiceControl::install( const QString& filePath, const QString& dis
 {
 	const auto binaryPath = QStringLiteral("\"%1\"").arg( QString( filePath ).replace( QLatin1Char('"'), QString() ) );
 
-	const wchar_t* dependencies = QOperatingSystemVersion::current() < QOperatingSystemVersion::Windows10 ?
-									  L"Tcpip\0RpcSs\0LanmanWorkstation\0\0" :
-									  L"Tcpip\0RpcSs\0LSM\0LanmanWorkstation\0\0";
+	const wchar_t* dependencies = L"Tcpip\0RpcSs\0LSM\0\0";
 
 	m_serviceHandle = CreateService(
 				m_serviceManager,		// SCManager database
