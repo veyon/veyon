@@ -190,7 +190,7 @@ void WindowsSessionFunctions::initInterferingWindowHandling()
 
 void WindowsSessionFunctions::inspectDesktopWindows()
 {
-	EnumWindows([](HWND window, LPARAM instance) -> WINBOOL {
+	EnumWindows([](HWND window, LPARAM instance) -> WINBOOL CALLBACK {
 		const auto _this = reinterpret_cast<WindowsSessionFunctions *>(instance);
 		return _this->inspectDesktopWindow(window);
 	}, LPARAM(this));
