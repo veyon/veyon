@@ -2692,6 +2692,10 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 on konfigureeritud filtri abil edukalt päritud.</translation>
     </message>
+    <message>
+        <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3938,14 +3942,6 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Environment variable name:</source>
-        <translation>Keskkonna muutuja nimi</translation>
-    </message>
-    <message>
-        <source>Registry key name:</source>
-        <translation>Registrivõtme nimi</translation>
-    </message>
-    <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
 
 Example: [^-]*-(PC[0-9]*)</source>
@@ -3955,6 +3951,14 @@ Näide: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment variable name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registry key name</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4523,6 +4527,26 @@ Näide: [^-]*-(PC[0-9]*)</translation>
     <message>
         <source>Use custom power scheme with disabled power button</source>
         <translation>Kasutage kohandatud toiteskeemi koos keelatud toitenupuga</translation>
+    </message>
+    <message>
+        <source>Handling of interfering windows</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Puudub</translation>
+    </message>
+    <message>
+        <source>Fix window attributes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Terminate related process</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Close session</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

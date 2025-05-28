@@ -2690,6 +2690,10 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 arrakastaz kontsultatu da konfiguratutako iragazkia erabiliz.</translation>
     </message>
+    <message>
+        <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3938,14 +3942,6 @@ Normalean hori beharrezkoa da terminal zerbitzariak onartzeko.</translation>
         <translation>Erregistro gako baten balioa</translation>
     </message>
     <message>
-        <source>Environment variable name:</source>
-        <translation>Inguruko aldagaiaren izena:</translation>
-    </message>
-    <message>
-        <source>Registry key name:</source>
-        <translation>Erregistro gakoaren izena:</translation>
-    </message>
-    <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
 
 Example: [^-]*-(PC[0-9]*)</source>
@@ -3956,6 +3952,14 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
         <translation>Gaitu Veyon Zerbitzari instantzia bat abiarazi behar bada une honetan aktibo dagoen saiorako, ez dio axola tokiko edo urruneko.</translation>
+    </message>
+    <message>
+        <source>Environment variable name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registry key name</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4523,6 +4527,26 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
     <message>
         <source>Use custom power scheme with disabled power button</source>
         <translation>Erabili pizteko eskema pertsonalizatu bat pizteko botoia desgaituta dagoela</translation>
+    </message>
+    <message>
+        <source>Handling of interfering windows</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Bat ere ez</translation>
+    </message>
+    <message>
+        <source>Fix window attributes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Terminate related process</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Close session</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

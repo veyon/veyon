@@ -303,7 +303,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>There is no matching rule with a valid action. The access is therefore denied.</source>
-        <translation type="unfinished"/>
+        <translation>Нет правила соответствия с допустимым действием. Поэтому доступ запрещен.</translation>
     </message>
 </context>
 <context>
@@ -2692,6 +2692,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 успешно опрошен с помощью настроенного фильтра.</translation>
     </message>
+    <message>
+        <source>Map container/OU structure 1:1 to locations</source>
+        <translation>Сопоставить структуру контейнера/подразделения 1:1 с местоположениями</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3940,14 +3944,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Значение ключа реестра</translation>
     </message>
     <message>
-        <source>Environment variable name:</source>
-        <translation>Имя переменной среды:</translation>
-    </message>
-    <message>
-        <source>Registry key name:</source>
-        <translation>Имя ключа реестра:</translation>
-    </message>
-    <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
 
 Example: [^-]*-(PC[0-9]*)</source>
@@ -3958,6 +3954,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
         <translation>Включите этот параметр, если необходимо запустить один экземпляр сервера Veyon для текущего активного сеанса, независимо от того, локальный он или удаленный.</translation>
+    </message>
+    <message>
+        <source>Environment variable name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registry key name</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4069,11 +4073,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>View in separate window</source>
-        <translation type="unfinished"/>
+        <translation>Просмотр в отдельном окне</translation>
     </message>
     <message>
         <source>%1 Master – Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>%1 Мастер – Слайд-шоу</translation>
     </message>
 </context>
 <context>
@@ -4525,6 +4529,26 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Use custom power scheme with disabled power button</source>
         <translation>Использовать пользовательскую схему питания с отключенной кнопкой питания</translation>
+    </message>
+    <message>
+        <source>Handling of interfering windows</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Нет</translation>
+    </message>
+    <message>
+        <source>Fix window attributes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Terminate related process</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Close session</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

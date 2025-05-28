@@ -2692,6 +2692,10 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>Yapılandırılmış süzgeç kullanılarak %1 %2 başarıyla sorgulandı.</translation>
     </message>
+    <message>
+        <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3940,14 +3944,6 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
         <translation>Bir kayıt defteri anahtarının değeri</translation>
     </message>
     <message>
-        <source>Environment variable name:</source>
-        <translation>Ortam değişkeni adı:</translation>
-    </message>
-    <message>
-        <source>Registry key name:</source>
-        <translation>Kayıt anahtarı adı:</translation>
-    </message>
-    <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
 
 Example: [^-]*-(PC[0-9]*)</source>
@@ -3958,6 +3954,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
         <translation>Yerel veya uzak olması fark etmeksizin, geçerli etkin oturum için tek bir Veyon Sunucu örneğinin başlatılması gerekiyorsa etkinleştirin.</translation>
+    </message>
+    <message>
+        <source>Environment variable name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registry key name</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4525,6 +4529,26 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Use custom power scheme with disabled power button</source>
         <translation>Güç düğmesi devre dışıyken özel güç şemasını kullan</translation>
+    </message>
+    <message>
+        <source>Handling of interfering windows</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Yok</translation>
+    </message>
+    <message>
+        <source>Fix window attributes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Terminate related process</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Close session</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

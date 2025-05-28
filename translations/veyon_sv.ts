@@ -2692,6 +2692,10 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 har sökts framgångsrikt med hjälp av det konfigurerade filtret.</translation>
     </message>
+    <message>
+        <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3940,14 +3944,6 @@ Detta krävs vanligtvis för att stödja terminalservrar.</translation>
         <translation>Värde för en registernyckel</translation>
     </message>
     <message>
-        <source>Environment variable name:</source>
-        <translation>Namn på miljövariabel:</translation>
-    </message>
-    <message>
-        <source>Registry key name:</source>
-        <translation>Namn på registernyckel:</translation>
-    </message>
-    <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
 
 Example: [^-]*-(PC[0-9]*)</source>
@@ -3958,6 +3954,14 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
         <translation>Aktivera om en enda Veyon Server-instans ska startas för den aktuella aktiva sessionen, oavsett om den är lokal eller fjärrstyrd.</translation>
+    </message>
+    <message>
+        <source>Environment variable name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registry key name</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4525,6 +4529,26 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
     <message>
         <source>Use custom power scheme with disabled power button</source>
         <translation>Använd ett anpassat strömschema med inaktiverad strömknapp</translation>
+    </message>
+    <message>
+        <source>Handling of interfering windows</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Ingen</translation>
+    </message>
+    <message>
+        <source>Fix window attributes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Terminate related process</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Close session</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

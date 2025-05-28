@@ -2679,6 +2679,10 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 sono stati interrogati con successo usando il filtro configurato.</translation>
     </message>
+    <message>
+        <source>Map container/OU structure 1:1 to locations</source>
+        <translation>Mappa struttura del container/UO 1:1 alle posizioni</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3926,14 +3930,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Valore di una chiave di registro</translation>
     </message>
     <message>
-        <source>Environment variable name:</source>
-        <translation>Nome della variabile d&apos;ambiente:</translation>
-    </message>
-    <message>
-        <source>Registry key name:</source>
-        <translation>Nome della chiave di registro:</translation>
-    </message>
-    <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
 
 Example: [^-]*-(PC[0-9]*)</source>
@@ -3944,6 +3940,14 @@ Esempio: [^-]*-(PC[0-9]*)</translation>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
         <translation>Abilita questa opzione se deve essere avviata una singola istanza di Veyon Server per la sessione attualmente attiva, indipendentemente dal fatto che sia locale o remota.</translation>
+    </message>
+    <message>
+        <source>Environment variable name</source>
+        <translation>Nome della variabile d&apos;ambiente</translation>
+    </message>
+    <message>
+        <source>Registry key name</source>
+        <translation>Nome della chiave di registro</translation>
     </message>
 </context>
 <context>
@@ -4511,6 +4515,26 @@ Esempio: [^-]*-(PC[0-9]*)</translation>
     <message>
         <source>Use custom power scheme with disabled power button</source>
         <translation>Utilizza lo schema di alimentazione personalizzato con il pulsante di accensione disabilitato</translation>
+    </message>
+    <message>
+        <source>Handling of interfering windows</source>
+        <translation>Gestione delle finestre di disturbo</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Nessuna</translation>
+    </message>
+    <message>
+        <source>Fix window attributes</source>
+        <translation>Correggere gli attributi della finestra</translation>
+    </message>
+    <message>
+        <source>Terminate related process</source>
+        <translation>Terminare il processo correlato</translation>
+    </message>
+    <message>
+        <source>Close session</source>
+        <translation>Chiudere la sessione</translation>
     </message>
 </context>
 <context>

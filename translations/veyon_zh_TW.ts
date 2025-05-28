@@ -2692,6 +2692,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 使用組態的篩選器查詢成功。</translation>
     </message>
+    <message>
+        <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3940,14 +3944,6 @@ Typically this is required to support terminal servers.</source>
         <translation>登錄檔機碼的值</translation>
     </message>
     <message>
-        <source>Environment variable name:</source>
-        <translation>環境變數名稱:</translation>
-    </message>
-    <message>
-        <source>Registry key name:</source>
-        <translation>登錄檔機碼名稱:</translation>
-    </message>
-    <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
 
 Example: [^-]*-(PC[0-9]*)</source>
@@ -3958,6 +3954,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
         <translation>如果應該為目前活動會話啟動單一 Veyon Server 實例 (無論是本機還是遠端)，則啟用。</translation>
+    </message>
+    <message>
+        <source>Environment variable name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registry key name</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4525,6 +4529,26 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Use custom power scheme with disabled power button</source>
         <translation>使用停用電源按鈕的自訂電源方案</translation>
+    </message>
+    <message>
+        <source>Handling of interfering windows</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>無</translation>
+    </message>
+    <message>
+        <source>Fix window attributes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Terminate related process</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Close session</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

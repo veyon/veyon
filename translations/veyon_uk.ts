@@ -303,7 +303,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>There is no matching rule with a valid action. The access is therefore denied.</source>
-        <translation type="unfinished"/>
+        <translation>Немає відповідного правила із коректною дією. Через це у доступі відмовлено.</translation>
     </message>
 </context>
 <context>
@@ -2691,6 +2691,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 було успішно опитано за допомогою налаштованого фільтра.</translation>
     </message>
+    <message>
+        <source>Map container/OU structure 1:1 to locations</source>
+        <translation>Відтворити структуру контейнера/ОО 1:1 у місцях</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3939,14 +3943,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Значення ключа реєстру</translation>
     </message>
     <message>
-        <source>Environment variable name:</source>
-        <translation>Назва змінної середовища:</translation>
-    </message>
-    <message>
-        <source>Registry key name:</source>
-        <translation>Назва ключа реєстра:</translation>
-    </message>
-    <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
 
 Example: [^-]*-(PC[0-9]*)</source>
@@ -3957,6 +3953,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
         <translation>Увімкніть, якщо єдиний екземпляр Veyon Server має бути запущено для поточного активного сеансу, локального чи віддаленого.</translation>
+    </message>
+    <message>
+        <source>Environment variable name</source>
+        <translation>Назва змінної середовища</translation>
+    </message>
+    <message>
+        <source>Registry key name</source>
+        <translation>Назва ключа реєстра</translation>
     </message>
 </context>
 <context>
@@ -4524,6 +4528,26 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Use custom power scheme with disabled power button</source>
         <translation>Використати нетипову схему живлення із вимкненою кнопкою живлення</translation>
+    </message>
+    <message>
+        <source>Handling of interfering windows</source>
+        <translation>Обробка конфліктних вікон</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Немає</translation>
+    </message>
+    <message>
+        <source>Fix window attributes</source>
+        <translation>Виправити атрибути вікон</translation>
+    </message>
+    <message>
+        <source>Terminate related process</source>
+        <translation>Перервати відповідний процес</translation>
+    </message>
+    <message>
+        <source>Close session</source>
+        <translation>Закрити сеанс</translation>
     </message>
 </context>
 <context>

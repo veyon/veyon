@@ -1006,7 +1006,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerControlListModel</name>
     <message>
         <source>Name: %1</source>
-        <translation type="unfinished"/>
+        <translation>이름: %1</translation>
     </message>
     <message>
         <source>Location: %1</source>
@@ -1034,7 +1034,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 서버에 접속할 수 없거나 꺼져있습니다</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
@@ -1054,7 +1054,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Hostname: %1</source>
-        <translation type="unfinished"/>
+        <translation>호스트네임: %1</translation>
     </message>
     <message>
         <source>unknown</source>
@@ -1062,11 +1062,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>IP  주소: %1</translation>
     </message>
     <message>
         <source>Hostname could not be resolved</source>
-        <translation type="unfinished"/>
+        <translation>호스트네임을 찾을 수 없습니다</translation>
     </message>
     <message>
         <source>No features active</source>
@@ -1151,7 +1151,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerSelectPanel</name>
     <message>
         <source>Search computers</source>
-        <translation type="unfinished"/>
+        <translation>컴퓨터 찾기</translation>
     </message>
     <message>
         <source>Add location</source>
@@ -1323,18 +1323,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Bandwidth limit</source>
-        <translation type="unfinished"/>
+        <translation>대역폭 제한</translation>
     </message>
     <message>
         <source> MB/s</source>
-        <translation type="unfinished"/>
+        <translation> MB/s</translation>
     </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>데모</translation>
     </message>
     <message>
         <source>Stop demo</source>
@@ -1346,7 +1346,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation type="unfinished"/>
+        <translation>전체 화면 데모</translation>
     </message>
     <message>
         <source>Window demo</source>
@@ -1354,7 +1354,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation type="unfinished"/>
+        <translation>전체 화면 모드로 화면 공유하기</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
@@ -1362,7 +1362,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation type="unfinished"/>
+        <translation>창으로 화면 공유하기</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -1394,7 +1394,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>모든 스크린</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
@@ -1428,11 +1428,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Applications &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>애플리케이션 &amp; 웹사이트</translation>
     </message>
     <message>
         <source>Predefined applications</source>
-        <translation type="unfinished"/>
+        <translation>사전 정의된 애플리케이션</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1444,7 +1444,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add new application</source>
-        <translation type="unfinished"/>
+        <translation>새 애플리케이션 추가하기</translation>
     </message>
     <message>
         <source>Remove selected application</source>
@@ -1456,7 +1456,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add new website</source>
-        <translation type="unfinished"/>
+        <translation>새 웹 사이트 추가하기</translation>
     </message>
     <message>
         <source>Remove selected website</source>
@@ -1468,7 +1468,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>New application</source>
-        <translation type="unfinished"/>
+        <translation>새 애플리케이션</translation>
     </message>
     <message>
         <source>New website</source>
@@ -1479,7 +1479,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>애플리케이션 실행하기</translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
@@ -1495,11 +1495,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; 애플리케이션 실행하기</translation>
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>사용자 애플리케이션</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
@@ -1550,7 +1550,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>사용자 애플리케이션</translation>
     </message>
     <message>
         <source>Handout</source>
@@ -1631,19 +1631,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Lock the screen</source>
-        <translation type="unfinished"/>
+        <translation>화면 잠그기</translation>
     </message>
     <message>
         <source>Display a text message</source>
-        <translation type="unfinished"/>
+        <translation>텍스트 메시지 공지하기</translation>
     </message>
     <message>
         <source>Test message</source>
-        <translation type="unfinished"/>
+        <translation>메시지 공지 테스트하기</translation>
     </message>
     <message>
         <source>Start an application</source>
-        <translation type="unfinished"/>
+        <translation>애플리케이션 실행하기</translation>
     </message>
     <message>
         <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
@@ -1651,7 +1651,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Unlock the screen</source>
-        <translation type="unfinished"/>
+        <translation>화면 잠그기</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
@@ -1663,7 +1663,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>설명</translation>
     </message>
     <message>
         <source>Master</source>
@@ -1679,11 +1679,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin</source>
-        <translation type="unfinished"/>
+        <translation>플러그인</translation>
     </message>
     <message>
         <source>Invalid feature name or UID specified</source>
@@ -1998,15 +1998,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished"/>
+        <translation>색상 스키마:</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>밝음</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>어둠</translation>
     </message>
 </context>
 <context>
@@ -2282,11 +2282,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Query options</source>
-        <translation type="unfinished"/>
+        <translation>조회 옵션</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
-        <translation type="unfinished"/>
+        <translation>유저 그룹 중첩 조회(AD에서만 사용 가능)</translation>
     </message>
     <message>
         <source>Group member identification</source>
@@ -2688,6 +2688,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>컴퓨터 필터를 사용한 %1 %2 검색 조회 성공 </translation>
     </message>
+    <message>
+        <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2752,7 +2756,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User sessions</source>
-        <translation type="unfinished"/>
+        <translation>사용자 세션</translation>
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
@@ -3376,7 +3380,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>설명</translation>
     </message>
     <message>
         <source>Version</source>
@@ -3384,7 +3388,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
@@ -3647,7 +3651,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>All screens</source>
-        <translation type="unfinished"/>
+        <translation>모든 스크린</translation>
     </message>
 </context>
 <context>
@@ -3934,14 +3938,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Environment variable name:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Registry key name:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
 
 Example: [^-]*-(PC[0-9]*)</source>
@@ -3949,6 +3945,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Environment variable name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Registry key name</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4103,7 +4107,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>애플리케이션 실행하기</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -4516,6 +4520,26 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Use custom power scheme with disabled power button</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Handling of interfering windows</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>없음</translation>
+    </message>
+    <message>
+        <source>Fix window attributes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Terminate related process</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Close session</source>
         <translation type="unfinished"/>
     </message>
 </context>

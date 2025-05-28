@@ -2689,6 +2689,10 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 wurden mit dem konfigurierten Filter erfolgreich abgefragt.</translation>
     </message>
+    <message>
+        <source>Map container/OU structure 1:1 to locations</source>
+        <translation>Container-/OU-Struktur 1:1 in Standorte abbilden</translation>
+    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3937,14 +3941,6 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <translation>Wert eines Registryschlüssels</translation>
     </message>
     <message>
-        <source>Environment variable name:</source>
-        <translation>Name der Umgebungsvariable:</translation>
-    </message>
-    <message>
-        <source>Registry key name:</source>
-        <translation>Name des Registryschlüssels:</translation>
-    </message>
-    <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
 
 Example: [^-]*-(PC[0-9]*)</source>
@@ -3955,6 +3951,14 @@ Beispiel: [^-]*-(PC[0-9]*)</translation>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
         <translation>Aktivieren, wenn eine einzelne Veyon Server-Instanz für die gerade aktive Sitzung gestartet werden soll, egal ob lokal oder remote.</translation>
+    </message>
+    <message>
+        <source>Environment variable name</source>
+        <translation>Name der Umgebungsvariable</translation>
+    </message>
+    <message>
+        <source>Registry key name</source>
+        <translation>Name des Registryschlüssels</translation>
     </message>
 </context>
 <context>
@@ -4522,6 +4526,26 @@ Beispiel: [^-]*-(PC[0-9]*)</translation>
     <message>
         <source>Use custom power scheme with disabled power button</source>
         <translation>Benutzerdefiniertes Energieschema mit deaktiviertem Ein-/Ausschaltknopf verwenden</translation>
+    </message>
+    <message>
+        <source>Handling of interfering windows</source>
+        <translation>Behandlung von störenden Fenstern</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Keine</translation>
+    </message>
+    <message>
+        <source>Fix window attributes</source>
+        <translation>Fensterattribute anpassen</translation>
+    </message>
+    <message>
+        <source>Terminate related process</source>
+        <translation>Zugehörigen Prozess beenden</translation>
+    </message>
+    <message>
+        <source>Close session</source>
+        <translation>Sitzung beenden</translation>
     </message>
 </context>
 <context>
