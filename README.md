@@ -82,7 +82,7 @@ As root you can run
 	            libprocps-dev liblzo2-dev libqca-qt5-2-dev libldap2-dev \
 	            libsasl2-dev ninja-build
 
-
+NOTE: On Ubuntu 24, ``libprocps-dev`` is replaced with ``libproc2-dev``.
 
 Requirements for RedHat-based distributions:
 
@@ -114,6 +114,8 @@ Run the following commands:
 	cd build
 	cmake ..
 	make -j4
+
+NOTE: To use Qt5 instead of Qt6, pass ``-DWITH_QT6=OFF`` to ``cmake``.
 
 NOTE: If you want to build a .deb or .rpm package for this software, instead of the provided cmake command, you should use:
 
