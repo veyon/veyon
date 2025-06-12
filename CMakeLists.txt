@@ -108,7 +108,7 @@ if(NOT VERSION_STRING)
 	set(VERSION_MAJOR 4)
 	set(VERSION_MINOR 9)
 	set(VERSION_PATCH 6)
-	set(VERSION_BUILD 0)
+	set(VERSION_BUILD 1)
 	set(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 else()
 	# remove leading character from tag name
