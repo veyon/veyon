@@ -216,6 +216,12 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 
 	connect( ui->gridSizeSlider, &QSlider::valueChanged,
 			 this, [this]( int size ) { ui->computerMonitoringWidget->setComputerScreenSize( size ); } );
+	connect( ui->gridSizeSlider, &QSlider::sliderMoved,
+			 this, [this]( int size ) {
+				 ui->computerMonitoringWidget->setAutoAdjustIconSize( false );
+				 m_master.userConfig().setAutoAdjustMonitoringIconSize( false );
+				 ui->autoAdjustComputerIconSizeButton->setChecked( false );
+			 } );	
 	connect( ui->computerMonitoringWidget, &ComputerMonitoringWidget::computerScreenSizeAdjusted,
 			 ui->gridSizeSlider, &QSlider::setValue );
 	connect( ui->autoAdjustComputerIconSizeButton, &QToolButton::toggled,
