@@ -203,12 +203,12 @@
             </item>
             <item>
              <property name="text">
-              <string>Only last part of user name</string>
+              <string>Only computer name</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Only computer name</string>
+              <string>Only last part of user name</string>
              </property>
             </item>
            </widget>
