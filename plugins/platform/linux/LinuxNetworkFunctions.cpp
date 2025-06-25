@@ -25,7 +25,9 @@
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 
+#include <QFile>
 #include <QProcess>
+#include <QRegularExpression>
 
 #include "LinuxNetworkFunctions.h"
 #include "ProcessHelper.h"
@@ -129,4 +131,102 @@ QNetworkInterface LinuxNetworkFunctions::defaultRouteNetworkInterface()
 	}
 
 	return {};
+}
+
+
+
+static int getInterfaceSpeedFromNetworkManager(const QString& interfaceName)
+{
+	const auto speedInfo = ProcessHelper(QStringLiteral("nmcli"), {QStringLiteral("-f"),
+																   QStringLiteral("CAPABILITIES.SPEED"),
+																   QStringLiteral("dev"),
+																   QStringLiteral("show"),
+																   interfaceName})
+						   .runAndReadAll();
+	static const QRegularExpression capSpeedRX(QStringLiteral("CAPABILITIES.SPEED:[^\\d]*([\\d]+) Mb/s"));
+	const auto capSpeedMatch = capSpeedRX.match(QString::fromUtf8(speedInfo));
+	if (capSpeedMatch.hasMatch())
+	{
+		return capSpeedMatch.captured(1).toInt();
+	}
+	return 0;
+}
+
+
+
+static int getInterfaceSpeedFromSystemd(const QString& interfaceName)
+{
+	const auto interfaceStatus = ProcessHelper(QStringLiteral("networkctl"), {QStringLiteral("status"), interfaceName})
+						   .runAndReadAll();
+	static const QRegularExpression speedRX(QStringLiteral("Speed: ([\\d.]+)([MG])bps"));
+	const auto speedMatch = speedRX.match(QString::fromUtf8(interfaceStatus));
+	if (speedMatch.hasMatch())
+	{
+		if (speedMatch.captured(2) == QStringLiteral("G"))
+		{
+			return speedMatch.captured(1).toFloat() * 1000;
+		}
+		return speedMatch.captured(1).toFloat();
+	}
+	return 0;
+}
+
+
+
+static int getWirelessInterfaceSpeed(const QString& interfaceName)
+{
+	const auto wifiLinkInfo = ProcessHelper(QStringLiteral("iw"),
+											{QStringLiteral("dev"), interfaceName, QStringLiteral("link")})
+							  .runAndReadAll();
+	static const QRegularExpression txBitrateRX(QStringLiteral("tx bitrate: ([\\d.]+) MBit/s"));
+	const auto txBitrateMatch = txBitrateRX.match(QString::fromUtf8(wifiLinkInfo));
+	if (txBitrateMatch.hasMatch())
+	{
+		return txBitrateMatch.captured(1).toFloat();
+	}
+	return 0;
+}
+
+
+
+static int getInterfaceSpeedFromSysFS(const QString& interfaceName)
+{
+	QFile speedFile(QStringLiteral("/sys/class/net/%1/speed").arg(interfaceName));
+	if (speedFile.open(QFile::ReadOnly))
+	{
+		return speedFile.readAll().trimmed().toInt();
+	}
+	return 0;
+}
+
+
+
+int LinuxNetworkFunctions::networkInterfaceSpeedInMBitPerSecond(const QNetworkInterface& networkInterface)
+{
+	if (networkInterface.isValid())
+	{
+		const auto networkInterfaceName = networkInterface.name();
+
+		if (const auto speed = getInterfaceSpeedFromNetworkManager(networkInterfaceName); speed > 0)
+		{
+			return speed;
+		}
+
+		if (const auto speed = getInterfaceSpeedFromSystemd(networkInterfaceName); speed > 0)
+		{
+			return speed;
+		}
+
+		if (const auto speed = getWirelessInterfaceSpeed(networkInterfaceName); speed > 0)
+		{
+			return speed;
+		}
+
+		if (const auto speed = getInterfaceSpeedFromSysFS(networkInterfaceName); speed > 0)
+		{
+			return speed;
+		}
+	}
+
+	return 0;
 }

@@ -37,5 +37,6 @@ public:
 	bool configureSocketKeepalive( Socket socket, bool enabled, int idleTime, int interval, int probes ) override;
 
 	QNetworkInterface defaultRouteNetworkInterface() override;
+	int networkInterfaceSpeedInMBitPerSecond(const QNetworkInterface& networkInterface) override;
 
 };

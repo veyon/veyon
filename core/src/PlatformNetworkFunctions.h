@@ -53,5 +53,6 @@ public:
 	virtual bool configureSocketKeepalive( Socket socket, bool enabled, int idleTime, int interval, int probes ) = 0;
 
 	virtual QNetworkInterface defaultRouteNetworkInterface() = 0;
+	virtual int networkInterfaceSpeedInMBitPerSecond(const QNetworkInterface& networkInterface) = 0;
 
 };
