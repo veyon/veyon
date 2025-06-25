@@ -40,6 +40,8 @@ public:
 
 	bool configureSocketKeepalive( Socket socket, bool enabled, int idleTime, int interval, int probes ) override;
 
+	QNetworkInterface defaultRouteNetworkInterface() override;
+
 	static constexpr auto WindowsFirewallServiceError = HRESULT(0x800706D9);
 
 private:

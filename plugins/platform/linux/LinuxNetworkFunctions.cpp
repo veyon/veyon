@@ -28,6 +28,7 @@
 #include <QProcess>
 
 #include "LinuxNetworkFunctions.h"
+#include "ProcessHelper.h"
 
 LinuxNetworkFunctions::PingResult LinuxNetworkFunctions::ping(const QString& hostAddress)
 {
@@ -97,4 +98,35 @@ bool LinuxNetworkFunctions::configureSocketKeepalive( Socket socket, bool enable
 	}
 
 	return true;
+}
+
+
+
+QNetworkInterface LinuxNetworkFunctions::defaultRouteNetworkInterface()
+{
+	const auto routes = ProcessHelper(QStringLiteral("ip"), {QStringLiteral("route")}).runAndReadAll().split('\n') +
+						ProcessHelper(QStringLiteral("ip"), {QStringLiteral("-6"), QStringLiteral("route")} ).runAndReadAll().split('\n');
+
+	QNetworkInterface defaultNetworkInterface;
+
+	for (const auto& route : routes)
+	{
+		const auto routeArgs = route.split(' ');
+		const auto routeDestination = routeArgs.value(0);
+
+		if (routeDestination == QByteArrayLiteral("default") ||
+			routeDestination == QByteArrayLiteral("0.0.0.0") ||
+			routeDestination == QByteArrayLiteral("::/0"))
+		{
+			for (int i = 1; i < routeArgs.size()-1; ++i )
+			{
+				if (routeArgs[i] == QByteArrayLiteral("dev"))
+				{
+					return QNetworkInterface::interfaceFromName(QString::fromLatin1(routeArgs[i+1]));
+				}
+			}
+		}
+	}
+
+	return {};
 }

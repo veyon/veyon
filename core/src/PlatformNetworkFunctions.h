@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include <QNetworkInterface>
+
 #include "PlatformPluginInterface.h"
 
 // clazy:excludeall=copyable-polymorphic
@@ -49,5 +51,7 @@ public:
 	virtual bool configureFirewallException( const QString& applicationPath, const QString& description, bool enabled ) = 0;
 
 	virtual bool configureSocketKeepalive( Socket socket, bool enabled, int idleTime, int interval, int probes ) = 0;
+
+	virtual QNetworkInterface defaultRouteNetworkInterface() = 0;
 
 };
