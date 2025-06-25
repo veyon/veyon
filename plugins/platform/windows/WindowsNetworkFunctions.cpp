@@ -26,6 +26,7 @@
 #include <winsock2.h>
 #include <windows.h>
 #include <netfw.h>
+#include <netioapi.h>
 #include <mstcpip.h>
 #include <iphlpapi.h>
 #include <icmpapi.h>
@@ -332,6 +333,68 @@ bool WindowsNetworkFunctions::configureSocketKeepalive( Socket socket, bool enab
 	}
 
 	return true;
+}
+
+
+
+QNetworkInterface WindowsNetworkFunctions::defaultRouteNetworkInterface()
+{
+	QNetworkInterface networkInterface;
+
+	for (const auto addressFamily : {AF_INET, AF_INET6})
+	{
+		PMIB_IPFORWARD_TABLE2 ipForwardTable = nullptr;
+		if (GetIpForwardTable2(addressFamily, &ipForwardTable) != NO_ERROR)
+		{
+			continue;
+		}
+
+		for (ULONG i = 0; i < ipForwardTable->NumEntries; ++i)
+		{
+			const MIB_IPFORWARD_ROW2& row = ipForwardTable->Table[i];
+
+			bool isDefault = false;
+			if (addressFamily == AF_INET)
+			{
+				isDefault =
+						row.DestinationPrefix.Prefix.si_family == AF_INET &&
+						row.DestinationPrefix.Prefix.Ipv4.sin_addr.S_un.S_addr == 0 &&
+						row.DestinationPrefix.PrefixLength == 0;
+			}
+			else
+			{
+				const uint8_t* addr = row.DestinationPrefix.Prefix.Ipv6.sin6_addr.u.Byte;
+				bool allZero = true;
+				for (size_t j = 0; j < sizeof(row.DestinationPrefix.Prefix.Ipv6.sin6_addr.u.Byte); ++j)
+				{
+					if (addr[j] != 0)
+					{
+						allZero = false;
+						break;
+					}
+				}
+				isDefault =
+						row.DestinationPrefix.Prefix.si_family == AF_INET6 &&
+						allZero &&
+						row.DestinationPrefix.PrefixLength == 0;
+			}
+
+			if (isDefault)
+			{
+				networkInterface = QNetworkInterface::interfaceFromIndex(row.InterfaceIndex);
+				break;
+			}
+		}
+
+		FreeMibTable(ipForwardTable);
+
+		if (networkInterface.isValid())
+		{
+			break;
+		}
+	}
+
+	return networkInterface;
 }
 
 
