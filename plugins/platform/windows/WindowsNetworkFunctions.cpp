@@ -399,6 +399,24 @@ QNetworkInterface WindowsNetworkFunctions::defaultRouteNetworkInterface()
 
 
 
+int WindowsNetworkFunctions::networkInterfaceSpeedInMBitPerSecond(const QNetworkInterface& networkInterface)
+{
+
+	MIB_IF_ROW2 ifRow;
+	SecureZeroMemory((PVOID) &ifRow, sizeof(MIB_IF_ROW2));
+
+	ifRow.InterfaceIndex = networkInterface.index();
+
+	if (GetIfEntry2(&ifRow) == NO_ERROR)
+	{
+		return ifRow.TransmitLinkSpeed / (1000*1000);
+	}
+
+	return 0;
+}
+
+
+
 bool WindowsNetworkFunctions::pingIPv4Address(const QString& hostAddress, PingResult* result)
 {
 	if( result == nullptr )
