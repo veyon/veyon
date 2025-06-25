@@ -30,6 +30,8 @@
 #include "DemoConfiguration.h"
 #include "DemoServer.h"
 #include "DemoServerConnection.h"
+#include "PlatformPluginInterface.h"
+#include "PlatformNetworkFunctions.h"
 #include "VncClientProtocol.h"
 
 
@@ -37,7 +39,7 @@ DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, co
 						const DemoConfiguration& configuration, int demoServerPort, QObject *parent ) :
 	QTcpServer( parent ),
 	m_configuration( configuration ),
-	m_memoryLimit( m_configuration.memoryLimit() * 1024*1024 ),
+	m_memoryLimit(m_configuration.memoryLimit() * BytesPerMB),
 	m_keyFrameInterval( m_configuration.keyFrameInterval() * 1000 ),
 	m_vncServerPort( vncServerPort ),
 	m_demoAccessToken( demoAccessToken ),
@@ -46,9 +48,31 @@ DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, co
 	m_framebufferUpdateTimer( this ),
 	m_lastFullFramebufferUpdate(),
 	m_requestFullFramebufferUpdate( false ),
-	m_keyFrame(0),
-	m_bandwidthLimit(qMax(1, m_configuration.bandwidthLimit()) * 1024)
+	m_keyFrame(0)
 {
+	auto bandwidthLimit = m_configuration.bandwidthLimit();
+	if (bandwidthLimit == DefaultBandwidthLimit)
+	{
+		const auto networkSpeed = VeyonCore::platform().networkFunctions().networkInterfaceSpeedInMBitPerSecond(
+									  VeyonCore::platform().networkFunctions().defaultRouteNetworkInterface());
+		if (networkSpeed > 10)
+		{
+			// standard Ethernet speeds?
+			if (networkSpeed == 100 || networkSpeed == 1000 || networkSpeed == 2500)
+			{
+				// use half of the available bandwidth
+				bandwidthLimit = (networkSpeed / 2) / 8;
+			}
+			else
+			{
+				// likely Wi-fi, so only use a quarter of the available bandwidth
+				bandwidthLimit = (networkSpeed / 4) / 8;
+			}
+		}
+	}
+
+	m_maxKBytesPerSecond = qMax(1, bandwidthLimit) * BytesPerKB;
+
 	connect( m_vncServerSocket, &QTcpSocket::readyRead, this, &DemoServer::readFromVncServer );
 	connect( m_vncServerSocket, &QTcpSocket::disconnected, this, &DemoServer::reconnectToVncServer );
 
@@ -249,21 +273,21 @@ void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
 	{
 		if( m_keyFrameTimer.elapsed() > 1 )
 		{
-			const auto memTotal = queueSize / 1024;
-			const auto bandwidth = qMax<int>(1, (memTotal * 1000) / m_keyFrameTimer.elapsed());
+			const auto totalKBytes = queueSize / BytesPerKB;
+			const auto kbytesPerSecond = qMax<int>(1, (totalKBytes * 1000) / m_keyFrameTimer.elapsed());
 			const auto clientCount = qMin(1, findChildren<DemoServerConnection *>().count());
-			const auto totalBandwidth = bandwidth * clientCount;
+			const auto totalKBytesPerSecond = kbytesPerSecond * clientCount;
 
 			auto newQuality = m_quality;
-			if (totalBandwidth > m_bandwidthLimit)
+			if (totalKBytesPerSecond > m_maxKBytesPerSecond)
 			{
 				newQuality = qMax(int(MinimumQuality),
-								  m_quality - qMax(1, int(totalBandwidth / m_bandwidthLimit)));
+								  m_quality - qMax(1, int(totalKBytesPerSecond / m_maxKBytesPerSecond)));
 			}
-			else if (totalBandwidth < m_bandwidthLimit * 4 / 5)
+			else if (totalKBytesPerSecond < m_maxKBytesPerSecond * 4 / 5)
 			{
 				newQuality = qMin(int(MaximumQuality),
-								  m_quality + qMax(1, int(m_bandwidthLimit / totalBandwidth)));
+								  m_quality + qMax(1, int(m_maxKBytesPerSecond / totalKBytesPerSecond)));
 			}
 
 			if (newQuality != m_quality)
@@ -272,9 +296,9 @@ void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
 			}
 
 			vDebug() << "message count:" << m_framebufferUpdateMessages.size()
-					 << "queue size (KB):" << memTotal
-					 << "total bandwidth (KB/s):" << totalBandwidth << "of" << m_bandwidthLimit
-					 << "bandwidth per client (KB/s):" << bandwidth
+					 << "queue size (KB):" << totalKBytes
+					 << "total bandwidth (KB/s):" << totalKBytesPerSecond << "of" << m_maxKBytesPerSecond
+					 << "bandwidth per client (KB/s):" << kbytesPerSecond
 					 << "quality" << m_quality;
 		}
 		m_keyFrameTimer.restart();

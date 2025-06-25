@@ -43,6 +43,7 @@ class DemoServer : public QTcpServer
 public:
 	using Password = CryptoCore::SecureArray;
 	using MessageList = QVector<QByteArray>;
+	static constexpr auto DefaultBandwidthLimit = 100;
 
 	DemoServer( int vncServerPort, const Password& vncServerPassword, const Password& demoAccessToken,
 				const DemoConfiguration& configuration, int demoServerPort, QObject *parent );
@@ -95,6 +96,8 @@ private:
 	static constexpr auto MinimumQuality = 0;
 	static constexpr auto DefaultQuality = 6;
 	static constexpr auto MaximumQuality = 9;
+	static constexpr auto BytesPerKB = 1024;
+	static constexpr auto BytesPerMB = BytesPerKB * BytesPerKB;
 
 	const DemoConfiguration& m_configuration;
 	const qint64 m_memoryLimit;
@@ -115,6 +118,6 @@ private:
 	int m_keyFrame;
 	MessageList m_framebufferUpdateMessages;
 	int m_quality = DefaultQuality;
-	int m_bandwidthLimit;
+	int m_maxKBytesPerSecond = 0;
 
 } ;
