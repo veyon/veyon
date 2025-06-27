@@ -61,6 +61,8 @@ public:
 
 	bool isRunning() const;
 
+	QString destinationDirectory() const;
+
 Q_SIGNALS:
 	void errorOccured( const QString& message );
 	void filesChanged();

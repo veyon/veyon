@@ -41,6 +41,8 @@ FileTransferDialog::FileTransferDialog( FileTransferController* controller, QWid
 
 	ui->fileListView->setModel( m_listModel );
 
+	ui->leDestination->setText(controller->destinationDirectory());
+
 	connect( m_controller, &FileTransferController::progressChanged,
 			 this, &FileTransferDialog::updateProgress );
 

@@ -269,3 +269,8 @@ bool FileTransferController::allQueuesEmpty()
 
 	return true;
 }
+
+QString FileTransferController::destinationDirectory() const
+{
+	return m_plugin->destinationDirectory();
+}
