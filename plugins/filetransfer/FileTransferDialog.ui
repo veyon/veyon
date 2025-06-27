@@ -3,6 +3,14 @@
  <author>Tobias Junghans</author>
  <class>FileTransferDialog</class>
  <widget class="QDialog" name="FileTransferDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>558</width>
+    <height>770</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>File transfer</string>
   </property>
@@ -77,6 +85,26 @@
        <widget class="QProgressBar" name="progressBar"/>
       </item>
      </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="labelDestination">
+     <property name="text">
+      <string>Destination folder</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="leDestination">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="toolTip">
+      <string>This can be set by an admin using Veyon Configurator</string>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
    <item>
