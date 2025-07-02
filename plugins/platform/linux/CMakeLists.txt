@@ -37,6 +37,8 @@ if(NOT fakekey_FOUND)
 endif()
 
 build_veyon_plugin(linux-platform
+	NAME LinuxPlatform
+	SOURCES
 	LinuxPlatformPlugin.cpp
 	LinuxCoreFunctions.cpp
 	LinuxPlatformConfigurationPage.h

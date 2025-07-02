@@ -8,6 +8,8 @@ endif()
 if(LibVNCServer_FOUND)
 
 	build_veyon_plugin(headless-vnc-server
+		NAME HeadlessVncServer
+		SOURCES
 		HeadlessVncServer.cpp
 		HeadlessVncServer.h
 		HeadlessVncConfiguration.h

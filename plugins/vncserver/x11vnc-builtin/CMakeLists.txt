@@ -207,6 +207,8 @@ endif()
 set(WITH_PCH OFF)
 
 build_veyon_plugin(builtin-x11vnc-server
+	NAME BuiltinX11VncServer
+	SOURCES
 	BuiltinX11VncServer.cpp
 	X11VncConfigurationWidget.cpp
 	X11VncConfigurationWidget.ui

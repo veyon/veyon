@@ -4,6 +4,8 @@ add_subdirectory(kldap)
 add_subdirectory(common)
 
 build_veyon_plugin(ldap
+	NAME Ldap
+	SOURCES
 	LdapPlugin.cpp
 	LdapPlugin.h
 	)

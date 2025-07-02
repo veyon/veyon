@@ -1,7 +1,10 @@
 include(BuildVeyonApplication)
-include(WindowsBuildHelpers)
 
 build_veyon_application(veyon-configurator
+	NAME Configurator
+	WINDOWS_ICON "data/veyon-configurator.ico"
+	REQUIRE_ADMINISTRATOR_PRIVILEGES
+	SOURCES
 	src/AccessControlPage.cpp
 	src/AccessControlPage.h
 	src/AccessControlPage.ui
@@ -26,11 +29,7 @@ build_veyon_application(veyon-configurator
 	src/ServiceConfigurationPage.cpp
 	src/ServiceConfigurationPage.h
 	src/ServiceConfigurationPage.ui
-	resources/configurator.qrc
-	)
-
-add_windows_resource(veyon-configurator)
-make_graphical_app(veyon-configurator)
+	resources/configurator.qrc)
 
 if(VEYON_BUILD_LINUX)
 	xdg_install(${CMAKE_CURRENT_BINARY_DIR}/data/veyon-configurator.desktop ${CMAKE_CURRENT_SOURCE_DIR}/data/veyon-configurator.xpm ${CMAKE_CURRENT_SOURCE_DIR}/data/veyon-configurator.png ${CMAKE_CURRENT_SOURCE_DIR}/data/veyon-configurator.svg)

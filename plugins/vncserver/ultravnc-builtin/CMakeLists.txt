@@ -74,6 +74,8 @@ set(ultravnc_C_SOURCES
 set(WITH_PCH OFF)
 
 build_veyon_plugin(builtin-ultravnc-server
+	NAME BuiltinUltraVncServer
+	SOURCES
 	BuiltinUltraVncServer.cpp
 	LogoffEventFilter.cpp
 	UltraVncConfigurationWidget.cpp

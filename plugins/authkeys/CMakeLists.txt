@@ -1,6 +1,8 @@
 include(BuildVeyonPlugin)
 
 build_veyon_plugin(authkeys
+	NAME AuthKeys
+	SOURCES
 	AuthKeysPlugin.cpp
 	AuthKeysConfigurationPage.cpp
 	AuthKeysConfigurationPage.ui

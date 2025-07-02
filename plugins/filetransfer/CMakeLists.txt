@@ -1,6 +1,8 @@
 include(BuildVeyonPlugin)
 
 build_veyon_plugin(filetransfer
+	NAME FileTransfer
+	SOURCES
 	FileTransferPlugin.cpp
 	FileTransferPlugin.h
 	FileTransferConfiguration.h
