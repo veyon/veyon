@@ -1,6 +1,8 @@
 include(BuildVeyonPlugin)
 
 build_veyon_plugin(demo
+	NAME Demo
+	SOURCES
 	DemoFeaturePlugin.cpp
 	DemoAuthentication.cpp
 	DemoConfigurationPage.cpp

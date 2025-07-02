@@ -1,6 +1,8 @@
 include(BuildVeyonPlugin)
 
 build_veyon_plugin(builtindirectory
+	NAME BuiltinDirectory
+	SOURCES
 	BuiltinDirectoryPlugin.cpp
 	BuiltinDirectoryConfigurationPage.cpp
 	BuiltinDirectoryConfigurationPage.ui

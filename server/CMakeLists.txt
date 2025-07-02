@@ -1,7 +1,8 @@
 include(BuildVeyonApplication)
-include(WindowsBuildHelpers)
 
 build_veyon_application(veyon-server
+	NAME Server
+	SOURCES
 	src/ComputerControlClient.cpp
 	src/ComputerControlClient.h
 	src/ComputerControlServer.cpp
@@ -21,11 +22,7 @@ build_veyon_application(veyon-server
 	src/VncProxyServer.cpp
 	src/VncProxyServer.h
 	src/VncServer.cpp
-	src/VncServer.h
-	)
-
-add_windows_resource(veyon-server)
-make_graphical_app(veyon-server)
+	src/VncServer.h)
 
 if(VEYON_BUILD_ANDROID)
 	set(CMAKE_ANDROID_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")

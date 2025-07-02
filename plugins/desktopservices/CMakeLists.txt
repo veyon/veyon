@@ -1,6 +1,8 @@
 include(BuildVeyonPlugin)
 
 build_veyon_plugin(desktopservices
+	NAME DesktopServices
+	SOURCES
 	DesktopServiceObject.cpp
 	DesktopServicesConfigurationPage.cpp
 	DesktopServicesConfigurationPage.ui

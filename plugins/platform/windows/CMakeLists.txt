@@ -1,6 +1,8 @@
 include(BuildVeyonPlugin)
 
 build_veyon_plugin(windows-platform
+	NAME WindowsPlatform
+	SOURCES
 	WindowsPlatformPlugin.cpp
 	WindowsPlatformConfigurationPage.h
 	WindowsPlatformConfigurationPage.cpp

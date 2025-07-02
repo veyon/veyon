@@ -1,5 +1,4 @@
 include(BuildVeyonApplication)
-include(WindowsBuildHelpers)
 
 set(cli_SOURCES
 	src/main.cpp
@@ -15,16 +14,17 @@ set(cli_SOURCES
 	src/ShellCommands.h
 	)
 
-build_veyon_application(veyon-cli ${cli_SOURCES})
+build_veyon_application(veyon-cli
+	NAME CLI
+	DESCRIPTION "Veyon Command Line Interface (console version)"
+	CONSOLE
+	SOURCES ${cli_SOURCES})
 
 target_compile_options(veyon-cli PRIVATE -Wno-date-time)
 
-add_windows_resource(veyon-cli ${CMAKE_CURRENT_BINARY_DIR}/veyon-cli.rc)
-make_console_app(veyon-cli)
-
 if(VEYON_BUILD_WINDOWS)
-	build_veyon_application(veyon-wcli ${cli_SOURCES})
-
-	add_windows_resource(veyon-wcli ${CMAKE_CURRENT_BINARY_DIR}/veyon-wcli.rc)
-	make_graphical_app(veyon-wcli)
+	build_veyon_application(veyon-wcli
+		NAME WCLI
+		DESCRIPTION "Veyon Command Line Interface (non-console version)"
+		SOURCES ${cli_SOURCES})
 endif()

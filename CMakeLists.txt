@@ -265,7 +265,7 @@ add_definitions(
 	-DQT_STRICT_ITERATORS
 	)
 
-file(GLOB_RECURSE IN_FILES RELATIVE ${CMAKE_SOURCE_DIR} "veyonconfig.h.in" "*.rc.in" "*.desktop.in" "*.policy.in" "*.service.in" "*.manifest.in" "*.nsi.in")
+file(GLOB_RECURSE IN_FILES RELATIVE ${CMAKE_SOURCE_DIR} "veyonconfig.h.in" "*.desktop.in" "*.policy.in" "*.service.in" "*.nsi.in")
 configure_files(${IN_FILES})
 
 set(CMAKE_AUTOMOC TRUE)

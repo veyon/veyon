@@ -1,3 +1,5 @@
+include(WindowsBuildHelpers)
+
 file(GLOB veyoncore_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/*.c
@@ -119,6 +121,9 @@ if(VEYON_BUILD_WINDOWS)
 	# add Windows Socket library required by libvncclient
 	target_link_libraries(veyon-core PRIVATE -lws2_32)
 	set_target_properties(veyon-core PROPERTIES PREFIX "")
+	add_windows_resources(veyon-core
+		NAME VeyonCore
+		DESCRIPTION "Veyon Core Library")
 	if(NOT WITH_CORE_ONLY)
 		install(TARGETS veyon-core RUNTIME DESTINATION ${VEYON_LIB_DIR})
 	endif()
