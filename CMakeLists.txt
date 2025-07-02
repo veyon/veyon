@@ -187,13 +187,15 @@ if(WITH_QT6)
 	endif()
 else()
 	set(QT_MAJOR_VERSION 5)
-	find_package(Qt5Core REQUIRED)
-	find_package(Qt5Concurrent REQUIRED)
-	find_package(Qt5Gui REQUIRED)
-	find_package(Qt5Widgets REQUIRED)
-	find_package(Qt5Network REQUIRED)
-	find_package(Qt5Quick REQUIRED)
-	find_package(Qt5QuickControls2 REQUIRED)
+	find_package(Qt5 5.14 COMPONENTS
+		Core
+		Concurrent
+		Gui
+		Widgets
+		Network
+		Quick
+		QuickControls2
+		REQUIRED)
 	if(WITH_TRANSLATIONS)
 		find_package(Qt5LinguistTools REQUIRED)
 	endif()
