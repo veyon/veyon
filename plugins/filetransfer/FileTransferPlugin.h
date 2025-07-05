@@ -115,6 +115,9 @@ public:
 
 	ConfigurationPage* createConfigurationPage() override;
 
+	QString destinationDirectory() const;
+
+
 Q_SIGNALS:
 	Q_INVOKABLE void acceptSelectedFiles( const QList<QUrl>& fileUrls );
 
@@ -124,7 +127,6 @@ private:
 		return m_lastFileTransferSourceDirectory;
 	}
 
-	QString destinationDirectory() const;
 
 	enum Commands
 	{
