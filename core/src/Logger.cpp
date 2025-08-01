@@ -139,52 +139,52 @@ Logger::LogLevel Logger::logLevelFromString(const QString& logLevelString)
 
 void Logger::initLogFile()
 {
-    QString logPath = VeyonCore::filesystem().expandPath( VeyonCore::config().logFileDirectory() );
-    
-    QFileInfo logDirInfo( logPath );
-    
-    if( logDirInfo.isSymLink() )
-    {
-        vWarning() << logPath << "is a symlink/junction. Replacing with real directory";
-
-        if( !QFile::remove( logPath ) )
-        {
-            vCritical() << "Failed to remove symlink" << logPath << "- aborting log initialization";
-            return;
-        }
-    }
-    
-    if( !QDir( logPath ).exists() )
-    {
-        if( QDir( QDir::rootPath() ).mkdir( logPath ) )
-        {
-            QFile::setPermissions( logPath,
-                                   QFile::ReadOwner  | QFile::WriteOwner | QFile::ExeOwner |
-                                   QFile::ReadUser   | QFile::WriteUser  | QFile::ExeUser  |
-                                   QFile::ReadGroup  | QFile::WriteGroup | QFile::ExeGroup |
-                                   QFile::ReadOther  | QFile::WriteOther | QFile::ExeOther );
-        }
-        else
-        {
-            vCritical() << "Could not create log directory" << logPath;
-            return;
-        }
-    }
-    
-    logPath += QDir::separator();
-    m_logFile = new QFile( logPath + QStringLiteral("%1.log").arg( m_appName ) );
-    
-    openLogFile();
-    
-    if( VeyonCore::config().logFileSizeLimitEnabled() )
-    {
-        static constexpr auto BytesPerKB = 1024;
-        m_logFileSizeLimit = VeyonCore::config().logFileSizeLimit() * BytesPerKB * BytesPerKB;
-    }
-    if( VeyonCore::config().logFileRotationEnabled() )
-    {
-        m_logFileRotationCount = VeyonCore::config().logFileRotationCount();
-    }
+	QString logPath = VeyonCore::filesystem().expandPath( VeyonCore::config().logFileDirectory() );
+	
+	QFileInfo logDirInfo( logPath );
+	
+	if( logDirInfo.isSymLink() )
+	{
+		vWarning() << logPath << "is a symlink/junction. Replacing with real directory";
+		
+		if( !QFile::remove( logPath ) )
+		{
+		    vCritical() << "Failed to remove symlink" << logPath << "- aborting log initialization";
+		    return;
+		}
+	}
+	
+	if( !QDir( logPath ).exists() )
+	{
+		if( QDir( QDir::rootPath() ).mkdir( logPath ) )
+		{
+		    QFile::setPermissions( logPath,
+					   QFile::ReadOwner  | QFile::WriteOwner | QFile::ExeOwner |
+					   QFile::ReadUser   | QFile::WriteUser  | QFile::ExeUser  |
+					   QFile::ReadGroup  | QFile::WriteGroup | QFile::ExeGroup |
+					   QFile::ReadOther  | QFile::WriteOther | QFile::ExeOther );
+		}
+		else
+		{
+		    vCritical() << "Could not create log directory" << logPath;
+		    return;
+		}
+	}
+	
+	logPath += QDir::separator();
+	m_logFile = new QFile( logPath + QStringLiteral("%1.log").arg( m_appName ) );
+	
+	openLogFile();
+	
+	if( VeyonCore::config().logFileSizeLimitEnabled() )
+	{
+		static constexpr auto BytesPerKB = 1024;
+		m_logFileSizeLimit = VeyonCore::config().logFileSizeLimit() * BytesPerKB * BytesPerKB;
+	}
+	if( VeyonCore::config().logFileRotationEnabled() )
+	{
+		m_logFileRotationCount = VeyonCore::config().logFileRotationCount();
+	}
 }
 
 
