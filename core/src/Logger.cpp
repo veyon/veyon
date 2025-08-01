@@ -139,20 +139,17 @@ Logger::LogLevel Logger::logLevelFromString(const QString& logLevelString)
 
 void Logger::initLogFile()
 {
-    QString logPath = VeyonCore::filesystem().expandPath(
-                          VeyonCore::config().logFileDirectory() );
+    QString logPath = VeyonCore::filesystem().expandPath( VeyonCore::config().logFileDirectory() );
     
     QFileInfo logDirInfo( logPath );
     
     if( logDirInfo.isSymLink() )
     {
-        vWarning() << logPath
-                   << "is a symlink/junction. Replacing with real directory";
+        vWarning() << logPath << "is a symlink/junction. Replacing with real directory";
 
         if( !QFile::remove( logPath ) )
         {
-            vCritical() << "Failed to remove symlink" << logPath
-                        << "- aborting log initialization";
+            vCritical() << "Failed to remove symlink" << logPath << "- aborting log initialization";
             return;
         }
     }
@@ -182,8 +179,7 @@ void Logger::initLogFile()
     if( VeyonCore::config().logFileSizeLimitEnabled() )
     {
         static constexpr auto BytesPerKB = 1024;
-        m_logFileSizeLimit = VeyonCore::config().logFileSizeLimit()
-                             * BytesPerKB * BytesPerKB;
+        m_logFileSizeLimit = VeyonCore::config().logFileSizeLimit() * BytesPerKB * BytesPerKB;
     }
     if( VeyonCore::config().logFileRotationEnabled() )
     {
