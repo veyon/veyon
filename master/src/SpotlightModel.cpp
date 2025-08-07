@@ -58,24 +58,44 @@ void SpotlightModel::setUpdateInRealtime( bool enabled )
 
 void SpotlightModel::add( const ComputerControlInterface::Pointer& controlInterface )
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
+	beginFilterChange();
+#endif
+
 	m_controlInterfaces.append( controlInterface );
 
 	controlInterface->setUpdateMode( m_updateInRealtime
 										 ? ComputerControlInterface::UpdateMode::Live
 										 : ComputerControlInterface::UpdateMode::Monitoring );
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+	endFilterChange(Direction::Rows);
+#elif QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+	invalidateRowsFilter();
+#else
 	invalidateFilter();
+#endif
 }
 
 
 
 void SpotlightModel::remove( const ComputerControlInterface::Pointer& controlInterface )
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
+	beginFilterChange();
+#endif
+
 	m_controlInterfaces.removeAll( controlInterface );
 
 	controlInterface->setUpdateMode( ComputerControlInterface::UpdateMode::Monitoring );
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+	endFilterChange(Direction::Rows);
+#elif QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+	invalidateRowsFilter();
+#else
 	invalidateFilter();
+#endif
 }
 
 
