@@ -32,6 +32,7 @@
 #include "Computer.h"
 #include "ComputerControlInterface.h"
 #include "FeatureWorkerManager.h"
+#include "NetworkObjectDirectoryManager.h"
 #include "PlatformCoreFunctions.h"
 #include "PlatformUserFunctions.h"
 #include "PowerControlFeaturePlugin.h"
@@ -129,9 +130,26 @@ bool PowerControlFeaturePlugin::controlFeature( Feature::Uid featureUid,
 
 	if( featureUid == m_powerOnFeature.uid() )
 	{
+		const auto directory = VeyonCore::networkObjectDirectoryManager().configuredDirectory();
+
 		for( const auto& controlInterface : computerControlInterfaces )
 		{
-			broadcastWOLPacket( controlInterface->computer().macAddress() );
+			const auto& host = controlInterface->computer();
+			auto macAddress = host.macAddress();
+			if (macAddress.isEmpty())
+			{
+				macAddress = directory->queryObjectAttribute(host.networkObjectUid(),
+															 NetworkObject::Attribute::MacAddress).toString();
+			}
+
+			if (macAddress.isEmpty() == false)
+			{
+				broadcastWOLPacket(macAddress);
+			}
+			else
+			{
+				vWarning() << "no MAC address available for host" << host.hostName() << "with ID" << host.networkObjectUid();
+			}
 		}
 	}
 	else if( featureUid == m_powerDownDelayedFeature.uid() )
