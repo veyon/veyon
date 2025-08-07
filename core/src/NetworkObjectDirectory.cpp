@@ -186,6 +186,26 @@ NetworkObject::ModelId NetworkObjectDirectory::rootId() const
 
 
 
+QVariant NetworkObjectDirectory::queryObjectAttribute(NetworkObject::Uid objectUid, NetworkObject::Attribute attribute)
+{
+	for( auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it )
+	{
+		const auto& objectList = it.value();
+
+		for( const auto& object : objectList )
+		{
+			if (object.uid() == objectUid)
+			{
+				return object.attributeValue(attribute);
+			}
+		}
+	}
+
+	return {};
+}
+
+
+
 NetworkObjectList NetworkObjectDirectory::queryObjects( NetworkObject::Type type,
 														NetworkObject::Attribute attribute,
 														const QVariant& value )

@@ -60,6 +60,7 @@ public:
 		return m_rootObject;
 	}
 
+	virtual QVariant queryObjectAttribute(NetworkObject::Uid objectUid, NetworkObject::Attribute attribute);
 	virtual NetworkObjectList queryObjects( NetworkObject::Type type,
 											NetworkObject::Attribute attribute, const QVariant& value );
 	virtual NetworkObjectList queryParents( const NetworkObject& child );
