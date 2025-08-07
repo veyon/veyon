@@ -184,6 +184,10 @@ bool SlideshowModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceP
 
 void SlideshowModel::setCurrentRow( int row )
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
+	beginFilterChange();
+#endif
+
 	if( sourceModel()->rowCount() > 0 )
 	{
 		m_currentRow = qMax( 0, row ) % qMax( 1, sourceModel()->rowCount() );
@@ -198,5 +202,11 @@ void SlideshowModel::setCurrentRow( int row )
 		m_currentControlInterface.clear();
 	}
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+	endFilterChange(Direction::Rows);
+#elif QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+	invalidateRowsFilter();
+#else
 	invalidateFilter();
+#endif
 }
