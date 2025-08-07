@@ -149,11 +149,14 @@ void JsonStore::flush( const Object* obj )
 
 bool JsonStore::isWritable() const
 {
-	QFile outfile( configurationFilePath() );
-	outfile.open( QFile::WriteOnly | QFile::Append );
+	QFile outfile(configurationFilePath());
+	if (!outfile.open(QFile::WriteOnly | QFile::Append))
+	{
+		return false;
+	}
 	outfile.close();
 
-	return QFileInfo( configurationFilePath() ).isWritable();
+	return QFileInfo(configurationFilePath()).isWritable();
 
 }
 
@@ -163,7 +166,10 @@ void JsonStore::clear()
 {
 	// truncate configuration file
 	QFile outfile( configurationFilePath() );
-	outfile.open( QIODevice::WriteOnly | QIODevice::Truncate );
+	if (!outfile.open(QIODevice::WriteOnly | QIODevice::Truncate))
+	{
+		vCritical() << "could not write to configuration file" << configurationFilePath();
+	}
 }
 
 
