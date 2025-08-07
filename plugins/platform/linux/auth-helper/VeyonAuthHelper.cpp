@@ -71,7 +71,11 @@ static int pam_conv( int num_msg, const struct pam_message** msg, struct pam_res
 int main()
 {
 	QFile stdIn;
-	stdIn.open( 0, QFile::ReadOnly | QFile::Unbuffered );
+	if (stdIn.open(0, QFile::ReadOnly | QFile::Unbuffered) == false)
+	{
+		return -1;
+	}
+
 	QDataStream ds( &stdIn );
 	ds >> pam_username;
 	ds >> pam_password;
