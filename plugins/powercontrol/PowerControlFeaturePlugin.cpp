@@ -402,6 +402,7 @@ bool PowerControlFeaturePlugin::broadcastWOLPacket( QString macAddress )
 
 	QUdpSocket udpSocket;
 
+	vDebug() << "broadcasting WOL packet for" << originalMacAddress;
 	bool success = ( udpSocket.writeDatagram( datagram, QHostAddress::Broadcast, 9 ) == datagram.size() );
 
 	const auto networkInterfaces = QNetworkInterface::allInterfaces();
@@ -412,6 +413,7 @@ bool PowerControlFeaturePlugin::broadcastWOLPacket( QString macAddress )
 		{
 			if( addressEntry.broadcast().isNull() == false )
 			{
+				vDebug() << "broadcasting WOL packet for" << originalMacAddress << "via" << addressEntry.broadcast().toString();
 				success &= ( udpSocket.writeDatagram( datagram, addressEntry.broadcast(), 9 ) == datagram.size() );
 			}
 		}
