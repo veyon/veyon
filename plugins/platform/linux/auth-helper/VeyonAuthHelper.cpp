@@ -31,35 +31,34 @@ static QByteArray pam_username; // clazy:exclude=non-pod-global-static
 static QByteArray pam_password; // clazy:exclude=non-pod-global-static
 static QByteArray pam_service; // clazy:exclude=non-pod-global-static
 
-static int pam_conv( int num_msg, const struct pam_message** msg, struct pam_response** resp, void * )
+static int pam_conv(int num_msg, const struct pam_message** msg, struct pam_response** resp, void *)
 {
-	auto reply = reinterpret_cast<pam_response *>(
-				malloc( sizeof(struct pam_response) * static_cast<size_t>( num_msg ) ) );
-	if( reply == nullptr )
+	auto reply = reinterpret_cast<pam_response *>(malloc(sizeof(struct pam_response) * size_t(num_msg)));
+	if (reply == nullptr)
 	{
 		return PAM_CONV_ERR;
 	}
 
-	for( int replies = 0; replies < num_msg; ++replies )
+	for (int replies = 0; replies < num_msg; ++replies)
 	{
-		switch( msg[replies]->msg_style )
+		switch (msg[replies]->msg_style)
 		{
-			case PAM_PROMPT_ECHO_ON:
-				reply[replies].resp_retcode = PAM_SUCCESS;
-				reply[replies].resp = strdup( pam_username.constData() );
-				break;
-			case PAM_PROMPT_ECHO_OFF:
-				reply[replies].resp_retcode = PAM_SUCCESS;
-				reply[replies].resp = strdup( pam_password.constData() );
-				break;
-			case PAM_TEXT_INFO:
-			case PAM_ERROR_MSG:
-				reply[replies].resp_retcode = PAM_SUCCESS;
-				reply[replies].resp = nullptr;
-				break;
-			default:
-				free( reply );
-				return PAM_CONV_ERR;
+		case PAM_PROMPT_ECHO_ON:
+			reply[replies].resp_retcode = PAM_SUCCESS;
+			reply[replies].resp = strdup(pam_username.constData());
+			break;
+		case PAM_PROMPT_ECHO_OFF:
+			reply[replies].resp_retcode = PAM_SUCCESS;
+			reply[replies].resp = strdup(pam_password.constData());
+			break;
+		case PAM_TEXT_INFO:
+		case PAM_ERROR_MSG:
+			reply[replies].resp_retcode = PAM_SUCCESS;
+			reply[replies].resp = nullptr;
+			break;
+		default:
+			free(reply);
+			return PAM_CONV_ERR;
 		}
 	}
 
@@ -76,41 +75,41 @@ int main()
 		return -1;
 	}
 
-	QDataStream ds( &stdIn );
+	QDataStream ds(&stdIn);
 	ds >> pam_username;
 	ds >> pam_password;
 	ds >> pam_service;
 
-	if( pam_service.isEmpty() )
+	if (pam_service.isEmpty())
 	{
 		pam_service = QByteArrayLiteral("login");
 	}
 
 	struct pam_conv pconv = { &pam_conv, nullptr };
 	pam_handle_t* pamh = nullptr;
-	auto err = pam_start( pam_service.constData(), nullptr, &pconv, &pamh );
-	if( err == PAM_SUCCESS )
+	auto err = pam_start(pam_service.constData(), nullptr, &pconv, &pamh);
+	if (err == PAM_SUCCESS)
 	{
-		err = pam_authenticate( pamh, PAM_SILENT );
-		if( err != PAM_SUCCESS )
+		err = pam_authenticate(pamh, PAM_SILENT);
+		if (err != PAM_SUCCESS)
 		{
-			printf( "pam_authenticate: %s\n", pam_strerror( pamh, err ) );
+			printf( "pam_authenticate: %s\n", pam_strerror(pamh, err));
 		}
-        else
-        {
-            err = pam_acct_mgmt( pamh, PAM_SILENT );
-            if( err != PAM_SUCCESS )
-            {
-                printf( "pam_acct_mgmt: %s\n", pam_strerror( pamh, err ) );
-            }
-        }
+		else
+		{
+			err = pam_acct_mgmt(pamh, PAM_SILENT);
+			if (err != PAM_SUCCESS)
+			{
+				printf("pam_acct_mgmt: %s\n", pam_strerror(pamh, err));
+			}
+		}
 	}
 	else
 	{
-		printf( "pam_start: %s\n", pam_strerror( pamh, err ) );
+		printf("pam_start: %s\n", pam_strerror(pamh, err));
 	}
 
-	pam_end( pamh, err );
+	pam_end(pamh, err);
 
 	return err == PAM_SUCCESS ? 0 : -1;
 }
