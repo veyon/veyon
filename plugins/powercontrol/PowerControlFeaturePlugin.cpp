@@ -353,10 +353,7 @@ bool PowerControlFeaturePlugin::confirmFeatureExecution( const Feature& feature,
 
 bool PowerControlFeaturePlugin::broadcastWOLPacket( QString macAddress )
 {
-	const int MAC_SIZE = 6;
-	unsigned int mac[MAC_SIZE];  // Flawfinder: ignore
-
-	if( macAddress.isEmpty() )
+	if (macAddress.isEmpty())
 	{
 		return false;
 	}
@@ -368,28 +365,23 @@ bool PowerControlFeaturePlugin::broadcastWOLPacket( QString macAddress )
 	macAddress.replace( QLatin1Char('-'), QString() );
 	macAddress.replace( QLatin1Char('.'), QString() );
 
-	if( sscanf( macAddress.toUtf8().constData(),
-				"%2x%2x%2x%2x%2x%2x",
-				&mac[0],
-				&mac[1],
-				&mac[2],
-				&mac[3],
-				&mac[4],
-				&mac[5] ) != MAC_SIZE )
+	const auto macAddressBytes = QByteArray::fromHex(macAddress.toUtf8());
+	static constexpr auto MacAddressSize = 6;
+
+	if (macAddressBytes.size() != MacAddressSize)
 	{
 		CommandLineIO::error( tr( "Invalid MAC address specified!" ) );
 		vWarning() << "invalid MAC address" << originalMacAddress;
 		return false;
 	}
 
-	QByteArray datagram( MAC_SIZE*17, static_cast<char>( 0xff ) );
+	static constexpr auto MagicPacketFieldCount = 17;
 
-	for( int i = 1; i < 17; ++i )
+	QByteArray datagram(MacAddressSize * MagicPacketFieldCount, char(0xff));
+
+	for (int i = 1; i < MagicPacketFieldCount; ++i)
 	{
-		for(int j = 0; j < MAC_SIZE; ++j )
-		{
-			datagram[i*MAC_SIZE+j] = static_cast<char>( mac[j] );
-		}
+		datagram.replace(i * MacAddressSize, MacAddressSize, macAddressBytes);
 	}
 
 	QUdpSocket udpSocket;
