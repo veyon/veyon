@@ -1,18 +1,23 @@
 name: "CI Builds"
-on: [push]
+on:
+  push:
+    tags-ignore:
+      - "v*.*.*"
+    branches:
+      - '**'
+
 jobs:
   build-linux:
     strategy:
       matrix:
         dist:
-          - debian.12
-          - fedora.41
-          - opensuse.tumbleweed
-          - ubuntu.24.04
+          - debian.11
+          - fedora.42
     runs-on: ubuntu-latest
     container: veyon/ci.linux.${{matrix.dist}}
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: true
+      - run: git config --global --add safe.directory $GITHUB_WORKSPACE
       - run: .ci/linux.${{matrix.dist}}/script.sh $GITHUB_WORKSPACE /tmp
