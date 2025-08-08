@@ -88,14 +88,11 @@ if(GIT_FOUND)
 
 	# Get list of all committers from git history, ordered by number of commits.
 	# The CONTRIBUTORS file is used by AboutDialog. This information can be provided
-	# with -DCONTRIBUTORS=/path/to/CONTRIBUTORS instead. For instance, to generate
-	# this file for version 3.0.2, the command is:
-	#   git shortlog -sne v3.0.2 | cut -c8-
+	# with -DCONTRIBUTORS=/path/to/CONTRIBUTORS instead.
 	set(CONTRIBUTORS "${CMAKE_BINARY_DIR}/CONTRIBUTORS")
 	if(NOT EXISTS "${CONTRIBUTORS}")
-		execute_process(COMMAND "${GIT_EXECUTABLE}" shortlog -s d160d147165271516589c304cb1b8f5e48f8527d..HEAD
+		execute_process(COMMAND "${GIT_EXECUTABLE}" shortlog -sn v3.99.0..HEAD
 			COMMAND cut -c8-
-			COMMAND sort -f
 			OUTPUT_FILE "${CONTRIBUTORS}"
 			WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
 			TIMEOUT 10)
