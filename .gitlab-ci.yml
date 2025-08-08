@@ -25,20 +25,6 @@ build-linux:
     paths: [ "veyon*" ]
     expire_in: 1 day
 
-build-linux-x86-64-v3:
-  stage: build
-  image: veyon/ci.linux.$DISTRO:latest
-  tags: [x86_64-v3]
-  script:
-    - .ci/linux.$DISTRO/script.sh $CI_PROJECT_DIR /tmp
-  parallel:
-    matrix:
-      - DISTRO:
-        - rhel.10
-  artifacts:
-    paths: [ "veyon*" ]
-    expire_in: 1 day
-
 build-windows:
   stage: build
   image: $CI_REGISTRY/veyon/ci-mingw-w64:5.0
@@ -54,7 +40,7 @@ build-windows:
 collect-artifacts:
   stage: collect
   image: veyon/ci.linux.debian.12:latest
-  dependencies: [ build-linux, build-linux-x86-64-v3 ]
+  dependencies: [ build-linux ]
   only: [ tags ]
   script:
     - ls -la *.deb *.rpm
