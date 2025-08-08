@@ -38,17 +38,17 @@ include(PchHelpers)
 include(ProcessorCount)
 include(SetDefaultTargetProperties)
 
+set(VERSION_STRING "$ENV{CI_COMMIT_TAG}")
+if (VERSION_STRING STREQUAL "")
+	set(VERSION_STRING "$ENV{GITHUB_REF_NAME}")
+endif()
+if (NOT VERSION_STRING MATCHES "^v.*")
+	set(VERSION_STRING "")
+endif()
+
 find_package(Git)
 
 if(GIT_FOUND)
-	execute_process(COMMAND "${GIT_EXECUTABLE}" describe --tags
-		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-		OUTPUT_STRIP_TRAILING_WHITESPACE
-		OUTPUT_VARIABLE VERSION_STRING)
-	string(REGEX REPLACE "^v([0-9]+)\\..*" "\\1" VERSION_MAJOR "${VERSION_STRING}")
-	string(REGEX REPLACE "^v[0-9]+\\.([0-9]+).*" "\\1" VERSION_MINOR "${VERSION_STRING}")
-	string(REGEX REPLACE "^v[0-9]+\\.[0-9]+\\.([0-9]+).*" "\\1" VERSION_PATCH "${VERSION_STRING}")
-
 	# determine build number to use in NSIS installer and resource files
 	execute_process(COMMAND "${GIT_EXECUTABLE}" describe --tags
 		COMMAND cut -d "-" -f2
@@ -77,13 +77,17 @@ if(GIT_FOUND)
 endif()
 
 # can't retrieve version information as not building from Git repository?
-if(NOT VERSION_STRING)
+if(VERSION_STRING STREQUAL "")
 	set(VERSION_MAJOR 4)
 	set(VERSION_MINOR 99)
 	set(VERSION_PATCH 0)
 	set(VERSION_BUILD 0)
 	set(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
 else()
+	string(REGEX REPLACE "^v([0-9]+)\\..*" "\\1" VERSION_MAJOR "${VERSION_STRING}")
+	string(REGEX REPLACE "^v[0-9]+\\.([0-9]+).*" "\\1" VERSION_MINOR "${VERSION_STRING}")
+	string(REGEX REPLACE "^v[0-9]+\\.[0-9]+\\.([0-9]+).*" "\\1" VERSION_PATCH "${VERSION_STRING}")
+	set(VERSION_BUILD 0)
 	# remove leading character from tag name
 	string(REPLACE "v" "" VERSION_STRING "${VERSION_STRING}")
 endif()
