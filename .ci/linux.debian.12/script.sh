@@ -11,7 +11,14 @@ if [ -z "$3" ] ; then
 
 # generate source tarball
 cd $1
-VERSION=$(git describe --tags --abbrev=0 | sed -e 's/^v//g')
+VERSION=$(echo $CI_COMMIT_TAG | sed -e 's/^v//g')
+if [ -z "$VERSION" ] ; then
+	VERSION=$(echo $GITHUB_REF_NAME | sed -e 's/^v//g')
+fi
+if [ -z "$VERSION" ] ; then
+	VERSION=$(git describe --tags --abbrev=0 | sed -e 's/^v//g')
+fi
+
 cp $2/CONTRIBUTORS .
 
 $1/.ci/common/strip-kldap-sources.sh
