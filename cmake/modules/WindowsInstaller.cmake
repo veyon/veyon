@@ -2,17 +2,13 @@ set(WINDOWS_INSTALL_FILES "veyon-${VEYON_WINDOWS_ARCH}-${VERSION_MAJOR}.${VERSIO
 
 set(DLLDIR "${MINGW_PREFIX}/bin")
 set(DLLDIR_LIB "${MINGW_PREFIX}/lib")
-
 string(REGEX MATCH "^[^.]+" GCC_VERSION_MAJOR ${CMAKE_CXX_COMPILER_VERSION})
-if(GCC_VERSION_MAJOR GREATER_EQUAL 9)
-	set(DLLDIR_GCC "/usr/lib/gcc/${MINGW_TARGET}/${GCC_VERSION_MAJOR}-posix")
-else()
-	set(DLLDIR_GCC "/usr/lib/gcc/${MINGW_TARGET}/${COMPILER_VERSION_MAJOR_MINOR}-posix")
-endif()
-
+set(DLLDIR_GCC "/usr/lib/gcc/${MINGW_TARGET}/${GCC_VERSION_MAJOR}-posix")
 if(VEYON_BUILD_WIN64)
+	set(DLL_GCC "libgcc_s_seh-1.dll")
 	set(DLL_DDENGINE "ddengine64.dll")
 else()
+	set(DLL_GCC "libgcc_s_dw2-1.dll")
 	set(DLL_DDENGINE "ddengine.dll")
 endif()
 
@@ -44,7 +40,7 @@ add_custom_target(windows-binaries
 	COMMAND cp ${DLLDIR_LIB}/libwinpthread-1.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND cp ${DLLDIR_GCC}/libstdc++-6.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND cp ${DLLDIR_GCC}/libssp-0.dll ${WINDOWS_INSTALL_FILES}
-	COMMAND cp ${DLLDIR_GCC}/libgcc_s_*-1.dll ${WINDOWS_INSTALL_FILES}
+	COMMAND cp ${DLLDIR_GCC}/${DLL_GCC} ${WINDOWS_INSTALL_FILES}
 	COMMAND mkdir -p ${WINDOWS_INSTALL_FILES}/crypto
 	COMMAND cp ${DLLDIR_LIB}/qca-qt6/crypto/libqca-ossl.dll ${WINDOWS_INSTALL_FILES}/crypto
 	COMMAND cp ${DLLDIR}/Qt6Core.dll
