@@ -23,10 +23,6 @@ elseif(NOT CMAKE_BUILD_TYPE OR CMAKE_BUILD_TYPE STREQUAL "None")
 	set(CMAKE_BUILD_TYPE RelWithDebInfo)
 endif()
 
-if(VEYON_DEBUG)
-	add_definitions(-DVEYON_DEBUG)
-endif()
-
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
 include(AddFileDependencies)
@@ -88,10 +84,6 @@ else()
 	# remove leading character from tag name
 	string(REPLACE "v" "" VERSION_STRING "${VERSION_STRING}")
 endif()
-
-# set up compiler version variable
-string(REGEX REPLACE "\\.[0-9]$" "" COMPILER_VERSION_MAJOR_MINOR ${CMAKE_CXX_COMPILER_VERSION})
-
 
 # set up basic platform variables
 if(WIN32)
@@ -215,6 +207,10 @@ endif()
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fstack-protector-strong ${CFLAGS}")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector-strong -fno-exceptions ${CXXFLAGS}")
 
+if(VEYON_DEBUG)
+	add_definitions(-DVEYON_DEBUG)
+endif()
+
 if(NOT VEYON_DEBUG AND NOT CMAKE_C_FLAGS MATCHES "FORTIFY_SOURCE" AND NOT CMAKE_CXX_FLAGS MATCHES "FORTIFY_SOURCE")
 	add_definitions(-D_FORTIFY_SOURCE=2)
 endif()
@@ -226,7 +222,6 @@ if(WITH_TESTS)
 	else()
 		find_package(Qt5Test REQUIRED)
 	endif()
-        set(VEYON_WITH_TESTS ON)
 else()
 	set(CMAKE_C_VISIBILITY_PRESET hidden)
 	set(CMAKE_CXX_VISIBILITY_PRESET hidden)
