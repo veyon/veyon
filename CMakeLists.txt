@@ -46,6 +46,21 @@ if (NOT VERSION_STRING MATCHES "^v.*")
 	set(VERSION_STRING "")
 endif()
 
+if(VERSION_STRING STREQUAL "")
+	set(VERSION_MAJOR 4)
+	set(VERSION_MINOR 9)
+	set(VERSION_PATCH 6)
+	set(VERSION_BUILD 1)
+	set(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
+else()
+	string(REGEX REPLACE "^v([0-9]+)\\..*" "\\1" VERSION_MAJOR "${VERSION_STRING}")
+	string(REGEX REPLACE "^v[0-9]+\\.([0-9]+).*" "\\1" VERSION_MINOR "${VERSION_STRING}")
+	string(REGEX REPLACE "^v[0-9]+\\.[0-9]+\\.([0-9]+).*" "\\1" VERSION_PATCH "${VERSION_STRING}")
+	set(VERSION_BUILD 0)
+	# remove leading character from tag name
+	string(REPLACE "v" "" VERSION_STRING "${VERSION_STRING}")
+endif()
+
 find_package(Git)
 
 if(GIT_FOUND)
@@ -73,23 +88,6 @@ if(GIT_FOUND)
 			WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
 			TIMEOUT 10)
 	endif()
-
-endif()
-
-# can't retrieve version information as not building from Git repository?
-if(VERSION_STRING STREQUAL "")
-	set(VERSION_MAJOR 4)
-	set(VERSION_MINOR 9)
-	set(VERSION_PATCH 6)
-	set(VERSION_BUILD 1)
-	set(VERSION_STRING "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
-else()
-	string(REGEX REPLACE "^v([0-9]+)\\..*" "\\1" VERSION_MAJOR "${VERSION_STRING}")
-	string(REGEX REPLACE "^v[0-9]+\\.([0-9]+).*" "\\1" VERSION_MINOR "${VERSION_STRING}")
-	string(REGEX REPLACE "^v[0-9]+\\.[0-9]+\\.([0-9]+).*" "\\1" VERSION_PATCH "${VERSION_STRING}")
-	set(VERSION_BUILD 0)
-	# remove leading character from tag name
-	string(REPLACE "v" "" VERSION_STRING "${VERSION_STRING}")
 endif()
 
 # set up basic platform variables
