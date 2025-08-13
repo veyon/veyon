@@ -303,7 +303,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>There is no matching rule with a valid action. The access is therefore denied.</source>
-        <translation type="unfinished"/>
+        <translation>沒有與有效動作相符的規則。 因此拒絕存取。</translation>
     </message>
 </context>
 <context>
@@ -2694,7 +2694,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
-        <translation type="unfinished"/>
+        <translation>將容器/OU 結構 1:1 對應到位置</translation>
     </message>
 </context>
 <context>
@@ -3957,11 +3957,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Environment variable name</source>
-        <translation type="unfinished"/>
+        <translation>環境變數名稱</translation>
     </message>
     <message>
         <source>Registry key name</source>
-        <translation type="unfinished"/>
+        <translation>登錄檔機碼名稱</translation>
     </message>
 </context>
 <context>
@@ -4073,11 +4073,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>View in separate window</source>
-        <translation type="unfinished"/>
+        <translation>在個別視窗中檢視</translation>
     </message>
     <message>
         <source>%1 Master – Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>%1 主 – 投影片</translation>
     </message>
 </context>
 <context>
@@ -4480,7 +4480,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>以軟體啟用 SAS 產生 (Ctrl+Alt+Del)</translation>
+        <translation>啟用以軟體 SAS 產生 (Ctrl+Alt+Del)</translation>
     </message>
     <message>
         <source>User authentication</source>
@@ -4532,7 +4532,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Handling of interfering windows</source>
-        <translation type="unfinished"/>
+        <translation>干擾視窗處理</translation>
     </message>
     <message>
         <source>None</source>
@@ -4540,15 +4540,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Fix window attributes</source>
-        <translation type="unfinished"/>
+        <translation>修復視窗屬性</translation>
     </message>
     <message>
         <source>Terminate related process</source>
-        <translation type="unfinished"/>
+        <translation>終止相關處理程序</translation>
     </message>
     <message>
         <source>Close session</source>
-        <translation type="unfinished"/>
+        <translation>關閉工作階段</translation>
     </message>
 </context>
 <context>

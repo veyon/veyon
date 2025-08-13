@@ -3419,19 +3419,19 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Power down now</source>
-        <translation type="unfinished"/>
+        <translation>Desligar agora</translation>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation type="unfinished"/>
+        <translation>Instalar atualizações e desligar</translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation type="unfinished"/>
+        <translation>Desligar após confirmação do usuário</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation type="unfinished"/>
+        <translation>Desligar após tempo limite</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
@@ -3656,7 +3656,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Lock input devices</source>
-        <translation type="unfinished"/>
+        <translation>Bloquear dispositivos de entrada</translation>
     </message>
     <message>
         <source>Unlock input devices</source>
