@@ -18,11 +18,13 @@ struct StudentInfo
 	QString computerName;
 };
 
+class StudentFeaturesConfiguration;
+
 class StudentAuthManager : public QObject
 {
 	Q_OBJECT
 public:
-	explicit StudentAuthManager(QObject* parent = nullptr);
+	explicit StudentAuthManager(StudentFeaturesConfiguration& configuration, QObject* parent = nullptr);
 
 	enum AuthResult
 	{
@@ -39,4 +41,5 @@ private:
 
 	QMap<QString, StudentInfo> m_studentDatabase;
 	QString m_adminPassword;
+	StudentFeaturesConfiguration& m_configuration;
 };

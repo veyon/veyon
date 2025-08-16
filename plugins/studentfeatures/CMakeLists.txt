@@ -7,4 +7,6 @@ build_veyon_plugin(studentfeatures
 	StudentLoginWidget.cpp StudentLoginWidget.h
 	StudentAuthManager.cpp StudentAuthManager.h
 	StudentInfoSidebar.cpp StudentInfoSidebar.h
+	StudentFeaturesConfiguration.h
+	StudentFeaturesConfigurationPage.cpp StudentFeaturesConfigurationPage.h StudentFeaturesConfigurationPage.ui
 	studentfeatures.qrc)

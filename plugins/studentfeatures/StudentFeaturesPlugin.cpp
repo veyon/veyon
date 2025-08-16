@@ -7,12 +7,19 @@
 #include "StudentFeaturesPlugin.h"
 #include "StudentLoginWidget.h"
 #include "StudentInfoSidebar.h"
+#include "StudentFeaturesConfiguration.h"
+#include "StudentFeaturesConfigurationPage.h"
 #include "FeatureWorkerManager.h"
 #include "VeyonServerInterface.h"
 #include "PlatformSessionFunctions.h"
 
 #include <QCoreApplication>
 #include <QDebug>
+#include <QDialog>
+#include <QInputDialog>
+#include <QFormLayout>
+#include <QLineEdit>
+#include <QDialogButtonBox>
 
 StudentFeaturesPlugin::StudentFeaturesPlugin(QObject* parent)
 	: QObject(parent)
@@ -24,12 +31,40 @@ StudentFeaturesPlugin::StudentFeaturesPlugin(QObject* parent)
 		  tr("Student Login"),
 		  tr("Student Logout"),
 		  tr("Forces students to log in with their ID before using the computer."),
-		  QStringLiteral(":/studentfeatures/user-login.png")) // Will add icon later
-	, m_features({m_studentLoginFeature})
+		  QStringLiteral(":/studentfeatures/user-login.png"))
+	, m_grantPointsFeature(
+		  QStringLiteral("GrantPoints"),
+		  Feature::Flag::Action | Feature::Flag::SelectedComputers,
+		  Feature::Uid("b5e9e048-3221-461b-9b62-92130e4a7ce7"),
+		  {},
+		  tr("Grant Points"),
+		  tr("Grant points to selected students"),
+		  tr("This will award points to the students at the selected computers."),
+		  QStringLiteral(":/studentfeatures/grant-points.png")) // Will add icon later
+	, m_setLessonInfoFeature(
+		  QStringLiteral("SetLessonInfo"),
+		  Feature::Flag::Action | Feature::Flag::AllComputers,
+		  Feature::Uid("c6f8d939-2345-4b0c-8a1f-a8e4c1e4a3b8"),
+		  {},
+		  tr("Set Lesson Info"),
+		  tr("Set lesson title and objectives"),
+		  tr("This will update the lesson information on all student sidebars."),
+		  QStringLiteral(":/studentfeatures/lesson-info.png"))
+	, m_globalLogoutFeature(
+		  QStringLiteral("GlobalLogout"),
+		  Feature::Flag::Action | Feature::Flag::AllComputers,
+		  Feature::Uid("d7e7f82a-1469-4f8b-99d3-b8e5d2e3b4c9"),
+		  {},
+		  tr("Logout All Students"),
+		  tr("Logs out all currently logged-in students"),
+		  tr("This will bring all student computers back to the login screen."),
+		  QStringLiteral(":/studentfeatures/logout-user.png")) // Will add icon later
+	, m_features({m_studentLoginFeature, m_grantPointsFeature, m_setLessonInfoFeature, m_globalLogoutFeature})
 	, m_loginWidget(nullptr)
 	, m_sidebar(nullptr)
-	, m_authManager(new StudentAuthManager(this))
+	, m_configuration(new StudentFeaturesConfiguration("StudentFeatures", this))
 {
+	m_authManager = new StudentAuthManager(*m_configuration, this);
 }
 
 StudentFeaturesPlugin::~StudentFeaturesPlugin()
@@ -79,24 +114,67 @@ bool StudentFeaturesPlugin::controlFeature(Feature::Uid featureUid, Operation op
 {
 	Q_UNUSED(arguments);
 
-	if (hasFeature(featureUid) == false)
+	if (featureUid == m_studentLoginFeature.uid())
 	{
-		return false;
+		if (operation == Operation::Start)
+		{
+			sendFeatureMessage(FeatureMessage{featureUid, StartLoginCommand}, computerControlInterfaces);
+			return true;
+		}
+		if (operation == Operation::Stop)
+		{
+			sendFeatureMessage(FeatureMessage{featureUid, StopLoginCommand}, computerControlInterfaces);
+			return true;
+		}
 	}
-
-	if (operation == Operation::Start)
+	else if (featureUid == m_grantPointsFeature.uid())
 	{
-		sendFeatureMessage(FeatureMessage{featureUid, StartLoginCommand}, computerControlInterfaces);
+		bool ok;
+		int points = QInputDialog::getInt(nullptr, tr("Grant Points"), tr("Enter points to grant:"), 0, 0, 1000, 1, &ok);
+		if (ok)
+		{
+			sendFeatureMessage(FeatureMessage{featureUid, UpdatePointsCommand, {{"points", points}}}, computerControlInterfaces);
+		}
+		return true;
+	}
+	else if (featureUid == m_setLessonInfoFeature.uid())
+	{
+		QDialog dialog(nullptr);
+		dialog.setWindowTitle(tr("Set Lesson Information"));
+		QFormLayout form(&dialog);
+
+		auto titleEdit = new QLineEdit(&dialog);
+		form.addRow(tr("Lesson Title:"), titleEdit);
+
+		auto objectivesEdit = new QLineEdit(&dialog);
+		form.addRow(tr("Lesson Objectives:"), objectivesEdit);
+
+		QDialogButtonBox buttonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, &dialog);
+		form.addRow(&buttonBox);
+		QObject::connect(&buttonBox, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
+		QObject::connect(&buttonBox, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
+
+		if (dialog.exec() == QDialog::Accepted)
+		{
+			sendFeatureMessage(FeatureMessage{featureUid, UpdateLessonInfoCommand,
+											  {{"title", titleEdit->text()}, {"objectives", objectivesEdit->text()}}},
+							   computerControlInterfaces);
+		}
+		return true;
+	}
+	else if (featureUid == m_globalLogoutFeature.uid())
+	{
+		sendFeatureMessage(FeatureMessage{m_studentLoginFeature.uid(), StopLoginCommand}, computerControlInterfaces);
 		return true;
 	}
 
-	if (operation == Operation::Stop)
-	{
-		sendFeatureMessage(FeatureMessage{featureUid, StopLoginCommand}, computerControlInterfaces);
-		return true;
-	}
 
 	return false;
+}
+
+QList<ConfigurationPage*> StudentFeaturesPlugin::configurationPages() const
+{
+	return { new StudentFeaturesConfigurationPage(*m_configuration) };
 }
 
 bool StudentFeaturesPlugin::handleFeatureMessage(VeyonServerInterface& server, const MessageContext& messageContext,
