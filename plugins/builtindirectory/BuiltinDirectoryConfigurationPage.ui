@@ -165,6 +165,27 @@
       </widget>
      </item>
      <item>
+      <widget class="Line" name="line">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="importStudentsButton">
+       <property name="toolTip">
+        <string>Import students from CSV file</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../../core/resources/core.qrc">
+         <normaloff>:/core/document-open.png</normaloff>:/core/document-open.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -296,6 +317,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>importStudentsButton</sender>
+   <signal>clicked()</signal>
+   <receiver>BuiltinDirectoryConfigurationPage</receiver>
+   <slot>importStudents()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>750</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>507</x>
+     <y>351</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addLocation()</slot>
@@ -304,5 +341,6 @@
   <slot>removeComputer()</slot>
   <slot>updateLocation()</slot>
   <slot>updateComputer()</slot>
+  <slot>importStudents()</slot>
  </slots>
 </ui>

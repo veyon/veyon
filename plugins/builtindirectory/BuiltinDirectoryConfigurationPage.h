@@ -51,6 +51,7 @@ private Q_SLOTS:
 	void addComputer();
 	void updateComputer();
 	void removeComputer();
+	void importStudents();
 
 private:
 	void populateLocations();
