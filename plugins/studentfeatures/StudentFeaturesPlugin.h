@@ -1,5 +1,5 @@
 /*
- * StudentFeaturesPlugin.h - declaration of StudentFeaturesPlugin class
+ * StudentFeaturesPlugin.h
  *
  * This file is part of Veyon - https://veyon.io
  */
@@ -57,6 +57,7 @@ private:
 		StopLoginCommand,
 		UpdatePointsCommand,
 		UpdateLessonInfoCommand,
+		SetStudentNameCommand, // Sent from worker to service
 		CommandCount
 	};
 

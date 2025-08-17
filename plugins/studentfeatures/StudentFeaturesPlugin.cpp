@@ -12,6 +12,7 @@
 #include "FeatureWorkerManager.h"
 #include "VeyonServerInterface.h"
 #include "PlatformSessionFunctions.h"
+#include "PlatformUserFunctions.h"
 
 #include <QCoreApplication>
 #include <QDebug>
@@ -177,6 +178,26 @@ QList<ConfigurationPage*> StudentFeaturesPlugin::configurationPages() const
 	return { new StudentFeaturesConfigurationPage(*m_configuration) };
 }
 
+// --- Attendance Tracking Implementation ---
+// This static variable holds the name of the logged-in student at the service level.
+// The worker process will send a message to the service to update this variable.
+static QString g_currentStudentName;
+
+// TODO: To complete attendance tracking, the platform-specific fullName() function
+// must be modified to check this variable. For example, in
+// plugins/platform/windows/WindowsUserFunctions.cpp, the fullName() function
+// should be changed to:
+//
+// QString WindowsUserFunctions::fullName(const QString& userName) const
+// {
+//     if (!g_currentStudentName.isEmpty())
+//     {
+//         return g_currentStudentName;
+//     }
+//     // ... original implementation continues here ...
+// }
+// ---
+
 bool StudentFeaturesPlugin::handleFeatureMessage(VeyonServerInterface& server, const MessageContext& messageContext,
 												   const FeatureMessage& message)
 {
@@ -184,6 +205,14 @@ bool StudentFeaturesPlugin::handleFeatureMessage(VeyonServerInterface& server, c
 
 	if (message.featureUid() == m_studentLoginFeature.uid())
 	{
+		// This is a reply from our worker process
+		if (message.command() == SetStudentNameCommand)
+		{
+			g_currentStudentName = message.arguments().value("studentName").toString();
+			qDebug() << "Service set current student name to:" << g_currentStudentName;
+			return true;
+		}
+
 		if (server.featureWorkerManager().isWorkerRunning(message.featureUid()) == false &&
 			message.command() == StopLoginCommand)
 		{
@@ -272,7 +301,13 @@ void StudentFeaturesPlugin::processLoginRequest(const QString& civilId)
 	{
 	case StudentAuthManager::LoginSuccessful:
 		m_currentStudentInfo = studentInfo;
-		// TODO: Notify master about successful login for attendance tracking
+
+		// Notify the service that a user has logged in, so it can be reported to the master.
+		worker.sendFeatureMessageReply(
+			FeatureMessage(m_studentLoginFeature.uid(),
+						   SetStudentNameCommand,
+						   {{ "studentName", m_currentStudentInfo.name }})
+		);
 
 		delete m_loginWidget;
 		m_loginWidget = nullptr;
@@ -302,6 +337,12 @@ void StudentFeaturesPlugin::processLoginRequest(const QString& civilId)
 void StudentFeaturesPlugin::processLogoutRequest()
 {
 	qDebug() << "Logout requested.";
+
+	// Notify the service that the user has logged out.
+	worker.sendFeatureMessageReply(
+		FeatureMessage(m_studentLoginFeature.uid(), SetStudentNameCommand, {{ "studentName", "" }})
+	);
+
 	if (m_sidebar)
 	{
 		delete m_sidebar;

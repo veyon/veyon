@@ -12,6 +12,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QGroupBox>
+#include <QListWidget>
 
 StudentInfoSidebar::StudentInfoSidebar(const StudentInfo& info, QWidget* parent)
 	: QWidget(parent, Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool)
@@ -52,6 +53,7 @@ void StudentInfoSidebar::setupUi()
         "QPushButton:hover { background-color: #e74c3c; }"
         "QGroupBox { color: #f1c40f; font-size: 16px; font-weight: bold; border: 1px solid #f1c40f; border-radius: 5px; margin-top: 1ex; }"
         "QGroupBox::title { subcontrol-origin: margin; subcontrol-position: top center; padding: 0 3px; }"
+		"QListWidget { background-color: rgba(255, 255, 255, 50); border: none; color: white; }"
     );
 
 	auto* layout = new QVBoxLayout(this);
@@ -77,7 +79,11 @@ void StudentInfoSidebar::setupUi()
 	lessonLayout->addWidget(m_lessonObjectivesLabel);
 	lessonBox->setLayout(lessonLayout);
 
-	// TODO: Add Honor Roll / Leaderboard UI
+	auto* honorRollBox = new QGroupBox(tr("Honor Roll"), this);
+	auto* honorRollLayout = new QVBoxLayout();
+	auto* honorRollList = new QListWidget(this);
+	honorRollLayout->addWidget(honorRollList);
+	honorRollBox->setLayout(honorRollLayout);
 
 	m_logoutButton = new QPushButton(tr("Logout"), this);
 
@@ -89,6 +95,7 @@ void StudentInfoSidebar::setupUi()
 	layout->addWidget(m_pointsLabel);
 	layout->addSpacing(10);
 	layout->addWidget(lessonBox);
+	layout->addWidget(honorRollBox);
 	layout->addStretch();
 	layout->addWidget(m_logoutButton);
 
