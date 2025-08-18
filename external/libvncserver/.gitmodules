@@ -1,0 +1,6 @@
+[submodule "webclients/novnc"]
+	path = webclients/novnc
+	url = https://github.com/novnc/noVNC.git
+[submodule "doc/doxygen-awesome-css"]
+	path = doc/doxygen-awesome-css
+	url = https://github.com/jothepro/doxygen-awesome-css.git
