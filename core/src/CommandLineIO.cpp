@@ -42,8 +42,8 @@ void CommandLineIO::newline()
 
 void CommandLineIO::info( const QString &message )
 {
-	fprintf( stderr, "[%s] %s\n", qUtf8Printable( VeyonCore::tr( "INFO" ) ), qUtf8Printable( message ) );
-	fflush( stderr );
+	fprintf(stdout, "[%s] %s\n", qUtf8Printable(VeyonCore::tr("INFO")), qUtf8Printable(message));
+	fflush(stdout);
 }
 
 
