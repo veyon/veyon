@@ -368,6 +368,7 @@ QVariant ComputerControlListModel::uidRoleData(const ComputerControlInterface::P
 
 void ComputerControlListModel::updateState( const QModelIndex& index )
 {
+	Q_EMIT stateChanged(index);
 	Q_EMIT dataChanged( index, index, { Qt::DisplayRole, Qt::DecorationRole, Qt::ToolTipRole, ImageIdRole, FramebufferRole } );
 }
 
