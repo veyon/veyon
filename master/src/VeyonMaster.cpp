@@ -75,6 +75,8 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 	{
 		connect( m_computerControlListModel, &ComputerControlListModel::activeFeaturesChanged,
 				 this, &VeyonMaster::enforceDesignatedMode );
+		connect(m_computerControlListModel, &ComputerControlListModel::stateChanged,
+				this, &VeyonMaster::enforceDesignatedMode);
 	}
 
 	m_localSessionControlInterface.start({}, ComputerControlInterface::UpdateMode::Disabled);
