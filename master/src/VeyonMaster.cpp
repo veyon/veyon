@@ -234,7 +234,7 @@ void VeyonMaster::runFeature( const Feature& feature )
 void VeyonMaster::enforceDesignatedMode( const QModelIndex& index )
 {
 	auto controlInterface = m_computerControlListModel->computerControlInterface( index );
-	if( controlInterface )
+	if (controlInterface && controlInterface->state() == ComputerControlInterface::State::Connected)
 	{
 		const auto designatedModeFeature = controlInterface->designatedModeFeature();
 
