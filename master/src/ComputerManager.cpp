@@ -261,12 +261,13 @@ void ComputerManager::initLocations()
 	{
 		if( m_currentLocations.isEmpty() )
 		{
-			QMessageBox::warning( nullptr,
-								  tr( "Location detection failed" ),
-								  tr( "Could not determine the location of this computer. "
-									  "This indicates a problem with the system configuration. "
-									  "All locations will be shown in the computer select panel instead." ) );
+			QMessageBox::warning(nullptr,
+								 tr("Location detection failed"),
+								 tr("The location of this computer could not be determined. "
+									"This indicates a problem with the system configuration. "
+									"No locations and computers will be displayed in the \"Locations & computers\" panel."));
 			vWarning() << "location detection failed";
+			m_currentLocations = QStringList{tr("Unknown location")};
 		}
 
 		m_locationFilterList = m_currentLocations;
