@@ -23,6 +23,9 @@
  */
 
 #include <QJsonObject>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QTextStream>
 
 #include "BuiltinDirectoryConfiguration.h"
 #include "BuiltinDirectoryConfigurationPage.h"
@@ -268,6 +271,109 @@ NetworkObject BuiltinDirectoryConfigurationPage::currentLocationObject() const
 	}
 
 	return NetworkObject();
+}
+
+
+void BuiltinDirectoryConfigurationPage::importStudents()
+{
+	const QString filePath = QFileDialog::getOpenFileName(this, tr("Import Student CSV"), QString(), tr("CSV Files (*.csv)"));
+	if (filePath.isEmpty())
+	{
+		return;
+	}
+
+	QFile file(filePath);
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+	{
+		QMessageBox::critical(this, tr("Error"), tr("Could not open file: %1").arg(file.errorString()));
+		return;
+	}
+
+	QJsonArray networkObjects = m_configuration.networkObjects();
+
+	QMap<QString, int> hostNameToIndexMap;
+	for (int i = 0; i < networkObjects.size(); ++i)
+	{
+		const QJsonObject obj = networkObjects[i].toObject();
+		if (obj.value("type").toInt() == NetworkObject::Type::Host)
+		{
+			const QString hostAddress = obj.value("properties").toObject().value(NetworkObject::propertyKey(NetworkObject::Property::HostAddress)).toString().trimmed();
+			if (!hostAddress.isEmpty())
+			{
+				hostNameToIndexMap[hostAddress.toLower()] = i;
+			}
+		}
+	}
+
+	QTextStream in(&file);
+	int importedCount = 0;
+	int lineCount = 0;
+	int notFoundCount = 0;
+
+	// Skip header line
+	if (!in.atEnd())
+	{
+		in.readLine();
+	}
+
+	while (!in.atEnd())
+	{
+		lineCount++;
+		const QString line = in.readLine();
+		const QStringList fields = line.split(',');
+
+		if (fields.size() != 4)
+		{
+			qWarning() << "Skipping malformed CSV line" << lineCount << ":" << line;
+			continue;
+		}
+
+		const QString studentName = fields[0].trimmed();
+		const QString className = fields[1].trimmed();
+		const QString civilId = fields[2].trimmed();
+		const QString hostname = fields[3].trimmed();
+
+		if (hostname.isEmpty() || civilId.isEmpty())
+		{
+			qWarning() << "Skipping CSV line with empty hostname or Civil ID:" << line;
+			continue;
+		}
+
+		if (hostNameToIndexMap.contains(hostname.toLower()))
+		{
+			const int index = hostNameToIndexMap.value(hostname.toLower());
+			QJsonObject computerObject = networkObjects[index].toObject();
+
+			QJsonObject studentData;
+			studentData["name"] = studentName;
+			studentData["class"] = className;
+			studentData["civilId"] = civilId;
+
+			// Also update computer name to student name for clarity in Veyon Master
+			computerObject["name"] = studentName;
+			computerObject["studentData"] = studentData;
+
+			networkObjects.replace(index, computerObject);
+			importedCount++;
+		}
+		else
+		{
+			notFoundCount++;
+			qWarning() << "Could not find a computer with hostname:" << hostname;
+		}
+	}
+
+	file.close();
+
+	m_configuration.setNetworkObjects(networkObjects);
+
+	QMessageBox::information(this, tr("Import Complete"),
+		tr("Successfully imported data for %1 students.\n%2 computers were updated.\n%3 hostnames from the CSV were not found in the configuration.")
+		.arg(importedCount).arg(importedCount).arg(notFoundCount));
+
+	// Repopulate views to show updated computer names
+	populateLocations();
+	ui->locationTableWidget->setCurrentCell( 0, 0 );
 }
 
 

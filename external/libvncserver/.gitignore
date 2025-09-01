@@ -1,0 +1,10 @@
+*~
+Makefile
+*.pc
+LibVNCServer*.tar.gz
+build/
+doc/html/
+.ccls-cache
+.cachexs
+.log
+compile_commands.json
