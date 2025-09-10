@@ -291,6 +291,16 @@ QStringList LdapPlugin::groupsOfUser( const QString& username, bool queryDomainG
 
 
 
+QString LdapPlugin::userGroupSecurityIdentifier(const QString& groupName)
+{
+	Q_UNUSED(groupName)
+	vWarning() << "resolving security identifiers from LDAP groups not supported";
+
+	return {};
+}
+
+
+
 ConfigurationPage *LdapPlugin::createConfigurationPage()
 {
 	return new LdapConfigurationPage( m_configuration );

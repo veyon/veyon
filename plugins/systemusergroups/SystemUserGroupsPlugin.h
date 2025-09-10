@@ -79,5 +79,6 @@ public:
 
 	QStringList userGroups( bool queryDomainGroups ) override;
 	QStringList groupsOfUser( const QString& username,  bool queryDomainGroups ) override;
+	QString userGroupSecurityIdentifier(const QString& groupName) override;
 
 };
