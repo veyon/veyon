@@ -246,18 +246,16 @@ bool WtsSessionManager::isRemote( SessionId sessionId )
 
 WtsSessionManager::ProcessId WtsSessionManager::findUserProcessId( const QString& userName )
 {
-	DWORD sidLen = SECURITY_MAX_SID_SIZE; // Flawfinder: ignore
-	std::array<char, SECURITY_MAX_SID_SIZE> userSID{};
-	std::array<wchar_t, DOMAIN_LENGTH> domainName{};
-	DWORD domainLen = domainName.size();
+	WindowsCoreFunctions::SecurityIdentifierBuffer userSID;
+	DWORD sidLen = userSID.size(); // Flawfinder: ignore
 	SID_NAME_USE sidNameUse;
 
 	if( LookupAccountName( nullptr,		// system name
 						   WindowsCoreFunctions::toConstWCharArray( userName ),
 						   userSID.data(),
 						   &sidLen,
-						   domainName.data(),
-						   &domainLen,
+						   nullptr,
+						   0,
 						   &sidNameUse ) == false )
 	{
 		vCritical() << "could not look up SID structure";
