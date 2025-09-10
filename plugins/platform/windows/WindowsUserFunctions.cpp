@@ -110,6 +110,26 @@ QStringList WindowsUserFunctions::groupsOfUser( const QString& username, bool qu
 
 
 
+QString WindowsUserFunctions::userGroupSecurityIdentifier(const QString& groupName)
+{
+	WindowsCoreFunctions::SecurityIdentifierBuffer groupSid{};
+	DWORD sidLen = groupSid.size();
+
+	SID_NAME_USE sidNameUse;
+
+	if (LookupAccountName(nullptr, WindowsCoreFunctions::toConstWCharArray(groupName),
+						  groupSid.data(), &sidLen,
+						  NULL, 0, &sidNameUse) == false)
+	{
+		vCritical() << "Could not look up SID structure:" << GetLastError();
+		return {};
+	}
+
+	return WindowsCoreFunctions::securityIdentifierToString(groupSid);
+}
+
+
+
 bool WindowsUserFunctions::isAnyUserLoggedInLocally()
 {
 	const auto sessions = WtsSessionManager::activeSessions();

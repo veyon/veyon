@@ -40,6 +40,7 @@
 #include <X11/keysymdef.h>
 #include <X11/Xlib.h>
 
+#include <grp.h>
 #include <pwd.h>
 #include <unistd.h>
 
@@ -197,6 +198,19 @@ QStringList LinuxUserFunctions::groupsOfUser( const QString& username, bool quer
 	groupList.removeAll( QString() );
 
 	return groupList;
+}
+
+
+
+QString LinuxUserFunctions::userGroupSecurityIdentifier(const QString& groupName)
+{
+	const auto group = getgrnam(groupName.toUtf8().constData());
+	if (group)
+	{
+		  return QString::number(group->gr_gid);
+	}
+
+	return {};
 }
 
 
