@@ -51,3 +51,10 @@ QStringList SystemUserGroupsPlugin::groupsOfUser( const QString& username, bool 
 {
 	return VeyonCore::platform().userFunctions().groupsOfUser( username, queryDomainGroups );
 }
+
+
+
+QString SystemUserGroupsPlugin::userGroupSecurityIdentifier(const QString& groupName)
+{
+	return VeyonCore::platform().userFunctions().userGroupSecurityIdentifier(groupName);
+}
