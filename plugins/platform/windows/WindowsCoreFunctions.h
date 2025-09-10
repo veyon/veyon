@@ -36,6 +36,7 @@ class WindowsCoreFunctions : public PlatformCoreFunctions
 {
 public:
 	using ProcessId = DWORD;
+	using SecurityIdentifierBuffer = std::array<char, SECURITY_MAX_SID_SIZE>;
 
 	WindowsCoreFunctions() = default;
 	~WindowsCoreFunctions() override;
@@ -73,6 +74,9 @@ public:
 
 	static QSharedPointer<wchar_t> toWCharArray( const QString& qstring );
 	static const wchar_t* toConstWCharArray( const QString& qstring );
+
+	static QString securityIdentifierToString(const SecurityIdentifierBuffer& sidBuffer);
+	static bool stringToSecurityIdentifier(const QString& sidString, WindowsCoreFunctions::SecurityIdentifierBuffer& sidBuffer);
 
 	static HANDLE runProgramInSession( const QString& program,
 									   const QStringList& parameters,
