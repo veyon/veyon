@@ -26,6 +26,7 @@
 
 #include "LogonHelper.h"
 #include "PlatformUserFunctions.h"
+#include "WindowsCoreFunctions.h"
 
 // clazy:exclude=copyable-polymorphic
 
@@ -36,6 +37,7 @@ public:
 
 	QStringList userGroups( bool queryDomainGroups ) override;
 	QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) override;
+	QString userGroupSecurityIdentifier(const QString& groupName) override;
 
 	bool isAnyUserLoggedOn() override;
 	QString currentUser() override;
