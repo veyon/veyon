@@ -29,6 +29,7 @@
 #include <aclapi.h>
 #include <wtsapi32.h>
 
+#include "UserGroupsBackendManager.h"
 #include "WindowsCoreFunctions.h"
 #include "WindowsFilesystemFunctions.h"
 
@@ -130,8 +131,13 @@ bool WindowsFilesystemFunctions::setFileOwnerGroup( const QString& filePath, con
 						   ownerGroupSID.data(), &sidLen,
 						   domain.data(), &domainLen, &sidNameUse ) == false )
 	{
-		vCritical() << "Could not look up SID structure:" << GetLastError();
-		return false;
+		const auto sidString = VeyonCore::userGroupsBackendManager().configuredBackend()->userGroupSecurityIdentifier(ownerGroup);
+		if (sidString.isEmpty() ||
+			WindowsCoreFunctions::stringToSecurityIdentifier(sidString, ownerGroupSID) == false)
+		{
+			vCritical() << "Could not look up SID structure:" << GetLastError();
+			return false;
+		}
 	}
 
 	WindowsCoreFunctions::enablePrivilege( SE_TAKE_OWNERSHIP_NAME, true );
