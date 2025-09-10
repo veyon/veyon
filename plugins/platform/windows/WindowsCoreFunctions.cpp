@@ -29,6 +29,7 @@
 
 #include <shlobj.h>
 #include <userenv.h>
+#include <sddl.h>
 
 #include "VeyonConfiguration.h"
 #include "WindowsCoreFunctions.h"
@@ -469,6 +470,42 @@ QSharedPointer<wchar_t> WindowsCoreFunctions::toWCharArray( const QString& qstri
 const wchar_t* WindowsCoreFunctions::toConstWCharArray( const QString& qstring )
 {
 	return reinterpret_cast<const wchar_t*>( qstring.utf16() );
+}
+
+
+
+QString WindowsCoreFunctions::securityIdentifierToString(const std::array<char, SECURITY_MAX_SID_SIZE>& sidBuffer)
+{
+	LPWSTR stringSid = nullptr;
+
+	if (ConvertSidToStringSidW(reinterpret_cast<PSID>(const_cast<char*>(sidBuffer.data())), &stringSid))
+	{
+		const auto sidString = QString::fromWCharArray(stringSid);
+		LocalFree(stringSid);
+		return sidString;
+	}
+
+	vCritical() << "Could not convert SID to string:" << GetLastError();
+
+	return {};
+}
+
+
+
+bool WindowsCoreFunctions::stringToSecurityIdentifier(const QString& sidString, WindowsCoreFunctions::SecurityIdentifierBuffer& sidBuffer)
+{
+	PSID sid = nullptr;
+	if (ConvertStringSidToSid(toConstWCharArray(sidString), &sid) && sid)
+	{
+		SecurityIdentifierBuffer sidBuffer{};
+		memcpy(sidBuffer.data(), sid, sizeof(SID));
+		LocalFree(sid);
+		return true;
+	}
+
+	vCritical() << "Could not convert SID string to SID:" << GetLastError();
+
+	return false;
 }
 
 
