@@ -1142,8 +1142,12 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Rilevazione della posizione fallita</translation>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation>Impossibile determinare la posizione di questo computer. Questo indica un problema con la configurazione del sistema. Tutte le posizioni verranno visualizzate nel pannello di selezione del computer.</translation>
+        <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
+        <translation>Non è stato possibile determinare la posizione di questo computer. Ciò indica un problema con la configurazione del sistema. Nel pannello &quot;Posizioni e computer&quot; non verranno visualizzate posizioni e computer.</translation>
+    </message>
+    <message>
+        <source>Unknown location</source>
+        <translation>Posizione sconosciuta</translation>
     </message>
 </context>
 <context>
@@ -3071,6 +3075,10 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
     <message>
         <source>Only user name</source>
         <translation>Solo il nome utente</translation>
+    </message>
+    <message>
+        <source>Only last part of user name</source>
+        <translation>Solo l&apos;ultima parte del nome utente</translation>
     </message>
     <message>
         <source>Only computer name</source>

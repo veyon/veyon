@@ -1143,8 +1143,12 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>위치 탐색 실패</translation>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation>이 컴퓨터의 위치를 찾을 수 없음. 시스템 설정에 문제가 있어 보입니다. 대신 모든  위치는 컴퓨터 선정 패널에 표시됩니다.</translation>
+        <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown location</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3078,6 +3082,10 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Only user name</source>
         <translation>전용 사용자 이름</translation>
+    </message>
+    <message>
+        <source>Only last part of user name</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Only computer name</source>

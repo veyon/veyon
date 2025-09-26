@@ -1143,8 +1143,12 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>La détection de l&apos;emplacement a échoué</translation>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation>Impossible de déterminer l&apos;emplacement de cet ordinateur. Cela indique un problème de configuration du système. A la place, tous les emplacements seront affichés dans le panneau de sélection de l&apos;ordinateur.</translation>
+        <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown location</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

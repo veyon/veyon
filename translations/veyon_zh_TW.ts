@@ -1145,8 +1145,12 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>位置偵測失敗</translation>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation>無法確定這部電腦的位置。 這表示系統組態有問題。 所有位置將顯示在電腦選取面板中。</translation>
+        <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
+        <translation>無法確定這個電腦的位置。 這表明系統組態有問題。 在「位置和電腦」面板中不會顯示位置和電腦。</translation>
+    </message>
+    <message>
+        <source>Unknown location</source>
+        <translation>未知位置</translation>
     </message>
 </context>
 <context>
@@ -3084,6 +3088,10 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Only user name</source>
         <translation>僅使用者名稱</translation>
+    </message>
+    <message>
+        <source>Only last part of user name</source>
+        <translation>僅用使用者名稱的最後部分</translation>
     </message>
     <message>
         <source>Only computer name</source>

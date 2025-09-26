@@ -1145,8 +1145,12 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <translation>Kokapen-atzemateak huts egin du</translation>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation>Ezin izan da ordenagailu honen kokapena zehaztu. Honek sistemaren konfigurazioarekin arazo bat dagoela adierazten du. Kokapen guztiak ordenagailuaren hautapen panelean agertuko dira ordez.</translation>
+        <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown location</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3082,6 +3086,10 @@ Luze sakatu fitxategi batetik kargatzeko edo uneko antolamendua fitxategi batera
     <message>
         <source>Only user name</source>
         <translation>Erabiltzailearen izena soilik</translation>
+    </message>
+    <message>
+        <source>Only last part of user name</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Only computer name</source>

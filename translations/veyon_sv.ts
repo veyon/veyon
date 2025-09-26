@@ -1145,8 +1145,12 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Platsdetektering misslyckades</translation>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation>Det gick inte att fastställa platsen för den här datorn. Detta indikerar ett problem med systemkonfigurationen. Alla platser visas i stället i panelen för val av dator.</translation>
+        <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown location</source>
+        <translation>Okänd plats</translation>
     </message>
 </context>
 <context>
@@ -3084,6 +3088,10 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
     <message>
         <source>Only user name</source>
         <translation>Endast användarnamn</translation>
+    </message>
+    <message>
+        <source>Only last part of user name</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Only computer name</source>

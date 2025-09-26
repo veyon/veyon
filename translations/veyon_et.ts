@@ -1145,8 +1145,12 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation>Asukoha tuvastamine nurjus</translation>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation>Selle arvuti asukohta ei õnnestunud kindlaks teha. See viitab probleemile süsteemi konfiguratsioonis. Kõik asukohad kuvatakse selle asemel arvuti valimise paneelil.</translation>
+        <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Unknown location</source>
+        <translation>Tundmatu asukoht</translation>
     </message>
 </context>
 <context>
@@ -3082,6 +3086,10 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Only user name</source>
         <translation>Vaid kasutaja nimi</translation>
+    </message>
+    <message>
+        <source>Only last part of user name</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Only computer name</source>

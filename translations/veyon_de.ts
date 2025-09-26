@@ -1142,8 +1142,12 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Standorterkennung fehlgeschlagen</translation>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
-        <translation>Der Standort dieses Computers konnte nicht ermittelt werden. Das deutet auf ein Problem mit der Systemkonfiguration hin. Stattdessen werden alle Standorte im Computerauswahlbedienfeld angezeigt.</translation>
+        <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
+        <translation>Der Standort dieses Computers konnte nicht ermittelt werden. Dies deutet auf ein Problem mit der Systemkonfiguration hin. Im Bedienfeld „Standorte &amp; Computer“ werden keine Standorte und Computer angezeigt.</translation>
+    </message>
+    <message>
+        <source>Unknown location</source>
+        <translation>Unbekannter Standort</translation>
     </message>
 </context>
 <context>
@@ -3081,6 +3085,10 @@ Gedrückt halten, um die Anordnung aus einer Datei zu laden oder die aktuelle An
     <message>
         <source>Only user name</source>
         <translation>Nur Benutzername</translation>
+    </message>
+    <message>
+        <source>Only last part of user name</source>
+        <translation>Nur letzter Teil des Benutzernamens</translation>
     </message>
     <message>
         <source>Only computer name</source>

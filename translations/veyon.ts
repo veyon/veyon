@@ -1140,7 +1140,11 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Could not determine the location of this computer. This indicates a problem with the system configuration. All locations will be shown in the computer select panel instead.</source>
+        <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown location</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
