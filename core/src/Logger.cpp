@@ -141,20 +141,48 @@ void Logger::initLogFile()
 {
 	QString logPath = VeyonCore::filesystem().expandPath( VeyonCore::config().logFileDirectory() );
 
-	if( !QDir( logPath ).exists() )
+	QFileInfo logDirInfo(logPath);
+
+	if (logDirInfo.isSymLink())
 	{
-		if( QDir( QDir::rootPath() ).mkdir( logPath ) )
+		vWarning() << logPath << "is a symlink/junction. Replacing with real directory";
+
+		if (!QFile::remove(logPath))
 		{
-			QFile::setPermissions( logPath,
-								   QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner |
-								   QFile::ReadUser | QFile::WriteUser | QFile::ExeUser |
-								   QFile::ReadGroup | QFile::WriteGroup | QFile::ExeGroup |
-								   QFile::ReadOther | QFile::WriteOther | QFile::ExeOther );
+			vCritical() << "Failed to remove symlink" << logPath << "- aborting log initialization";
+			return;
+		}
+		logDirInfo = QFileInfo(logPath);
+	}
+
+	const QString canonical = logDirInfo.canonicalFilePath();
+	const QString absolute = logDirInfo.absoluteFilePath();
+
+	if (canonical != absolute)
+	{
+		vCritical() << "Log path or one of its parent directories is a symlink/junction:" << logPath;
+		return;
+	}
+
+	if (!QDir(logPath).exists())
+	{
+		if (QDir(QDir::rootPath()).mkdir(logPath))
+		{
+			QFile::setPermissions(logPath,
+								  QFile::ReadOwner  | QFile::WriteOwner | QFile::ExeOwner |
+								  QFile::ReadUser   | QFile::WriteUser  | QFile::ExeUser  |
+								  QFile::ReadGroup  | QFile::WriteGroup | QFile::ExeGroup |
+								  QFile::ReadOther  | QFile::WriteOther | QFile::ExeOther);
+		}
+		else
+		{
+			vCritical() << "Could not create log directory" << logPath;
+			return;
 		}
 	}
 
-	logPath = logPath + QDir::separator();
-	m_logFile = new QFile( logPath + QString( QStringLiteral( "%1.log" ) ).arg( m_appName ) );
+	logPath += QDir::separator();
+	m_logFile = new QFile(logPath + QStringLiteral("%1.log").arg(m_appName));
 
 	openLogFile();
 
