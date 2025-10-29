@@ -134,6 +134,7 @@ bool ComputerMonitoringWidget::performIconSizeAutoAdjust()
 void ComputerMonitoringWidget::setUseCustomComputerPositions( bool enabled )
 {
 	setFlexible( enabled );
+	initiateIconSizeAutoAdjust();
 }
 
 
