@@ -225,16 +225,18 @@ QString WtsSessionManager::queryUserSid(SessionId sessionId)
 
 WtsSessionManager::ProcessId WtsSessionManager::findUserProcessId( const QString& userName )
 {
-	WindowsCoreFunctions::SecurityIdentifierBuffer userSID;
-	DWORD sidLen = userSID.size(); // Flawfinder: ignore
+	DWORD sidLen = SECURITY_MAX_SID_SIZE; // Flawfinder: ignore
+	std::array<char, SECURITY_MAX_SID_SIZE> userSID{};
+	std::array<wchar_t, DOMAIN_LENGTH> domainName{};
+	DWORD domainLen = domainName.size();
 	SID_NAME_USE sidNameUse;
 
 	if( LookupAccountName( nullptr,		// system name
 						   WindowsCoreFunctions::toConstWCharArray( userName ),
 						   userSID.data(),
 						   &sidLen,
-						   nullptr,
-						   0,
+						   domainName.data(),
+						   &domainLen,
 						   &sidNameUse ) == false )
 	{
 		vCritical() << "could not look up SID structure";
