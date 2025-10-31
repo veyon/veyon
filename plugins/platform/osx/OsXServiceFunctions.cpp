@@ -55,20 +55,56 @@ bool OsXServiceFunctions::isRegistered( const QString& name )
 
 
 
-bool OsXServiceFunctions::isRunning( const QString& name )
+namespace {
+bool hasMatchingProcess(const QString& executable)
 {
-	Q_UNUSED(name)
-
 	QProcess pgrepProcess;
-	pgrepProcess.start( QStringLiteral("/usr/bin/pgrep"),
-						{ QStringLiteral("-f"), serviceExecutablePath() } );
-	if( pgrepProcess.waitForFinished() == false )
+	pgrepProcess.start(QStringLiteral("/usr/bin/pgrep"),
+					   {QStringLiteral("-f"), executable});
+	if (pgrepProcess.waitForFinished() == false)
 	{
 		return false;
 	}
 
 	return pgrepProcess.exitStatus() == QProcess::NormalExit &&
 			pgrepProcess.exitCode() == 0;
+}
+
+bool terminateMatchingProcesses(const QString& executable)
+{
+	QProcess pkillProcess;
+	pkillProcess.start(QStringLiteral("/usr/bin/pkill"),
+					   {QStringLiteral("-f"), executable});
+	if (pkillProcess.waitForFinished() == false)
+	{
+		return false;
+	}
+
+	// pkill returns 0 when at least one process was signalled and 1 if none matched.
+	return pkillProcess.exitStatus() == QProcess::NormalExit &&
+			(pkillProcess.exitCode() == 0 || pkillProcess.exitCode() == 1);
+}
+}
+
+bool OsXServiceFunctions::isRunning( const QString& name )
+{
+	Q_UNUSED(name)
+
+	const auto executables = {
+		serviceExecutablePath(),
+		VeyonCore::filesystem().serverFilePath(),
+		VeyonCore::filesystem().workerFilePath()
+	};
+
+	for (const auto& executable : executables)
+	{
+		if (hasMatchingProcess(executable))
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 
@@ -82,7 +118,13 @@ bool OsXServiceFunctions::start( const QString& name )
 		return true;
 	}
 
-	return QProcess::startDetached( serviceExecutablePath(), {} );
+	if( QProcess::startDetached( serviceExecutablePath(), {} ) )
+	{
+		return true;
+	}
+
+	// fall back to launching the server directly if the service wrapper could not be started
+	return QProcess::startDetached( VeyonCore::filesystem().serverFilePath(), {} );
 }
 
 
@@ -91,17 +133,16 @@ bool OsXServiceFunctions::stop( const QString& name )
 {
 	Q_UNUSED(name)
 
-	QProcess pkillProcess;
-	pkillProcess.start( QStringLiteral("/usr/bin/pkill"),
-						{ QStringLiteral("-f"), serviceExecutablePath() } );
-	if( pkillProcess.waitForFinished() == false )
+	bool success = true;
+
+	for (const auto& executable : { serviceExecutablePath(),
+									VeyonCore::filesystem().serverFilePath(),
+									VeyonCore::filesystem().workerFilePath() })
 	{
-		return false;
+		success = terminateMatchingProcesses(executable) && success;
 	}
 
-	// pkill returns 0 when at least one process was signalled and 1 if none matched.
-	return pkillProcess.exitStatus() == QProcess::NormalExit &&
-			( pkillProcess.exitCode() == 0 || pkillProcess.exitCode() == 1 );
+	return success;
 }
 
 
