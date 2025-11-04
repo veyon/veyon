@@ -50,6 +50,38 @@ QString resolveBundledExecutable(const QString& baseName)
 	}
 
 #ifdef Q_OS_DARWIN
+	QDir resourcesDir(QCoreApplication::applicationDirPath());
+
+	// macOS helper tools can be shipped inside Resources/Helpers beside the main binary
+	if (resourcesDir.cdUp() && resourcesDir.cd(QStringLiteral("Resources")))
+	{
+		QDir helpersDir(resourcesDir);
+		if (helpersDir.cd(QStringLiteral("Helpers")))
+		{
+			const auto helperAppCandidate =
+				QDir::toNativeSeparators(helpersDir.absoluteFilePath(
+					QStringLiteral("%1.app/Contents/MacOS/%1%2")
+						.arg(baseName, suffix)));
+
+			if (QFile::exists(helperAppCandidate))
+			{
+				return helperAppCandidate;
+			}
+
+			const auto helperBinaryCandidate =
+				QDir::toNativeSeparators(helpersDir.absoluteFilePath(
+					QStringLiteral("%1%2").arg(baseName, suffix)));
+
+			if (QFile::exists(helperBinaryCandidate))
+			{
+				return helperBinaryCandidate;
+			}
+		}
+
+		// reset resourcesDir to Contents for the sibling lookup below
+		resourcesDir.cdUp();
+	}
+
 	QDir dir(QCoreApplication::applicationDirPath());
 
 	// Mac bundle structure: <App>.app/Contents/MacOS/<binary>

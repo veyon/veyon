@@ -9,6 +9,12 @@ from pathlib import Path
 from typing import Optional, List, Dict, Set
 
 
+FRAMEWORK_FALLBACKS = {
+    "QtHttpServer.framework": Path("/Users/pablo/GitHub/qt5httpserver-build/lib/QtHttpServer.framework"),
+    "QtSslServer.framework": Path("/Users/pablo/GitHub/qt5httpserver-build/lib/QtSslServer.framework"),
+}
+
+
 def run_command(cmd: List[str], *, capture: bool = False) -> str:
     if capture:
         return subprocess.check_output(cmd, text=True)
@@ -37,11 +43,15 @@ def load_suffix_map(contents_dir: Path) -> Dict[str, Path]:
     for path in contents_dir.rglob("*"):
         if not path.is_file():
             continue
-        parts = path.relative_to(contents_dir).parts
-        for i in range(1, len(parts) + 1):
-            key = "/".join(parts[-i:])
-            suffix_map.setdefault(key, path)
+        _register_suffix_map_entry(path, contents_dir, suffix_map)
     return suffix_map
+
+
+def _register_suffix_map_entry(path: Path, contents_dir: Path, suffix_map: Dict[str, Path]) -> None:
+    parts = path.relative_to(contents_dir).parts
+    for i in range(1, len(parts) + 1):
+        key = "/".join(parts[-i:])
+        suffix_map.setdefault(key, path)
 
 
 def get_install_id(file_path: Path) -> Optional[str]:
@@ -89,6 +99,29 @@ def ensure_local_copy(dep: str, contents_dir: Path, suffix_map: Dict[str, Path])
         return target
     source = Path(dep)
     if not source.exists():
+        framework_name: Optional[str] = None
+        for part in Path(dep).parts:
+            if part.endswith(".framework"):
+                framework_name = part
+                break
+        if framework_name and framework_name in FRAMEWORK_FALLBACKS:
+            fallback_path = FRAMEWORK_FALLBACKS[framework_name]
+            if fallback_path.exists():
+                dest_framework_dir = contents_dir / "Frameworks" / framework_name
+                if not dest_framework_dir.exists():
+                    shutil.copytree(fallback_path, dest_framework_dir)
+                    for path in dest_framework_dir.rglob("*"):
+                        if path.is_file():
+                            _register_suffix_map_entry(path, contents_dir, suffix_map)
+                relative_parts = Path(dep).parts
+                framework_index = relative_parts.index(framework_name)
+                if framework_index + 1 < len(relative_parts):
+                    target_path = dest_framework_dir / Path(*relative_parts[framework_index + 1:])
+                else:
+                    target_path = dest_framework_dir
+                if target_path.exists():
+                    _register_suffix_map_entry(target_path, contents_dir, suffix_map)
+                    return target_path
         return None
     dest_dir = contents_dir / "Frameworks"
     dest_dir.mkdir(parents=True, exist_ok=True)
@@ -96,11 +129,7 @@ def ensure_local_copy(dep: str, contents_dir: Path, suffix_map: Dict[str, Path])
     if not dest.exists():
         shutil.copy2(source, dest)
         os.chmod(dest, 0o755)
-        # refresh suffix map entries for the newly copied file
-        parts = dest.relative_to(contents_dir).parts
-        for i in range(1, len(parts) + 1):
-            key = "/".join(parts[-i:])
-            suffix_map.setdefault(key, dest)
+        _register_suffix_map_entry(dest, contents_dir, suffix_map)
     return dest
 
 

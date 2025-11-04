@@ -18,6 +18,7 @@ build_veyon_application(veyon-cli
 	NAME CLI
 	DESCRIPTION "Veyon Command Line Interface (console version)"
 	CONSOLE
+	NO_BUNDLE
 	SOURCES ${cli_SOURCES})
 
 target_compile_options(veyon-cli PRIVATE -Wno-date-time)

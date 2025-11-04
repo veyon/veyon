@@ -2,6 +2,7 @@ include(BuildVeyonApplication)
 
 build_veyon_application(veyon-service
 	NAME Service
+	NO_BUNDLE
 	SOURCES
 	src/main.cpp)
 
