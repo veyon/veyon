@@ -45,21 +45,21 @@ if(APPLE)
 		veyon-worker
 	)
 	foreach(_helper ${_veyon_macos_helpers})
-			if(TARGET ${_helper})
-				add_dependencies(veyon-configurator ${_helper})
-				if(_helper STREQUAL "veyon-auth-helper")
-					set(_helper_mode 4755)
-				else()
-					set(_helper_mode 755)
-				endif()
-				add_custom_command(TARGET veyon-configurator POST_BUILD
-					COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_FILE:${_helper}>" "$<TARGET_FILE_DIR:veyon-configurator>/${_helper}"
-					COMMAND /bin/chmod ${_helper_mode} "$<TARGET_FILE_DIR:veyon-configurator>/${_helper}"
-					COMMENT "Embedding ${_helper} into veyon-configurator bundle"
-					VERBATIM
-				)
+		if(TARGET ${_helper})
+			add_dependencies(veyon-configurator ${_helper})
+			if(_helper STREQUAL "veyon-auth-helper")
+				set(_helper_mode 4755)
+			else()
+				set(_helper_mode 755)
 			endif()
-		endforeach()
+			add_custom_command(TARGET veyon-configurator POST_BUILD
+				COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_FILE:${_helper}>" "$<TARGET_FILE_DIR:veyon-configurator>/${_helper}"
+				COMMAND /bin/chmod ${_helper_mode} "$<TARGET_FILE_DIR:veyon-configurator>/${_helper}"
+				COMMENT "Embedding ${_helper} into veyon-configurator bundle"
+				VERBATIM
+			)
+		endif()
+	endforeach()
 	unset(_helper_mode)
 	unset(_veyon_macos_helpers)
 endif()
