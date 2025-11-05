@@ -57,6 +57,7 @@ OPENSSL_LIBS=(libssl.3.dylib libcrypto.3.dylib)
 OPENSSL_MODULES_DIR="${OPENSSL_LIB_DIR}/ossl-modules"
 
 # Dependencias Homebrew (librerías auxiliares)
+# Nota: Usaremos cp -L para seguir symlinks y copiar archivos reales
 BREW_LIBS=(
 	"/usr/local/opt/libpng/lib/libpng16.16.dylib"
 	"/usr/local/opt/jpeg-turbo/lib/libjpeg.8.dylib"
@@ -92,7 +93,8 @@ copy_if_exists() {
 	local dest_dir="$2"
 	if [[ -e "$source" ]]; then
 		mkdir -p "$dest_dir"
-		cp -R "$source" "$dest_dir/"
+		# Usar -L para seguir symlinks y copiar archivos reales
+		cp -RL "$source" "$dest_dir/"
 	else
 		log_warn "No se pudo copiar ${source} (no existe)"
 	fi
@@ -204,6 +206,10 @@ package_app() {
 	log_info "  Instalando QCA framework…"
 
 	if [[ -d "$QCA_FRAMEWORK" ]]; then
+		# Eliminar qca-qt5 existente si lo copió macdeployqt
+		if [[ -d "$target_app/Contents/Frameworks/qca-qt5.framework" ]]; then
+			rm -rf "$target_app/Contents/Frameworks/qca-qt5.framework"
+		fi
 		copy_if_exists "$QCA_FRAMEWORK" "$target_app/Contents/Frameworks"
 	else
 		log_warn "qca-qt5.framework no encontrado en ${QCA_FRAMEWORK}"
@@ -382,49 +388,6 @@ for app in "${MAIN_APPS[@]}"; do
 done
 
 # ============================================================================
-# FASE HELPERS: CREAR DIRECTORIO HELPERS CON APPS COMPLETAS
-# ============================================================================
-
-log_info ""
-log_info "=== Empaquetando aplicaciones helper ==="
-log_info ""
-
-for main_app in "${MAIN_APPS[@]}"; do
-	local main_app_path="${PACKAGE_DIR}/${main_app}.app"
-
-	if [[ ! -d "$main_app_path" ]]; then
-		continue
-	fi
-
-	log_info "Añadiendo helpers a ${main_app}…"
-
-	# Crear directorio Helpers
-	mkdir -p "$main_app_path/Contents/Resources/Helpers"
-
-	for helper_app in "${HELPER_APPS[@]}"; do
-		local helper_source="${DIST_DIR}/${helper_app}.app"
-		local helper_target="$main_app_path/Contents/Resources/Helpers/${helper_app}.app"
-
-		if [[ -d "$helper_source" ]]; then
-			log_info "  Procesando helper: ${helper_app}…"
-
-			# Empaquetar helper con la misma función (reutilizar lógica)
-			package_app "$helper_app" \
-				"$helper_source" \
-				"$helper_target" \
-				true
-
-			# Firmar helper
-			codesign --force --deep --sign - "$helper_target" 2>/dev/null || true
-		else
-			log_warn "  Helper ${helper_app} no encontrado en ${helper_source}"
-		fi
-	done
-
-	log_info "Helpers añadidos a ${main_app} ✓"
-done
-
-# ============================================================================
 # FASE AUTOMÁTICA: RESOLUCIÓN DE DEPENDENCIAS CON fix_bundle_deps.py
 # ============================================================================
 
@@ -435,22 +398,12 @@ log_info ""
 if [[ -f "$FIX_SCRIPT" ]]; then
 	log_info "Ejecutando fix_bundle_deps.py…"
 
-	# Recopilar todas las apps a procesar (principales + helpers)
-	local apps_to_fix=()
+	# Recopilar todas las apps a procesar (solo principales)
+	apps_to_fix=()
 	for app in "${MAIN_APPS[@]}"; do
 		if [[ -d "${PACKAGE_DIR}/${app}.app" ]]; then
 			apps_to_fix+=("${PACKAGE_DIR}/${app}.app")
 		fi
-	done
-
-	# También procesar helpers dentro de cada app principal
-	for main_app in "${MAIN_APPS[@]}"; do
-		for helper_app in "${HELPER_APPS[@]}"; do
-			local helper_path="${PACKAGE_DIR}/${main_app}.app/Contents/Resources/Helpers/${helper_app}.app"
-			if [[ -d "$helper_path" ]]; then
-				apps_to_fix+=("$helper_path")
-			fi
-		done
 	done
 
 	if [[ ${#apps_to_fix[@]} -gt 0 ]]; then
@@ -473,7 +426,7 @@ log_info "=== Firmando bundles principales ==="
 log_info ""
 
 for app in "${MAIN_APPS[@]}"; do
-	local app_path="${PACKAGE_DIR}/${app}.app"
+	app_path="${PACKAGE_DIR}/${app}.app"
 	if [[ -d "$app_path" ]]; then
 		log_info "Firmando ${app}.app…"
 		codesign --force --deep --sign - "$app_path" 2>/dev/null || true
@@ -503,11 +456,12 @@ INSTALACIÓN:
 CARACTERÍSTICAS:
 ----------------
 - Todas las dependencias incluidas (Qt, OpenSSL, QCA, etc.)
-- Aplicaciones helper incluidas en Contents/Resources/Helpers/
-  * veyon-cli.app
-  * veyon-server.app
-  * veyon-service.app
-  * veyon-worker.app
+- Ejecutables helper incluidos en Contents/MacOS/:
+  * veyon-cli
+  * veyon-server
+  * veyon-service
+  * veyon-worker
+  * veyon-auth-helper
 - Plugins de criptografía QCA instalados y configurados
 - No requiere instalación de Qt ni otras dependencias del sistema
 
@@ -515,10 +469,10 @@ EJECUCIÓN DE HELPERS:
 --------------------
 Para ejecutar los helpers desde línea de comandos:
 
-  /Applications/veyon-master.app/Contents/Resources/Helpers/veyon-server.app/Contents/MacOS/veyon-server
-  /Applications/veyon-master.app/Contents/Resources/Helpers/veyon-service.app/Contents/MacOS/veyon-service
-  /Applications/veyon-master.app/Contents/Resources/Helpers/veyon-worker.app/Contents/MacOS/veyon-worker
-  /Applications/veyon-master.app/Contents/Resources/Helpers/veyon-cli.app/Contents/MacOS/veyon-cli
+  /Applications/veyon-master.app/Contents/MacOS/veyon-server
+  /Applications/veyon-master.app/Contents/MacOS/veyon-service
+  /Applications/veyon-master.app/Contents/MacOS/veyon-worker
+  /Applications/veyon-master.app/Contents/MacOS/veyon-cli
 
 DISTRIBUCIÓN:
 ------------
@@ -541,23 +495,23 @@ log_info ""
 log_info "Aplicaciones principales:"
 for app in "${MAIN_APPS[@]}"; do
 	if [[ -d "${PACKAGE_DIR}/${app}.app" ]]; then
-		log_info "  ✓ ${app}.app"
+		app_size=$(du -sh "${PACKAGE_DIR}/${app}.app" | cut -f1)
+		log_info "  ✓ ${app}.app (${app_size})"
 	fi
 done
 log_info ""
-log_info "Helpers incluidos en cada app:"
+log_info "Ejecutables helper en Contents/MacOS/:"
 for helper_app in "${HELPER_APPS[@]}"; do
-	log_info "  ✓ ${helper_app}.app"
+	log_info "  ✓ ${helper_app}"
 done
 log_info ""
 log_info "Componentes críticos instalados:"
 log_info "  ✓ QCA crypto plugins (PlugIns/crypto/)"
 log_info "  ✓ QCA symlink (lib/qca-qt5/crypto)"
 log_info "  ✓ OpenSSL (ubicación dual)"
-log_info "  ✓ Dependencias Homebrew"
+log_info "  ✓ Dependencias Homebrew (archivos reales, no symlinks)"
 log_info "  ✓ Frameworks Qt adicionales"
 log_info "  ✓ Plugins problemáticos deshabilitados"
 log_info ""
-log_info "Siguiente paso:"
-log_info "  Ejecuta: codesign --force --deep --sign - veyon-macos-package/*.app"
+log_info "Las aplicaciones están listas para usar!"
 log_info ""
