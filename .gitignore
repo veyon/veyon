@@ -1,9 +1,48 @@
+# Vagrant
 .vagrant/*
+
+# macOS
 .DS_Store
-svg
+
+# Build directories (regenerable con configure-cmake.sh)
+build/
+dist/
+
+# Packaging output (regenerable con build-and-package.sh)
+veyon-macos-package/
+veyon-macos-distribution/
+dmg-temp/
+
+# Qt/CMake
 Makefile
+*.user
+*.autosave
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+
+# Plugins
 plugins/addons
 plugins/extra
+
+# Nix
 result
 result-*
 .direnv
+
+# SVG
+svg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Backup files
+*.bak
+*.orig
+
+# Logs
+*.log

@@ -41,6 +41,14 @@ cmake --build build --parallel
 log_info "Instalando en dist/..."
 cmake --build build --target install
 
+log_info "Copiando dylibs a app bundles..."
+if [[ -f "${SCRIPT_DIR}/install-dylibs-to-bundles.sh" ]]; then
+    "${SCRIPT_DIR}/install-dylibs-to-bundles.sh" "${SCRIPT_DIR}/dist"
+else
+    log_error "No se encontró install-dylibs-to-bundles.sh"
+    exit 1
+fi
+
 log_info ""
 log_info "✓ Compilación completada"
 log_info ""
@@ -88,6 +96,7 @@ log_info ""
 log_info "Este DMG contiene:"
 log_info "  - veyon-configurator.app"
 log_info "  - veyon-master.app"
+log_info "  - veyon-server.app"
 log_info "  - README.txt con instrucciones"
 log_info ""
 log_info "¡Listo para distribuir!"

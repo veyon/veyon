@@ -2,7 +2,6 @@ include(BuildVeyonApplication)
 
 build_veyon_application(veyon-server
 	NAME Server
-	NO_BUNDLE
 	SOURCES
 	src/ComputerControlClient.cpp
 	src/ComputerControlClient.h

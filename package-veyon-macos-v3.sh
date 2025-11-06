@@ -28,10 +28,10 @@ PACKAGE_DIR="${SCRIPT_DIR}/veyon-macos-package"
 FIX_SCRIPT="${SCRIPT_DIR}/tools/fix_bundle_deps.py"
 
 # Aplicaciones principales
-MAIN_APPS=(veyon-configurator veyon-master)
+MAIN_APPS=(veyon-configurator veyon-master veyon-server)
 
 # Aplicaciones helper (serán incluidas en Resources/Helpers/)
-HELPER_APPS=(veyon-cli veyon-server veyon-service veyon-worker)
+HELPER_APPS=(veyon-cli veyon-service veyon-worker)
 # Nota: veyon-auth-helper NO se incluye en Helpers (queda solo en MacOS/, requiere setuid)
 
 # Rutas de Qt 5

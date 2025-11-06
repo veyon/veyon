@@ -29,6 +29,7 @@ mkdir -p "$DIST_OUTPUT" "$DMG_TEMP"
 log_info "Copiando aplicaciones al DMG temporal..."
 cp -R "$PACKAGE_DIR/veyon-configurator.app" "$DMG_TEMP/"
 cp -R "$PACKAGE_DIR/veyon-master.app" "$DMG_TEMP/"
+cp -R "$PACKAGE_DIR/veyon-server.app" "$DMG_TEMP/"
 
 if [[ -f "$PACKAGE_DIR/README.txt" ]]; then
     cp "$PACKAGE_DIR/README.txt" "$DMG_TEMP/"
