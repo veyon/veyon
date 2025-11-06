@@ -331,7 +331,49 @@ package_app() {
 	fi
 
 	# ========================================================================
-	# FASE 10: AJUSTES BÁSICOS DE RPATH
+	# FASE 10: LIMPIEZA DE RPATHs DE BUILD (CRÍTICO!)
+	# ========================================================================
+
+	log_info "  Limpiando RPATHs de build directory…"
+
+	# Lista de RPATHs de build a eliminar
+	local build_rpaths=(
+		"/Users/pablo/GitHub/veyon/build/core"
+		"/Users/pablo/GitHub/veyon/build/plugins"
+	)
+
+	# Procesar todos los binarios en MacOS/
+	for binary in "$target_app/Contents/MacOS"/*; do
+		if [[ -f "$binary" ]] && file "$binary" 2>/dev/null | grep -q "Mach-O"; then
+			# Eliminar RPATHs de build
+			for rpath in "${build_rpaths[@]}"; do
+				install_name_tool -delete_rpath "$rpath" "$binary" 2>/dev/null || true
+			done
+
+			# Asegurar que tiene los RPATHs correctos
+			install_name_tool -add_rpath "@executable_path/../Frameworks" "$binary" 2>/dev/null || true
+			install_name_tool -add_rpath "@executable_path/../lib/veyon" "$binary" 2>/dev/null || true
+		fi
+	done
+
+	# Procesar todos los .dylib en lib/veyon/
+	if [[ -d "$target_app/Contents/lib/veyon" ]]; then
+		for dylib in "$target_app/Contents/lib/veyon"/*.dylib; do
+			if [[ -f "$dylib" ]] && file "$dylib" 2>/dev/null | grep -q "Mach-O"; then
+				# Eliminar RPATHs de build
+				for rpath in "${build_rpaths[@]}"; do
+					install_name_tool -delete_rpath "$rpath" "$dylib" 2>/dev/null || true
+				done
+
+				# Asegurar que tiene los RPATHs correctos (desde lib/veyon/ perspectiva)
+				install_name_tool -add_rpath "@loader_path/../../Frameworks" "$dylib" 2>/dev/null || true
+				install_name_tool -add_rpath "@loader_path" "$dylib" 2>/dev/null || true
+			fi
+		done
+	fi
+
+	# ========================================================================
+	# FASE 11: AJUSTES BÁSICOS DE RPATH
 	# ========================================================================
 
 	log_info "  Ajustando rutas básicas con install_name_tool…"

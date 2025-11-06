@@ -42,6 +42,8 @@ bool BuiltinMacVncServer::runServer( int serverPort, const Password& password )
 	options.prevent_sleep = m_configuration.preventSleep();
 	options.display = m_configuration.displayIndex();
 
+	vDebug() << "BuiltinMacVncServer::runServer(): About to call macvnc_start with port" << serverPort;
+
 	char errorBuffer[512] = {0};
 	if( macvnc_start( &options, errorBuffer, sizeof(errorBuffer) ) == false )
 	{
@@ -56,6 +58,8 @@ bool BuiltinMacVncServer::runServer( int serverPort, const Password& password )
 
 		return false;
 	}
+
+	vDebug() << "BuiltinMacVncServer::runServer(): macvnc_start() returned true, server should be running";
 
 	bool interrupted = false;
 	while( macvnc_is_running() )
