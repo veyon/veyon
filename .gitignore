@@ -6,7 +6,9 @@
 
 # Build directories (regenerable con configure-cmake.sh)
 build/
+build-macvnc/
 dist/
+translations/
 
 # Packaging output (regenerable con build-and-package.sh)
 veyon-macos-package/

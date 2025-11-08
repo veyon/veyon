@@ -25,8 +25,13 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QGuiApplication>
+#include <QTimer>
 
 #include "ComputerControlServer.h"
+
+#if defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+#include <dispatch/dispatch.h>
+#endif
 
 
 int main( int argc, char **argv )
@@ -54,6 +59,29 @@ int main( int argc, char **argv )
 		vCritical() << "Failed to start server";
 		return -1;
 	}
+
+#if defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+	// On macOS, ScreenCaptureKit needs the main dispatch queue to be processed regularly
+	// Qt's event loop doesn't always process it frequently enough, so we force it with a timer
+	// We use dispatch_async instead of dispatch_sync to avoid potential deadlocks
+	QTimer dispatchPumpTimer;
+	QObject::connect(&dispatchPumpTimer, &QTimer::timeout, []() {
+		static int counter = 0;
+		counter++;
+		// Ping the main dispatch queue to force processing
+		dispatch_async(dispatch_get_main_queue(), ^{
+			// Empty block - forces queue to wake up and process pending events
+		});
+		// Log every 100 iterations (every ~1 second at 10ms intervals)
+		if (counter % 100 == 0) {
+			fprintf(stderr, "[PUMP] Main queue pump active (iteration %d)\n", counter);
+			fflush(stderr);
+		}
+	});
+	dispatchPumpTimer.start(10); // Process every 10ms
+	fprintf(stderr, "[PUMP] macOS: Started main dispatch queue pump timer\n");
+	fflush(stderr);
+#endif
 
 	return core.exec();
 }

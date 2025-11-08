@@ -23,6 +23,7 @@ log_error() { printf "${RED}[ERROR]${NC} %s\n" "$*"; }
 # ============================================================================
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+BUILD_DIR="${SCRIPT_DIR}/build"
 DIST_DIR="${SCRIPT_DIR}/dist/Applications/Veyon"
 PACKAGE_DIR="${SCRIPT_DIR}/veyon-macos-package"
 FIX_SCRIPT="${SCRIPT_DIR}/tools/fix_bundle_deps.py"
@@ -126,6 +127,35 @@ package_app() {
 
 	# Copiar app
 	cp -R "$source_app" "$(dirname "$target_app")/"
+
+	# ========================================================================
+	# FASE 0: COPIAR LIBVEYON-CORE Y PLUGINS DE VEYON (DESDE BUILD)
+	# ========================================================================
+
+	log_info "  Copiando libveyon-core.dylib y plugins de Veyon desde BUILD…"
+
+	# Crear directorio lib/veyon
+	mkdir -p "$target_app/Contents/lib/veyon"
+
+	# Copiar libveyon-core.dylib
+	if [[ -f "${BUILD_DIR}/core/libveyon-core.dylib" ]]; then
+		cp "${BUILD_DIR}/core/libveyon-core.dylib" "$target_app/Contents/lib/veyon/"
+		log_info "    ✓ Copied libveyon-core.dylib"
+	else
+		log_warn "    libveyon-core.dylib not found in BUILD"
+	fi
+
+	# Copiar todos los plugins de Veyon
+	if [[ -d "${BUILD_DIR}/plugins" ]]; then
+		# Copiar todos los .dylib de plugins recursivamente
+		find "${BUILD_DIR}/plugins" -name "*.dylib" -type f | while read -r plugin; do
+			cp "$plugin" "$target_app/Contents/lib/veyon/"
+		done
+		plugin_count=$(find "$target_app/Contents/lib/veyon" -name "*.dylib" -type f | wc -l | tr -d ' ')
+		log_info "    ✓ Copied ${plugin_count} Veyon plugins"
+	else
+		log_warn "    plugins directory not found in BUILD"
+	fi
 
 	# Ejecutar macdeployqt
 	log_info "  Ejecutando macdeployqt…"
@@ -403,11 +433,21 @@ package_app() {
 # ============================================================================
 
 log_info "=== Empaquetado Veyon macOS (v3) ==="
+log_info "Directorio de build: ${BUILD_DIR}"
 log_info "Directorio de distribución: ${DIST_DIR}"
 
-if [[ ! -d "$DIST_DIR" ]]; then
-	log_error "No existe ${DIST_DIR}. Ejecuta 'cmake --build build --target install' antes."
+# Verificar que al menos uno de los directorios existe
+if [[ ! -d "$BUILD_DIR" ]] && [[ ! -d "$DIST_DIR" ]]; then
+	log_error "No existe ni ${BUILD_DIR} ni ${DIST_DIR}."
+	log_error "Ejecuta 'cmake --build build' primero."
 	exit 1
+fi
+
+# Preferir build directory si existe
+if [[ -d "$BUILD_DIR" ]]; then
+	log_info "✓ Usando binarios del BUILD directory (más recientes)"
+else
+	log_warn "BUILD directory no encontrado, usando DIST directory"
 fi
 
 ensure_command macdeployqt
@@ -423,10 +463,42 @@ rm -rf "$PACKAGE_DIR"
 mkdir -p "$PACKAGE_DIR"
 
 for app in "${MAIN_APPS[@]}"; do
-	package_app "$app" \
-		"${DIST_DIR}/${app}.app" \
-		"${PACKAGE_DIR}/${app}.app" \
-		false
+	# Buscar app en BUILD_DIR primero, luego en DIST_DIR
+	source_app=""
+
+	# Diferentes ubicaciones según la app
+	if [[ "$app" == "veyon-server" ]]; then
+		# veyon-server está en build/server/
+		if [[ -d "${BUILD_DIR}/server/${app}.app" ]]; then
+			source_app="${BUILD_DIR}/server/${app}.app"
+			log_info "✓ Usando ${app} de BUILD/server (compilación reciente)"
+		fi
+	else
+		# veyon-configurator y veyon-master están en sus propios subdirectorios
+		subdir="${app#veyon-}"  # Remove "veyon-" prefix
+		if [[ -d "${BUILD_DIR}/${subdir}/${app}.app" ]]; then
+			source_app="${BUILD_DIR}/${subdir}/${app}.app"
+			log_info "✓ Usando ${app} de BUILD/${subdir} (compilación reciente)"
+		fi
+	fi
+
+	# Fallback a DIST_DIR si no se encontró en BUILD_DIR
+	if [[ -z "$source_app" ]] || [[ ! -d "$source_app" ]]; then
+		if [[ -d "${DIST_DIR}/${app}.app" ]]; then
+			source_app="${DIST_DIR}/${app}.app"
+			log_warn "Usando ${app} de DIST directory (puede ser antiguo)"
+		fi
+	fi
+
+	# Empaquetar si se encontró el app
+	if [[ -n "$source_app" ]] && [[ -d "$source_app" ]]; then
+		package_app "$app" \
+			"$source_app" \
+			"${PACKAGE_DIR}/${app}.app" \
+			false
+	else
+		log_error "No se encontró ${app}.app en BUILD ni en DIST"
+	fi
 done
 
 # ============================================================================
