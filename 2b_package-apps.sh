@@ -817,12 +817,14 @@ This package contains the main Veyon applications for macOS:
 
 1. veyon-configurator.app - Configuration tool
 2. veyon-master.app - Master application for classroom management
+3. veyon-server.app - Server component for remote access
 
 INSTALLATION:
 -------------
-1. Copy the .app applications to your /Applications folder
-2. On first launch, macOS will ask for accessibility and screen recording permissions
-3. Go to System Preferences > Security & Privacy to grant the permissions
+1. Drag the 'Veyon' folder to the 'Applications' shortcut in the DMG
+2. The entire folder will be copied to /Applications/Veyon/
+3. On first launch, macOS will ask for accessibility and screen recording permissions
+4. Go to System Preferences > Security & Privacy to grant the permissions
 
 FEATURES:
 ---------
@@ -840,10 +842,14 @@ RUNNING HELPERS:
 ----------------
 To run helpers from command line:
 
-  /Applications/veyon-master.app/Contents/MacOS/veyon-server
-  /Applications/veyon-master.app/Contents/MacOS/veyon-service
-  /Applications/veyon-master.app/Contents/MacOS/veyon-worker
-  /Applications/veyon-master.app/Contents/MacOS/veyon-cli
+  /Applications/Veyon/veyon-master.app/Contents/MacOS/veyon-server
+  /Applications/Veyon/veyon-master.app/Contents/MacOS/veyon-service
+  /Applications/Veyon/veyon-master.app/Contents/MacOS/veyon-worker
+  /Applications/Veyon/veyon-master.app/Contents/MacOS/veyon-cli
+
+Or using veyon-server.app:
+
+  /Applications/Veyon/veyon-server.app/Contents/MacOS/veyon-server
 
 DISTRIBUTION:
 -------------

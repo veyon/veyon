@@ -26,14 +26,20 @@ log_info "=== Creating Veyon distribution package for macOS ==="
 rm -rf "$DIST_OUTPUT" "$DMG_TEMP"
 mkdir -p "$DIST_OUTPUT" "$DMG_TEMP"
 
-log_info "Copying applications to temporary DMG..."
-cp -R "$PACKAGE_DIR/veyon-configurator.app" "$DMG_TEMP/"
-cp -R "$PACKAGE_DIR/veyon-master.app" "$DMG_TEMP/"
-cp -R "$PACKAGE_DIR/veyon-server.app" "$DMG_TEMP/"
+log_info "Creating Veyon folder structure in DMG..."
+mkdir -p "$DMG_TEMP/Veyon"
+
+log_info "Copying applications to Veyon folder..."
+cp -R "$PACKAGE_DIR/veyon-configurator.app" "$DMG_TEMP/Veyon/"
+cp -R "$PACKAGE_DIR/veyon-master.app" "$DMG_TEMP/Veyon/"
+cp -R "$PACKAGE_DIR/veyon-server.app" "$DMG_TEMP/Veyon/"
 
 if [[ -f "$PACKAGE_DIR/README.txt" ]]; then
-    cp "$PACKAGE_DIR/README.txt" "$DMG_TEMP/"
+    cp "$PACKAGE_DIR/README.txt" "$DMG_TEMP/Veyon/"
 fi
+
+log_info "Creating symbolic link to Applications..."
+ln -s /Applications "$DMG_TEMP/Applications"
 
 log_info "Creating DMG image..."
 hdiutil create -volname "Veyon macOS" -srcfolder "$DMG_TEMP" -ov -format UDZO \
@@ -54,7 +60,12 @@ log_info ""
 log_info "DISTRIBUTION INSTRUCTIONS:"
 log_info "  1. Distribute the Veyon-macOS.dmg file"
 log_info "  2. Users must mount the DMG (double click)"
-log_info "  3. Drag applications to /Applications"
+log_info "  3. Drag the 'Veyon' folder to the 'Applications' shortcut"
+log_info "  4. The entire Veyon folder will be installed in /Applications/Veyon/"
+log_info ""
+log_info "DMG Structure:"
+log_info "  - Veyon/ (folder with all apps and README)"
+log_info "  - Applications (shortcut for easy drag-and-drop installation)"
 log_info ""
 log_info "IMPORTANT: DO NOT copy .app files directly from Finder,"
 log_info "always use the DMG for distribution."
