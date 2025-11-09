@@ -1,5 +1,6 @@
 #!/bin/bash
-# build-and-package.sh - Script completo: compilar, empaquetar y crear DMG de distribución
+# 2_build-package-distribution.sh - Complete script: build, package and create distribution DMG
+# This is the main script that orchestrates the entire build and packaging process
 
 set -euo pipefail
 
@@ -16,14 +17,14 @@ log_error() { printf "${RED}[ERROR]${NC} %s\n" "$*"; }
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # ============================================================================
-# PASO 1: COMPILACIÓN
+# STEP 1: BUILD
 # ============================================================================
 
-log_step "=== PASO 1: Compilación de Veyon ==="
+log_step "=== STEP 1: Building Veyon ==="
 log_info ""
 
 if [[ ! -d "${SCRIPT_DIR}/build" ]]; then
-    log_info "Configurando cmake por primera vez..."
+    log_info "Configuring cmake for the first time..."
     cmake -S . -B build \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_INSTALL_PREFIX="${SCRIPT_DIR}/dist" \
@@ -32,72 +33,72 @@ if [[ ! -d "${SCRIPT_DIR}/build" ]]; then
         -DVEYON_BUILD_WIN32=OFF \
         -DVEYON_BUILD_MACOS=ON
 else
-    log_info "Directorio build existente, omitiendo configuración cmake"
+    log_info "Build directory exists, skipping cmake configuration"
 fi
 
-log_info "Compilando..."
+log_info "Building..."
 cmake --build build --parallel
 
-log_info "Instalando en dist/..."
+log_info "Installing to dist/..."
 cmake --build build --target install
 
-log_info "Copiando dylibs a app bundles..."
-if [[ -f "${SCRIPT_DIR}/install-dylibs-to-bundles.sh" ]]; then
-    "${SCRIPT_DIR}/install-dylibs-to-bundles.sh" "${SCRIPT_DIR}/dist"
+log_info "Copying dylibs to app bundles..."
+if [[ -f "${SCRIPT_DIR}/2a_install-dylibs-to-bundles.sh" ]]; then
+    "${SCRIPT_DIR}/2a_install-dylibs-to-bundles.sh" "${SCRIPT_DIR}/dist"
 else
-    log_error "No se encontró install-dylibs-to-bundles.sh"
+    log_error "2a_install-dylibs-to-bundles.sh not found"
     exit 1
 fi
 
 log_info ""
-log_info "✓ Compilación completada"
+log_info "✓ Build completed"
 log_info ""
 
 # ============================================================================
-# PASO 2: EMPAQUETADO
+# STEP 2: PACKAGING
 # ============================================================================
 
-log_step "=== PASO 2: Empaquetado de aplicaciones ==="
+log_step "=== STEP 2: Packaging applications ==="
 log_info ""
 
-if [[ -f "${SCRIPT_DIR}/package-veyon-macos-v3.sh" ]]; then
-    "${SCRIPT_DIR}/package-veyon-macos-v3.sh"
+if [[ -f "${SCRIPT_DIR}/2b_package-apps.sh" ]]; then
+    "${SCRIPT_DIR}/2b_package-apps.sh"
 else
-    log_error "No se encontró package-veyon-macos-v3.sh"
+    log_error "2b_package-apps.sh not found"
     exit 1
 fi
 
 log_info ""
-log_info "✓ Empaquetado completado"
+log_info "✓ Packaging completed"
 log_info ""
 
 # ============================================================================
-# PASO 3: CREAR DISTRIBUCIÓN DMG
+# STEP 3: CREATE DISTRIBUTION DMG
 # ============================================================================
 
-log_step "=== PASO 3: Creación de DMG de distribución ==="
+log_step "=== STEP 3: Creating distribution DMG ==="
 log_info ""
 
-if [[ -f "${SCRIPT_DIR}/create-distribution.sh" ]]; then
-    "${SCRIPT_DIR}/create-distribution.sh"
+if [[ -f "${SCRIPT_DIR}/2c_create-distribution.sh" ]]; then
+    "${SCRIPT_DIR}/2c_create-distribution.sh"
 else
-    log_error "No se encontró create-distribution.sh"
+    log_error "2c_create-distribution.sh not found"
     exit 1
 fi
 
 log_info ""
 log_info "=========================================="
-log_info "=== PROCESO COMPLETO FINALIZADO ✓ ==="
+log_info "=== COMPLETE PROCESS FINISHED ✓ ==="
 log_info "=========================================="
 log_info ""
-log_info "DMG de distribución listo en:"
+log_info "Distribution DMG ready at:"
 log_info "  ${SCRIPT_DIR}/veyon-macos-distribution/Veyon-macOS.dmg"
 log_info ""
-log_info "Este DMG contiene:"
+log_info "This DMG contains:"
 log_info "  - veyon-configurator.app"
 log_info "  - veyon-master.app"
 log_info "  - veyon-server.app"
-log_info "  - README.txt con instrucciones"
+log_info "  - README.txt with instructions"
 log_info ""
-log_info "¡Listo para distribuir!"
+log_info "Ready to distribute!"
 log_info ""

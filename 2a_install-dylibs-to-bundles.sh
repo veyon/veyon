@@ -1,12 +1,12 @@
 #!/bin/bash
-# install-dylibs-to-bundles.sh - Copia dylibs a los app bundles después del install
+# 2a_install-dylibs-to-bundles.sh - Copy dylibs to app bundles after install
 
 set -e
 
 DIST_DIR="${1:-dist}"
 echo "Installing dylibs to app bundles in $DIST_DIR..."
 
-# Copiar dylibs a cada app bundle
+# Copy dylibs to each app bundle
 for app in veyon-master veyon-configurator veyon-server; do
 	app_path="$DIST_DIR/Applications/Veyon/${app}.app"
 	if [[ -d "$app_path" ]]; then

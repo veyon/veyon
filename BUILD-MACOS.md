@@ -1,10 +1,10 @@
-# Guía de Compilación y Empaquetado de Veyon para macOS
+# Veyon macOS Build and Packaging Guide
 
-Esta guía documenta cómo compilar, empaquetar y distribuir Veyon en macOS.
+This guide documents how to build, package, and distribute Veyon on macOS.
 
-## Requisitos Previos
+## Prerequisites
 
-### Dependencias de Homebrew
+### Homebrew Dependencies
 ```bash
 brew install qt@5 qthttpserver openldap cmake openssl qca
 ```
@@ -14,195 +14,328 @@ brew install qt@5 qthttpserver openldap cmake openssl qca
 xcode-select --install
 ```
 
-## Scripts Disponibles
+## Available Scripts
 
-### 1. `configure-cmake.sh` - Configurar CMake
-Recrea la configuración de CMake si borras el directorio `build/`:
+The build and packaging process is organized into numbered scripts that follow a logical workflow:
 
-```bash
-./configure-cmake.sh
-```
+### 1️⃣ `1_configure-cmake.sh` - CMake Configuration (Optional)
 
-**Qué hace:**
-- Verifica si `build/` existe y pregunta si quieres recrearlo
-- Configura CMake con Qt5 (no Qt6)
-- Establece todas las rutas necesarias de OpenLDAP
-- Configura build en modo Release
-
-### 2. `build-and-package.sh` - Compilar, Empaquetar y Crear DMG (TODO EN UNO)
-Script completo que ejecuta todo el proceso:
+Configure or reconfigure CMake if you delete the `build/` directory:
 
 ```bash
-./build-and-package.sh
+./1_configure-cmake.sh
 ```
 
-**Qué hace:**
-1. Configura CMake (si `build/` no existe)
-2. Compila todo el proyecto
-3. Instala en `dist/`
-4. Copia dylibs a los app bundles
-5. Empaqueta las aplicaciones (ejecuta `package-veyon-macos-v3.sh`)
-6. Crea el DMG de distribución (ejecuta `create-distribution.sh`)
+**What it does:**
+- Checks if `build/` exists and prompts to recreate it
+- Configures CMake with Qt5 (not Qt6)
+- Sets all necessary OpenLDAP paths
+- Configures build in Release mode
 
-**Resultado final:**
-- `veyon-macos-distribution/Veyon-macOS.dmg` (250MB)
+**When to use:**
+- First time setup
+- After deleting `build/` directory
+- To reconfigure build settings
 
-### 3. `package-veyon-macos-v3.sh` - Solo Empaquetar
-Solo ejecuta el empaquetado (requiere que `dist/` exista):
+---
+
+### 2️⃣ `2_build-package-distribution.sh` - Complete Build Process (ALL-IN-ONE)
+
+**This is the main script** that executes the entire build, packaging, and distribution process:
 
 ```bash
-./package-veyon-macos-v3.sh
+./2_build-package-distribution.sh
 ```
 
-**Qué hace:**
-- Copia las aplicaciones desde `dist/` a `veyon-macos-package/`
-- Ejecuta `macdeployqt` en cada app
-- Copia frameworks Qt, QCA, OpenSSL
-- Instala plugins y dependencias Homebrew
-- Ejecuta `fix_bundle_deps.py` para resolver todas las dependencias
-- Firma los bundles con ad-hoc signature
+**What it does:**
+1. **STEP 1: BUILD**
+   - Configures CMake (if `build/` doesn't exist)
+   - Compiles the entire project in parallel
+   - Installs binaries to `dist/`
+   - Runs `2a_install-dylibs-to-bundles.sh` to copy libraries
 
-**Resultado:**
-- `veyon-macos-package/veyon-configurator.app` (179MB)
-- `veyon-macos-package/veyon-master.app` (179MB)
-- `veyon-macos-package/veyon-server.app` (178MB) ⭐
+2. **STEP 2: PACKAGING**
+   - Runs `2b_package-apps.sh` to create complete app bundles
+   - Includes all dependencies, frameworks, and plugins
+   - Signs bundles with ad-hoc signature
 
-### 4. `create-distribution.sh` - Solo Crear DMG
-Solo crea el DMG (requiere que `veyon-macos-package/` exista):
+3. **STEP 3: CREATE DISTRIBUTION**
+   - Runs `2c_create-distribution.sh` to create DMG
+   - Packages all apps with README
+
+**Final result:**
+- `veyon-macos-distribution/Veyon-macOS.dmg` (~250MB)
+
+---
+
+### Sub-Scripts (Called Automatically)
+
+These scripts are called by `2_build-package-distribution.sh` but can also be run individually:
+
+#### 2a️⃣ `2a_install-dylibs-to-bundles.sh` - Copy Libraries
+
+Copies Veyon dylibs from `dist/lib/veyon/` to each app bundle's `Contents/lib/veyon/`:
 
 ```bash
-./create-distribution.sh
+./2a_install-dylibs-to-bundles.sh dist
 ```
 
-**Qué hace:**
-- Copia las 3 aplicaciones a un directorio temporal
-- Copia README.txt
-- Crea el DMG comprimido
+#### 2b️⃣ `2b_package-apps.sh` - Package Applications
 
-**Resultado:**
-- `veyon-macos-distribution/Veyon-macOS.dmg` (250MB)
+Creates complete, self-contained app bundles:
 
-## Estructura de Directorios
+```bash
+./2b_package-apps.sh
+```
+
+**What it does:**
+- **Cleanup**: Removes old packaging artifacts automatically
+- **Phase 0**: Copies libveyon-core.dylib and all Veyon plugins from BUILD
+- **Phase 1**: Installs Qt 5 plugins (platforms, styles, imageformats, iconengines)
+- **Phase 2**: Copies additional Qt frameworks (QtDBus, QtPrintSupport, QtSvg, QtPdf, etc.)
+- **Phase 3**: Installs QCA framework
+- **Phase 4**: Copies Homebrew dependencies (libpng, libjpeg, libtiff, etc.)
+- **Phase 5**: Installs OpenSSL in dual location (for main executables and QCA plugins)
+- **Phase 6**: Installs QCA crypto plugins (libqca-ossl.dylib, etc.)
+- **Phase 7**: Creates QCA symlink (lib/qca-qt5/crypto)
+- **Phase 8**: Disables problematic plugins (webapi, libqpdf, libqwebgl)
+- **Phase 9**: Copies application icons
+- **Phase 10**: Cleans build directory RPATHs (critical!)
+- **Phase 11**: Adjusts basic RPATHs with install_name_tool
+- Runs `fix_bundle_deps.py` for automatic dependency resolution
+- Signs bundles with ad-hoc signature
+- Creates README.txt with installation instructions
+
+**Output:**
+- `veyon-macos-package/veyon-configurator.app` (~179MB)
+- `veyon-macos-package/veyon-master.app` (~179MB)
+- `veyon-macos-package/veyon-server.app` (~178MB) ⭐
+
+#### 2c️⃣ `2c_create-distribution.sh` - Create DMG
+
+Creates a distributable DMG image:
+
+```bash
+./2c_create-distribution.sh
+```
+
+**What it does:**
+- Copies all 3 applications to a temporary directory
+- Copies README.txt
+- Creates compressed DMG image
+
+**Output:**
+- `veyon-macos-distribution/Veyon-macOS.dmg` (~250MB)
+
+---
+
+## Directory Structure
 
 ```
 veyon/
 ├── build/                           # Build directory (git-ignored, regenerable)
 ├── dist/                            # Install directory (git-ignored, regenerable)
-├── veyon-macos-package/            # Apps empaquetadas (git-ignored, regenerable)
+├── veyon-macos-package/            # Packaged apps (git-ignored, regenerable)
 │   ├── veyon-configurator.app
 │   ├── veyon-master.app
-│   └── veyon-server.app            # ⭐ NUEVO - App bundle completo
-├── veyon-macos-distribution/       # DMG final (git-ignored, regenerable)
+│   └── veyon-server.app            # ⭐ Complete app bundle (required for Screen Recording)
+├── veyon-macos-distribution/       # Final DMG (git-ignored, regenerable)
 │   └── Veyon-macOS.dmg
-├── configure-cmake.sh              # Configurar CMake
-├── build-and-package.sh            # Todo en uno
-├── package-veyon-macos-v3.sh       # Solo empaquetar
-├── create-distribution.sh          # Solo crear DMG
-└── install-dylibs-to-bundles.sh    # Helper: copiar dylibs
+├── 1_configure-cmake.sh            # [1] Configure CMake (optional)
+├── 2_build-package-distribution.sh # [2] Main script - ALL-IN-ONE
+├── 2a_install-dylibs-to-bundles.sh # [2a] Helper: copy dylibs
+├── 2b_package-apps.sh              # [2b] Helper: package apps
+└── 2c_create-distribution.sh       # [2c] Helper: create DMG
 ```
 
-## Flujo de Trabajo Común
+---
 
-### Primera Compilación (desde cero)
+## Common Workflows
+
+### First Build (from scratch)
+
 ```bash
-./build-and-package.sh
+./2_build-package-distribution.sh
 ```
 
-### Después de Cambios en el Código
+This single command does everything: configure, build, package, and create DMG.
+
+---
+
+### After Code Changes
+
+If you've made changes to the source code:
+
 ```bash
-# Solo recompilar e instalar
+# Quick recompile and reinstall
 cmake --build build --parallel
 cmake --build build --target install
-./install-dylibs-to-bundles.sh dist
+./2a_install-dylibs-to-bundles.sh dist
 
-# Luego empaquetar
-./package-veyon-macos-v3.sh
-./create-distribution.sh
+# Then repackage
+./2b_package-apps.sh
+./2c_create-distribution.sh
 ```
 
-### Si Borras `build/` Accidentalmente
+Or simply run the complete process again:
 ```bash
-# Opción 1: Usar el script
-./configure-cmake.sh
-
-# Opción 2: Usar build-and-package.sh (detecta ausencia de build/)
-./build-and-package.sh
+./2_build-package-distribution.sh
 ```
 
-## Cambios Importantes para macOS
+---
 
-### veyon-server.app es Ahora un App Bundle Completo
-En versiones anteriores, `veyon-server` era un binario simple dentro de los otros apps. Ahora es un app bundle completo porque:
+### If You Delete `build/` Accidentally
 
-1. **macOS 12.3+ requiere app bundles para Screen Recording**
-   - ScreenCaptureKit API solo funciona con apps firmadas en app bundles
-   - TCC (Transparency, Consent, and Control) solo reconoce app bundles
+```bash
+# Option 1: Use the configuration script
+./1_configure-cmake.sh
 
-2. **Cambios en CMake:**
-   - [server/CMakeLists.txt](server/CMakeLists.txt:5): Removido `NO_BUNDLE`
+# Option 2: Use the main script (auto-detects missing build/)
+./2_build-package-distribution.sh
+```
 
-3. **Cambios en Packaging:**
-   - [package-veyon-macos-v3.sh](package-veyon-macos-v3.sh:31): Movido de `HELPER_APPS` a `MAIN_APPS`
-   - [create-distribution.sh](create-distribution.sh:32): Añadida línea para copiar al DMG
-   - Icono añadido: [resources/icons/veyon-server.icns](resources/icons/veyon-server.icns)
+---
 
-### Copiar dylibs a App Bundles
-El script [install-dylibs-to-bundles.sh](install-dylibs-to-bundles.sh) copia los dylibs desde `dist/lib/veyon/` a `Contents/lib/veyon/` dentro de cada app bundle. Esto es necesario para que las apps funcionen sin variables de entorno.
+### Packaging Only (without rebuild)
 
-## Distribución
+If you already have compiled binaries and just want to repackage:
 
-### Para Usuarios Finales
-1. Distribuir el archivo `Veyon-macOS.dmg`
-2. Los usuarios montan el DMG (doble clic)
-3. Arrastran las 3 aplicaciones a `/Applications`
-4. **IMPORTANTE**: Dar permisos de Screen Recording a `veyon-server.app`:
+```bash
+./2b_package-apps.sh
+./2c_create-distribution.sh
+```
+
+---
+
+## Important Changes for macOS
+
+### veyon-server.app is Now a Complete App Bundle
+
+In previous versions, `veyon-server` was a simple binary inside other apps. Now it's a complete app bundle because:
+
+1. **macOS 12.3+ requires app bundles for Screen Recording**
+   - ScreenCaptureKit API only works with signed apps in bundles
+   - TCC (Transparency, Consent, and Control) only recognizes app bundles
+
+2. **CMake changes:**
+   - `server/CMakeLists.txt`: Removed `NO_BUNDLE` flag
+
+3. **Packaging changes:**
+   - `2b_package-apps.sh`: Moved from `HELPER_APPS` to `MAIN_APPS`
+   - `2c_create-distribution.sh`: Added line to copy to DMG
+   - Icon added: `resources/icons/veyon-server.icns`
+
+### Helper Executables
+
+Only `veyon-configurator.app` includes helper executables in `Contents/Resources/Helpers/`:
+- `veyon-cli`
+- `veyon-service` (wrapper that launches veyon-server.app)
+- `veyon-worker`
+
+Note: `veyon-auth-helper` stays only in `MacOS/` as it requires setuid.
+
+### Administrator Authentication
+
+`veyon-configurator` now requires administrator privileges to launch. A bash wrapper prompts for credentials using AppleScript before launching the main executable.
+
+---
+
+## Distribution
+
+### For End Users
+
+1. Distribute the `Veyon-macOS.dmg` file
+2. Users mount the DMG (double click)
+3. Drag all 3 applications to `/Applications`
+4. **IMPORTANT**: Grant Screen Recording permission to `veyon-server.app`:
    - System Preferences → Security & Privacy → Privacy → Screen Recording
-   - Agregar `/Applications/veyon-server.app`
+   - Add `/Applications/veyon-server.app`
 
-### Para Desarrollo
-NO distribuyas las apps directamente desde Finder. Siempre usa el DMG creado por `create-distribution.sh`.
+### For Development
 
-## Solución de Problemas
+**DO NOT** distribute apps directly from Finder. Always use the DMG created by `2c_create-distribution.sh`.
+
+---
+
+## Troubleshooting
 
 ### Error: "Cannot find Qt6"
-El proyecto requiere Qt5, no Qt6. Usa `./configure-cmake.sh` que fuerza Qt5.
+
+The project requires Qt5, not Qt6. Use `./1_configure-cmake.sh` which forces Qt5.
 
 ### Error: LDAP linking error
-Las rutas de OpenLDAP deben estar expandidas (no usar `$(brew ...)`). El script `configure-cmake.sh` usa rutas absolutas.
+
+OpenLDAP paths must be expanded (don't use `$(brew ...)`). The `1_configure-cmake.sh` script uses absolute paths.
 
 ### Error: "Library not loaded: @rpath/libveyon-core.dylib"
-Los dylibs no están en el app bundle. Ejecuta:
+
+Dylibs are not in the app bundle. Run:
 ```bash
-./install-dylibs-to-bundles.sh dist
+./2a_install-dylibs-to-bundles.sh dist
 ```
 
-### Las apps no tienen íconos
-Los iconos deben estar en `resources/icons/` con el nombre correcto:
+Or repackage completely:
+```bash
+./2b_package-apps.sh
+```
+
+### Apps don't have icons
+
+Icons must be in `resources/icons/` with correct names:
 - `veyon-configurator.icns`
 - `veyon-master.icns`
 - `veyon-server.icns` ⭐
 
-## Archivos a NO Commitear (ya en .gitignore)
+### Automatic Cleanup
 
-- `build/` - Directorio de compilación
-- `dist/` - Binarios instalados
-- `veyon-macos-package/` - Apps empaquetadas
-- `veyon-macos-distribution/` - DMG final
-- `dmg-temp/` - Directorio temporal del DMG
+The `2b_package-apps.sh` script now automatically cleans up old files before packaging:
+- `dist/Applications/Veyon/`
+- `veyon-macos-package/`
+- Old DMG files (`veyon-*.dmg`)
+- `veyon-macos-distribution/`
 
-## Archivos Importantes a Commitear
+This ensures every packaging run starts with a clean slate.
 
-- ✅ `configure-cmake.sh`
-- ✅ `build-and-package.sh`
-- ✅ `package-veyon-macos-v3.sh`
-- ✅ `create-distribution.sh`
-- ✅ `install-dylibs-to-bundles.sh`
+---
+
+## Files to NOT Commit (already in .gitignore)
+
+- `build/` - Build directory
+- `dist/` - Installed binaries
+- `veyon-macos-package/` - Packaged apps
+- `veyon-macos-distribution/` - Final DMG
+- `dmg-temp/` - Temporary DMG directory
+
+---
+
+## Important Files to Commit
+
+- ✅ `1_configure-cmake.sh`
+- ✅ `2_build-package-distribution.sh`
+- ✅ `2a_install-dylibs-to-bundles.sh`
+- ✅ `2b_package-apps.sh`
+- ✅ `2c_create-distribution.sh`
+- ✅ `tools/fix_bundle_deps.py` - Automatic dependency resolver
 - ✅ `resources/icons/veyon-server.icns` ⭐
-- ✅ Cambios en `server/CMakeLists.txt`
-- ✅ `.gitignore` actualizado
+- ✅ Changes in `server/CMakeLists.txt`
+- ✅ `.gitignore` updated
 
-## Contacto y Soporte
+---
 
-Para problemas específicos de macOS, consulta:
-- [Documentación oficial de Veyon](https://veyon.readthedocs.io/)
+## Script Naming Convention
+
+Scripts follow a numbered convention for clarity:
+
+- **1_** prefix: Initial configuration (optional, run once)
+- **2_** prefix: Main build/package script
+- **2a_, 2b_, 2c_** prefixes: Sub-scripts called by main script
+
+This makes the workflow easy to understand and follow.
+
+---
+
+## Contact and Support
+
+For macOS-specific issues, consult:
+- [Official Veyon Documentation](https://veyon.readthedocs.io/)
 - [GitHub Issues](https://github.com/veyon/veyon/issues)

@@ -1,6 +1,6 @@
 #!/bin/bash
-# configure-cmake.sh - Configuración de CMake para Veyon macOS
-# Este script guarda la configuración correcta para poder recrear el build directory
+# 1_configure-cmake.sh - CMake configuration for Veyon macOS
+# This script saves the correct configuration to be able to recreate the build directory
 
 set -euo pipefail
 
@@ -15,27 +15,27 @@ log_warn()  { printf "${YELLOW}[WARN]${NC} %s\n" "$*"; }
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-log_info "=== Configurando CMake para Veyon macOS ==="
+log_info "=== Configuring CMake for Veyon macOS ==="
 log_info ""
 
-# Verificar si build existe y avisar
+# Check if build exists and warn
 if [[ -d "${SCRIPT_DIR}/build" ]]; then
-    log_warn "El directorio build/ ya existe."
-    read -p "¿Deseas eliminarlo y reconfigurar? (y/N): " -n 1 -r
+    log_warn "The build/ directory already exists."
+    read -p "Do you want to remove it and reconfigure? (y/N): " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        log_info "Eliminando build/..."
+        log_info "Removing build/..."
         rm -rf "${SCRIPT_DIR}/build"
     else
-        log_info "Manteniendo build/ existente. Abortando."
+        log_info "Keeping existing build/. Aborting."
         exit 0
     fi
 fi
 
-log_info "Configurando CMake con Qt5..."
+log_info "Configuring CMake with Qt5..."
 log_info ""
 
-# Configuración CMake con todos los parámetros necesarios
+# CMake configuration with all necessary parameters
 cmake -S . -B build \
   -DWITH_QT6=OFF \
   -DCMAKE_PREFIX_PATH="/usr/local/opt/qt@5/lib/cmake;/usr/local/opt/qthttpserver/lib/cmake" \
@@ -48,11 +48,11 @@ cmake -S . -B build \
   -DVEYON_BUILD_MACOS=ON
 
 log_info ""
-log_info "✓ Configuración completada"
+log_info "✓ Configuration completed"
 log_info ""
-log_info "Ahora puedes compilar con:"
+log_info "Now you can build with:"
 log_info "  cmake --build build --parallel"
 log_info ""
-log_info "O usar el script completo:"
-log_info "  ./build-and-package.sh"
+log_info "Or use the complete script:"
+log_info "  ./2_build-package-distribution.sh"
 log_info ""
