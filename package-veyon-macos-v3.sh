@@ -5,6 +5,7 @@
 
 set -euo pipefail
 IFS=$'\n\t'
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${PATH:-}"
 
 # Colores para output
 RED='\033[0;31m'
@@ -22,7 +23,7 @@ log_error() { printf "${RED}[ERROR]${NC} %s\n" "$*"; }
 # CONFIGURACIÓN DE RUTAS
 # ============================================================================
 
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SCRIPT_DIR="$(cd "$(/usr/bin/dirname "$0")" && pwd)"
 BUILD_DIR="${SCRIPT_DIR}/build"
 DIST_DIR="${SCRIPT_DIR}/dist/Applications/Veyon"
 PACKAGE_DIR="${SCRIPT_DIR}/veyon-macos-package"
@@ -108,6 +109,193 @@ ensure_command() {
 	fi
 }
 
+find_helper_binary() {
+	local helper="$1"
+	local helper_subdir="${helper#veyon-}"
+	local candidates=(
+		"${BUILD_DIR}/${helper_subdir}/${helper}"
+		"${SCRIPT_DIR}/dist/bin/${helper}"
+		"${DIST_DIR}/${helper}.app/Contents/MacOS/${helper}"
+	)
+
+	for candidate in "${candidates[@]}"; do
+		if [[ -x "$candidate" ]]; then
+			printf '%s\n' "$candidate"
+			return 0
+		fi
+	done
+
+	return 1
+}
+
+install_helper_binaries() {
+	local target_app="$1"
+	local app_id="$2"
+
+	# Sólo el configurador necesita incluir helpers locales para gestionar el servicio
+	if [[ "$app_id" != "veyon-configurator" ]]; then
+		return
+	fi
+
+	local helpers_dir="${target_app}/Contents/Resources/Helpers"
+	local app_name
+	app_name="$(basename "$target_app")"
+
+	mkdir -p "$helpers_dir"
+
+	for helper in "${HELPER_APPS[@]}"; do
+		local dest="${helpers_dir}/${helper}"
+		if [[ -x "$dest" ]]; then
+			continue
+		fi
+
+		local source
+		if source="$(find_helper_binary "$helper")"; then
+			cp "$source" "$dest"
+			chmod 755 "$dest"
+			log_info "  ✓ Helper ${helper} añadido a ${app_name}"
+
+			if [[ "$helper" == "veyon-service" ]]; then
+				wrap_service_helper_with_server_launcher "$dest"
+			fi
+		else
+			log_warn "  No se encontró el helper ${helper} para ${app_name}"
+		fi
+	done
+}
+
+wrap_service_helper_with_server_launcher() {
+	local helper_path="$1"
+	local real_bin="${helper_path}.bin"
+
+	if [[ -f "$real_bin" ]]; then
+		return
+	fi
+
+	mv "$helper_path" "$real_bin"
+
+	cat > "$helper_path" <<'EOF'
+#!/bin/bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(/usr/bin/dirname "$0")" && pwd)"
+REAL_BIN="${SCRIPT_DIR}/veyon-service.bin"
+
+find_server_app() {
+	local contents_dir
+	local bundle_dir
+	local parent_dir
+
+	contents_dir="$(cd "$SCRIPT_DIR/../.." && pwd)"
+	bundle_dir="$(cd "$contents_dir/.." && pwd)"
+	parent_dir="$(cd "$bundle_dir/.." && pwd)"
+
+	local candidates=(
+		"${parent_dir}/veyon-server.app"
+		"${parent_dir}/Veyon/veyon-server.app"
+		"${bundle_dir}/../veyon-server.app"
+	)
+
+	for candidate in "${candidates[@]}"; do
+		if [[ -d "$candidate" ]]; then
+			printf '%s' "$candidate"
+			return
+		fi
+	done
+
+	printf ''
+}
+
+SERVER_APP="$(find_server_app)"
+
+if [[ -n "$SERVER_APP" ]]; then
+	if /usr/bin/open -a "$SERVER_APP"; then
+		exit 0
+	fi
+fi
+
+if [[ -x "$REAL_BIN" ]]; then
+	exec "$REAL_BIN" "$@"
+fi
+
+echo "No se pudo iniciar veyon-server ni ejecutar el servicio original." >&2
+exit 1
+EOF
+
+	chmod 755 "$helper_path"
+}
+
+# ============================================================================
+# FUNCIÓN: REQUERIR CREDENCIALES DE ADMINISTRADOR AL ABRIR VEYON CONFIGURATOR
+# ============================================================================
+
+enforce_configurator_admin_prompt() {
+	local app_path="${PACKAGE_DIR}/veyon-configurator.app"
+	local macos_dir="${app_path}/Contents/MacOS"
+	local target_bin="${macos_dir}/veyon-configurator"
+	local real_bin="${target_bin}.bin"
+
+	if [[ ! -d "$app_path" ]]; then
+		log_warn "No se encontró veyon-configurator.app, se omite la restricción de administrador."
+		return
+	fi
+
+	if [[ ! -f "$target_bin" ]] && [[ ! -f "$real_bin" ]]; then
+		log_warn "No se encontró el ejecutable principal de veyon-configurator."
+		return
+	fi
+
+	if [[ ! -f "$real_bin" ]]; then
+		mv "$target_bin" "$real_bin"
+	else
+		log_info "Actualizando wrapper de veyon-configurator para la autenticación de administrador."
+	fi
+
+	cat > "$target_bin" <<'EOF'
+#!/bin/bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(/usr/bin/dirname "$0")" && pwd)"
+REAL_BIN="${SCRIPT_DIR}/veyon-configurator.bin"
+PROMPT_MESSAGE="Veyon Configurator requiere una cuenta de administrador para abrirse."
+
+if [[ ! -x "$REAL_BIN" ]]; then
+	echo "No se encontró el ejecutable original de Veyon Configurator." >&2
+	exit 1
+fi
+
+if [[ "${EUID:-0}" -eq 0 ]]; then
+	exec "$REAL_BIN" "$@"
+fi
+
+export VEYON_PROMPT_MESSAGE="$PROMPT_MESSAGE"
+if ! /usr/bin/osascript <<'APPLESCRIPT'
+set promptMessage to system attribute "VEYON_PROMPT_MESSAGE"
+if promptMessage is missing value or promptMessage is "" then
+	set promptMessage to "Se requieren privilegios de administrador."
+end if
+try
+	do shell script "/bin/echo Autenticando..." with prompt promptMessage with administrator privileges
+on error errMsg number errNum
+	if errNum is -128 then
+		error "Autenticación cancelada por el usuario."
+	else
+		error errMsg number errNum
+	end if
+end try
+APPLESCRIPT
+then
+	echo "No se pudo verificar la autenticación de administrador." >&2
+	exit 1
+fi
+
+exec "$REAL_BIN" "$@"
+EOF
+
+	chmod 755 "$target_bin"
+	log_info "veyon-configurator solicitará credenciales de administrador antes de abrirse."
+}
+
 # ============================================================================
 # FUNCIÓN PRINCIPAL: EMPAQUETAR APP (main o helper)
 # ============================================================================
@@ -127,6 +315,9 @@ package_app() {
 
 	# Copiar app
 	cp -R "$source_app" "$(dirname "$target_app")/"
+
+	log_info "  Asegurando helpers dentro del bundle…"
+	install_helper_binaries "$target_app" "$app"
 
 	# ========================================================================
 	# FASE 0: COPIAR LIBVEYON-CORE Y PLUGINS DE VEYON (DESDE BUILD)
@@ -530,6 +721,16 @@ if [[ -f "$FIX_SCRIPT" ]]; then
 else
 	log_warn "No se encontró ${FIX_SCRIPT}; se omite la corrección automática de dependencias."
 fi
+
+# ============================================================================
+# FASE ADICIONAL: FORZAR AUTENTICACIÓN DE ADMINISTRADOR EN CONFIGURATOR
+# ============================================================================
+
+log_info ""
+log_info "=== Aplicando restricción de administrador a veyon-configurator ==="
+log_info ""
+
+enforce_configurator_admin_prompt
 
 # ============================================================================
 # FASE FINAL: FIRMA DE BUNDLES PRINCIPALES
