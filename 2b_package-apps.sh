@@ -27,7 +27,7 @@ SCRIPT_DIR="$(cd "$(/usr/bin/dirname "$0")" && pwd)"
 BUILD_DIR="${SCRIPT_DIR}/build"
 DIST_DIR="${SCRIPT_DIR}/dist/Applications/Veyon"
 PACKAGE_DIR="${SCRIPT_DIR}/veyon-macos-package"
-FIX_SCRIPT="${SCRIPT_DIR}/tools/fix_bundle_deps.python"
+FIX_SCRIPT="${SCRIPT_DIR}/tools/fix_bundle_deps.py"
 
 # Main applications
 MAIN_APPS=(veyon-configurator veyon-master veyon-server)
@@ -42,7 +42,7 @@ QT5_PLUGINS="/usr/local/opt/qt@5/plugins"
 QT5_FRAMEWORKS_DIR="${QT5_CELLAR}/lib"
 
 # Additional required Qt frameworks
-QT_EXTRA_FRAMEWORKS=(QtDBus QtPrintSupport QtSvg QtQml QtQmlModels QtQuick QtPdf)
+QT_EXTRA_FRAMEWORKS=(QtDBus QtPrintSupport QtSvg QtQml QtQmlModels QtQuick QtPdf QtWebSockets)
 
 # Custom Qt frameworks (QtHttpServer/QtSslServer)
 QT_HTTP_FRAMEWORK_SOURCE="$HOME/GitHub/qt5httpserver-build/lib"
@@ -372,7 +372,7 @@ package_app() {
 			fi
 		done
 
-		# Update Qt plugin paths
+		# Update Qt plugin paths - CRITICAL FIX for v15 issue
 		for plugin in "$target_app/Contents/PlugIns"/*/*.dylib "$target_app/Contents/PlugIns"/*/*/*.dylib; do
 			[[ -f "$plugin" ]] || continue
 
@@ -384,11 +384,36 @@ package_app() {
 				continue
 			fi
 
-			# Update Qt framework references
-			for qt_fw in QtCore QtGui QtWidgets QtNetwork QtDBus QtPrintSupport QtSvg; do
+			# Fix install_id (change absolute paths to @loader_path)
+			install_name_tool -id "@loader_path/${plugin_name}" "$plugin" 2>/dev/null || true
+
+			# Update Qt framework references (Cellar paths)
+			for qt_fw in QtCore QtGui QtWidgets QtNetwork QtDBus QtPrintSupport QtSvg QtQml QtQmlModels QtQuick; do
 				install_name_tool -change "/usr/local/Cellar/qt@5/5.15.13/lib/${qt_fw}.framework/Versions/5/${qt_fw}" \
 					"@executable_path/../Frameworks/${qt_fw}.framework/Versions/5/${qt_fw}" "$plugin" 2>/dev/null || true
+				install_name_tool -change "/usr/local/opt/qt@5/lib/${qt_fw}.framework/Versions/5/${qt_fw}" \
+					"@executable_path/../Frameworks/${qt_fw}.framework/Versions/5/${qt_fw}" "$plugin" 2>/dev/null || true
 			done
+
+			# Fix Homebrew library paths
+			install_name_tool -change "/usr/local/opt/freetype/lib/libfreetype.6.dylib" \
+				"@loader_path/../../Frameworks/libfreetype.6.dylib" "$plugin" 2>/dev/null || true
+			install_name_tool -change "/usr/local/opt/glib/lib/libgthread-2.0.0.dylib" \
+				"@loader_path/../../Frameworks/libgthread-2.0.0.dylib" "$plugin" 2>/dev/null || true
+			install_name_tool -change "/usr/local/opt/glib/lib/libglib-2.0.0.dylib" \
+				"@loader_path/../../Frameworks/libglib-2.0.0.dylib" "$plugin" 2>/dev/null || true
+			install_name_tool -change "/usr/local/opt/gettext/lib/libintl.8.dylib" \
+				"@loader_path/../../Frameworks/libintl.8.dylib" "$plugin" 2>/dev/null || true
+			install_name_tool -change "/usr/local/opt/webp/lib/libwebp.7.dylib" \
+				"@loader_path/../../Frameworks/libwebp.7.dylib" "$plugin" 2>/dev/null || true
+			install_name_tool -change "/usr/local/opt/webp/lib/libwebpmux.3.dylib" \
+				"@loader_path/../../Frameworks/libwebpmux.3.dylib" "$plugin" 2>/dev/null || true
+			install_name_tool -change "/usr/local/opt/webp/lib/libwebpdemux.2.dylib" \
+				"@loader_path/../../Frameworks/libwebpdemux.2.dylib" "$plugin" 2>/dev/null || true
+			install_name_tool -change "/usr/local/opt/jpeg-turbo/lib/libjpeg.8.dylib" \
+				"@loader_path/../../Frameworks/libjpeg.8.dylib" "$plugin" 2>/dev/null || true
+			install_name_tool -change "/usr/local/opt/libtiff/lib/libtiff.6.dylib" \
+				"@loader_path/../../Frameworks/libtiff.6.dylib" "$plugin" 2>/dev/null || true
 		done
 	else
 		log_error "No se encontraron plugins Qt 5 en ${QT5_PLUGINS}"
@@ -498,6 +523,19 @@ package_app() {
 			local src="${QCA_PLUGINS_DIR}/${plugin}"
 			if [[ -f "$src" ]]; then
 				cp "$src" "$target_app/Contents/PlugIns/crypto/"
+
+				# Fix paths in QCA plugins
+				local dest_plugin="$target_app/Contents/PlugIns/crypto/${plugin}"
+
+				# Fix QCA framework path
+				install_name_tool -change "/usr/local/lib/qca-qt5.framework/Versions/2/qca-qt5" \
+					"@loader_path/../../Frameworks/qca-qt5.framework/Versions/2/qca-qt5" "$dest_plugin" 2>/dev/null || true
+
+				# Fix Qt Core path
+				install_name_tool -change "/usr/local/opt/qt@5/lib/QtCore.framework/Versions/5/QtCore" \
+					"@executable_path/../Frameworks/QtCore.framework/Versions/5/QtCore" "$dest_plugin" 2>/dev/null || true
+				install_name_tool -change "/usr/local/Cellar/qt@5/5.15.13/lib/QtCore.framework/Versions/5/QtCore" \
+					"@executable_path/../Frameworks/QtCore.framework/Versions/5/QtCore" "$dest_plugin" 2>/dev/null || true
 			else
 				log_warn "QCA plugin ${plugin} not found"
 			fi
