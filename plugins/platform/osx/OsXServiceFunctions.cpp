@@ -26,6 +26,7 @@
 #include <QFileInfo>
 #include <QProcess>
 #include <QSaveFile>
+#include <QStringList>
 #include <QXmlStreamWriter>
 
 #include "Filesystem.h"
@@ -39,6 +40,80 @@ constexpr auto LaunchAgentLabel = "com.veyon.vnc";
 constexpr auto LaunchAgentDirectory = "/Library/LaunchAgents";
 constexpr auto LaunchAgentFileName = "com.veyon.vnc.plist";
 constexpr auto DefaultServerExecutable = "/Applications/Veyon/veyon-server.app/Contents/MacOS/veyon-server";
+
+QStringList scriptSearchDirectories()
+{
+	QStringList directories;
+
+	auto addDirectory = [&](const QString& path) {
+		if (path.isEmpty() || directories.contains(path))
+		{
+			return;
+		}
+		directories.append(path);
+	};
+
+	QDir appDir(QCoreApplication::applicationDirPath());
+	if (appDir.dirName() == QStringLiteral("MacOS"))
+	{
+		QDir scriptsDir(appDir);
+		if (scriptsDir.cdUp() &&
+			scriptsDir.cd(QStringLiteral("Resources")) &&
+			scriptsDir.cd(QStringLiteral("Scripts")))
+		{
+			addDirectory(scriptsDir.absolutePath());
+		}
+	}
+
+	addDirectory(QStringLiteral("/Applications/Veyon/veyon-configurator.app/Contents/Resources/Scripts"));
+
+	return directories;
+}
+
+QString resolveBundledScript(const QString& scriptName)
+{
+	for (const auto& directory : scriptSearchDirectories())
+	{
+		const QFileInfo scriptInfo(directory + QLatin1Char('/') + scriptName);
+		if (scriptInfo.isFile())
+		{
+			return scriptInfo.absoluteFilePath();
+		}
+	}
+
+	return {};
+}
+
+bool runBundledScript(const QString& scriptName)
+{
+	const auto scriptPath = resolveBundledScript(scriptName);
+
+	if (scriptPath.isEmpty())
+	{
+		return false;
+	}
+
+	QProcess process;
+	process.start(QStringLiteral("/bin/bash"), QStringList{scriptPath});
+
+	if (process.waitForFinished() == false)
+	{
+		vWarning() << "OsXServiceFunctions: script" << scriptPath << "did not finish";
+		return false;
+	}
+
+	if (process.exitStatus() != QProcess::NormalExit ||
+		process.exitCode() != 0)
+	{
+		vWarning() << "OsXServiceFunctions: script" << scriptPath
+				   << "failed with exit code" << process.exitCode();
+		vWarning() << "stdout:" << process.readAllStandardOutput();
+		vWarning() << "stderr:" << process.readAllStandardError();
+		return false;
+	}
+
+	return true;
+}
 
 QString launchAgentPath()
 {
@@ -430,6 +505,11 @@ bool OsXServiceFunctions::start( const QString& name )
 		return true;
 	}
 
+	if (runBundledScript(QStringLiteral("install_veyon_vnc_agent.sh")))
+	{
+		return true;
+	}
+
 	if (startLaunchAgent())
 	{
 		return true;
@@ -450,7 +530,9 @@ bool OsXServiceFunctions::stop( const QString& name )
 {
 	Q_UNUSED(name)
 
-	const bool agentStopped = stopLaunchAgent();
+	const bool scriptSuccess = runBundledScript(QStringLiteral("uninstall_veyon_vnc_agent.sh"));
+
+	const bool agentStopped = scriptSuccess ? true : stopLaunchAgent();
 
 	bool success = agentStopped;
 
@@ -474,7 +556,8 @@ bool OsXServiceFunctions::install( const QString& name, const QString& serviceFi
 	Q_UNUSED(startMode)
 	Q_UNUSED(displayName)
 
-	return installLaunchAgent(resolveServerExecutablePath());
+	return runBundledScript(QStringLiteral("install_veyon_vnc_agent.sh")) ||
+		   installLaunchAgent(resolveServerExecutablePath());
 }
 
 
@@ -482,6 +565,13 @@ bool OsXServiceFunctions::install( const QString& name, const QString& serviceFi
 bool OsXServiceFunctions::uninstall( const QString& name )
 {
 	Q_UNUSED(name)
+
+	const bool scriptSuccess = runBundledScript(QStringLiteral("uninstall_veyon_vnc_agent.sh"));
+
+	if (scriptSuccess)
+	{
+		return true;
+	}
 
 	stopLaunchAgent();
 	return removeLaunchAgent();

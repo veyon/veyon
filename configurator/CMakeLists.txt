@@ -59,4 +59,40 @@ if(APPLE)
 	endforeach()
 	unset(_helper_mode)
 	unset(_veyon_macos_helpers)
+
+	set(_veyon_configurator_scripts
+		${CMAKE_SOURCE_DIR}/scripts/install_veyon_vnc_agent.sh
+		${CMAKE_SOURCE_DIR}/scripts/uninstall_veyon_vnc_agent.sh
+		${CMAKE_SOURCE_DIR}/scripts/com.veyon.vnc.plist
+	)
+
+	set(_veyon_configurator_scripts_dest
+		"$<TARGET_BUNDLE_DIR:veyon-configurator>/Contents/Resources/Scripts"
+	)
+
+	add_custom_command(TARGET veyon-configurator POST_BUILD
+		COMMAND "${CMAKE_COMMAND}" -E make_directory "${_veyon_configurator_scripts_dest}"
+		VERBATIM
+	)
+
+	foreach(_script ${_veyon_configurator_scripts})
+		get_filename_component(_script_name "${_script}" NAME)
+		add_custom_command(TARGET veyon-configurator POST_BUILD
+			COMMAND "${CMAKE_COMMAND}" -E copy "${_script}" "${_veyon_configurator_scripts_dest}/${_script_name}"
+			COMMENT "Embedding script ${_script_name} into veyon-configurator bundle"
+			VERBATIM
+		)
+	endforeach()
+
+	add_custom_command(TARGET veyon-configurator POST_BUILD
+		COMMAND /bin/chmod 755 "${_veyon_configurator_scripts_dest}/install_veyon_vnc_agent.sh"
+		COMMAND /bin/chmod 755 "${_veyon_configurator_scripts_dest}/uninstall_veyon_vnc_agent.sh"
+		COMMAND /bin/chmod 644 "${_veyon_configurator_scripts_dest}/com.veyon.vnc.plist"
+		VERBATIM
+	)
+
+	unset(_script)
+	unset(_script_name)
+	unset(_veyon_configurator_scripts_dest)
+	unset(_veyon_configurator_scripts)
 endif()
