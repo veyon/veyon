@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- LaunchAgent for all users: starts Veyon VNC app hidden, without activating Dock or focus -->
+  <key>Label</key>
+  <string>com.veyon.vnc</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Applications/Veyon/veyon-server.app/Contents/MacOS/veyon-server</string>
+  </array>
+
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+
+  <!-- Only in GUI sessions -->
+  <key>LimitLoadToSessionType</key><string>Aqua</string>
+
+  <!-- Interactive to allow GUI context -->
+  <key>ProcessType</key><string>Interactive</string>
+
+  <!-- Logging to writable temp directory -->
+  <key>StandardOutPath</key><string>/var/tmp/veyon-vnc.out.log</string>
+  <key>StandardErrorPath</key><string>/var/tmp/veyon-vnc.err.log</string>
+
+</dict>
+</plist>

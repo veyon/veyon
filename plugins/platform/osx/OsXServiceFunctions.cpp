@@ -25,11 +25,294 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QProcess>
+#include <QSaveFile>
+#include <QXmlStreamWriter>
 
 #include "Filesystem.h"
 #include "Logger.h"
 #include "OsXServiceFunctions.h"
 #include "VeyonCore.h"
+
+namespace {
+
+constexpr auto LaunchAgentLabel = "com.veyon.vnc";
+constexpr auto LaunchAgentDirectory = "/Library/LaunchAgents";
+constexpr auto LaunchAgentFileName = "com.veyon.vnc.plist";
+constexpr auto DefaultServerExecutable = "/Applications/Veyon/veyon-server.app/Contents/MacOS/veyon-server";
+
+QString launchAgentPath()
+{
+	return QString::fromLatin1(LaunchAgentDirectory) + QLatin1Char('/') + QString::fromLatin1(LaunchAgentFileName);
+}
+
+QString defaultServerExecutablePath()
+{
+	return QString::fromLatin1( DefaultServerExecutable );
+}
+
+QString resolveServerExecutablePath()
+{
+	const QFileInfo serverBinaryInfo( VeyonCore::filesystem().serverFilePath() );
+
+	if( serverBinaryInfo.exists() && serverBinaryInfo.isExecutable() )
+	{
+		return serverBinaryInfo.absoluteFilePath();
+	}
+
+	return defaultServerExecutablePath();
+}
+
+void writeKey(QXmlStreamWriter& writer, const QString& key)
+{
+	writer.writeTextElement(QStringLiteral("key"), key);
+}
+
+	QString logPath(const QString& fileName)
+	{
+		return QStringLiteral("/var/tmp/") + fileName;
+	}
+
+	QByteArray buildLaunchAgentPlist(const QString& serverExecutablePath)
+{
+	QString xml;
+	QXmlStreamWriter writer(&xml);
+
+	writer.setAutoFormatting(true);
+	writer.writeStartDocument(QStringLiteral("1.0"));
+	writer.writeDTD(QStringLiteral(
+		"<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" "
+		"\"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">"));
+	writer.writeStartElement(QStringLiteral("plist"));
+	writer.writeAttribute(QStringLiteral("version"), QStringLiteral("1.0"));
+	writer.writeStartElement(QStringLiteral("dict"));
+
+	writer.writeComment(QStringLiteral(
+		" LaunchAgent for all users: starts Veyon VNC app hidden, without activating Dock or focus "));
+
+	writeKey(writer, QStringLiteral("Label"));
+	writer.writeTextElement(QStringLiteral("string"), QString::fromLatin1(LaunchAgentLabel));
+
+	writeKey(writer, QStringLiteral("ProgramArguments"));
+	writer.writeStartElement(QStringLiteral("array"));
+	writer.writeTextElement(QStringLiteral("string"), serverExecutablePath);
+	writer.writeEndElement(); // array
+
+	writeKey(writer, QStringLiteral("RunAtLoad"));
+	writer.writeEmptyElement(QStringLiteral("true"));
+
+	writeKey(writer, QStringLiteral("KeepAlive"));
+	writer.writeEmptyElement(QStringLiteral("true"));
+
+	writeKey(writer, QStringLiteral("LimitLoadToSessionType"));
+	writer.writeTextElement(QStringLiteral("string"), QStringLiteral("Aqua"));
+
+	writeKey(writer, QStringLiteral("ProcessType"));
+	writer.writeTextElement(QStringLiteral("string"), QStringLiteral("Interactive"));
+
+	writeKey(writer, QStringLiteral("StandardOutPath"));
+	writer.writeTextElement(QStringLiteral("string"), logPath(QStringLiteral("veyon-vnc.out.log")));
+
+	writeKey(writer, QStringLiteral("StandardErrorPath"));
+	writer.writeTextElement(QStringLiteral("string"), logPath(QStringLiteral("veyon-vnc.err.log")));
+
+	writer.writeEndElement(); // dict
+	writer.writeEndElement(); // plist
+	writer.writeEndDocument();
+
+	return xml.toUtf8();
+}
+
+bool ensureLaunchAgentDirectory()
+{
+	QDir dir(QString::fromLatin1(LaunchAgentDirectory));
+	if (dir.exists())
+	{
+		return true;
+	}
+
+	if (dir.mkpath(QStringLiteral(".")) == false)
+	{
+		vWarning() << "OsXServiceFunctions: failed to create" << dir.absolutePath();
+		return false;
+	}
+
+	return true;
+}
+
+bool writeLaunchAgentFile(const QString& serverExecutablePath)
+{
+	if (ensureLaunchAgentDirectory() == false)
+	{
+		return false;
+	}
+
+	const auto plistData = buildLaunchAgentPlist(serverExecutablePath);
+	QSaveFile file(launchAgentPath());
+
+	if (file.open(QIODevice::WriteOnly | QIODevice::Truncate) == false)
+	{
+		vWarning() << "OsXServiceFunctions: unable to open" << file.fileName() << "for writing";
+		return false;
+	}
+
+	if (file.write(plistData) != plistData.size())
+	{
+		vWarning() << "OsXServiceFunctions: unable to write launch agent to" << file.fileName();
+		return false;
+	}
+
+	if (file.commit() == false)
+	{
+		vWarning() << "OsXServiceFunctions: failed to commit launch agent file";
+		return false;
+	}
+
+	QFile::setPermissions(file.fileName(),
+						  QFile::ReadOwner | QFile::WriteOwner |
+						  QFile::ReadGroup | QFile::ReadOther);
+
+	return true;
+}
+
+bool runCommand(const QString& program, const QStringList& arguments, bool quiet = false)
+{
+	QProcess process;
+	process.start(program, arguments);
+
+	if (process.waitForFinished() == false)
+	{
+		if (quiet == false)
+		{
+			vWarning() << "OsXServiceFunctions:" << program << arguments << "did not finish";
+		}
+		return false;
+	}
+
+	if (process.exitStatus() != QProcess::NormalExit || process.exitCode() != 0)
+	{
+		if (quiet == false)
+		{
+			vWarning() << "OsXServiceFunctions:" << program << arguments
+					   << "failed. exitStatus=" << process.exitStatus()
+					   << "exitCode=" << process.exitCode();
+			vWarning() << "stdout:" << process.readAllStandardOutput();
+			vWarning() << "stderr:" << process.readAllStandardError();
+		}
+		return false;
+	}
+
+	return true;
+}
+
+bool runLaunchctl(const QStringList& arguments, bool quiet = false)
+{
+	return runCommand(QStringLiteral("/bin/launchctl"), arguments, quiet);
+}
+
+bool fixLaunchAgentOwnership()
+{
+	return runCommand(QStringLiteral("/usr/sbin/chown"),
+					  {QStringLiteral("root:wheel"), launchAgentPath()},
+					  true);
+}
+
+bool bootstrapLaunchAgent(quint32 uid)
+{
+	const auto guiDomain = QStringLiteral("gui/%1").arg(uid);
+	const auto labelPath = guiDomain + QLatin1Char('/') + QString::fromLatin1(LaunchAgentLabel);
+
+	runLaunchctl({QStringLiteral("bootout"), guiDomain, launchAgentPath()}, true);
+
+	if (runLaunchctl({QStringLiteral("bootstrap"), guiDomain, launchAgentPath()}) == false)
+	{
+		return false;
+	}
+
+	runLaunchctl({QStringLiteral("enable"), labelPath}, true);
+	runLaunchctl({QStringLiteral("kickstart"), QStringLiteral("-k"), labelPath}, true);
+
+	return true;
+}
+
+bool consoleUser(quint32& uid)
+{
+	const QFileInfo consoleDevice(QStringLiteral("/dev/console"));
+	if (consoleDevice.exists() == false)
+	{
+		return false;
+	}
+
+	uid = consoleDevice.ownerId();
+	return uid != 0u;
+}
+
+bool installLaunchAgent(const QString& serverExecutablePath)
+{
+	if (writeLaunchAgentFile(serverExecutablePath) == false)
+	{
+		return false;
+	}
+
+	fixLaunchAgentOwnership();
+	return true;
+}
+
+bool removeLaunchAgent()
+{
+	QFile file(launchAgentPath());
+	if (file.exists() == false)
+	{
+		return true;
+	}
+
+	if (file.remove() == false)
+	{
+		vWarning() << "OsXServiceFunctions: failed to remove" << file.fileName();
+		return false;
+	}
+
+	return true;
+}
+
+bool startLaunchAgent()
+{
+	const auto executablePath = resolveServerExecutablePath();
+
+	if (installLaunchAgent(executablePath) == false)
+	{
+		vWarning() << "OsXServiceFunctions: failed to install LaunchAgent";
+		return false;
+	}
+
+	quint32 uid = 0;
+	if (consoleUser(uid) == false)
+	{
+		vWarning() << "OsXServiceFunctions: no GUI console user detected; service will start on next login";
+		return true;
+	}
+
+	if (bootstrapLaunchAgent(uid) == false)
+	{
+		vWarning() << "OsXServiceFunctions: failed to bootstrap LaunchAgent for uid" << uid;
+		return false;
+	}
+
+	return true;
+}
+
+bool stopLaunchAgent()
+{
+	quint32 uid = 0;
+	if (consoleUser(uid))
+	{
+		const auto guiDomain = QStringLiteral("gui/%1").arg(uid);
+		return runLaunchctl({QStringLiteral("bootout"), guiDomain, launchAgentPath()}, true);
+	}
+
+	return true;
+}
+
+}
 
 QString OsXServiceFunctions::veyonServiceName() const
 {
@@ -147,12 +430,17 @@ bool OsXServiceFunctions::start( const QString& name )
 		return true;
 	}
 
-	if( QProcess::startDetached( serviceExecutablePath(), {} ) )
+	if (startLaunchAgent())
 	{
 		return true;
 	}
 
 	// fall back to launching the server directly if the service wrapper could not be started
+	if( QProcess::startDetached( serviceExecutablePath(), {} ) )
+	{
+		return true;
+	}
+
 	return QProcess::startDetached( VeyonCore::filesystem().serverFilePath(), {} );
 }
 
@@ -162,7 +450,9 @@ bool OsXServiceFunctions::stop( const QString& name )
 {
 	Q_UNUSED(name)
 
-	bool success = true;
+	const bool agentStopped = stopLaunchAgent();
+
+	bool success = agentStopped;
 
 	for (const auto& executable : { serviceExecutablePath(),
 									VeyonCore::filesystem().serverFilePath(),
@@ -184,8 +474,7 @@ bool OsXServiceFunctions::install( const QString& name, const QString& serviceFi
 	Q_UNUSED(startMode)
 	Q_UNUSED(displayName)
 
-	vCritical() << "OsXServiceFunctions: installing launchd services is not supported.";
-	return false;
+	return installLaunchAgent(resolveServerExecutablePath());
 }
 
 
@@ -194,8 +483,8 @@ bool OsXServiceFunctions::uninstall( const QString& name )
 {
 	Q_UNUSED(name)
 
-	vCritical() << "OsXServiceFunctions: uninstalling launchd services is not supported.";
-	return false;
+	stopLaunchAgent();
+	return removeLaunchAgent();
 }
 
 
