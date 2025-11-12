@@ -41,213 +41,69 @@ constexpr auto LaunchAgentDirectory = "/Library/LaunchAgents";
 constexpr auto LaunchAgentFileName = "com.veyon.vnc.plist";
 constexpr auto DefaultServerExecutable = "/Applications/Veyon/veyon-server.app/Contents/MacOS/veyon-server";
 
-QStringList scriptSearchDirectories()
-{
-	QStringList directories;
+// NOTE: Script and helper resolution functions removed - no longer needed
+// Service installation is handled by external script 0_agents.sh
 
-	auto addDirectory = [&](const QString& path) {
-		if (path.isEmpty() || directories.contains(path))
-		{
-			return;
-		}
-		directories.append(path);
-	};
+// NOTE: Functions removed - no longer needed for simplified start/stop operations
+// Service installation is handled by external script 0_agents.sh
 
-	QDir appDir(QCoreApplication::applicationDirPath());
-	if (appDir.dirName() == QStringLiteral("MacOS"))
-	{
-		QDir scriptsDir(appDir);
-		if (scriptsDir.cdUp() &&
-			scriptsDir.cd(QStringLiteral("Resources")) &&
-			scriptsDir.cd(QStringLiteral("Scripts")))
-		{
-			addDirectory(scriptsDir.absolutePath());
-		}
-	}
+// NOTE: Plist generation functions removed - no longer needed
+// Service installation is handled by external script 0_agents.sh
 
-	addDirectory(QStringLiteral("/Applications/Veyon/veyon-configurator.app/Contents/Resources/Scripts"));
+// NOTE: The following functions are no longer used.
+// Service installation/uninstallation is now handled by the external 0_agents.sh script.
 
-	return directories;
-}
-
-QString resolveBundledScript(const QString& scriptName)
-{
-	for (const auto& directory : scriptSearchDirectories())
-	{
-		const QFileInfo scriptInfo(directory + QLatin1Char('/') + scriptName);
-		if (scriptInfo.isFile())
-		{
-			return scriptInfo.absoluteFilePath();
-		}
-	}
-
-	return {};
-}
-
-bool runBundledScript(const QString& scriptName)
-{
-	const auto scriptPath = resolveBundledScript(scriptName);
-
-	if (scriptPath.isEmpty())
-	{
-		return false;
-	}
-
-	QProcess process;
-	process.start(QStringLiteral("/bin/bash"), QStringList{scriptPath});
-
-	if (process.waitForFinished() == false)
-	{
-		vWarning() << "OsXServiceFunctions: script" << scriptPath << "did not finish";
-		return false;
-	}
-
-	if (process.exitStatus() != QProcess::NormalExit ||
-		process.exitCode() != 0)
-	{
-		vWarning() << "OsXServiceFunctions: script" << scriptPath
-				   << "failed with exit code" << process.exitCode();
-		vWarning() << "stdout:" << process.readAllStandardOutput();
-		vWarning() << "stderr:" << process.readAllStandardError();
-		return false;
-	}
-
-	return true;
-}
-
-QString launchAgentPath()
-{
-	return QString::fromLatin1(LaunchAgentDirectory) + QLatin1Char('/') + QString::fromLatin1(LaunchAgentFileName);
-}
-
-QString defaultServerExecutablePath()
-{
-	return QString::fromLatin1( DefaultServerExecutable );
-}
-
-QString resolveServerExecutablePath()
-{
-	const QFileInfo serverBinaryInfo( VeyonCore::filesystem().serverFilePath() );
-
-	if( serverBinaryInfo.exists() && serverBinaryInfo.isExecutable() )
-	{
-		return serverBinaryInfo.absoluteFilePath();
-	}
-
-	return defaultServerExecutablePath();
-}
-
-void writeKey(QXmlStreamWriter& writer, const QString& key)
-{
-	writer.writeTextElement(QStringLiteral("key"), key);
-}
-
-	QString logPath(const QString& fileName)
-	{
-		return QStringLiteral("/var/tmp/") + fileName;
-	}
-
-	QByteArray buildLaunchAgentPlist(const QString& serverExecutablePath)
-{
-	QString xml;
-	QXmlStreamWriter writer(&xml);
-
-	writer.setAutoFormatting(true);
-	writer.writeStartDocument(QStringLiteral("1.0"));
-	writer.writeDTD(QStringLiteral(
-		"<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" "
-		"\"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">"));
-	writer.writeStartElement(QStringLiteral("plist"));
-	writer.writeAttribute(QStringLiteral("version"), QStringLiteral("1.0"));
-	writer.writeStartElement(QStringLiteral("dict"));
-
-	writer.writeComment(QStringLiteral(
-		" LaunchAgent for all users: starts Veyon VNC app hidden, without activating Dock or focus "));
-
-	writeKey(writer, QStringLiteral("Label"));
-	writer.writeTextElement(QStringLiteral("string"), QString::fromLatin1(LaunchAgentLabel));
-
-	writeKey(writer, QStringLiteral("ProgramArguments"));
-	writer.writeStartElement(QStringLiteral("array"));
-	writer.writeTextElement(QStringLiteral("string"), serverExecutablePath);
-	writer.writeEndElement(); // array
-
-	writeKey(writer, QStringLiteral("RunAtLoad"));
-	writer.writeEmptyElement(QStringLiteral("true"));
-
-	writeKey(writer, QStringLiteral("KeepAlive"));
-	writer.writeEmptyElement(QStringLiteral("true"));
-
-	writeKey(writer, QStringLiteral("LimitLoadToSessionType"));
-	writer.writeTextElement(QStringLiteral("string"), QStringLiteral("Aqua"));
-
-	writeKey(writer, QStringLiteral("ProcessType"));
-	writer.writeTextElement(QStringLiteral("string"), QStringLiteral("Interactive"));
-
-	writeKey(writer, QStringLiteral("StandardOutPath"));
-	writer.writeTextElement(QStringLiteral("string"), logPath(QStringLiteral("veyon-vnc.out.log")));
-
-	writeKey(writer, QStringLiteral("StandardErrorPath"));
-	writer.writeTextElement(QStringLiteral("string"), logPath(QStringLiteral("veyon-vnc.err.log")));
-
-	writer.writeEndElement(); // dict
-	writer.writeEndElement(); // plist
-	writer.writeEndDocument();
-
-	return xml.toUtf8();
-}
-
-bool ensureLaunchAgentDirectory()
-{
-	QDir dir(QString::fromLatin1(LaunchAgentDirectory));
-	if (dir.exists())
-	{
-		return true;
-	}
-
-	if (dir.mkpath(QStringLiteral(".")) == false)
-	{
-		vWarning() << "OsXServiceFunctions: failed to create" << dir.absolutePath();
-		return false;
-	}
-
-	return true;
-}
-
-bool writeLaunchAgentFile(const QString& serverExecutablePath)
-{
-	if (ensureLaunchAgentDirectory() == false)
-	{
-		return false;
-	}
-
-	const auto plistData = buildLaunchAgentPlist(serverExecutablePath);
-	QSaveFile file(launchAgentPath());
-
-	if (file.open(QIODevice::WriteOnly | QIODevice::Truncate) == false)
-	{
-		vWarning() << "OsXServiceFunctions: unable to open" << file.fileName() << "for writing";
-		return false;
-	}
-
-	if (file.write(plistData) != plistData.size())
-	{
-		vWarning() << "OsXServiceFunctions: unable to write launch agent to" << file.fileName();
-		return false;
-	}
-
-	if (file.commit() == false)
-	{
-		vWarning() << "OsXServiceFunctions: failed to commit launch agent file";
-		return false;
-	}
-
-	QFile::setPermissions(file.fileName(),
-						  QFile::ReadOwner | QFile::WriteOwner |
-						  QFile::ReadGroup | QFile::ReadOther);
-
-	return true;
-}
+// bool ensureLaunchAgentDirectory()
+// {
+// 	QDir dir(QString::fromLatin1(LaunchAgentDirectory));
+// 	if (dir.exists())
+// 	{
+// 		return true;
+// 	}
+//
+// 	if (dir.mkpath(QStringLiteral(".")) == false)
+// 	{
+// 		vWarning() << "OsXServiceFunctions: failed to create" << dir.absolutePath();
+// 		return false;
+// 	}
+//
+// 	return true;
+// }
+//
+// bool writeLaunchAgentFile(const QString& serverExecutablePath)
+// {
+// 	if (ensureLaunchAgentDirectory() == false)
+// 	{
+// 		return false;
+// 	}
+//
+// 	const auto plistData = buildLaunchAgentPlist(serverExecutablePath);
+// 	QSaveFile file(launchAgentPath());
+//
+// 	if (file.open(QIODevice::WriteOnly | QIODevice::Truncate) == false)
+// 	{
+// 		vWarning() << "OsXServiceFunctions: unable to open" << file.fileName() << "for writing";
+// 		return false;
+// 	}
+//
+// 	if (file.write(plistData) != plistData.size())
+// 	{
+// 		vWarning() << "OsXServiceFunctions: unable to write launch agent to" << file.fileName();
+// 		return false;
+// 	}
+//
+// 	if (file.commit() == false)
+// 	{
+// 		vWarning() << "OsXServiceFunctions: failed to commit launch agent file";
+// 		return false;
+// 	}
+//
+// 	QFile::setPermissions(file.fileName(),
+// 						  QFile::ReadOwner | QFile::WriteOwner |
+// 						  QFile::ReadGroup | QFile::ReadOther);
+//
+// 	return true;
+// }
 
 bool runCommand(const QString& program, const QStringList& arguments, bool quiet = false)
 {
@@ -284,30 +140,33 @@ bool runLaunchctl(const QStringList& arguments, bool quiet = false)
 	return runCommand(QStringLiteral("/bin/launchctl"), arguments, quiet);
 }
 
-bool fixLaunchAgentOwnership()
-{
-	return runCommand(QStringLiteral("/usr/sbin/chown"),
-					  {QStringLiteral("root:wheel"), launchAgentPath()},
-					  true);
-}
+// NOTE: The following functions are no longer used.
+// Service installation/uninstallation is now handled by the external 0_agents.sh script.
 
-bool bootstrapLaunchAgent(quint32 uid)
-{
-	const auto guiDomain = QStringLiteral("gui/%1").arg(uid);
-	const auto labelPath = guiDomain + QLatin1Char('/') + QString::fromLatin1(LaunchAgentLabel);
-
-	runLaunchctl({QStringLiteral("bootout"), guiDomain, launchAgentPath()}, true);
-
-	if (runLaunchctl({QStringLiteral("bootstrap"), guiDomain, launchAgentPath()}) == false)
-	{
-		return false;
-	}
-
-	runLaunchctl({QStringLiteral("enable"), labelPath}, true);
-	runLaunchctl({QStringLiteral("kickstart"), QStringLiteral("-k"), labelPath}, true);
-
-	return true;
-}
+// bool fixLaunchAgentOwnership()
+// {
+// 	return runCommand(QStringLiteral("/usr/sbin/chown"),
+// 					  {QStringLiteral("root:wheel"), launchAgentPath()},
+// 					  true);
+// }
+//
+// bool bootstrapLaunchAgent(quint32 uid)
+// {
+// 	const auto guiDomain = QStringLiteral("gui/%1").arg(uid);
+// 	const auto labelPath = guiDomain + QLatin1Char('/') + QString::fromLatin1(LaunchAgentLabel);
+//
+// 	runLaunchctl({QStringLiteral("bootout"), guiDomain, launchAgentPath()}, true);
+//
+// 	if (runLaunchctl({QStringLiteral("bootstrap"), guiDomain, launchAgentPath()}) == false)
+// 	{
+// 		return false;
+// 	}
+//
+// 	runLaunchctl({QStringLiteral("enable"), labelPath}, true);
+// 	runLaunchctl({QStringLiteral("kickstart"), QStringLiteral("-k"), labelPath}, true);
+//
+// 	return true;
+// }
 
 bool consoleUser(quint32& uid)
 {
@@ -321,71 +180,75 @@ bool consoleUser(quint32& uid)
 	return uid != 0u;
 }
 
-bool installLaunchAgent(const QString& serverExecutablePath)
-{
-	if (writeLaunchAgentFile(serverExecutablePath) == false)
-	{
-		return false;
-	}
+// NOTE: The following functions are no longer used.
+// Service installation/uninstallation is now handled by the external 0_agents.sh script.
+// These functions are kept here for reference only.
 
-	fixLaunchAgentOwnership();
-	return true;
-}
-
-bool removeLaunchAgent()
-{
-	QFile file(launchAgentPath());
-	if (file.exists() == false)
-	{
-		return true;
-	}
-
-	if (file.remove() == false)
-	{
-		vWarning() << "OsXServiceFunctions: failed to remove" << file.fileName();
-		return false;
-	}
-
-	return true;
-}
-
-bool startLaunchAgent()
-{
-	const auto executablePath = resolveServerExecutablePath();
-
-	if (installLaunchAgent(executablePath) == false)
-	{
-		vWarning() << "OsXServiceFunctions: failed to install LaunchAgent";
-		return false;
-	}
-
-	quint32 uid = 0;
-	if (consoleUser(uid) == false)
-	{
-		vWarning() << "OsXServiceFunctions: no GUI console user detected; service will start on next login";
-		return true;
-	}
-
-	if (bootstrapLaunchAgent(uid) == false)
-	{
-		vWarning() << "OsXServiceFunctions: failed to bootstrap LaunchAgent for uid" << uid;
-		return false;
-	}
-
-	return true;
-}
-
-bool stopLaunchAgent()
-{
-	quint32 uid = 0;
-	if (consoleUser(uid))
-	{
-		const auto guiDomain = QStringLiteral("gui/%1").arg(uid);
-		return runLaunchctl({QStringLiteral("bootout"), guiDomain, launchAgentPath()}, true);
-	}
-
-	return true;
-}
+// bool installLaunchAgent(const QString& serverExecutablePath)
+// {
+// 	if (writeLaunchAgentFile(serverExecutablePath) == false)
+// 	{
+// 		return false;
+// 	}
+//
+// 	fixLaunchAgentOwnership();
+// 	return true;
+// }
+//
+// bool removeLaunchAgent()
+// {
+// 	QFile file(launchAgentPath());
+// 	if (file.exists() == false)
+// 	{
+// 		return true;
+// 	}
+//
+// 	if (file.remove() == false)
+// 	{
+// 		vWarning() << "OsXServiceFunctions: failed to remove" << file.fileName();
+// 		return false;
+// 	}
+//
+// 	return true;
+// }
+//
+// bool startLaunchAgent()
+// {
+// 	const auto executablePath = resolveServerExecutablePath();
+//
+// 	if (installLaunchAgent(executablePath) == false)
+// 	{
+// 		vWarning() << "OsXServiceFunctions: failed to install LaunchAgent";
+// 		return false;
+// 	}
+//
+// 	quint32 uid = 0;
+// 	if (consoleUser(uid) == false)
+// 	{
+// 		vWarning() << "OsXServiceFunctions: no GUI console user detected; service will start on next login";
+// 		return true;
+// 	}
+//
+// 	if (bootstrapLaunchAgent(uid) == false)
+// 	{
+// 		vWarning() << "OsXServiceFunctions: failed to bootstrap LaunchAgent for uid" << uid;
+// 		return false;
+// 	}
+//
+// 	return true;
+// }
+//
+// bool stopLaunchAgent()
+// {
+// 	quint32 uid = 0;
+// 	if (consoleUser(uid))
+// 	{
+// 		const auto guiDomain = QStringLiteral("gui/%1").arg(uid);
+// 		return runLaunchctl({QStringLiteral("bootout"), guiDomain, launchAgentPath()}, true);
+// 	}
+//
+// 	return true;
+// }
 
 }
 
@@ -502,26 +365,33 @@ bool OsXServiceFunctions::start( const QString& name )
 
 	if( isRunning( veyonServiceName() ) )
 	{
+		vDebug() << "OsXServiceFunctions: service already running";
 		return true;
 	}
 
-	if (runBundledScript(QStringLiteral("install_veyon_vnc_agent.sh")))
+	// Try to start the service executable first (veyon-service wrapper)
+	// This will run in the background without showing a window
+	const auto servicePath = serviceExecutablePath();
+	vDebug() << "OsXServiceFunctions: attempting to start veyon-service:" << servicePath;
+
+	if( QProcess::startDetached( servicePath, {} ) )
 	{
+		vDebug() << "OsXServiceFunctions: successfully started veyon-service";
 		return true;
 	}
 
-	if (startLaunchAgent())
+	// Fallback: try to start veyon-server directly
+	const auto serverPath = VeyonCore::filesystem().serverFilePath();
+	vDebug() << "OsXServiceFunctions: veyon-service failed, trying veyon-server:" << serverPath;
+
+	if( QProcess::startDetached( serverPath, {} ) )
 	{
+		vDebug() << "OsXServiceFunctions: successfully started veyon-server";
 		return true;
 	}
 
-	// fall back to launching the server directly if the service wrapper could not be started
-	if( QProcess::startDetached( serviceExecutablePath(), {} ) )
-	{
-		return true;
-	}
-
-	return QProcess::startDetached( VeyonCore::filesystem().serverFilePath(), {} );
+	vWarning() << "OsXServiceFunctions: failed to start both veyon-service and veyon-server";
+	return false;
 }
 
 
@@ -530,17 +400,45 @@ bool OsXServiceFunctions::stop( const QString& name )
 {
 	Q_UNUSED(name)
 
-	const bool scriptSuccess = runBundledScript(QStringLiteral("uninstall_veyon_vnc_agent.sh"));
+	if( !isRunning( veyonServiceName() ) )
+	{
+		vDebug() << "OsXServiceFunctions: service not running";
+		return true;
+	}
 
-	const bool agentStopped = scriptSuccess ? true : stopLaunchAgent();
+	// Attempt to stop the LaunchAgent via launchctl
+	quint32 uid = 0;
+	if (consoleUser(uid))
+	{
+		const auto guiDomain = QStringLiteral("gui/%1").arg(uid);
+		const auto labelPath = guiDomain + QLatin1Char('/') + QString::fromLatin1(LaunchAgentLabel);
 
-	bool success = agentStopped;
+		vDebug() << "OsXServiceFunctions: attempting to stop LaunchAgent" << labelPath;
+
+		// Try to kill the service (this stops it but doesn't unload it)
+		if (runLaunchctl({QStringLiteral("kill"), QStringLiteral("SIGTERM"), labelPath}, true))
+		{
+			vDebug() << "OsXServiceFunctions: successfully stopped LaunchAgent";
+			return true;
+		}
+	}
+	else
+	{
+		vWarning() << "OsXServiceFunctions: no GUI console user detected";
+	}
+
+	// Fallback: terminate processes directly
+	vDebug() << "OsXServiceFunctions: launchctl stop failed, terminating processes directly";
+	bool success = false;
 
 	for (const auto& executable : { serviceExecutablePath(),
 									VeyonCore::filesystem().serverFilePath(),
 									VeyonCore::filesystem().workerFilePath() })
 	{
-		success = terminateMatchingProcesses(executable) && success;
+		if (terminateMatchingProcesses(executable))
+		{
+			success = true;
+		}
 	}
 
 	return success;
@@ -556,8 +454,10 @@ bool OsXServiceFunctions::install( const QString& name, const QString& serviceFi
 	Q_UNUSED(startMode)
 	Q_UNUSED(displayName)
 
-	return runBundledScript(QStringLiteral("install_veyon_vnc_agent.sh")) ||
-		   installLaunchAgent(resolveServerExecutablePath());
+	// Service installation is handled externally via 0_agents.sh script
+	// The configurator should not install the LaunchAgent
+	vInfo() << "OsXServiceFunctions: service installation should be done via external script (0_agents.sh)";
+	return false;
 }
 
 
@@ -566,15 +466,10 @@ bool OsXServiceFunctions::uninstall( const QString& name )
 {
 	Q_UNUSED(name)
 
-	const bool scriptSuccess = runBundledScript(QStringLiteral("uninstall_veyon_vnc_agent.sh"));
-
-	if (scriptSuccess)
-	{
-		return true;
-	}
-
-	stopLaunchAgent();
-	return removeLaunchAgent();
+	// Service uninstallation is handled externally via 0_agents.sh script
+	// The configurator should not uninstall the LaunchAgent
+	vInfo() << "OsXServiceFunctions: service uninstallation should be done via external script (0_agents.sh)";
+	return false;
 }
 
 

@@ -1,4 +1,5 @@
 add_subdirectory(auth-helper)
+# NOTE: service-helper subdirectory removed - service installation handled by external script
 
 include(BuildVeyonPlugin)
 

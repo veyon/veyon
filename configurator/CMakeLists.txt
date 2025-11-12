@@ -37,6 +37,7 @@ if(VEYON_BUILD_LINUX)
 endif()
 
 if(APPLE)
+	# NOTE: veyon-service-helper removed - service installation handled by external script
 	set(_veyon_macos_helpers
 		veyon-auth-helper
 		veyon-cli

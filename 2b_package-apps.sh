@@ -75,6 +75,7 @@ BREW_LIBS=(
 	"/usr/local/opt/nss/lib/libnssutil3.dylib"
 	"/usr/local/opt/nss/lib/libsmime3.dylib"
 	"/usr/local/opt/nss/lib/libssl3.dylib"
+	"/usr/local/opt/pcre2/lib/libpcre2-16.0.dylib"
 )
 
 # ============================================================================
@@ -587,6 +588,37 @@ package_app() {
 	local icon="${SCRIPT_DIR}/resources/icons/${app}.icns"
 	if [[ -f "$icon" ]]; then
 		cp "$icon" "$target_app/Contents/Resources/"
+	fi
+
+	# ========================================================================
+	# PHASE 9.5: COPY SCRIPTS TO RESOURCES
+	# ========================================================================
+
+	log_info "  Copying installation scripts to Resources…"
+
+	if [[ "$app" == "veyon-configurator" ]]; then
+		local scripts_source="${SCRIPT_DIR}/scripts"
+		local scripts_dest="${target_app}/Contents/Resources/Scripts"
+
+		if [[ -d "$scripts_source" ]]; then
+			mkdir -p "$scripts_dest"
+
+			for script_file in "${scripts_source}"/*; do
+				if [[ -f "$script_file" ]]; then
+					cp "$script_file" "$scripts_dest/"
+					local script_name=$(basename "$script_file")
+
+					# Make .sh files executable
+					if [[ "$script_name" == *.sh ]]; then
+						chmod 755 "$scripts_dest/$script_name"
+					fi
+
+					log_info "    ✓ Copied ${script_name}"
+				fi
+			done
+		else
+			log_warn "    Scripts directory not found: ${scripts_source}"
+		fi
 	fi
 
 	# ========================================================================
