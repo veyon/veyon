@@ -880,51 +880,69 @@ done
 
 log_info "Creating README…"
 
-cat > "$PACKAGE_DIR/README.txt" << 'EOF'
-=== Veyon for macOS ===
+cat > "$PACKAGE_DIR/README.md" << 'EOF'
+# Veyon for macOS
 
-This package contains the main Veyon applications for macOS:
+This package contains the main Veyon applications for macOS.
 
-1. veyon-configurator.app - Configuration tool
-2. veyon-master.app - Master application for classroom management
-3. veyon-server.app - Server component for remote access
+## Applications Included
 
-INSTALLATION:
--------------
-1. Drag the 'Veyon' folder to the 'Applications' shortcut in the DMG
-2. The entire folder will be copied to /Applications/Veyon/
+1. **veyon-configurator.app** - Configuration tool
+2. **veyon-master.app** - Master application for classroom management
+3. **veyon-server.app** - Server component for remote access
+
+## Installation
+
+1. Drag the **Veyon** folder to the **Applications** shortcut in the DMG
+2. The entire folder will be copied to `/Applications/Veyon/`
 3. On first launch, macOS will ask for accessibility and screen recording permissions
-4. Go to System Preferences > Security & Privacy to grant the permissions
+4. Go to **System Preferences > Security & Privacy** to grant the permissions
 
-FEATURES:
----------
-- All dependencies included (Qt, OpenSSL, QCA, etc.)
-- Helper executables included in Contents/MacOS/:
-  * veyon-cli
-  * veyon-server
-  * veyon-service
-  * veyon-worker
-  * veyon-auth-helper
-- QCA cryptography plugins installed and configured
-- No Qt installation or other system dependencies required
+## Features
 
-RUNNING HELPERS:
-----------------
+- ✓ All dependencies included (Qt, OpenSSL, QCA, etc.)
+- ✓ Helper executables included in `Contents/MacOS/`:
+  - `veyon-cli`
+  - `veyon-server`
+  - `veyon-service`
+  - `veyon-worker`
+  - `veyon-auth-helper`
+- ✓ QCA cryptography plugins installed and configured
+- ✓ No Qt installation or other system dependencies required
+- ✓ Management scripts included in `Scripts/` folder
+
+## Management Scripts
+
+The `Scripts/` folder contains utilities to manage Veyon services:
+
+- **launchAgents.sh** - Install/uninstall LaunchAgents for automatic VNC server startup
+- See `Scripts/README.md` for detailed instructions
+
+## Running Helpers from Command Line
+
 To run helpers from command line:
 
-  /Applications/Veyon/veyon-master.app/Contents/MacOS/veyon-server
-  /Applications/Veyon/veyon-master.app/Contents/MacOS/veyon-service
-  /Applications/Veyon/veyon-master.app/Contents/MacOS/veyon-worker
-  /Applications/Veyon/veyon-master.app/Contents/MacOS/veyon-cli
+```bash
+/Applications/Veyon/veyon-master.app/Contents/MacOS/veyon-server
+/Applications/Veyon/veyon-master.app/Contents/MacOS/veyon-service
+/Applications/Veyon/veyon-master.app/Contents/MacOS/veyon-worker
+/Applications/Veyon/veyon-master.app/Contents/MacOS/veyon-cli
+```
 
 Or using veyon-server.app:
 
-  /Applications/Veyon/veyon-server.app/Contents/MacOS/veyon-server
+```bash
+/Applications/Veyon/veyon-server.app/Contents/MacOS/veyon-server
+```
 
-DISTRIBUTION:
--------------
+## Distribution
+
 You can compress this package and distribute it to other Macs.
 No Qt installation or other dependencies required.
+
+## Support
+
+For more information, visit: https://veyon.io/
 
 EOF
 

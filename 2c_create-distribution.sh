@@ -34,8 +34,28 @@ cp -R "$PACKAGE_DIR/veyon-configurator.app" "$DMG_TEMP/Veyon/"
 cp -R "$PACKAGE_DIR/veyon-master.app" "$DMG_TEMP/Veyon/"
 cp -R "$PACKAGE_DIR/veyon-server.app" "$DMG_TEMP/Veyon/"
 
-if [[ -f "$PACKAGE_DIR/README.txt" ]]; then
-    cp "$PACKAGE_DIR/README.txt" "$DMG_TEMP/Veyon/"
+if [[ -f "$PACKAGE_DIR/README.md" ]]; then
+    cp "$PACKAGE_DIR/README.md" "$DMG_TEMP/Veyon/"
+fi
+
+log_info "Copying Scripts to Veyon folder..."
+mkdir -p "$DMG_TEMP/Veyon/Scripts"
+
+# Copy launchAgents.sh script
+if [[ -f "${SCRIPT_DIR}/scripts/launchAgents.sh" ]]; then
+    cp "${SCRIPT_DIR}/scripts/launchAgents.sh" "$DMG_TEMP/Veyon/Scripts/"
+    chmod 755 "$DMG_TEMP/Veyon/Scripts/launchAgents.sh"
+    log_info "  ✓ Copied launchAgents.sh"
+else
+    log_error "launchAgents.sh not found: ${SCRIPT_DIR}/scripts/launchAgents.sh"
+fi
+
+# Copy Scripts README.md
+if [[ -f "${SCRIPT_DIR}/scripts/README.md" ]]; then
+    cp "${SCRIPT_DIR}/scripts/README.md" "$DMG_TEMP/Veyon/Scripts/"
+    log_info "  ✓ Copied Scripts/README.md"
+else
+    log_error "Scripts/README.md not found: ${SCRIPT_DIR}/scripts/README.md"
 fi
 
 log_info "Creating symbolic link to Applications..."
@@ -64,7 +84,8 @@ log_info "  3. Drag the 'Veyon' folder to the 'Applications' shortcut"
 log_info "  4. The entire Veyon folder will be installed in /Applications/Veyon/"
 log_info ""
 log_info "DMG Structure:"
-log_info "  - Veyon/ (folder with all apps and README)"
+log_info "  - Veyon/ (folder with all apps, README and Scripts)"
+log_info "    - Scripts/ (installation and management scripts)"
 log_info "  - Applications (shortcut for easy drag-and-drop installation)"
 log_info ""
 log_info "IMPORTANT: DO NOT copy .app files directly from Finder,"
