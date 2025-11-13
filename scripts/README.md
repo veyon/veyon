@@ -6,80 +6,71 @@ The `launchAgents.sh` script allows you to install, uninstall, and manage the Ve
 
 ## Usage
 
-### Basic Syntax
+### Running the Script
+
+The script provides an interactive menu system. To launch it:
 
 ```bash
-sudo ./launchAgents.sh [command] [username]
+cd /Applications/Veyon/Scripts/
+./launchAgents.sh
 ```
 
-### Commands
+**Important:** Do NOT run this script with `sudo`. The script will request administrator privileges when needed for specific operations.
 
-#### Install LaunchAgent for a specific user
+### Interactive Menu Options
 
-```bash
-sudo ./launchAgents.sh install <username>
-```
+Once launched, you'll see a menu with the following options:
 
-This will:
-- Create the LaunchAgent plist file for the specified user
-- Install it in `/Users/<username>/Library/LaunchAgents/`
-- Set proper permissions
-- Load the agent immediately
+#### 1. Install globally (admin)
 
-**Example:**
-```bash
-sudo ./launchAgents.sh install student
-```
+Installs the Veyon VNC LaunchAgent globally for all users using `/Library/LaunchAgents/`.
 
-#### Install LaunchAgent for all users
+- Requires administrator privileges (will prompt for password)
+- The agent will be available system-wide
+- Uses the installer from Veyon Configurator's Resources
 
-```bash
-sudo ./launchAgents.sh install-all
-```
+#### 2. Install current user
 
-This will install the LaunchAgent for every user on the system (except system accounts like root, daemon, etc.).
+Installs the LaunchAgent for the current user only in `~/Library/LaunchAgents/`.
 
-#### Uninstall LaunchAgent from a specific user
+- Does not require administrator privileges
+- Only affects the currently logged-in user
+- Copies the plist and loads the agent immediately
 
-```bash
-sudo ./launchAgents.sh uninstall <username>
-```
+#### 3. Check plist file
 
-This will:
-- Unload the LaunchAgent
-- Remove the plist file from the user's LaunchAgents directory
+Shows the current state of the LaunchAgent plist files:
 
-**Example:**
-```bash
-sudo ./launchAgents.sh uninstall student
-```
+- Checks if global plist exists in `/Library/LaunchAgents/`
+- Checks if user plist exists in `~/Library/LaunchAgents/`
+- Displays file details if found
 
-#### Uninstall LaunchAgent from all users
+#### 4. Check runtime status
 
-```bash
-sudo ./launchAgents.sh uninstall-all
-```
+Displays the current runtime status of the Veyon VNC service:
 
-This will remove the LaunchAgent from all users who have it installed.
+- Shows if the service is loaded in launchctl
+- Displays detailed service information
+- Works for the current user or console user (if run as root)
 
-#### Check status
+#### 5. Uninstall
 
-```bash
-./launchAgents.sh status
-```
+Removes the LaunchAgent:
 
-This will show:
-- Which users have the LaunchAgent installed
-- Whether the agent is loaded/running for each user
+- If you're an administrator: removes both global and user plists
+- If you're not an administrator: removes only user plist
+- Unloads the service before removing files
 
-**Note:** Status command does not require sudo.
+#### 0. Exit
+
+Exits the script.
 
 ### Important Notes
 
-1. **Administrator privileges required**: All install/uninstall commands require `sudo`
+1. **Do NOT use sudo**: Run the script as a normal user; it will request elevation when needed
 2. **Veyon installation**: The script assumes Veyon is installed in `/Applications/Veyon/`
 3. **Automatic startup**: Once installed, the VNC server will start automatically when the user logs in
-4. **Current session**: The script automatically loads the agent for the current user session
+4. **Source files**: The script uses plist and installer from `/Applications/Veyon/veyon-configurator.app/Contents/Resources/Scripts/`
 
 ## Prerequisites
 
@@ -121,31 +112,43 @@ launchctl load ~/Library/LaunchAgents/com.veyon.vnc.plist
 - **Veyon server**: `/Applications/Veyon/veyon-server.app/Contents/MacOS/veyon-server`
 - **Script location**: `/Applications/Veyon/Scripts/launchAgents.sh`
 
-## Examples
+## Example Workflows
 
-### Setup for a classroom with multiple student accounts
+### Setup for a classroom (Administrator)
 
-```bash
-# Install for all users at once
-sudo ./launchAgents.sh install-all
+1. Navigate to the Scripts folder:
+   ```bash
+   cd /Applications/Veyon/Scripts/
+   ```
 
-# Or install individually
-sudo ./launchAgents.sh install student1
-sudo ./launchAgents.sh install student2
-sudo ./launchAgents.sh install student3
-```
+2. Run the script:
+   ```bash
+   ./launchAgents.sh
+   ```
 
-### Check current status
+3. Select option `1` (Install globally) - this will prompt for your administrator password
 
-```bash
-./launchAgents.sh status
-```
+4. For individual user setup, log in as each user and:
+   - Run `./launchAgents.sh`
+   - Select option `2` (Install current user)
 
-### Remove from all users
+### Check if the Agent is Running
 
-```bash
-sudo ./launchAgents.sh uninstall-all
-```
+1. Run the script:
+   ```bash
+   ./launchAgents.sh
+   ```
+
+2. Select option `4` (Check runtime status)
+
+### Uninstall the Agent
+
+1. Run the script:
+   ```bash
+   ./launchAgents.sh
+   ```
+
+2. Select option `5` (Uninstall)
 
 ## Security Considerations
 
