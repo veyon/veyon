@@ -65,7 +65,8 @@ log_info "Creating DMG image..."
 hdiutil create -volname "Veyon macOS" -srcfolder "$DMG_TEMP" -ov -format UDZO \
     "$DIST_OUTPUT/Veyon-macOS.dmg"
 
-rm -rf "$DMG_TEMP"
+# Clean up temporary directory (force remove all files including hidden ones)
+rm -rf "$DMG_TEMP" 2>/dev/null || true
 
 DMG_SIZE=$(du -sh "$DIST_OUTPUT/Veyon-macOS.dmg" | cut -f1)
 
