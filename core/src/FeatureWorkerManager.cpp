@@ -271,7 +271,7 @@ void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 
 			m_workersMutex.unlock();
 
-			if (message.command() >= 0)
+			if (message.command<FeatureMessage::CommandType>() >= 0)
 			{
 				VeyonCore::featureManager().handleFeatureMessageFromWorker(m_server, message);
 			}

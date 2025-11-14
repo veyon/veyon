@@ -70,9 +70,9 @@ bool TextMessageFeaturePlugin::controlFeature( Feature::Uid featureUid,
 		const auto text = arguments.value( argToString(Argument::Text) ).toString();
 		const auto icon = arguments.value( argToString(Argument::Icon) ).toInt();
 
-		sendFeatureMessage( FeatureMessage{ featureUid, ShowTextMessage }
-								.addArgument( Argument::Text, text )
-								.addArgument( Argument::Icon, icon ), computerControlInterfaces );
+		sendFeatureMessage(FeatureMessage{featureUid, FeatureCommand::ShowTextMessage}
+						   .addArgument(Argument::Text, text)
+						   .addArgument(Argument::Icon, icon), computerControlInterfaces);
 
 		return true;
 	}

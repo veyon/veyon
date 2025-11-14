@@ -86,7 +86,7 @@ void FeatureWorkerManagerConnection::sendInitMessage()
 
 	m_connectTimer.stop();
 
-	FeatureMessage(m_featureUid, FeatureMessage::InitCommand).sendPlain(&m_socket);
+	FeatureMessage(m_featureUid, FeatureMessage::Command::Init).sendPlain(&m_socket);
 }
 
 

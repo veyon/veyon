@@ -130,7 +130,7 @@ private:
 	bool controlDemoClient( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
 						   const ComputerControlInterfaceList& computerControlInterfaces );
 
-	enum Commands {
+	enum class FeatureCommand {
 		StartDemoServer,
 		StopDemoServer,
 		StartDemoClient,

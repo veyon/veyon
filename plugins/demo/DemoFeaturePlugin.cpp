@@ -304,7 +304,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 {
 	if( message.featureUid() == m_demoServerFeature.uid() )
 	{
-		if( message.command() == StartDemoServer )
+		if (message.command<FeatureCommand>() == FeatureCommand::StartDemoServer)
 		{
 			// add VNC server password to message
 			server.featureWorkerManager().
@@ -313,7 +313,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 						.addArgument( Argument::VncServerPassword, VeyonCore::authenticationCredentials().internalVncServerPassword().toByteArray() )
 						.addArgument( Argument::VncServerPort, server.vncServerBasePort() + message.argument(Argument::VncServerPortOffset).toInt() ) );
 		}
-		else if( message.command() != StopDemoServer ||
+		else if (message.command<FeatureCommand>() != FeatureCommand::StopDemoServer ||
 				 server.featureWorkerManager().isWorkerRunning( m_demoServerFeature.uid() ) )
 		{
 			// forward message to worker
@@ -336,7 +336,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 			return false;
 		}
 
-		if( message.command() == StopDemoClient &&
+		if (message.command<FeatureCommand>() == FeatureCommand::StopDemoClient &&
 			server.featureWorkerManager().isWorkerRunning( message.featureUid() ) == false )
 		{
 			return true;
@@ -355,7 +355,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 			return false;
 		}
 
-		if( message.command() == StartDemoClient &&
+		if (message.command<FeatureCommand>() == FeatureCommand::StartDemoClient &&
 			message.argument( Argument::DemoServerHost ).toString().isEmpty() )
 		{
 			// set the peer address as demo server host
@@ -383,9 +383,9 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 
 	if( message.featureUid() == m_demoServerFeature.uid() )
 	{
-		switch( message.command() )
+		switch (message.command<FeatureCommand>())
 		{
-		case StartDemoServer:
+		case FeatureCommand::StartDemoServer:
 			if( m_demoServer == nullptr )
 			{
 				m_demoServer = new DemoServer( message.argument( Argument::VncServerPort ).toInt(),
@@ -397,7 +397,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 			}
 			return true;
 
-		case StopDemoServer:
+		case FeatureCommand::StopDemoServer:
 			if( m_demoServer )
 			{
 				m_demoServer->terminate();
@@ -415,9 +415,9 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 	else if( message.featureUid() == m_demoClientFullScreenFeature.uid() ||
 			 message.featureUid() == m_demoClientWindowFeature.uid() )
 	{
-		switch( message.command() )
+		switch (message.command<FeatureCommand>())
 		{
-		case StartDemoClient:
+		case FeatureCommand::StartDemoClient:
 			VeyonCore::authenticationCredentials().setToken( message.argument( Argument::DemoAccessToken ).toByteArray() );
 
 			if( m_demoClient == nullptr )
@@ -432,7 +432,7 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 			}
 			return true;
 
-		case StopDemoClient:
+		case FeatureCommand::StopDemoClient:
 			delete m_demoClient;
 			m_demoClient = nullptr;
 
@@ -576,16 +576,16 @@ void DemoFeaturePlugin::controlDemoServer()
 		const auto demoAccessToken = m_demoServerArguments.value( argToString(Argument::DemoAccessToken),
 																  m_demoAccessToken.toByteArray() ).toByteArray();
 
-		sendFeatureMessage( FeatureMessage{ m_demoServerFeature.uid(), StartDemoServer }
-								.addArgument( Argument::DemoAccessToken, demoAccessToken )
-								.addArgument( Argument::VncServerPortOffset, vncServerPortOffset )
-								.addArgument( Argument::DemoServerPort, demoServerPort ),
-							m_demoServerControlInterfaces );
+		sendFeatureMessage(FeatureMessage{m_demoServerFeature.uid(), FeatureCommand::StartDemoServer}
+						   .addArgument( Argument::DemoAccessToken, demoAccessToken )
+						   .addArgument( Argument::VncServerPortOffset, vncServerPortOffset )
+						   .addArgument( Argument::DemoServerPort, demoServerPort ),
+						   m_demoServerControlInterfaces );
 	}
 	else
 	{
-		sendFeatureMessage( FeatureMessage{ m_demoServerFeature.uid(), StopDemoServer },
-							m_demoServerControlInterfaces );
+		sendFeatureMessage(FeatureMessage{m_demoServerFeature.uid(), FeatureCommand::StopDemoServer},
+						   m_demoServerControlInterfaces );
 	}
 }
 
@@ -626,7 +626,7 @@ bool DemoFeaturePlugin::controlDemoClient( Feature::Uid featureUid, Operation op
 			}
 		}
 
-		sendFeatureMessage( FeatureMessage{ featureUid, StartDemoClient }
+		sendFeatureMessage(FeatureMessage{featureUid, FeatureCommand::StartDemoClient}
 								.addArgument( Argument::DemoAccessToken, demoAccessToken )
 								.addArgument( Argument::DemoServerHost, demoServerHost )
 								.addArgument( Argument::DemoServerPort, demoServerPort )
@@ -651,7 +651,7 @@ bool DemoFeaturePlugin::controlDemoClient( Feature::Uid featureUid, Operation op
 			}
 		}
 
-		sendFeatureMessage( FeatureMessage{ featureUid, StopDemoClient }, computerControlInterfaces );
+		sendFeatureMessage(FeatureMessage{featureUid, FeatureCommand::StopDemoClient}, computerControlInterfaces);
 
 		return true;
 	}
