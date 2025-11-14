@@ -7,7 +7,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="filetransfer.qrc">
-    <normaloff>:/filetransfer/document-share.png</normaloff>:/filetransfer/document-share.png</iconset>
+    <normaloff>:/filetransfer/distribute-files.png</normaloff>:/filetransfer/distribute-files.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="topMargin">
@@ -19,9 +19,19 @@
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Directories</string>
+      <string>Settings for distributing files</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
+      <item row="2" column="0" colspan="3">
+       <widget class="QCheckBox" name="rememberLastFileTransferSourceDirectory">
+        <property name="text">
+         <string>Remember last source directory</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="fileTransferDestinationDirectory"/>
+      </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label">
         <property name="text">
@@ -29,8 +39,12 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="fileTransferDefaultSourceDirectory"/>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Default source directory</string>
+        </property>
+       </widget>
       </item>
       <item row="1" column="2">
        <widget class="QToolButton" name="browseDestinationDirectory">
@@ -40,6 +54,9 @@
         </property>
        </widget>
       </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="fileTransferDefaultSourceDirectory"/>
+      </item>
       <item row="0" column="2">
        <widget class="QToolButton" name="browseDefaultSourceDirectory">
         <property name="icon">
@@ -48,33 +65,7 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="fileTransferDestinationDirectory"/>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Default source directory</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox_2">
-     <property name="title">
-      <string>Options</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
-       <widget class="QCheckBox" name="rememberLastFileTransferSourceDirectory">
-        <property name="text">
-         <string>Remember last source directory</string>
-        </property>
-       </widget>
-      </item>
-      <item>
+      <item row="3" column="0" colspan="3">
        <widget class="QCheckBox" name="fileTransferCreateDestinationDirectory">
         <property name="text">
          <string>Create destination directory if it does not exist</string>
@@ -85,9 +76,177 @@
     </widget>
    </item>
    <item>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Settings for collecting files</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="collectedFilesDestinationDirectory"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string>Source directory</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="filesToCollectSourceDirectory"/>
+      </item>
+      <item row="0" column="2">
+       <widget class="QToolButton" name="browseFilesToCollectSourceDirectory">
+        <property name="icon">
+         <iconset resource="../../core/resources/core.qrc">
+          <normaloff>:/core/document-open.png</normaloff>:/core/document-open.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QComboBox" name="collectedFilesGroupingMode">
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <item>
+         <property name="text">
+          <string>No</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Prefix filenames with grouping attribute</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Store files in subdirectories based on the grouping attribute</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>Group collected files</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>Collection directory</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>Destination directory</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="collectingModeLabel">
+        <property name="text">
+         <string>Files to collect</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="collectingMode">
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>0</height>
+         </size>
+        </property>
+        <item>
+         <property name="text">
+          <string>Collect all files from configured source directory</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Prompt user for folder to collect</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Prompt user for files to collect</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="2">
+       <widget class="QToolButton" name="browseCollectedFilesDestinationDirectory">
+        <property name="icon">
+         <iconset resource="../../core/resources/core.qrc">
+          <normaloff>:/core/document-open.png</normaloff>:/core/document-open.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QComboBox" name="collectionDirectory">
+        <item>
+         <property name="text">
+          <string>Destination directory</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Subdirectory based on date &amp; time</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Subdirectory with name entered by the collecting user</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="2">
+       <widget class="QCheckBox" name="collectFilesRecursively">
+        <property name="text">
+         <string>Collect files recursively</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QComboBox" name="collectedFilesGroupingAttribute">
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <item>
+         <property name="text">
+          <string>User login name</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Full name of user</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Device name</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="label_9">
+        <property name="text">
+         <string>Collected files grouping attribute</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -99,6 +258,23 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>fileTransferDefaultSourceDirectory</tabstop>
+  <tabstop>browseDefaultSourceDirectory</tabstop>
+  <tabstop>fileTransferDestinationDirectory</tabstop>
+  <tabstop>browseDestinationDirectory</tabstop>
+  <tabstop>rememberLastFileTransferSourceDirectory</tabstop>
+  <tabstop>fileTransferCreateDestinationDirectory</tabstop>
+  <tabstop>filesToCollectSourceDirectory</tabstop>
+  <tabstop>browseFilesToCollectSourceDirectory</tabstop>
+  <tabstop>collectingMode</tabstop>
+  <tabstop>collectFilesRecursively</tabstop>
+  <tabstop>collectedFilesDestinationDirectory</tabstop>
+  <tabstop>browseCollectedFilesDestinationDirectory</tabstop>
+  <tabstop>collectionDirectory</tabstop>
+  <tabstop>collectedFilesGroupingMode</tabstop>
+  <tabstop>collectedFilesGroupingAttribute</tabstop>
+ </tabstops>
  <resources>
   <include location="../../core/resources/core.qrc"/>
   <include location="filetransfer.qrc"/>

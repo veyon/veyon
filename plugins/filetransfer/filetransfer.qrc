@@ -1,9 +1,9 @@
 <RCC>
     <qresource prefix="/filetransfer" >
-        <file>applications-office.png</file>
+        <file>collect-files.png</file>
+        <file>distribute-files.png</file>
         <file>file-scheduled.png</file>
         <file>file-transferring.png</file>
         <file>file-finished.png</file>
-        <file>document-share.png</file>
     </qresource>
 </RCC>

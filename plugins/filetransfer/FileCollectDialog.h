@@ -1,7 +1,7 @@
 /*
- * FileTransferConfigurationPage.h - header for the FileTransferConfigurationPage class
+ * FileCollectDialog.h - header for the FileCollectDialog class
  *
- * Copyright (c) 2017-2025 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2025 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
@@ -24,33 +24,31 @@
 
 #pragma once
 
-#include "ConfigurationPage.h"
+#include <QDialog>
 
 namespace Ui {
-class FileTransferConfigurationPage;
+class FileCollectDialog;
 }
 
-class FileTransferConfiguration;
+class FileCollectController;
+class FileCollectTreeModel;
 
-class FileTransferConfigurationPage : public ConfigurationPage
+class FileCollectDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	explicit FileTransferConfigurationPage( FileTransferConfiguration& configuration, QWidget* parent = nullptr );
-	~FileTransferConfigurationPage() override;
-
-	void resetWidgets() override;
-	void connectWidgetsToProperties() override;
-	void applyConfiguration() override;
+	explicit FileCollectDialog(FileCollectController* controller, QWidget* parent = nullptr);
+	~FileCollectDialog() override;
 
 private:
-	void browseDefaultSourceDirectory();
-	void browseDestinationDirectory();
-	void browseFilesToCollectSourceDirectory();
-	void browseCollectedFilesDestinationDirectory();
+	void openOutputDirectory();
 
-	Ui::FileTransferConfigurationPage *ui;
+	void accept() override;
+	void reject() override;
 
-	FileTransferConfiguration& m_configuration;
+	Ui::FileCollectDialog *ui;
+
+	FileCollectController* m_controller;
+	FileCollectTreeModel* m_model;
 
 };
