@@ -12,7 +12,7 @@ jobs:
       matrix:
         dist:
           - debian.11
-          - fedora.42
+          - fedora.43
     runs-on: ubuntu-latest
     container: veyon/ci.linux.${{matrix.dist}}
     steps:
