@@ -254,31 +254,34 @@ void FeatureWorkerManager::acceptConnection()
 void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 {
 	FeatureMessage message;
-	message.receive( socket );
-
-	m_workersMutex.lock();
-
-	// set socket information
-	if( m_workers.contains( message.featureUid() ) )
+	while (message.isReadyForReceive(socket))
 	{
-		if( m_workers[message.featureUid()].socket.isNull() )
+		message.receive(socket);
+
+		m_workersMutex.lock();
+
+		// set socket information
+		if (m_workers.contains(message.featureUid()))
 		{
-			m_workers[message.featureUid()].socket = socket;
-			sendPendingMessages();
+			if (m_workers[message.featureUid()].socket.isNull())
+			{
+				m_workers[message.featureUid()].socket = socket;
+				sendPendingMessages();
+			}
+
+			m_workersMutex.unlock();
+
+			if (message.command() >= 0)
+			{
+				VeyonCore::featureManager().handleFeatureMessageFromWorker(m_server, message);
+			}
 		}
-
-		m_workersMutex.unlock();
-
-		if( message.command() >= 0 )
+		else
 		{
-			VeyonCore::featureManager().handleFeatureMessageFromWorker(m_server, message);
-		}
-	}
-	else
-	{
-		m_workersMutex.unlock();
+			m_workersMutex.unlock();
 
-		vCritical() << "got data from non-existing worker!" << message.featureUid();
+			vCritical() << "got data from non-existing worker!" << message.featureUid();
+		}
 	}
 }
 
