@@ -159,7 +159,7 @@ private:
 	void updateSessionInfo();
 	void updateScreenInfoList();
 
-	enum Command
+	enum class FeatureCommand
 	{
 		Ping,
 		SetMinimumFramebufferUpdateInterval

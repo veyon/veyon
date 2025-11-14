@@ -64,7 +64,7 @@ void DesktopAccessDialog::exec( FeatureWorkerManager* featureWorkerManager, cons
 	m_choice = ChoiceNone;
 
 	featureWorkerManager->sendMessageToManagedSystemWorker(
-		FeatureMessage( m_desktopAccessDialogFeature.uid(), RequestDesktopAccess )
+		FeatureMessage(m_desktopAccessDialogFeature.uid(), FeatureCommand::RequestDesktopAccess)
 			.addArgument( Argument::User, user )
 			.addArgument( Argument::Host, host ) );
 
@@ -89,7 +89,7 @@ bool DesktopAccessDialog::handleFeatureMessageFromWorker(VeyonServerInterface& s
 														 const FeatureMessage& message)
 {
 	if( m_desktopAccessDialogFeature.uid() == message.featureUid() &&
-		message.command() == ReportDesktopAccessChoice )
+		message.command<FeatureCommand>() == FeatureCommand::ReportDesktopAccessChoice)
 	{
 		m_choice = message.argument( Argument::Choice ).value<Choice>();
 
@@ -110,7 +110,7 @@ bool DesktopAccessDialog::handleFeatureMessageFromWorker(VeyonServerInterface& s
 bool DesktopAccessDialog::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
 	if( message.featureUid() != m_desktopAccessDialogFeature.uid() ||
-		message.command() != RequestDesktopAccess )
+		message.command<FeatureCommand>() != FeatureCommand::RequestDesktopAccess)
 	{
 		return false;
 	}
@@ -118,7 +118,7 @@ bool DesktopAccessDialog::handleFeatureMessage( VeyonWorkerInterface& worker, co
 	const auto result = requestDesktopAccess( message.argument( Argument::User ).toString(),
 											  message.argument( Argument::Host ).toString() );
 
-	FeatureMessage reply( m_desktopAccessDialogFeature.uid(), ReportDesktopAccessChoice );
+	FeatureMessage reply(m_desktopAccessDialogFeature.uid(), FeatureCommand::ReportDesktopAccessChoice);
 	reply.addArgument( Argument::Choice, result );
 
 	return worker.sendFeatureMessageReply( reply );

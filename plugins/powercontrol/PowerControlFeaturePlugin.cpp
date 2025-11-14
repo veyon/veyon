@@ -165,13 +165,13 @@ bool PowerControlFeaturePlugin::controlFeature( Feature::Uid featureUid,
 	{
 		const auto shutdownTimeout = arguments.value( argToString(Argument::ShutdownTimeout), 60 ).toInt();
 
-		sendFeatureMessage( FeatureMessage{ featureUid, FeatureMessage::DefaultCommand }
-								.addArgument( Argument::ShutdownTimeout, shutdownTimeout ),
-							computerControlInterfaces );
+		sendFeatureMessage(FeatureMessage{featureUid, FeatureMessage::Command::Default}
+						   .addArgument( Argument::ShutdownTimeout, shutdownTimeout ),
+						   computerControlInterfaces );
 	}
 	else
 	{
-		sendFeatureMessage( FeatureMessage{ featureUid, FeatureMessage::DefaultCommand }, computerControlInterfaces );
+		sendFeatureMessage(FeatureMessage{featureUid, FeatureMessage::Command::Default}, computerControlInterfaces );
 	}
 
 	return true;

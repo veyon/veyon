@@ -30,7 +30,6 @@
 #include <QToolButton>
 #include <QUrl>
 
-#include "Computer.h"
 #include "ComputerControlInterface.h"
 #include "DesktopServicesConfigurationPage.h"
 #include "DesktopServicesFeaturePlugin.h"
@@ -94,9 +93,9 @@ bool DesktopServicesFeaturePlugin::controlFeature( Feature::Uid featureUid, Oper
 	{
 		const auto apps = arguments.value( argToString(Argument::Applications) ).toStringList();
 
-		sendFeatureMessage( FeatureMessage{ featureUid, FeatureMessage::DefaultCommand }
-								.addArgument( Argument::Applications, apps ),
-							computerControlInterfaces );
+		sendFeatureMessage(FeatureMessage{featureUid, FeatureMessage::Command::Default}
+						   .addArgument(Argument::Applications, apps),
+						   computerControlInterfaces);
 
 		return true;
 	}
@@ -105,9 +104,9 @@ bool DesktopServicesFeaturePlugin::controlFeature( Feature::Uid featureUid, Oper
 	{
 		const auto websites = arguments.value( argToString(Argument::WebsiteUrls) ).toStringList();
 
-		sendFeatureMessage( FeatureMessage{ featureUid, FeatureMessage::DefaultCommand }
-								.addArgument( Argument::WebsiteUrls, websites ),
-							computerControlInterfaces );
+		sendFeatureMessage(FeatureMessage{featureUid, FeatureMessage::Command::Default}
+						   .addArgument(Argument::WebsiteUrls, websites),
+						   computerControlInterfaces );
 
 		return true;
 	}
@@ -130,14 +129,16 @@ bool DesktopServicesFeaturePlugin::startFeature( VeyonMasterInterface& master, c
 	}
 	else if( m_predefinedAppsFeatures.contains( feature ) )
 	{
-		sendFeatureMessage( FeatureMessage( m_startAppFeature.uid(), FeatureMessage::DefaultCommand ).
-							addArgument( Argument::Applications, predefinedServicePath( feature.uid() ) ), computerControlInterfaces );
+		sendFeatureMessage(FeatureMessage(m_startAppFeature.uid(), FeatureMessage::Command::Default).
+						   addArgument(Argument::Applications, predefinedServicePath(feature.uid())),
+						   computerControlInterfaces);
 
 	}
 	else if( m_predefinedWebsitesFeatures.contains( feature ) )
 	{
-		sendFeatureMessage( FeatureMessage( m_openWebsiteFeature.uid(), FeatureMessage::DefaultCommand ).
-							addArgument( Argument::WebsiteUrls, predefinedServicePath( feature.uid() ) ), computerControlInterfaces );
+		sendFeatureMessage(FeatureMessage(m_openWebsiteFeature.uid(), FeatureMessage::Command::Default).
+						   addArgument(Argument::WebsiteUrls, predefinedServicePath(feature.uid())),
+						   computerControlInterfaces );
 
 	}
 	else

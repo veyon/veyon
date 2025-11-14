@@ -82,11 +82,10 @@ public:
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 
 private:
-	enum Commands
+	enum class FeatureCommand
 	{
-		StartLockCommand,
-		StopLockCommand,
-		CommandCount
+		StartLock,
+		StopLock
 	};
 
 	const Feature m_screenLockFeature;

@@ -89,7 +89,7 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 
 void MonitoringMode::ping(const ComputerControlInterfaceList& computerControlInterfaces)
 {
-	sendFeatureMessage(FeatureMessage{m_monitoringModeFeature.uid(), Command::Ping}, computerControlInterfaces);
+	sendFeatureMessage(FeatureMessage{m_monitoringModeFeature.uid(), FeatureCommand::Ping}, computerControlInterfaces);
 }
 
 
@@ -97,7 +97,7 @@ void MonitoringMode::ping(const ComputerControlInterfaceList& computerControlInt
 void MonitoringMode::setMinimumFramebufferUpdateInterval(const ComputerControlInterfaceList& computerControlInterfaces,
 														 int interval)
 {
-	sendFeatureMessage(FeatureMessage{m_monitoringModeFeature.uid(), Command::SetMinimumFramebufferUpdateInterval}
+	sendFeatureMessage(FeatureMessage{m_monitoringModeFeature.uid(), FeatureCommand::SetMinimumFramebufferUpdateInterval}
 					   .addArgument(Argument::MinimumFramebufferUpdateInterval, interval),
 					   computerControlInterfaces);
 }
@@ -144,7 +144,7 @@ bool MonitoringMode::handleFeatureMessage( ComputerControlInterface::Pointer com
 {
 	if (message.featureUid() == m_monitoringModeFeature.uid())
 	{
-		if (message.command() == Command::Ping)
+		if (message.command<FeatureCommand>() == FeatureCommand::Ping)
 		{
 			// successful ping reply implicitly handled through the featureMessageReceived() signal
 			return true;
@@ -228,12 +228,12 @@ bool MonitoringMode::handleFeatureMessage(VeyonServerInterface& server,
 {
 	if (message.featureUid() == m_monitoringModeFeature.uid())
 	{
-		if (message.command() == Command::Ping)
+		if (message.command<FeatureCommand>() == FeatureCommand::Ping)
 		{
 			return server.sendFeatureMessageReply(messageContext, message);
 		}
 
-		if (message.command() == Command::SetMinimumFramebufferUpdateInterval)
+		if (message.command<FeatureCommand>() == FeatureCommand::SetMinimumFramebufferUpdateInterval)
 		{
 			server.setMinimumFramebufferUpdateInterval(messageContext,
 													   message.argument(Argument::MinimumFramebufferUpdateInterval).toInt());

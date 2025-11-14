@@ -35,23 +35,31 @@ class VEYON_CORE_EXPORT FeatureMessage
 {
 public:
 	using FeatureUid = Feature::Uid;
-	using Command = qint32;
+	using CommandType = qint32;
 	using Arguments = QVariantMap;
 
 	static constexpr unsigned char RfbMessageType = 41;
 
-	enum SpecialCommands
+	enum class Command
 	{
-		DefaultCommand = 0,
-		InvalidCommand = -1,
-		InitCommand = -2,
+		Default = 0,
+		Invalid = -1,
+		Init = -2,
 	};
 
 	FeatureMessage() = default;
 
-	explicit FeatureMessage( FeatureUid featureUid, Command command = DefaultCommand ) :
+	explicit FeatureMessage( FeatureUid featureUid, Command command = Command::Default) :
 		m_featureUid( featureUid ),
 		m_command( command ),
+		m_arguments()
+	{
+	}
+
+	template<typename FeatureCommandEnum, typename = std::enable_if_t<std::is_enum_v<FeatureCommandEnum>>>
+	explicit FeatureMessage(FeatureUid featureUid, FeatureCommandEnum commandEnum) :
+		m_featureUid(featureUid),
+		m_command(Command(commandEnum)),
 		m_arguments()
 	{
 	}
@@ -79,9 +87,23 @@ public:
 		return m_featureUid;
 	}
 
-	Command command() const
+	FeatureMessage& setCommand(Command command)
 	{
-		return m_command;
+		m_command = command;
+		return *this;
+	}
+
+	template<typename FeatureCommandEnum, typename = std::enable_if_t<std::is_enum_v<FeatureCommandEnum>>>
+	FeatureMessage& setCommand(FeatureCommandEnum command)
+	{
+		m_command = Command(command);
+		return *this;
+	}
+
+	template<typename Enum = Command>
+	Enum command() const
+	{
+		return Enum(m_command);
 	}
 
 	const Arguments& arguments() const
@@ -115,7 +137,7 @@ public:
 
 private:
 	FeatureUid m_featureUid{};
-	Command m_command{InvalidCommand};
+	Command m_command = Command::Invalid;
 	Arguments m_arguments{};
 
 } ;

@@ -80,14 +80,14 @@ bool ScreenLockFeaturePlugin::controlFeature( Feature::Uid featureUid, Operation
 
 	if( operation == Operation::Start )
 	{
-		sendFeatureMessage( FeatureMessage{ featureUid, StartLockCommand }, computerControlInterfaces );
+		sendFeatureMessage(FeatureMessage{featureUid, FeatureCommand::StartLock}, computerControlInterfaces);
 
 		return true;
 	}
 
 	if( operation == Operation::Stop )
 	{
-		sendFeatureMessage( FeatureMessage{ featureUid, StopLockCommand }, computerControlInterfaces );
+		sendFeatureMessage(FeatureMessage{featureUid, FeatureCommand::StopLock}, computerControlInterfaces);
 
 		return true;
 	}
@@ -106,8 +106,8 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server
 	if( message.featureUid() == m_screenLockFeature.uid() ||
 		message.featureUid() == m_lockInputDevicesFeature.uid() )
 	{
-		if( server.featureWorkerManager().isWorkerRunning( message.featureUid() ) == false &&
-			message.command() == StopLockCommand )
+		if (server.featureWorkerManager().isWorkerRunning( message.featureUid() ) == false &&
+			message.command<FeatureCommand>() == FeatureCommand::StopLock)
 		{
 			return true;
 		}
@@ -136,9 +136,9 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker
 	if( message.featureUid() == m_screenLockFeature.uid() ||
 		message.featureUid() == m_lockInputDevicesFeature.uid() )
 	{
-		switch( message.command() )
+		switch (message.command<FeatureCommand>())
 		{
-		case StartLockCommand:
+		case FeatureCommand::StartLock:
 			if( m_lockWidget == nullptr )
 			{
 				VeyonCore::platform().coreFunctions().disableScreenSaver();
@@ -154,7 +154,7 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker
 			}
 			return true;
 
-		case StopLockCommand:
+		case FeatureCommand::StopLock:
 			delete m_lockWidget;
 			m_lockWidget = nullptr;
 

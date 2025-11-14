@@ -90,7 +90,7 @@ Q_SIGNALS:
 	Q_INVOKABLE void acceptTextMessage( const QString& textMessage );
 
 private:
-	enum Commands {
+	enum class FeatureCommand {
 		ShowTextMessage
 	};
 
