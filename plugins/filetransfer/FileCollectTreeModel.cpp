@@ -87,13 +87,13 @@ QModelIndex FileCollectTreeModel::parent(const QModelIndex& index) const
 	int collectionRow = 0;
 	for (const auto& collection : m_controller->collections())
 	{
-		if (index.constInternalPointer() == &collection)
+		if (constInternalPointer(index) == &collection)
 		{
 			return {};
 		}
 
 		if (index.row() < collection.files.count() &&
-			index.constInternalPointer() == &collection.files[index.row()])
+			constInternalPointer(index) == &collection.files[index.row()])
 		{
 			return createIndex(collectionRow, index.column(), &collection);
 		}
@@ -112,7 +112,7 @@ int FileCollectTreeModel::rowCount(const QModelIndex& parent) const
 	{
 		for (const auto& collection : m_controller->collections())
 		{
-			if (parent.constInternalPointer() == &collection)
+			if (constInternalPointer(parent) == &collection)
 			{
 				return collection.files.count();
 			}
@@ -140,7 +140,7 @@ bool FileCollectTreeModel::hasChildren(const QModelIndex& parent) const
 	{
 		for (const auto& collection : m_controller->collections())
 		{
-			if (parent.constInternalPointer() == &collection)
+			if (constInternalPointer(parent) == &collection)
 			{
 				return true;
 			}
@@ -162,13 +162,13 @@ QVariant FileCollectTreeModel::data(const QModelIndex& index, int role) const
 
 	for (const auto& collection : m_controller->collections())
 	{
-		if (index.constInternalPointer() == &collection)
+		if (constInternalPointer(index) == &collection)
 		{
 			return collectionData(collection, index, role);
 		}
 
 		if (index.row() < collection.files.count() &&
-			index.constInternalPointer() == &collection.files[index.row()])
+			constInternalPointer(index) == &collection.files[index.row()])
 		{
 			return fileData(collection, index, role);
 		}

@@ -51,6 +51,21 @@ public:
 						int role) const override;
 
 private:
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+	QModelIndex createIndex(int row, int column, const void *data) const
+	{
+		return QAbstractItemModel::createIndex(row, column, quintptr(data));
+	}
+#endif
+	static const void* constInternalPointer(const QModelIndex& index)
+	{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+		return index.constInternalPointer();
+#else
+		return reinterpret_cast<const void *>(index.internalId());
+#endif
+	}
+
 	bool isValidCollection(const FileCollection& collection) const;
 
 	QModelIndex indexOfCollection(FileCollection::Id collectionId, int column) const;
