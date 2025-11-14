@@ -58,7 +58,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Test</source>
-        <translation>Sına</translation>
+        <translation>Test</translation>
     </message>
     <message>
         <source>Process access control rules</source>
@@ -70,19 +70,19 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation>Bilgisayar erişimi için yetkili kullanıcı kümeleri</translation>
+        <translation>Bilgisayar erişimi için yetkilendirilmiş kullanıcı grupları</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation>Veyon ağınızdaki bilgisayarlara erişmeye yetkili olacak kullanıcıları içeren kümeleri ekleyin.</translation>
+        <translation>Lütfen Veyon ağınızdaki bilgisayarlara erişim yetkisi verilmesi gereken üyelerin gruplarını ekleyin.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation>Yetkili kullanıcı kümeleri</translation>
+        <translation>Yetkili kullanıcı grupları</translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation>Tüm kümeler</translation>
+        <translation>Tüm gruplar</translation>
     </message>
     <message>
         <source>Access control rules</source>
@@ -114,7 +114,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation>Sınamak için izinlere erişecek bir kullanıcı giriş adı girin:</translation>
+        <translation>Lütfen test etmek için erişim izinlerine sahip bir kullanıcı oturum açma adı girin:</translation>
     </message>
     <message>
         <source>Access allowed</source>
@@ -180,7 +180,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>is member of group</source>
-        <translation>kümenin üyesidir</translation>
+        <translation>grubun üyesidir</translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -299,7 +299,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>Test result</source>
-        <translation>Sınama sonuçları</translation>
+        <translation>Test sonucu</translation>
     </message>
     <message>
         <source>There is no matching rule with a valid action. The access is therefore denied.</source>
@@ -704,7 +704,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation>Seçilen bilgisayarı kaldır</translation>
+        <translation>Seçili bilgisayarı kaldır</translation>
     </message>
     <message>
         <source>Name</source>
@@ -783,7 +783,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
-        <translation>BİÇİMLENDİRME-DİZİSİ-YER-TUTUCULARLA</translation>
+        <translation>BİÇİMLENDİRME-DİZİSİYLE-YER-TUTUCULAR</translation>
     </message>
     <message>
         <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
@@ -839,7 +839,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>PARENT</source>
-        <translation>VELİ</translation>
+        <translation>AİLE</translation>
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
@@ -1118,7 +1118,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Logged in since</source>
-        <translation>beri giriş yapıldı</translation>
+        <translation>den beri giriş yapıldı</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -1212,7 +1212,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Unset (remove) given configuration key</source>
-        <translation>Verilen yapılandırma anahtarını kaldır</translation>
+        <translation>Verilen yapılandırma anahtarını kaldır (ayarını kaldır)</translation>
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
@@ -1286,14 +1286,14 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     <name>DemoClient</name>
     <message>
         <source>%1 Demo</source>
-        <translation>%1 Tanıtımı</translation>
+        <translation>%1 Gösteri</translation>
     </message>
 </context>
 <context>
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>Tanıtım sunucusu</translation>
+        <translation>Gösteri sunucusu</translation>
     </message>
     <message>
         <source>Tunables</source>
@@ -1317,7 +1317,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation>Demo çalışırken küçük resim güncellemelerini yavaşlatın</translation>
+        <translation>Gösteri çalışırken küçük resim güncellemelerini yavaşlatın</translation>
     </message>
     <message>
         <source>Memory limit</source>
@@ -1344,7 +1344,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Stop demo</source>
-        <translation>Tanıtımı durdur</translation>
+        <translation>Gösteriyi durdur</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
@@ -1352,15 +1352,15 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation>Tam ekran demosu</translation>
+        <translation>Tam ekran gösterisi</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>Pencere kipinde gösterim</translation>
+        <translation>Pencere kipinde gösteri</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation>Kendi ekranınızı tam ekran modunda paylaşın</translation>
+        <translation>Kendi ekranınızı tam ekran modunda paylaş</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
@@ -1368,7 +1368,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation>Kendi ekranınızı bir pencerede paylaşın</translation>
+        <translation>Kendi ekranınızı bir pencerede paylaş</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -1376,7 +1376,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation>Seçili kullanıcının ekranını tam ekran modunda paylaşın</translation>
+        <translation>Seçili kullanıcının ekranını tam ekran modunda paylaş</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
@@ -1404,7 +1404,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation>Ekran yayını ile bir tanıtım gerçekleştir</translation>
+        <translation>Ekran yayını ile bir gösteri gerçekleştir</translation>
     </message>
 </context>
 <context>
@@ -1485,7 +1485,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Start application</source>
-        <translation>Uygulamayı başlat</translation>
+        <translation>Uygulama başlat</translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
@@ -1721,14 +1721,64 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
 </context>
 <context>
+    <name>FileCollectDialog</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Dosya transferi</translation>
+    </message>
+    <message>
+        <source>Collected files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Overall progress</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Output directory</source>
+        <translation>Çıkış dizini</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Başlat</translation>
+    </message>
+    <message>
+        <source>Enter collection name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a name for this file collection:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Output directory creation failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>FileCollectTreeModel</name>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Ad</translation>
+    </message>
+</context>
+<context>
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
         <translation>Dosya transferi</translation>
     </message>
     <message>
-        <source>Directories</source>
-        <translation>Dizinler</translation>
+        <source>Settings for distributing files</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Destination directory</source>
@@ -1739,8 +1789,76 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>Varsayılan kaynak dizini</translation>
     </message>
     <message>
-        <source>Options</source>
-        <translation>Seçenekler</translation>
+        <source>Settings for collecting files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prefix filenames with grouping attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Store files in subdirectories based on the grouping attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group collected files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collection directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect all files from configured source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prompt user for folder to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prompt user for files to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subdirectory based on date &amp; time</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subdirectory with name entered by the collecting user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect files recursively</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Kullanıcı oturum açma adı</translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Kullanıcının tam adı</translation>
+    </message>
+    <message>
+        <source>Device name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collected files grouping attribute</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1778,7 +1896,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
-        <translation>İlişkili programla dosya aktarma ve açma</translation>
+        <translation>İlgili programla dosya(ları) aktarın ve açın</translation>
     </message>
     <message>
         <source>Transfer and open destination folder</source>
@@ -1796,12 +1914,20 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
 <context>
     <name>FileTransferPlugin</name>
     <message>
-        <source>File transfer</source>
-        <translation>Dosya transferi</translation>
+        <source>Distribute</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Dosyaları bilgisayarınızdan tüm bilgisayarlara aktarmak için bu düğmeyi tıklatın.</translation>
+        <source>Click this button to distribute files from your computer to all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to collect files from all computers to your computer.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
@@ -1820,8 +1946,8 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>Yazılmak için açılamadığı için &quot;%1&quot; dosyası alınamadı!</translation>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Uzak bilgisayara dosya aktarma</translation>
+        <source>Transfer files between computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1996,7 +2122,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation>Eksik kullanıcı kümeleri arka ucu</translation>
+        <translation>Eksik kullanıcı grupları arka ucu</translation>
     </message>
     <message>
         <source>No user groups plugin was found. Please check your installation!</source>
@@ -2140,7 +2266,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>(only if different from group tree)</source>
-        <translation>(eğer yalnızca küme ağacından farklıysa)</translation>
+        <translation>(sadece grup ağacından farklıysa)</translation>
     </message>
     <message>
         <source>Computer tree</source>
@@ -2160,11 +2286,11 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Group tree</source>
-        <translation>Küme ağacı</translation>
+        <translation>Grup ağacı</translation>
     </message>
     <message>
         <source>Computer group tree</source>
-        <translation>Bilgisayar kümesi ağacı</translation>
+        <translation>Bilgisayar grubu ağacı</translation>
     </message>
     <message>
         <source>e.g. OU=Users</source>
@@ -2172,7 +2298,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>e.g. OU=Groups</source>
-        <translation>örn. OU=Kümeler</translation>
+        <translation>örn. OU=Gruplar</translation>
     </message>
     <message>
         <source>Object attributes</source>
@@ -2204,7 +2330,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Group member attribute</source>
-        <translation>Küme üyesi özniteliği</translation>
+        <translation>Grup üyesi özniteliği</translation>
     </message>
     <message>
         <source>e.g. hwAddress</source>
@@ -2236,7 +2362,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>e.g. cn or displayName</source>
-        <translation>ör. cn veya displayName</translation>
+        <translation>ör. cn veya ekranAdı</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -2244,11 +2370,11 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Optional object filters</source>
-        <translation>İsteğe bağlı nesne süzgeçleri</translation>
+        <translation>İsteğe bağlı nesne filtreleri</translation>
     </message>
     <message>
         <source>Filter for computer groups</source>
-        <translation>Bilgisayar kümeleri için süzme</translation>
+        <translation>Bilgisayar grupları için filtre</translation>
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
@@ -2256,7 +2382,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>e.g. (objectClass=group)</source>
-        <translation>örnek: (nesneSınıfı=grup)</translation>
+        <translation>ör. (objectClass=grup)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
@@ -2264,7 +2390,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Filter for users</source>
-        <translation>Kullanıcılar için süzme</translation>
+        <translation>Kullanıcılar için filtre</translation>
     </message>
     <message>
         <source>Filter for computers</source>
@@ -2272,11 +2398,11 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Filter for user groups</source>
-        <translation>Kullanıcı kümeleri için süzgeç</translation>
+        <translation>Kullanıcı grupları için filtre</translation>
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation>e.g. (objectClass=room) VEYA (objectClass=computerLab)</translation>
+        <translation>ör. (objectClass=room) VEYA (objectClass=computerLab)</translation>
     </message>
     <message>
         <source>Filter for computer containers</source>
@@ -2296,7 +2422,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Group member identification</source>
-        <translation>Küme üyesi kimliği</translation>
+        <translation>Grup üye tanımlaması</translation>
     </message>
     <message>
         <source>Distinguished name (Samba/AD)</source>
@@ -2316,7 +2442,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Computer groups</source>
-        <translation>Bilgisayar kümeleri</translation>
+        <translation>Bilgisayar grupları</translation>
     </message>
     <message>
         <source>Computer containers or OUs</source>
@@ -2328,15 +2454,15 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Integration tests</source>
-        <translation>Tümleştirme sınamaları</translation>
+        <translation>Entegrasyon testleri</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
-        <translation>Kullanıcının tüm kümelerini listele</translation>
+        <translation>Bir kullanıcının tüm gruplarını listele</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
-        <translation>Bilgisayarın tüm kümelerini listele</translation>
+        <translation>Bir bilgisayarın tüm gruplarını listele</translation>
     </message>
     <message>
         <source>Get computer object by IP address</source>
@@ -2356,7 +2482,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Test</source>
-        <translation>Sına</translation>
+        <translation>Test</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
@@ -2434,11 +2560,11 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Enter group name</source>
-        <translation>Küme adı gir</translation>
+        <translation>Grup adını girin</translation>
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
-        <translation>Üyeleri sorgulanacak küme adını girin:</translation>
+        <translation>Lütfen üyelerini sorgulamak istediğiniz grubun adını girin:</translation>
     </message>
     <message>
         <source>group members</source>
@@ -2534,7 +2660,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
-        <translation>Küme üyelikleri sorgulanacak kullanıcı giriş adı girin:</translation>
+        <translation>Lütfen sorgulanacak grup üyeliklerinin kullanıcı adını girin:</translation>
     </message>
     <message>
         <source>groups of user</source>
@@ -2737,7 +2863,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation>LDAP/AD tümelemesini yapılandırmak ve sınamak için komutlar</translation>
+        <translation>LDAP/AD entegrasyonunu yapılandırma ve test etme komutları</translation>
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
@@ -2794,7 +2920,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation>arama süzgeci gir...</translation>
+        <translation>arama filtresine girin...</translation>
     </message>
 </context>
 <context>
@@ -2828,7 +2954,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Master</source>
-        <translation>Usta</translation>
+        <translation>Master</translation>
     </message>
     <message>
         <source>Access control</source>
@@ -3191,7 +3317,7 @@ Düzenlemeyi bir dosyadan yüklemek veya mevcut düzenlemeyi bir dosyaya kaydetm
     </message>
     <message>
         <source>Hide computer filter field</source>
-        <translation>Bilgisayar süzme alanını gizle</translation>
+        <translation>Bilgisayar filtre alanını gizle</translation>
     </message>
     <message>
         <source>Modes and features</source>
@@ -3893,7 +4019,7 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
     </message>
     <message>
         <source>Demo server</source>
-        <translation>Tanıtım sunucusu</translation>
+        <translation>Gösteri sunucusu</translation>
     </message>
     <message>
         <source>Miscellaneous settings</source>
@@ -4123,7 +4249,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation>Uygulamayı başlat</translation>
+        <translation>Uygulama başlat</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -4480,7 +4606,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation>Pencereler</translation>
+        <translation>Windows</translation>
     </message>
     <message>
         <source>General</source>
