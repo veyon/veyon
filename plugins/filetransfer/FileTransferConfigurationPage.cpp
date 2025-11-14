@@ -36,13 +36,24 @@ FileTransferConfigurationPage::FileTransferConfigurationPage( FileTransferConfig
 {
 	ui->setupUi(this);
 
-	connect( ui->browseDefaultSourceDirectory, &QAbstractButton::clicked,
-			 this, &FileTransferConfigurationPage::browseDefaultSourceDirectory );
+	connect(ui->browseDefaultSourceDirectory, &QAbstractButton::clicked,
+			this, &FileTransferConfigurationPage::browseDefaultSourceDirectory);
 
-	connect( ui->browseDestinationDirectory, &QAbstractButton::clicked,
-			 this, &FileTransferConfigurationPage::browseDestinationDirectory );
+	connect(ui->browseDestinationDirectory, &QAbstractButton::clicked,
+			this, &FileTransferConfigurationPage::browseDestinationDirectory);
 
-	Configuration::UiMapping::setFlags( this, Configuration::Property::Flag::Advanced );
+	connect(ui->browseFilesToCollectSourceDirectory, &QAbstractButton::clicked,
+			this, &FileTransferConfigurationPage::browseFilesToCollectSourceDirectory);
+
+	connect(ui->browseCollectedFilesDestinationDirectory, &QAbstractButton::clicked,
+			this, &FileTransferConfigurationPage::browseCollectedFilesDestinationDirectory);
+
+	connect(ui->collectedFilesGroupingMode, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this]() {
+		ui->collectedFilesGroupingAttribute->setEnabled(ui->collectedFilesGroupingMode->currentIndex() > 0);
+	});
+
+	ui->collectingMode->hide();
+	ui->collectingModeLabel->hide();
 }
 
 
@@ -83,4 +94,18 @@ void FileTransferConfigurationPage::browseDefaultSourceDirectory()
 void FileTransferConfigurationPage::browseDestinationDirectory()
 {
 	FileSystemBrowser(FileSystemBrowser::ExistingDirectory, this).exec(ui->fileTransferDestinationDirectory);
+}
+
+
+
+void FileTransferConfigurationPage::browseFilesToCollectSourceDirectory()
+{
+	FileSystemBrowser(FileSystemBrowser::ExistingDirectory, this).exec(ui->filesToCollectSourceDirectory);
+}
+
+
+
+void FileTransferConfigurationPage::browseCollectedFilesDestinationDirectory()
+{
+	FileSystemBrowser(FileSystemBrowser::ExistingDirectory, this).exec(ui->collectedFilesDestinationDirectory);
 }

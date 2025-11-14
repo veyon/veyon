@@ -191,7 +191,7 @@ bool FileTransferController::openFile()
 		return false;
 	}
 
-	m_fileReadThread = new FileReadThread( m_files[m_currentFileIndex], this );
+	m_fileReadThread = new FileReadThread(m_files.value(m_currentFileIndex), this);
 
 	if( m_fileReadThread->start() == false )
 	{
@@ -206,7 +206,7 @@ bool FileTransferController::openFile()
 
 	m_currentTransferId = QUuid::createUuid();
 
-	m_plugin->sendStartMessage( m_currentTransferId, QFileInfo( m_files[m_currentFileIndex] ).fileName(),
+	m_plugin->sendStartMessage( m_currentTransferId, QFileInfo(m_files.value(m_currentFileIndex)).fileName(),
 								m_flags.testFlag( OverwriteExistingFiles ), m_interfaces );
 
 	return true;
@@ -244,7 +244,7 @@ void FileTransferController::finishFile()
 		delete m_fileReadThread;
 		m_fileReadThread = nullptr;
 
-		m_plugin->sendFinishMessage( m_currentTransferId, QFileInfo( m_files[m_currentFileIndex] ).fileName(),
+		m_plugin->sendFinishMessage( m_currentTransferId, QFileInfo(m_files.value(m_currentFileIndex)).fileName(),
 									 m_flags.testFlag( OpenFilesInApplication ), m_interfaces );
 
 		m_currentTransferId = QUuid();

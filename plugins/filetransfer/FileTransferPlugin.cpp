@@ -30,6 +30,8 @@
 
 #include "BuiltinFeatures.h"
 #include "Filesystem.h"
+#include "FileCollectDialog.h"
+#include "FileCollectWorker.h"
 #include "FileTransferConfigurationPage.h"
 #include "FileTransferController.h"
 #include "FileTransferDialog.h"
@@ -45,15 +47,21 @@
 
 FileTransferPlugin::FileTransferPlugin( QObject* parent ) :
 	QObject( parent ),
-	m_fileTransferFeature( QStringLiteral( "FileTransfer" ),
-						   Feature::Flag::Action | Feature::Flag::AllComponents,
-						   Feature::Uid( "4a70bd5a-fab2-4a4b-a92a-a1e81d2b75ed" ),
-						   Feature::Uid(),
-						   tr( "File transfer" ), {},
-						   tr( "Click this button to transfer files from your computer to all computers." ),
-						   QStringLiteral(":/filetransfer/applications-office.png") ),
-	m_features( { m_fileTransferFeature } ),
-	m_configuration( &VeyonCore::config() )
+	m_distributeFilesFeature(QStringLiteral("DistributeFiles"),
+							 Feature::Flag::Action | Feature::Flag::AllComponents,
+							 Feature::Uid("4a70bd5a-fab2-4a4b-a92a-a1e81d2b75ed"),
+							 Feature::Uid(),
+							 tr("Distribute"), {},
+							 tr("Click this button to distribute files from your computer to all computers."),
+							 QStringLiteral(":/filetransfer/distribute-files.png") ),
+	m_collectFilesFeature(QStringLiteral("FileCollect"),
+						  Feature::Flag::Action | Feature::Flag::AllComponents,
+						  Feature::Uid("5a14c971-e93c-457f-97a0-0b8f1058a58e"),
+						  Feature::Uid(),
+						  tr("Collect" ), {},
+						  tr("Click this button to collect files from all computers to your computer."),
+						  QStringLiteral(":/filetransfer/collect-files.png")),
+	m_configuration(&VeyonCore::config())
 {
 }
 
@@ -67,59 +75,16 @@ FileTransferPlugin::~FileTransferPlugin()
 
 
 bool FileTransferPlugin::controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
-										const ComputerControlInterfaceList& computerControlInterfaces )
+										 const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	if( hasFeature( featureUid ) == false )
+	if (featureUid == m_distributeFilesFeature.uid())
 	{
-		return false;
+		return controlDistributeFilesFeature(operation, arguments, computerControlInterfaces);
 	}
 
-	if( operation == Operation::Initialize )
+	if (featureUid == m_collectFilesFeature.uid())
 	{
-		auto files = arguments.value( argToString(Argument::Files) ).toStringList();
-		if( files.isEmpty() )
-		{
-			return false;
-		}
-
-		for( auto& file : files )
-		{
-			QFileInfo fileInfo( file );
-			if( fileInfo.dir() == QDir::current() )
-			{
-				file = fileInfo.fileName();
-			}
-		}
-
-		if( m_fileTransferController == nullptr )
-		{
-			m_fileTransferController = new FileTransferController( this );
-		}
-
-		m_fileTransferController->setFiles( files );
-		m_fileTransferController->setInterfaces( computerControlInterfaces );
-
-		return true;
-	}
-
-	if( operation == Operation::Start )
-	{
-		if( m_fileTransferController )
-		{
-			m_fileTransferController->start();
-		}
-
-		return true;
-	}
-
-	if( operation == Operation::Stop )
-	{
-		if( m_fileTransferController )
-		{
-			m_fileTransferController->stop();
-		}
-
-		return true;
+		return controlCollectFilesFeature(operation, arguments, computerControlInterfaces);
 	}
 
 	return false;
@@ -130,7 +95,7 @@ bool FileTransferPlugin::controlFeature( Feature::Uid featureUid, Operation oper
 bool FileTransferPlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
 									   const ComputerControlInterfaceList& computerControlInterfaces )
 {
-	if( feature == m_fileTransferFeature )
+	if( feature == m_distributeFilesFeature )
 	{
 		FileTransferUserConfiguration config( master.userConfigurationObject() );
 
@@ -149,14 +114,70 @@ bool FileTransferPlugin::startFeature( VeyonMasterInterface& master, const Featu
 			config.setLastFileTransferSourceDirectory( QFileInfo( files.first() ).absolutePath() );
 
 			if( controlFeature( feature.uid(), Operation::Initialize,
-								{ { argToString(Argument::Files), files } }, computerControlInterfaces ) )
+			{ { argToString(Argument::Files), files } }, computerControlInterfaces ) )
 			{
 				auto dialog = new FileTransferDialog( m_fileTransferController, master.mainWindow() );
 				connect( dialog, &QDialog::finished, dialog, &QDialog::deleteLater );
-				dialog->exec();
+				dialog->open();
 			}
 		}
 
+		return true;
+	}
+
+	if (feature == m_collectFilesFeature)
+	{
+		if (controlFeature(feature.uid(), Operation::Initialize, {}, computerControlInterfaces))
+		{
+			auto dialog = new FileCollectDialog(m_fileCollectController, master.mainWindow());
+			connect(dialog, &QDialog::finished, dialog, &QDialog::deleteLater);
+			dialog->exec();
+		}
+
+		return true;
+	}
+
+	return false;
+}
+
+
+
+bool FileTransferPlugin::handleFeatureMessage(ComputerControlInterface::Pointer computerControlInterface, const FeatureMessage& message)
+{
+	if (message.featureUid() == m_collectFilesFeature.uid())
+	{
+		switch (message.command<FeatureCommand>())
+		{
+		case FeatureCommand::InitFileCollection:
+			m_fileCollectController->initCollection(computerControlInterface,
+													message.argument(Argument::CollectionId).toUuid(),
+													message.argument(Argument::Files).toStringList());
+			break;
+		case FeatureCommand::StartFileTransfer:
+			m_fileCollectController->startFileTransfer(computerControlInterface,
+													   message.argument(Argument::CollectionId).toUuid(),
+													   message.argument(Argument::TransferId).toUuid(),
+													   message.argument(Argument::FileName).toString(),
+													   message.argument(Argument::FileSize).toLongLong());
+			break;
+		case FeatureCommand::ContinueFileTransfer:
+			m_fileCollectController->continueFileTransfer(computerControlInterface,
+														  message.argument(Argument::CollectionId).toUuid(),
+														  message.argument(Argument::TransferId).toUuid(),
+														  message.argument(Argument::DataChunk).toByteArray());
+			break;
+		case FeatureCommand::FinishFileTransfer:
+			m_fileCollectController->finishFileTransfer(computerControlInterface,
+														message.argument(Argument::CollectionId).toUuid(),
+														message.argument(Argument::TransferId).toUuid());
+			break;
+		case FeatureCommand::FinishFileCollection:
+			m_fileCollectController->finishFileCollection(computerControlInterface,
+														  message.argument(Argument::CollectionId).toUuid());
+			break;
+		default:
+			break;
+		}
 		return true;
 	}
 
@@ -171,20 +192,63 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonServerInterface& server,
 {
 	Q_UNUSED(messageContext)
 
-	if( m_fileTransferFeature.uid() == message.featureUid() )
+	if (message.featureUid() == m_distributeFilesFeature.uid())
 	{
-		if (message.command<FeatureCommand>() == FeatureCommand::FileTransferFinishCommand)
+		if (message.command<FeatureCommand>() == FeatureCommand::FinishFileTransfer)
 		{
-			VeyonCore::builtinFeatures().systemTrayIcon().showMessage( m_fileTransferFeature.displayName(),
-																   tr( "Received file \"%1\"." ).
-																	   arg( message.argument( Argument::Filename ).toString() ),
-																   server.featureWorkerManager() );
+			VeyonCore::builtinFeatures().systemTrayIcon().showMessage( m_distributeFilesFeature.displayName(),
+																	   tr( "Received file \"%1\"." ).
+																	   arg( message.argument( Argument::FileName ).toString() ),
+																	   server.featureWorkerManager() );
 		}
 
 		// forward message to worker
 		server.featureWorkerManager().sendMessageToUnmanagedSessionWorker( message );
 
 		return true;
+	}
+
+	if (message.featureUid() == m_collectFilesFeature.uid())
+	{
+		const auto collectionId = message.argument(Argument::CollectionId).toUuid();
+
+		if (m_fileCollectionContexts.contains(collectionId) == false)
+		{
+			// don't start session/worker for closing non-existent chat worker
+			if (message.command<FeatureCommand>() == FeatureCommand::FinishFileCollection &&
+				server.featureWorkerManager().isWorkerRunning(message.featureUid()) == false)
+			{
+				return true;
+			}
+
+			m_fileCollectionContexts[collectionId] = messageContext;
+		}
+
+		// forward message to worker
+		server.featureWorkerManager().sendMessageToUnmanagedSessionWorker(message);
+
+		if (message.command<FeatureCommand>() == FeatureCommand::FinishFileCollection)
+		{
+			m_fileCollectionContexts.remove(collectionId);
+		}
+
+		return true;
+	}
+
+	return false;
+}
+
+
+bool FileTransferPlugin::handleFeatureMessageFromWorker(VeyonServerInterface& server, const FeatureMessage& message)
+{
+	if (message.featureUid() == m_collectFilesFeature.uid() &&
+		message.hasArgument(Argument::CollectionId))
+	{
+		const auto collectionId = message.argument(Argument::CollectionId).toUuid();
+
+		// forward message to master - if collectionId does not exist, default constructed MessageContext has
+		// ioDevice=nullptr so sendFeatureMessageReply() will do nothing
+		return server.sendFeatureMessageReply(m_fileCollectionContexts.value(collectionId), message);
 	}
 
 	return false;
@@ -194,82 +258,14 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonServerInterface& server,
 
 bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
-	Q_UNUSED(worker)
-
-	if( m_fileTransferFeature.uid() == message.featureUid() )
+	if (m_distributeFilesFeature.uid() == message.featureUid())
 	{
-		switch (message.command<FeatureCommand>())
-		{
-		case FeatureCommand::FileTransferStartCommand:
-			m_currentFile.close();
+		return handleDistributeFilesMessage(message);
+	}
 
-			m_currentFileName = destinationDirectory() + QDir::separator() + message.argument( Argument::Filename ).toString();
-			m_currentFile.setFileName( m_currentFileName );
-			if( m_currentFile.exists() && message.argument( Argument::OverwriteExistingFile ).toBool() == false )
-			{
-				QMessageBox::critical( nullptr, m_fileTransferFeature.displayName(),
-									   tr( "Could not receive file \"%1\" as it already exists." ).
-									   arg( m_currentFile.fileName() ) );
-				return true;
-			}
-
-			if( VeyonCore::platform().filesystemFunctions().openFileSafely(
-					&m_currentFile,
-					QFile::WriteOnly | QFile::Truncate,
-					QFile::ReadOwner | QFile::WriteOwner | QFile::ReadGroup | QFile::WriteGroup | QFile::ReadOther ) )
-			{
-				m_currentTransferId = message.argument( Argument::TransferId ).toUuid();
-			}
-			else
-			{
-				QMessageBox::critical( nullptr, m_fileTransferFeature.displayName(),
-									   tr( "Could not receive file \"%1\" as it could not be opened for writing!" ).
-									   arg( m_currentFile.fileName() ) );
-			}
-			return true;
-
-		case FeatureCommand::FileTransferContinueCommand:
-			if( message.argument( Argument::TransferId ).toUuid() == m_currentTransferId )
-			{
-				m_currentFile.write( message.argument( Argument::DataChunk ).toByteArray() );
-			}
-			else
-			{
-				vWarning() << "received chunk for unknown transfer ID";
-			}
-			return true;
-
-		case FeatureCommand::FileTransferCancelCommand:
-			if( message.argument( Argument::TransferId ).toUuid() == m_currentTransferId )
-			{
-				m_currentFile.remove();
-			}
-			else
-			{
-				vWarning() << "received chunk for unknown transfer ID";
-			}
-			return true;
-
-		case FeatureCommand::FileTransferFinishCommand:
-			m_currentFile.close();
-			if( message.argument( Argument::OpenFileInApplication ).toBool() )
-			{
-				QDesktopServices::openUrl( QUrl::fromLocalFile( m_currentFileName ) );
-			}
-			m_currentFile.setFileName( {} );
-			return true;
-
-		case FeatureCommand::OpenTransferFolder:
-			QDesktopServices::openUrl( QUrl::fromLocalFile( destinationDirectory() ) );
-			return true;
-
-		case FeatureCommand::StopWorker:
-			QCoreApplication::quit();
-			return true;
-
-		default:
-			break;
-		}
+	if (m_collectFilesFeature.uid() == message.featureUid())
+	{
+		return handleCollectFilesMessage(worker, message);
 	}
 
 	return false;
@@ -280,11 +276,11 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 void FileTransferPlugin::sendStartMessage( QUuid transferId, const QString& fileName,
 										   bool overwriteExistingFile, const ComputerControlInterfaceList& interfaces )
 {
-	sendFeatureMessage(FeatureMessage( m_fileTransferFeature.uid(), FeatureCommand::FileTransferStartCommand)
-					   .addArgument(Argument::TransferId, transferId)
-					   .addArgument(Argument::Filename, fileName)
-					   .addArgument(Argument::OverwriteExistingFile, overwriteExistingFile),
-						interfaces);
+	sendFeatureMessage(FeatureMessage(m_distributeFilesFeature.uid(), FeatureCommand::StartFileTransfer).
+					   addArgument(Argument::TransferId, transferId).
+					   addArgument(Argument::FileName, fileName).
+					   addArgument(Argument::OverwriteExistingFile, overwriteExistingFile),
+					   interfaces);
 }
 
 
@@ -292,10 +288,10 @@ void FileTransferPlugin::sendStartMessage( QUuid transferId, const QString& file
 void FileTransferPlugin::sendDataMessage( QUuid transferId, const QByteArray& data,
 										  const ComputerControlInterfaceList& interfaces )
 {
-	sendFeatureMessage(FeatureMessage(m_fileTransferFeature.uid(), FeatureCommand::FileTransferContinueCommand)
-					   .addArgument(Argument::TransferId, transferId)
-					   .addArgument(Argument::DataChunk, data),
-						interfaces);
+	sendFeatureMessage(FeatureMessage(m_distributeFilesFeature.uid(), FeatureCommand::ContinueFileTransfer).
+					   addArgument(Argument::TransferId, transferId).
+					   addArgument(Argument::DataChunk, data),
+					   interfaces);
 }
 
 
@@ -303,8 +299,8 @@ void FileTransferPlugin::sendDataMessage( QUuid transferId, const QByteArray& da
 void FileTransferPlugin::sendCancelMessage( QUuid transferId,
 											const ComputerControlInterfaceList& interfaces )
 {
-	sendFeatureMessage(FeatureMessage(m_fileTransferFeature.uid(), FeatureCommand::FileTransferCancelCommand)
-					   .addArgument(Argument::TransferId, transferId), interfaces);
+	sendFeatureMessage(FeatureMessage( m_distributeFilesFeature.uid(), FeatureCommand::CancelFileTransfer).
+					   addArgument(Argument::TransferId, transferId), interfaces);
 }
 
 
@@ -312,24 +308,61 @@ void FileTransferPlugin::sendCancelMessage( QUuid transferId,
 void FileTransferPlugin::sendFinishMessage( QUuid transferId, const QString& fileName,
 											bool openFileInApplication, const ComputerControlInterfaceList& interfaces )
 {
-	sendFeatureMessage(FeatureMessage(m_fileTransferFeature.uid(), FeatureCommand::FileTransferFinishCommand)
-					   .addArgument(Argument::TransferId, transferId)
-					   .addArgument(Argument::Filename, fileName)
-					   .addArgument(Argument::OpenFileInApplication, openFileInApplication), interfaces);
+	sendFeatureMessage(FeatureMessage(m_distributeFilesFeature.uid(), FeatureCommand::FinishFileTransfer).
+					   addArgument(Argument::TransferId, transferId).
+					   addArgument(Argument::FileName, fileName).
+					   addArgument(Argument::OpenFileInApplication, openFileInApplication), interfaces);
 }
 
 
 
 void FileTransferPlugin::sendOpenTransferFolderMessage( const ComputerControlInterfaceList& interfaces )
 {
-	sendFeatureMessage(FeatureMessage(m_fileTransferFeature.uid(), FeatureCommand::OpenTransferFolder), interfaces);
+	sendFeatureMessage(FeatureMessage(m_distributeFilesFeature.uid(), FeatureCommand::OpenTransferFolder), interfaces);
 }
 
 
 
 void FileTransferPlugin::sendStopWorkerMessage(const ComputerControlInterfaceList& interfaces)
 {
-	sendFeatureMessage(FeatureMessage(m_fileTransferFeature.uid(), FeatureCommand::StopWorker), interfaces);
+	sendFeatureMessage(FeatureMessage(m_distributeFilesFeature.uid(), FeatureCommand::StopWorker), interfaces);
+}
+
+
+
+void FileTransferPlugin::sendInitFileCollectionMessage(const FileCollection& collection, ComputerControlInterface::Pointer computerControlInterface)
+{
+	computerControlInterface->sendFeatureMessage(
+				FeatureMessage(m_collectFilesFeature.uid(), FeatureCommand::InitFileCollection)
+				.addArgument(Argument::CollectionId, collection.id));
+}
+
+
+
+void FileTransferPlugin::sendFinishFileCollectionMessage(const FileCollection& collection, ComputerControlInterface::Pointer computerControlInterface)
+{
+	computerControlInterface->sendFeatureMessage(
+				FeatureMessage(m_collectFilesFeature.uid(), FeatureCommand::FinishFileCollection)
+				.addArgument(Argument::CollectionId, collection.id));
+}
+
+
+
+void FileTransferPlugin::sendStartFileTransferMessage(const FileCollection& collection, ComputerControlInterface::Pointer computerControlInterface)
+{
+	computerControlInterface->sendFeatureMessage(
+				FeatureMessage(m_collectFilesFeature.uid(), FeatureCommand::StartFileTransfer)
+				.addArgument(Argument::CollectionId, collection.id));
+}
+
+
+
+void FileTransferPlugin::sendContinueFileTransferMessage(const FileCollection& collection, ComputerControlInterface::Pointer computerControlInterface)
+{
+	computerControlInterface->sendFeatureMessage(
+				FeatureMessage(m_collectFilesFeature.uid(), FeatureCommand::ContinueFileTransfer)
+				.addArgument(Argument::CollectionId, collection.id)
+				.addArgument(Argument::TransferId, collection.currentTransferId));
 }
 
 
@@ -353,6 +386,285 @@ ConfigurationPage* FileTransferPlugin::createConfigurationPage()
 {
 	return new FileTransferConfigurationPage( m_configuration );
 }
+
+
+
+bool FileTransferPlugin::handleDistributeFilesMessage(const FeatureMessage& message)
+{
+	switch (message.command<FeatureCommand>())
+	{
+	case FeatureCommand::StartFileTransfer:
+		m_currentFile.close();
+
+		m_currentFileName = destinationDirectory() + QDir::separator() + message.argument(Argument::FileName).toString();
+		m_currentFile.setFileName(m_currentFileName);
+		if( m_currentFile.exists() && message.argument(Argument::OverwriteExistingFile).toBool() == false )
+		{
+			QMessageBox::critical(nullptr, m_distributeFilesFeature.displayName(),
+								  tr("Could not receive file \"%1\" as it already exists.").
+								  arg(m_currentFile.fileName()));
+			return true;
+		}
+
+		if (VeyonCore::platform().filesystemFunctions().openFileSafely(
+				&m_currentFile,
+				QFile::WriteOnly | QFile::Truncate,
+				QFile::ReadOwner | QFile::WriteOwner | QFile::ReadGroup | QFile::WriteGroup | QFile::ReadOther))
+		{
+			m_currentTransferId = message.argument(Argument::TransferId).toUuid();
+		}
+		else
+		{
+			QMessageBox::critical(nullptr, m_distributeFilesFeature.displayName(),
+								  tr("Could not receive file \"%1\" as it could not be opened for writing!").
+								  arg(m_currentFile.fileName()));
+		}
+		return true;
+
+	case FeatureCommand::ContinueFileTransfer:
+		if (message.argument(Argument::TransferId).toUuid() == m_currentTransferId)
+		{
+			m_currentFile.write(message.argument(Argument::DataChunk).toByteArray());
+		}
+		else
+		{
+			vWarning() << "received chunk for unknown transfer ID";
+		}
+		return true;
+
+	case FeatureCommand::CancelFileTransfer:
+		if (message.argument(Argument::TransferId).toUuid() == m_currentTransferId)
+		{
+			m_currentFile.remove();
+		}
+		else
+		{
+			vWarning() << "received chunk for unknown transfer ID";
+		}
+		return true;
+
+	case FeatureCommand::FinishFileTransfer:
+		m_currentFile.close();
+		if (message.argument(Argument::OpenFileInApplication).toBool())
+		{
+			QDesktopServices::openUrl( QUrl::fromLocalFile( m_currentFileName ) );
+		}
+		m_currentFile.setFileName({});
+		return true;
+
+	case FeatureCommand::OpenTransferFolder:
+		QDesktopServices::openUrl(QUrl::fromLocalFile(destinationDirectory()));
+		return true;
+
+	case FeatureCommand::StopWorker:
+		QCoreApplication::quit();
+		return true;
+
+	default:
+		break;
+	}
+
+	return false;
+}
+
+
+
+bool FileTransferPlugin::handleCollectFilesMessage(VeyonWorkerInterface& worker, const FeatureMessage& message)
+{
+	const auto command = message.command<FeatureCommand>();
+	const auto collectionId = message.argument(Argument::CollectionId).toUuid();
+	const auto transferId = message.argument(Argument::TransferId).toUuid();
+
+	auto fileCollectWorker = m_fileCollectWorkers.value(collectionId);
+
+	FeatureMessage reply(m_collectFilesFeature.uid(), command);
+	if (collectionId.isNull() == false)
+	{
+		reply.addArgument(Argument::CollectionId, collectionId);
+	}
+
+	switch (command)
+	{
+	case FeatureCommand::InitFileCollection:
+		if (fileCollectWorker == nullptr)
+		{
+			fileCollectWorker = new FileCollectWorker(this);
+			m_fileCollectWorkers[collectionId] = fileCollectWorker;
+		}
+		worker.sendFeatureMessageReply(reply.addArgument(Argument::Files, fileCollectWorker->files()));
+		return true;
+
+	case FeatureCommand::StartFileTransfer:
+		if (fileCollectWorker)
+		{
+			if (fileCollectWorker->startNextTransfer())
+			{
+				worker.sendFeatureMessageReply(reply
+											   .addArgument(Argument::TransferId, fileCollectWorker->currentTransferId())
+											   .addArgument(Argument::FileName, fileCollectWorker->currentFileName())
+											   .addArgument(Argument::FileSize, fileCollectWorker->currentFileSize())
+											   );
+			}
+			else
+			{
+				worker.sendFeatureMessageReply(reply.setCommand(FeatureCommand::FinishFileCollection));
+			}
+			return true;
+		}
+		break;
+
+	case FeatureCommand::ContinueFileTransfer:
+		if (fileCollectWorker && fileCollectWorker->currentTransferId() == transferId)
+		{
+			if (fileCollectWorker->currentFileAtEnd())
+			{
+				worker.sendFeatureMessageReply(reply
+											   .setCommand(FeatureCommand::FinishFileTransfer)
+											   .addArgument(Argument::TransferId, transferId));
+			}
+			else
+			{
+				worker.sendFeatureMessageReply(reply
+											   .addArgument(Argument::TransferId, transferId)
+											   .addArgument(Argument::DataChunk, fileCollectWorker->readNextChunk())
+											   );
+			}
+			return true;
+		}
+		break;
+
+	case FeatureCommand::CancelFileTransfer:
+		if (fileCollectWorker)
+		{
+			fileCollectWorker->cancelCurrentTransfer();
+			worker.sendFeatureMessageReply(reply);
+			return true;
+		}
+		break;
+
+	case FeatureCommand::FinishFileCollection:
+		if (fileCollectWorker)
+		{
+			m_fileCollectWorkers.remove(collectionId);
+			fileCollectWorker->deleteLater();
+			return true;
+		}
+		break;
+
+	default:
+		break;
+	}
+
+	vCritical() << "unhandled command" << command << "or invalid file collectionID" << collectionId;
+
+	return false;
+}
+
+
+
+bool FileTransferPlugin::controlDistributeFilesFeature(Operation operation, const QVariantMap& arguments,
+													   const ComputerControlInterfaceList& computerControlInterfaces)
+{
+	if (operation == Operation::Initialize)
+	{
+		auto files = arguments.value(argToString(Argument::Files)).toStringList();
+		if (files.isEmpty())
+		{
+			return false;
+		}
+
+		for (auto& file : files)
+		{
+			QFileInfo fileInfo(file);
+			if (fileInfo.dir() == QDir::current())
+			{
+				file = fileInfo.fileName();
+			}
+		}
+
+		if (m_fileTransferController == nullptr)
+		{
+			m_fileTransferController = new FileTransferController(this);
+		}
+
+		m_fileTransferController->setFiles(files);
+		m_fileTransferController->setInterfaces(computerControlInterfaces);
+
+		return true;
+	}
+
+	if (operation == Operation::Start)
+	{
+		if (m_fileTransferController)
+		{
+			m_fileTransferController->start();
+		}
+
+		return true;
+	}
+
+	if (operation == Operation::Stop)
+	{
+		if (m_fileTransferController)
+		{
+			m_fileTransferController->stop();
+		}
+
+		return true;
+	}
+
+	return false;
+}
+
+
+
+bool FileTransferPlugin::controlCollectFilesFeature(Operation operation, const QVariantMap& arguments,
+													const ComputerControlInterfaceList& computerControlInterfaces)
+{
+	Q_UNUSED(arguments)
+
+	if (operation == Operation::Initialize)
+	{
+		if (m_fileCollectController == nullptr)
+		{
+			m_fileCollectController = new FileCollectController(this);
+		}
+
+		m_fileCollectController->setInterfaces(computerControlInterfaces);
+
+		return true;
+	}
+
+	if (operation == Operation::Start)
+	{
+		controlCollectFilesFeature(Operation::Initialize, arguments, computerControlInterfaces);
+
+		if (m_fileCollectController->isRunning())
+		{
+			vCritical() << "collection already in progress";
+			return false;
+		}
+
+		m_fileCollectController->start();
+
+		return true;
+	}
+
+	if (operation == Operation::Stop)
+	{
+		if (m_fileCollectController)
+		{
+			m_fileCollectController->stop();
+			m_fileCollectController->deleteLater();
+			m_fileCollectController = nullptr;
+		}
+
+		return true;
+	}
+
+	return false;
+}
+
 
 
 IMPLEMENT_CONFIG_PROXY(FileTransferConfiguration)

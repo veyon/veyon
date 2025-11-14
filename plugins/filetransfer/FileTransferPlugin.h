@@ -29,7 +29,10 @@
 #include "ConfigurationPagePluginInterface.h"
 #include "FeatureProviderInterface.h"
 #include "FileTransferConfiguration.h"
+#include "FileCollection.h"
 
+class FileCollectController;
+class FileCollectWorker;
 class FileTransferController;
 
 class FileTransferPlugin : public QObject, FeatureProviderInterface, PluginInterface, ConfigurationPagePluginInterface
@@ -40,14 +43,29 @@ class FileTransferPlugin : public QObject, FeatureProviderInterface, PluginInter
 					  FeatureProviderInterface
 						  ConfigurationPagePluginInterface)
 public:
+	enum class FeatureCommand
+	{
+		StartFileTransfer,
+		ContinueFileTransfer,
+		CancelFileTransfer,
+		FinishFileTransfer,
+		OpenTransferFolder,
+		StopWorker,
+		InitFileCollection,
+		FinishFileCollection
+	};
+	Q_ENUM(FeatureCommand)
+
 	enum class Argument
 	{
 		TransferId,
-		Filename,
+		FileName,
 		DataChunk,
 		OpenFileInApplication,
 		OverwriteExistingFile,
-		Files
+		Files,
+		CollectionId,
+		FileSize,
 	};
 	Q_ENUM(Argument)
 
@@ -61,7 +79,7 @@ public:
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 0 );
+		return QVersionNumber(1, 0);
 	}
 
 	QString name() const override
@@ -71,7 +89,7 @@ public:
 
 	QString description() const override
 	{
-		return tr( "Transfer files to remote computer" );
+		return tr( "Transfer files between computers" );
 	}
 
 	QString vendor() const override
@@ -89,15 +107,25 @@ public:
 		return m_features;
 	}
 
+	const FileTransferConfiguration& configuration() const
+	{
+		return m_configuration;
+	}
+
 	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
 						const ComputerControlInterfaceList& computerControlInterfaces ) override;
 
 	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
 					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
 
+	bool handleFeatureMessage(ComputerControlInterface::Pointer computerControlInterface,
+							  const FeatureMessage& message) override;
+
 	bool handleFeatureMessage( VeyonServerInterface& server,
 							   const MessageContext& messageContext,
 							   const FeatureMessage& message ) override;
+
+	bool handleFeatureMessageFromWorker(VeyonServerInterface& server, const FeatureMessage& message) override;
 
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 
@@ -110,24 +138,34 @@ public:
 	void sendOpenTransferFolderMessage( const ComputerControlInterfaceList& interfaces );
 	void sendStopWorkerMessage(const ComputerControlInterfaceList& interfaces);
 
+	void sendInitFileCollectionMessage(const FileCollection& collection,
+									   ComputerControlInterface::Pointer computerControlInterface);
+	void sendFinishFileCollectionMessage(const FileCollection& collection,
+										 ComputerControlInterface::Pointer computerControlInterface);
+
+	void sendStartFileTransferMessage(const FileCollection& collection,
+									  ComputerControlInterface::Pointer computerControlInterface);
+	void sendContinueFileTransferMessage(const FileCollection& collection,
+										 ComputerControlInterface::Pointer computerControlInterface);
+
 	ConfigurationPage* createConfigurationPage() override;
 
 private:
+	bool handleDistributeFilesMessage(const FeatureMessage& message);
+	bool handleCollectFilesMessage(VeyonWorkerInterface& worker, const FeatureMessage& message);
+
+	bool controlDistributeFilesFeature(Operation operation, const QVariantMap& arguments,
+									   const ComputerControlInterfaceList& computerControlInterfaces);
+	bool controlCollectFilesFeature(Operation operation, const QVariantMap& arguments,
+									const ComputerControlInterfaceList& computerControlInterfaces);
+
 	QString destinationDirectory() const;
 
-	enum class FeatureCommand
-	{
-		FileTransferStartCommand,
-		FileTransferContinueCommand,
-		FileTransferCancelCommand,
-		FileTransferFinishCommand,
-		OpenTransferFolder,
-		StopWorker,
-		CommandCount
-	};
+	void processFileCollections();
 
-	const Feature m_fileTransferFeature;
-	const FeatureList m_features;
+	const Feature m_distributeFilesFeature;
+	const Feature m_collectFilesFeature;
+	const FeatureList m_features = {m_distributeFilesFeature, m_collectFilesFeature};
 
 	FileTransferConfiguration m_configuration;
 
@@ -138,5 +176,10 @@ private:
 	QFile m_currentFile{};
 	QString m_currentFileName{};
 	QUuid m_currentTransferId{};
+
+	FileCollectController* m_fileCollectController = nullptr;
+
+	QMap<FileCollection::Id, FileCollectWorker*> m_fileCollectWorkers;
+	QMap<FileCollection::Id, MessageContext> m_fileCollectionContexts;
 
 };
