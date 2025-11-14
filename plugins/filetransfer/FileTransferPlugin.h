@@ -115,7 +115,7 @@ public:
 private:
 	QString destinationDirectory() const;
 
-	enum Commands
+	enum class FeatureCommand
 	{
 		FileTransferStartCommand,
 		FileTransferContinueCommand,

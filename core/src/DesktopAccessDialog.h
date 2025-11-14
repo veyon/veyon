@@ -127,7 +127,7 @@ private:
 		SleepTime = 100
 	};
 
-	enum Commands
+	enum class FeatureCommand
 	{
 		RequestDesktopAccess,
 		ReportDesktopAccessChoice

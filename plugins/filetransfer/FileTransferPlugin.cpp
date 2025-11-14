@@ -173,7 +173,7 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonServerInterface& server,
 
 	if( m_fileTransferFeature.uid() == message.featureUid() )
 	{
-		if( message.command() == FileTransferFinishCommand )
+		if (message.command<FeatureCommand>() == FeatureCommand::FileTransferFinishCommand)
 		{
 			VeyonCore::builtinFeatures().systemTrayIcon().showMessage( m_fileTransferFeature.displayName(),
 																   tr( "Received file \"%1\"." ).
@@ -198,9 +198,9 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 
 	if( m_fileTransferFeature.uid() == message.featureUid() )
 	{
-		switch( message.command() )
+		switch (message.command<FeatureCommand>())
 		{
-		case FileTransferStartCommand:
+		case FeatureCommand::FileTransferStartCommand:
 			m_currentFile.close();
 
 			m_currentFileName = destinationDirectory() + QDir::separator() + message.argument( Argument::Filename ).toString();
@@ -228,7 +228,7 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 			}
 			return true;
 
-		case FileTransferContinueCommand:
+		case FeatureCommand::FileTransferContinueCommand:
 			if( message.argument( Argument::TransferId ).toUuid() == m_currentTransferId )
 			{
 				m_currentFile.write( message.argument( Argument::DataChunk ).toByteArray() );
@@ -239,7 +239,7 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 			}
 			return true;
 
-		case FileTransferCancelCommand:
+		case FeatureCommand::FileTransferCancelCommand:
 			if( message.argument( Argument::TransferId ).toUuid() == m_currentTransferId )
 			{
 				m_currentFile.remove();
@@ -250,7 +250,7 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 			}
 			return true;
 
-		case FileTransferFinishCommand:
+		case FeatureCommand::FileTransferFinishCommand:
 			m_currentFile.close();
 			if( message.argument( Argument::OpenFileInApplication ).toBool() )
 			{
@@ -259,11 +259,11 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 			m_currentFile.setFileName( {} );
 			return true;
 
-		case OpenTransferFolder:
+		case FeatureCommand::OpenTransferFolder:
 			QDesktopServices::openUrl( QUrl::fromLocalFile( destinationDirectory() ) );
 			return true;
 
-		case StopWorker:
+		case FeatureCommand::StopWorker:
 			QCoreApplication::quit();
 			return true;
 
@@ -280,11 +280,11 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonWorkerInterface& worker, con
 void FileTransferPlugin::sendStartMessage( QUuid transferId, const QString& fileName,
 										   bool overwriteExistingFile, const ComputerControlInterfaceList& interfaces )
 {
-	sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), FileTransferStartCommand ).
-						addArgument( Argument::TransferId, transferId ).
-						addArgument( Argument::Filename, fileName ).
-						addArgument( Argument::OverwriteExistingFile, overwriteExistingFile ),
-						interfaces );
+	sendFeatureMessage(FeatureMessage( m_fileTransferFeature.uid(), FeatureCommand::FileTransferStartCommand)
+					   .addArgument(Argument::TransferId, transferId)
+					   .addArgument(Argument::Filename, fileName)
+					   .addArgument(Argument::OverwriteExistingFile, overwriteExistingFile),
+						interfaces);
 }
 
 
@@ -292,10 +292,10 @@ void FileTransferPlugin::sendStartMessage( QUuid transferId, const QString& file
 void FileTransferPlugin::sendDataMessage( QUuid transferId, const QByteArray& data,
 										  const ComputerControlInterfaceList& interfaces )
 {
-	sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), FileTransferContinueCommand ).
-						addArgument( Argument::TransferId, transferId ).
-						addArgument( Argument::DataChunk, data ),
-						interfaces );
+	sendFeatureMessage(FeatureMessage(m_fileTransferFeature.uid(), FeatureCommand::FileTransferContinueCommand)
+					   .addArgument(Argument::TransferId, transferId)
+					   .addArgument(Argument::DataChunk, data),
+						interfaces);
 }
 
 
@@ -303,8 +303,8 @@ void FileTransferPlugin::sendDataMessage( QUuid transferId, const QByteArray& da
 void FileTransferPlugin::sendCancelMessage( QUuid transferId,
 											const ComputerControlInterfaceList& interfaces )
 {
-	sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), FileTransferCancelCommand ).
-						addArgument( Argument::TransferId, transferId ), interfaces );
+	sendFeatureMessage(FeatureMessage(m_fileTransferFeature.uid(), FeatureCommand::FileTransferCancelCommand)
+					   .addArgument(Argument::TransferId, transferId), interfaces);
 }
 
 
@@ -312,24 +312,24 @@ void FileTransferPlugin::sendCancelMessage( QUuid transferId,
 void FileTransferPlugin::sendFinishMessage( QUuid transferId, const QString& fileName,
 											bool openFileInApplication, const ComputerControlInterfaceList& interfaces )
 {
-	sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), FileTransferFinishCommand ).
-						addArgument( Argument::TransferId, transferId ).
-						addArgument( Argument::Filename, fileName ).
-						addArgument( Argument::OpenFileInApplication, openFileInApplication ), interfaces );
+	sendFeatureMessage(FeatureMessage(m_fileTransferFeature.uid(), FeatureCommand::FileTransferFinishCommand)
+					   .addArgument(Argument::TransferId, transferId)
+					   .addArgument(Argument::Filename, fileName)
+					   .addArgument(Argument::OpenFileInApplication, openFileInApplication), interfaces);
 }
 
 
 
 void FileTransferPlugin::sendOpenTransferFolderMessage( const ComputerControlInterfaceList& interfaces )
 {
-	sendFeatureMessage( FeatureMessage( m_fileTransferFeature.uid(), OpenTransferFolder ), interfaces );
+	sendFeatureMessage(FeatureMessage(m_fileTransferFeature.uid(), FeatureCommand::OpenTransferFolder), interfaces);
 }
 
 
 
 void FileTransferPlugin::sendStopWorkerMessage(const ComputerControlInterfaceList& interfaces)
 {
-	sendFeatureMessage(FeatureMessage(m_fileTransferFeature.uid(), Commands::StopWorker), interfaces);
+	sendFeatureMessage(FeatureMessage(m_fileTransferFeature.uid(), FeatureCommand::StopWorker), interfaces);
 }
 
 

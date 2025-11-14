@@ -53,7 +53,7 @@ void SystemTrayIcon::setToolTip( const QString& toolTipText,
 {
 	if (m_hidden == false)
 	{
-		FeatureMessage featureMessage(m_systemTrayIconFeature.uid(), SetToolTipCommand);
+		FeatureMessage featureMessage(m_systemTrayIconFeature.uid(), FeatureCommand::SetToolTip);
 		featureMessage.addArgument(Argument::ToolTipText, toolTipText);
 
 		featureWorkerManager.sendMessageToUnmanagedSessionWorker(featureMessage);
@@ -66,7 +66,7 @@ void SystemTrayIcon::showMessage( const QString& messageTitle,
 								 const QString& messageText,
 								 FeatureWorkerManager& featureWorkerManager  )
 {
-	FeatureMessage featureMessage( m_systemTrayIconFeature.uid(), ShowMessageCommand );
+	FeatureMessage featureMessage( m_systemTrayIconFeature.uid(), FeatureCommand::ShowMessage);
 	featureMessage.addArgument( Argument::MessageTitle, messageTitle );
 	featureMessage.addArgument( Argument::MessageText, messageText );
 
@@ -78,7 +78,7 @@ void SystemTrayIcon::showMessage( const QString& messageTitle,
 void SystemTrayIcon::showMessage(const ComputerControlInterfaceList &computerControlInterfaces,
 								 const QString& messageTitle, const QString& messageText)
 {
-	sendFeatureMessage(FeatureMessage{m_systemTrayIconFeature.uid(), ShowMessageCommand}
+	sendFeatureMessage(FeatureMessage{m_systemTrayIconFeature.uid(), FeatureCommand::ShowMessage}
 							.addArgument(Argument::MessageTitle, messageTitle)
 							.addArgument(Argument::MessageText, messageText),
 						computerControlInterfaces);
@@ -91,7 +91,7 @@ void SystemTrayIcon::setOverlay(const ComputerControlInterfaceList& computerCont
 {
 	if (m_hidden == false)
 	{
-		sendFeatureMessage(FeatureMessage{m_systemTrayIconFeature.uid(), SetOverlayIcon}
+		sendFeatureMessage(FeatureMessage{m_systemTrayIconFeature.uid(), FeatureCommand::SetOverlayIcon}
 						   .addArgument(Argument::OverlayIconUrl, iconUrl),
 						   computerControlInterfaces);
 	}
@@ -135,16 +135,16 @@ bool SystemTrayIcon::handleFeatureMessage( VeyonWorkerInterface& worker, const F
 		m_systemTrayIcon->show();
 	}
 
-	switch( message.command() )
+	switch(message.command<FeatureCommand>())
 	{
-	case SetToolTipCommand:
+	case FeatureCommand::SetToolTip:
 		if( m_systemTrayIcon )
 		{
 			m_systemTrayIcon->setToolTip( message.argument( Argument::ToolTipText ).toString() );
 		}
 		return true;
 
-	case ShowMessageCommand:
+	case FeatureCommand::ShowMessage:
 		if( m_systemTrayIcon )
 		{
 			m_systemTrayIcon->showMessage( message.argument( Argument::MessageTitle ).toString(),
@@ -159,7 +159,7 @@ bool SystemTrayIcon::handleFeatureMessage( VeyonWorkerInterface& worker, const F
 		}
 		return true;
 
-	case SetOverlayIcon:
+	case FeatureCommand::SetOverlayIcon:
 		updateIcon(message.argument(Argument::OverlayIconUrl).toString());
 		return true;
 

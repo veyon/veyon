@@ -71,17 +71,17 @@ bool UserSessionControlPlugin::controlFeature( Feature::Uid featureUid, Operatio
 			return false;
 		}
 
-		sendFeatureMessage( FeatureMessage{ featureUid, FeatureMessage::DefaultCommand }
-								.addArgument( Argument::Username, username )
-								.addArgument( Argument::Password, VeyonCore::cryptoCore().encryptPassword( password ) ),
-							computerControlInterfaces );
+		sendFeatureMessage(FeatureMessage{featureUid, FeatureMessage::Command::Default}
+						   .addArgument(Argument::Username, username)
+						   .addArgument(Argument::Password, VeyonCore::cryptoCore().encryptPassword(password)),
+						   computerControlInterfaces);
 
 		return true;
 	}
 
 	if( featureUid == m_userLogoffFeature.uid() )
 	{
-		sendFeatureMessage( FeatureMessage{ featureUid, FeatureMessage::DefaultCommand }, computerControlInterfaces );
+		sendFeatureMessage(FeatureMessage{featureUid, FeatureMessage::Command::Default}, computerControlInterfaces);
 
 		return true;
 	}

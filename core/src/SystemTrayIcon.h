@@ -117,10 +117,10 @@ public:
 private:
 	void updateIcon(const QString& overlayIconUrl = {});
 
-	enum Commands
+	enum class FeatureCommand
 	{
-		SetToolTipCommand,
-		ShowMessageCommand,
+		SetToolTip,
+		ShowMessage,
 		SetOverlayIcon
 	};
 
