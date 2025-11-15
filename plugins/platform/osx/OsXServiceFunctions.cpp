@@ -41,6 +41,19 @@ constexpr auto LaunchAgentDirectory = "/Library/LaunchAgents";
 constexpr auto LaunchAgentFileName = "com.veyon.vnc.plist";
 constexpr auto DefaultServerExecutable = "/Applications/Veyon/veyon-server.app/Contents/MacOS/veyon-server";
 
+// Paths for LaunchAgent installation (matching launchAgents.sh script)
+constexpr auto SourceScriptsDirectory = "/Applications/Veyon/veyon-configurator.app/Contents/Resources/Scripts";
+
+QString userLaunchAgentPath()
+{
+	return QDir::homePath() + QStringLiteral("/Library/LaunchAgents/") + QString::fromLatin1(LaunchAgentFileName);
+}
+
+QString sourcePlistPath()
+{
+	return QString::fromLatin1(SourceScriptsDirectory) + QLatin1Char('/') + QString::fromLatin1(LaunchAgentFileName);
+}
+
 // NOTE: Script and helper resolution functions removed - no longer needed
 // Service installation is handled by external script 0_agents.sh
 
@@ -168,7 +181,8 @@ bool runLaunchctl(const QStringList& arguments, bool quiet = false)
 // 	return true;
 // }
 
-bool consoleUser(quint32& uid)
+// NOTE: This function is kept for potential future use but marked unused to avoid warnings
+[[maybe_unused]] bool consoleUser(quint32& uid)
 {
 	const QFileInfo consoleDevice(QStringLiteral("/dev/console"));
 	if (consoleDevice.exists() == false)
@@ -178,6 +192,143 @@ bool consoleUser(quint32& uid)
 
 	uid = consoleDevice.ownerId();
 	return uid != 0u;
+}
+
+// Check if LaunchAgent is loaded and running
+bool isLaunchAgentRunning()
+{
+	const auto uid = QString::number(getuid());
+	const auto guiDomain = QStringLiteral("gui/") + uid;
+	const auto labelPath = guiDomain + QLatin1Char('/') + QString::fromLatin1(LaunchAgentLabel);
+
+	// Use launchctl print to check if the service is loaded
+	QProcess process;
+	process.start(QStringLiteral("/bin/launchctl"),
+				  {QStringLiteral("print"), labelPath});
+
+	if (!process.waitForFinished())
+	{
+		return false;
+	}
+
+	// If launchctl print succeeds (exit code 0), the service is loaded
+	if (process.exitStatus() == QProcess::NormalExit && process.exitCode() == 0)
+	{
+		// Check if it's actually running by looking for the PID in the output
+		const QString output = QString::fromUtf8(process.readAllStandardOutput());
+		return output.contains(QStringLiteral("pid = "));
+	}
+
+	return false;
+}
+
+// Install LaunchAgent for current user (equivalent to option 2 in launchAgents.sh)
+// Steps:
+//   1. Create LaunchAgents directory if needed
+//   2. Copy plist file to user's LaunchAgents
+//   3. Unload any existing instance (bootout)
+//   4. Load the new agent (bootstrap)
+//   5. Enable and start the service (kickstart)
+bool installUserLaunchAgent()
+{
+	vDebug() << "OsXServiceFunctions: installing LaunchAgent for current user";
+
+	// Ensure source plist exists
+	const auto sourcePlist = sourcePlistPath();
+	if (!QFile::exists(sourcePlist))
+	{
+		vWarning() << "OsXServiceFunctions: source plist not found at" << sourcePlist;
+		return false;
+	}
+
+	// Create user's LaunchAgents directory if needed
+	const QString launchAgentsDir = QDir::homePath() + QStringLiteral("/Library/LaunchAgents");
+	QDir dir(launchAgentsDir);
+	if (!dir.exists())
+	{
+		if (!dir.mkpath(QStringLiteral(".")))
+		{
+			vWarning() << "OsXServiceFunctions: failed to create" << launchAgentsDir;
+			return false;
+		}
+	}
+
+	// Copy plist to user's LaunchAgents directory
+	const auto userPlist = userLaunchAgentPath();
+	if (QFile::exists(userPlist))
+	{
+		QFile::remove(userPlist);
+	}
+
+	if (!QFile::copy(sourcePlist, userPlist))
+	{
+		vWarning() << "OsXServiceFunctions: failed to copy plist to" << userPlist;
+		return false;
+	}
+
+	vInfo() << "OsXServiceFunctions: copied plist to" << userPlist;
+
+	// Get current user UID
+	const auto uid = QString::number(getuid());
+	const auto guiDomain = QStringLiteral("gui/") + uid;
+
+	// Unload any existing instance (ignore errors)
+	vDebug() << "OsXServiceFunctions: bootout existing LaunchAgent (if any)";
+	runLaunchctl({QStringLiteral("bootout"), guiDomain, userPlist}, true);
+
+	// Bootstrap the LaunchAgent
+	vDebug() << "OsXServiceFunctions: bootstrap LaunchAgent";
+	if (!runLaunchctl({QStringLiteral("bootstrap"), guiDomain, userPlist}))
+	{
+		vWarning() << "OsXServiceFunctions: failed to bootstrap LaunchAgent";
+		return false;
+	}
+
+	// Enable the service
+	const auto labelPath = guiDomain + QLatin1Char('/') + QString::fromLatin1(LaunchAgentLabel);
+	vDebug() << "OsXServiceFunctions: enable service" << labelPath;
+	runLaunchctl({QStringLiteral("enable"), labelPath}, true);
+
+	// Kickstart the service
+	vDebug() << "OsXServiceFunctions: kickstart service" << labelPath;
+	runLaunchctl({QStringLiteral("kickstart"), QStringLiteral("-k"), labelPath}, true);
+
+	vInfo() << "OsXServiceFunctions: LaunchAgent loaded for UID" << uid;
+	return true;
+}
+
+// Uninstall LaunchAgent (equivalent to option 5 in launchAgents.sh)
+// Steps:
+//   1. Check if user plist exists
+//   2. Unload from current user's GUI session (bootout)
+//   3. Remove the plist file from ~/Library/LaunchAgents/
+bool uninstallUserLaunchAgent()
+{
+	vDebug() << "OsXServiceFunctions: uninstalling user LaunchAgent";
+
+	const auto userPlist = userLaunchAgentPath();
+	if (!QFile::exists(userPlist))
+	{
+		vInfo() << "OsXServiceFunctions: no user plist found";
+		return true;
+	}
+
+	// Unload from current user's session
+	const auto uid = QString::number(getuid());
+	const auto guiDomain = QStringLiteral("gui/") + uid;
+
+	vDebug() << "OsXServiceFunctions: bootout LaunchAgent from" << guiDomain;
+	runLaunchctl({QStringLiteral("bootout"), guiDomain, userPlist}, true);
+
+	// Remove user plist file
+	if (!QFile::remove(userPlist))
+	{
+		vWarning() << "OsXServiceFunctions: failed to remove" << userPlist;
+		return false;
+	}
+
+	vInfo() << "OsXServiceFunctions: removed user plist";
+	return true;
 }
 
 // NOTE: The following functions are no longer used.
@@ -302,7 +453,8 @@ bool hasMatchingProcess(const QString& executable)
 	return false;
 }
 
-bool terminateMatchingProcesses(const QString& executable)
+// NOTE: This function is kept for potential future use but marked unused to avoid warnings
+[[maybe_unused]] bool terminateMatchingProcesses(const QString& executable)
 {
 	const QStringList patterns = {
 		executable,
@@ -340,6 +492,14 @@ bool OsXServiceFunctions::isRunning( const QString& name )
 {
 	Q_UNUSED(name)
 
+	// First, check if the LaunchAgent is loaded and running
+	if (isLaunchAgentRunning())
+	{
+		return true;
+	}
+
+	// Fallback: check if processes are running directly
+	// (for backwards compatibility or manual starts)
 	const auto executables = {
 		serviceExecutablePath(),
 		VeyonCore::filesystem().serverFilePath(),
@@ -369,29 +529,10 @@ bool OsXServiceFunctions::start( const QString& name )
 		return true;
 	}
 
-	// Try to start the service executable first (veyon-service wrapper)
-	// This will run in the background without showing a window
-	const auto servicePath = serviceExecutablePath();
-	vDebug() << "OsXServiceFunctions: attempting to start veyon-service:" << servicePath;
-
-	if( QProcess::startDetached( servicePath, {} ) )
-	{
-		vDebug() << "OsXServiceFunctions: successfully started veyon-service";
-		return true;
-	}
-
-	// Fallback: try to start veyon-server directly
-	const auto serverPath = VeyonCore::filesystem().serverFilePath();
-	vDebug() << "OsXServiceFunctions: veyon-service failed, trying veyon-server:" << serverPath;
-
-	if( QProcess::startDetached( serverPath, {} ) )
-	{
-		vDebug() << "OsXServiceFunctions: successfully started veyon-server";
-		return true;
-	}
-
-	vWarning() << "OsXServiceFunctions: failed to start both veyon-service and veyon-server";
-	return false;
+	// Install and start the LaunchAgent for the current user
+	// This follows the logic of option 2 in launchAgents.sh script
+	vInfo() << "OsXServiceFunctions: installing and starting user LaunchAgent";
+	return installUserLaunchAgent();
 }
 
 
@@ -406,42 +547,10 @@ bool OsXServiceFunctions::stop( const QString& name )
 		return true;
 	}
 
-	// Attempt to stop the LaunchAgent via launchctl
-	quint32 uid = 0;
-	if (consoleUser(uid))
-	{
-		const auto guiDomain = QStringLiteral("gui/%1").arg(uid);
-		const auto labelPath = guiDomain + QLatin1Char('/') + QString::fromLatin1(LaunchAgentLabel);
-
-		vDebug() << "OsXServiceFunctions: attempting to stop LaunchAgent" << labelPath;
-
-		// Try to kill the service (this stops it but doesn't unload it)
-		if (runLaunchctl({QStringLiteral("kill"), QStringLiteral("SIGTERM"), labelPath}, true))
-		{
-			vDebug() << "OsXServiceFunctions: successfully stopped LaunchAgent";
-			return true;
-		}
-	}
-	else
-	{
-		vWarning() << "OsXServiceFunctions: no GUI console user detected";
-	}
-
-	// Fallback: terminate processes directly
-	vDebug() << "OsXServiceFunctions: launchctl stop failed, terminating processes directly";
-	bool success = false;
-
-	for (const auto& executable : { serviceExecutablePath(),
-									VeyonCore::filesystem().serverFilePath(),
-									VeyonCore::filesystem().workerFilePath() })
-	{
-		if (terminateMatchingProcesses(executable))
-		{
-			success = true;
-		}
-	}
-
-	return success;
+	// Uninstall the LaunchAgent
+	// This follows the logic of option 5 in launchAgents.sh script
+	vInfo() << "OsXServiceFunctions: stopping and uninstalling user LaunchAgent";
+	return uninstallUserLaunchAgent();
 }
 
 
