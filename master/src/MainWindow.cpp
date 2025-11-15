@@ -36,6 +36,7 @@
 #include "MainWindow.h"
 #include "BuiltinFeatures.h"
 #include "AuthenticationCredentials.h"
+#include "CheckableItemProxyModel.h"
 #include "ComputerControlListModel.h"
 #include "ComputerManager.h"
 #include "ComputerSelectPanel.h"
@@ -409,6 +410,16 @@ void MainWindow::closeEvent( QCloseEvent* event )
 
 	m_master.userConfig().setWindowState( QString::fromLatin1( saveState().toBase64() ) );
 	m_master.userConfig().setWindowGeometry( QString::fromLatin1( saveGeometry().toBase64() ) );
+
+	// Save the checked state of locations and computers
+	auto* computerTreeModel = qobject_cast<CheckableItemProxyModel*>( m_master.computerManager().computerTreeModel() );
+	if( computerTreeModel )
+	{
+		m_master.userConfig().setCheckedNetworkObjects( computerTreeModel->saveStates() );
+	}
+
+	// Explicitly flush configuration to disk to ensure it's saved (especially important on macOS)
+	m_master.userConfig().flushStore();
 
 	QMainWindow::closeEvent( event );
 }
