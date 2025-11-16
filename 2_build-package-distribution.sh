@@ -17,68 +17,61 @@ log_error() { printf "${RED}[ERROR]${NC} %s\n" "$*"; }
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # ============================================================================
-# STEP 1: BUILD
+# A) BUILD
 # ============================================================================
-
-log_step "=== STEP 1: Building Veyon ==="
-log_info ""
-
-if [[ ! -d "${SCRIPT_DIR}/build" ]]; then
-    log_info "Configuring cmake for the first time..."
-    cmake -S . -B build \
-        -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX="${SCRIPT_DIR}/dist" \
-        -DCMAKE_PREFIX_PATH=/usr/local/opt/qt@5 \
-        -DVEYON_BUILD_LINUX=OFF \
-        -DVEYON_BUILD_WIN32=OFF \
-        -DVEYON_BUILD_MACOS=ON
-else
-    log_info "Build directory exists, skipping cmake configuration"
-fi
-
-# Force rebuild of macvnc if it's a submodule with uncommitted changes
-if [[ -d "${SCRIPT_DIR}/3rdparty/macvnc/.git" ]]; then
-    cd "${SCRIPT_DIR}/3rdparty/macvnc"
-    if git diff-index --quiet HEAD -- 2>/dev/null; then
-        log_info "macvnc submodule has no changes"
-    else
-        log_info "macvnc submodule has uncommitted changes - forcing rebuild"
-        rm -f "${SCRIPT_DIR}/build/3rdparty/macvnc/libmacvnc.a"
-        rm -f "${SCRIPT_DIR}/build/3rdparty/macvnc/CMakeFiles/macvnc.dir/src/"*.o
-        log_info "Cleaned macvnc build artifacts"
-    fi
-    cd "${SCRIPT_DIR}"
-fi
-
-log_info "Building..."
-cmake --build build --parallel
-
-log_info "Installing to dist/..."
-cmake --build build --target install
+printf "\n"
+printf "==========================================\n"
+printf "          A) BUILD\n"
+printf "==========================================\n"
+printf "\n"
 
 log_info "Copying dylibs to app bundles..."
-if [[ -f "${SCRIPT_DIR}/2a_install-dylibs-to-bundles.sh" ]]; then
-    "${SCRIPT_DIR}/2a_install-dylibs-to-bundles.sh" "${SCRIPT_DIR}/dist"
+if [[ -f "${SCRIPT_DIR}/2a_build.sh" ]]; then
+    "${SCRIPT_DIR}/2a_build.sh" "${SCRIPT_DIR}/dist"
 else
-    log_error "2a_install-dylibs-to-bundles.sh not found"
+    log_error "2a_build.sh not found"
     exit 1
 fi
 
 log_info ""
-log_info "✓ Build completed"
+log_info "✓ Building completed"
 log_info ""
 
 # ============================================================================
-# STEP 2: PACKAGING
+# B) COPY DYLIBS TO BUNDLES
 # ============================================================================
+printf "\n"
+printf "==========================================\n"
+printf "          B) COPY DYLIBS TO BUNDLES\n"
+printf "==========================================\n"
+printf "\n"
 
-log_step "=== STEP 2: Packaging applications ==="
-log_info ""
 
-if [[ -f "${SCRIPT_DIR}/2b_package-apps.sh" ]]; then
-    "${SCRIPT_DIR}/2b_package-apps.sh"
+log_info "Copying dylibs to app bundles..."
+if [[ -f "${SCRIPT_DIR}/2b_install-dylibs-to-bundles.sh" ]]; then
+    "${SCRIPT_DIR}/2b_install-dylibs-to-bundles.sh" "${SCRIPT_DIR}/dist"
 else
-    log_error "2b_package-apps.sh not found"
+    log_error "2b_install-dylibs-to-bundles.sh not found"
+    exit 1
+fi
+
+log_info ""
+log_info "✓ Copying dylibs to app bundles completed"
+log_info ""
+
+# ============================================================================
+# C) PACKAGING
+# ============================================================================
+printf "\n"
+printf "==========================================\n"
+printf "          B) PACKAGING\n"
+printf "==========================================\n"
+printf "\n"
+
+if [[ -f "${SCRIPT_DIR}/2c_package-apps.sh" ]]; then
+    "${SCRIPT_DIR}/2c_package-apps.sh"
+else
+    log_error "2c_package-apps.sh not found"
     exit 1
 fi
 
@@ -87,33 +80,21 @@ log_info "✓ Packaging completed"
 log_info ""
 
 # ============================================================================
-# STEP 3: CREATE DISTRIBUTION DMG
+# D) DISTRIBUTION DMG
 # ============================================================================
+printf "\n"
+printf "==========================================\n"
+printf "          B) DISTRIBUTION DMG\n"
+printf "==========================================\n"
+printf "\n"
 
-log_step "=== STEP 3: Creating distribution DMG ==="
-log_info ""
-
-if [[ -f "${SCRIPT_DIR}/2c_create-distribution.sh" ]]; then
-    "${SCRIPT_DIR}/2c_create-distribution.sh"
+if [[ -f "${SCRIPT_DIR}/2d_create-distribution.sh" ]]; then
+    "${SCRIPT_DIR}/2d_create-distribution.sh"
 else
-    log_error "2c_create-distribution.sh not found"
+    log_error "2d_create-distribution.sh not found"
     exit 1
 fi
 
 log_info ""
-log_info "=========================================="
-log_info "=== COMPLETE PROCESS FINISHED ✓ ==="
-log_info "=========================================="
-log_info ""
-log_info "Distribution DMG ready at:"
-log_info "  ${SCRIPT_DIR}/veyon-macos-distribution/Veyon-macOS.dmg"
-log_info ""
-log_info "This DMG contains:"
-log_info "  - veyon-configurator.app"
-log_info "  - veyon-master.app"
-log_info "  - veyon-server.app"
-log_info "  - README.md with instructions"
-log_info "  - Scripts/ folder with management utilities"
-log_info ""
-log_info "Ready to distribute!"
+log_info "✓ Packaging completed, ready to distribute!"
 log_info ""

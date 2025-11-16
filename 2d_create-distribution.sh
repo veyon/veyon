@@ -1,5 +1,5 @@
 #!/bin/bash
-# 2c_create-distribution.sh - Create single distribution package of Veyon for macOS
+# 2d_create-distribution.sh - Create single distribution package of Veyon for macOS
 
 set -euo pipefail
 
@@ -70,24 +70,5 @@ rm -rf "$DMG_TEMP" 2>/dev/null || true
 
 DMG_SIZE=$(du -sh "$DIST_OUTPUT/Veyon-macOS.dmg" | cut -f1)
 
+log_info "File created: ${DIST_OUTPUT}/Veyon-macOS.dmg (${DMG_SIZE})"
 log_info ""
-log_info "✓ Distribution completed"
-log_info ""
-log_info "File created:"
-log_info "  Veyon-macOS.dmg (${DMG_SIZE})"
-log_info ""
-log_info "Location: ${DIST_OUTPUT}/Veyon-macOS.dmg"
-log_info ""
-log_info "DISTRIBUTION INSTRUCTIONS:"
-log_info "  1. Distribute the Veyon-macOS.dmg file"
-log_info "  2. Users must mount the DMG (double click)"
-log_info "  3. Drag the 'Veyon' folder to the 'Applications' shortcut"
-log_info "  4. The entire Veyon folder will be installed in /Applications/Veyon/"
-log_info ""
-log_info "DMG Structure:"
-log_info "  - Veyon/ (folder with all apps, README and Scripts)"
-log_info "    - Scripts/ (installation and management scripts)"
-log_info "  - Applications (shortcut for easy drag-and-drop installation)"
-log_info ""
-log_info "IMPORTANT: DO NOT copy .app files directly from Finder,"
-log_info "always use the DMG for distribution."

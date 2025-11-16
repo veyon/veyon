@@ -1,5 +1,5 @@
 #!/bin/bash
-# 2a_install-dylibs-to-bundles.sh - Copy dylibs to app bundles after install
+# 2b_install-dylibs-to-bundles.sh - Copy dylibs to app bundles after install
 
 set -e
 

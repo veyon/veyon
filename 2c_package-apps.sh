@@ -1,5 +1,5 @@
 #!/bin/bash
-# 2b_package-apps.sh - Complete packaging of Veyon for macOS
+# 2c_package-apps.sh - Complete packaging of Veyon for macOS
 # This script creates complete .app bundles that replicate the reference functional structure
 # Includes: Helpers, crypto plugins, OpenSSL dual-location, QCA symlinks, and complete dependencies
 
@@ -438,7 +438,7 @@ package_app() {
 				"@loader_path/../../Frameworks/libtiff.6.dylib" "$plugin" 2>/dev/null || true
 		done
 	else
-		log_error "No se encontraron plugins Qt 5 en ${QT5_PLUGINS}"
+		log_error "Qt 5 plugins not found in ${QT5_PLUGINS}"
 		exit 1
 	fi
 
@@ -480,7 +480,7 @@ package_app() {
 		fi
 		copy_if_exists "$QCA_FRAMEWORK" "$target_app/Contents/Frameworks"
 	else
-		log_warn "qca-qt5.framework not found en ${QCA_FRAMEWORK}"
+		log_warn "qca-qt5.framework not found in ${QCA_FRAMEWORK}"
 	fi
 
 	# ========================================================================
@@ -510,7 +510,7 @@ package_app() {
 			if [[ -f "$src" ]]; then
 				cp "$src" "$target_app/Contents/Frameworks/"
 			else
-				log_warn "OpenSSL ${lib} not found en ${OPENSSL_LIB_DIR}"
+				log_warn "OpenSSL ${lib} not found in ${OPENSSL_LIB_DIR}"
 			fi
 		done
 
@@ -844,7 +844,7 @@ done
 # ============================================================================
 
 log_info ""
-log_info "=== Running resolución automática de dependencias ==="
+log_info "=== Running automatic dependency resolution ==="
 log_info ""
 
 if [[ -f "$FIX_SCRIPT" ]]; then
