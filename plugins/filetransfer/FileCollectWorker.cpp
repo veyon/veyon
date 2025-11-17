@@ -43,7 +43,7 @@ static QStringList listFilesInDirectory(const QString& dirPath, bool recursive =
 
 	for (const QFileInfo& fi : entries)
 	{
-		fileList.append(fi.absoluteFilePath());
+		fileList.append(QDir::toNativeSeparators(fi.absoluteFilePath()));
 	}
 
 	if (recursive)
