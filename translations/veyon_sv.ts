@@ -1056,7 +1056,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Hostname: %1</source>
-        <translation type="unfinished"/>
+        <translation>Värdnamn: %1</translation>
     </message>
     <message>
         <source>unknown</source>
@@ -1064,15 +1064,15 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>IP-adress: %1</translation>
     </message>
     <message>
         <source>Hostname could not be resolved</source>
-        <translation type="unfinished"/>
+        <translation>Värdnamnet kunde inte slås upp</translation>
     </message>
     <message>
         <source>No features active</source>
-        <translation type="unfinished"/>
+        <translation>Inga funktioner aktiva</translation>
     </message>
 </context>
 <context>
@@ -1146,7 +1146,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
-        <translation type="unfinished"/>
+        <translation>Platsen för den här datorn kunde inte fastställas. Detta indikerar ett problem med systemkonfigurationen. Inga platser och datorer visas i panelen ”Platser och datorer”.</translation>
     </message>
     <message>
         <source>Unknown location</source>
@@ -1721,14 +1721,64 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
 </context>
 <context>
+    <name>FileCollectDialog</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Filöverföring</translation>
+    </message>
+    <message>
+        <source>Collected files</source>
+        <translation>Insamlade filer</translation>
+    </message>
+    <message>
+        <source>Overall progress</source>
+        <translation>Övergripande förlopp</translation>
+    </message>
+    <message>
+        <source>Output directory</source>
+        <translation>Utdata katalog</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Starta</translation>
+    </message>
+    <message>
+        <source>Enter collection name</source>
+        <translation>Ange samlingsnamn</translation>
+    </message>
+    <message>
+        <source>Please enter a name for this file collection:</source>
+        <translation>Ange ett namn för denna filsamling:</translation>
+    </message>
+    <message>
+        <source>Output directory creation failed</source>
+        <translation>Det gick inte att skapa utdatakatalogen</translation>
+    </message>
+    <message>
+        <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
+        <translation>Utdatakatalogen ”%1” finns inte och kunde inte skapas. Kontrollera konfigurationen och filbehörigheterna för den konfigurerade målkatalogen.</translation>
+    </message>
+</context>
+<context>
+    <name>FileCollectTreeModel</name>
+    <message>
+        <source>Progress</source>
+        <translation>Förlopp</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Namn</translation>
+    </message>
+</context>
+<context>
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
         <translation>Filöverföring</translation>
     </message>
     <message>
-        <source>Directories</source>
-        <translation>Kataloger</translation>
+        <source>Settings for distributing files</source>
+        <translation>Inställningar för distribuering av filer</translation>
     </message>
     <message>
         <source>Destination directory</source>
@@ -1739,8 +1789,76 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Standard källkatalog</translation>
     </message>
     <message>
-        <source>Options</source>
-        <translation>Alternativ</translation>
+        <source>Settings for collecting files</source>
+        <translation>Inställningar för insamling av filer</translation>
+    </message>
+    <message>
+        <source>Source directory</source>
+        <translation>Källkatalog</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prefix filenames with grouping attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Store files in subdirectories based on the grouping attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group collected files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collection directory</source>
+        <translation>Insamlingskatalog</translation>
+    </message>
+    <message>
+        <source>Files to collect</source>
+        <translation>Filer att samla in</translation>
+    </message>
+    <message>
+        <source>Collect all files from configured source directory</source>
+        <translation>Samla alla filer från den konfigurerade källkatalogen</translation>
+    </message>
+    <message>
+        <source>Prompt user for folder to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prompt user for files to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subdirectory based on date &amp; time</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subdirectory with name entered by the collecting user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect files recursively</source>
+        <translation>Samla in filer rekursivt</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Användarens inloggningsnamn</translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Fullständigt namn på användaren</translation>
+    </message>
+    <message>
+        <source>Device name</source>
+        <translation>Enhetsnamn</translation>
+    </message>
+    <message>
+        <source>Collected files grouping attribute</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1796,12 +1914,20 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
 <context>
     <name>FileTransferPlugin</name>
     <message>
-        <source>File transfer</source>
-        <translation>Filöverföring</translation>
+        <source>Distribute</source>
+        <translation>Distribuera</translation>
     </message>
     <message>
-        <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Klicka på den här knappen för att överföra filer från din dator till alla datorer.</translation>
+        <source>Click this button to distribute files from your computer to all computers.</source>
+        <translation>Klicka på den här knappen för att distribuera filer från din dator till alla datorer.</translation>
+    </message>
+    <message>
+        <source>Collect</source>
+        <translation>Samla in</translation>
+    </message>
+    <message>
+        <source>Click this button to collect files from all computers to your computer.</source>
+        <translation>Klicka på den här knappen för att samla in filer från alla datorer till din dator.</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
@@ -1820,8 +1946,8 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Kunde inte ta emot filen &quot;%1&quot; eftersom den inte kunde öppnas för skrivning!</translation>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Överför filer till fjärrdatorn</translation>
+        <source>Transfer files between computers</source>
+        <translation>Överför filer mellan datorer</translation>
     </message>
 </context>
 <context>
@@ -2004,15 +2130,15 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished"/>
+        <translation>Färgschema:</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>Ljus</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>Mörk</translation>
     </message>
 </context>
 <context>
@@ -2732,10 +2858,6 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Konfigurera %1 som bas-DN och inaktivera frågor om namngivningskontext.</translation>
     </message>
     <message>
-        <source>Basic LDAP/AD support for Veyon</source>
-        <translation>Grundläggande LDAP/AD-stöd för Veyon</translation>
-    </message>
-    <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation>Kommandon för att konfigurera och testa LDAP/AD-integration</translation>
     </message>
@@ -2746,6 +2868,10 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (ladda användare och grupper från LDAP/AD)</translation>
+    </message>
+    <message>
+        <source>LDAP/AD support for Veyon</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3091,7 +3217,7 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
     </message>
     <message>
         <source>Only last part of user name</source>
-        <translation type="unfinished"/>
+        <translation>Endast sista delen av användarnamnet</translation>
     </message>
     <message>
         <source>Only computer name</source>
@@ -3788,27 +3914,27 @@ Spara ditt arbete och stäng alla program.</translation>
     </message>
     <message>
         <source>Access allowed by rule &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Åtkomst godkänd av regel ”%1”</translation>
     </message>
     <message>
         <source>Access denied by rule &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Åtkomst nekad av regel ”%1”</translation>
     </message>
     <message>
         <source>No rule allowed access</source>
-        <translation type="unfinished"/>
+        <translation>Ingen regel godkänner åtkomst</translation>
     </message>
     <message>
         <source>Accessing user not member of an authorized user group</source>
-        <translation type="unfinished"/>
+        <translation>Åtkomst till användare som inte är medlem i en auktoriserad användargrupp</translation>
     </message>
     <message>
         <source>User has denied access</source>
-        <translation type="unfinished"/>
+        <translation>Användaren har nekat åtkomst</translation>
     </message>
     <message>
         <source>User confirmed access</source>
-        <translation type="unfinished"/>
+        <translation>Användaren har bekräftat åtkomst</translation>
     </message>
 </context>
 <context>
@@ -3965,11 +4091,11 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Environment variable name</source>
-        <translation type="unfinished"/>
+        <translation>Miljövariabelnamn</translation>
     </message>
     <message>
         <source>Registry key name</source>
-        <translation type="unfinished"/>
+        <translation>Registernyckelnamn</translation>
     </message>
 </context>
 <context>
@@ -3980,23 +4106,23 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Starting %1</source>
-        <translation type="unfinished"/>
+        <translation>Startar %1</translation>
     </message>
     <message>
         <source>Stopping %1</source>
-        <translation type="unfinished"/>
+        <translation>Stoppar %1</translation>
     </message>
     <message>
         <source>Restarting %1</source>
-        <translation type="unfinished"/>
+        <translation>Startar om %1</translation>
     </message>
     <message>
         <source>Registering %1</source>
-        <translation type="unfinished"/>
+        <translation>Registrerar %1</translation>
     </message>
     <message>
         <source>Unregistering %1</source>
-        <translation type="unfinished"/>
+        <translation>Avregistrerar %1</translation>
     </message>
 </context>
 <context>
@@ -4081,11 +4207,11 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>View in separate window</source>
-        <translation type="unfinished"/>
+        <translation>Visa i separat fönster</translation>
     </message>
     <message>
         <source>%1 Master – Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>%1 Master – Bildspel</translation>
     </message>
 </context>
 <context>
@@ -4540,7 +4666,7 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Handling of interfering windows</source>
-        <translation type="unfinished"/>
+        <translation>Hantering av störande fönster</translation>
     </message>
     <message>
         <source>None</source>
@@ -4548,15 +4674,15 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Fix window attributes</source>
-        <translation type="unfinished"/>
+        <translation>Korrigera fönsterattribut</translation>
     </message>
     <message>
         <source>Terminate related process</source>
-        <translation type="unfinished"/>
+        <translation>Avsluta relaterad process</translation>
     </message>
     <message>
         <source>Close session</source>
-        <translation type="unfinished"/>
+        <translation>Stäng session</translation>
     </message>
 </context>
 <context>

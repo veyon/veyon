@@ -1718,14 +1718,64 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
 </context>
 <context>
+    <name>FileCollectDialog</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Передавання файлів</translation>
+    </message>
+    <message>
+        <source>Collected files</source>
+        <translation>Зібрані файли</translation>
+    </message>
+    <message>
+        <source>Overall progress</source>
+        <translation>Загальний поступ</translation>
+    </message>
+    <message>
+        <source>Output directory</source>
+        <translation>Каталог виведення</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Почати</translation>
+    </message>
+    <message>
+        <source>Enter collection name</source>
+        <translation>Введіть назву збірки</translation>
+    </message>
+    <message>
+        <source>Please enter a name for this file collection:</source>
+        <translation>Будь ласка, введіть назву цієї збірки файлів:</translation>
+    </message>
+    <message>
+        <source>Output directory creation failed</source>
+        <translation>Не вдалося створити каталог результатів</translation>
+    </message>
+    <message>
+        <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
+        <translation>Каталогу результатів «%1» не існує, і його не вдалося створити. Будь ласка, перевірте налаштування і права доступу до файлів для налаштованого каталогу призначення.</translation>
+    </message>
+</context>
+<context>
+    <name>FileCollectTreeModel</name>
+    <message>
+        <source>Progress</source>
+        <translation>Поступ</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Назва</translation>
+    </message>
+</context>
+<context>
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
         <translation>Передавання файлів</translation>
     </message>
     <message>
-        <source>Directories</source>
-        <translation>Каталоги</translation>
+        <source>Settings for distributing files</source>
+        <translation>Параметри для поширення файлів</translation>
     </message>
     <message>
         <source>Destination directory</source>
@@ -1736,8 +1786,76 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Типовий каталог початкових даних</translation>
     </message>
     <message>
-        <source>Options</source>
-        <translation>Параметри</translation>
+        <source>Settings for collecting files</source>
+        <translation>Параметри для збирання файлів</translation>
+    </message>
+    <message>
+        <source>Source directory</source>
+        <translation>Каталог джерела</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Ні</translation>
+    </message>
+    <message>
+        <source>Prefix filenames with grouping attribute</source>
+        <translation>Додати до назв файлів атрибут групи</translation>
+    </message>
+    <message>
+        <source>Store files in subdirectories based on the grouping attribute</source>
+        <translation>Зберігати файли до підкаталогів на основі атрибута групування</translation>
+    </message>
+    <message>
+        <source>Group collected files</source>
+        <translation>Групувати зібрані файли</translation>
+    </message>
+    <message>
+        <source>Collection directory</source>
+        <translation>Каталог збірки</translation>
+    </message>
+    <message>
+        <source>Files to collect</source>
+        <translation>Файли для збирання</translation>
+    </message>
+    <message>
+        <source>Collect all files from configured source directory</source>
+        <translation>Зібрати усі файли з налаштованого каталогу джерела</translation>
+    </message>
+    <message>
+        <source>Prompt user for folder to collect</source>
+        <translation>Питати у користувача про теку для збирання</translation>
+    </message>
+    <message>
+        <source>Prompt user for files to collect</source>
+        <translation>Питати у користувача про файли для збирання</translation>
+    </message>
+    <message>
+        <source>Subdirectory based on date &amp; time</source>
+        <translation>Підкаталог на основі дати і часу</translation>
+    </message>
+    <message>
+        <source>Subdirectory with name entered by the collecting user</source>
+        <translation>Підкаталог з назвою, яку введено користувачем зібраних даних</translation>
+    </message>
+    <message>
+        <source>Collect files recursively</source>
+        <translation>Збирати файли рекурсивно</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Назва запису користувача</translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Повне ім&apos;я користувача</translation>
+    </message>
+    <message>
+        <source>Device name</source>
+        <translation>Назва пристрою</translation>
+    </message>
+    <message>
+        <source>Collected files grouping attribute</source>
+        <translation>Атрибут групування зібраних файлів</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1793,12 +1911,20 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileTransferPlugin</name>
     <message>
-        <source>File transfer</source>
-        <translation>Передавання файлів</translation>
+        <source>Distribute</source>
+        <translation>Поширити</translation>
     </message>
     <message>
-        <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Натисніть цю кнопку, щоб передати файли з вашого комп&apos;ютера на усі комп&apos;ютери.</translation>
+        <source>Click this button to distribute files from your computer to all computers.</source>
+        <translation>Натисніть цю кнопку, щоб розповсюдити файли з вашого комп&apos;ютера на усі комп&apos;ютери.</translation>
+    </message>
+    <message>
+        <source>Collect</source>
+        <translation>Зібрати</translation>
+    </message>
+    <message>
+        <source>Click this button to collect files from all computers to your computer.</source>
+        <translation>Натисніть цю кнопку, щоб зібрати файли з усіх комп&apos;ютерів на ваш комп&apos;ютер.</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
@@ -1817,8 +1943,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Не вдалося отримати файл «%1», оскільки не вдалося відкрити відповідний файл для запису даних!</translation>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Передати файли на інший комп&apos;ютер</translation>
+        <source>Transfer files between computers</source>
+        <translation>Передавання файлів між комп&apos;ютерами</translation>
     </message>
 </context>
 <context>
@@ -2731,10 +2857,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Налаштовуємо %1 як кореневий DN і вимикаємо запити щодо контексту іменування.</translation>
     </message>
     <message>
-        <source>Basic LDAP/AD support for Veyon</source>
-        <translation>Базова підтримка LDAP/AD у Veyon</translation>
-    </message>
-    <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation>Команди для налаштовування і тестування інтеграції із LDAP/AD</translation>
     </message>
@@ -2745,6 +2867,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (завантажити записи користувачів та груп з LDAP/AD)</translation>
+    </message>
+    <message>
+        <source>LDAP/AD support for Veyon</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

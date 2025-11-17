@@ -3,7 +3,7 @@
     <name>AboutDialog</name>
     <message>
         <source>About Veyon</source>
-        <translation>Veyon에 대해서</translation>
+        <translation>Veyon 정보</translation>
     </message>
     <message>
         <source>About</source>
@@ -19,7 +19,7 @@
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation>Veyon 프로그램에 기부하여 지원하기</translation>
+        <translation>도네이션으로 Veyon 프로젝트 지원하기</translation>
     </message>
     <message>
         <source>Contributors</source>
@@ -33,9 +33,9 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>현재 한국어 번역이 진행중입니다 (영어에서 한국어로).
+        <translation>현재 한국어 번역이 진행중입니다 (영어 -&gt; 한국어).
 
-Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 분들은 Veyon 개발자에게 연락바랍니다. </translation>
+Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 분들은 Veyon 개발자에게 연락주세요. </translation>
     </message>
     <message>
         <source>License</source>
@@ -43,14 +43,14 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>About %1 %2</source>
-        <translation>%1 %2 에 대하여</translation>
+        <translation>%1 %2 정보</translation>
     </message>
 </context>
 <context>
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation>컴퓨터 접근제어</translation>
+        <translation>컴퓨터 접속 제어</translation>
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
@@ -62,19 +62,19 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation>프로세스 접근제어 규칙</translation>
+        <translation>접속 제어 규칙 처리</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation>인증된 모든 사용자에게 접근 허용(기본값)</translation>
+        <translation>인증된 사용자에 접속 허용(기본값)</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation>컴퓨터 접근이 허용된 유저 그룹</translation>
+        <translation>컴퓨터 접속이 허용된 사용자 그룹</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation>Veyon 네트워크의 컴퓨터에 접근을 허용할 사용자가 속한 그룹을 추가 하세요.</translation>
+        <translation>Veyon 네트워크에 컴퓨터에 접속을 허용할 사용자 그룹을 추가하세요.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
@@ -86,31 +86,31 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>Access control rules</source>
-        <translation>접근 제어 규칙</translation>
+        <translation>접속 제어 룰</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation>선택된 규칙 위로 이동</translation>
+        <translation>선택한 룰 위로 올리기</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation>선택된 규칙 수정</translation>
+        <translation>선택한 룰 수정하기</translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation>접근제어규칙 추가</translation>
+        <translation>접속 제어 룰 추가하기</translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation>접근제어규칙 제거</translation>
+        <translation>접속 제어 룰 제거하기</translation>
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation>선택된 규칙을 아래로 이동</translation>
+        <translation>선택한 룰 아래로 내리기</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation>사용자 이름 입력</translation>
+        <translation>사용자 이름 입력하기</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
@@ -130,7 +130,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>선택된 사용자는 이 설정으로 컴퓨터 접근이 거부 됨.</translation>
+        <translation>이 설정은 특정 사용자의 컴퓨터 접속을 막습니다.</translation>
     </message>
 </context>
 <context>
@@ -1331,7 +1331,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> MB/s</source>
-        <translation> MB/s</translation>
+        <translation> MB/초</translation>
     </message>
 </context>
 <context>
@@ -1719,14 +1719,64 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
 </context>
 <context>
+    <name>FileCollectDialog</name>
+    <message>
+        <source>File transfer</source>
+        <translation>화일 전송</translation>
+    </message>
+    <message>
+        <source>Collected files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Overall progress</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Output directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>시작</translation>
+    </message>
+    <message>
+        <source>Enter collection name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a name for this file collection:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Output directory creation failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>FileCollectTreeModel</name>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>이름</translation>
+    </message>
+</context>
+<context>
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
         <translation>화일 전송</translation>
     </message>
     <message>
-        <source>Directories</source>
-        <translation>디렉토리</translation>
+        <source>Settings for distributing files</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Destination directory</source>
@@ -1737,8 +1787,76 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Options</source>
-        <translation>옵션</translation>
+        <source>Settings for collecting files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prefix filenames with grouping attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Store files in subdirectories based on the grouping attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group collected files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collection directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect all files from configured source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prompt user for folder to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prompt user for files to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subdirectory based on date &amp; time</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subdirectory with name entered by the collecting user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect files recursively</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Device name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collected files grouping attribute</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1794,12 +1912,20 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileTransferPlugin</name>
     <message>
-        <source>File transfer</source>
-        <translation>화일 전송</translation>
+        <source>Distribute</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>다른 모든 컴퓨터로 화일을 전송하려면 이버튼을 클릭하세요</translation>
+        <source>Click this button to distribute files from your computer to all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to collect files from all computers to your computer.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
@@ -1818,8 +1944,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>화일 &quot;%1&quot; 이 쓸수 있도록 열리지 않아 화일을 받을 수 없습니다!</translation>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
-        <translation>원격 컴퓨터로 화일 전송</translation>
+        <source>Transfer files between computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2006,11 +2132,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Light</source>
-        <translation>밝음</translation>
+        <translation>라이트</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation>어둠</translation>
+        <translation>다크</translation>
     </message>
 </context>
 <context>
@@ -2728,10 +2854,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>%1 을 기본 DN 으로 설정하고 네이밍 컨텍스트 조회를 비활성화 함.</translation>
     </message>
     <message>
-        <source>Basic LDAP/AD support for Veyon</source>
-        <translation>Veyon 기본 LDAP/AD 지원</translation>
-    </message>
-    <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation>LDAP/AD 통합을 설정하거나 제어하는 명령어</translation>
     </message>
@@ -2742,6 +2864,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (LDAP/AD에서 사용자와 그룹을 가져옴)</translation>
+    </message>
+    <message>
+        <source>LDAP/AD support for Veyon</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

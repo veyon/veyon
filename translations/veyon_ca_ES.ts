@@ -137,7 +137,7 @@ Si esteu interessat a traduir el Veyon al vostre idioma local o a un altre o vol
     <name>AccessControlProvider</name>
     <message>
         <source>Provider for access control features</source>
-        <translation type="unfinished"/>
+        <translation>Proveïdor per a les funcionalitats de control d&apos;accés</translation>
     </message>
 </context>
 <context>
@@ -252,7 +252,7 @@ Si esteu interessat a traduir el Veyon al vostre idioma local o a un altre o vol
     </message>
     <message>
         <source>Local computer is already being accessed</source>
-        <translation type="unfinished"/>
+        <translation>S&apos;està accedint a l&apos;ordinador local</translation>
     </message>
 </context>
 <context>
@@ -985,7 +985,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Location &quot;%1&quot; not found.</source>
-        <translation type="unfinished"/>
+        <translation>No s&apos;ha trobat l&apos;ubicació &quot;%1&quot;.</translation>
     </message>
 </context>
 <context>
@@ -1054,7 +1054,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Hostname: %1</source>
-        <translation type="unfinished"/>
+        <translation>Nom de l&apos;amfitrió: %1</translation>
     </message>
     <message>
         <source>unknown</source>
@@ -1062,15 +1062,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>Adreça IP: %1</translation>
     </message>
     <message>
         <source>Hostname could not be resolved</source>
-        <translation type="unfinished"/>
+        <translation>No s&apos;ha pogut resoldre el nom de l&apos;amfitrió</translation>
     </message>
     <message>
         <source>No features active</source>
-        <translation type="unfinished"/>
+        <translation>Cap funcionalitat activa</translation>
     </message>
 </context>
 <context>
@@ -1116,7 +1116,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Logged in since</source>
-        <translation type="unfinished"/>
+        <translation>Sessió iniciada des de</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -1132,11 +1132,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>%1 days</source>
-        <translation type="unfinished"/>
+        <translation>%1 dies</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"/>
+        <translation>1 dia</translation>
     </message>
     <message>
         <source>Location detection failed</source>
@@ -1155,7 +1155,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerSelectPanel</name>
     <message>
         <source>Search computers</source>
-        <translation type="unfinished"/>
+        <translation>Buscar ordinadors</translation>
     </message>
     <message>
         <source>Add location</source>
@@ -1327,11 +1327,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Bandwidth limit</source>
-        <translation type="unfinished"/>
+        <translation>Límit d&apos;ample de banda</translation>
     </message>
     <message>
         <source> MB/s</source>
-        <translation type="unfinished"/>
+        <translation> MB/s</translation>
     </message>
 </context>
 <context>
@@ -1719,14 +1719,64 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
 </context>
 <context>
+    <name>FileCollectDialog</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Transferència de fitxers</translation>
+    </message>
+    <message>
+        <source>Collected files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Overall progress</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Output directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Inici</translation>
+    </message>
+    <message>
+        <source>Enter collection name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a name for this file collection:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Output directory creation failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>FileCollectTreeModel</name>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nom</translation>
+    </message>
+</context>
+<context>
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
         <translation>Transferència de fitxers</translation>
     </message>
     <message>
-        <source>Directories</source>
-        <translation>Directoris</translation>
+        <source>Settings for distributing files</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Destination directory</source>
@@ -1737,8 +1787,76 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Directori font per defecte</translation>
     </message>
     <message>
-        <source>Options</source>
-        <translation>Opcions</translation>
+        <source>Settings for collecting files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prefix filenames with grouping attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Store files in subdirectories based on the grouping attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group collected files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collection directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect all files from configured source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prompt user for folder to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prompt user for files to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subdirectory based on date &amp; time</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subdirectory with name entered by the collecting user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect files recursively</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Device name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collected files grouping attribute</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1794,12 +1912,20 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileTransferPlugin</name>
     <message>
-        <source>File transfer</source>
-        <translation>Transferència de fitxers</translation>
+        <source>Distribute</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Feu clic en aquest botó per a transferir fitxers des del vostre ordinador a tots els ordinadors.</translation>
+        <source>Click this button to distribute files from your computer to all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to collect files from all computers to your computer.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
@@ -1818,8 +1944,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>No s&apos;ha pogut rebre el fitxer «%1» perquè no s&apos;ha pogut obrir per escriure!</translation>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Transfereix els fitxers a l&apos;ordinador remot</translation>
+        <source>Transfer files between computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1842,11 +1968,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Style:</source>
-        <translation type="unfinished"/>
+        <translation>Estil:</translation>
     </message>
     <message>
         <source>Native</source>
-        <translation type="unfinished"/>
+        <translation>Nadiu</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -1986,7 +2112,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User groups</source>
-        <translation type="unfinished"/>
+        <translation>Grups d&apos;usuaris</translation>
     </message>
     <message>
         <source>Include user groups from domain</source>
@@ -2002,15 +2128,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished"/>
+        <translation>Esquema de color:</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>Clar</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>Fosc</translation>
     </message>
 </context>
 <context>
@@ -2730,10 +2856,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>S&apos;està valorant %1 com a base DN i s&apos;estan inhabilitant les consultes de context de nomenclatura.</translation>
     </message>
     <message>
-        <source>Basic LDAP/AD support for Veyon</source>
-        <translation>Suport bàsic LDAP/AD per a Veyon</translation>
-    </message>
-    <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation>Ordres per a configurar i provar la integració LDAP/AD</translation>
     </message>
@@ -2744,6 +2866,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (carrega usuaris i grups des de LDAP/AD)</translation>
+    </message>
+    <message>
+        <source>LDAP/AD support for Veyon</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2803,7 +2929,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Disable tooltips</source>
-        <translation type="unfinished"/>
+        <translation>Desactiva les descripcions emergents</translation>
     </message>
     <message>
         <source>Show icons only</source>
@@ -3974,23 +4100,23 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Starting %1</source>
-        <translation type="unfinished"/>
+        <translation>Iniciant %1</translation>
     </message>
     <message>
         <source>Stopping %1</source>
-        <translation type="unfinished"/>
+        <translation>Aturant %1</translation>
     </message>
     <message>
         <source>Restarting %1</source>
-        <translation type="unfinished"/>
+        <translation>Reiniciant %1</translation>
     </message>
     <message>
         <source>Registering %1</source>
-        <translation type="unfinished"/>
+        <translation>Registrant %1</translation>
     </message>
     <message>
         <source>Unregistering %1</source>
-        <translation type="unfinished"/>
+        <translation>Cancel·lant el registre %1</translation>
     </message>
 </context>
 <context>
@@ -4075,11 +4201,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>View in separate window</source>
-        <translation type="unfinished"/>
+        <translation>Veure en una finestra separada</translation>
     </message>
     <message>
         <source>%1 Master – Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>%1 Mestre – Presentació de diapositives</translation>
     </message>
 </context>
 <context>
@@ -4352,7 +4478,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Screen %1</source>
-        <translation type="unfinished"/>
+        <translation>Pantalla %1</translation>
     </message>
 </context>
 <context>
@@ -4530,7 +4656,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Use custom power scheme with disabled power button</source>
-        <translation type="unfinished"/>
+        <translation>Utilitza una combinació d&apos;energia personalitzada amb el botó d&apos;engegada desactivat</translation>
     </message>
     <message>
         <source>Handling of interfering windows</source>
@@ -4557,7 +4683,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Internal display</source>
-        <translation type="unfinished"/>
+        <translation>Monitor intern</translation>
     </message>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>

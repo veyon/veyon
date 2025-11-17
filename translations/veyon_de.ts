@@ -1718,14 +1718,64 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
     </message>
 </context>
 <context>
+    <name>FileCollectDialog</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Dateiübertragung</translation>
+    </message>
+    <message>
+        <source>Collected files</source>
+        <translation>Eingesammelte Dateien</translation>
+    </message>
+    <message>
+        <source>Overall progress</source>
+        <translation>Gesamtfortschritt</translation>
+    </message>
+    <message>
+        <source>Output directory</source>
+        <translation>Ausgabeverzeichnis</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Start</translation>
+    </message>
+    <message>
+        <source>Enter collection name</source>
+        <translation>Sammlungsname eingeben</translation>
+    </message>
+    <message>
+        <source>Please enter a name for this file collection:</source>
+        <translation>Bitte geben Sie einen Namen für diese Dateisammlung ein: </translation>
+    </message>
+    <message>
+        <source>Output directory creation failed</source>
+        <translation>Erstellung des Ausgabeverzeichnisses fehlgeschlagen</translation>
+    </message>
+    <message>
+        <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
+        <translation>Das Ausgabeverzeichnis „%1“ existiert nicht und konnte nicht erstellt werden. Bitte überprüfen Sie die Konfiguration und die Dateiberechtigungen für das konfigurierte Zielverzeichnis.</translation>
+    </message>
+</context>
+<context>
+    <name>FileCollectTreeModel</name>
+    <message>
+        <source>Progress</source>
+        <translation>Fortschritt</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+</context>
+<context>
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
         <translation>Dateiübertragung</translation>
     </message>
     <message>
-        <source>Directories</source>
-        <translation>Verzeichnisse</translation>
+        <source>Settings for distributing files</source>
+        <translation>Einstellungen für die Verteilung von Dateien</translation>
     </message>
     <message>
         <source>Destination directory</source>
@@ -1736,8 +1786,76 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Standardquellverzeichnis</translation>
     </message>
     <message>
-        <source>Options</source>
-        <translation>Optionen</translation>
+        <source>Settings for collecting files</source>
+        <translation>Einstellungen für das Einsammeln von Dateien </translation>
+    </message>
+    <message>
+        <source>Source directory</source>
+        <translation>Quellverzeichnis</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Nein</translation>
+    </message>
+    <message>
+        <source>Prefix filenames with grouping attribute</source>
+        <translation>Gruppierungsattribut an Dateinamen voranstellen</translation>
+    </message>
+    <message>
+        <source>Store files in subdirectories based on the grouping attribute</source>
+        <translation>Dateien in Unterverzeichnissen basierend auf dem Gruppierungsattribut speichern</translation>
+    </message>
+    <message>
+        <source>Group collected files</source>
+        <translation>Eingesammelte Dateien gruppieren </translation>
+    </message>
+    <message>
+        <source>Collection directory</source>
+        <translation>Sammlungsverzeichnis</translation>
+    </message>
+    <message>
+        <source>Files to collect</source>
+        <translation>Einzusammelnde Dateien</translation>
+    </message>
+    <message>
+        <source>Collect all files from configured source directory</source>
+        <translation>Alle Dateien aus dem konfigurierten Quellverzeichnis sammeln</translation>
+    </message>
+    <message>
+        <source>Prompt user for folder to collect</source>
+        <translation>Benutzer nach einzusammelnden Ordner fragen</translation>
+    </message>
+    <message>
+        <source>Prompt user for files to collect</source>
+        <translation>Benutzer nach einzusammelnden Dateien fragen</translation>
+    </message>
+    <message>
+        <source>Subdirectory based on date &amp; time</source>
+        <translation>Unterverzeichnis basierend auf Datum und Uhrzeit</translation>
+    </message>
+    <message>
+        <source>Subdirectory with name entered by the collecting user</source>
+        <translation>Unterverzeichnis mit Namen, der vom einsammelnden Benutzer eingegebenen wird</translation>
+    </message>
+    <message>
+        <source>Collect files recursively</source>
+        <translation>Dateien rekursiv einsammeln</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Benutzeranmeldename</translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Voller Name des Benutzers</translation>
+    </message>
+    <message>
+        <source>Device name</source>
+        <translation>Gerätename</translation>
+    </message>
+    <message>
+        <source>Collected files grouping attribute</source>
+        <translation>Gruppierungsattribut für eingesammelte Dateien</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1793,12 +1911,20 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
 <context>
     <name>FileTransferPlugin</name>
     <message>
-        <source>File transfer</source>
-        <translation>Dateiübertragung</translation>
+        <source>Distribute</source>
+        <translation>Verteilen</translation>
     </message>
     <message>
-        <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Klicken Sie auf diesen Button, um Dateien von Ihrem Computer auf alle Computer zu übertragen.</translation>
+        <source>Click this button to distribute files from your computer to all computers.</source>
+        <translation>Klicken Sie auf diesen Button, um Dateien von Ihrem Computer auf alle Computer zu verteilen.</translation>
+    </message>
+    <message>
+        <source>Collect</source>
+        <translation>Einsammeln</translation>
+    </message>
+    <message>
+        <source>Click this button to collect files from all computers to your computer.</source>
+        <translation>Klicken Sie auf diesen Button, um Dateien von allen Computern auf Ihrem Computer einzusammeln. </translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
@@ -1817,8 +1943,8 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Datei &quot;%1&quot; konnte nicht empfangen werden, da sie nicht zum Schreiben geöffnet werden konnte!</translation>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Dateien auf entfernte Computer übertragen</translation>
+        <source>Transfer files between computers</source>
+        <translation>Dateien zwischen Computern übertragen</translation>
     </message>
 </context>
 <context>
@@ -2729,10 +2855,6 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Konfiguriere %1 als Base-DN und deaktiviere Naming-Context-Abfragen.</translation>
     </message>
     <message>
-        <source>Basic LDAP/AD support for Veyon</source>
-        <translation>Einfache LDAP/AD-Unterstützung für Veyon</translation>
-    </message>
-    <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation>Befehle zum Konfigurieren und Testen der LDAP-/AD-Integration</translation>
     </message>
@@ -2743,6 +2865,10 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (Benutzer und Gruppen aus LDAP/AD laden)</translation>
+    </message>
+    <message>
+        <source>LDAP/AD support for Veyon</source>
+        <translation>LDAP/AD-Unterstützung für Veyon</translation>
     </message>
 </context>
 <context>

@@ -544,7 +544,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;غير متاح&gt;</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
@@ -685,7 +685,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Computers</source>
-        <translation type="unfinished"/>
+        <translation>الحواسيب</translation>
     </message>
     <message>
         <source>Locations</source>
@@ -725,7 +725,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>New location</source>
-        <translation type="unfinished"/>
+        <translation>موقع جديد</translation>
     </message>
     <message>
         <source>New computer</source>
@@ -736,7 +736,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>عرض مساعدة لأمر محدد.</translation>
     </message>
     <message>
         <source>Add a location or computer</source>
@@ -1143,7 +1143,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Unknown location</source>
-        <translation type="unfinished"/>
+        <translation>موقع غير معروف</translation>
     </message>
 </context>
 <context>
@@ -1306,7 +1306,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
@@ -1714,14 +1714,64 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
 </context>
 <context>
+    <name>FileCollectDialog</name>
+    <message>
+        <source>File transfer</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collected files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Overall progress</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Output directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Enter collection name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a name for this file collection:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Output directory creation failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>FileCollectTreeModel</name>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>اسم</translation>
+    </message>
+</context>
+<context>
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Directories</source>
-        <translation>أدلة </translation>
+        <source>Settings for distributing files</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Destination directory</source>
@@ -1732,7 +1782,75 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Options</source>
+        <source>Settings for collecting files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prefix filenames with grouping attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Store files in subdirectories based on the grouping attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group collected files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collection directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect all files from configured source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prompt user for folder to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prompt user for files to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subdirectory based on date &amp; time</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subdirectory with name entered by the collecting user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect files recursively</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>اسم تسجيل الدخول للمستخدم</translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Device name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collected files grouping attribute</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1759,7 +1877,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>خيارات</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -1789,11 +1907,19 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileTransferPlugin</name>
     <message>
-        <source>File transfer</source>
+        <source>Distribute</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Click this button to transfer files from your computer to all computers.</source>
+        <source>Click this button to distribute files from your computer to all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to collect files from all computers to your computer.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1813,7 +1939,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
+        <source>Transfer files between computers</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1869,7 +1995,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Backend:</source>
-        <translation type="unfinished"/>
+        <translation>الواجهة الخلفية</translation>
     </message>
     <message>
         <source>Update interval:</source>
@@ -2033,7 +2159,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>LdapConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation type="unfinished"/>
+        <translation>الإعدادات الأساسية</translation>
     </message>
     <message>
         <source>General</source>
@@ -2057,7 +2183,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ms</translation>
     </message>
     <message>
         <source>LDAP server and port</source>
@@ -2500,11 +2626,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>users</source>
-        <translation type="unfinished"/>
+        <translation>المستخدمين</translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation type="unfinished"/>
+        <translation>مجموعات المستخدم</translation>
     </message>
     <message>
         <source>computers</source>
@@ -2650,7 +2776,9 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>تم الاستعلام عن 1% 2% بنجاح:
+
+3%</translation>
     </message>
     <message>
         <source>LDAP filter test failed</source>
@@ -2706,19 +2834,19 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Basic LDAP/AD support for Veyon</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (تحميل الحواسيب والمواقع من ‎LDAP/AD‎)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
+        <translation>%1 (تحميل المستخدمين والمجموعات من ‎LDAP/AD‎)</translation>
+    </message>
+    <message>
+        <source>LDAP/AD support for Veyon</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3007,7 +3135,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>MasterConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation type="unfinished"/>
+        <translation>الإعدادات الأساسية</translation>
     </message>
     <message>
         <source>Directories</source>
@@ -3031,7 +3159,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Background color</source>
@@ -3231,11 +3359,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Session client address</source>
-        <translation type="unfinished"/>
+        <translation>عنوان عميل الجلسة</translation>
     </message>
     <message>
         <source>Session client name</source>
-        <translation type="unfinished"/>
+        <translation>اسم عميل الجلسة</translation>
     </message>
     <message>
         <source>Session host name</source>
@@ -3251,7 +3379,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>User login name</source>
-        <translation type="unfinished"/>
+        <translation>اسم تسجيل الدخول للمستخدم</translation>
     </message>
     <message>
         <source>Computer UID role</source>
@@ -3646,7 +3774,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Unlock</source>
-        <translation type="unfinished"/>
+        <translation>فتح</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>

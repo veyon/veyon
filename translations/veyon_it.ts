@@ -7,7 +7,7 @@
     </message>
     <message>
         <source>About</source>
-        <translation>Informazioni su</translation>
+        <translation>Informazioni </translation>
     </message>
     <message>
         <source>Version:</source>
@@ -1718,14 +1718,64 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     </message>
 </context>
 <context>
+    <name>FileCollectDialog</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Trasferimento di file</translation>
+    </message>
+    <message>
+        <source>Collected files</source>
+        <translation>File raccolti</translation>
+    </message>
+    <message>
+        <source>Overall progress</source>
+        <translation>Progresso complessivo</translation>
+    </message>
+    <message>
+        <source>Output directory</source>
+        <translation>Directory di output</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Inizio</translation>
+    </message>
+    <message>
+        <source>Enter collection name</source>
+        <translation>Inserisci il nome della raccolta</translation>
+    </message>
+    <message>
+        <source>Please enter a name for this file collection:</source>
+        <translation>Inserisci un nome per questa raccolta di file:</translation>
+    </message>
+    <message>
+        <source>Output directory creation failed</source>
+        <translation>Creazione della directory di output non riuscita</translation>
+    </message>
+    <message>
+        <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
+        <translation>La directory di output &quot;%1&quot; non esiste e non è stato possibile crearla. Verificare la configurazione e i permessi dei file per la directory di destinazione configurata.</translation>
+    </message>
+</context>
+<context>
+    <name>FileCollectTreeModel</name>
+    <message>
+        <source>Progress</source>
+        <translation>Avanzamento</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nome</translation>
+    </message>
+</context>
+<context>
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
         <translation>Trasferimento di file</translation>
     </message>
     <message>
-        <source>Directories</source>
-        <translation>Cartelle</translation>
+        <source>Settings for distributing files</source>
+        <translation>Impostazioni per la distribuzione del file</translation>
     </message>
     <message>
         <source>Destination directory</source>
@@ -1736,8 +1786,76 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Directory di origine predefinita</translation>
     </message>
     <message>
-        <source>Options</source>
-        <translation>Opzioni</translation>
+        <source>Settings for collecting files</source>
+        <translation>Impostazioni per la raccolta dei file</translation>
+    </message>
+    <message>
+        <source>Source directory</source>
+        <translation>Directory di origine</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>No</translation>
+    </message>
+    <message>
+        <source>Prefix filenames with grouping attribute</source>
+        <translation>Aggiungere un prefisso ai nomi dei file con l&apos;attributo di raggruppamento</translation>
+    </message>
+    <message>
+        <source>Store files in subdirectories based on the grouping attribute</source>
+        <translation>Memorizza i file in sottodirectory in base all&apos;attributo di raggruppamento</translation>
+    </message>
+    <message>
+        <source>Group collected files</source>
+        <translation>Gruppo di file raccolti</translation>
+    </message>
+    <message>
+        <source>Collection directory</source>
+        <translation>Elenco delle raccolte</translation>
+    </message>
+    <message>
+        <source>Files to collect</source>
+        <translation>File da raccogliere</translation>
+    </message>
+    <message>
+        <source>Collect all files from configured source directory</source>
+        <translation>Raccogli tutti i file dalla directory sorgente configurata</translation>
+    </message>
+    <message>
+        <source>Prompt user for folder to collect</source>
+        <translation>Richiedi all&apos;utente la cartella da raccogliere</translation>
+    </message>
+    <message>
+        <source>Prompt user for files to collect</source>
+        <translation>Richiedi all&apos;utente i file da raccogliere</translation>
+    </message>
+    <message>
+        <source>Subdirectory based on date &amp; time</source>
+        <translation>Sottodirectory basata su data &amp; ora</translation>
+    </message>
+    <message>
+        <source>Subdirectory with name entered by the collecting user</source>
+        <translation>Sottodirectory con nome immesso dall&apos;utente che effettua la raccolta</translation>
+    </message>
+    <message>
+        <source>Collect files recursively</source>
+        <translation>Raccogli i file in modo ricorsivo</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Nome completo dell&apos;utente</translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Nome completo dell&apos;utente</translation>
+    </message>
+    <message>
+        <source>Device name</source>
+        <translation>Nome del dispositivo</translation>
+    </message>
+    <message>
+        <source>Collected files grouping attribute</source>
+        <translation>Attributo di raggruppamento dei file raccolti</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1793,12 +1911,20 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
 <context>
     <name>FileTransferPlugin</name>
     <message>
-        <source>File transfer</source>
-        <translation>Trasferimento di file</translation>
+        <source>Distribute</source>
+        <translation>Distribuire</translation>
     </message>
     <message>
-        <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Fare clic su questo pulsante per trasferire i file dal computer a tutti i computer.</translation>
+        <source>Click this button to distribute files from your computer to all computers.</source>
+        <translation>Fare clic su questo pulsante per distribuire i file dal computer a tutti i computer.</translation>
+    </message>
+    <message>
+        <source>Collect</source>
+        <translation>Raccogliere</translation>
+    </message>
+    <message>
+        <source>Click this button to collect files from all computers to your computer.</source>
+        <translation>Fare clic su questo pulsante per raccogliere i file da tutti i computer sul proprio computer.</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
@@ -1817,8 +1943,8 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Impossibile ricevere il file &quot;%1&quot; in quanto non può essere aperto per la scrittura!</translation>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Trasferisci i file sul computer remoto</translation>
+        <source>Transfer files between computers</source>
+        <translation>Trasferire file tra computer</translation>
     </message>
 </context>
 <context>
@@ -2719,10 +2845,6 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Configurazione di%1 come DN di base e disabilitazione delle query di contesto dei nomi.</translation>
     </message>
     <message>
-        <source>Basic LDAP/AD support for Veyon</source>
-        <translation>Supporto LDAP / AD di base per Veyon</translation>
-    </message>
-    <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation>Comandi per la configurazione ed il testing dell&apos;integrazione LDAP/AD</translation>
     </message>
@@ -2733,6 +2855,10 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (carica utenti e gruppi da LDAP / AD)</translation>
+    </message>
+    <message>
+        <source>LDAP/AD support for Veyon</source>
+        <translation>Supporto LDAP / AD per Veyon</translation>
     </message>
 </context>
 <context>
