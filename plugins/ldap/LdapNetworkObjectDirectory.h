@@ -7,7 +7,7 @@
 #include "LdapDirectory.h"
 #include "NetworkObjectDirectory.h"
 
-class LDAP_COMMON_EXPORT LdapNetworkObjectDirectory : public NetworkObjectDirectory
+class LdapNetworkObjectDirectory : public NetworkObjectDirectory
 {
 	Q_OBJECT
 public:
