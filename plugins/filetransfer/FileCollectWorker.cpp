@@ -81,7 +81,7 @@ FileCollectWorker::FileCollectWorker(FileTransferPlugin* plugin) :
 		}
 		else
 		{
-			m_files.erase(it);
+			it = m_files.erase(it);
 		}
 	}
 }
