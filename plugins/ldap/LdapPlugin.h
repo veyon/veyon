@@ -46,12 +46,12 @@ public:
 
 	QString name() const override
 	{
-		return QStringLiteral( "LDAP Basic" );
+		return QStringLiteral("LDAP/AD");
 	}
 
 	QString description() const override
 	{
-		return tr( "Basic LDAP/AD support for Veyon" );
+		return tr("LDAP/AD support for Veyon");
 	}
 
 	QString vendor() const override

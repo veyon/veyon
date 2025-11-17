@@ -11,7 +11,7 @@
 class LdapConfiguration;
 class LdapClient;
 
-class LDAP_COMMON_EXPORT LdapDirectory : public QObject
+class LdapDirectory : public QObject
 {
 	Q_OBJECT
 public:

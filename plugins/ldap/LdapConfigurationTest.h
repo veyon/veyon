@@ -11,7 +11,7 @@
 class LdapConfiguration;
 class LdapDirectory;
 
-class LDAP_COMMON_EXPORT LdapConfigurationTest
+class LdapConfigurationTest
 {
 public:
 	explicit LdapConfigurationTest( LdapConfiguration& configuration );

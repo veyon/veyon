@@ -3,7 +3,7 @@
  <class>LdapConfigurationPage</class>
  <widget class="QWidget" name="LdapConfigurationPage">
   <property name="windowTitle">
-   <string notr="true">LDAP Basic</string>
+   <string notr="true">LDAP/AD</string>
   </property>
   <property name="windowIcon">
    <iconset resource="ldap.qrc">
@@ -74,7 +74,7 @@
             <item>
              <spacer name="horizontalSpacer_16">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -87,7 +87,7 @@
             <item>
              <widget class="QPushButton" name="testBind">
               <property name="icon">
-               <iconset resource="../../../core/resources/core.qrc">
+               <iconset resource="../../core/resources/core.qrc">
                 <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
               </property>
              </widget>
@@ -124,7 +124,7 @@
              <bool>false</bool>
             </property>
             <property name="echoMode">
-             <enum>QLineEdit::Password</enum>
+             <enum>QLineEdit::EchoMode::Password</enum>
             </property>
            </widget>
           </item>
@@ -236,7 +236,7 @@
           <item row="2" column="2">
            <widget class="QPushButton" name="browseCACertificateFile">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/document-open.png</normaloff>:/core/document-open.png</iconset>
             </property>
            </widget>
@@ -300,7 +300,7 @@
           <item row="0" column="2">
            <widget class="QPushButton" name="browseBaseDn">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
             </property>
            </widget>
@@ -308,7 +308,7 @@
           <item row="0" column="3">
            <widget class="QPushButton" name="testBaseDn">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
@@ -319,7 +319,7 @@
              <bool>false</bool>
             </property>
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
@@ -330,7 +330,7 @@
        <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Orientation::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -419,7 +419,7 @@
           <item row="0" column="2">
            <widget class="QPushButton" name="browseUserTree">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
             </property>
            </widget>
@@ -427,7 +427,7 @@
           <item row="1" column="2">
            <widget class="QPushButton" name="browseGroupTree">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
             </property>
            </widget>
@@ -435,7 +435,7 @@
           <item row="2" column="2">
            <widget class="QPushButton" name="browseComputerTree">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
             </property>
            </widget>
@@ -443,7 +443,7 @@
           <item row="3" column="2">
            <widget class="QPushButton" name="browseComputerGroupTree">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
             </property>
            </widget>
@@ -451,7 +451,7 @@
           <item row="0" column="3">
            <widget class="QPushButton" name="testUserTree">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
@@ -459,7 +459,7 @@
           <item row="1" column="3">
            <widget class="QPushButton" name="testGroupTree">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
@@ -467,7 +467,7 @@
           <item row="2" column="3">
            <widget class="QPushButton" name="testComputerTree">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
@@ -475,7 +475,7 @@
           <item row="3" column="3">
            <widget class="QPushButton" name="testComputerGroupTree">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
@@ -506,7 +506,7 @@
           <item row="0" column="2">
            <widget class="QPushButton" name="browseUserLoginNameAttribute">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
             </property>
            </widget>
@@ -545,7 +545,7 @@
           <item row="5" column="3">
            <widget class="QPushButton" name="testComputerMacAddressAttribute">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
@@ -560,7 +560,7 @@
           <item row="0" column="3">
            <widget class="QPushButton" name="testUserLoginNameAttribute">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
@@ -589,7 +589,7 @@
           <item row="3" column="2">
            <widget class="QPushButton" name="browseComputerHostNameAttribute">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
             </property>
            </widget>
@@ -597,7 +597,7 @@
           <item row="3" column="3">
            <widget class="QPushButton" name="testComputerHostNameAttribute">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
@@ -608,7 +608,7 @@
              <bool>false</bool>
             </property>
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
             </property>
            </widget>
@@ -616,7 +616,7 @@
           <item row="1" column="3">
            <widget class="QPushButton" name="testGroupMemberAttribute">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
@@ -627,7 +627,7 @@
              <bool>false</bool>
             </property>
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
@@ -663,7 +663,7 @@
           <item row="1" column="2">
            <widget class="QPushButton" name="browseGroupMemberAttribute">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
             </property>
            </widget>
@@ -671,7 +671,7 @@
           <item row="7" column="2">
            <widget class="QPushButton" name="browseLocationNameAttribute">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
             </property>
            </widget>
@@ -679,7 +679,7 @@
           <item row="5" column="2">
            <widget class="QPushButton" name="browseComputerMacAddressAttribute">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
             </property>
            </widget>
@@ -687,7 +687,7 @@
           <item row="7" column="3">
            <widget class="QPushButton" name="testLocationNameAttribute">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
@@ -702,7 +702,7 @@
           <item row="2" column="2">
            <widget class="QPushButton" name="browseComputerDisplayNameAttribute">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/edit-find.png</normaloff>:/core/edit-find.png</iconset>
             </property>
            </widget>
@@ -710,7 +710,7 @@
           <item row="2" column="3">
            <widget class="QPushButton" name="testComputerDisplayNameAttribute">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
@@ -721,7 +721,7 @@
        <item>
         <spacer name="verticalSpacer_2">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Orientation::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -820,7 +820,7 @@
           <item row="0" column="2">
            <widget class="QPushButton" name="testUsersFilter">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
@@ -828,7 +828,7 @@
           <item row="1" column="2">
            <widget class="QPushButton" name="testUserGroupsFilter">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
@@ -836,7 +836,7 @@
           <item row="2" column="2">
            <widget class="QPushButton" name="testComputersFilter">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
@@ -844,7 +844,7 @@
           <item row="3" column="2">
            <widget class="QPushButton" name="testComputerGroupsFilter">
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
@@ -855,7 +855,7 @@
              <bool>false</bool>
             </property>
             <property name="icon">
-             <iconset resource="../../../core/resources/core.qrc">
+             <iconset resource="../../core/resources/core.qrc">
               <normaloff>:/core/dialog-ok-apply.png</normaloff>:/core/dialog-ok-apply.png</iconset>
             </property>
            </widget>
@@ -970,10 +970,10 @@
        <item>
         <spacer name="verticalSpacer_11">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Orientation::Vertical</enum>
          </property>
          <property name="sizeType">
-          <enum>QSizePolicy::MinimumExpanding</enum>
+          <enum>QSizePolicy::Policy::MinimumExpanding</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -1048,7 +1048,7 @@
        <item>
         <spacer name="verticalSpacer_10">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Orientation::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -1143,7 +1143,7 @@
   <tabstop>testLocations</tabstop>
  </tabstops>
  <resources>
-  <include location="../../../core/resources/core.qrc"/>
+  <include location="../../core/resources/core.qrc"/>
   <include location="ldap.qrc"/>
  </resources>
  <connections>
@@ -1437,9 +1437,9 @@
   </connection>
  </connections>
  <buttongroups>
-  <buttongroup name="bindConfigurationGroup"/>
-  <buttongroup name="baseDnConfigGroup"/>
   <buttongroup name="computerGroupingGroup"/>
+  <buttongroup name="baseDnConfigGroup"/>
   <buttongroup name="groupMemberMatchingGroup"/>
+  <buttongroup name="bindConfigurationGroup"/>
  </buttongroups>
 </ui>

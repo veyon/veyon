@@ -17,7 +17,7 @@ class LdapConfigurationPage;
 
 class QLineEdit;
 
-class LDAP_COMMON_EXPORT LdapConfigurationPage : public ConfigurationPage
+class LdapConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:

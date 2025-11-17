@@ -11,7 +11,7 @@ namespace Ui {
 class LdapNetworkObjectDirectoryConfigurationPage;
 }
 
-class LDAP_COMMON_EXPORT LdapNetworkObjectDirectoryConfigurationPage : public ConfigurationPage
+class LdapNetworkObjectDirectoryConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
