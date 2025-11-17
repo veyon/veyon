@@ -184,11 +184,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>Если активировано более одного условия, каждое условие должно соответствовать для применения правила (логическое И). Если требуется только одно из нескольких условий (логическое ИЛИ), создайте несколько правил контроля доступа.</translation>
+        <translation>Если для правила активировано несколько условий, то для его применения все эти условия должны быть выполнены одновременно (логическая операция И). Если же требуется, чтобы правило срабатывало при выполнении любого одного из условий (логическая операция ИЛИ), необходимо создать несколько отдельных правил управления доступом.</translation>
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
-        <translation>Компьютер для доступа расположен в том же месте, что и локальный компьютер</translation>
+        <translation>Компьютер, с которого осуществляется доступ, расположен в том же месте, что и локальный компьютер</translation>
     </message>
     <message>
         <source>No user logged on</source>
@@ -200,19 +200,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation>Доступ к компьютеру как localhost</translation>
+        <translation>Компьютер, с которого осуществляется доступ, является локальным (localhost)</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>Доступ к пользователю имеет одна или несколько групп, совместно с локальным пользователем (вошедшим в систему)</translation>
+        <translation>Пользователь, выполняющий доступ, состоит как минимум в одной общей группе с локальным (вошедшим в систему) пользователем</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation>Доступ к пользователю осуществляется пользователем</translation>
+        <translation>Доступ осуществляется вошедшим в систему пользователем</translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation>Доступ к пользователю уже подключен</translation>
+        <translation>Пользователь, выполняющий доступ, уже подключён</translation>
     </message>
     <message>
         <source>Action</source>
@@ -236,11 +236,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing user</source>
-        <translation>Доступ к пользователю</translation>
+        <translation>Пользователь, выполняющий доступ</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation>Доступ к компьютеру</translation>
+        <translation>Компьютер, с которого осуществляется доступ</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
@@ -263,7 +263,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation>Доступ к пользователю:</translation>
+        <translation>Пользователь, выполняющий доступ:</translation>
     </message>
     <message>
         <source>Local computer:</source>
@@ -271,7 +271,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation>Доступ к компьютеру:</translation>
+        <translation>Компьютер, с которого осуществляется доступ:</translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
@@ -1083,7 +1083,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation>Пользователь &quot;%1&quot; на узле &quot;%2&quot; пытался получить доступ к этому компьютеру, но не смог пройти аутентификацию.</translation>
+        <translation>Пользователь &quot;%1&quot; с узла &quot;%2&quot; пытался получить доступ к этому компьютеру, но не смог пройти аутентификацию.</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -1091,7 +1091,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation>Сейчас доступ к этому компьютеру имеет пользователь &quot;%1&quot; на хосте &quot;%2&quot;.</translation>
+        <translation>Пользователь &quot;%1&quot; с узла &quot;%2&quot; установил соединение с данным компьютером</translation>
     </message>
     <message>
         <source>Access control error</source>
@@ -1099,7 +1099,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
-        <translation>Пользователь &quot;%1&quot; на узле &quot;%2&quot; пытался получить доступ к этому компьютеру, но был заблокирован из-за параметров управления доступом.</translation>
+        <translation>Пользователь &quot;%1&quot; с узла &quot;%2&quot; пытался получить доступ к этому компьютеру, но был заблокирован настройками управления доступом.</translation>
     </message>
     <message>
         <source>%1 Service %2 at %3:%4</source>
@@ -1146,11 +1146,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось определить расположение этого компьютера. Это означает, что в настройках системы есть проблемы. В панели «Места и компьютеры» не будут отображаться ни расположения, ни компьютеры.</translation>
     </message>
     <message>
         <source>Unknown location</source>
-        <translation type="unfinished"/>
+        <translation>Неизвестное место</translation>
     </message>
 </context>
 <context>
@@ -1279,7 +1279,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Configuration is not writable. Please check your permissions!</source>
-        <translation>Файл настроек непригоден для записи. Пожалуйста, проверьте права доступа к нему!</translation>
+        <translation>Конфигурация недоступна для записи. Проверьте свои права доступа!</translation>
     </message>
 </context>
 <context>
@@ -1415,7 +1415,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Confirm desktop access</source>
-        <translation>Подтверждать доступ к рабочему столу</translation>
+        <translation>Разрешить доступ к рабочему столу</translation>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
@@ -1721,14 +1721,64 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
 </context>
 <context>
+    <name>FileCollectDialog</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Передача файлов</translation>
+    </message>
+    <message>
+        <source>Collected files</source>
+        <translation>Собранные файлы</translation>
+    </message>
+    <message>
+        <source>Overall progress</source>
+        <translation>Общий прогресс</translation>
+    </message>
+    <message>
+        <source>Output directory</source>
+        <translation>Каталог для сохранения</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Начать</translation>
+    </message>
+    <message>
+        <source>Enter collection name</source>
+        <translation>Введите имя коллекции</translation>
+    </message>
+    <message>
+        <source>Please enter a name for this file collection:</source>
+        <translation>Введите имя этой коллекции файлов</translation>
+    </message>
+    <message>
+        <source>Output directory creation failed</source>
+        <translation>Не удалось создать выходной каталог</translation>
+    </message>
+    <message>
+        <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
+        <translation>Выходной каталог &quot;%1&quot; не существует и не может быть создан. Проверьте конфигурацию и права доступа к файлам для указанного целевого каталога.</translation>
+    </message>
+</context>
+<context>
+    <name>FileCollectTreeModel</name>
+    <message>
+        <source>Progress</source>
+        <translation>Прогресс</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Имя</translation>
+    </message>
+</context>
+<context>
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
         <translation>Передача файлов</translation>
     </message>
     <message>
-        <source>Directories</source>
-        <translation>Каталоги</translation>
+        <source>Settings for distributing files</source>
+        <translation>Настройки распространения файлов</translation>
     </message>
     <message>
         <source>Destination directory</source>
@@ -1739,8 +1789,76 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Исходный каталог по умолчанию</translation>
     </message>
     <message>
-        <source>Options</source>
-        <translation>Параметры</translation>
+        <source>Settings for collecting files</source>
+        <translation>Настройки сбора файлов</translation>
+    </message>
+    <message>
+        <source>Source directory</source>
+        <translation>Исходный каталог</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Нет</translation>
+    </message>
+    <message>
+        <source>Prefix filenames with grouping attribute</source>
+        <translation>Добавлять к именам файлов префикс с атрибутом группировки</translation>
+    </message>
+    <message>
+        <source>Store files in subdirectories based on the grouping attribute</source>
+        <translation>Сохранять файлы в подкаталоги в соответствии с атрибутом группировки</translation>
+    </message>
+    <message>
+        <source>Group collected files</source>
+        <translation>Группировать собранные файлы</translation>
+    </message>
+    <message>
+        <source>Collection directory</source>
+        <translation>Каталог коллекции</translation>
+    </message>
+    <message>
+        <source>Files to collect</source>
+        <translation>Файлы для сбора</translation>
+    </message>
+    <message>
+        <source>Collect all files from configured source directory</source>
+        <translation>Собирать все файлы из настроенного исходного каталога</translation>
+    </message>
+    <message>
+        <source>Prompt user for folder to collect</source>
+        <translation>Запрашивать у пользователя папку для сбора</translation>
+    </message>
+    <message>
+        <source>Prompt user for files to collect</source>
+        <translation>Запрашивать у пользователя файлы для сбора</translation>
+    </message>
+    <message>
+        <source>Subdirectory based on date &amp; time</source>
+        <translation>Подкаталог на основе даты и времени</translation>
+    </message>
+    <message>
+        <source>Subdirectory with name entered by the collecting user</source>
+        <translation>Подкаталог с именем, указанным пользователем при выполнении сбора файлов</translation>
+    </message>
+    <message>
+        <source>Collect files recursively</source>
+        <translation>Собирать файлы рекурсивно</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Имя пользователя (логин)</translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Полное имя пользователя</translation>
+    </message>
+    <message>
+        <source>Device name</source>
+        <translation>Имя ресурса</translation>
+    </message>
+    <message>
+        <source>Collected files grouping attribute</source>
+        <translation>Атрибут группировки собранных файлов</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1796,12 +1914,20 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileTransferPlugin</name>
     <message>
-        <source>File transfer</source>
-        <translation>Передача файлов</translation>
+        <source>Distribute</source>
+        <translation>Распространить</translation>
     </message>
     <message>
-        <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Нажмите эту кнопку, чтобы передать файлы с компьютера на все компьютеры.</translation>
+        <source>Click this button to distribute files from your computer to all computers.</source>
+        <translation>Нажмите эту кнопку, чтобы передать файлы с вашего компьютера на все компьютеры.</translation>
+    </message>
+    <message>
+        <source>Collect</source>
+        <translation>Собрать</translation>
+    </message>
+    <message>
+        <source>Click this button to collect files from all computers to your computer.</source>
+        <translation>Нажмите эту кнопку, чтобы собрать файлы со всех компьютеров на свой компьютер.</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
@@ -1820,8 +1946,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Не удалось получить файл &quot;%1&quot;, поскольку не удалось открыть соответствующий файл для записи данных!</translation>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Передать файлы на другой компьютер</translation>
+        <source>Transfer files between computers</source>
+        <translation>Передача файлов между компьютерами</translation>
     </message>
 </context>
 <context>
@@ -2732,10 +2858,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Настраиваем %1 как корневой DN и выключаем запросы по контексту именования.</translation>
     </message>
     <message>
-        <source>Basic LDAP/AD support for Veyon</source>
-        <translation>Базовая поддержка LDAP/AD в Veyon</translation>
-    </message>
-    <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation>Команды для конфигурирования и тестирования интеграции LDAP/AD</translation>
     </message>
@@ -2746,6 +2868,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (загрузить записи пользователей и групп с LDAP/AD)</translation>
+    </message>
+    <message>
+        <source>LDAP/AD support for Veyon</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3965,11 +4091,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Environment variable name</source>
-        <translation type="unfinished"/>
+        <translation>Имя переменной среды</translation>
     </message>
     <message>
         <source>Registry key name</source>
-        <translation type="unfinished"/>
+        <translation>Имя ключа реестра</translation>
     </message>
 </context>
 <context>
@@ -4540,7 +4666,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Handling of interfering windows</source>
-        <translation type="unfinished"/>
+        <translation>Обработка мешающих окон</translation>
     </message>
     <message>
         <source>None</source>
@@ -4548,15 +4674,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Fix window attributes</source>
-        <translation type="unfinished"/>
+        <translation>Исправление атрибутов окна</translation>
     </message>
     <message>
         <source>Terminate related process</source>
-        <translation type="unfinished"/>
+        <translation>Завершение связанного процесса</translation>
     </message>
     <message>
         <source>Close session</source>
-        <translation type="unfinished"/>
+        <translation>Закрытие сеанса</translation>
     </message>
 </context>
 <context>

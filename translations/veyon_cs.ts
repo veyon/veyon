@@ -1719,14 +1719,64 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
 </context>
 <context>
+    <name>FileCollectDialog</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Přenos souboru</translation>
+    </message>
+    <message>
+        <source>Collected files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Overall progress</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Output directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Spustit</translation>
+    </message>
+    <message>
+        <source>Enter collection name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a name for this file collection:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Output directory creation failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>FileCollectTreeModel</name>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Název</translation>
+    </message>
+</context>
+<context>
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
         <translation>Přenos souboru</translation>
     </message>
     <message>
-        <source>Directories</source>
-        <translation>Složky</translation>
+        <source>Settings for distributing files</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Destination directory</source>
@@ -1737,8 +1787,76 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Options</source>
-        <translation>Volby</translation>
+        <source>Settings for collecting files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prefix filenames with grouping attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Store files in subdirectories based on the grouping attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group collected files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collection directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect all files from configured source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prompt user for folder to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prompt user for files to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subdirectory based on date &amp; time</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subdirectory with name entered by the collecting user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect files recursively</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Device name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collected files grouping attribute</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1794,12 +1912,20 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileTransferPlugin</name>
     <message>
-        <source>File transfer</source>
-        <translation>Přenos souboru</translation>
+        <source>Distribute</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Kliknutím na toto tlačítko zkopírujete soubory ze svého počítače na všechny ostatní.</translation>
+        <source>Click this button to distribute files from your computer to all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to collect files from all computers to your computer.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
@@ -1818,8 +1944,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Není možné přijmout soubor „%1“, protože by ho nebylo možné otevřít pro zápis!</translation>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Přenést soubory na vzdálený počítač</translation>
+        <source>Transfer files between computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2726,10 +2852,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>%1 je nastavováno jako základ rozlišeného názvu a vypínají se dotazy na jmenný kontext.</translation>
     </message>
     <message>
-        <source>Basic LDAP/AD support for Veyon</source>
-        <translation>Základní podpora pro LDAP/AD ve Veyon</translation>
-    </message>
-    <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation>Příkazy pro nastavování a testování napojení na LDAP/AD</translation>
     </message>
@@ -2740,6 +2862,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (načíst uživatele a skupiny z LDAP/AD)</translation>
+    </message>
+    <message>
+        <source>LDAP/AD support for Veyon</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -137,7 +137,7 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
     <name>AccessControlProvider</name>
     <message>
         <source>Provider for access control features</source>
-        <translation type="unfinished"/>
+        <translation>Juurdepääsukontrolli funktsioonide pakkuja</translation>
     </message>
 </context>
 <context>
@@ -252,7 +252,7 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
     </message>
     <message>
         <source>Local computer is already being accessed</source>
-        <translation type="unfinished"/>
+        <translation>Kohalikule arvutile on juba ligipääs</translation>
     </message>
 </context>
 <context>
@@ -303,7 +303,7 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
     </message>
     <message>
         <source>There is no matching rule with a valid action. The access is therefore denied.</source>
-        <translation type="unfinished"/>
+        <translation>Kehtiva toiminguga sobivat reeglit pole. Seetõttu on juurdepääs keelatud.</translation>
     </message>
 </context>
 <context>
@@ -1056,7 +1056,7 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     </message>
     <message>
         <source>Hostname: %1</source>
-        <translation type="unfinished"/>
+        <translation>Hostinimi: %1</translation>
     </message>
     <message>
         <source>unknown</source>
@@ -1064,15 +1064,15 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     </message>
     <message>
         <source>IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>IP aadress: %1</translation>
     </message>
     <message>
         <source>Hostname could not be resolved</source>
-        <translation type="unfinished"/>
+        <translation>Hostinime ei õnnestunud lahendada</translation>
     </message>
     <message>
         <source>No features active</source>
-        <translation type="unfinished"/>
+        <translation>Aktiivseid funktsioone pole</translation>
     </message>
 </context>
 <context>
@@ -1721,14 +1721,64 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     </message>
 </context>
 <context>
+    <name>FileCollectDialog</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Faili edastamine</translation>
+    </message>
+    <message>
+        <source>Collected files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Overall progress</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Output directory</source>
+        <translation>Väljundkataloog</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Start</translation>
+    </message>
+    <message>
+        <source>Enter collection name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a name for this file collection:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Output directory creation failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>FileCollectTreeModel</name>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nimi</translation>
+    </message>
+</context>
+<context>
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
         <translation>Faili edastamine</translation>
     </message>
     <message>
-        <source>Directories</source>
-        <translation>Kataloogid</translation>
+        <source>Settings for distributing files</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Destination directory</source>
@@ -1739,8 +1789,76 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation>Vaikeallika kataloog</translation>
     </message>
     <message>
-        <source>Options</source>
-        <translation>Valikud</translation>
+        <source>Settings for collecting files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prefix filenames with grouping attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Store files in subdirectories based on the grouping attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group collected files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collection directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect all files from configured source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prompt user for folder to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prompt user for files to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subdirectory based on date &amp; time</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subdirectory with name entered by the collecting user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect files recursively</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Kasutaja sisselogimisnimi</translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Kasutaja täisnimi</translation>
+    </message>
+    <message>
+        <source>Device name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collected files grouping attribute</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1796,12 +1914,20 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
 <context>
     <name>FileTransferPlugin</name>
     <message>
-        <source>File transfer</source>
-        <translation>Faili edastamine</translation>
+        <source>Distribute</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Klõpsake seda nuppu, et faile arvutist kõikidesse arvutitesse edastada.</translation>
+        <source>Click this button to distribute files from your computer to all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to collect files from all computers to your computer.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
@@ -1820,8 +1946,8 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation>Faili &quot;%1&quot; ei saanud vastu võtta, kuna seda ei saanud kirjutamiseks avada!</translation>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Failide edastamine kaugarvutisse</translation>
+        <source>Transfer files between computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2004,15 +2130,15 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished"/>
+        <translation>Värviskeem:</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>Hele</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>Tume</translation>
     </message>
 </context>
 <context>
@@ -2698,7 +2824,7 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
-        <translation type="unfinished"/>
+        <translation>Konteineri/OU struktuuri 1:1 kaardistamine asukohtadega</translation>
     </message>
 </context>
 <context>
@@ -2732,10 +2858,6 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation>%1 konfigureerimine baas-DN-ks ja kontekstipäringute nimetamise keelamine.</translation>
     </message>
     <message>
-        <source>Basic LDAP/AD support for Veyon</source>
-        <translation>Põhiline LDAP/AD tugi Veyonile</translation>
-    </message>
-    <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation>Käsud LDAP/AD integreerimise konfigureerimiseks ja testimiseks</translation>
     </message>
@@ -2746,6 +2868,10 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (laadige kasutajad ja grupid LDAP/AD-st)</translation>
+    </message>
+    <message>
+        <source>LDAP/AD support for Veyon</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3018,15 +3144,17 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <source>Use custom computer arrangement.
 
 Press and hold to load arrangement from a file or save current arrangement to a file.</source>
-        <translation type="unfinished"/>
+        <translation>Kasutage kohandatud arvuti paigutust.
+
+Failist arranžeeringu laadimiseks või praeguse arranžeeringu faili salvestamiseks hoidke all.</translation>
     </message>
     <message>
         <source>Load computer positions</source>
-        <translation type="unfinished"/>
+        <translation>Laadi arvuti positsioonid</translation>
     </message>
     <message>
         <source>Save computer positions</source>
-        <translation type="unfinished"/>
+        <translation>Salvesta arvuti positsioonid</translation>
     </message>
 </context>
 <context>
@@ -3089,7 +3217,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Only last part of user name</source>
-        <translation type="unfinished"/>
+        <translation>Ainult kasutajanime viimane osa</translation>
     </message>
     <message>
         <source>Only computer name</source>
@@ -3233,11 +3361,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Always expand all locations</source>
-        <translation type="unfinished"/>
+        <translation>Laienda alati kõiki asukohti</translation>
     </message>
     <message>
         <source>Configuration templates</source>
-        <translation type="unfinished"/>
+        <translation>Konfiguratsioonimallid</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -3245,7 +3373,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Computer name source</source>
-        <translation type="unfinished"/>
+        <translation>See jaotis on nähtav ainult täiustatud vaaterežiimis.</translation>
     </message>
     <message>
         <source>Default</source>
@@ -3269,7 +3397,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>Seansi metaandmed</translation>
     </message>
     <message>
         <source>Full name of user</source>
@@ -3281,7 +3409,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Computer UID role</source>
-        <translation type="unfinished"/>
+        <translation>Arvuti UID roll</translation>
     </message>
     <message>
         <source>Session meta data hash</source>
@@ -3931,11 +4059,11 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>Seansi metaandmed</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"/>
+        <translation>Sisu</translation>
     </message>
     <message>
         <source>None</source>
@@ -3963,7 +4091,7 @@ Näide: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Environment variable name</source>
-        <translation type="unfinished"/>
+        <translation>Keskkonnamuutuja nimi</translation>
     </message>
     <message>
         <source>Registry key name</source>
@@ -4538,7 +4666,7 @@ Näide: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Handling of interfering windows</source>
-        <translation type="unfinished"/>
+        <translation>Häirivate akende käsitlemine</translation>
     </message>
     <message>
         <source>None</source>

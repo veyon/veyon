@@ -126,7 +126,7 @@ Veyon zure tokiko hizkuntzara edo beste hizkuntza batera itzultzeko interesa bad
     </message>
     <message>
         <source>Access denied</source>
-        <translation>Sarbidea debekatua</translation>
+        <translation>Sarbidea ukatuta</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
@@ -447,7 +447,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation>&quot;% 1&quot;-rentzat gako-pare berria sortzen</translation>
+        <translation>&quot;%1&quot;-rentzat gako-pare berria sortzen</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
@@ -471,7 +471,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation>&quot;% 1&quot; fitxategia badago jada.</translation>
+        <translation>&quot;%1&quot; fitxategia badago jada.</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
@@ -507,7 +507,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation>&quot;%1/%2&quot; gakoa behar bezala inportatu da. Egiaztatu &quot;% 3&quot; fitxategiaren baimenak baimenik gabeko sarbideak saihesteko.</translation>
+        <translation>&quot;%1/%2&quot; gakoa behar bezala inportatu da. Egiaztatu &quot;%3&quot; fitxategiaren baimenak baimenik gabeko sarbideak saihesteko.</translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
@@ -634,7 +634,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation>Komando honek fitxategiak atzitzeko baimenak doitzen dizkio &lt;KEY&gt;-ri  &lt;ACCESS GROUP&gt; erabiltzaile-taldeak soilik irakurtzeko sarbidea izan dezan. </translation>
+        <translation>Komando honek fitxategiak atzitzeko baimenak doitzen ditu &lt;KEY&gt;erabiltzaile-taldeak soilik &lt;ACCESS GROUP&gt;  irakurtzeko sarbidea izan dezan. </translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
@@ -755,7 +755,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
-        <translation>Jarri kokapen eta ordenagailu guztiak edo banaka</translation>
+        <translation>Jarri kokaleku eta ordenagailu guztiak edo banaka</translation>
     </message>
     <message>
         <source>List all locations and computers</source>
@@ -919,7 +919,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
-        <translation>Ez dago formatu-katerik edo adierazpen erregularrik zehaztu!</translation>
+        <translation>Ez da formatu-katerik edo adierazpen erregularrik zehaztu!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
@@ -951,7 +951,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
-        <translation>Errore bat gertatu da % 1 lerroa analizatzean.</translation>
+        <translation>Errore bat gertatu da %1. lerroa analizatzean.</translation>
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
@@ -1083,7 +1083,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation>&quot;% 2&quot; ostalariaren &quot;% 1&quot; erabiltzailea ordenagailu honetara sartzen saiatu da, baina ezin izan du behar bezala autentifikatu.</translation>
+        <translation>&quot;%2&quot; ostalariaren &quot;%1&quot; erabiltzailea ordenagailu honetara sartzen saiatu da, baina ezin izan du behar bezala autentifikatu.</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -1099,11 +1099,11 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
-        <translation>&quot;% 2&quot; ostalariaren &quot;% 1&quot; erabiltzailea ordenagailu honetara sartzen saiatu da baina blokeatua izan da sarbide-kontrolaren ezarpenengatik.</translation>
+        <translation>&quot;%2&quot; ostalariaren &quot;%1&quot; erabiltzailea ordenagailu honetara sartzen saiatu da baina blokeatua izan da sarbide-kontrolaren ezarpenengatik.</translation>
     </message>
     <message>
         <source>%1 Service %2 at %3:%4</source>
-        <translation>% 1 % 2 zerbitzuan % 3:% 4</translation>
+        <translation>%1 zerbitzua %2  3:%4-n</translation>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1126,7 +1126,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Ez da sareko objektuen direktorioko plugin lehenetsirik aurkitu. Mesedez, egiaztatu zure instalazioa edo konfiguratu sare-objektu-direktorioaren motore bat % 1 konfiguratzailearen bidez.</translation>
+        <translation>Ez da sareko objektuen direktorioko plugin lehenetsirik aurkitu. Mesedez, egiaztatu zure instalazioa edo konfiguratu sare-objektu-direktorioaren motor bat %1 konfiguratzailearen bidez.</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1263,7 +1263,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Ezin izan da % 1 zerbitzuaren abiarazte automatikoaren propietatea aldatu.</translation>
+        <translation>Ezin izan da %1 zerbitzuaren abiarazte automatikoaren propietatea aldatu.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the %1 Server.</source>
@@ -1293,7 +1293,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>Demo zerbitzaria</translation>
+        <translation>Aurkezpen zerbitzaria</translation>
     </message>
     <message>
         <source>Tunables</source>
@@ -1317,7 +1317,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation>Moteldu miniaturen eguneraketak demoa martxan dagoen bitartean</translation>
+        <translation>Moteldu miniaturen eguneraketak aurkezpena martxan dagoen bitartean</translation>
     </message>
     <message>
         <source>Memory limit</source>
@@ -1325,7 +1325,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Key frame interval</source>
-        <translation>Gako fotogramen tartea</translation>
+        <translation>Gako fotogramen periodoa</translation>
     </message>
     <message>
         <source>Bandwidth limit</source>
@@ -1340,11 +1340,11 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Demo</source>
-        <translation>Demo</translation>
+        <translation>Aurkezpena</translation>
     </message>
     <message>
         <source>Stop demo</source>
-        <translation>Gelditu demo</translation>
+        <translation>Gelditu demoa</translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
@@ -1352,11 +1352,11 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation>Pantaila osoko demoa</translation>
+        <translation>Pantaila osoko aurkezpena</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>Leihoko demoa</translation>
+        <translation>Leihoko aurkezpena</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
@@ -1364,7 +1364,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation>Modu honetan zure pantaila pantaila osoko moduan bistaratzen da ordenagailu guztietan, erabiltzaileen sarrera-gailuak blokeatuta dauden bitartean.</translation>
+        <translation>Modu honetan zure pantaila pantaila osoko moduan bistaratzen da ordenagailu guztietan, bitartean erabiltzaileen sarrera-gailuak blokeatuta daude.</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
@@ -1380,7 +1380,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation>Modu honetan hautatutako erabiltzailearen pantaila pantaila osoko moduan bistaratzen ari da ordenagailu guztietan, erabiltzaileen sarrera-gailuak blokeatuta dauden bitartean.</translation>
+        <translation>Modu honetan hautatutako erabiltzailearen pantaila pantaila osoko moduan bistaratzen ari da ordenagailu guztietan, bitartean erabiltzaileen sarrera-gailuak blokeatuta daude.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
@@ -1404,7 +1404,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation>Eman erakustaldia pantaila-emanaldi bidez</translation>
+        <translation>Eman aurkezpen bat pantaila-emanaldi bidez</translation>
     </message>
 </context>
 <context>
@@ -1419,7 +1419,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation>% 2 ordenagailuko % 1 erabiltzaileak zure mahaigainean sartu nahi du. Sarbidea eman nahi al duzu?</translation>
+        <translation>%2 ordenagailuko %1 erabiltzaileak zure mahaigainean sartu nahi du. Sarbidea eman nahi al duzu?</translation>
     </message>
     <message>
         <source>Never for this session</source>
@@ -1501,7 +1501,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
-        <translation>Abiarazi &quot;% 1&quot; aplikazioa</translation>
+        <translation>Abiarazi &quot;%1&quot; aplikazioa</translation>
     </message>
     <message>
         <source>Custom application</source>
@@ -1509,7 +1509,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation>Ireki &quot;% 1&quot; webgunea</translation>
+        <translation>Ireki &quot;%1&quot; webgunea</translation>
     </message>
     <message>
         <source>Custom website</source>
@@ -1673,7 +1673,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Master</source>
-        <translation>Nagusia</translation>
+        <translation>Master</translation>
     </message>
     <message>
         <source>Service</source>
@@ -1709,7 +1709,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Failed to send feature control message to host %1</source>
-        <translation>Ezin izan da funtzioak kontrolatzeko mezua bidali % 1 ostalarira</translation>
+        <translation>Ezin izan da funtzioak kontrolatzeko mezua bidali %1 ostalarira</translation>
     </message>
     <message>
         <source>Feature-related CLI operations</source>
@@ -1721,14 +1721,64 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
 </context>
 <context>
+    <name>FileCollectDialog</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Fitxategien transferentzia</translation>
+    </message>
+    <message>
+        <source>Collected files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Overall progress</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Output directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Abiarazi</translation>
+    </message>
+    <message>
+        <source>Enter collection name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter a name for this file collection:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Output directory creation failed</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>FileCollectTreeModel</name>
+    <message>
+        <source>Progress</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Izena</translation>
+    </message>
+</context>
+<context>
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
         <translation>Fitxategien transferentzia</translation>
     </message>
     <message>
-        <source>Directories</source>
-        <translation>Direktorioak</translation>
+        <source>Settings for distributing files</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Destination directory</source>
@@ -1739,8 +1789,76 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <translation>Iturburu-direktorio lehenetsia</translation>
     </message>
     <message>
-        <source>Options</source>
-        <translation>Aukerak</translation>
+        <source>Settings for collecting files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prefix filenames with grouping attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Store files in subdirectories based on the grouping attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group collected files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collection directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect all files from configured source directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prompt user for folder to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Prompt user for files to collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subdirectory based on date &amp; time</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subdirectory with name entered by the collecting user</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect files recursively</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Erabiltzailearen saioa hasteko izena</translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Erabiltzailearen izen osoa</translation>
+    </message>
+    <message>
+        <source>Device name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collected files grouping attribute</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1796,12 +1914,20 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
 <context>
     <name>FileTransferPlugin</name>
     <message>
-        <source>File transfer</source>
-        <translation>Fitxategien transferentzia</translation>
+        <source>Distribute</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Click this button to transfer files from your computer to all computers.</source>
-        <translation>Egin klik botoi honetan zure ordenagailutik ordenagailu guztietara fitxategiak transferitzeko.</translation>
+        <source>Click this button to distribute files from your computer to all computers.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Collect</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to collect files from all computers to your computer.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
@@ -1820,8 +1946,8 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <translation>Ezin izan da &quot;%1&quot; fitxategia jaso, ezin izan baita idazteko ireki!</translation>
     </message>
     <message>
-        <source>Transfer files to remote computer</source>
-        <translation>Transferitu fitxategiak urrutiko ordenagailura</translation>
+        <source>Transfer files between computers</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1880,7 +2006,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Update interval:</source>
-        <translation>Eguneratzeko tartea:</translation>
+        <translation>Eguneratzeko maiztasuna:</translation>
     </message>
     <message>
         <source> seconds</source>
@@ -1964,7 +2090,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>% 1 zerbitzua aldi baterako gelditu behar da erregistro-fitxategiak kentzeko. Jarraitu?</translation>
+        <translation>%1 zerbitzua aldi baterako gelditu behar da erregistro-fitxategiak kentzeko. Jarraitu?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -2060,7 +2186,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Bind DN</source>
-        <translation>Lotu DN</translation>
+        <translation>Loturaren DN</translation>
     </message>
     <message>
         <source> ms</source>
@@ -2188,7 +2314,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>e.g. room or computerLab</source>
-        <translation>adib. gela edo informatika-laborategia</translation>
+        <translation>adib. ikasgela edo informatika-gela</translation>
     </message>
     <message>
         <source>User login name attribute</source>
@@ -2268,7 +2394,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Filter for computers</source>
-        <translation>Ordenagailuentzako iragazkia</translation>
+        <translation>Ordenagailuetarako iragazkia</translation>
     </message>
     <message>
         <source>Filter for user groups</source>
@@ -2344,7 +2470,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>List all entries of a location</source>
-        <translation>Zerrendagu kokaleku baten sarrera guztiak</translation>
+        <translation>Zerrendatu kokaleku batek sortutako sarrera guztiak</translation>
     </message>
     <message>
         <source>List all locations</source>
@@ -2366,7 +2492,9 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <source>Could not query the configured base DN. Please check the base DN parameter.
 
 %1</source>
-        <translation>Ezin izan da konfiguratutako base DN-a kontsultatu. Mesedez, egiaztatu base DN parametroa.</translation>
+        <translation>Ezin izan da konfiguratutako base DN-a kontsultatu. Mesedez, egiaztatu base DN parametroa.
+
+%1</translation>
     </message>
     <message>
         <source>LDAP base DN test successful</source>
@@ -2516,7 +2644,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation>erabiltzaile taldeak</translation>
+        <translation>erabiltzaile-taldeak</translation>
     </message>
     <message>
         <source>computers</source>
@@ -2524,7 +2652,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>computer groups</source>
-        <translation>ordenagailu taldeak</translation>
+        <translation>ordenagailu-taldeak</translation>
     </message>
     <message>
         <source>computer containers</source>
@@ -2670,7 +2798,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation>% 1 % 2 behar bezala kontsultatu dira:
+        <translation>%1 %2 behar bezala kontsultatu dira:
 
 %3</translation>
     </message>
@@ -2727,11 +2855,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
-        <translation>% 1 base DN gisa konfiguratzen eta izendapen-testuinguruaren kontsultak desgaitzen.</translation>
-    </message>
-    <message>
-        <source>Basic LDAP/AD support for Veyon</source>
-        <translation>Veyon-erako LDAP/AD oinarrizko euskarria</translation>
+        <translation>%1 base DN gisa konfiguratzen eta izendapen-testuinguruaren kontsultak desgaitzen.</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
@@ -2739,11 +2863,15 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation>% 1 (kargatu ordenagailuak eta kokalekuak LDAP/ADtik)</translation>
+        <translation>%1 (kargatu ordenagailuak eta kokalekuak LDAP/ADtik)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation>% 1 (kargatu erabiltzaileak eta taldeak LDAP/ADtik)</translation>
+        <translation>%1 (kargatu erabiltzaileak eta taldeak LDAP/ADtik)</translation>
+    </message>
+    <message>
+        <source>LDAP/AD support for Veyon</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2826,7 +2954,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Master</source>
-        <translation>Nagusia</translation>
+        <translation>Master</translation>
     </message>
     <message>
         <source>Access control</source>
@@ -2946,7 +3074,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>%1 Configurator %2</source>
-        <translation>% 1 Konfiguratzailea % 2</translation>
+        <translation>%1 Konfiguratzailea %2</translation>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -2986,7 +3114,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>Tokiko konfigurazioaren motoreak konfigurazioa ezin dela idatzi jakinarazi du! Mesedez, exekutatu % 1 konfiguratzailea pribilegio handiagoarekin.</translation>
+        <translation>Tokiko konfigurazioaren motorrak konfigurazioa ezin dela idatzi jakinarazi du! Mesedez, exekutatu %1 konfiguratzailea pribilegio handiagoarekin.</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
@@ -2998,7 +3126,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Access denied</source>
-        <translation>Sarbidea debekatua</translation>
+        <translation>Sarbidea ikatuta</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -3133,7 +3261,7 @@ Luze sakatu fitxategi batetik kargatzeko edo uneko antolamendua fitxategi batera
     </message>
     <message>
         <source>Image quality in monitoring mode</source>
-        <translation>Irudiaren kalitatea monitorizazio moduan</translation>
+        <translation>Irudiaren kalitatea jarraipen moduan</translation>
     </message>
     <message>
         <source>Remote access image quality</source>
@@ -3153,7 +3281,7 @@ Luze sakatu fitxategi batetik kargatzeko edo uneko antolamendua fitxategi batera
     </message>
     <message>
         <source>Automatically select current location</source>
-        <translation>Hautatu automatikoki uneko kokapena</translation>
+        <translation>Hautatu automatikoki uneko kokalekua</translation>
     </message>
     <message>
         <source>Automatically adjust computer icon size</source>
@@ -3292,7 +3420,7 @@ Luze sakatu fitxategi batetik kargatzeko edo uneko antolamendua fitxategi batera
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation>jarraitzen</translation>
+        <translation>Jarraitzen</translation>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
@@ -3300,7 +3428,7 @@ Luze sakatu fitxategi batetik kargatzeko edo uneko antolamendua fitxategi batera
     </message>
     <message>
         <source>Query application version of the server</source>
-        <translation>Zerbitzariaren aplikazioaren bertsioa kontsultatu</translation>
+        <translation>Kontsultatu zerbitzariaren aplikazioaren bertsioa</translation>
     </message>
     <message>
         <source>Query active features</source>
@@ -3491,7 +3619,7 @@ Luze sakatu fitxategi batetik kargatzeko edo uneko antolamendua fitxategi batera
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
-        <translation>Benetan nahi al dituzu aukeratutako ordenagailuak itzali?</translation>
+        <translation>Benetan nahi al dituzu hautatutako ordenagailuak itzali?</translation>
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
@@ -3580,7 +3708,7 @@ Mesedez, gorde zure lana eta itxi programa guztiak.</translation>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - %2 Remote Access</source>
-        <translation>% 1 - % 2 urrutiko sarbidea</translation>
+        <translation>%1 - %2 urrutiko sarbidea</translation>
     </message>
     <message>
         <source>%1 - %2 - %3 Remote Access</source>
@@ -3705,7 +3833,7 @@ Mesedez, gorde zure lana eta itxi programa guztiak.</translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation>Ezin izan da pantaila-argazkia egin % 1 direktorioa ez baitago eta ezin izan da sortu.</translation>
+        <translation>Ezin izan da pantaila-argazkia egin %1 direktorioa ez baitago eta ezin izan da sortu.</translation>
     </message>
     <message>
         <source>Screenshot</source>
@@ -3891,7 +4019,7 @@ Normalean hori beharrezkoa da terminal zerbitzariak onartzeko.</translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation>Demo zerbitzaria</translation>
+        <translation>Aurkezpen zerbitzaria</translation>
     </message>
     <message>
         <source>Miscellaneous settings</source>
@@ -3919,15 +4047,15 @@ Normalean hori beharrezkoa da terminal zerbitzariak onartzeko.</translation>
     </message>
     <message>
         <source>Restart %1 Service</source>
-        <translation>Berrabiarazi % 1 zerbitzua</translation>
+        <translation>Berrabiarazi %1 zerbitzua</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Ezarpen guztiak behar bezala gorde dira. % 1 zerbitzua indarrean jarri ahal izateko, berrabiarazi behar da. Orain berrabiarazi?</translation>
+        <translation>Ezarpen guztiak behar bezala gorde dira. %1 zerbitzua indarrean jarri ahal izateko, berrabiarazi behar da. Orain berrabiarazi?</translation>
     </message>
     <message>
         <source>Running</source>
-        <translation>Martxan</translation>
+        <translation>Lanean</translation>
     </message>
     <message>
         <source>Session metadata</source>
@@ -4009,7 +4137,7 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation>Abiarazi Veyon Zerbitzua</translation>
+        <translation>Abiarazi Veyon zerbitzua</translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
@@ -4155,7 +4283,7 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
     <name>SystemUserGroupsPlugin</name>
     <message>
         <source>User groups backend for system user groups</source>
-        <translation>Erabiltzaile taldeen motorea sistemako erabiltzaile taldeetarako</translation>
+        <translation>Erabiltzaile taldeen motorra sistemako erabiltzaile taldeetarako</translation>
     </message>
     <message>
         <source>Default (system user groups)</source>
@@ -4166,7 +4294,7 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
     <name>TestingCommandLinePlugin</name>
     <message>
         <source>Test internal Veyon components and functions</source>
-        <translation>Probatu Veyon-en barne osagaiak eta funtzioak</translation>
+        <translation>Probatu Veyonen barne osagaiak eta funtzioak</translation>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
@@ -4292,7 +4420,7 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation>[Ados]</translation>
+        <translation>[ONDO]</translation>
     </message>
     <message>
         <source>[FAIL]</source>
@@ -4413,7 +4541,7 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
     </message>
     <message>
         <source>Idle timeout</source>
-        <translation>Inaktiboen denbora-muga</translation>
+        <translation>Inaktibitatearen denbora-muga</translation>
     </message>
     <message>
         <source>Authentication timeout</source>
@@ -4452,7 +4580,7 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
     </message>
     <message>
         <source>Failed to start WebAPI server at port %1</source>
-        <translation>% 1 atakan WebAPI zerbitzaria ezin izan du abiarazi</translation>
+        <translation>%1 atakan WebAPI zerbitzaria ezin izan du abiarazi</translation>
     </message>
     <message>
         <source>WebAPI server running at port %1</source>
@@ -4518,7 +4646,7 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation>Ezkutatu ataza-barra</translation>
+        <translation>Ezkutatu tresna-barra</translation>
     </message>
     <message>
         <source>Hide start menu</source>
@@ -4600,7 +4728,7 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation>Ezin izan da &quot;% 1&quot; zerbitzua aurkitu.</translation>
+        <translation>Ezin izan da &quot;%1&quot; zerbitzua aurkitu.</translation>
     </message>
 </context>
 <context>
