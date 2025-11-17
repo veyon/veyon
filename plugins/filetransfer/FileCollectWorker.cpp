@@ -74,7 +74,12 @@ FileCollectWorker::FileCollectWorker(FileTransferPlugin* plugin) :
 
 	for (auto it = m_files.begin(); it != m_files.end(); ) // clazy:exclude=detaching-member
 	{
-		if (it->startsWith(m_sourceDirectory))
+#ifdef Q_OS_WIN
+		const auto caseSensitivity = Qt::CaseInsensitive;
+#else
+		const auto caseSensitivity = Qt::CaseSensitive;
+#endif
+		if (it->startsWith(m_sourceDirectory, caseSensitivity))
 		{
 			*it = it->mid(m_sourceDirectory.size());
 			++it;
