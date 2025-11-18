@@ -27,6 +27,7 @@
 #include <QProcess>
 #include <QSaveFile>
 #include <QStringList>
+#include <QThread>
 #include <QXmlStreamWriter>
 
 #include <unistd.h>
@@ -517,8 +518,7 @@ bool hasMatchingProcess(const QString& executable)
 	return false;
 }
 
-// NOTE: This function is kept for potential future use but marked unused to avoid warnings
-[[maybe_unused]] bool terminateMatchingProcesses(const QString& executable)
+bool terminateMatchingProcesses(const QString& executable)
 {
 	const QStringList patterns = {
 		executable,
@@ -631,10 +631,48 @@ bool OsXServiceFunctions::stop( const QString& name )
 		return true;
 	}
 
-	// Uninstall the LaunchAgent
-	// This follows the logic of option 5 in launchAgents.sh script
-	vInfo() << "OsXServiceFunctions: stopping and uninstalling user LaunchAgent";
-	return uninstallUserLaunchAgent();
+	// Step 1: Try to uninstall the LaunchAgent if it exists
+	bool launchAgentWasInstalled = QFile::exists(userLaunchAgentPath());
+	if (launchAgentWasInstalled)
+	{
+		vInfo() << "OsXServiceFunctions: stopping and uninstalling user LaunchAgent";
+		uninstallUserLaunchAgent();
+	}
+	else
+	{
+		vDebug() << "OsXServiceFunctions: no LaunchAgent installed";
+	}
+
+	// Step 2: Check if process is still running (manual start case)
+	if (isRunning(veyonServiceName()))
+	{
+		vInfo() << "OsXServiceFunctions: service still running, terminating processes directly";
+
+		// Try to terminate veyon-server and veyon-worker processes
+		const auto executables = {
+			serviceExecutablePath(),
+			VeyonCore::filesystem().serverFilePath(),
+			VeyonCore::filesystem().workerFilePath()
+		};
+
+		bool anyTerminated = false;
+		for (const auto& executable : executables)
+		{
+			if (terminateMatchingProcesses(executable))
+			{
+				anyTerminated = true;
+			}
+		}
+
+		if (anyTerminated)
+		{
+			vInfo() << "OsXServiceFunctions: terminated running processes";
+			// Give processes time to terminate
+			QThread::msleep(500);
+		}
+	}
+
+	return !isRunning(veyonServiceName());
 }
 
 
