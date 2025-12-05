@@ -146,6 +146,8 @@
 	OP( VeyonConfiguration, VeyonCore::config(), bool, confirmUnsafeActions, setConfirmUnsafeActions, "ConfirmUnsafeActions", "Master", false, Configuration::Property::Flag::Standard )	\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, showFeatureWindowsOnSameScreen, setShowFeatureWindowsOnSameScreen, "ShowFeatureWindowsOnSameScreen", "Master", false, Configuration::Property::Flag::Standard )	\
 	OP( VeyonConfiguration, VeyonCore::config(), Computer::NameSource, computerNameSource, setComputerNameSource, "ComputerNameSource", "Master", QVariant::fromValue(Computer::NameSource::Default), Configuration::Property::Flag::Advanced )	\
+	OP( VeyonConfiguration, VeyonCore::config(), bool, identifyUsersInGuestSessions, setIdentifyUsersInGuestSessions, "IdentifyUsersInGuestSessions", "Master", false, Configuration::Property::Flag::Advanced ) \
+	OP( VeyonConfiguration, VeyonCore::config(), QString, guestUserLoginName, setGuestUserLoginName, "GuestUserLoginName", "Master", VeyonCore::tr("Guest"), Configuration::Property::Flag::Advanced ) \
 
 #define FOREACH_VEYON_AUTHENTICATION_CONFIG_PROPERTY(OP) \
 	OP( VeyonConfiguration, VeyonCore::config(), QStringList, enabledAuthenticationPlugins, setEnabledAuthenticationPlugins, "EnabledPlugins", "Authentication", QStringList(), Configuration::Property::Flag::Standard )	\
