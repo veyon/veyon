@@ -57,7 +57,7 @@ struct FileCollection {
 
 	int currentFileProgress() const
 	{
-		return currentOutputFile ?
+		return currentOutputFile && currentFileSize > 0 ?
 					(currentOutputFile->size() * 100 / currentFileSize)
 				  :
 					0;
