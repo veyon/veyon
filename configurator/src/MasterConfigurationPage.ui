@@ -339,7 +339,7 @@
          <property name="title">
           <string>Advanced</string>
          </property>
-         <layout class="QFormLayout" name="formLayout_2">
+         <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0">
            <widget class="QLabel" name="computerNameSourceLabel">
             <property name="text">
@@ -411,6 +411,27 @@
              </property>
             </item>
            </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QCheckBox" name="identifyUsersInGuestSessions">
+              <property name="text">
+               <string>Identify users in guest sessions if login name matches:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="guestUserLoginName">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="text">
+               <string>Guest</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </widget>
@@ -691,6 +712,8 @@
   <tabstop>computerMonitoringThumbnailSpacing</tabstop>
   <tabstop>computerNameSource</tabstop>
   <tabstop>computerUidRoleContent</tabstop>
+  <tabstop>identifyUsersInGuestSessions</tabstop>
+  <tabstop>guestUserLoginName</tabstop>
   <tabstop>accessControlForMasterEnabled</tabstop>
   <tabstop>autoSelectCurrentLocation</tabstop>
   <tabstop>autoAdjustMonitoringIconSize</tabstop>
@@ -792,6 +815,22 @@
     <hint type="destinationlabel">
      <x>444</x>
      <y>413</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>identifyUsersInGuestSessions</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>guestUserLoginName</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>230</x>
+     <y>606</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>496</x>
+     <y>607</y>
     </hint>
    </hints>
   </connection>
