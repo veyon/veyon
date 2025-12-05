@@ -74,7 +74,8 @@ public:
 		Version_4_6,
 		Version_4_7,
 		Version_4_8,
-		Version_4_9
+		Version_4_9,
+		Version_4_10,
 	};
 	Q_ENUM(ApplicationVersion)
 
