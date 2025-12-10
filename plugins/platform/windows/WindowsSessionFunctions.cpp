@@ -175,9 +175,9 @@ void WindowsSessionFunctions::initInterferingWindowHandling()
 {
 	WindowsPlatformConfiguration config(&VeyonCore::config());
 
-	m_interferingWindowHandling = config.interferingWindowHandling();
+	m_interferingWindowsHandling = config.interferingWindowsHandling();
 
-	if (m_interferingWindowHandling != InterferingWindowHandling::None)
+	if (m_interferingWindowsHandling != InterferingWindowHandling::None)
 	{
 		QObject::connect (&m_desktopWindowsInspectionTimer, &QTimer::timeout, &m_desktopWindowsInspectionTimer, [this]() {
 			inspectDesktopWindows();
@@ -210,7 +210,7 @@ WINBOOL WindowsSessionFunctions::inspectDesktopWindow(HWND window)
 			std::wstring windowTitle(GetWindowTextLength(window) + 1, L'\0');
 			GetWindowTextW(window, &windowTitle[0], windowTitle.size());
 
-			switch (m_interferingWindowHandling)
+			switch (m_interferingWindowsHandling)
 			{
 			case InterferingWindowHandling::FixWindowAttributes:
 				vDebug() << "fixing attributes of interfering window" << window << windowTitle << flags << crKey << alpha;
