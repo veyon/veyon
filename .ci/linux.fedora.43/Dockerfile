@@ -1,5 +1,5 @@
 FROM fedora:43
-MAINTAINER Tobias Junghans <tobydox@veyon.io>
+LABEL maintainer="Tobias Junghans <tobydox@veyon.io>"
 
 RUN \
 	dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-43.noarch.rpm && \
