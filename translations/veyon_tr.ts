@@ -303,7 +303,7 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
     </message>
     <message>
         <source>There is no matching rule with a valid action. The access is therefore denied.</source>
-        <translation type="unfinished"/>
+        <translation>Geçerli bir eylemle eşleşen bir kural bulunmuyor. Bu nedenle erişim reddedildi.</translation>
     </message>
 </context>
 <context>
@@ -1146,7 +1146,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
-        <translation type="unfinished"/>
+        <translation>Bu bilgisayarın konumu belirlenemedi. Bu, sistem yapılandırmasında bir sorun olduğunu gösterir. &quot;Konumlar &amp; bilgisayarlar&quot; panelinde hiçbir konum ve bilgisayar görüntülenmeyecektir.</translation>
     </message>
     <message>
         <source>Unknown location</source>
@@ -2698,7 +2698,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
-        <translation type="unfinished"/>
+        <translation>Harita konteyneri/OU yapısı 1:1 konumlara göre</translation>
     </message>
 </context>
 <context>
@@ -3091,7 +3091,7 @@ Düzenlemeyi bir dosyadan yüklemek veya mevcut düzenlemeyi bir dosyaya kaydetm
     </message>
     <message>
         <source>Only last part of user name</source>
-        <translation type="unfinished"/>
+        <translation>Kullanıcı adının yalnızca son kısmı</translation>
     </message>
     <message>
         <source>Only computer name</source>
@@ -3965,11 +3965,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Environment variable name</source>
-        <translation type="unfinished"/>
+        <translation>Ortam değişkeni adı</translation>
     </message>
     <message>
         <source>Registry key name</source>
-        <translation type="unfinished"/>
+        <translation>Kayıt defteri anahtarı adı</translation>
     </message>
 </context>
 <context>
@@ -4081,11 +4081,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>View in separate window</source>
-        <translation type="unfinished"/>
+        <translation>Ayrı pencerede görüntüle</translation>
     </message>
     <message>
         <source>%1 Master – Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>%1 Master – Slayt Gösterisi</translation>
     </message>
 </context>
 <context>
@@ -4540,7 +4540,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Handling of interfering windows</source>
-        <translation type="unfinished"/>
+        <translation>Karışan pencerelerin işlenmesi</translation>
     </message>
     <message>
         <source>None</source>
@@ -4548,15 +4548,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Fix window attributes</source>
-        <translation type="unfinished"/>
+        <translation>Pencere niteliklerini düzeltin</translation>
     </message>
     <message>
         <source>Terminate related process</source>
-        <translation type="unfinished"/>
+        <translation>İlgili işlemi sonlandırın</translation>
     </message>
     <message>
         <source>Close session</source>
-        <translation type="unfinished"/>
+        <translation>Oturumu kapatın</translation>
     </message>
 </context>
 <context>

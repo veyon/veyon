@@ -1132,11 +1132,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>%1 days</source>
-        <translation type="unfinished"/>
+        <translation>%1 dni</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"/>
+        <translation>1 dzień</translation>
     </message>
     <message>
         <source>Location detection failed</source>
@@ -1331,7 +1331,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> MB/s</source>
-        <translation type="unfinished"/>
+        <translation>MB/s</translation>
     </message>
 </context>
 <context>
@@ -1499,7 +1499,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Uruchom aplikację &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Custom application</source>

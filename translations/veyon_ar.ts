@@ -33,7 +33,9 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation type="unfinished"/>
+        <translation>اللغة الحالية لم تُترجَم بعد (أو أنها اللغة الإنجليزية الأصلية).
+
+إذا كنت مهتمًا بترجمة برنامج Veyon إلى لغتك المحلية أو أي لغة أخرى، أو ترغب في تحسين ترجمة موجودة، يُرجى التواصل مع أحد مطوّري Veyon!</translation>
     </message>
     <message>
         <source>License</source>
@@ -52,7 +54,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
-        <translation type="unfinished"/>
+        <translation>تقييد الوصول إلى أعضاء مجموعات مستخدمين محدّدة</translation>
     </message>
     <message>
         <source>Test</source>
@@ -68,15 +70,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation type="unfinished"/>
+        <translation>مجموعات المستخدمين المصرح لهم بالوصول إلى الكمبيوتر</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation type="unfinished"/>
+        <translation>يرجى إضافة المجموعات التي يجب السماح لأعضائها بالوصول إلى الحواسيب في شبكة Veyon الخاصة بك.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation type="unfinished"/>
+        <translation>مجموعات المستخدمين المصرح لهم</translation>
     </message>
     <message>
         <source>All groups</source>
@@ -112,7 +114,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation type="unfinished"/>
+        <translation>الرجاء إدخال اسم تسجيل الدخول للمستخدم الذي لديه أذونات الوصول للاختبار:</translation>
     </message>
     <message>
         <source>Access allowed</source>
@@ -120,7 +122,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>يُسمح للمستخدم المحدد بالوصول إلى الحواسيب باستخدام هذا الإعداد.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -128,21 +130,21 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation type="unfinished"/>
+        <translation>لا يُسمح للمستخدم المحدد بالوصول إلى الحواسيب باستخدام هذا الإعداد.</translation>
     </message>
 </context>
 <context>
     <name>AccessControlProvider</name>
     <message>
         <source>Provider for access control features</source>
-        <translation type="unfinished"/>
+        <translation>مزود ميزات التحكم في الوصول</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation type="unfinished"/>
+        <translation>تعديل قاعدة التحكم في الوصول</translation>
     </message>
     <message>
         <source>General</source>
@@ -150,19 +152,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>أدخل اسماً قصيرا للقاعدة هنا</translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation type="unfinished"/>
+        <translation>اسم القاعدة:</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation type="unfinished"/>
+        <translation>أدخل وصفاً للقاعدة هنا</translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation type="unfinished"/>
+        <translation>وصف القاعدة:</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
@@ -170,7 +172,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation type="unfinished"/>
+        <translation>معالجة القاعدة دائمًا وتجاهل الشروط</translation>
     </message>
     <message>
         <source>Conditions</source>
@@ -182,7 +184,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation type="unfinished"/>
+        <translation>إذا تم تفعيل أكثر من شرط، فيجب استيفاء جميع الشروط لكي تُطبَّق القاعدة (عملية AND المنطقية). أما إذا كان المطلوب هو استيفاء شرط واحد فقط من بين عدة شروط (عملية OR المنطقية)، فيُرجى إنشاء عدة قواعد للتحكم في الوصول.</translation>
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
@@ -214,31 +216,31 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Action</source>
-        <translation type="unfinished"/>
+        <translation>عملية</translation>
     </message>
     <message>
         <source>Allow access</source>
-        <translation type="unfinished"/>
+        <translation>السماح بالوصول</translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation type="unfinished"/>
+        <translation>رفض الوصول</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation type="unfinished"/>
+        <translation>اطلب الإذن من مستخدم مسجل للدخول</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation type="unfinished"/>
+        <translation>لا يوجد (القاعدة معطلة)</translation>
     </message>
     <message>
         <source>Accessing user</source>
-        <translation type="unfinished"/>
+        <translation>مستخدم الوصول</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation type="unfinished"/>
+        <translation>حاسوب الوصول</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
@@ -544,7 +546,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;غير متاح&gt;</translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
@@ -685,7 +687,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Computers</source>
-        <translation type="unfinished"/>
+        <translation>الحواسيب</translation>
     </message>
     <message>
         <source>Locations</source>
@@ -725,7 +727,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>New location</source>
-        <translation type="unfinished"/>
+        <translation>موقع جديد</translation>
     </message>
     <message>
         <source>New computer</source>
@@ -736,7 +738,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation type="unfinished"/>
+        <translation>عرض مساعدة لأمر محدد.</translation>
     </message>
     <message>
         <source>Add a location or computer</source>
@@ -1143,7 +1145,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Unknown location</source>
-        <translation type="unfinished"/>
+        <translation>موقع غير معروف</translation>
     </message>
 </context>
 <context>
@@ -1306,7 +1308,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
@@ -1694,7 +1696,9 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Failed to initialize credentials</source>
-        <translation type="unfinished"/>
+        <translation>فشل في تهيئة بيانات الاعتماد
+
+ </translation>
     </message>
     <message>
         <source>Could not establish a connection to host %1</source>
@@ -1733,7 +1737,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>خيارات</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1759,7 +1763,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"/>
+        <translation>خيارات</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -1869,7 +1873,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Backend:</source>
-        <translation type="unfinished"/>
+        <translation>الواجهة الخلفية</translation>
     </message>
     <message>
         <source>Update interval:</source>
@@ -1917,7 +1921,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>x</source>
-        <translation type="unfinished"/>
+        <translation>x</translation>
     </message>
     <message>
         <source>Rotate log files</source>
@@ -2033,7 +2037,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>LdapConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation type="unfinished"/>
+        <translation>الإعدادات الأساسية</translation>
     </message>
     <message>
         <source>General</source>
@@ -2057,7 +2061,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ms</translation>
     </message>
     <message>
         <source>LDAP server and port</source>
@@ -2500,11 +2504,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>users</source>
-        <translation type="unfinished"/>
+        <translation>المستخدمين</translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation type="unfinished"/>
+        <translation>مجموعات المستخدم</translation>
     </message>
     <message>
         <source>computers</source>
@@ -2650,7 +2654,9 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>تم الاستعلام عن 1% 2% بنجاح:
+
+3%</translation>
     </message>
     <message>
         <source>LDAP filter test failed</source>
@@ -2715,11 +2721,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (تحميل الحواسيب والمواقع من ‎LDAP/AD‎)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (تحميل المستخدمين والمجموعات من ‎LDAP/AD‎)</translation>
     </message>
 </context>
 <context>
@@ -3007,7 +3013,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>MasterConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation type="unfinished"/>
+        <translation>الإعدادات الأساسية</translation>
     </message>
     <message>
         <source>Directories</source>
@@ -3031,7 +3037,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source> ms</source>
-        <translation type="unfinished"/>
+        <translation>ms</translation>
     </message>
     <message>
         <source>Background color</source>
@@ -3223,7 +3229,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>افتراضي</translation>
     </message>
     <message>
         <source>Host address</source>
@@ -3231,11 +3237,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Session client address</source>
-        <translation type="unfinished"/>
+        <translation>عنوان عميل الجلسة</translation>
     </message>
     <message>
         <source>Session client name</source>
-        <translation type="unfinished"/>
+        <translation>اسم عميل الجلسة</translation>
     </message>
     <message>
         <source>Session host name</source>
@@ -3247,11 +3253,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Full name of user</source>
-        <translation type="unfinished"/>
+        <translation>الاسم الكامل للمستخدم</translation>
     </message>
     <message>
         <source>User login name</source>
-        <translation type="unfinished"/>
+        <translation>اسم تسجيل الدخول للمستخدم</translation>
     </message>
     <message>
         <source>Computer UID role</source>
@@ -3506,7 +3512,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished"/>
+        <translation>ثواني</translation>
     </message>
 </context>
 <context>
@@ -3646,7 +3652,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Unlock</source>
-        <translation type="unfinished"/>
+        <translation>فتح</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
@@ -3924,7 +3930,9 @@ Typically this is required to support terminal servers.</source>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
 
 Example: [^-]*-(PC[0-9]*)</source>
-        <translation type="unfinished"/>
+        <translation>يمكنك اختيارياً إدخال تعبير نمطي يحتوي على آلية استخراج (capture) لاستخراج جزء من اسم الحاسوب واستخدامه كاسم عرض للحاسوب.
+
+مثال: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>

@@ -137,7 +137,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     <name>AccessControlProvider</name>
     <message>
         <source>Provider for access control features</source>
-        <translation type="unfinished"/>
+        <translation>Leverancier voor toegangscontrolefuncties</translation>
     </message>
 </context>
 <context>
@@ -252,7 +252,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>Local computer is already being accessed</source>
-        <translation type="unfinished"/>
+        <translation>Lokale computer wordt al benaderd</translation>
     </message>
 </context>
 <context>
@@ -303,7 +303,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>There is no matching rule with a valid action. The access is therefore denied.</source>
-        <translation type="unfinished"/>
+        <translation>Er is geen overeenkomende regel met een geldige actie. De toegang wordt daarom geweigerd.</translation>
     </message>
 </context>
 <context>
@@ -1056,7 +1056,7 @@ Zorg ervoor dat de namen van de sleutels die bij elkaar horen identiek zijn op a
     </message>
     <message>
         <source>Hostname: %1</source>
-        <translation type="unfinished"/>
+        <translation>Hostnaam: %1</translation>
     </message>
     <message>
         <source>unknown</source>
@@ -1064,15 +1064,15 @@ Zorg ervoor dat de namen van de sleutels die bij elkaar horen identiek zijn op a
     </message>
     <message>
         <source>IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>IP adres: %1</translation>
     </message>
     <message>
         <source>Hostname could not be resolved</source>
-        <translation type="unfinished"/>
+        <translation>Hostnaam kon niet worden opgelost</translation>
     </message>
     <message>
         <source>No features active</source>
-        <translation type="unfinished"/>
+        <translation>Geen functies actief</translation>
     </message>
 </context>
 <context>
@@ -1146,7 +1146,7 @@ Zorg ervoor dat de namen van de sleutels die bij elkaar horen identiek zijn op a
     </message>
     <message>
         <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
-        <translation type="unfinished"/>
+        <translation>De locatie van deze computer kon niet worden bepaald. Dit duidt op een probleem met de systeemconfiguratie. Er worden geen locaties en computers weergegeven in het paneel ‘Locaties en computers’.</translation>
     </message>
     <message>
         <source>Unknown location</source>
@@ -2006,15 +2006,15 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished"/>
+        <translation>Kleurenschema:</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>Licht</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>Donker</translation>
     </message>
 </context>
 <context>
@@ -2700,7 +2700,7 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
-        <translation type="unfinished"/>
+        <translation>Kaartcontainer/OU-structuur 1:1 naar locaties</translation>
     </message>
 </context>
 <context>
@@ -2846,7 +2846,7 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;View</translation>
+        <translation>&amp;Bekijken</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
@@ -2890,11 +2890,11 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation>&amp;Standard</translation>
+        <translation>&amp;Standaard</translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
-        <translation>&amp;Advanced</translation>
+        <translation>&amp;Geavanceerd</translation>
     </message>
     <message>
         <source>MainWindow</source>
@@ -3020,15 +3020,17 @@ Translated with DeepL</translation>
         <source>Use custom computer arrangement.
 
 Press and hold to load arrangement from a file or save current arrangement to a file.</source>
-        <translation type="unfinished"/>
+        <translation>Gebruik aangepaste computerindeling.
+
+Houd ingedrukt om een arrangement vanuit een bestand te laden of het huidige arrangement in een bestand op te slaan.</translation>
     </message>
     <message>
         <source>Load computer positions</source>
-        <translation type="unfinished"/>
+        <translation>Computerposities laden</translation>
     </message>
     <message>
         <source>Save computer positions</source>
-        <translation type="unfinished"/>
+        <translation>Computerposities opslaan</translation>
     </message>
 </context>
 <context>
@@ -3091,7 +3093,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Only last part of user name</source>
-        <translation type="unfinished"/>
+        <translation>Alleen laatste deel van gebruikersnaam</translation>
     </message>
     <message>
         <source>Only computer name</source>
@@ -3235,19 +3237,19 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Always expand all locations</source>
-        <translation type="unfinished"/>
+        <translation>Altijd alle locaties uitvouwen</translation>
     </message>
     <message>
         <source>Configuration templates</source>
-        <translation type="unfinished"/>
+        <translation>Configuratiesjablonen</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished"/>
+        <translation>Geavanceerd</translation>
     </message>
     <message>
         <source>Computer name source</source>
-        <translation type="unfinished"/>
+        <translation>Bron computernaam</translation>
     </message>
     <message>
         <source>Default</source>
@@ -3267,11 +3269,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Session host name</source>
-        <translation type="unfinished"/>
+        <translation>Sessie-hostnaam</translation>
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>Sessie metadata</translation>
     </message>
     <message>
         <source>Full name of user</source>
@@ -3283,11 +3285,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Computer UID role</source>
-        <translation type="unfinished"/>
+        <translation>Computer UID-rol</translation>
     </message>
     <message>
         <source>Session meta data hash</source>
-        <translation type="unfinished"/>
+        <translation>Sessie-metadata-hash</translation>
     </message>
 </context>
 <context>
@@ -3784,31 +3786,31 @@ Sla je werk op en sluit alle programma&apos;s af.</translation>
     <name>ServerAccessControlManager</name>
     <message>
         <source>Requested authentication method not available</source>
-        <translation type="unfinished"/>
+        <translation>De gevraagde authenticatiemethode is niet beschikbaar.</translation>
     </message>
     <message>
         <source>Access allowed by rule &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Toegang toegestaan door regel &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Access denied by rule &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Toegang geweigerd door regel &quot;%1&quot;</translation>
     </message>
     <message>
         <source>No rule allowed access</source>
-        <translation type="unfinished"/>
+        <translation>Geen enkele regel stond toegang toe</translation>
     </message>
     <message>
         <source>Accessing user not member of an authorized user group</source>
-        <translation type="unfinished"/>
+        <translation>Toegang voor gebruiker die geen lid is van een geautoriseerde gebruikersgroep</translation>
     </message>
     <message>
         <source>User has denied access</source>
-        <translation type="unfinished"/>
+        <translation>Gebruiker heeft toegang geweigerd</translation>
     </message>
     <message>
         <source>User confirmed access</source>
-        <translation type="unfinished"/>
+        <translation>Gebruiker bevestigde toegang</translation>
     </message>
 </context>
 <context>
@@ -3933,11 +3935,11 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>Sessie metadata</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"/>
+        <translation>Inhoud</translation>
     </message>
     <message>
         <source>None</source>
@@ -3945,11 +3947,11 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     </message>
     <message>
         <source>Value of an environment variable</source>
-        <translation type="unfinished"/>
+        <translation>Waarde van een omgevingsvariabele</translation>
     </message>
     <message>
         <source>Value of a registry key</source>
-        <translation type="unfinished"/>
+        <translation>Waarde van een registersleutel</translation>
     </message>
     <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
@@ -3961,15 +3963,15 @@ Voorbeeld: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
-        <translation type="unfinished"/>
+        <translation>Schakel deze optie in als één Veyon Server-instantie moet worden gestart voor de momenteel actieve sessie, ongeacht of deze lokaal of op afstand is.</translation>
     </message>
     <message>
         <source>Environment variable name</source>
-        <translation type="unfinished"/>
+        <translation>Naam van de omgevingsvariabele</translation>
     </message>
     <message>
         <source>Registry key name</source>
-        <translation type="unfinished"/>
+        <translation>Naam registersleutel</translation>
     </message>
 </context>
 <context>
@@ -3980,23 +3982,23 @@ Voorbeeld: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Starting %1</source>
-        <translation type="unfinished"/>
+        <translation>Beginnen met %1</translation>
     </message>
     <message>
         <source>Stopping %1</source>
-        <translation type="unfinished"/>
+        <translation>Stoppen met %1</translation>
     </message>
     <message>
         <source>Restarting %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 Opnieuw starten</translation>
     </message>
     <message>
         <source>Registering %1</source>
-        <translation type="unfinished"/>
+        <translation>Registreren %1</translation>
     </message>
     <message>
         <source>Unregistering %1</source>
-        <translation type="unfinished"/>
+        <translation>Registratie van %1 ongedaan maken</translation>
     </message>
 </context>
 <context>
@@ -4081,11 +4083,11 @@ Voorbeeld: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>View in separate window</source>
-        <translation type="unfinished"/>
+        <translation>Bekijk in apart venster</translation>
     </message>
     <message>
         <source>%1 Master – Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>%1 Master – Diavoorstelling</translation>
     </message>
 </context>
 <context>
@@ -4540,7 +4542,7 @@ Voorbeeld: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Handling of interfering windows</source>
-        <translation type="unfinished"/>
+        <translation>Omgaan met storende vensters</translation>
     </message>
     <message>
         <source>None</source>
@@ -4548,15 +4550,15 @@ Voorbeeld: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Fix window attributes</source>
-        <translation type="unfinished"/>
+        <translation>Vensterattributen repareren</translation>
     </message>
     <message>
         <source>Terminate related process</source>
-        <translation type="unfinished"/>
+        <translation>Beëindig gerelateerd proces</translation>
     </message>
     <message>
         <source>Close session</source>
-        <translation type="unfinished"/>
+        <translation>Sessie sluiten</translation>
     </message>
 </context>
 <context>

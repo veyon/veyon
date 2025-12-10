@@ -137,7 +137,7 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
     <name>AccessControlProvider</name>
     <message>
         <source>Provider for access control features</source>
-        <translation type="unfinished"/>
+        <translation>Juurdepääsukontrolli funktsioonide pakkuja</translation>
     </message>
 </context>
 <context>
@@ -252,7 +252,7 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
     </message>
     <message>
         <source>Local computer is already being accessed</source>
-        <translation type="unfinished"/>
+        <translation>Kohalikule arvutile on juba ligipääs</translation>
     </message>
 </context>
 <context>
@@ -303,7 +303,7 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
     </message>
     <message>
         <source>There is no matching rule with a valid action. The access is therefore denied.</source>
-        <translation type="unfinished"/>
+        <translation>Kehtiva toiminguga sobivat reeglit pole. Seetõttu on juurdepääs keelatud.</translation>
     </message>
 </context>
 <context>
@@ -1056,7 +1056,7 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     </message>
     <message>
         <source>Hostname: %1</source>
-        <translation type="unfinished"/>
+        <translation>Hostinimi: %1</translation>
     </message>
     <message>
         <source>unknown</source>
@@ -1064,15 +1064,15 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     </message>
     <message>
         <source>IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>IP aadress: %1</translation>
     </message>
     <message>
         <source>Hostname could not be resolved</source>
-        <translation type="unfinished"/>
+        <translation>Hostinime ei õnnestunud lahendada</translation>
     </message>
     <message>
         <source>No features active</source>
-        <translation type="unfinished"/>
+        <translation>Aktiivseid funktsioone pole</translation>
     </message>
 </context>
 <context>
@@ -2004,15 +2004,15 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished"/>
+        <translation>Värviskeem:</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>Hele</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>Tume</translation>
     </message>
 </context>
 <context>
@@ -2698,7 +2698,7 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
-        <translation type="unfinished"/>
+        <translation>Konteineri/OU struktuuri 1:1 kaardistamine asukohtadega</translation>
     </message>
 </context>
 <context>
@@ -3018,15 +3018,17 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <source>Use custom computer arrangement.
 
 Press and hold to load arrangement from a file or save current arrangement to a file.</source>
-        <translation type="unfinished"/>
+        <translation>Kasutage kohandatud arvuti paigutust.
+
+Failist arranžeeringu laadimiseks või praeguse arranžeeringu faili salvestamiseks hoidke all.</translation>
     </message>
     <message>
         <source>Load computer positions</source>
-        <translation type="unfinished"/>
+        <translation>Laadi arvuti positsioonid</translation>
     </message>
     <message>
         <source>Save computer positions</source>
-        <translation type="unfinished"/>
+        <translation>Salvesta arvuti positsioonid</translation>
     </message>
 </context>
 <context>
@@ -3089,7 +3091,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Only last part of user name</source>
-        <translation type="unfinished"/>
+        <translation>Ainult kasutajanime viimane osa</translation>
     </message>
     <message>
         <source>Only computer name</source>
@@ -3233,11 +3235,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Always expand all locations</source>
-        <translation type="unfinished"/>
+        <translation>Laienda alati kõiki asukohti</translation>
     </message>
     <message>
         <source>Configuration templates</source>
-        <translation type="unfinished"/>
+        <translation>Konfiguratsioonimallid</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -3245,7 +3247,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Computer name source</source>
-        <translation type="unfinished"/>
+        <translation>See jaotis on nähtav ainult täiustatud vaaterežiimis.</translation>
     </message>
     <message>
         <source>Default</source>
@@ -3269,7 +3271,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>Seansi metaandmed</translation>
     </message>
     <message>
         <source>Full name of user</source>
@@ -3281,7 +3283,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Computer UID role</source>
-        <translation type="unfinished"/>
+        <translation>Arvuti UID roll</translation>
     </message>
     <message>
         <source>Session meta data hash</source>
@@ -3931,11 +3933,11 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>Seansi metaandmed</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"/>
+        <translation>Sisu</translation>
     </message>
     <message>
         <source>None</source>
@@ -3963,7 +3965,7 @@ Näide: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Environment variable name</source>
-        <translation type="unfinished"/>
+        <translation>Keskkonnamuutuja nimi</translation>
     </message>
     <message>
         <source>Registry key name</source>
@@ -4538,7 +4540,7 @@ Näide: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Handling of interfering windows</source>
-        <translation type="unfinished"/>
+        <translation>Häirivate akende käsitlemine</translation>
     </message>
     <message>
         <source>None</source>

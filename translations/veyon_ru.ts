@@ -184,11 +184,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>Если активировано более одного условия, каждое условие должно соответствовать для применения правила (логическое И). Если требуется только одно из нескольких условий (логическое ИЛИ), создайте несколько правил контроля доступа.</translation>
+        <translation>Если для правила активировано несколько условий, то для его применения все эти условия должны быть выполнены одновременно (логическая операция И). Если же требуется, чтобы правило срабатывало при выполнении любого одного из условий (логическая операция ИЛИ), необходимо создать несколько отдельных правил управления доступом.</translation>
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
-        <translation>Компьютер для доступа расположен в том же месте, что и локальный компьютер</translation>
+        <translation>Компьютер, с которого осуществляется доступ, расположен в том же месте, что и локальный компьютер</translation>
     </message>
     <message>
         <source>No user logged on</source>
@@ -200,19 +200,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation>Доступ к компьютеру как localhost</translation>
+        <translation>Компьютер, с которого осуществляется доступ, является локальным (localhost)</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>Доступ к пользователю имеет одна или несколько групп, совместно с локальным пользователем (вошедшим в систему)</translation>
+        <translation>Пользователь, выполняющий доступ, состоит как минимум в одной общей группе с локальным (вошедшим в систему) пользователем</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation>Доступ к пользователю осуществляется пользователем</translation>
+        <translation>Доступ осуществляется вошедшим в систему пользователем</translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation>Доступ к пользователю уже подключен</translation>
+        <translation>Пользователь, выполняющий доступ, уже подключён</translation>
     </message>
     <message>
         <source>Action</source>
@@ -236,11 +236,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing user</source>
-        <translation>Доступ к пользователю</translation>
+        <translation>Пользователь, выполняющий доступ</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation>Доступ к компьютеру</translation>
+        <translation>Компьютер, с которого осуществляется доступ</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
@@ -263,7 +263,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation>Доступ к пользователю:</translation>
+        <translation>Пользователь, выполняющий доступ:</translation>
     </message>
     <message>
         <source>Local computer:</source>
@@ -271,7 +271,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation>Доступ к компьютеру:</translation>
+        <translation>Компьютер, с которого осуществляется доступ:</translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
@@ -1083,7 +1083,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation>Пользователь &quot;%1&quot; на узле &quot;%2&quot; пытался получить доступ к этому компьютеру, но не смог пройти аутентификацию.</translation>
+        <translation>Пользователь &quot;%1&quot; с узла &quot;%2&quot; пытался получить доступ к этому компьютеру, но не смог пройти аутентификацию.</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -1091,7 +1091,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation>Сейчас доступ к этому компьютеру имеет пользователь &quot;%1&quot; на хосте &quot;%2&quot;.</translation>
+        <translation>Пользователь &quot;%1&quot; с узла &quot;%2&quot; установил соединение с данным компьютером</translation>
     </message>
     <message>
         <source>Access control error</source>
@@ -1099,7 +1099,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
-        <translation>Пользователь &quot;%1&quot; на узле &quot;%2&quot; пытался получить доступ к этому компьютеру, но был заблокирован из-за параметров управления доступом.</translation>
+        <translation>Пользователь &quot;%1&quot; с узла &quot;%2&quot; пытался получить доступ к этому компьютеру, но был заблокирован настройками управления доступом.</translation>
     </message>
     <message>
         <source>%1 Service %2 at %3:%4</source>
@@ -1146,11 +1146,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось определить расположение этого компьютера. Это означает, что в настройках системы есть проблемы. В панели «Места и компьютеры» не будут отображаться ни расположения, ни компьютеры.</translation>
     </message>
     <message>
         <source>Unknown location</source>
-        <translation type="unfinished"/>
+        <translation>Неизвестное место</translation>
     </message>
 </context>
 <context>
@@ -1279,7 +1279,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Configuration is not writable. Please check your permissions!</source>
-        <translation>Файл настроек непригоден для записи. Пожалуйста, проверьте права доступа к нему!</translation>
+        <translation>Конфигурация недоступна для записи. Проверьте свои права доступа!</translation>
     </message>
 </context>
 <context>
@@ -1415,7 +1415,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Confirm desktop access</source>
-        <translation>Подтверждать доступ к рабочему столу</translation>
+        <translation>Разрешить доступ к рабочему столу</translation>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
@@ -3965,11 +3965,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Environment variable name</source>
-        <translation type="unfinished"/>
+        <translation>Имя переменной среды</translation>
     </message>
     <message>
         <source>Registry key name</source>
-        <translation type="unfinished"/>
+        <translation>Имя ключа реестра</translation>
     </message>
 </context>
 <context>
@@ -4540,7 +4540,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Handling of interfering windows</source>
-        <translation type="unfinished"/>
+        <translation>Обработка мешающих окон</translation>
     </message>
     <message>
         <source>None</source>
@@ -4548,15 +4548,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Fix window attributes</source>
-        <translation type="unfinished"/>
+        <translation>Исправление атрибутов окна</translation>
     </message>
     <message>
         <source>Terminate related process</source>
-        <translation type="unfinished"/>
+        <translation>Завершение связанного процесса</translation>
     </message>
     <message>
         <source>Close session</source>
-        <translation type="unfinished"/>
+        <translation>Закрытие сеанса</translation>
     </message>
 </context>
 <context>
