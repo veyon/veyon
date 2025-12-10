@@ -47,6 +47,8 @@ public:
 		SessionClientAddress,
 		SessionClientName,
 		SessionMetaData,
+		UserIdentity,
+		UserIdentificationContextId,
 		ActiveFeaturesList = 0 // for compatibility after migration from FeatureControl
 	};
 	Q_ENUM(Argument)
@@ -108,6 +110,8 @@ public:
 
 	void queryScreens( const ComputerControlInterfaceList& computerControlInterfaces );
 
+	void identifyUser(const ComputerControlInterfaceList& computerControlInterfaces);
+
 	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
 						const ComputerControlInterfaceList& computerControlInterfaces ) override
 	{
@@ -128,11 +132,16 @@ public:
 
 	void sendAsyncFeatureMessages(VeyonServerInterface& server, const MessageContext& messageContext) override;
 
+	bool handleFeatureMessageFromWorker(VeyonServerInterface& server, const FeatureMessage& message) override;
+
+	bool handleFeatureMessage(VeyonWorkerInterface& worker, const FeatureMessage& message) override;
+
 private:
 	bool sendActiveFeatures(VeyonServerInterface& server, const MessageContext& messageContext);
 	bool sendUserInformation(VeyonServerInterface& server, const MessageContext& messageContext);
 	bool sendSessionInfo(VeyonServerInterface& server, const MessageContext& messageContext);
 	bool sendScreenInfoList(VeyonServerInterface& server, const MessageContext& messageContext);
+	void queryUsername();
 
 	static const char* activeFeaturesVersionProperty()
 	{
@@ -159,6 +168,8 @@ private:
 	void updateSessionInfo();
 	void updateScreenInfoList();
 
+	QString queryUserIdentity();
+
 	enum class FeatureCommand
 	{
 		Ping,
@@ -175,7 +186,12 @@ private:
 	const Feature m_queryUserInfoFeature;
 	const Feature m_querySessionInfoFeature;
 	const Feature m_queryScreensFeature;
-	const FeatureList m_features;
+	const Feature m_identifyUserFeature;
+	const FeatureList m_features = {
+		m_monitoringModeFeature, m_queryApplicationVersionFeature, m_queryActiveFeatures,
+		m_queryUserInfoFeature, m_querySessionInfoFeature, m_queryScreensFeature,
+		m_identifyUserFeature
+	};
 
 	int m_activeFeaturesVersion{0};
 	QStringList m_activeFeatures;
@@ -197,5 +213,7 @@ private:
 	PlatformSessionFunctions::SessionInfo m_sessionInfo{};
 	QAtomicInt m_sessionInfoVersion = 0;
 	QTimer m_sessionInfoUpdateTimer;
+
+	QMap<QUuid, MessageContext> m_userIdentificationContexts;
 
 };
