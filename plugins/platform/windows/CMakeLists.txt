@@ -1,5 +1,8 @@
 include(BuildVeyonPlugin)
 
+set(QT_NO_PRIVATE_MODULE_WARNING ON)
+find_package(Qt6 REQUIRED COMPONENTS GuiPrivate)
+
 build_veyon_plugin(windows-platform
 	NAME WindowsPlatform
 	SOURCES
