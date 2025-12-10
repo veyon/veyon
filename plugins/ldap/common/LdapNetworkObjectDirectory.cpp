@@ -283,7 +283,7 @@ void LdapNetworkObjectDirectory::updateComputers(const NetworkObject& parent)
 	{
 		const auto displayName = it.value()[displayNameAttribute].value(0);
 		const auto hostName = it.value()[hostNameAttribute].value(0);
-		const auto macAddress = (macAddressAttribute.isEmpty() == false) ? it.value()[hostNameAttribute].value(0) : QString();
+		const auto macAddress = (macAddressAttribute.isEmpty() == false) ? it.value()[macAddressAttribute].value(0) : QString();
 
 		addOrUpdateObject(NetworkObject{this, NetworkObject::Type::Host, displayName, {
 											{ NetworkObject::propertyKey(NetworkObject::Property::HostAddress), hostName},
