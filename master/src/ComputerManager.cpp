@@ -29,8 +29,10 @@
 #include <QMessageBox>
 #include <QTime>
 
+#include "BuiltinFeatures.h"
 #include "ComputerManager.h"
 #include "VeyonConfiguration.h"
+#include "MonitoringMode.h"
 #include "NetworkObject.h"
 #include "NetworkObjectDirectory.h"
 #include "NetworkObjectDirectoryManager.h"
@@ -50,7 +52,9 @@ ComputerManager::ComputerManager( UserConfig& config, QObject* parent ) :
 	m_computerTreeModel( new CheckableItemProxyModel( NetworkObjectModel::UidRole, this ) ),
 	m_networkObjectFilterProxyModel( new NetworkObjectFilterProxyModel( this ) ),
 	m_localHostNames( QHostInfo::localHostName().toLower() ),
-	m_localHostAddresses(QHostInfo::fromName(QHostInfo::localHostName()).addresses())
+	m_localHostAddresses(QHostInfo::fromName(QHostInfo::localHostName()).addresses()),
+	m_identifyUsersInGuestSessions(VeyonCore::config().identifyUsersInGuestSessions()),
+	m_guestUserLoginName(VeyonCore::config().guestUserLoginName())
 {
 	if( m_networkObjectDirectory == nullptr )
 	{
@@ -163,6 +167,13 @@ void ComputerManager::updateUser(const ComputerControlInterface::Pointer& contro
 				m_networkObjectOverlayDataModel->setData(m_networkObjectOverlayDataModel->mapFromSource(networkObjectIndex),
 														 computerName);
 			}
+		}
+
+		if (m_identifyUsersInGuestSessions &&
+			(controlInterface->userLoginName() == m_guestUserLoginName ||
+			 controlInterface->userLoginName().isEmpty()))
+		{
+			VeyonCore::builtinFeatures().monitoringMode().identifyUser({controlInterface});
 		}
 	}
 }
