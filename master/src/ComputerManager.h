@@ -102,4 +102,7 @@ private:
 	QStringList m_localHostNames;
 	QList<QHostAddress> m_localHostAddresses;
 
+	bool m_identifyUsersInGuestSessions;
+	QString m_guestUserLoginName;
+
 };
