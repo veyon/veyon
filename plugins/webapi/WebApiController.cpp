@@ -475,9 +475,9 @@ QString WebApiController::getStatistics()
 {
 	QReadLocker connectionsLocker{&m_connectionsLock};
 
-	return QStringLiteral("Total API requests: %1 (%2/s in the past %3 s)\n<br/>").arg(m_apiTotalRequestsCounter).arg(m_apiTotalRequestsPerSecond).arg(StatisticsUpdateIntervalSeconds) +
-			QStringLiteral("Framebuffer requests: %1 (%2/s in the past %3 s)\n<br/>").arg(m_framebufferRequestsCounter).arg(m_framebufferRequestsPerSecond).arg(StatisticsUpdateIntervalSeconds) +
-			QStringLiteral("VNC framebuffer updates: %1 (%2/s in the past %3 s)\n<br/>").arg(m_vncFramebufferUpdatesCounter).arg(m_vncFramebufferUpdatesPerSecond).arg(StatisticsUpdateIntervalSeconds) +
+	return QStringLiteral("Total API requests: %1 (%2/s in the past %3 s)\n<br/>").arg(int(m_apiTotalRequestsCounter)).arg(int(m_apiTotalRequestsPerSecond)).arg(int(StatisticsUpdateIntervalSeconds)) +
+			QStringLiteral("Framebuffer requests: %1 (%2/s in the past %3 s)\n<br/>").arg(int(m_framebufferRequestsCounter)).arg(int(m_framebufferRequestsPerSecond)).arg(int(StatisticsUpdateIntervalSeconds)) +
+			QStringLiteral("VNC framebuffer updates: %1 (%2/s in the past %3 s)\n<br/>").arg(int(m_vncFramebufferUpdatesCounter)).arg(int(m_vncFramebufferUpdatesPerSecond)).arg(int(StatisticsUpdateIntervalSeconds)) +
 			QStringLiteral("Number of client connections: %1<br/>\n").arg(m_connections.count());
 }
 
