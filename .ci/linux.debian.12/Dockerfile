@@ -1,5 +1,5 @@
 FROM debian:bookworm-slim
-MAINTAINER Tobias Junghans <tobydox@veyon.io>
+LABEL maintainer="Tobias Junghans <tobydox@veyon.io>"
 
 RUN \
 	apt-get update && \

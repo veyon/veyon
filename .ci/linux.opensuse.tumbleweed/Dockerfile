@@ -1,5 +1,5 @@
 FROM opensuse/tumbleweed:latest
-MAINTAINER Tobias Junghans <tobydox@veyon.io>
+LABEL maintainer="Tobias Junghans <tobydox@veyon.io>"
 
 RUN \
 	zypper --gpg-auto-import-keys install -y git gcc-c++ ninja cmake rpm-build fakeroot \
