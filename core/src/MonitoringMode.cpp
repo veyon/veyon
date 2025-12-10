@@ -23,14 +23,19 @@
  */
 
 #include <QtConcurrent>
+#include <QDialogButtonBox>
 #include <QGuiApplication>
+#include <QInputDialog>
 #include <QScreen>
 
 #include "FeatureManager.h"
+#include "FeatureWorkerManager.h"
 #include "MonitoringMode.h"
+#include "PlatformCoreFunctions.h"
 #include "PlatformUserFunctions.h"
 #include "VeyonConfiguration.h"
 #include "VeyonServerInterface.h"
+#include "VeyonWorkerInterface.h"
 
 
 MonitoringMode::MonitoringMode( QObject* parent ) :
@@ -62,8 +67,11 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 						   Feature::Flag::Meta,
 						   Feature::Uid("d5bbc486-7bc5-4c36-a9a8-1566c8b0091a"),
 						   Feature::Uid(), tr("Query properties of remotely available screens"), {}, {} ),
-	m_features({ m_monitoringModeFeature, m_queryApplicationVersionFeature, m_queryActiveFeatures,
-			   m_queryUserInfoFeature, m_querySessionInfoFeature, m_queryScreensFeature}),
+	m_identifyUserFeature(QStringLiteral("IdentifyUser"),
+						  Feature::Flag::Action | Feature::Flag::Service | Feature::Flag::Builtin,
+						  Feature::Uid("7310707d-3918-460d-a949-b060bcc4074e"),
+						  Feature::Uid(),
+						  tr("Identify users in guest sessions"), {}, {}),
 	m_sessionMetaDataContent(VeyonCore::config().sessionMetaDataContent()),
 	m_sessionMetaDataEnvironmentVariable(VeyonCore::config().sessionMetaDataEnvironmentVariable()),
 	m_sessionMetaDataRegistryKey(VeyonCore::config().sessionMetaDataRegistryKey())
@@ -135,6 +143,13 @@ void MonitoringMode::querySessionInfo(const ComputerControlInterfaceList& comput
 void MonitoringMode::queryScreens(const ComputerControlInterfaceList& computerControlInterfaces)
 {
 	sendFeatureMessage(FeatureMessage{m_queryScreensFeature.uid()}, computerControlInterfaces);
+}
+
+
+
+void MonitoringMode::identifyUser(const ComputerControlInterfaceList& computerControlInterfaces)
+{
+	sendFeatureMessage(FeatureMessage{m_identifyUserFeature.uid()}, computerControlInterfaces);
 }
 
 
@@ -217,6 +232,15 @@ bool MonitoringMode::handleFeatureMessage( ComputerControlInterface::Pointer com
 		computerControlInterface->setScreens(screens);
 	}
 
+	if (message.featureUid() == m_identifyUserFeature.uid() )
+	{
+		computerControlInterface->setUserInformation(message.argument(Argument::UserIdentity).toString(),
+													 message.argument(Argument::UserIdentity).toString());
+
+		return true;
+	}
+
+
 	return false;
 }
 
@@ -268,6 +292,16 @@ bool MonitoringMode::handleFeatureMessage(VeyonServerInterface& server,
 		return sendScreenInfoList(server, messageContext);
 	}
 
+	if (message.featureUid() == m_identifyUserFeature.uid())
+	{
+		const auto contextId = QUuid::createUuid();
+		m_userIdentificationContexts[contextId] = messageContext;
+
+		server.featureWorkerManager().sendMessageToUnmanagedSessionWorker(
+					FeatureMessage{m_identifyUserFeature.uid()}
+					.addArgument(Argument::UserIdentificationContextId, contextId));
+	}
+
 	return false;
 }
 
@@ -308,6 +342,41 @@ void MonitoringMode::sendAsyncFeatureMessages(VeyonServerInterface& server, cons
 		sendScreenInfoList(server, messageContext);
 		messageContext.ioDevice()->setProperty(screenInfoListVersionProperty(), m_screenInfoListVersion);
 	}
+}
+
+
+
+bool MonitoringMode::handleFeatureMessageFromWorker(VeyonServerInterface& server, const FeatureMessage& message)
+{
+	if (message.featureUid() == m_identifyUserFeature.uid() &&
+		message.hasArgument(Argument::UserIdentificationContextId))
+	{
+		const auto contextId = message.argument(Argument::UserIdentificationContextId).toUuid();
+
+		server.featureWorkerManager().stopWorker(m_identifyUserFeature.uid());
+
+		// forward message to master - if contextId does not exist, default constructed MessageContext has
+		// ioDevice=nullptr so sendFeatureMessageReply() will do nothing
+		return server.sendFeatureMessageReply(m_userIdentificationContexts.value(contextId), message);
+	}
+
+	return false;
+}
+
+
+bool MonitoringMode::handleFeatureMessage(VeyonWorkerInterface& worker, const FeatureMessage& message)
+{
+	if (message.featureUid() != m_identifyUserFeature.uid())
+	{
+		return false;
+	}
+
+	const auto contextId = message.argument(Argument::UserIdentificationContextId);
+	const auto userIdentity = queryUserIdentity();
+
+	return worker.sendFeatureMessageReply(FeatureMessage{m_identifyUserFeature.uid()}
+										  .addArgument(Argument::UserIdentificationContextId, contextId)
+										  .addArgument(Argument::UserIdentity, userIdentity));
 }
 
 
@@ -489,4 +558,23 @@ void MonitoringMode::updateScreenInfoList()
 		m_screenInfoList = screenInfoList;
 		++m_screenInfoListVersion;
 	}
+}
+
+
+
+QString MonitoringMode::queryUserIdentity()
+{
+	qApp->setQuitOnLastWindowClosed(false);
+
+	QInputDialog dialog;
+	dialog.setWindowTitle(tr("Identification request"));
+	dialog.setLabelText(tr("Please enter your name:"));
+	dialog.setInputMode(QInputDialog::TextInput);
+	dialog.setWindowFlags(dialog.windowFlags() & (~Qt::WindowCloseButtonHint));
+	dialog.setStyleSheet(QStringLiteral("button-layout:%1").arg(QDialogButtonBox::WinLayout));
+
+	VeyonCore::platform().coreFunctions().raiseWindow(&dialog, true);
+
+	dialog.exec();
+	return dialog.textValue();
 }
