@@ -1,5 +1,5 @@
 FROM rockylinux:9
-MAINTAINER Tobias Junghans <tobydox@veyon.io>
+LABEL maintainer="Tobias Junghans <tobydox@veyon.io>"
 
 RUN \
 	dnf -y --enablerepo=extras install epel-release && \
