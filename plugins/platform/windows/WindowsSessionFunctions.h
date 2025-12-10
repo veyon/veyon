@@ -64,7 +64,7 @@ private:
 
 	static constexpr auto DesktopWindowsInspectionInterval = 1000;
 
-	InterferingWindowHandling m_interferingWindowHandling = InterferingWindowHandling::None;
+	InterferingWindowHandling m_interferingWindowsHandling = InterferingWindowHandling::None;
 	QTimer m_desktopWindowsInspectionTimer;
 
 };

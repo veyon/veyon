@@ -32,14 +32,14 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
-         <widget class="QLabel" name="interferingWindowHandlingLabel">
+         <widget class="QLabel" name="interferingWindowsHandlingLabel">
           <property name="text">
            <string>Handling of interfering windows</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="interferingWindowHandling">
+         <widget class="QComboBox" name="interferingWindowsHandling">
           <item>
            <property name="text">
             <string>None</string>
@@ -206,7 +206,7 @@
  </widget>
  <tabstops>
   <tabstop>isSoftwareSASEnabled</tabstop>
-  <tabstop>interferingWindowHandling</tabstop>
+  <tabstop>interferingWindowsHandling</tabstop>
   <tabstop>disableSSPIBasedUserAuthentication</tabstop>
   <tabstop>logonInputStartDelay</tabstop>
   <tabstop>logonKeyPressInterval</tabstop>
