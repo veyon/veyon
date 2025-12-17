@@ -81,9 +81,6 @@
       <string>Settings for collecting files</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="3" column="1">
-       <widget class="QLineEdit" name="collectedFilesDestinationDirectory"/>
-      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="label_8">
         <property name="text">
@@ -91,66 +88,38 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="filesToCollectSourceDirectory"/>
-      </item>
-      <item row="0" column="2">
-       <widget class="QToolButton" name="browseFilesToCollectSourceDirectory">
+      <item row="4" column="2">
+       <widget class="QToolButton" name="browseCollectedFilesDestinationDirectory">
         <property name="icon">
          <iconset resource="../../core/resources/core.qrc">
           <normaloff>:/core/document-open.png</normaloff>:/core/document-open.png</iconset>
         </property>
        </widget>
       </item>
-      <item row="5" column="1">
-       <widget class="QComboBox" name="collectedFilesGroupingMode">
+      <item row="7" column="1">
+       <widget class="QComboBox" name="collectedFilesGroupingAttribute">
         <property name="currentIndex">
          <number>0</number>
         </property>
         <item>
          <property name="text">
-          <string>No</string>
+          <string>User login name</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Prefix filenames with grouping attribute</string>
+          <string>Full name of user</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Store files in subdirectories based on the grouping attribute</string>
+          <string>Device name</string>
          </property>
         </item>
        </widget>
       </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="label_6">
-        <property name="text">
-         <string>Group collected files</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="label_7">
-        <property name="text">
-         <string>Collection directory</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>Destination directory</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="collectingModeLabel">
-        <property name="text">
-         <string>Files to collect</string>
-        </property>
-       </widget>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="filesToCollectSourceDirectory"/>
       </item>
       <item row="1" column="1">
        <widget class="QComboBox" name="collectingMode">
@@ -177,15 +146,42 @@
         </item>
        </widget>
       </item>
-      <item row="3" column="2">
-       <widget class="QToolButton" name="browseCollectedFilesDestinationDirectory">
-        <property name="icon">
-         <iconset resource="../../core/resources/core.qrc">
-          <normaloff>:/core/document-open.png</normaloff>:/core/document-open.png</iconset>
+      <item row="7" column="0">
+       <widget class="QLabel" name="label_9">
+        <property name="text">
+         <string>Collected files grouping attribute</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="1">
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>Destination directory</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>Collection directory</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>Group collected files</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="2">
+       <widget class="QCheckBox" name="collectFilesRecursively">
+        <property name="text">
+         <string>Collect files recursively</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
        <widget class="QComboBox" name="collectionDirectory">
         <item>
          <property name="text">
@@ -204,39 +200,57 @@
         </item>
        </widget>
       </item>
-      <item row="2" column="0" colspan="2">
-       <widget class="QCheckBox" name="collectFilesRecursively">
-        <property name="text">
-         <string>Collect files recursively</string>
-        </property>
-       </widget>
-      </item>
       <item row="6" column="1">
-       <widget class="QComboBox" name="collectedFilesGroupingAttribute">
+       <widget class="QComboBox" name="collectedFilesGroupingMode">
         <property name="currentIndex">
          <number>0</number>
         </property>
         <item>
          <property name="text">
-          <string>User login name</string>
+          <string>No</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Full name of user</string>
+          <string>Prefix filenames with grouping attribute</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Device name</string>
+          <string>Store files in subdirectories based on the grouping attribute</string>
          </property>
         </item>
        </widget>
       </item>
-      <item row="6" column="0">
-       <widget class="QLabel" name="label_9">
+      <item row="1" column="0">
+       <widget class="QLabel" name="collectingModeLabel">
         <property name="text">
-         <string>Collected files grouping attribute</string>
+         <string>Files to collect</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLineEdit" name="collectedFilesDestinationDirectory"/>
+      </item>
+      <item row="0" column="2">
+       <widget class="QToolButton" name="browseFilesToCollectSourceDirectory">
+        <property name="icon">
+         <iconset resource="../../core/resources/core.qrc">
+          <normaloff>:/core/document-open.png</normaloff>:/core/document-open.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="filesToExcludeFromCollectingLabel">
+        <property name="text">
+         <string>Files to exclude</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="filesToExcludeFromCollecting">
+        <property name="placeholderText">
+         <string>e.g. *.lnk or *.desktop</string>
         </property>
        </widget>
       </item>
@@ -268,6 +282,7 @@
   <tabstop>filesToCollectSourceDirectory</tabstop>
   <tabstop>browseFilesToCollectSourceDirectory</tabstop>
   <tabstop>collectingMode</tabstop>
+  <tabstop>filesToExcludeFromCollecting</tabstop>
   <tabstop>collectFilesRecursively</tabstop>
   <tabstop>collectedFilesDestinationDirectory</tabstop>
   <tabstop>browseCollectedFilesDestinationDirectory</tabstop>

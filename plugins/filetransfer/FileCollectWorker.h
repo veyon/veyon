@@ -24,8 +24,11 @@
 
 #pragma once
 
+#include <QRegularExpression>
+
 #include "FileCollection.h"
 
+class FileTransferConfiguration;
 class FileTransferPlugin;
 
 // clazy:excludeall=ctor-missing-parent-argument
@@ -63,13 +66,17 @@ public:
 	bool currentFileAtEnd() const;
 
 private:
+	void initFiles();
+	QList<QRegularExpression> excludeRegExes() const;
+
 	static constexpr int ChunkSize = 256*1024;
+
+	const FileTransferConfiguration& m_configuration;
+	QString m_sourceDirectory;
 
 	QStringList m_files;
 	int m_currentFileIndex = -1;
 	FileCollection::TransferId m_currentTransferId;
-	QString m_sourceDirectory;
-	bool m_collectFilesRecursively;
 	QFile m_currentFile;
 
 };

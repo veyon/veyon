@@ -30,7 +30,7 @@
 #include "Filesystem.h"
 
 
-static QStringList listFilesInDirectory(const QString& dirPath, bool recursive = false)
+static QStringList listFilesInDirectory(const QString& dirPath, const QList<QRegularExpression>& excludeRegExes, bool recursive = false)
 {
 	QStringList fileList;
 	QDir dir(dirPath);
@@ -43,7 +43,21 @@ static QStringList listFilesInDirectory(const QString& dirPath, bool recursive =
 
 	for (const QFileInfo& fi : entries)
 	{
-		fileList.append(QDir::toNativeSeparators(fi.absoluteFilePath()));
+		bool exclude = false;
+		for (const auto& excludeRegEx : excludeRegExes)
+		{
+			if (excludeRegEx.match(fi.fileName()).hasMatch())
+			{
+				vDebug() << "excluding" << fi.fileName() << "as it matches" << excludeRegEx;
+				exclude = true;
+				break;
+			}
+		}
+
+		if (exclude == false)
+		{
+			fileList.append(QDir::toNativeSeparators(fi.absoluteFilePath()));
+		}
 	}
 
 	if (recursive)
@@ -51,7 +65,7 @@ static QStringList listFilesInDirectory(const QString& dirPath, bool recursive =
 		const QFileInfoList subdirs = dir.entryInfoList(QDir::Dirs | QDir::NoDotAndDotDot);
 		for (const QFileInfo& subdirInfo : subdirs)
 		{
-			fileList.append(listFilesInDirectory(subdirInfo.absoluteFilePath(), true));
+			fileList.append(listFilesInDirectory(subdirInfo.absoluteFilePath(), excludeRegExes, true));
 		}
 	}
 
@@ -62,33 +76,15 @@ static QStringList listFilesInDirectory(const QString& dirPath, bool recursive =
 
 FileCollectWorker::FileCollectWorker(FileTransferPlugin* plugin) :
 	QObject(plugin),
-	m_sourceDirectory(VeyonCore::filesystem().expandPath(plugin->configuration().filesToCollectSourceDirectory())),
-	m_collectFilesRecursively(plugin->configuration().collectFilesRecursively())
+	m_configuration(plugin->configuration()),
+	m_sourceDirectory(VeyonCore::filesystem().expandPath(m_configuration.filesToCollectSourceDirectory()))
 {
 	if (m_sourceDirectory.endsWith(QDir::separator()) == false)
 	{
 		m_sourceDirectory.append(QDir::separator());
 	}
 
-	m_files = listFilesInDirectory(m_sourceDirectory, m_collectFilesRecursively);
-
-	for (auto it = m_files.begin(); it != m_files.end(); ) // clazy:exclude=detaching-member
-	{
-#ifdef Q_OS_WIN
-		const auto caseSensitivity = Qt::CaseInsensitive;
-#else
-		const auto caseSensitivity = Qt::CaseSensitive;
-#endif
-		if (it->startsWith(m_sourceDirectory, caseSensitivity))
-		{
-			*it = it->mid(m_sourceDirectory.size());
-			++it;
-		}
-		else
-		{
-			it = m_files.erase(it);
-		}
-	}
+	initFiles();
 }
 
 
@@ -141,4 +137,48 @@ QByteArray FileCollectWorker::readNextChunk()
 bool FileCollectWorker::currentFileAtEnd() const
 {
 	return m_currentFile.atEnd();
+}
+
+
+
+void FileCollectWorker::initFiles()
+{
+	m_files = listFilesInDirectory(m_sourceDirectory, excludeRegExes(), m_configuration.collectFilesRecursively());
+
+	for (auto it = m_files.begin(); it != m_files.end(); ) // clazy:exclude=detaching-member
+	{
+#ifdef Q_OS_WIN
+		const auto caseSensitivity = Qt::CaseInsensitive;
+#else
+		const auto caseSensitivity = Qt::CaseSensitive;
+#endif
+		if (it->startsWith(m_sourceDirectory, caseSensitivity))
+		{
+			*it = it->mid(m_sourceDirectory.size());
+			++it;
+		}
+		else
+		{
+			it = m_files.erase(it);
+		}
+	}
+}
+
+
+
+QList<QRegularExpression> FileCollectWorker::excludeRegExes() const
+{
+	auto excludePatterns = m_configuration.filesToExcludeFromCollecting().replace(u';', u' ')
+								 .replace(u',', u' ').split(u' ');
+	excludePatterns.removeAll(QString{});
+
+	QList<QRegularExpression> regExes;
+	std::transform(excludePatterns.begin(), excludePatterns.end(),
+				   std::back_inserter(regExes),
+				   [](const QString& pattern) {
+			return QRegularExpression(QString(pattern).replace(u'*', QStringLiteral(".*")),
+									  QRegularExpression::CaseInsensitiveOption);
+	});
+
+	return regExes;
 }
