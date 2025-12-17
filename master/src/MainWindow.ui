@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string notr="true">Veyon Master</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../../core/resources/core.qrc">

@@ -54,7 +54,7 @@ bool ConfigurationManager::applyConfiguration()
 	// update Veyon Service configuration
 	if( VeyonServiceControl().setAutostart( m_configuration.autostartService() ) == false )
 	{
-		m_errorString =  tr( "Could not modify the autostart property for the %1 Service." ).arg( VeyonCore::applicationName() );
+		m_errorString = tr("Could not modify the autostart property for the Veyon Service.");
 		return false;
 	}
 
@@ -64,7 +64,7 @@ bool ConfigurationManager::applyConfiguration()
 											QStringLiteral("Veyon Service"),
 											m_configuration.isFirewallExceptionEnabled() ) == false )
 	{
-		m_errorString = tr( "Could not configure the firewall configuration for the %1 Service." ).arg( VeyonCore::applicationName() );
+		m_errorString = tr("Could not configure the firewall configuration for the Veyon Service.");
 		return false;
 	}
 
@@ -72,7 +72,7 @@ bool ConfigurationManager::applyConfiguration()
 											QStringLiteral("Veyon Server"),
 											m_configuration.isFirewallExceptionEnabled() ) == false )
 	{
-		m_errorString = tr( "Could not configure the firewall configuration for the %1 Server." ).arg( VeyonCore::applicationName() );
+		m_errorString = tr("Could not configure the firewall configuration for the Veyon Server.");
 		return false;
 	}
 
@@ -80,13 +80,13 @@ bool ConfigurationManager::applyConfiguration()
 											QStringLiteral("Veyon Worker"),
 											m_configuration.isFirewallExceptionEnabled() ) == false )
 	{
-		m_errorString = tr( "Could not configure the firewall configuration for the %1 Worker." ).arg( VeyonCore::applicationName() );
+		m_errorString = tr("Could not configure the firewall configuration for the Veyon Worker.");
 		return false;
 	}
 
 	if( VeyonCore::platform().coreFunctions().applyConfiguration() == false )
 	{
-		m_errorString =  tr( "Could not apply platform-specific configuration settings." );
+		m_errorString =  tr("Could not apply platform-specific configuration settings.");
 		return false;
 	}
 

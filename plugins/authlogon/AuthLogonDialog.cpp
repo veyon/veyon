@@ -45,8 +45,6 @@ AuthLogonDialog::AuthLogonDialog( QWidget *parent ) :
 	}
 
 	updateOkButton();
-
-	VeyonCore::enforceBranding( this );
 }
 
 

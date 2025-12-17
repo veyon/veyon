@@ -62,8 +62,6 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 {
 	ui->setupUi( this );
 
-	setWindowTitle( QStringLiteral( "%1 Master" ).arg( VeyonCore::applicationName() ) );
-
 	restoreState( QByteArray::fromBase64( m_master.userConfig().windowState().toUtf8() ) );
 	restoreGeometry( QByteArray::fromBase64( m_master.userConfig().windowGeometry().toUtf8() ) );
 
@@ -279,8 +277,6 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	reloadSubFeatures();
 
 	m_modeGroup->button(int(qHash(VeyonCore::builtinFeatures().monitoringMode().feature().uid())))->setChecked(true); // clazy:exclude=qt6-qhash-signature
-
-	VeyonCore::enforceBranding( this );
 }
 
 
@@ -368,9 +364,9 @@ void MainWindow::closeEvent( QCloseEvent* event )
 	{
 		const Feature& activeFeature = VeyonCore::featureManager().feature( m_master.currentMode() );
 
-		QMessageBox::information( this, tr( "Feature active" ),
-								  tr( "The feature \"%1\" is still active. Please stop it before closing %2." ).
-								  arg( activeFeature.displayName(), VeyonCore::applicationName() ) );
+		QMessageBox::information(this, tr("Feature active"),
+								 tr("The feature \"%1\" is still active. Please stop it before closing Veyon.")
+								 .arg(activeFeature.displayName()));
 		event->ignore();
 		return;
 	}

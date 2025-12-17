@@ -27,8 +27,6 @@ AuthLdapDialog::AuthLdapDialog( const LdapConfiguration& config, QWidget* parent
 	}
 
 	updateOkButton();
-
-	VeyonCore::enforceBranding( this );
 }
 
 

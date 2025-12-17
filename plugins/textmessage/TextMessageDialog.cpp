@@ -36,8 +36,6 @@ TextMessageDialog::TextMessageDialog( QString &msgStr, QWidget *parent ) :
 	m_msgStr( msgStr )
 {
 	ui->setupUi( this );
-
-	VeyonCore::enforceBranding( this );
 }
 
 

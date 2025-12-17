@@ -46,7 +46,7 @@ DemoClient::DemoClient( const QString& host, int port, bool fullscreen, QRect vi
 		m_toplevel->move(0, 0);
 	}
 
-	m_toplevel->setWindowTitle( tr( "%1 Demo" ).arg( VeyonCore::applicationName() ) );
+	m_toplevel->setWindowTitle(tr("Veyon Demo"));
 	m_toplevel->setWindowIcon( QPixmap( QStringLiteral(":/core/icon64.png") ) );
 	m_toplevel->setAttribute( Qt::WA_DeleteOnClose, false );
 	m_toplevel->installEventFilter(this);

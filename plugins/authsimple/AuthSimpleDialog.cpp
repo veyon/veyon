@@ -44,8 +44,6 @@ AuthSimpleDialog::AuthSimpleDialog( QWidget *parent ) :
 	} );
 
 	ui->buttonBox->button( QDialogButtonBox::Ok )->setDisabled( true );
-
-	VeyonCore::enforceBranding( this );
 }
 
 
