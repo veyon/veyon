@@ -86,22 +86,14 @@ ComputerMonitoringModel* ComputerMonitoringView::dataModel() const
 
 QString ComputerMonitoringView::searchFilter() const
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
 	return dataModel()->filterRegularExpression().pattern();
-#else
-	return dataModel()->filterRegExp().pattern();
-#endif
 }
 
 
 
 void ComputerMonitoringView::setSearchFilter( const QString& searchFilter )
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 1)
-	dataModel()->setFilterRegularExpression( searchFilter );
-#else
-	dataModel()->setFilterRegExp( searchFilter );
-#endif
+	dataModel()->setFilterRegularExpression(searchFilter);
 }
 
 
@@ -123,12 +115,8 @@ void ComputerMonitoringView::setFilterComputersWithLoggedOnUsers( bool enabled )
 
 QStringList ComputerMonitoringView::groupFilter() const
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
 	const auto groupsFilter = dataModel()->groupsFilter();
 	return { groupsFilter.begin(), groupsFilter.end() };
-#else
-	return dataModel()->groupsFilter().toList();
-#endif
 }
 
 

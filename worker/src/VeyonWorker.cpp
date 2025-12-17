@@ -34,7 +34,7 @@ VeyonWorker::VeyonWorker( QUuid featureUid, QObject* parent ) :
 	QObject( parent ),
 	m_core( QCoreApplication::instance(),
 			VeyonCore::Component::Worker,
-			QStringLiteral( "FeatureWorker-" ) + VeyonCore::formattedUuid( featureUid ) )
+			QStringLiteral("FeatureWorker-") + featureUid.toString(QUuid::WithoutBraces))
 {
 	const Feature* workerFeature = nullptr;
 

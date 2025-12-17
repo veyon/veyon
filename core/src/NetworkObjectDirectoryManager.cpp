@@ -105,7 +105,7 @@ NetworkObjectDirectory* NetworkObjectDirectoryManager::createDirectory( Plugin::
 
 void NetworkObjectDirectoryManager::setEnabled( Plugin::Uid uid, bool enabled )
 {
-	const auto formattedUid = VeyonCore::formattedUuid(uid);
+	const auto formattedUid = uid.toString(QUuid::WithoutBraces);
 
 	auto plugins = VeyonCore::config().enabledNetworkObjectDirectoryPlugins();
 
@@ -126,7 +126,7 @@ void NetworkObjectDirectoryManager::setEnabled( Plugin::Uid uid, bool enabled )
 
 bool NetworkObjectDirectoryManager::isEnabled( Plugin::Uid uid ) const
 {
-	return VeyonCore::config().enabledNetworkObjectDirectoryPlugins().contains( VeyonCore::formattedUuid(uid) );
+	return VeyonCore::config().enabledNetworkObjectDirectoryPlugins().contains(uid.toString(QUuid::WithoutBraces));
 }
 
 

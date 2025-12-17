@@ -24,7 +24,6 @@
 
 #include <QPushButton>
 
-#include "QtCompat.h"
 #include "PowerDownTimeInputDialog.h"
 
 #include "ui_PowerDownTimeInputDialog.h"

@@ -112,23 +112,14 @@ void UiMapping::initWidgetFromProperty( const Configuration::TypedProperty<QUuid
 
 void UiMapping::setFlags( QObject* object, Property::Flags flags )
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-	object->setProperty( WidgetConfigPropertyFlags, QVariant::fromValue( flags ) );
-#else
-	object->setProperty( WidgetConfigPropertyFlags, static_cast<unsigned int>( flags ) );
-#endif
+	object->setProperty(WidgetConfigPropertyFlags, QVariant::fromValue(flags));
 }
 
 
 
 Property::Flags UiMapping::flags( QObject* object )
 {
-	const auto flagsData = object->property( WidgetConfigPropertyFlags );
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-	return flagsData.value<Property::Flags>();
-#else
-	return static_cast<Property::Flags>( flagsData.toUInt() );
-#endif
+	return object->property(WidgetConfigPropertyFlags).value<Property::Flags>();
 }
 
 

@@ -29,11 +29,7 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
 #include <QRecursiveMutex>
-#else
-#include <QMutex>
-#endif
 
 #include "FeatureMessage.h"
 
@@ -81,10 +77,6 @@ private:
 	using WorkerMap = QMap<Feature::Uid, Worker>;
 	WorkerMap m_workers;
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
 	QRecursiveMutex m_workersMutex;
-#else
-	QMutex m_workersMutex{QMutex::Recursive};
-#endif
 
 } ;

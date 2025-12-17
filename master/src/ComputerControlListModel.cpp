@@ -32,7 +32,7 @@
 #include "VeyonMaster.h"
 #include "UserConfig.h"
 
-#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#if defined(QT_TESTLIB_LIB)
 #include <QAbstractItemModelTester>
 #endif
 
@@ -47,7 +47,7 @@ ComputerControlListModel::ComputerControlListModel( VeyonMaster* masterCore, QOb
 	m_iconHostAccessDenied(QStringLiteral(":/master/host-access-denied.png")),
 	m_iconHostServiceError(QStringLiteral(":/master/host-service-error.png"))
 {
-#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#if defined(QT_TESTLIB_LIB)
 	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
 #endif
 
@@ -114,7 +114,7 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 
 	case ImageIdRole:
 		return QStringLiteral("image://%1/%2/%3").arg( imageProvider()->id(),
-													   VeyonCore::formattedUuid( computerControl->computer().networkObjectUid() ),
+													   computerControl->computer().networkObjectUid().toString(QUuid::WithoutBraces),
 													   QString::number( computerControl->timestamp() ) );
 
 	case GroupsRole:
@@ -580,7 +580,7 @@ QString ComputerControlListModel::computerSortRole( const ComputerControlInterfa
 		}
 
 		return controlInterface->userLoginName();
-	
+
 	case SortOrder::LastPartOfUserName:
 		const QStringList parts = controlInterface->userFullName().split(QLatin1Char(' '), Qt::SkipEmptyParts);
 		if( parts.isEmpty() == false )

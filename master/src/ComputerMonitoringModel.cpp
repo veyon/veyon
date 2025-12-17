@@ -25,7 +25,7 @@
 #include "ComputerControlListModel.h"
 #include "ComputerMonitoringModel.h"
 
-#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#if defined(QT_TESTLIB_LIB)
 #include <QAbstractItemModelTester>
 #endif
 
@@ -33,7 +33,7 @@
 ComputerMonitoringModel::ComputerMonitoringModel( ComputerControlListModel* sourceModel, QObject* parent ) :
 	QSortFilterProxyModel( parent )
 {
-#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#if defined(QT_TESTLIB_LIB)
 	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
 #endif
 
@@ -99,11 +99,7 @@ void ComputerMonitoringModel::setFilterNonEmptyUserLoginNames( bool enabled )
 void ComputerMonitoringModel::setGroupsFilter( const QStringList& groups )
 {
 	beginResetModel();
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-	m_groupsFilter = { groups.begin(), groups.end() };
-#else
-	m_groupsFilter = groups.toSet();
-#endif
+	m_groupsFilter = {groups.begin(), groups.end()};
 	endResetModel();
 }
 
@@ -131,13 +127,7 @@ bool ComputerMonitoringModel::filterAcceptsRow( int sourceRow, const QModelIndex
 	{
 		const auto groups = sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ), m_groupsRole ).toStringList();
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-		const auto groupSet = QSet<QString>{ groups.begin(), groups.end() };
-#else
-		const auto groupSet = groups.toSet();
-#endif
-
-		if( groupSet.intersects( groupsFilter() ) == false )
+		if (QSet<QString>{groups.begin(), groups.end()}.intersects(groupsFilter()) == false)
 		{
 			return false;
 		}

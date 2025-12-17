@@ -96,7 +96,7 @@ AuthenticationManager::Types AuthenticationManager::availableMethods() const
 
 void AuthenticationManager::setEnabled( Plugin::Uid uid, bool enabled )
 {
-	const auto formattedUid = VeyonCore::formattedUuid(uid);
+	const auto formattedUid = uid.toString(QUuid::WithoutBraces);
 
 	auto plugins = VeyonCore::config().enabledAuthenticationPlugins();
 
@@ -117,7 +117,7 @@ void AuthenticationManager::setEnabled( Plugin::Uid uid, bool enabled )
 
 bool AuthenticationManager::isEnabled( Plugin::Uid uid ) const
 {
-	return VeyonCore::config().enabledAuthenticationPlugins().contains( VeyonCore::formattedUuid(uid) );
+	return VeyonCore::config().enabledAuthenticationPlugins().contains(uid.toString(QUuid::WithoutBraces));
 }
 
 

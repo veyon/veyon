@@ -85,11 +85,7 @@ VncViewWidget::~VncViewWidget()
 QSize VncViewWidget::sizeHint() const
 {
 	QSize availableSize{QGuiApplication::primaryScreen()->availableVirtualSize()};
-#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
-	const auto* windowScreen = windowHandle() ? windowHandle()->screen() : nullptr;
-#else
 	const auto* windowScreen = screen();
-#endif
 	if (windowScreen)
 	{
 		availableSize = windowScreen->availableVirtualSize();

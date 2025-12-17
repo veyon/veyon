@@ -405,21 +405,12 @@ QStringList LdapDirectory::computerLocationEntries( const QString& locationName 
 	{
 		const auto computerHostNames = computersByHostName();
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
 		auto memberComputersSet = QSet<QString>( memberComputers.begin(), memberComputers.end() );
 		const auto computerHostNameSet = QSet<QString>( computerHostNames.begin(), computerHostNames.end() );
-#else
-		auto memberComputersSet = memberComputers.toSet();
-		const auto computerHostNameSet = computersByHostName().toSet();
-#endif
 
 		// then return intersection of filtered computer list and group members
 		const auto computerIntersection = memberComputersSet.intersect( computerHostNameSet );
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
 		return { computerIntersection.begin(), computerIntersection.end() };
-#else
-		return computerIntersection.toList();
-#endif
 	}
 
 	return memberComputers;

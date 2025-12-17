@@ -114,7 +114,7 @@ void DocumentationFigureCreator::createFeatureFigures()
 			x = btn->x();
 		}
 
-		const auto separatedFeature = separatedPluginFeatures.contains( VeyonCore::formattedUuid( previousPluginUid ) );
+		const auto separatedFeature = separatedPluginFeatures.contains(previousPluginUid.toString(QUuid::WithoutBraces));
 
 		if( pluginUid != previousPluginUid || separatedFeature )
 		{

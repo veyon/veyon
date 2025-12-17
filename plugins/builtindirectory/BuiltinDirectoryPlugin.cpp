@@ -491,8 +491,8 @@ void BuiltinDirectoryPlugin::listObjects( const QJsonArray& objects, const Netwo
 QStringList BuiltinDirectoryPlugin::dumpNetworkObject( const NetworkObject& object )
 {
 	return {
-		VeyonCore::formattedUuid( object.uid() ),
-		VeyonCore::formattedUuid( object.parentUid() ),
+		object.uid().toString(QUuid::WithoutBraces),
+		object.parentUid().toString(QUuid::WithoutBraces),
 		networkObjectTypeName( object ),
 		object.name(),
 		object.property( NetworkObject::Property::HostAddress ).toString(),

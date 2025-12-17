@@ -148,7 +148,7 @@ void AccessControlRuleEditDialog::accept()
 	// authentication method
 	saveCondition( ui->isAuthenticatedViaMethod, ui->invertIsAuthenticatedViaMethod, AccessControlRule::Condition::AuthenticationMethod );
 	m_rule.setArgument( AccessControlRule::Condition::AuthenticationMethod,
-						VeyonCore::formattedUuid( ui->authenticationMethods->currentData().toUuid() ) );
+						ui->authenticationMethods->currentData().toUuid().toString(QUuid::WithoutBraces));
 
 	// member of user group
 	saveCondition( ui->isMemberOfGroup, ui->invertIsMemberOfGroup, AccessControlRule::Condition::MemberOfGroup );

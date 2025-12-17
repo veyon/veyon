@@ -25,7 +25,7 @@
 #include "NetworkObjectOverlayDataModel.h"
 #include "NetworkObjectModel.h"
 
-#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#if defined(QT_TESTLIB_LIB)
 #include <QAbstractItemModelTester>
 #include <QStandardItemModel>
 #endif
@@ -35,7 +35,7 @@ NetworkObjectOverlayDataModel::NetworkObjectOverlayDataModel(const QStringList& 
 	KExtraColumnsProxyModel( parent ),
 	m_overlayDataRole( Qt::DisplayRole )
 {
-#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#if defined(QT_TESTLIB_LIB)
 	// base class relies on source model being set when tested by QAbstractItemModelTester
 	setSourceModel( new QStandardItemModel( this ) );
 	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );

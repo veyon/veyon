@@ -25,7 +25,7 @@
 #include "NetworkObjectDirectory.h"
 #include "NetworkObjectTreeModel.h"
 
-#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#if defined(QT_TESTLIB_LIB)
 #include <QAbstractItemModelTester>
 #endif
 
@@ -34,7 +34,7 @@ NetworkObjectTreeModel::NetworkObjectTreeModel( NetworkObjectDirectory* director
 	NetworkObjectModel( parent ),
 	m_directory( directory )
 {
-#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#if defined(QT_TESTLIB_LIB)
 	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
 #endif
 

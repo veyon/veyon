@@ -302,11 +302,7 @@ void ConfigCommands::listConfiguration( ListMode listMode ) const
 														replace( QLatin1Char('Q'), QString() ).toLower() );
 			break;
 		}
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
 		stdoutStream << Qt::endl;
-#else
-		stdoutStream << endl;
-#endif
 	}
 }
 

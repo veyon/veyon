@@ -504,17 +504,6 @@ QString VeyonCore::stripDomain( const QString& username )
 
 
 
-QString VeyonCore::formattedUuid( QUuid uuid )
-{
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
-	return uuid.toString( QUuid::WithoutBraces );
-#else
-	return uuid.toString().remove( QLatin1Char('{') ).remove( QLatin1Char('}') );
-#endif
-}
-
-
-
 QString VeyonCore::stringify( const QVariantMap& map )
 {
 	return QString::fromUtf8( QJsonDocument(QJsonObject::fromVariantMap(map)).toJson(QJsonDocument::Compact) );
@@ -599,7 +588,7 @@ void VeyonCore::initConfiguration()
 
 	if( QUuid( config().installationID() ).isNull() )
 	{
-		config().setInstallationID( formattedUuid( QUuid::createUuid() ) );
+		config().setInstallationID(QUuid::createUuid().toString(QUuid::WithoutBraces));
 	}
 
 	if( config().applicationName().isEmpty() == false )
@@ -754,11 +743,7 @@ void VeyonCore::initTlsConfiguration()
 {
 	auto tlsConfig{TlsConfiguration::defaultConfiguration()};
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
 	tlsConfig.setProtocol( QSsl::TlsV1_3OrLater );
-#else
-	tlsConfig.setProtocol( QSsl::TlsV1_2OrLater );
-#endif
 
 	if( config().tlsUseCertificateAuthority() )
 	{
@@ -835,11 +820,7 @@ bool VeyonCore::loadCertificateAuthorityFiles( TlsConfiguration* tlsConfig )
 	const auto hostPrivateKeyFileData = hostPrivateKeyFile.readAll();
 
 	QSslKey hostPrivateKey;
-	for( auto algorithm : { QSsl::KeyAlgorithm::Rsa, QSsl::KeyAlgorithm::Ec
-#if QT_VERSION >= QT_VERSION_CHECK(5, 13, 0)
-				 , QSsl::KeyAlgorithm::Dh
-#endif
-		 } )
+	for (const auto algorithm : {QSsl::KeyAlgorithm::Rsa, QSsl::KeyAlgorithm::Ec, QSsl::KeyAlgorithm::Dh})
 	{
 		QSslKey currentPrivateKey( hostPrivateKeyFileData, algorithm );
 		if( currentPrivateKey.isNull() == false )
@@ -855,12 +836,8 @@ bool VeyonCore::loadCertificateAuthorityFiles( TlsConfiguration* tlsConfig )
 		return false;
 	}
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
 	tlsConfig->addCaCertificates( TlsConfiguration::systemCaCertificates() );
 	tlsConfig->addCaCertificate( caCertificate );
-#else
-	tlsConfig->setCaCertificates( TlsConfiguration::systemCaCertificates() + QList<QSslCertificate>{caCertificate} );
-#endif
 	tlsConfig->setLocalCertificate( hostCertificate );
 	tlsConfig->setPrivateKey( hostPrivateKey );
 
@@ -885,11 +862,7 @@ bool VeyonCore::addSelfSignedHostCertificate( TlsConfiguration* tlsConfig )
 		return false;
 	}
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
 	tlsConfig->addCaCertificates( TlsConfiguration::systemCaCertificates() );
-#else
-	tlsConfig->setCaCertificates( TlsConfiguration::systemCaCertificates() );
-#endif
 	tlsConfig->setLocalCertificate( QSslCertificate( cert.toPEM().toUtf8() ) );
 	tlsConfig->setPrivateKey( QSslKey( privateKey.toPEM().toUtf8(), QSsl::KeyAlgorithm::Rsa ) );
 

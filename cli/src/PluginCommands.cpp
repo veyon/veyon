@@ -78,16 +78,12 @@ CommandLinePluginInterface::RunResult PluginCommands::handle_show( const QString
 
 	for( auto plugin : plugins )
 	{
-		tableRows.append( {
-			plugin->name(),
-			plugin->description(),
-			plugin->version().toString(),
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
-				plugin->uid().toString( QUuid::WithoutBraces )
-#else
-				VeyonCore::formattedUuid( plugin->uid().toString() )
-#endif
-		} );
+		tableRows.append({
+							 plugin->name(),
+							 plugin->description(),
+							 plugin->version().toString(),
+							 plugin->uid().toString(QUuid::WithoutBraces)
+						 });
 	}
 
 	std::sort( tableRows.begin(), tableRows.end(), []( const TableRow& a, const TableRow& b ) {

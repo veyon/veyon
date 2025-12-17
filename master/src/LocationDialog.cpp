@@ -36,9 +36,7 @@ LocationDialog::LocationDialog( QAbstractItemModel* locationListModel, QWidget* 
 	m_networkObjectFilterProxyModel.setComputersExcluded(true);
 
 	m_sortFilterProxyModel.setSourceModel(&m_networkObjectFilterProxyModel);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
 	m_sortFilterProxyModel.setRecursiveFilteringEnabled(true);
-#endif
 	m_sortFilterProxyModel.setFilterCaseSensitivity( Qt::CaseInsensitive );
 	m_sortFilterProxyModel.sort( 0 );
 
@@ -65,11 +63,7 @@ void LocationDialog::updateSearchFilter()
 {
 	ui->treeView->expandAll();
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 1)
 	m_sortFilterProxyModel.setFilterRegularExpression( ui->filterLineEdit->text() );
-#else
-	m_sortFilterProxyModel.setFilterRegExp( ui->filterLineEdit->text() );
-#endif
 
 	ui->treeView->selectionModel()->setCurrentIndex( m_sortFilterProxyModel.index( 0, 0 ),
 														 QItemSelectionModel::ClearAndSelect );
