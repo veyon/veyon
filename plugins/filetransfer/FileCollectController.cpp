@@ -119,8 +119,8 @@ QString FileCollectController::outputFilePath(ComputerControlInterface::Pointer 
 	switch (m_collectedFilesGroupingAttribute)
 	{
 	case CollectedFilesGroupingAttribute::DeviceName: groupingAttribute = computerControlInterface->computerName(); break;
-	case CollectedFilesGroupingAttribute::UserLoginName: groupingAttribute = computerControlInterface->userLoginName(); break;
-	case CollectedFilesGroupingAttribute::FullNameOfUser: groupingAttribute = computerControlInterface->userFullName(); break;
+	case CollectedFilesGroupingAttribute::UserLoginName: groupingAttribute = VeyonCore::stripDomain(computerControlInterface->userLoginName()); break;
+	case CollectedFilesGroupingAttribute::FullNameOfUser: groupingAttribute = VeyonCore::stripDomain(computerControlInterface->userFullName()); break;
 	}
 
 	static const QRegularExpression invalidFileNameCharacters(QStringLiteral("[\x00-\x1F<>:\"/\\|?*\x7F]"));
