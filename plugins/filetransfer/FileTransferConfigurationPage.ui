@@ -35,14 +35,14 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label">
         <property name="text">
-         <string>Destination directory</string>
+         <string>Destination directory (remote):</string>
         </property>
        </widget>
       </item>
       <item row="0" column="0">
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Default source directory</string>
+         <string>Default source directory:</string>
         </property>
        </widget>
       </item>
@@ -84,7 +84,7 @@
       <item row="0" column="0">
        <widget class="QLabel" name="label_8">
         <property name="text">
-         <string>Source directory</string>
+         <string>Source directory (remote):</string>
         </property>
        </widget>
       </item>
@@ -149,28 +149,28 @@
       <item row="7" column="0">
        <widget class="QLabel" name="label_9">
         <property name="text">
-         <string>Collected files grouping attribute</string>
+         <string>Grouping attribute:</string>
         </property>
        </widget>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="label_4">
         <property name="text">
-         <string>Destination directory</string>
+         <string>Destination directory:</string>
         </property>
        </widget>
       </item>
       <item row="5" column="0">
        <widget class="QLabel" name="label_7">
         <property name="text">
-         <string>Collection directory</string>
+         <string>Store collected files in:</string>
         </property>
        </widget>
       </item>
       <item row="6" column="0">
        <widget class="QLabel" name="label_6">
         <property name="text">
-         <string>Group collected files</string>
+         <string>Group collected files:</string>
         </property>
        </widget>
       </item>
@@ -185,7 +185,7 @@
        <widget class="QComboBox" name="collectionDirectory">
         <item>
          <property name="text">
-          <string>Destination directory</string>
+          <string>Directly in the destination directory</string>
          </property>
         </item>
         <item>
@@ -225,7 +225,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="collectingModeLabel">
         <property name="text">
-         <string>Files to collect</string>
+         <string>Files to collect:</string>
         </property>
        </widget>
       </item>
@@ -243,7 +243,7 @@
       <item row="2" column="0">
        <widget class="QLabel" name="filesToExcludeFromCollectingLabel">
         <property name="text">
-         <string>Files to exclude</string>
+         <string>Files to exclude:</string>
         </property>
        </widget>
       </item>
