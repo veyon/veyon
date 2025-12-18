@@ -17,13 +17,8 @@ CHECK_SYMBOL_EXISTS(ldap_extended_operation_s ldap.h HAVE_LDAP_EXTENDED_OPERATIO
 CHECK_INCLUDE_FILES(ldap.h HAVE_LDAP_H)
 set(LDAP_FOUND TRUE)
 
-if(NOT WITH_QT6 AND Qt5Core_VERSION VERSION_LESS 5.14.0)
-	set(kldap_SOURCE_DIR ${CMAKE_SOURCE_DIR}/3rdparty/kldap-qt-compat/src/core)
-	configure_file(${kldap_SOURCE_DIR}/../kldap_config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/kldap_config.h)
-else()
-	set(kldap_SOURCE_DIR ${CMAKE_SOURCE_DIR}/3rdparty/kldap/src/core)
-	configure_file(${kldap_SOURCE_DIR}/kldap_config.h.in ${CMAKE_CURRENT_BINARY_DIR}/kldap_config.h)
-endif()
+set(kldap_SOURCE_DIR ${CMAKE_SOURCE_DIR}/3rdparty/kldap/src/core)
+configure_file(${kldap_SOURCE_DIR}/kldap_config.h.in ${CMAKE_CURRENT_BINARY_DIR}/kldap_config.h)
 
 set(kldap_SOURCES
 	${kldap_SOURCE_DIR}/ber.cpp
