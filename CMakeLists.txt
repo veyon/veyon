@@ -159,7 +159,7 @@ if(WITH_QT6)
 	endif()
 else()
 	set(QT_MAJOR_VERSION 5)
-	find_package(Qt5 5.14 COMPONENTS
+	find_package(Qt5 5.15 COMPONENTS
 		Core
 		Concurrent
 		Gui

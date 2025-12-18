@@ -25,7 +25,7 @@
 #include "NetworkObjectModel.h"
 #include "NetworkObjectFilterProxyModel.h"
 
-#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#if defined(QT_TESTLIB_LIB)
 #include <QAbstractItemModelTester>
 #endif
 
@@ -36,7 +36,7 @@ NetworkObjectFilterProxyModel::NetworkObjectFilterProxyModel( QObject* parent ) 
 	m_computerExcludeList(),
 	m_excludeEmptyGroups( false )
 {
-#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#if defined(QT_TESTLIB_LIB)
 	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
 #endif
 }

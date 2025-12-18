@@ -396,11 +396,7 @@ bool WebApiHttpServer::setupTls()
 	const auto privateKeyFileData = privateKeyFile.readAll();
 
 	QSslKey privateKey;
-	for( auto algorithm : { QSsl::KeyAlgorithm::Rsa, QSsl::KeyAlgorithm::Ec
-#if QT_VERSION >= QT_VERSION_CHECK(5, 13, 0)
-				 , QSsl::KeyAlgorithm::Dh
-#endif
-		 } )
+	for(const auto algorithm : {QSsl::KeyAlgorithm::Rsa, QSsl::KeyAlgorithm::Ec, QSsl::KeyAlgorithm::Dh})
 	{
 		QSslKey currentPrivateKey( privateKeyFileData, algorithm );
 		if( currentPrivateKey.isNull() == false )

@@ -411,11 +411,12 @@ QStringList LdapDirectory::computerLocationEntries( const QString& locationName 
 	{
 		const auto computerHostNames = computersByHostName();
 
-		auto memberComputersSet = qsetFromList(memberComputers);
-		const auto computerHostNameSet = qsetFromList(computersByHostName());
+		auto memberComputersSet = QSet<QString>( memberComputers.begin(), memberComputers.end() );
+		const auto computerHostNameSet = QSet<QString>( computerHostNames.begin(), computerHostNames.end() );
 
 		// then return intersection of filtered computer list and group members
-		return qlistFromSet(memberComputersSet.intersect(computerHostNameSet));
+		const auto computerIntersection = memberComputersSet.intersect( computerHostNameSet );
+		return { computerIntersection.begin(), computerIntersection.end() };
 	}
 
 	return memberComputers;

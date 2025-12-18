@@ -9,20 +9,11 @@
 
 #include "LdapCommon.h"
 
-#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
-namespace KLDAP {
-class LdapConnection;
-class LdapOperation;
-class LdapServer;
-}
-namespace KLDAPCore = KLDAP;
-#else
 namespace KLDAPCore {
 class LdapConnection;
 class LdapOperation;
 class LdapServer;
 }
-#endif
 
 class LdapConfiguration;
 

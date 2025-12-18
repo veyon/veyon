@@ -621,13 +621,8 @@ void VncView::wheelEventHandler( QWheelEvent* event )
 		return;
 	}
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
 	const auto p = mapToFramebuffer( event->position().toPoint() );
 	const uint scrollButtonMask = ( event->angleDelta().y() < 0 ) ? rfbButton5Mask : rfbButton4Mask;
-#else
-	const auto p = mapToFramebuffer( event->pos() );
-	const uint scrollButtonMask = ( event->delta() < 0 ) ? rfbButton5Mask : rfbButton4Mask;
-#endif
 	m_connection->mouseEvent( p.x(), p.y(), m_buttonMask | scrollButtonMask );
 	m_connection->mouseEvent( p.x(), p.y(), m_buttonMask );
 }

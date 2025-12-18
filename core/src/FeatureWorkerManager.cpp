@@ -97,7 +97,7 @@ bool FeatureWorkerManager::startManagedSystemWorker( Feature::Uid featureUid )
 							   { QStringLiteral("--error-limit=no"),
 								 QStringLiteral("--leak-check=full"),
 								 QStringLiteral("--show-leak-kinds=all"),
-								 QStringLiteral("--log-file=valgrind-%1.log").arg(VeyonCore::formattedUuid(featureUid)),
+								 QStringLiteral("--log-file=valgrind-%1.log").arg(featureUid.toString(QUuid::WithoutBraces)),
 								 VeyonCore::filesystem().workerFilePath(), featureUid.toString() } );
 	}
 	else

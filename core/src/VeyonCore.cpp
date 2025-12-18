@@ -503,17 +503,6 @@ QString VeyonCore::stripDomain( const QString& username )
 
 
 
-QString VeyonCore::formattedUuid( QUuid uuid )
-{
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
-	return uuid.toString( QUuid::WithoutBraces );
-#else
-	return uuid.toString().remove( QLatin1Char('{') ).remove( QLatin1Char('}') );
-#endif
-}
-
-
-
 QString VeyonCore::stringify( const QVariantMap& map )
 {
 	return QString::fromUtf8( QJsonDocument(QJsonObject::fromVariantMap(map)).toJson(QJsonDocument::Compact) );
@@ -606,7 +595,7 @@ void VeyonCore::initConfiguration()
 
 	if( QUuid( config().installationID() ).isNull() )
 	{
-		config().setInstallationID( formattedUuid( QUuid::createUuid() ) );
+		config().setInstallationID(QUuid::createUuid().toString(QUuid::WithoutBraces));
 	}
 
 	if( config().applicationName().isEmpty() == false )

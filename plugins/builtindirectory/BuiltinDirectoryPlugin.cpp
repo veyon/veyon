@@ -481,12 +481,13 @@ void BuiltinDirectoryPlugin::listObjects( const QJsonArray& objects, const Netwo
 
 QStringList BuiltinDirectoryPlugin::dumpNetworkObject( const NetworkObject& object )
 {
-	return { VeyonCore::formattedUuid( object.uid() ),
-				VeyonCore::formattedUuid( object.parentUid() ),
+	return {	object.uid().toString(QUuid::WithoutBraces),
+				object.parentUid().toString(QUuid::WithoutBraces),
 				networkObjectTypeName( object ),
 				object.name(),
 				object.hostAddress(),
-				object.macAddress() };
+				object.macAddress()
+	};
 }
 
 

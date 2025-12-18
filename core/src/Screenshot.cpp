@@ -117,14 +117,8 @@ void Screenshot::take( const ComputerControlInterface::Pointer& computerControlI
 	painter.setFont( font );
 
 	const QFontMetrics fontMetrics( painter.font() );
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
 	const auto captionWidth = fontMetrics.horizontalAdvance( caption );
 	const auto captionHeight = fontMetrics.boundingRect( caption ).height();
-#else
-	const auto boundingRect = fontMetrics.boundingRect( caption );
-	const auto captionWidth = boundingRect.width();
-	const auto captionHeight = boundingRect.height();
-#endif
 
 	const auto MARGIN = 14;
 	const auto PADDING = 7;

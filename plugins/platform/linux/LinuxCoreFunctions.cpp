@@ -116,11 +116,7 @@ void LinuxCoreFunctions::raiseWindow( QWidget* widget, bool stayOnTop )
 
 	if( stayOnTop )
 	{
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
 		widget->setWindowFlag( Qt::WindowStaysOnTopHint, true );
-#else
-		widget->setWindowFlags( widget->windowFlags() | Qt::WindowStaysOnTopHint );
-#endif
 	}
 }
 
@@ -304,10 +300,8 @@ QString LinuxCoreFunctions::genericUrlHandler() const
 QString LinuxCoreFunctions::queryDisplayDeviceName(const QScreen& screen) const
 {
 	QStringList nameParts;
-#if QT_VERSION >= QT_VERSION_CHECK(5, 9, 0)
 	nameParts.append(screen.manufacturer());
 	nameParts.append(screen.model());
-#endif
 	nameParts.removeAll({});
 	if(nameParts.isEmpty())
 	{

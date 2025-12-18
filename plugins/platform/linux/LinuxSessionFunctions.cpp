@@ -213,11 +213,7 @@ LinuxSessionFunctions::SessionUptime LinuxSessionFunctions::getSessionUptimeSeco
 		return -1;
 	}
 
-#if QT_VERSION < QT_VERSION_CHECK(5, 8, 0)
-	const auto currentTimestamp = QDateTime::currentMSecsSinceEpoch() / 1000;
-#else
 	const auto currentTimestamp = QDateTime::currentSecsSinceEpoch();
-#endif
 
 	return SessionUptime(currentTimestamp - sessionUptimeUsec.toLongLong() / (1000 * 1000));
 }

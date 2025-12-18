@@ -32,8 +32,6 @@
 #include <functional>
 #include <type_traits>
 
-#include "QtCompat.h"
-
 #if defined(veyon_core_EXPORTS)
 #  define VEYON_CORE_EXPORT Q_DECL_EXPORT
 #else
@@ -189,7 +187,6 @@ public:
 	static QByteArray cleanupFuncinfo( QByteArray info );
 
 	static QString stripDomain( const QString& username );
-	static QString formattedUuid( QUuid uuid );
 	static QString stringify( const QVariantMap& map );
 
 	static QString screenName( const QScreen& screen, int index );

@@ -183,7 +183,10 @@ bool AccessControlProvider::processAuthorizedGroups( const QString& accessingUse
 
 	vDebug() << groupsOfAccessingUser << authorizedUserGroups;
 
-	return qsetFromList(groupsOfAccessingUser).intersects(qsetFromList(authorizedUserGroups));
+	const auto groupsOfAccessingUserSet = QSet<QString>{ groupsOfAccessingUser.begin(), groupsOfAccessingUser.end() };
+	const auto authorizedUserGroupSet = QSet<QString>{ authorizedUserGroups.begin(), authorizedUserGroups.end() };
+
+	return groupsOfAccessingUserSet.intersects( authorizedUserGroupSet );
 }
 
 
@@ -294,7 +297,10 @@ bool AccessControlProvider::haveGroupsInCommon( const QString &userOne, const QS
 	const auto userOneGroups = m_userGroupsBackend->groupsOfUser( userOne, m_useDomainUserGroups );
 	const auto userTwoGroups = m_userGroupsBackend->groupsOfUser( userTwo, m_useDomainUserGroups );
 
-	return qsetFromList(userOneGroups).intersects(qsetFromList(userTwoGroups));
+	const auto userOneGroupSet = QSet<QString>{ userOneGroups.begin(), userOneGroups.end() };
+	const auto userTwoGroupSet = QSet<QString>{ userTwoGroups.begin(), userTwoGroups.end() };
+
+	return userOneGroupSet.intersects( userTwoGroupSet );
 }
 
 

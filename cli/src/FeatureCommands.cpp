@@ -181,11 +181,7 @@ CommandLinePluginInterface::RunResult FeatureCommands::handle_show( const QStrin
 				feature.testFlag(Feature::Flag::Master) ? QLatin1String("x") : QString(),
 				feature.testFlag(Feature::Flag::Service) ? QLatin1String("x") : QString(),
 				feature.testFlag(Feature::Flag::Worker) ? QLatin1String("x") : QString(),
-#if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
-				feature.uid().toString( QUuid::WithoutBraces ),
-#else
-				VeyonCore::formattedUuid( feature.uid().toString() ),
-#endif
+				feature.uid().toString(QUuid::WithoutBraces),
 				VeyonCore::pluginManager().pluginName( featureManager.pluginUid(feature.uid()) )
 			} );
 	}

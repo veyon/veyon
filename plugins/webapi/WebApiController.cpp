@@ -35,16 +35,6 @@
 #include "WebApiController.h"
 
 
-static QString uuidToString( QUuid uuid )
-{
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
-	return uuid.toString( QUuid::WithoutBraces );
-#else
-	return uuid.toString().remove( QLatin1Char('{') ).remove( QLatin1Char('}') );
-#endif
-}
-
-
 WebApiController::WebApiController( const WebApiConfiguration& configuration, QObject* parent ) :
 	QObject( parent ),
 	m_configuration( configuration ),
@@ -128,7 +118,7 @@ WebApiController::Response WebApiController::getAuthenticationMethods( const Req
 
 	for( const auto& authMethodUuid : authMethodUuids )
 	{
-		methods.append( uuidToString( authMethodUuid ) );
+		methods.append(authMethodUuid.toString(QUuid::WithoutBraces));
 	}
 
 	return QVariantMap{ { k2s(Key::Methods), methods } };
@@ -256,7 +246,7 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 		});
 
 		return QVariantMap{
-			{ QString::fromUtf8(connectionUidHeaderFieldName().toLower()), uuidToString(uuid) },
+			{ QString::fromUtf8(connectionUidHeaderFieldName().toLower()), uuid.toString(QUuid::WithoutBraces) },
 			{ k2s(Key::ValidUntil), QDateTime::currentSecsSinceEpoch() + connectionLifetime / MillisecondsPerSecond }
 		};
 	}
@@ -353,8 +343,8 @@ WebApiController::Response WebApiController::listFeatures( const Request& reques
 	for( const auto& feature : features )
 	{
 		QVariantMap featureObject{ { k2s(Key::Name), feature.name() },
-								   { k2s(Key::Uid), uuidToString(feature.uid()) },
-								   { k2s(Key::ParentUid), uuidToString(feature.parentUid()) },
+								   { k2s(Key::Uid), feature.uid().toString(QUuid::WithoutBraces) },
+								   { k2s(Key::ParentUid), feature.parentUid().toString(QUuid::WithoutBraces) },
 								   { k2s(Key::Active), activeFeatures.contains(feature.uid()) } };
 		featureList.append( featureObject );
 	}
@@ -499,7 +489,7 @@ QString WebApiController::getConnectionDetails()
 	{
 		const auto connection = it.value();
 
-		rows.append({uuidToString(it.key()),
+		rows.append({it.key().toString(QUuid::WithoutBraces),
 					 EnumHelper::toString(connection->controlInterface()->state()),
 					 connection->controlInterface()->computer().hostName(),
 					 connection->controlInterface()->userLoginName(),

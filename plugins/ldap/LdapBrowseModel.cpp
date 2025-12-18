@@ -8,7 +8,7 @@
 #include "LdapConfiguration.h"
 #include "LdapBrowseModel.h"
 
-#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#if defined(QT_TESTLIB_LIB)
 #include <QAbstractItemModelTester>
 #endif
 
@@ -113,7 +113,7 @@ LdapBrowseModel::LdapBrowseModel( Mode mode, const LdapConfiguration& configurat
 {
 	populateRoot();
 
-#if defined(QT_TESTLIB_LIB) && QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
+#if defined(QT_TESTLIB_LIB)
 	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
 #endif
 }

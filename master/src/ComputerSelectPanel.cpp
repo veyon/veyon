@@ -29,7 +29,6 @@
 #include "ComputerSelectPanel.h"
 #include "ComputerManager.h"
 #include "NetworkObjectModel.h"
-#include "RecursiveFilterProxyModel.h"
 #include "LocationDialog.h"
 #include "VeyonConfiguration.h"
 
@@ -40,14 +39,12 @@ ComputerSelectPanel::ComputerSelectPanel( ComputerManager& computerManager, QWid
 	QWidget(parent),
 	ui(new Ui::ComputerSelectPanel),
 	m_computerManager( computerManager ),
-	m_filterProxyModel( new RecursiveFilterProxyModel( this ) )
+	m_filterProxyModel(new QSortFilterProxyModel(this))
 {
 	m_filterProxyModel->setSourceModel( computerManager.computerTreeModel() );
 	m_filterProxyModel->setFilterCaseSensitivity( Qt::CaseInsensitive );
 	m_filterProxyModel->setFilterKeyColumn( -1 ); // filter all columns instead of first one only
-#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
 	m_filterProxyModel->setRecursiveFilteringEnabled(true);
-#endif
 
 	ui->setupUi(this);
 

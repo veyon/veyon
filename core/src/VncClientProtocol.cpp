@@ -635,11 +635,7 @@ bool VncClientProtocol::handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHea
 		return true;
 
 	default:
-		vCritical() << "Unsupported rect encoding" <<
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-					   Qt::hex <<
-#endif
-					   rectHeader.encoding;
+		vCritical() << "Unsupported rect encoding" << Qt::hex << rectHeader.encoding;
 		m_socket->close();
 		break;
 	}
