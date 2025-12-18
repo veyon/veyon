@@ -42,8 +42,8 @@ Pokud ale překlad není kompletní a nebo by potřeboval vylepšit, případně
         <translation>Licence</translation>
     </message>
     <message>
-        <source>About %1 %2</source>
-        <translation>O %1 %2</translation>
+        <source>About Veyon %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1100,8 +1100,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Uživatel „%1“ na stroji „%2“ se pokusil přistoupit k tomuto počítači, ale byl zablokován dle nastavení řízení přístupu.</translation>
     </message>
     <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 služba %2 na %3:%4</translation>
+        <source>Veyon Service %1 at %2:%3</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1123,8 +1123,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Chybí zásuvný modul pro adresář se síťovými objekty</translation>
     </message>
     <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Nebyl nalezen žádný výchozí zásuvný modul pro adresář se síťovými objekty. Zkontrolujte svou instalaci nebo v nastavení %1 určete jinou podpůrnou vrstvu (backend) pro takový adresář.</translation>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1260,16 +1260,16 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>ConfigurationManager</name>
     <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Nedaří se nastavit automatické spouštění služby %1.</translation>
+        <source>Could not modify the autostart property for the Veyon Service.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation>Nedaří se nastavit nastavení brány firewall pro server %1.</translation>
+        <source>Could not configure the firewall configuration for the Veyon Server.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation>Nedaří se nastavit bránu firewall pro worker %1.</translation>
+        <source>Could not configure the firewall configuration for the Veyon Worker.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1283,8 +1283,8 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>DemoClient</name>
     <message>
-        <source>%1 Demo</source>
-        <translation>Ukázka %1</translation>
+        <source>Veyon Demo</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1779,19 +1779,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Destination directory</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Default source directory</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Settings for collecting files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Source directory</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1807,18 +1795,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Group collected files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Collection directory</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Files to collect</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Collect all files from configured source directory</source>
         <translation type="unfinished"/>
     </message>
@@ -1831,6 +1807,26 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Grouping attribute:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Destination directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Store collected files in:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group collected files:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Directly in the destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Subdirectory based on date &amp; time</source>
         <translation type="unfinished"/>
     </message>
@@ -1839,7 +1835,31 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Files to collect:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files to exclude:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. *.lnk or *.desktop</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collect files recursively</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Destination directory (remote):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default source directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory (remote):</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1855,7 +1875,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Collected files grouping attribute</source>
+        <source>Device and user login name</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2083,12 +2103,12 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Ověřování není na tomto počítači nastaveno správně</translation>
     </message>
     <message>
-        <source>%1 service</source>
-        <translation>služba %1</translation>
+        <source>Veyon service</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>Pro smazání souborů se záznamy událostí je třeba dočasně zastavit službu %1 – pokračovat?</translation>
+        <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -3015,10 +3035,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>&amp;Pokročilé</translation>
     </message>
     <message>
-        <source>MainWindow</source>
-        <translation>Hlavní Okno</translation>
-    </message>
-    <message>
         <source>Adjust size of computer icons automatically</source>
         <translation type="unfinished"/>
     </message>
@@ -3067,8 +3083,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Lišta nástrojů</translation>
     </message>
     <message>
-        <source>%1 Configurator %2</source>
-        <translation>%1 nastavení %2</translation>
+        <source>Veyon Configurator %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3081,10 +3097,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
         <translation>Opravdu chcete resetovat místní nastavení a vrátit veškerá nastavení do výchozích hodnot?</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>Nastavení %1</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -3107,16 +3119,16 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Nastavení není přístupné pro zápis</translation>
     </message>
     <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>Podpůrná vrstva (backend) nastavení na tomto počítači hlásí, že do nastavení nelze zapisovat! Spusťte konzolu pro správu %1 s vyššími oprávněními.</translation>
+        <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication impossible</source>
         <translation>Ověření není možné</translation>
     </message>
     <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>Nebyly nalezeny žádné ověřovací klíče nebo jsou ty vámi právě používané zastaralé. Vytvořte nové soubory s klíči pomocí konzole pro správu %1. Případně můžete v konzoli pro správu %1 nastavit ověřování přihlášením. Pokud tak neučiníte, nebudete moci přistupovat k počítačům pomocí %1.</translation>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Access denied</source>
@@ -3131,8 +3143,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Funkce aktivní</translation>
     </message>
     <message>
-        <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation>Funkce „%1“ je pořád aktivní. Ukončete ji a až teprve potom ukončete %2.</translation>
+        <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use custom computer arrangement.
@@ -3257,6 +3269,14 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Remote access image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Identify users in guest sessions if login name matches:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Guest</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3428,6 +3448,18 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Query properties of remotely available screens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Identify users in guest sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Identification request</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter your name:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3699,11 +3731,11 @@ Uložte si rozdělanou práci a ukončete všechny aplikace.</translation>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>%1 - %2 Remote Access</source>
-        <translation>%1 – %2 vzdálený přístup</translation>
+        <source>%1 - Veyon Remote Access</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 - %2 - %3 Remote Access</source>
+        <source>%1 - %2 - Veyon Remote Access</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4038,12 +4070,12 @@ Typicky je toto třeba na terminálových serverech.</translation>
         <translation>Zásuvný modul:</translation>
     </message>
     <message>
-        <source>Restart %1 Service</source>
-        <translation>Restartovat službu %1</translation>
+        <source>Restart Veyon Service</source>
+        <translation>Restartovat službu Veyon</translation>
     </message>
     <message>
-        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Všechna nastavení byla úspěšně uložena. Aby se změny projevily, je třeba restartovat službu %1 – provést nyní?</translation>
+        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Running</source>
@@ -4200,7 +4232,7 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 Master – Slideshow</source>
+        <source>Veyon Master – Slideshow</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4476,6 +4508,10 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Screen %1</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Guest</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonMaster</name>
@@ -4484,8 +4520,8 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Do daného umístění nelze zapisovat</translation>
     </message>
     <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Nedaří se uložit vaše osobní nastavení! Zkontrolujte popis umístění souboru s uživatelskými nastaveními v nastavení %1.</translation>
+        <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

@@ -42,8 +42,8 @@ Ha érdekel a Veyon fordítása (saját vagy egyéb nyelvre), esetleg meglévő 
         <translation>Licensz</translation>
     </message>
     <message>
-        <source>About %1 %2</source>
-        <translation>%1 %2</translation>
+        <source>About Veyon %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1100,8 +1100,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>&quot;%1%&quot; felhasználó &quot;%2&quot; kiszolgálóról megpróbálta eléri ezt a számítógépet, de letiltottuk hozzáférés-hitelesítési beállítások miatt.</translation>
     </message>
     <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 szolgáltatás %2, 3%:%4</translation>
+        <source>Veyon Service %1 at %2:%3</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1123,8 +1123,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Hiányzik a hálózatobjektummappa-bővítmény</translation>
     </message>
     <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Hiányzik az alapértelmezett hálózatobjektummappa-bővítmény. Ellenőrizd telepítésed vagy állítsd be egy másik hálózatobjektummappa-hátteret &quot;%1&quot; Konfigurátorral.</translation>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1260,16 +1260,16 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>ConfigurationManager</name>
     <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Nem módosítható %1 szolgáltatás automatikusan induló tulajdonsága.</translation>
+        <source>Could not modify the autostart property for the Veyon Service.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation>Nem sikerült %1 szerver tűzfalbeállításait konfigurálni.</translation>
+        <source>Could not configure the firewall configuration for the Veyon Server.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation>Nem sikerült %1 munkás tűzfalbeállításait konfigurálni.</translation>
+        <source>Could not configure the firewall configuration for the Veyon Worker.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1283,8 +1283,8 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>DemoClient</name>
     <message>
-        <source>%1 Demo</source>
-        <translation>%1 demó</translation>
+        <source>Veyon Demo</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1779,19 +1779,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Destination directory</source>
-        <translation>Célmappa</translation>
-    </message>
-    <message>
-        <source>Default source directory</source>
-        <translation>Alapértelmezett forráskönyvtár</translation>
-    </message>
-    <message>
         <source>Settings for collecting files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Source directory</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1807,18 +1795,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Group collected files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Collection directory</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Files to collect</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Collect all files from configured source directory</source>
         <translation type="unfinished"/>
     </message>
@@ -1831,6 +1807,26 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Grouping attribute:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Destination directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Store collected files in:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group collected files:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Directly in the destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Subdirectory based on date &amp; time</source>
         <translation type="unfinished"/>
     </message>
@@ -1839,7 +1835,31 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Files to collect:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files to exclude:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. *.lnk or *.desktop</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collect files recursively</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Destination directory (remote):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default source directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory (remote):</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1855,7 +1875,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Collected files grouping attribute</source>
+        <source>Device and user login name</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2083,12 +2103,12 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>A hitelesítési kulcsok nem megfelelően vannak beállítva ezen a számtógépen.</translation>
     </message>
     <message>
-        <source>%1 service</source>
-        <translation>%1 szolgáltatás</translation>
+        <source>Veyon service</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>%1 szolgáltatást ideiglenesen le kell állítani, hogy a naplófájlokat eltávolíthassuk. Biztos, hogy folytatod?</translation>
+        <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -3019,10 +3039,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>&amp;Haladó</translation>
     </message>
     <message>
-        <source>MainWindow</source>
-        <translation>Fő ablak</translation>
-    </message>
-    <message>
         <source>Adjust size of computer icons automatically</source>
         <translation>Számítógépikonok automatikus méretezése</translation>
     </message>
@@ -3071,8 +3087,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Eszköztár</translation>
     </message>
     <message>
-        <source>%1 Configurator %2</source>
-        <translation>%1 Konfigurátor %2</translation>
+        <source>Veyon Configurator %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3085,10 +3101,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
         <translation>Biztos, hogy a helyi konfiguráció és az összes beállítás értékét visszaállítod az alapértelmezett értékére?</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>%1 Konfigurátor</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -3111,16 +3123,16 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Konfiguráció nem írható</translation>
     </message>
     <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>A helyi konfiguráció háttere azt jelzi, hogy a konfiguráció nem írható. Futtasd %1 Konfigurátort magasabb jogosultságokkal.</translation>
+        <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication impossible</source>
         <translation>Hitelesítés nem lehetséges</translation>
     </message>
     <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>Nincsenek hitelesítési kulcsok vagy a jelenlegi kulcsok elavultak. Kérem, készíts új kulcsfájlokat %1 Konfigurátorral. Másik megoldás lehet bejelentkezési hitelesítés beállítása %1 Konfigurátorral. Különben nem tudod majd elérni a számítógépeket %1 használatával.</translation>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Access denied</source>
@@ -3135,8 +3147,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Aktív szolgáltatás</translation>
     </message>
     <message>
-        <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation>&quot;%1&quot; szolgáltatás még aktív. Kérem, állítsa le, mielőtt %2-t bezárja </translation>
+        <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use custom computer arrangement.
@@ -3262,6 +3274,14 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Remote access image quality</source>
         <translation>Távoli hozzáférés képminősége</translation>
+    </message>
+    <message>
+        <source>Identify users in guest sessions if login name matches:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Guest</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3433,6 +3453,18 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Query properties of remotely available screens</source>
         <translation>A távolról elérhető képernyők tulajdonságainak lekérdezése</translation>
+    </message>
+    <message>
+        <source>Identify users in guest sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Identification request</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter your name:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3701,12 +3733,12 @@ Please save your work and close all programs.</source>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>%1 - %2 Remote Access</source>
-        <translation>%1 - %2 távoli hozzáférés</translation>
+        <source>%1 - Veyon Remote Access</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 - %2 - %3 Remote Access</source>
-        <translation>%1 - %2 - %3 Távoli elérés</translation>
+        <source>%1 - %2 - Veyon Remote Access</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4039,12 +4071,12 @@ Typically this is required to support terminal servers.</source>
         <translation>Bővítmény:</translation>
     </message>
     <message>
-        <source>Restart %1 Service</source>
-        <translation>%1 szolgáltatás újraindítása</translation>
+        <source>Restart Veyon Service</source>
+        <translation>Veyon Szolgáltatás újraindítása</translation>
     </message>
     <message>
-        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Az összes beállítást sikeresen mentette. A változások életbe lépéséhez %1 szolgáltatást újra kell indítani. Újraindítod most?</translation>
+        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Running</source>
@@ -4203,7 +4235,7 @@ Példa: [^-]*-(PC[0-9]*)</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 Master – Slideshow</source>
+        <source>Veyon Master – Slideshow</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4479,6 +4511,10 @@ Példa: [^-]*-(PC[0-9]*)</translation>
         <source>Screen %1</source>
         <translation>%1 képernyő</translation>
     </message>
+    <message>
+        <source>Guest</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonMaster</name>
@@ -4487,8 +4523,8 @@ Példa: [^-]*-(PC[0-9]*)</translation>
         <translation>Nincs írási hozzáférés</translation>
     </message>
     <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Személyes beállításait nem sikerült menteni! Kérem, ellenőrizd a felhasználói konfigurációs fájl útvonalát %1 Konfigurátorban.</translation>
+        <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

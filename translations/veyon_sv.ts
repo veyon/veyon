@@ -42,8 +42,8 @@ Om du är intresserad av att översätta Veyon till ditt lokala eller ett ett an
         <translation>Licens</translation>
     </message>
     <message>
-        <source>About %1 %2</source>
-        <translation>Om %1 %2</translation>
+        <source>About Veyon %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1102,8 +1102,8 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Användaren &quot;%1&quot; på värden &quot;%2&quot; försökte komma åt den här datorn men blockerades på grund av inställningar för åtkomstkontroll.</translation>
     </message>
     <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 Service %2 vid %3:%4</translation>
+        <source>Veyon Service %1 at %2:%3</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1125,8 +1125,8 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Saknar plugin för nätverksobjektkatalog</translation>
     </message>
     <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Inget standardinsticksprogram för nätverksobjektkatalog hittades. Kontrollera din installation eller konfigurera en annan backend för nätverksobjektkatalog via %1 Configurator.</translation>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1262,16 +1262,16 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
 <context>
     <name>ConfigurationManager</name>
     <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Det gick inte att ändra egenskapen autostart för tjänsten %1.</translation>
+        <source>Could not modify the autostart property for the Veyon Service.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation>Det gick inte att konfigurera brandväggskonfigurationen för servern %1.</translation>
+        <source>Could not configure the firewall configuration for the Veyon Server.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation>Det gick inte att konfigurera brandväggskonfigurationen för %1 Worker.</translation>
+        <source>Could not configure the firewall configuration for the Veyon Worker.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1285,8 +1285,8 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
 <context>
     <name>DemoClient</name>
     <message>
-        <source>%1 Demo</source>
-        <translation>%1 Demo</translation>
+        <source>Veyon Demo</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1781,20 +1781,8 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Inställningar för distribuering av filer</translation>
     </message>
     <message>
-        <source>Destination directory</source>
-        <translation>Destinationskatalog</translation>
-    </message>
-    <message>
-        <source>Default source directory</source>
-        <translation>Standard källkatalog</translation>
-    </message>
-    <message>
         <source>Settings for collecting files</source>
         <translation>Inställningar för insamling av filer</translation>
-    </message>
-    <message>
-        <source>Source directory</source>
-        <translation>Källkatalog</translation>
     </message>
     <message>
         <source>No</source>
@@ -1809,18 +1797,6 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Group collected files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Collection directory</source>
-        <translation>Insamlingskatalog</translation>
-    </message>
-    <message>
-        <source>Files to collect</source>
-        <translation>Filer att samla in</translation>
-    </message>
-    <message>
         <source>Collect all files from configured source directory</source>
         <translation>Samla alla filer från den konfigurerade källkatalogen</translation>
     </message>
@@ -1833,6 +1809,26 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Grouping attribute:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Destination directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Store collected files in:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group collected files:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Directly in the destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Subdirectory based on date &amp; time</source>
         <translation type="unfinished"/>
     </message>
@@ -1841,8 +1837,32 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Files to collect:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files to exclude:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. *.lnk or *.desktop</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collect files recursively</source>
         <translation>Samla in filer rekursivt</translation>
+    </message>
+    <message>
+        <source>Destination directory (remote):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default source directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory (remote):</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>User login name</source>
@@ -1857,7 +1877,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Enhetsnamn</translation>
     </message>
     <message>
-        <source>Collected files grouping attribute</source>
+        <source>Device and user login name</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2085,12 +2105,12 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Autentiseringsnycklarna är inte konfigurerade korrekt på denna dator.</translation>
     </message>
     <message>
-        <source>%1 service</source>
-        <translation>%1 tjänst</translation>
+        <source>Veyon service</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>%1 service måste stoppas tillfälligt för att ta bort loggfilerna. Fortsätter du?</translation>
+        <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -3021,10 +3041,6 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Avancerat</translation>
     </message>
     <message>
-        <source>MainWindow</source>
-        <translation>Huvudfönster</translation>
-    </message>
-    <message>
         <source>Adjust size of computer icons automatically</source>
         <translation>Justera storleken på datorikoner automatiskt</translation>
     </message>
@@ -3073,8 +3089,8 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>verktygsrad</translation>
     </message>
     <message>
-        <source>%1 Configurator %2</source>
-        <translation>%1 Konfigurator %2</translation>
+        <source>Veyon Configurator %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3087,10 +3103,6 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
         <translation>Vill du verkligen återställa den lokala konfigurationen och återställa alla inställningar till standardvärdena?</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>%1 Konfigurator</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -3113,16 +3125,16 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Konfigurationen är inte skrivbar</translation>
     </message>
     <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>Den lokala konfigurationsbackend rapporterade att konfigurationen inte är skrivbar! Kör %1 Configurator med högre behörigheter.</translation>
+        <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication impossible</source>
         <translation>Autentisering inte möjlig</translation>
     </message>
     <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>Inga filer för autentiseringsnycklar hittades eller så är dina nuvarande utdaterade. Skapa nya nyckelfiler med hjälp av %1 Konfigurator. Alternativt konfigurera inloggningsautentisering med %1 Konfigurator. Annars kommer du inte kunna komma åt datorer som använder %1.</translation>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Access denied</source>
@@ -3137,8 +3149,8 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Funktion aktiv</translation>
     </message>
     <message>
-        <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation>Funktionen &quot;%1&quot; är fortfarande aktiv. Vänligen stoppa den innan du stänger %2.</translation>
+        <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use custom computer arrangement.
@@ -3266,6 +3278,14 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
     <message>
         <source>Remote access image quality</source>
         <translation>Bildkvalitet för fjärråtkomst</translation>
+    </message>
+    <message>
+        <source>Identify users in guest sessions if login name matches:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Guest</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3437,6 +3457,18 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
     <message>
         <source>Query properties of remotely available screens</source>
         <translation>Fråga efter egenskaper för fjärrtillgängliga skärmar</translation>
+    </message>
+    <message>
+        <source>Identify users in guest sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Identification request</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter your name:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3707,12 +3739,12 @@ Spara ditt arbete och stäng alla program.</translation>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>%1 - %2 Remote Access</source>
-        <translation>%1 - %2 Fjärråtkomst</translation>
+        <source>%1 - Veyon Remote Access</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 - %2 - %3 Remote Access</source>
-        <translation>%1 - %2 - %3 Fjärråtkomst</translation>
+        <source>%1 - %2 - Veyon Remote Access</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4046,12 +4078,12 @@ Detta krävs vanligtvis för att stödja terminalservrar.</translation>
         <translation>Tillägg:</translation>
     </message>
     <message>
-        <source>Restart %1 Service</source>
-        <translation>Starta om %1-tjänsten</translation>
+        <source>Restart Veyon Service</source>
+        <translation>Starta om Veyon Service</translation>
     </message>
     <message>
-        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Alla inställningar sparades framgångsrikt. För att de ska träda i kraft måste %1 service startas om. Starta om den nu?</translation>
+        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Running</source>
@@ -4210,8 +4242,8 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
         <translation>Visa i separat fönster</translation>
     </message>
     <message>
-        <source>%1 Master – Slideshow</source>
-        <translation>%1 Master – Bildspel</translation>
+        <source>Veyon Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4486,6 +4518,10 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
         <source>Screen %1</source>
         <translation>Skärm %1</translation>
     </message>
+    <message>
+        <source>Guest</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonMaster</name>
@@ -4494,8 +4530,8 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
         <translation>Ingen skrivåtkomst</translation>
     </message>
     <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Det gick inte att spara dina personliga inställningar! Kontrollera sökvägen till användarkonfigurationsfilen med hjälp av %1 Configurator.</translation>
+        <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

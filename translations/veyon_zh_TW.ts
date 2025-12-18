@@ -42,8 +42,8 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>授權</translation>
     </message>
     <message>
-        <source>About %1 %2</source>
-        <translation>關於 %1 %2</translation>
+        <source>About Veyon %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1102,8 +1102,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>主機 &quot;%2&quot; 的使用者 &quot;%1&quot; 嘗試存取這部電腦，但因為存取控制設定已封鎖。</translation>
     </message>
     <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 服務 %2 在 %3:%4</translation>
+        <source>Veyon Service %1 at %2:%3</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1125,8 +1125,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>缺少網路物件目錄外掛程式</translation>
     </message>
     <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>找不到預設網路物件目錄外掛程式。 請檢查您的安裝或透過 %1 組態器設定不同的網路物件目錄後端。</translation>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1262,16 +1262,16 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>ConfigurationManager</name>
     <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>無法修改 %1 服務的自動啟動內容。</translation>
+        <source>Could not modify the autostart property for the Veyon Service.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation>無法組態 %1 伺服器的防火牆設定。</translation>
+        <source>Could not configure the firewall configuration for the Veyon Server.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation>無法組態 %1 Worker 的防火牆設定。</translation>
+        <source>Could not configure the firewall configuration for the Veyon Worker.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1285,8 +1285,8 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>DemoClient</name>
     <message>
-        <source>%1 Demo</source>
-        <translation>%1 演示</translation>
+        <source>Veyon Demo</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1781,19 +1781,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Destination directory</source>
-        <translation>目的地目錄</translation>
-    </message>
-    <message>
-        <source>Default source directory</source>
-        <translation>預設來源目錄</translation>
-    </message>
-    <message>
         <source>Settings for collecting files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Source directory</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1809,18 +1797,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Group collected files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Collection directory</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Files to collect</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Collect all files from configured source directory</source>
         <translation type="unfinished"/>
     </message>
@@ -1833,6 +1809,26 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Grouping attribute:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Destination directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Store collected files in:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group collected files:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Directly in the destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Subdirectory based on date &amp; time</source>
         <translation type="unfinished"/>
     </message>
@@ -1841,7 +1837,31 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Files to collect:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files to exclude:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. *.lnk or *.desktop</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collect files recursively</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Destination directory (remote):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default source directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory (remote):</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1857,7 +1877,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Collected files grouping attribute</source>
+        <source>Device and user login name</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2085,12 +2105,12 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>這部電腦中的身份驗證金鑰設定不正確。</translation>
     </message>
     <message>
-        <source>%1 service</source>
-        <translation>%1 服務</translation>
+        <source>Veyon service</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>%1 服務需要暫時停止，以便刪除日誌檔。 繼續?</translation>
+        <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -3021,10 +3041,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>進階(&amp;A)</translation>
     </message>
     <message>
-        <source>MainWindow</source>
-        <translation>主視窗</translation>
-    </message>
-    <message>
         <source>Adjust size of computer icons automatically</source>
         <translation>自動調整電腦圖示的大小</translation>
     </message>
@@ -3073,8 +3089,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>工具列</translation>
     </message>
     <message>
-        <source>%1 Configurator %2</source>
-        <translation>%1 組態器 %2</translation>
+        <source>Veyon Configurator %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3087,10 +3103,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
         <translation>您確定要重設本機組態並恢復所有設定為其預設值嗎?</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>%1 組態器</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -3113,16 +3125,16 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>組態無法寫入</translation>
     </message>
     <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>本機組態後端報告組態不可寫入! 請以較高特權執行 %1 組態器。</translation>
+        <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication impossible</source>
         <translation>無法驗證</translation>
     </message>
     <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>找不到驗證金鑰檔或目前的已過時。 請使用 %1 組態器建立新的金鑰檔。 或者使用 %1 組態器設定登入驗證。 否則您將無法使用 %1 存取電腦。</translation>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Access denied</source>
@@ -3137,8 +3149,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>特色活動</translation>
     </message>
     <message>
-        <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation>功能 &quot;%1&quot; 仍使用中。 請先停止它再關閉 %2。</translation>
+        <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use custom computer arrangement.
@@ -3266,6 +3278,14 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Remote access image quality</source>
         <translation>遠端存取圖片品質</translation>
+    </message>
+    <message>
+        <source>Identify users in guest sessions if login name matches:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Guest</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3437,6 +3457,18 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Query properties of remotely available screens</source>
         <translation>查詢遠端可用螢幕的內容</translation>
+    </message>
+    <message>
+        <source>Identify users in guest sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Identification request</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter your name:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3707,12 +3739,12 @@ Please save your work and close all programs.</source>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>%1 - %2 Remote Access</source>
-        <translation>%1 - %2 遠端存取</translation>
+        <source>%1 - Veyon Remote Access</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 - %2 - %3 Remote Access</source>
-        <translation>%1 - %2 - %3 遠端存取</translation>
+        <source>%1 - %2 - Veyon Remote Access</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4046,12 +4078,12 @@ Typically this is required to support terminal servers.</source>
         <translation>外掛程式:</translation>
     </message>
     <message>
-        <source>Restart %1 Service</source>
-        <translation>重新啟動 %1 服務</translation>
+        <source>Restart Veyon Service</source>
+        <translation>重新啟動 Veyon 服務</translation>
     </message>
     <message>
-        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>儲存所有的設定成功。 為了生效 %1 服務需要重新啟動。 立即重新啟動它?</translation>
+        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Running</source>
@@ -4210,8 +4242,8 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>在個別視窗中檢視</translation>
     </message>
     <message>
-        <source>%1 Master – Slideshow</source>
-        <translation>%1 主 – 投影片</translation>
+        <source>Veyon Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4486,6 +4518,10 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Screen %1</source>
         <translation>螢幕 %1</translation>
     </message>
+    <message>
+        <source>Guest</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonMaster</name>
@@ -4494,8 +4530,8 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>沒有寫入存取</translation>
     </message>
     <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>無法儲存您的個人設定! 請檢查使用 %1 組態的使用者設定檔路徑。</translation>
+        <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

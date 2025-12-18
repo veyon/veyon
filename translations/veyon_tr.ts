@@ -42,8 +42,8 @@ Veyon&apos;u kendi dilinizde veya başka bir dile çevirmek istiyorsanız veya v
         <translation>Lisans</translation>
     </message>
     <message>
-        <source>About %1 %2</source>
-        <translation>%1 %2 Hakkında</translation>
+        <source>About Veyon %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1102,8 +1102,8 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>&quot;%2&quot; ana bilgisayarındaki &quot;%1&quot; kullanıcısı bu bilgisayara erişmeye çalıştı, ancak erişim denetimi ayarları nedeniyle engellendi.</translation>
     </message>
     <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 Hizmet %2&apos;de %3:%4</translation>
+        <source>Veyon Service %1 at %2:%3</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1125,8 +1125,8 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>Eksik ağ nesnesi dizini eklentisi</translation>
     </message>
     <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Öntanımlı ağ nesnesi dizini eklentisi bulunamadı. Lütfen kurulumunuzu gözden geçirin veya %1 Yapılandırıcı aracılığıyla başka bir ağ nesnesi dizini eklentisi yapılandırın.</translation>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1262,16 +1262,16 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
 <context>
     <name>ConfigurationManager</name>
     <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>%1 Hizmeti için kendiliğinden başlatma özelliği değiştirilemedi.</translation>
+        <source>Could not modify the autostart property for the Veyon Service.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation>%1 sunucusu için güvenlik duvarı yapılandırması yapılandırılamadı.</translation>
+        <source>Could not configure the firewall configuration for the Veyon Server.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation>%1 çalışan için güvenlik duvarı yapılandırması yapılandırılamadı.</translation>
+        <source>Could not configure the firewall configuration for the Veyon Worker.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1285,8 +1285,8 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
 <context>
     <name>DemoClient</name>
     <message>
-        <source>%1 Demo</source>
-        <translation>%1 Gösteri</translation>
+        <source>Veyon Demo</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1781,20 +1781,8 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>Dosya dağıtma ayarları</translation>
     </message>
     <message>
-        <source>Destination directory</source>
-        <translation>Hedef dizin</translation>
-    </message>
-    <message>
-        <source>Default source directory</source>
-        <translation>Varsayılan kaynak dizini</translation>
-    </message>
-    <message>
         <source>Settings for collecting files</source>
         <translation>Dosya toplama ayarları</translation>
-    </message>
-    <message>
-        <source>Source directory</source>
-        <translation>Kaynak dizini</translation>
     </message>
     <message>
         <source>No</source>
@@ -1809,18 +1797,6 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>Dosyaları gruplama niteliğine göre alt dizinlerde saklayın</translation>
     </message>
     <message>
-        <source>Group collected files</source>
-        <translation>Grup toplanan dosyalar</translation>
-    </message>
-    <message>
-        <source>Collection directory</source>
-        <translation>Koleksiyon dizini</translation>
-    </message>
-    <message>
-        <source>Files to collect</source>
-        <translation>Toplanacak dosyalar</translation>
-    </message>
-    <message>
         <source>Collect all files from configured source directory</source>
         <translation>Yapılandırılmış kaynak dizininden tüm dosyaları topla</translation>
     </message>
@@ -1833,6 +1809,26 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>Toplanacak dosyalar için kullanıcıdan istemde bulun</translation>
     </message>
     <message>
+        <source>Grouping attribute:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Destination directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Store collected files in:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group collected files:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Directly in the destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Subdirectory based on date &amp; time</source>
         <translation>Tarih &amp; saate dayalı alt dizin</translation>
     </message>
@@ -1841,8 +1837,32 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>Toplayan kullanıcı tarafından girilen isme sahip alt dizin</translation>
     </message>
     <message>
+        <source>Files to collect:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files to exclude:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. *.lnk or *.desktop</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collect files recursively</source>
         <translation>Dosyaları yinelemeli olarak topla</translation>
+    </message>
+    <message>
+        <source>Destination directory (remote):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default source directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory (remote):</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>User login name</source>
@@ -1857,8 +1877,8 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>Cihaz adı</translation>
     </message>
     <message>
-        <source>Collected files grouping attribute</source>
-        <translation>Toplanan dosyaların gruplama niteliği</translation>
+        <source>Device and user login name</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -2085,12 +2105,12 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>Bu bilgisayarda kimlik doğrulama anahtarları düzgün şekilde ayarlanmamış.</translation>
     </message>
     <message>
-        <source>%1 service</source>
-        <translation>%1 hizmeti</translation>
+        <source>Veyon service</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>Günlük dosyalarının kaldırılması için %1 hizmetinin geçici olarak durdurulması gerekiyor. Devam et?</translation>
+        <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -3021,10 +3041,6 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>&amp;Gelişmiş</translation>
     </message>
     <message>
-        <source>MainWindow</source>
-        <translation>Ana Pencere</translation>
-    </message>
-    <message>
         <source>Adjust size of computer icons automatically</source>
         <translation>Bilgisayar simgelerinin boyutunu otomatik olarak ayarla</translation>
     </message>
@@ -3073,8 +3089,8 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>Araç çubuğu</translation>
     </message>
     <message>
-        <source>%1 Configurator %2</source>
-        <translation>%1 Yapılandırıcı %2</translation>
+        <source>Veyon Configurator %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3087,10 +3103,6 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
         <translation>Yerel yapılandırmayı sıfırlamak ve tüm ayarları öntanımlılarına geri döndürmek istediğinize emin misiniz?</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>%1 Yapılandırıcı</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -3113,16 +3125,16 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>Yapılandırma yazılabilir değil</translation>
     </message>
     <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>Yerel yapılandırma arka ucu, yapılandırmanın yazılabilir olmadığını bildirdi! Lütfen %1 Yapılandırıcıyı yüksek ayrıcalıklarla çalıştırın.</translation>
+        <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication impossible</source>
         <translation>Kimlik doğrulama imkansız</translation>
     </message>
     <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>Yetkilendirme anahtar dosyaları yok veya var olanlar geçersiz. Lütfen, %1 Yapılandırıcı kullanarak yeni anahtar dosyalar oluşturun. Diğer bir seçenek olarak, %1 Yapılandırıcıyı kullanarak giriş yetkilendirmesini ayarlayın. Bunu dışında %1 kullanarak bilgisayarlara erişemezsiniz.</translation>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Access denied</source>
@@ -3137,8 +3149,8 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>Özellik etkin</translation>
     </message>
     <message>
-        <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation>&quot;%1&quot; özelliği hala etkin. Lütfen %2&apos;yi kapatmadan önce durdurun.</translation>
+        <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use custom computer arrangement.
@@ -3266,6 +3278,14 @@ Düzenlemeyi bir dosyadan yüklemek veya mevcut düzenlemeyi bir dosyaya kaydetm
     <message>
         <source>Remote access image quality</source>
         <translation>Uzaktan erişim görüntü kalitesi</translation>
+    </message>
+    <message>
+        <source>Identify users in guest sessions if login name matches:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Guest</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3437,6 +3457,18 @@ Düzenlemeyi bir dosyadan yüklemek veya mevcut düzenlemeyi bir dosyaya kaydetm
     <message>
         <source>Query properties of remotely available screens</source>
         <translation>Uzaktan erişilebilen ekranların sorgu özellikleri</translation>
+    </message>
+    <message>
+        <source>Identify users in guest sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Identification request</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter your name:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3707,12 +3739,12 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>%1 - %2 Remote Access</source>
-        <translation>%1 -%2 Uzaktan Erişim</translation>
+        <source>%1 - Veyon Remote Access</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 - %2 - %3 Remote Access</source>
-        <translation>%1 - %2 - %3 Uzaktan Erişim</translation>
+        <source>%1 - %2 - Veyon Remote Access</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4046,12 +4078,12 @@ Bu genellikle terminal sunucularını desteklemek için gereklidir.</translation
         <translation>Eklenti:</translation>
     </message>
     <message>
-        <source>Restart %1 Service</source>
-        <translation>%1 Hizmetini Yeniden Başlat</translation>
+        <source>Restart Veyon Service</source>
+        <translation>Veyon Hizmetini Yeniden Başlat</translation>
     </message>
     <message>
-        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Tüm ayarlar başarıyla kaydedildi. Ayarların geçerli olması için %1 hizmetinin yeniden başlatılması gerekiyor. Şimdi yeniden başlatılsın mı?</translation>
+        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Running</source>
@@ -4210,8 +4242,8 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Ayrı pencerede görüntüle</translation>
     </message>
     <message>
-        <source>%1 Master – Slideshow</source>
-        <translation>%1 Master – Slayt Gösterisi</translation>
+        <source>Veyon Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4486,6 +4518,10 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Screen %1</source>
         <translation>Ekran %1</translation>
     </message>
+    <message>
+        <source>Guest</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonMaster</name>
@@ -4494,8 +4530,8 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Erişim izni yok</translation>
     </message>
     <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Kişisel ayarlarınız kaydedilemedi! Lütfen kullanıcı yapılandırma dosyasının yolunu, %1 Yapılandırıcıyı kullanarak gözden geçirin.</translation>
+        <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

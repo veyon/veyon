@@ -42,8 +42,8 @@ Si esteu interessat a traduir el Veyon al vostre idioma local o a un altre o vol
         <translation>Llicència</translation>
     </message>
     <message>
-        <source>About %1 %2</source>
-        <translation>Quant a %1 %2</translation>
+        <source>About Veyon %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1100,8 +1100,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>L&apos;usuari «%1» a l&apos;amfitrió «%2» ha intentat accedir a aquest ordinador, però s&apos;ha blocat a causa de la configuració del control d&apos;accés.</translation>
     </message>
     <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 servei %2 a les %3:%4</translation>
+        <source>Veyon Service %1 at %2:%3</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1123,8 +1123,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Falta el connector de directori d&apos;objectes de xarxa</translation>
     </message>
     <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>No s&apos;ha trobat cap connector de directori d&apos;objectes de xarxa per defecte. Comproveu la instal·lació o configureu un rerefons de directoris d&apos;objectes de xarxa diferent a través del configurador de %1.</translation>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1260,16 +1260,16 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>ConfigurationManager</name>
     <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>No s&apos;ha pogut modificar la propietat d&apos;inici automàtic per al servei %1.</translation>
+        <source>Could not modify the autostart property for the Veyon Service.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation>No s&apos;ha pogut configurar la configuració del tallafoc per al servidor %1.</translation>
+        <source>Could not configure the firewall configuration for the Veyon Server.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation>No s&apos;ha pogut configurar la configuració del tallafoc per a l&apos;operador de treball %1.</translation>
+        <source>Could not configure the firewall configuration for the Veyon Worker.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1283,8 +1283,8 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>DemoClient</name>
     <message>
-        <source>%1 Demo</source>
-        <translation>Demostració %1</translation>
+        <source>Veyon Demo</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1779,19 +1779,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Destination directory</source>
-        <translation>Directori de destinació</translation>
-    </message>
-    <message>
-        <source>Default source directory</source>
-        <translation>Directori font per defecte</translation>
-    </message>
-    <message>
         <source>Settings for collecting files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Source directory</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1807,18 +1795,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Group collected files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Collection directory</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Files to collect</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Collect all files from configured source directory</source>
         <translation type="unfinished"/>
     </message>
@@ -1831,6 +1807,26 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Grouping attribute:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Destination directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Store collected files in:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group collected files:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Directly in the destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Subdirectory based on date &amp; time</source>
         <translation type="unfinished"/>
     </message>
@@ -1839,7 +1835,31 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Files to collect:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files to exclude:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. *.lnk or *.desktop</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collect files recursively</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Destination directory (remote):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default source directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory (remote):</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1855,7 +1875,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Collected files grouping attribute</source>
+        <source>Device and user login name</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2083,12 +2103,12 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Les claus d&apos;autenticació no s&apos;han configurat correctament en aquest ordinador.</translation>
     </message>
     <message>
-        <source>%1 service</source>
-        <translation>Servei %1</translation>
+        <source>Veyon service</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>Cal parar temporalment el servei %1 per a eliminar els fitxers de registre. Voleu continuar?</translation>
+        <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -3019,10 +3039,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>&amp;Avançat</translation>
     </message>
     <message>
-        <source>MainWindow</source>
-        <translation>Finestra principal</translation>
-    </message>
-    <message>
         <source>Adjust size of computer icons automatically</source>
         <translation>Ajusta la mida de les icones de l&apos;ordinador automàticament</translation>
     </message>
@@ -3071,8 +3087,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Barra d&apos;eines</translation>
     </message>
     <message>
-        <source>%1 Configurator %2</source>
-        <translation>%1 Configurador %2</translation>
+        <source>Veyon Configurator %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3085,10 +3101,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
         <translation>Esteu segur que voleu restablir la configuració local i revertir tots els ajustaments als seus valors predeterminats?</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>Configurador %1</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -3111,16 +3123,16 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>No es pot escriure la configuració</translation>
     </message>
     <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>El rerefons de configuració local ha informat que no es pot escriure la configuració! Executeu el configurador de %1 amb privilegis més alts.</translation>
+        <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication impossible</source>
         <translation>Autentificació impossible</translation>
     </message>
     <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>No s&apos;ha trobat cap fitxer de clau d&apos;autenticació o els vostres actuals estan obsolets. Si us plau creeu fitxers de claus nous utilitzant el configurador de %1. Alternativament configureu l&apos;autenticació del registre utilitzant el configurador de %1. En cas contrari no podràs accedir als ordinadors amb el %1.</translation>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Access denied</source>
@@ -3135,8 +3147,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Funció activa</translation>
     </message>
     <message>
-        <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation>La característica &quot;%1&quot; encara està activa. Atura&apos;l abans de tancar el %2.</translation>
+        <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use custom computer arrangement.
@@ -3261,6 +3273,14 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Remote access image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Identify users in guest sessions if login name matches:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Guest</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3432,6 +3452,18 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Query properties of remotely available screens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Identify users in guest sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Identification request</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter your name:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3703,12 +3735,12 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>%1 - %2 Remote Access</source>
-        <translation>Accés remot %1 -%2</translation>
+        <source>%1 - Veyon Remote Access</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 - %2 - %3 Remote Access</source>
-        <translation>Accés remot %1 -%2 - 3%</translation>
+        <source>%1 - %2 - Veyon Remote Access</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4042,12 +4074,12 @@ Normalment es requereix per a donar suport als servidors de terminals.</translat
         <translation>Connector:</translation>
     </message>
     <message>
-        <source>Restart %1 Service</source>
-        <translation>Reiniciar el servei %1</translation>
+        <source>Restart Veyon Service</source>
+        <translation>Reinicia el servei Veyon</translation>
     </message>
     <message>
-        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Tots els ajustaments s&apos;han desat correctament. Per a poder fer-ho, cal reiniciar el servei %1. Voleu reiniciar-la ara?</translation>
+        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Running</source>
@@ -4204,8 +4236,8 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Veure en una finestra separada</translation>
     </message>
     <message>
-        <source>%1 Master – Slideshow</source>
-        <translation>%1 Mestre – Presentació de diapositives</translation>
+        <source>Veyon Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4480,6 +4512,10 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Screen %1</source>
         <translation>Pantalla %1</translation>
     </message>
+    <message>
+        <source>Guest</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonMaster</name>
@@ -4488,8 +4524,8 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Sense permís d&apos;escriptura</translation>
     </message>
     <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>No s&apos;ha pogut desar la vostra configuració personal! Comproveu el camí del fitxer de configuració de l&apos;usuari utilitzant el configurador de %1.</translation>
+        <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

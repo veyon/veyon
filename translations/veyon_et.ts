@@ -42,8 +42,8 @@ Kui olete huvitatud Veyoni tõlkimisest oma kohalikku või mõnda muusse keelde 
         <translation>Litsents</translation>
     </message>
     <message>
-        <source>About %1 %2</source>
-        <translation>Programmist %1 %2</translation>
+        <source>About Veyon %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1102,8 +1102,8 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation>Kasutaja &quot;%1&quot; hostis &quot;%2&quot; üritas sellele arvutile juurde pääseda, kuid on juurdepääsu seadete tõttu blokeeritud.</translation>
     </message>
     <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 Teenus %2 kohas %3:%4</translation>
+        <source>Veyon Service %1 at %2:%3</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1125,8 +1125,8 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation>Võrguobjektide kataloogi pistikprogramm puudub</translation>
     </message>
     <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Vaikevõrguobjektide kataloogi pistikprogrammi ei leitud. Kontrollige installimist või konfigureerige %1 konfiguraatori kaudu mõni muu võrguobjektide kataloogi taustaprogramm.</translation>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1262,16 +1262,16 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
 <context>
     <name>ConfigurationManager</name>
     <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>%1 teenuse automaatse käivitamise atribuuti ei saanud muuta.</translation>
+        <source>Could not modify the autostart property for the Veyon Service.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation>%1 serveri tulemüüri konfiguratsiooni ei õnnestunud seadistada.</translation>
+        <source>Could not configure the firewall configuration for the Veyon Server.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation>%1 töötaja tulemüüri konfiguratsiooni ei õnnestunud konfigureerida.</translation>
+        <source>Could not configure the firewall configuration for the Veyon Worker.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1285,8 +1285,8 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
 <context>
     <name>DemoClient</name>
     <message>
-        <source>%1 Demo</source>
-        <translation>%1 Demo</translation>
+        <source>Veyon Demo</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1781,19 +1781,7 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Destination directory</source>
-        <translation>Sihtkataloog</translation>
-    </message>
-    <message>
-        <source>Default source directory</source>
-        <translation>Vaikeallika kataloog</translation>
-    </message>
-    <message>
         <source>Settings for collecting files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Source directory</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1809,18 +1797,6 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Group collected files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Collection directory</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Files to collect</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Collect all files from configured source directory</source>
         <translation type="unfinished"/>
     </message>
@@ -1833,6 +1809,26 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Grouping attribute:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Destination directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Store collected files in:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group collected files:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Directly in the destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Subdirectory based on date &amp; time</source>
         <translation type="unfinished"/>
     </message>
@@ -1841,7 +1837,31 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Files to collect:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files to exclude:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. *.lnk or *.desktop</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collect files recursively</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Destination directory (remote):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default source directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory (remote):</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1857,7 +1877,7 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Collected files grouping attribute</source>
+        <source>Device and user login name</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2085,12 +2105,12 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation>Autentimisvõtmed pole selles arvutis õigesti seadistatud.</translation>
     </message>
     <message>
-        <source>%1 service</source>
-        <translation>%1 teenus</translation>
+        <source>Veyon service</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>Logifailide eemaldamiseks tuleb teenus %1 ajutiselt peatada. Kas jätkata?</translation>
+        <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -3021,10 +3041,6 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation>&amp;Edasijõudnud</translation>
     </message>
     <message>
-        <source>MainWindow</source>
-        <translation>PeaAken</translation>
-    </message>
-    <message>
         <source>Adjust size of computer icons automatically</source>
         <translation>Kohandage arvuti ikoonide suurust automaatselt</translation>
     </message>
@@ -3073,8 +3089,8 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation>Tööriistariba</translation>
     </message>
     <message>
-        <source>%1 Configurator %2</source>
-        <translation>%1  Konfiguraator %2</translation>
+        <source>Veyon Configurator %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3087,10 +3103,6 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
         <translation>Kas soovite tõesti lähtestada kohaliku konfiguratsiooni ja taastada kõigi seadete vaikeväärtused?</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>%1 Konfiguraator</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -3113,16 +3125,16 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation>Konfiguratsiooni ei saa kirjutada</translation>
     </message>
     <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>Kohaliku konfiguratsiooni taustaprogramm teatas, et konfiguratsiooni ei saa kirjutada! Palun käivitage %1 konfiguraator suuremate õigustega.</translation>
+        <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication impossible</source>
         <translation>Autentimine on võimatu</translation>
     </message>
     <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>Autentimisvõtme faile ei leitud või teie praegused on aegunud. Looge %1 Konfiguraatori abil uued võtmefailid. Teise võimalusena seadistage sisselogimise autentimine %1 Konfiguraatori abil. Vastasel juhul ei pääse te arvutitele juurde, kasutades %1.</translation>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Access denied</source>
@@ -3137,8 +3149,8 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation>Funktsioon on aktiivne</translation>
     </message>
     <message>
-        <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation>Funktsioon &quot;%1&quot; on endiselt aktiivne. Enne %2 sulgemist peatage see.</translation>
+        <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use custom computer arrangement.
@@ -3266,6 +3278,14 @@ Failist arranžeeringu laadimiseks või praeguse arranžeeringu faili salvestami
     <message>
         <source>Remote access image quality</source>
         <translation>Kaugjuurdepääsu pildikvaliteet</translation>
+    </message>
+    <message>
+        <source>Identify users in guest sessions if login name matches:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Guest</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3437,6 +3457,18 @@ Failist arranžeeringu laadimiseks või praeguse arranžeeringu faili salvestami
     <message>
         <source>Query properties of remotely available screens</source>
         <translation>Pärige kaugkasutatavate ekraanide atribuute</translation>
+    </message>
+    <message>
+        <source>Identify users in guest sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Identification request</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter your name:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3707,12 +3739,12 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>%1 - %2 Remote Access</source>
-        <translation>%1 - %2 Kaugjuurdepääs</translation>
+        <source>%1 - Veyon Remote Access</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 - %2 - %3 Remote Access</source>
-        <translation>%1 - %2 - %3 Kaugjuurdepääs</translation>
+        <source>%1 - %2 - Veyon Remote Access</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4046,12 +4078,12 @@ Tavaliselt on see vajalik terminaliserverite toetamiseks.</translation>
         <translation>Pistikprogramm:</translation>
     </message>
     <message>
-        <source>Restart %1 Service</source>
-        <translation>Taaskäivita %1 teenus</translation>
+        <source>Restart Veyon Service</source>
+        <translation>Taaskäivitage Veyoni teenus</translation>
     </message>
     <message>
-        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Kõik seaded salvestati edukalt. Jõustumiseks tuleb %1 teenus taaskäivitada. Kas taaskäivitada see kohe?</translation>
+        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Running</source>
@@ -4210,7 +4242,7 @@ Näide: [^-]*-(PC[0-9]*)</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 Master – Slideshow</source>
+        <source>Veyon Master – Slideshow</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4486,6 +4518,10 @@ Näide: [^-]*-(PC[0-9]*)</translation>
         <source>Screen %1</source>
         <translation>Ekraan %1</translation>
     </message>
+    <message>
+        <source>Guest</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonMaster</name>
@@ -4494,8 +4530,8 @@ Näide: [^-]*-(PC[0-9]*)</translation>
         <translation>Kirjutusjuurdepääs puudub</translation>
     </message>
     <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Teie isiklikke seadeid ei õnnestunud salvestada! Kontrollige kasutaja konfiguratsioonifaili teed %1 Konfiguraatori abil</translation>
+        <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

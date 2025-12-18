@@ -42,8 +42,8 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Ліцензування</translation>
     </message>
     <message>
-        <source>About %1 %2</source>
-        <translation>Про %1 %2</translation>
+        <source>About Veyon %1</source>
+        <translation>Про Veyon %1</translation>
     </message>
 </context>
 <context>
@@ -1099,8 +1099,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Користувач «%1» на вузлі «%2» намагався отримати доступ до цього комп&apos;ютера, але його було заблоковано через параметри керування доступом.</translation>
     </message>
     <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>Служба %1 %2 о %3:%4</translation>
+        <source>Veyon Service %1 at %2:%3</source>
+        <translation>Служба Veyon %1, %2:%3</translation>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1122,8 +1122,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Не вистачає додатка каталогу мережевих об’єктів</translation>
     </message>
     <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Не знайдено типового додатка каталогу мережевих об’єктів. Будь ласка, перевірте, чи правильно встановлено програму, або налаштуйте інший модуль каталогу мережевих об’єктів за допомогою засобу налаштовування %1.</translation>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
+        <translation>Не знайдено типового додатка каталогу мережевих об’єктів. Будь ласка, перевірте, чи правильно встановлено програму, або налаштуйте інший модуль каталогу мережевих об’єктів за допомогою засобу налаштовування Veyon.</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1259,16 +1259,16 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>ConfigurationManager</name>
     <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Не вдалося змінити параметр автоматичного запуску служби %1.</translation>
+        <source>Could not modify the autostart property for the Veyon Service.</source>
+        <translation>Не вдалося змінити параметр автоматичного запуску служби Veyon.</translation>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation>Не вдалося налаштувати брандмауер для сервера %1.</translation>
+        <source>Could not configure the firewall configuration for the Veyon Server.</source>
+        <translation>Не вдалося налаштувати брандмауер для сервера Veyon.</translation>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation>Не вдалося налаштувати брандмауер для робочої станції %1.</translation>
+        <source>Could not configure the firewall configuration for the Veyon Worker.</source>
+        <translation>Не вдалося налаштувати брандмауер для обробника Veyon.</translation>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1282,8 +1282,8 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>DemoClient</name>
     <message>
-        <source>%1 Demo</source>
-        <translation>Демонстрація %1</translation>
+        <source>Veyon Demo</source>
+        <translation>Демонстрація Veyon</translation>
     </message>
 </context>
 <context>
@@ -1778,20 +1778,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Параметри для поширення файлів</translation>
     </message>
     <message>
-        <source>Destination directory</source>
-        <translation>Каталог призначення</translation>
-    </message>
-    <message>
-        <source>Default source directory</source>
-        <translation>Типовий каталог початкових даних</translation>
-    </message>
-    <message>
         <source>Settings for collecting files</source>
         <translation>Параметри для збирання файлів</translation>
-    </message>
-    <message>
-        <source>Source directory</source>
-        <translation>Каталог джерела</translation>
     </message>
     <message>
         <source>No</source>
@@ -1806,18 +1794,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Зберігати файли до підкаталогів на основі атрибута групування</translation>
     </message>
     <message>
-        <source>Group collected files</source>
-        <translation>Групувати зібрані файли</translation>
-    </message>
-    <message>
-        <source>Collection directory</source>
-        <translation>Каталог збірки</translation>
-    </message>
-    <message>
-        <source>Files to collect</source>
-        <translation>Файли для збирання</translation>
-    </message>
-    <message>
         <source>Collect all files from configured source directory</source>
         <translation>Зібрати усі файли з налаштованого каталогу джерела</translation>
     </message>
@@ -1830,6 +1806,26 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Питати у користувача про файли для збирання</translation>
     </message>
     <message>
+        <source>Grouping attribute:</source>
+        <translation>Атрибути групування:</translation>
+    </message>
+    <message>
+        <source>Destination directory:</source>
+        <translation>Каталог призначення:</translation>
+    </message>
+    <message>
+        <source>Store collected files in:</source>
+        <translation>Зберігати зібрані файли тут:</translation>
+    </message>
+    <message>
+        <source>Group collected files:</source>
+        <translation>Групувати зібрані файли:</translation>
+    </message>
+    <message>
+        <source>Directly in the destination directory</source>
+        <translation>Безпосередньо у каталозі призначення</translation>
+    </message>
+    <message>
         <source>Subdirectory based on date &amp; time</source>
         <translation>Підкаталог на основі дати і часу</translation>
     </message>
@@ -1838,8 +1834,32 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Підкаталог з назвою, яку введено користувачем зібраних даних</translation>
     </message>
     <message>
+        <source>Files to collect:</source>
+        <translation>Файли, які слід зібрати:</translation>
+    </message>
+    <message>
+        <source>Files to exclude:</source>
+        <translation>Файли, які слід виключити:</translation>
+    </message>
+    <message>
+        <source>e.g. *.lnk or *.desktop</source>
+        <translation>Приклад: *.lnk або *.desktop</translation>
+    </message>
+    <message>
         <source>Collect files recursively</source>
         <translation>Збирати файли рекурсивно</translation>
+    </message>
+    <message>
+        <source>Destination directory (remote):</source>
+        <translation>Каталог призначення (віддалений):</translation>
+    </message>
+    <message>
+        <source>Default source directory:</source>
+        <translation>Типовий каталог джерела:</translation>
+    </message>
+    <message>
+        <source>Source directory (remote):</source>
+        <translation>Каталог джерела (віддалений):</translation>
     </message>
     <message>
         <source>User login name</source>
@@ -1854,8 +1874,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Назва пристрою</translation>
     </message>
     <message>
-        <source>Collected files grouping attribute</source>
-        <translation>Атрибут групування зібраних файлів</translation>
+        <source>Device and user login name</source>
+        <translation>Пристрій і назва облікового запису користувача</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -2082,12 +2102,12 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>На цьому комп&apos;ютері ключі розпізнавання налаштовано не так, як слід.</translation>
     </message>
     <message>
-        <source>%1 service</source>
-        <translation>Служба %1</translation>
+        <source>Veyon service</source>
+        <translation>Служба Veyon</translation>
     </message>
     <message>
-        <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>Щоб вилучити файли журналів, роботу служби %1 доведеться тимчасово призупинити. Продовжити виконання цього завдання?</translation>
+        <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation>Для вилучення файлів журналу доведеться тимчасово зупинити роботу служби Veyon. Продовжити?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -2870,7 +2890,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>LDAP/AD support for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Підтримка LDAP/AD у Veyon</translation>
     </message>
 </context>
 <context>
@@ -3020,10 +3040,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>&amp;Розширений</translation>
     </message>
     <message>
-        <source>MainWindow</source>
-        <translation>Головне вікно</translation>
-    </message>
-    <message>
         <source>Adjust size of computer icons automatically</source>
         <translation>Автоматично коригувати розмір піктограм комп&apos;ютерів</translation>
     </message>
@@ -3072,8 +3088,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Панель інструментів</translation>
     </message>
     <message>
-        <source>%1 Configurator %2</source>
-        <translation>Засіб налаштовування %1 %2</translation>
+        <source>Veyon Configurator %1</source>
+        <translation>Засіб налаштовування Veyon %1</translation>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3086,10 +3102,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
         <translation>Ви справді хочете скинути локальні налаштування і повернути усі параметри до типових значень?</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>Засіб налаштовування %1</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -3112,16 +3124,16 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Не вдалося записати налаштування</translation>
     </message>
     <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>Модуль керування локальними налаштуваннями повідомив, що не вдалося виконати запис до файла налаштувань! Будь ласка, запустіть Засіб налаштовування %1 із ширшими правами доступу.</translation>
+        <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
+        <translation>Модуль керування локальними налаштуваннями повідомив, що не вдалося виконати запис до файла налаштувань! Будь ласка, запустіть Засіб налаштовування Veyon із ширшими правами доступу.</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
         <translation>Розпізнавання неможливе</translation>
     </message>
     <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>Не знайдено файлів ключів розпізнавання або строк дії знайдених ключів вичерпано. Будь ласка, створіть нові файли ключів за допомогою засобу налаштовування %1. Крім того, ви можете налаштувати розпізнавання за іменем користувача під час входу до системи, скориставшись для цього засобом налаштовування %1. Якщо ви не створите ключів і не налаштуєте розпізнавання, ви не зможете отримувати доступ до комп’ютерів за допомогою %1.</translation>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
+        <translation>Не знайдено файлів ключів розпізнавання або строк дії знайдених ключів вичерпано. Будь ласка, створіть нові файли ключів за допомогою засобу налаштовування Veyon. Крім того, ви можете налаштувати розпізнавання за іменем користувача під час входу до системи, скориставшись для цього засобом налаштовування Veyon. Якщо ви не створите ключів і не налаштуєте розпізнавання, ви не зможете отримувати доступ до комп’ютерів за допомогою Veyon.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3136,8 +3148,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Задіяно можливість</translation>
     </message>
     <message>
-        <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation>Задіяно можливість «%1». Будь ласка, вимкніть її, перш ніж завершувати роботу %2.</translation>
+        <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
+        <translation>Можливість «%1» все ще задіяно. Будь ласка, зупиніть її роботу, перш ніж завершувати роботу Veyon.</translation>
     </message>
     <message>
         <source>Use custom computer arrangement.
@@ -3265,6 +3277,14 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Remote access image quality</source>
         <translation>Якість зображення віддаленого доступу</translation>
+    </message>
+    <message>
+        <source>Identify users in guest sessions if login name matches:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Guest</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3436,6 +3456,18 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Query properties of remotely available screens</source>
         <translation>Опитати віддалені доступні екрани щодо властивостей</translation>
+    </message>
+    <message>
+        <source>Identify users in guest sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Identification request</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter your name:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3706,12 +3738,12 @@ Please save your work and close all programs.</source>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>%1 - %2 Remote Access</source>
-        <translation>%1 — %2, віддалений доступ</translation>
+        <source>%1 - Veyon Remote Access</source>
+        <translation>%1 – Віддалений доступ до Veyon</translation>
     </message>
     <message>
-        <source>%1 - %2 - %3 Remote Access</source>
-        <translation>%1 — %2 — %3, віддалений доступ</translation>
+        <source>%1 - %2 - Veyon Remote Access</source>
+        <translation>%1 - %2 — Віддалений доступ до Veyon</translation>
     </message>
 </context>
 <context>
@@ -4045,12 +4077,12 @@ Typically this is required to support terminal servers.</source>
         <translation>Додаток:</translation>
     </message>
     <message>
-        <source>Restart %1 Service</source>
-        <translation>Перезапустити службу %1</translation>
+        <source>Restart Veyon Service</source>
+        <translation>Перезапустити службу Veyon</translation>
     </message>
     <message>
-        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Всі параметри було збережено. З метою набуття чинності нових параметрів слід перезапустити службу %1. Перезапусти службу зараз?</translation>
+        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
+        <translation>Всі параметри було збережено. З метою набуття чинності нових параметрів слід перезапустити службу Veyon. Перезапусти службу зараз?</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4209,8 +4241,8 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Переглянути в окремому вікні</translation>
     </message>
     <message>
-        <source>%1 Master – Slideshow</source>
-        <translation>Основне керування %1 – Показ слайдів</translation>
+        <source>Veyon Master – Slideshow</source>
+        <translation>Veyon Master – Показ слайдів</translation>
     </message>
 </context>
 <context>
@@ -4485,6 +4517,10 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Screen %1</source>
         <translation>Екран %1</translation>
     </message>
+    <message>
+        <source>Guest</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonMaster</name>
@@ -4493,8 +4529,8 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Немає доступу на запис</translation>
     </message>
     <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Не вдалося зберегти ваші особисті параметри! Будь ласка, перевірте, чи правильно вказано шлях до файла налаштувань користувачів за допомогою засобу налаштовування %1.</translation>
+        <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
+        <translation>Не вдалося зберегти ваші особисті параметри! Будь ласка, перевірте, чи правильно вказано шлях до файла налаштувань користувачів за допомогою засобу налаштовування Veyon.</translation>
     </message>
 </context>
 <context>

@@ -40,8 +40,8 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Lizenz</translation>
     </message>
     <message>
-        <source>About %1 %2</source>
-        <translation>Über %1 %2</translation>
+        <source>About Veyon %1</source>
+        <translation>Über Veyon %1</translation>
     </message>
 </context>
 <context>
@@ -1099,8 +1099,8 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Der Benutzer &quot;%1&quot; am Computer &quot;%2&quot; hat versucht, auf diesen Computer zuzugreifen, wurde aber aufgrund von Zugriffskontrolleneinstellungen blockiert.</translation>
     </message>
     <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 Dienst %2 auf %3:%4</translation>
+        <source>Veyon Service %1 at %2:%3</source>
+        <translation>Veyon Dienst %1 auf %2:%3</translation>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1122,8 +1122,8 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Fehlendes Netzwerkobjektverzeichnis-Plugin</translation>
     </message>
     <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Es wurde kein Standard-Netzwerkobjektverzeichnis-Plugin gefunden. Bitte überprüfen Sie Ihre Installation oder stellen ein anderes Netzwerkobjektverzeichnis-Backend mit Hilfe des %1 Configurators ein.</translation>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
+        <translation>Es wurde kein Standard-Netzwerkobjektverzeichnis-Plugin gefunden. Bitte überprüfen Sie Ihre Installation oder stellen ein anderes Netzwerkobjektverzeichnis-Backend mit Hilfe des Veyon Configurators ein.</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1259,16 +1259,16 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
 <context>
     <name>ConfigurationManager</name>
     <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Die Autostart-Einstellung für den %1-Dienst konnte nicht geändert werden.</translation>
+        <source>Could not modify the autostart property for the Veyon Service.</source>
+        <translation>Die Autostart-Einstellung für den Veyon-Dienst konnte nicht geändert werden.</translation>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation>Die Firewall-Einstellungen für den %1 Server konnten nicht geändert werden.</translation>
+        <source>Could not configure the firewall configuration for the Veyon Server.</source>
+        <translation>Die Firewall-Einstellungen für den Veyon-Server konnten nicht geändert werden.</translation>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation>Die Firewall-Einstellungen für den %1 Worker konnten nicht geändert werden.</translation>
+        <source>Could not configure the firewall configuration for the Veyon Worker.</source>
+        <translation>Die Firewall-Einstellungen für den Veyon-Worker konnten nicht geändert werden.</translation>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1282,8 +1282,8 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
 <context>
     <name>DemoClient</name>
     <message>
-        <source>%1 Demo</source>
-        <translation>%1 Demo</translation>
+        <source>Veyon Demo</source>
+        <translation>Veyon Demo</translation>
     </message>
 </context>
 <context>
@@ -1778,20 +1778,8 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Einstellungen für die Verteilung von Dateien</translation>
     </message>
     <message>
-        <source>Destination directory</source>
-        <translation>Zielverzeichnis</translation>
-    </message>
-    <message>
-        <source>Default source directory</source>
-        <translation>Standardquellverzeichnis</translation>
-    </message>
-    <message>
         <source>Settings for collecting files</source>
         <translation>Einstellungen für das Einsammeln von Dateien </translation>
-    </message>
-    <message>
-        <source>Source directory</source>
-        <translation>Quellverzeichnis</translation>
     </message>
     <message>
         <source>No</source>
@@ -1806,18 +1794,6 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Dateien in Unterverzeichnissen basierend auf dem Gruppierungsattribut speichern</translation>
     </message>
     <message>
-        <source>Group collected files</source>
-        <translation>Eingesammelte Dateien gruppieren </translation>
-    </message>
-    <message>
-        <source>Collection directory</source>
-        <translation>Sammlungsverzeichnis</translation>
-    </message>
-    <message>
-        <source>Files to collect</source>
-        <translation>Einzusammelnde Dateien</translation>
-    </message>
-    <message>
         <source>Collect all files from configured source directory</source>
         <translation>Alle Dateien aus dem konfigurierten Quellverzeichnis sammeln</translation>
     </message>
@@ -1830,6 +1806,26 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Benutzer nach einzusammelnden Dateien fragen</translation>
     </message>
     <message>
+        <source>Grouping attribute:</source>
+        <translation>Gruppierungsattribut:</translation>
+    </message>
+    <message>
+        <source>Destination directory:</source>
+        <translation>Zielverzeichnis:</translation>
+    </message>
+    <message>
+        <source>Store collected files in:</source>
+        <translation>Eingesammelte Dateien speichern unter:</translation>
+    </message>
+    <message>
+        <source>Group collected files:</source>
+        <translation>Eingesammelte Dateien gruppieren:</translation>
+    </message>
+    <message>
+        <source>Directly in the destination directory</source>
+        <translation>Direkt im Zielverzeichnis</translation>
+    </message>
+    <message>
         <source>Subdirectory based on date &amp; time</source>
         <translation>Unterverzeichnis basierend auf Datum und Uhrzeit</translation>
     </message>
@@ -1838,8 +1834,32 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Unterverzeichnis mit Namen, der vom einsammelnden Benutzer eingegebenen wird</translation>
     </message>
     <message>
+        <source>Files to collect:</source>
+        <translation>Einzusammelnde Dateien:</translation>
+    </message>
+    <message>
+        <source>Files to exclude:</source>
+        <translation>Auszuschließende Dateien:</translation>
+    </message>
+    <message>
+        <source>e.g. *.lnk or *.desktop</source>
+        <translation>z.B. *.lnk oder *.desktop</translation>
+    </message>
+    <message>
         <source>Collect files recursively</source>
         <translation>Dateien rekursiv einsammeln</translation>
+    </message>
+    <message>
+        <source>Destination directory (remote):</source>
+        <translation>Zielverzeichnis (entfernt):</translation>
+    </message>
+    <message>
+        <source>Default source directory:</source>
+        <translation>Standardquellverzeichnis:</translation>
+    </message>
+    <message>
+        <source>Source directory (remote):</source>
+        <translation>Quellverzeichnis (entfernt):</translation>
     </message>
     <message>
         <source>User login name</source>
@@ -1854,8 +1874,8 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Gerätename</translation>
     </message>
     <message>
-        <source>Collected files grouping attribute</source>
-        <translation>Gruppierungsattribut für eingesammelte Dateien</translation>
+        <source>Device and user login name</source>
+        <translation>Gerät- und Benutzeranmeldename</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -2082,12 +2102,12 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Authentifizierungsschlüssel sind auf diesem Computer nicht ordnungsgemäß eingerichtet.</translation>
     </message>
     <message>
-        <source>%1 service</source>
-        <translation>%1-Dienst</translation>
+        <source>Veyon service</source>
+        <translation>Veyon-Dienst</translation>
     </message>
     <message>
-        <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>Der %1-Dienst muss temporär beendet werden, um die Logdateien zu löschen. Fortfahren?</translation>
+        <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation>Der Veyon-Dienst muss temporär beendet werden, um die Logdateien zu löschen. Fortfahren?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -3018,10 +3038,6 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>&amp;Erweitert</translation>
     </message>
     <message>
-        <source>MainWindow</source>
-        <translation>Hauptfenster</translation>
-    </message>
-    <message>
         <source>Adjust size of computer icons automatically</source>
         <translation>Größe der Computer-Icons automatisch anpassen</translation>
     </message>
@@ -3070,8 +3086,8 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Werkzeugleiste</translation>
     </message>
     <message>
-        <source>%1 Configurator %2</source>
-        <translation>%1 Configurator %2</translation>
+        <source>Veyon Configurator %1</source>
+        <translation>Veyon Configurator %1</translation>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3084,10 +3100,6 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
         <translation>Möchten Sie wirklich die lokale Konfiguration zurücksetzen und alle Einstellungen auf ihre Vorgabewerte setzen?</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>%1 Configurator</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -3110,16 +3122,16 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Konfiguration nicht schreibbar</translation>
     </message>
     <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>Das Backend für die lokale Konfiguration hat gemeldet, dass die Konfiguration nicht beschreibbar ist. Bitte führen Sie den %1 Configurator mit höheren Privilegien aus.</translation>
+        <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
+        <translation>Das Backend für die lokale Konfiguration hat gemeldet, dass die Konfiguration nicht beschreibbar ist. Bitte führen Sie den Veyon Configurator mit höheren Privilegien aus.</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
         <translation>Authentifizierung nicht möglich</translation>
     </message>
     <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>Es wurden keine Authentifizierungsschlüsseldateien gefunden oder sie sind nicht mehr aktuell. Bitte erzeugen Sie neue Schlüsseldateien mit Hilfe des %1 Configurators. Alternativ können Sie die Anmelde-Authentifizierung mit Hilfe des %1 Configurators einrichten. Andernfalls werden Sie nicht in der Lage sein, mit %1 auf Computer zuzugreifen.</translation>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
+        <translation>Es wurden keine Authentifizierungsschlüsseldateien gefunden oder sie sind nicht mehr aktuell. Bitte erzeugen Sie neue Schlüsseldateien mit Hilfe des Veyon Configurators. Alternativ können Sie die Anmelde-Authentifizierung mit Hilfe des Veyon Configurators einrichten. Andernfalls werden Sie nicht in der Lage sein, mit Veyon auf Computer zuzugreifen.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3134,8 +3146,8 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Funktion aktiv</translation>
     </message>
     <message>
-        <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation>Die Funktion &quot;%1&quot; ist noch aktiv. Bitte beenden Sie diese bevor Sie %2 schließen.</translation>
+        <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
+        <translation>Die Funktion &quot;%1&quot; ist noch aktiv. Bitte beenden Sie diese bevor Sie Veyon schließen.</translation>
     </message>
     <message>
         <source>Use custom computer arrangement.
@@ -3263,6 +3275,14 @@ Gedrückt halten, um die Anordnung aus einer Datei zu laden oder die aktuelle An
     <message>
         <source>Remote access image quality</source>
         <translation>Bildqualität beim Fernzugriff</translation>
+    </message>
+    <message>
+        <source>Identify users in guest sessions if login name matches:</source>
+        <translation>Benutzer in Gastsitzungen identifizieren, wenn der Anmeldename übereinstimmt mit:</translation>
+    </message>
+    <message>
+        <source>Guest</source>
+        <translation>Gast</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3434,6 +3454,18 @@ Gedrückt halten, um die Anordnung aus einer Datei zu laden oder die aktuelle An
     <message>
         <source>Query properties of remotely available screens</source>
         <translation>Eigenschaften entfernt verfügbarer Bildschirme abfragen</translation>
+    </message>
+    <message>
+        <source>Identify users in guest sessions</source>
+        <translation>Benutzer in Gastsitzungen identifizieren</translation>
+    </message>
+    <message>
+        <source>Identification request</source>
+        <translation>Identifizierungsanfrage</translation>
+    </message>
+    <message>
+        <source>Please enter your name:</source>
+        <translation>Bitte geben Sie Ihren Namen ein:</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3704,12 +3736,12 @@ Bitte speichern Sie Ihre Arbeiten und schließen alle Programme.</translation>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>%1 - %2 Remote Access</source>
-        <translation>%1 - %2 Fernzugriff</translation>
+        <source>%1 - Veyon Remote Access</source>
+        <translation>%1 - Veyon Fernzugriff</translation>
     </message>
     <message>
-        <source>%1 - %2 - %3 Remote Access</source>
-        <translation>%1 - %2 - %3 Fernzugriff</translation>
+        <source>%1 - %2 - Veyon Remote Access</source>
+        <translation>%1 - %2 - Veyon Fernzugriff</translation>
     </message>
 </context>
 <context>
@@ -4043,12 +4075,12 @@ Normalerweise ist dies erforderlich, um Terminalserver zu unterstützen.</transl
         <translation>Plugin:</translation>
     </message>
     <message>
-        <source>Restart %1 Service</source>
-        <translation>%1 Dienst neu starten</translation>
+        <source>Restart Veyon Service</source>
+        <translation>Veyon-Dienst neu starten</translation>
     </message>
     <message>
-        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Alle Einstellungen wurden erfolgreich gespeichert. Damit die Einstellungen wirksam werden, muss der %1-Dienst neu gestartet werden. Jetzt neu starten?</translation>
+        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
+        <translation>Alle Einstellungen wurden erfolgreich gespeichert. Damit die Einstellungen wirksam werden, muss der Veyon-Dienst neu gestartet werden. Jetzt neu starten?</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4207,8 +4239,8 @@ Beispiel: [^-]*-(PC[0-9]*)</translation>
         <translation>Ansicht in separatem Fenster</translation>
     </message>
     <message>
-        <source>%1 Master – Slideshow</source>
-        <translation>%1 Master – Diashow</translation>
+        <source>Veyon Master – Slideshow</source>
+        <translation>Veyon Master – Diashow</translation>
     </message>
 </context>
 <context>
@@ -4483,6 +4515,10 @@ Beispiel: [^-]*-(PC[0-9]*)</translation>
         <source>Screen %1</source>
         <translation>Bildschirm %1</translation>
     </message>
+    <message>
+        <source>Guest</source>
+        <translation>Gast</translation>
+    </message>
 </context>
 <context>
     <name>VeyonMaster</name>
@@ -4491,8 +4527,8 @@ Beispiel: [^-]*-(PC[0-9]*)</translation>
         <translation>Kein Schreibzugriff</translation>
     </message>
     <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Ihre persönlichen Einstellungen konnten nicht gespeichert werden! Bitte überprüfen Sie den Pfad für die Benutzerkonfiguration mit Hilfe des %1 Configurators.</translation>
+        <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
+        <translation>Ihre persönlichen Einstellungen konnten nicht gespeichert werden! Bitte überprüfen Sie den Pfad für die Benutzerkonfiguration mit Hilfe des Veyon Configurators.</translation>
     </message>
 </context>
 <context>

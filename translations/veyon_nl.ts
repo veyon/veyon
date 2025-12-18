@@ -42,8 +42,8 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
         <translation>Licentie</translation>
     </message>
     <message>
-        <source>About %1 %2</source>
-        <translation>Over %1 %2</translation>
+        <source>About Veyon %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1102,8 +1102,8 @@ Zorg ervoor dat de namen van de sleutels die bij elkaar horen identiek zijn op a
         <translation>Gebruiker &quot;%1&quot; op host &quot;%2&quot; heeft geprobeerd toegang te krijgen tot deze computer, maar is geblokkeerd vanwege de instellingen voor toegangscontrole.</translation>
     </message>
     <message>
-        <source>%1 Service %2 at %3:%4</source>
-        <translation>%1 Service %2 bij %3:%4</translation>
+        <source>Veyon Service %1 at %2:%3</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1125,8 +1125,8 @@ Zorg ervoor dat de namen van de sleutels die bij elkaar horen identiek zijn op a
         <translation>Ontbrekende netwerk object directory plugin</translation>
     </message>
     <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>Er is geen standaard plugin voor de netwerkobjectdirectory gevonden. Controleer uw installatie of configureer een andere netwerk object directory backend via %1 Configurator.</translation>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1262,16 +1262,16 @@ Zorg ervoor dat de namen van de sleutels die bij elkaar horen identiek zijn op a
 <context>
     <name>ConfigurationManager</name>
     <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
-        <translation>Kon de autostart eigenschap voor de %1 service niet wijzigen.</translation>
+        <source>Could not modify the autostart property for the Veyon Service.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Server.</source>
-        <translation>Kon de firewallconfiguratie voor de %1 Server niet configureren.</translation>
+        <source>Could not configure the firewall configuration for the Veyon Server.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Worker.</source>
-        <translation>Kon de firewallconfiguratie voor de %1 Werker niet configureren.</translation>
+        <source>Could not configure the firewall configuration for the Veyon Worker.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1285,8 +1285,8 @@ Zorg ervoor dat de namen van de sleutels die bij elkaar horen identiek zijn op a
 <context>
     <name>DemoClient</name>
     <message>
-        <source>%1 Demo</source>
-        <translation>%1 Demo</translation>
+        <source>Veyon Demo</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1783,20 +1783,8 @@ Translated with DeepL</translation>
         <translation>Instellingen voor distributie van bestanden</translation>
     </message>
     <message>
-        <source>Destination directory</source>
-        <translation>Bestemmingsmap</translation>
-    </message>
-    <message>
-        <source>Default source directory</source>
-        <translation>Standaard bronmap</translation>
-    </message>
-    <message>
         <source>Settings for collecting files</source>
         <translation>Instellingen voor verzamelen van bestanden</translation>
-    </message>
-    <message>
-        <source>Source directory</source>
-        <translation>Bronmap</translation>
     </message>
     <message>
         <source>No</source>
@@ -1811,18 +1799,6 @@ Translated with DeepL</translation>
         <translation>Sla bestanden op in submappen op basis van het groeperingskenmerk</translation>
     </message>
     <message>
-        <source>Group collected files</source>
-        <translation>Groep verzamelde bestanden</translation>
-    </message>
-    <message>
-        <source>Collection directory</source>
-        <translation>Verzamelmap</translation>
-    </message>
-    <message>
-        <source>Files to collect</source>
-        <translation>Te verzamelen bestanden</translation>
-    </message>
-    <message>
         <source>Collect all files from configured source directory</source>
         <translation>Verzamel alle bestanden uit de geconfigureerde bronmap</translation>
     </message>
@@ -1835,6 +1811,26 @@ Translated with DeepL</translation>
         <translation>Vraag gebruiker om map voor bestanden</translation>
     </message>
     <message>
+        <source>Grouping attribute:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Destination directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Store collected files in:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group collected files:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Directly in the destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Subdirectory based on date &amp; time</source>
         <translation>Submap op basis van datum en tijd</translation>
     </message>
@@ -1843,8 +1839,32 @@ Translated with DeepL</translation>
         <translation>Submap met naam ingevoerd door de verzamelaar</translation>
     </message>
     <message>
+        <source>Files to collect:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files to exclude:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. *.lnk or *.desktop</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collect files recursively</source>
         <translation>Bestanden terugkerend verzamelen</translation>
+    </message>
+    <message>
+        <source>Destination directory (remote):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default source directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory (remote):</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>User login name</source>
@@ -1859,8 +1879,8 @@ Translated with DeepL</translation>
         <translation>Apparaatnaam</translation>
     </message>
     <message>
-        <source>Collected files grouping attribute</source>
-        <translation>Verzamelde bestanden groeperen op kenmerk</translation>
+        <source>Device and user login name</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -2087,12 +2107,12 @@ Translated with DeepL</translation>
         <translation>Verificatiesleutels zijn niet goed ingesteld op deze computer.</translation>
     </message>
     <message>
-        <source>%1 service</source>
-        <translation>%1 service</translation>
+        <source>Veyon service</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>De service van %1 moet tijdelijk gestopt worden om de logbestanden te verwijderen. Doorgaan?</translation>
+        <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -3023,10 +3043,6 @@ Translated with DeepL</translation>
         <translation>&amp;Geavanceerd</translation>
     </message>
     <message>
-        <source>MainWindow</source>
-        <translation>HoofdScherm</translation>
-    </message>
-    <message>
         <source>Adjust size of computer icons automatically</source>
         <translation>Pas de grootte van computerpictogrammen automatisch aan</translation>
     </message>
@@ -3075,8 +3091,8 @@ Translated with DeepL</translation>
         <translation>werkbalk</translation>
     </message>
     <message>
-        <source>%1 Configurator %2</source>
-        <translation>%1 Configuratie %2</translation>
+        <source>Veyon Configurator %1</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3089,10 +3105,6 @@ Translated with DeepL</translation>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
         <translation>Wilt u echt de lokale configuratie resetten en alle instellingen terugzetten naar hun standaardinstellingen?</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation>%1 Configurator</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -3115,16 +3127,16 @@ Translated with DeepL</translation>
         <translation>Configuratie niet schrijfbaar</translation>
     </message>
     <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
-        <translation>De lokale backend configuratie rapporteert dat de configuratie niet-schrijfbaar is. Start de %1 configurator met admin of hogere previleges.</translation>
+        <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication impossible</source>
         <translation>Authenticatie onmogelijk</translation>
     </message>
     <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
-        <translation>Er werden geen verificatiesleutels gevonden of de huidige zijn verlopen. Maak nieuwe sleutelbestanden aan, of als alternatief stel logon verificatie in, met de %1 configurator. U krijgt geen toegang tot computers, gebruikmakend van %1, indien u niet een van beide gebruikt.</translation>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Access denied</source>
@@ -3139,8 +3151,8 @@ Translated with DeepL</translation>
         <translation>Functie actief</translation>
     </message>
     <message>
-        <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
-        <translation>Het programma %1 is nog steeds actief. Stop het alvorens %2 af te sluiten.</translation>
+        <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use custom computer arrangement.
@@ -3268,6 +3280,14 @@ Houd ingedrukt om een arrangement vanuit een bestand te laden of het huidige arr
     <message>
         <source>Remote access image quality</source>
         <translation>Beeldkwaliteit van externe toegang</translation>
+    </message>
+    <message>
+        <source>Identify users in guest sessions if login name matches:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Guest</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3439,6 +3459,18 @@ Houd ingedrukt om een arrangement vanuit een bestand te laden of het huidige arr
     <message>
         <source>Query properties of remotely available screens</source>
         <translation>Eigenschappen opvragen van schermen die op afstand beschikbaar zijn</translation>
+    </message>
+    <message>
+        <source>Identify users in guest sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Identification request</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter your name:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3709,12 +3741,12 @@ Sla je werk op en sluit alle programma&apos;s af.</translation>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>%1 - %2 Remote Access</source>
-        <translation>%1 - %2 Externe toegang</translation>
+        <source>%1 - Veyon Remote Access</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 - %2 - %3 Remote Access</source>
-        <translation>%1 - %2 - %3 Toegang op afstand</translation>
+        <source>%1 - %2 - Veyon Remote Access</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4048,12 +4080,12 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
         <translation>Plugin:</translation>
     </message>
     <message>
-        <source>Restart %1 Service</source>
-        <translation>Herstart %1 Service</translation>
+        <source>Restart Veyon Service</source>
+        <translation>Herstart Veyon Service</translation>
     </message>
     <message>
-        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
-        <translation>Alle instellingen zijn goed opgeslagen. Om de instellingen van kracht te laten worden moet de %1 service dienst opnieuw worden opgestart. Wil je deze nu herstarten?</translation>
+        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Running</source>
@@ -4212,8 +4244,8 @@ Voorbeeld: [^-]*-(PC[0-9]*)</translation>
         <translation>Bekijk in apart venster</translation>
     </message>
     <message>
-        <source>%1 Master – Slideshow</source>
-        <translation>%1 Master – Diavoorstelling</translation>
+        <source>Veyon Master – Slideshow</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4488,6 +4520,10 @@ Voorbeeld: [^-]*-(PC[0-9]*)</translation>
         <source>Screen %1</source>
         <translation>Scherm %1</translation>
     </message>
+    <message>
+        <source>Guest</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonMaster</name>
@@ -4496,8 +4532,8 @@ Voorbeeld: [^-]*-(PC[0-9]*)</translation>
         <translation>Geen schrijftoegang</translation>
     </message>
     <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>Kon uw persoonlijke instellingen niet opslaan! Controleer het gebruikersconfiguratiebestandspad door gebruik te maken van de %1 Configurator.</translation>
+        <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

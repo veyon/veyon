@@ -42,8 +42,8 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>ライセンス</translation>
     </message>
     <message>
-        <source>About %1 %2</source>
-        <translation>%1 %2について</translation>
+        <source>About Veyon %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1100,7 +1100,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>ホスト&quot;%2&quot;のユーザー&quot;%1&quot;がこのコンピューターにアクセスしようとしましたが、アクセスコントロール設定によりブロックされました。</translation>
     </message>
     <message>
-        <source>%1 Service %2 at %3:%4</source>
+        <source>Veyon Service %1 at %2:%3</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1123,8 +1123,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>ネットワークオブジェクトプラグインが見つかりません</translation>
     </message>
     <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via %1 Configurator.</source>
-        <translation>既定のネットワーク オブジェクト ディレクトリ プラグインが見つかりませんでした。インストールを確認するか、%1 Configurator で別のネットワーク オブジェクト ディレクトリ バックエンドを構成してください。 </translation>
+        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1260,15 +1260,15 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>ConfigurationManager</name>
     <message>
-        <source>Could not modify the autostart property for the %1 Service.</source>
+        <source>Could not modify the autostart property for the Veyon Service.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Server.</source>
+        <source>Could not configure the firewall configuration for the Veyon Server.</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not configure the firewall configuration for the %1 Worker.</source>
+        <source>Could not configure the firewall configuration for the Veyon Worker.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1283,7 +1283,7 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>DemoClient</name>
     <message>
-        <source>%1 Demo</source>
+        <source>Veyon Demo</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -1780,19 +1780,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Destination directory</source>
-        <translation>宛先ディレクトリ</translation>
-    </message>
-    <message>
-        <source>Default source directory</source>
-        <translation>デフォルトのソースディレクトリ</translation>
-    </message>
-    <message>
         <source>Settings for collecting files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Source directory</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1808,18 +1796,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Group collected files</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Collection directory</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Files to collect</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Collect all files from configured source directory</source>
         <translation type="unfinished"/>
     </message>
@@ -1832,6 +1808,26 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Grouping attribute:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Destination directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Store collected files in:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Group collected files:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Directly in the destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Subdirectory based on date &amp; time</source>
         <translation type="unfinished"/>
     </message>
@@ -1840,7 +1836,31 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Files to collect:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files to exclude:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. *.lnk or *.desktop</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collect files recursively</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Destination directory (remote):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default source directory:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory (remote):</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1856,7 +1876,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Collected files grouping attribute</source>
+        <source>Device and user login name</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2084,12 +2104,12 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 service</source>
-        <translation>%1 サービス</translation>
+        <source>Veyon service</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>The %1 service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation>ログファイルを削除するには %1 サービスを一時的に停止する必要があります。続行しますか？</translation>
+        <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -3003,10 +3023,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>拡張</translation>
     </message>
     <message>
-        <source>MainWindow</source>
-        <translation>メインウィンドウ</translation>
-    </message>
-    <message>
         <source>Adjust size of computer icons automatically</source>
         <translation>コンピューターアイコンのサイズを自動で調整する</translation>
     </message>
@@ -3055,7 +3071,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>ツールバー</translation>
     </message>
     <message>
-        <source>%1 Configurator %2</source>
+        <source>Veyon Configurator %1</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3069,10 +3085,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
         <translation>ローカル設定をリセットし、すべての設定をデフォルトに戻して良いですか？</translation>
-    </message>
-    <message>
-        <source>%1 Configurator</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -3095,7 +3107,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run the %1 Configurator with higher privileges.</source>
+        <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3103,7 +3115,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using the %1 Configurator. Alternatively set up logon authentication using the %1 Configurator. Otherwise you won&apos;t be able to access computers using %1.</source>
+        <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3119,7 +3131,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>The feature &quot;%1&quot; is still active. Please stop it before closing %2.</source>
+        <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3245,6 +3257,14 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Remote access image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Identify users in guest sessions if login name matches:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Guest</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3417,6 +3437,18 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Query properties of remotely available screens</source>
         <translation>リモートで利用可能な画面のプロパティを照会する</translation>
+    </message>
+    <message>
+        <source>Identify users in guest sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Identification request</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please enter your name:</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3686,11 +3718,11 @@ Please save your work and close all programs.</source>
 <context>
     <name>RemoteAccessWidget</name>
     <message>
-        <source>%1 - %2 Remote Access</source>
+        <source>%1 - Veyon Remote Access</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 - %2 - %3 Remote Access</source>
+        <source>%1 - %2 - Veyon Remote Access</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4024,11 +4056,11 @@ Typically this is required to support terminal servers.</source>
         <translation>プラグイン:</translation>
     </message>
     <message>
-        <source>Restart %1 Service</source>
-        <translation>サービス%1を再起動します</translation>
+        <source>Restart Veyon Service</source>
+        <translation>Veyonサービスを再起動</translation>
     </message>
     <message>
-        <source>All settings were saved successfully. In order to take effect the %1 service needs to be restarted. Restart it now?</source>
+        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4186,7 +4218,7 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>%1 Master – Slideshow</source>
+        <source>Veyon Master – Slideshow</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4463,6 +4495,10 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Screen %1</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Guest</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>VeyonMaster</name>
@@ -4471,8 +4507,8 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>書込不可</translation>
     </message>
     <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using the %1 Configurator.</source>
-        <translation>個人設定を保存できませんでした！ %1 Configuratorを使ってユーザー設定ファイルのパスを確認してください。</translation>
+        <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
