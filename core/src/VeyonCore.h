@@ -177,8 +177,6 @@ public:
 		return instance()->m_sessionId;
 	}
 
-	static QString applicationName();
-	static void enforceBranding( QWidget* topLevelWidget );
 	static bool useDarkMode();
 
 	static bool isDebugging();
@@ -235,7 +233,6 @@ private:
 	NetworkObjectDirectoryManager* m_networkObjectDirectoryManager;
 
 	Component m_component;
-	QString m_applicationName;
 	bool m_debugging;
 
 	int m_sessionId{0};

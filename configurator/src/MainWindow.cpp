@@ -53,7 +53,7 @@ MainWindow::MainWindow( QWidget* parent ) :
 {
 	ui->setupUi( this );
 
-	setWindowTitle( tr( "%1 Configurator %2" ).arg( VeyonCore::applicationName(), VeyonCore::versionString() ) );
+	setWindowTitle(tr("Veyon Configurator %1").arg(VeyonCore::versionString()));
 
 	loadConfigurationPagePlugins();
 
@@ -96,8 +96,6 @@ MainWindow::MainWindow( QWidget* parent ) :
 			ui->generalConfigurationPage->minimumSizeHint().height() );
 
 	updateView();
-
-	VeyonCore::enforceBranding( this );
 }
 
 
@@ -135,10 +133,7 @@ void MainWindow::apply()
 	const auto showError = [this](const ConfigurationManager& configurationManager) {
 		vCritical() << configurationManager.errorString().toUtf8().constData();
 
-		QMessageBox::critical(this,
-							  tr("%1 Configurator").arg(VeyonCore::applicationName()),
-							  configurationManager.errorString());
-
+		QMessageBox::critical(this, tr("Veyon Configurator"), configurationManager.errorString());
 	};
 
 	ConfigurationManager configurationManager;

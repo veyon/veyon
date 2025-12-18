@@ -37,7 +37,7 @@ AboutDialog::AboutDialog( QWidget *parent ) :
 {
 	ui->setupUi( this );
 
-	setWindowTitle( tr( "About %1 %2" ).arg( VeyonCore::applicationName(), VeyonCore::versionString() ) );
+	setWindowTitle(tr("About Veyon %1").arg(VeyonCore::versionString()));
 
 	ui->versionLabel->setText( VeyonCore::versionString() );
 
@@ -52,8 +52,6 @@ AboutDialog::AboutDialog( QWidget *parent ) :
 	{
 		ui->license->setPlainText(QString::fromUtf8(license.readAll()));
 	}
-
-	VeyonCore::enforceBranding( this );
 }
 
 

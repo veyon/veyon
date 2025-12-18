@@ -73,7 +73,6 @@ VeyonCore::VeyonCore( QCoreApplication* application, Component component, const 
 	m_userGroupsBackendManager( nullptr ),
 	m_networkObjectDirectoryManager( nullptr ),
 	m_component( component ),
-	m_applicationName( QStringLiteral( "Veyon" ) ),
 	m_debugging( false )
 {
 	Q_ASSERT( application != nullptr );
@@ -238,52 +237,6 @@ bool VeyonCore::initAuthentication()
 	}
 
 	return false;
-}
-
-
-
-QString VeyonCore::applicationName()
-{
-	return instance()->m_applicationName;
-}
-
-
-
-void VeyonCore::enforceBranding( QWidget *topLevelWidget )
-{
-	const auto appName = QStringLiteral( "Veyon" );
-
-	const auto labels = topLevelWidget->findChildren<QLabel *>();
-	for( auto label : labels )
-	{
-		label->setText( label->text().replace( appName, VeyonCore::applicationName() ) );
-	}
-
-	const auto buttons = topLevelWidget->findChildren<QAbstractButton *>();
-	for( auto button : buttons )
-	{
-		button->setText( button->text().replace( appName, VeyonCore::applicationName() ) );
-	}
-
-	const auto groupBoxes = topLevelWidget->findChildren<QGroupBox *>();
-	for( auto groupBox : groupBoxes )
-	{
-		groupBox->setTitle( groupBox->title().replace( appName, VeyonCore::applicationName() ) );
-	}
-
-	const auto actions = topLevelWidget->findChildren<QAction *>();
-	for( auto action : actions )
-	{
-		action->setText( action->text().replace( appName, VeyonCore::applicationName() ) );
-	}
-
-	const auto widgets = topLevelWidget->findChildren<QWidget *>();
-	for( auto widget : widgets )
-	{
-		widget->setWindowTitle( widget->windowTitle().replace( appName, VeyonCore::applicationName() ) );
-	}
-
-	topLevelWidget->setWindowTitle( topLevelWidget->windowTitle().replace( appName, VeyonCore::applicationName() ) );
 }
 
 
@@ -596,11 +549,6 @@ void VeyonCore::initConfiguration()
 	if( QUuid( config().installationID() ).isNull() )
 	{
 		config().setInstallationID(QUuid::createUuid().toString(QUuid::WithoutBraces));
-	}
-
-	if( config().applicationName().isEmpty() == false )
-	{
-		m_applicationName = config().applicationName();
 	}
 }
 

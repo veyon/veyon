@@ -45,8 +45,6 @@ PasswordDialog::PasswordDialog( QWidget *parent ) :
 	}
 
 	updateOkButton();
-
-	VeyonCore::enforceBranding( this );
 }
 
 

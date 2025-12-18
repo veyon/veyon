@@ -115,7 +115,7 @@ void SlideshowPanel::switchViewMode()
 	{
 		m_originalParent = parentWidget();
 		setParent(nullptr);
-		setWindowTitle(tr("%1 Master – Slideshow").arg(VeyonCore::applicationName()));
+		setWindowTitle(tr("Veyon Master – Slideshow"));
 		showMaximized();
 	}
 	else

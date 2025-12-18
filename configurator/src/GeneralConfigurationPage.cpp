@@ -197,11 +197,11 @@ void GeneralConfigurationPage::clearLogFiles()
 
 	if( serviceControl.isServiceRunning() )
 	{
-		if( QMessageBox::question( this, tr( "%1 service" ).arg( VeyonCore::applicationName() ),
-								   tr( "The %1 service needs to be stopped temporarily "
-									   "in order to remove the log files. Continue?"
-									   ).arg( VeyonCore::applicationName() ), QMessageBox::Yes | QMessageBox::No,
-								   QMessageBox::Yes ) == QMessageBox::Yes )
+		if (QMessageBox::question(this, tr("Veyon service"),
+								   tr("The Veyon service needs to be stopped temporarily "
+									  "in order to remove the log files. Continue?"),
+								  QMessageBox::Yes | QMessageBox::No,
+								  QMessageBox::Yes) == QMessageBox::Yes)
 		{
 			serviceControl.stopService();
 			serviceStopped = true;
