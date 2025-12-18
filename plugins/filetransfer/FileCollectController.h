@@ -59,7 +59,8 @@ public:
 	enum CollectedFilesGroupingAttribute {
 		UserLoginName,
 		FullNameOfUser,
-		DeviceName
+		DeviceName,
+		DeviceAndUserLoginName,
 	};
 	Q_ENUM(CollectedFilesGroupingAttribute)
 
