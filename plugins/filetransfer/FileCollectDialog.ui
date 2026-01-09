@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>FileCollectDialog</class>
  <widget class="QDialog" name="FileCollectDialog">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>1000</width>
-    <height>800</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>File transfer</string>
   </property>

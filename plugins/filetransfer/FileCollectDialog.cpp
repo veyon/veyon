@@ -25,6 +25,7 @@
 #include <QDesktopServices>
 #include <QInputDialog>
 #include <QPushButton>
+#include <QScreen>
 
 #include "FileCollectController.h"
 #include "FileCollectDialog.h"
@@ -57,6 +58,10 @@ FileCollectDialog::FileCollectDialog(FileCollectController* controller, QWidget*
 	connect (m_controller, &FileCollectController::finished, this, [this]() {
 		ui->buttonBox->setStandardButtons(QDialogButtonBox::Close);
 	});
+
+	const auto availableSize = screen()->availableVirtualSize();
+	move(availableSize.width() / 4, availableSize.height() / 4);
+	resize(screen()->availableVirtualSize() * 3 / 4);
 }
 
 
