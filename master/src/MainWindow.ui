@@ -357,9 +357,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
    </layout>
   </widget>
   <widget class="MainToolBar" name="toolBar">
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
