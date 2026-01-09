@@ -168,6 +168,12 @@ void FileCollectWorker::initFiles()
 			it = m_files.erase(it);
 		}
 	}
+
+	// move files which currently can't be opened (i.e. locked files) to the end so that
+	// all readable files are collected first
+	std::stable_partition(m_files.begin(), m_files.end(), [&](const QString& fileName) {
+		return QFile(m_sourceDirectory + fileName).open(QFile::ReadOnly);
+	});
 }
 
 
