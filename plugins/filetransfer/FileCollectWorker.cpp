@@ -43,6 +43,12 @@ static QStringList listFilesInDirectory(const QString& dirPath, const QList<QReg
 
 	for (const QFileInfo& fi : entries)
 	{
+		if (fi.isReadable() == false)
+		{
+			vDebug() << "skipping non-readable file" << fi.fileName();
+			continue;
+		}
+
 		bool exclude = false;
 		for (const auto& excludeRegEx : excludeRegExes)
 		{
