@@ -34,13 +34,18 @@ public:
 	explicit MainToolBar( QWidget* parent );
 	~MainToolBar() override = default;
 
+protected:
+	bool event(QEvent* event) override;
 
 private:
+	void setExpanded();
+	void updateMinimumSize();
 	void toggleToolTips();
 	void toggleIconMode();
 
 	void contextMenuEvent( QContextMenuEvent* event ) override;
 
 	MainWindow* m_mainWindow;
+	QLayout* m_layout;
 
 } ;
