@@ -82,14 +82,14 @@ int main( int argc, char **argv )
 							  MainWindow::tr( "Configuration not writable" ),
 							  MainWindow::tr( "The local configuration backend reported that the "
 											  "configuration is not writable! The %1 Configurator "
-											  "will run in read-only mode." ).arg( VeyonCore::applicationName() ) );
+											  "will run in read-only mode." ).arg( QCoreApplication::applicationName() ) );
 		// On macOS we keep running in read-only mode
 #else
 		QMessageBox::critical( nullptr,
 							   MainWindow::tr( "Configuration not writable" ),
 							   MainWindow::tr( "The local configuration backend reported that the "
 											   "configuration is not writable! Please run the %1 "
-											   "Configurator with higher privileges." ).arg( VeyonCore::applicationName() ) );
+											   "Configurator with higher privileges." ).arg( QCoreApplication::applicationName() ) );
 		return -1;
 #endif
 	}
