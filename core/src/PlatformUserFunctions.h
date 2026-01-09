@@ -29,9 +29,18 @@
 
 // clazy:excludeall=copyable-polymorphic
 
-class PlatformUserFunctions
+class VEYON_CORE_EXPORT PlatformUserFunctions
 {
+	Q_GADGET
 public:
+	enum class UserProperty
+	{
+		None,
+		LoginName,
+		FullName,
+	};
+	Q_ENUM(UserProperty)
+
 	using Password = CryptoCore::PlaintextPassword;
 
 	virtual ~PlatformUserFunctions() = default;

@@ -52,6 +52,10 @@ MasterConfigurationPage::MasterConfigurationPage( QWidget* parent ) :
 	connect(ui->openConfigurationTemplatesDirectory, &QPushButton::clicked,
 			 this, &MasterConfigurationPage::openConfigurationTemplatesDirectory);
 
+	connect(ui->guestUserProperty, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this]() {
+		ui->guestUserValue->setEnabled(ui->guestUserProperty->currentIndex() > 0);
+	});
+
 	populateFeatureComboBox();
 }
 
