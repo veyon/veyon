@@ -93,7 +93,10 @@
          <property name="title">
           <string>User interface</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_2">
+         <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,1">
+          <property name="horizontalSpacing">
+           <number>10</number>
+          </property>
           <item row="5" column="0">
            <widget class="QLabel" name="label_9">
             <property name="text">
@@ -339,7 +342,17 @@
          <property name="title">
           <string>Advanced</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_4">
+         <layout class="QGridLayout" name="gridLayout_4" columnstretch="0,1">
+          <property name="horizontalSpacing">
+           <number>10</number>
+          </property>
+          <item row="1" column="0">
+           <widget class="QLabel" name="computerUidRoleContentLabel">
+            <property name="text">
+             <string>Computer UID role</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="0">
            <widget class="QLabel" name="computerNameSourceLabel">
             <property name="text">
@@ -391,13 +404,6 @@
             </item>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="computerUidRoleContentLabel">
-            <property name="text">
-             <string>Computer UID role</string>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="1">
            <widget class="QComboBox" name="computerUidRoleContent">
             <item>
@@ -412,17 +418,39 @@
             </item>
            </widget>
           </item>
-          <item row="2" column="0" colspan="2">
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item row="2" column="0">
+           <widget class="QLabel" name="identifyUsersInGuestSessionsLabel">
+            <property name="text">
+             <string>Identify users in guest sessions</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <layout class="QHBoxLayout" name="_2">
             <item>
-             <widget class="QCheckBox" name="identifyUsersInGuestSessions">
-              <property name="text">
-               <string>Identify users in guest sessions if login name matches:</string>
+             <widget class="QComboBox" name="guestUserProperty">
+              <property name="sizeAdjustPolicy">
+               <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
               </property>
+              <item>
+               <property name="text">
+                <string>Never</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>If login name matches</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>If full name matches</string>
+               </property>
+              </item>
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="guestUserLoginName">
+             <widget class="QLineEdit" name="guestUserValue">
               <property name="enabled">
                <bool>false</bool>
               </property>
@@ -559,7 +587,7 @@
          <property name="title">
           <string>Modes and features</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout" columnstretch="0,0">
+         <layout class="QGridLayout" name="gridLayout" columnstretch="0,1">
           <item row="0" column="0" colspan="2">
            <widget class="QCheckBox" name="enforceSelectedModeForClients">
             <property name="text">
@@ -712,8 +740,8 @@
   <tabstop>computerMonitoringThumbnailSpacing</tabstop>
   <tabstop>computerNameSource</tabstop>
   <tabstop>computerUidRoleContent</tabstop>
-  <tabstop>identifyUsersInGuestSessions</tabstop>
-  <tabstop>guestUserLoginName</tabstop>
+  <tabstop>guestUserProperty</tabstop>
+  <tabstop>guestUserValue</tabstop>
   <tabstop>accessControlForMasterEnabled</tabstop>
   <tabstop>autoSelectCurrentLocation</tabstop>
   <tabstop>autoAdjustMonitoringIconSize</tabstop>
@@ -815,22 +843,6 @@
     <hint type="destinationlabel">
      <x>444</x>
      <y>413</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>identifyUsersInGuestSessions</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>guestUserLoginName</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>230</x>
-     <y>606</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>496</x>
-     <y>607</y>
     </hint>
    </hints>
   </connection>

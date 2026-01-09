@@ -53,8 +53,8 @@ ComputerManager::ComputerManager( UserConfig& config, QObject* parent ) :
 	m_networkObjectFilterProxyModel( new NetworkObjectFilterProxyModel( this ) ),
 	m_localHostNames( QHostInfo::localHostName().toLower() ),
 	m_localHostAddresses(QHostInfo::fromName(QHostInfo::localHostName()).addresses()),
-	m_identifyUsersInGuestSessions(VeyonCore::config().identifyUsersInGuestSessions()),
-	m_guestUserLoginName(VeyonCore::config().guestUserLoginName())
+	m_guestUserProperty(VeyonCore::config().guestUserProperty()),
+	m_guestUserValue(VeyonCore::config().guestUserValue())
 {
 	if( m_networkObjectDirectory == nullptr )
 	{
@@ -169,9 +169,11 @@ void ComputerManager::updateUser(const ComputerControlInterface::Pointer& contro
 			}
 		}
 
-		if (m_identifyUsersInGuestSessions &&
-			(controlInterface->userLoginName() == m_guestUserLoginName ||
-			 controlInterface->userLoginName().isEmpty()))
+		if ((m_guestUserProperty == PlatformUserFunctions::UserProperty::LoginName &&
+			 controlInterface->userLoginName() == m_guestUserValue)
+			||
+			(m_guestUserProperty == PlatformUserFunctions::UserProperty::FullName &&
+						 controlInterface->userFullName() == m_guestUserValue))
 		{
 			VeyonCore::builtinFeatures().monitoringMode().identifyUser({controlInterface});
 		}

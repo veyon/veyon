@@ -27,6 +27,7 @@
 #include "CheckableItemProxyModel.h"
 #include "ComputerControlInterface.h"
 #include "NetworkObjectDirectory.h"
+#include "PlatformUserFunctions.h"
 
 class QHostAddress;
 class NetworkObjectDirectory;
@@ -102,7 +103,7 @@ private:
 	QStringList m_localHostNames;
 	QList<QHostAddress> m_localHostAddresses;
 
-	bool m_identifyUsersInGuestSessions;
-	QString m_guestUserLoginName;
+	const PlatformUserFunctions::UserProperty m_guestUserProperty;
+	const QString m_guestUserValue;
 
 };
