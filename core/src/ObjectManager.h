@@ -25,6 +25,7 @@
 #pragma once
 
 #include <QJsonArray>
+#include <QVector>
 
 #include "VeyonCore.h"
 
@@ -90,6 +91,96 @@ public:
 			{
 				++it;
 			}
+		}
+
+		return m_objects;
+	}
+
+	const QJsonArray& moveUp( typename T::Uid objectUid )
+	{
+		int currentIndex = -1;
+		T targetObject;
+
+		for( int i = 0; i < m_objects.size(); ++i )
+		{
+			T currentObject( m_objects[i].toObject() );
+			if( currentObject.uid() == objectUid )
+			{
+				currentIndex = i;
+				targetObject = currentObject;
+				break;
+			}
+		}
+
+		if( currentIndex < 0 )
+		{
+			return m_objects;
+		}
+
+		QVector<int> matchingIndices;
+		matchingIndices.reserve( m_objects.size() );
+
+		for( int i = 0; i < m_objects.size(); ++i )
+		{
+			T currentObject( m_objects[i].toObject() );
+			if( currentObject.type() == targetObject.type() && currentObject.parentUid() == targetObject.parentUid() )
+			{
+				matchingIndices.append( i );
+			}
+		}
+
+		const int position = matchingIndices.indexOf( currentIndex );
+		if( position > 0 )
+		{
+			const int previousIndex = matchingIndices[position - 1];
+			const auto swapValue = m_objects.at( currentIndex );
+			m_objects[currentIndex] = m_objects[previousIndex];
+			m_objects[previousIndex] = swapValue;
+		}
+
+		return m_objects;
+	}
+
+	const QJsonArray& moveDown( typename T::Uid objectUid )
+	{
+		int currentIndex = -1;
+		T targetObject;
+
+		for( int i = 0; i < m_objects.size(); ++i )
+		{
+			T currentObject( m_objects[i].toObject() );
+			if( currentObject.uid() == objectUid )
+			{
+				currentIndex = i;
+				targetObject = currentObject;
+				break;
+			}
+		}
+
+		if( currentIndex < 0 )
+		{
+			return m_objects;
+		}
+
+		QVector<int> matchingIndices;
+		matchingIndices.reserve( m_objects.size() );
+
+		for( int i = 0; i < m_objects.size(); ++i )
+		{
+			T currentObject( m_objects[i].toObject() );
+			if( currentObject.type() == targetObject.type() && currentObject.parentUid() == targetObject.parentUid() )
+			{
+				matchingIndices.append( i );
+			}
+		}
+
+		const int position = matchingIndices.indexOf( currentIndex );
+		if( position >= 0 && position < matchingIndices.size() - 1 )
+		{
+			const int nextIndex = matchingIndices[position + 1];
+			const auto swapValue = m_objects.at( currentIndex );
+			m_objects[currentIndex] = m_objects[nextIndex];
+			m_objects[nextIndex] = swapValue;
 		}
 
 		return m_objects;

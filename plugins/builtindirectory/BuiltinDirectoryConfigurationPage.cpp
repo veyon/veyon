@@ -137,7 +137,6 @@ void BuiltinDirectoryConfigurationPage::removeLocation()
 
 void BuiltinDirectoryConfigurationPage::moveLocationUp()
 {
-	QJsonArray networkObjects = m_configuration.networkObjects();
 	const int row = ui->locationTableWidget->currentRow();
 
 	if( row <= 0 )
@@ -145,46 +144,18 @@ void BuiltinDirectoryConfigurationPage::moveLocationUp()
 		return;
 	}
 
-	// Find the index of the current location in the full array
-	int currentIndex = -1;
-	int previousLocationIndex = -1;
-	int locationsSeen = 0;
+	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+	objectManager.moveUp( currentLocationObject().uid() );
+	m_configuration.setNetworkObjects( objectManager.objects() );
 
-	for( int i = 0; i < networkObjects.size(); ++i )
-	{
-		const NetworkObject obj( networkObjects[i].toObject() );
-		if( obj.type() == NetworkObject::Type::Location )
-		{
-			if( locationsSeen == row - 1 )
-			{
-				previousLocationIndex = i;
-			}
-			if( locationsSeen == row )
-			{
-				currentIndex = i;
-				break;
-			}
-			++locationsSeen;
-		}
-	}
-
-	if( currentIndex > 0 && previousLocationIndex >= 0 )
-	{
-		const QJsonValue swapValue = networkObjects[currentIndex];
-		networkObjects[currentIndex] = networkObjects[previousLocationIndex];
-		networkObjects[previousLocationIndex] = swapValue;
-
-		m_configuration.setNetworkObjects( networkObjects );
-		populateLocations();
-		ui->locationTableWidget->setCurrentCell( row - 1, 0 );
-	}
+	populateLocations();
+	ui->locationTableWidget->setCurrentCell( row - 1, 0 );
 }
 
 
 
 void BuiltinDirectoryConfigurationPage::moveLocationDown()
 {
-	QJsonArray networkObjects = m_configuration.networkObjects();
 	const int row = ui->locationTableWidget->currentRow();
 
 	if( row < 0 || row >= ui->locationTableWidget->rowCount() - 1 )
@@ -192,39 +163,12 @@ void BuiltinDirectoryConfigurationPage::moveLocationDown()
 		return;
 	}
 
-	// Find the index of the current and next location in the full array
-	int currentIndex = -1;
-	int nextLocationIndex = -1;
-	int locationsSeen = 0;
+	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+	objectManager.moveDown( currentLocationObject().uid() );
+	m_configuration.setNetworkObjects( objectManager.objects() );
 
-	for( int i = 0; i < networkObjects.size(); ++i )
-	{
-		const NetworkObject obj( networkObjects[i].toObject() );
-		if( obj.type() == NetworkObject::Type::Location )
-		{
-			if( locationsSeen == row )
-			{
-				currentIndex = i;
-			}
-			if( locationsSeen == row + 1 )
-			{
-				nextLocationIndex = i;
-				break;
-			}
-			++locationsSeen;
-		}
-	}
-
-	if( currentIndex >= 0 && nextLocationIndex >= 0 )
-	{
-		const QJsonValue swapValue = networkObjects[currentIndex];
-		networkObjects[currentIndex] = networkObjects[nextLocationIndex];
-		networkObjects[nextLocationIndex] = swapValue;
-
-		m_configuration.setNetworkObjects( networkObjects );
-		populateLocations();
-		ui->locationTableWidget->setCurrentCell( row + 1, 0 );
-	}
+	populateLocations();
+	ui->locationTableWidget->setCurrentCell( row + 1, 0 );
 }
 
 
@@ -284,7 +228,6 @@ void BuiltinDirectoryConfigurationPage::removeComputer()
 
 void BuiltinDirectoryConfigurationPage::moveComputerUp()
 {
-	QJsonArray networkObjects = m_configuration.networkObjects();
 	const int row = ui->computerTableWidget->currentRow();
 
 	if( row <= 0 )
@@ -292,47 +235,18 @@ void BuiltinDirectoryConfigurationPage::moveComputerUp()
 		return;
 	}
 
-	// Find the index of the current and previous computer in the full array
-	const auto parentUid = currentLocationObject().uid();
-	int currentIndex = -1;
-	int previousComputerIndex = -1;
-	int computersSeen = 0;
+	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+	objectManager.moveUp( currentComputerObject().uid() );
+	m_configuration.setNetworkObjects( objectManager.objects() );
 
-	for( int i = 0; i < networkObjects.size(); ++i )
-	{
-		const NetworkObject obj( networkObjects[i].toObject() );
-		if( obj.type() == NetworkObject::Type::Host && obj.parentUid() == parentUid )
-		{
-			if( computersSeen == row - 1 )
-			{
-				previousComputerIndex = i;
-			}
-			if( computersSeen == row )
-			{
-				currentIndex = i;
-				break;
-			}
-			++computersSeen;
-		}
-	}
-
-	if( currentIndex > 0 && previousComputerIndex >= 0 )
-	{
-		const QJsonValue swapValue = networkObjects[currentIndex];
-		networkObjects[currentIndex] = networkObjects[previousComputerIndex];
-		networkObjects[previousComputerIndex] = swapValue;
-
-		m_configuration.setNetworkObjects( networkObjects );
-		populateComputers();
-		ui->computerTableWidget->setCurrentCell( row - 1, 0 );
-	}
+	populateComputers();
+	ui->computerTableWidget->setCurrentCell( row - 1, 0 );
 }
 
 
 
 void BuiltinDirectoryConfigurationPage::moveComputerDown()
 {
-	QJsonArray networkObjects = m_configuration.networkObjects();
 	const int row = ui->computerTableWidget->currentRow();
 
 	if( row < 0 || row >= ui->computerTableWidget->rowCount() - 1 )
@@ -340,40 +254,12 @@ void BuiltinDirectoryConfigurationPage::moveComputerDown()
 		return;
 	}
 
-	// Find the index of the current and next computer in the full array
-	const auto parentUid = currentLocationObject().uid();
-	int currentIndex = -1;
-	int nextComputerIndex = -1;
-	int computersSeen = 0;
+	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+	objectManager.moveDown( currentComputerObject().uid() );
+	m_configuration.setNetworkObjects( objectManager.objects() );
 
-	for( int i = 0; i < networkObjects.size(); ++i )
-	{
-		const NetworkObject obj( networkObjects[i].toObject() );
-		if( obj.type() == NetworkObject::Type::Host && obj.parentUid() == parentUid )
-		{
-			if( computersSeen == row )
-			{
-				currentIndex = i;
-			}
-			if( computersSeen == row + 1 )
-			{
-				nextComputerIndex = i;
-				break;
-			}
-			++computersSeen;
-		}
-	}
-
-	if( currentIndex >= 0 && nextComputerIndex >= 0 )
-	{
-		const QJsonValue swapValue = networkObjects[currentIndex];
-		networkObjects[currentIndex] = networkObjects[nextComputerIndex];
-		networkObjects[nextComputerIndex] = swapValue;
-
-		m_configuration.setNetworkObjects( networkObjects );
-		populateComputers();
-		ui->computerTableWidget->setCurrentCell( row + 1, 0 );
-	}
+	populateComputers();
+	ui->computerTableWidget->setCurrentCell( row + 1, 0 );
 }
 
 
