@@ -7,7 +7,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="filetransfer.qrc">
-    <normaloff>:/filetransfer/distribute-files.png</normaloff>:/filetransfer/distribute-files.png</iconset>
+    <normaloff>:/filetransfer/distribute-files-dark.png</normaloff>:/filetransfer/distribute-files-dark.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="topMargin">
