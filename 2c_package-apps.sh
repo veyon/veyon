@@ -4,6 +4,7 @@
 # Includes: Helpers, crypto plugins, OpenSSL dual-location, QCA symlinks, and complete dependencies
 
 set -euo pipefail
+
 IFS=$'\n\t'
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${PATH:-}"
 
@@ -18,6 +19,16 @@ log_info()  { printf "${GREEN}[INFO]${NC} %s\n" "$*"; }
 log_step()  { printf "${BLUE}[STEP]${NC} %s\n" "$*"; }
 log_warn()  { printf "${YELLOW}[WARN]${NC} %s\n" "$*"; }
 log_error() { printf "${RED}[ERROR]${NC} %s\n" "$*"; }
+
+# ============================================================================
+# C) PACKAGING
+# ============================================================================
+
+printf "\n"
+printf "==========================================\n"
+printf "          C) PACKAGING\n"
+printf "==========================================\n"
+printf "\n"
 
 # ============================================================================
 # PATH CONFIGURATION
@@ -892,7 +903,8 @@ log_info "=== Running automatic dependency resolution ==="
 log_info ""
 
 if [[ -f "$FIX_SCRIPT" ]]; then
-	log_info "Running fix_bundle_deps.python…"
+	log_info "Running fix_bundle_deps.python:"
+	log_info ""
 
 	# Collect all apps to process (main only)
 	apps_to_fix=()
@@ -1016,9 +1028,7 @@ EOF
 # ============================================================================
 
 log_info ""
-log_info "=========================================="
-log_info "=== PACKAGING COMPLETED ✓ ==="
-log_info "=========================================="
+log_info "===        PACKAGING COMPLETED         ==="
 log_info ""
 log_info "Package created in: ${PACKAGE_DIR}"
 log_info ""
@@ -1034,6 +1044,7 @@ log_info "Helper executables in Contents/MacOS/:"
 for helper_app in "${HELPER_APPS[@]}"; do
 	log_info "  ✓ ${helper_app}"
 done
+
 log_info ""
 log_info "Critical components installed:"
 log_info "  ✓ QCA crypto plugins (PlugIns/crypto/)"
@@ -1043,5 +1054,8 @@ log_info "  ✓ Homebrew dependencies (real files, not symlinks)"
 log_info "  ✓ Additional Qt frameworks"
 log_info "  ✓ Problematic plugins disabled"
 log_info ""
+log_info ""
 log_info "Applications are ready to use!"
+log_info "✓ Packaging completed"
+log_info ""
 log_info ""

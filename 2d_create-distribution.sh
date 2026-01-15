@@ -11,6 +11,12 @@ NC='\033[0m'
 log_info()  { printf "${GREEN}[INFO]${NC} %s\n" "$*"; }
 log_error() { printf "${RED}[ERROR]${NC} %s\n" "$*"; }
 
+printf "\n"
+printf "==========================================\n"
+printf "          D) DISTRIBUTION DMG\n"
+printf "==========================================\n"
+printf "\n"
+
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PACKAGE_DIR="${SCRIPT_DIR}/veyon-macos-package"
 DIST_OUTPUT="${SCRIPT_DIR}/veyon-macos-distribution"
@@ -70,5 +76,11 @@ rm -rf "$DMG_TEMP" 2>/dev/null || true
 
 DMG_SIZE=$(du -sh "$DIST_OUTPUT/Veyon-macOS.dmg" | cut -f1)
 
+printf "\n"
+
 log_info "File created (${DMG_SIZE}): ${DIST_OUTPUT}/Veyon-macOS.dmg"
+log_info ""
+log_info ""
+log_info "✓ Distribution package completed, ready to distribute!"
+log_info ""
 log_info ""

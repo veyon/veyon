@@ -19,8 +19,11 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 # STEP 1: BUILD
 # ============================================================================
 
-log_step "=== STEP 1: Building Veyon ==="
-log_info ""
+printf "\n"
+printf "==========================================\n"
+printf "          A) BUILD\n"
+printf "==========================================\n"
+printf "\n"
 
 if [[ ! -d "${SCRIPT_DIR}/build" ]]; then
     log_info "Configuring cmake for the first time..."
@@ -54,3 +57,8 @@ cmake --build build --parallel
 
 log_info "Installing to dist/..."
 cmake --build build --target install
+
+log_info ""
+log_info "✓ Building completed"
+log_info ""
+log_info ""

@@ -15,8 +15,11 @@ log_warn()  { printf "${YELLOW}[WARN]${NC} %s\n" "$*"; }
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-log_info "=== Configuring CMake for Veyon macOS ==="
-log_info ""
+printf "\n"
+printf "==========================================\n"
+printf "     CONFIGURE CMAKE FOR VEYON MACOS\n"
+printf "==========================================\n"
+printf "\n"
 
 # Check if build exists and warn
 if [[ -d "${SCRIPT_DIR}/build" ]]; then
@@ -50,9 +53,8 @@ cmake -S . -B build \
 log_info ""
 log_info "✓ Configuration completed"
 log_info ""
-log_info "Now you can build with:"
-log_info "  cmake --build build --parallel"
 log_info ""
-log_info "Or use the complete script:"
-log_info "  ./2_build-package-distribution.sh"
+log_info "Now you can continue the build with the following script:"
+log_info "     ./2_build-package-distribution.sh"
+log_info ""
 log_info ""

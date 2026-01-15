@@ -19,55 +19,26 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 # ============================================================================
 # A) BUILD
 # ============================================================================
-printf "\n"
-printf "==========================================\n"
-printf "          A) BUILD\n"
-printf "==========================================\n"
-printf "\n"
-
-log_info "Copying dylibs to app bundles..."
 if [[ -f "${SCRIPT_DIR}/2a_build.sh" ]]; then
     "${SCRIPT_DIR}/2a_build.sh" "${SCRIPT_DIR}/dist"
 else
-    log_error "2a_build.sh not found"
+    log_error "2a_build.sh not found, cancelling."
     exit 1
 fi
-
-log_info ""
-log_info "✓ Building completed"
-log_info ""
 
 # ============================================================================
 # B) COPY DYLIBS TO BUNDLES
 # ============================================================================
-printf "\n"
-printf "==========================================\n"
-printf "          B) COPY DYLIBS TO BUNDLES\n"
-printf "==========================================\n"
-printf "\n"
-
-
-log_info "Copying dylibs to app bundles..."
 if [[ -f "${SCRIPT_DIR}/2b_install-dylibs-to-bundles.sh" ]]; then
     "${SCRIPT_DIR}/2b_install-dylibs-to-bundles.sh" "${SCRIPT_DIR}/dist"
 else
-    log_error "2b_install-dylibs-to-bundles.sh not found"
+    log_error "2b_install-dylibs-to-bundles.sh not found, cancelling."
     exit 1
 fi
-
-log_info ""
-log_info "✓ Copying dylibs to app bundles completed"
-log_info ""
 
 # ============================================================================
 # C) PACKAGING
 # ============================================================================
-printf "\n"
-printf "==========================================\n"
-printf "          B) PACKAGING\n"
-printf "==========================================\n"
-printf "\n"
-
 if [[ -f "${SCRIPT_DIR}/2c_package-apps.sh" ]]; then
     "${SCRIPT_DIR}/2c_package-apps.sh"
 else
@@ -75,26 +46,13 @@ else
     exit 1
 fi
 
-log_info ""
-log_info "✓ Packaging completed"
-log_info ""
-
 # ============================================================================
 # D) DISTRIBUTION DMG
 # ============================================================================
-printf "\n"
-printf "==========================================\n"
-printf "          B) DISTRIBUTION DMG\n"
-printf "==========================================\n"
-printf "\n"
-
 if [[ -f "${SCRIPT_DIR}/2d_create-distribution.sh" ]]; then
     "${SCRIPT_DIR}/2d_create-distribution.sh"
 else
-    log_error "2d_create-distribution.sh not found"
+    log_error "2d_create-distribution.sh not found, cancelling."
     exit 1
 fi
 
-log_info ""
-log_info "✓ Packaging completed, ready to distribute!"
-log_info ""
