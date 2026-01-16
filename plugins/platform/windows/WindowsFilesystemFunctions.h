@@ -41,4 +41,6 @@ public:
 
 	bool openFileSafely( QFile* file, QFile::OpenMode openMode, QFile::Permissions permissions ) override;
 
+	PlatformCoreFunctions::ProcessId findFileLockingProcess(const QString& filePath) const override;
+
 };

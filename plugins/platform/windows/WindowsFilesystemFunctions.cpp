@@ -27,6 +27,9 @@
 #include <shlobj.h>
 #include <accctrl.h>
 #include <aclapi.h>
+#include <psapi.h>
+#include <tlhelp32.h>
+#include <winternl.h>
 #include <wtsapi32.h>
 
 #include "UserGroupsBackendManager.h"
@@ -258,4 +261,78 @@ bool WindowsFilesystemFunctions::openFileSafely( QFile* file, QIODevice::OpenMod
 	file->close();
 
 	return false;
+}
+
+
+PlatformCoreFunctions::ProcessId WindowsFilesystemFunctions::findFileLockingProcess(const QString& filePath) const
+{
+	auto filePathLower = QDir::toNativeSeparators(filePath).toLower();
+	if (filePathLower.startsWith(QLatin1String("\\\\?\\")))
+	{
+		filePathLower = filePathLower.mid(4);
+	}
+
+	const auto currentProcessId = GetCurrentProcessId();
+
+	static const size_t InfoBufferSize = 4 * 1024 * 1024;
+	std::vector<char> handleInfoBuffer(InfoBufferSize);
+	ULONG returnLength = 0;
+	NTSTATUS status = NtQuerySystemInformation(SystemHandleInformation, handleInfoBuffer.data(),
+											   handleInfoBuffer.size(), &returnLength);
+	if (status != 0)
+	{
+		return PlatformCoreFunctions::InvalidProcessId;
+	}
+
+	const auto handleInfo = PSYSTEM_HANDLE_INFORMATION(handleInfoBuffer.data());
+
+	for (ULONG i = 0; i < handleInfo->Count; i++)
+	{
+		const auto& sh = handleInfo->Handle[i];
+
+		if (sh.OwnerPid == currentProcessId)
+		{
+			continue;
+		}
+
+		const auto processHandle = OpenProcess(PROCESS_DUP_HANDLE | PROCESS_QUERY_LIMITED_INFORMATION, FALSE, sh.OwnerPid);
+		if (!processHandle)
+		{
+			continue;
+		}
+
+		HANDLE duplicatedHandle = nullptr;
+		if (!DuplicateHandle(processHandle, (HANDLE)(ULONG_PTR)sh.HandleValue,
+							 GetCurrentProcess(), &duplicatedHandle, 0, FALSE, DUPLICATE_SAME_ACCESS))
+		{
+			CloseHandle(processHandle);
+			continue;
+		}
+
+		if (GetFileType(duplicatedHandle) == FILE_TYPE_DISK)
+		{
+			WCHAR currentFilePath[MAX_PATH * 4] = { 0 };
+			const auto result = GetFinalPathNameByHandleW(duplicatedHandle, currentFilePath, MAX_PATH * 4, FILE_NAME_NORMALIZED);
+			if (result > 0)
+			{
+				auto currentFilePathLower = QString::fromWCharArray(currentFilePath).toLower();
+				if (currentFilePathLower.startsWith(QLatin1String("\\\\?\\")))
+				{
+					currentFilePathLower = currentFilePathLower.mid(4);
+				}
+
+				if (filePathLower == currentFilePathLower)
+				{
+					CloseHandle(duplicatedHandle);
+					CloseHandle(processHandle);
+					return sh.OwnerPid;
+				}
+			}
+		}
+
+		CloseHandle(duplicatedHandle);
+		CloseHandle(processHandle);
+	}
+
+	return PlatformCoreFunctions::InvalidProcessId;
 }
