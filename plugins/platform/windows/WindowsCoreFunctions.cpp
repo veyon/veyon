@@ -30,6 +30,7 @@
 #include <shlobj.h>
 #include <userenv.h>
 #include <sddl.h>
+#include <tlhelp32.h>
 
 #include "VeyonConfiguration.h"
 #include "WindowsCoreFunctions.h"
@@ -420,6 +421,67 @@ QString WindowsCoreFunctions::queryDisplayDeviceName(const QScreen& screen) cons
 	}
 
 	return {};
+}
+
+
+
+QString WindowsCoreFunctions::getApplicationName(ProcessId processId) const
+{
+	if (processId == InvalidProcessId)
+	{
+		return {};
+	}
+
+	struct WindowSearchData {
+		DWORD pid;
+		QString title;
+	};
+
+	WindowSearchData data = {DWORD(processId), {}};
+
+	EnumWindows([](HWND window, LPARAM instance) -> WINBOOL CALLBACK {
+					WindowSearchData* data = reinterpret_cast<WindowSearchData*>(instance);
+					DWORD winPid;
+					GetWindowThreadProcessId(window, &winPid);
+					if (winPid == data->pid && IsWindowVisible(window))
+					{
+						const auto len = GetWindowTextLengthW(window);
+						if (len > 0)
+						{
+							std::wstring winTitle(len, L'\0');
+							GetWindowTextW(window, &winTitle[0], len + 1);
+							data->title = QString::fromStdWString(winTitle);
+							return FALSE;
+						}
+					}
+					return TRUE;
+				}, reinterpret_cast<LPARAM>(&data));
+
+	if (data.title.isEmpty())
+	{
+		const auto hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+		if (hSnapshot == INVALID_HANDLE_VALUE)
+		{
+			return {};
+		}
+
+		PROCESSENTRY32W pe;
+		pe.dwSize = sizeof(PROCESSENTRY32W);
+
+		if (Process32FirstW(hSnapshot, &pe))
+		{
+			do {
+				if (pe.th32ProcessID == data.pid)
+				{
+					data.title = QString::fromWCharArray(pe.szExeFile);
+					break;
+				}
+			} while (Process32NextW(hSnapshot, &pe));
+		}
+		CloseHandle(hSnapshot);
+	}
+
+	return data.title;
 }
 
 

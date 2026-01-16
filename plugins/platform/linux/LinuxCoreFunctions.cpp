@@ -313,6 +313,19 @@ QString LinuxCoreFunctions::queryDisplayDeviceName(const QScreen& screen) const
 
 
 
+QString LinuxCoreFunctions::getApplicationName(ProcessId processId) const
+{
+	QFile file(QStringLiteral("/proc/%1/comm").arg(processId));
+	if (file.open(QFile::ReadOnly))
+	{
+		return QString::fromUtf8(file.readAll().trimmed());
+	}
+
+	return {};
+}
+
+
+
 bool LinuxCoreFunctions::prepareSessionBusAccess()
 {
 	const auto uid = LinuxUserFunctions::userIdFromName( VeyonCore::platform().userFunctions().currentUser() );
