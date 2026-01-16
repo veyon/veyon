@@ -44,6 +44,7 @@ public:
 private Q_SLOTS:
 	void enableFeature();
 	void disableFeature();
+	void openMaster();
 
 private:
 	void openUserConfigurationDirectory();
