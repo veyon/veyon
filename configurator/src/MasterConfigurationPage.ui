@@ -10,6 +10,30 @@
     <number>0</number>
    </property>
    <item>
+    <layout class="QHBoxLayout">
+     <item>
+      <spacer name="horizontalSpacerTop">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="openMasterButton">
+       <property name="text">
+        <string>Open Master</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
       <number>0</number>
@@ -490,6 +514,13 @@
           <string>Program start</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QCheckBox" name="disableMaster">
+            <property name="text">
+             <string>Disable Master</string>
+            </property>
+           </widget>
+          </item>
           <item>
            <widget class="QCheckBox" name="accessControlForMasterEnabled">
             <property name="text">

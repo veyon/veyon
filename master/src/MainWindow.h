@@ -47,6 +47,7 @@ public:
 
 	static bool initAuthentication();
 	static bool initAccessControl();
+	static bool initAvailability();
 
 	VeyonMaster& masterCore()
 	{

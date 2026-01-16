@@ -22,6 +22,10 @@
  *
  */
 
+#include <QCoreApplication>
+#include <QMessageBox>
+#include <QProcess>
+
 #include "BuiltinFeatures.h"
 #include "PluginManager.h"
 #include "FeatureManager.h"
@@ -55,6 +59,9 @@ MasterConfigurationPage::MasterConfigurationPage() :
 	connect(ui->guestUserProperty, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this]() {
 		ui->guestUserValue->setEnabled(ui->guestUserProperty->currentIndex() > 0);
 	});
+
+	connect(ui->openMasterButton, &QPushButton::clicked,
+			 this, &MasterConfigurationPage::openMaster);
 
 	populateFeatureComboBox();
 }
@@ -124,6 +131,30 @@ void MasterConfigurationPage::disableFeature()
 	VeyonCore::config().setDisabledFeatures( m_disabledFeatures );
 
 	updateFeatureLists();
+}
+
+
+
+void MasterConfigurationPage::openMaster()
+{
+	if ( VeyonCore::config().disableMaster() )
+	{
+		QMessageBox::critical( this, tr( "Access denied" ),
+							   tr( "Veyon Master has been disabled by configuration. "
+							   	   "You can change this option in Veyon Configurator. " ) );
+		return;
+	}
+
+	QString program = QCoreApplication::applicationDirPath() + QStringLiteral( "/veyon-master" );
+#ifdef Q_OS_WIN
+	program += QStringLiteral( ".exe" );
+#endif
+
+	if ( QProcess::startDetached(program) == false )
+	{
+    	QMessageBox::critical( this, tr( "Veyon Configurator" ),
+                          	  tr( "Failed to start veyon-master." ) );
+	}
 }
 
 
