@@ -183,3 +183,38 @@ bool LinuxFilesystemFunctions::openFileSafely( QFile* file, QIODevice::OpenMode 
 
 	return file->open( fd, openMode, QFileDevice::AutoCloseHandle );
 }
+
+
+
+PlatformCoreFunctions::ProcessId LinuxFilesystemFunctions::findFileLockingProcess(const QString& filePath) const
+{
+	QStringList pidsWithOpenFile;
+	QDir procDir(QStringLiteral("/proc"));
+	const auto targetCanonicalFilePath = QFileInfo(filePath).canonicalFilePath();
+
+	for (const auto& entry : procDir.entryList(QDir::Dirs | QDir::NoDotAndDotDot))
+	{
+		bool ok;
+		qint64 pid = entry.toLong(&ok);
+		if (!ok) continue;
+
+		const auto fdDirPath = QStringLiteral("/proc/%1/fd").arg(entry);
+		QDir fdDir(fdDirPath);
+
+		if (!fdDir.exists() || !fdDir.isReadable())
+		{
+			continue;
+		}
+
+		for (const auto& fdEntryInfo : fdDir.entryInfoList(QDir::Files))
+		{
+			if (fdEntryInfo.isSymLink() &&
+				fdEntryInfo.canonicalFilePath() == targetCanonicalFilePath)
+			{
+				return pid;
+			}
+		}
+	}
+
+	return PlatformCoreFunctions::InvalidProcessId;
+}
