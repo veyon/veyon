@@ -142,6 +142,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), Computer::NameSource, computerNameSource, setComputerNameSource, "ComputerNameSource", "Master", QVariant::fromValue(Computer::NameSource::Default), Configuration::Property::Flag::Advanced )	\
 	OP( VeyonConfiguration, VeyonCore::config(), PlatformUserFunctions::UserProperty, guestUserProperty, setGuestUserProperty, "GuestUserProperty", "Master", QVariant::fromValue(PlatformUserFunctions::UserProperty::None), Configuration::Property::Flag::Advanced ) \
 	OP( VeyonConfiguration, VeyonCore::config(), QString, guestUserValue, setGuestUserValue, "GuestUserValue", "Master", VeyonCore::tr("Guest"), Configuration::Property::Flag::Advanced ) \
+	OP( VeyonConfiguration, VeyonCore::config(), bool, disableMaster, setDisableMaster, "DisableMaster", "Master", false, Configuration::Property::Flag::Standard ) \
 
 #define FOREACH_VEYON_AUTHENTICATION_CONFIG_PROPERTY(OP) \
 	OP( VeyonConfiguration, VeyonCore::config(), VeyonCore::AuthenticationMethod, authenticationMethod, setAuthenticationMethod, "Method", "Authentication", QVariant::fromValue(VeyonCore::AuthenticationMethod::LogonAuthentication), Configuration::Property::Flag::Standard )	\
