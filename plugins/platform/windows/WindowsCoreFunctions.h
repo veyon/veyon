@@ -35,7 +35,6 @@ class CXEventLog;
 class WindowsCoreFunctions : public PlatformCoreFunctions
 {
 public:
-	using ProcessId = DWORD;
 	using SecurityIdentifierBuffer = std::array<char, SECURITY_MAX_SID_SIZE>;
 
 	WindowsCoreFunctions() = default;
@@ -69,6 +68,8 @@ public:
 	QString genericUrlHandler() const override;
 
 	QString queryDisplayDeviceName(const QScreen& screen) const override;
+
+	QString getApplicationName(ProcessId processId) const override;
 
 	static bool enablePrivilege( LPCWSTR privilegeName, bool enable );
 

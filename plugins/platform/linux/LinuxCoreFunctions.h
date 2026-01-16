@@ -74,6 +74,8 @@ public:
 
 	QString queryDisplayDeviceName(const QScreen& screen) const override;
 
+	QString getApplicationName(ProcessId processId) const override;
+
 	using DBusInterfacePointer = QSharedPointer<QDBusInterface>;
 
 	static bool prepareSessionBusAccess();
