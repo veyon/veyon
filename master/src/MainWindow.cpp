@@ -339,6 +339,17 @@ bool MainWindow::initAccessControl()
 
 
 
+bool MainWindow::initAvailability()
+{
+	if ( VeyonCore::config().disableMaster() ) {
+		QMessageBox::critical( nullptr, tr( "Access denied" ), tr( "Veyon Master has been disabled by configuration." ) );
+		return false;
+	}
+	return true;
+}
+
+
+
 void MainWindow::reloadSubFeatures()
 {
 	for( const auto& feature : m_master.features() )

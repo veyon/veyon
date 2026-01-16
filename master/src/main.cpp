@@ -51,7 +51,8 @@ int main( int argc, char** argv )
 	splashScreen.show();
 
 	if( MainWindow::initAuthentication() == false ||
-			MainWindow::initAccessControl() == false )
+			MainWindow::initAccessControl() == false ||
+			MainWindow::initAvailability() == false )
 	{
 		return -1;
 	}
