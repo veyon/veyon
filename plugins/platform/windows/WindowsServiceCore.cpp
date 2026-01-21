@@ -164,7 +164,7 @@ bool WindowsServiceCore::runAsService()
 
 void WindowsServiceCore::manageServerInstances()
 {
-	m_serverShutdownEvent = CreateEvent( nullptr, false, false, L"Global\\SessionEventUltra" );
+	m_serverShutdownEvent = CreateEvent( nullptr, false, false, L"Global\\SessionEventVeyon" );
 	ResetEvent( m_serverShutdownEvent );
 
 	if( m_sessionManager.mode() != PlatformSessionManager::Mode::Local )

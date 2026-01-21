@@ -28,7 +28,7 @@
 #include "LogoffEventFilter.h"
 
 LogoffEventFilter::LogoffEventFilter() :
-	m_shutdownEventHandle( OpenEvent( EVENT_ALL_ACCESS, false, "Global\\SessionEventUltra" ) )
+	m_shutdownEventHandle( OpenEvent( EVENT_ALL_ACCESS, false, "Global\\SessionEventVeyon" ) )
 {
 	if( m_shutdownEventHandle == nullptr )
 	{
@@ -39,7 +39,7 @@ LogoffEventFilter::LogoffEventFilter() :
 			vWarning() << "Creating session event";
 			// then create our own event as otherwise the VNC server main loop
 			// will eat 100% CPU due to failing WaitForSingleObject() calls
-			m_shutdownEventHandle = CreateEvent( nullptr, false, false, "Global\\SessionEventUltra" );
+			m_shutdownEventHandle = CreateEvent( nullptr, false, false, "Global\\SessionEventVeyon" );
 		}
 		else
 		{
