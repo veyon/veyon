@@ -36,6 +36,7 @@ FileCollectController::FileCollectController(FileTransferPlugin* plugin) :
 	m_collectedFilesGroupingMode(configuration().collectedFilesGroupingMode()),
 	m_collectedFilesGroupingAttribute(configuration().collectedFilesGroupingAttribute())
 {
+	connect (this, &FileCollectController::collectionChanged, this, &FileCollectController::overallProgressChanged);
 }
 
 
@@ -170,6 +171,7 @@ void FileCollectController::stop()
 		m_running = false;
 
 		Q_EMIT finished();
+		Q_EMIT overallProgressChanged();
 
 		for (auto it = m_collections.constBegin(), end = m_collections.constEnd(); it != end; ++it)
 		{
@@ -312,7 +314,6 @@ void FileCollectController::continueFileTransfer(ComputerControlInterface::Point
 		collection.currentOutputFile->write(dataChunk);
 
 		Q_EMIT collectionChanged(collectionId);
-		Q_EMIT overallProgressChanged();
 
 		m_plugin->sendContinueFileTransferMessage(collection, computerControlInterface);
 	}
