@@ -146,34 +146,36 @@ bool FileTransferPlugin::handleFeatureMessage(ComputerControlInterface::Pointer 
 {
 	if (message.featureUid() == m_collectFilesFeature.uid())
 	{
+		const auto collectionId = message.argument(Argument::CollectionId).toUuid();
+		const auto transferId = message.argument(Argument::TransferId).toUuid();
+
 		switch (message.command<FeatureCommand>())
 		{
 		case FeatureCommand::InitFileCollection:
 			m_fileCollectController->initCollection(computerControlInterface,
-													message.argument(Argument::CollectionId).toUuid(),
+													collectionId,
 													message.argument(Argument::Files).toStringList());
 			break;
 		case FeatureCommand::StartFileTransfer:
 			m_fileCollectController->startFileTransfer(computerControlInterface,
-													   message.argument(Argument::CollectionId).toUuid(),
-													   message.argument(Argument::TransferId).toUuid(),
+													   collectionId,
+													   transferId,
 													   message.argument(Argument::FileName).toString(),
 													   message.argument(Argument::FileSize).toLongLong());
 			break;
 		case FeatureCommand::ContinueFileTransfer:
 			m_fileCollectController->continueFileTransfer(computerControlInterface,
-														  message.argument(Argument::CollectionId).toUuid(),
+														  collectionId,
 														  message.argument(Argument::TransferId).toUuid(),
 														  message.argument(Argument::DataChunk).toByteArray());
 			break;
 		case FeatureCommand::FinishFileTransfer:
 			m_fileCollectController->finishFileTransfer(computerControlInterface,
-														message.argument(Argument::CollectionId).toUuid(),
+														collectionId,
 														message.argument(Argument::TransferId).toUuid());
 			break;
 		case FeatureCommand::FinishFileCollection:
-			m_fileCollectController->finishFileCollection(computerControlInterface,
-														  message.argument(Argument::CollectionId).toUuid());
+			m_fileCollectController->finishFileCollection(computerControlInterface, collectionId);
 			break;
 		default:
 			break;
