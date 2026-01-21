@@ -308,7 +308,11 @@ bool LinuxUserFunctions::performLogon( const QString& username, const Password& 
 {
 	LinuxKeyboardInput input;
 
-	auto sequence = LinuxPlatformConfiguration( &VeyonCore::config() ).userLoginKeySequence();
+	const LinuxPlatformConfiguration config(&VeyonCore::config());
+	const auto textInputKeyPressInterval = config.userLoginTextInputKeyPressInterval();
+	const auto controlKeyPressInterval = config.userLoginControlKeyPressInterval();
+
+	auto sequence = config.userLoginKeySequence();
 
 	if( sequence.isEmpty() == true )
 	{
@@ -323,16 +327,18 @@ bool LinuxUserFunctions::performLogon( const QString& username, const Password& 
 		return false;
 	}
 
+	QThread::msleep(config.userLoginInputStartDelay());
+
 	while( matchIterator.hasNext() )
 	{
 		const auto token = matchIterator.next().captured(0);
 		if( token == QStringLiteral("%username%") )
 		{
-			input.sendString( username );
+			input.sendString(username, textInputKeyPressInterval);
 		}
 		else if( token == QStringLiteral("%password%") )
 		{
-			input.sendString( QString::fromUtf8( password.toByteArray() ) );
+			input.sendString(QString::fromUtf8(password.toByteArray()), textInputKeyPressInterval);
 		}
 		else if( token.startsWith( QLatin1Char('<') ) && token.endsWith( QLatin1Char('>') ) )
 		{
@@ -341,6 +347,7 @@ bool LinuxUserFunctions::performLogon( const QString& username, const Password& 
 			if( keysym != NoSymbol )
 			{
 				input.pressAndReleaseKey( keysym );
+				QThread::msleep(controlKeyPressInterval);
 			}
 			else
 			{
@@ -350,7 +357,7 @@ bool LinuxUserFunctions::performLogon( const QString& username, const Password& 
 		}
 		else if( token.isEmpty() == false )
 		{
-			input.sendString( token );
+			input.sendString(token, textInputKeyPressInterval);
 		}
 	}
 

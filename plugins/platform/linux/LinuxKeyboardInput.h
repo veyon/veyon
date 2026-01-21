@@ -41,7 +41,7 @@ public:
 
 	void pressAndReleaseKey( const QByteArray& utf8Data );
 
-	void sendString( const QString& string );
+	void sendString(const QString& string, int keyPressInterval);
 
 private:
 	Display* m_display;

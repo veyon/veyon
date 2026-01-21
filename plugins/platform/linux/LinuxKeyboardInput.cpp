@@ -22,6 +22,8 @@
  *
  */
 
+#include <QThread>
+
 #include "LinuxKeyboardInput.h"
 
 #include <X11/Xlib.h>
@@ -61,10 +63,11 @@ void LinuxKeyboardInput::pressAndReleaseKey( const QByteArray& utf8Data )
 
 
 
-void LinuxKeyboardInput::sendString( const QString& string )
+void LinuxKeyboardInput::sendString(const QString& string, int keyPressInterval)
 {
 	for( int i = 0; i < string.size(); ++i )
 	{
 		pressAndReleaseKey( string.mid( i, 1 ).toUtf8() );
+		QThread::msleep(keyPressInterval);
 	}
 }
