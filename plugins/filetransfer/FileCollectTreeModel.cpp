@@ -35,6 +35,7 @@ FileCollectTreeModel::FileCollectTreeModel( FileCollectController* controller, Q
 	m_controller(controller),
 	m_scheduledPixmap(QIcon(QStringLiteral(":/filetransfer/file-scheduled.png"))),
 	m_transferringPixmap(QIcon(QStringLiteral(":/filetransfer/file-transferring.png"))),
+	m_waitingPixmap(QIcon(QStringLiteral(":/filetransfer/file-waiting.png"))),
 	m_finishedPixmap(QIcon(QStringLiteral(":/filetransfer/file-finished.png")))
 {
 	connect(m_controller, &FileCollectController::collectionsAboutToChange,
@@ -48,6 +49,7 @@ FileCollectTreeModel::FileCollectTreeModel( FileCollectController* controller, Q
 			this, &FileCollectTreeModel::endInitializeCollection);
 	connect(m_controller, &FileCollectController::collectionChanged,
 			this, &FileCollectTreeModel::updateCollection);
+
 #if defined(QT_TESTLIB_LIB)
 	new QAbstractItemModelTester(this, QAbstractItemModelTester::FailureReportingMode::Warning, this);
 #endif
@@ -280,6 +282,10 @@ QVariant FileCollectTreeModel::fileData(const FileCollection& collection, const 
 		else if (index.row() > collection.processedFilesCount)
 		{
 			return m_scheduledPixmap;
+		}
+		else if (collection.currentFileProgress() <= 0)
+		{
+			return m_waitingPixmap;
 		}
 		return m_transferringPixmap;
 	case Qt::DisplayRole:

@@ -83,6 +83,7 @@ private:
 	FileCollection m_dummyCollection{};
 	QIcon m_scheduledPixmap;
 	QIcon m_transferringPixmap;
+	QIcon m_waitingPixmap;
 	QIcon m_finishedPixmap;
 
 };
