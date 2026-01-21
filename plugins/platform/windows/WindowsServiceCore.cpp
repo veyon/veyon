@@ -24,85 +24,12 @@
 
 #include <windows.h>
 
-#include <QElapsedTimer>
-#include <QThread>
-
-#include "Filesystem.h"
 #include "WindowsServiceCore.h"
 #include "SasEventListener.h"
-#include "VeyonConfiguration.h"
 #include "WindowsCoreFunctions.h"
 #include "WindowsInputDeviceFunctions.h"
+#include "WindowsServerProcess.h"
 #include "WtsSessionManager.h"
-
-
-// clazy:excludeall=rule-of-three
-class VeyonServerProcess
-{
-public:
-	VeyonServerProcess() = default;
-
-	~VeyonServerProcess()
-	{
-		stop();
-	}
-
-	void start( DWORD wtsSessionId, const ServiceDataManager::Token& token )
-	{
-		const auto baseProcessId = WtsSessionManager::findProcessId(QStringLiteral("winlogon.exe"), wtsSessionId);
-		const auto user = WtsSessionManager::querySessionInformation( wtsSessionId, WtsSessionManager::SessionInfo::UserName );
-
-		const QStringList extraEnv{
-			QStringLiteral("%1=%2").arg( QLatin1String( ServiceDataManager::serviceDataTokenEnvironmentVariable() ),
-										 QString::fromUtf8( token.toByteArray() ) )
-		};
-
-		vInfo() << "Starting server for WTS session" << wtsSessionId << "with user" << user;
-		m_subProcessHandle = WindowsCoreFunctions::runProgramInSession( VeyonCore::filesystem().serverFilePath(), {},
-																		extraEnv,
-																		baseProcessId, {} );
-		if( m_subProcessHandle == nullptr )
-		{
-			vCritical() << "Failed to start server!";
-		}
-	}
-
-	void stop()
-	{
-		if( m_subProcessHandle )
-		{
-			vInfo() << "Waiting for server to shutdown";
-			if( WaitForSingleObject( m_subProcessHandle, ServerWaitTime ) == WAIT_TIMEOUT )
-			{
-				vWarning() << "Terminating server";
-				TerminateProcess( m_subProcessHandle, 0 );
-				WaitForSingleObject(m_subProcessHandle, ServerWaitTime);
-			}
-			CloseHandle( m_subProcessHandle );
-			m_subProcessHandle = nullptr;
-		}
-	}
-
-	bool isRunning() const
-	{
-		if( m_subProcessHandle &&
-				WaitForSingleObject( m_subProcessHandle, ServerQueryTime ) == WAIT_TIMEOUT )
-		{
-			return true;
-		}
-
-		return false;
-	}
-
-
-private:
-	static constexpr auto ServerQueryTime = 10;
-	static constexpr auto ServerWaitTime = 3000;
-
-	HANDLE m_subProcessHandle{nullptr};
-
-} ;
-
 
 
 WindowsServiceCore* WindowsServiceCore::s_instance = nullptr;
@@ -219,11 +146,12 @@ void WindowsServiceCore::manageServersForAllSessions()
 			}
 			else
 			{
+				it.value()->restartIfNotRunning();
 				++it;
 			}
 		}
 
-		for( auto wtsSessionId : wtsSessionIds )
+		for (auto wtsSessionId : std::as_const(wtsSessionIds))
 		{
 			if( serverProcesses.contains( wtsSessionId ) == false )
 			{
@@ -232,10 +160,7 @@ void WindowsServiceCore::manageServersForAllSessions()
 					m_sessionManager.openSession( QString::number(wtsSessionId) );
 				}
 
-				auto serverProcess = new VeyonServerProcess;
-				serverProcess->start( wtsSessionId, m_dataManager.token() );
-
-				serverProcesses[wtsSessionId] = serverProcess;
+				serverProcesses[wtsSessionId] = new VeyonServerProcess(wtsSessionId, m_dataManager.token());
 			}
 		}
 
@@ -255,11 +180,9 @@ void WindowsServiceCore::manageServersForAllSessions()
 
 void WindowsServiceCore::manageServerForConsoleSession()
 {
-	VeyonServerProcess veyonServerProcess;
+	VeyonServerProcess* serverProcess = nullptr;
 
 	auto oldWtsSessionId = WtsSessionManager::InvalidSession;
-
-	QElapsedTimer lastServerStart;
 
 	do {
 		const auto sessionChanged = m_sessionChanged.testAndSetOrdered(1, 0);
@@ -276,30 +199,33 @@ void WindowsServiceCore::manageServerForConsoleSession()
 				{
 					SetEvent( m_serverShutdownEvent );
 				}
-				while( lastServerStart.elapsed() < MinimumServerUptimeTime && veyonServerProcess.isRunning() );
+				while (serverProcess && serverProcess->isRunning() &&
+					   serverProcess->uptime() < MinimumServerUptimeTime);
 
-				veyonServerProcess.stop();
+				delete serverProcess;
+				serverProcess = nullptr;
 			}
 
 			if( wtsSessionId != WtsSessionManager::InvalidSession || sessionChanged )
 			{
-				veyonServerProcess.stop();
+				delete serverProcess;
+				serverProcess = nullptr;
+
 				if (m_serviceStopRequested == 0 &&
 					wtsSessionId != WtsSessionManager::InvalidSession)
 				{
-					veyonServerProcess.start( wtsSessionId, m_dataManager.token() );
-					lastServerStart.restart();
+					serverProcess = new VeyonServerProcess(wtsSessionId, m_dataManager.token());
 				}
 			}
 
 			oldWtsSessionId = wtsSessionId;
 		}
-		else if (veyonServerProcess.isRunning() == false)
+		else if (serverProcess && serverProcess->isRunning() == false)
 		{
+			qDebug() << "server not running - (re)starting";
 			if (wtsSessionId != WtsSessionManager::InvalidSession)
 			{
-				veyonServerProcess.start( wtsSessionId, m_dataManager.token() );
-				lastServerStart.restart();
+				serverProcess->restartIfNotRunning();
 			}
 
 			oldWtsSessionId = wtsSessionId;
@@ -313,7 +239,7 @@ void WindowsServiceCore::manageServerForConsoleSession()
 	vInfo() << "Service shutdown";
 
 	SetEvent( m_serverShutdownEvent );
-	veyonServerProcess.stop();
+	delete serverProcess;
 }
 
 

@@ -15,6 +15,7 @@ build_veyon_plugin(windows-platform
 	WindowsInputDeviceFunctions.cpp
 	WindowsKeyboardShortcutTrapper.cpp
 	WindowsNetworkFunctions.cpp
+	WindowsServerProcess.cpp
 	WindowsServiceControl.cpp
 	WindowsServiceCore.cpp
 	WindowsServiceFunctions.cpp
@@ -34,6 +35,7 @@ build_veyon_plugin(windows-platform
 	WindowsInputDeviceFunctions.h
 	WindowsKeyboardShortcutTrapper.h
 	WindowsNetworkFunctions.h
+	WindowsServerProcess.h
 	WindowsServiceControl.h
 	WindowsServiceCore.h
 	WindowsServiceFunctions.h
