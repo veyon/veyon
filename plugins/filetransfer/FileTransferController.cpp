@@ -197,7 +197,7 @@ bool FileTransferController::openFile()
 	{
 		delete m_fileReadThread;
 		m_fileReadThread = nullptr;
-		Q_EMIT errorOccured( tr( "Could not open file \"%1\" for reading! Please check your permissions!" ).arg( m_currentFileIndex ) );
+		Q_EMIT errorOccured( tr( "Could not open file %1 for reading! Please check your permissions!" ).arg( m_currentFileIndex ) );
 		return false;
 	}
 

@@ -205,10 +205,10 @@ bool FileTransferPlugin::handleFeatureMessage( VeyonServerInterface& server,
 	{
 		if (message.command<FeatureCommand>() == FeatureCommand::FinishFileTransfer)
 		{
-			VeyonCore::builtinFeatures().systemTrayIcon().showMessage( m_distributeFilesFeature.displayName(),
-																	   tr( "Received file \"%1\"." ).
-																	   arg( message.argument( Argument::FileName ).toString() ),
-																	   server.featureWorkerManager() );
+			VeyonCore::builtinFeatures().systemTrayIcon().showMessage(tr("File transfer"),
+																	  tr("Received file %1.").
+																	  arg(message.argument(Argument::FileName).toString()),
+																	  server.featureWorkerManager());
 		}
 
 		// forward message to worker
@@ -417,7 +417,7 @@ FileTransferPlugin::LockedFileAction FileTransferPlugin::queryLockedFileAction(c
 	}
 
 	QMessageBox confirmDialog(QMessageBox::Question,
-							  m_collectFilesFeature.displayName(),
+							  tr("File transfer"),
 							  tr("Are you sure you want to skip transferring the file %1?").
 							  arg(fileName, QString{}), QMessageBox::Yes | QMessageBox::No);
 
@@ -451,8 +451,8 @@ bool FileTransferPlugin::handleDistributeFilesMessage(const FeatureMessage& mess
 		m_currentFile.setFileName(m_currentFileName);
 		if( m_currentFile.exists() && message.argument(Argument::OverwriteExistingFile).toBool() == false )
 		{
-			QMessageBox::critical(nullptr, m_distributeFilesFeature.displayName(),
-								  tr("Could not receive file \"%1\" as it already exists.").
+			QMessageBox::critical(nullptr, tr("File transfer"),
+								  tr("Could not receive file %1 as it already exists.").
 								  arg(m_currentFile.fileName()));
 			return true;
 		}
@@ -466,8 +466,8 @@ bool FileTransferPlugin::handleDistributeFilesMessage(const FeatureMessage& mess
 		}
 		else
 		{
-			QMessageBox::critical(nullptr, m_distributeFilesFeature.displayName(),
-								  tr("Could not receive file \"%1\" as it could not be opened for writing!").
+			QMessageBox::critical(nullptr, tr("File transfer"),
+								  tr("Could not receive file %1 as it could not be opened for writing!").
 								  arg(m_currentFile.fileName()));
 		}
 		return true;
