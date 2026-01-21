@@ -52,7 +52,9 @@ public:
 		OpenTransferFolder,
 		StopWorker,
 		InitFileCollection,
-		FinishFileCollection
+		FinishFileCollection,
+		RetryFileTransfer,
+		SkipFileTransfer,
 	};
 	Q_ENUM(FeatureCommand)
 
@@ -151,6 +153,11 @@ public:
 	ConfigurationPage* createConfigurationPage() override;
 
 private:
+	enum class LockedFileAction {
+		RetryOpeningLockedFile,
+		SkipLockedFile,
+	};
+
 	bool handleDistributeFilesMessage(const FeatureMessage& message);
 	bool handleCollectFilesMessage(VeyonWorkerInterface& worker, const FeatureMessage& message);
 
@@ -162,6 +169,8 @@ private:
 	QString destinationDirectory() const;
 
 	void processFileCollections();
+
+	LockedFileAction queryLockedFileAction(const QString& fileName);
 
 	const Feature m_distributeFilesFeature;
 	const Feature m_collectFilesFeature;

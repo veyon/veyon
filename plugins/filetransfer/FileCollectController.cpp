@@ -339,6 +339,42 @@ void FileCollectController::continueFileTransfer(ComputerControlInterface::Point
 
 
 
+void FileCollectController::retryFileTransfer(ComputerControlInterface::Pointer computerControlInterface,
+											  FileCollection::Id collectionId)
+{
+	if (m_collections.value(computerControlInterface).id == collectionId)
+	{
+		auto& collection = m_collections[computerControlInterface]; // clazy:exclude=detaching-member
+
+		m_plugin->sendStartFileTransferMessage(collection, computerControlInterface);
+	}
+	else
+	{
+		vWarning() << "collection" << collectionId << "not found";
+	}
+}
+
+
+
+void FileCollectController::skipToNextFileTransfer(ComputerControlInterface::Pointer computerControlInterface,
+												   FileCollection::Id collectionId)
+{
+	if (m_collections.value(computerControlInterface).id == collectionId)
+	{
+		auto& collection = m_collections[computerControlInterface]; // clazy:exclude=detaching-member
+
+		collection.processedFilesCount += 1;
+
+		initiateNextFileTransfer(computerControlInterface, collection);
+	}
+	else
+	{
+		vWarning() << "collection" << collectionId << "not found";
+	}
+}
+
+
+
 void FileCollectController::finishFileTransfer(ComputerControlInterface::Pointer computerControlInterface,
 											   FileCollection::Id collectionId, FileCollection::TransferId transferId)
 {

@@ -36,6 +36,12 @@ class FileCollectWorker : public QObject
 {
 	Q_OBJECT
 public:
+	enum class TransferState {
+		Started,
+		WaitingForLockedFile,
+		AllFinished
+	};
+
 	explicit FileCollectWorker(FileTransferPlugin* plugin);
 	~FileCollectWorker() override;
 
@@ -59,7 +65,8 @@ public:
 		return m_files;
 	}
 
-	bool startNextTransfer();
+	QPair<TransferState, QString> startNextTransfer();
+	void skipToNextFile();
 	void cancelCurrentTransfer();
 
 	QByteArray readNextChunk();

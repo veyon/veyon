@@ -38,6 +38,7 @@
 #include "FileTransferPlugin.h"
 #include "FileTransferUserConfiguration.h"
 #include "FeatureWorkerManager.h"
+#include "PlatformCoreFunctions.h"
 #include "PlatformFilesystemFunctions.h"
 #include "SystemTrayIcon.h"
 #include "VeyonMasterInterface.h"
@@ -173,6 +174,12 @@ bool FileTransferPlugin::handleFeatureMessage(ComputerControlInterface::Pointer 
 			m_fileCollectController->finishFileTransfer(computerControlInterface,
 														collectionId,
 														message.argument(Argument::TransferId).toUuid());
+			break;
+		case FeatureCommand::SkipFileTransfer:
+			m_fileCollectController->skipToNextFileTransfer(computerControlInterface, collectionId);
+			break;
+		case FeatureCommand::RetryFileTransfer:
+			m_fileCollectController->retryFileTransfer(computerControlInterface, collectionId);
 			break;
 		case FeatureCommand::FinishFileCollection:
 			m_fileCollectController->finishFileCollection(computerControlInterface, collectionId);
@@ -384,6 +391,48 @@ QString FileTransferPlugin::destinationDirectory() const
 
 
 
+FileTransferPlugin::LockedFileAction FileTransferPlugin::queryLockedFileAction(const QString& fileName)
+{
+	qApp->setQuitOnLastWindowClosed(false);
+
+	const auto processId = VeyonCore::platform().filesystemFunctions().findFileLockingProcess(fileName);
+	const auto applicationName = VeyonCore::platform().coreFunctions().getApplicationName(processId);
+
+	QMessageBox lockedFileNotification(QMessageBox::Warning,
+									   tr("File transfer"),
+									   (applicationName.isEmpty() ?
+											tr("The file %1 is to be collected, but is still open in an application.").arg(fileName)
+										  :
+											tr("The file %1 is to be collected, but is still open in the application <b>%2</b>.").arg(fileName, applicationName)
+											)
+									   + QLatin1Char(' ') +
+									   tr("Please save your changes and close the program so that the transfer can be completed.")
+									   , QMessageBox::Retry | QMessageBox::Ignore);
+
+	VeyonCore::platform().coreFunctions().raiseWindow(&lockedFileNotification, true);
+
+	if (lockedFileNotification.exec() == QMessageBox::Retry)
+	{
+		return LockedFileAction::RetryOpeningLockedFile;
+	}
+
+	QMessageBox confirmDialog(QMessageBox::Question,
+							  m_collectFilesFeature.displayName(),
+							  tr("Are you sure you want to skip transferring the file %1?").
+							  arg(fileName, QString{}), QMessageBox::Yes | QMessageBox::No);
+
+	VeyonCore::platform().coreFunctions().raiseWindow(&confirmDialog, true);
+
+	if (confirmDialog.exec() == QMessageBox::Yes)
+	{
+		return LockedFileAction::SkipLockedFile;
+	}
+
+	return LockedFileAction::RetryOpeningLockedFile;
+}
+
+
+
 ConfigurationPage* FileTransferPlugin::createConfigurationPage()
 {
 	return new FileTransferConfigurationPage( m_configuration );
@@ -499,17 +548,31 @@ bool FileTransferPlugin::handleCollectFilesMessage(VeyonWorkerInterface& worker,
 	case FeatureCommand::StartFileTransfer:
 		if (fileCollectWorker)
 		{
-			if (fileCollectWorker->startNextTransfer())
+			const auto [state, fileName] = fileCollectWorker->startNextTransfer();
+			switch (state)
 			{
+			case FileCollectWorker::TransferState::Started:
 				worker.sendFeatureMessageReply(reply
 											   .addArgument(Argument::TransferId, fileCollectWorker->currentTransferId())
 											   .addArgument(Argument::FileName, fileCollectWorker->currentFileName())
 											   .addArgument(Argument::FileSize, fileCollectWorker->currentFileSize())
 											   );
-			}
-			else
-			{
+				break;
+			case FileCollectWorker::TransferState::AllFinished:
 				worker.sendFeatureMessageReply(reply.setCommand(FeatureCommand::FinishFileCollection));
+				break;
+			case FileCollectWorker::TransferState::WaitingForLockedFile:
+				switch (queryLockedFileAction(QDir::toNativeSeparators(fileName)))
+				{
+				case LockedFileAction::SkipLockedFile:
+					fileCollectWorker->skipToNextFile();
+					worker.sendFeatureMessageReply(reply.setCommand(FeatureCommand::SkipFileTransfer));
+					break;
+				case LockedFileAction::RetryOpeningLockedFile:
+					worker.sendFeatureMessageReply(reply.setCommand(FeatureCommand::RetryFileTransfer));
+					break;
+				}
+				break;
 			}
 			return true;
 		}
