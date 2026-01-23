@@ -51,7 +51,7 @@ function(add_windows_resources TARGET)
 		"			VALUE \"ProductVersion\",   \"${VERSION_STRING}\\0\"\n"
 		"			VALUE \"FileDescription\",  \"${arg_DESCRIPTION}\\0\"\n"
 		"			VALUE \"FileVersion\",      \"${VERSION_STRING}\\0\"\n"
-		"			VALUE \"LegalCopyright\",   \"Copyright (c) 2017-2025 Veyon Solutions / Tobias Junghans\\0\"\n"
+		"			VALUE \"LegalCopyright\",   \"Copyright (c) 2017-2026 Veyon Solutions / Tobias Junghans\\0\"\n"
 		"			VALUE \"OriginalFilename\", \"${TARGET}.${SUFFIX}\\0\"\n"
 		"		END\n"
 		"	END\n"

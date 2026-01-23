@@ -1,7 +1,7 @@
 /*
  * ConfigurationManager.cpp - class for managing Veyon's configuration
  *
- * Copyright (c) 2010-2025 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2010-2026 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

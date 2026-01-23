@@ -1,7 +1,7 @@
 /*
  * VariantArrayMessage.cpp - class for sending/receiving a variant array as message
  *
- * Copyright (c) 2017-2025 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2017-2026 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

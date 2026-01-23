@@ -1,7 +1,7 @@
 /*
  * AuthenticationPage.cpp - implementation of the AuthenticationPage class
  *
- * Copyright (c) 2020-2025 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2020-2026 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
