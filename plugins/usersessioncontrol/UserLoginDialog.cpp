@@ -68,6 +68,5 @@ CryptoCore::PlaintextPassword UserLoginDialog::password() const
 
 void UserLoginDialog::updateOkButton()
 {
-	ui->buttonBox->button( QDialogButtonBox::Ok )->
-					setEnabled( !username().isEmpty() && !password().isEmpty() );
+	ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(!username().isEmpty());
 }
