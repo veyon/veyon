@@ -1,7 +1,7 @@
 /*
  * ComputerMonitoringView.cpp - provides a view with computer monitor thumbnails
  *
- * Copyright (c) 2017-2025 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2017-2026 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

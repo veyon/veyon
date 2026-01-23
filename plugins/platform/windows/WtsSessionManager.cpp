@@ -1,7 +1,7 @@
 /*
  * WtsSessionManager.cpp - implementation of WtsSessionManager class
  *
- * Copyright (c) 2018-2025 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2018-2026 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

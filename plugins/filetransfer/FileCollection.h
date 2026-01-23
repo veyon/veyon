@@ -1,7 +1,7 @@
 /*
  * FileCollection.h - declaration of FileCollection class
  *
- * Copyright (c) 2025 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2025-2026 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

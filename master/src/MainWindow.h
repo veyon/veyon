@@ -1,7 +1,7 @@
 /*
  * MainWindow.h - main window of Veyon Master Application
  *
- * Copyright (c) 2004-2025 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2004-2026 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

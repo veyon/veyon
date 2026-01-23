@@ -1,4 +1,4 @@
-# ImportQtTranslations.cmake - Copyright (c) 2020-2025 Tobias Junghans
+# ImportQtTranslations.cmake - Copyright (c) 2020-2026 Tobias Junghans
 #
 # description: import translation files of Qt into build directory
 # usage: import_qt_translations() with QT_TRANSLATIONS_DIR set

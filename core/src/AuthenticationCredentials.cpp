@@ -1,7 +1,7 @@
 /*
  * AuthenticationCredentials.cpp - class holding credentials for authentication
  *
- * Copyright (c) 2010-2025 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2010-2026 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *

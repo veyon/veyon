@@ -1,7 +1,7 @@
 /*
  * VeyonCore.cpp - implementation of Veyon Core
  *
- * Copyright (c) 2006-2025 Tobias Junghans <tobydox@veyon.io>
+ * Copyright (c) 2006-2026 Tobias Junghans <tobydox@veyon.io>
  *
  * This file is part of Veyon - https://veyon.io
  *
