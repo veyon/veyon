@@ -43,7 +43,7 @@ Om du är intresserad av att översätta Veyon till ditt lokala eller ett ett an
     </message>
     <message>
         <source>About Veyon %1</source>
-        <translation type="unfinished"/>
+        <translation>Om Veyon %1</translation>
     </message>
 </context>
 <context>
@@ -1892,8 +1892,8 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>Filen &quot;%1&quot; kunde inte öppnas för läsning! Vänligen kontrollera dina behörigheter!</translation>
+        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1954,16 +1954,36 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Välj en eller flera filer som ska överföras</translation>
     </message>
     <message>
-        <source>Received file &quot;%1&quot;.</source>
-        <translation>Mottagen fil &quot;%1&quot;.</translation>
+        <source>File transfer</source>
+        <translation>Filöverföring</translation>
     </message>
     <message>
-        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation>Kunde inte ta emot filen &quot;%1&quot; eftersom den redan finns.</translation>
+        <source>Received file %1.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation>Kunde inte ta emot filen &quot;%1&quot; eftersom den inte kunde öppnas för skrivning!</translation>
+        <source>The file %1 is to be collected, but is still open in an application.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The file %1 is to be collected, but is still open in the application &lt;b&gt;%2&lt;/b&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please save your changes and close the program so that the transfer can be completed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Are you sure you want to skip transferring the file %1?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive file %1 as it already exists.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive file %1 as it could not be opened for writing!</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Transfer files between computers</source>
@@ -1983,10 +2003,6 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     <message>
         <source>Language:</source>
         <translation>Språk:</translation>
-    </message>
-    <message>
-        <source>Veyon</source>
-        <translation>Veyon</translation>
     </message>
     <message>
         <source>Style:</source>
@@ -2924,6 +2940,18 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <source>Login key sequence</source>
         <translation>Tangentsekvens för inloggning</translation>
     </message>
+    <message>
+        <source>Input start delay</source>
+        <translation>Fördröjning av start av ingång</translation>
+    </message>
+    <message>
+        <source>Key press interval for text input</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key press interval to control input fields</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
@@ -3083,10 +3111,6 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     <message>
         <source>Only show computers with logged on users</source>
         <translation>Visa endast datorer med inloggade användare</translation>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation>verktygsrad</translation>
     </message>
     <message>
         <source>Veyon Configurator %1</source>
@@ -3280,12 +3304,24 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
         <translation>Bildkvalitet för fjärråtkomst</translation>
     </message>
     <message>
-        <source>Identify users in guest sessions if login name matches:</source>
+        <source>Identify users in guest sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If login name matches</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If full name matches</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>Gäst</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3464,11 +3500,11 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
     </message>
     <message>
         <source>Identification request</source>
-        <translation type="unfinished"/>
+        <translation>Identifieringsbegäran</translation>
     </message>
     <message>
         <source>Please enter your name:</source>
-        <translation type="unfinished"/>
+        <translation>Ange ditt namn:</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -4520,7 +4556,7 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>Gäst</translation>
     </message>
 </context>
 <context>

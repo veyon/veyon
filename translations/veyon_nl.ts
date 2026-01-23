@@ -1894,8 +1894,8 @@ Translated with DeepL</translation>
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>Kon bestand &quot;%1&quot; niet openen om te lezen! Controleer uw rechten!</translation>
+        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1956,16 +1956,36 @@ Translated with DeepL</translation>
         <translation>Selecteer één of meerdere bestanden om over te zetten.</translation>
     </message>
     <message>
-        <source>Received file &quot;%1&quot;.</source>
-        <translation>Ontvangen bestand &quot;%1&quot;.</translation>
+        <source>File transfer</source>
+        <translation>Bestandsoverdracht</translation>
     </message>
     <message>
-        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation>Kon bestand &quot;%1&quot; niet ontvangen omdat het al bestaat.</translation>
+        <source>Received file %1.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation>Kon bestand &quot;%1&quot; niet ontvangen omdat het niet geopend kon worden om te schrijven!</translation>
+        <source>The file %1 is to be collected, but is still open in an application.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The file %1 is to be collected, but is still open in the application &lt;b&gt;%2&lt;/b&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please save your changes and close the program so that the transfer can be completed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Are you sure you want to skip transferring the file %1?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive file %1 as it already exists.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive file %1 as it could not be opened for writing!</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Transfer files between computers</source>
@@ -1985,10 +2005,6 @@ Translated with DeepL</translation>
     <message>
         <source>Language:</source>
         <translation>Taal:</translation>
-    </message>
-    <message>
-        <source>Veyon</source>
-        <translation>Veyon</translation>
     </message>
     <message>
         <source>Style:</source>
@@ -2926,6 +2942,18 @@ Translated with DeepL</translation>
         <source>Login key sequence</source>
         <translation>Toetsvolgorde aanmelden</translation>
     </message>
+    <message>
+        <source>Input start delay</source>
+        <translation>Ingangsvertraging</translation>
+    </message>
+    <message>
+        <source>Key press interval for text input</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key press interval to control input fields</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
@@ -3085,10 +3113,6 @@ Translated with DeepL</translation>
     <message>
         <source>Only show computers with logged on users</source>
         <translation>Toon alleen computers met aangemelde gebruikers</translation>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation>werkbalk</translation>
     </message>
     <message>
         <source>Veyon Configurator %1</source>
@@ -3282,7 +3306,19 @@ Houd ingedrukt om een arrangement vanuit een bestand te laden of het huidige arr
         <translation>Beeldkwaliteit van externe toegang</translation>
     </message>
     <message>
-        <source>Identify users in guest sessions if login name matches:</source>
+        <source>Identify users in guest sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If login name matches</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If full name matches</source>
         <translation type="unfinished"/>
     </message>
     <message>

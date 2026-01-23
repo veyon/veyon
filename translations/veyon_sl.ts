@@ -1890,8 +1890,8 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>Žal ne morem odpreti datoteke &quot;%1&quot; za branje! Prosimo, preverite svoja dovoljenja!</translation>
+        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1952,16 +1952,36 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Izberi eno ali več datotek za prenos</translation>
     </message>
     <message>
-        <source>Received file &quot;%1&quot;.</source>
-        <translation>Prejeta datoteka &quot;%1&quot;.</translation>
+        <source>File transfer</source>
+        <translation>Prenos datoteke</translation>
     </message>
     <message>
-        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation>Ne morem prejeti datoteke &quot;%1&quot;, ker že obstaja.</translation>
+        <source>Received file %1.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation>Datoteke &quot;%1&quot; ni bilo mogoče prejeti, ker je ni bilo mogoče odpreti za pisanje!</translation>
+        <source>The file %1 is to be collected, but is still open in an application.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The file %1 is to be collected, but is still open in the application &lt;b&gt;%2&lt;/b&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please save your changes and close the program so that the transfer can be completed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Are you sure you want to skip transferring the file %1?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive file %1 as it already exists.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive file %1 as it could not be opened for writing!</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Transfer files between computers</source>
@@ -1981,10 +2001,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Language:</source>
         <translation>Jezik:</translation>
-    </message>
-    <message>
-        <source>Veyon</source>
-        <translation>Veyon</translation>
     </message>
     <message>
         <source>Style:</source>
@@ -2922,6 +2938,18 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Login key sequence</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Input start delay</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key press interval for text input</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key press interval to control input fields</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
@@ -3081,10 +3109,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Only show computers with logged on users</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation>Orodna vrstica</translation>
     </message>
     <message>
         <source>Veyon Configurator %1</source>
@@ -3276,7 +3300,19 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Identify users in guest sessions if login name matches:</source>
+        <source>Identify users in guest sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If login name matches</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If full name matches</source>
         <translation type="unfinished"/>
     </message>
     <message>

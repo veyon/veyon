@@ -1892,8 +1892,8 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>Faili &quot;%1&quot; ei õnnestunud lugemiseks avada! Palun kontrollige oma õigusi!</translation>
+        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1954,16 +1954,36 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation>Valige üks või mitu edastatavat faili</translation>
     </message>
     <message>
-        <source>Received file &quot;%1&quot;.</source>
-        <translation>Vastuvõetud fail &quot;%1&quot;.</translation>
+        <source>File transfer</source>
+        <translation>Faili edastamine</translation>
     </message>
     <message>
-        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation>Faili &quot;%1&quot; ei saanud vastu võtta, kuna see on juba olemas.</translation>
+        <source>Received file %1.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation>Faili &quot;%1&quot; ei saanud vastu võtta, kuna seda ei saanud kirjutamiseks avada!</translation>
+        <source>The file %1 is to be collected, but is still open in an application.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The file %1 is to be collected, but is still open in the application &lt;b&gt;%2&lt;/b&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please save your changes and close the program so that the transfer can be completed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Are you sure you want to skip transferring the file %1?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive file %1 as it already exists.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive file %1 as it could not be opened for writing!</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Transfer files between computers</source>
@@ -1983,10 +2003,6 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     <message>
         <source>Language:</source>
         <translation>Keel:</translation>
-    </message>
-    <message>
-        <source>Veyon</source>
-        <translation>Veyon</translation>
     </message>
     <message>
         <source>Style:</source>
@@ -2924,6 +2940,18 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <source>Login key sequence</source>
         <translation>Sisselogimisvõtmete järjestus</translation>
     </message>
+    <message>
+        <source>Input start delay</source>
+        <translation>Sisendi käivitamise viivitus</translation>
+    </message>
+    <message>
+        <source>Key press interval for text input</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key press interval to control input fields</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
@@ -3083,10 +3111,6 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     <message>
         <source>Only show computers with logged on users</source>
         <translation>Kuva ainult arvutid, mille kasutajad on sisse logitud</translation>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation>Tööriistariba</translation>
     </message>
     <message>
         <source>Veyon Configurator %1</source>
@@ -3280,7 +3304,19 @@ Failist arranžeeringu laadimiseks või praeguse arranžeeringu faili salvestami
         <translation>Kaugjuurdepääsu pildikvaliteet</translation>
     </message>
     <message>
-        <source>Identify users in guest sessions if login name matches:</source>
+        <source>Identify users in guest sessions</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If login name matches</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If full name matches</source>
         <translation type="unfinished"/>
     </message>
     <message>

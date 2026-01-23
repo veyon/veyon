@@ -1831,7 +1831,7 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
     </message>
     <message>
         <source>Subdirectory with name entered by the collecting user</source>
-        <translation>Unterverzeichnis mit Namen, der vom einsammelnden Benutzer eingegebenen wird</translation>
+        <translation>Unterverzeichnis mit Namen, der vom einsammelnden Benutzer eingegeben wird</translation>
     </message>
     <message>
         <source>Files to collect:</source>
@@ -1889,8 +1889,8 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>Datei &quot;%1&quot; konnte nicht zum Lesen geöffnet werden! Bitte Berechtigungen überprüfen!</translation>
+        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <translation>Datei %1 konnte nicht zum Lesen geöffnet werden! Bitte Berechtigungen überprüfen!</translation>
     </message>
 </context>
 <context>
@@ -1951,16 +1951,36 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Eine oder mehrere Dateien für die Übertragung auswählen</translation>
     </message>
     <message>
-        <source>Received file &quot;%1&quot;.</source>
-        <translation>Datei &quot;%1&quot; empfangen.</translation>
+        <source>File transfer</source>
+        <translation>Dateiübertragung</translation>
     </message>
     <message>
-        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation>Datei &quot;%1&quot; konnte nicht empfangen werden, da sie bereits existiert.</translation>
+        <source>Received file %1.</source>
+        <translation>Datei %1 empfangen.</translation>
     </message>
     <message>
-        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation>Datei &quot;%1&quot; konnte nicht empfangen werden, da sie nicht zum Schreiben geöffnet werden konnte!</translation>
+        <source>The file %1 is to be collected, but is still open in an application.</source>
+        <translation>Die Datei %1 soll eingesammelt werden, ist aber noch in einem Programm geöffnet.</translation>
+    </message>
+    <message>
+        <source>The file %1 is to be collected, but is still open in the application &lt;b&gt;%2&lt;/b&gt;.</source>
+        <translation>Die Datei %1 soll eingesammelt werden, ist aber noch im Programm &lt;b&gt;%2&lt;/b&gt; geöffnet.</translation>
+    </message>
+    <message>
+        <source>Please save your changes and close the program so that the transfer can be completed.</source>
+        <translation>Bitte speichern Sie Ihre Änderungen und schließen das Programm, so dass die Übertragung abgeschlossen werden kann.</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to skip transferring the file %1?</source>
+        <translation>Sind Sie sicher, dass Sie die Übertragung der Datei %1 überspringen möchten?</translation>
+    </message>
+    <message>
+        <source>Could not receive file %1 as it already exists.</source>
+        <translation>Datei %1 konnte nicht empfangen werden, da sie bereits existiert.</translation>
+    </message>
+    <message>
+        <source>Could not receive file %1 as it could not be opened for writing!</source>
+        <translation>Datei %1 konnte nicht empfangen werden, da sie nicht zum Schreiben geöffnet werden konnte!</translation>
     </message>
     <message>
         <source>Transfer files between computers</source>
@@ -1980,10 +2000,6 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
     <message>
         <source>Language:</source>
         <translation>Sprache:</translation>
-    </message>
-    <message>
-        <source>Veyon</source>
-        <translation>Veyon</translation>
     </message>
     <message>
         <source>Style:</source>
@@ -2921,6 +2937,18 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <source>Login key sequence</source>
         <translation>Tastensequenz zum Anmelden</translation>
     </message>
+    <message>
+        <source>Input start delay</source>
+        <translation>Verzögerung vor Eingabebeginn</translation>
+    </message>
+    <message>
+        <source>Key press interval for text input</source>
+        <translation>Tastendruckintervall für Texteingabe</translation>
+    </message>
+    <message>
+        <source>Key press interval to control input fields</source>
+        <translation>Tastendruckintervall zur Eingabefeldsteuerung</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
@@ -3080,10 +3108,6 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
     <message>
         <source>Only show computers with logged on users</source>
         <translation>Nur Computer mit angemeldeten Benutzern anzeigen</translation>
-    </message>
-    <message>
-        <source>toolBar</source>
-        <translation>Werkzeugleiste</translation>
     </message>
     <message>
         <source>Veyon Configurator %1</source>
@@ -3277,8 +3301,20 @@ Gedrückt halten, um die Anordnung aus einer Datei zu laden oder die aktuelle An
         <translation>Bildqualität beim Fernzugriff</translation>
     </message>
     <message>
-        <source>Identify users in guest sessions if login name matches:</source>
-        <translation>Benutzer in Gastsitzungen identifizieren, wenn der Anmeldename übereinstimmt mit:</translation>
+        <source>Identify users in guest sessions</source>
+        <translation>Benutzer in Gastsitzungen identifizieren</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation>Nie</translation>
+    </message>
+    <message>
+        <source>If login name matches</source>
+        <translation>Wenn Anmeldename entspricht</translation>
+    </message>
+    <message>
+        <source>If full name matches</source>
+        <translation>Wenn voller Name entspricht</translation>
     </message>
     <message>
         <source>Guest</source>

@@ -43,7 +43,7 @@ Se sei interessato alla traduzione di Veyon nella tua lingua locale o in qualche
     </message>
     <message>
         <source>About Veyon %1</source>
-        <translation type="unfinished"/>
+        <translation>Informazioni su Veyon %1</translation>
     </message>
 </context>
 <context>
@@ -1100,7 +1100,7 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     </message>
     <message>
         <source>Veyon Service %1 at %2:%3</source>
-        <translation type="unfinished"/>
+        <translation>Servizio Veyon %1 alle %2:%3</translation>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1123,7 +1123,7 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Non è stato trovato alcun plugin predefinito per la directory degli oggetti di rete. Controlla l&apos;installazione o configura un backend diverso per la directory degli oggetti di rete tramite Veyon Configurator.</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1260,15 +1260,15 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the Veyon Service.</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile modificare la proprietà di avvio automatico per il servizio Veyon.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Server.</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile configurare la configurazione del firewall per Veyon Server.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Worker.</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile configurare la configurazione del firewall per Veyon Worker.</translation>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1283,7 +1283,7 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     <name>DemoClient</name>
     <message>
         <source>Veyon Demo</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Demo</translation>
     </message>
 </context>
 <context>
@@ -1807,23 +1807,23 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     </message>
     <message>
         <source>Grouping attribute:</source>
-        <translation type="unfinished"/>
+        <translation>Attributo di raggruppamento:</translation>
     </message>
     <message>
         <source>Destination directory:</source>
-        <translation type="unfinished"/>
+        <translation>Directory di destinazione:</translation>
     </message>
     <message>
         <source>Store collected files in:</source>
-        <translation type="unfinished"/>
+        <translation>Conserva i file raccolti in:</translation>
     </message>
     <message>
         <source>Group collected files:</source>
-        <translation type="unfinished"/>
+        <translation>File di gruppo raccolti:</translation>
     </message>
     <message>
         <source>Directly in the destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Direttamente nella directory di destinazione</translation>
     </message>
     <message>
         <source>Subdirectory based on date &amp; time</source>
@@ -1835,15 +1835,15 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     </message>
     <message>
         <source>Files to collect:</source>
-        <translation type="unfinished"/>
+        <translation>File da raccogliere:</translation>
     </message>
     <message>
         <source>Files to exclude:</source>
-        <translation type="unfinished"/>
+        <translation>File da escludere:</translation>
     </message>
     <message>
         <source>e.g. *.lnk or *.desktop</source>
-        <translation type="unfinished"/>
+        <translation>ad es. *.lnk o *.desktop</translation>
     </message>
     <message>
         <source>Collect files recursively</source>
@@ -1851,15 +1851,15 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     </message>
     <message>
         <source>Destination directory (remote):</source>
-        <translation type="unfinished"/>
+        <translation>Directory di destinazione (remota):</translation>
     </message>
     <message>
         <source>Default source directory:</source>
-        <translation type="unfinished"/>
+        <translation>Directory sorgente predefinita:</translation>
     </message>
     <message>
         <source>Source directory (remote):</source>
-        <translation type="unfinished"/>
+        <translation>Directory di origine (remota):</translation>
     </message>
     <message>
         <source>User login name</source>
@@ -1875,7 +1875,7 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     </message>
     <message>
         <source>Device and user login name</source>
-        <translation type="unfinished"/>
+        <translation>Dispositivo e nome di accesso utente</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1889,8 +1889,8 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>Impossibile aprire il file &quot;%1&quot; per la lettura! Per favore controlla le tue autorizzazioni!</translation>
+        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <translation>Impossibile aprire il file %1 per la lettura! Per favore controlla le tue autorizzazioni!</translation>
     </message>
 </context>
 <context>
@@ -1951,16 +1951,36 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Seleziona uno o più file da trasferire</translation>
     </message>
     <message>
-        <source>Received file &quot;%1&quot;.</source>
-        <translation>File ricevuto &quot;%1&quot;.</translation>
+        <source>File transfer</source>
+        <translation>Trasferimento di file</translation>
     </message>
     <message>
-        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation>Impossibile ricevere il file &quot;%1&quot; già esiste.</translation>
+        <source>Received file %1.</source>
+        <translation>File ricevuto %1.</translation>
     </message>
     <message>
-        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation>Impossibile ricevere il file &quot;%1&quot; in quanto non può essere aperto per la scrittura!</translation>
+        <source>The file %1 is to be collected, but is still open in an application.</source>
+        <translation>Il file %1 deve essere raccolto, ma è ancora aperto in un&apos;applicazione.</translation>
+    </message>
+    <message>
+        <source>The file %1 is to be collected, but is still open in the application &lt;b&gt;%2&lt;/b&gt;.</source>
+        <translation>Il file %1 deve essere raccolto, ma è ancora aperto nell&apos;applicazione &lt;b&gt;%2&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <source>Please save your changes and close the program so that the transfer can be completed.</source>
+        <translation>Salvare le modifiche e chiudere il programma per completare il trasferimento.</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to skip transferring the file %1?</source>
+        <translation>Vuoi davvero saltare il trasferimento del file %1?</translation>
+    </message>
+    <message>
+        <source>Could not receive file %1 as it already exists.</source>
+        <translation>Impossibile ricevere il file %1 già esiste.</translation>
+    </message>
+    <message>
+        <source>Could not receive file %1 as it could not be opened for writing!</source>
+        <translation>Impossibile ricevere il file %1 in quanto non può essere aperto per la scrittura!</translation>
     </message>
     <message>
         <source>Transfer files between computers</source>
@@ -1980,10 +2000,6 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     <message>
         <source>Language:</source>
         <translation>Linguaggio:</translation>
-    </message>
-    <message>
-        <source>Veyon</source>
-        <translation>Veyon</translation>
     </message>
     <message>
         <source>Style:</source>
@@ -2103,11 +2119,11 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     </message>
     <message>
         <source>Veyon service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon service</translation>
     </message>
     <message>
         <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation type="unfinished"/>
+        <translation>È necessario interrompere temporaneamente il servizio Veyon per rimuovere i file di registro. Continuare?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -2911,6 +2927,18 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <source>Login key sequence</source>
         <translation>Sequenza di tasti di accesso</translation>
     </message>
+    <message>
+        <source>Input start delay</source>
+        <translation>Ritardo inizio ingresso</translation>
+    </message>
+    <message>
+        <source>Key press interval for text input</source>
+        <translation>Intervallo di pressione dei tasti per l&apos;immissione di testo.</translation>
+    </message>
+    <message>
+        <source>Key press interval to control input fields</source>
+        <translation>Intervallo di pressione dei tasti per controllare i campi di input</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
@@ -3072,12 +3100,8 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Mostra solo computer con utenti connessi</translation>
     </message>
     <message>
-        <source>toolBar</source>
-        <translation>BarraStrumenti</translation>
-    </message>
-    <message>
         <source>Veyon Configurator %1</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Configurator %1</translation>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3113,7 +3137,7 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
-        <translation type="unfinished"/>
+        <translation>Il backend di configurazione locale ha segnalato che la configurazione non è scrivibile! Eseguire Veyon Configurator con privilegi elevati.</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
@@ -3121,7 +3145,7 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
-        <translation type="unfinished"/>
+        <translation>Non sono stati trovati file di chiave di autenticazione oppure quelli attuali sono obsoleti. Crea nuovi file di chiave utilizzando Veyon Configurator. In alternativa, configura l&apos;autenticazione di accesso utilizzando Veyon Configurator. In caso contrario, non potrai accedere ai computer utilizzando Veyon.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3137,7 +3161,7 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
-        <translation type="unfinished"/>
+        <translation>La funzionalità &quot;%1&quot; è ancora attiva. Interromperla prima di chiudere Veyon.</translation>
     </message>
     <message>
         <source>Use custom computer arrangement.
@@ -3267,12 +3291,24 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
         <translation>Qualità dell&apos;immagine per l&apos;accesso remoto</translation>
     </message>
     <message>
-        <source>Identify users in guest sessions if login name matches:</source>
-        <translation type="unfinished"/>
+        <source>Identify users in guest sessions</source>
+        <translation>Identifica gli utenti nelle sessioni guest</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation>Mai</translation>
+    </message>
+    <message>
+        <source>If login name matches</source>
+        <translation>Se il nome di login corrisponde</translation>
+    </message>
+    <message>
+        <source>If full name matches</source>
+        <translation>Se il nome completo corrisponde</translation>
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>Ospite</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3447,15 +3483,15 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
     </message>
     <message>
         <source>Identify users in guest sessions</source>
-        <translation type="unfinished"/>
+        <translation>Identifica gli utenti nelle sessioni guest</translation>
     </message>
     <message>
         <source>Identification request</source>
-        <translation type="unfinished"/>
+        <translation>Richiesta di identificazione</translation>
     </message>
     <message>
         <source>Please enter your name:</source>
-        <translation type="unfinished"/>
+        <translation>Inserisci il tuo nome:</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3727,11 +3763,11 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - Veyon Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - Accesso remoto Veyon</translation>
     </message>
     <message>
         <source>%1 - %2 - Veyon Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - Accesso remoto Veyon</translation>
     </message>
 </context>
 <context>
@@ -4069,7 +4105,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
-        <translation type="unfinished"/>
+        <translation>Tutte le impostazioni sono state salvate correttamente. Per rendere effettive le modifiche, è necessario riavviare il servizio Veyon. Vuoi riavviarlo ora?</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4229,7 +4265,7 @@ Esempio: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Veyon Master – Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Master – Presentazione</translation>
     </message>
 </context>
 <context>
@@ -4506,7 +4542,7 @@ Esempio: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>Ospite</translation>
     </message>
 </context>
 <context>
@@ -4517,7 +4553,7 @@ Esempio: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Impossibile salvare le impostazioni personali! Controlla il percorso del file di configurazione utente utilizzando Veyon Configurator.</translation>
     </message>
 </context>
 <context>

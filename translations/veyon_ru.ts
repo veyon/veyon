@@ -43,7 +43,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>About Veyon %1</source>
-        <translation type="unfinished"/>
+        <translation>О программе Veyon %1</translation>
     </message>
 </context>
 <context>
@@ -1103,7 +1103,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Veyon Service %1 at %2:%3</source>
-        <translation type="unfinished"/>
+        <translation>Служба Veyon %1 на %2:%3</translation>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1126,7 +1126,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Не найден ни один плагин каталога сетевых объектов по умолчанию. Пожалуйста, проверьте корректность установки или настройте другой сервер каталога объектов сети через конфигуратор Veyon.</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1263,15 +1263,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the Veyon Service.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось изменить свойство автозапуска для сервиса Veyon.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Server.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось настроить правила брандмауэра для службы Veyon Server.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Worker.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось настроить правила брандмауэра для службы Veyon Worker.</translation>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1286,7 +1286,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DemoClient</name>
     <message>
         <source>Veyon Demo</source>
-        <translation type="unfinished"/>
+        <translation>Демонстрация Veyon</translation>
     </message>
 </context>
 <context>
@@ -1810,23 +1810,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Grouping attribute:</source>
-        <translation type="unfinished"/>
+        <translation>Атрибут группировки:</translation>
     </message>
     <message>
         <source>Destination directory:</source>
-        <translation type="unfinished"/>
+        <translation>Целевой каталог:</translation>
     </message>
     <message>
         <source>Store collected files in:</source>
-        <translation type="unfinished"/>
+        <translation>Сохранять собранные файлы в:</translation>
     </message>
     <message>
         <source>Group collected files:</source>
-        <translation type="unfinished"/>
+        <translation>Группировать собранные файлы:</translation>
     </message>
     <message>
         <source>Directly in the destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Непосредственно в целевом каталоге</translation>
     </message>
     <message>
         <source>Subdirectory based on date &amp; time</source>
@@ -1838,15 +1838,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Files to collect:</source>
-        <translation type="unfinished"/>
+        <translation>Файлы для сбора:</translation>
     </message>
     <message>
         <source>Files to exclude:</source>
-        <translation type="unfinished"/>
+        <translation>Файлы для исключения:</translation>
     </message>
     <message>
         <source>e.g. *.lnk or *.desktop</source>
-        <translation type="unfinished"/>
+        <translation>например, *.lnk или *.desktop</translation>
     </message>
     <message>
         <source>Collect files recursively</source>
@@ -1854,15 +1854,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Destination directory (remote):</source>
-        <translation type="unfinished"/>
+        <translation>Целевой каталог (удалённый):</translation>
     </message>
     <message>
         <source>Default source directory:</source>
-        <translation type="unfinished"/>
+        <translation>Исходный каталог по умолчанию:</translation>
     </message>
     <message>
         <source>Source directory (remote):</source>
-        <translation type="unfinished"/>
+        <translation>Исходный каталог (удалённый):</translation>
     </message>
     <message>
         <source>User login name</source>
@@ -1878,7 +1878,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Device and user login name</source>
-        <translation type="unfinished"/>
+        <translation>Имя устройства и имя пользователя (логин)</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1892,8 +1892,8 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file &quot;%1&quot; for reading! Please check your permissions!</source>
-        <translation>Не удалось открыть файл &quot;%1&quot; для чтения! Пожалуйста, проверьте, есть ли у вас достаточные права доступа!</translation>
+        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1954,16 +1954,36 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Выберите один или несколько файлов для передачи</translation>
     </message>
     <message>
-        <source>Received file &quot;%1&quot;.</source>
-        <translation>Получен файл &quot;%1&quot;.</translation>
+        <source>File transfer</source>
+        <translation>Передача файлов</translation>
     </message>
     <message>
-        <source>Could not receive file &quot;%1&quot; as it already exists.</source>
-        <translation>Не удалось получить файл &quot;%1&quot;, поскольку такой файл уже существует.</translation>
+        <source>Received file %1.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Could not receive file &quot;%1&quot; as it could not be opened for writing!</source>
-        <translation>Не удалось получить файл &quot;%1&quot;, поскольку не удалось открыть соответствующий файл для записи данных!</translation>
+        <source>The file %1 is to be collected, but is still open in an application.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The file %1 is to be collected, but is still open in the application &lt;b&gt;%2&lt;/b&gt;.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Please save your changes and close the program so that the transfer can be completed.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Are you sure you want to skip transferring the file %1?</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive file %1 as it already exists.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive file %1 as it could not be opened for writing!</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Transfer files between computers</source>
@@ -1983,10 +2003,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Language:</source>
         <translation>Язык:</translation>
-    </message>
-    <message>
-        <source>Veyon</source>
-        <translation>Veyon</translation>
     </message>
     <message>
         <source>Style:</source>
@@ -2106,11 +2122,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Veyon service</source>
-        <translation type="unfinished"/>
+        <translation>Сервис Veyon</translation>
     </message>
     <message>
         <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation type="unfinished"/>
+        <translation>Для удаления файлов журналов необходимо временно остановить службу Veyon. Продолжить?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -2891,7 +2907,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>LDAP/AD support for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Поддержка LDAP/AD в Veyon</translation>
     </message>
 </context>
 <context>
@@ -2923,6 +2939,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Login key sequence</source>
         <translation>Последовательность ключей для входа</translation>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation>Задержка входа</translation>
+    </message>
+    <message>
+        <source>Key press interval for text input</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Key press interval to control input fields</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3085,12 +3113,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Показывать только те компьютеры, где пользователи выполнили вход в систему</translation>
     </message>
     <message>
-        <source>toolBar</source>
-        <translation>Панель инструментов</translation>
-    </message>
-    <message>
         <source>Veyon Configurator %1</source>
-        <translation type="unfinished"/>
+        <translation>Конфигуратор Veyon %1</translation>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3126,7 +3150,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
-        <translation type="unfinished"/>
+        <translation>Локальный сервер сообщил, что конфигурация защищена от записи. Запустите конфигуратор Veyon с более высокими привилегиями.</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
@@ -3134,7 +3158,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
-        <translation type="unfinished"/>
+        <translation>Не найдены файлы ключей аутентификации или они устарели. Пожалуйста, создайте новые файлы, используя конфигуратор Veyon. Как альтернатива установите аутентификацию входа, используя конфигуратор Veyon. Иначе Вы не сможете получить доступ к компьютерам с помощью Veyon.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3150,7 +3174,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
-        <translation type="unfinished"/>
+        <translation>Функция &quot;%1&quot; всё ещё активна. Пожалуйста, остановите её перед закрытием Veyon.</translation>
     </message>
     <message>
         <source>Use custom computer arrangement.
@@ -3280,12 +3304,24 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Качество изображения удаленного доступа</translation>
     </message>
     <message>
-        <source>Identify users in guest sessions if login name matches:</source>
+        <source>Identify users in guest sessions</source>
+        <translation>Определять пользователей в гостевых сеансах</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If login name matches</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>If full name matches</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>Гость</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3460,15 +3496,15 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Identify users in guest sessions</source>
-        <translation type="unfinished"/>
+        <translation>Определять пользователей в гостевых сеансах</translation>
     </message>
     <message>
         <source>Identification request</source>
-        <translation type="unfinished"/>
+        <translation>Запрос идентификации</translation>
     </message>
     <message>
         <source>Please enter your name:</source>
-        <translation type="unfinished"/>
+        <translation>Пожалуйста, введите ваше имя:</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3740,11 +3776,11 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - Veyon Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - Удалённый доступ Veyon</translation>
     </message>
     <message>
         <source>%1 - %2 - Veyon Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - Удалённый доступ Veyon</translation>
     </message>
 </context>
 <context>
@@ -4083,7 +4119,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
-        <translation type="unfinished"/>
+        <translation>Все настройки были успешно сохранены. Для того чтобы они вступили в силу необходимо перезапустить сервис Veyon. Перезапустить его сейчас?</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4243,7 +4279,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Veyon Master – Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Мастер – Слайд-шоу</translation>
     </message>
 </context>
 <context>
@@ -4520,7 +4556,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>Гость</translation>
     </message>
 </context>
 <context>
@@ -4531,7 +4567,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось сохранить ваши личные настройки! Пожалуйста, проверьте, правильно ли указан путь к файлу настроек пользователей с помощью конфигуратора Veyon.</translation>
     </message>
 </context>
 <context>
