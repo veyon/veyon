@@ -119,6 +119,44 @@ void BuiltinDirectoryConfigurationPage::removeLocation()
 
 
 
+void BuiltinDirectoryConfigurationPage::moveLocationUp()
+{
+	const int row = ui->locationTableWidget->currentRow();
+
+	if( row <= 0 )
+	{
+		return;
+	}
+
+	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+	objectManager.moveUp( currentLocationObject().uid() );
+	m_configuration.setNetworkObjects( objectManager.objects() );
+
+	populateLocations();
+	ui->locationTableWidget->setCurrentCell( row - 1, 0 );
+}
+
+
+
+void BuiltinDirectoryConfigurationPage::moveLocationDown()
+{
+	const int row = ui->locationTableWidget->currentRow();
+
+	if( row < 0 || row >= ui->locationTableWidget->rowCount() - 1 )
+	{
+		return;
+	}
+
+	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+	objectManager.moveDown( currentLocationObject().uid() );
+	m_configuration.setNetworkObjects( objectManager.objects() );
+
+	populateLocations();
+	ui->locationTableWidget->setCurrentCell( row + 1, 0 );
+}
+
+
+
 void BuiltinDirectoryConfigurationPage::addComputer()
 {
 	auto currentLocationUid = currentLocationObject().uid();
@@ -167,6 +205,44 @@ void BuiltinDirectoryConfigurationPage::removeComputer()
 	m_configuration.setNetworkObjects( objectManager.objects() );
 
 	populateComputers();
+}
+
+
+
+void BuiltinDirectoryConfigurationPage::moveComputerUp()
+{
+	const int row = ui->computerTableWidget->currentRow();
+
+	if( row <= 0 )
+	{
+		return;
+	}
+
+	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+	objectManager.moveUp( currentComputerObject().uid() );
+	m_configuration.setNetworkObjects( objectManager.objects() );
+
+	populateComputers();
+	ui->computerTableWidget->setCurrentCell( row - 1, 0 );
+}
+
+
+
+void BuiltinDirectoryConfigurationPage::moveComputerDown()
+{
+	const int row = ui->computerTableWidget->currentRow();
+
+	if( row < 0 || row >= ui->computerTableWidget->rowCount() - 1 )
+	{
+		return;
+	}
+
+	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+	objectManager.moveDown( currentComputerObject().uid() );
+	m_configuration.setNetworkObjects( objectManager.objects() );
+
+	populateComputers();
+	ui->computerTableWidget->setCurrentCell( row + 1, 0 );
 }
 
 

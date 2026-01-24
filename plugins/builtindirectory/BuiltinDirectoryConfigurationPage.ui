@@ -67,6 +67,34 @@
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="moveComputerUpButton">
+          <property name="toolTip">
+           <string>Move selected computer up</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="../../core/resources/core.qrc">
+            <normaloff>:/core/go-up.png</normaloff>:/core/go-up.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="moveComputerDownButton">
+          <property name="toolTip">
+           <string>Move selected computer down</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="../../core/resources/core.qrc">
+            <normaloff>:/core/go-down.png</normaloff>:/core/go-down.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
          <spacer name="horizontalSpacer">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
@@ -139,6 +167,34 @@
           <property name="icon">
            <iconset resource="../../core/resources/core.qrc">
             <normaloff>:/core/edit-delete.png</normaloff>:/core/edit-delete.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="moveLocationUpButton">
+          <property name="toolTip">
+           <string>Move selected location up</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="../../core/resources/core.qrc">
+            <normaloff>:/core/go-up.png</normaloff>:/core/go-up.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="moveLocationDownButton">
+          <property name="toolTip">
+           <string>Move selected location down</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="../../core/resources/core.qrc">
+            <normaloff>:/core/go-down.png</normaloff>:/core/go-down.png</iconset>
           </property>
          </widget>
         </item>
@@ -296,6 +352,70 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>moveLocationUpButton</sender>
+   <signal>clicked()</signal>
+   <receiver>BuiltinDirectoryConfigurationPage</receiver>
+   <slot>moveLocationUp()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>160</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>507</x>
+     <y>351</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>moveLocationDownButton</sender>
+   <signal>clicked()</signal>
+   <receiver>BuiltinDirectoryConfigurationPage</receiver>
+   <slot>moveLocationDown()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>212</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>507</x>
+     <y>351</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>moveComputerUpButton</sender>
+   <signal>clicked()</signal>
+   <receiver>BuiltinDirectoryConfigurationPage</receiver>
+   <slot>moveComputerUp()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>750</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>507</x>
+     <y>351</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>moveComputerDownButton</sender>
+   <signal>clicked()</signal>
+   <receiver>BuiltinDirectoryConfigurationPage</receiver>
+   <slot>moveComputerDown()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>802</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>507</x>
+     <y>351</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addLocation()</slot>
@@ -304,5 +424,9 @@
   <slot>removeComputer()</slot>
   <slot>updateLocation()</slot>
   <slot>updateComputer()</slot>
+  <slot>moveLocationUp()</slot>
+  <slot>moveLocationDown()</slot>
+  <slot>moveComputerUp()</slot>
+  <slot>moveComputerDown()</slot>
  </slots>
 </ui>

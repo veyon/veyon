@@ -48,9 +48,13 @@ private Q_SLOTS:
 	void addLocation();
 	void updateLocation();
 	void removeLocation();
+	void moveLocationUp();
+	void moveLocationDown();
 	void addComputer();
 	void updateComputer();
 	void removeComputer();
+	void moveComputerUp();
+	void moveComputerDown();
 
 private:
 	void populateLocations();
