@@ -388,9 +388,14 @@ QStringList LdapDirectory::computerLocationEntries( const QString& locationName 
 		const auto locationDnFilter = LdapClient::constructQueryFilter( m_locationNameAttribute, locationName, m_computerContainersFilter );
 		const auto locationDns = m_client.queryDistinguishedNames( computersDn(), locationDnFilter, m_defaultSearchScope );
 
-		return m_client.queryDistinguishedNames( locationDns.value( 0 ),
-												 LdapClient::constructQueryFilter( {}, {}, m_computersFilter ),
-												 m_defaultSearchScope );
+		return std::accumulate(locationDns.constBegin(),
+							   locationDns.constEnd(),
+							   QStringList{},
+							   [this](const QStringList& computerDns, const QString& locationDn) {
+			return computerDns + m_client.queryDistinguishedNames(locationDn,
+																  LdapClient::constructQueryFilter({}, {}, m_computersFilter),
+																  m_defaultSearchScope);
+		});
 	}
 
 	const auto groups = computerGroups( locationName );
