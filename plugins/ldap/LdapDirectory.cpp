@@ -409,7 +409,13 @@ QStringList LdapDirectory::computerLocationEntries( const QString& locationName 
 		return {};
 	}
 
-	auto memberComputers = groupMembers( groups.value( 0 ) );
+	auto memberComputers = std::accumulate(
+							   groups.constBegin(),
+							   groups.constEnd(),
+							   QStringList{},
+							   [this](const QStringList& memberComputers, const QString& group) {
+		return memberComputers + groupMembers(group);
+	});
 
 	// computer filter configured?
 	if( m_computersFilter.isEmpty() == false )
