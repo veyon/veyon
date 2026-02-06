@@ -58,9 +58,9 @@ void VncServerProtocol::start()
 {
 	if( state() == State::Disconnected )
 	{
-		rfbProtocolVersionMsg protocol; // Flawfinder: ignore
+		rfbProtocolVersionMsg protocol{}; // Initialize to zero
 
-		sprintf( protocol, rfbProtocolVersionFormat, 3, 8 ); // Flawfinder: ignore
+		snprintf( protocol, sizeof(protocol), rfbProtocolVersionFormat, 3, 8 );
 
 		m_socket->write( protocol, sz_rfbProtocolVersionMsg );
 
@@ -225,6 +225,15 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 		}
 
 		const auto username = message.read().toString();
+
+		// Validate username length to prevent DoS attacks
+		constexpr int MaxUsernameLength = 256;
+		if( username.length() > MaxUsernameLength )
+		{
+			vCritical() << "username exceeds maximum length of" << MaxUsernameLength;
+			m_socket->close();
+			return false;
+		}
 
 		m_client->setAuthType( chosenAuthType );
 		m_client->setUsername( username );
