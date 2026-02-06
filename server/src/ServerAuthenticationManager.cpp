@@ -134,7 +134,9 @@ VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication
 		const auto signature = message.read().toByteArray();
 
 		// Validate signature size to prevent DoS attacks
-		constexpr int MaxSignatureSize = 8192; // RSA-4096 signature is ~512 bytes, allow reasonable headroom
+		// RSA-4096 signatures are exactly 512 bytes (4096 bits / 8)
+		// 8KB limit provides headroom for encoding overhead, metadata, or future algorithms
+		constexpr int MaxSignatureSize = 8192;
 		if( signature.size() > MaxSignatureSize )
 		{
 			vWarning() << "signature size exceeds maximum of" << MaxSignatureSize << "bytes";
