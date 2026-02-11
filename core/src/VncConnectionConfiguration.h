@@ -49,8 +49,10 @@ public:
 	static constexpr int DefaultFastFramebufferUpdateInterval = 100;
 	static constexpr int DefaultInitialFramebufferUpdateTimeout = 2000;  // Reduced from 10000 for faster initial display
 	static constexpr int DefaultFramebufferUpdateTimeout = 60000;
-	static constexpr int DefaultSocketKeepaliveIdleTime = 1000;
-	static constexpr int DefaultSocketKeepaliveInterval = 500;
+	// Keepalive values are in milliseconds and converted to whole seconds on POSIX systems.
+	// Use conservative defaults to avoid disconnect/reconnect flapping on congested networks.
+	static constexpr int DefaultSocketKeepaliveIdleTime = 30000;
+	static constexpr int DefaultSocketKeepaliveInterval = 10000;
 	static constexpr int DefaultSocketKeepaliveCount = 5;
 
 } ;

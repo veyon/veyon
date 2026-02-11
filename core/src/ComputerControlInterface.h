@@ -208,7 +208,8 @@ private:
 	void handleFeatureMessage( const FeatureMessage& message );
 
 	static constexpr int ConnectionWatchdogPingDelay = 10000;
-	static constexpr int ConnectionWatchdogTimeout = ConnectionWatchdogPingDelay*2;
+	// Allow multiple missed ping replies before forcing a reconnect to avoid false positives under load.
+	static constexpr int ConnectionWatchdogTimeout = ConnectionWatchdogPingDelay*6;
 	static constexpr int ServerVersionQueryTimeout = 5000;
 	static constexpr int UpdateIntervalDisabled = 5000;
 
