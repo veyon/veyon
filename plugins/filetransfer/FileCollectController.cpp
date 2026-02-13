@@ -34,7 +34,8 @@ FileCollectController::FileCollectController(FileTransferPlugin* plugin) :
 	m_destinationDirectory(VeyonCore::filesystem().expandPath(plugin->configuration().collectedFilesDestinationDirectory())),
 	m_collectionDirectory(configuration().collectionDirectory()),
 	m_collectedFilesGroupingMode(configuration().collectedFilesGroupingMode()),
-	m_collectedFilesGroupingAttribute(configuration().collectedFilesGroupingAttribute())
+	m_collectedFilesGroupingAttribute1(configuration().collectedFilesGroupingAttribute1()),
+	m_collectedFilesGroupingAttribute2(configuration().collectedFilesGroupingAttribute2())
 {
 	connect (this, &FileCollectController::collectionChanged, this, &FileCollectController::overallProgressChanged);
 }
@@ -116,17 +117,27 @@ QString FileCollectController::outputFilePath(ComputerControlInterface::Pointer 
 		return defaultFilePath;
 	}
 
-	QString groupingAttribute;
-	switch (m_collectedFilesGroupingAttribute)
-	{
-	case CollectedFilesGroupingAttribute::UserLoginName: groupingAttribute = VeyonCore::stripDomain(computerControlInterface->userLoginName()); break;
-	case CollectedFilesGroupingAttribute::FullNameOfUser: groupingAttribute = VeyonCore::stripDomain(computerControlInterface->userFullName()); break;
-	case CollectedFilesGroupingAttribute::DeviceName: groupingAttribute = computerControlInterface->computerName(); break;
-	case CollectedFilesGroupingAttribute::DeviceAndUserLoginName: groupingAttribute = computerControlInterface->computerName() + u" " + VeyonCore::stripDomain(computerControlInterface->userLoginName()); break;
-	}
+	const auto getGroupingAttributeValue = [=](CollectedFilesGroupingAttribute attribute) {
+		switch (attribute)
+		{
+		case CollectedFilesGroupingAttribute::None: break;
+		case CollectedFilesGroupingAttribute::UserLoginName: return VeyonCore::stripDomain(computerControlInterface->userLoginName()); break;
+		case CollectedFilesGroupingAttribute::FullNameOfUser: return VeyonCore::stripDomain(computerControlInterface->userFullName()); break;
+		case CollectedFilesGroupingAttribute::DeviceName: return computerControlInterface->computerName(); break;
+		}
+		return QString{};
+	};
+
+	QStringList groupingAttributes {
+		getGroupingAttributeValue(m_collectedFilesGroupingAttribute1),
+		getGroupingAttributeValue(m_collectedFilesGroupingAttribute2),
+	};
+	groupingAttributes.removeAll({});
 
 	static const QRegularExpression invalidFileNameCharacters(QStringLiteral("[\x00-\x1F<>:\"/\\|?*\x7F]"));
-	groupingAttribute.replace(invalidFileNameCharacters, QString{});
+	const auto groupingAttribute = groupingAttributes
+								   .join(QLatin1Char('_'))
+								   .replace(invalidFileNameCharacters, QString{});
 	if (groupingAttribute.isEmpty())
 	{
 		return defaultFilePath;

@@ -49,7 +49,9 @@ FileTransferConfigurationPage::FileTransferConfigurationPage( FileTransferConfig
 			this, &FileTransferConfigurationPage::browseCollectedFilesDestinationDirectory);
 
 	connect(ui->collectedFilesGroupingMode, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this]() {
-		ui->collectedFilesGroupingAttribute->setEnabled(ui->collectedFilesGroupingMode->currentIndex() > 0);
+		const auto groupingAttributesRequired = ui->collectedFilesGroupingMode->currentIndex() > 0;
+		ui->collectedFilesGroupingAttribute1->setEnabled(groupingAttributesRequired);
+		ui->collectedFilesGroupingAttribute2->setEnabled(groupingAttributesRequired);
 	});
 
 	ui->collectingMode->hide();

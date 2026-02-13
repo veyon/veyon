@@ -35,32 +35,32 @@ class FileCollectController : public QObject
 {
 	Q_OBJECT
 public:
-	enum CollectingMode {
+	enum class CollectingMode {
 		CollectFilesFromSourceDirectory,
 		PromptUserForFolder,
 		PromptUserForFiles
 	};
 	Q_ENUM(CollectingMode)
 
-	enum CollectionDirectory {
+	enum class CollectionDirectory {
 		DestinationDirectory,
 		DateTimeSubdirectory,
 		PromptUserForName
 	};
 	Q_ENUM(CollectionDirectory)
 
-	enum CollectedFilesGroupingMode {
+	enum class CollectedFilesGroupingMode {
 		None,
 		PrefixFilenames,
 		CreateSubdirectories
 	};
 	Q_ENUM(CollectedFilesGroupingMode)
 
-	enum CollectedFilesGroupingAttribute {
+	enum class CollectedFilesGroupingAttribute {
+		None,
 		UserLoginName,
 		FullNameOfUser,
 		DeviceName,
-		DeviceAndUserLoginName,
 	};
 	Q_ENUM(CollectedFilesGroupingAttribute)
 
@@ -72,16 +72,6 @@ public:
 	CollectionDirectory collectionDirectory() const
 	{
 		return m_collectionDirectory;
-	}
-
-	CollectedFilesGroupingMode collectedFilesGroupingMode() const
-	{
-		return m_collectedFilesGroupingMode;
-	}
-
-	CollectedFilesGroupingAttribute collectedFilesGroupingAttribute() const
-	{
-		return m_collectedFilesGroupingAttribute;
 	}
 
 	void setInterfaces(const ComputerControlInterfaceList& computerControlInterfaces);
@@ -147,7 +137,8 @@ private:
 	QString m_collectionName;
 	CollectionDirectory m_collectionDirectory;
 	CollectedFilesGroupingMode m_collectedFilesGroupingMode;
-	CollectedFilesGroupingAttribute m_collectedFilesGroupingAttribute;
+	CollectedFilesGroupingAttribute m_collectedFilesGroupingAttribute1;
+	CollectedFilesGroupingAttribute m_collectedFilesGroupingAttribute2;
 
 	bool m_running = false;
 
