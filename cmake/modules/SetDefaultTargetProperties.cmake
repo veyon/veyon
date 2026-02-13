@@ -1,6 +1,6 @@
 macro(set_default_target_properties TARGET_NAME)
 	set_property(TARGET ${TARGET_NAME} PROPERTY NO_SYSTEM_FROM_IMPORTED ON)
-	set_property(TARGET ${TARGET_NAME} PROPERTY CXX_STANDARD 17)
+	set_property(TARGET ${TARGET_NAME} PROPERTY CXX_STANDARD 20)
 	set_property(TARGET ${TARGET_NAME} PROPERTY CXX_STANDARD_REQUIRED ON)
 	target_compile_options(${TARGET_NAME} PRIVATE "-Wall;-Werror")
 	if(WITH_LTO)
