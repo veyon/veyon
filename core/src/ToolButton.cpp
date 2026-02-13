@@ -86,9 +86,17 @@ void ToolButton::enterEvent( QEnterEvent* event )
 void ToolButton::enterEvent( QEvent* event )
 #endif
 {
-	if (!s_toolTipsDisabled && !m_descr.isEmpty())
+	if (!s_toolTipsDisabled)
 	{
-		QToolTip::showText(mapToGlobal(QPoint(width() / 2, height())), m_descr, this);
+		const auto pos = mapToGlobal(QPoint(width() / 2, height()));
+		if (s_iconOnlyMode || m_descr.isEmpty())
+		{
+			QToolTip::showText(pos, text(), this);
+		}
+		else
+		{
+			QToolTip::showText(pos, m_descr, this);
+		}
 	}
 
 	QToolButton::enterEvent( event );
