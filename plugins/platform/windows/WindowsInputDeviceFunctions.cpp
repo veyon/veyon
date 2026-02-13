@@ -143,9 +143,9 @@ void WindowsInputDeviceFunctions::enableInterception()
 
 		if( m_interceptionContext )
 		{
-			interception_set_filter( m_interceptionContext,
-									 interception_is_any,
-									 INTERCEPTION_FILTER_KEY_ALL | INTERCEPTION_FILTER_MOUSE_ALL );
+			interception_set_filter(m_interceptionContext,
+									interception_is_any,
+									InterceptionFilter(INTERCEPTION_FILTER_KEY_ALL) | InterceptionFilter(INTERCEPTION_FILTER_MOUSE_ALL));
 		}
 	}
 }
