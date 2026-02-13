@@ -42,6 +42,7 @@
 	OP(FileTransferConfiguration, m_configuration, FileCollectController::CollectedFilesGroupingMode, collectedFilesGroupingMode, setCollectedFilesGroupingMode, "CollectedFilesGroupingMode", "FileTransfer", QVariant::fromValue(FileCollectController::CollectedFilesGroupingMode::CreateSubdirectories), Configuration::Property::Flag::Standard)	\
 	OP(FileTransferConfiguration, m_configuration, FileCollectController::CollectedFilesGroupingAttribute, collectedFilesGroupingAttribute1, setCollectedFilesGroupingAttribute1, "CollectedFilesGroupingAttibute1", "FileTransfer", QVariant::fromValue(FileCollectController::CollectedFilesGroupingAttribute::UserLoginName), Configuration::Property::Flag::Standard)	\
 	OP(FileTransferConfiguration, m_configuration, FileCollectController::CollectedFilesGroupingAttribute, collectedFilesGroupingAttribute2, setCollectedFilesGroupingAttribute2, "CollectedFilesGroupingAttibute2", "FileTransfer", QVariant::fromValue(FileCollectController::CollectedFilesGroupingAttribute::None), Configuration::Property::Flag::Standard)	\
+	OP(FileTransferConfiguration, m_configuration, FileCollectController::CollectedFilesGroupingAttribute, collectedFilesGroupingAttribute3, setCollectedFilesGroupingAttribute3, "CollectedFilesGroupingAttibute3", "FileTransfer", QVariant::fromValue(FileCollectController::CollectedFilesGroupingAttribute::None), Configuration::Property::Flag::Standard)	\
 
 // clazy:excludeall=missing-qobject-macro
 

@@ -34,8 +34,9 @@ FileCollectController::FileCollectController(FileTransferPlugin* plugin) :
 	m_destinationDirectory(VeyonCore::filesystem().expandPath(plugin->configuration().collectedFilesDestinationDirectory())),
 	m_collectionDirectory(configuration().collectionDirectory()),
 	m_collectedFilesGroupingMode(configuration().collectedFilesGroupingMode()),
-	m_collectedFilesGroupingAttribute1(configuration().collectedFilesGroupingAttribute1()),
-	m_collectedFilesGroupingAttribute2(configuration().collectedFilesGroupingAttribute2())
+	m_collectedFilesGroupingAttributes({configuration().collectedFilesGroupingAttribute1(),
+									   configuration().collectedFilesGroupingAttribute2(),
+									   configuration().collectedFilesGroupingAttribute3()})
 {
 	connect (this, &FileCollectController::collectionChanged, this, &FileCollectController::overallProgressChanged);
 }
@@ -117,28 +118,44 @@ QString FileCollectController::outputFilePath(ComputerControlInterface::Pointer 
 		return defaultFilePath;
 	}
 
-	const auto getGroupingAttributeValue = [=](CollectedFilesGroupingAttribute attribute) {
+	const auto groupingValues = std::accumulate(m_collectedFilesGroupingAttributes.cbegin(),
+												m_collectedFilesGroupingAttributes.cend(),
+												QStringList{},
+												[=](QStringList attributes, CollectedFilesGroupingAttribute attribute) {
+		const auto userName = VeyonCore::stripDomain(computerControlInterface->userFullName());
+		const auto userNameSplitted = userName.split(QLatin1Char(' '), Qt::SkipEmptyParts);
 		switch (attribute)
 		{
-		case CollectedFilesGroupingAttribute::None: break;
-		case CollectedFilesGroupingAttribute::UserLoginName: return VeyonCore::stripDomain(computerControlInterface->userLoginName()); break;
-		case CollectedFilesGroupingAttribute::FullNameOfUser: return VeyonCore::stripDomain(computerControlInterface->userFullName()); break;
-		case CollectedFilesGroupingAttribute::DeviceName: return computerControlInterface->computerName(); break;
+		case CollectedFilesGroupingAttribute::None:
+			break;
+		case CollectedFilesGroupingAttribute::UserLoginName:
+			attributes += VeyonCore::stripDomain(computerControlInterface->userLoginName());
+			break;
+		case CollectedFilesGroupingAttribute::FullNameOfUser:
+			attributes += userName;
+			break;
+		case CollectedFilesGroupingAttribute::FirstPartOfUserName:
+			if (userNameSplitted.isEmpty() == false)
+			{
+				attributes += userNameSplitted.mid(0, userNameSplitted.size() - 1).join(QLatin1Char(' '));
+			}
+			break;
+		case CollectedFilesGroupingAttribute::LastPartOfUserName:
+			if (userNameSplitted.isEmpty() == false)
+			{
+				attributes += userNameSplitted.constLast();
+			}
+			break;
+		case CollectedFilesGroupingAttribute::DeviceName:
+			attributes += computerControlInterface->computerName();
+			break;
 		}
-		return QString{};
-	};
-
-	QStringList groupingAttributes {
-		getGroupingAttributeValue(m_collectedFilesGroupingAttribute1),
-		getGroupingAttributeValue(m_collectedFilesGroupingAttribute2),
-	};
-	groupingAttributes.removeAll({});
+		return attributes;
+	});
 
 	static const QRegularExpression invalidFileNameCharacters(QStringLiteral("[\x00-\x1F<>:\"/\\|?*\x7F]"));
-	const auto groupingAttribute = groupingAttributes
-								   .join(QLatin1Char('_'))
-								   .replace(invalidFileNameCharacters, QString{});
-	if (groupingAttribute.isEmpty())
+	const auto groupingValue = groupingValues.join(QLatin1Char('_')).replace(invalidFileNameCharacters, QString{});
+	if (groupingValue.isEmpty())
 	{
 		return defaultFilePath;
 	}
@@ -146,9 +163,9 @@ QString FileCollectController::outputFilePath(ComputerControlInterface::Pointer 
 	switch (m_collectedFilesGroupingMode)
 	{
 	case CollectedFilesGroupingMode::CreateSubdirectories:
-		return outputDirectory() + QDir::separator() + groupingAttribute + QDir::separator() + fileName;
+		return outputDirectory() + QDir::separator() + groupingValue + QDir::separator() + fileName;
 	case CollectedFilesGroupingMode::PrefixFilenames:
-		return outputDirectory() + QDir::separator() + groupingAttribute + QStringLiteral("_") + fileName;
+		return outputDirectory() + QDir::separator() + groupingValue + QStringLiteral("_") + fileName;
 	case CollectedFilesGroupingMode::None:
 		break;
 	}

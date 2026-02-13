@@ -60,6 +60,8 @@ public:
 		None,
 		UserLoginName,
 		FullNameOfUser,
+		FirstPartOfUserName,
+		LastPartOfUserName,
 		DeviceName,
 	};
 	Q_ENUM(CollectedFilesGroupingAttribute)
@@ -137,8 +139,7 @@ private:
 	QString m_collectionName;
 	CollectionDirectory m_collectionDirectory;
 	CollectedFilesGroupingMode m_collectedFilesGroupingMode;
-	CollectedFilesGroupingAttribute m_collectedFilesGroupingAttribute1;
-	CollectedFilesGroupingAttribute m_collectedFilesGroupingAttribute2;
+	std::array<CollectedFilesGroupingAttribute, 3> m_collectedFilesGroupingAttributes;
 
 	bool m_running = false;
 
