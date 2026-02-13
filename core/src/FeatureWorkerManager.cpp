@@ -224,8 +224,8 @@ void FeatureWorkerManager::sendMessageToUnmanagedSessionWorker( const FeatureMes
 		startUnmanagedSessionWorker( message.featureUid() ) == false )
 	{
 		vDebug() << "User session likely not yet available - retrying worker start";
-		QTimer::singleShot( UnmanagedSessionProcessRetryInterval, this,
-							[=]() { sendMessageToUnmanagedSessionWorker( message ); } );
+		QTimer::singleShot(UnmanagedSessionProcessRetryInterval, this,
+						   [=, this]() { sendMessageToUnmanagedSessionWorker(message); });
 		return;
 	}
 
@@ -249,11 +249,11 @@ void FeatureWorkerManager::acceptConnection()
 	QTcpSocket* socket = m_tcpServer.nextPendingConnection();
 
 	// connect to readyRead() signal of new connection
-	connect( socket, &QTcpSocket::readyRead,
-			 this, [=] () { processConnection( socket ); } );
+	connect(socket, &QTcpSocket::readyRead,
+			this, [=, this] () { processConnection(socket); });
 
-	connect( socket, &QTcpSocket::disconnected,
-			 this, [=] () { closeConnection( socket ); } );
+	connect(socket, &QTcpSocket::disconnected,
+			this, [=, this] () { closeConnection(socket); });
 }
 
 

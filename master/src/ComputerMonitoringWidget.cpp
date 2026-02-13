@@ -249,9 +249,9 @@ void ComputerMonitoringWidget::populateFeatureMenu( const ComputerControlInterfa
 
 void ComputerMonitoringWidget::addFeatureToMenu( const Feature& feature, const QString& label )
 {
-	m_featureMenu->addAction( QIcon( feature.iconUrl() ),
-							  label,
-							  m_featureMenu, [=] () { runFeature( feature ); } );
+	m_featureMenu->addAction(QIcon( feature.iconUrl() ),
+							 label,
+							 m_featureMenu, [=, this] () { runFeature(feature); });
 }
 
 
@@ -266,7 +266,7 @@ void ComputerMonitoringWidget::addSubFeaturesToMenu( const Feature& parentFeatur
 #if QT_VERSION >= QT_VERSION_CHECK(6, 3, 0)
 						subFeature.shortcut(),
 #endif
-						this, [=]() { runFeature( subFeature ); }
+						this, [=, this]() { runFeature(subFeature); }
 #if QT_VERSION < QT_VERSION_CHECK(6, 3, 0)
 		, subFeature.shortcut()
 #endif

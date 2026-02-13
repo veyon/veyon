@@ -97,7 +97,7 @@ VncProxyConnection* ComputerControlServer::createVncProxyConnection( QTcpSocket*
 	auto client = new ComputerControlClient( this, clientSocket, vncServerPort, vncServerPassword, parent );
 
 	connect( client, &ComputerControlClient::serverConnectionClosed, this,
-		[=]() { checkForIncompleteAuthentication( client->serverClient() ); },
+		[=, this]() { checkForIncompleteAuthentication(client->serverClient()); },
 		Qt::DirectConnection );
 
 	return client;

@@ -250,7 +250,7 @@ void RemoteAccessWidgetToolBar::updateScreens()
 
 	if(screens.size() > 1)
 	{
-		const auto showAllScreens = menu->addAction( tr( "All screens" ), this, [=]() {
+		const auto showAllScreens = menu->addAction(tr("All screens"), this, [=, this]() {
 			m_parent->vncView()->setViewport({});
 		});
 
@@ -270,7 +270,7 @@ void RemoteAccessWidgetToolBar::updateScreens()
 
 		for (const auto& screen : screens)
 		{
-			const auto action = menu->addAction(screen.name, this, [=]() {
+			const auto action = menu->addAction(screen.name, this, [=, this]() {
 				m_parent->vncView()->setViewport(screen.geometry.translated(-minimumScreenPosition));
 			});
 			action->setCheckable(true);

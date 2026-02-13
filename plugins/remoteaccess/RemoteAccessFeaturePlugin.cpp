@@ -367,7 +367,7 @@ void RemoteAccessFeaturePlugin::createRemoteAccessWindow(const ComputerControlIn
 	{
 		auto page = new RemoteAccessPage(computerControlInterface, viewOnly, master->appContainer());
 		// forward clipboard changes as long as the page exists
-		connect(QGuiApplication::clipboard(), &QClipboard::dataChanged, page, [=]()
+		connect(QGuiApplication::clipboard(), &QClipboard::dataChanged, page, [=, this]()
 				 {
 					 sendClipboardData(page->computerControlInterface());
 				 });
@@ -381,7 +381,7 @@ void RemoteAccessFeaturePlugin::createRemoteAccessWindow(const ComputerControlIn
 											  remoteViewEnabled() && remoteControlEnabled());
 
 		// forward clipboard changes as long as the widget exists
-		connect(QGuiApplication::clipboard(), &QClipboard::dataChanged, widget, [=]()
+		connect(QGuiApplication::clipboard(), &QClipboard::dataChanged, widget, [=, this]()
 				 {
 					 sendClipboardData(widget->computerControlInterface());
 				 });

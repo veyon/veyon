@@ -102,10 +102,10 @@ void VncProxyServer::acceptConnection()
 																	 this );
 
 	connect(connection, &VncProxyConnection::serverMessageProcessed, this,
-		[=]() { Q_EMIT serverMessageProcessed(connection); }, Qt::DirectConnection );
+			[=, this]() { Q_EMIT serverMessageProcessed(connection); }, Qt::DirectConnection);
 
-	connect( connection, &VncProxyConnection::clientConnectionClosed, this, [=]() { closeConnection( connection ); } );
-	connect( connection, &VncProxyConnection::serverConnectionClosed, this, [=]() { closeConnection( connection ); } );
+	connect(connection, &VncProxyConnection::clientConnectionClosed, this, [=, this]() { closeConnection(connection); });
+	connect(connection, &VncProxyConnection::serverConnectionClosed, this, [=, this]() { closeConnection(connection); });
 
 	connection->start();
 

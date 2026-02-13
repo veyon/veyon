@@ -70,9 +70,9 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 
 	CONNECT_BUTTON_SLOT( browseCACertificateFile )
 
-	connect( ui->tlsVerifyMode, QOverload<int>::of( &QComboBox::currentIndexChanged ), ui->tlsCACertificateFile, [=]() {
+	connect(ui->tlsVerifyMode, QOverload<int>::of( &QComboBox::currentIndexChanged ), ui->tlsCACertificateFile, [=, this]() {
 		ui->tlsCACertificateFile->setEnabled( ui->tlsVerifyMode->currentIndex() == LdapClient::TLSVerifyCustomCert );
-	} );
+	});
 
 	static const QRegularExpression browseButtonsRX{QStringLiteral("browse.*")};
 	const auto browseButtons = findChildren<QPushButton *>(browseButtonsRX);
