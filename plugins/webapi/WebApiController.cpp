@@ -647,7 +647,7 @@ WebApiController::Response WebApiController::checkConnection( const Request& req
 {
 	const QUuid connectionUuid{lookupHeaderField(request, connectionUidHeaderFieldName())};
 
-	return runInWorkerThread<WebApiController::Response>([=]() -> WebApiController::Response {
+	return runInWorkerThread<WebApiController::Response>([=, this]() -> WebApiController::Response {
 		m_connectionsLock.lockForRead();
 		if( connectionUuid.isNull() || m_connections.contains( connectionUuid ) == false )
 		{

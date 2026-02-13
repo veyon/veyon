@@ -469,7 +469,7 @@ void MonitoringMode::updateUserInfo()
 {
 	// asynchronously query information about logged on user (which might block
 	// due to domain controller queries and timeouts etc.)
-	(void) QtConcurrent::run( [=]() {
+	(void) QtConcurrent::run([=, this]() {
 		if( VeyonCore::platform().sessionFunctions().currentSessionHasUser() )
 		{
 			const auto userLoginName = VeyonCore::platform().userFunctions().currentUser();
@@ -498,7 +498,7 @@ void MonitoringMode::updateUserInfo()
 
 void MonitoringMode::updateSessionInfo()
 {
-	(void) QtConcurrent::run([=]() {
+	(void) QtConcurrent::run([=, this]() {
 		QString sessionMetaData;
 		switch (m_sessionMetaDataContent)
 		{

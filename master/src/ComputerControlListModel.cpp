@@ -344,26 +344,26 @@ void ComputerControlListModel::startComputerControlInterface( ComputerControlInt
 {
 	controlInterface->start( computerScreenSize(), ComputerControlInterface::UpdateMode::Monitoring );
 
-	connect( controlInterface, &ComputerControlInterface::framebufferSizeChanged,
-			 this, &ComputerControlListModel::updateComputerScreenSize );
+	connect(controlInterface, &ComputerControlInterface::framebufferSizeChanged,
+			this, &ComputerControlListModel::updateComputerScreenSize);
 
-	connect( controlInterface, &ComputerControlInterface::framebufferUpdated,
-			 this, [=] () { updateScreen( interfaceIndex( controlInterface ) ); } );
+	connect(controlInterface, &ComputerControlInterface::framebufferUpdated,
+			this, [=, this] () { updateScreen(interfaceIndex(controlInterface)); });
 
-	connect( controlInterface, &ComputerControlInterface::activeFeaturesChanged,
-			 this, [=] () { updateActiveFeatures( interfaceIndex( controlInterface ) ); } );
+	connect(controlInterface, &ComputerControlInterface::activeFeaturesChanged,
+			this, [=, this] () { updateActiveFeatures(interfaceIndex(controlInterface)); });
 
-	connect( controlInterface, &ComputerControlInterface::stateChanged,
-			 this, [=] () { updateState( interfaceIndex( controlInterface ) ); } );
+	connect(controlInterface, &ComputerControlInterface::stateChanged,
+			this, [=, this] () { updateState(interfaceIndex(controlInterface)); });
 
-	connect( controlInterface, &ComputerControlInterface::userChanged,
-			 this, [=]() { updateUser( interfaceIndex( controlInterface ) ); } );
+	connect(controlInterface, &ComputerControlInterface::userChanged,
+			this, [=, this]() { updateUser(interfaceIndex(controlInterface)); });
 
 	connect(controlInterface, &ComputerControlInterface::sessionInfoChanged,
-			 this, [=]() { updateSessionInfo(interfaceIndex(controlInterface)); });
+			this, [=, this]() { updateSessionInfo(interfaceIndex(controlInterface)); });
 
 	connect(controlInterface, &ComputerControlInterface::accessControlDetailsChanged,
-			this, [=] () { updateAccessControlDetails(interfaceIndex(controlInterface)); });
+			this, [=, this] () { updateAccessControlDetails(interfaceIndex(controlInterface)); });
 }
 
 

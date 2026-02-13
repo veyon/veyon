@@ -67,7 +67,7 @@ SpotlightPanel::SpotlightPanel( UserConfig& config, ComputerMonitoringWidget* co
 	connect( m_globalComputerMonitoringWidget, &QAbstractItemView::pressed, this, &SpotlightPanel::addPressedItem );
 	connect( ui->monitoringWidget, &QAbstractItemView::pressed, this, &SpotlightPanel::removePressedItem );
 
-	connect( m_model, &QAbstractItemModel::rowsRemoved, this, [=]() {
+	connect(m_model, &QAbstractItemModel::rowsRemoved, this, [=, this]() {
 		if( m_model->rowCount() <= 0 )
 		{
 			ui->stackedWidget->setCurrentWidget( ui->helpPage );

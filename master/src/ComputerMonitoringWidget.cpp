@@ -266,7 +266,7 @@ void ComputerMonitoringWidget::addSubFeaturesToMenu( const Feature& parentFeatur
 				#if QT_VERSION >= QT_VERSION_CHECK(6, 3, 0)
 						subFeature.shortcut(),
 				#endif
-						 this, [=]() { runFeature( subFeature ); }
+						 this, [=, this]() { runFeature(subFeature); }
 #if QT_VERSION < QT_VERSION_CHECK(6, 3, 0)
 		, subFeature.shortcut()
 #endif

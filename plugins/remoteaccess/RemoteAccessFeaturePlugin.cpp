@@ -367,7 +367,7 @@ void RemoteAccessFeaturePlugin::createRemoteAccessWindow(const ComputerControlIn
 										  remoteViewEnabled() && remoteControlEnabled());
 
 	// forward clipboard changes as long as the widget exists
-	connect(QGuiApplication::clipboard(), &QClipboard::dataChanged, widget, [=]()
+	connect(QGuiApplication::clipboard(), &QClipboard::dataChanged, widget, [=, this]()
 			 {
 				 sendClipboardData(widget->computerControlInterface());
 			 });

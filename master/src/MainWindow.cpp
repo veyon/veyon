@@ -471,14 +471,14 @@ void MainWindow::addFeaturesToToolBar()
 										  feature.displayNameActive(),
 										  feature.description(),
 										  feature.shortcut() );
-		connect( btn, &QToolButton::clicked, this, [=] () {
+		connect(btn, &QToolButton::clicked, this, [=, this] () {
 			m_master.runFeature( feature );
 			updateModeButtonGroup();
 			if( feature.testFlag( Feature::Flag::Mode ) )
 			{
 				reloadSubFeatures();
 			}
-		} );
+		});
 		btn->setObjectName( feature.name() );
 		btn->addTo( ui->toolBar );
 
@@ -518,9 +518,9 @@ void MainWindow::addSubFeaturesToToolButton( QToolButton* button, const Feature&
 	{
 		auto action = menu->addAction(QIcon(subFeature.iconUrl()), subFeature.displayName(),
 							   #if QT_VERSION >= QT_VERSION_CHECK(6, 3, 0)
-									   subFeature.shortcut(),
+									  subFeature.shortcut(),
 							   #endif
-									   this, [=]()
+									  this, [=, this]()
 		{
 			m_master.runFeature( subFeature );
 			if( parentFeatureIsMode )

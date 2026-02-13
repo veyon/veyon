@@ -61,7 +61,7 @@ bool ServiceControl::isServiceRunning()
 void ServiceControl::startService()
 {
 	serviceControl(tr("Starting %1").arg(m_displayName),
-				   QtConcurrent::run([=]() { VeyonCore::platform().serviceFunctions().start(m_name); }));
+				   QtConcurrent::run([this]() { VeyonCore::platform().serviceFunctions().start(m_name); }));
 }
 
 
@@ -70,7 +70,7 @@ void ServiceControl::startService()
 void ServiceControl::stopService()
 {
 	serviceControl(tr("Stopping %1").arg(m_displayName),
-				   QtConcurrent::run([=]() { VeyonCore::platform().serviceFunctions().stop(m_name); }));
+				   QtConcurrent::run([this]() { VeyonCore::platform().serviceFunctions().stop(m_name); }));
 }
 
 
@@ -78,7 +78,7 @@ void ServiceControl::stopService()
 void ServiceControl::restartService()
 {
 	serviceControl(tr("Restarting %1").arg(m_displayName),
-				   QtConcurrent::run([=]() {
+				   QtConcurrent::run([this]() {
 		VeyonCore::platform().serviceFunctions().stop(m_name);
 		VeyonCore::platform().serviceFunctions().start(m_name);
 	}));
@@ -89,10 +89,10 @@ void ServiceControl::restartService()
 void ServiceControl::registerService()
 {
 	serviceControl(tr("Registering %1").arg(m_displayName),
-				   QtConcurrent::run([=]() { VeyonCore::platform().serviceFunctions().install(m_name,
-																							  m_filePath,
-																							  PlatformServiceFunctions::StartMode::Auto,
-																							  m_displayName ); }));
+				   QtConcurrent::run([this]() { VeyonCore::platform().serviceFunctions().install(m_name,
+																								 m_filePath,
+																								 PlatformServiceFunctions::StartMode::Auto,
+																								 m_displayName); }));
 }
 
 
@@ -100,7 +100,7 @@ void ServiceControl::registerService()
 void ServiceControl::unregisterService()
 {
 	serviceControl(tr("Unregistering %1").arg(m_displayName),
-				   QtConcurrent::run([=]() { VeyonCore::platform().serviceFunctions().uninstall( m_name ); }));
+				   QtConcurrent::run([this]() { VeyonCore::platform().serviceFunctions().uninstall(m_name); }));
 
 }
 

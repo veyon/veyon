@@ -259,7 +259,7 @@ bool WebApiHttpServer::addRoute( const QString& path,
 			case Method::Delete: return QHttpServerRequest::Method::Delete;
 			}
 		}(),
-		[=](Args... args, const QHttpServerRequest& request) ->
+		[=, this](Args... args, const QHttpServerRequest& request) ->
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 	QFuture<QHttpServerResponse>
 #else
@@ -283,10 +283,10 @@ bool WebApiHttpServer::addRoute( const QString& path,
 				return QFuture<QHttpServerResponse>{ &fi };
 			}
 
-			return QtConcurrent::run( &m_threadPool, [=] {
+			return QtConcurrent::run(&m_threadPool, [=, this] {
 				return convertResponse(controllerRequest,
 									   (m_controller->*controllerMethod)(controllerRequest, std::forward<Args>(args)... ));
-			} );
+			});
 		} );
 }
 

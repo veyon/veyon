@@ -68,7 +68,7 @@ void DesktopAccessDialog::exec( FeatureWorkerManager* featureWorkerManager, cons
 			.addArgument( Argument::User, user )
 			.addArgument( Argument::Host, host ) );
 
-	connect( &m_abortTimer, &QTimer::timeout, this, [=]() { abort( featureWorkerManager ); } );
+	connect(&m_abortTimer, &QTimer::timeout, this, [=, this]() { abort(featureWorkerManager); });
 	m_abortTimer.start( DialogTimeout );
 }
 

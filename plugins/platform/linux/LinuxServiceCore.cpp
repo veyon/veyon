@@ -246,7 +246,7 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 	auto serverProcess = new LinuxServerProcess( sessionEnvironment, sessionPath, sessionId, this );
 	serverProcess->start();
 
-	connect( serverProcess, &QProcess::stateChanged, this, [=]() { checkSessionState( sessionPath ); } );
+	connect(serverProcess, &QProcess::stateChanged, this, [=, this]() { checkSessionState(sessionPath); });
 
 	m_serverProcesses[sessionPath] = serverProcess;
 	m_deferredServerSessions.removeAll( sessionPath );
@@ -256,7 +256,7 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 
 void LinuxServiceCore::deferServerStart( const QString& sessionPath, int delay )
 {
-	QTimer::singleShot( delay, this, [=]() { startServer( sessionPath ); } );
+	QTimer::singleShot(delay, this, [=, this]() { startServer(sessionPath); });
 
 	if( m_deferredServerSessions.contains( sessionPath ) == false )
 	{

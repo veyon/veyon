@@ -230,8 +230,8 @@ bool DesktopServicesFeaturePlugin::eventFilter( QObject* object, QEvent* event )
 
 		userConfig.flushStore();
 
-		QTimer::singleShot( 0, this, &DesktopServicesFeaturePlugin::updateFeatures );
-		QTimer::singleShot( 0, this, [=]() { openMenu( menu->objectName() ); } );
+		QTimer::singleShot(0, this, &DesktopServicesFeaturePlugin::updateFeatures);
+		QTimer::singleShot(0, this, [=, this]() { openMenu(menu->objectName()); });
 
 		return true;
 	}
