@@ -15,7 +15,6 @@ build-linux:
         - debian.13
         - fedora.42
         - fedora.43
-        - opensuse.leap.15.6
         - opensuse.leap.16.0
         - opensuse.tumbleweed
         - rhel.8
