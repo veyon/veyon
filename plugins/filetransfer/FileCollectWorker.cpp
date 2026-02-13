@@ -187,9 +187,8 @@ void FileCollectWorker::initFiles()
 
 QList<QRegularExpression> FileCollectWorker::excludeRegExes() const
 {
-	auto excludePatterns = m_configuration.filesToExcludeFromCollecting().replace(u';', u' ')
-								 .replace(u',', u' ').split(u' ');
-	excludePatterns.removeAll(QString{});
+	const auto excludePatterns = m_configuration.filesToExcludeFromCollecting().replace(u';', u' ')
+								 .replace(u',', u' ').split(u' ', Qt::SkipEmptyParts);
 
 	QList<QRegularExpression> regExes;
 	std::transform(excludePatterns.begin(), excludePatterns.end(),
