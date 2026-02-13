@@ -249,15 +249,9 @@ void ComputerMonitoringWidget::populateFeatureMenu( const ComputerControlInterfa
 
 void ComputerMonitoringWidget::addFeatureToMenu( const Feature& feature, const QString& label )
 {
-#if QT_VERSION < 0x050600
-#warning Building legacy compat code for unsupported version of Qt
-	auto action = m_featureMenu->addAction( QIcon( feature.iconUrl() ), label );
-	connect( action, &QAction::triggered, this, [=] () { runFeature( feature ); } );
-#else
-	m_featureMenu->addAction( QIcon( feature.iconUrl() ),
-							  label,
-							  this, [=] () { runFeature( feature ); } );
-#endif
+	m_featureMenu->addAction(QIcon(feature.iconUrl()),
+							 label,
+							 this, [=, this] () { runFeature(feature); });
 }
 
 

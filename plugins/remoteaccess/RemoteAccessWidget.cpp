@@ -86,25 +86,6 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	updateScreens();
 
 	auto shortcutMenu = new QMenu();
-#if QT_VERSION < 0x050600
-#warning Building legacy compat code for unsupported version of Qt
-	connect( shortcutMenu->addAction( tr( "Ctrl+Alt+Del" ) ), &QAction::triggered,
-			 this, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlAltDel ); } );
-	connect( shortcutMenu->addAction( tr( "Ctrl+Esc" ) ), &QAction::triggered,
-			 this, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlEscape ); } );
-	connect( shortcutMenu->addAction( tr( "Alt+Tab" ) ), &QAction::triggered,
-			 this, [=]() { vncView->sendShortcut( VncView::ShortcutAltTab ); } );
-	connect( shortcutMenu->addAction( tr( "Alt+F4" ) ), &QAction::triggered,
-			 this, [=]() { vncView->sendShortcut( VncView::ShortcutAltF4 ); } );
-	connect( shortcutMenu->addAction( tr( "Win+Tab" ) ), &QAction::triggered,
-			 this, [=]() { vncView->sendShortcut( VncView::ShortcutWinTab ); } );
-	connect( shortcutMenu->addAction( tr( "Win" ) ), &QAction::triggered,
-			 this, [=]() { vncView->sendShortcut( VncView::ShortcutWin ); } );
-	connect( shortcutMenu->addAction( tr( "Menu" ) ), &QAction::triggered,
-			 this, [=]() { vncView->sendShortcut( VncView::ShortcutMenu ); } );
-	connect( shortcutMenu->addAction( tr( "Alt+Ctrl+F1" ) ), &QAction::triggered,
-			 this, [=]() { vncView->sendShortcut( VncView::ShortcutAltCtrlF1 ); } );
-#else
 	shortcutMenu->addAction( tr( "Ctrl+Alt+Del" ), this, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlAltDel ); }  );
 	shortcutMenu->addAction( tr( "Ctrl+Esc" ), this, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlEscape ); }  );
 	shortcutMenu->addAction( tr( "Alt+Tab" ), this, [=]() { vncView->sendShortcut( VncView::ShortcutAltTab ); }  );
@@ -113,7 +94,6 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	shortcutMenu->addAction( tr( "Win" ), this, [=]() { vncView->sendShortcut( VncView::ShortcutWin ); }  );
 	shortcutMenu->addAction( tr( "Menu" ), this, [=]() { vncView->sendShortcut( VncView::ShortcutMenu ); }  );
 	shortcutMenu->addAction( tr( "Alt+Ctrl+F1" ), this, [=]() { vncView->sendShortcut( VncView::ShortcutAltCtrlF1 ); }  );
-#endif
 
 	m_sendShortcutButton->setMenu( shortcutMenu );
 	m_sendShortcutButton->setPopupMode( QToolButton::InstantPopup );

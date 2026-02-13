@@ -208,11 +208,7 @@ QString HostAddress::toIpAddress( const QString& hostName )
 		return {};
 	}
 
-#if QT_VERSION < 0x050600
-	const auto ipAddress = hostInfo.addresses().value( 0 ).toString();
-#else
 	const auto ipAddress = hostInfo.addresses().constFirst().toString();
-#endif
 	vDebug() << "Resolved IP address of host" << hostName << "to" << ipAddress;
 
 	return ipAddress;
@@ -295,11 +291,7 @@ QString HostAddress::toFQDN( HostAddress::Type type, const QString& address )
 
 QString HostAddress::fqdnToHostName( const QString& fqdn )
 {
-#if QT_VERSION < 0x050600
-		return fqdn.split( QLatin1Char( '.' ) ).value( 0 );
-#else
-		return fqdn.split( QLatin1Char( '.' ) ).constFirst();
-#endif
+		return fqdn.split(QLatin1Char('.')).constFirst();
 }
 
 

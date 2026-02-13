@@ -336,14 +336,7 @@ void LdapBrowseModel::populateRoot() const
 		auto parent = m_root;
 		QStringList fullDn;
 		const auto dns = namingContext.split( QLatin1Char(',') );
-#if QT_VERSION < 0x050600
-#warning Building compat code for unsupported version of Qt
-		using QStringListReverseIterator = std::reverse_iterator<QStringList::const_iterator>;
-		for( auto it = QStringListReverseIterator(dns.cend()),
-			 end = QStringListReverseIterator(dns.cbegin()); it != end; ++it )
-#else
-		for( auto it = dns.crbegin(), end = dns.crend(); it != end; ++it )
-#endif
+		for (auto it = dns.crbegin(), end = dns.crend(); it != end; ++it)
 		{
 			fullDn.prepend( *it );
 			auto node = new Node( Node::DN, fullDn.join( QLatin1Char(',') ), parent );
