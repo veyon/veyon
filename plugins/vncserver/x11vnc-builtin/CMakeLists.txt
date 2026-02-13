@@ -219,6 +219,8 @@ build_veyon_plugin(builtin-x11vnc-server
 	X11VncConfiguration.h
 	)
 
+target_compile_options(builtin-x11vnc-server PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-Wno-deprecated-enum-enum-conversion>)
+
 if(VEYON_X11VNC_EXTERNAL)
 
 	target_compile_definitions(builtin-x11vnc-server PRIVATE VEYON_X11VNC_EXTERNAL)
