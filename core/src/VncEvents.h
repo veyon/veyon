@@ -42,12 +42,14 @@ public:
 class VncKeyEvent : public VncEvent
 {
 public:
-	VncKeyEvent( unsigned int key, bool pressed );
+	using KeyCode = unsigned int;
+
+	VncKeyEvent(KeyCode key, bool pressed);
 
 	void fire( rfbClient* client ) override;
 
 private:
-	unsigned int m_key;
+	KeyCode m_key;
 	bool m_pressed;
 } ;
 
