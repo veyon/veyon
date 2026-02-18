@@ -48,6 +48,8 @@ class VEYON_CORE_EXPORT VncConnection : public QThread
 {
 	Q_OBJECT
 public:
+	using KeyCode = unsigned int;
+
 	enum class FramebufferState
 	{
 		Invalid,
@@ -151,7 +153,7 @@ public:
 										  SocketDevice::SocketOperation operation, void * user );
 
 	void mouseEvent( int x, int y, int buttonMask );
-	void keyEvent( unsigned int key, bool pressed );
+	void keyEvent(KeyCode key, bool pressed);
 	void clientCut( const QString& text );
 
 Q_SIGNALS:

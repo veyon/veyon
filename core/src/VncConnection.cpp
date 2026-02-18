@@ -906,7 +906,7 @@ void VncConnection::mouseEvent( int x, int y, int buttonMask )
 
 
 
-void VncConnection::keyEvent( unsigned int key, bool pressed )
+void VncConnection::keyEvent(KeyCode key, bool pressed )
 {
 	enqueueEvent(new VncKeyEvent(key, pressed));
 }
