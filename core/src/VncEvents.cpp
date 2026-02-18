@@ -27,9 +27,9 @@
 #include "VncEvents.h"
 
 
-VncKeyEvent::VncKeyEvent( unsigned int key, bool pressed ) :
-	m_key( key ),
-	m_pressed( pressed )
+VncKeyEvent::VncKeyEvent(KeyCode key, bool pressed) :
+	m_key(key),
+	m_pressed(pressed)
 {
 }
 
