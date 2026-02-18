@@ -41,6 +41,8 @@ class KeyboardShortcutTrapper;
 class VEYON_CORE_EXPORT VncView
 {
 public:
+	using KeyCode = VncConnection::KeyCode;
+
 	enum Shortcut
 	{
 		ShortcutCtrlAltDel,
@@ -108,7 +110,9 @@ protected:
 	void updateFramebufferSize( int w, int h );
 	void updateImage( int x, int y, int w, int h );
 
-	void unpressModifiers();
+	void pressModifiers(const QList<KeyCode>& modifierKeyCodes);
+	void unpressModifiers(const QList<KeyCode>& modifierKeyCodes);
+	void unpressAllModifiers();
 
 	void handleShortcut( KeyboardShortcutTrapper::Shortcut shortcut );
 	bool handleEvent( QEvent* handleEvent );
@@ -132,8 +136,8 @@ protected:
 	void updateLocalCursor();
 
 private:
-	void pressKey( unsigned int key );
-	void unpressKey( unsigned int key );
+	void pressKey(KeyCode key);
+	void unpressKey(KeyCode key);
 
 	ComputerControlInterface::Pointer m_computerControlInterface;
 	ComputerControlInterface::UpdateMode m_previousUpdateMode;
@@ -147,7 +151,7 @@ private:
 	QRect m_viewport{};
 
 	uint m_buttonMask{0};
-	QMap<unsigned int, bool> m_mods;
+	QMap<KeyCode, bool> m_modifierKeys;
 
 	KeyboardShortcutTrapper* m_keyboardShortcutTrapper{nullptr};
 
