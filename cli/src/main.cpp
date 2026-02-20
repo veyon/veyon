@@ -138,6 +138,9 @@ int main( int argc, char **argv )
 				runResult = CommandLinePluginInterface::NotEnoughArguments;
 			}
 
+			delete core;
+			delete app;
+
 			switch( runResult )
 			{
 			case CommandLinePluginInterface::NoResult:
@@ -162,24 +165,21 @@ int main( int argc, char **argv )
 				CommandLineIO::error( VeyonCore::tr( "Plugin not licensed" ) );
 				return -1;
 			case CommandLinePluginInterface::Unknown:
-				break;
+			{
+				auto commands = it.key()->commands();
+				std::sort( commands.begin(), commands.end() );
+
+				CommandLineIO::print( VeyonCore::tr( "Available commands:" ) );
+				for( const auto& command : commands )
+				{
+					CommandLineIO::print( QStringLiteral("    %1 - %2").arg( command, it.key()->commandHelp( command ) ) );
+				}
+				return -1;
+			}
 			default:
 				CommandLineIO::error( VeyonCore::tr( "Unknown result!" ) );
 				return -1;
 			}
-
-			auto commands = it.key()->commands();
-			std::sort( commands.begin(), commands.end() );
-
-			CommandLineIO::print( VeyonCore::tr( "Available commands:" ) );
-			for( const auto& command : std::as_const(commands) )
-			{
-				CommandLineIO::print( QStringLiteral("    %1 - %2").arg( command, it.key()->commandHelp( command ) ) );
-			}
-
-			delete core;
-			delete app;
-			return -1;
 		}
 	}
 
