@@ -47,7 +47,7 @@ private:
 	void stop();
 
 	static constexpr auto ServerQueryTime = 10;
-	static constexpr auto ServerWaitTime = 3000;
+	static constexpr auto ServerWaitTime = 5000;
 
 	const WtsSessionManager::SessionId m_wtsSessionId;
 	const ServiceDataManager::Token m_token;
