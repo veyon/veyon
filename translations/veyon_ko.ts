@@ -705,6 +705,14 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>선택된 컴퓨터 삭제</translation>
     </message>
     <message>
+        <source>Move selected computer up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Move selected computer down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Name</source>
         <translation>이름</translation>
     </message>
@@ -723,6 +731,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Remove selected location</source>
         <translation>선택한 위치 삭제</translation>
+    </message>
+    <message>
+        <source>Move selected location up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Move selected location down</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -1807,10 +1823,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Grouping attribute:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Destination directory:</source>
         <translation type="unfinished"/>
     </message>
@@ -1859,6 +1871,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Grouping attribute 1:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Source directory (remote):</source>
         <translation type="unfinished"/>
     </message>
@@ -1875,7 +1891,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Device and user login name</source>
+        <source>Grouping attribute 2:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1884,6 +1900,22 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>없음</translation>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grouping attribute 3:</source>
         <translation type="unfinished"/>
     </message>
 </context>

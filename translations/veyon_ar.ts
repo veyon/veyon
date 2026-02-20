@@ -702,6 +702,14 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Move selected computer up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Move selected computer down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Name</source>
         <translation>الاسم</translation>
     </message>
@@ -719,6 +727,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Remove selected location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Move selected location up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Move selected location down</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1806,10 +1822,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Grouping attribute:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Destination directory:</source>
         <translation type="unfinished"/>
     </message>
@@ -1858,6 +1870,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Grouping attribute 1:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Source directory (remote):</source>
         <translation type="unfinished"/>
     </message>
@@ -1874,7 +1890,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Device and user login name</source>
+        <source>Grouping attribute 2:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1883,6 +1899,22 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grouping attribute 3:</source>
         <translation type="unfinished"/>
     </message>
 </context>

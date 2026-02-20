@@ -704,6 +704,14 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Rimuovi il computer selezionato</translation>
     </message>
     <message>
+        <source>Move selected computer up</source>
+        <translation>Sposta il computer selezionato verso l&apos;alto</translation>
+    </message>
+    <message>
+        <source>Move selected computer down</source>
+        <translation>Sposta il computer selezionato verso il basso</translation>
+    </message>
+    <message>
         <source>Name</source>
         <translation>Nome</translation>
     </message>
@@ -722,6 +730,14 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     <message>
         <source>Remove selected location</source>
         <translation>Rimuovi la posizione selezionata</translation>
+    </message>
+    <message>
+        <source>Move selected location up</source>
+        <translation>Sposta la posizione selezionata verso l&apos;alto</translation>
+    </message>
+    <message>
+        <source>Move selected location down</source>
+        <translation>Sposta la posizione selezionata verso il basso</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -1806,10 +1822,6 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Richiedi all&apos;utente i file da raccogliere</translation>
     </message>
     <message>
-        <source>Grouping attribute:</source>
-        <translation>Attributo di raggruppamento:</translation>
-    </message>
-    <message>
         <source>Destination directory:</source>
         <translation>Directory di destinazione:</translation>
     </message>
@@ -1858,6 +1870,10 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Directory sorgente predefinita:</translation>
     </message>
     <message>
+        <source>Grouping attribute 1:</source>
+        <translation>Attributo di raggruppamento 1:</translation>
+    </message>
+    <message>
         <source>Source directory (remote):</source>
         <translation>Directory di origine (remota):</translation>
     </message>
@@ -1874,8 +1890,8 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Nome del dispositivo</translation>
     </message>
     <message>
-        <source>Device and user login name</source>
-        <translation>Dispositivo e nome di accesso utente</translation>
+        <source>Grouping attribute 2:</source>
+        <translation>Attributo di raggruppamento 2:</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1884,6 +1900,22 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     <message>
         <source>Create destination directory if it does not exist</source>
         <translation>Crea la directory di destinazione se non esiste</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Nessuna</translation>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation>Prima parte del nome utente</translation>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation>Ultima parte del nome utente</translation>
+    </message>
+    <message>
+        <source>Grouping attribute 3:</source>
+        <translation>Attributo di raggruppamento 3:</translation>
     </message>
 </context>
 <context>

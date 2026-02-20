@@ -704,6 +704,14 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Вилучити позначений комп’ютер</translation>
     </message>
     <message>
+        <source>Move selected computer up</source>
+        <translation>Пересунути позначений комп&apos;ютер вище</translation>
+    </message>
+    <message>
+        <source>Move selected computer down</source>
+        <translation>Пересунути позначений комп&apos;ютер нижче</translation>
+    </message>
+    <message>
         <source>Name</source>
         <translation>Назва</translation>
     </message>
@@ -722,6 +730,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Remove selected location</source>
         <translation>Вилучити позначене місце</translation>
+    </message>
+    <message>
+        <source>Move selected location up</source>
+        <translation>Пересунути позначене місце вище</translation>
+    </message>
+    <message>
+        <source>Move selected location down</source>
+        <translation>Пересунути позначене місце нижче</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -1806,10 +1822,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Питати у користувача про файли для збирання</translation>
     </message>
     <message>
-        <source>Grouping attribute:</source>
-        <translation>Атрибути групування:</translation>
-    </message>
-    <message>
         <source>Destination directory:</source>
         <translation>Каталог призначення:</translation>
     </message>
@@ -1858,6 +1870,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Типовий каталог джерела:</translation>
     </message>
     <message>
+        <source>Grouping attribute 1:</source>
+        <translation>Атрибут групування 1:</translation>
+    </message>
+    <message>
         <source>Source directory (remote):</source>
         <translation>Каталог джерела (віддалений):</translation>
     </message>
@@ -1874,8 +1890,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Назва пристрою</translation>
     </message>
     <message>
-        <source>Device and user login name</source>
-        <translation>Пристрій і назва облікового запису користувача</translation>
+        <source>Grouping attribute 2:</source>
+        <translation>Атрибут групування 2:</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1884,6 +1900,22 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Create destination directory if it does not exist</source>
         <translation>Створювати каталог призначення, якщо його не існує</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Немає</translation>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation>Перша частина імені користувача</translation>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation>Остання частина імені користувача</translation>
+    </message>
+    <message>
+        <source>Grouping attribute 3:</source>
+        <translation>Атрибут групування 3:</translation>
     </message>
 </context>
 <context>
@@ -2945,11 +2977,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Key press interval for text input</source>
-        <translation type="unfinished"/>
+        <translation>Інтервал натискання клавіш для введення тексту</translation>
     </message>
     <message>
         <source>Key press interval to control input fields</source>
-        <translation type="unfinished"/>
+        <translation>Інтервал натискання клавіш для керування полями введення</translation>
     </message>
 </context>
 <context>
@@ -3308,15 +3340,15 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"/>
+        <translation>Ніколи</translation>
     </message>
     <message>
         <source>If login name matches</source>
-        <translation type="unfinished"/>
+        <translation>Якщо збігаються назви облікових записів</translation>
     </message>
     <message>
         <source>If full name matches</source>
-        <translation type="unfinished"/>
+        <translation>Якщо збігаються імена повністю</translation>
     </message>
     <message>
         <source>Guest</source>

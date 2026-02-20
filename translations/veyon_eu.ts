@@ -43,7 +43,7 @@ Veyon zure tokiko hizkuntzara edo beste hizkuntza batera itzultzeko interesa bad
     </message>
     <message>
         <source>About Veyon %1</source>
-        <translation type="unfinished"/>
+        <translation>Veyon %1-i buruz</translation>
     </message>
 </context>
 <context>
@@ -137,7 +137,7 @@ Veyon zure tokiko hizkuntzara edo beste hizkuntza batera itzultzeko interesa bad
     <name>AccessControlProvider</name>
     <message>
         <source>Provider for access control features</source>
-        <translation type="unfinished"/>
+        <translation>Sarbidea kontrolatzeko funtzioen hornitzailea</translation>
     </message>
 </context>
 <context>
@@ -303,7 +303,7 @@ Veyon zure tokiko hizkuntzara edo beste hizkuntza batera itzultzeko interesa bad
     </message>
     <message>
         <source>There is no matching rule with a valid action. The access is therefore denied.</source>
-        <translation type="unfinished"/>
+        <translation>Ez dago baliozko ekintza batekin bat datorren araurik. Beraz, sarbidea ukatu egiten da.</translation>
     </message>
 </context>
 <context>
@@ -707,6 +707,14 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <translation>Kendu hautatutako ordenagailua</translation>
     </message>
     <message>
+        <source>Move selected computer up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Move selected computer down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Name</source>
         <translation>Izena</translation>
     </message>
@@ -725,6 +733,14 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     <message>
         <source>Remove selected location</source>
         <translation>Kendu hautatutako kokalekua</translation>
+    </message>
+    <message>
+        <source>Move selected location up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Move selected location down</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -1809,10 +1825,6 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Grouping attribute:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Destination directory:</source>
         <translation type="unfinished"/>
     </message>
@@ -1861,6 +1873,10 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Grouping attribute 1:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Source directory (remote):</source>
         <translation type="unfinished"/>
     </message>
@@ -1877,7 +1893,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Device and user login name</source>
+        <source>Grouping attribute 2:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1887,6 +1903,22 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     <message>
         <source>Create destination directory if it does not exist</source>
         <translation>Sortu helmuga direktorioa existitzen ez bada</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Bat ere ez</translation>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grouping attribute 3:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

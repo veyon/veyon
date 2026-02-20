@@ -707,6 +707,14 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Удалить выбранный компьютер</translation>
     </message>
     <message>
+        <source>Move selected computer up</source>
+        <translation>Переместить выбранный компьютер вверх</translation>
+    </message>
+    <message>
+        <source>Move selected computer down</source>
+        <translation>Переместить выбранный компьютер вниз</translation>
+    </message>
+    <message>
         <source>Name</source>
         <translation>Имя</translation>
     </message>
@@ -725,6 +733,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Remove selected location</source>
         <translation>Удалить выделенное место</translation>
+    </message>
+    <message>
+        <source>Move selected location up</source>
+        <translation>Переместить выбранное место вверх</translation>
+    </message>
+    <message>
+        <source>Move selected location down</source>
+        <translation>Переместить выбранное место вниз</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -1809,10 +1825,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Запрашивать у пользователя файлы для сбора</translation>
     </message>
     <message>
-        <source>Grouping attribute:</source>
-        <translation>Атрибут группировки:</translation>
-    </message>
-    <message>
         <source>Destination directory:</source>
         <translation>Целевой каталог:</translation>
     </message>
@@ -1861,6 +1873,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Исходный каталог по умолчанию:</translation>
     </message>
     <message>
+        <source>Grouping attribute 1:</source>
+        <translation>Атрибут группировки 1:</translation>
+    </message>
+    <message>
         <source>Source directory (remote):</source>
         <translation>Исходный каталог (удалённый):</translation>
     </message>
@@ -1877,8 +1893,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Имя ресурса</translation>
     </message>
     <message>
-        <source>Device and user login name</source>
-        <translation>Имя устройства и имя пользователя (логин)</translation>
+        <source>Grouping attribute 2:</source>
+        <translation>Атрибут группировки 2:</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1888,12 +1904,28 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Create destination directory if it does not exist</source>
         <translation>Создать целевой каталог, если он не существует</translation>
     </message>
+    <message>
+        <source>None</source>
+        <translation>Нет</translation>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation>Первая часть имени пользователя</translation>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation>Последняя часть имени пользователя</translation>
+    </message>
+    <message>
+        <source>Grouping attribute 3:</source>
+        <translation>Атрибут группировки 3:</translation>
+    </message>
 </context>
 <context>
     <name>FileTransferController</name>
     <message>
         <source>Could not open file %1 for reading! Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось открыть файл &quot;%1&quot; для чтения! Пожалуйста, проверьте, есть ли у вас достаточные права доступа!</translation>
     </message>
 </context>
 <context>
@@ -1959,31 +1991,31 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Received file %1.</source>
-        <translation type="unfinished"/>
+        <translation>Получен файл %1.</translation>
     </message>
     <message>
         <source>The file %1 is to be collected, but is still open in an application.</source>
-        <translation type="unfinished"/>
+        <translation>Файл %1 должен быть собран, но в данный момент открыт в приложении.</translation>
     </message>
     <message>
         <source>The file %1 is to be collected, but is still open in the application &lt;b&gt;%2&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Файл %1 должен быть собран, но в данный момент открыт в приложении &lt;b&gt;%2&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Please save your changes and close the program so that the transfer can be completed.</source>
-        <translation type="unfinished"/>
+        <translation>Сохраните изменения и закройте программу, чтобы завершить передачу данных.</translation>
     </message>
     <message>
         <source>Are you sure you want to skip transferring the file %1?</source>
-        <translation type="unfinished"/>
+        <translation>Вы уверены, что хотите пропустить передачу файла %1?</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось получить файл %1, так как он уже существует.</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it could not be opened for writing!</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось получить файл %1, так как не удалось открыть его для записи.</translation>
     </message>
     <message>
         <source>Transfer files between computers</source>
@@ -2946,11 +2978,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Key press interval for text input</source>
-        <translation type="unfinished"/>
+        <translation>Интервал нажатия клавиш для ввода текста</translation>
     </message>
     <message>
         <source>Key press interval to control input fields</source>
-        <translation type="unfinished"/>
+        <translation>Интервал нажатия клавиш для управления полями ввода</translation>
     </message>
 </context>
 <context>
@@ -3309,15 +3341,15 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"/>
+        <translation>Никогда</translation>
     </message>
     <message>
         <source>If login name matches</source>
-        <translation type="unfinished"/>
+        <translation>Если имя пользователя совпадает</translation>
     </message>
     <message>
         <source>If full name matches</source>
-        <translation type="unfinished"/>
+        <translation>Если полное имя пользователя совпадает</translation>
     </message>
     <message>
         <source>Guest</source>

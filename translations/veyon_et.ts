@@ -707,6 +707,14 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation>Eemalda valitud arvutid</translation>
     </message>
     <message>
+        <source>Move selected computer up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Move selected computer down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
@@ -725,6 +733,14 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     <message>
         <source>Remove selected location</source>
         <translation>Eemalda valitud asukohad</translation>
+    </message>
+    <message>
+        <source>Move selected location up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Move selected location down</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -1809,10 +1825,6 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Grouping attribute:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Destination directory:</source>
         <translation type="unfinished"/>
     </message>
@@ -1861,6 +1873,10 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Grouping attribute 1:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Source directory (remote):</source>
         <translation type="unfinished"/>
     </message>
@@ -1877,7 +1893,7 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Device and user login name</source>
+        <source>Grouping attribute 2:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1887,6 +1903,22 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     <message>
         <source>Create destination directory if it does not exist</source>
         <translation>Looge sihtkataloog, kui seda pole olemas</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Puudub</translation>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grouping attribute 3:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

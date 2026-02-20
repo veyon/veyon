@@ -43,7 +43,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>About Veyon %1</source>
-        <translation type="unfinished"/>
+        <translation>关于 Veyon %1</translation>
     </message>
 </context>
 <context>
@@ -137,7 +137,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlProvider</name>
     <message>
         <source>Provider for access control features</source>
-        <translation type="unfinished"/>
+        <translation>存取控制功能的提供者</translation>
     </message>
 </context>
 <context>
@@ -706,6 +706,14 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>删除选中的计算机</translation>
     </message>
     <message>
+        <source>Move selected computer up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Move selected computer down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Name</source>
         <translation>名称</translation>
     </message>
@@ -724,6 +732,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Remove selected location</source>
         <translation>移除选中的地点</translation>
+    </message>
+    <message>
+        <source>Move selected location up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Move selected location down</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -986,7 +1002,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Location &quot;%1&quot; not found.</source>
-        <translation type="unfinished"/>
+        <translation>找不到位置 &quot;%1&quot;。</translation>
     </message>
 </context>
 <context>
@@ -1055,7 +1071,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Hostname: %1</source>
-        <translation type="unfinished"/>
+        <translation>主机名：%1</translation>
     </message>
     <message>
         <source>unknown</source>
@@ -1063,11 +1079,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>IP 地址：%1</translation>
     </message>
     <message>
         <source>Hostname could not be resolved</source>
-        <translation type="unfinished"/>
+        <translation>无法解析主机名</translation>
     </message>
     <message>
         <source>No features active</source>
@@ -1149,7 +1165,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Unknown location</source>
-        <translation type="unfinished"/>
+        <translation>未知位置</translation>
     </message>
 </context>
 <context>
@@ -1808,10 +1824,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Grouping attribute:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Destination directory:</source>
         <translation type="unfinished"/>
     </message>
@@ -1860,6 +1872,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Grouping attribute 1:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Source directory (remote):</source>
         <translation type="unfinished"/>
     </message>
@@ -1876,7 +1892,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Device and user login name</source>
+        <source>Grouping attribute 2:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1886,6 +1902,22 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Create destination directory if it does not exist</source>
         <translation>如果不存在则创建目标目录</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>无</translation>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grouping attribute 3:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2005,7 +2037,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Style:</source>
-        <translation type="unfinished"/>
+        <translation>主题：</translation>
     </message>
     <message>
         <source>Native</source>
@@ -2121,7 +2153,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Veyon service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 服务</translation>
     </message>
     <message>
         <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
@@ -2165,15 +2197,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished"/>
+        <translation>配色方案：</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>浅色</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>深色</translation>
     </message>
 </context>
 <context>
@@ -3105,7 +3137,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>聚光灯</translation>
     </message>
     <message>
         <source>Only show computers with logged on users</source>
@@ -4297,7 +4329,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>聚光灯</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>

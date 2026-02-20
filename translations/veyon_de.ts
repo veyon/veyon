@@ -704,6 +704,14 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Gewählten Computer entfernen</translation>
     </message>
     <message>
+        <source>Move selected computer up</source>
+        <translation>Gewählten Computer nach oben verschieben</translation>
+    </message>
+    <message>
+        <source>Move selected computer down</source>
+        <translation>Gewählten Computer nach unten verschieben</translation>
+    </message>
+    <message>
         <source>Name</source>
         <translation>Name</translation>
     </message>
@@ -722,6 +730,14 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
     <message>
         <source>Remove selected location</source>
         <translation>Gewählten Standort entfernen</translation>
+    </message>
+    <message>
+        <source>Move selected location up</source>
+        <translation>Gewählten Standort nach oben verschieben</translation>
+    </message>
+    <message>
+        <source>Move selected location down</source>
+        <translation>Gewählten Standort nach unten verschieben</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -1806,10 +1822,6 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Benutzer nach einzusammelnden Dateien fragen</translation>
     </message>
     <message>
-        <source>Grouping attribute:</source>
-        <translation>Gruppierungsattribut:</translation>
-    </message>
-    <message>
         <source>Destination directory:</source>
         <translation>Zielverzeichnis:</translation>
     </message>
@@ -1858,6 +1870,10 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Standardquellverzeichnis:</translation>
     </message>
     <message>
+        <source>Grouping attribute 1:</source>
+        <translation>Gruppierungsattribut 1:</translation>
+    </message>
+    <message>
         <source>Source directory (remote):</source>
         <translation>Quellverzeichnis (entfernt):</translation>
     </message>
@@ -1874,8 +1890,8 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Gerätename</translation>
     </message>
     <message>
-        <source>Device and user login name</source>
-        <translation>Gerät- und Benutzeranmeldename</translation>
+        <source>Grouping attribute 2:</source>
+        <translation>Gruppierungsattribut 2:</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1884,6 +1900,22 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
     <message>
         <source>Create destination directory if it does not exist</source>
         <translation>Zielverzeichnis erstellen, wenn es nicht existiert</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Keine</translation>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation>Erster Teil des Benutzernamens</translation>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation>Letzter Teil des Benutzernamens</translation>
+    </message>
+    <message>
+        <source>Grouping attribute 3:</source>
+        <translation>Gruppierungsattribut 3:</translation>
     </message>
 </context>
 <context>

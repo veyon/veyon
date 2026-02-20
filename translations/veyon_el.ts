@@ -43,7 +43,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>About Veyon %1</source>
-        <translation type="unfinished"/>
+        <translation>Πληροφορίες για το Veyon %1</translation>
     </message>
 </context>
 <context>
@@ -466,7 +466,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Το αρχείο &quot;%1&quot; υπάρχει ήδη.</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
@@ -702,6 +702,14 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Διαγραφή του επιλεγμένου υπολογιστή</translation>
     </message>
     <message>
+        <source>Move selected computer up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Move selected computer down</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Name</source>
         <translation>Όνομα</translation>
     </message>
@@ -720,6 +728,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Remove selected location</source>
         <translation>Αφαίρεση της επιλεγεμένης τοποθεσίας</translation>
+    </message>
+    <message>
+        <source>Move selected location up</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Move selected location down</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -1804,10 +1820,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Grouping attribute:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Destination directory:</source>
         <translation type="unfinished"/>
     </message>
@@ -1856,6 +1868,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Grouping attribute 1:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Source directory (remote):</source>
         <translation type="unfinished"/>
     </message>
@@ -1872,7 +1888,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Device and user login name</source>
+        <source>Grouping attribute 2:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1881,6 +1897,22 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grouping attribute 3:</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4102,7 +4134,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"/>
+        <translation>Περιεχόμενο</translation>
     </message>
     <message>
         <source>None</source>
@@ -4110,11 +4142,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Value of an environment variable</source>
-        <translation type="unfinished"/>
+        <translation>Τιμή μεταβλητής περιβάλλοντος</translation>
     </message>
     <message>
         <source>Value of a registry key</source>
-        <translation type="unfinished"/>
+        <translation>Τιμή κλειδού μητρώου</translation>
     </message>
     <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
@@ -4128,11 +4160,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Environment variable name</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα μεταβλητής περιβάλλοντος</translation>
     </message>
     <message>
         <source>Registry key name</source>
-        <translation type="unfinished"/>
+        <translation>Όνομα κλειδιού μητρώου</translation>
     </message>
 </context>
 <context>
@@ -4558,15 +4590,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Network port</source>
-        <translation type="unfinished"/>
+        <translation>Θύρα δικτύου</translation>
     </message>
     <message>
         <source>Enable WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>Ενεργοποίηση διακομιστή WebAPI</translation>
     </message>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"/>
+        <translation>Ρυθμίσεις σύνδεσης</translation>
     </message>
     <message>
         <source>Lifetime</source>
@@ -4574,7 +4606,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source> h</source>
-        <translation type="unfinished"/>
+        <translation>ω</translation>
     </message>
     <message>
         <source> s</source>
@@ -4594,7 +4626,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Connection encryption</source>
-        <translation type="unfinished"/>
+        <translation>Κρυπτογράφηση σύνδεσης</translation>
     </message>
     <message>
         <source>TLS certificate file</source>
@@ -4617,7 +4649,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>WebApiPlugin</name>
     <message>
         <source>Run WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>Εκτέλεση διακομιστή WebAPI</translation>
     </message>
     <message>
         <source>Failed to start WebAPI server at port %1</source>

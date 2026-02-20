@@ -33,9 +33,11 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>La llengua actual encara no s&apos;ha traduït (o anglès natiu).
+        <translation>Traduït per
 
-Si esteu interessat a traduir el Veyon al vostre idioma local o a un altre o voleu millorar una traducció existent, poseu-vos en contacte amb un desenvolupador del Veyon!</translation>
+Alexis Roda Villalonga &lt;alexis.roda.villalonga at gmail dot com&gt;
+
+Si voleu millorar una traducció existent, contacteu amb un desenvolupador d&apos;iTALC!</translation>
     </message>
     <message>
         <source>License</source>
@@ -43,7 +45,7 @@ Si esteu interessat a traduir el Veyon al vostre idioma local o a un altre o vol
     </message>
     <message>
         <source>About Veyon %1</source>
-        <translation type="unfinished"/>
+        <translation>Quan al Veyon %1</translation>
     </message>
 </context>
 <context>
@@ -310,7 +312,7 @@ Si esteu interessat a traduir el Veyon al vostre idioma local o a un altre o vol
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation>Tecles d&apos;autenticació</translation>
+        <translation>Claus d&apos;autenticació</translation>
     </message>
     <message>
         <source>Introduction</source>
@@ -418,7 +420,9 @@ La clau pública s&apos;utilitza en ordinadors de client per autenticar la sol·
         <source>Please enter the name of the user group or role for which to import the authentication key.
 
 Make sure that the names of the keys belonging to each other are identical on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Introduïu el nom del grup d&apos;usuaris o el rol per al qual importar la clau d&apos;autenticació.
+
+Assegureu-vos que els noms de les claus que pertanyen entre si són idèntics en tots els ordinadors.</translation>
     </message>
 </context>
 <context>
@@ -705,6 +709,14 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Suprimeix l&apos;ordinador seleccionat</translation>
     </message>
     <message>
+        <source>Move selected computer up</source>
+        <translation>Mou amunt l&apos;ordinador seleccionat</translation>
+    </message>
+    <message>
+        <source>Move selected computer down</source>
+        <translation>Mou avall l&apos;ordinador seleccionat</translation>
+    </message>
+    <message>
         <source>Name</source>
         <translation>Nom</translation>
     </message>
@@ -723,6 +735,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Remove selected location</source>
         <translation>Suprimeix la ubicació seleccionada</translation>
+    </message>
+    <message>
+        <source>Move selected location up</source>
+        <translation>Mou amunt la ubicació seleccionada</translation>
+    </message>
+    <message>
+        <source>Move selected location down</source>
+        <translation>Mou avall la ubicació seleccionada</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -1148,14 +1168,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Unknown location</source>
-        <translation type="unfinished"/>
+        <translation>Ubicació desconeguda</translation>
     </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
     <message>
         <source>Search computers</source>
-        <translation>Buscar ordinadors</translation>
+        <translation>Cerca ordinadors</translation>
     </message>
     <message>
         <source>Add location</source>
@@ -1284,7 +1304,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DemoClient</name>
     <message>
         <source>Veyon Demo</source>
-        <translation type="unfinished"/>
+        <translation>Demostració del Veyon</translation>
     </message>
 </context>
 <context>
@@ -1734,7 +1754,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Output directory</source>
-        <translation type="unfinished"/>
+        <translation>Directori de sortida</translation>
     </message>
     <message>
         <source>Start</source>
@@ -1761,7 +1781,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileCollectTreeModel</name>
     <message>
         <source>Progress</source>
-        <translation type="unfinished"/>
+        <translation>Progrés</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1784,7 +1804,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished"/>
+        <translation>No</translation>
     </message>
     <message>
         <source>Prefix filenames with grouping attribute</source>
@@ -1807,12 +1827,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Grouping attribute:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Destination directory:</source>
-        <translation type="unfinished"/>
+        <translation>Directori de destí:</translation>
     </message>
     <message>
         <source>Store collected files in:</source>
@@ -1840,11 +1856,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Files to exclude:</source>
-        <translation type="unfinished"/>
+        <translation>Fitxers a excloure:</translation>
     </message>
     <message>
         <source>e.g. *.lnk or *.desktop</source>
-        <translation type="unfinished"/>
+        <translation>p. ex. *.lnk o *.desktop</translation>
     </message>
     <message>
         <source>Collect files recursively</source>
@@ -1859,23 +1875,27 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Grouping attribute 1:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Source directory (remote):</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>User login name</source>
-        <translation type="unfinished"/>
+        <translation>Nom d&apos;inici de sessió</translation>
     </message>
     <message>
         <source>Full name of user</source>
-        <translation type="unfinished"/>
+        <translation>Nom complet de l&apos;usuari</translation>
     </message>
     <message>
         <source>Device name</source>
-        <translation type="unfinished"/>
+        <translation>Nom del dispositiu</translation>
     </message>
     <message>
-        <source>Device and user login name</source>
+        <source>Grouping attribute 2:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1885,6 +1905,22 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Create destination directory if it does not exist</source>
         <translation>Crea un directori de destinació si no existeix</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Cap</translation>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grouping attribute 3:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1985,7 +2021,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Transfer files between computers</source>
-        <translation type="unfinished"/>
+        <translation>Transfereix fitxers entre ordinadors</translation>
     </message>
 </context>
 <context>
@@ -2120,7 +2156,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Veyon service</source>
-        <translation type="unfinished"/>
+        <translation>Servei del Veyon</translation>
     </message>
     <message>
         <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
@@ -2308,7 +2344,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Perform recursive search operations in object trees</source>
-        <translation>Realitza operacions de cerca recursiva en arbres d&apos;objectes</translation>
+        <translation>Fa operacions de cerca recursiva en arbres d&apos;objectes</translation>
     </message>
     <message>
         <source>User tree</source>
@@ -3112,7 +3148,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Veyon Configurator %1</source>
-        <translation type="unfinished"/>
+        <translation>Configurador del Veyon %1</translation>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3182,11 +3218,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Load computer positions</source>
-        <translation type="unfinished"/>
+        <translation>Carrega les posicions dels ordinadors</translation>
     </message>
     <message>
         <source>Save computer positions</source>
-        <translation type="unfinished"/>
+        <translation>Desa les posicions dels ordinadors</translation>
     </message>
 </context>
 <context>
@@ -3249,7 +3285,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Only last part of user name</source>
-        <translation type="unfinished"/>
+        <translation>Només l&apos;última part del nom d&apos;usuari</translation>
     </message>
     <message>
         <source>Only computer name</source>
@@ -3305,7 +3341,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"/>
+        <translation>Mai</translation>
     </message>
     <message>
         <source>If login name matches</source>
@@ -3317,7 +3353,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>Convidat</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3417,11 +3453,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Configuration templates</source>
-        <translation type="unfinished"/>
+        <translation>Plantilles de configuració</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished"/>
+        <translation>Avançat</translation>
     </message>
     <message>
         <source>Computer name source</source>
@@ -3429,7 +3465,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Per defecte</translation>
     </message>
     <message>
         <source>Host address</source>
@@ -3449,15 +3485,15 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>Metadades de la sessió</translation>
     </message>
     <message>
         <source>Full name of user</source>
-        <translation type="unfinished"/>
+        <translation>Nom complet de l&apos;usuari</translation>
     </message>
     <message>
         <source>User login name</source>
-        <translation type="unfinished"/>
+        <translation>Nom d&apos;inici de sessió</translation>
     </message>
     <message>
         <source>Computer UID role</source>
@@ -3500,7 +3536,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Please enter your name:</source>
-        <translation type="unfinished"/>
+        <translation>Introduïu el vostre nom:</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3749,7 +3785,7 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
     </message>
     <message>
         <source>Exchange clipboard contents</source>
-        <translation type="unfinished"/>
+        <translation>Intercanvia el contingut dels porta-retalls</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -3791,7 +3827,7 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
     </message>
     <message>
         <source>Select screen</source>
-        <translation type="unfinished"/>
+        <translation>Trieu una pantalla</translation>
     </message>
     <message>
         <source>Send shortcut</source>
@@ -3978,11 +4014,11 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
     </message>
     <message>
         <source>Access allowed by rule &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Accés permès per la regla &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Access denied by rule &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Accés denegat per la regla &quot;%1&quot;</translation>
     </message>
     <message>
         <source>No rule allowed access</source>
@@ -3994,11 +4030,11 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
     </message>
     <message>
         <source>User has denied access</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;usuari ha denegat l&apos;accés</translation>
     </message>
     <message>
         <source>User confirmed access</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;usuari ha confirmat l&apos;accés</translation>
     </message>
 </context>
 <context>
@@ -4087,7 +4123,7 @@ Normalment es requereix per a donar suport als servidors de terminals.</translat
     </message>
     <message>
         <source>Miscellaneous settings</source>
-        <translation type="unfinished"/>
+        <translation>Paràmetres diversos</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
@@ -4099,7 +4135,7 @@ Normalment es requereix per a donar suport als servidors de terminals.</translat
     </message>
     <message>
         <source>Disable clipboard synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Desactiva la sincronització del porta-retalls</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -4123,11 +4159,11 @@ Normalment es requereix per a donar suport als servidors de terminals.</translat
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>Metadades de la sessió</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"/>
+        <translation>Contingut</translation>
     </message>
     <message>
         <source>None</source>
@@ -4139,7 +4175,7 @@ Normalment es requereix per a donar suport als servidors de terminals.</translat
     </message>
     <message>
         <source>Value of a registry key</source>
-        <translation type="unfinished"/>
+        <translation>Valor d&apos;una clau de registre</translation>
     </message>
     <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
@@ -4153,7 +4189,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Environment variable name</source>
-        <translation type="unfinished"/>
+        <translation>Nom de la variable d&apos;entorn</translation>
     </message>
     <message>
         <source>Registry key name</source>
@@ -4550,7 +4586,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>Convidat</translation>
     </message>
 </context>
 <context>
@@ -4744,11 +4780,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Terminate related process</source>
-        <translation type="unfinished"/>
+        <translation>Finalitza el procés relacionat</translation>
     </message>
     <message>
         <source>Close session</source>
-        <translation type="unfinished"/>
+        <translation>Tanca la sessió</translation>
     </message>
 </context>
 <context>
