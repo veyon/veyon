@@ -26,6 +26,7 @@
 #include <QDialogButtonBox>
 #include <QGuiApplication>
 #include <QInputDialog>
+#include <QLineEdit>
 #include <QScreen>
 
 #include "FeatureManager.h"
@@ -572,6 +573,12 @@ QString MonitoringMode::queryUserIdentity()
 	dialog.setInputMode(QInputDialog::TextInput);
 	dialog.setWindowFlags(dialog.windowFlags() & (~Qt::WindowCloseButtonHint));
 	dialog.setStyleSheet(QStringLiteral("button-layout:%1").arg(QDialogButtonBox::WinLayout));
+
+	auto lineEdit = dialog.findChild<QLineEdit *>();
+	if (lineEdit)
+	{
+		lineEdit->setPlaceholderText(tr("First name + last name"));
+	}
 
 	VeyonCore::platform().coreFunctions().raiseWindow(&dialog, true);
 
