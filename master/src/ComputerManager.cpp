@@ -154,7 +154,7 @@ void ComputerManager::updateUser(const ComputerControlInterface::Pointer& contro
 		auto user = controlInterface->userFullName();
 		if( user.isEmpty() )
 		{
-			user = controlInterface->userLoginName();
+			user = VeyonCore::stripDomain(controlInterface->userLoginName());
 		}
 		m_networkObjectOverlayDataModel->setData(mapToUserNameModelIndex(networkObjectIndex), user);
 

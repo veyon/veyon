@@ -499,7 +499,9 @@ void RemoteAccessWidget::takeScreenshot()
 void RemoteAccessWidget::updateRemoteAccessTitle()
 {
 	const auto username = m_computerControlInterface->userFullName().isEmpty() ?
-							  m_computerControlInterface->userLoginName() : m_computerControlInterface->userFullName();
+							  VeyonCore::stripDomain(m_computerControlInterface->userLoginName())
+							:
+							  m_computerControlInterface->userFullName();
 
 	if (username.isEmpty() )
 	{

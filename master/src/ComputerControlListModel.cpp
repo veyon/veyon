@@ -486,7 +486,7 @@ QString ComputerControlListModel::computerDisplayRole( const ComputerControlInte
 		auto user = controlInterface->userFullName();
 		if( user.isEmpty() )
 		{
-			user = controlInterface->userLoginName();
+			user = VeyonCore::stripDomain(controlInterface->userLoginName());
 		}
 
 		if( displayRoleContent() == DisplayRoleContent::UserName )

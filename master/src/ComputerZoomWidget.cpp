@@ -134,7 +134,7 @@ bool ComputerZoomWidget::eventFilter( QObject* object, QEvent* event )
 void ComputerZoomWidget::updateComputerZoomWidgetTitle()
 {
 	const auto username = m_vncView->computerControlInterface()->userFullName().isEmpty() ?
-							  m_vncView->computerControlInterface()->userLoginName() :
+							  VeyonCore::stripDomain(m_vncView->computerControlInterface()->userLoginName()) :
 							  m_vncView->computerControlInterface()->userFullName();
 
 	if (username.isEmpty())
