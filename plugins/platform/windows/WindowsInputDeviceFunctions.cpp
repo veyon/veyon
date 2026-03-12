@@ -206,6 +206,10 @@ void WindowsInputDeviceFunctions::setCustomPowerScheme()
 					QStringLiteral("4f971e89-eebd-4455-a8de-9e59040e7347"), QStringLiteral("7648efa3-dd9c-4e3e-b566-50f929386280"), QStringLiteral("0")}}.run();
 	Powercfg{{QStringLiteral("/setdcvalueindex"), CustomPowerSchemeIdString,
 					QStringLiteral("4f971e89-eebd-4455-a8de-9e59040e7347"), QStringLiteral("7648efa3-dd9c-4e3e-b566-50f929386280"), QStringLiteral("0")}}.run();
+	Powercfg{{QStringLiteral("/setacvalueindex"), CustomPowerSchemeIdString,
+					QStringLiteral("4f971e89-eebd-4455-a8de-9e59040e7347"), QStringLiteral("96996bc0-ad50-47ec-923b-6f41874dd9eb"), QStringLiteral("0")}}.run();
+	Powercfg{{QStringLiteral("/setdcvalueindex"), CustomPowerSchemeIdString,
+					QStringLiteral("4f971e89-eebd-4455-a8de-9e59040e7347"), QStringLiteral("96996bc0-ad50-47ec-923b-6f41874dd9eb"), QStringLiteral("0")}}.run();
 	Powercfg{{QStringLiteral("/setactive"), CustomPowerSchemeIdString}}.run();
 }
 
