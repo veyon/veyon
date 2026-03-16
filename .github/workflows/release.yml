@@ -26,6 +26,8 @@ jobs:
           - ubuntu.24.04
     runs-on: ubuntu-latest
     container: veyon/ci.linux.${{matrix.dist}}
+    env:
+      CI_COMMIT_TAG: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || '' }}
     steps:
       - uses: actions/checkout@v4
         with:
