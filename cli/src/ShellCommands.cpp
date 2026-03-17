@@ -99,6 +99,7 @@ CommandLinePluginInterface::RunResult ShellCommands::handle_run( const QStringLi
 
 void ShellCommands::runCommand( const QString& command )
 {
-	// TODO: properly split arguments containing spaces
-	QProcess::execute( QCoreApplication::applicationFilePath(), command.split( QLatin1Char(' ') ) );
+	// ADDED: splitting arguments containing spaces
+	QProcess::execute( QCoreApplication::applicationFilePath(), 
+	QProcess::splitCommand(command));
 }
