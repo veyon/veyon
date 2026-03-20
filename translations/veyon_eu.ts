@@ -1813,6 +1813,18 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>None</source>
+        <translation>Bat ere ez</translation>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collect all files from configured source directory</source>
         <translation type="unfinished"/>
     </message>
@@ -1825,6 +1837,10 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Grouping attribute 3:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Destination directory:</source>
         <translation type="unfinished"/>
     </message>
@@ -1834,6 +1850,14 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Group collected files:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grouping attribute 1:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grouping attribute 2:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1873,10 +1897,6 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Grouping attribute 1:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Source directory (remote):</source>
         <translation type="unfinished"/>
     </message>
@@ -1893,32 +1913,12 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Grouping attribute 2:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Remember last source directory</source>
         <translation>Gogoratu azken iturburu-direktorioa</translation>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
         <translation>Sortu helmuga direktorioa existitzen ez bada</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Bat ere ez</translation>
-    </message>
-    <message>
-        <source>First part of user name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Last part of user name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Grouping attribute 3:</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3536,6 +3536,10 @@ Luze sakatu fitxategi batetik kargatzeko edo uneko antolamendua fitxategi batera
     </message>
     <message>
         <source>Please enter your name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>First name + last name</source>
         <translation type="unfinished"/>
     </message>
     <message>

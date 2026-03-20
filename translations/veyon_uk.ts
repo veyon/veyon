@@ -1810,6 +1810,18 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Зберігати файли до підкаталогів на основі атрибута групування</translation>
     </message>
     <message>
+        <source>None</source>
+        <translation>Немає</translation>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation>Перша частина імені користувача</translation>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation>Остання частина імені користувача</translation>
+    </message>
+    <message>
         <source>Collect all files from configured source directory</source>
         <translation>Зібрати усі файли з налаштованого каталогу джерела</translation>
     </message>
@@ -1822,6 +1834,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Питати у користувача про файли для збирання</translation>
     </message>
     <message>
+        <source>Grouping attribute 3:</source>
+        <translation>Атрибут групування 3:</translation>
+    </message>
+    <message>
         <source>Destination directory:</source>
         <translation>Каталог призначення:</translation>
     </message>
@@ -1832,6 +1848,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Group collected files:</source>
         <translation>Групувати зібрані файли:</translation>
+    </message>
+    <message>
+        <source>Grouping attribute 1:</source>
+        <translation>Атрибут групування 1:</translation>
+    </message>
+    <message>
+        <source>Grouping attribute 2:</source>
+        <translation>Атрибут групування 2:</translation>
     </message>
     <message>
         <source>Directly in the destination directory</source>
@@ -1870,10 +1894,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Типовий каталог джерела:</translation>
     </message>
     <message>
-        <source>Grouping attribute 1:</source>
-        <translation>Атрибут групування 1:</translation>
-    </message>
-    <message>
         <source>Source directory (remote):</source>
         <translation>Каталог джерела (віддалений):</translation>
     </message>
@@ -1890,32 +1910,12 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Назва пристрою</translation>
     </message>
     <message>
-        <source>Grouping attribute 2:</source>
-        <translation>Атрибут групування 2:</translation>
-    </message>
-    <message>
         <source>Remember last source directory</source>
         <translation>Запам&apos;ятовувати останній каталог початкових даних</translation>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
         <translation>Створювати каталог призначення, якщо його не існує</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Немає</translation>
-    </message>
-    <message>
-        <source>First part of user name</source>
-        <translation>Перша частина імені користувача</translation>
-    </message>
-    <message>
-        <source>Last part of user name</source>
-        <translation>Остання частина імені користувача</translation>
-    </message>
-    <message>
-        <source>Grouping attribute 3:</source>
-        <translation>Атрибут групування 3:</translation>
     </message>
 </context>
 <context>
@@ -3536,6 +3536,10 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Please enter your name:</source>
         <translation>Будь ласка, введіть ваше ім&apos;я:</translation>
+    </message>
+    <message>
+        <source>First name + last name</source>
+        <translation>Ім&apos;я + Прізвище</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>

@@ -1813,6 +1813,18 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>None</source>
+        <translation>Ingen</translation>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collect all files from configured source directory</source>
         <translation>Samla alla filer från den konfigurerade källkatalogen</translation>
     </message>
@@ -1825,6 +1837,10 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Grouping attribute 3:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Destination directory:</source>
         <translation type="unfinished"/>
     </message>
@@ -1834,6 +1850,14 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Group collected files:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grouping attribute 1:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grouping attribute 2:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1873,10 +1897,6 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Grouping attribute 1:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Source directory (remote):</source>
         <translation type="unfinished"/>
     </message>
@@ -1893,32 +1913,12 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Enhetsnamn</translation>
     </message>
     <message>
-        <source>Grouping attribute 2:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Remember last source directory</source>
         <translation>Kom ihåg den senaste källkatalogen</translation>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
         <translation>Skapa destinationskatalog om den inte finns</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Ingen</translation>
-    </message>
-    <message>
-        <source>First part of user name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Last part of user name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Grouping attribute 3:</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3537,6 +3537,10 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
     <message>
         <source>Please enter your name:</source>
         <translation>Ange ditt namn:</translation>
+    </message>
+    <message>
+        <source>First name + last name</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Builtin monitoring mode</source>

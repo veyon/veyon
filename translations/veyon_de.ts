@@ -1810,6 +1810,18 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Dateien in Unterverzeichnissen basierend auf dem Gruppierungsattribut speichern</translation>
     </message>
     <message>
+        <source>None</source>
+        <translation>Keine</translation>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation>Erster Teil des Benutzernamens</translation>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation>Letzter Teil des Benutzernamens</translation>
+    </message>
+    <message>
         <source>Collect all files from configured source directory</source>
         <translation>Alle Dateien aus dem konfigurierten Quellverzeichnis sammeln</translation>
     </message>
@@ -1822,6 +1834,10 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Benutzer nach einzusammelnden Dateien fragen</translation>
     </message>
     <message>
+        <source>Grouping attribute 3:</source>
+        <translation>Gruppierungsattribut 3:</translation>
+    </message>
+    <message>
         <source>Destination directory:</source>
         <translation>Zielverzeichnis:</translation>
     </message>
@@ -1832,6 +1848,14 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
     <message>
         <source>Group collected files:</source>
         <translation>Eingesammelte Dateien gruppieren:</translation>
+    </message>
+    <message>
+        <source>Grouping attribute 1:</source>
+        <translation>Gruppierungsattribut 1:</translation>
+    </message>
+    <message>
+        <source>Grouping attribute 2:</source>
+        <translation>Gruppierungsattribut 2:</translation>
     </message>
     <message>
         <source>Directly in the destination directory</source>
@@ -1870,10 +1894,6 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Standardquellverzeichnis:</translation>
     </message>
     <message>
-        <source>Grouping attribute 1:</source>
-        <translation>Gruppierungsattribut 1:</translation>
-    </message>
-    <message>
         <source>Source directory (remote):</source>
         <translation>Quellverzeichnis (entfernt):</translation>
     </message>
@@ -1890,32 +1910,12 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Gerätename</translation>
     </message>
     <message>
-        <source>Grouping attribute 2:</source>
-        <translation>Gruppierungsattribut 2:</translation>
-    </message>
-    <message>
         <source>Remember last source directory</source>
         <translation>Letztes Quellverzeichnis merken</translation>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
         <translation>Zielverzeichnis erstellen, wenn es nicht existiert</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Keine</translation>
-    </message>
-    <message>
-        <source>First part of user name</source>
-        <translation>Erster Teil des Benutzernamens</translation>
-    </message>
-    <message>
-        <source>Last part of user name</source>
-        <translation>Letzter Teil des Benutzernamens</translation>
-    </message>
-    <message>
-        <source>Grouping attribute 3:</source>
-        <translation>Gruppierungsattribut 3:</translation>
     </message>
 </context>
 <context>
@@ -3534,6 +3534,10 @@ Gedrückt halten, um die Anordnung aus einer Datei zu laden oder die aktuelle An
     <message>
         <source>Please enter your name:</source>
         <translation>Bitte geben Sie Ihren Namen ein:</translation>
+    </message>
+    <message>
+        <source>First name + last name</source>
+        <translation>Vorname + Nachname</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>

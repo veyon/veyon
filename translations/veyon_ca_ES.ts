@@ -1815,6 +1815,18 @@ Assegureu-vos que els noms de les claus que pertanyen entre si són idèntics en
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>None</source>
+        <translation>Cap</translation>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collect all files from configured source directory</source>
         <translation type="unfinished"/>
     </message>
@@ -1827,6 +1839,10 @@ Assegureu-vos que els noms de les claus que pertanyen entre si són idèntics en
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Grouping attribute 3:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Destination directory:</source>
         <translation>Directori de destí:</translation>
     </message>
@@ -1836,6 +1852,14 @@ Assegureu-vos que els noms de les claus que pertanyen entre si són idèntics en
     </message>
     <message>
         <source>Group collected files:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grouping attribute 1:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grouping attribute 2:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1875,10 +1899,6 @@ Assegureu-vos que els noms de les claus que pertanyen entre si són idèntics en
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Grouping attribute 1:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Source directory (remote):</source>
         <translation type="unfinished"/>
     </message>
@@ -1895,32 +1915,12 @@ Assegureu-vos que els noms de les claus que pertanyen entre si són idèntics en
         <translation>Nom del dispositiu</translation>
     </message>
     <message>
-        <source>Grouping attribute 2:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Remember last source directory</source>
         <translation>Recorda l&apos;últim directori font</translation>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
         <translation>Crea un directori de destinació si no existeix</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Cap</translation>
-    </message>
-    <message>
-        <source>First part of user name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Last part of user name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Grouping attribute 3:</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3537,6 +3537,10 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Please enter your name:</source>
         <translation>Introduïu el vostre nom:</translation>
+    </message>
+    <message>
+        <source>First name + last name</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Builtin monitoring mode</source>

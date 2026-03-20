@@ -1813,6 +1813,18 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>Dosyaları gruplama niteliğine göre alt dizinlerde saklayın</translation>
     </message>
     <message>
+        <source>None</source>
+        <translation>Yok</translation>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collect all files from configured source directory</source>
         <translation>Yapılandırılmış kaynak dizininden tüm dosyaları topla</translation>
     </message>
@@ -1825,6 +1837,10 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>Toplanacak dosyalar için kullanıcıdan istemde bulun</translation>
     </message>
     <message>
+        <source>Grouping attribute 3:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Destination directory:</source>
         <translation type="unfinished"/>
     </message>
@@ -1834,6 +1850,14 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     </message>
     <message>
         <source>Group collected files:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grouping attribute 1:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grouping attribute 2:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1873,10 +1897,6 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Grouping attribute 1:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Source directory (remote):</source>
         <translation type="unfinished"/>
     </message>
@@ -1893,32 +1913,12 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>Cihaz adı</translation>
     </message>
     <message>
-        <source>Grouping attribute 2:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Remember last source directory</source>
         <translation>Son kaynak dizinini hatırla</translation>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
         <translation>Hedef dizin yoksa oluşturun</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Yok</translation>
-    </message>
-    <message>
-        <source>First part of user name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Last part of user name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Grouping attribute 3:</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3536,6 +3536,10 @@ Düzenlemeyi bir dosyadan yüklemek veya mevcut düzenlemeyi bir dosyaya kaydetm
     </message>
     <message>
         <source>Please enter your name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>First name + last name</source>
         <translation type="unfinished"/>
     </message>
     <message>

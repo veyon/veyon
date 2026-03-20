@@ -1813,6 +1813,18 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Сохранять файлы в подкаталоги в соответствии с атрибутом группировки</translation>
     </message>
     <message>
+        <source>None</source>
+        <translation>Нет</translation>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation>Первая часть имени пользователя</translation>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation>Последняя часть имени пользователя</translation>
+    </message>
+    <message>
         <source>Collect all files from configured source directory</source>
         <translation>Собирать все файлы из настроенного исходного каталога</translation>
     </message>
@@ -1825,6 +1837,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Запрашивать у пользователя файлы для сбора</translation>
     </message>
     <message>
+        <source>Grouping attribute 3:</source>
+        <translation>Атрибут группировки 3:</translation>
+    </message>
+    <message>
         <source>Destination directory:</source>
         <translation>Целевой каталог:</translation>
     </message>
@@ -1835,6 +1851,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Group collected files:</source>
         <translation>Группировать собранные файлы:</translation>
+    </message>
+    <message>
+        <source>Grouping attribute 1:</source>
+        <translation>Атрибут группировки 1:</translation>
+    </message>
+    <message>
+        <source>Grouping attribute 2:</source>
+        <translation>Атрибут группировки 2:</translation>
     </message>
     <message>
         <source>Directly in the destination directory</source>
@@ -1873,10 +1897,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Исходный каталог по умолчанию:</translation>
     </message>
     <message>
-        <source>Grouping attribute 1:</source>
-        <translation>Атрибут группировки 1:</translation>
-    </message>
-    <message>
         <source>Source directory (remote):</source>
         <translation>Исходный каталог (удалённый):</translation>
     </message>
@@ -1893,32 +1913,12 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Имя ресурса</translation>
     </message>
     <message>
-        <source>Grouping attribute 2:</source>
-        <translation>Атрибут группировки 2:</translation>
-    </message>
-    <message>
         <source>Remember last source directory</source>
         <translation>Запомнить последний исходный каталог</translation>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
         <translation>Создать целевой каталог, если он не существует</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Нет</translation>
-    </message>
-    <message>
-        <source>First part of user name</source>
-        <translation>Первая часть имени пользователя</translation>
-    </message>
-    <message>
-        <source>Last part of user name</source>
-        <translation>Последняя часть имени пользователя</translation>
-    </message>
-    <message>
-        <source>Grouping attribute 3:</source>
-        <translation>Атрибут группировки 3:</translation>
     </message>
 </context>
 <context>
@@ -3537,6 +3537,10 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Please enter your name:</source>
         <translation>Пожалуйста, введите ваше имя:</translation>
+    </message>
+    <message>
+        <source>First name + last name</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Builtin monitoring mode</source>

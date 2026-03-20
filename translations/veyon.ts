@@ -3513,6 +3513,10 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>First name + last name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Builtin monitoring mode</source>
         <translation type="unfinished"></translation>
     </message>

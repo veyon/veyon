@@ -1810,6 +1810,18 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Memorizza i file in sottodirectory in base all&apos;attributo di raggruppamento</translation>
     </message>
     <message>
+        <source>None</source>
+        <translation>Nessuna</translation>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation>Prima parte del nome utente</translation>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation>Ultima parte del nome utente</translation>
+    </message>
+    <message>
         <source>Collect all files from configured source directory</source>
         <translation>Raccogli tutti i file dalla directory sorgente configurata</translation>
     </message>
@@ -1822,6 +1834,10 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Richiedi all&apos;utente i file da raccogliere</translation>
     </message>
     <message>
+        <source>Grouping attribute 3:</source>
+        <translation>Attributo di raggruppamento 3:</translation>
+    </message>
+    <message>
         <source>Destination directory:</source>
         <translation>Directory di destinazione:</translation>
     </message>
@@ -1832,6 +1848,14 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     <message>
         <source>Group collected files:</source>
         <translation>File di gruppo raccolti:</translation>
+    </message>
+    <message>
+        <source>Grouping attribute 1:</source>
+        <translation>Attributo di raggruppamento 1:</translation>
+    </message>
+    <message>
+        <source>Grouping attribute 2:</source>
+        <translation>Attributo di raggruppamento 2:</translation>
     </message>
     <message>
         <source>Directly in the destination directory</source>
@@ -1870,10 +1894,6 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Directory sorgente predefinita:</translation>
     </message>
     <message>
-        <source>Grouping attribute 1:</source>
-        <translation>Attributo di raggruppamento 1:</translation>
-    </message>
-    <message>
         <source>Source directory (remote):</source>
         <translation>Directory di origine (remota):</translation>
     </message>
@@ -1890,32 +1910,12 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Nome del dispositivo</translation>
     </message>
     <message>
-        <source>Grouping attribute 2:</source>
-        <translation>Attributo di raggruppamento 2:</translation>
-    </message>
-    <message>
         <source>Remember last source directory</source>
         <translation>Ricorda l&apos;ultima directory di origine</translation>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
         <translation>Crea la directory di destinazione se non esiste</translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Nessuna</translation>
-    </message>
-    <message>
-        <source>First part of user name</source>
-        <translation>Prima parte del nome utente</translation>
-    </message>
-    <message>
-        <source>Last part of user name</source>
-        <translation>Ultima parte del nome utente</translation>
-    </message>
-    <message>
-        <source>Grouping attribute 3:</source>
-        <translation>Attributo di raggruppamento 3:</translation>
     </message>
 </context>
 <context>
@@ -3524,6 +3524,10 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
     <message>
         <source>Please enter your name:</source>
         <translation>Inserisci il tuo nome:</translation>
+    </message>
+    <message>
+        <source>First name + last name</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Builtin monitoring mode</source>

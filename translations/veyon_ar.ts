@@ -1810,6 +1810,18 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>None</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collect all files from configured source directory</source>
         <translation type="unfinished"/>
     </message>
@@ -1822,6 +1834,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Grouping attribute 3:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Destination directory:</source>
         <translation type="unfinished"/>
     </message>
@@ -1831,6 +1847,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Group collected files:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grouping attribute 1:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grouping attribute 2:</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1870,10 +1894,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Grouping attribute 1:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Source directory (remote):</source>
         <translation type="unfinished"/>
     </message>
@@ -1890,31 +1910,11 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Grouping attribute 2:</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Remember last source directory</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>None</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>First part of user name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Last part of user name</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Grouping attribute 3:</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3514,6 +3514,10 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Please enter your name:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>First name + last name</source>
         <translation type="unfinished"/>
     </message>
     <message>
