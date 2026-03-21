@@ -11,6 +11,22 @@
  * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * ============================================================================
+ * SECURITY WARNING: DES (Data Encryption Standard) is CRYPTOGRAPHICALLY BROKEN
+ * ============================================================================
+ * 
+ * DES should not be used for any security-sensitive applications:
+ * - 56-bit effective key length can be brute-forced with modern hardware
+ * - Known cryptanalytic attacks exist
+ * - Deprecated by NIST and industry standards
+ * 
+ * This implementation is maintained ONLY for backward compatibility with 
+ * legacy VNC protocol implementations. For new code, use modern algorithms
+ * such as AES-256, ChaCha20, or other NIST-approved ciphers.
+ * 
+ * See SECURITY-NOTES.md for detailed security considerations.
+ * ============================================================================
  */
 
 /* d3des.h -
