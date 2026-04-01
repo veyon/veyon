@@ -43,9 +43,26 @@ static const QString RemoteDesktopIface = QStringLiteral("org.freedesktop.portal
 static const QString ScreenCastIface    = QStringLiteral("org.freedesktop.portal.ScreenCast");
 static const QString RequestIface       = QStringLiteral("org.freedesktop.portal.Request");
 
+// Stable application identifier used for:
+//   - well-known D-Bus service name registration (so xdg-desktop-portal can
+//     identify this process when doing kde-authorized PermissionStore lookups)
+//   - KDE pre-authorization: flatpak permission-set kde-authorized screencast
+//                            io.veyon.Veyon.Server yes
+static const QString AppId = QStringLiteral("io.veyon.Veyon.Server");
+
 PortalSession::PortalSession(QObject* parent)
 	: QObject(parent)
 {
+	// Register the stable well-known bus name.  xdg-desktop-portal identifies
+	// non-Flatpak callers by their well-known D-Bus service name; without this
+	// registration the portal sees an empty app_id and the kde-authorized
+	// PermissionStore entry stored under "io.veyon.Veyon.Server" is never matched.
+	if (!QDBusConnection::sessionBus().registerService(AppId))
+	{
+		vWarning() << "Could not register D-Bus service name" << AppId
+		           << ":" << QDBusConnection::sessionBus().lastError().message();
+	}
+
 	m_portalInterface = new QDBusInterface(
 		PortalService,
 		PortalObjectPath,
@@ -58,6 +75,7 @@ PortalSession::PortalSession(QObject* parent)
 PortalSession::~PortalSession()
 {
 	close();
+	QDBusConnection::sessionBus().unregisterService(AppId);
 }
 
 void PortalSession::start()
@@ -99,15 +117,8 @@ void PortalSession::createSession()
 {
 	setState(State::CreatingSession);
 
-	const QString token = makeRequestToken();
-	const QString requestPath = makeRequestPath(token);
-
-	// Connect to Response BEFORE making the call to avoid the race where the
-	// portal emits the signal before we register the listener.
-	connectResponseSignal(requestPath);
-
 	QVariantMap options;
-	options[QStringLiteral("handle_token")] = token;
+	options[QStringLiteral("handle_token")]         = makeRequestToken();
 	options[QStringLiteral("session_handle_token")] = makeRequestToken();
 
 	auto call = m_portalInterface->asyncCall(QStringLiteral("CreateSession"), options);
@@ -118,10 +129,14 @@ void PortalSession::createSession()
 		if (reply.isError())
 		{
 			vCritical() << "CreateSession call failed:" << reply.error().message();
-			disconnectResponseSignal();
 			setState(State::Failed);
 			Q_EMIT failed();
+			return;
 		}
+		// Subscribe to the Response signal using the request path returned by the
+		// portal.  This avoids pre-computing the path from the local D-Bus unique
+		// name (which may be empty when running as root on the user session bus).
+		connectResponseSignal(reply.value().path());
 	});
 }
 
@@ -129,13 +144,8 @@ void PortalSession::selectDevices()
 {
 	setState(State::SelectingDevices);
 
-	const QString token = makeRequestToken();
-	const QString requestPath = makeRequestPath(token);
-
-	connectResponseSignal(requestPath);
-
 	QVariantMap options;
-	options[QStringLiteral("handle_token")] = token;
+	options[QStringLiteral("handle_token")] = makeRequestToken();
 	// Request keyboard + pointer devices (1=keyboard, 2=pointer, 3=both)
 	options[QStringLiteral("types")] = QVariant::fromValue<uint>(3u);
 	// persist_mode 2 = persist until explicitly revoked
@@ -157,21 +167,17 @@ void PortalSession::selectDevices()
 		if (reply.isError())
 		{
 			vCritical() << "SelectDevices call failed:" << reply.error().message();
-			disconnectResponseSignal();
 			setState(State::Failed);
 			Q_EMIT failed();
+			return;
 		}
+		connectResponseSignal(reply.value().path());
 	});
 }
 
 void PortalSession::selectSources()
 {
 	setState(State::SelectingSources);
-
-	const QString token = makeRequestToken();
-	const QString requestPath = makeRequestPath(token);
-
-	connectResponseSignal(requestPath);
 
 	// SelectSources is on the ScreenCast interface; the RemoteDesktop session
 	// handle is shared with it.
@@ -183,7 +189,7 @@ void PortalSession::selectSources()
 	);
 
 	QVariantMap options;
-	options[QStringLiteral("handle_token")] = token;
+	options[QStringLiteral("handle_token")] = makeRequestToken();
 	options[QStringLiteral("types")]        = QVariant::fromValue<uint>(1u); // 1=monitor
 	options[QStringLiteral("multiple")]     = false;
 	// ScreenCast interface only supports persist_mode=0; persist_mode=2 is
@@ -202,10 +208,11 @@ void PortalSession::selectSources()
 		if (reply.isError())
 		{
 			vCritical() << "SelectSources call failed:" << reply.error().message();
-			disconnectResponseSignal();
 			setState(State::Failed);
 			Q_EMIT failed();
+			return;
 		}
+		connectResponseSignal(reply.value().path());
 	});
 }
 
@@ -213,13 +220,8 @@ void PortalSession::startSession()
 {
 	setState(State::Starting);
 
-	const QString token = makeRequestToken();
-	const QString requestPath = makeRequestPath(token);
-
-	connectResponseSignal(requestPath);
-
 	QVariantMap options;
-	options[QStringLiteral("handle_token")] = token;
+	options[QStringLiteral("handle_token")] = makeRequestToken();
 
 	auto call = m_portalInterface->asyncCall(
 		QStringLiteral("Start"),
@@ -234,10 +236,11 @@ void PortalSession::startSession()
 		if (reply.isError())
 		{
 			vCritical() << "Start call failed:" << reply.error().message();
-			disconnectResponseSignal();
 			setState(State::Failed);
 			Q_EMIT failed();
+			return;
 		}
+		connectResponseSignal(reply.value().path());
 	});
 }
 
@@ -413,21 +416,5 @@ void PortalSession::setState(State s)
 QString PortalSession::makeRequestToken()
 {
 	return QStringLiteral("veyon_%1").arg(QRandomGenerator::global()->generate());
-}
-
-QString PortalSession::senderToken()
-{
-	// The portal request path uses the D-Bus unique bus name with ':' removed
-	// and '.' replaced by '_'.  E.g. ":1.23" -> "1_23".
-	QString sender = QDBusConnection::sessionBus().baseService();
-	sender.remove(QLatin1Char(':'));
-	sender.replace(QLatin1Char('.'), QLatin1Char('_'));
-	return sender;
-}
-
-QString PortalSession::makeRequestPath(const QString& token)
-{
-	return QStringLiteral("/org/freedesktop/portal/desktop/request/%1/%2")
-	       .arg(senderToken(), token);
 }
 

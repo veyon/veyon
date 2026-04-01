@@ -40,7 +40,9 @@
  * signal and are dispatched to the appropriate handler.
  *
  * The app_id used for permission-store lookups is "io.veyon.Veyon.Server".
- * KDE Plasma admins can pre-authorize unattended access via:
+ * This name is registered as a well-known D-Bus service name on construction so
+ * that xdg-desktop-portal can identify the process and match the kde-authorized
+ * PermissionStore entry.  KDE Plasma admins can pre-authorize unattended access via:
  *   flatpak permission-set kde-authorized screencast io.veyon.Veyon.Server yes
  * or directly through the DBus PermissionStore interface.
  */
@@ -107,8 +109,6 @@ private:
 	void setState(State s);
 
 	static QString makeRequestToken();
-	static QString senderToken();
-	static QString makeRequestPath(const QString& token);
 
 	QDBusInterface* m_portalInterface{nullptr};
 	QString m_sessionHandle;

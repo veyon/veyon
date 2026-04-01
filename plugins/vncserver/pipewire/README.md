@@ -65,26 +65,23 @@ be captured), not as root.
 
 ### Method 2: D-Bus PermissionStore
 
-If the `flatpak` CLI is not installed, you can use `dbus-send` directly:
+If the `flatpak` CLI is not installed, you can use `busctl` (part of systemd)
+which uses an explicit D-Bus type-signature syntax:
 
 ```bash
-dbus-send \
-  --session \
-  --print-reply \
-  --dest=org.freedesktop.impl.portal.PermissionStore \
+busctl call --user \
+  org.freedesktop.impl.portal.PermissionStore \
   /org/freedesktop/impl/portal/PermissionStore \
-  org.freedesktop.impl.portal.PermissionStore.SetPermission \
-  string:kde-authorized \
-  boolean:false \
-  string:screencast \
-  string:io.veyon.Veyon.Server \
-  array:string:yes
+  org.freedesktop.impl.portal.PermissionStore \
+  SetPermission \
+  sbssas \
+  kde-authorized false screencast io.veyon.Veyon.Server 1 yes
 ```
 
 ### Helper script
 
 A convenience script is installed to `/usr/share/veyon/veyon-preauth-kde.sh`.
-It tries Method 1 first and falls back to Method 2:
+It tries Method 1 first and falls back to Method 2 (`busctl`):
 
 ```bash
 sudo -u <desktop-user> \
