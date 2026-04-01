@@ -37,16 +37,11 @@
 #include <VeyonCore.h>
 
 // XDG Desktop Portal service and interface names
-static constexpr auto PortalService     = "org.freedesktop.portal.Desktop";
-static constexpr auto PortalObjectPath  = "/org/freedesktop/portal/desktop";
-static constexpr auto RemoteDesktopIface = "org.freedesktop.portal.RemoteDesktop";
-static constexpr auto ScreenCastIface    = "org.freedesktop.portal.ScreenCast";
-static constexpr auto RequestIface       = "org.freedesktop.portal.Request";
-
-// Stable application identifier used by the PermissionStore.
-// KDE admins pre-authorize with:
-//   flatpak permission-set kde-authorized remote-desktop io.veyon.Veyon.Server yes
-static constexpr auto AppId = "io.veyon.Veyon.Server";
+static const QString PortalService      = QStringLiteral("org.freedesktop.portal.Desktop");
+static const QString PortalObjectPath   = QStringLiteral("/org/freedesktop/portal/desktop");
+static const QString RemoteDesktopIface = QStringLiteral("org.freedesktop.portal.RemoteDesktop");
+static const QString ScreenCastIface    = QStringLiteral("org.freedesktop.portal.ScreenCast");
+static const QString RequestIface       = QStringLiteral("org.freedesktop.portal.Request");
 
 PortalSession::PortalSession(QObject* parent)
 	: QObject(parent)
@@ -104,10 +99,15 @@ void PortalSession::createSession()
 {
 	setState(State::CreatingSession);
 
-	m_currentRequestToken = makeRequestToken();
+	const QString token = makeRequestToken();
+	const QString requestPath = makeRequestPath(token);
+
+	// Connect to Response BEFORE making the call to avoid the race where the
+	// portal emits the signal before we register the listener.
+	connectResponseSignal(requestPath);
 
 	QVariantMap options;
-	options[QStringLiteral("handle_token")] = m_currentRequestToken;
+	options[QStringLiteral("handle_token")] = token;
 	options[QStringLiteral("session_handle_token")] = makeRequestToken();
 
 	auto call = m_portalInterface->asyncCall(QStringLiteral("CreateSession"), options);
@@ -118,11 +118,10 @@ void PortalSession::createSession()
 		if (reply.isError())
 		{
 			vCritical() << "CreateSession call failed:" << reply.error().message();
+			disconnectResponseSignal();
 			setState(State::Failed);
 			Q_EMIT failed();
-			return;
 		}
-		connectResponseSignal(reply.value());
 	});
 }
 
@@ -130,13 +129,16 @@ void PortalSession::selectDevices()
 {
 	setState(State::SelectingDevices);
 
-	m_currentRequestToken = makeRequestToken();
+	const QString token = makeRequestToken();
+	const QString requestPath = makeRequestPath(token);
+
+	connectResponseSignal(requestPath);
 
 	QVariantMap options;
-	options[QStringLiteral("handle_token")] = m_currentRequestToken;
-	// Request keyboard + pointer devices
-	options[QStringLiteral("types")] = QVariant::fromValue<uint>(3u); // 1=keyboard, 2=pointer, 3=both
-	// Persist mode 2 = persist until explicitly revoked (requires portal v2+)
+	options[QStringLiteral("handle_token")] = token;
+	// Request keyboard + pointer devices (1=keyboard, 2=pointer, 3=both)
+	options[QStringLiteral("types")] = QVariant::fromValue<uint>(3u);
+	// persist_mode 2 = persist until explicitly revoked
 	options[QStringLiteral("persist_mode")] = QVariant::fromValue<uint>(2u);
 	if (!m_restoreToken.isEmpty())
 	{
@@ -155,11 +157,10 @@ void PortalSession::selectDevices()
 		if (reply.isError())
 		{
 			vCritical() << "SelectDevices call failed:" << reply.error().message();
+			disconnectResponseSignal();
 			setState(State::Failed);
 			Q_EMIT failed();
-			return;
 		}
-		connectResponseSignal(reply.value());
 	});
 }
 
@@ -167,9 +168,13 @@ void PortalSession::selectSources()
 {
 	setState(State::SelectingSources);
 
-	m_currentRequestToken = makeRequestToken();
+	const QString token = makeRequestToken();
+	const QString requestPath = makeRequestPath(token);
 
-	// Use the ScreenCast interface for SelectSources since RemoteDesktop delegates this
+	connectResponseSignal(requestPath);
+
+	// SelectSources is on the ScreenCast interface; the RemoteDesktop session
+	// handle is shared with it.
 	QDBusInterface screenCastIface(
 		PortalService,
 		PortalObjectPath,
@@ -178,10 +183,9 @@ void PortalSession::selectSources()
 	);
 
 	QVariantMap options;
-	options[QStringLiteral("handle_token")] = m_currentRequestToken;
-	options[QStringLiteral("types")]   = QVariant::fromValue<uint>(1u); // 1=monitor
-	options[QStringLiteral("multiple")] = false;
-	// Persist mode 2 for ScreenCast as well
+	options[QStringLiteral("handle_token")] = token;
+	options[QStringLiteral("types")]        = QVariant::fromValue<uint>(1u); // 1=monitor
+	options[QStringLiteral("multiple")]     = false;
 	options[QStringLiteral("persist_mode")] = QVariant::fromValue<uint>(2u);
 	if (!m_restoreToken.isEmpty())
 	{
@@ -200,11 +204,10 @@ void PortalSession::selectSources()
 		if (reply.isError())
 		{
 			vCritical() << "SelectSources call failed:" << reply.error().message();
+			disconnectResponseSignal();
 			setState(State::Failed);
 			Q_EMIT failed();
-			return;
 		}
-		connectResponseSignal(reply.value());
 	});
 }
 
@@ -212,15 +215,18 @@ void PortalSession::startSession()
 {
 	setState(State::Starting);
 
-	m_currentRequestToken = makeRequestToken();
+	const QString token = makeRequestToken();
+	const QString requestPath = makeRequestPath(token);
+
+	connectResponseSignal(requestPath);
 
 	QVariantMap options;
-	options[QStringLiteral("handle_token")] = m_currentRequestToken;
+	options[QStringLiteral("handle_token")] = token;
 
 	auto call = m_portalInterface->asyncCall(
 		QStringLiteral("Start"),
 		QVariant::fromValue(QDBusObjectPath(m_sessionHandle)),
-		QStringLiteral(""), // parent_window handle (empty for unattended)
+		QStringLiteral(""), // parent_window handle (empty for daemon/unattended use)
 		options
 	);
 	auto* watcher = new QDBusPendingCallWatcher(call, this);
@@ -230,11 +236,10 @@ void PortalSession::startSession()
 		if (reply.isError())
 		{
 			vCritical() << "Start call failed:" << reply.error().message();
+			disconnectResponseSignal();
 			setState(State::Failed);
 			Q_EMIT failed();
-			return;
 		}
-		connectResponseSignal(reply.value());
 	});
 }
 
@@ -247,12 +252,10 @@ void PortalSession::openPipeWireRemote()
 		QDBusConnection::sessionBus()
 	);
 
-	QVariantMap options;
-
 	QDBusReply<QDBusUnixFileDescriptor> reply = screenCastIface.call(
 		QStringLiteral("OpenPipeWireRemote"),
 		QVariant::fromValue(QDBusObjectPath(m_sessionHandle)),
-		options
+		QVariantMap{}
 	);
 
 	if (!reply.isValid())
@@ -263,7 +266,7 @@ void PortalSession::openPipeWireRemote()
 		return;
 	}
 
-	// dup() the FD so we own it independently of the QDBus reply
+	// dup() the FD so we own it independently of the QDBus reply lifetime
 	m_pipewireFd = ::dup(reply.value().fileDescriptor());
 	if (m_pipewireFd < 0)
 	{
@@ -281,11 +284,11 @@ void PortalSession::openPipeWireRemote()
 // Response signal handling
 // ---------------------------------------------------------------------------
 
-void PortalSession::connectResponseSignal(const QDBusObjectPath& requestPath)
+void PortalSession::connectResponseSignal(const QString& requestPath)
 {
 	disconnectResponseSignal();
 
-	m_connectedRequestPath = requestPath.path();
+	m_connectedRequestPath = requestPath;
 
 	const bool ok = QDBusConnection::sessionBus().connect(
 		PortalService,
@@ -328,8 +331,8 @@ void PortalSession::onPortalResponse(uint response, const QVariantMap& results)
 
 	if (response != 0)
 	{
-		vWarning() << "Portal request" << static_cast<int>(m_state)
-				   << "denied/cancelled (response=" << response << ")";
+		vWarning() << "Portal request in state" << static_cast<int>(m_state)
+		           << "denied/cancelled (response=" << response << ")";
 		setState(State::Failed);
 		Q_EMIT failed();
 		return;
@@ -346,16 +349,11 @@ void PortalSession::onPortalResponse(uint response, const QVariantMap& results)
 	{
 	case State::CreatingSession:
 	{
+		// session_handle can arrive as QDBusObjectPath or as a plain string
 		QDBusObjectPath sessionPath = results.value(QStringLiteral("session_handle")).value<QDBusObjectPath>();
-		if (sessionPath.path().isEmpty())
-		{
-			// Try string form
-			m_sessionHandle = results.value(QStringLiteral("session_handle")).toString();
-		}
-		else
-		{
-			m_sessionHandle = sessionPath.path();
-		}
+		m_sessionHandle = sessionPath.path().isEmpty()
+		                  ? results.value(QStringLiteral("session_handle")).toString()
+		                  : sessionPath.path();
 
 		if (m_sessionHandle.isEmpty())
 		{
@@ -379,12 +377,9 @@ void PortalSession::onPortalResponse(uint response, const QVariantMap& results)
 
 	case State::Starting:
 	{
-		// Extract PipeWire node IDs from streams list
-		const auto streams = results.value(QStringLiteral("streams"))
-			.value<QDBusArgument>();
-
-		// The streams value is an array of (node_id, {properties}) structs
-		// We just need the first node id
+		// The streams result is an array of (node_id, properties) structs.
+		// Extract the first node ID.
+		const QDBusArgument streams = results.value(QStringLiteral("streams")).value<QDBusArgument>();
 		if (!streams.currentSignature().isEmpty())
 		{
 			streams.beginArray();
@@ -419,16 +414,22 @@ void PortalSession::setState(State s)
 
 QString PortalSession::makeRequestToken()
 {
-	return QStringLiteral("veyon_%1").arg(
-		QRandomGenerator::global()->generate()
-	);
+	return QStringLiteral("veyon_%1").arg(QRandomGenerator::global()->generate());
 }
 
 QString PortalSession::senderToken()
 {
-	// Convert D-Bus sender (e.g. ":1.23") to a valid token suffix
+	// The portal request path uses the D-Bus unique bus name with ':' removed
+	// and '.' replaced by '_'.  E.g. ":1.23" -> "1_23".
 	QString sender = QDBusConnection::sessionBus().baseService();
+	sender.remove(QLatin1Char(':'));
 	sender.replace(QLatin1Char('.'), QLatin1Char('_'));
-	sender.replace(QLatin1Char(':'), QLatin1Char('_'));
 	return sender;
 }
+
+QString PortalSession::makeRequestPath(const QString& token)
+{
+	return QStringLiteral("/org/freedesktop/portal/desktop/request/%1/%2")
+	       .arg(senderToken(), token);
+}
+

@@ -101,20 +101,20 @@ private:
 	void startSession();
 	void openPipeWireRemote();
 
-	void connectResponseSignal(const QDBusObjectPath& requestPath);
+	void connectResponseSignal(const QString& requestPath);
 	void disconnectResponseSignal();
 
 	void setState(State s);
 
 	static QString makeRequestToken();
 	static QString senderToken();
+	static QString makeRequestPath(const QString& token);
 
 	QDBusInterface* m_portalInterface{nullptr};
 	QString m_sessionHandle;
-	QString m_currentRequestToken;
 	QString m_restoreToken;
 	State m_state{State::Idle};
 	int m_pipewireFd{-1};
 	quint32 m_pipeWireNodeId{0};
-	QString m_connectedRequestPath;  // path of the currently connected Response signal
+	QString m_connectedRequestPath;
 };

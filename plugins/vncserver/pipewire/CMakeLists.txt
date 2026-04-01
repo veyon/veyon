@@ -1,14 +1,19 @@
 include(BuildVeyonPlugin)
 
+# This plugin requires Qt 6 (uses Qt6::DBus) and PipeWire
+if(NOT QT_MAJOR_VERSION EQUAL 6)
+	return()
+endif()
+
 find_package(PipeWire)
-find_package(Qt5 COMPONENTS DBus)
+find_package(Qt6 COMPONENTS DBus)
 
 get_property(HAVE_LIBVNCCLIENT GLOBAL PROPERTY HAVE_LIBVNCCLIENT)
 if(HAVE_LIBVNCCLIENT)
 	find_package(LibVNCServer 0.9.8)
 endif()
 
-if(PipeWire_FOUND AND Qt5DBus_FOUND AND LibVNCServer_FOUND)
+if(PipeWire_FOUND AND Qt6DBus_FOUND AND LibVNCServer_FOUND)
 
 	build_veyon_plugin(pipewire-vnc-server
 		NAME PipeWireVncServer
@@ -24,7 +29,7 @@ if(PipeWire_FOUND AND Qt5DBus_FOUND AND LibVNCServer_FOUND)
 	target_link_libraries(pipewire-vnc-server
 		PRIVATE
 			PipeWire::PipeWire
-			Qt5::DBus
+			Qt6::DBus
 			LibVNC::LibVNCServer
 	)
 
