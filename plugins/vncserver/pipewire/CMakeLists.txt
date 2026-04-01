@@ -41,4 +41,24 @@ if(PipeWire_FOUND AND Qt6DBus_FOUND AND LibVNCServer_FOUND)
 		COMPONENT pipewire-vnc-server
 	)
 
+	if(VEYON_BUILD_LINUX)
+		# Install the XDG .desktop file so xdg-desktop-portal can resolve the
+		# well-known bus name "io.veyon.Veyon.Server" to the display name
+		# "Veyon Server" for the KDE permission dialog.
+		install(
+			FILES "${CMAKE_CURRENT_BINARY_DIR}/data/io.veyon.Veyon.Server.desktop"
+			DESTINATION "${CMAKE_INSTALL_DATADIR}/applications"
+			COMPONENT pipewire-vnc-server
+		)
+
+		# Install the D-Bus session service activation file so dbus-daemon (and
+		# xdg-desktop-portal) can associate the well-known bus name with the
+		# veyon-server binary and resolve the application identifier correctly.
+		install(
+			FILES "${CMAKE_CURRENT_BINARY_DIR}/data/io.veyon.Veyon.Server.service"
+			DESTINATION "${CMAKE_INSTALL_DATADIR}/dbus-1/services"
+			COMPONENT pipewire-vnc-server
+		)
+	endif()
+
 endif()

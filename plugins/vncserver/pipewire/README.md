@@ -44,6 +44,22 @@ This identifier is used by the XDG Desktop Portal permission store.
 A consistent, non-Flatpak identifier is needed so that permissions granted by
 an administrator survive service restarts.
 
+The identifier is registered in three complementary ways:
+
+1. **D-Bus well-known name** — `PortalSession` calls
+   `QDBusConnection::sessionBus().registerService("io.veyon.Veyon.Server")`
+   at start-up so the portal sees the correct app_id for every method call.
+
+2. **XDG `.desktop` file** — `io.veyon.Veyon.Server.desktop` is installed to
+   `/usr/share/applications/`.  The portal reads `Name=Veyon Server` from it
+   to display "Veyon Server" (instead of the terminal emulator or process name)
+   in the KDE permission dialog.
+
+3. **D-Bus session service file** — `io.veyon.Veyon.Server.service` is
+   installed to `/usr/share/dbus-1/services/`.  It maps the well-known bus name
+   to the `veyon-server` executable so dbus-daemon and xdg-desktop-portal can
+   follow the full `bus_name → desktop_file → display_name` chain.
+
 ## Pre-authorization for KDE Plasma 6.3+
 
 By default the portal will display a consent dialog the first time the Veyon
