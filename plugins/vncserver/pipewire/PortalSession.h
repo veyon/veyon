@@ -41,7 +41,7 @@
  *
  * The app_id used for permission-store lookups is "io.veyon.Veyon.Server".
  * KDE Plasma admins can pre-authorize unattended access via:
- *   flatpak permission-set kde-authorized remote-desktop io.veyon.Veyon.Server yes
+ *   flatpak permission-set kde-authorized screencast io.veyon.Veyon.Server yes
  * or directly through the DBus PermissionStore interface.
  */
 class PortalSession : public QObject

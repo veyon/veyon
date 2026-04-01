@@ -44,7 +44,7 @@ extern "C" {
  * The plugin uses the stable application identifier "io.veyon.Veyon.Server".
  * KDE Plasma 6.3+ administrators can pre-authorize unattended access with:
  *
- *   flatpak permission-set kde-authorized remote-desktop io.veyon.Veyon.Server yes
+ *   flatpak permission-set kde-authorized screencast io.veyon.Veyon.Server yes
  *
  * See plugins/vncserver/pipewire/README.md for full pre-authorization details.
  */
