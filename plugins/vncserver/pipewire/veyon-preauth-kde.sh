@@ -27,11 +27,13 @@
 #
 # Stable app_id used: io.veyon.Veyon.Server
 # Permission table  : kde-authorized
-# Permission type   : remote-desktop
+# Permission type   : screencast
 
 APP_ID="io.veyon.Veyon.Server"
 TABLE="kde-authorized"
-PERM_TYPE="remote-desktop"
+# KDE Plasma's PermissionStore uses "screencast" (not "remote-desktop") as the
+# permission ID for the kde-authorized screen-capture pre-authorization table.
+PERM_TYPE="screencast"
 
 set -e
 

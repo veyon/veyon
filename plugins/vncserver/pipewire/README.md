@@ -57,7 +57,7 @@ store table `kde-authorized`.
 ### Method 1: `flatpak permission-set` (recommended)
 
 ```bash
-flatpak permission-set kde-authorized remote-desktop io.veyon.Veyon.Server yes
+flatpak permission-set kde-authorized screencast io.veyon.Veyon.Server yes
 ```
 
 This command must be run **as the target user** (the user whose desktop is to
@@ -76,7 +76,7 @@ dbus-send \
   org.freedesktop.impl.portal.PermissionStore.SetPermission \
   string:kde-authorized \
   boolean:false \
-  string:remote-desktop \
+  string:screencast \
   string:io.veyon.Veyon.Server \
   array:string:yes
 ```
