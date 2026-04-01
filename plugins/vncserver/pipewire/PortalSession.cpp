@@ -186,11 +186,9 @@ void PortalSession::selectSources()
 	options[QStringLiteral("handle_token")] = token;
 	options[QStringLiteral("types")]        = QVariant::fromValue<uint>(1u); // 1=monitor
 	options[QStringLiteral("multiple")]     = false;
-	options[QStringLiteral("persist_mode")] = QVariant::fromValue<uint>(2u);
-	if (!m_restoreToken.isEmpty())
-	{
-		options[QStringLiteral("restore_token")] = m_restoreToken;
-	}
+	// ScreenCast interface only supports persist_mode=0; persist_mode=2 is
+	// only valid on the RemoteDesktop interface (used in selectDevices()).
+	options[QStringLiteral("persist_mode")] = QVariant::fromValue<uint>(0u);
 
 	auto call = screenCastIface.asyncCall(
 		QStringLiteral("SelectSources"),

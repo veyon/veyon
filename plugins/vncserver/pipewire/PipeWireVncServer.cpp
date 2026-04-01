@@ -29,6 +29,7 @@
 #include <VeyonCore.h>
 
 #include <QCoreApplication>
+#include <QThread>
 #include <QTimer>
 
 #include <cstring>
@@ -74,15 +75,19 @@ bool PipeWireVncServer::runServer(int serverPort, const Password& password)
 
 	m_serverRunning = true;
 
-	// Portal session manages the XDG Desktop Portal RemoteDesktop DBus interaction
-	m_portalSession = new PortalSession(this);
+	// Portal session manages the XDG Desktop Portal RemoteDesktop DBus interaction.
+	// Created with nullptr parent to avoid the cross-thread QObject parent warning:
+	// runServer() is called from the VncServer thread while PipeWireVncServer itself
+	// lives on a different thread. Ownership is transferred to cleanupVncServer().
+	m_portalSession = new PortalSession(nullptr);
 	connect(m_portalSession, &PortalSession::started, this, &PipeWireVncServer::onPortalStarted,
 	        Qt::QueuedConnection);
 	connect(m_portalSession, &PortalSession::failed,  this, &PipeWireVncServer::onPortalFailed,
 	        Qt::QueuedConnection);
 
-	// PipeWireFramebuffer consumes the PipeWire stream and feeds the rfbScreen
-	m_framebuffer = new PipeWireFramebuffer(this);
+	// PipeWireFramebuffer consumes the PipeWire stream and feeds the rfbScreen.
+	// Created with nullptr parent for the same cross-thread reason as m_portalSession.
+	m_framebuffer = new PipeWireFramebuffer(nullptr);
 	connect(m_framebuffer, &PipeWireFramebuffer::streamEnded,
 	        this, &PipeWireVncServer::onStreamEnded, Qt::QueuedConnection);
 
@@ -105,6 +110,8 @@ bool PipeWireVncServer::runServer(int serverPort, const Password& password)
 			vInfo() << "Restarting XDG Portal session";
 			m_portalSession->start();
 		}
+
+		QThread::msleep(10);
 	}
 
 	cleanupVncServer();
