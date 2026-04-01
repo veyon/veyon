@@ -109,6 +109,7 @@ private:
 	void setState(State s);
 
 	static QString makeRequestToken();
+	QString makeRequestPath(const QString& token) const;
 
 	QDBusInterface* m_portalInterface{nullptr};
 	QString m_sessionHandle;

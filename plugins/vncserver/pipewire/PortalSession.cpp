@@ -117,9 +117,15 @@ void PortalSession::createSession()
 {
 	setState(State::CreatingSession);
 
+	const QString token = makeRequestToken();
+
 	QVariantMap options;
-	options[QStringLiteral("handle_token")]         = makeRequestToken();
+	options[QStringLiteral("handle_token")]         = token;
 	options[QStringLiteral("session_handle_token")] = makeRequestToken();
+
+	// Subscribe to the Response signal BEFORE making the async call to avoid a
+	// race condition where the portal emits Response before we can connect.
+	connectResponseSignal(makeRequestPath(token));
 
 	auto call = m_portalInterface->asyncCall(QStringLiteral("CreateSession"), options);
 	auto* watcher = new QDBusPendingCallWatcher(call, this);
@@ -129,14 +135,10 @@ void PortalSession::createSession()
 		if (reply.isError())
 		{
 			vCritical() << "CreateSession call failed:" << reply.error().message();
+			disconnectResponseSignal();
 			setState(State::Failed);
 			Q_EMIT failed();
-			return;
 		}
-		// Subscribe to the Response signal using the request path returned by the
-		// portal.  This avoids pre-computing the path from the local D-Bus unique
-		// name (which may be empty when running as root on the user session bus).
-		connectResponseSignal(reply.value().path());
 	});
 }
 
@@ -144,8 +146,10 @@ void PortalSession::selectDevices()
 {
 	setState(State::SelectingDevices);
 
+	const QString token = makeRequestToken();
+
 	QVariantMap options;
-	options[QStringLiteral("handle_token")] = makeRequestToken();
+	options[QStringLiteral("handle_token")] = token;
 	// Request keyboard + pointer devices (1=keyboard, 2=pointer, 3=both)
 	options[QStringLiteral("types")] = QVariant::fromValue<uint>(3u);
 	// persist_mode 2 = persist until explicitly revoked
@@ -154,6 +158,8 @@ void PortalSession::selectDevices()
 	{
 		options[QStringLiteral("restore_token")] = m_restoreToken;
 	}
+
+	connectResponseSignal(makeRequestPath(token));
 
 	auto call = m_portalInterface->asyncCall(
 		QStringLiteral("SelectDevices"),
@@ -167,11 +173,10 @@ void PortalSession::selectDevices()
 		if (reply.isError())
 		{
 			vCritical() << "SelectDevices call failed:" << reply.error().message();
+			disconnectResponseSignal();
 			setState(State::Failed);
 			Q_EMIT failed();
-			return;
 		}
-		connectResponseSignal(reply.value().path());
 	});
 }
 
@@ -188,13 +193,17 @@ void PortalSession::selectSources()
 		QDBusConnection::sessionBus()
 	);
 
+	const QString token = makeRequestToken();
+
 	QVariantMap options;
-	options[QStringLiteral("handle_token")] = makeRequestToken();
+	options[QStringLiteral("handle_token")] = token;
 	options[QStringLiteral("types")]        = QVariant::fromValue<uint>(1u); // 1=monitor
 	options[QStringLiteral("multiple")]     = false;
 	// ScreenCast interface only supports persist_mode=0; persist_mode=2 is
 	// only valid on the RemoteDesktop interface (used in selectDevices()).
 	options[QStringLiteral("persist_mode")] = QVariant::fromValue<uint>(0u);
+
+	connectResponseSignal(makeRequestPath(token));
 
 	auto call = screenCastIface.asyncCall(
 		QStringLiteral("SelectSources"),
@@ -208,11 +217,10 @@ void PortalSession::selectSources()
 		if (reply.isError())
 		{
 			vCritical() << "SelectSources call failed:" << reply.error().message();
+			disconnectResponseSignal();
 			setState(State::Failed);
 			Q_EMIT failed();
-			return;
 		}
-		connectResponseSignal(reply.value().path());
 	});
 }
 
@@ -220,8 +228,12 @@ void PortalSession::startSession()
 {
 	setState(State::Starting);
 
+	const QString token = makeRequestToken();
+
 	QVariantMap options;
-	options[QStringLiteral("handle_token")] = makeRequestToken();
+	options[QStringLiteral("handle_token")] = token;
+
+	connectResponseSignal(makeRequestPath(token));
 
 	auto call = m_portalInterface->asyncCall(
 		QStringLiteral("Start"),
@@ -236,11 +248,10 @@ void PortalSession::startSession()
 		if (reply.isError())
 		{
 			vCritical() << "Start call failed:" << reply.error().message();
+			disconnectResponseSignal();
 			setState(State::Failed);
 			Q_EMIT failed();
-			return;
 		}
-		connectResponseSignal(reply.value().path());
 	});
 }
 
@@ -416,5 +427,16 @@ void PortalSession::setState(State s)
 QString PortalSession::makeRequestToken()
 {
 	return QStringLiteral("veyon_%1").arg(QRandomGenerator::global()->generate());
+}
+
+QString PortalSession::makeRequestPath(const QString& token) const
+{
+	// The portal Request object path is:
+	//   /org/freedesktop/portal/desktop/request/<sender>/<token>
+	// where <sender> is the caller's unique D-Bus name with dots and colons
+	// replaced by underscores (e.g. ':1.123' → '_1_123').
+	QString sender = QDBusConnection::sessionBus().baseService();
+	sender.replace('.', '_').replace(':', '_');
+	return QStringLiteral("/org/freedesktop/portal/desktop/request/") + sender + '/' + token;
 }
 
