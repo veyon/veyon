@@ -48,6 +48,8 @@ public:
 
 	bool applyConfiguration() override;
 
+	bool prepareSessionBusAccess() override;
+
 	void initNativeLoggingSystem( const QString& appName ) override;
 	void writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel ) override;
 
@@ -78,7 +80,6 @@ public:
 
 	using DBusInterfacePointer = QSharedPointer<QDBusInterface>;
 
-	static bool prepareSessionBusAccess();
 	static DBusInterfacePointer kdeSessionManager();
 	static DBusInterfacePointer gnomeSessionManager();
 	static DBusInterfacePointer mateSessionManager();

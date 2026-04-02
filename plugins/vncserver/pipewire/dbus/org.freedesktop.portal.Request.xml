@@ -1,0 +1,22 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
+  "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+  <!--
+    org.freedesktop.portal.Request:
+    XDG Desktop Portal request object – each portal method call creates a Request
+    object whose path is returned as "handle".  The Response signal fires once
+    the user interacts with the portal dialog (or the request completes).
+    Source: https://github.com/flatpak/xdg-desktop-portal/blob/main/data/org.freedesktop.portal.Request.xml
+  -->
+  <interface name="org.freedesktop.portal.Request">
+
+    <method name="Close"/>
+
+    <signal name="Response">
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out1" value="QVariantMap"/>
+      <arg type="u"     name="response"/>
+      <arg type="a{sv}" name="results"/>
+    </signal>
+
+  </interface>
+</node>

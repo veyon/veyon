@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.5
+Type=Application
+NoDisplay=true
+Exec=@CMAKE_INSTALL_PREFIX@/bin/veyon-server
+Name=Veyon Server
+Comment=Veyon remote desktop server
+Icon=veyon
+Categories=Qt;Education;Network;RemoteAccess;
