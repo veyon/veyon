@@ -171,9 +171,12 @@ systemctl --user enable --now veyon-server
   reduces subsequent prompts to zero after the first manual approval.
 
 * **Input forwarding**: The plugin requests both keyboard and pointer device
-  types via `SelectDevices`.  Actual input injection (sending key/mouse events
-  back through the portal) is not yet implemented and is documented as a
-  future enhancement.
+  types via `SelectDevices`.  Key presses and releases are forwarded using
+  `NotifyKeyboardKeysym`.  Pointer motion is forwarded as absolute coordinates
+  via `NotifyPointerMotionAbsolute`, button presses/releases via
+  `NotifyPointerButton`, and scroll wheel events via
+  `NotifyPointerAxisDiscrete`.  All input events are ignored until the portal
+  session is in the `Running` state.
 
 * **Multi-monitor**: `SelectSources` currently requests a single monitor.
   Multi-monitor support can be added by iterating stream node IDs returned by

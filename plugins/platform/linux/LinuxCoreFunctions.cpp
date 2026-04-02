@@ -50,7 +50,6 @@
 bool LinuxCoreFunctions::prepareSessionBusAccess()
 {
 	const auto uid = LinuxUserFunctions::userIdFromName(VeyonCore::platform().userFunctions().currentUser());
-	qCritical() << uid;
 	if (uid > 0)
 	{
 		if (seteuid(uid) == 0)

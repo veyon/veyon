@@ -1,5 +1,5 @@
 [Desktop Entry]
-Version=1.0
+Version=1.5
 Type=Application
 NoDisplay=true
 Exec=@CMAKE_INSTALL_PREFIX@/bin/veyon-server
