@@ -29,5 +29,38 @@
       <arg type="o"     name="handle"         direction="out"/>
     </method>
 
+    <method name="NotifyKeyboardKeysym">
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In1" value="QVariantMap"/>
+      <arg type="o"     name="session_handle" direction="in"/>
+      <arg type="a{sv}" name="options"        direction="in"/>
+      <arg type="i"     name="keysym"         direction="in"/>
+      <arg type="u"     name="state"          direction="in"/>
+    </method>
+
+    <method name="NotifyPointerMotionAbsolute">
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In1" value="QVariantMap"/>
+      <arg type="o"     name="session_handle" direction="in"/>
+      <arg type="a{sv}" name="options"        direction="in"/>
+      <arg type="u"     name="stream"         direction="in"/>
+      <arg type="d"     name="x"              direction="in"/>
+      <arg type="d"     name="y"              direction="in"/>
+    </method>
+
+    <method name="NotifyPointerButton">
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In1" value="QVariantMap"/>
+      <arg type="o"     name="session_handle" direction="in"/>
+      <arg type="a{sv}" name="options"        direction="in"/>
+      <arg type="i"     name="button"         direction="in"/>
+      <arg type="u"     name="state"          direction="in"/>
+    </method>
+
+    <method name="NotifyPointerAxisDiscrete">
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In1" value="QVariantMap"/>
+      <arg type="o"     name="session_handle" direction="in"/>
+      <arg type="a{sv}" name="options"        direction="in"/>
+      <arg type="u"     name="axis"           direction="in"/>
+      <arg type="i"     name="steps"          direction="in"/>
+    </method>
+
   </interface>
 </node>

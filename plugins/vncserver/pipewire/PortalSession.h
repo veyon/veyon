@@ -45,9 +45,7 @@
  * signal and are dispatched to the appropriate handler.
  *
  * The app_id used for permission-store lookups is "io.veyon.Veyon.Server".
- * This name is registered as a well-known D-Bus service name on construction so
- * that xdg-desktop-portal can identify the process and match the kde-authorized
- * PermissionStore entry.  KDE Plasma admins can pre-authorize unattended access via:
+ * KDE Plasma admins can pre-authorize unattended access via:
  *   flatpak permission-set kde-authorized screencast io.veyon.Veyon.Server yes
  * or directly through the DBus PermissionStore interface.
  */
@@ -94,6 +92,32 @@ public:
 	 */
 	quint32 pipeWireNodeId() const { return m_pipeWireNodeId; }
 
+	QDBusObjectPath sessionHandle() const
+	{
+		return QDBusObjectPath{m_sessionHandle};
+	}
+
+	/**
+	 * @brief Forward a keyboard keysym event from a VNC client to the portal session.
+	 *
+	 * The @p keySym value is the X11 keysym received from the VNC client (rfbKeySym).
+	 * No-op when the session is not in the Running state.
+	 */
+	void notifyKeyboardKeysym(quint32 keySym, bool down);
+
+	/**
+	 * @brief Forward a pointer (mouse) event from a VNC client to the portal session.
+	 *
+	 * Sends NotifyPointerMotionAbsolute when the position changes and
+	 * NotifyPointerButton / NotifyPointerAxisDiscrete when button state changes.
+	 * No-op when the session is not in the Running state.
+	 *
+	 * @p buttonMask is the LibVNCServer button bitmask (bit 0 = left, 1 = middle,
+	 * 2 = right, 3 = scroll-up, 4 = scroll-down, 5 = scroll-left, 6 = scroll-right,
+	 * 7 = side, 8 = extra).
+	 */
+	void notifyPointer(int buttonMask, int x, int y);
+
 Q_SIGNALS:
 	void started();
 	void failed();
@@ -113,7 +137,7 @@ private:
 
 	void setState(State s);
 
-	static QString makeRequestToken();
+	QString makeRequestToken() const;
 	QString senderToken() const;
 	QString makeRequestPath(const QString& token) const;
 
@@ -121,10 +145,16 @@ private:
 	OrgFreedesktopPortalRemoteDesktopInterface* m_remoteDesktop{nullptr};
 	OrgFreedesktopPortalScreenCastInterface* m_screenCast{nullptr};
 	OrgFreedesktopPortalRequestInterface* m_requestInterface{nullptr};
+
 	QString m_sessionHandle;
 	QString m_restoreToken;
 	State m_state{State::Idle};
 	int m_pipewireFd{-1};
 	quint32 m_pipeWireNodeId{0};
 	QString m_connectedRequestPath;
+
+	// Input event forwarding state (pointer)
+	int m_lastButtonMask{0};
+	double m_lastPointerX{0.0};
+	double m_lastPointerY{0.0};
 };

@@ -51,28 +51,24 @@ if command -v flatpak >/dev/null 2>&1; then
     exit 0
 fi
 
-# Method 2: call the DBus PermissionStore directly via busctl (from systemd)
-# busctl uses an explicit D-Bus type-signature syntax that avoids the array
-# formatting ambiguities that affect some versions of dbus-send.
-echo "flatpak CLI not found; using busctl to call DBus PermissionStore directly ..."
+# Method 2: call the DBus PermissionStore directly
+echo "flatpak CLI not found; using DBus PermissionStore directly ..."
 
-if ! command -v busctl >/dev/null 2>&1; then
-    echo "ERROR: neither 'flatpak' nor 'busctl' found. Cannot set permission." >&2
+if ! command -v dbus-send >/dev/null 2>&1; then
+    echo "ERROR: neither 'flatpak' nor 'dbus-send' found. Cannot set permission." >&2
     exit 1
 fi
 
-# SetPermission signature: sbssas
-#   s  = table
-#   b  = create (false = do not create the table if it does not exist)
-#   s  = id (permission type)
-#   s  = app (application identifier)
-#   as = data (1-element array: "yes")
-busctl call --user \
-    org.freedesktop.impl.portal.PermissionStore \
+dbus-send \
+    --session \
+    --print-reply \
+    --dest=org.freedesktop.impl.portal.PermissionStore \
     /org/freedesktop/impl/portal/PermissionStore \
-    org.freedesktop.impl.portal.PermissionStore \
-    SetPermission \
-    sbssas \
-    "${TABLE}" false "${PERM_TYPE}" "${APP_ID}" 1 yes
+    org.freedesktop.impl.portal.PermissionStore.SetPermission \
+    "string:${TABLE}" \
+    "boolean:false" \
+    "string:${PERM_TYPE}" \
+    "string:${APP_ID}" \
+    "array:string:yes"
 
 echo "Done."

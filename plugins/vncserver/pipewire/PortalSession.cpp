@@ -24,6 +24,8 @@
 
 #include "PortalSession.h"
 
+#include <linux/input.h>
+
 #include <QDBusArgument>
 #include <QDBusObjectPath>
 #include <QDBusPendingCallWatcher>
@@ -31,7 +33,8 @@
 #include <QDBusUnixFileDescriptor>
 #include <QRandomGenerator>
 
-#include <VeyonCore.h>
+#include "VeyonCore.h"
+#include "PlatformCoreFunctions.h"
 
 // XDG Desktop Portal service and interface names
 static const auto PortalService    = QStringLiteral("org.freedesktop.portal.Desktop");
@@ -42,7 +45,7 @@ static const auto PortalObjectPath = QStringLiteral("/org/freedesktop/portal/des
 //     identify this process when doing kde-authorized PermissionStore lookups)
 //   - KDE pre-authorization: flatpak permission-set kde-authorized screencast
 //                            io.veyon.Veyon.Server yes
-static const auto AppId          = QStringLiteral("io.veyon.Veyon.Server");
+static const auto AppId = QStringLiteral("io.veyon.Veyon.Server");
 static const auto ConnectionName = QStringLiteral("PipeWirePortalSession");
 
 PortalSession::PortalSession(QObject* parent)
@@ -56,7 +59,7 @@ PortalSession::PortalSession(QObject* parent)
 	if (!m_sessionBus.registerService(AppId))
 	{
 		vWarning() << "Could not register D-Bus service name" << AppId
-		           << ":" << m_sessionBus.lastError().message();
+				   << ":" << m_sessionBus.lastError().message();
 	}
 
 	m_remoteDesktop = new OrgFreedesktopPortalRemoteDesktopInterface(
@@ -69,7 +72,7 @@ PortalSession::~PortalSession()
 {
 	close();
 	m_sessionBus.unregisterService(AppId);
-	QDBusConnection::disconnectFromBus(ConnectionName);
+	m_sessionBus.disconnectFromBus(ConnectionName);
 }
 
 void PortalSession::start()
@@ -108,9 +111,10 @@ void PortalSession::createSession()
 	setState(State::CreatingSession);
 
 	const QString token = makeRequestToken();
+	const QString requestPath = makeRequestPath(token);
 
 	QVariantMap options;
-	options[QStringLiteral("handle_token")]         = token;
+	options[QStringLiteral("handle_token")] = token;
 	options[QStringLiteral("session_handle_token")] = makeRequestToken();
 
 	// Subscribe to the Response signal BEFORE making the async call to avoid a
@@ -137,6 +141,7 @@ void PortalSession::selectDevices()
 	setState(State::SelectingDevices);
 
 	const QString token = makeRequestToken();
+	const QString requestPath = makeRequestPath(token);
 
 	QVariantMap options;
 	options[QStringLiteral("handle_token")] = token;
@@ -268,13 +273,14 @@ void PortalSession::connectResponseSignal(const QString& requestPath)
 		PortalService, requestPath, m_sessionBus, this);
 
 	connect(m_requestInterface, &OrgFreedesktopPortalRequestInterface::Response,
-	        this, &PortalSession::onPortalResponse);
+			this, &PortalSession::onPortalResponse);
 }
 
 void PortalSession::disconnectResponseSignal()
 {
 	delete m_requestInterface;
 	m_requestInterface = nullptr;
+
 	m_connectedRequestPath.clear();
 }
 
@@ -285,7 +291,7 @@ void PortalSession::onPortalResponse(uint response, const QVariantMap& results)
 	if (response != 0)
 	{
 		vWarning() << "Portal request in state" << static_cast<int>(m_state)
-		           << "denied/cancelled (response=" << response << ")";
+				   << "denied/cancelled (response=" << response << ")";
 		setState(State::Failed);
 		Q_EMIT failed();
 		return;
@@ -305,8 +311,8 @@ void PortalSession::onPortalResponse(uint response, const QVariantMap& results)
 		// session_handle can arrive as QDBusObjectPath or as a plain string
 		QDBusObjectPath sessionPath = results.value(QStringLiteral("session_handle")).value<QDBusObjectPath>();
 		m_sessionHandle = sessionPath.path().isEmpty()
-		                  ? results.value(QStringLiteral("session_handle")).toString()
-		                  : sessionPath.path();
+						  ? results.value(QStringLiteral("session_handle")).toString()
+						  : sessionPath.path();
 
 		if (m_sessionHandle.isEmpty())
 		{
@@ -365,7 +371,7 @@ void PortalSession::setState(State s)
 	m_state = s;
 }
 
-QString PortalSession::makeRequestToken()
+QString PortalSession::makeRequestToken() const
 {
 	return QStringLiteral("veyon_%1").arg(QRandomGenerator::global()->generate());
 }
@@ -377,9 +383,103 @@ QString PortalSession::senderToken() const
 
 QString PortalSession::makeRequestPath(const QString& token) const
 {
-	// The portal Request object path is:
-	//   /org/freedesktop/portal/desktop/request/<sender>/<token>
-	// where <sender> is the caller's unique D-Bus name with dots and colons
-	// replaced by underscores (e.g. ':1.123' → '_1_123').
 	return QStringLiteral("/org/freedesktop/portal/desktop/request/%1/%2").arg(senderToken(), token);
 }
+
+// ---------------------------------------------------------------------------
+// Input event forwarding
+// ---------------------------------------------------------------------------
+
+void PortalSession::notifyKeyboardKeysym(quint32 keySym, bool down)
+{
+	if (m_state != State::Running)
+	{
+		return;
+	}
+
+	// Portal state: 0 = released, 1 = pressed
+	m_remoteDesktop->NotifyKeyboardKeysym(
+		QDBusObjectPath(m_sessionHandle),
+		QVariantMap{},
+		static_cast<int>(keySym),
+		down ? 1u : 0u);
+}
+
+void PortalSession::notifyPointer(int buttonMask, int x, int y)
+{
+	if (m_state != State::Running || m_pipeWireNodeId == 0)
+	{
+		return;
+	}
+
+	const auto sessionPath = QDBusObjectPath(m_sessionHandle);
+	const double dx = static_cast<double>(x);
+	const double dy = static_cast<double>(y);
+
+	// Send motion event when the position changed
+	if (dx != m_lastPointerX || dy != m_lastPointerY)
+	{
+		m_remoteDesktop->NotifyPointerMotionAbsolute(
+			sessionPath, QVariantMap{}, m_pipeWireNodeId, dx, dy);
+		m_lastPointerX = dx;
+		m_lastPointerY = dy;
+	}
+
+	// Send button/scroll events for every bit that changed
+	if (buttonMask != m_lastButtonMask)
+	{
+		// Linux evdev button codes matching VNC button mask bits 0–8
+		// Bits 3-6 are scroll directions (no evdev button code — use axis)
+		static const int evdevButtons[] = {
+			BTN_LEFT,   // bit 0
+			BTN_MIDDLE, // bit 1
+			BTN_RIGHT,  // bit 2
+			0,          // bit 3 – scroll up   (axis event)
+			0,          // bit 4 – scroll down (axis event)
+			0,          // bit 5 – scroll left (axis event)
+			0,          // bit 6 – scroll right (axis event)
+			BTN_SIDE,   // bit 7
+			BTN_EXTRA,  // bit 8
+		};
+		static constexpr int numButtons = static_cast<int>(sizeof(evdevButtons) / sizeof(evdevButtons[0]));
+
+		for (int i = 0; i < numButtons; ++i)
+		{
+			const int prev    = (m_lastButtonMask >> i) & 1;
+			const int current = (buttonMask >> i) & 1;
+			if (prev == current)
+			{
+				continue;
+			}
+
+			if (evdevButtons[i] != 0)
+			{
+				// Regular button press/release (0=released, 1=pressed)
+				m_remoteDesktop->NotifyPointerButton(
+					sessionPath, QVariantMap{}, evdevButtons[i], static_cast<uint>(current));
+			}
+			else if (current != 0)
+			{
+				// Scroll axis: only fire on press (the release has no discrete step)
+				int axis  = 0; // 0 = vertical
+				int steps = 0;
+				switch (i)
+				{
+				case 3: axis = 0; steps = -1; break; // scroll up
+				case 4: axis = 0; steps =  1; break; // scroll down
+				case 5: axis = 1; steps = -1; break; // scroll left
+				case 6: axis = 1; steps =  1; break; // scroll right
+				default: break;
+				}
+				if (steps != 0)
+				{
+					m_remoteDesktop->NotifyPointerAxisDiscrete(
+						sessionPath, QVariantMap{}, static_cast<uint>(axis), steps);
+				}
+			}
+		}
+
+		m_lastButtonMask = buttonMask;
+	}
+}
+

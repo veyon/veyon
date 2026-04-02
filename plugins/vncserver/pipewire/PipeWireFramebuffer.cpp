@@ -24,7 +24,7 @@
 
 #include "PipeWireFramebuffer.h"
 
-#include <VeyonCore.h>
+#include "VeyonCore.h"
 
 #include <cstring>
 
@@ -212,7 +212,7 @@ void PipeWireFramebuffer::close()
 // ---------------------------------------------------------------------------
 
 void PipeWireFramebuffer::onCoreError(void* data, uint32_t /*id*/, int /*seq*/,
-                                       int res, const char* message)
+									   int res, const char* message)
 {
 	auto* self = static_cast<PipeWireFramebuffer*>(data);
 	vCritical() << "PipeWire core error" << res << (message ? message : "");
@@ -225,9 +225,9 @@ void PipeWireFramebuffer::onCoreError(void* data, uint32_t /*id*/, int /*seq*/,
 }
 
 void PipeWireFramebuffer::onStreamStateChanged(void* data,
-                                                pw_stream_state /*old*/,
-                                                pw_stream_state state,
-                                                const char* error)
+												pw_stream_state /*old*/,
+												pw_stream_state state,
+												const char* error)
 {
 	auto* self = static_cast<PipeWireFramebuffer*>(data);
 	vDebug() << "PipeWire stream state:" << pw_stream_state_as_string(state);
@@ -248,7 +248,7 @@ void PipeWireFramebuffer::onStreamStateChanged(void* data,
 }
 
 void PipeWireFramebuffer::onStreamParamChanged(void* data, uint32_t id,
-                                                const spa_pod* param)
+												const spa_pod* param)
 {
 	auto* self = static_cast<PipeWireFramebuffer*>(data);
 
@@ -272,7 +272,7 @@ void PipeWireFramebuffer::onStreamParamChanged(void* data, uint32_t id,
 	}
 
 	vDebug() << "PipeWire stream format:" << width << "x" << height
-	         << "format=" << videoInfo.format;
+			 << "format=" << videoInfo.format;
 
 	self->m_frameSize = QSize(width, height);
 
@@ -354,7 +354,7 @@ void PipeWireFramebuffer::processFrame()
 	for (int y = 0; y < height; ++y)
 	{
 		std::memcpy(dst + y * dstStride, src + y * srcStride,
-		            static_cast<size_t>(dstStride));
+					static_cast<size_t>(dstStride));
 	}
 
 	rfbMarkRectAsModified(m_rfbScreen, 0, 0, width, height);

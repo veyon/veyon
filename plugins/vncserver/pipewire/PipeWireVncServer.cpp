@@ -26,7 +26,8 @@
 #include "PipeWireFramebuffer.h"
 #include "PortalSession.h"
 
-#include <VeyonCore.h>
+#include "VeyonCore.h"
+#include "PlatformCoreFunctions.h"
 
 #include <QCoreApplication>
 #include <QThread>
@@ -53,6 +54,7 @@ PipeWireVncServer::~PipeWireVncServer()
 
 void PipeWireVncServer::prepareServer()
 {
+	VeyonCore::platform().coreFunctions().prepareSessionBusAccess();
 }
 
 bool PipeWireVncServer::runServer(int serverPort, const Password& password)
@@ -81,15 +83,15 @@ bool PipeWireVncServer::runServer(int serverPort, const Password& password)
 	// lives on a different thread. Ownership is transferred to cleanupVncServer().
 	m_portalSession = new PortalSession(nullptr);
 	connect(m_portalSession, &PortalSession::started, this, &PipeWireVncServer::onPortalStarted,
-	        Qt::QueuedConnection);
+			Qt::QueuedConnection);
 	connect(m_portalSession, &PortalSession::failed,  this, &PipeWireVncServer::onPortalFailed,
-	        Qt::QueuedConnection);
+			Qt::QueuedConnection);
 
 	// PipeWireFramebuffer consumes the PipeWire stream and feeds the rfbScreen.
 	// Created with nullptr parent for the same cross-thread reason as m_portalSession.
 	m_framebuffer = new PipeWireFramebuffer(nullptr);
 	connect(m_framebuffer, &PipeWireFramebuffer::streamEnded,
-	        this, &PipeWireVncServer::onStreamEnded, Qt::QueuedConnection);
+			this, &PipeWireVncServer::onStreamEnded, Qt::QueuedConnection);
 
 	// Start the portal flow asynchronously
 	m_portalSession->start();
@@ -202,6 +204,11 @@ bool PipeWireVncServer::initVncServer(int serverPort, const Password& password)
 	m_rfbScreen->deferUpdateTime     = 5;
 	m_rfbScreen->cursor              = nullptr;
 
+	// Store a back-pointer so the static C callbacks can access this instance.
+	m_rfbScreen->screenData = this;
+	m_rfbScreen->kbdAddEvent = &PipeWireVncServer::onKbdAddEvent;
+	m_rfbScreen->ptrAddEvent = &PipeWireVncServer::onPtrAddEvent;
+
 	rfbInitServer(m_rfbScreen);
 	rfbMarkRectAsModified(m_rfbScreen, 0, 0, DefaultWidth, DefaultHeight);
 
@@ -258,4 +265,26 @@ void PipeWireVncServer::rfbLogDebug(const char* format, ...)
 
 void PipeWireVncServer::rfbLogNone(const char* /*format*/, ...)
 {
+}
+
+// ---------------------------------------------------------------------------
+// LibVNCServer input event callbacks
+// ---------------------------------------------------------------------------
+
+void PipeWireVncServer::onKbdAddEvent(rfbBool down, rfbKeySym keySym, rfbClientRec* cl)
+{
+	auto* self = static_cast<PipeWireVncServer*>(cl->screen->screenData);
+	if (self->m_portalSession)
+	{
+		self->m_portalSession->notifyKeyboardKeysym(static_cast<quint32>(keySym), down != 0);
+	}
+}
+
+void PipeWireVncServer::onPtrAddEvent(int buttonMask, int x, int y, rfbClientRec* cl)
+{
+	auto* self = static_cast<PipeWireVncServer*>(cl->screen->screenData);
+	if (self->m_portalSession)
+	{
+		self->m_portalSession->notifyPointer(buttonMask, x, y);
+	}
 }

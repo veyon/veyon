@@ -42,8 +42,6 @@ extern "C" {
  * clients can connect and receive screen updates.
  *
  * The plugin uses the stable application identifier "io.veyon.Veyon.Server".
- * This name is registered as a well-known D-Bus service name at runtime so that
- * xdg-desktop-portal can identify the process for KDE pre-authorization.
  * KDE Plasma 6.3+ administrators can pre-authorize unattended access with:
  *
  *   flatpak permission-set kde-authorized screencast io.veyon.Veyon.Server yes
@@ -130,6 +128,10 @@ private:
 
 	static void rfbLogDebug(const char* format, ...);
 	static void rfbLogNone(const char* format, ...);
+
+	// LibVNCServer input event callbacks (C linkage function pointers)
+	static void onKbdAddEvent(rfbBool down, rfbKeySym keySym, rfbClientRec* cl);
+	static void onPtrAddEvent(int buttonMask, int x, int y, rfbClientRec* cl);
 
 	PortalSession*       m_portalSession{nullptr};
 	PipeWireFramebuffer* m_framebuffer{nullptr};
