@@ -47,6 +47,28 @@
 #include <X11/extensions/dpms.h>
 
 
+bool LinuxCoreFunctions::prepareSessionBusAccess()
+{
+	const auto uid = LinuxUserFunctions::userIdFromName(VeyonCore::platform().userFunctions().currentUser());
+	if (uid > 0)
+	{
+		if (seteuid(uid) == 0)
+		{
+			return true;
+		}
+
+		vWarning() << "could not set effective UID - DBus calls on the session bus likely will fail";
+	}
+	else
+	{
+		vWarning() << "could not determine UID of current user - DBus calls on the session bus likely will fail";
+	}
+
+	return false;
+}
+
+
+
 bool LinuxCoreFunctions::applyConfiguration()
 {
 	return true;
@@ -322,28 +344,6 @@ QString LinuxCoreFunctions::getApplicationName(ProcessId processId) const
 	}
 
 	return {};
-}
-
-
-
-bool LinuxCoreFunctions::prepareSessionBusAccess()
-{
-	const auto uid = LinuxUserFunctions::userIdFromName( VeyonCore::platform().userFunctions().currentUser() );
-	if( uid > 0 )
-	{
-		if( seteuid(uid) == 0 )
-		{
-			return true;
-		}
-
-		vWarning() << "could not set effective UID - DBus calls on the session bus likely will fail";
-	}
-	else
-	{
-		vWarning() << "could not determine UID of current user - DBus calls on the session bus likely will fail";
-	}
-
-	return false;
 }
 
 
