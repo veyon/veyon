@@ -29,6 +29,7 @@
 #include <cstring>
 
 extern "C" {
+#include <spa/buffer/meta.h>
 #include <spa/pod/builder.h>
 }
 
@@ -276,14 +277,19 @@ void PipeWireFramebuffer::onStreamParamChanged(void* data, uint32_t id,
 
 	self->m_frameSize = QSize(width, height);
 
-	// Accept the negotiated format by calling pw_stream_update_params with buffer params
+	// Accept the negotiated format by calling pw_stream_update_params with buffer
+	// params and a request for SPA_META_VideoDamage so the compositor can tell us
+	// which regions actually changed on each frame.
 	static constexpr int ParamBufSize = 1024;
 	uint8_t paramBuffer[ParamBufSize];
 	spa_pod_builder builder;
 	spa_pod_builder_init(&builder, paramBuffer, sizeof(paramBuffer));
 
-	const spa_pod* bufferParams[1];
-	bufferParams[0] = static_cast<const spa_pod*>(spa_pod_builder_add_object(
+	// Allow up to MaxDamageRects damage rectangles per frame.
+	static constexpr int MaxDamageRects = 16;
+
+	const spa_pod* params[2];
+	params[0] = static_cast<const spa_pod*>(spa_pod_builder_add_object(
 		&builder,
 		SPA_TYPE_OBJECT_ParamBuffers, SPA_PARAM_Buffers,
 		SPA_PARAM_BUFFERS_buffers,  SPA_POD_CHOICE_RANGE_Int(2, 1, 32),
@@ -292,8 +298,14 @@ void PipeWireFramebuffer::onStreamParamChanged(void* data, uint32_t id,
 		SPA_PARAM_BUFFERS_stride,   SPA_POD_Int(width * 4),
 		SPA_PARAM_BUFFERS_dataType, SPA_POD_CHOICE_FLAGS_Int(1 << SPA_DATA_MemPtr)
 	));
+	params[1] = static_cast<const spa_pod*>(spa_pod_builder_add_object(
+		&builder,
+		SPA_TYPE_OBJECT_ParamMeta, SPA_PARAM_Meta,
+		SPA_PARAM_META_type, SPA_POD_Id(SPA_META_VideoDamage),
+		SPA_PARAM_META_size, SPA_POD_Int(static_cast<int>(sizeof(spa_meta_region)) * MaxDamageRects)
+	));
 
-	pw_stream_update_params(self->m_stream, bufferParams, 1);
+	pw_stream_update_params(self->m_stream, params, 2);
 }
 
 void PipeWireFramebuffer::onStreamProcess(void* data)
@@ -335,7 +347,8 @@ void PipeWireFramebuffer::processFrame()
 	}
 
 	// Resize rfbScreen framebuffer if the stream dimensions differ
-	if (m_rfbScreen->width != width || m_rfbScreen->height != height)
+	const bool sizeChanged = (m_rfbScreen->width != width || m_rfbScreen->height != height);
+	if (sizeChanged)
 	{
 		const int newSize = width * height * 4;
 		char* newBuf = new char[newSize];
@@ -357,7 +370,32 @@ void PipeWireFramebuffer::processFrame()
 					static_cast<size_t>(dstStride));
 	}
 
-	rfbMarkRectAsModified(m_rfbScreen, 0, 0, width, height);
+	// Notify VNC clients about the changed regions.
+	// Try to use SPA_META_VideoDamage for precise dirty-rectangle tracking; fall
+	// back to marking the full frame when the compositor does not provide damage
+	// metadata or when the framebuffer was just resized.
+	const auto* damage = static_cast<const spa_meta_region*>(
+		spa_buffer_find_meta_data(buf, SPA_META_VideoDamage, sizeof(spa_meta_region)));
+
+	if (damage && spa_meta_region_is_valid(damage) && !sizeChanged)
+	{
+		for (const spa_meta_region* r = damage; spa_meta_region_is_valid(r); ++r)
+		{
+			// Clamp to framebuffer bounds
+			const int x1 = qBound(0, static_cast<int>(r->region.position.x), width);
+			const int y1 = qBound(0, static_cast<int>(r->region.position.y), height);
+			const int x2 = qBound(0, x1 + static_cast<int>(r->region.size.width), width);
+			const int y2 = qBound(0, y1 + static_cast<int>(r->region.size.height), height);
+			if (x2 > x1 && y2 > y1)
+			{
+				rfbMarkRectAsModified(m_rfbScreen, x1, y1, x2, y2);
+			}
+		}
+	}
+	else
+	{
+		rfbMarkRectAsModified(m_rfbScreen, 0, 0, width, height);
+	}
 
 	pw_stream_queue_buffer(m_stream, pwBuf);
 }

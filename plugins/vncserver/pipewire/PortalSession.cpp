@@ -22,8 +22,6 @@
  *
  */
 
-#include "PortalSession.h"
-
 #include <linux/input.h>
 
 #include <QDBusArgument>
@@ -33,8 +31,8 @@
 #include <QDBusUnixFileDescriptor>
 #include <QRandomGenerator>
 
+#include "PortalSession.h"
 #include "VeyonCore.h"
-#include "PlatformCoreFunctions.h"
 
 // XDG Desktop Portal service and interface names
 static const auto PortalService    = QStringLiteral("org.freedesktop.portal.Desktop");
@@ -62,11 +60,11 @@ PortalSession::PortalSession(QObject* parent)
 				   << ":" << m_sessionBus.lastError().message();
 	}
 
-	m_remoteDesktop = new OrgFreedesktopPortalRemoteDesktopInterface(
-		PortalService, PortalObjectPath, m_sessionBus, this);
-	m_screenCast = new OrgFreedesktopPortalScreenCastInterface(
-		PortalService, PortalObjectPath, m_sessionBus, this);
+	m_remoteDesktop = new OrgFreedesktopPortalRemoteDesktopInterface(PortalService, PortalObjectPath, m_sessionBus, this);
+	m_screenCast = new OrgFreedesktopPortalScreenCastInterface(PortalService, PortalObjectPath, m_sessionBus, this);
 }
+
+
 
 PortalSession::~PortalSession()
 {
@@ -74,6 +72,8 @@ PortalSession::~PortalSession()
 	m_sessionBus.unregisterService(AppId);
 	m_sessionBus.disconnectFromBus(ConnectionName);
 }
+
+
 
 void PortalSession::start()
 {
@@ -86,6 +86,8 @@ void PortalSession::start()
 	m_sessionHandle.clear();
 	createSession();
 }
+
+
 
 void PortalSession::close()
 {
@@ -102,16 +104,13 @@ void PortalSession::close()
 	setState(State::Idle);
 }
 
-// ---------------------------------------------------------------------------
-// Portal flow steps
-// ---------------------------------------------------------------------------
+
 
 void PortalSession::createSession()
 {
 	setState(State::CreatingSession);
 
 	const QString token = makeRequestToken();
-	const QString requestPath = makeRequestPath(token);
 
 	QVariantMap options;
 	options[QStringLiteral("handle_token")] = token;
@@ -136,12 +135,13 @@ void PortalSession::createSession()
 	});
 }
 
+
+
 void PortalSession::selectDevices()
 {
 	setState(State::SelectingDevices);
 
 	const QString token = makeRequestToken();
-	const QString requestPath = makeRequestPath(token);
 
 	QVariantMap options;
 	options[QStringLiteral("handle_token")] = token;
@@ -157,8 +157,7 @@ void PortalSession::selectDevices()
 	connectResponseSignal(makeRequestPath(token));
 
 	auto call = m_remoteDesktop->SelectDevices(QDBusObjectPath(m_sessionHandle), options);
-	auto* watcher = new QDBusPendingCallWatcher(call, this);
-	connect(watcher, &QDBusPendingCallWatcher::finished, this, [this](QDBusPendingCallWatcher* w) {
+	connect(new QDBusPendingCallWatcher(call, this), &QDBusPendingCallWatcher::finished, this, [this](QDBusPendingCallWatcher* w) {
 		w->deleteLater();
 		QDBusPendingReply<QDBusObjectPath> reply = *w;
 		if (reply.isError())
@@ -170,6 +169,8 @@ void PortalSession::selectDevices()
 		}
 	});
 }
+
+
 
 void PortalSession::selectSources()
 {
@@ -202,6 +203,8 @@ void PortalSession::selectSources()
 	});
 }
 
+
+
 void PortalSession::startSession()
 {
 	setState(State::Starting);
@@ -232,6 +235,8 @@ void PortalSession::startSession()
 	});
 }
 
+
+
 void PortalSession::openPipeWireRemote()
 {
 	auto pending = m_screenCast->OpenPipeWireRemote(
@@ -260,9 +265,7 @@ void PortalSession::openPipeWireRemote()
 	Q_EMIT started();
 }
 
-// ---------------------------------------------------------------------------
-// Response signal handling
-// ---------------------------------------------------------------------------
+
 
 void PortalSession::connectResponseSignal(const QString& requestPath)
 {
@@ -276,13 +279,16 @@ void PortalSession::connectResponseSignal(const QString& requestPath)
 			this, &PortalSession::onPortalResponse);
 }
 
+
+
 void PortalSession::disconnectResponseSignal()
 {
 	delete m_requestInterface;
 	m_requestInterface = nullptr;
-
 	m_connectedRequestPath.clear();
 }
+
+
 
 void PortalSession::onPortalResponse(uint response, const QVariantMap& results)
 {

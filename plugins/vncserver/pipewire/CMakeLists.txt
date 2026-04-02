@@ -54,6 +54,17 @@ if(PipeWire_FOUND AND Qt${QT_MAJOR_VERSION}DBus_FOUND AND LibVNCServer_FOUND)
 		COMPONENT pipewire-vnc-server
 	)
 
+	configure_file(
+		"${CMAKE_CURRENT_SOURCE_DIR}/data/io.veyon.Veyon.Server.desktop.in"
+		"${CMAKE_CURRENT_BINARY_DIR}/data/io.veyon.Veyon.Server.desktop"
+		@ONLY
+	)
+	configure_file(
+		"${CMAKE_CURRENT_SOURCE_DIR}/data/io.veyon.Veyon.Server.service.in"
+		"${CMAKE_CURRENT_BINARY_DIR}/data/io.veyon.Veyon.Server.service"
+		@ONLY
+	)
+
 	# Install the XDG .desktop file so xdg-desktop-portal can resolve the
 	# well-known bus name "io.veyon.Veyon.Server" to the display name
 	# "Veyon Server" for the KDE permission dialog.

@@ -92,11 +92,6 @@ public:
 	 */
 	quint32 pipeWireNodeId() const { return m_pipeWireNodeId; }
 
-	QDBusObjectPath sessionHandle() const
-	{
-		return QDBusObjectPath{m_sessionHandle};
-	}
-
 	/**
 	 * @brief Forward a keyboard keysym event from a VNC client to the portal session.
 	 *
@@ -153,8 +148,8 @@ private:
 	quint32 m_pipeWireNodeId{0};
 	QString m_connectedRequestPath;
 
-	// Input event forwarding state (pointer)
 	int m_lastButtonMask{0};
 	double m_lastPointerX{0.0};
 	double m_lastPointerY{0.0};
+
 };
