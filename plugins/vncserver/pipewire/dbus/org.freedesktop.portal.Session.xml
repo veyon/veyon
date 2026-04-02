@@ -1,0 +1,15 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
+  "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+  <!--
+    org.freedesktop.portal.Session:
+    XDG Desktop Portal session object – represents an open portal session.
+    Close() terminates the session and releases associated resources.
+    Source: https://github.com/flatpak/xdg-desktop-portal/blob/main/data/org.freedesktop.portal.Session.xml
+  -->
+  <interface name="org.freedesktop.portal.Session">
+
+    <method name="Close"/>
+
+  </interface>
+</node>
