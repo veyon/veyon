@@ -1,0 +1,33 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
+  "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+  <!--
+    org.freedesktop.portal.RemoteDesktop:
+    XDG Desktop Portal interface for remote desktop (keyboard/pointer) access.
+    Source: https://github.com/flatpak/xdg-desktop-portal/blob/main/data/org.freedesktop.portal.RemoteDesktop.xml
+  -->
+  <interface name="org.freedesktop.portal.RemoteDesktop">
+
+    <method name="CreateSession">
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In0" value="QVariantMap"/>
+      <arg type="a{sv}" name="options" direction="in"/>
+      <arg type="o"     name="handle"  direction="out"/>
+    </method>
+
+    <method name="SelectDevices">
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In1" value="QVariantMap"/>
+      <arg type="o"     name="session_handle" direction="in"/>
+      <arg type="a{sv}" name="options"        direction="in"/>
+      <arg type="o"     name="handle"         direction="out"/>
+    </method>
+
+    <method name="Start">
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In2" value="QVariantMap"/>
+      <arg type="o"     name="session_handle" direction="in"/>
+      <arg type="s"     name="parent_window"  direction="in"/>
+      <arg type="a{sv}" name="options"        direction="in"/>
+      <arg type="o"     name="handle"         direction="out"/>
+    </method>
+
+  </interface>
+</node>

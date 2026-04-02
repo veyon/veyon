@@ -24,11 +24,16 @@
 
 #pragma once
 
-#include <QDBusInterface>
+#include <QDBusConnection>
 #include <QDBusObjectPath>
 #include <QObject>
 #include <QString>
 #include <QVariantMap>
+
+#include "OrgFreedesktopPortalRemoteDesktop.h"
+#include "OrgFreedesktopPortalRequest.h"
+#include "OrgFreedesktopPortalScreenCast.h"
+#include "OrgFreedesktopPortalSession.h"
 
 /**
  * @brief Manages an XDG Desktop Portal RemoteDesktop session.
@@ -109,9 +114,13 @@ private:
 	void setState(State s);
 
 	static QString makeRequestToken();
+	QString senderToken() const;
 	QString makeRequestPath(const QString& token) const;
 
-	QDBusInterface* m_portalInterface{nullptr};
+	QDBusConnection m_sessionBus;
+	OrgFreedesktopPortalRemoteDesktopInterface* m_remoteDesktop{nullptr};
+	OrgFreedesktopPortalScreenCastInterface* m_screenCast{nullptr};
+	OrgFreedesktopPortalRequestInterface* m_requestInterface{nullptr};
 	QString m_sessionHandle;
 	QString m_restoreToken;
 	State m_state{State::Idle};

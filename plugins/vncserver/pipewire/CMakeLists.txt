@@ -15,6 +15,26 @@ endif()
 
 if(PipeWire_FOUND AND Qt6DBus_FOUND AND LibVNCServer_FOUND)
 
+	# Generate typed Qt D-Bus proxy classes from the XDG Desktop Portal XML
+	# introspection files.  qt_add_dbus_interface() invokes qdbusxml2cpp and
+	# appends the generated source/header pairs to DBUS_GENERATED_SOURCES.
+	qt_add_dbus_interface(DBUS_GENERATED_SOURCES
+		dbus/org.freedesktop.portal.RemoteDesktop.xml
+		OrgFreedesktopPortalRemoteDesktop
+	)
+	qt_add_dbus_interface(DBUS_GENERATED_SOURCES
+		dbus/org.freedesktop.portal.ScreenCast.xml
+		OrgFreedesktopPortalScreenCast
+	)
+	qt_add_dbus_interface(DBUS_GENERATED_SOURCES
+		dbus/org.freedesktop.portal.Request.xml
+		OrgFreedesktopPortalRequest
+	)
+	qt_add_dbus_interface(DBUS_GENERATED_SOURCES
+		dbus/org.freedesktop.portal.Session.xml
+		OrgFreedesktopPortalSession
+	)
+
 	build_veyon_plugin(pipewire-vnc-server
 		NAME PipeWireVncServer
 		SOURCES
@@ -24,6 +44,7 @@ if(PipeWire_FOUND AND Qt6DBus_FOUND AND LibVNCServer_FOUND)
 		PipeWireFramebuffer.h
 		PortalSession.cpp
 		PortalSession.h
+		${DBUS_GENERATED_SOURCES}
 	)
 
 	target_link_libraries(pipewire-vnc-server
@@ -42,6 +63,17 @@ if(PipeWire_FOUND AND Qt6DBus_FOUND AND LibVNCServer_FOUND)
 	)
 
 	if(VEYON_BUILD_LINUX)
+		configure_file(
+			"${CMAKE_CURRENT_SOURCE_DIR}/data/io.veyon.Veyon.Server.desktop.in"
+			"${CMAKE_CURRENT_BINARY_DIR}/data/io.veyon.Veyon.Server.desktop"
+			@ONLY
+		)
+		configure_file(
+			"${CMAKE_CURRENT_SOURCE_DIR}/data/io.veyon.Veyon.Server.service.in"
+			"${CMAKE_CURRENT_BINARY_DIR}/data/io.veyon.Veyon.Server.service"
+			@ONLY
+		)
+
 		# Install the XDG .desktop file so xdg-desktop-portal can resolve the
 		# well-known bus name "io.veyon.Veyon.Server" to the display name
 		# "Veyon Server" for the KDE permission dialog.

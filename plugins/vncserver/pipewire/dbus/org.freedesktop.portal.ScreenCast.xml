@@ -1,0 +1,26 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
+  "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+  <!--
+    org.freedesktop.portal.ScreenCast:
+    XDG Desktop Portal interface for screen capture streams.
+    Source: https://github.com/flatpak/xdg-desktop-portal/blob/main/data/org.freedesktop.portal.ScreenCast.xml
+  -->
+  <interface name="org.freedesktop.portal.ScreenCast">
+
+    <method name="SelectSources">
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In1" value="QVariantMap"/>
+      <arg type="o"     name="session_handle" direction="in"/>
+      <arg type="a{sv}" name="options"        direction="in"/>
+      <arg type="o"     name="handle"         direction="out"/>
+    </method>
+
+    <method name="OpenPipeWireRemote">
+      <annotation name="org.qtproject.QtDBus.QtTypeName.In1" value="QVariantMap"/>
+      <arg type="o"     name="session_handle" direction="in"/>
+      <arg type="a{sv}" name="options"        direction="in"/>
+      <arg type="h"     name="fd"             direction="out"/>
+    </method>
+
+  </interface>
+</node>

@@ -24,58 +24,52 @@
 
 #include "PortalSession.h"
 
-#include <QDBusConnection>
-#include <QDBusMessage>
+#include <QDBusArgument>
 #include <QDBusObjectPath>
-#include <QDBusPendingCall>
 #include <QDBusPendingCallWatcher>
 #include <QDBusPendingReply>
-#include <QDBusReply>
 #include <QDBusUnixFileDescriptor>
 #include <QRandomGenerator>
 
 #include <VeyonCore.h>
 
 // XDG Desktop Portal service and interface names
-static const QString PortalService      = QStringLiteral("org.freedesktop.portal.Desktop");
-static const QString PortalObjectPath   = QStringLiteral("/org/freedesktop/portal/desktop");
-static const QString RemoteDesktopIface = QStringLiteral("org.freedesktop.portal.RemoteDesktop");
-static const QString ScreenCastIface    = QStringLiteral("org.freedesktop.portal.ScreenCast");
-static const QString RequestIface       = QStringLiteral("org.freedesktop.portal.Request");
+static const auto PortalService    = QStringLiteral("org.freedesktop.portal.Desktop");
+static const auto PortalObjectPath = QStringLiteral("/org/freedesktop/portal/desktop");
 
 // Stable application identifier used for:
 //   - well-known D-Bus service name registration (so xdg-desktop-portal can
 //     identify this process when doing kde-authorized PermissionStore lookups)
 //   - KDE pre-authorization: flatpak permission-set kde-authorized screencast
 //                            io.veyon.Veyon.Server yes
-static const QString AppId = QStringLiteral("io.veyon.Veyon.Server");
+static const auto AppId          = QStringLiteral("io.veyon.Veyon.Server");
+static const auto ConnectionName = QStringLiteral("PipeWirePortalSession");
 
 PortalSession::PortalSession(QObject* parent)
 	: QObject(parent)
+	, m_sessionBus(QDBusConnection::connectToBus(QDBusConnection::SessionBus, ConnectionName))
 {
 	// Register the stable well-known bus name.  xdg-desktop-portal identifies
 	// non-Flatpak callers by their well-known D-Bus service name; without this
 	// registration the portal sees an empty app_id and the kde-authorized
 	// PermissionStore entry stored under "io.veyon.Veyon.Server" is never matched.
-	if (!QDBusConnection::sessionBus().registerService(AppId))
+	if (!m_sessionBus.registerService(AppId))
 	{
 		vWarning() << "Could not register D-Bus service name" << AppId
-		           << ":" << QDBusConnection::sessionBus().lastError().message();
+		           << ":" << m_sessionBus.lastError().message();
 	}
 
-	m_portalInterface = new QDBusInterface(
-		PortalService,
-		PortalObjectPath,
-		RemoteDesktopIface,
-		QDBusConnection::sessionBus(),
-		this
-	);
+	m_remoteDesktop = new OrgFreedesktopPortalRemoteDesktopInterface(
+		PortalService, PortalObjectPath, m_sessionBus, this);
+	m_screenCast = new OrgFreedesktopPortalScreenCastInterface(
+		PortalService, PortalObjectPath, m_sessionBus, this);
 }
 
 PortalSession::~PortalSession()
 {
 	close();
-	QDBusConnection::sessionBus().unregisterService(AppId);
+	m_sessionBus.unregisterService(AppId);
+	QDBusConnection::disconnectFromBus(ConnectionName);
 }
 
 void PortalSession::start()
@@ -96,13 +90,9 @@ void PortalSession::close()
 
 	if (!m_sessionHandle.isEmpty())
 	{
-		QDBusInterface sessionIface(
-			PortalService,
-			m_sessionHandle,
-			QStringLiteral("org.freedesktop.portal.Session"),
-			QDBusConnection::sessionBus()
-		);
-		sessionIface.call(QStringLiteral("Close"));
+		OrgFreedesktopPortalSessionInterface sessionIface(
+			PortalService, m_sessionHandle, m_sessionBus);
+		sessionIface.Close();
 		m_sessionHandle.clear();
 	}
 
@@ -127,7 +117,7 @@ void PortalSession::createSession()
 	// race condition where the portal emits Response before we can connect.
 	connectResponseSignal(makeRequestPath(token));
 
-	auto call = m_portalInterface->asyncCall(QStringLiteral("CreateSession"), options);
+	auto call = m_remoteDesktop->CreateSession(options);
 	auto* watcher = new QDBusPendingCallWatcher(call, this);
 	connect(watcher, &QDBusPendingCallWatcher::finished, this, [this](QDBusPendingCallWatcher* w) {
 		w->deleteLater();
@@ -161,11 +151,7 @@ void PortalSession::selectDevices()
 
 	connectResponseSignal(makeRequestPath(token));
 
-	auto call = m_portalInterface->asyncCall(
-		QStringLiteral("SelectDevices"),
-		QVariant::fromValue(QDBusObjectPath(m_sessionHandle)),
-		options
-	);
+	auto call = m_remoteDesktop->SelectDevices(QDBusObjectPath(m_sessionHandle), options);
 	auto* watcher = new QDBusPendingCallWatcher(call, this);
 	connect(watcher, &QDBusPendingCallWatcher::finished, this, [this](QDBusPendingCallWatcher* w) {
 		w->deleteLater();
@@ -184,15 +170,6 @@ void PortalSession::selectSources()
 {
 	setState(State::SelectingSources);
 
-	// SelectSources is on the ScreenCast interface; the RemoteDesktop session
-	// handle is shared with it.
-	QDBusInterface screenCastIface(
-		PortalService,
-		PortalObjectPath,
-		ScreenCastIface,
-		QDBusConnection::sessionBus()
-	);
-
 	const QString token = makeRequestToken();
 
 	QVariantMap options;
@@ -205,11 +182,7 @@ void PortalSession::selectSources()
 
 	connectResponseSignal(makeRequestPath(token));
 
-	auto call = screenCastIface.asyncCall(
-		QStringLiteral("SelectSources"),
-		QVariant::fromValue(QDBusObjectPath(m_sessionHandle)),
-		options
-	);
+	auto call = m_screenCast->SelectSources(QDBusObjectPath(m_sessionHandle), options);
 	auto* watcher = new QDBusPendingCallWatcher(call, this);
 	connect(watcher, &QDBusPendingCallWatcher::finished, this, [this](QDBusPendingCallWatcher* w) {
 		w->deleteLater();
@@ -235,9 +208,8 @@ void PortalSession::startSession()
 
 	connectResponseSignal(makeRequestPath(token));
 
-	auto call = m_portalInterface->asyncCall(
-		QStringLiteral("Start"),
-		QVariant::fromValue(QDBusObjectPath(m_sessionHandle)),
+	auto call = m_remoteDesktop->Start(
+		QDBusObjectPath(m_sessionHandle),
 		QStringLiteral(""), // parent_window handle (empty for daemon/unattended use)
 		options
 	);
@@ -257,29 +229,20 @@ void PortalSession::startSession()
 
 void PortalSession::openPipeWireRemote()
 {
-	QDBusInterface screenCastIface(
-		PortalService,
-		PortalObjectPath,
-		ScreenCastIface,
-		QDBusConnection::sessionBus()
-	);
+	auto pending = m_screenCast->OpenPipeWireRemote(
+		QDBusObjectPath(m_sessionHandle), QVariantMap{});
+	pending.waitForFinished();
 
-	QDBusReply<QDBusUnixFileDescriptor> reply = screenCastIface.call(
-		QStringLiteral("OpenPipeWireRemote"),
-		QVariant::fromValue(QDBusObjectPath(m_sessionHandle)),
-		QVariantMap{}
-	);
-
-	if (!reply.isValid())
+	if (pending.isError())
 	{
-		vCritical() << "OpenPipeWireRemote failed:" << reply.error().message();
+		vCritical() << "OpenPipeWireRemote failed:" << pending.error().message();
 		setState(State::Failed);
 		Q_EMIT failed();
 		return;
 	}
 
 	// dup() the FD so we own it independently of the QDBus reply lifetime
-	m_pipewireFd = ::dup(reply.value().fileDescriptor());
+	m_pipewireFd = ::dup(pending.value().fileDescriptor());
 	if (m_pipewireFd < 0)
 	{
 		vCritical() << "dup() of PipeWire FD failed";
@@ -301,39 +264,17 @@ void PortalSession::connectResponseSignal(const QString& requestPath)
 	disconnectResponseSignal();
 
 	m_connectedRequestPath = requestPath;
+	m_requestInterface = new OrgFreedesktopPortalRequestInterface(
+		PortalService, requestPath, m_sessionBus, this);
 
-	const bool ok = QDBusConnection::sessionBus().connect(
-		PortalService,
-		m_connectedRequestPath,
-		RequestIface,
-		QStringLiteral("Response"),
-		this,
-		SLOT(onPortalResponse(uint, QVariantMap))
-	);
-
-	if (!ok)
-	{
-		vWarning() << "Failed to connect to Response signal on" << m_connectedRequestPath;
-		m_connectedRequestPath.clear();
-	}
+	connect(m_requestInterface, &OrgFreedesktopPortalRequestInterface::Response,
+	        this, &PortalSession::onPortalResponse);
 }
 
 void PortalSession::disconnectResponseSignal()
 {
-	if (m_connectedRequestPath.isEmpty())
-	{
-		return;
-	}
-
-	QDBusConnection::sessionBus().disconnect(
-		PortalService,
-		m_connectedRequestPath,
-		RequestIface,
-		QStringLiteral("Response"),
-		this,
-		SLOT(onPortalResponse(uint, QVariantMap))
-	);
-
+	delete m_requestInterface;
+	m_requestInterface = nullptr;
 	m_connectedRequestPath.clear();
 }
 
@@ -429,14 +370,16 @@ QString PortalSession::makeRequestToken()
 	return QStringLiteral("veyon_%1").arg(QRandomGenerator::global()->generate());
 }
 
+QString PortalSession::senderToken() const
+{
+	return m_sessionBus.baseService().remove(QLatin1Char(':')).replace(QLatin1Char('.'), QLatin1Char('_'));
+}
+
 QString PortalSession::makeRequestPath(const QString& token) const
 {
 	// The portal Request object path is:
 	//   /org/freedesktop/portal/desktop/request/<sender>/<token>
 	// where <sender> is the caller's unique D-Bus name with dots and colons
 	// replaced by underscores (e.g. ':1.123' → '_1_123').
-	QString sender = QDBusConnection::sessionBus().baseService();
-	sender.replace('.', '_').replace(':', '_');
-	return QStringLiteral("/org/freedesktop/portal/desktop/request/") + sender + '/' + token;
+	return QStringLiteral("/org/freedesktop/portal/desktop/request/%1/%2").arg(senderToken(), token);
 }
-
