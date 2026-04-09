@@ -23,6 +23,7 @@
  */
 
 #include <QCoreApplication>
+#include <QMessageBox>
 
 #include "SoundMuteFeaturePlugin.h"
 #include "FeatureWorkerManager.h"
@@ -121,6 +122,33 @@ bool SoundMuteFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 bool SoundMuteFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
 {
 	Q_UNUSED(worker);
+	auto cmd = [](const char* s) { return QString::fromLatin1(s); };
+	
+	auto runCommand = [&](const QString &name, const QStringList &args) {
+		QString fullPath = QStandardPaths::findExecutable(name);
+		if (fullPath.isEmpty()) {
+			if (QFile::exists(QStringLiteral("/usr/bin/") + name)) {
+				fullPath = QStringLiteral("/usr/bin/") + name;
+			} else if (QFile::exists(QStringLiteral("/bin/") + name)) {
+				fullPath = QStringLiteral("/bin/") + name;
+			}
+		}
+
+		if (!fullPath.isEmpty()) {
+			return QProcess::execute(fullPath, args);
+		}
+	return -1; 
+	};
+
+	QDir sndDir(QStringLiteral("/dev/snd"));
+	QStringList controls = sndDir.entryList({QStringLiteral("controlC*")}, QDir::System);
+
+	QStringList cardIndices;
+	for(const QString &ctrl : controls) {
+		QString index = ctrl;
+		index.remove(QStringLiteral("controlC"));
+		if(!index.isEmpty()) { cardIndices << index; }
+	}
 
 	if( message.featureUid() == m_soundMuteFeature.uid() )
 	{
@@ -129,15 +157,28 @@ bool SoundMuteFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker,
 		case FeatureCommand::StartMute:
 			if( m_muteWidget == nullptr )
 			{
-				VeyonCore::platform().coreFunctions().disableScreenSaver();
 				m_muteWidget = new QWidget(nullptr);
+				runCommand(cmd("alsactl"), {cmd("--file"), m_audioState, cmd("store")});
+				for(const QString &idx : cardIndices) {
+					runCommand(cmd("amixer"), {cmd("-q"), cmd("-c"), idx, cmd("set"), cmd("Master"), cmd("mute")});
+				}
+				for (const QString &device : controls) {
+					QString fullPath = QStringLiteral("/dev/snd/") + device;
+					runCommand(cmd("chmod"), {cmd("444"), fullPath});
+				}
 			}
 			return true;
 
 		case FeatureCommand::StopMute:
 			delete m_muteWidget;
 			m_muteWidget = nullptr;
-			VeyonCore::platform().coreFunctions().restoreScreenSaverSettings();
+			for (const QString &device : controls) {
+				QString fullPath = QStringLiteral("/dev/snd/") + device;
+				runCommand(QStringLiteral("chmod"), {QStringLiteral("664"), fullPath});
+			}
+			QThread::msleep(500); 
+			runCommand(cmd("alsactl"), {cmd("--file"), m_audioState, cmd("restore")});
+			QFile::remove(m_audioState);
 
 			QCoreApplication::quit();
 

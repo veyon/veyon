@@ -90,6 +90,7 @@ private:
 
 	const Feature m_soundMuteFeature;
 	const FeatureList m_features;
+	const QString m_audioState = QStringLiteral("/dev/shm/veyon-audio.state");
 
 	QWidget* m_muteWidget;
 
