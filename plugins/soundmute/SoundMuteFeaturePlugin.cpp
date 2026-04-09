@@ -23,7 +23,10 @@
  */
 
 #include <QCoreApplication>
-#include <QMessageBox>
+#include <QStandardPaths>
+#include <QDir>
+#include <QProcess>
+#include <QThread>
 
 #include "SoundMuteFeaturePlugin.h"
 #include "FeatureWorkerManager.h"
@@ -140,6 +143,7 @@ bool SoundMuteFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker,
 	return -1; 
 	};
 
+	#ifdef Q_OS_LINUX
 	QDir sndDir(QStringLiteral("/dev/snd"));
 	QStringList controls = sndDir.entryList({QStringLiteral("controlC*")}, QDir::System);
 
@@ -149,6 +153,7 @@ bool SoundMuteFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker,
 		index.remove(QStringLiteral("controlC"));
 		if(!index.isEmpty()) { cardIndices << index; }
 	}
+	#endif
 
 	if( message.featureUid() == m_soundMuteFeature.uid() )
 	{
@@ -158,6 +163,7 @@ bool SoundMuteFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker,
 			if( m_muteWidget == nullptr )
 			{
 				m_muteWidget = new QWidget(nullptr);
+				#ifdef Q_OS_LINUX
 				runCommand(cmd("alsactl"), {cmd("--file"), m_audioState, cmd("store")});
 				for(const QString &idx : cardIndices) {
 					runCommand(cmd("amixer"), {cmd("-q"), cmd("-c"), idx, cmd("set"), cmd("Master"), cmd("mute")});
@@ -166,12 +172,17 @@ bool SoundMuteFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker,
 					QString fullPath = QStringLiteral("/dev/snd/") + device;
 					runCommand(cmd("chmod"), {cmd("444"), fullPath});
 				}
+				#endif
+				#ifdef Q_OS_WIN
+				QProcess::execute("net", QStringList() << "stop" << "audiosrv" << "/y");
+				#endif
 			}
 			return true;
 
 		case FeatureCommand::StopMute:
 			delete m_muteWidget;
 			m_muteWidget = nullptr;
+			#ifdef Q_OS_LINUX
 			for (const QString &device : controls) {
 				QString fullPath = QStringLiteral("/dev/snd/") + device;
 				runCommand(QStringLiteral("chmod"), {QStringLiteral("664"), fullPath});
@@ -179,6 +190,11 @@ bool SoundMuteFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker,
 			QThread::msleep(500); 
 			runCommand(cmd("alsactl"), {cmd("--file"), m_audioState, cmd("restore")});
 			QFile::remove(m_audioState);
+			#endif
+			#ifdef Q_OS_WIN
+			QProcess::execute("net", QStringList() << "start" << "audiosrv");
+			QProcess::execute("net", QStringList() << "start" << "AudioEndpointBuilder");
+			#endif
 
 			QCoreApplication::quit();
 
