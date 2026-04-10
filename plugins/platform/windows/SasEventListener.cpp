@@ -37,38 +37,67 @@ SasEventListener::SasEventListener()
 	wcscat( sasPath.data(), sasDll );
 
 	m_sasLibrary = LoadLibrary( sasPath.data() ); // Flawfinder: ignore
-	m_sendSas = reinterpret_cast<SendSas>( GetProcAddress( m_sasLibrary, "SendSAS" ) );
+	if (m_sasLibrary)
+	{
+		m_sendSas = reinterpret_cast<SendSas>(GetProcAddress(m_sasLibrary, "SendSAS"));
+	}
 
-	if( m_sendSas == nullptr )
+	if (m_sasLibrary == nullptr || m_sendSas == nullptr)
 	{
 		vWarning() << "SendSAS is not supported by operating system!";
 	}
 
 	m_sasEvent = CreateEvent( nullptr, false, false, L"Global\\VeyonServiceSasEvent" );
+	if (m_sasEvent == nullptr)
+	{
+		vWarning() << "failed to create SAS event";
+	}
+
 	m_stopEvent = CreateEvent( nullptr, false, false, L"StopEvent" );
+	if (m_stopEvent == nullptr)
+	{
+		vWarning() << "failed to create stop event";
+	}
 }
 
 
 
 SasEventListener::~SasEventListener()
 {
-	CloseHandle( m_stopEvent );
-	CloseHandle( m_sasEvent );
+	if (m_stopEvent)
+	{
+		CloseHandle(m_stopEvent);
+	}
+	if (m_sasEvent)
+	{
+		CloseHandle(m_sasEvent);
+	}
 
-	FreeLibrary( m_sasLibrary );
+	if (m_sasLibrary)
+	{
+		FreeLibrary(m_sasLibrary);
+	}
 }
 
 
 
 void SasEventListener::stop()
 {
-	SetEvent( m_stopEvent );
+	if (m_stopEvent)
+	{
+		SetEvent(m_stopEvent);
+	}
 }
 
 
 
 void SasEventListener::run()
 {
+	if (m_sasEvent == nullptr || m_stopEvent == nullptr)
+	{
+		return;
+	}
+
 	std::array<HANDLE, 2> eventObjects{ m_sasEvent, m_stopEvent };
 
 	while( isInterruptionRequested() == false )
