@@ -536,11 +536,11 @@ const wchar_t* WindowsCoreFunctions::toConstWCharArray( const QString& qstring )
 
 
 
-QString WindowsCoreFunctions::securityIdentifierToString(const std::array<char, SECURITY_MAX_SID_SIZE>& sidBuffer)
+QString WindowsCoreFunctions::securityIdentifierToString(const SecurityIdentifierBuffer& sidBuffer)
 {
 	LPWSTR stringSid = nullptr;
 
-	if (ConvertSidToStringSidW(reinterpret_cast<PSID>(const_cast<char*>(sidBuffer.data())), &stringSid))
+	if (ConvertSidToStringSidW(reinterpret_cast<PSID>(const_cast<std::byte *>(sidBuffer.data())), &stringSid))
 	{
 		const auto sidString = QString::fromWCharArray(stringSid);
 		LocalFree(stringSid);

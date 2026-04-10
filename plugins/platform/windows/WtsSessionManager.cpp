@@ -246,15 +246,16 @@ bool WtsSessionManager::isRemote( SessionId sessionId )
 
 WtsSessionManager::ProcessId WtsSessionManager::findUserProcessId( const QString& userName )
 {
-	DWORD sidLen = SECURITY_MAX_SID_SIZE; // Flawfinder: ignore
-	std::array<char, SECURITY_MAX_SID_SIZE> userSID{};
+	WindowsCoreFunctions::SecurityIdentifierBuffer userSIDBuffer{};
+	const auto userSID = reinterpret_cast<PSID>(userSIDBuffer.data());
+	DWORD sidLen = userSIDBuffer.size();
 	std::array<wchar_t, DOMAIN_LENGTH> domainName{};
 	DWORD domainLen = domainName.size();
 	SID_NAME_USE sidNameUse;
 
 	if( LookupAccountName( nullptr,		// system name
 						   WindowsCoreFunctions::toConstWCharArray( userName ),
-						   userSID.data(),
+						   userSID,
 						   &sidLen,
 						   domainName.data(),
 						   &domainLen,
@@ -279,7 +280,7 @@ WtsSessionManager::ProcessId WtsSessionManager::findUserProcessId( const QString
 	{
 		if( processInfo[proc].ProcessId > 0 &&
 			processInfo[proc].pUserSid != nullptr &&
-			EqualSid( processInfo[proc].pUserSid, userSID.data() ) )
+			EqualSid(processInfo[proc].pUserSid, userSID))
 		{
 			pid = processInfo[proc].ProcessId;
 			break;
