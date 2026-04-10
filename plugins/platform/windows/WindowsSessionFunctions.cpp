@@ -155,6 +155,7 @@ QVariant WindowsSessionFunctions::querySettingsValueInCurrentSession(const QStri
 		if (ImpersonateLoggedOnUser(userToken) == false)
 		{
 			vCritical() << "could not impersonate session user";
+			CloseHandle(userToken);
 			return {};
 		}
 
