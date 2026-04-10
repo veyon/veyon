@@ -556,10 +556,16 @@ QString WindowsCoreFunctions::securityIdentifierToString(const SecurityIdentifie
 
 bool WindowsCoreFunctions::stringToSecurityIdentifier(const QString& sidString, WindowsCoreFunctions::SecurityIdentifierBuffer& sidBuffer)
 {
+	memset(sidBuffer.data(), 0, sidBuffer.size());
+
 	PSID sid = nullptr;
 	if (ConvertStringSidToSid(toConstWCharArray(sidString), &sid) && sid)
 	{
-		memcpy(sidBuffer.data(), sid, sizeof(SID));
+		const auto sidLength = GetLengthSid(sid);
+		if (sidLength <= sidBuffer.size())
+		{
+			memcpy(sidBuffer.data(), sid, GetLengthSid(sid));
+		}
 		LocalFree(sid);
 		return true;
 	}
