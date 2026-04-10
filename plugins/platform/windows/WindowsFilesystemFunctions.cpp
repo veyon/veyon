@@ -97,6 +97,7 @@ QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 	if( nameSize == 0 || domainSize == 0)
 	{
 		vCritical() << "Failed to retrieve buffer sizes:" << GetLastError();
+		LocalFree(securityDescriptor);
 		return {};
 	}
 
@@ -108,6 +109,7 @@ QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 		vCritical() << "LookupAccountSid() (2) failed:" << GetLastError();
 		delete[] name;
 		delete[] domain;
+		LocalFree(securityDescriptor);
 		return {};
 	}
 
@@ -115,6 +117,7 @@ QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 
 	delete[] name;
 	delete[] domain;
+	LocalFree(securityDescriptor);
 
 	return owner;
 }
@@ -186,6 +189,7 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 	if( AllocateAndInitializeSid( &SIDAuthNT, 2, SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS,
 								  0, 0, 0, 0, 0, 0, &adminSID ) == false )
 	{
+		LocalFree(securityDescriptor);
 		return false;
 	}
 
@@ -225,6 +229,7 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 	{
 		vCritical() << "SetEntriesInAcl() failed";
 		FreeSid( adminSID );
+		LocalFree(securityDescriptor);
 		return false;
 	}
 
@@ -239,6 +244,7 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 
 	FreeSid( adminSID );
 	LocalFree( acl );
+	LocalFree(securityDescriptor);
 
 	return result == ERROR_SUCCESS;
 }
