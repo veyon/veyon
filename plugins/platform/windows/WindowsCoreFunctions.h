@@ -42,6 +42,8 @@ public:
 
 	bool applyConfiguration() override;
 
+	bool prepareSessionBusAccess() override { return false; }
+
 	void initNativeLoggingSystem( const QString& appName ) override;
 	void writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel ) override;
 

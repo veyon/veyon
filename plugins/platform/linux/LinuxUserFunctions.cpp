@@ -388,7 +388,7 @@ bool LinuxUserFunctions::performLogon( const QString& username, const Password& 
 
 void LinuxUserFunctions::logoff()
 {
-	LinuxCoreFunctions::prepareSessionBusAccess();
+	VeyonCore::platform().coreFunctions().prepareSessionBusAccess();
 
 	// logout via common session managers
 	// logout via common session managers
