@@ -559,7 +559,6 @@ bool WindowsCoreFunctions::stringToSecurityIdentifier(const QString& sidString, 
 	PSID sid = nullptr;
 	if (ConvertStringSidToSid(toConstWCharArray(sidString), &sid) && sid)
 	{
-		SecurityIdentifierBuffer sidBuffer{};
 		memcpy(sidBuffer.data(), sid, sizeof(SID));
 		LocalFree(sid);
 		return true;
