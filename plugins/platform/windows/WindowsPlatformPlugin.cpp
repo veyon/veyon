@@ -43,6 +43,13 @@ WindowsPlatformPlugin::WindowsPlatformPlugin( QObject* parent ) :
 
 
 
+WindowsPlatformPlugin::~WindowsPlatformPlugin()
+{
+	delete m_dummyWindow;
+}
+
+
+
 ConfigurationPage* WindowsPlatformPlugin::createConfigurationPage()
 {
 	return new WindowsPlatformConfigurationPage();
