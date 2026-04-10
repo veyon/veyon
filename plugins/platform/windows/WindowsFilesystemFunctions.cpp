@@ -123,20 +123,21 @@ QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 
 bool WindowsFilesystemFunctions::setFileOwnerGroup( const QString& filePath, const QString& ownerGroup )
 {
-	DWORD sidLen = SECURITY_MAX_SID_SIZE;
-	std::array<char, SECURITY_MAX_SID_SIZE> ownerGroupSID{};
+	WindowsCoreFunctions::SecurityIdentifierBuffer ownerGroupSIDBuffer{};
+	const auto ownerGroupSID = reinterpret_cast<PSID>(ownerGroupSIDBuffer.data());
+	DWORD ownerGroupSIDLen = ownerGroupSIDBuffer.size();
 	std::array<wchar_t, DOMAIN_LENGTH> domain{};
 
 	DWORD domainLen = domain.size();
 	SID_NAME_USE sidNameUse;
 
 	if( LookupAccountName( nullptr, WindowsCoreFunctions::toConstWCharArray( ownerGroup ),
-						   ownerGroupSID.data(), &sidLen,
+						   ownerGroupSID, &ownerGroupSIDLen,
 						   domain.data(), &domainLen, &sidNameUse ) == false )
 	{
 		const auto sidString = VeyonCore::userGroupsBackendManager().configuredBackend()->userGroupSecurityIdentifier(ownerGroup);
 		if (sidString.isEmpty() ||
-			WindowsCoreFunctions::stringToSecurityIdentifier(sidString, ownerGroupSID) == false)
+			WindowsCoreFunctions::stringToSecurityIdentifier(sidString, ownerGroupSIDBuffer) == false)
 		{
 			vCritical() << "Could not look up SID structure:" << GetLastError();
 			return false;
@@ -149,7 +150,7 @@ bool WindowsFilesystemFunctions::setFileOwnerGroup( const QString& filePath, con
 	const auto filePathWide = WindowsCoreFunctions::toWCharArray( filePath );
 
 	const auto result = SetNamedSecurityInfo( filePathWide.data(), SE_FILE_OBJECT,
-											  OWNER_SECURITY_INFORMATION, ownerGroupSID.data(), nullptr, nullptr, nullptr );
+											  OWNER_SECURITY_INFORMATION, ownerGroupSID, nullptr, nullptr, nullptr );
 
 	if( result != ERROR_SUCCESS )
 	{

@@ -35,7 +35,7 @@ class CXEventLog;
 class WindowsCoreFunctions : public PlatformCoreFunctions
 {
 public:
-	using SecurityIdentifierBuffer = std::array<char, SECURITY_MAX_SID_SIZE>;
+	struct alignas(SID) SecurityIdentifierBuffer : public std::array<std::byte, SECURITY_MAX_SID_SIZE> {};
 
 	WindowsCoreFunctions() = default;
 	~WindowsCoreFunctions() override;
