@@ -240,7 +240,8 @@ WtsSessionManager::ProcessId WtsSessionManager::findUserProcessId( const QString
 						   &domainLen,
 						   &sidNameUse ) == false )
 	{
-		vCritical() << "could not look up SID structure";
+		const auto error = GetLastError();
+		vCritical() << "could not look up SID structure:" << error;
 		return InvalidProcess;
 	}
 
@@ -249,7 +250,8 @@ WtsSessionManager::ProcessId WtsSessionManager::findUserProcessId( const QString
 
 	if( WTSEnumerateProcesses( WTS_CURRENT_SERVER_HANDLE, 0, 1, &processInfo, &processCount ) == false )
 	{
-		vWarning() << "WTSEnumerateProcesses() failed:" << GetLastError();
+		const auto error = GetLastError();
+		vWarning() << "WTSEnumerateProcesses() failed:" << error;
 		return InvalidProcess;
 	}
 
