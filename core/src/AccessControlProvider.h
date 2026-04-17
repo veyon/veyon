@@ -166,4 +166,7 @@ private:
 
 	Feature m_accessControlFeature;
 	FeatureList m_features{m_accessControlFeature};
+
+	QStringList m_authorizedUserGroups;
+
 } ;
