@@ -44,7 +44,8 @@ AccessControlProvider::AccessControlProvider() :
 	m_useDomainUserGroups(VeyonCore::config().useDomainUserGroups()),
 	m_accessControlFeature(QLatin1String(staticMetaObject.className()),
 						   Feature::Flag::Meta | Feature::Flag::Builtin,
-						   Feature::Uid{QStringLiteral("1815941e-eaef-43ab-b9cd-5403dca3f749")}, {}, {}, {}, {}, {})
+						   Feature::Uid{QStringLiteral("1815941e-eaef-43ab-b9cd-5403dca3f749")}, {}, {}, {}, {}, {}),
+	m_authorizedUserGroups(VeyonCore::config().authorizedUserGroups())
 {
 	const QJsonArray accessControlRules = VeyonCore::config().accessControlRules();
 
@@ -183,12 +184,11 @@ bool AccessControlProvider::processAuthorizedGroups( const QString& accessingUse
 	vDebug() << "processing for user" << accessingUser;
 
 	const auto groupsOfAccessingUser = m_userGroupsBackend->groupsOfUser( accessingUser, m_useDomainUserGroups );
-	const auto authorizedUserGroups = VeyonCore::config().authorizedUserGroups();
 
-	vDebug() << groupsOfAccessingUser << authorizedUserGroups;
+	vDebug() << groupsOfAccessingUser << m_authorizedUserGroups;
 
 	const auto groupsOfAccessingUserSet = QSet<QString>{ groupsOfAccessingUser.begin(), groupsOfAccessingUser.end() };
-	const auto authorizedUserGroupSet = QSet<QString>{ authorizedUserGroups.begin(), authorizedUserGroups.end() };
+	const auto authorizedUserGroupSet = QSet<QString>{ m_authorizedUserGroups.begin(), m_authorizedUserGroups.end() };
 
 	return groupsOfAccessingUserSet.intersects( authorizedUserGroupSet );
 }
