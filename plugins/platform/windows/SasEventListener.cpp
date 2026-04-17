@@ -28,15 +28,7 @@
 
 SasEventListener::SasEventListener()
 {
-	const wchar_t* sasDll = L"\\sas.dll";
-	std::array<wchar_t, MAX_PATH+1> sasPath{};
-	if( GetSystemDirectory( sasPath.data(), static_cast<UINT>( MAX_PATH - wcslen(sasDll) - 1 ) ) == 0 )
-	{
-		vCritical() << "could not determine system directory";
-	}
-	wcscat( sasPath.data(), sasDll );
-
-	m_sasLibrary = LoadLibrary( sasPath.data() ); // Flawfinder: ignore
+	m_sasLibrary = LoadLibraryEx(L"sas.dll", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32);
 	if (m_sasLibrary)
 	{
 		m_sendSas = reinterpret_cast<SendSas>(GetProcAddress(m_sasLibrary, "SendSAS"));
