@@ -26,5 +26,4 @@ build_veyon_plugin(ldap
 	ldap.qrc)
 
 target_include_directories(ldap PRIVATE ${Ldap_INCLUDE_DIRS})
-target_include_directories(ldap PUBLIC )
 target_link_libraries(ldap PRIVATE kldap-light)
