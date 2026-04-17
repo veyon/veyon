@@ -10,6 +10,7 @@ option(WITH_TESTS "Build tests and integrate runtime test extensions" OFF)
 option(WITH_LTO "Build with link-time optimization" ON)
 option(WITH_PCH "Reduce compile time by using precompiled headers" ON)
 option(WITH_UNITY_BUILD "Reduce compile time by using cmake unity builds" ON)
+option(WITH_STACK_PROTECTION "Build with -fstack-protector-strong" ON)
 option(WITH_ADDRESS_SANITIZER "Build with address sanitizer" OFF)
 option(WITH_THREAD_SANITIZER "Build with thread sanitizer" OFF)
 option(WITH_UB_SANITIZER "Build with undefined behavior sanitizer" OFF)
@@ -206,8 +207,8 @@ else()
 	set(CMAKE_LINK_OPTIONS_PIE "-fPIC")
 endif()
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fstack-protector-strong ${CFLAGS}")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fstack-protector-strong -fno-exceptions ${CXXFLAGS}")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${CFLAGS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-exceptions ${CXXFLAGS}")
 
 if(VEYON_DEBUG)
 	add_definitions(-DVEYON_DEBUG)
@@ -302,6 +303,7 @@ message("\n"
 	"* Build platform              : ${CMAKE_SYSTEM_PROCESSOR}\n"
 	"* Compile flags               : ${CMAKE_C_FLAGS} (CXX: ${CMAKE_CXX_FLAGS})\n"
 	"* Link-time optimization      : ${WITH_LTO}\n"
+	"* Stack protection            : ${WITH_STACK_PROTECTION}\n"
 	"* Use precompiled headers     : ${WITH_PCH}\n"
 	"* Use unity build             : ${WITH_UNITY_BUILD}\n"
 	)
