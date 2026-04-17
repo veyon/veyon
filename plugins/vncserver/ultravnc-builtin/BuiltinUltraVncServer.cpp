@@ -208,8 +208,8 @@ bool BuiltinUltraVncServer::runServer( int serverPort, const Password& password 
 	initUltraVncSettingsManager();
 
 	// run UltraVNC server
-	auto hUser32 = LoadLibrary( "user32.dll" );
-	auto hSHCore = LoadLibrary( "SHCore.dll" );
+	auto hUser32 = LoadLibraryExW(L"user32.dll", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32);
+	auto hSHCore = LoadLibraryExW(L"SHCore.dll", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32);
 
 	using SetProcessDpiAwarenessFunc = HRESULT (WINAPI *)( DWORD );
 	const auto setProcessDpiAwareness =
