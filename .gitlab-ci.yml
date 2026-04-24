@@ -25,6 +25,19 @@ build-linux:
     paths: [ "veyon*" ]
     expire_in: 1 day
 
+build-nixos:
+  stage: build
+  image: nixos/nix:latest
+  before_script:
+    - mkdir -p /etc/nix
+    - echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf
+    - nix profile install nixpkgs#git
+  script:
+    - .ci/linux.nixos/script.sh $CI_PROJECT_DIR /tmp/build-nixos
+  artifacts:
+    paths: [ "veyon*" ]
+    expire_in: 1 day
+
 build-windows:
   stage: build
   image: $CI_REGISTRY/veyon/ci-mingw-w64:main
@@ -40,10 +53,10 @@ build-windows:
 collect-artifacts:
   stage: collect
   image: veyon/ci.linux.debian.12:latest
-  dependencies: [ build-linux ]
+  dependencies: [ build-linux, build-nixos ]
   only: [ tags ]
   script:
-    - ls -la *.deb *.rpm
+    - ls -la *.deb *.rpm *.tar.gz
   artifacts:
     paths: [ "veyon*" ]
 
