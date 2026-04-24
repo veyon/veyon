@@ -50,7 +50,10 @@ DesktopInputController::~DesktopInputController()
 {
 	m_requestStop = 1;
 
-	m_thread.join();
+	if (m_thread.joinable())
+	{
+		m_thread.join();
+	}
 }
 
 

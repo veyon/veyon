@@ -35,12 +35,14 @@ class CXEventLog;
 class WindowsCoreFunctions : public PlatformCoreFunctions
 {
 public:
-	using SecurityIdentifierBuffer = std::array<char, SECURITY_MAX_SID_SIZE>;
+	struct alignas(SID) SecurityIdentifierBuffer : public std::array<std::byte, SECURITY_MAX_SID_SIZE> {};
 
 	WindowsCoreFunctions() = default;
 	~WindowsCoreFunctions() override;
 
 	bool applyConfiguration() override;
+
+	bool prepareSessionBusAccess() override { return false; }
 
 	void initNativeLoggingSystem( const QString& appName ) override;
 	void writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel ) override;

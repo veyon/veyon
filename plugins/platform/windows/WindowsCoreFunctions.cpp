@@ -339,29 +339,56 @@ QString WindowsCoreFunctions::queryDisplayDeviceName(const QScreen& screen) cons
 
 	const auto screenDeviceName = toConstWCharArray(screen.name());
 
+	const auto fallbackEnumDisplayDevices = [&]() -> QString {
+		DISPLAY_DEVICE displayDevice{};
+		displayDevice.cb = sizeof(displayDevice);
+		if (EnumDisplayDevicesW(screenDeviceName, 0, &displayDevice, 0))
+		{
+			return QString::fromWCharArray(displayDevice.DeviceString);
+		}
+		return {};
+	};
+
 	UINT32 requiredPaths, requiredModes;
-	GetDisplayConfigBufferSizes(QDC_ONLY_ACTIVE_PATHS, &requiredPaths, &requiredModes);
+	auto result = GetDisplayConfigBufferSizes(QDC_ONLY_ACTIVE_PATHS, &requiredPaths, &requiredModes);
+	if (result != ERROR_SUCCESS || requiredPaths == 0 || requiredModes == 0)
+	{
+		return fallbackEnumDisplayDevices();
+	}
+
 	std::vector<DISPLAYCONFIG_PATH_INFO> paths(requiredPaths);
 	std::vector<DISPLAYCONFIG_MODE_INFO> modes(requiredModes);
-	QueryDisplayConfig(QDC_ONLY_ACTIVE_PATHS, &requiredPaths, paths.data(), &requiredModes, modes.data(), nullptr);
+	if (QueryDisplayConfig(QDC_ONLY_ACTIVE_PATHS, &requiredPaths, paths.data(),
+						   &requiredModes, modes.data(), nullptr) != ERROR_SUCCESS)
+	{
+		return fallbackEnumDisplayDevices();
+	}
 
-	for(const auto& p : paths)
+	for (const auto& p : paths)
 	{
 		DISPLAYCONFIG_SOURCE_DEVICE_NAME sourceName{};
 		sourceName.header.type = DISPLAYCONFIG_DEVICE_INFO_GET_SOURCE_NAME;
 		sourceName.header.size = sizeof(sourceName);
 		sourceName.header.adapterId = p.sourceInfo.adapterId;
 		sourceName.header.id = p.sourceInfo.id;
-		DisplayConfigGetDeviceInfo(&sourceName.header);
 
-		if(wcscmp(screenDeviceName, sourceName.viewGdiDeviceName) == 0)
+		if (DisplayConfigGetDeviceInfo(&sourceName.header) != ERROR_SUCCESS)
+		{
+			continue;
+		}
+
+		if (wcscmp(screenDeviceName, sourceName.viewGdiDeviceName) == 0)
 		{
 			DISPLAYCONFIG_TARGET_DEVICE_NAME name{};
 			name.header.type = DISPLAYCONFIG_DEVICE_INFO_GET_TARGET_NAME;
 			name.header.size = sizeof(name);
 			name.header.adapterId = p.sourceInfo.adapterId;
 			name.header.id = p.targetInfo.id;
-			DisplayConfigGetDeviceInfo(&name.header);
+
+			if (DisplayConfigGetDeviceInfo(&name.header) != ERROR_SUCCESS)
+			{
+				return fallbackEnumDisplayDevices();
+			}
 
 			const auto monitorFriendlyDeviceName = QString::fromWCharArray(name.monitorFriendlyDeviceName);
 			const auto outputName = [&]() -> QString {
@@ -377,14 +404,7 @@ QString WindowsCoreFunctions::queryDisplayDeviceName(const QScreen& screen) cons
 					return QStringLiteral("DP-%1").arg(name.connectorInstance);
 				case DISPLAYCONFIG_OUTPUT_TECHNOLOGY_LVDS:
 					return QStringLiteral("LVDS-%1").arg(name.connectorInstance);
-#if __MINGW64_VERSION_MAJOR < 8
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wswitch"
-				case 15:
-#pragma GCC diagnostic pop
-#else
 				case DISPLAYCONFIG_OUTPUT_TECHNOLOGY_MIRACAST:
-#endif
 					return QStringLiteral("Miracast-%1").arg(name.connectorInstance);
 				case DISPLAYCONFIG_OUTPUT_TECHNOLOGY_SVIDEO:
 					return QStringLiteral("S-Video-%1").arg(name.connectorInstance);
@@ -413,14 +433,7 @@ QString WindowsCoreFunctions::queryDisplayDeviceName(const QScreen& screen) cons
 		}
 	}
 
-	DISPLAY_DEVICE displayDevice{};
-	displayDevice.cb = sizeof(displayDevice);
-	if(EnumDisplayDevices(screenDeviceName, 0, &displayDevice, 0))
-	{
-		return QString::fromWCharArray(displayDevice.DeviceString);
-	}
-
-	return {};
+	return fallbackEnumDisplayDevices();
 }
 
 
@@ -501,6 +514,7 @@ bool WindowsCoreFunctions::enablePrivilege( LPCWSTR privilegeName, bool enable )
 
 	if( !LookupPrivilegeValue( nullptr, privilegeName, &luid ) )
 	{
+		CloseHandle(token);
 		vCritical() << "could not lookup privilege value";
 		return false;
 	}
@@ -536,11 +550,11 @@ const wchar_t* WindowsCoreFunctions::toConstWCharArray( const QString& qstring )
 
 
 
-QString WindowsCoreFunctions::securityIdentifierToString(const std::array<char, SECURITY_MAX_SID_SIZE>& sidBuffer)
+QString WindowsCoreFunctions::securityIdentifierToString(const SecurityIdentifierBuffer& sidBuffer)
 {
 	LPWSTR stringSid = nullptr;
 
-	if (ConvertSidToStringSidW(reinterpret_cast<PSID>(const_cast<char*>(sidBuffer.data())), &stringSid))
+	if (ConvertSidToStringSidW(reinterpret_cast<PSID>(const_cast<std::byte *>(sidBuffer.data())), &stringSid))
 	{
 		const auto sidString = QString::fromWCharArray(stringSid);
 		LocalFree(stringSid);
@@ -556,11 +570,16 @@ QString WindowsCoreFunctions::securityIdentifierToString(const std::array<char, 
 
 bool WindowsCoreFunctions::stringToSecurityIdentifier(const QString& sidString, WindowsCoreFunctions::SecurityIdentifierBuffer& sidBuffer)
 {
+	memset(sidBuffer.data(), 0, sidBuffer.size());
+
 	PSID sid = nullptr;
 	if (ConvertStringSidToSid(toConstWCharArray(sidString), &sid) && sid)
 	{
-		SecurityIdentifierBuffer sidBuffer{};
-		memcpy(sidBuffer.data(), sid, sizeof(SID));
+		const auto sidLength = GetLengthSid(sid);
+		if (sidLength <= sidBuffer.size())
+		{
+			memcpy(sidBuffer.data(), sid, GetLengthSid(sid));
+		}
 		LocalFree(sid);
 		return true;
 	}
