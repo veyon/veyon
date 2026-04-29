@@ -5,3 +5,4 @@
 #include "ldap_core_debug.h"
 
 Q_LOGGING_CATEGORY(LDAP_LOG, "KLDAP");
+Q_LOGGING_CATEGORY(LDAP_CORE_LOG, "KLDAP");
