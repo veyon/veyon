@@ -35,6 +35,7 @@ int main( int argc, char **argv )
 	QGuiApplication::setAttribute( Qt::AA_EnableHighDpiScaling );
 #endif
 	QGuiApplication app( argc, argv );
+	QGuiApplication::setDesktopFileName(QStringLiteral("io.veyon.veyon-server"));
 
 	VeyonCore core( &app, VeyonCore::Component::Server, QStringLiteral("Server") );
 
