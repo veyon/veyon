@@ -7,6 +7,7 @@ RUN \
 		dpkg-dev \
 		ca-certificates git binutils gcc g++ ninja-build cmake file fakeroot bzip2 \
 		qt6-base-dev qt6-5compat-dev qt6-l10n-tools qt6-tools-dev qt6-declarative-dev qt6-httpserver-dev qt6-websockets-dev \
+		libpipewire-0.3-dev libspa-0.2-dev \
 		xorg-dev \
 		libfakekey-dev \
 		libvncserver-dev \
