@@ -173,6 +173,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QCheckBox" name="useCustomPowerSchemeForScreenLock">
+        <property name="text">
+         <string>Use custom power scheme with disabled power and sleep buttons</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QCheckBox" name="useInterceptionDriver">
         <property name="text">
          <string>Use input device interception driver</string>
@@ -180,9 +187,23 @@
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="useCustomPowerSchemeForScreenLock">
+       <widget class="QCheckBox" name="disableTouchDevicesForScreenLock">
         <property name="text">
-         <string>Use custom power scheme with disabled power button</string>
+         <string>Disable touchpads and touchscreens</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="disableKeyboardDevicesForScreenLock">
+        <property name="text">
+         <string>Disable keyboard devices</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="disableMouseDevicesForScreenLock">
+        <property name="text">
+         <string>Disable mouse devices</string>
         </property>
        </widget>
       </item>
@@ -214,8 +235,11 @@
   <tabstop>hideTaskbarForScreenLock</tabstop>
   <tabstop>hideStartMenuForScreenLock</tabstop>
   <tabstop>hideDesktopForScreenLock</tabstop>
-  <tabstop>useInterceptionDriver</tabstop>
   <tabstop>useCustomPowerSchemeForScreenLock</tabstop>
+  <tabstop>useInterceptionDriver</tabstop>
+  <tabstop>disableTouchDevicesForScreenLock</tabstop>
+  <tabstop>disableKeyboardDevicesForScreenLock</tabstop>
+  <tabstop>disableMouseDevicesForScreenLock</tabstop>
  </tabstops>
  <resources>
   <include location="windows.qrc"/>
