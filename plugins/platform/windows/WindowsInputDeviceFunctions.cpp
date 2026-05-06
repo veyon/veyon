@@ -32,6 +32,7 @@
 #include "ProcessHelper.h"
 #include "VeyonConfiguration.h"
 #include "WindowsCoreFunctions.h"
+#include "WindowsDeviceFunctions.h"
 #include "WindowsInputDeviceFunctions.h"
 #include "WindowsKeyboardShortcutTrapper.h"
 #include "WindowsPlatformConfiguration.h"
@@ -55,6 +56,31 @@ static int interception_is_any( InterceptionDevice device )
 }
 
 
+static WindowsDeviceFunctions::DeviceList inputDevicesToDisable()
+{
+	WindowsPlatformConfiguration config(&VeyonCore::config());
+
+	WindowsDeviceFunctions::DeviceList devices;
+
+	if (config.disableKeyboardDevicesForScreenLock())
+	{
+		devices += WindowsDeviceFunctions::findKeyboardDevices();
+	}
+
+	if (config.disableMouseDevicesForScreenLock())
+	{
+		devices += WindowsDeviceFunctions::findMouseDevices();
+	}
+
+	if (config.disableTouchDevicesForScreenLock())
+	{
+		devices += WindowsDeviceFunctions::findTouchDevices();
+	}
+
+	return devices;
+}
+
+
 
 WindowsInputDeviceFunctions::~WindowsInputDeviceFunctions()
 {
@@ -72,6 +98,8 @@ void WindowsInputDeviceFunctions::enableInputDevices()
 	restoreHIDService();
 	restorePowerScheme();
 
+	WindowsDeviceFunctions::setDevicesState(inputDevicesToDisable(), WindowsDeviceFunctions::State::Enabled);
+
 	m_inputDevicesDisabled = false;
 }
 
@@ -84,6 +112,8 @@ void WindowsInputDeviceFunctions::disableInputDevices()
 		enableInterception();
 		stopHIDService();
 		setCustomPowerScheme();
+
+		WindowsDeviceFunctions::setDevicesState(inputDevicesToDisable(), WindowsDeviceFunctions::State::Disabled);
 
 		m_inputDevicesDisabled = true;
 	}
