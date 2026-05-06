@@ -28,6 +28,7 @@
 #include "FeatureWorkerManager.h"
 #include "LockWidget.h"
 #include "PlatformCoreFunctions.h"
+#include "PlatformInputDeviceFunctions.h"
 #include "PlatformSessionFunctions.h"
 #include "VeyonServerInterface.h"
 
@@ -56,6 +57,13 @@ ScreenLockFeaturePlugin::ScreenLockFeaturePlugin( QObject* parent ) :
 	m_features( { m_screenLockFeature, m_lockInputDevicesFeature } ),
 	m_lockWidget( nullptr )
 {
+	if (VeyonCore::component() == VeyonCore::Component::Service)
+	{
+		connect (VeyonCore::instance(), &VeyonCore::initialized,
+				 this, []() {
+			VeyonCore::platform().inputDeviceFunctions().enableInputDevices();
+		});
+	}
 }
 
 
