@@ -68,14 +68,11 @@ WindowsInputDeviceFunctions::~WindowsInputDeviceFunctions()
 
 void WindowsInputDeviceFunctions::enableInputDevices()
 {
-	if( m_inputDevicesDisabled )
-	{
-		disableInterception();
-		restoreHIDService();
-		restorePowerScheme();
+	disableInterception();
+	restoreHIDService();
+	restorePowerScheme();
 
-		m_inputDevicesDisabled = false;
-	}
+	m_inputDevicesDisabled = false;
 }
 
 
