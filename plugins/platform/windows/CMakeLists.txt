@@ -11,6 +11,7 @@ build_veyon_plugin(windows-platform
 	WindowsPlatformConfigurationPage.cpp
 	WindowsPlatformConfigurationPage.ui
 	WindowsCoreFunctions.cpp
+	WindowsDeviceFunctions.cpp
 	WindowsFilesystemFunctions.cpp
 	WindowsInputDeviceFunctions.cpp
 	WindowsKeyboardShortcutTrapper.cpp
@@ -31,6 +32,7 @@ build_veyon_plugin(windows-platform
 	WindowsPlatformConfiguration.h
 	WindowsPlatformPlugin.h
 	WindowsCoreFunctions.h
+	WindowsDeviceFunctions.h
 	WindowsFilesystemFunctions.h
 	WindowsInputDeviceFunctions.h
 	WindowsKeyboardShortcutTrapper.h
@@ -63,8 +65,8 @@ target_include_directories(windows-platform PRIVATE
 	${ultravnc_DIR}
 	)
 
-target_link_libraries(windows-platform PRIVATE -lws2_32 -lwtsapi32 -lnetapi32 -luserenv -limm32 -lntdll -linterception -liphlpapi)
-target_link_libraries(windows-platform PRIVATE Qt${QT_MAJOR_VERSION}::GuiPrivate)
+target_link_libraries(windows-platform PRIVATE -lws2_32 -lwtsapi32 -lnetapi32 -luserenv -limm32 -lntdll -linterception -liphlpapi -lsetupapi)
+target_link_libraries(windows-platform PRIVATE Qt6::GuiPrivate)
 target_compile_definitions(windows-platform PRIVATE ULTRAVNC_VEYON_SUPPORT)
 target_compile_options(windows-platform PRIVATE "-Wno-unknown-pragmas")
 set_source_files_properties(WindowsNetworkFunctions.cpp PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE SKIP_PRECOMPILE_HEADERS TRUE)
