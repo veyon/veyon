@@ -128,7 +128,7 @@ bool FeatureWorkerManager::startUnmanagedSessionWorker( Feature::Uid featureUid 
 
 	vDebug() << "Starting worker (unmanaged session process) for feature" << featureUid;
 
-	const auto currentUser = VeyonCore::platform().userFunctions().currentUser();
+	const auto currentUser = VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName);
 	if( currentUser.isEmpty() )
 	{
 		vDebug() << "could not determine current user - probably a console session with logon screen";

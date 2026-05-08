@@ -39,7 +39,7 @@ AccessControlRulesTestDialog::AccessControlRulesTestDialog(QWidget *parent) :
 {
 	ui->setupUi(this);
 
-	ui->localUserLineEdit->setText( VeyonCore::platform().userFunctions().currentUser() );
+	ui->localUserLineEdit->setText(VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName));
 	ui->localComputerLineEdit->setText( HostAddress::localFQDN() );
 
 	const auto authenticationMethods = VeyonCore::authenticationManager().availableMethods();

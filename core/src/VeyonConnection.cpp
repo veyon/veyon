@@ -240,7 +240,7 @@ int8_t VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSche
 		authReplyMessage.write( chosenAuthPlugin );
 	}
 	// send username which is used when displaying an access confirm dialog
-	authReplyMessage.write( VeyonCore::platform().userFunctions().currentUser() );
+	authReplyMessage.write(VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName));
 	authReplyMessage.send();
 
 	VariantArrayMessage authAckMessage( &socketDevice );

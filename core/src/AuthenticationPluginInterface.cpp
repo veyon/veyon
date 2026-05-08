@@ -28,5 +28,5 @@
 
 QString AuthenticationPluginInterface::accessControlUser() const
 {
-	return VeyonCore::platform().userFunctions().currentUser();
+	return VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName);
 }

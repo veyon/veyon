@@ -33,7 +33,7 @@
 class WindowsUserFunctions : public PlatformUserFunctions
 {
 public:
-	QString fullName( const QString& username ) override;
+	QString queryCurrentUserProperty(UserProperty property) override;
 
 	QStringList userGroups( bool queryDomainGroups ) override;
 	QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) override;
@@ -41,8 +41,6 @@ public:
 
 	bool isAnyUserLoggedInLocally() override;
 	bool isAnyUserLoggedInRemotely() override;
-
-	QString currentUser() override;
 
 	bool prepareLogon( const QString& username, const Password& password ) override;
 	bool performLogon( const QString& username, const Password& password ) override;
@@ -53,6 +51,9 @@ public:
 
 
 private:
+	static QString currentUserLoginName();
+	static QString currentUserFullName();
+
 	static QString domainFromUsername( const QString& username );
 	static QString domainController( const QString& domainName = {} );
 	static QStringList domainUserGroups();

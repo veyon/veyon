@@ -44,26 +44,20 @@
 #include <pwd.h>
 #include <unistd.h>
 
+#ifdef None
+#undef None
+#endif
 
-QString LinuxUserFunctions::fullName( const QString& username )
+
+QString LinuxUserFunctions::queryCurrentUserProperty(UserProperty property)
 {
-	const auto pw_entry = getpwnam(username.toUtf8().constData());
-
-	if( pw_entry )
+	switch (property)
 	{
-		auto shell = QString::fromUtf8( pw_entry->pw_shell );
-
-		// Skip not real users
-		if ( !( shell.endsWith( QStringLiteral( "/false" ) ) ||
-				shell.endsWith( QStringLiteral( "/true" ) ) ||
-				shell.endsWith( QStringLiteral( "/null" ) ) ||
-				shell.endsWith( QStringLiteral( "/nologin" ) ) ) )
-		{
-			return QString::fromUtf8( pw_entry->pw_gecos ).split( QLatin1Char(',') ).first();
-		}
+	case UserProperty::LoginName: return currentUserLoginName();
+	case UserProperty::FullName: return currentUserFullName();
+	case UserProperty::None: break;
 	}
-
-	return QString();
+	return {};
 }
 
 
@@ -250,64 +244,6 @@ bool LinuxUserFunctions::isAnyUserLoggedInRemotely()
 	}
 
 	return false;
-}
-
-
-
-QString LinuxUserFunctions::currentUser()
-{
-	QString username;
-
-	if (VeyonCore::component() != VeyonCore::Component::CLI && m_systemBus.isConnected())
-	{
-		const auto sessionPath = LinuxSessionFunctions::currentSessionPath(true);
-		if (sessionPath.isEmpty() == false)
-		{
-			const auto sessionUserPath = LinuxSessionFunctions::getSessionUser(sessionPath);
-			if (sessionUserPath.isEmpty() == false)
-			{
-				username = getUserProperty(sessionUserPath, QStringLiteral("Name")).toString();
-				if (username.isEmpty() == false)
-				{
-					return username;
-				}
-			}
-		}
-	}
-
-	const auto envUser = qgetenv( "USER" );
-
-	struct passwd * pw_entry = nullptr;
-	if( envUser.isEmpty() == false )
-	{
-		pw_entry = getpwnam( envUser.constData() );
-	}
-
-	if( pw_entry == nullptr )
-	{
-		pw_entry = getpwuid( getuid() );
-	}
-
-	if( pw_entry )
-	{
-		const auto shell = QString::fromUtf8( pw_entry->pw_shell );
-
-		// Skip not real users
-		if ( !( shell.endsWith( QStringLiteral( "/false" ) ) ||
-				shell.endsWith( QStringLiteral( "/true" ) ) ||
-				shell.endsWith( QStringLiteral( "/null" ) ) ||
-				shell.endsWith( QStringLiteral( "/nologin" ) ) ) )
-		{
-			username = QString::fromUtf8( pw_entry->pw_name );
-		}
-	}
-
-	if( username.isEmpty() )
-	{
-		return QString::fromUtf8( envUser );
-	}
-
-	return username;
 }
 
 
@@ -528,4 +464,86 @@ QVariant LinuxUserFunctions::getUserProperty(const QString& userPath, const QStr
 	}
 
 	return reply.value().variant();
+}
+
+
+
+QString LinuxUserFunctions::currentUserLoginName() const
+{
+	QString username;
+
+	if (VeyonCore::component() != VeyonCore::Component::CLI && m_systemBus.isConnected())
+	{
+		const auto sessionPath = LinuxSessionFunctions::currentSessionPath(true);
+		if (sessionPath.isEmpty() == false)
+		{
+			const auto sessionUserPath = LinuxSessionFunctions::getSessionUser(sessionPath);
+			if (sessionUserPath.isEmpty() == false)
+			{
+				username = getUserProperty(sessionUserPath, QStringLiteral("Name")).toString();
+				if (username.isEmpty() == false)
+				{
+					return username;
+				}
+			}
+		}
+	}
+
+	const auto envUser = qgetenv("USER");
+
+	struct passwd* pw_entry = nullptr;
+	if (envUser.isEmpty() == false)
+	{
+		pw_entry = getpwnam(envUser.constData());
+	}
+
+	if (pw_entry == nullptr)
+	{
+		pw_entry = getpwuid(getuid());
+	}
+
+	if (pw_entry)
+	{
+		const auto shell = QString::fromUtf8(pw_entry->pw_shell);
+
+		// Skip not real users
+		if (!(shell.endsWith(QLatin1String("/false")) ||
+			  shell.endsWith(QLatin1String("/true")) ||
+			  shell.endsWith(QLatin1String("/null")) ||
+			  shell.endsWith(QLatin1String("/nologin"))))
+		{
+			username = QString::fromUtf8(pw_entry->pw_name);
+		}
+	}
+
+	if( username.isEmpty() )
+	{
+		return QString::fromUtf8(envUser);
+	}
+
+	return username;
+}
+
+
+
+QString LinuxUserFunctions::currentUserFullName() const
+{
+	const auto username = currentUserLoginName();
+	const auto pw_entry = getpwnam(username.toUtf8().constData());
+
+	if (pw_entry)
+	{
+		auto shell = QString::fromUtf8(pw_entry->pw_shell);
+
+		// Skip not real users
+		if (!(shell.endsWith(QLatin1String("/false")) ||
+			  shell.endsWith(QLatin1String("/true")) ||
+			  shell.endsWith(QLatin1String("/null")) ||
+			  shell.endsWith(QLatin1String("/nologin"))))
+		{
+			return QString::fromUtf8(pw_entry->pw_gecos).split(QLatin1Char(',')).first();
+		}
+	}
+
+	return {};
 }

@@ -19,7 +19,7 @@ AuthLdapDialog::AuthLdapDialog( const LdapConfiguration& config, QWidget* parent
 {
 	ui->setupUi( this );
 
-	ui->username->setText( VeyonCore::platform().userFunctions().currentUser() );
+	ui->username->setText(VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName));
 
 	if( ui->username->text().isEmpty() == false )
 	{

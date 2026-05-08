@@ -36,7 +36,7 @@
 class LinuxUserFunctions : public PlatformUserFunctions
 {
 public:
-	QString fullName( const QString& username ) override;
+	QString queryCurrentUserProperty(UserProperty property) override;
 
 	QStringList userGroups( bool queryDomainGroups ) override;
 	QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) override;
@@ -44,7 +44,6 @@ public:
 
 	bool isAnyUserLoggedInLocally() override;
 	bool isAnyUserLoggedInRemotely() override;
-	QString currentUser() override;
 
 	bool prepareLogon( const QString& username, const Password& password ) override;
 	bool performLogon( const QString& username, const Password& password ) override;
@@ -58,6 +57,9 @@ public:
 	static QVariant getUserProperty(const QString& userPath, const QString& property, bool logErrors = true);
 
 private:
+	QString currentUserLoginName() const;
+	QString currentUserFullName() const;
+
 	QDBusConnection m_systemBus = QDBusConnection::systemBus();
 
 	static constexpr auto AuthHelperTimeout = 10000;
