@@ -67,7 +67,7 @@ struct FileCollection {
 	{
 		if (files.isEmpty())
 		{
-			return 0;
+			return state == State::Finished ? 100 : 0;
 		}
 		if (processedFilesCount >= files.size())
 		{
