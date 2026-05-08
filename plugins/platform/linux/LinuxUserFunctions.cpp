@@ -87,79 +87,80 @@ QStringList LinuxUserFunctions::userGroups( bool queryDomainGroups )
 		groupList += group.split( QLatin1Char(':') ).first();
 	}
 
-	const QStringList ignoredGroups( {
-		QStringLiteral("daemon"),
-		QStringLiteral("bin"),
-		QStringLiteral("tty"),
-		QStringLiteral("disk"),
-		QStringLiteral("lp"),
-		QStringLiteral("mail"),
-		QStringLiteral("news"),
-		QStringLiteral("uucp"),
-		QStringLiteral("man"),
-		QStringLiteral("proxy"),
-		QStringLiteral("kmem"),
-		QStringLiteral("dialout"),
-		QStringLiteral("fax"),
-		QStringLiteral("voice"),
-		QStringLiteral("cdrom"),
-		QStringLiteral("tape"),
-		QStringLiteral("audio"),
-		QStringLiteral("dip"),
-		QStringLiteral("www-data"),
-		QStringLiteral("backup"),
-		QStringLiteral("list"),
-		QStringLiteral("irc"),
-		QStringLiteral("src"),
-		QStringLiteral("gnats"),
-		QStringLiteral("shadow"),
-		QStringLiteral("utmp"),
-		QStringLiteral("video"),
-		QStringLiteral("sasl"),
-		QStringLiteral("plugdev"),
-		QStringLiteral("games"),
-		QStringLiteral("nogroup"),
-		QStringLiteral("libuuid"),
-		QStringLiteral("syslog"),
-		QStringLiteral("fuse"),
-		QStringLiteral("lpadmin"),
-		QStringLiteral("ssl-cert"),
-		QStringLiteral("messagebus"),
-		QStringLiteral("crontab"),
-		QStringLiteral("mlocate"),
-		QStringLiteral("avahi-autoipd"),
-		QStringLiteral("netdev"),
-		QStringLiteral("saned"),
-		QStringLiteral("sambashare"),
-		QStringLiteral("haldaemon"),
-		QStringLiteral("polkituser"),
-		QStringLiteral("mysql"),
-		QStringLiteral("avahi"),
-		QStringLiteral("klog"),
-		QStringLiteral("floppy"),
-		QStringLiteral("oprofile"),
-		QStringLiteral("netdev"),
-		QStringLiteral("dirmngr"),
-		QStringLiteral("vboxusers"),
-		QStringLiteral("bluetooth"),
-		QStringLiteral("colord"),
-		QStringLiteral("libvirtd"),
-		QStringLiteral("nm-openvpn"),
-		QStringLiteral("input"),
-		QStringLiteral("kvm"),
-		QStringLiteral("pulse"),
-		QStringLiteral("pulse-access"),
-		QStringLiteral("rtkit"),
-		QStringLiteral("scanner"),
-		QStringLiteral("sddm"),
-		QStringLiteral("systemd-bus-proxy"),
-		QStringLiteral("systemd-journal"),
-		QStringLiteral("systemd-network"),
-		QStringLiteral("systemd-resolve"),
-		QStringLiteral("systemd-timesync"),
-		QStringLiteral("utempter"),
-		QStringLiteral("uuidd"),
-							   } );
+	const QStringList ignoredGroups
+			({
+				 QStringLiteral("daemon"),
+				 QStringLiteral("bin"),
+				 QStringLiteral("tty"),
+				 QStringLiteral("disk"),
+				 QStringLiteral("lp"),
+				 QStringLiteral("mail"),
+				 QStringLiteral("news"),
+				 QStringLiteral("uucp"),
+				 QStringLiteral("man"),
+				 QStringLiteral("proxy"),
+				 QStringLiteral("kmem"),
+				 QStringLiteral("dialout"),
+				 QStringLiteral("fax"),
+				 QStringLiteral("voice"),
+				 QStringLiteral("cdrom"),
+				 QStringLiteral("tape"),
+				 QStringLiteral("audio"),
+				 QStringLiteral("dip"),
+				 QStringLiteral("www-data"),
+				 QStringLiteral("backup"),
+				 QStringLiteral("list"),
+				 QStringLiteral("irc"),
+				 QStringLiteral("src"),
+				 QStringLiteral("gnats"),
+				 QStringLiteral("shadow"),
+				 QStringLiteral("utmp"),
+				 QStringLiteral("video"),
+				 QStringLiteral("sasl"),
+				 QStringLiteral("plugdev"),
+				 QStringLiteral("games"),
+				 QStringLiteral("nogroup"),
+				 QStringLiteral("libuuid"),
+				 QStringLiteral("syslog"),
+				 QStringLiteral("fuse"),
+				 QStringLiteral("lpadmin"),
+				 QStringLiteral("ssl-cert"),
+				 QStringLiteral("messagebus"),
+				 QStringLiteral("crontab"),
+				 QStringLiteral("mlocate"),
+				 QStringLiteral("avahi-autoipd"),
+				 QStringLiteral("netdev"),
+				 QStringLiteral("saned"),
+				 QStringLiteral("sambashare"),
+				 QStringLiteral("haldaemon"),
+				 QStringLiteral("polkituser"),
+				 QStringLiteral("mysql"),
+				 QStringLiteral("avahi"),
+				 QStringLiteral("klog"),
+				 QStringLiteral("floppy"),
+				 QStringLiteral("oprofile"),
+				 QStringLiteral("netdev"),
+				 QStringLiteral("dirmngr"),
+				 QStringLiteral("vboxusers"),
+				 QStringLiteral("bluetooth"),
+				 QStringLiteral("colord"),
+				 QStringLiteral("libvirtd"),
+				 QStringLiteral("nm-openvpn"),
+				 QStringLiteral("input"),
+				 QStringLiteral("kvm"),
+				 QStringLiteral("pulse"),
+				 QStringLiteral("pulse-access"),
+				 QStringLiteral("rtkit"),
+				 QStringLiteral("scanner"),
+				 QStringLiteral("sddm"),
+				 QStringLiteral("systemd-bus-proxy"),
+				 QStringLiteral("systemd-journal"),
+				 QStringLiteral("systemd-network"),
+				 QStringLiteral("systemd-resolve"),
+				 QStringLiteral("systemd-timesync"),
+				 QStringLiteral("utempter"),
+				 QStringLiteral("uuidd"),
+			 });
 
 	for( const auto& ignoredGroup : ignoredGroups )
 	{
@@ -207,7 +208,7 @@ QString LinuxUserFunctions::userGroupSecurityIdentifier(const QString& groupName
 	const auto group = getgrnam(groupName.toUtf8().constData());
 	if (group)
 	{
-		  return QString::number(group->gr_gid);
+		return QString::number(group->gr_gid);
 	}
 
 	return {};
@@ -373,25 +374,25 @@ void LinuxUserFunctions::logoff()
 	// logout via common session managers
 	// logout via common session managers
 	for( const auto& call : std::initializer_list<std::function<QDBusMessage()>>
-		 {
-			 []() {
-				 return LinuxCoreFunctions::kdeSessionManager()
-					 ->call( QStringLiteral("logout"),
-							 LinuxDesktopIntegration::KDE::ShutdownConfirmNo,
-							 LinuxDesktopIntegration::KDE::ShutdownTypeLogout,
-							 LinuxDesktopIntegration::KDE::ShutdownModeForceNow );
-			 },
-			 []() {
-				 return LinuxCoreFunctions::gnomeSessionManager()
-					 ->call( QStringLiteral("Logout"),
-							 LinuxDesktopIntegration::Gnome::GSM_MANAGER_LOGOUT_MODE_FORCE );
-			 },
-			 []() {
-				 return LinuxCoreFunctions::mateSessionManager()
-					 ->call( QStringLiteral("Logout"),
-							 LinuxDesktopIntegration::Mate::GSM_LOGOUT_MODE_FORCE );
-			 }
-		 } )
+	{
+		 []() {
+		 return LinuxCoreFunctions::kdeSessionManager()
+		 ->call( QStringLiteral("logout"),
+				 LinuxDesktopIntegration::KDE::ShutdownConfirmNo,
+				 LinuxDesktopIntegration::KDE::ShutdownTypeLogout,
+				 LinuxDesktopIntegration::KDE::ShutdownModeForceNow );
+},
+		 []() {
+		 return LinuxCoreFunctions::gnomeSessionManager()
+		 ->call( QStringLiteral("Logout"),
+				 LinuxDesktopIntegration::Gnome::GSM_MANAGER_LOGOUT_MODE_FORCE );
+},
+		 []() {
+		 return LinuxCoreFunctions::mateSessionManager()
+		 ->call( QStringLiteral("Logout"),
+				 LinuxDesktopIntegration::Mate::GSM_LOGOUT_MODE_FORCE );
+}
+} )
 	{
 		// call successful?
 		if( call().type() == QDBusMessage::ReplyMessage )
@@ -481,9 +482,9 @@ gid_t LinuxUserFunctions::userGroupIdFromName( const QString& username )
 QVariant LinuxUserFunctions::getUserProperty(const QString& userPath, const QString& property, bool logErrors)
 {
 	QDBusInterface loginManager(QStringLiteral("org.freedesktop.login1"),
-								 userPath,
-								 QStringLiteral("org.freedesktop.DBus.Properties"),
-								 QDBusConnection::systemBus());
+								userPath,
+								QStringLiteral("org.freedesktop.DBus.Properties"),
+								QDBusConnection::systemBus());
 
 	if (loginManager.connection().isConnected() == false)
 	{
@@ -492,8 +493,8 @@ QVariant LinuxUserFunctions::getUserProperty(const QString& userPath, const QStr
 	}
 
 	const QDBusReply<QDBusVariant> reply = loginManager.call(QStringLiteral("Get"),
-															  QStringLiteral("org.freedesktop.login1.User"),
-															  property);
+															 QStringLiteral("org.freedesktop.login1.User"),
+															 property);
 
 	if( reply.isValid() == false )
 	{
