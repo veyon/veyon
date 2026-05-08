@@ -391,7 +391,7 @@ void DesktopServicesFeaturePlugin::runApplicationAsUser( const QString& commandL
 	}
 
 	VeyonCore::platform().coreFunctions().runProgramAsUser( program, parameters,
-															VeyonCore::platform().userFunctions().currentUser(),
+															VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName),
 															VeyonCore::platform().coreFunctions().activeDesktopName() );
 }
 

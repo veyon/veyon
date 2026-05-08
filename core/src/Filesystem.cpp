@@ -41,7 +41,7 @@ QString Filesystem::expandPath( QString path ) const
 											 replace( QStringLiteral( "$HOSTNAME" ), QHostInfo::localHostName() ).
 											 replace( QStringLiteral( "%PROFILE%" ), QDir::homePath() ).
 											 replace( QStringLiteral( "$PROFILE" ), QDir::homePath() ).
-											 replace(QStringLiteral( "%USER%" ), VeyonCore::platform().userFunctions().currentUser()).
+											 replace(QStringLiteral("%USER%"), VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName)).
 											 replace(QStringLiteral("%DESKTOP%"), QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)).
 											 replace(QStringLiteral("%DOCUMENTS%"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)).
 											 replace(QStringLiteral("%DOWNLOADS%"), QStandardPaths::writableLocation(QStandardPaths::DownloadLocation)).

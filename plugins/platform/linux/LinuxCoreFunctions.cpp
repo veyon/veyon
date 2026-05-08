@@ -49,8 +49,8 @@
 
 bool LinuxCoreFunctions::prepareSessionBusAccess()
 {
-	const auto uid = LinuxUserFunctions::userIdFromName(VeyonCore::platform().userFunctions().currentUser());
-	qCritical() << uid;
+	const auto currentUser = VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName);
+	const auto uid = LinuxUserFunctions::userIdFromName(currentUser);
 	if (uid > 0)
 	{
 		if (seteuid(uid) == 0)

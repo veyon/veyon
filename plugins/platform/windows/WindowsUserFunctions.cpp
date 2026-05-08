@@ -23,6 +23,7 @@
  */
 
 #include <dsgetdc.h>
+#include <wtsapi32.h>
 
 #include <QBuffer>
 
@@ -41,37 +42,82 @@
 #include "keysymdef.h"
 
 
-QString WindowsUserFunctions::fullName( const QString& username )
+static std::optional<QByteArray> tokenUserSid(HANDLE token)
 {
-	QString dcName;
-
-	const auto domain = domainFromUsername(username);
-	if( domain.isEmpty() == false )
+	DWORD needed = 0;
+	GetTokenInformation(token, TokenUser, nullptr, 0, &needed);
+	if (GetLastError() != ERROR_INSUFFICIENT_BUFFER || needed == 0)
 	{
-		dcName = domainController(domain);
+		return std::nullopt;
 	}
 
-	const auto usernameWithoutDomain = VeyonCore::stripDomain(username);
-
-	LPUSER_INFO_2 buf = nullptr;
-	const auto nStatus = NetUserGetInfo( dcName.isEmpty() ? nullptr
-														  : WindowsCoreFunctions::toConstWCharArray(dcName),
-										 WindowsCoreFunctions::toConstWCharArray( usernameWithoutDomain ),
-										 2, reinterpret_cast<LPBYTE *>( &buf ) );
-
-	QString fullName;
-
-	if( nStatus == NERR_Success && buf != nullptr )
+	QByteArray buffer(static_cast<int>(needed), Qt::Uninitialized);
+	if (!GetTokenInformation(token, TokenUser, buffer.data(), needed, &needed))
 	{
-		fullName = QString::fromWCharArray( buf->usri2_full_name );
+		return std::nullopt;
 	}
 
-	if( buf != nullptr )
+	return buffer;
+}
+
+
+
+static HANDLE openCurrentEffectiveToken()
+{
+	HANDLE token = nullptr;
+
+	if (OpenThreadToken(GetCurrentThread(), TOKEN_QUERY, TRUE, &token))
 	{
-		NetApiBufferFree( buf );
+		return token;
 	}
 
-	return fullName;
+	if (GetLastError() == ERROR_NO_TOKEN &&
+		OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &token))
+	{
+		return token;
+	}
+
+	return nullptr;
+}
+
+
+
+static bool isCurrentEffectiveUser(HANDLE sessionToken)
+{
+	HANDLE currentToken = openCurrentEffectiveToken();
+	if (!currentToken)
+	{
+		return false;
+	}
+
+	auto closeHandle = qScopeGuard([&]() {
+		CloseHandle(currentToken);
+	});
+
+	const auto currentUserBuffer = tokenUserSid(currentToken);
+	const auto sessionUserBuffer = tokenUserSid(sessionToken);
+	if (!currentUserBuffer || !sessionUserBuffer)
+	{
+		return false;
+	}
+
+	const auto currentUser = reinterpret_cast<const TOKEN_USER*>(currentUserBuffer->constData());
+	const auto sessionUser = reinterpret_cast<const TOKEN_USER*>(sessionUserBuffer->constData());
+
+	return EqualSid(currentUser->User.Sid, sessionUser->User.Sid);
+}
+
+
+
+QString WindowsUserFunctions::queryCurrentUserProperty(UserProperty property)
+{
+	switch (property)
+	{
+	case UserProperty::LoginName: return currentUserLoginName();
+	case UserProperty::FullName: return currentUserFullName();
+	case UserProperty::None: break;
+	}
+	return {};
 }
 
 
@@ -142,37 +188,6 @@ bool WindowsUserFunctions::isAnyUserLoggedOn()
 	}
 
 	return false;
-}
-
-
-
-QString WindowsUserFunctions::currentUser()
-{
-	const auto sessionId = WtsSessionManager::currentSession();
-
-	auto username = WtsSessionManager::querySessionInformation( sessionId, WtsSessionManager::SessionInfo::UserName );
-	auto domainName = WtsSessionManager::querySessionInformation( sessionId, WtsSessionManager::SessionInfo::DomainName );
-
-	// check whether we just got the name of the local computer
-	if( !domainName.isEmpty() )
-	{
-		std::array<wchar_t, MAX_COMPUTERNAME_LENGTH+1> computerName{}; // Flawfinder: ignore
-		DWORD size = MAX_COMPUTERNAME_LENGTH;
-		GetComputerName( computerName.data(), &size );
-
-		if( domainName == QString::fromWCharArray( computerName.data() ) )
-		{
-			// reset domain name as we do not need to store local computer name
-			domainName.clear();
-		}
-	}
-
-	if( domainName.isEmpty() )
-	{
-		return username;
-	}
-
-	return domainName + QLatin1Char('\\') + username;
 }
 
 
@@ -289,6 +304,92 @@ bool WindowsUserFunctions::authenticate( const QString& username, const Password
 	}
 
 	return result;
+}
+
+
+
+QString WindowsUserFunctions::currentUserLoginName()
+{
+	const auto sessionId = WtsSessionManager::currentSession();
+
+	auto username = WtsSessionManager::querySessionInformation( sessionId, WtsSessionManager::SessionInfo::UserName );
+	auto domainName = WtsSessionManager::querySessionInformation( sessionId, WtsSessionManager::SessionInfo::DomainName );
+
+	// check whether we just got the name of the local computer
+	if( !domainName.isEmpty() )
+	{
+		std::array<wchar_t, MAX_COMPUTERNAME_LENGTH+1> computerName{}; // Flawfinder: ignore
+		DWORD size = MAX_COMPUTERNAME_LENGTH;
+		GetComputerName( computerName.data(), &size );
+
+		if( domainName == QString::fromWCharArray( computerName.data() ) )
+		{
+			// reset domain name as we do not need to store local computer name
+			domainName.clear();
+		}
+	}
+
+	if( domainName.isEmpty() )
+	{
+		return username;
+	}
+
+	return domainName + QLatin1Char('\\') + username;
+}
+
+
+
+QString WindowsUserFunctions::currentUserFullName()
+{
+	HANDLE sessionToken = nullptr;
+	const auto sessionId = WtsSessionManager::currentSession();
+
+	if (!WTSQueryUserToken(sessionId, &sessionToken))
+	{
+		vCritical() << "could not query user token for session" << sessionId;
+		return {};
+	}
+
+	auto closeHandle = qScopeGuard([&]() {
+		CloseHandle(sessionToken);
+	});
+
+	const bool needImpersonation = !isCurrentEffectiveUser(sessionToken);
+
+	bool impersonating = false;
+	if (needImpersonation)
+	{
+		if (!ImpersonateLoggedOnUser(sessionToken))
+		{
+			vCritical() << "could not impersonate session user";
+			return {};
+		}
+		impersonating = true;
+	}
+
+	std::array<wchar_t, 256> nameBuffer{};
+	auto nameLength = DWORD(nameBuffer.size());
+
+	QString fullName;
+	if (GetUserNameExW(NameDisplay, nameBuffer.data(), &nameLength))
+	{
+		if (nameLength > 0)
+		{
+			fullName = QString::fromWCharArray(nameBuffer.data(), nameLength);
+		}
+	}
+	else
+	{
+		const auto error = GetLastError();
+		vWarning() << "GetUserNameExW failed:" << error;
+	}
+
+	if (impersonating)
+	{
+		RevertToSelf();
+	}
+
+	return fullName;
 }
 
 

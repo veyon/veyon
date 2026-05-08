@@ -256,7 +256,7 @@ rfbBool VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSch
 	}
 	else
 	{
-		authReplyMessage.write( VeyonCore::platform().userFunctions().currentUser() );
+		authReplyMessage.write(VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName));
 	}
 
 	authReplyMessage.send();

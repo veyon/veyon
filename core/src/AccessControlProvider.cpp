@@ -138,7 +138,7 @@ AccessControlProvider::CheckResult AccessControlProvider::checkAccess(const QStr
 	{
 		const auto rule = processAccessControlRules(accessingUser,
 													accessingComputer,
-													VeyonCore::platform().userFunctions().currentUser(),
+													VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName),
 													HostAddress::localFQDN(),
 													connectedUsers);
 		if (rule)
@@ -235,7 +235,8 @@ bool AccessControlProvider::isAccessToLocalComputerDenied() const
 	for (const auto& rule : std::as_const(m_accessControlRules))
 	{
 		if (matchConditions(*rule, {}, {},
-							VeyonCore::platform().userFunctions().currentUser(), HostAddress::localFQDN(), {}))
+							VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName),
+							HostAddress::localFQDN(), {}))
 		{
 			switch (rule->action())
 			{

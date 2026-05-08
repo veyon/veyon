@@ -317,7 +317,7 @@ bool MainWindow::initAccessControl()
 	{
 		const auto accessingUser = VeyonCore::authenticationCredentials().hasCredentials(AuthenticationCredentials::Type::UserLogon) ?
 									   VeyonCore::authenticationCredentials().logonUsername() :
-									   VeyonCore::platform().userFunctions().currentUser();
+									   VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName);
 		const auto accessControlResult = VeyonCore::builtinFeatures().accessControlProvider()
 										 .checkAccess(accessingUser,
 													  QHostAddress(QHostAddress::LocalHost).toString(),

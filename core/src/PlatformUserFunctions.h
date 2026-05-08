@@ -45,14 +45,13 @@ public:
 
 	virtual ~PlatformUserFunctions() = default;
 
-	virtual QString fullName( const QString& username ) = 0;
+	virtual QString queryCurrentUserProperty(UserProperty property) = 0;
 
 	virtual QStringList userGroups( bool queryDomainGroups ) = 0;
 	virtual QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) = 0;
 	virtual QString userGroupSecurityIdentifier(const QString& groupName) = 0;
 
 	virtual bool isAnyUserLoggedOn() = 0;
-	virtual QString currentUser() = 0;
 
 	virtual bool prepareLogon( const QString& username, const Password& password ) = 0;
 	virtual bool performLogon( const QString& username, const Password& password ) = 0;
