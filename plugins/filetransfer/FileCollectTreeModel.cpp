@@ -131,7 +131,7 @@ int FileCollectTreeModel::columnCount(const QModelIndex& parent) const
 {
 	Q_UNUSED(parent);
 
-	return 2;
+	return int(Column::ColumnCount);
 }
 
 
@@ -180,16 +180,18 @@ QVariant FileCollectTreeModel::data(const QModelIndex& index, int role) const
 
 
 
-QVariant FileCollectTreeModel::headerData(int section,  Qt::Orientation orientation, int role) const
+QVariant FileCollectTreeModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
 	if (orientation == Qt::Horizontal &&
 		role == Qt::DisplayRole)
 	{
-		if (section > 0)
+		switch (Column(section))
 		{
-			return tr("Progress");
+		case Column::Name: return tr("Name");
+		case Column::FileCount: return tr("Number of files");
+		case Column::Progress: return tr("Progress");
+		default: break;
 		}
-		return tr("Name");
 	}
 
 	return {};
@@ -201,7 +203,6 @@ bool FileCollectTreeModel::isValidCollection(const FileCollection& collection) c
 {
 	return collection != m_dummyCollection;
 }
-
 
 
 
@@ -225,25 +226,37 @@ QModelIndex FileCollectTreeModel::indexOfCollection(FileCollection::Id collectio
 
 QVariant FileCollectTreeModel::collectionData(const FileCollection& collection, const QModelIndex& index, int role) const
 {
-	if (index.column() > 0)
+	switch (Column(index.column()))
 	{
-		return role == Qt::DisplayRole ? collection.progress() : QVariant{};
-	}
-
-	switch (role)
-	{
-	case Qt::DisplayRole:
-		return collection.name;
-
-	case Qt::DecorationRole:
-		switch (collection.state)
+	case Column::Name:
+		switch (role)
 		{
-		case FileCollection::State::Initializing: return m_scheduledPixmap;
-		case FileCollection::State::ReadyForNextFileTransfer: return m_transferringPixmap;
-		case FileCollection::State::FileTransferRunning: return m_transferringPixmap;
-		case FileCollection::State::Finished: return m_finishedPixmap;
-		default: break;
+		case Qt::DisplayRole:
+			return collection.name;
+
+		case Qt::DecorationRole:
+			switch (collection.state)
+			{
+			case FileCollection::State::Initializing: return m_scheduledPixmap;
+			case FileCollection::State::ReadyForNextFileTransfer: return m_transferringPixmap;
+			case FileCollection::State::FileTransferRunning: return m_transferringPixmap;
+			case FileCollection::State::Finished: return m_finishedPixmap;
+			default: break;
+			}
+			break;
 		}
+		break;
+
+	case Column::FileCount:
+		return role == Qt::DisplayRole && collection.state != FileCollection::State::Initializing ?
+																  collection.files.size()
+																:
+																  QVariant{};
+
+	case Column::Progress:
+		return role == Qt::DisplayRole ? collection.progress() : QVariant{};
+
+	case Column::ColumnCount:
 		break;
 	}
 
@@ -254,8 +267,33 @@ QVariant FileCollectTreeModel::collectionData(const FileCollection& collection, 
 
 QVariant FileCollectTreeModel::fileData(const FileCollection& collection, const QModelIndex& index, int role) const
 {
-	if (index.column() > 0)
+	switch (Column(index.column()))
 	{
+	case Column::Name:
+		switch (role)
+		{
+		case Qt::DecorationRole:
+			if (index.row() < collection.processedFilesCount )
+			{
+				return m_finishedPixmap;
+			}
+			else if (index.row() > collection.processedFilesCount)
+			{
+				return m_scheduledPixmap;
+			}
+			else if (collection.currentFileProgress() <= 0)
+			{
+				return m_waitingPixmap;
+			}
+			return m_transferringPixmap;
+		case Qt::DisplayRole:
+			return collection.files.value(index.row());
+		default:
+			break;
+		}
+		break;
+
+	case Column::Progress:
 		if (role == Qt::DisplayRole)
 		{
 			if (index.row() < collection.processedFilesCount )
@@ -269,27 +307,10 @@ QVariant FileCollectTreeModel::fileData(const FileCollection& collection, const 
 
 			return collection.currentFileProgress();
 		}
-		return QVariant{};
-	}
+		break;
 
-	switch (role)
-	{
-	case Qt::DecorationRole:
-		if (index.row() < collection.processedFilesCount )
-		{
-			return m_finishedPixmap;
-		}
-		else if (index.row() > collection.processedFilesCount)
-		{
-			return m_scheduledPixmap;
-		}
-		else if (collection.currentFileProgress() <= 0)
-		{
-			return m_waitingPixmap;
-		}
-		return m_transferringPixmap;
-	case Qt::DisplayRole:
-		return collection.files.value(index.row());
+	default:
+		break;
 	}
 
 	return {};
@@ -319,7 +340,7 @@ void FileCollectTreeModel::updateCollection(FileCollection::Id collectionId)
 		{
 			if (collection.files.size() > 0)
 			{
-				for (int column = 0; column < 2; ++column)
+				for (int column = 0; column < int(Column::ColumnCount); ++column)
 				{
 					Q_EMIT dataChanged(createIndex(0, column, &collection.files.first()),
 									   createIndex(collection.files.count() - 1, column, &collection.files.last()));
@@ -328,7 +349,7 @@ void FileCollectTreeModel::updateCollection(FileCollection::Id collectionId)
 		}
 	}
 
-	Q_EMIT dataChanged(indexOfCollection(collectionId, 0), indexOfCollection(collectionId, 1));
+	Q_EMIT dataChanged(indexOfCollection(collectionId, 0), indexOfCollection(collectionId, int(Column::ColumnCount)));
 }
 
 

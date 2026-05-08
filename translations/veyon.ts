@@ -1780,6 +1780,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Number of files</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>

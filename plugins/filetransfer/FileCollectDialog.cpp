@@ -44,7 +44,8 @@ FileCollectDialog::FileCollectDialog(FileCollectController* controller, QWidget*
 	ui->setupUi(this);
 	ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Start"));
 
-	ui->collectionsTreeView->setItemDelegateForColumn(1, new ProgressItemDelegate(ui->collectionsTreeView));
+	ui->collectionsTreeView->setItemDelegateForColumn(int(FileCollectTreeModel::Column::Progress),
+													  new ProgressItemDelegate(ui->collectionsTreeView));
 	ui->collectionsTreeView->setModel(m_model);
 
 	connect (ui->openOutputDirectoryButton, &QAbstractButton::clicked, this, &FileCollectDialog::openOutputDirectory);

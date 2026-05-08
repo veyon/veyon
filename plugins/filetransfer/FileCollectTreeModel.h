@@ -35,6 +35,13 @@ class FileCollectTreeModel : public QAbstractItemModel
 {
 	Q_OBJECT
 public:
+	enum class Column {
+		Name,
+		FileCount,
+		Progress,
+		ColumnCount
+	};
+
 	FileCollectTreeModel(FileCollectController* controller, QObject* parent);
 	~FileCollectTreeModel() override = default;
 
