@@ -66,20 +66,15 @@ void FileCollectController::setInterfaces(const ComputerControlInterfaceList& co
 
 		for (const auto& computerControlInterface : computerControlInterfaces)
 		{
-			if (computerControlInterface->state() == ComputerControlInterface::State::Connected)
+			if (computerControlInterface->state() == ComputerControlInterface::State::Connected &&
+				computerControlInterface->userLoginName().isEmpty() == false)
 			{
 				FileCollection collection{};
 				collection.state = FileCollection::State::Initializing;
-				for (const auto& name : {computerControlInterface->userFullName(),
-					 computerControlInterface->userLoginName(),
-					 computerControlInterface->computerName()})
-				{
-					if (name.isEmpty() == false)
-					{
-						collection.name = name;
-						break;
-					}
-				}
+				collection.name = computerControlInterface->userFullName().isEmpty() ?
+									  computerControlInterface->userLoginName()
+									:
+									  computerControlInterface->userFullName();
 				m_collections[computerControlInterface] = collection;
 			}
 		}
