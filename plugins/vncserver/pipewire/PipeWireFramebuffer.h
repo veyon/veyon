@@ -90,7 +90,7 @@ private:
 
 	rfbScreenInfoPtr m_rfbScreen{nullptr};
 	QSize            m_frameSize;
-	uint32_t         m_videoFormat{SPA_VIDEO_FORMAT_BGRx};
+	uint32_t         m_videoFormat{SPA_VIDEO_FORMAT_UNKNOWN};
 	bool             m_running{false};
 
 	QThread m_loopThread;
