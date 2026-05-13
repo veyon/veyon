@@ -276,6 +276,7 @@ void PipeWireFramebuffer::onStreamParamChanged(void* data, uint32_t id,
 			 << "format=" << videoInfo.format;
 
 	self->m_frameSize = QSize(width, height);
+	self->m_videoFormat = videoInfo.format;
 
 	// Accept the negotiated format by calling pw_stream_update_params with buffer
 	// params and a request for SPA_META_VideoDamage so the compositor can tell us
@@ -364,10 +365,32 @@ void PipeWireFramebuffer::processFrame()
 	const char* src = static_cast<const char*>(d.data) + d.chunk->offset;
 	char* dst = m_rfbScreen->frameBuffer;
 
-	for (int y = 0; y < height; ++y)
+	if (m_videoFormat == SPA_VIDEO_FORMAT_RGBx)
 	{
-		std::memcpy(dst + y * dstStride, src + y * srcStride,
-					static_cast<size_t>(dstStride));
+		// LibVNCServer framebuffer is configured as BGRx byte order (redShift=16),
+		// so convert RGBx buffers by swapping red/blue channels.
+		for (int y = 0; y < height; ++y)
+		{
+			const auto* srcLine = reinterpret_cast<const uint8_t*>(src + y * srcStride);
+			auto* dstLine = reinterpret_cast<uint8_t*>(dst + y * dstStride);
+
+			for (int x = 0; x < width; ++x)
+			{
+				const int i = x * 4;
+				dstLine[i + 0] = srcLine[i + 2];
+				dstLine[i + 1] = srcLine[i + 1];
+				dstLine[i + 2] = srcLine[i + 0];
+				dstLine[i + 3] = srcLine[i + 3];
+			}
+		}
+	}
+	else
+	{
+		for (int y = 0; y < height; ++y)
+		{
+			std::memcpy(dst + y * dstStride, src + y * srcStride,
+						static_cast<size_t>(dstStride));
+		}
 	}
 
 	// Notify VNC clients about the changed regions.
