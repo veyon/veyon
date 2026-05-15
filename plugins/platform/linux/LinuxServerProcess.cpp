@@ -22,6 +22,7 @@
  *
  */
 
+#include <QDir>
 #include <QFileInfo>
 
 #include <csignal>
@@ -38,11 +39,14 @@
 #include "VeyonConfiguration.h"
 
 
-LinuxServerProcess::LinuxServerProcess( const QProcessEnvironment& processEnvironment,
-										const QString& sessionPath, int sessionId, QObject* parent ) :
-	QProcess( parent ),
-	m_sessionPath( sessionPath ),
-	m_sessionId( sessionId )
+LinuxServerProcess::LinuxServerProcess(const QProcessEnvironment& processEnvironment,
+									   const QString& sessionPath, int sessionId,
+									   LinuxSessionFunctions::Type sessionType,
+									   QObject* parent) :
+	QProcess(parent),
+	m_sessionPath(sessionPath),
+	m_sessionId(sessionId),
+	m_sessionType(sessionType)
 {
 	setProcessEnvironment( processEnvironment );
 }
@@ -74,6 +78,24 @@ void LinuxServerProcess::start()
 	else if( VeyonCore::isDebugging() && QFileInfo::exists( catchsegv ) )
 	{
 		QProcess::start( catchsegv, { VeyonCore::filesystem().serverFilePath() } );
+	}
+	else if (m_sessionType == LinuxSessionFunctions::Type::Wayland)
+	{
+		const auto desktopEnvironment = LinuxSessionFunctions::getDesktopEnvironment(processEnvironment());
+		const auto desktopFile = VeyonCore::applicationsDirectory() + QDir::separator() + QStringLiteral("io.veyon.veyon-server.desktop");
+		switch (desktopEnvironment)
+		{
+		case LinuxSessionFunctions::DesktopEnvironment::KDE:
+			QProcess::start(QStringLiteral("kioclient"), {QStringLiteral("exec"), desktopFile});
+			break;
+		case LinuxSessionFunctions::DesktopEnvironment::GNOME:
+			QProcess::start(QStringLiteral("gio"), {QStringLiteral("launch"), desktopFile});
+			break;
+		default:
+			vWarning() << "Unsupported desktop environment with Wayland session, launching server directly";
+			QProcess::start(VeyonCore::filesystem().serverFilePath(), QStringList{});
+			break;
+		}
 	}
 	else
 	{
