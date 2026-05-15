@@ -280,6 +280,45 @@ LinuxSessionFunctions::Type LinuxSessionFunctions::getSessionType( const QString
 
 
 
+LinuxSessionFunctions::DesktopEnvironment LinuxSessionFunctions::getSessionDesktopEnvironment(const QString& session)
+{
+	const auto currentDesktop = getSessionProperty(session, QStringLiteral("Desktop")).toString();
+
+	if (currentDesktop == QLatin1String("KDE"))
+	{
+		return DesktopEnvironment::KDE;
+	}
+
+	if (currentDesktop.contains(QLatin1String("GNOME")))
+	{
+		return DesktopEnvironment::GNOME;
+	}
+
+	if (currentDesktop == QLatin1String("Xfce"))
+	{
+		return DesktopEnvironment::Xfce;
+	}
+
+	if (currentDesktop == QLatin1String("LXDE"))
+	{
+		return DesktopEnvironment::LXDE;
+	}
+
+	if (currentDesktop == QLatin1String("LXQt"))
+	{
+		return DesktopEnvironment::LXQt;
+	}
+
+	if (currentDesktop == QLatin1String("MATE"))
+	{
+		return DesktopEnvironment::MATE;
+	}
+
+	return DesktopEnvironment::Generic;
+}
+
+
+
 QString LinuxSessionFunctions::getSessionId(const QString& session, bool logErrors)
 {
 	return getSessionProperty(session, QStringLiteral("Id"), logErrors).toString();
