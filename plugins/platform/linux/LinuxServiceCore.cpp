@@ -243,7 +243,7 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 	sessionEnvironment.insert( QLatin1String( ServiceDataManager::serviceDataTokenEnvironmentVariable() ),
 							   QString::fromUtf8( m_dataManager.token().toByteArray() ) );
 
-	auto serverProcess = new LinuxServerProcess( sessionEnvironment, sessionPath, sessionId, this );
+	auto serverProcess = new LinuxServerProcess(sessionEnvironment, sessionPath, sessionId, sessionType, this);
 	serverProcess->start();
 
 	connect(serverProcess, &QProcess::stateChanged, this, [=, this]() { checkSessionState(sessionPath); });
