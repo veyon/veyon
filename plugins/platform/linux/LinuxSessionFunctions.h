@@ -79,6 +79,18 @@ public:
 	};
 	Q_ENUM(Type)
 
+	enum class DesktopEnvironment
+	{
+		Generic,
+		KDE,
+		GNOME,
+		Xfce,
+		LXQt,
+		LXDE,
+		MATE,
+	};
+	Q_ENUM(DesktopEnvironment)
+
 	SessionId currentSessionId() override;
 
 	SessionUptime currentSessionUptime() const override;
@@ -101,6 +113,7 @@ public:
 	static SessionUptime getSessionUptimeSeconds( const QString& session );
 	static Class getSessionClass( const QString& session );
 	static Type getSessionType( const QString& session );
+	static DesktopEnvironment getSessionDesktopEnvironment(const QString& session);
 	static QString getSessionId(const QString& session, bool logErrors = true);
 	static QString getSessionUser( const QString& session );
 	static State getSessionState( const QString& session );
