@@ -221,6 +221,14 @@ QString VeyonCore::sharedLibrarySuffix()
 
 
 
+QString VeyonCore::applicationsDirectory()
+{
+	return QStringLiteral(CMAKE_INSTALL_PREFIX "/share/applications");
+
+}
+
+
+
 QString VeyonCore::sessionIdEnvironmentVariable()
 {
 	return QStringLiteral("VEYON_SESSION_ID");

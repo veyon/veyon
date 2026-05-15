@@ -119,6 +119,7 @@ public:
 	static QString qtTranslationsDirectory();
 	static QString executableSuffix();
 	static QString sharedLibrarySuffix();
+	static QString applicationsDirectory();
 
 	static QString sessionIdEnvironmentVariable();
 
