@@ -26,15 +26,18 @@
 
 #include <QProcess>
 
+#include "LinuxSessionFunctions.h"
+
 // clazy:excludeall=copyable-polymorphic
 
 class LinuxServerProcess : public QProcess
 {
 	Q_OBJECT
 public:
-	explicit LinuxServerProcess( const QProcessEnvironment& processEnvironment,
-								 const QString& sessionPath, int sessionId,
-								 QObject* parent = nullptr );
+	explicit LinuxServerProcess(const QProcessEnvironment& processEnvironment,
+								const QString& sessionPath, int sessionId,
+								LinuxSessionFunctions::Type sessionType,
+								QObject* parent = nullptr);
 	~LinuxServerProcess() override;
 
 	void start();
@@ -48,4 +51,6 @@ private:
 
 	const QString m_sessionPath;
 	int m_sessionId;
+	const LinuxSessionFunctions::Type m_sessionType;
+
 };
