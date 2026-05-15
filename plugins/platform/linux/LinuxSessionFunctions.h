@@ -79,6 +79,18 @@ public:
 	};
 	Q_ENUM(Type)
 
+	enum class DesktopEnvironment
+	{
+		Generic,
+		KDE,
+		GNOME,
+		Xfce,
+		LXQt,
+		LXDE,
+		MATE,
+	};
+	Q_ENUM(DesktopEnvironment)
+
 	SessionId currentSessionId() override;
 
 	SessionUptime currentSessionUptime() const override;
@@ -106,6 +118,7 @@ public:
 	static LoginDBusSessionSeat getSessionSeat( const QString& session );
 
 	static QProcessEnvironment getSessionEnvironment( int sessionLeaderPid );
+	static DesktopEnvironment getDesktopEnvironment(const QProcessEnvironment& sessionEnvironment);
 
 	static QString currentSessionPath(bool ignoreErrors = false);
 

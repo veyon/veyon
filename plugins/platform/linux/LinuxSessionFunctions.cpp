@@ -486,3 +486,42 @@ bool LinuxSessionFunctions::isGraphical( const QString& session )
 		   type == Type::Wayland ||
 		   type == Type::Mir;
 }
+
+
+
+LinuxSessionFunctions::DesktopEnvironment LinuxSessionFunctions::getDesktopEnvironment(const QProcessEnvironment& sessionEnvironment)
+{
+	const auto currentDesktop = sessionEnvironment.value(LinuxSessionFunctions::xdgCurrentDesktopEnvVarName());
+
+	if (currentDesktop == QLatin1String("KDE"))
+	{
+		return DesktopEnvironment::KDE;
+	}
+
+	if (currentDesktop.contains(QLatin1String("GNOME")))
+	{
+		return DesktopEnvironment::GNOME;
+	}
+
+	if (currentDesktop == QLatin1String("Xfce"))
+	{
+		return DesktopEnvironment::Xfce;
+	}
+
+	if (currentDesktop == QLatin1String("LXDE"))
+	{
+		return DesktopEnvironment::LXDE;
+	}
+
+	if (currentDesktop == QLatin1String("LXQt"))
+	{
+		return DesktopEnvironment::LXQt;
+	}
+
+	if (currentDesktop == QLatin1String("MATE"))
+	{
+		return DesktopEnvironment::MATE;
+	}
+
+	return DesktopEnvironment::Generic;
+}
