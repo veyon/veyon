@@ -395,6 +395,8 @@ QProcessEnvironment LinuxSessionFunctions::getSessionEnvironment( int sessionLea
 		return false;
 	},
 	sessionLeaderPid, {PIDS_ENVIRON_V}, true);
+#else
+#error Neither libproc2 nor libprocps available
 #endif
 
 	return sessionEnv;
