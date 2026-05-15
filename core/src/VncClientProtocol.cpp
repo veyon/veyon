@@ -38,6 +38,18 @@ extern "C"
 
 /*
  * Encrypt CHALLENGESIZE bytes in memory using a password.
+ * 
+ * SECURITY WARNING: This function uses DES encryption which is cryptographically
+ * broken and should not be considered secure:
+ * - DES has only 56-bit effective key length (easily brute-forced with modern hardware)
+ * - Weak key derivation: password is directly used as key with null padding
+ * - No key stretching (PBKDF2, scrypt, etc.)
+ * 
+ * This implementation is maintained for compatibility with standard VNC protocol.
+ * For new implementations, use modern encryption algorithms like AES-256 or ChaCha20.
+ * Ensure this is only used over trusted networks or through additional encryption layers.
+ * 
+ * See SECURITY-NOTES.md for more information.
  */
 
 static void
@@ -57,6 +69,7 @@ vncEncryptBytes(unsigned char *bytes, const char *passwd, size_t passwd_length)
 		}
 	}
 
+	// SECURITY WARNING: DES encryption is cryptographically broken (see comment above)
 	rfbDesKey(key, EN0);
 
 	for (i = 0; i < CHALLENGESIZE; i += KeyLength) {
