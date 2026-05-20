@@ -1785,6 +1785,10 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <source>Name</source>
         <translation>Ad</translation>
     </message>
+    <message>
+        <source>Number of files</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -4769,10 +4773,6 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Girdi cihazı müdahale sürücüsü kullan</translation>
     </message>
     <message>
-        <source>Use custom power scheme with disabled power button</source>
-        <translation>Güç düğmesi devre dışıyken özel güç şemasını kullan</translation>
-    </message>
-    <message>
         <source>Handling of interfering windows</source>
         <translation>Karışan pencerelerin işlenmesi</translation>
     </message>
@@ -4791,6 +4791,22 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Close session</source>
         <translation>Oturumu kapatın</translation>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable touchpads and touchscreens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

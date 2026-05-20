@@ -1785,6 +1785,10 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <source>Name</source>
         <translation>Namn</translation>
     </message>
+    <message>
+        <source>Number of files</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -4769,10 +4773,6 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
         <translation>Använd drivrutin för avlyssning av inmatningsenheter</translation>
     </message>
     <message>
-        <source>Use custom power scheme with disabled power button</source>
-        <translation>Använd ett anpassat strömschema med inaktiverad strömknapp</translation>
-    </message>
-    <message>
         <source>Handling of interfering windows</source>
         <translation>Hantering av störande fönster</translation>
     </message>
@@ -4791,6 +4791,22 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
     <message>
         <source>Close session</source>
         <translation>Stäng session</translation>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable touchpads and touchscreens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

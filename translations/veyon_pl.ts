@@ -1783,6 +1783,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Name</source>
         <translation>Nazwa</translation>
     </message>
+    <message>
+        <source>Number of files</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -4758,10 +4762,6 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Użyj sterownika przechwytywania urządzenia wejściowego</translation>
     </message>
     <message>
-        <source>Use custom power scheme with disabled power button</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Handling of interfering windows</source>
         <translation type="unfinished"/>
     </message>
@@ -4779,6 +4779,22 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Close session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable touchpads and touchscreens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
         <translation type="unfinished"/>
     </message>
 </context>

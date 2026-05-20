@@ -1782,6 +1782,10 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <source>Name</source>
         <translation>Name</translation>
     </message>
+    <message>
+        <source>Number of files</source>
+        <translation>Anzahl an Dateien</translation>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -4766,10 +4770,6 @@ Beispiel: [^-]*-(PC[0-9]*)</translation>
         <translation>Eingabegeräte-Interception-Treiber verwenden</translation>
     </message>
     <message>
-        <source>Use custom power scheme with disabled power button</source>
-        <translation>Benutzerdefiniertes Energieschema mit deaktiviertem Ein-/Ausschaltknopf verwenden</translation>
-    </message>
-    <message>
         <source>Handling of interfering windows</source>
         <translation>Behandlung von störenden Fenstern</translation>
     </message>
@@ -4788,6 +4788,22 @@ Beispiel: [^-]*-(PC[0-9]*)</translation>
     <message>
         <source>Close session</source>
         <translation>Sitzung beenden</translation>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation>Benutzerdefiniertes Energieschema mit deaktivierten Einschalt- und Energiespartasten verwenden</translation>
+    </message>
+    <message>
+        <source>Disable touchpads and touchscreens</source>
+        <translation>Touchpads und Touchscreens deaktivieren</translation>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation>Tastaturgeräte deaktivieren</translation>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
+        <translation>Mausgeräte deaktivieren</translation>
     </message>
 </context>
 <context>

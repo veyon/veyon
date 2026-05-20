@@ -1785,6 +1785,10 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
+    <message>
+        <source>Number of files</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -4769,10 +4773,6 @@ Näide: [^-]*-(PC[0-9]*)</translation>
         <translation>Kasutage sisendseadme pealtkuulamise draiverit</translation>
     </message>
     <message>
-        <source>Use custom power scheme with disabled power button</source>
-        <translation>Kasutage kohandatud toiteskeemi koos keelatud toitenupuga</translation>
-    </message>
-    <message>
         <source>Handling of interfering windows</source>
         <translation>Häirivate akende käsitlemine</translation>
     </message>
@@ -4790,6 +4790,22 @@ Näide: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Close session</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable touchpads and touchscreens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
         <translation type="unfinished"/>
     </message>
 </context>

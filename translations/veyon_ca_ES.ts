@@ -1787,6 +1787,10 @@ Assegureu-vos que els noms de les claus que pertanyen entre si són idèntics en
         <source>Name</source>
         <translation>Nom</translation>
     </message>
+    <message>
+        <source>Number of files</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -4767,10 +4771,6 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Utilitza el controlador d&apos;intercepció del dispositiu d&apos;entrada</translation>
     </message>
     <message>
-        <source>Use custom power scheme with disabled power button</source>
-        <translation>Utilitza una combinació d&apos;energia personalitzada amb el botó d&apos;engegada desactivat</translation>
-    </message>
-    <message>
         <source>Handling of interfering windows</source>
         <translation type="unfinished"/>
     </message>
@@ -4789,6 +4789,22 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Close session</source>
         <translation>Tanca la sessió</translation>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable touchpads and touchscreens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

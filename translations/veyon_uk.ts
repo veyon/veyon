@@ -1782,6 +1782,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Name</source>
         <translation>Назва</translation>
     </message>
+    <message>
+        <source>Number of files</source>
+        <translation>Кількість файлів</translation>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -4768,10 +4772,6 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Скористатися драйвером-перехоплювачем пристроїв введення</translation>
     </message>
     <message>
-        <source>Use custom power scheme with disabled power button</source>
-        <translation>Використати нетипову схему живлення із вимкненою кнопкою живлення</translation>
-    </message>
-    <message>
         <source>Handling of interfering windows</source>
         <translation>Обробка конфліктних вікон</translation>
     </message>
@@ -4790,6 +4790,22 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Close session</source>
         <translation>Закрити сеанс</translation>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation>Використати нетипову схему живлення із вимкненими кнопками живлення і присипляння</translation>
+    </message>
+    <message>
+        <source>Disable touchpads and touchscreens</source>
+        <translation>Вимкнути сенсорні панелі і сенсорні екрани</translation>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation>Вимкнути клавіатурні пристрої</translation>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
+        <translation>Вимкнути пристрої миші</translation>
     </message>
 </context>
 <context>
