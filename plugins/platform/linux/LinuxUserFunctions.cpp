@@ -407,7 +407,7 @@ bool LinuxUserFunctions::authenticate( const QString& username, const Password& 
 
 
 
-uid_t LinuxUserFunctions::userIdFromName( const QString& username )
+LinuxUserFunctions::UserId LinuxUserFunctions::userIdFromName(const QString& username)
 {
 	const auto pw_entry = getpwnam( username.toUtf8().constData() );
 
@@ -416,12 +416,12 @@ uid_t LinuxUserFunctions::userIdFromName( const QString& username )
 		return pw_entry->pw_uid;
 	}
 
-	return -1;
+	return InvalidUserId;
 }
 
 
 
-gid_t LinuxUserFunctions::userGroupIdFromName( const QString& username )
+LinuxUserFunctions::GroupId LinuxUserFunctions::userGroupIdFromName(const QString& username)
 {
 	const auto pw_entry = getpwnam( username.toUtf8().constData() );
 
@@ -430,7 +430,7 @@ gid_t LinuxUserFunctions::userGroupIdFromName( const QString& username )
 		return pw_entry->pw_gid;
 	}
 
-	return -1;
+	return InvalidGroupId;
 }
 
 

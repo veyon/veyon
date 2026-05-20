@@ -36,6 +36,12 @@
 class LinuxUserFunctions : public PlatformUserFunctions
 {
 public:
+	using UserId = uid_t;
+	using GroupId = gid_t;
+
+	static constexpr UserId InvalidUserId = -1;
+	static constexpr GroupId InvalidGroupId = -1;
+
 	QString queryCurrentUserProperty(UserProperty property) override;
 
 	QStringList userGroups( bool queryDomainGroups ) override;
@@ -51,8 +57,8 @@ public:
 
 	bool authenticate( const QString& username, const Password& password ) override;
 
-	static uid_t userIdFromName( const QString& username );
-	static gid_t userGroupIdFromName( const QString& username );
+	static UserId userIdFromName( const QString& username );
+	static GroupId userGroupIdFromName( const QString& username );
 
 	static QVariant getUserProperty(const QString& userPath, const QString& property, bool logErrors = true);
 
