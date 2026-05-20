@@ -207,6 +207,19 @@ bool BuiltinUltraVncServer::runServer( int serverPort, const Password& password 
 
 	initUltraVncSettingsManager();
 
+	typedef BOOL (WINAPI *pSetProcessMitigationPolicy_t)(PROCESS_MITIGATION_POLICY, PVOID, SIZE_T);
+	HMODULE hKernel32 = GetModuleHandle("kernel32.dll");
+	if (hKernel32)
+	{
+		pSetProcessMitigationPolicy_t pSetProcessMitigationPolicy = (pSetProcessMitigationPolicy_t)GetProcAddress(hKernel32, "SetProcessMitigationPolicy");
+		if (pSetProcessMitigationPolicy)
+		{
+			PROCESS_MITIGATION_IMAGE_LOAD_POLICY policy = {};
+			policy.PreferSystem32Images = 1;
+			pSetProcessMitigationPolicy(ProcessImageLoadPolicy, &policy, sizeof(policy));
+		}
+	}
+
 	// run UltraVNC server
 	auto hUser32 = LoadLibraryExW(L"user32.dll", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32);
 	auto hSHCore = LoadLibraryExW(L"SHCore.dll", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32);
