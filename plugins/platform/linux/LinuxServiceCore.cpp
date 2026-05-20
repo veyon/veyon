@@ -222,7 +222,8 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 
 	// workaround for #817 where LinuxSessionFunctions::getSessionEnvironment() does not return all
 	// environment variables when executed via systemd for an established KDE session and xdg-open fails
-	if (sessionEnvironment.value(LinuxSessionFunctions::xdgCurrentDesktopEnvVarName()) == QLatin1String("KDE") &&
+	if (sessionType != LinuxSessionFunctions::Type::Wayland &&
+		sessionEnvironment.value(LinuxSessionFunctions::xdgCurrentDesktopEnvVarName()) == QLatin1String("KDE") &&
 		sessionEnvironment.contains(LinuxSessionFunctions::kdeSessionVersionEnvVarName()) == false)
 	{
 		sessionEnvironment.insert(LinuxSessionFunctions::xdgCurrentDesktopEnvVarName(), QStringLiteral("X-Generic"));
