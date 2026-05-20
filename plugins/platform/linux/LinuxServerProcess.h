@@ -27,6 +27,7 @@
 #include <QProcess>
 
 #include "LinuxSessionFunctions.h"
+#include "LinuxUserFunctions.h"
 
 // clazy:excludeall=copyable-polymorphic
 
@@ -44,6 +45,15 @@ public:
 	void stop();
 
 private:
+	void setProcessUserId();
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+	void setupChildProcess() override
+	{
+		setProcessUserId();
+	}
+#endif
+
 	static constexpr auto ServerShutdownTimeout = 1000;
 	static constexpr auto ServerTerminateTimeout = 3000;
 	static constexpr auto ServerKillTimeout = 3000;
@@ -52,5 +62,6 @@ private:
 	const QString m_sessionPath;
 	int m_sessionId;
 	const LinuxSessionFunctions::Type m_sessionType;
+	LinuxUserFunctions::UserId m_sessionUserId{LinuxUserFunctions::InvalidUserId};
 
 };
