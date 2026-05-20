@@ -36,6 +36,7 @@
 #include "Filesystem.h"
 #include "LinuxCoreFunctions.h"
 #include "LinuxServerProcess.h"
+#include "LinuxUserFunctions.h"
 #include "VeyonConfiguration.h"
 
 
@@ -81,6 +82,24 @@ void LinuxServerProcess::start()
 	}
 	else if (m_sessionType == LinuxSessionFunctions::Type::Wayland)
 	{
+		const auto sessionUserPath = LinuxSessionFunctions::getSessionUser(m_sessionPath);
+		const auto sessionUserName = LinuxUserFunctions::getUserProperty(sessionUserPath, QStringLiteral("Name")).toString();
+		if (sessionUserName.isEmpty())
+		{
+			vCritical() << "failed to determine user name of session user" << sessionUserPath;
+		}
+
+		m_sessionUserId = LinuxUserFunctions::userIdFromName(sessionUserName);
+
+		if (m_sessionUserId == LinuxUserFunctions::InvalidUserId)
+		{
+			vCritical() << "failed to determine user ID of user" << sessionUserName;
+		}
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+		setChildProcessModifier([this] { setProcessUserId(); });
+#endif
+
 		const auto desktopEnvironment = LinuxSessionFunctions::getSessionDesktopEnvironment(m_sessionPath);
 		const auto desktopFile = VeyonCore::applicationsDirectory() + QDir::separator() + QStringLiteral("io.veyon.veyon-server.desktop");
 		switch (desktopEnvironment)
@@ -162,5 +181,15 @@ void LinuxServerProcess::stop()
 			sendSignalRecursively( pid, SIGKILL );
 			LinuxCoreFunctions::waitForProcess( pid, ServerKillTimeout, ServerWaitSleepInterval );
 		}
+	}
+}
+
+
+
+void LinuxServerProcess::setProcessUserId()
+{
+	if (m_sessionUserId != LinuxUserFunctions::InvalidUserId)
+	{
+		setuid(m_sessionUserId);
 	}
 }
