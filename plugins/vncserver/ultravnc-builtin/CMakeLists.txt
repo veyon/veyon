@@ -20,7 +20,6 @@ set(ultravnc_CXX_SOURCES
 	${ultravnc_DIR}/winvnc/winvnc/benchmark.cpp
 	${ultravnc_DIR}/winvnc/winvnc/buildtime.cpp
 	${ultravnc_DIR}/winvnc/winvnc/CpuUsage.cpp
-	${ultravnc_DIR}/winvnc/winvnc/credentials.cpp
 	${ultravnc_DIR}/winvnc/winvnc/DeskdupEngine.cpp
 	${ultravnc_DIR}/winvnc/winvnc/HelperFunctions.cpp
 	${ultravnc_DIR}/winvnc/winvnc/HideDesktop.cpp
