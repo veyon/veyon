@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     container: veyon/ci.linux.${{matrix.dist}}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: true
       - run: git config --global --add safe.directory $GITHUB_WORKSPACE
