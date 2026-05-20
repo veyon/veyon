@@ -349,7 +349,7 @@ void FileCollectTreeModel::updateCollection(FileCollection::Id collectionId)
 		}
 	}
 
-	Q_EMIT dataChanged(indexOfCollection(collectionId, 0), indexOfCollection(collectionId, int(Column::ColumnCount)));
+	Q_EMIT dataChanged(indexOfCollection(collectionId, 0), indexOfCollection(collectionId, int(Column::ColumnCount) - 1));
 }
 
 
