@@ -4,7 +4,7 @@
 [![Latest stable release](https://img.shields.io/github/release/veyon/veyon.svg?maxAge=3600)](https://github.com/veyon/veyon/releases)
 [![Overall downloads on Github](https://img.shields.io/github/downloads/veyon/veyon/total.svg?maxAge=3600)](https://github.com/veyon/veyon/releases)
 [![Documentation Status](https://readthedocs.org/projects/veyon/badge/?version=latest)](https://docs.veyon.io/)
-[![Localise on Transifex](https://img.shields.io/badge/localise-on_transifex-green.svg)](https://www.transifex.com/veyon-solutions/veyon/)
+[![Localise on Transifex](https://img.shields.io/badge/localise-on_transifex-green.svg)](https://app.transifex.com/veyon-solutions/veyon/)
 [![license](https://img.shields.io/badge/license-GPLv2-green.svg)](LICENSE)
 
 
@@ -155,11 +155,9 @@ Before starting the implementation of a new feature, please always open an issue
 
 ## Join translation team
 
-Veyon and its documentation are translated at the Transifex platform. Please go to https://www.transifex.com/veyon-solutions/veyon and join the corresponding translation team. Please DO NOT submit pull requests for modified translation files since this would require manual Transifex synchronizations on our side.
+Veyon and its documentation are translated at the Transifex platform. Please go to https://app.transifex.com/veyon-solutions/veyon and join the corresponding translation team. Please DO NOT submit pull requests for modified translation files since this would require manual Transifex synchronizations on our side.
 
 ## More information
 
 * https://veyon.io/
 * https://docs.veyon.io/
-* https://facebook.com/veyon.io/
-* https://twitter.com/veyon_io
