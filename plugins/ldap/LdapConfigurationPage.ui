@@ -895,7 +895,7 @@
           <item>
            <widget class="QRadioButton" name="identifyGroupMembersByDN">
             <property name="text">
-             <string>Distinguished name (Samba/AD)</string>
+             <string>Distinguished name (Samba/AD/FreeIPA)</string>
             </property>
             <property name="checked">
              <bool>true</bool>
