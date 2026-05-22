@@ -135,7 +135,7 @@ void DesktopServicesConfigurationPage::addServiceObject( QTableWidget* tableWidg
 														 const QString& name, QJsonArray& objects )
 {
 	ObjectManager<DesktopServiceObject> objectManager( objects );
-	objectManager.add( DesktopServiceObject( type, name ) );
+	objectManager.add(DesktopServiceObject(type, objectManager.generateUniqueName(name)));
 	objects = objectManager.objects();
 
 	loadObjects( objects, tableWidget );

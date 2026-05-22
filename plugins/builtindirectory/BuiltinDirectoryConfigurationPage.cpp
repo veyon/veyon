@@ -81,10 +81,9 @@ void BuiltinDirectoryConfigurationPage::applyConfiguration()
 void BuiltinDirectoryConfigurationPage::addLocation()
 {
 	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
-	objectManager.add( NetworkObject( nullptr,
-									  NetworkObject::Type::Location, tr( "New location" ),
-									  {},
-									  QUuid::createUuid() ) );
+	objectManager.add(NetworkObject(nullptr, NetworkObject::Type::Location,
+									objectManager.generateUniqueName(tr("New location")),
+									{}, {}, QUuid::createUuid()));
 	m_configuration.setNetworkObjects( objectManager.objects() );
 
 	populateLocations();
@@ -182,11 +181,11 @@ void BuiltinDirectoryConfigurationPage::addComputer()
 	}
 
 	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
-	objectManager.add( NetworkObject( nullptr,
-									  NetworkObject::Type::Host, tr( "New computer" ),
-									  {},
-									  QUuid::createUuid(),
-									  currentLocationUid ) );
+	objectManager.add(NetworkObject(nullptr, NetworkObject::Type::Host,
+									objectManager.generateUniqueName(tr("New computer")),
+									{},
+									QUuid::createUuid(),
+									currentLocationUid));
 	m_configuration.setNetworkObjects( objectManager.objects() );
 
 	populateComputers();
