@@ -50,6 +50,29 @@ void ComputerItemDelegate::paint(QPainter* painter, const QStyleOptionViewItem& 
 
 
 
+QSize ComputerItemDelegate::sizeHint(const QStyleOptionViewItem& option, const QModelIndex& index) const
+{
+	QStyleOptionViewItem opt = option;
+	const auto style = QApplication::style();
+
+	if (index.model())
+	{
+		QSize maxSize;
+		for (int i = 0; i < index.model()->rowCount(); ++i)
+		{
+			initStyleOption(&opt, index.model()->index(i, 0));
+			const auto rowSize = style->sizeFromContents(QStyle::CT_ItemViewItem, &opt, QSize(), nullptr);
+			maxSize = maxSize.expandedTo(rowSize);
+		}
+		return maxSize;
+	}
+
+	initStyleOption(&opt, index);
+	return style->sizeFromContents(QStyle::CT_ItemViewItem, &opt, QSize(), nullptr);
+}
+
+
+
 void ComputerItemDelegate::initFeaturePixmaps()
 {
 	for (const auto& feature : VeyonCore::featureManager().features() )
