@@ -94,6 +94,12 @@ ComputerControlInterfaceList ComputerMonitoringWidget::selectedComputerControlIn
 
 bool ComputerMonitoringWidget::performIconSizeAutoAdjust()
 {
+	if (isVisible() == false)
+	{
+		initiateIconSizeAutoAdjust();
+		return false;
+	}
+
 	if( ComputerMonitoringView::performIconSizeAutoAdjust() == false)
 	{
 		return false;
