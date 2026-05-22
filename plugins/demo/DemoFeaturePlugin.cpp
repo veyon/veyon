@@ -226,6 +226,22 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 		auto userDemoControlInterfaces = computerControlInterfaces;
 		userDemoControlInterfaces.removeAll( demoServerInterface );
 
+		// never send a (potentially fullscreen) demo client to the master
+		// computer itself: it is listed as a regular room computer but has to
+		// keep control over the running demonstration - it receives a dedicated
+		// window demo below instead
+		for (auto it = userDemoControlInterfaces.begin(); it != userDemoControlInterfaces.end(); )
+		{
+			if (HostAddress(HostAddress::parseHost((*it)->computer().hostName())).isLocalHost())
+			{
+				it = userDemoControlInterfaces.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
+
 		const QVariantMap demoClientArgs{
 			{ argToString(Argument::DemoServerHost), HostAddress::parseHost(demoServerHost) },
 			{ argToString(Argument::DemoServerPort), demoServerPort },
