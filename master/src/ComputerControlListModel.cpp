@@ -193,7 +193,9 @@ void ComputerControlListModel::updateComputerScreenSize()
 
 		for( int i = 0; i < rowCount(); ++i )
 		{
-			updateScreen( index( i ) );
+			const auto rowIndex = index(i);
+			updateScreen(rowIndex);
+			Q_EMIT dataChanged(rowIndex, rowIndex, {Qt::SizeHintRole});
 		}
 
 		Q_EMIT computerScreenSizeChanged();
@@ -369,7 +371,7 @@ QVariant ComputerControlListModel::uidRoleData(const ComputerControlInterface::P
 void ComputerControlListModel::updateState( const QModelIndex& index )
 {
 	Q_EMIT stateChanged(index);
-	Q_EMIT dataChanged( index, index, { Qt::DisplayRole, Qt::DecorationRole, Qt::ToolTipRole, ImageIdRole, FramebufferRole } );
+	Q_EMIT dataChanged(index, index, {Qt::DisplayRole, Qt::DecorationRole, Qt::SizeHintRole, Qt::ToolTipRole, ImageIdRole, FramebufferRole});
 }
 
 
@@ -398,7 +400,7 @@ void ComputerControlListModel::updateActiveFeatures( const QModelIndex& index )
 
 void ComputerControlListModel::updateUser( const QModelIndex& index )
 {
-	Q_EMIT dataChanged( index, index, { Qt::DisplayRole, Qt::ToolTipRole } );
+	Q_EMIT dataChanged(index, index, {Qt::DisplayRole, Qt::ToolTipRole, Qt::SizeHintRole});
 
 	auto controlInterface = computerControlInterface( index );
 	if( controlInterface.isNull() == false )
