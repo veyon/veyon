@@ -1787,6 +1787,10 @@ Assegureu-vos que els noms de les claus que pertanyen entre si són idèntics en
         <source>Name</source>
         <translation>Nom</translation>
     </message>
+    <message>
+        <source>Number of files</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -2495,8 +2499,8 @@ Assegureu-vos que els noms de les claus que pertanyen entre si són idèntics en
         <translation>Identificació dels membres del grup</translation>
     </message>
     <message>
-        <source>Distinguished name (Samba/AD)</source>
-        <translation>Nom distingit (Samba/AD)</translation>
+        <source>Distinguished name (Samba/AD/FreeIPA)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -4763,12 +4767,24 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Oculta l&apos;escriptori</translation>
     </message>
     <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Use input device interception driver</source>
         <translation>Utilitza el controlador d&apos;intercepció del dispositiu d&apos;entrada</translation>
     </message>
     <message>
-        <source>Use custom power scheme with disabled power button</source>
-        <translation>Utilitza una combinació d&apos;energia personalitzada amb el botó d&apos;engegada desactivat</translation>
+        <source>Disable touchpads and touchscreens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Handling of interfering windows</source>

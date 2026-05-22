@@ -1782,6 +1782,10 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <source>Name</source>
         <translation>Nome</translation>
     </message>
+    <message>
+        <source>Number of files</source>
+        <translation>Numero di file</translation>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -2490,8 +2494,8 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Identificazione membro del gruppo</translation>
     </message>
     <message>
-        <source>Distinguished name (Samba/AD)</source>
-        <translation>Nome distinto (Samba/AD)</translation>
+        <source>Distinguished name (Samba/AD/FreeIPA)</source>
+        <translation>Nome distinto (Samba/AD/FreeIPA)</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -3527,7 +3531,7 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
     </message>
     <message>
         <source>First name + last name</source>
-        <translation type="unfinished"/>
+        <translation>Nome + cognome</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -4751,12 +4755,24 @@ Esempio: [^-]*-(PC[0-9]*)</translation>
         <translation>Nascondi desktop</translation>
     </message>
     <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation>Utilizza uno schema di risparmio energetico personalizzato con i pulsanti di accensione e sospensione disabilitati.</translation>
+    </message>
+    <message>
         <source>Use input device interception driver</source>
         <translation>Usa il driver di intercettazione del dispositivo di input</translation>
     </message>
     <message>
-        <source>Use custom power scheme with disabled power button</source>
-        <translation>Utilizza lo schema di alimentazione personalizzato con il pulsante di accensione disabilitato</translation>
+        <source>Disable touchpads and touchscreens</source>
+        <translation>Disabilita touchpad e touchscreen</translation>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation>Disabilita dispositivi da tastiera</translation>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
+        <translation>Disabilita i dispositivi mouse</translation>
     </message>
     <message>
         <source>Handling of interfering windows</source>

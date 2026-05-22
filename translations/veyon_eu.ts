@@ -1072,7 +1072,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Hostname: %1</source>
-        <translation type="unfinished"/>
+        <translation>Ostalariaren izena: %1</translation>
     </message>
     <message>
         <source>unknown</source>
@@ -1080,15 +1080,15 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>IP helbidea: %1</translation>
     </message>
     <message>
         <source>Hostname could not be resolved</source>
-        <translation type="unfinished"/>
+        <translation>Ostalariaren izena ezin izan da konpondu</translation>
     </message>
     <message>
         <source>No features active</source>
-        <translation type="unfinished"/>
+        <translation>Ez dago funtzio aktiborik</translation>
     </message>
 </context>
 <context>
@@ -1119,7 +1119,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Veyon Service %1 at %2:%3</source>
-        <translation type="unfinished"/>
+        <translation>Veyon zerbitzua %1  %2:%3-n</translation>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1142,7 +1142,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Ez da sareko objektuen direktorioko plugin lehenetsirik aurkitu. Egiaztatu zure instalazioa edo konfiguratu beste sareko objektuen direktorioren-motorra bat Veyon Konfiguratzailearen bidez.</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1162,11 +1162,11 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
-        <translation type="unfinished"/>
+        <translation>Ezin izan da ordenagailu honen kokapena zehaztu. Honek sistemaren konfigurazioarekin arazo bat dagoela adierazten du. Ez da kokapen eta ordenagailurik erakutsiko &quot;Kokapenak eta ordenagailuak&quot; panelean.</translation>
     </message>
     <message>
         <source>Unknown location</source>
-        <translation type="unfinished"/>
+        <translation>Kokapen ezezaguna</translation>
     </message>
 </context>
 <context>
@@ -1279,11 +1279,11 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the Veyon Service.</source>
-        <translation type="unfinished"/>
+        <translation>Ezin izan da Veyon Zerbitzuaren abiarazte automatikoaren propietatea aldatu.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Server.</source>
-        <translation type="unfinished"/>
+        <translation>Ezin izan da Veyon zerbitzariaren suebakiaren konfigurazioa konfiguratu.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Worker.</source>
@@ -1302,7 +1302,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     <name>DemoClient</name>
     <message>
         <source>Veyon Demo</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Demo</translation>
     </message>
 </context>
 <context>
@@ -1785,6 +1785,10 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <source>Name</source>
         <translation>Izena</translation>
     </message>
+    <message>
+        <source>Number of files</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -2154,11 +2158,11 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Veyon service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon zerbitzua</translation>
     </message>
     <message>
         <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation type="unfinished"/>
+        <translation>Veyon zerbitzua aldi baterako gelditu behar da erregistro-fitxategiak kentzeko. Jarraitu nahi duzu?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -2198,15 +2202,15 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished"/>
+        <translation>Kolore eskema:</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>Argia</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>Iluna</translation>
     </message>
 </context>
 <context>
@@ -2493,8 +2497,8 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <translation>Taldekideen identifikazioa</translation>
     </message>
     <message>
-        <source>Distinguished name (Samba/AD)</source>
-        <translation>Izen bereizgarria (Samba/AD)</translation>
+        <source>Distinguished name (Samba/AD/FreeIPA)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -3146,7 +3150,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Veyon Configurator %1</source>
-        <translation type="unfinished"/>
+        <translation>Veyon konfiguratzailea %1</translation>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3182,7 +3186,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
-        <translation type="unfinished"/>
+        <translation>Tokiko konfigurazioaren motorrak konfigurazioa ezin dela idatzi jakinarazi du! Exekutatu Veyon Konfiguratzailea pribilegio handiagoekin.</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
@@ -3206,7 +3210,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;% 1&quot; funtzioa aktibo dago oraindik. Mesedez, gelditu Veyon itxi aurretik.</translation>
     </message>
     <message>
         <source>Use custom computer arrangement.
@@ -3285,7 +3289,7 @@ Luze sakatu fitxategi batetik kargatzeko edo uneko antolamendua fitxategi batera
     </message>
     <message>
         <source>Only last part of user name</source>
-        <translation type="unfinished"/>
+        <translation>Erabiltzaile izenaren azken zatia bakarrik</translation>
     </message>
     <message>
         <source>Only computer name</source>
@@ -3812,11 +3816,11 @@ Mesedez, gorde zure lana eta itxi programa guztiak.</translation>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - Veyon Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - Veyon urruneko sarbidea</translation>
     </message>
     <message>
         <source>%1 - %2 - Veyon Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - Veyon urruneko sarbidea</translation>
     </message>
 </context>
 <context>
@@ -4014,31 +4018,31 @@ Mesedez, gorde zure lana eta itxi programa guztiak.</translation>
     <name>ServerAccessControlManager</name>
     <message>
         <source>Requested authentication method not available</source>
-        <translation type="unfinished"/>
+        <translation>Eskatutako autentifikazio-metodoa ez dago erabilgarri</translation>
     </message>
     <message>
         <source>Access allowed by rule &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; arauak baimendutako sarbidea</translation>
     </message>
     <message>
         <source>Access denied by rule &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; arauak sarbidea ukatu du</translation>
     </message>
     <message>
         <source>No rule allowed access</source>
-        <translation type="unfinished"/>
+        <translation>Inolako araurik ez du sarbidea onartu</translation>
     </message>
     <message>
         <source>Accessing user not member of an authorized user group</source>
-        <translation type="unfinished"/>
+        <translation>Baimendutako erabiltzaile talde bateko kide ez den erabiltzailea sartzea</translation>
     </message>
     <message>
         <source>User has denied access</source>
-        <translation type="unfinished"/>
+        <translation>Erabiltzaileari sarbidea ukatu zaio</translation>
     </message>
     <message>
         <source>User confirmed access</source>
-        <translation type="unfinished"/>
+        <translation>Erabiltzaileari sarbidea baimendu zaio</translation>
     </message>
 </context>
 <context>
@@ -4155,7 +4159,7 @@ Normalean hori beharrezkoa da terminal zerbitzariak onartzeko.</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
-        <translation type="unfinished"/>
+        <translation>Ezarpen guztiak behar bezala gorde dira. Eragina izateko Veyon zerbitzua berrabiarazi behar da. Orain berrabiarazi?</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4195,11 +4199,11 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
     </message>
     <message>
         <source>Environment variable name</source>
-        <translation type="unfinished"/>
+        <translation>Inguruneko aldagaiaren izena</translation>
     </message>
     <message>
         <source>Registry key name</source>
-        <translation type="unfinished"/>
+        <translation>Erregistro-gakoaren izena</translation>
     </message>
 </context>
 <context>
@@ -4210,23 +4214,23 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
     </message>
     <message>
         <source>Starting %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 abiarazten</translation>
     </message>
     <message>
         <source>Stopping %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 gelditzen</translation>
     </message>
     <message>
         <source>Restarting %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 berrabiarazten</translation>
     </message>
     <message>
         <source>Registering %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 erregistratzen</translation>
     </message>
     <message>
         <source>Unregistering %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 erregistroa kentzen</translation>
     </message>
 </context>
 <context>
@@ -4311,11 +4315,11 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
     </message>
     <message>
         <source>View in separate window</source>
-        <translation type="unfinished"/>
+        <translation>Ikusi beste leiho batean</translation>
     </message>
     <message>
         <source>Veyon Master – Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Master – Diaporama</translation>
     </message>
 </context>
 <context>
@@ -4603,7 +4607,7 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Ezin izan dira zure ezarpen pertsonalak gorde! Mesedez, egiaztatu erabiltzailearen konfigurazio fitxategiaren bidea Veyon Konfiguratzailea erabiliz.</translation>
     </message>
 </context>
 <context>
@@ -4765,16 +4769,28 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
         <translation>Ezkutatu mahaigaina</translation>
     </message>
     <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Use input device interception driver</source>
         <translation>Erabili sarrerako gailua atzemateko kontrolatzailea</translation>
     </message>
     <message>
-        <source>Use custom power scheme with disabled power button</source>
-        <translation>Erabili pizteko eskema pertsonalizatu bat pizteko botoia desgaituta dagoela</translation>
+        <source>Disable touchpads and touchscreens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Handling of interfering windows</source>
-        <translation type="unfinished"/>
+        <translation>Interferentzia-leihoak maneiatzea</translation>
     </message>
     <message>
         <source>None</source>
@@ -4782,15 +4798,15 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
     </message>
     <message>
         <source>Fix window attributes</source>
-        <translation type="unfinished"/>
+        <translation>Konpondu leihoaren atributuak</translation>
     </message>
     <message>
         <source>Terminate related process</source>
-        <translation type="unfinished"/>
+        <translation>Amaitu erlazionatutako prozesua</translation>
     </message>
     <message>
         <source>Close session</source>
-        <translation type="unfinished"/>
+        <translation>Itxi saioa</translation>
     </message>
 </context>
 <context>

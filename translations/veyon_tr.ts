@@ -1785,6 +1785,10 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <source>Name</source>
         <translation>Ad</translation>
     </message>
+    <message>
+        <source>Number of files</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -2493,8 +2497,8 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>Grup üye tanımlaması</translation>
     </message>
     <message>
-        <source>Distinguished name (Samba/AD)</source>
-        <translation>Ayırt edilen ad (Samba/AD)</translation>
+        <source>Distinguished name (Samba/AD/FreeIPA)</source>
+        <translation>Ayırt edilen ad (Samba/AD/FreeIPA)</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -4765,12 +4769,24 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Masaüstünü gizle</translation>
     </message>
     <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Use input device interception driver</source>
         <translation>Girdi cihazı müdahale sürücüsü kullan</translation>
     </message>
     <message>
-        <source>Use custom power scheme with disabled power button</source>
-        <translation>Güç düğmesi devre dışıyken özel güç şemasını kullan</translation>
+        <source>Disable touchpads and touchscreens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Handling of interfering windows</source>

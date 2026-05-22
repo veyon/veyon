@@ -1785,6 +1785,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Name</source>
         <translation>Nombre</translation>
     </message>
+    <message>
+        <source>Number of files</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -2493,8 +2497,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Identificación del miembro del grupo</translation>
     </message>
     <message>
-        <source>Distinguished name (Samba/AD)</source>
-        <translation>Nombre distinguido (Samba/AD)</translation>
+        <source>Distinguished name (Samba/AD/FreeIPA)</source>
+        <translation>Nombre distinguido (Samba/AD/FreeIPA)</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -4761,11 +4765,23 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Ocultar escritorio</translation>
     </message>
     <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Use input device interception driver</source>
         <translation>Utilice el controlador de interceptación del dispositivo de entrada</translation>
     </message>
     <message>
-        <source>Use custom power scheme with disabled power button</source>
+        <source>Disable touchpads and touchscreens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
         <translation type="unfinished"/>
     </message>
     <message>

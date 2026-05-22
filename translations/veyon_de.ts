@@ -1782,6 +1782,10 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <source>Name</source>
         <translation>Name</translation>
     </message>
+    <message>
+        <source>Number of files</source>
+        <translation>Anzahl an Dateien</translation>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -2490,8 +2494,8 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Identifizierung von Gruppenmitgliedern</translation>
     </message>
     <message>
-        <source>Distinguished name (Samba/AD)</source>
-        <translation>Distinguished name (Samba/AD)</translation>
+        <source>Distinguished name (Samba/AD/FreeIPA)</source>
+        <translation>Distinguished name (Samba/AD/FreeIPA)</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -4762,12 +4766,24 @@ Beispiel: [^-]*-(PC[0-9]*)</translation>
         <translation>Desktop verbergen</translation>
     </message>
     <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation>Benutzerdefiniertes Energieschema mit deaktivierten Einschalt- und Energiespartasten verwenden</translation>
+    </message>
+    <message>
         <source>Use input device interception driver</source>
         <translation>Eingabegeräte-Interception-Treiber verwenden</translation>
     </message>
     <message>
-        <source>Use custom power scheme with disabled power button</source>
-        <translation>Benutzerdefiniertes Energieschema mit deaktiviertem Ein-/Ausschaltknopf verwenden</translation>
+        <source>Disable touchpads and touchscreens</source>
+        <translation>Touchpads und Touchscreens deaktivieren</translation>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation>Tastaturgeräte deaktivieren</translation>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
+        <translation>Mausgeräte deaktivieren</translation>
     </message>
     <message>
         <source>Handling of interfering windows</source>

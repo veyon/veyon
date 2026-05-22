@@ -1785,6 +1785,10 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <source>Name</source>
         <translation>Namn</translation>
     </message>
+    <message>
+        <source>Number of files</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -2493,8 +2497,8 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Identifiering av gruppmedlem</translation>
     </message>
     <message>
-        <source>Distinguished name (Samba/AD)</source>
-        <translation>Särskiljande namn (Samba/AD)</translation>
+        <source>Distinguished name (Samba/AD/FreeIPA)</source>
+        <translation>Särskiljande namn (Samba/AD/FreeIPA)</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -4765,12 +4769,24 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
         <translation>Dölj skrivbordet</translation>
     </message>
     <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Use input device interception driver</source>
         <translation>Använd drivrutin för avlyssning av inmatningsenheter</translation>
     </message>
     <message>
-        <source>Use custom power scheme with disabled power button</source>
-        <translation>Använd ett anpassat strömschema med inaktiverad strömknapp</translation>
+        <source>Disable touchpads and touchscreens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Handling of interfering windows</source>

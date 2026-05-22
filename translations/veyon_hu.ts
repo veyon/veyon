@@ -1783,6 +1783,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Name</source>
         <translation>Megnevezés</translation>
     </message>
+    <message>
+        <source>Number of files</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -2491,8 +2495,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Csoporttagság azonosítója</translation>
     </message>
     <message>
-        <source>Distinguished name (Samba/AD)</source>
-        <translation>Megkülönböztetett név (Samba/AD)</translation>
+        <source>Distinguished name (Samba/AD/FreeIPA)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -4758,11 +4762,23 @@ Példa: [^-]*-(PC[0-9]*)</translation>
         <translation>Asztal elrejtése</translation>
     </message>
     <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Use input device interception driver</source>
         <translation>A beviteli eszköz elfogási illesztőprogramjának használata</translation>
     </message>
     <message>
-        <source>Use custom power scheme with disabled power button</source>
+        <source>Disable touchpads and touchscreens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
         <translation type="unfinished"/>
     </message>
     <message>

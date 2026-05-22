@@ -1785,6 +1785,10 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <source>Name</source>
         <translation>Nimi</translation>
     </message>
+    <message>
+        <source>Number of files</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -2493,8 +2497,8 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation>Grupi liikme identifitseerimine</translation>
     </message>
     <message>
-        <source>Distinguished name (Samba/AD)</source>
-        <translation>Eraldatud nimi (Samba/AD)</translation>
+        <source>Distinguished name (Samba/AD/FreeIPA)</source>
+        <translation>Eraldatud nimi (Samba/AD/FreeIPA)</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -4765,12 +4769,24 @@ Näide: [^-]*-(PC[0-9]*)</translation>
         <translation>Peida töölaud</translation>
     </message>
     <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Use input device interception driver</source>
         <translation>Kasutage sisendseadme pealtkuulamise draiverit</translation>
     </message>
     <message>
-        <source>Use custom power scheme with disabled power button</source>
-        <translation>Kasutage kohandatud toiteskeemi koos keelatud toitenupuga</translation>
+        <source>Disable touchpads and touchscreens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Handling of interfering windows</source>

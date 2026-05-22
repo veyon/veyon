@@ -2492,7 +2492,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Distinguished name (Samba/AD)</source>
+        <source>Distinguished name (Samba/AD/FreeIPA)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4738,11 +4738,23 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Use input device interception driver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use custom power scheme with disabled power button</source>
+        <source>Disable touchpads and touchscreens</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

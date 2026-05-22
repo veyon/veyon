@@ -1785,6 +1785,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Name</source>
         <translation>名稱</translation>
     </message>
+    <message>
+        <source>Number of files</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -2493,8 +2497,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>群組成員身份</translation>
     </message>
     <message>
-        <source>Distinguished name (Samba/AD)</source>
-        <translation>可分辨名稱 (Samba/AD)</translation>
+        <source>Distinguished name (Samba/AD/FreeIPA)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -4765,12 +4769,24 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>隱藏桌面</translation>
     </message>
     <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Use input device interception driver</source>
         <translation>使用輸入裝置攔截驅動程式</translation>
     </message>
     <message>
-        <source>Use custom power scheme with disabled power button</source>
-        <translation>使用停用電源按鈕的自訂電源方案</translation>
+        <source>Disable touchpads and touchscreens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Handling of interfering windows</source>

@@ -334,7 +334,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Дополнительную информацию см.&lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;В Руководстве администратора Veyon&lt;/a&gt;.</translation>
+        <translation>Дополнительную информацию см. &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;в Руководстве администратора Veyon&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>Key file directories</source>
@@ -1107,7 +1107,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation>Пользователь &quot;%1&quot; с узла &quot;%2&quot; установил соединение с данным компьютером</translation>
+        <translation>Пользователь &quot;%1&quot; с узла &quot;%2&quot; установил соединение с данным компьютером.</translation>
     </message>
     <message>
         <source>Access control error</source>
@@ -1329,7 +1329,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> ms</source>
-        <translation>мс</translation>
+        <translation> мс</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
@@ -1349,7 +1349,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> MB/s</source>
-        <translation>МБ/с</translation>
+        <translation> МБ/с</translation>
     </message>
 </context>
 <context>
@@ -1784,6 +1784,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Name</source>
         <translation>Имя</translation>
+    </message>
+    <message>
+        <source>Number of files</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2258,7 +2262,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> ms</source>
-        <translation>мс</translation>
+        <translation> мс</translation>
     </message>
     <message>
         <source>LDAP server and port</source>
@@ -2493,8 +2497,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Идентификация участников группы</translation>
     </message>
     <message>
-        <source>Distinguished name (Samba/AD)</source>
-        <translation>Уникальное имя (Samba/AD)</translation>
+        <source>Distinguished name (Samba/AD/FreeIPA)</source>
+        <translation>Уникальное имя (Samba/AD/FreeIPA)</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -3253,7 +3257,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source> ms</source>
-        <translation>мс</translation>
+        <translation> мс</translation>
     </message>
     <message>
         <source>Background color</source>
@@ -3540,7 +3544,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>First name + last name</source>
-        <translation type="unfinished"/>
+        <translation>Имя и фамилия</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -4641,7 +4645,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source> h</source>
-        <translation>ч.</translation>
+        <translation> ч</translation>
     </message>
     <message>
         <source> s</source>
@@ -4765,12 +4769,24 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Скрыть рабочий стол</translation>
     </message>
     <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Use input device interception driver</source>
         <translation>Использовать драйвер перехвата устройства ввода</translation>
     </message>
     <message>
-        <source>Use custom power scheme with disabled power button</source>
-        <translation>Использовать пользовательскую схему питания с отключенной кнопкой питания</translation>
+        <source>Disable touchpads and touchscreens</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Handling of interfering windows</source>

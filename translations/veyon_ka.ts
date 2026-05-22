@@ -1,136 +1,134 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="el">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ka">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About Veyon</source>
-        <translation>Σχετικά με το Veyon</translation>
+        <translation>Veyon-ის შესახებ</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Σχετικά</translation>
+        <translation>შესახებ</translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>Έκδοση:</translation>
+        <translation>ვერსია:</translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation>Ιστοσελίδα:</translation>
+        <translation>საიტი:</translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation>Υποστήριξε το Veyon με μια δωρεά</translation>
+        <translation>დაუჭირეთ მხარი Veyon-ს დონაციით</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation>Συνεισφέροντες</translation>
+        <translation>შემომწირავები</translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation>Μετάφραση</translation>
+        <translation>თარგმანი</translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>Δεν υπάρχει μετάφραση σε αυτήν την γλώσσα ακόμα (ή Αγγλικά).
-
-Εάν ενδιαφέρεσται να μεταφράσετε το Veyon στην γλώσσα σας ή σε κάποια άλλη ή θέλεται να βελτιόσεται την παρούσα μετάφραση, πρακαλούμαι εποικοινωνίσται με κάποιον προγραμματιστή του Veyon!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>License</source>
-        <translation>Άδεια χρήσης</translation>
+        <translation>ლიცენზია</translation>
     </message>
     <message>
         <source>About Veyon %1</source>
-        <translation>Πληροφορίες για το Veyon %1</translation>
+        <translation>Veyon %1-ის შესახებ</translation>
     </message>
 </context>
 <context>
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation>Έλεγχος πρόσβασης υπολογιστή</translation>
+        <translation>კომპიუტერის წვდომის კონტროლი</translation>
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
-        <translation>Περιορισμός πρόσβασης σε μέλη συγκεκριμένης ομάδας χρηστών</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Test</source>
-        <translation>Δοκιμή</translation>
+        <translation>შემოწმება</translation>
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation>Κανόνες ελέγχου πρόσβασης διεργασίας</translation>
+        <translation>პროცესის წვდომის მართვის წესები</translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation>Παραχώρηση πρόσβασης σε όλους τους πιστοποιημένους χρήστες (προεπιλογή)</translation>
+        <translation>წვდომის მინიჭება ყველა ავთენტიკაციაგავლილი მომხმარებლისთვის (ნაგულისხმევი)</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation>Ομάδες χρηστών εξουσιοδοτημένες για πρόσβαση στον υπολογιστή</translation>
+        <translation>კომპიუტერთან წვდომის ავტორიზაციის მქონე მომხმარებლის ჯგუფები</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation>Παρακαλώ επιλέξτε τις ομάδες των οποίων τα μέλη θα έχουν εξουσιοδότηση πρόσβασης σε υπολογιστές του δικού σας δικτύου Veyon. </translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation>Εξουσιοδοτημένες ομάδες χρηστών</translation>
+        <translation>ავტორიზებული მომხმარებლის ჯგუფები</translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation>Όλες οι ομάδες</translation>
+        <translation>ყველა ჯგუფი</translation>
     </message>
     <message>
         <source>Access control rules</source>
-        <translation>Κανόνες ελέγχου πρόσβασης</translation>
+        <translation>წვდომის კონტროლის წესები</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation>Μετακίνηση επιλεγμένου κανόνα προς τα επάνω</translation>
+        <translation>წვდომის კონტროლის წესის დაწევა</translation>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation>Επεξεργασία επιλεγμένου κανόνα</translation>
+        <translation>წვდომის კონტროლის წესის ჩასწორება</translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation>Προσθήκη κανόνα ελέγχου πρόσβασης</translation>
+        <translation>წვდომის კონტროლის წესის დამატება</translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation>Αφαίρεση κανόνα ελέγχου πρόσβασης</translation>
+        <translation>წვდომის კონტროლის წესის წაშლა</translation>
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation>Μετακίνηση επιλεγμένου κανόνα προς τα κάτω</translation>
+        <translation>წვდომის კონტროლის წესის აწევა</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Εισαγωγή ονόματος χρήστη</translation>
+        <translation>შეყვანეთ მომხმარებლის სახელი</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation>Παρακαλώ εισαγάγετε ένα όνομα σύνδεσης χρήστη, του οποίου τα δικαιώματα πρόσβασης θα ελεγχθούν:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Access allowed</source>
-        <translation>Επιτρέπεται η πρόσβαση</translation>
+        <translation>წვდომა დაშვებულია</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation>Ο συγκεκριμένος χρήστης έχει δικαίωμα πρόσβασης σε υπολογιστές με αυτή τη διαμόρφωση.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Access denied</source>
-        <translation>Δεν επιτρέπεται η πρόσβαση</translation>
+        <translation>წვდომა აკრძალულია</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>Ο συγκεκριμένος χρήστης δεν έχει δικαίωμα πρόσβασης σε υπολογιστές με αυτή τη διαμόρφωση.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -144,31 +142,31 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation>Επεξεργασία κανόνα ελέγχου</translation>
+        <translation>წვდომის კონტროლის წესის ჩასწორება</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Γενικά</translation>
+        <translation>ზოგადი</translation>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation>γράψτε ένα σύντομο όνομα για τον κανόνα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation>Όνομα κανόνα:</translation>
+        <translation>წესის სახელი:</translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation>γράψτε μια περιγραφή για τον κανόνα εδώ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation>Περιγραφή κανόνα:</translation>
+        <translation>წესის აღწერა:</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>Αντιστροφή όλων των συνθηκών (&quot;είναι/έχει&quot; θα είναι &quot;δεν είναι/δεν έχει&quot;)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
@@ -176,15 +174,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Conditions</source>
-        <translation>Συνθήκες</translation>
+        <translation>პირობები</translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation>είναι μέλος της ομάδας</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>Εάν παραπάνω από μία συνθήκη είναι ενεργή κάθε συνθήκη πρέπει να επαλυθεύετει για να εφαρμοστεί ο κανόνας (λογικό AND). Εάν πρέπει μόνο μία απο όλες τις συνθήκες να επαλυθευτεί  (λογικό OR) παρακαλούμε διμιουργήσται πολλαπλούς κανόνες πρόσβασης.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
@@ -192,15 +190,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Κανένας χρήστης σε σύνδεση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>is located at</source>
-        <translation>βρίσκεται στο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation>Προσβασημότητα υπολογιστή είναι σε τοπικό δίκτυο </translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
@@ -216,31 +214,31 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Action</source>
-        <translation>Ενέργεια</translation>
+        <translation>ქმედება</translation>
     </message>
     <message>
         <source>Allow access</source>
-        <translation>Επιτρέπεται η πρόσβαση</translation>
+        <translation>წვდომის დაშვება</translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation>Άρνηση πρόσβασης</translation>
+        <translation>წვდომის უარყოფა</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation>Ζήτησε άδεια από τον συνδεδεμένο χρήστη</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation>Καμία (κανόνας απενεργοποιημένος)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Accessing user</source>
-        <translation>Πρόσβαση χρήστη</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation>Πρόσβαση υπολογιστή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Local (logged on) user</source>
@@ -248,7 +246,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local computer</source>
-        <translation>Τοπικός υπολογιστής</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Local computer is already being accessed</source>
@@ -267,11 +265,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local computer:</source>
-        <translation>Τοπικός υπολογιστής:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation>Πρόσβαση στον υπολογιστή:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
@@ -279,27 +277,27 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local user:</source>
-        <translation>Τοπικός χρήστης:</translation>
+        <translation>ლოკალური მომხმარებელი:</translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation>Συνδεδεμένοι χρήστες:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation>Επιτρέπεται η πρόσβαση στο δεδομένο σενάριο.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation>Η πρόσβαση στο δεδομένο σενάριο δεν επιτρέπεται.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation>Η πρόσβαση στο δεδομένο σενάριο χρειάζεται άδεια από τον συνδεδεμένο χρήστη.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Test result</source>
-        <translation>Αποτέλεσμα δοκιμής</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>There is no matching rule with a valid action. The access is therefore denied.</source>
@@ -314,7 +312,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Introduction</source>
-        <translation>Εισαγωγή</translation>
+        <translation>შესავალი</translation>
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
@@ -365,15 +363,15 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Delete key</source>
-        <translation>Διαγραφή κλειδιού</translation>
+        <translation>გასაღების წაშლა</translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation>Εισαγωγή κλειδιού</translation>
+        <translation>გასაღების შემოტანა</translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation>Εξαγωγή κλειδιού</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Set access group</source>
@@ -381,11 +379,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation>Αρχεία κλειδιού (*.pem)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation>Όνομα κλειδιού ελέγχου ταυτότητας</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
@@ -397,11 +395,11 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation>Επιλέξτε ένα κλειδί για διαγραφή!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation>Επιλέξτε ένα κλειδί για εξαγωγή!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
@@ -422,7 +420,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation>Ελέγξτε τα δικαιώματά σας.</translation>
+        <translation>შეამოწმეთ თქვენი წვდომები.</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
@@ -466,7 +464,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation>Το αρχείο &quot;%1&quot; υπάρχει ήδη.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Failed to write output file.</source>
@@ -546,7 +544,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Failed to read key file.</source>
@@ -589,7 +587,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>NAME</source>
-        <translation>ΟΝΟΜΑ</translation>
+        <translation>სახელი</translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
@@ -597,7 +595,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>KEY</source>
-        <translation>ΚΛΕΙΔΙ</translation>
+        <translation>ღილაკი</translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
@@ -605,7 +603,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>FILE</source>
-        <translation>ΑΡΧΕΙΟ</translation>
+        <translation>FILE</translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
@@ -641,7 +639,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>TYPE</source>
-        <translation>ΤΥΠΟΣ</translation>
+        <translation>ტიპი</translation>
     </message>
     <message>
         <source>PAIR ID</source>
@@ -660,11 +658,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>AuthKeysTableModel</name>
     <message>
         <source>Name</source>
-        <translation>Όνομα</translation>
+        <translation>სახელი</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Τύπος</translation>
+        <translation>ტიპი</translation>
     </message>
     <message>
         <source>Access group</source>
@@ -679,7 +677,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
         <source>Locations &amp; computers</source>
-        <translation>Τοποθεσίες &amp; υπολογιστές</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Builtin directory</source>
@@ -687,19 +685,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Computers</source>
-        <translation>Υπολογιστές</translation>
+        <translation>კომპიუტერი</translation>
     </message>
     <message>
         <source>Locations</source>
-        <translation>Τοποθεσίες</translation>
+        <translation>მდებარეობები</translation>
     </message>
     <message>
         <source>Add new computer</source>
-        <translation>Προσθήκη νέου υπολογιστή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation>Διαγραφή του επιλεγμένου υπολογιστή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Move selected computer up</source>
@@ -711,23 +709,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Name</source>
-        <translation>Όνομα</translation>
+        <translation>სახელი</translation>
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation>Διεύθυνση/ΙΡ κεντρικού υπολογιστή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>Διεύθυνση MAC</translation>
+        <translation>MAC მისამართი</translation>
     </message>
     <message>
         <source>Add new location</source>
-        <translation>Προσθήκη νέας τοποθεσίας</translation>
+        <translation>ახალი მდებარეობის დამატება</translation>
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation>Αφαίρεση της επιλεγεμένης τοποθεσίας</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Move selected location up</source>
@@ -743,11 +741,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>New location</source>
-        <translation>Νέα τοποθεσία</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>New computer</source>
-        <translation>Νέος υπολογιστής</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -758,11 +756,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation>Προσθέστε μια τοποθεσία ή υπολογιστή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Clear all locations and computers</source>
-        <translation>Εκκαθάριση όλων των τοποθεσιών και υπολογιστών</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
@@ -774,7 +772,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Remove a location or computer</source>
-        <translation>Αφαιρέστε μια τοποθεσία ή υπολογιστή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Import objects from given file</source>
@@ -786,11 +784,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>FILE</source>
-        <translation>ΑΡΧΕΙΟ</translation>
+        <translation>FILE</translation>
     </message>
     <message>
         <source>LOCATION</source>
-        <translation>ΤΟΠΟΘΕΣΙΑ</translation>
+        <translation>მდებარეობა</translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
@@ -834,11 +832,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>TYPE</source>
-        <translation>ΤΥΠΟΣ</translation>
+        <translation>ტიპი</translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation>ΟΝΟΜΑ</translation>
+        <translation>სახელი</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -846,7 +844,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation>ΔΙΕΥΘΥΝΣΗ MAC</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>PARENT</source>
@@ -866,7 +864,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>OBJECT</source>
-        <translation>ΑΝΤΙΚΕΙΜΕΝΟ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
@@ -898,19 +896,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Type</source>
-        <translation>Τύπος</translation>
+        <translation>ტიპი</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Όνομα</translation>
+        <translation>სახელი</translation>
     </message>
     <message>
         <source>Host address</source>
-        <translation>Διεύθυνση υπολογιστή</translation>
+        <translation>ჰოსტის მისამართი</translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>Διεύθυνση MAC</translation>
+        <translation>MAC მისამართი</translation>
     </message>
     <message>
         <source>Specified object not found.</source>
@@ -918,7 +916,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>Το αρχείο &quot;%1&quot; δεν υπάρχει!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
@@ -942,7 +940,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Location &quot;%1&quot;</source>
-        <translation>Τοποθεσία &quot;%1&quot;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
@@ -954,11 +952,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>არცერთი</translation>
     </message>
     <message>
         <source>Invalid</source>
-        <translation type="unfinished"/>
+        <translation>არასწორი</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
@@ -978,15 +976,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Location</source>
-        <translation>Τοποθεσία</translation>
+        <translation>მდებარეობა</translation>
     </message>
     <message>
         <source>Computer</source>
-        <translation>Υπολογιστής</translation>
+        <translation>კომპიუტერი</translation>
     </message>
     <message>
         <source>Root</source>
-        <translation type="unfinished"/>
+        <translation>Root</translation>
     </message>
     <message>
         <source>&quot;Room 01&quot;</source>
@@ -1019,11 +1017,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerControlListModel</name>
     <message>
         <source>Name: %1</source>
-        <translation>Όνομα: %1</translation>
+        <translation>სახელი: %1</translation>
     </message>
     <message>
         <source>Location: %1</source>
-        <translation type="unfinished"/>
+        <translation>მდებარეობა: %1</translation>
     </message>
     <message>
         <source>Active features: %1</source>
@@ -1055,11 +1053,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Disconnected</source>
-        <translation type="unfinished"/>
+        <translation>გათიშულია</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Κανένας χρήστης σε σύνδεση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Logged on user: %1</source>
@@ -1071,7 +1069,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>unknown</source>
-        <translation>άγνωστο</translation>
+        <translation>უცნობი</translation>
     </message>
     <message>
         <source>IP address: %1</source>
@@ -1090,7 +1088,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerControlServer</name>
     <message>
         <source>Authentication error</source>
-        <translation>Σφάλμα ελέγχου ταυτότητας</translation>
+        <translation>ავთენტიკაციის შეცდომა</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
@@ -1098,7 +1096,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Remote access</source>
-        <translation>Απομακρυσμένη πρόσβαση</translation>
+        <translation>დაკავშირება</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
@@ -1118,14 +1116,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Active connections:</source>
-        <translation>Ενεργές συνδέσεις:</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation>Χρήστης</translation>
+        <translation>მომხმარებელი</translation>
     </message>
     <message>
         <source>Logged in since</source>
@@ -1141,15 +1139,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
-        <translation>Όνομα υπολογιστή;Κεντρικός υπολογιστής;Χρήστης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 days</source>
-        <translation type="unfinished"/>
+        <translation>%1 დღე</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"/>
+        <translation>1 დღე</translation>
     </message>
     <message>
         <source>Location detection failed</source>
@@ -1172,7 +1170,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add location</source>
-        <translation>Προσθήκη τοποθεσίας</translation>
+        <translation>მდებარეობის დამატება</translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1180,15 +1178,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Select output filename</source>
-        <translation type="unfinished"/>
+        <translation>აირჩიეთ გამოტანის ფაილის სახელი</translation>
     </message>
     <message>
         <source>CSV files (*.csv)</source>
-        <translation>Αρχεία CSV (*.csv)</translation>
+        <translation>CSV ფაილები (*.csv)</translation>
     </message>
     <message>
         <source>File error</source>
-        <translation type="unfinished"/>
+        <translation>ფაილის შეცდომა</translation>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
@@ -1304,7 +1302,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>Διακομιστής επίδειξης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Tunables</source>
@@ -1312,19 +1310,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> s</source>
-        <translation> s</translation>
+        <translation> წმ</translation>
     </message>
     <message>
         <source>Update interval</source>
-        <translation>Διάστημα ανανέωσης</translation>
+        <translation>განახლების ინტერვალი</translation>
     </message>
     <message>
         <source> MB</source>
-        <translation>ΜΒ</translation>
+        <translation> მბ</translation>
     </message>
     <message>
         <source> ms</source>
-        <translation> ms</translation>
+        <translation> მწმ</translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
@@ -1332,7 +1330,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Memory limit</source>
-        <translation type="unfinished"/>
+        <translation>მეხსიერების ლიმიტი</translation>
     </message>
     <message>
         <source>Key frame interval</source>
@@ -1351,11 +1349,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Demo</source>
-        <translation type="unfinished"/>
+        <translation>დემო</translation>
     </message>
     <message>
         <source>Stop demo</source>
-        <translation>Διακοπή παρουσίασης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
@@ -1367,7 +1365,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Window demo</source>
-        <translation>Παρουσίαση σε παράθυρο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
@@ -1411,11 +1409,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>All screens</source>
-        <translation>Όλες οι οθόνες</translation>
+        <translation>ყველა ეკრანი</translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation>Κάντε μια παρουσίαση μεταδίδοντας το περιεχόμενο της οθόνης σας</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1434,18 +1432,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Never for this session</source>
-        <translation>Ποτέ για αυτήν την συνεδρία</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Always for this session</source>
-        <translation>Πάντα για αυτήν την συνεδρία</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Applications &amp; websites</source>
-        <translation>Εφαρμογές και ιστότοποι</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Predefined applications</source>
@@ -1453,15 +1451,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Name</source>
-        <translation>Όνομα</translation>
+        <translation>სახელი</translation>
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished"/>
+        <translation>ბილიკი</translation>
     </message>
     <message>
         <source>Add new application</source>
-        <translation type="unfinished"/>
+        <translation>ახალი აპლიკაციის დამატება</translation>
     </message>
     <message>
         <source>Remove selected application</source>
@@ -1473,7 +1471,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add new website</source>
-        <translation>Προσθήκη νέου ιστότοπου</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove selected website</source>
@@ -1485,18 +1483,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>New application</source>
-        <translation>Νέα εφαρμογή</translation>
+        <translation>ახალი აპლიკაცია</translation>
     </message>
     <message>
         <source>New website</source>
-        <translation type="unfinished"/>
+        <translation>ახალი ვებგვერდი</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Start application</source>
-        <translation>Έναρξη εφαρμογής</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
@@ -1504,11 +1502,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Open website</source>
-        <translation>Άνοιγμα ιστοχώρου</translation>
+        <translation>ვებგვერდის გახსნა</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>Πατήστε το κουμπί για να ανοίξετε έναν ιστοχώρο σε όλους τους υπολογιστές.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
@@ -1535,7 +1533,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DocumentationFigureCreator</name>
     <message>
         <source>Teacher</source>
-        <translation>Εκπαιδευτικός</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Room %1</source>
@@ -1582,22 +1580,22 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
-        <translation>Εξωτερικός διακομιστής VNC</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>ExternalVncServerConfigurationWidget</name>
     <message>
         <source>External VNC server configuration</source>
-        <translation>Ρυθμίσεις εξωτερικού διακομιστή VNC</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Port:</source>
-        <translation>Πόρτα:</translation>
+        <translation>პორტი:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation>Κωδικός πρόσβασης:</translation>
+        <translation>პაროლი:</translation>
     </message>
 </context>
 <context>
@@ -1636,7 +1634,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>FEATURE</source>
-        <translation type="unfinished"/>
+        <translation>თვისება</translation>
     </message>
     <message>
         <source>ARGUMENTS</source>
@@ -1648,7 +1646,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Lock the screen</source>
-        <translation>Κλείδωμα οθόνης</translation>
+        <translation>ეკრანის ჩაკეტვა</translation>
     </message>
     <message>
         <source>Display a text message</source>
@@ -1676,19 +1674,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Name</source>
-        <translation>Όνομα</translation>
+        <translation>სახელი</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>აღწერა</translation>
     </message>
     <message>
         <source>Master</source>
-        <translation type="unfinished"/>
+        <translation>მთავარი</translation>
     </message>
     <message>
         <source>Service</source>
-        <translation>Υπηρεσία</translation>
+        <translation>სერვისი</translation>
     </message>
     <message>
         <source>Worker</source>
@@ -1696,11 +1694,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin</source>
-        <translation type="unfinished"/>
+        <translation>დამატება</translation>
     </message>
     <message>
         <source>Invalid feature name or UID specified</source>
@@ -1735,7 +1733,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileCollectDialog</name>
     <message>
         <source>File transfer</source>
-        <translation>Μεταφορά αρχείων</translation>
+        <translation>ფაილის მიმოცვლა</translation>
     </message>
     <message>
         <source>Collected files</source>
@@ -1751,7 +1749,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Start</source>
-        <translation>Εκκίνηση</translation>
+        <translation>დაწყება</translation>
     </message>
     <message>
         <source>Enter collection name</source>
@@ -1778,7 +1776,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Name</source>
-        <translation>Όνομα</translation>
+        <translation>სახელი</translation>
     </message>
     <message>
         <source>Number of files</source>
@@ -1789,7 +1787,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
-        <translation>Μεταφορά αρχείων</translation>
+        <translation>ფაილის მიმოცვლა</translation>
     </message>
     <message>
         <source>Settings for distributing files</source>
@@ -1813,7 +1811,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>არცერთი</translation>
     </message>
     <message>
         <source>First part of user name</source>
@@ -1931,15 +1929,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation>Μεταφορά αρχείων</translation>
+        <translation>ფაილის მიმოცვლა</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Επιλογές</translation>
+        <translation>მორგება</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
-        <translation type="unfinished"/>
+        <translation>არსებულ ფაილებზე გადაწერა</translation>
     </message>
     <message>
         <source>Transfer only</source>
@@ -1955,11 +1953,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Files</source>
-        <translation>Αρχεία</translation>
+        <translation>ფაილები</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Εκκίνηση</translation>
+        <translation>დაწყება</translation>
     </message>
 </context>
 <context>
@@ -1982,11 +1980,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation>Επιλέξτε ένα ή περισσότερα αρχεία για μεταφορά</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>File transfer</source>
-        <translation>Μεταφορά αρχείων</translation>
+        <translation>ფაილის მიმოცვლა</translation>
     </message>
     <message>
         <source>Received file %1.</source>
@@ -2025,27 +2023,27 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation>Διεπαφή χρήστη</translation>
+        <translation>მომხმარებლის ინტერფეისი</translation>
     </message>
     <message>
         <source>Use system language setting</source>
-        <translation>Χρήση της γλώσσας του συστήματος</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Language:</source>
-        <translation>Γλώσσα:</translation>
+        <translation>ენა:</translation>
     </message>
     <message>
         <source>Style:</source>
-        <translation type="unfinished"/>
+        <translation>სტილი:</translation>
     </message>
     <message>
         <source>Native</source>
-        <translation type="unfinished"/>
+        <translation>საკუთარი</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation>Αυθεντικοποίηση</translation>
+        <translation>ავთენტიკაცია</translation>
     </message>
     <message>
         <source>Method:</source>
@@ -2061,55 +2059,55 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Test</source>
-        <translation>Δοκιμή</translation>
+        <translation>შემოწმება</translation>
     </message>
     <message>
         <source>Network object directory</source>
-        <translation>Κατάλογος αντικειμένων δικτύου</translation>
-    </message>
-    <message>
-        <source>Backend:</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Backend:</source>
+        <translation>უკანბოლო:</translation>
+    </message>
+    <message>
         <source>Update interval:</source>
-        <translation>Ρυθμός ανανέωσης:</translation>
+        <translation>განახლების ინტერვალი:</translation>
     </message>
     <message>
         <source> seconds</source>
-        <translation>δευτερόλεπτα</translation>
+        <translation> წამი</translation>
     </message>
     <message>
         <source>Logging</source>
-        <translation>Καταγραφή συμβάντων</translation>
+        <translation>ჟურნალში ჩაწერა</translation>
     </message>
     <message>
         <source>Log file directory</source>
-        <translation>Φάκελος αρχείου καταγραφής</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log level</source>
-        <translation>Λεπτομέρεια αρχείου καταγραφής</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Nothing</source>
-        <translation>Τίποτα</translation>
+        <translation>არაფერი</translation>
     </message>
     <message>
         <source>Only critical messages</source>
-        <translation>Μόνο τα κρίσιμα μηνύματα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Errors and critical messages</source>
-        <translation>Σφάλματα και κρίσιμα μηνύματα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Warnings and errors</source>
-        <translation>Προειδοποιήσεις και σφάλματα</translation>
+        <translation>გაფრთხილებები და შეცდომები</translation>
     </message>
     <message>
         <source>Information, warnings and errors</source>
-        <translation>Πληροφορίες, προειδοποιήσεις και σφάλματα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Debug messages and everything else</source>
@@ -2125,11 +2123,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> MB</source>
-        <translation>ΜΒ</translation>
+        <translation> მბ</translation>
     </message>
     <message>
         <source>Limit log file size</source>
-        <translation>Μέγεθος αρχείου καταγραφής</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log to standard error output</source>
@@ -2165,11 +2163,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>All log files were cleared successfully.</source>
-        <translation>Η εκκαθάριση των αρχείων καταγραφής έγινε με επιτυχία.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Error</source>
-        <translation>Σφάλμα</translation>
+        <translation>შეცდომა</translation>
     </message>
     <message>
         <source>Could not remove all log files.</source>
@@ -2181,7 +2179,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User groups</source>
-        <translation>Ομάδες χρηστών</translation>
+        <translation>მომხმარებლის ჯგუფები</translation>
     </message>
     <message>
         <source>Include user groups from domain</source>
@@ -2189,7 +2187,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation>Έλλειψη υποστίριξης ομαδών χρηστών</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>No user groups plugin was found. Please check your installation!</source>
@@ -2197,15 +2195,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished"/>
+        <translation>ფერების სქემა:</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>ღია</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>მუქი</translation>
     </message>
 </context>
 <context>
@@ -2233,11 +2231,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>LdapConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation>Βασικές ρυθμίσεις</translation>
+        <translation>ძირითადი პარამეტრები</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Γενικά</translation>
+        <translation>ზოგადი</translation>
     </message>
     <message>
         <source>Anonymous bind</source>
@@ -2257,11 +2255,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> ms</source>
-        <translation> ms</translation>
+        <translation> მწმ</translation>
     </message>
     <message>
         <source>LDAP server and port</source>
-        <translation>Διακομιστής και πόρτα LDAP</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Bind password</source>
@@ -2293,7 +2291,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>არცერთი</translation>
     </message>
     <message>
         <source>TLS</source>
@@ -2305,7 +2303,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Base DN</source>
-        <translation type="unfinished"/>
+        <translation>საბაზისო DN</translation>
     </message>
     <message>
         <source>Discover base DN by naming context</source>
@@ -2325,7 +2323,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Environment settings</source>
-        <translation type="unfinished"/>
+        <translation>გარემოს პარამეტრები</translation>
     </message>
     <message>
         <source>Object trees</source>
@@ -2397,7 +2395,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Group member attribute</source>
-        <translation type="unfinished"/>
+        <translation>ჯგუფის წევრის ატრიბუტი</translation>
     </message>
     <message>
         <source>e.g. hwAddress</source>
@@ -2433,7 +2431,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Advanced settings</source>
-        <translation type="unfinished"/>
+        <translation>დამატებითი პარამეტრები</translation>
     </message>
     <message>
         <source>Optional object filters</source>
@@ -2545,11 +2543,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Browse</source>
-        <translation type="unfinished"/>
+        <translation>პოვნა</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Δοκιμή</translation>
+        <translation>შემოწმება</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
@@ -2608,7 +2606,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Εισάγετε όνομα χρήστη</translation>
+        <translation>შეყვანეთ მომხმარებლის სახელი</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -2620,7 +2618,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Enter group name</source>
-        <translation type="unfinished"/>
+        <translation>შეიყვანეთ ჯგუფის სახელი</translation>
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
@@ -2628,11 +2626,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>group members</source>
-        <translation>μέλη ομάδας</translation>
+        <translation>Ჯგუფის წევრები</translation>
     </message>
     <message>
         <source>Group not found</source>
-        <translation>Δεν βρέθηκε η ομάδα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
@@ -2652,7 +2650,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Enter computer name</source>
-        <translation>Εισαγωγή ονόματος υπολογιστή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
@@ -2660,7 +2658,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Invalid hostname</source>
-        <translation type="unfinished"/>
+        <translation>ჰოსტის არასწორი სახელი</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
@@ -2700,19 +2698,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>users</source>
-        <translation>χρήστες</translation>
+        <translation>მომხმარებლები</translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation>ομάδες χρηστών</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>computers</source>
-        <translation>υπολογιστές</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>computer groups</source>
-        <translation>ομάδες υπολογιστών</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>computer containers</source>
@@ -2728,7 +2726,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User not found</source>
-        <translation>Δεν βρέθηκε ο χρήστης</translation>
+        <translation>ვერ ვიპოვე მომხმარებელი</translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
@@ -2736,7 +2734,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Enter hostname</source>
-        <translation type="unfinished"/>
+        <translation>შეიყვანეთ ჰოსტის სახელი</translation>
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
@@ -2756,7 +2754,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Enter computer IP address</source>
-        <translation>Εισαγωγή διεύθυνσης IP υπολογιστή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
@@ -2887,7 +2885,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>Εμφάνιση βοήθειας για την εντολή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
@@ -2930,7 +2928,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User authentication</source>
-        <translation>Έλεγχος ταυτότητας χρήστη</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
@@ -2938,7 +2936,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User sessions</source>
-        <translation type="unfinished"/>
+        <translation>მომხმარებლის სესიები</translation>
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
@@ -2946,7 +2944,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User login</source>
-        <translation>Σύνδεση χρήστη</translation>
+        <translation>მომხმარებლის შესვლა</translation>
     </message>
     <message>
         <source>Login key sequence</source>
@@ -2976,7 +2974,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>LocationDialog</name>
     <message>
         <source>Select location</source>
-        <translation>Επιλογή τοποθεσίας</translation>
+        <translation>აირჩიეთ მდებარეობა</translation>
     </message>
     <message>
         <source>enter search filter...</source>
@@ -2987,7 +2985,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
-        <translation>Ρυθμίσεις</translation>
+        <translation>მორგება</translation>
     </message>
     <message>
         <source>Disable tooltips</source>
@@ -2995,7 +2993,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Show icons only</source>
-        <translation>Προβολή μόνο των εικονιδίων</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3006,35 +3004,35 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>General</source>
-        <translation>Γενικά</translation>
+        <translation>ზოგადი</translation>
     </message>
     <message>
         <source>Service</source>
-        <translation>Υπηρεσία</translation>
+        <translation>სერვისი</translation>
     </message>
     <message>
         <source>Master</source>
-        <translation type="unfinished"/>
+        <translation>მთავარი</translation>
     </message>
     <message>
         <source>Access control</source>
-        <translation>Έλεγχος πρόσβασης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Αρχείο</translation>
+        <translation>&amp;ფაილი</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Βοήθεια</translation>
+        <translation>&amp;დახმარება</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;Προβολή</translation>
+        <translation>&amp;ხედი</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>&amp;Έξοδος</translation>
+        <translation>&amp;გასვლა</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
@@ -3042,11 +3040,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>&amp;Save settings to file</source>
-        <translation>&amp;Αποθήκευση ρυθμίσεων σε αρχείο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation>Αποθήκευση ρυθμίσεων σε αρχείο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -3054,7 +3052,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
-        <translation>Φ&amp;όρτωση ρυθμίσεων από αρχείο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+O</source>
@@ -3062,23 +3060,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>Σχετικά με το Veyon</translation>
+        <translation>Veyon-ის შესახებ</translation>
     </message>
     <message>
         <source>About Qt</source>
-        <translation>Σχετικά με το Qt</translation>
+        <translation>Qt-ის შესახებ</translation>
     </message>
     <message>
         <source>Reset configuration</source>
-        <translation>Επαναφορά ρυθμίσεων</translation>
+        <translation>კონფიგურაციის გასუფთავება</translation>
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation type="unfinished"/>
+        <translation>&amp;სტანდარტული</translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
-        <translation type="unfinished"/>
+        <translation>&amp;დამატებითი</translation>
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
@@ -3086,15 +3084,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Auto</source>
-        <translation>Αυτόματα</translation>
+        <translation>ავტო</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Σχετικά</translation>
+        <translation>შესახებ</translation>
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation>Αναζήτηση χρηστών και υπολογιστών</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Align computers to grid</source>
@@ -3106,19 +3104,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation>Τοποθεσίες &amp;&amp; υπολογιστές</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>Στιγμιότυπα</translation>
+        <translation>ეკრანის ანაბეჭდები</translation>
     </message>
     <message>
         <source>Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>სლაიდშოუ</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>პროჟექტორი</translation>
     </message>
     <message>
         <source>Only show computers with logged on users</source>
@@ -3130,11 +3128,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation>Φόρτωση ρυθμίσεων από αρχείο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>JSON files (*.json)</source>
-        <translation>Αρχεία JSON (*.json)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
@@ -3142,11 +3140,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Unsaved settings</source>
-        <translation>Μη αποθηκευμένες ρυθμίσεις</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Υπάρχουν ρυθμίσεις που δεν έχουν αποθηκευτεί. Να γίνει έξοδος;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Insufficient privileges</source>
@@ -3174,7 +3172,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Access denied</source>
-        <translation>Δεν επιτρέπεται η πρόσβαση</translation>
+        <translation>წვდომა აკრძალულია</translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -3207,11 +3205,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>MasterConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation>Βασικές ρυθμίσεις</translation>
+        <translation>ძირითადი პარამეტრები</translation>
     </message>
     <message>
         <source>Directories</source>
-        <translation>Φάκελοι</translation>
+        <translation>საქაღალდეები</translation>
     </message>
     <message>
         <source>User configuration</source>
@@ -3219,23 +3217,23 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>Στιγμιότυπα</translation>
+        <translation>ეკრანის ანაბეჭდები</translation>
     </message>
     <message>
         <source>User interface</source>
-        <translation>Διεπαφή χρήστη</translation>
+        <translation>მომხმარებლის ინტერფეისი</translation>
     </message>
     <message>
         <source>Text color</source>
-        <translation>Χρώμα κειμένου</translation>
+        <translation>ტექსტის ფერი</translation>
     </message>
     <message>
         <source> ms</source>
-        <translation> ms</translation>
+        <translation> მწმ</translation>
     </message>
     <message>
         <source>Background color</source>
-        <translation type="unfinished"/>
+        <translation>ფონის ფერი</translation>
     </message>
     <message>
         <source>Thumbnail spacing</source>
@@ -3243,11 +3241,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> პქს</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>Αυτόματα</translation>
+        <translation>ავტო</translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
@@ -3259,7 +3257,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Only user name</source>
-        <translation>Μόνο όνομα χρήστη</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Only last part of user name</source>
@@ -3267,7 +3265,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Only computer name</source>
-        <translation>Μόνο όνομα υπολογιστή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>User and computer name</source>
@@ -3279,7 +3277,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Sort order</source>
-        <translation type="unfinished"/>
+        <translation>დალაგების მიმდევრობა</translation>
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
@@ -3287,23 +3285,23 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Highest</source>
-        <translation type="unfinished"/>
+        <translation>უმაღლესი</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished"/>
+        <translation>მაღალი</translation>
     </message>
     <message>
         <source>Medium</source>
-        <translation type="unfinished"/>
+        <translation>საშუალო</translation>
     </message>
     <message>
         <source>Low</source>
-        <translation type="unfinished"/>
+        <translation>დაბალი</translation>
     </message>
     <message>
         <source>Lowest</source>
-        <translation type="unfinished"/>
+        <translation>უმდაბლესი</translation>
     </message>
     <message>
         <source>Image quality in monitoring mode</source>
@@ -3335,7 +3333,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Behaviour</source>
-        <translation>Συμπεριφορά</translation>
+        <translation>ქცევა</translation>
     </message>
     <message>
         <source>Program start</source>
@@ -3371,7 +3369,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Hide local computer</source>
-        <translation>Απόκρυψη τοπικού υπολογιστή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide local session</source>
@@ -3379,7 +3377,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Hide empty locations</source>
-        <translation>Απόκρυψη άδειων τοποθεσιών</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide computer filter field</source>
@@ -3411,7 +3409,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Features</source>
-        <translation type="unfinished"/>
+        <translation>თვისებები</translation>
     </message>
     <message>
         <source>All features</source>
@@ -3419,7 +3417,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Disabled features</source>
-        <translation type="unfinished"/>
+        <translation>გამორთული ფუნქციები</translation>
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
@@ -3435,7 +3433,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished"/>
+        <translation>დამატებით</translation>
     </message>
     <message>
         <source>Computer name source</source>
@@ -3443,11 +3441,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>ნაგულისხმევი</translation>
     </message>
     <message>
         <source>Host address</source>
-        <translation>Διεύθυνση κεντρικού υπολογιστή</translation>
+        <translation>ჰოსტის მისამართი</translation>
     </message>
     <message>
         <source>Session client address</source>
@@ -3486,7 +3484,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation type="unfinished"/>
+        <translation>მონიტორინგი</translation>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
@@ -3536,7 +3534,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>OpenWebsiteDialog</name>
     <message>
         <source>Open website</source>
-        <translation>Άνοιγμα ιστοχώρου</translation>
+        <translation>ვებგვერდის გახსნა</translation>
     </message>
     <message>
         <source>e.g. Veyon</source>
@@ -3552,11 +3550,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation>Πληκτρολογήστε την διεύθυνση του ιστοχώρου που θέλετε να ανοίξετε:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name:</source>
-        <translation>Όνομα:</translation>
+        <translation>სახელი:</translation>
     </message>
 </context>
 <context>
@@ -3571,15 +3569,15 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Username</source>
-        <translation>Όνομα χρήστη</translation>
+        <translation>მომხმარებლის სახელი</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Κωδικός πρόσβασης</translation>
+        <translation>პაროლი</translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>Σφάλμα ελέγχου ταυτότητας</translation>
+        <translation>ავთენტიკაციის შეცდომა</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
@@ -3598,19 +3596,19 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Name</source>
-        <translation>Όνομα</translation>
+        <translation>სახელი</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>აღწერა</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>ვერსია</translation>
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
@@ -3637,15 +3635,15 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Reboot</source>
-        <translation>Επανεκκίνηση</translation>
+        <translation>გადატვირთვა</translation>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation>Πατήστε το κουμπί για την επανεκκίνηση όλων των υπολογιστών.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Power down</source>
-        <translation>Τερματισμός λειτουργίας</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
@@ -3653,23 +3651,23 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Power down now</source>
-        <translation>Τερματισμός λειτουργίας τώρα</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation>Εγκατάσταση ενημερώσεων και τερματισμός λειτουργίας</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation>Τερματισμός λειτουργίας μετά από επιβεβαίωση χρήστη</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation>Τερματισμός λειτουργίας μετά από λήξη χρονικού ορίου</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation>ΔΙΕΥΘΥΝΣΗ MAC</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
@@ -3681,7 +3679,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation>Επιβεβαίωση επανεκκίνησης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
@@ -3730,7 +3728,7 @@ Please save your work and close all programs.</source>
     <name>PowerDownTimeInputDialog</name>
     <message>
         <source>Power down</source>
-        <translation>Τερματισμός λειτουργίας</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
@@ -3738,18 +3736,18 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>minutes</source>
-        <translation>λεπτά</translation>
+        <translation>წუთი</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation>δευτερόλεπτα</translation>
+        <translation>წამი</translation>
     </message>
 </context>
 <context>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation>Απομακρυσμένη προβολή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
@@ -3757,11 +3755,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Απομακρυσμένος έλεγχος</translation>
+        <translation>დაშორებული მართვა</translation>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation>Άνοιγμα ενός παράθυρου για τον απομακρυσμένο έλεγχο ενός υπολογιστή.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Exchange clipboard contents</source>
@@ -3769,11 +3767,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>Εμφάνιση βοήθειας για την εντολή</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remote access</source>
-        <translation>Απομακρυσμένη πρόσβαση</translation>
+        <translation>დაკავშირება</translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
@@ -3781,7 +3779,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation>Απομακρυσμένος έλεγχος/προβολή ενός υπολογιστή</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3799,55 +3797,55 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
-        <translation>Μόνο προβολή</translation>
+        <translation>მხოლოდ ნახვა</translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Απομακρυσμένος έλεγχος</translation>
+        <translation>დაშორებული მართვა</translation>
     </message>
     <message>
         <source>Select screen</source>
-        <translation>Επιλογή οθόνης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Send shortcut</source>
-        <translation>Αποστολή συντόμευσης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Στιγμιότυπο</translation>
+        <translation>ეკრანის ანაბეჭდი</translation>
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation>Πλήρης οθόνη</translation>
+        <translation>სრულ ეკრანზე</translation>
     </message>
     <message>
         <source>Window</source>
-        <translation>Παράθυρο</translation>
+        <translation>ფანჯარა</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation>Έξοδος</translation>
+        <translation>გასვლა</translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation>Ctrl+Alt+Del</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ctrl+Esc</source>
-        <translation>Ctrl+Esc</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Alt+Tab</source>
-        <translation>Alt+Tab</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Alt+F4</source>
-        <translation>Alt+F4</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Win+Tab</source>
-        <translation>Win+Tab</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Win</source>
@@ -3855,34 +3853,34 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Menu</source>
-        <translation>Μενού</translation>
+        <translation>მენიუ</translation>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
-        <translation>Alt+Ctrl+F1</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connected.</source>
-        <translation>Συνδεδεμένος</translation>
+        <translation>დაკავშირებულია.</translation>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation>Σύνδεση...</translation>
+        <translation>დაკავშირება...</translation>
     </message>
     <message>
         <source>All screens</source>
-        <translation>Όλες οι οθόνες</translation>
+        <translation>ყველა ეკრანი</translation>
     </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation>Κλείδωμα</translation>
+        <translation>ჩაკეტვა</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation>Ξεκλείδωμα</translation>
+        <translation>განბლოკვა</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
@@ -3890,11 +3888,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Lock input devices</source>
-        <translation>Κλείδωμα συσκευών εισόδου</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unlock input devices</source>
-        <translation>Ξεκλείδωμα συσκευών εισόδου</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
@@ -3909,7 +3907,7 @@ Please save your work and close all programs.</source>
     <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation>άγνωστο</translation>
+        <translation>უცნობი</translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
@@ -3917,7 +3915,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Στιγμιότυπο οθόνης</translation>
+        <translation>ეკრანის ანაბეჭდი</translation>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
@@ -3928,7 +3926,7 @@ Please save your work and close all programs.</source>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation>Στιγμιότυπο οθόνης</translation>
+        <translation>ეკრანის ანაბეჭდი</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
@@ -3955,31 +3953,31 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>User:</source>
-        <translation>Χρήστης:</translation>
+        <translation>მომხმარებელი:</translation>
     </message>
     <message>
         <source>Computer:</source>
-        <translation>Υπολογιστής:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Date:</source>
-        <translation>Ημερομηνία:</translation>
+        <translation>თარიღი:</translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation>Ώρα:</translation>
+        <translation>დრო:</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation>Εμφάνιση</translation>
+        <translation>ჩვენება</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Διαγραφή</translation>
+        <translation>წაშლა</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Στιγμιότυπο οθόνης</translation>
+        <translation>ეკრანის ანაბეჭდი</translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
@@ -4021,7 +4019,7 @@ Please save your work and close all programs.</source>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation>Γενικά</translation>
+        <translation>ზოგადი</translation>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
@@ -4033,27 +4031,27 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation>Απόκρυψη εικονιδίου γραμμής κατάστασης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Autostart</source>
-        <translation>Αυτόματη έναρξη</translation>
+        <translation>ავტოგაშვება</translation>
     </message>
     <message>
         <source>State:</source>
-        <translation>Κατάσταση:</translation>
+        <translation>მდგომარეობა:</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>Τερματίστηκε</translation>
+        <translation>გაჩერებულია</translation>
     </message>
     <message>
         <source>Start service</source>
-        <translation>Εκκίνηση υπηρεσίας</translation>
+        <translation>სერვისის გაშვება</translation>
     </message>
     <message>
         <source>Stop service</source>
-        <translation>Τερματισμός υπηρεσίας</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Session mode</source>
@@ -4086,7 +4084,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Veyon server</source>
-        <translation>Διακομιστής Veyon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Internal VNC server</source>
@@ -4094,11 +4092,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Feature manager</source>
-        <translation>Διαχείριση δυνατοτήτων</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Demo server</source>
-        <translation>Διακομιστής επίδειξης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Miscellaneous settings</source>
@@ -4118,15 +4116,15 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>VNC server</source>
-        <translation>Διακομιστής VNC</translation>
+        <translation>VNC-ის სერვერი</translation>
     </message>
     <message>
         <source>Plugin:</source>
-        <translation>Προσθήκη:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation>Επανεκκίνηση της υπηρεσίας Veyon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
@@ -4134,7 +4132,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Running</source>
-        <translation>Εκτελείται</translation>
+        <translation>გაშვებულია</translation>
     </message>
     <message>
         <source>Session metadata</source>
@@ -4142,19 +4140,19 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Content</source>
-        <translation>Περιεχόμενο</translation>
+        <translation>შემცველობა</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>არცერთი</translation>
     </message>
     <message>
         <source>Value of an environment variable</source>
-        <translation>Τιμή μεταβλητής περιβάλλοντος</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Value of a registry key</source>
-        <translation>Τιμή κλειδού μητρώου</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
@@ -4168,11 +4166,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Environment variable name</source>
-        <translation>Όνομα μεταβλητής περιβάλλοντος</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Registry key name</source>
-        <translation>Όνομα κλειδιού μητρώου</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4214,15 +4212,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation>Εκκίνηση της υπηρεσίας Veyon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation>Τερματισμός της υπηρεσίας Veyon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation>Επανεκκίνηση της υπηρεσίας Veyon</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
@@ -4230,11 +4228,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Service is running</source>
-        <translation>Η υπηρεσία εκτελείται</translation>
+        <translation>სერვისი გაშვებულია</translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation>Η υπηρεσία δεν εκτελείται</translation>
+        <translation>სერვისი გაშვებული არაა</translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
@@ -4253,7 +4251,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>Το αρχείο &quot;%1&quot; δεν υπάρχει!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon CLI</source>
@@ -4268,19 +4266,19 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation>Προηγούμενο</translation>
+        <translation>წინა</translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation>Έναρξη/παύση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Next</source>
-        <translation>Επόμενο</translation>
+        <translation>შემდეგი</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation>Διάρκεια:</translation>
+        <translation>ხანგრძლივობა:</translation>
     </message>
     <message>
         <source>View in separate window</source>
@@ -4299,19 +4297,19 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Add selected computers</source>
-        <translation>Προσθήκη επιλεγμένων υπολογιστών</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation>Αφαίρεση επιλεγμένων υπολογιστών</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation>Ενημέρωση υπολογιστών σε πραγματικό χρόνο</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>პროჟექტორი</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
@@ -4326,23 +4324,23 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation>Έναρξη εφαρμογής</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name:</source>
-        <translation>Όνομα:</translation>
+        <translation>სახელი:</translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>π.χ. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remember and add to application menu</source>
-        <translation>Απομνημόνευση και προσθήκη στο μενού εφαρμογών</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation>π.χ. VLC</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
@@ -4353,7 +4351,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
-        <translation>Εικονίδιο γραμμής κατάστασης</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4382,7 +4380,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>Αποστολή κειμένου μηνύματος</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
@@ -4393,19 +4391,19 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>TextMessageFeaturePlugin</name>
     <message>
         <source>Text message</source>
-        <translation>Κείμενο μηνύματος</translation>
+        <translation>ტექსტური შეტყობინება</translation>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation>Μπορείτε να στείλετε ένα μήνυμα σε όλους του χρήστες. Για παράδειγμα για να τους αναθέσετε μια εργασία.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Message from teacher</source>
-        <translation>Μήνυμα από τον εκπαιδευτικό</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation>Αποστολή ενός μηνύματος σε ένα χρήστη</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4416,7 +4414,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation>Μέγιστη χρήση CPU</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
@@ -4443,42 +4441,42 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation>Σύνδεση χρήστη</translation>
+        <translation>მომხმარებლის შესვლა</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation>Παρακαλώ εισάγετε ένα όνομα χρήστη και κωδικό πρόσβασης για αυτόματη σύνδεση σε όλους τους υπολογιστές.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Username</source>
-        <translation>Όνομα χρήστη</translation>
+        <translation>მომხმარებლის სახელი</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Κωδικός πρόσβασης</translation>
+        <translation>პაროლი</translation>
     </message>
 </context>
 <context>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation>Σύνδεση</translation>
+        <translation>შესვლა</translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation>Κάντε κλικ σε αυτό το κουμπί για να συνδεθείτε σε έναν συγκεκριμένο χρήστη σε όλους τους υπολογιστές.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Log off</source>
-        <translation>Αποσύνδεση</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation>Κάντε κλικ σε αυτό το κουμπί για να αποσυνδέσετε χρήστες από όλους τους υπολογιστές.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation>Επιβεβαίωση αποσύνδεσης χρήστη</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
@@ -4486,7 +4484,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation>Θέλετε πραγματικά να αποσυνδέσετε τους επιλεγμένους χρήστες;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>User session control</source>
@@ -4497,15 +4495,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation>[OK]</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation>[ΑΠΟΤΥΧΙΑ]</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation>Μη έγκυρη εντολή!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid arguments given</source>
@@ -4521,11 +4519,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Unknown result!</source>
-        <translation>Άγνωστο αποτέλεσμα!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation>Διαθέσιμες εντολές:</translation>
+        <translation>ხელმისაწვდომი ბრძანებები:</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -4537,31 +4535,31 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>INFO</source>
-        <translation>ΠΛΗΡ.</translation>
+        <translation>ინფო</translation>
     </message>
     <message>
         <source>WARNING</source>
-        <translation>ΠΡΟΕΙΔΟΠΟΙΗΣΗ</translation>
+        <translation>გაფრთხილება</translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation>ΣΦΑΛΜΑ</translation>
+        <translation>ERROR</translation>
     </message>
     <message>
         <source>USAGE</source>
-        <translation>ΧΡΗΣΗ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation>ΠΕΡΙΓΡΑΦΗ</translation>
+        <translation>აღწერა</translation>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation>ΠΑΡΑΔΕΙΓΜΑΤΑ</translation>
+        <translation>მაგალითები</translation>
     </message>
     <message>
         <source>Screen %1</source>
-        <translation>Οθόνη %1</translation>
+        <translation>%1-ე ეკრანი</translation>
     </message>
     <message>
         <source>Guest</source>
@@ -4572,7 +4570,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>VeyonMaster</name>
     <message>
         <source>No write access</source>
-        <translation>Χωρίς πρόσβαση εγγραφής</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
@@ -4583,7 +4581,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation>Υπηρεσία Veyon</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4594,19 +4592,19 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>General</source>
-        <translation>Γενικά</translation>
+        <translation>ზოგადი</translation>
     </message>
     <message>
         <source>Network port</source>
-        <translation>Θύρα δικτύου</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable WebAPI server</source>
-        <translation>Ενεργοποίηση διακομιστή WebAPI</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connection settings</source>
-        <translation>Ρυθμίσεις σύνδεσης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Lifetime</source>
@@ -4614,11 +4612,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source> h</source>
-        <translation>ω</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source> s</source>
-        <translation> s</translation>
+        <translation> წმ</translation>
     </message>
     <message>
         <source>Idle timeout</source>
@@ -4634,7 +4632,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Connection encryption</source>
-        <translation>Κρυπτογράφηση σύνδεσης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>TLS certificate file</source>
@@ -4646,7 +4644,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
@@ -4657,7 +4655,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>WebApiPlugin</name>
     <message>
         <source>Run WebAPI server</source>
-        <translation>Εκτέλεση διακομιστή WebAPI</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Failed to start WebAPI server at port %1</source>
@@ -4687,11 +4685,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation type="unfinished"/>
+        <translation>ფანჯრები</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Γενικά</translation>
+        <translation>ზოგადი</translation>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
@@ -4699,7 +4697,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>User authentication</source>
-        <translation>Έλεγχος ταυτότητας χρήστη</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
@@ -4707,7 +4705,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>User login</source>
-        <translation>Σύνδεση χρήστη</translation>
+        <translation>მომხმარებლის შესვლა</translation>
     </message>
     <message>
         <source>Input start delay</source>
@@ -4723,19 +4721,19 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation>Κλείδωμα οθόνης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation>Απόκρυψη γραμμής εργασιών</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide start menu</source>
-        <translation>Απόκρυψη μενού έναρξης</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation>Απόκρυψη επιφάνειας εργασίας</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use custom power scheme with disabled power and sleep buttons</source>
@@ -4763,7 +4761,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished"/>
+        <translation>არცერთი</translation>
     </message>
     <message>
         <source>Fix window attributes</source>
@@ -4793,11 +4791,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation>Η υπηρεσία &quot;%1&quot; είναι ήδη εγκατεστημένη.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
-        <translation>Η υπηρεσία &quot;%1&quot; δεν ήταν δυνατό να εγκατασταθεί (σφάλμα %2).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
@@ -4805,23 +4803,23 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation>Η υπηρεσία &quot;%1&quot; έχει εγκατασταθεί με επιτυχία.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
-        <translation>Η υπηρεσία &quot;%1&quot; δεν ήταν δυνατό να απεγκατασταθεί (σφάλμα %2).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>Η υπηρεσία &quot;%1&quot; έχει απεγκατασταθεί με επιτυχία.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
-        <translation>Ο τύπος έναρξης της υπηρεσίας &quot;%1&quot; δεν μπόρεσε να αλλάξει (σφάλμα %2).</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation>Η υπηρεσία &quot;%1&quot; δεν ήταν δυνατό να βρεθεί.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
