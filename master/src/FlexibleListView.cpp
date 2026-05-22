@@ -227,7 +227,12 @@ QSizeF FlexibleListView::effectiveGridSize() const
 
 	if( m && m->rowCount() > 0 )
 	{
-		return rectForIndex( m->index( 0, 0 ) ).size() + QSize( spacing(), spacing() );
+		QSizeF maxSize;
+		for (int i = 0; i < m->rowCount(); ++i)
+		{
+			maxSize = maxSize.expandedTo(rectForIndex(m->index(i, 0)).size());
+		}
+		return maxSize + QSize(spacing(), spacing());
 	}
 
 	if( iconSize().isEmpty() == false )
