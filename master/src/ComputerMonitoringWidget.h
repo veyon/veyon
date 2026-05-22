@@ -65,6 +65,8 @@ private:
 
 	bool performIconSizeAutoAdjust() override;
 
+	void handleSizeHintChanges(const QModelIndex& topLeft, const QModelIndex &bottomRight, const QVector<int> &roles);
+
 	void populateFeatureMenu( const ComputerControlInterfaceList& computerControlInterfaces );
 	void addFeatureToMenu( const Feature& feature, const QString& label );
 	void addSubFeaturesToMenu( const Feature& parentFeature, const FeatureList& subFeatures, const QString& label );

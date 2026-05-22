@@ -64,6 +64,9 @@ ComputerMonitoringWidget::ComputerMonitoringWidget( QWidget *parent ) :
 	connect( this, &QListView::customContextMenuRequested,
 			 this, [this]( QPoint pos ) { showContextMenu( mapToGlobal( pos ) ); } );
 
+	connect(dataModel(), &ComputerMonitoringModel::dataChanged,
+			this, &ComputerMonitoringWidget::handleSizeHintChanges);
+
 	initializeView( this );
 
 	setModel( dataModel() );
@@ -128,6 +131,18 @@ bool ComputerMonitoringWidget::performIconSizeAutoAdjust()
 	return true;
 }
 
+
+
+void ComputerMonitoringWidget::handleSizeHintChanges(const QModelIndex& topLeft, const QModelIndex &bottomRight, const QVector<int>& roles)
+{
+	Q_UNUSED(topLeft);
+	Q_UNUSED(bottomRight);
+
+	if (roles.contains(Qt::SizeHintRole))
+	{
+		doItemsLayout();
+	}
+}
 
 
 
