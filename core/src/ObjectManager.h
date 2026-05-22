@@ -231,6 +231,36 @@ public:
 		return T();
 	}
 
+	bool hasName(const typename T::Name& name) const
+	{
+		for (auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it)
+		{
+			if (T(it->toObject()).name() == name)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	typename T::Name generateUniqueName(const typename T::Name& baseName) const
+	{
+		if (hasName(baseName) == false)
+		{
+			return baseName;
+		}
+
+		for (int suffix = 2; ; ++suffix)
+		{
+			const auto candidate = QStringLiteral("%1 %2").arg(baseName).arg(suffix);
+			if (hasName(candidate) == false)
+			{
+				return candidate;
+			}
+		}
+	}
+
 private:
 	QJsonArray m_objects;
 
