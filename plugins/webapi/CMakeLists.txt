@@ -1,3 +1,7 @@
+if(NOT WITH_WEBAPI)
+	return()
+endif()
+
 if(WITH_QT6)
 	find_package(Qt6 COMPONENTS HttpServer)
 else()
@@ -42,6 +46,6 @@ if(Qt6HttpServer_DIR OR Qt5HttpServer_DIR OR (Qt5Core_VERSION VERSION_GREATER 5.
 
 else()
 
-	message(WARNING "Neither Qt6HttpServer nor Qt5HttpServer nor Qt >= 5.12 with private headers found - omitting WebAPI plugin from build")
+	message(FATAL_ERROR "WebAPI plugin is enabled (WITH_WEBAPI=ON) but no Qt HTTP server module was found. Install the Qt HttpServer development package (Qt6::HttpServer or Qt5::HttpServer), or pass -DWITH_WEBAPI=OFF to disable the plugin.")
 
 endif()
