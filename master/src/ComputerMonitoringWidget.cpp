@@ -110,7 +110,7 @@ bool ComputerMonitoringWidget::performIconSizeAutoAdjust()
 		   horizontalScrollBar()->isVisible() == false &&
 		   size < MaximumComputerScreenSize )
 	{
-		size += IconSizeAdjustStepSize;
+		size += IncreaseIconSizeStepSize;
 		setComputerScreenSize( size );
 		QApplication::processEvents();
 	}
@@ -119,7 +119,8 @@ bool ComputerMonitoringWidget::performIconSizeAutoAdjust()
 			 horizontalScrollBar()->isVisible() ) &&
 		   size > MinimumComputerScreenSize )
 	{
-		size -= IconSizeAdjustStepSize;
+		const auto scrollMax = std::max(verticalScrollBar()->maximum(), horizontalScrollBar()->maximum());
+		size -= std::max(DecreaseIconSizeMinimumStepSize, std::min(size / 10, scrollMax / 5));
 		setComputerScreenSize( size );
 		QApplication::processEvents();
 	}

@@ -40,7 +40,8 @@ public:
 	static constexpr int MaximumComputerScreenSize = 1000;
 	static constexpr int DefaultComputerScreenSize = 150;
 
-	static constexpr auto IconSizeAdjustStepSize = 10;
+	static constexpr auto IncreaseIconSizeStepSize = 20;
+	static constexpr auto DecreaseIconSizeMinimumStepSize = 5;
 	static constexpr auto IconSizeAdjustDelay = 250;
 
 	ComputerMonitoringView();
