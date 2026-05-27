@@ -227,6 +227,13 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 		}
 
 		const auto username = message.read().toString();
+		constexpr int MaxUsernameLength = 256;
+		if (username.length() > MaxUsernameLength)
+		{
+			vCritical() << "username exceeds maximum length of" << MaxUsernameLength;
+			m_socket->close();
+			return false;
+		}
 
 		m_client->setAuthType( chosenAuthType );
 		m_client->setUsername( username );
