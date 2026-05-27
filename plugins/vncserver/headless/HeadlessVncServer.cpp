@@ -27,6 +27,7 @@ extern "C" {
 }
 
 #include <array>
+#include <cstdio>
 
 #include <QImage>
 
@@ -166,14 +167,13 @@ void HeadlessVncServer::rfbLogDebug(const char* format, ...)
 	va_start(args, format);
 
 	static constexpr int MaxMessageLength = 256;
-	char message[MaxMessageLength];
+	std::array<char, MaxMessageLength> message;
 
-	vsnprintf(message, sizeof(message), format, args);
-	message[MaxMessageLength-1] = 0;
+	std::vsnprintf(message.data(), message.size(), format, args); // Flawfinder: ignore
 
 	va_end(args);
 
-	vDebug() << message;
+	vDebug() << message.data();
 }
 
 
