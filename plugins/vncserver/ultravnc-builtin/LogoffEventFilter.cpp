@@ -54,8 +54,8 @@ LogoffEventFilter::LogoffEventFilter() :
 
 bool LogoffEventFilter::nativeEventFilter(const QByteArray& eventType, void* message, qintptr* result)
 {
-	Q_UNUSED(eventType)
-	Q_UNUSED(result)
+	Q_UNUSED(eventType);
+	Q_UNUSED(result);
 
 	if (!message)
 	{
