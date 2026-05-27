@@ -161,7 +161,17 @@ VncServerClient::AuthState AuthKeysPlugin::performAuthentication( VncServerClien
 
 		// now try to verify received signed data using public key of the user
 		// under which the client claims to run
-		const auto signature = message.read().toByteArray(); // Flawfinder: ignore
+		const auto signature = message.read().toByteArray();
+
+		// Validate signature size to prevent DoS attacks
+		// RSA-4096 signatures are exactly 512 bytes (4096 bits / 8)
+		// 8KB limit provides headroom for encoding overhead, metadata, or future algorithms
+		constexpr int MaxSignatureSize = 8192;
+		if (signature.size() > MaxSignatureSize)
+		{
+			vWarning() << "signature size exceeds maximum of" << MaxSignatureSize << "bytes";
+			return VncServerClient::AuthState::Failed;
+		}
 
 		const auto publicKeyPath = m_manager.publicKeyPath( authKeyName );
 
