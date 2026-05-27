@@ -73,7 +73,16 @@ VncServerClient::AuthState DemoServerProtocol::performTokenAuthentication( Varia
 		return VncServerClient::AuthState::Token;
 
 	case VncServerClient::AuthState::Token:
-		if( Token( message.read().toByteArray() ) == m_demoAccessToken )
+	{
+		const auto tokenData = message.read().toByteArray();
+		constexpr int MaxTokenSize = 4096;
+		if (tokenData.size() > MaxTokenSize)
+		{
+			vWarning() << "token size exceeds maximum of" << MaxTokenSize << "bytes";
+			return VncServerClient::AuthState::Failed;
+		}
+
+		if (Token(tokenData) == m_demoAccessToken)
 		{
 			vDebug() << "SUCCESS";
 			return VncServerClient::AuthState::Successful;
@@ -81,6 +90,7 @@ VncServerClient::AuthState DemoServerProtocol::performTokenAuthentication( Varia
 
 		vDebug() << "FAIL";
 		return VncServerClient::AuthState::Failed;
+	}
 
 	default:
 		break;
