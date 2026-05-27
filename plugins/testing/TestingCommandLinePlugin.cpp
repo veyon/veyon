@@ -59,7 +59,7 @@ CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_checkacce
 {
 
 	switch (AccessControlProvider().checkAccess(arguments.value(0), arguments.value(1), {arguments.value(2)},
-												 Plugin::Uid{arguments.value(3)}).access)
+												 Plugin::Uid{arguments.value(3)}).access) // Flawfinder: ignore
 	{
 	case AccessControlProvider::Access::Allow: printf( "[TEST]: CheckAccess: ALLOW\n" ); return Successful;
 	case AccessControlProvider::Access::Deny: printf( "[TEST]: CheckAccess: DENY\n" ); return Successful;

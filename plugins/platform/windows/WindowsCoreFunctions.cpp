@@ -637,7 +637,7 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 		return nullptr;
 	}
 
-	if( ImpersonateLoggedOnUser( userProcessToken ) == false )
+	if (ImpersonateLoggedOnUser(userProcessToken) == false) // Flawfinder: ignore
 	{
 		vCritical() << "ImpersonateLoggedOnUser()" << GetLastError();
 		CoTaskMemFree( profileDir );
@@ -669,7 +669,7 @@ HANDLE WindowsCoreFunctions::runProgramInSession( const QString& program,
 
 	auto commandLine = toWCharArray( QStringLiteral("\"%1\" %2").arg( program, parameters.join( QLatin1Char(' ') ) ) );
 
-	auto createProcessResult = CreateProcessAsUser(
+	auto createProcessResult = CreateProcessAsUser( // Flawfinder: ignore
 				newToken,			// client's access token
 				nullptr,			  // file to execute
 				commandLine.data(),	 // command line

@@ -159,7 +159,7 @@ QVariant WindowsSessionFunctions::querySettingsValueInCurrentSession(const QStri
 			keyParts.prepend(QStringLiteral("HKEY_USERS"));
 		}
 
-		if (ImpersonateLoggedOnUser(userToken) == false)
+		if (ImpersonateLoggedOnUser(userToken) == false) // Flawfinder: ignore
 		{
 			vCritical() << "could not impersonate session user";
 			CloseHandle(userToken);

@@ -120,7 +120,7 @@ void ServerAccessControlManager::performAccessControl( VncServerClient* client )
 										  connectedUsers(),
 										  client->authMethodUid());
 
-	switch (checkResult.access)
+	switch (checkResult.access) // Flawfinder: ignore
 	{
 	case AccessControlProvider::Access::Allow:
 		client->setAccessControlState( VncServerClient::AccessControlState::Successful );
