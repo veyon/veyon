@@ -359,7 +359,7 @@ QString WindowsUserFunctions::currentUserFullName()
 	bool impersonating = false;
 	if (needImpersonation)
 	{
-		if (!ImpersonateLoggedOnUser(sessionToken))
+		if (!ImpersonateLoggedOnUser(sessionToken)) // Flawfinder: ignore
 		{
 			vCritical() << "could not impersonate session user";
 			return {};

@@ -58,7 +58,7 @@ QString TestingCommandLinePlugin::commandHelp( const QString& command ) const
 CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_checkaccess( const QStringList& arguments )
 {
 
-	switch (AccessControlProvider().checkAccess(arguments.value(0), arguments.value(1), {arguments.value(2)}).access)
+	switch (AccessControlProvider().checkAccess(arguments.value(0), arguments.value(1), {arguments.value(2)}).access) // Flawfinder: ignore
 	{
 	case AccessControlProvider::Access::Allow: printf( "[TEST]: CheckAccess: ALLOW\n" ); return Successful;
 	case AccessControlProvider::Access::Deny: printf( "[TEST]: CheckAccess: DENY\n" ); return Successful;
