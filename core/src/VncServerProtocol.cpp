@@ -24,6 +24,8 @@
 
 #include "rfb/rfbproto.h"
 
+#include <cstdio>
+
 #include <QHostAddress>
 #include <QRegularExpression>
 #include <QTcpSocket>
@@ -58,9 +60,9 @@ void VncServerProtocol::start()
 {
 	if( state() == State::Disconnected )
 	{
-		std::array<char, sz_rfbProtocolVersionMsg+1> protocol{}; // Flawfinder: ignore
+		std::array<char, sz_rfbProtocolVersionMsg+1> protocol{};
 
-		sprintf( protocol.data(), rfbProtocolVersionFormat, 3, 8 ); // Flawfinder: ignore
+		std::snprintf(protocol.data(), protocol.size(), rfbProtocolVersionFormat, 3, 8); // Flawfinder: ignore
 
 		m_socket->write( protocol.data(), sz_rfbProtocolVersionMsg );
 
