@@ -235,7 +235,17 @@ VncServerClient::AuthState ServerAuthenticationManager::performTokenAuthenticati
 
 	case VncServerClient::AuthState::Token:
 	{
-		const auto token = AuthenticationCredentials::Token( message.read().toByteArray() );  // Flawfinder: ignore
+		const auto tokenData = message.read().toByteArray();
+
+		// Validate token size to prevent DoS attacks
+		constexpr int MaxTokenSize = 4096; // Reasonable maximum for authentication tokens
+		if (tokenData.size() > MaxTokenSize)
+		{
+			vWarning() << "token size exceeds maximum of" << MaxTokenSize << "bytes";
+			return VncServerClient::AuthState::Failed;
+		}
+
+		const auto token = AuthenticationCredentials::Token( tokenData );
 
 		if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Type::Token ) &&
 				token == VeyonCore::authenticationCredentials().token() )
