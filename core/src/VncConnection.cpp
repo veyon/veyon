@@ -27,6 +27,8 @@
 
 #include <rfb/rfbclient.h>
 
+#include <cstdio>
+
 #include <QBitmap>
 #include <QHostAddress>
 #include <QMutexLocker>
@@ -862,7 +864,7 @@ void VncConnection::rfbClientLogDebug( const char* format, ... )
 	static constexpr int MaxMessageLength = 256;
 	std::array<char, MaxMessageLength> message{};
 
-	vsnprintf( message.data(), sizeof(message), format, args );
+	std::vsnprintf(message.data(), message.size(), format, args);  // Flawfinder: ignore
 	message[MaxMessageLength-1] = 0;
 
 	va_end(args);
