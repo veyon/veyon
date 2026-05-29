@@ -26,6 +26,7 @@
 #include <QMenu>
 #include <QScrollBar>
 #include <QShowEvent>
+#include <QTimer>
 
 #include "ComputerControlListModel.h"
 #include "ComputerItemDelegate.h"
@@ -38,7 +39,8 @@
 
 ComputerMonitoringWidget::ComputerMonitoringWidget( QWidget *parent ) :
 	FlexibleListView( parent ),
-	m_featureMenu( new QMenu( this ) )
+	m_featureMenu(new QMenu(this)),
+	m_itemsLayoutDebounceTimer(new QTimer(this))
 {
 	const auto computerMonitoringThumbnailSpacing = VeyonCore::config().computerMonitoringThumbnailSpacing();
 
@@ -66,6 +68,10 @@ ComputerMonitoringWidget::ComputerMonitoringWidget( QWidget *parent ) :
 
 	connect(dataModel(), &ComputerMonitoringModel::dataChanged,
 			this, &ComputerMonitoringWidget::handleSizeHintChanges);
+
+	m_itemsLayoutDebounceTimer->setInterval(ItemsLayoutDebounceTimeout);
+	m_itemsLayoutDebounceTimer->setSingleShot(true);
+	connect(m_itemsLayoutDebounceTimer, &QTimer::timeout, this, &ComputerMonitoringWidget::doItemsLayout);
 
 	initializeView( this );
 
@@ -147,7 +153,7 @@ void ComputerMonitoringWidget::handleSizeHintChanges(const QModelIndex& topLeft,
 
 	if (roles.contains(Qt::SizeHintRole))
 	{
-		doItemsLayout();
+		m_itemsLayoutDebounceTimer->start();
 	}
 }
 

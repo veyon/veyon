@@ -31,6 +31,7 @@
 #include <QWidget>
 
 class FlexibleListView;
+class QTimer;
 
 class ComputerMonitoringWidget : public FlexibleListView, public ComputerMonitoringView
 {
@@ -90,8 +91,11 @@ private:
 	int m_ignoreNumberOfMouseEvents = 0;
 
 	static constexpr auto IgnoredNumberOfMouseEventsWhileHold = 3;
+	static constexpr auto ItemsLayoutDebounceTimeout = 250;
 
 	ComputerZoomWidget* m_computerZoomWidget{nullptr};
+
+	QTimer* m_itemsLayoutDebounceTimer;
 
 Q_SIGNALS:
 	void computerScreenSizeAdjusted( int size );
