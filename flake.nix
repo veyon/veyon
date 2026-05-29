@@ -8,12 +8,26 @@
 
   outputs = { self, nixpkgs, flake-utils }:
     let
+      cmakeFile = builtins.readFile ./CMakeLists.txt;
+      cmakeFlat = builtins.replaceStrings ["\n"] [" "] cmakeFile;
+
+      extractVersion = attr: default: let
+        regex = ".*set\\(" + attr + " ([0-9]+)\\).*";
+        m = builtins.match regex cmakeFlat;
+      in if m == null then default else builtins.head m;
+
+      versionMajor = extractVersion "VERSION_MAJOR" "4";
+      versionMinor = extractVersion "VERSION_MINOR" "10";
+      versionPatch = extractVersion "VERSION_PATCH" "2";
+      defaultVersion = "${versionMajor}.${versionMinor}.${versionPatch}";
+
       overlay = final: prev: rec {
         veyon-unwrapped = makeVeyon { };
         veyon-unwrapped-qt5 = makeVeyon { qtVersion = "qt5"; };
         veyon-unwrapped-debug = makeVeyon { buildType = "Debug"; };
 
         makeVeyon = {
+          version ? defaultVersion,
           qtVersion ? "qt6",
           withTests ? false,
           withTranslations ? true,
@@ -23,7 +37,10 @@
         }:
           final.stdenv.mkDerivation {
             pname = "veyon";
-            version = "4.10.2";
+            inherit version;
+
+            CI_COMMIT_TAG = "v${version}";
+            GITHUB_REF_NAME = "v${version}";
 
             src = final.lib.cleanSource self;
 
