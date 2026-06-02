@@ -22,8 +22,12 @@
  *
  */
 
+#include <QCoreApplication>
 #include <QElapsedTimer>
 #include <QFileInfo>
+#include <QDBusConnection>
+#include <QDBusMessage>
+#include <QDBusObjectPath>
 #include <QDBusPendingCall>
 #include <QProcess>
 #include <QProcessEnvironment>
@@ -45,6 +49,13 @@
 
 #include <X11/XKBlib.h>
 #include <X11/extensions/dpms.h>
+
+
+LinuxCoreFunctions::LinuxCoreFunctions() :
+	m_isWaylandSession(qEnvironmentVariableIsSet("WAYLAND_DISPLAY"))
+{
+}
+
 
 
 bool LinuxCoreFunctions::prepareSessionBusAccess()
@@ -146,6 +157,13 @@ void LinuxCoreFunctions::raiseWindow( QWidget* widget, bool stayOnTop )
 
 void LinuxCoreFunctions::disableScreenSaver()
 {
+	// On Wayland use DBus-based inhibition
+	if (m_isWaylandSession)
+	{
+		disableScreenSaverWayland();
+		return;
+	}
+
 	auto display = XOpenDisplay( nullptr );
 
 	// query and disable screen saver
@@ -186,6 +204,13 @@ void LinuxCoreFunctions::disableScreenSaver()
 
 void LinuxCoreFunctions::restoreScreenSaverSettings()
 {
+	// On Wayland use DBus-based restoration
+	if (m_isWaylandSession)
+	{
+		restoreScreenSaverSettingsWayland();
+		return;
+	}
+
 	auto display = XOpenDisplay( nullptr );
 
 	// restore screensaver settings
@@ -210,6 +235,99 @@ void LinuxCoreFunctions::restoreScreenSaverSettings()
 
 	XFlush( display );
 	XCloseDisplay( display );
+}
+
+
+
+void LinuxCoreFunctions::disableScreenSaverWayland()
+{
+	// Try org.freedesktop.portal.Inhibit first (xdg-desktop-portal, works on all DEs)
+	const auto appName = QCoreApplication::applicationName();
+
+	QDBusMessage inhibitPortal = QDBusMessage::createMethodCall(
+		QStringLiteral("org.freedesktop.portal.Desktop"),
+		QStringLiteral("/org/freedesktop/portal/desktop"),
+		QStringLiteral("org.freedesktop.portal.Inhibit"),
+		QStringLiteral("Inhibit"));
+	inhibitPortal.setArguments({
+		QVariant::fromValue(QDBusObjectPath(QStringLiteral("/"))),
+		QVariant::fromValue(appName),
+		QVariant::fromValue(QStringLiteral("remote-desktop")),
+		QVariant::fromValue(QVariantMap{})
+	});
+	QDBusMessage reply = QDBusConnection::sessionBus().call(inhibitPortal, QDBus::BlockWithGui, 2000);
+
+	if (reply.type() == QDBusMessage::ReplyMessage)
+	{
+		m_waylandInhibitCookie = reply.arguments().value(0).toUInt();
+		vDebug() << "Screen saver inhibited via portal, cookie:" << m_waylandInhibitCookie;
+		return;
+	}
+
+	vDebug() << "Portal Inhibit not available, trying org.freedesktop.ScreenSaver";
+
+	// Fallback: org.freedesktop.ScreenSaver (older DEs)
+	QDBusMessage inhibitFreeDesktop = QDBusMessage::createMethodCall(
+		QStringLiteral("org.freedesktop.ScreenSaver"),
+		QStringLiteral("/ScreenSaver"),
+		QStringLiteral("org.freedesktop.ScreenSaver"),
+		QStringLiteral("Inhibit"));
+	inhibitFreeDesktop.setArguments({
+		QVariant::fromValue(appName),
+		QVariant::fromValue(QStringLiteral("Veyon remote desktop session"))
+	});
+	QDBusMessage reply2 = QDBusConnection::sessionBus().call(inhibitFreeDesktop, QDBus::BlockWithGui, 2000);
+
+	if (reply2.type() == QDBusMessage::ReplyMessage)
+	{
+		m_waylandInhibitCookie = reply2.arguments().value(0).toUInt();
+		vDebug() << "Screen saver inhibited via org.freedesktop.ScreenSaver, cookie:" << m_waylandInhibitCookie;
+		return;
+	}
+
+	vWarning() << "Could not inhibit screen saver on Wayland - no portal or DBus interface available";
+}
+
+
+
+void LinuxCoreFunctions::restoreScreenSaverSettingsWayland()
+{
+	if (m_waylandInhibitCookie == 0)
+	{
+		return;
+	}
+
+	// Try portal UnInhibit first
+	QDBusMessage unInhibitPortal = QDBusMessage::createMethodCall(
+		QStringLiteral("org.freedesktop.portal.Desktop"),
+		QStringLiteral("/org/freedesktop/portal/desktop"),
+		QStringLiteral("org.freedesktop.portal.Inhibit"),
+		QStringLiteral("UnInhibit"));
+	unInhibitPortal.setArguments({
+		QVariant::fromValue(m_waylandInhibitCookie)
+	});
+	QDBusMessage reply = QDBusConnection::sessionBus().call(unInhibitPortal, QDBus::BlockWithGui, 2000);
+
+	if (reply.type() == QDBusMessage::ReplyMessage || reply.type() == QDBusMessage::ErrorMessage)
+	{
+		vDebug() << "Screen saver restored via portal";
+		m_waylandInhibitCookie = 0;
+		return;
+	}
+
+	// Fallback: org.freedesktop.ScreenSaver UnInhibit
+	QDBusMessage unInhibitFreeDesktop = QDBusMessage::createMethodCall(
+		QStringLiteral("org.freedesktop.ScreenSaver"),
+		QStringLiteral("/ScreenSaver"),
+		QStringLiteral("org.freedesktop.ScreenSaver"),
+		QStringLiteral("UnInhibit"));
+	unInhibitFreeDesktop.setArguments({
+		QVariant::fromValue(m_waylandInhibitCookie)
+	});
+	QDBusConnection::sessionBus().call(unInhibitFreeDesktop, QDBus::BlockWithGui, 2000);
+
+	m_waylandInhibitCookie = 0;
+	vDebug() << "Screen saver restored via org.freedesktop.ScreenSaver";
 }
 
 
