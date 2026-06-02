@@ -24,7 +24,10 @@
 
 #pragma once
 
+#include <QDBusConnection>
 #include <QDBusInterface>
+#include <QDBusMessage>
+#include <QDBusPendingCall>
 #include <QSharedPointer>
 
 #include "PlatformCoreFunctions.h"
@@ -44,7 +47,7 @@ struct proc_t;
 class LinuxCoreFunctions : public PlatformCoreFunctions
 {
 public:
-	LinuxCoreFunctions() = default;
+	LinuxCoreFunctions();
 
 	bool applyConfiguration() override;
 
@@ -109,5 +112,13 @@ private:
 	unsigned short m_dpmsStandbyTimeout{0};
 	unsigned short m_dpmsSuspendTimeout{0};
 	unsigned short m_dpmsOffTimeout{0};
+
+	// Wayland screen saver inhibition via DBus
+	const bool m_isWaylandSession;
+	static constexpr auto WaylandScreenSaverInhibitCookie = 0;
+	unsigned m_waylandInhibitCookie{0};
+
+	void disableScreenSaverWayland();
+	void restoreScreenSaverSettingsWayland();
 
 };
