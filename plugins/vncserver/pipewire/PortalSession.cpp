@@ -23,12 +23,15 @@
  */
 
 #include <linux/input.h>
+#include <unistd.h>
 
 #include <QDBusArgument>
 #include <QDBusObjectPath>
 #include <QDBusPendingCallWatcher>
 #include <QDBusPendingReply>
 #include <QDBusUnixFileDescriptor>
+#include <QGuiApplication>
+#include <QProcess>
 #include <QRandomGenerator>
 
 #include "PortalSession.h"
@@ -37,14 +40,21 @@
 // XDG Desktop Portal service and interface names
 static const auto PortalService = QStringLiteral("org.freedesktop.portal.Desktop");
 static const auto PortalObjectPath = QStringLiteral("/org/freedesktop/portal/desktop");
-static const auto ConnectionName = QStringLiteral("PipeWirePortalSession");
-
 PortalSession::PortalSession(QObject* parent)
 	: QObject(parent)
-	, m_sessionBus(QDBusConnection::connectToBus(QDBusConnection::SessionBus, ConnectionName))
+	, m_sessionBus(QDBusConnection::sessionBus())
 {
 	const auto appId = QGuiApplication::desktopFileName();
 
+	// Use the default session bus connection so the portal can properly
+	// identify this application by its well-known bus name and match
+	// pre-authorized permissions. Creating a separate connection would
+	// cause the portal to see a numeric :1.xx ID instead of the app ID,
+	// which breaks pre-authorization via flatpak permission-set.
+
+	// Apply KDE pre-authorization so the consent dialog can be suppressed
+	// in unattended/kiosk scenarios. These calls are best-effort and may
+	// fail silently if flatpak is not installed.
 	QProcess::execute(QStringLiteral("flatpak"),
 					  {QStringLiteral("permission-set"), QStringLiteral("kde-authorized"),
 					   QStringLiteral("screencast"), appId, QStringLiteral("yes")});
@@ -52,10 +62,13 @@ PortalSession::PortalSession(QObject* parent)
 					  {QStringLiteral("permission-set"), QStringLiteral("kde-authorized"),
 					   QStringLiteral("remote-desktop"), appId, QStringLiteral("yes")});
 
+	// Register the well-known name so the portal can resolve our app ID.
+	// This is not strictly required when using the default session bus,
+	// but helps consistency for logging and debugging.
 	if (!m_sessionBus.registerService(appId))
 	{
-		vWarning() << "Could not register D-Bus service name" << appId
-				   << ":" << m_sessionBus.lastError().message();
+		vDebug() << "Could not register D-Bus service name" << appId
+				 << ":" << m_sessionBus.lastError().message();
 	}
 
 	m_remoteDesktop = new OrgFreedesktopPortalRemoteDesktopInterface(PortalService, PortalObjectPath, m_sessionBus, this);
@@ -68,7 +81,6 @@ PortalSession::~PortalSession()
 {
 	close();
 	m_sessionBus.unregisterService(QGuiApplication::desktopFileName());
-	m_sessionBus.disconnectFromBus(ConnectionName);
 }
 
 
