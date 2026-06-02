@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include <QList>
+
 #include "PlatformInputDeviceFunctions.h"
 
 // clazy:excludeall=copyable-polymorphic
@@ -31,7 +33,7 @@
 class LinuxInputDeviceFunctions : public PlatformInputDeviceFunctions
 {
 public:
-	LinuxInputDeviceFunctions() = default;
+	LinuxInputDeviceFunctions();
 	virtual ~LinuxInputDeviceFunctions() = default;
 
 	void enableInputDevices() override;
@@ -43,11 +45,21 @@ private:
 	void setEmptyKeyMapTable();
 	void restoreKeyMapTable();
 
+	// Wayland input device blocking via uinput + evdev grab
+	void disableInputDevicesWayland();
+	void enableInputDevicesWayland();
+	int openAndGrabInputDevice(const QString& path);
+
 	bool m_inputDevicesDisabled{false};
 	void* m_origKeyTable{nullptr};
 	int m_keyCodeMin{0};
 	int m_keyCodeMax{0};
 	int m_keyCodeCount{0};
 	int m_keySymsPerKeyCode{0};
+
+	// Wayland: grabbed input device FDs (owned, need close)
+	QList<int> m_grabbedDeviceFds;
+
+	const bool m_isWaylandSession;
 
 };
