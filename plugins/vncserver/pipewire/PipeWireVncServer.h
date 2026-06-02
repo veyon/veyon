@@ -90,7 +90,7 @@ public:
 
 	Plugin::Flags flags() const override
 	{
-		return Plugin::NoFlags;
+		return Plugin::ProvidesDefaultImplementation;
 	}
 
 	QStringList supportedSessionTypes() const override

@@ -3,12 +3,7 @@ include(BuildVeyonPlugin)
 find_package(PipeWire)
 find_package(Qt${QT_MAJOR_VERSION} COMPONENTS DBus)
 
-get_property(HAVE_LIBVNCCLIENT GLOBAL PROPERTY HAVE_LIBVNCCLIENT)
-if(HAVE_LIBVNCCLIENT)
-	find_package(LibVNCServer 0.9.8)
-endif()
-
-if(PipeWire_FOUND AND Qt${QT_MAJOR_VERSION}DBus_FOUND AND LibVNCServer_FOUND)
+if(PipeWire_FOUND AND Qt${QT_MAJOR_VERSION}DBus_FOUND)
 
 	qt_add_dbus_interface(DBUS_GENERATED_SOURCES
 		dbus/org.freedesktop.portal.RemoteDesktop.xml
@@ -39,12 +34,16 @@ if(PipeWire_FOUND AND Qt${QT_MAJOR_VERSION}DBus_FOUND AND LibVNCServer_FOUND)
 		${DBUS_GENERATED_SOURCES}
 	)
 
-	target_link_libraries(pipewire-vnc-server
-		PRIVATE
-			PipeWire::PipeWire
-			Qt${QT_MAJOR_VERSION}::DBus
-			LibVNC::LibVNCServer
+	target_link_libraries(pipewire-vnc-server PRIVATE
+		PipeWire::PipeWire
+		Qt${QT_MAJOR_VERSION}::DBus
 	)
+
+	if(WITH_BUNDLED_LIBVNC)
+		target_link_libraries(pipewire-vnc-server PRIVATE vncserver)
+	else()
+		target_link_libraries(pipewire-vnc-server PRIVATE LibVNC::LibVNCServer)
+	endif()
 
 	target_compile_options(pipewire-vnc-server PRIVATE -Wno-parentheses)
 
