@@ -20,16 +20,16 @@
 #   - Either 'flatpak' CLI or direct DBus access to the PermissionStore
 #
 # What this script does:
-#   Grants "io.veyon.Veyon.Server" permanent permission for RemoteDesktop portal
+#   Grants "io.veyon.veyon-server" permanent permission for RemoteDesktop portal
 #   access under KDE.  After running this script the Veyon Server daemon will be
 #   able to capture the screen and receive input without any interactive portal
 #   consent dialog.
 #
-# Stable app_id used: io.veyon.Veyon.Server
+# Stable app_id used: io.veyon.veyon-server
 # Permission table  : kde-authorized
 # Permission type   : screencast
 
-APP_ID="io.veyon.Veyon.Server"
+APP_ID="io.veyon.veyon-server"
 TABLE="kde-authorized"
 # KDE Plasma's PermissionStore uses "screencast" (not "remote-desktop") as the
 # permission ID for the kde-authorized screen-capture pre-authorization table.
