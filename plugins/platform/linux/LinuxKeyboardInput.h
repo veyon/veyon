@@ -44,7 +44,21 @@ public:
 	void sendString(const QString& string, int keyPressInterval);
 
 private:
-	Display* m_display;
-	FakeKey* m_fakeKeyHandle;
+	// X11/libfakekey path
+	Display* m_display{nullptr};
+	FakeKey* m_fakeKeyHandle{nullptr};
+
+	// Wayland/uinput path
+	int m_uinputFd{-1};
+	bool m_uinputAvailable{false};
+	const bool m_isWaylandSession;
+
+	void initUinput();
+	void cleanupUinput();
+	void pressAndReleaseKeyUinput(uint32_t linuxKeycode);
+	void pressAndReleaseKeyUinputUtf8(const QByteArray& utf8Data);
+
+	static int keysymToLinuxKeycode(uint32_t keysym);
+	static int utf8ToLinuxKeycode(const QByteArray& utf8Data);
 
 };
