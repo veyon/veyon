@@ -44,9 +44,9 @@
  * All portal responses arrive asynchronously via the /org/freedesktop/portal/desktop/response
  * signal and are dispatched to the appropriate handler.
  *
- * The app_id used for permission-store lookups is "io.veyon.Veyon.Server".
+ * The app_id used for permission-store lookups is "io.veyon.veyon-server".
  * KDE Plasma admins can pre-authorize unattended access via:
- *   flatpak permission-set kde-authorized screencast io.veyon.Veyon.Server yes
+ *   flatpak permission-set kde-authorized screencast io.veyon.veyon-server yes
  * or directly through the DBus PermissionStore interface.
  */
 class PortalSession : public QObject
