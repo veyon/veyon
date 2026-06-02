@@ -37,7 +37,7 @@ restarted after a short delay.
 The plugin registers itself under the stable application identifier:
 
 ```
-io.veyon.Veyon.Server
+io.veyon.veyon-server
 ```
 
 This identifier is used by the XDG Desktop Portal permission store.
@@ -47,15 +47,15 @@ an administrator survive service restarts.
 The identifier is registered in three complementary ways:
 
 1. **D-Bus well-known name** — `PortalSession` calls
-   `QDBusConnection::sessionBus().registerService("io.veyon.Veyon.Server")`
+   `QDBusConnection::sessionBus().registerService("io.veyon.veyon-server")`
    at start-up so the portal sees the correct app_id for every method call.
 
-2. **XDG `.desktop` file** — `io.veyon.Veyon.Server.desktop` is installed to
+2. **XDG `.desktop` file** — `io.veyon.veyon-server.desktop` is installed to
    `/usr/share/applications/`.  The portal reads `Name=Veyon Server` from it
    to display "Veyon Server" (instead of the terminal emulator or process name)
    in the KDE permission dialog.
 
-3. **D-Bus session service file** — `io.veyon.Veyon.Server.service` is
+3. **D-Bus session service file** — `io.veyon.veyon-server.service` is
    installed to `/usr/share/dbus-1/services/`.  It maps the well-known bus name
    to the `veyon-server` executable so dbus-daemon and xdg-desktop-portal can
    follow the full `bus_name → desktop_file → display_name` chain.
@@ -73,7 +73,7 @@ store table `kde-authorized`.
 ### Method 1: `flatpak permission-set` (recommended)
 
 ```bash
-flatpak permission-set kde-authorized screencast io.veyon.Veyon.Server yes
+flatpak permission-set kde-authorized screencast io.veyon.veyon-server yes
 ```
 
 This command must be run **as the target user** (the user whose desktop is to
@@ -93,7 +93,7 @@ dbus-send \
   string:kde-authorized \
   boolean:false \
   string:screencast \
-  string:io.veyon.Veyon.Server \
+  string:io.veyon.veyon-server \
   array:string:yes
 ```
 
