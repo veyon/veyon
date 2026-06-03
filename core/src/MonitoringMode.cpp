@@ -282,9 +282,9 @@ bool MonitoringMode::handleFeatureMessage(VeyonServerInterface& server,
 
 	if (message.featureUid() == m_queryApplicationVersionFeature.uid())
 	{
-		server.sendFeatureMessageReply(messageContext,
-									   FeatureMessage{m_queryApplicationVersionFeature.uid()}
-									   .addArgument(Argument::ApplicationVersion, int(VeyonCore::config().applicationVersion())));
+		return server.sendFeatureMessageReply(messageContext,
+											  FeatureMessage{m_queryApplicationVersionFeature.uid()}
+											  .addArgument(Argument::ApplicationVersion, int(VeyonCore::config().applicationVersion())));
 	}
 
 	if (m_queryActiveFeatures.uid() == message.featureUid())
