@@ -53,6 +53,14 @@ public:
 	};
 	Q_ENUM(Argument)
 
+	enum class GuestUserIdentityExtensionType
+	{
+		None,
+		Prefix,
+		Suffix,
+	};
+	Q_ENUM(GuestUserIdentityExtensionType)
+
 	explicit MonitoringMode( QObject* parent = nullptr );
 
 	const Feature& feature() const
@@ -215,5 +223,7 @@ private:
 	QTimer m_sessionInfoUpdateTimer;
 
 	QMap<QUuid, MessageContext> m_userIdentificationContexts;
+	GuestUserIdentityExtensionType m_guestUserIdentityExtensionType;
+	QString m_guestUserIdentityExtensionValue;
 
 };

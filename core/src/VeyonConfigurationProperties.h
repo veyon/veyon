@@ -33,6 +33,7 @@
 #include "ComputerListModel.h"
 #include "Computer.h"
 #include "Logger.h"
+#include "MonitoringMode.h"
 #include "NetworkObjectDirectory.h"
 #include "PlatformSessionFunctions.h"
 #include "PlatformUserFunctions.h"
@@ -149,6 +150,8 @@
 	OP( VeyonConfiguration, VeyonCore::config(), Computer::NameSource, computerNameSource, setComputerNameSource, "ComputerNameSource", "Master", QVariant::fromValue(Computer::NameSource::Default), Configuration::Property::Flag::Advanced )	\
 	OP( VeyonConfiguration, VeyonCore::config(), PlatformUserFunctions::UserProperty, guestUserProperty, setGuestUserProperty, "GuestUserProperty", "Master", QVariant::fromValue(PlatformUserFunctions::UserProperty::None), Configuration::Property::Flag::Advanced ) \
 	OP( VeyonConfiguration, VeyonCore::config(), QString, guestUserValue, setGuestUserValue, "GuestUserValue", "Master", VeyonCore::tr("Guest"), Configuration::Property::Flag::Advanced ) \
+	OP( VeyonConfiguration, VeyonCore::config(), MonitoringMode::GuestUserIdentityExtensionType, guestUserIdentityExtensionType, setGuestUserIdentityExtensionType, "GuestUserIdentityExtensionType", "Master", QVariant::fromValue(MonitoringMode::GuestUserIdentityExtensionType::None), Configuration::Property::Flag::Advanced ) \
+	OP( VeyonConfiguration, VeyonCore::config(), QString, guestUserIdentityExtensionValue, setGuestUserIdentityExtensionValue, "GuestUserIdentityExtensionValue", "Master", QString{}, Configuration::Property::Flag::Advanced ) \
 
 #define FOREACH_VEYON_AUTHENTICATION_CONFIG_PROPERTY(OP) \
 	OP( VeyonConfiguration, VeyonCore::config(), QStringList, enabledAuthenticationPlugins, setEnabledAuthenticationPlugins, "EnabledPlugins", "Authentication", QStringList(), Configuration::Property::Flag::Standard )	\
