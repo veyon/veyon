@@ -315,6 +315,7 @@ bool MonitoringMode::handleFeatureMessage(VeyonServerInterface& server,
 		server.featureWorkerManager().sendMessageToUnmanagedSessionWorker(
 					FeatureMessage{m_identifyUserFeature.uid()}
 					.addArgument(Argument::UserIdentificationContextId, contextId));
+		return true;
 	}
 
 	return false;
