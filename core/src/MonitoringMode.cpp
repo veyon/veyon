@@ -287,7 +287,7 @@ bool MonitoringMode::handleFeatureMessage(VeyonServerInterface& server,
 											  .addArgument(Argument::ApplicationVersion, int(VeyonCore::config().applicationVersion())));
 	}
 
-	if (m_queryActiveFeatures.uid() == message.featureUid())
+	if (message.featureUid() == m_queryActiveFeatures.uid())
 	{
 		return sendActiveFeatures(server, messageContext);
 	}
