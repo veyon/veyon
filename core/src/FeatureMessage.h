@@ -131,7 +131,7 @@ public:
 	template<typename T = int>
 	bool hasArgument(T index) const
 	{
-		return m_arguments.contains(QString::number(int(index)));
+		return m_arguments.contains(EnumHelper::toString(index));
 	}
 
 	bool sendPlain(QIODevice* ioDevice) const;
