@@ -12,7 +12,7 @@ if(NOT VEYON_X11VNC_EXTERNAL)
 		message(WARNING "No suitable LibVNCClient library found therefore performing internal build of LibVNCServer as well to avoid binary compatibility issues")
 	endif()
 
-	if(NOT LibVNCServer_FOUND)
+	if(VEYON_USE_BUILTIN_LIBVNC OR NOT LibVNCServer_FOUND)
 		include(LibVNCServerIntegration)
 	endif()
 
@@ -118,7 +118,7 @@ if(NOT VEYON_X11VNC_EXTERNAL)
 
 	set(X11VNC_CONFIG ${CMAKE_BINARY_DIR}/config.h)
 	configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h @ONLY)
-	if(NOT LibVNCServer_FOUND)
+	if(VEYON_USE_BUILTIN_LIBVNC OR NOT LibVNCServer_FOUND)
 		set(libvncserver_SOURCES
 			${libvncserver_DIR}/src/libvncserver/auth.c
 			${libvncserver_DIR}/src/libvncserver/cargs.c

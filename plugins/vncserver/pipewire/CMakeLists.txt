@@ -8,7 +8,7 @@ if(HAVE_LIBVNCCLIENT)
 	find_package(LibVNCServer 0.9.8)
 endif()
 
-if(NOT LibVNCServer_FOUND)
+if(VEYON_USE_BUILTIN_LIBVNC OR NOT LibVNCServer_FOUND)
 	include(LibVNCServerIntegration)
 
 	set(libvncserver_SOURCES
@@ -42,7 +42,7 @@ if(NOT LibVNCServer_FOUND)
 		${libvncserver_DIR}/src/common/vncauth.c)
 endif()
 
-if(PipeWire_FOUND AND Qt${QT_MAJOR_VERSION}DBus_FOUND AND LibVNCServer_FOUND)
+if(PipeWire_FOUND AND Qt${QT_MAJOR_VERSION}DBus_FOUND AND (LibVNCServer_FOUND OR VEYON_USE_BUILTIN_LIBVNC))
 
 	qt_add_dbus_interface(DBUS_GENERATED_SOURCES
 		dbus/org.freedesktop.portal.RemoteDesktop.xml

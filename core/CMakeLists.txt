@@ -15,7 +15,7 @@ set(core_RESOURCES
 	${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc
 	)
 
-if(NOT WITH_BUILTIN_LIBVNC)
+if(NOT WITH_BUILTIN_LIBVNC AND NOT VEYON_USE_BUILTIN_LIBVNC)
 	find_package(LibVNCClient 0.9.14)
 endif()
 
