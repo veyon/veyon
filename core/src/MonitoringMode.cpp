@@ -75,7 +75,9 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 						  tr("Identify users in guest sessions"), {}, {}),
 	m_sessionMetaDataContent(VeyonCore::config().sessionMetaDataContent()),
 	m_sessionMetaDataEnvironmentVariable(VeyonCore::config().sessionMetaDataEnvironmentVariable()),
-	m_sessionMetaDataRegistryKey(VeyonCore::config().sessionMetaDataRegistryKey())
+	m_sessionMetaDataRegistryKey(VeyonCore::config().sessionMetaDataRegistryKey()),
+	m_guestUserIdentityExtensionType(VeyonCore::config().guestUserIdentityExtensionType()),
+	m_guestUserIdentityExtensionValue(VeyonCore::config().guestUserIdentityExtensionValue())
 {
 	if(VeyonCore::component() == VeyonCore::Component::Server)
 	{
@@ -235,9 +237,20 @@ bool MonitoringMode::handleFeatureMessage( ComputerControlInterface::Pointer com
 
 	if (message.featureUid() == m_identifyUserFeature.uid() )
 	{
-		computerControlInterface->setUserInformation(message.argument(Argument::UserIdentity).toString(),
-													 message.argument(Argument::UserIdentity).toString());
+		auto userIdentity = message.argument(Argument::UserIdentity).toString();
+		switch (m_guestUserIdentityExtensionType)
+		{
+		case GuestUserIdentityExtensionType::Prefix:
+			userIdentity.prepend(m_guestUserIdentityExtensionValue);
+			break;
+		case GuestUserIdentityExtensionType::Suffix:
+			userIdentity.append(m_guestUserIdentityExtensionValue);
+			break;
+		case GuestUserIdentityExtensionType::None:
+			break;
+		}
 
+		computerControlInterface->setUserInformation(userIdentity, userIdentity);
 		return true;
 	}
 

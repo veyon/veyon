@@ -56,6 +56,11 @@ MasterConfigurationPage::MasterConfigurationPage() :
 		ui->guestUserValue->setEnabled(ui->guestUserProperty->currentIndex() > 0);
 	});
 
+	connect(ui->guestUserIdentityExtensionType, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this]() {
+		ui->guestUserIdentityExtensionValue->setEnabled(ui->guestUserIdentityExtensionType->currentIndex() > 0);
+	});
+
+
 	populateFeatureComboBox();
 }
 
