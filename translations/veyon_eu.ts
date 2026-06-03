@@ -3360,6 +3360,22 @@ Luze sakatu fitxategi batetik kargatzeko edo uneko antolamendua fitxategi batera
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Guest user identity extension</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Bat ere ez</translation>
+    </message>
+    <message>
+        <source>Prefix</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Suffix</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Behaviour</source>
         <translation>Jokaera</translation>
     </message>

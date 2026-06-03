@@ -3360,6 +3360,22 @@ Failist arranžeeringu laadimiseks või praeguse arranžeeringu faili salvestami
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Guest user identity extension</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Puudub</translation>
+    </message>
+    <message>
+        <source>Prefix</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Suffix</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Behaviour</source>
         <translation>Käitumine</translation>
     </message>

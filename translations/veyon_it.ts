@@ -3347,6 +3347,22 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
         <translation>Ospite</translation>
     </message>
     <message>
+        <source>Guest user identity extension</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Nessuna</translation>
+    </message>
+    <message>
+        <source>Prefix</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Suffix</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Behaviour</source>
         <translation>Comportamento</translation>
     </message>

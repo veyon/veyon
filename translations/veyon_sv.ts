@@ -3360,6 +3360,22 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
         <translation>Gäst</translation>
     </message>
     <message>
+        <source>Guest user identity extension</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Ingen</translation>
+    </message>
+    <message>
+        <source>Prefix</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Suffix</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Behaviour</source>
         <translation>Beteende</translation>
     </message>

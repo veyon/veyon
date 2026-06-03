@@ -3352,6 +3352,22 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Guest user identity extension</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Žádné</translation>
+    </message>
+    <message>
+        <source>Prefix</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Suffix</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Behaviour</source>
         <translation>Chování</translation>
     </message>

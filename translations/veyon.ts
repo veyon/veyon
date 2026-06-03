@@ -3334,6 +3334,22 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Guest user identity extension</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefix</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suffix</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Behaviour</source>
         <translation type="unfinished"></translation>
     </message>

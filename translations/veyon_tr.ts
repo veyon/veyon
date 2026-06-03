@@ -3360,6 +3360,22 @@ Düzenlemeyi bir dosyadan yüklemek veya mevcut düzenlemeyi bir dosyaya kaydetm
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Guest user identity extension</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Yok</translation>
+    </message>
+    <message>
+        <source>Prefix</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Suffix</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Behaviour</source>
         <translation>Davranış</translation>
     </message>

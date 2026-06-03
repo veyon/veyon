@@ -3357,6 +3357,22 @@ Gedrückt halten, um die Anordnung aus einer Datei zu laden oder die aktuelle An
         <translation>Gast</translation>
     </message>
     <message>
+        <source>Guest user identity extension</source>
+        <translation>Erweiterung der Gastbenutzeridentität</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Keine</translation>
+    </message>
+    <message>
+        <source>Prefix</source>
+        <translation>Präfix</translation>
+    </message>
+    <message>
+        <source>Suffix</source>
+        <translation>Suffix</translation>
+    </message>
+    <message>
         <source>Behaviour</source>
         <translation>Verhalten</translation>
     </message>
