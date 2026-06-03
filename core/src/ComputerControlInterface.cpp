@@ -27,6 +27,7 @@
 #include "ComputerControlInterface.h"
 #include "Computer.h"
 #include "FeatureManager.h"
+#include "HostAddress.h"
 #include "MonitoringMode.h"
 #include "VeyonConfiguration.h"
 #include "VeyonConnection.h"
@@ -647,4 +648,21 @@ QDebug operator<<(QDebug stream, const ComputerControlInterfaceList& computerCon
 	stream << QStringLiteral("[%1]").arg(hostAddresses.join(QLatin1Char(','))).toUtf8().constData();
 
 	return stream;
+}
+
+
+
+void ComputerControlInterfaceList::removeLocalHostInterfaces()
+{
+	for (auto it = begin(); it != end(); )
+	{
+		if (HostAddress(HostAddress::parseHost((*it)->computer().hostName())).isLocalHost())
+		{
+			it = erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
 }

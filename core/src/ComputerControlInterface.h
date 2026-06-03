@@ -272,7 +272,14 @@ Q_SIGNALS:
 
 };
 
-using ComputerControlInterfaceList = QVector<ComputerControlInterface::Pointer>;
+class VEYON_CORE_EXPORT ComputerControlInterfaceList : public QList<ComputerControlInterface::Pointer>
+{
+public:
+	using QList::QList;
+
+	// removes all interfaces that refer to the local computer (i.e. the master itself)
+	void removeLocalHostInterfaces();
+};
 
 VEYON_CORE_EXPORT QDebug operator<<(QDebug stream, ComputerControlInterface::Pointer computerControlInterface);
 VEYON_CORE_EXPORT QDebug operator<<(QDebug stream, const ComputerControlInterfaceList& computerControlInterfaces);

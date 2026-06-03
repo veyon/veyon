@@ -25,6 +25,7 @@
 #include <QCoreApplication>
 
 #include "ScreenLockFeaturePlugin.h"
+#include "ComputerControlInterface.h"
 #include "FeatureWorkerManager.h"
 #include "LockWidget.h"
 #include "PlatformCoreFunctions.h"
@@ -88,7 +89,14 @@ bool ScreenLockFeaturePlugin::controlFeature( Feature::Uid featureUid, Operation
 
 	if( operation == Operation::Start )
 	{
-		sendFeatureMessage(FeatureMessage{featureUid, FeatureCommand::StartLock}, computerControlInterfaces);
+		// never lock the master computer itself: in multi-teacher lab layouts it
+		// is listed as a regular room computer, but locking its screen would grab
+		// the teacher's keyboard and mouse and cover Veyon Master, leaving no way
+		// to unlock the running session
+		auto lockControlInterfaces = computerControlInterfaces;
+		lockControlInterfaces.removeLocalHostInterfaces();
+
+		sendFeatureMessage(FeatureMessage{featureUid, FeatureCommand::StartLock}, lockControlInterfaces);
 
 		return true;
 	}
