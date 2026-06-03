@@ -233,6 +233,7 @@ bool MonitoringMode::handleFeatureMessage( ComputerControlInterface::Pointer com
 		}
 
 		computerControlInterface->setScreens(screens);
+		return true;
 	}
 
 	if (message.featureUid() == m_identifyUserFeature.uid() )
