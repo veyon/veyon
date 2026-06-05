@@ -28,6 +28,8 @@
 #include "VeyonCore.h"
 #include "LinuxKeyboardInput.h"
 
+#include <cstring>
+
 #include <X11/Xlib.h>
 
 #include <fakekey/fakekey.h>
