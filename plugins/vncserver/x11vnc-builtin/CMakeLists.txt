@@ -4,18 +4,6 @@ option(VEYON_X11VNC_EXTERNAL "Build with external x11vnc server" OFF)
 
 if(NOT VEYON_X11VNC_EXTERNAL)
 
-	get_property(HAVE_LIBVNCCLIENT GLOBAL PROPERTY HAVE_LIBVNCCLIENT)
-	if(HAVE_LIBVNCCLIENT)
-		find_package(LibVNCClient)
-		find_package(LibVNCServer 0.9.8)
-	else()
-		message(WARNING "No suitable LibVNCClient library found therefore performing internal build of LibVNCServer as well to avoid binary compatibility issues")
-	endif()
-
-	if(NOT LibVNCServer_FOUND)
-		include(LibVNCServerIntegration)
-	endif()
-
 	set(FULL_PACKAGE_NAME "Veyon")
 	set(PACKAGE_VERSION "${VERSION_STRING}")
 	set(VERSION_PATCHLEVEL "${VERSION_PATCH}")
@@ -118,37 +106,6 @@ if(NOT VEYON_X11VNC_EXTERNAL)
 
 	set(X11VNC_CONFIG ${CMAKE_BINARY_DIR}/config.h)
 	configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h @ONLY)
-	if(NOT LibVNCServer_FOUND)
-		set(libvncserver_SOURCES
-			${libvncserver_DIR}/src/libvncserver/auth.c
-			${libvncserver_DIR}/src/libvncserver/cargs.c
-			${libvncserver_DIR}/src/libvncserver/corre.c
-			${libvncserver_DIR}/src/libvncserver/cursor.c
-			${libvncserver_DIR}/src/libvncserver/cutpaste.c
-			${libvncserver_DIR}/src/libvncserver/draw.c
-			${libvncserver_DIR}/src/libvncserver/font.c
-			${libvncserver_DIR}/src/libvncserver/hextile.c
-			${libvncserver_DIR}/src/libvncserver/httpd.c
-			${libvncserver_DIR}/src/libvncserver/main.c
-			${libvncserver_DIR}/src/libvncserver/rfbregion.c
-			${libvncserver_DIR}/src/libvncserver/rfbserver.c
-			${libvncserver_DIR}/src/libvncserver/rre.c
-			${libvncserver_DIR}/src/libvncserver/scale.c
-			${libvncserver_DIR}/src/libvncserver/selbox.c
-			${libvncserver_DIR}/src/libvncserver/sockets.c
-			${libvncserver_DIR}/src/libvncserver/stats.c
-			${libvncserver_DIR}/src/libvncserver/translate.c
-			${libvncserver_DIR}/src/libvncserver/ultra.c
-			${libvncserver_DIR}/src/libvncserver/zlib.c
-			${libvncserver_DIR}/src/libvncserver/zrle.c
-			${libvncserver_DIR}/src/libvncserver/zrleoutstream.c
-			${libvncserver_DIR}/src/libvncserver/zrlepalettehelper.c
-			${libvncserver_DIR}/src/libvncserver/tight.c
-			${libvncserver_DIR}/src/common/d3des.c
-			${libvncserver_DIR}/src/common/sockets.c
-			${libvncserver_DIR}/src/common/turbojpeg.c
-			${libvncserver_DIR}/src/common/vncauth.c)
-	endif()
 
 	set(x11vnc_SOURCES x11vnc-veyon.c
 		${x11vnc_DIR}/src/appshare.c
@@ -200,7 +157,7 @@ if(NOT VEYON_X11VNC_EXTERNAL)
 		set(COMPILER_WARN_DISABLE_FLAGS "-Wno-sometimes-uninitialized -Wno-pointer-bool-conversion -Wno-tautological-pointer-compare -Wno-tautological-constant-out-of-range-compare -Wno-incompatible-pointer-types-discards-qualifiers")
 	endif()
 
-	set_source_files_properties(${x11vnc_SOURCES} ${libvncserver_SOURCES} PROPERTIES
+	set_source_files_properties(${x11vnc_SOURCES} PROPERTIES
 		COMPILE_FLAGS "${COMPILER_WARN_DISABLE_FLAGS} -Wno-deprecated-declarations -Wno-unused-result -Wno-unused-function -Wno-unused-variable -Wno-misleading-indentation")
 endif()
 
@@ -212,7 +169,6 @@ build_veyon_plugin(builtin-x11vnc-server
 	BuiltinX11VncServer.cpp
 	X11VncConfigurationWidget.cpp
 	X11VncConfigurationWidget.ui
-	${libvncserver_SOURCES}
 	${x11vnc_SOURCES}
 	BuiltinX11VncServer.h
 	X11VncConfigurationWidget.h
@@ -240,19 +196,10 @@ else()
 		${X11_Xrandr_LIB}
 		)
 
-	if(LibVNCServer_FOUND)
-		target_link_libraries(builtin-x11vnc-server PRIVATE
-			LibVNC::LibVNCClient
-			LibVNC::LibVNCServer)
+	if(WITH_BUNDLED_LIBVNC)
+		target_link_libraries(builtin-x11vnc-server PRIVATE vncserver)
 	else()
-		target_link_libraries(builtin-x11vnc-server PRIVATE
-			Threads::Threads
-			PNG::PNG
-			${ZLIB_LIBRARIES}
-			${JPEG_LIBRARIES}
-			${LZO_LIBRARIES}
-			)
-		target_include_directories(builtin-x11vnc-server PRIVATE ${libvncserver_DIR}/libvncserver ${libvncserver_DIR}/common)
+		target_link_libraries(builtin-x11vnc-server PRIVATE LibVNC::LibVNCServer)
 	endif()
 
 	if(X11_XShm_FOUND)

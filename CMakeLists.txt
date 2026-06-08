@@ -15,7 +15,7 @@ option(WITH_ADDRESS_SANITIZER "Build with address sanitizer" OFF)
 option(WITH_THREAD_SANITIZER "Build with thread sanitizer" OFF)
 option(WITH_UB_SANITIZER "Build with undefined behavior sanitizer" OFF)
 option(WITH_FUZZERS "Build LLVM fuzzer tests (implies WITH_TESTS=ON)" OFF)
-option(WITH_BUILTIN_LIBVNC "Build with built-in LibVNCServer/Client" OFF)
+option(WITH_BUNDLED_LIBVNC "Build with bundled LibVNCServer/Client" OFF)
 option(WITH_WEBAPI "Build WebAPI plugin" ON)
 
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
@@ -170,6 +170,63 @@ else()
 		REQUIRED)
 	if(WITH_TRANSLATIONS)
 		find_package(Qt5LinguistTools REQUIRED)
+	endif()
+endif()
+
+if(WITH_BUNDLED_LIBVNC)
+	set(libvncserver_SOURCE_DIR ${CMAKE_SOURCE_DIR}/3rdparty/libvncserver)
+	set(libvncserver_BINARY_DIR ${CMAKE_BINARY_DIR}/3rdparty/libvncserver)
+
+	message("Checking for LibVNCServer/LibVNCClient dependencies")
+	find_package(ZLIB REQUIRED)
+	find_package(PNG REQUIRED)
+	find_package(JPEG REQUIRED)
+	find_package(LZO REQUIRED)
+	set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
+	find_package(Threads REQUIRED)
+
+	message("Configuring bundled LibVNCServer/LibVNCClient at ${libvncserver_SOURCE_DIR}")
+	set(WITH_EXAMPLES OFF)
+	set(WITH_FFMPEG OFF)
+	set(WITH_GCRYPT OFF)
+	set(WITH_GNUTLS OFF)
+	set(WITH_GTK OFF)
+	set(WITH_LIBSSHTUNNEL OFF)
+	set(WITH_QT OFF)
+	set(WITH_SASL OFF)
+	set(WITH_SDL OFF)
+	set(WITH_SYSTEMD OFF)
+	set(WITH_TESTS OFF)
+	set(WITH_TIGHTVNC_FILETRANSFER OFF)
+	set(WITH_XCB OFF)
+	set(LIBVNCSERVER_INSTALL OFF)
+
+	add_subdirectory(${libvncserver_SOURCE_DIR})
+
+	set_default_target_properties(vncclient)
+	set_default_target_properties(vncserver)
+
+	target_compile_options(vncclient PRIVATE "-Wno-unused-function;-Wno-unused-variable;-Wno-deprecated-declarations")
+	target_compile_options(vncserver PRIVATE "-Wno-deprecated-declarations;-Wno-unused-function;-Wno-unused-variable;-Wno-discarded-qualifiers;-Wno-unused-result;-Wno-restrict")
+
+	target_include_directories(vncclient PUBLIC
+		${libvncserver_SOURCE_DIR}/src/common
+		${libvncserver_SOURCE_DIR}/include
+		${libvncserver_BINARY_DIR}/include)
+	target_include_directories(vncserver PUBLIC
+		${libvncserver_SOURCE_DIR}/src/common
+		${libvncserver_SOURCE_DIR}/include
+		${libvncserver_BINARY_DIR}/include)
+
+	set_property(TARGET vncclient PROPERTY PUBLIC_HEADER)
+	set_property(TARGET vncserver PROPERTY PUBLIC_HEADER)
+
+	install(TARGETS vncclient vncserver LIBRARY DESTINATION "${VEYON_LIB_DIR}")
+else()
+	find_package(LibVNCServer 0.9.14)
+	find_package(LibVNCClient 0.9.14)
+	if (NOT LibVNCServer_FOUND OR NOT LibVNCClient_FOUND)
+		message(FATAL_ERROR "LibVNCServer or LibVNCClient not found – provide development packages or configure with -DWITH_BUNDLED_LIBVNC=ON")
 	endif()
 endif()
 
