@@ -213,140 +213,147 @@ void LinuxKeyboardInput::pressAndReleaseKeyUinputUtf8( const QByteArray& utf8Dat
 
 int LinuxKeyboardInput::keysymToLinuxKeycode( uint32_t keysym )
 {
-	switch( keysym )
+	static constexpr struct { uint32_t keysym; int keycode; } table[] = {
+		{ XK_Escape,       KEY_ESC },
+		{ XK_1,            KEY_1 },
+		{ XK_2,            KEY_2 },
+		{ XK_3,            KEY_3 },
+		{ XK_4,            KEY_4 },
+		{ XK_5,            KEY_5 },
+		{ XK_6,            KEY_6 },
+		{ XK_7,            KEY_7 },
+		{ XK_8,            KEY_8 },
+		{ XK_9,            KEY_9 },
+		{ XK_0,            KEY_0 },
+		{ XK_minus,        KEY_MINUS },
+		{ XK_equal,        KEY_EQUAL },
+		{ XK_BackSpace,    KEY_BACKSPACE },
+		{ XK_Tab,          KEY_TAB },
+		{ XK_q,            KEY_Q },
+		{ XK_w,            KEY_W },
+		{ XK_e,            KEY_E },
+		{ XK_r,            KEY_R },
+		{ XK_t,            KEY_T },
+		{ XK_y,            KEY_Y },
+		{ XK_u,            KEY_U },
+		{ XK_i,            KEY_I },
+		{ XK_o,            KEY_O },
+		{ XK_p,            KEY_P },
+		{ XK_bracketleft,  KEY_LEFTBRACE },
+		{ XK_bracketright, KEY_RIGHTBRACE },
+		{ XK_Return,       KEY_ENTER },
+		{ XK_Control_L,    KEY_LEFTCTRL },
+		{ XK_a,            KEY_A },
+		{ XK_s,            KEY_S },
+		{ XK_d,            KEY_D },
+		{ XK_f,            KEY_F },
+		{ XK_g,            KEY_G },
+		{ XK_h,            KEY_H },
+		{ XK_j,            KEY_J },
+		{ XK_k,            KEY_K },
+		{ XK_l,            KEY_L },
+		{ XK_semicolon,    KEY_SEMICOLON },
+		{ XK_apostrophe,   KEY_APOSTROPHE },
+		{ XK_grave,        KEY_GRAVE },
+		{ XK_Shift_L,      KEY_LEFTSHIFT },
+		{ XK_backslash,    KEY_BACKSLASH },
+		{ XK_z,            KEY_Z },
+		{ XK_x,            KEY_X },
+		{ XK_c,            KEY_C },
+		{ XK_v,            KEY_V },
+		{ XK_b,            KEY_B },
+		{ XK_n,            KEY_N },
+		{ XK_m,            KEY_M },
+		{ XK_comma,        KEY_COMMA },
+		{ XK_period,       KEY_DOT },
+		{ XK_slash,        KEY_SLASH },
+		{ XK_Shift_R,      KEY_RIGHTSHIFT },
+		{ XK_KP_Multiply,  KEY_KPASTERISK },
+		{ XK_Alt_L,        KEY_LEFTALT },
+		{ XK_space,        KEY_SPACE },
+		{ XK_Caps_Lock,    KEY_CAPSLOCK },
+		{ XK_F1,           KEY_F1 },
+		{ XK_F2,           KEY_F2 },
+		{ XK_F3,           KEY_F3 },
+		{ XK_F4,           KEY_F4 },
+		{ XK_F5,           KEY_F5 },
+		{ XK_F6,           KEY_F6 },
+		{ XK_F7,           KEY_F7 },
+		{ XK_F8,           KEY_F8 },
+		{ XK_F9,           KEY_F9 },
+		{ XK_F10,          KEY_F10 },
+		{ XK_Num_Lock,     KEY_NUMLOCK },
+		{ XK_Scroll_Lock,  KEY_SCROLLLOCK },
+		{ XK_KP_7,         KEY_KP7 },
+		{ XK_KP_8,         KEY_KP8 },
+		{ XK_KP_9,         KEY_KP9 },
+		{ XK_KP_Subtract,  KEY_KPMINUS },
+		{ XK_KP_4,         KEY_KP4 },
+		{ XK_KP_5,         KEY_KP5 },
+		{ XK_KP_6,         KEY_KP6 },
+		{ XK_KP_Add,       KEY_KPPLUS },
+		{ XK_KP_1,         KEY_KP1 },
+		{ XK_KP_2,         KEY_KP2 },
+		{ XK_KP_3,         KEY_KP3 },
+		{ XK_KP_0,         KEY_KP0 },
+		{ XK_KP_Decimal,   KEY_KPDOT },
+		{ XK_F11,          KEY_F11 },
+		{ XK_F12,          KEY_F12 },
+		{ XK_KP_Enter,     KEY_KPENTER },
+		{ XK_Control_R,    KEY_RIGHTCTRL },
+		{ XK_KP_Divide,    KEY_KPSLASH },
+		{ XK_Print,        KEY_SYSRQ },
+		{ XK_Alt_R,        KEY_RIGHTALT },
+		{ XK_Home,         KEY_HOME },
+		{ XK_Up,           KEY_UP },
+		{ XK_Prior,        KEY_PAGEUP },
+		{ XK_Left,         KEY_LEFT },
+		{ XK_Right,        KEY_RIGHT },
+		{ XK_End,          KEY_END },
+		{ XK_Down,         KEY_DOWN },
+		{ XK_Next,         KEY_PAGEDOWN },
+		{ XK_Insert,       KEY_INSERT },
+		{ XK_Delete,       KEY_DELETE },
+		{ XK_Super_L,      KEY_LEFTMETA },
+		{ XK_Super_R,      KEY_RIGHTMETA },
+		{ XK_Menu,         KEY_MENU },
+		{ XK_A,            KEY_A },
+		{ XK_B,            KEY_B },
+		{ XK_C,            KEY_C },
+		{ XK_D,            KEY_D },
+		{ XK_E,            KEY_E },
+		{ XK_F,            KEY_F },
+		{ XK_G,            KEY_G },
+		{ XK_H,            KEY_H },
+		{ XK_I,            KEY_I },
+		{ XK_J,            KEY_J },
+		{ XK_K,            KEY_K },
+		{ XK_L,            KEY_L },
+		{ XK_M,            KEY_M },
+		{ XK_N,            KEY_N },
+		{ XK_O,            KEY_O },
+		{ XK_P,            KEY_P },
+		{ XK_Q,            KEY_Q },
+		{ XK_R,            KEY_R },
+		{ XK_S,            KEY_S },
+		{ XK_T,            KEY_T },
+		{ XK_U,            KEY_U },
+		{ XK_V,            KEY_V },
+		{ XK_W,            KEY_W },
+		{ XK_X,            KEY_X },
+		{ XK_Y,            KEY_Y },
+		{ XK_Z,            KEY_Z },
+	};
+
+	for( const auto& entry : table )
 	{
-	case XK_Escape:       return KEY_ESC;
-	case XK_1:            return KEY_1;
-	case XK_2:            return KEY_2;
-	case XK_3:            return KEY_3;
-	case XK_4:            return KEY_4;
-	case XK_5:            return KEY_5;
-	case XK_6:            return KEY_6;
-	case XK_7:            return KEY_7;
-	case XK_8:            return KEY_8;
-	case XK_9:            return KEY_9;
-	case XK_0:            return KEY_0;
-	case XK_minus:        return KEY_MINUS;
-	case XK_equal:        return KEY_EQUAL;
-	case XK_BackSpace:    return KEY_BACKSPACE;
-	case XK_Tab:          return KEY_TAB;
-	case XK_q:            return KEY_Q;
-	case XK_w:            return KEY_W;
-	case XK_e:            return KEY_E;
-	case XK_r:            return KEY_R;
-	case XK_t:            return KEY_T;
-	case XK_y:            return KEY_Y;
-	case XK_u:            return KEY_U;
-	case XK_i:            return KEY_I;
-	case XK_o:            return KEY_O;
-	case XK_p:            return KEY_P;
-	case XK_bracketleft:  return KEY_LEFTBRACE;
-	case XK_bracketright: return KEY_RIGHTBRACE;
-	case XK_Return:       return KEY_ENTER;
-	case XK_Control_L:    return KEY_LEFTCTRL;
-	case XK_a:            return KEY_A;
-	case XK_s:            return KEY_S;
-	case XK_d:            return KEY_D;
-	case XK_f:            return KEY_F;
-	case XK_g:            return KEY_G;
-	case XK_h:            return KEY_H;
-	case XK_j:            return KEY_J;
-	case XK_k:            return KEY_K;
-	case XK_l:            return KEY_L;
-	case XK_semicolon:    return KEY_SEMICOLON;
-	case XK_apostrophe:   return KEY_APOSTROPHE;
-	case XK_grave:        return KEY_GRAVE;
-	case XK_Shift_L:      return KEY_LEFTSHIFT;
-	case XK_backslash:    return KEY_BACKSLASH;
-	case XK_z:            return KEY_Z;
-	case XK_x:            return KEY_X;
-	case XK_c:            return KEY_C;
-	case XK_v:            return KEY_V;
-	case XK_b:            return KEY_B;
-	case XK_n:            return KEY_N;
-	case XK_m:            return KEY_M;
-	case XK_comma:        return KEY_COMMA;
-	case XK_period:       return KEY_DOT;
-	case XK_slash:        return KEY_SLASH;
-	case XK_Shift_R:      return KEY_RIGHTSHIFT;
-	case XK_KP_Multiply:  return KEY_KPASTERISK;
-	case XK_Alt_L:        return KEY_LEFTALT;
-	case XK_space:        return KEY_SPACE;
-	case XK_Caps_Lock:    return KEY_CAPSLOCK;
-	case XK_F1:           return KEY_F1;
-	case XK_F2:           return KEY_F2;
-	case XK_F3:           return KEY_F3;
-	case XK_F4:           return KEY_F4;
-	case XK_F5:           return KEY_F5;
-	case XK_F6:           return KEY_F6;
-	case XK_F7:           return KEY_F7;
-	case XK_F8:           return KEY_F8;
-	case XK_F9:           return KEY_F9;
-	case XK_F10:          return KEY_F10;
-	case XK_Num_Lock:     return KEY_NUMLOCK;
-	case XK_Scroll_Lock:  return KEY_SCROLLLOCK;
-	case XK_KP_7:         return KEY_KP7;
-	case XK_KP_8:         return KEY_KP8;
-	case XK_KP_9:         return KEY_KP9;
-	case XK_KP_Subtract:  return KEY_KPMINUS;
-	case XK_KP_4:         return KEY_KP4;
-	case XK_KP_5:         return KEY_KP5;
-	case XK_KP_6:         return KEY_KP6;
-	case XK_KP_Add:       return KEY_KPPLUS;
-	case XK_KP_1:         return KEY_KP1;
-	case XK_KP_2:         return KEY_KP2;
-	case XK_KP_3:         return KEY_KP3;
-	case XK_KP_0:         return KEY_KP0;
-	case XK_KP_Decimal:   return KEY_KPDOT;
-	case XK_F11:          return KEY_F11;
-	case XK_F12:          return KEY_F12;
-	case XK_KP_Enter:     return KEY_KPENTER;
-	case XK_Control_R:    return KEY_RIGHTCTRL;
-	case XK_KP_Divide:    return KEY_KPSLASH;
-	case XK_Print:        return KEY_SYSRQ;
-	case XK_Alt_R:        return KEY_RIGHTALT;
-	case XK_Home:         return KEY_HOME;
-	case XK_Up:           return KEY_UP;
-	case XK_Prior:        return KEY_PAGEUP;
-	case XK_Left:         return KEY_LEFT;
-	case XK_Right:        return KEY_RIGHT;
-	case XK_End:          return KEY_END;
-	case XK_Down:         return KEY_DOWN;
-	case XK_Next:         return KEY_PAGEDOWN;
-	case XK_Insert:       return KEY_INSERT;
-	case XK_Delete:       return KEY_DELETE;
-	case XK_Super_L:      return KEY_LEFTMETA;
-	case XK_Super_R:      return KEY_RIGHTMETA;
-	case XK_Menu:         return KEY_MENU;
-	case XK_A:            return KEY_A;
-	case XK_B:            return KEY_B;
-	case XK_C:            return KEY_C;
-	case XK_D:            return KEY_D;
-	case XK_E:            return KEY_E;
-	case XK_F:            return KEY_F;
-	case XK_G:            return KEY_G;
-	case XK_H:            return KEY_H;
-	case XK_I:            return KEY_I;
-	case XK_J:            return KEY_J;
-	case XK_K:            return KEY_K;
-	case XK_L:            return KEY_L;
-	case XK_M:            return KEY_M;
-	case XK_N:            return KEY_N;
-	case XK_O:            return KEY_O;
-	case XK_P:            return KEY_P;
-	case XK_Q:            return KEY_Q;
-	case XK_R:            return KEY_R;
-	case XK_S:            return KEY_S;
-	case XK_T:            return KEY_T;
-	case XK_U:            return KEY_U;
-	case XK_V:            return KEY_V;
-	case XK_W:            return KEY_W;
-	case XK_X:            return KEY_X;
-	case XK_Y:            return KEY_Y;
-	case XK_Z:            return KEY_Z;
-	default:
-		return -1;
+		if( entry.keysym == keysym )
+		{
+			return entry.keycode;
+		}
 	}
+
+	return -1;
 }
 
 
@@ -360,74 +367,81 @@ int LinuxKeyboardInput::utf8ToLinuxKeycode( const QByteArray& utf8Data )
 		return -1;
 	}
 
-	const char c = utf8Data.at( 0 );
+	const auto c = utf8Data.at( 0 );
 
-	// digit_0 maps to KEY_0, not KEY_1 + (-1)
-	if( c >= '0' && c <= '9' )
-	{
-		constexpr int digitKeycodes[] = { 11, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-		return digitKeycodes[ c - '0' ];
-	}
-
-	// Linux keycodes for letters are NOT sequential (KEY_A=30, KEY_B=48, etc.)
-	// Must use explicit lookup instead of KEY_A + offset
-	constexpr int letterKeycodes[] = {
-		// a b c d e f g h i j k l m n o p q r s t u v w x y z
-		30,48,46,32,18,33,34,35,23,36,37,38,50,49,24,25,16,19,31,20,22,47,17,45,21,44
-		// A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-		// same values as lowercase
-	};
-
+	// Fast path for alphanumeric ASCII
 	if( c >= 'a' && c <= 'z' )
 	{
+		static constexpr int letterKeycodes[] = {
+		// a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z
+			30,48,46,32,18,33,34,35,23,36,37,38,50,49,24,25,16,19,31,20,22,47,17,45,21,44
+		};
 		return letterKeycodes[ c - 'a' ];
 	}
 	if( c >= 'A' && c <= 'Z' )
 	{
+		static constexpr int letterKeycodes[] = {
+		// A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P  Q  R  S  T  U  V  W  X  Y  Z
+			30,48,46,32,18,33,34,35,23,36,37,38,50,49,24,25,16,19,31,20,22,47,17,45,21,44
+		};
 		return letterKeycodes[ c - 'A' ];
 	}
-	if( c >= '0' && c <= '9' )
+
+	static constexpr struct { char ch; int keycode; } table[] = {
+		{ '0', KEY_0 },
+		{ '1', KEY_1 },
+		{ '2', KEY_2 },
+		{ '3', KEY_3 },
+		{ '4', KEY_4 },
+		{ '5', KEY_5 },
+		{ '6', KEY_6 },
+		{ '7', KEY_7 },
+		{ '8', KEY_8 },
+		{ '9', KEY_9 },
+		{ '!', KEY_1 },
+		{ '@', KEY_2 },
+		{ '#', KEY_3 },
+		{ '$', KEY_4 },
+		{ '%', KEY_5 },
+		{ '^', KEY_6 },
+		{ '&', KEY_7 },
+		{ '*', KEY_8 },
+		{ '(', KEY_9 },
+		{ ')', KEY_0 },
+		{ '-', KEY_MINUS },
+		{ '_', KEY_MINUS },
+		{ '=', KEY_EQUAL },
+		{ '+', KEY_EQUAL },
+		{ '[', KEY_LEFTBRACE },
+		{ '{', KEY_LEFTBRACE },
+		{ ']', KEY_RIGHTBRACE },
+		{ '}', KEY_RIGHTBRACE },
+		{ '\\', KEY_BACKSLASH },
+		{ '|', KEY_BACKSLASH },
+		{ ';', KEY_SEMICOLON },
+		{ ':', KEY_SEMICOLON },
+		{ '\'', KEY_APOSTROPHE },
+		{ '"', KEY_APOSTROPHE },
+		{ '`', KEY_GRAVE },
+		{ '~', KEY_GRAVE },
+		{ ',', KEY_COMMA },
+		{ '<', KEY_COMMA },
+		{ '.', KEY_DOT },
+		{ '>', KEY_DOT },
+		{ '/', KEY_SLASH },
+		{ '?', KEY_SLASH },
+		{ ' ', KEY_SPACE },
+		{ '\n', KEY_ENTER },
+		{ '\t', KEY_TAB },
+	};
+
+	for( const auto& entry : table )
 	{
-		return KEY_1 + ( c - '1' );
+		if( entry.ch == c )
+		{
+			return entry.keycode;
+		}
 	}
 
-	switch( c )
-	{
-	case '!': return KEY_1;
-	case '@': return KEY_2;
-	case '#': return KEY_3;
-	case '$': return KEY_4;
-	case '%': return KEY_5;
-	case '^': return KEY_6;
-	case '&': return KEY_7;
-	case '*': return KEY_8;
-	case '(': return KEY_9;
-	case ')': return KEY_0;
-	case '-': return KEY_MINUS;
-	case '_': return KEY_MINUS;
-	case '=': return KEY_EQUAL;
-	case '+': return KEY_EQUAL;
-	case '[': return KEY_LEFTBRACE;
-	case '{': return KEY_LEFTBRACE;
-	case ']': return KEY_RIGHTBRACE;
-	case '}': return KEY_RIGHTBRACE;
-	case '\\': return KEY_BACKSLASH;
-	case '|': return KEY_BACKSLASH;
-	case ';': return KEY_SEMICOLON;
-	case ':': return KEY_SEMICOLON;
-	case '\'': return KEY_APOSTROPHE;
-	case '"': return KEY_APOSTROPHE;
-	case '`': return KEY_GRAVE;
-	case '~': return KEY_GRAVE;
-	case ',': return KEY_COMMA;
-	case '<': return KEY_COMMA;
-	case '.': return KEY_DOT;
-	case '>': return KEY_DOT;
-	case '/': return KEY_SLASH;
-	case '?': return KEY_SLASH;
-	case ' ': return KEY_SPACE;
-	case '\n': return KEY_ENTER;
-	case '\t': return KEY_TAB;
-	default: return -1;
-	}
+	return -1;
 }
