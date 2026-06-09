@@ -22,16 +22,20 @@
  *
  */
 
+#include <QDBusConnectionInterface>
 #include <QDir>
 #include <QFileInfo>
 
 #include <csignal>
+#include <grp.h>
+#include <pwd.h>
 #ifdef HAVE_LIBPROCPS
 #include <proc/readproc.h>
 #endif
 #include <sys/errno.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <unistd.h>
 
 #include "Filesystem.h"
 #include "LinuxCoreFunctions.h"
@@ -100,20 +104,37 @@ void LinuxServerProcess::start()
 		setChildProcessModifier([this] { setProcessUserId(); });
 #endif
 
-		const auto desktopEnvironment = LinuxSessionFunctions::getSessionDesktopEnvironment(m_sessionPath);
-		const auto desktopFile = VeyonCore::applicationsDirectory() + QDir::separator() + QStringLiteral("io.veyon.veyon-server.desktop");
-		switch (desktopEnvironment)
+		// Check for xdg-desktop-portal >= 1.20 via the presence of the
+		// org.freedesktop.host.portal.Registry D-Bus service. When available,
+		// launch veyon-server directly which inherits the full session
+		// environment (DBUS_SESSION_BUS_ADDRESS, WAYLAND_DISPLAY, XDG_RUNTIME_DIR)
+		// captured from the session leader. On older portal versions fall back
+		// to kioclient/gio D-Bus activation.
+		const auto portalRegistryService = QStringLiteral("org.freedesktop.host.portal.Registry");
+		if(QDBusConnection::sessionBus().interface()->isServiceRegistered(portalRegistryService))
 		{
-		case LinuxSessionFunctions::DesktopEnvironment::KDE:
-			QProcess::start(QStringLiteral("kioclient"), {QStringLiteral("exec"), desktopFile});
-			break;
-		case LinuxSessionFunctions::DesktopEnvironment::GNOME:
-			QProcess::start(QStringLiteral("gio"), {QStringLiteral("launch"), desktopFile});
-			break;
-		default:
-			vWarning() << "Unsupported desktop environment with Wayland session, launching server directly";
+			vDebug() << "xdg-desktop-portal >= 1.20 detected, launching server directly";
 			QProcess::start(VeyonCore::filesystem().serverFilePath(), QStringList{});
-			break;
+		}
+		else
+		{
+			vDebug() << "xdg-desktop-portal < 1.20, falling back to D-Bus activation";
+			const auto desktopEnvironment = LinuxSessionFunctions::getSessionDesktopEnvironment(m_sessionPath);
+			const auto desktopFile = VeyonCore::applicationsDirectory() + QDir::separator()
+									 + QStringLiteral("io.veyon.veyon-server.desktop");
+			switch(desktopEnvironment)
+			{
+			case LinuxSessionFunctions::DesktopEnvironment::KDE:
+				QProcess::start(QStringLiteral("kioclient"), {QStringLiteral("exec"), desktopFile});
+				break;
+			case LinuxSessionFunctions::DesktopEnvironment::GNOME:
+				QProcess::start(QStringLiteral("gio"), {QStringLiteral("launch"), desktopFile});
+				break;
+			default:
+				vWarning() << "Unsupported desktop environment with Wayland session, launching server directly";
+				QProcess::start(VeyonCore::filesystem().serverFilePath(), QStringList{});
+				break;
+			}
 		}
 	}
 	else
@@ -190,6 +211,16 @@ void LinuxServerProcess::setProcessUserId()
 {
 	if (m_sessionUserId != LinuxUserFunctions::InvalidUserId)
 	{
-		setuid(m_sessionUserId);
+		// Look up the user's full credential data before dropping privileges
+		const auto pw_entry = getpwuid( m_sessionUserId );
+		if( pw_entry != nullptr )
+		{
+			// Set supplementary groups first (needs EUID=root)
+			initgroups( pw_entry->pw_name, pw_entry->pw_gid );
+			// Set primary group GID
+			setgid( pw_entry->pw_gid );
+		}
+		// Set UID last — after this the process has no more root privileges
+		setuid( m_sessionUserId );
 	}
 }
