@@ -403,11 +403,9 @@ QProcessEnvironment LinuxSessionFunctions::getSessionEnvironment( int sessionLea
 						sessionEnv.insert( env.left( separatorPos ), env.mid( separatorPos+1 ) );
 					}
 				}
-
-				return true;
 			}
 
-			return false;
+			return true;
 		},
 		sessionLeaderPid, PROC_FILLENV, true );
 #elif defined(HAVE_LIBPROC2)
@@ -427,11 +425,9 @@ QProcessEnvironment LinuxSessionFunctions::getSessionEnvironment( int sessionLea
 					sessionEnv.insert(env.left(separatorPos), env.mid(separatorPos+1));
 				}
 			}
-
-			return true;
 		}
 
-		return false;
+		return true;
 	},
 	sessionLeaderPid, {PIDS_ENVIRON_V}, true);
 #else
