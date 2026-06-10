@@ -42,6 +42,7 @@ build_veyon_plugin(windows-platform
 	WindowsServiceCore.h
 	WindowsServiceFunctions.h
 	WindowsSessionFunctions.h
+	WindowsSmartObjects.h
 	WindowsUserFunctions.h
 	WtsSessionManager.h
 	DesktopInputController.h
