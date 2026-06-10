@@ -476,9 +476,9 @@ void LinuxCoreFunctions::forEachChildProcess( const std::function<bool(proc_t*)>
 
 	while( ( procInfo = readproc( proc, nullptr ) ) )
 	{
-		if( procInfo->ppid == parentPid )
+		if (procInfo->tgid == parentPid)
 		{
-			if( visitParent == false || visitor( procInfo ) )
+			if (visitParent == false || visitor(procInfo))
 			{
 				ppids.append(procInfo->tgid);
 			}
@@ -516,18 +516,19 @@ void LinuxCoreFunctions::forEachChildProcess(const std::function<bool(const pids
 
 	while ((stack = procps_pids_get(info, PIDS_FETCH_TASKS_ONLY)))
 	{
-		const auto ppid = PIDS_VAL(PPidItemIndex, s_int, stack);
+		const auto currentPid = PIDS_VAL(PidItemIndex, s_int, stack);
+		const auto currentPPid = PIDS_VAL(PPidItemIndex, s_int, stack);
 
-		if (ppid == parentPid)
+		if (currentPid == parentPid)
 		{
 			if (visitParent == false || visitor(stack))
 			{
-				ppids.append(PIDS_VAL(PidItemIndex, s_int, stack));
+				ppids.append(currentPid);
 			}
 		}
-		else if (ppids.contains(ppid) && visitor(stack))
+		else if (ppids.contains(currentPPid) && visitor(stack))
 		{
-			ppids.append(PIDS_VAL(PidItemIndex, s_int, stack));
+			ppids.append(currentPid);
 		}
 	}
 
