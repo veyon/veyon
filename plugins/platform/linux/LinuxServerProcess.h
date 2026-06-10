@@ -50,7 +50,10 @@ private:
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 	void setupChildProcess() override
 	{
-		setProcessUserId();
+		if (m_sessionType == LinuxSessionFunctions::Type::Wayland)
+		{
+			setProcessUserId();
+		}
 	}
 #endif
 
