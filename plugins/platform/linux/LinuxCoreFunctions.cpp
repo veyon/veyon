@@ -480,12 +480,12 @@ void LinuxCoreFunctions::forEachChildProcess( const std::function<bool(proc_t*)>
 		{
 			if( visitParent == false || visitor( procInfo ) )
 			{
-				ppids.append( procInfo->tid );
+				ppids.append(procInfo->tgid);
 			}
 		}
 		else if( ppids.contains( procInfo->ppid ) && visitor( procInfo ) )
 		{
-			ppids.append( procInfo->tid );
+			ppids.append(procInfo->tgid);
 		}
 
 		freeproc( procInfo );
