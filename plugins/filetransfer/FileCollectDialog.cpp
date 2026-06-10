@@ -60,9 +60,9 @@ FileCollectDialog::FileCollectDialog(FileCollectController* controller, QWidget*
 		ui->buttonBox->setStandardButtons(QDialogButtonBox::Close);
 	});
 
-	const auto availableSize = screen()->availableVirtualSize();
-	move(availableSize.width() / 4, availableSize.height() / 4);
-	resize(screen()->availableVirtualSize() * 3 / 4);
+	const auto availableSize = screen()->availableSize();
+	move(availableSize.width() / 8, availableSize.height() / 8);
+	resize(availableSize * 3 / 4);
 }
 
 
