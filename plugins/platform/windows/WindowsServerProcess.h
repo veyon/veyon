@@ -28,6 +28,7 @@
 
 #include "ServiceDataManager.h"
 #include "WtsSessionManager.h"
+#include "WindowsSmartObjects.h"
 
 // clazy:excludeall=rule-of-three
 class VeyonServerProcess
@@ -54,7 +55,7 @@ private:
 	const WtsSessionManager::SessionId m_wtsSessionId;
 	const ServiceDataManager::Token m_token;
 
-	HANDLE m_processHandle{nullptr};
+	SmartHandle m_processHandle{nullptr};
 	QElapsedTimer m_uptime;
 
 };

@@ -432,23 +432,28 @@ bool WindowsNetworkFunctions::pingIPv4Address(const QString& hostAddress, PingRe
 		return false;
 	}
 
-	const auto icmpHandle = IcmpCreateFile();
-	if( icmpHandle == INVALID_HANDLE_VALUE )
+	struct IcmpHandleTraits
 	{
-		IcmpCloseHandle(icmpHandle);
+		using Pointer = HANDLE;
+		static Pointer invalidValue() noexcept { return INVALID_HANDLE_VALUE; }
+		static void close(Pointer h) noexcept { IcmpCloseHandle(h); }
+	};
+	using SmartIcmpHandle = UniqueResource<IcmpHandleTraits>;
+
+	const SmartIcmpHandle icmpHandle{IcmpCreateFile()};
+	if (icmpHandle.isInvalid())
+	{
 		return false;
 	}
 
 	std::array<char, 6> sendData{'V', 'e', 'y', 'o', 'n', 0};
 	std::array<char, sizeof(ICMP_ECHO_REPLY) + sendData.size()> replyBuffer;
 
-	const auto success = IcmpSendEcho(icmpHandle, ipAddress, sendData.data(), sendData.size(),
-									   nullptr, replyBuffer.data(), replyBuffer.size(), PingTimeout) > 0 &&
+	const auto success = IcmpSendEcho(icmpHandle.get(), ipAddress, sendData.data(), sendData.size(),
+									  nullptr, replyBuffer.data(), replyBuffer.size(), PingTimeout) > 0 &&
 						 reinterpret_cast<ICMP_ECHO_REPLY *>(replyBuffer.data())->Status == IP_SUCCESS;
 
 	const auto error = GetLastError();
-
-	IcmpCloseHandle(icmpHandle);
 
 	if( success )
 	{

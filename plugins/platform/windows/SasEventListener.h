@@ -28,7 +28,7 @@
 
 #include <QThread>
 
-#include "VeyonCore.h"
+#include "WindowsSmartObjects.h"
 
 class SasEventListener : public QThread
 {
@@ -48,7 +48,7 @@ public:
 private:
 	HMODULE m_sasLibrary;
 	SendSas m_sendSas;
-	HANDLE m_sasEvent;
-	HANDLE m_stopEvent;
+	SmartHandle m_sasEvent;
+	SmartHandle m_stopEvent;
 
 };

@@ -177,46 +177,41 @@ QString WtsSessionManager::querySessionInformation(SessionId sessionId, SessionI
 
 QString WtsSessionManager::queryUserSid(SessionId sessionId)
 {
-	HANDLE userToken = nullptr;
-	if (WTSQueryUserToken(sessionId, &userToken) == false)
+	SmartToken userToken;
+	if (WTSQueryUserToken(sessionId, userToken.put()) == false)
 	{
 		vCritical() << "could not query user token for session" << sessionId;
 		return {};
 	}
 
 	DWORD tokenSize = 0;
-	if (GetTokenInformation(userToken, TokenUser, nullptr, 0, &tokenSize) ||
+	if (GetTokenInformation(userToken.get(), TokenUser, nullptr, 0, &tokenSize) ||
 		tokenSize == 0 ||
 		GetLastError() != ERROR_INSUFFICIENT_BUFFER)
 	{
-		CloseHandle(userToken);
 		return {};
 	}
 
 	const auto userInfo = reinterpret_cast<PTOKEN_USER>(HeapAlloc(GetProcessHeap(), 0, tokenSize));
 	if (!userInfo)
 	{
-		CloseHandle(userToken);
 		return {};
 	}
 
-	if (!GetTokenInformation(userToken, TokenUser, userInfo, tokenSize, &tokenSize))
+	if (!GetTokenInformation(userToken.get(), TokenUser, userInfo, tokenSize, &tokenSize))
 	{
 		HeapFree(GetProcessHeap(), 0, userInfo);
-		CloseHandle(userToken);
 		return {};
 	}
 
 	QString sid;
-	wchar_t* stringSid = nullptr;
-	if (ConvertSidToStringSid(userInfo->User.Sid, &stringSid) && stringSid)
+	SmartStringSID stringSid;
+	if (ConvertSidToStringSid(userInfo->User.Sid, stringSid.put()) && stringSid)
 	{
-		sid = QString::fromWCharArray(stringSid);
-		LocalFree(stringSid);
+		sid = QString::fromWCharArray(stringSid.get());
 	}
 
 	HeapFree(GetProcessHeap(), 0, userInfo);
-	CloseHandle(userToken);
 
 	return sid;
 }

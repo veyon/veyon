@@ -41,11 +41,10 @@ static QString windowsConfigPath( const KNOWNFOLDERID folderId )
 {
 	QString result;
 
-	wchar_t* path = nullptr;
-	if( SHGetKnownFolderPath( folderId, KF_FLAG_DEFAULT, nullptr, &path ) == S_OK )
+	SmartCoTaskMemPtr<wchar_t> path;
+	if (SHGetKnownFolderPath(folderId, KF_FLAG_DEFAULT, nullptr, path.put()) == S_OK)
 	{
-		result = QString::fromWCharArray( path );
-		CoTaskMemFree( path );
+		result = QString::fromWCharArray(path.get());
 	}
 
 	return result;
@@ -76,12 +75,12 @@ QString WindowsFilesystemFunctions::globalTempPath() const
 
 QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 {
-	PSID ownerSID = nullptr;
-	PSECURITY_DESCRIPTOR securityDescriptor = nullptr;
+	SmartSID ownerSID;
+	SmartSecurityDescriptor securityDescriptor;
 
-	const auto secInfoResult = GetNamedSecurityInfo( WindowsCoreFunctions::toConstWCharArray( filePath ),
-													 SE_FILE_OBJECT, OWNER_SECURITY_INFORMATION,
-													 &ownerSID, nullptr, nullptr, nullptr, &securityDescriptor );
+	const auto secInfoResult = GetNamedSecurityInfo(WindowsCoreFunctions::toConstWCharArray( filePath ),
+													SE_FILE_OBJECT, OWNER_SECURITY_INFORMATION,
+													ownerSID.put(), nullptr, nullptr, nullptr, securityDescriptor.put());
 	if( secInfoResult != ERROR_SUCCESS )
 	{
 		vCritical() << "GetSecurityInfo() failed:" << secInfoResult;
@@ -92,32 +91,24 @@ QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 	DWORD domainSize = 0;
 	SID_NAME_USE sidNameUse = SidTypeUnknown;
 
-	LookupAccountSid( nullptr, ownerSID, nullptr, &nameSize, nullptr, &domainSize, &sidNameUse );
+	LookupAccountSid( nullptr, ownerSID.get(), nullptr, &nameSize, nullptr, &domainSize, &sidNameUse );
 
 	if( nameSize == 0 || domainSize == 0)
 	{
 		vCritical() << "Failed to retrieve buffer sizes:" << GetLastError();
-		LocalFree(securityDescriptor);
 		return {};
 	}
 
-	auto name = new wchar_t[nameSize];
-	auto domain = new wchar_t[domainSize];
+	SmartWCharPtr name{new wchar_t[nameSize]};
+	SmartWCharPtr domain{new wchar_t[domainSize]};
 
-	if( LookupAccountSid( nullptr, ownerSID, name, &nameSize, domain, &domainSize, &sidNameUse ) == false )
+	if (LookupAccountSid(nullptr, ownerSID.get(), name.get(), &nameSize, domain.get(), &domainSize, &sidNameUse) == false)
 	{
 		vCritical() << "LookupAccountSid() (2) failed:" << GetLastError();
-		delete[] name;
-		delete[] domain;
-		LocalFree(securityDescriptor);
 		return {};
 	}
 
-	const auto owner = QStringLiteral("%1\\%2").arg( QString::fromWCharArray( domain ), QString::fromWCharArray( name ) );
-
-	delete[] name;
-	delete[] domain;
-	LocalFree(securityDescriptor);
+	const auto owner = QStringLiteral("%1\\%2").arg(QString::fromWCharArray(domain.get()), QString::fromWCharArray(name.get()));
 
 	return owner;
 }
@@ -152,8 +143,8 @@ bool WindowsFilesystemFunctions::setFileOwnerGroup( const QString& filePath, con
 
 	const auto filePathWide = WindowsCoreFunctions::toWCharArray( filePath );
 
-	const auto result = SetNamedSecurityInfo( filePathWide.data(), SE_FILE_OBJECT,
-											  OWNER_SECURITY_INFORMATION, ownerGroupSID, nullptr, nullptr, nullptr );
+	const auto result = SetNamedSecurityInfo(filePathWide.get(), SE_FILE_OBJECT,
+											 OWNER_SECURITY_INFORMATION, ownerGroupSID, nullptr, nullptr, nullptr);
 
 	if( result != ERROR_SUCCESS )
 	{
@@ -171,12 +162,12 @@ bool WindowsFilesystemFunctions::setFileOwnerGroup( const QString& filePath, con
 bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& filePath, QFile::Permissions permissions )
 {
 	PSID ownerSID = nullptr;
-	PSECURITY_DESCRIPTOR securityDescriptor = nullptr;
+	SmartSecurityDescriptor securityDescriptor;
 
 	const auto filePathWide = WindowsCoreFunctions::toWCharArray( filePath );
 
-	const auto secInfoResult = GetNamedSecurityInfo( filePathWide.data(), SE_FILE_OBJECT, OWNER_SECURITY_INFORMATION,
-													 &ownerSID, nullptr, nullptr, nullptr, &securityDescriptor );
+	const auto secInfoResult = GetNamedSecurityInfo(filePathWide.get(), SE_FILE_OBJECT, OWNER_SECURITY_INFORMATION,
+													&ownerSID, nullptr, nullptr, nullptr, securityDescriptor.put());
 
 	if( secInfoResult != ERROR_SUCCESS )
 	{
@@ -184,12 +175,11 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 		return false;
 	}
 
-	PSID adminSID = nullptr;
+	SmartSID adminSID;
 	SID_IDENTIFIER_AUTHORITY SIDAuthNT = SECURITY_NT_AUTHORITY;
-	if( AllocateAndInitializeSid( &SIDAuthNT, 2, SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS,
-								  0, 0, 0, 0, 0, 0, &adminSID ) == false )
+	if (AllocateAndInitializeSid(&SIDAuthNT, 2, SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS,
+								 0, 0, 0, 0, 0, 0, adminSID.put()) == false)
 	{
-		LocalFree(securityDescriptor);
 		return false;
 	}
 
@@ -222,29 +212,23 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 	ea[1].grfInheritance = NO_INHERITANCE;
 	ea[1].Trustee.TrusteeForm = TRUSTEE_IS_SID;
 	ea[1].Trustee.TrusteeType = TRUSTEE_IS_GROUP;
-	ea[1].Trustee.ptstrName = LPTSTR(adminSID);
+	ea[1].Trustee.ptstrName = LPTSTR(adminSID.get());
 
-	PACL acl = nullptr;
-	if( SetEntriesInAcl( ExplicitAccessCount, ea.data(), nullptr, &acl ) != ERROR_SUCCESS )
+	SmartACL acl;
+	if (SetEntriesInAcl( ExplicitAccessCount, ea.data(), nullptr, acl.put()) != ERROR_SUCCESS)
 	{
 		vCritical() << "SetEntriesInAcl() failed";
-		FreeSid( adminSID );
-		LocalFree(securityDescriptor);
 		return false;
 	}
 
-	const auto result = SetNamedSecurityInfo( filePathWide.data(), SE_FILE_OBJECT,
-											  DACL_SECURITY_INFORMATION | PROTECTED_DACL_SECURITY_INFORMATION,
-											  nullptr, nullptr, acl, nullptr );
+	const auto result = SetNamedSecurityInfo(filePathWide.get(), SE_FILE_OBJECT,
+											 DACL_SECURITY_INFORMATION | PROTECTED_DACL_SECURITY_INFORMATION,
+											 nullptr, nullptr, acl.get(), nullptr);
 
 	if( result != ERROR_SUCCESS )
 	{
 		vCritical() << "SetNamedSecurityInfo() failed:" << result;
 	}
-
-	FreeSid( adminSID );
-	LocalFree( acl );
-	LocalFree(securityDescriptor);
 
 	return result == ERROR_SUCCESS;
 }
@@ -302,24 +286,23 @@ PlatformCoreFunctions::ProcessId WindowsFilesystemFunctions::findFileLockingProc
 			continue;
 		}
 
-		const auto processHandle = OpenProcess(PROCESS_DUP_HANDLE | PROCESS_QUERY_LIMITED_INFORMATION, FALSE, sh.OwnerPid);
-		if (!processHandle)
+		const SmartHandle processHandle{OpenProcess(PROCESS_DUP_HANDLE | PROCESS_QUERY_LIMITED_INFORMATION, FALSE, sh.OwnerPid)};
+		if (processHandle.isInvalid())
 		{
 			continue;
 		}
 
-		HANDLE duplicatedHandle = nullptr;
-		if (!DuplicateHandle(processHandle, (HANDLE)(ULONG_PTR)sh.HandleValue,
-							 GetCurrentProcess(), &duplicatedHandle, 0, FALSE, DUPLICATE_SAME_ACCESS))
+		SmartHandle duplicatedHandle;
+		if (!DuplicateHandle(processHandle.get(), (HANDLE)(ULONG_PTR)sh.HandleValue,
+							 GetCurrentProcess(), duplicatedHandle.put(), 0, FALSE, DUPLICATE_SAME_ACCESS))
 		{
-			CloseHandle(processHandle);
 			continue;
 		}
 
-		if (GetFileType(duplicatedHandle) == FILE_TYPE_DISK)
+		if (GetFileType(duplicatedHandle.get()) == FILE_TYPE_DISK)
 		{
 			WCHAR currentFilePath[MAX_PATH * 4] = { 0 };
-			const auto result = GetFinalPathNameByHandleW(duplicatedHandle, currentFilePath, MAX_PATH * 4, FILE_NAME_NORMALIZED);
+			const auto result = GetFinalPathNameByHandleW(duplicatedHandle.get(), currentFilePath, MAX_PATH * 4, FILE_NAME_NORMALIZED);
 			if (result > 0)
 			{
 				auto currentFilePathLower = QString::fromWCharArray(currentFilePath).toLower();
@@ -330,15 +313,10 @@ PlatformCoreFunctions::ProcessId WindowsFilesystemFunctions::findFileLockingProc
 
 				if (filePathLower == currentFilePathLower)
 				{
-					CloseHandle(duplicatedHandle);
-					CloseHandle(processHandle);
 					return sh.OwnerPid;
 				}
 			}
 		}
-
-		CloseHandle(duplicatedHandle);
-		CloseHandle(processHandle);
 	}
 
 	return PlatformCoreFunctions::InvalidProcessId;

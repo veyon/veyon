@@ -29,6 +29,7 @@
 #include "PlatformServiceFunctions.h"
 #include "PlatformSessionManager.h"
 #include "ServiceDataManager.h"
+#include "WindowsSmartObjects.h"
 
 class WindowsServiceCore
 {
@@ -53,7 +54,7 @@ private:
 	DWORD serviceCtrl( DWORD ctrlCode, DWORD eventType, LPVOID eventData, LPVOID context );
 	bool reportStatus( DWORD state, DWORD exitCode, DWORD waitHint );
 
-	QSharedPointer<wchar_t> m_name;
+	SmartWCharPtr m_name;
 	const PlatformServiceFunctions::ServiceEntryPoint& m_serviceEntryPoint;
 
 	static WindowsServiceCore* s_instance;

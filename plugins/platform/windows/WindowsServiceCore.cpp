@@ -72,7 +72,7 @@ WindowsServiceCore* WindowsServiceCore::instance()
 bool WindowsServiceCore::runAsService()
 {
 	static const std::array<SERVICE_TABLE_ENTRY, 2> dispatchTable = { {
-		{ m_name.data(), serviceMainStatic },
+		{ m_name.get(), serviceMainStatic },
 		{ nullptr, nullptr }
 	} } ;
 
@@ -268,7 +268,7 @@ void WindowsServiceCore::serviceMain()
 {
 	DWORD context = 1;
 
-	m_statusHandle = RegisterServiceCtrlHandlerEx( m_name.data(), serviceCtrlStatic, &context );
+	m_statusHandle = RegisterServiceCtrlHandlerEx(m_name.get(), serviceCtrlStatic, &context);
 
 	if( m_statusHandle == nullptr )
 	{

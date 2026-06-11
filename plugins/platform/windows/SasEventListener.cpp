@@ -24,6 +24,7 @@
 
 #include <windows.h>
 
+#include "VeyonCore.h"
 #include "SasEventListener.h"
 
 SasEventListener::SasEventListener()
@@ -39,14 +40,14 @@ SasEventListener::SasEventListener()
 		vWarning() << "SendSAS is not supported by operating system!";
 	}
 
-	m_sasEvent = CreateEvent( nullptr, false, false, L"Global\\VeyonServiceSasEvent" );
-	if (m_sasEvent == nullptr)
+	m_sasEvent.reset(CreateEvent(nullptr, false, false, L"Global\\VeyonServiceSasEvent"));
+	if (m_sasEvent.isInvalid())
 	{
 		vWarning() << "failed to create SAS event";
 	}
 
-	m_stopEvent = CreateEvent( nullptr, false, false, L"StopEvent" );
-	if (m_stopEvent == nullptr)
+	m_stopEvent.reset(CreateEvent(nullptr, false, false, L"StopEvent"));
+	if (m_stopEvent.isInvalid())
 	{
 		vWarning() << "failed to create stop event";
 	}
@@ -56,15 +57,6 @@ SasEventListener::SasEventListener()
 
 SasEventListener::~SasEventListener()
 {
-	if (m_stopEvent)
-	{
-		CloseHandle(m_stopEvent);
-	}
-	if (m_sasEvent)
-	{
-		CloseHandle(m_sasEvent);
-	}
-
 	if (m_sasLibrary)
 	{
 		FreeLibrary(m_sasLibrary);
@@ -77,7 +69,7 @@ void SasEventListener::stop()
 {
 	if (m_stopEvent)
 	{
-		SetEvent(m_stopEvent);
+		SetEvent(m_stopEvent.get());
 	}
 }
 
@@ -85,12 +77,12 @@ void SasEventListener::stop()
 
 void SasEventListener::run()
 {
-	if (m_sasEvent == nullptr || m_stopEvent == nullptr)
+	if (m_sasEvent.isInvalid() || m_stopEvent.isInvalid())
 	{
 		return;
 	}
 
-	std::array<HANDLE, 2> eventObjects{ m_sasEvent, m_stopEvent };
+	std::array<HANDLE, 2> eventObjects{m_sasEvent.get(), m_stopEvent.get()};
 
 	while( isInterruptionRequested() == false )
 	{
@@ -99,7 +91,7 @@ void SasEventListener::run()
 		switch( event )
 		{
 		case WAIT_OBJECT_0 + 0:
-			ResetEvent( m_sasEvent );
+			ResetEvent(m_sasEvent.get());
 			if( m_sendSas )
 			{
 				m_sendSas( false );
