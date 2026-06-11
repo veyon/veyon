@@ -49,8 +49,7 @@ bool VeyonServerProcess::restartIfNotRunning()
 	{
 		if (m_processHandle)
 		{
-			CloseHandle(m_processHandle);
-			m_processHandle = nullptr;
+			m_processHandle.reset();
 		}
 
 		start();
@@ -67,7 +66,7 @@ bool VeyonServerProcess::isRunning() const
 {
 	DWORD exitCode = 0;
 	if (m_processHandle &&
-		GetExitCodeProcess(m_processHandle, &exitCode))
+		GetExitCodeProcess(m_processHandle.get(), &exitCode))
 	{
 		return exitCode == STILL_ACTIVE;
 	}
@@ -91,7 +90,7 @@ void VeyonServerProcess::start()
 	m_processHandle = WindowsCoreFunctions::runProgramInSession(VeyonCore::filesystem().serverFilePath(), {},
 																extraEnv,
 																baseProcessId, {});
-	if (m_processHandle == nullptr)
+	if (m_processHandle.isInvalid())
 	{
 		vCritical() << "Failed to start server!";
 	}
@@ -106,14 +105,13 @@ void VeyonServerProcess::stop()
 	if (m_processHandle)
 	{
 		vInfo() << "Waiting for server to shutdown";
-		if (WaitForSingleObject(m_processHandle, ServerWaitTime) == WAIT_TIMEOUT)
+		if (WaitForSingleObject(m_processHandle.get(), ServerWaitTime) == WAIT_TIMEOUT)
 		{
 			vWarning() << "Terminating server";
-			TerminateProcess(m_processHandle, 0);
-			WaitForSingleObject(m_processHandle, ServerWaitTime);
+			TerminateProcess(m_processHandle.get(), 0);
+			WaitForSingleObject(m_processHandle.get(), ServerWaitTime);
 		}
 
-		CloseHandle(m_processHandle);
-		m_processHandle = nullptr;
+		m_processHandle.reset();
 	}
 }

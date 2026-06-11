@@ -144,9 +144,9 @@ QVariant WindowsSessionFunctions::querySettingsValueInCurrentSession(const QStri
 {
 	if (key.startsWith(QLatin1String("HKEY")))
 	{
-		HANDLE userToken = nullptr;
 		const auto sessionId = WtsSessionManager::currentSession();
-		if (WTSQueryUserToken(sessionId, &userToken) == false)
+		SmartToken userToken;
+		if (WTSQueryUserToken(sessionId, userToken.put()) == false)
 		{
 			vCritical() << "could not query user token for session" << sessionId;
 			return {};
@@ -159,10 +159,9 @@ QVariant WindowsSessionFunctions::querySettingsValueInCurrentSession(const QStri
 			keyParts.prepend(QStringLiteral("HKEY_USERS"));
 		}
 
-		if (ImpersonateLoggedOnUser(userToken) == false) // Flawfinder: ignore
+		if (ImpersonateLoggedOnUser(userToken.get()) == false) // Flawfinder: ignore
 		{
 			vCritical() << "could not impersonate session user";
-			CloseHandle(userToken);
 			return {};
 		}
 
@@ -170,7 +169,6 @@ QVariant WindowsSessionFunctions::querySettingsValueInCurrentSession(const QStri
 						   .value(keyParts.constLast());
 
 		RevertToSelf();
-		CloseHandle(userToken);
 
 		return value;
 	}
@@ -234,11 +232,10 @@ WINBOOL WindowsSessionFunctions::inspectDesktopWindow(HWND window)
 				DWORD processId = 0;
 				if (GetWindowThreadProcessId(window, &processId))
 				{
-					const auto processHandle = OpenProcess(PROCESS_TERMINATE, 0, processId);
+					SmartHandle processHandle{OpenProcess(PROCESS_TERMINATE, 0, processId)};
 					if (processHandle)
 					{
-						TerminateProcess(processHandle, 0);
-						CloseHandle(processHandle);
+						TerminateProcess(processHandle.get(), 0);
 					}
 					else
 					{

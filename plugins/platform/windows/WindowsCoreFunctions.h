@@ -27,6 +27,7 @@
 #include <windows.h>
 
 #include "PlatformCoreFunctions.h"
+#include "WindowsSmartObjects.h"
 
 // clazy:excludeall=copyable-polymorphic
 
@@ -75,17 +76,17 @@ public:
 
 	static bool enablePrivilege( LPCWSTR privilegeName, bool enable );
 
-	static QSharedPointer<wchar_t> toWCharArray( const QString& qstring );
+	static SmartWCharPtr toWCharArray(const QString& qstring);
 	static const wchar_t* toConstWCharArray( const QString& qstring );
 
 	static QString securityIdentifierToString(const SecurityIdentifierBuffer& sidBuffer);
 	static bool stringToSecurityIdentifier(const QString& sidString, WindowsCoreFunctions::SecurityIdentifierBuffer& sidBuffer);
 
-	static HANDLE runProgramInSession( const QString& program,
-									   const QStringList& parameters,
-									   const QStringList& extraEnvironment,
-									   DWORD baseProcessId,
-									   const QString& desktop );
+	static SmartHandle runProgramInSession(const QString& program,
+										   const QStringList& parameters,
+										   const QStringList& extraEnvironment,
+										   DWORD baseProcessId,
+										   const QString& desktop);
 
 	static QStringList queryProcessEnvironmentVariables(DWORD processId);
 
