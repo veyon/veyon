@@ -665,7 +665,7 @@ bool VncConnection::isControlFlagSet( VncConnection::ControlFlag flag )
 
 
 
-rfbBool VncConnection::initFrameBuffer( rfbClient* client )
+int8_t VncConnection::initFrameBuffer( rfbClient* client )
 {
 	if( client->format.bitsPerPixel != RfbBitsPerSample * RfbBytesPerPixel )
 	{
@@ -783,7 +783,7 @@ void VncConnection::updateEncodingSettingsFromQuality()
 
 
 
-rfbBool VncConnection::updateCursorPosition( int x, int y )
+int8_t VncConnection::updateCursorPosition( int x, int y )
 {
 	Q_EMIT cursorPosChanged( x, y );
 	return true;
@@ -889,7 +889,7 @@ void VncConnection::framebufferCleanup( void* framebuffer )
 
 
 
-rfbSocket VncConnection::openTlsSocket( const char* hostname, int port )
+VncConnection::RfbSocket VncConnection::openTlsSocket( const char* hostname, int port )
 {
 	delete m_sslSocket;
 

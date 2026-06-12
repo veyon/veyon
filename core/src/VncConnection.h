@@ -27,8 +27,6 @@
 
 #pragma once
 
-#include <rfb/rfbproto.h>
-
 #include <QElapsedTimer>
 #include <QImage>
 #include <QMutex>
@@ -174,6 +172,12 @@ protected:
 
 private:
 	// RFB parameters
+#ifdef Q_OS_WIN
+	using RfbSocket = SOCKET;
+#else
+	using RfbSocket = int;
+#endif
+
 	using RfbPixel = uint32_t;
 	static constexpr int RfbBitsPerSample = 8;
 	static constexpr int RfbSamplesPerPixel = 3;
@@ -202,7 +206,7 @@ private:
 	void setControlFlag( ControlFlag flag, bool on );
 	bool isControlFlagSet( ControlFlag flag );
 
-	rfbBool initFrameBuffer( rfbClient* client );
+	int8_t initFrameBuffer( rfbClient* client );
 	void requestFrameufferUpdate(FramebufferUpdateType updateType);
 	void finishFrameBufferUpdate();
 
@@ -211,7 +215,7 @@ private:
 
 	void updateEncodingSettingsFromQuality();
 
-	rfbBool updateCursorPosition( int x, int y );
+	int8_t updateCursorPosition( int x, int y );
 	void updateCursorShape( rfbClient* client, int xh, int yh, int w, int h, int bpp );
 	void updateClipboard( const char *text, int textlen );
 
@@ -223,7 +227,7 @@ private:
 	static void rfbClientLogNone( const char* format, ... );
 	static void framebufferCleanup( void* framebuffer );
 
-	rfbSocket openTlsSocket( const char* hostname, int port );
+	RfbSocket openTlsSocket( const char* hostname, int port );
 	int readFromTlsSocket( char* buffer, unsigned int len );
 	int writeToTlsSocket( const char* buffer, unsigned int len );
 	void closeTlsSocket();
