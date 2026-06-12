@@ -47,9 +47,12 @@ add_custom_target(windows-binaries
 				${DLLDIR}/Qt6Gui.dll
 				${DLLDIR}/Qt6Widgets.dll
 				${DLLDIR}/Qt6Network.dll
+				${DLLDIR}/Qt6OpenGL.dll
 				${DLLDIR}/Qt6Concurrent.dll
 				${DLLDIR}/Qt6Qml.dll
+				${DLLDIR}/Qt6QmlMeta.dll
 				${DLLDIR}/Qt6QmlModels.dll
+				${DLLDIR}/Qt6QmlWorkerScript.dll
 				${DLLDIR}/Qt6Quick.dll
 				${DLLDIR}/Qt6QuickControls2.dll
 				${DLLDIR}/Qt6QuickTemplates2.dll
