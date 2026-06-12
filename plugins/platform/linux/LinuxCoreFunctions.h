@@ -53,6 +53,8 @@ public:
 	void initNativeLoggingSystem( const QString& appName ) override;
 	void writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel ) override;
 
+	QObject* notifyOnStandardInputReadyRead(const NotifierCallback& callback) override;
+
 	void reboot() override;
 	void powerDown( bool installUpdates ) override;
 
