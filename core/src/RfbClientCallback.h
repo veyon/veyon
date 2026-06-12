@@ -31,7 +31,7 @@ using rfbClient = struct _rfbClient;
 struct RfbClientCallback
 {
 	template<auto fn, typename ...Args>
-	using ReturnType = typename std::result_of<decltype(fn)(VncConnection*, Args...)>::type;
+	using ReturnType = typename std::invoke_result<decltype(fn), VncConnection*, Args...>::type;
 
 	template<auto fn, typename ...Args>
 	using ReturnTypeIsVoid = std::is_void<ReturnType<fn, Args...>>;
