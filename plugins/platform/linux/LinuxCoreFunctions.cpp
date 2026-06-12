@@ -373,8 +373,9 @@ bool LinuxCoreFunctions::runProgramAsAdmin( const QString& program, const QStrin
 
 
 
-bool LinuxCoreFunctions::runProgramAsUser( const QString& program, const QStringList& parameters,
-										   const QString& username, const QString& desktop )
+bool LinuxCoreFunctions::runProgramAsUser(const QString& program, const QStringList& parameters,
+										  const QString& username, const QString& desktop,
+										  const QByteArray& stdInData)
 {
 	Q_UNUSED(desktop);
 
@@ -433,6 +434,14 @@ bool LinuxCoreFunctions::runProgramAsUser( const QString& program, const QString
 
 	auto process = new UserProcess(adjustChildProcessPrivileges);
 #endif
+
+	if (stdInData.isEmpty() == false)
+	{
+		QObject::connect(process, &QProcess::started, [=]() {
+			process->write(stdInData);
+			process->closeWriteChannel();
+		});
+	}
 
 	QObject::connect( process, QOverload<int, QProcess::ExitStatus>::of( &QProcess::finished ), &QProcess::deleteLater );
 	process->start( program, parameters );

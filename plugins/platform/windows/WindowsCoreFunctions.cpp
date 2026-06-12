@@ -304,10 +304,11 @@ bool WindowsCoreFunctions::runProgramAsAdmin( const QString& program, const QStr
 
 
 
-bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
-											 const QStringList& parameters,
-											 const QString& username,
-											 const QString& desktop )
+bool WindowsCoreFunctions::runProgramAsUser(const QString& program,
+											const QStringList& parameters,
+											const QString& username,
+											const QString& desktop,
+											const QByteArray& stdInData)
 {
 	vDebug() << program << parameters << username << desktop;
 
@@ -318,7 +319,7 @@ bool WindowsCoreFunctions::runProgramAsUser( const QString& program,
 		return false;
 	}
 
-	return runProgramInSession(program, parameters, {}, baseProcessId, desktop).isValid();
+	return runProgramInSession(program, parameters, {}, baseProcessId, desktop, stdInData).isValid();
 }
 
 
@@ -588,7 +589,8 @@ SmartHandle WindowsCoreFunctions::runProgramInSession(const QString& program,
 													  const QStringList& parameters,
 													  const QStringList& extraEnvironment,
 													  DWORD baseProcessId,
-													  const QString& desktop)
+													  const QString& desktop,
+													  const QByteArray& stdInData)
 {
 	vDebug() << program << parameters << extraEnvironment << baseProcessId;
 
@@ -647,11 +649,38 @@ SmartHandle WindowsCoreFunctions::runProgramInSession(const QString& program,
 
 	SmartToken newToken;
 	if (DuplicateTokenEx(userProcessToken.get(), TOKEN_ASSIGN_PRIMARY|TOKEN_ALL_ACCESS, nullptr,
-					 SecurityImpersonation, TokenPrimary, newToken.put()) == false ||
+						 SecurityImpersonation, TokenPrimary, newToken.put()) == false ||
 		newToken.isInvalid())
 	{
 		vCritical() << "DuplicateTokenEx()" << GetLastError();
 		return {};
+	}
+
+	SmartFileHandle stdinRead;
+	SmartFileHandle stdinWrite;
+
+	if (stdInData.isEmpty() == false)
+	{
+		SECURITY_ATTRIBUTES sa{};
+		sa.nLength = sizeof(sa);
+		sa.lpSecurityDescriptor = nullptr;
+		sa.bInheritHandle = true;
+
+		if (CreatePipe(stdinRead.put(), stdinWrite.put(), &sa, 0) == false)
+		{
+			vCritical() << "could not create stdin pipe";
+			return {};
+		}
+
+		if (SetHandleInformation(stdinWrite.get(), HANDLE_FLAG_INHERIT, 0) == false)
+		{
+			return {};
+		}
+
+		si.dwFlags |= STARTF_USESTDHANDLES;
+		si.hStdInput = stdinRead.get();
+		si.hStdOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+		si.hStdError = GetStdHandle(STD_ERROR_HANDLE);
 	}
 
 	const auto commandLine = toWCharArray(QStringLiteral("\"%1\" %2").arg(program, parameters.join(QLatin1Char(' '))));
@@ -663,7 +692,7 @@ SmartHandle WindowsCoreFunctions::runProgramInSession(const QString& program,
 			commandLine.get(),	 // command line
 			nullptr,			  // pointer to process SECURITY_ATTRIBUTES
 			nullptr,			  // pointer to thread SECURITY_ATTRIBUTES
-			false,			 // handles are not inheritable
+			true,			 // handles are not inheritable
 			CREATE_UNICODE_ENVIRONMENT | NORMAL_PRIORITY_CLASS,   // creation flags
 			fullEnvironment ? fullEnvironment.get() : userEnvironment.get(),			  // pointer to new environment block
 			profileDir.get(),			  // name of current directory
@@ -675,8 +704,21 @@ SmartHandle WindowsCoreFunctions::runProgramInSession(const QString& program,
 		return {};
 	}
 
-	CloseHandle(pi.hThread);
-	return SmartHandle{pi.hProcess};
+	SmartHandle threadHandle{pi.hThread};
+	SmartHandle processHandle{pi.hProcess};
+
+	if (stdInData.isEmpty() == false)
+	{
+		DWORD written = 0;
+
+		if (WriteFile(stdinWrite.get(), stdInData.constData(), DWORD(stdInData.size()), &written, nullptr) == false ||
+			written != stdInData.size())
+		{
+			vCritical() << "failed to write stdin data";
+		}
+	}
+
+	return processHandle;
 }
 
 

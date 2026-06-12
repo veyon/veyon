@@ -67,10 +67,11 @@ public:
 	virtual bool isRunningAsAdmin() const = 0;
 	virtual bool runProgramAsAdmin( const QString& program, const QStringList& parameters ) = 0;
 
-	virtual bool runProgramAsUser( const QString& program,
-								   const QStringList& parameters,
-								   const QString& username,
-								   const QString& desktop ) = 0;
+	virtual bool runProgramAsUser(const QString& program,
+								  const QStringList& parameters,
+								  const QString& username,
+								  const QString& desktop,
+								  const QByteArray& stdInData = {}) = 0;
 
 	virtual QString genericUrlHandler() const = 0;
 
