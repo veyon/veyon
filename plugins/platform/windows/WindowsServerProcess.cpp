@@ -89,7 +89,7 @@ void VeyonServerProcess::start()
 	vInfo() << "Starting server for WTS session" << m_wtsSessionId << "with user" << user;
 	m_processHandle = WindowsCoreFunctions::runProgramInSession(VeyonCore::filesystem().serverFilePath(), {},
 																extraEnv,
-																baseProcessId, {});
+																baseProcessId, {}, {});
 	if (m_processHandle.isInvalid())
 	{
 		vCritical() << "Failed to start server!";

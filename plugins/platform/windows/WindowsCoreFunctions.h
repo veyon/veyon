@@ -65,10 +65,11 @@ public:
 	bool isRunningAsAdmin() const override;
 	bool runProgramAsAdmin( const QString& program, const QStringList& parameters ) override;
 
-	bool runProgramAsUser( const QString& program,
-						   const QStringList& parameters,
-						   const QString& username,
-						   const QString& desktop ) override;
+	bool runProgramAsUser(const QString& program,
+						  const QStringList& parameters,
+						  const QString& username,
+						  const QString& desktop,
+						  const QByteArray& stdInData) override;
 
 	QString genericUrlHandler() const override;
 
@@ -88,7 +89,8 @@ public:
 										   const QStringList& parameters,
 										   const QStringList& extraEnvironment,
 										   DWORD baseProcessId,
-										   const QString& desktop);
+										   const QString& desktop,
+										   const QByteArray& stdInData);
 
 	static QStringList queryProcessEnvironmentVariables(DWORD processId);
 
