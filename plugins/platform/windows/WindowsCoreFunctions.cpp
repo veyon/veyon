@@ -25,6 +25,7 @@
 #include <QGuiApplication>
 #include <QScreen>
 #include <QWidget>
+#include <QWinEventNotifier>
 #include <qpa/qplatformnativeinterface.h>
 
 #include <shlobj.h>
@@ -123,6 +124,17 @@ void WindowsCoreFunctions::writeToNativeLoggingSystem( const QString& message, L
 	{
 		m_eventLog->Write( static_cast<WORD>( messageType ), toConstWCharArray( message ) );
 	}
+}
+
+
+
+QObject* WindowsCoreFunctions::notifyOnStandardInputReadyRead(const NotifierCallback& callback)
+{
+	auto notifier = new QWinEventNotifier(GetStdHandle(STD_INPUT_HANDLE));
+	QObject::connect(notifier, &QWinEventNotifier::activated,
+					 QCoreApplication::instance(),
+					 [notifier, callback]() { callback(notifier); });
+	return notifier;
 }
 
 

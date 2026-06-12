@@ -32,6 +32,7 @@
 #include <QProcess>
 #include <QProcessEnvironment>
 #include <QScreen>
+#include <QSocketNotifier>
 #include <QStandardPaths>
 #include <QWidget>
 
@@ -99,6 +100,16 @@ void LinuxCoreFunctions::writeToNativeLoggingSystem( const QString& message, Log
 {
 	Q_UNUSED(message)
 	Q_UNUSED(loglevel)
+}
+
+
+QObject* LinuxCoreFunctions::notifyOnStandardInputReadyRead(const NotifierCallback& callback)
+{
+	auto notifier = new QSocketNotifier(STDIN_FILENO, QSocketNotifier::Read);
+	QObject::connect(notifier, &QSocketNotifier::activated,
+					 QCoreApplication::instance(),
+					 [notifier, callback]() { callback(notifier); });
+	return notifier;
 }
 
 
