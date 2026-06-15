@@ -1,3 +1,13 @@
+#
+# 1. Use
+#   inputs.veyon.url = "git+https://github.com/veyon/veyon.git?submodules=1";
+#   to import the flake
+# 2. Put
+#   inputs.veyon.nixosModules.default
+#   inside your modules
+# 3. services.veyon.* should now be avalible
+#
+
 {
   description = "Veyon - Virtual Eye On Networks - computer monitoring and control software";
 
