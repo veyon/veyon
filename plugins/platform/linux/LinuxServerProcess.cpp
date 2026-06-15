@@ -105,35 +105,58 @@ void LinuxServerProcess::start()
 		setChildProcessModifier([this] { setProcessUserId(); });
 #endif
 
-		// Connect to the user's session D-Bus via the known socket path to
-		// check for xdg-desktop-portal >= 1.20 (presence of the
-		// org.freedesktop.host.portal.Registry service). The system service
-		// runs as root and cannot rely on DBUS_SESSION_BUS_ADDRESS in its
-		// own environment, so we connect directly.
-		const auto busAddress = QStringLiteral("unix:path=/run/user/%1/bus").arg(m_sessionUserId);
-		const auto portalBusName = QStringLiteral("portal-check");
-		auto portalBus = QDBusConnection::connectToBus(busAddress, portalBusName);
-		const auto portalRegistryService = QStringLiteral("org.freedesktop.host.portal.Registry");
+		const auto desktopPortalHasRegistry = [this]()
+		{
+			const auto originalUserId = getuid();
+			seteuid(m_sessionUserId);
+			auto revertUserIdGuard = qScopeGuard([=]() { seteuid(originalUserId); });
 
-		if(portalBus.isConnected() && portalBus.interface()->isServiceRegistered(portalRegistryService))
+			// Connect to the user's session D-Bus via the known socket path to
+			// check for xdg-desktop-portal >= 1.20 (presence of the
+			// org.freedesktop.host.portal.Registry service). The system service
+			// runs as root and cannot rely on DBUS_SESSION_BUS_ADDRESS in its
+			// own environment, so we connect directly.
+			const auto busAddress = QStringLiteral("unix:path=/run/user/%1/bus").arg(m_sessionUserId);
+			const auto portalBusName = QStringLiteral("portal-check");
+
+			auto portalBus = QDBusConnection::connectToBus(busAddress, portalBusName);
+			if (portalBus.isConnected() == false)
+			{
+				vCritical() << "could not connect to session bus";
+				return false;
+			}
+
+			auto portalConnectionGuard = qScopeGuard([=]() { QDBusConnection::disconnectFromBus(portalBusName); });
+
+			QDBusInterface introspectIface(
+						QStringLiteral("org.freedesktop.portal.Desktop"),
+						QStringLiteral("/org/freedesktop/portal/desktop"),
+						QStringLiteral("org.freedesktop.DBus.Introspectable"),
+						portalBus);
+
+
+			if (!introspectIface.isValid())
+			{
+				return false;
+			}
+
+			QDBusReply<QString> reply = introspectIface.call(QStringLiteral("Introspect"));
+			if (!reply.isValid())
+			{
+				return false;
+			}
+
+			return reply.value().contains(QStringLiteral("org.freedesktop.host.portal.Registry"));
+		};
+
+		if (desktopPortalHasRegistry())
 		{
 			vDebug() << "xdg-desktop-portal >= 1.20 detected, launching server directly";
 			QProcess::start(VeyonCore::filesystem().serverFilePath(), QStringList{});
-
-			QDBusConnection::disconnectFromBus(portalBusName);
 		}
 		else
 		{
-			QDBusConnection::disconnectFromBus(portalBusName);
-
-			if(portalBus.isConnected() == false)
-			{
-				vDebug() << "could not connect to session D-Bus, falling back to D-Bus activation";
-			}
-			else
-			{
-				vDebug() << "xdg-desktop-portal < 1.20, falling back to D-Bus activation";
-			}
+			vDebug() << "xdg-desktop-portal < 1.20, falling back to D-Bus activation";
 
 			const auto desktopEnvironment = LinuxSessionFunctions::getSessionDesktopEnvironment(m_sessionPath);
 			const auto desktopFile = VeyonCore::applicationsDirectory() + QDir::separator()
