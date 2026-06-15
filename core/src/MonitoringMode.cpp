@@ -27,6 +27,7 @@
 #include <QGuiApplication>
 #include <QInputDialog>
 #include <QLineEdit>
+#include <QPointer>
 #include <QScreen>
 
 #include "FeatureManager.h"
@@ -485,44 +486,67 @@ void MonitoringMode::updateUserInfo()
 {
 	// asynchronously query information about logged on user (which might block
 	// due to domain controller queries and timeouts etc.)
-	(void) QtConcurrent::run([=, this]() {
+	const auto guard = QPointer<MonitoringMode>(this);
+	(void) QtConcurrent::run([guard]() {
+		if(!guard)
+		{
+			return;
+		}
+
 		if( VeyonCore::platform().sessionFunctions().currentSessionHasUser() )
 		{
 			const auto userLoginName = VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName);
 			const auto userFullName = VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::FullName);
-			m_userDataLock.lockForWrite();
-			if(m_userLoginName != userLoginName ||
-			   m_userFullName != userFullName)
+
+			if(!guard)
 			{
-				m_userLoginName = userLoginName;
-				m_userFullName = userFullName;
-				++m_userInfoVersion;
+				return;
 			}
-			m_userDataLock.unlock();
+
+			guard->m_userDataLock.lockForWrite();
+			if(guard->m_userLoginName != userLoginName ||
+			   guard->m_userFullName != userFullName)
+			{
+				guard->m_userLoginName = userLoginName;
+				guard->m_userFullName = userFullName;
+				++guard->m_userInfoVersion;
+			}
+			guard->m_userDataLock.unlock();
 		}
 
-		m_userDataLock.lockForRead();
-		if (m_userLoginName.isEmpty() && m_userFullName.isEmpty())
+		if(!guard)
 		{
-			QTimer::singleShot(UserInfoUpdateRetryInterval, this, &MonitoringMode::updateUserInfo);
+			return;
 		}
-		m_userDataLock.unlock();
-	} );
+
+		guard->m_userDataLock.lockForRead();
+		if (guard->m_userLoginName.isEmpty() && guard->m_userFullName.isEmpty())
+		{
+			QTimer::singleShot(UserInfoUpdateRetryInterval, guard, &MonitoringMode::updateUserInfo);
+		}
+		guard->m_userDataLock.unlock();
+	});
 }
 
 
 
 void MonitoringMode::updateSessionInfo()
 {
-	(void) QtConcurrent::run([=, this]() {
+	const auto guard = QPointer<MonitoringMode>(this);
+	(void) QtConcurrent::run([guard]() {
+		if(!guard)
+		{
+			return;
+		}
+
 		QString sessionMetaData;
-		switch (m_sessionMetaDataContent)
+		switch (guard->m_sessionMetaDataContent)
 		{
 		case PlatformSessionFunctions::SessionMetaDataContent::EnvironmentVariable:
-			sessionMetaData = VeyonCore::platform().sessionFunctions().currentSessionEnvironmentVariables().value(m_sessionMetaDataEnvironmentVariable);
+			sessionMetaData = VeyonCore::platform().sessionFunctions().currentSessionEnvironmentVariables().value(guard->m_sessionMetaDataEnvironmentVariable);
 			break;
 		case PlatformSessionFunctions::SessionMetaDataContent::RegistryKey:
-			sessionMetaData = VeyonCore::platform().sessionFunctions().querySettingsValueInCurrentSession(m_sessionMetaDataRegistryKey).toString();
+			sessionMetaData = VeyonCore::platform().sessionFunctions().querySettingsValueInCurrentSession(guard->m_sessionMetaDataRegistryKey).toString();
 			break;
 		case PlatformSessionFunctions::SessionMetaDataContent::None:
 			break;
@@ -537,13 +561,18 @@ void MonitoringMode::updateSessionInfo()
 					sessionMetaData
 		};
 
-		m_sessionInfoLock.lockForWrite();
-		if (currentSessionInfo != m_sessionInfo)
+		if(!guard)
 		{
-			m_sessionInfo = currentSessionInfo;
-			++m_sessionInfoVersion;
+			return;
 		}
-		m_sessionInfoLock.unlock();
+
+		guard->m_sessionInfoLock.lockForWrite();
+		if (currentSessionInfo != guard->m_sessionInfo)
+		{
+			guard->m_sessionInfo = currentSessionInfo;
+			++guard->m_sessionInfoVersion;
+		}
+		guard->m_sessionInfoLock.unlock();
 	});
 }
 
