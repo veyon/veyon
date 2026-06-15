@@ -49,7 +49,7 @@ int main( int argc, char **argv )
 		qFatal( "Invalid feature UID given" );
 	}
 
-	VeyonWorker worker( featureUid );
+	VeyonWorker worker(featureUid);
 
 	return worker.core().exec();
 }

@@ -31,6 +31,7 @@
 
 #include <QRecursiveMutex>
 
+#include "CryptoCore.h"
 #include "FeatureMessage.h"
 
 class FeatureManager;
@@ -40,6 +41,12 @@ class VEYON_CORE_EXPORT FeatureWorkerManager : public QObject
 {
 	Q_OBJECT
 public:
+	enum class MessageArgument
+	{
+		AuthToken
+	};
+	Q_ENUM(MessageArgument)
+
 	FeatureWorkerManager( VeyonServerInterface& server, QObject* parent = nullptr );
 	~FeatureWorkerManager() override;
 
@@ -72,6 +79,8 @@ private:
 		QPointer<QTcpSocket> socket;
 		QPointer<QProcess> process;
 		QList<FeatureMessage> pendingMessages;
+		QByteArray token = CryptoCore::generateChallenge().toBase64();
+		bool authenticated = false;
 	};
 
 	using WorkerMap = QMap<Feature::Uid, Worker>;

@@ -26,18 +26,19 @@
 #include <QHostAddress>
 
 #include "FeatureManager.h"
+#include "FeatureWorkerManager.h"
 #include "FeatureWorkerManagerConnection.h"
 #include "VeyonConfiguration.h"
 
 
-FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( VeyonWorkerInterface& worker,
-																Feature::Uid featureUid,
-																QObject* parent ) :
+FeatureWorkerManagerConnection::FeatureWorkerManagerConnection(VeyonWorkerInterface& worker,
+															   Feature::Uid featureUid,
+															   QObject* parent) :
 	QObject( parent ),
 	m_worker( worker ),
 	m_port(VeyonCore::config().featureWorkerManagerPort() + VeyonCore::sessionId()),
 	m_socket( this ),
-	m_featureUid( featureUid )
+	m_featureUid(featureUid)
 {
 	connect( &m_connectTimer, &QTimer::timeout, this, &FeatureWorkerManagerConnection::tryConnection );
 
@@ -54,6 +55,18 @@ FeatureWorkerManagerConnection::FeatureWorkerManagerConnection( VeyonWorkerInter
 			 this, &FeatureWorkerManagerConnection::receiveMessage );
 
 	tryConnection();
+}
+
+
+
+void FeatureWorkerManagerConnection::setAuthToken(const QByteArray& authToken)
+{
+	m_authToken = authToken;
+
+	if (m_socket.state() == QTcpSocket::ConnectedState)
+	{
+		sendInitMessage();
+	}
 }
 
 
@@ -82,11 +95,16 @@ void FeatureWorkerManagerConnection::tryConnection()
 
 void FeatureWorkerManagerConnection::sendInitMessage()
 {
-	vDebug() << m_featureUid;
-
 	m_connectTimer.stop();
 
-	FeatureMessage(m_featureUid, FeatureMessage::Command::Init).sendPlain(&m_socket);
+	if (m_authToken.isEmpty() == false)
+	{
+		vDebug() << m_featureUid;
+
+		FeatureMessage(m_featureUid, FeatureMessage::Command::Init)
+				.addArgument(FeatureWorkerManager::MessageArgument::AuthToken, m_authToken)
+				.sendPlain(&m_socket);
+	}
 }
 
 

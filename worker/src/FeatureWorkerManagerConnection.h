@@ -37,10 +37,11 @@ class FeatureWorkerManagerConnection : public QObject
 {
 	Q_OBJECT
 public:
-	FeatureWorkerManagerConnection( VeyonWorkerInterface& worker,
-									Feature::Uid featureUid,
-									QObject* parent = nullptr );
+	FeatureWorkerManagerConnection(VeyonWorkerInterface& worker,
+								   Feature::Uid featureUid,
+								   QObject* parent = nullptr);
 
+	void setAuthToken(const QByteArray& authToken);
 
 	bool sendMessage( const FeatureMessage& message );
 
@@ -55,6 +56,7 @@ private:
 	const int m_port;
 	QTcpSocket m_socket;
 	Feature::Uid m_featureUid;
+	QByteArray m_authToken;
 	QTimer m_connectTimer{this};
 
 } ;
