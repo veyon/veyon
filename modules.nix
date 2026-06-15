@@ -4,146 +4,107 @@ let
   cfg = config.services.veyon;
 in
 {
-  options = {
-    services.veyon = {
-      enable = lib.mkEnableOption "Veyon - computer monitoring and control software";
+  options.services.veyon = {
+    enable = lib.mkEnableOption "Veyon - computer monitoring and control software";
 
-      package = lib.mkOption {
-        type = lib.types.package;
-        default = pkgs.veyon-unwrapped;
-        description = "Veyon package to use.";
-      };
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = pkgs.veyon-unwrapped;
+    };
 
-      enableMaster = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Whether to enable the Veyon Master (teacher) GUI application.";
-      };
+    dataDir = lib.mkOption {
+      type = lib.types.path;
+      default = "/var/lib/veyon";
+    };
 
-      enableService = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Whether to enable the Veyon Service (runs on client computers).";
-      };
+    vncServer = lib.mkOption {
+      type = lib.types.enum [ "none" "builtin" "external" ];
+      default = "builtin";
+    };
 
-      enableConfigurator = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Whether to enable the Veyon Configurator (configuration tool).";
-      };
+    vncServerPort = lib.mkOption {
+      type = lib.types.port;
+      default = 5900;
+    };
 
-      enableCLI = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Whether to enable the Veyon CLI tools.";
-      };
+    publicKey = lib.mkOption {
+      description = "Named public key stored under /etc/veyon/keys/public/<name>/key";
 
-      dataDir = lib.mkOption {
-        type = lib.types.path;
-        default = "/var/lib/veyon";
-        description = "Directory for Veyon data files.";
-      };
+      type = lib.types.submodule {
+        options = {
+          name = lib.mkOption {
+            type = lib.types.str;
+            default = "test";
+          };
 
-      configFile = lib.mkOption {
-        type = lib.types.path;
-        default = null;
-        description = "Path to Veyon configuration file.";
-        example = "/etc/veyon/veyon.ini";
-      };
-
-      vncServer = lib.mkOption {
-        type = lib.types.enum [ "none" "builtin" "external" ];
-        default = "builtin";
-        description = "VNC server implementation to use.";
-      };
-
-      roomName = lib.mkOption {
-        type = lib.types.str;
-        default = "Default";
-        description = "Default computer room name.";
-      };
-
-      masterPassword = lib.mkOption {
-        type = lib.types.str;
-        default = "";
-        description = "Master password for teacher authentication (empty = generated at runtime).";
-      };
-
-      userAccessMode = lib.mkOption {
-        type = lib.types.enum [ "none" "full" "view-only" "full-read-only" ];
-        default = "none";
-        description = "User access mode for remote access.";
-      };
-
-      vncServerPort = lib.mkOption {
-        type = lib.types.port;
-        default = 5900;
-        description = "Default VNC server port.";
-      };
-
-      vncServerPassword = lib.mkOption {
-        type = lib.types.str;
-        default = "";
-        description = "VNC server password (empty = auto-generated).";
-      };
-
-      extraOptions = lib.mkOption {
-        type = lib.types.attrsOf lib.types.anything;
-        default = { };
-        description = "Additional Veyon configuration options.";
+          value = lib.mkOption {
+            type = lib.types.lines;
+            default = ''
+              -----BEGIN PUBLIC KEY-----
+              ...
+              -----END PUBLIC KEY-----
+            '';
+          };
+        };
       };
     };
   };
 
   config = lib.mkIf cfg.enable {
-    assertions = [
-      {
-        assertion = cfg.enableMaster || cfg.enableService || cfg.enableConfigurator || cfg.enableCLI;
-        message = "At least one of enableMaster, enableService, enableConfigurator, or enableCLI must be enabled.";
-      }
+    users.groups.veyon = { };
+
+    environment.systemPackages = [ cfg.package ];
+
+    # writes:
+    # /etc/veyon/keys/public/<name>/key
+    environment.etc."veyon/keys/public/${cfg.publicKey.name}/key".text =
+      cfg.publicKey.value;
+
+    systemd.tmpfiles.rules = [
+      "d ${cfg.dataDir} 0750 root veyon - -"
     ];
 
-    users.groups.veyon = lib.mkIf cfg.enableService { };
-
-    environment.systemPackages = [ ]
-      ++ (lib.mkIf cfg.enableMaster [ cfg.package ])
-      ++ (lib.mkIf cfg.enableService [ cfg.package ])
-      ++ (lib.mkIf cfg.enableConfigurator [ cfg.package ])
-      ++ (lib.mkIf cfg.enableCLI [ cfg.package ]);
-
-    systemd.services.veyon-service = lib.mkIf cfg.enableService {
+    systemd.services.veyon-service = {
+      description = "Veyon Service (client daemon)";
       wantedBy = [ "multi-user.target" ];
-      partOf = [ "graphical.target" ];
       after = [ "network-online.target" "dbus.service" "systemd-logind.service" ];
+      wants = [ "network-online.target" ];
       requires = [ "dbus.service" "systemd-logind.service" ];
+
       serviceConfig = {
         Type = "simple";
         Restart = "always";
         RestartSec = 60;
+
         ExecStart = "${cfg.package}/bin/veyon-service";
-        Environment = "HOME=%h";
-        EnvironmentFile = lib.mkIf (cfg.dataDir != null) "${cfg.dataDir}/environment";
-        SupplementaryGroups = "veyon";
         Group = "veyon";
+        SupplementaryGroups = [ "veyon" ];
+
+        Environment = [
+          "HOME=%h"
+          "QT_QPA_PLATFORM=offscreen"
+          "QT_PLUGIN_PATH=${cfg.package}/lib/qt-6/plugins"
+        ];
+
+        EnvironmentFile = "-${cfg.dataDir}/environment";
+
+        ProtectSystem = "strict";
+        ReadWritePaths = [ cfg.dataDir ];
+        PrivateTmp = true;
+        NoNewPrivileges = true;
       };
     };
 
-    boot.extraModprobeConfig = lib.mkIf (cfg.enableService && cfg.vncServer != "none") [
-      "nf_conntrack_netlink"
-      "nf_conntrack"
-    ];
+    networking.firewall = lib.mkIf (cfg.vncServer != "none") {
+      allowedTCPPorts = [ cfg.vncServerPort ];
+      allowedUDPPorts = [ cfg.vncServerPort ];
+    };
 
-    services.udev.rules = lib.mkIf (cfg.enableService && cfg.vncServer != "none") [
-      ''
-        ACTION=="add", SUBSYSTEM=="usb", RUN+="${pkgs.systemd}/bin/systemd-run --no-block --pty -M _guest veyon-service --register"
-      ''
-    ];
-
-    systemd.tmpfiles.rules = [
-      (lib.mkIf (cfg.dataDir != null) "d ${cfg.dataDir} 0755 root veyon - -")
-    ];
-
-    networking.firewall.allowedTCPPorts = lib.mkIf (cfg.enableService && cfg.vncServer != "none") [ cfg.vncServerPort ];
-    networking.firewall.allowedUDPPorts = lib.mkIf (cfg.enableService && cfg.vncServer != "none") [ cfg.vncServerPort ];
+    security.wrappers.veyon-auth-helper = {
+      source = "${cfg.package}/bin/veyon-auth-helper";
+      owner = "root";
+      group = "root";
+      setuid = true;
+    };
   };
 }
