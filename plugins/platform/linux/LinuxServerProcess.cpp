@@ -27,12 +27,15 @@
 #include <QFileInfo>
 
 #include <csignal>
+#include <grp.h>
+#include <pwd.h>
 #ifdef HAVE_LIBPROCPS
 #include <proc/readproc.h>
 #endif
 #include <sys/errno.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <unistd.h>
 
 #include "Filesystem.h"
 #include "LinuxCoreFunctions.h"
@@ -208,6 +211,16 @@ void LinuxServerProcess::setProcessUserId()
 {
 	if (m_sessionUserId != LinuxUserFunctions::InvalidUserId)
 	{
+		// Look up the user's full credential data before dropping privileges
+		const auto pw_entry = getpwuid(m_sessionUserId);
+		if (pw_entry != nullptr)
+		{
+			// Set supplementary groups first (needs EUID=root)
+			initgroups(pw_entry->pw_name, pw_entry->pw_gid);
+			// Set primary group GID
+			setgid(pw_entry->pw_gid);
+		}
+		// Set UID last — after this the process has no more root privileges
 		setuid(m_sessionUserId);
 	}
 }
