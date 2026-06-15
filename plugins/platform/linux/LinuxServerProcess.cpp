@@ -22,6 +22,7 @@
  *
  */
 
+#include <QDBusConnection>
 #include <QDBusConnectionInterface>
 #include <QDir>
 #include <QFileInfo>
@@ -104,25 +105,40 @@ void LinuxServerProcess::start()
 		setChildProcessModifier([this] { setProcessUserId(); });
 #endif
 
-		// Check for xdg-desktop-portal >= 1.20 via the presence of the
-		// org.freedesktop.host.portal.Registry D-Bus service. When available,
-		// launch veyon-server directly which inherits the full session
-		// environment (DBUS_SESSION_BUS_ADDRESS, WAYLAND_DISPLAY, XDG_RUNTIME_DIR)
-		// captured from the session leader. On older portal versions fall back
-		// to kioclient/gio D-Bus activation.
+		// Connect to the user's session D-Bus via the known socket path to
+		// check for xdg-desktop-portal >= 1.20 (presence of the
+		// org.freedesktop.host.portal.Registry service). The system service
+		// runs as root and cannot rely on DBUS_SESSION_BUS_ADDRESS in its
+		// own environment, so we connect directly.
+		const auto busAddress = QStringLiteral("unix:path=/run/user/%1/bus").arg(m_sessionUserId);
+		const auto portalBusName = QStringLiteral("portal-check");
+		auto portalBus = QDBusConnection::connectToBus(busAddress, portalBusName);
 		const auto portalRegistryService = QStringLiteral("org.freedesktop.host.portal.Registry");
-		if(QDBusConnection::sessionBus().interface()->isServiceRegistered(portalRegistryService))
+
+		if(portalBus.isConnected() && portalBus.interface()->isServiceRegistered(portalRegistryService))
 		{
 			vDebug() << "xdg-desktop-portal >= 1.20 detected, launching server directly";
 			QProcess::start(VeyonCore::filesystem().serverFilePath(), QStringList{});
+
+			QDBusConnection::disconnectFromBus(portalBusName);
 		}
 		else
 		{
-			vDebug() << "xdg-desktop-portal < 1.20, falling back to D-Bus activation";
+			QDBusConnection::disconnectFromBus(portalBusName);
+
+			if(portalBus.isConnected() == false)
+			{
+				vDebug() << "could not connect to session D-Bus, falling back to D-Bus activation";
+			}
+			else
+			{
+				vDebug() << "xdg-desktop-portal < 1.20, falling back to D-Bus activation";
+			}
+
 			const auto desktopEnvironment = LinuxSessionFunctions::getSessionDesktopEnvironment(m_sessionPath);
 			const auto desktopFile = VeyonCore::applicationsDirectory() + QDir::separator()
 									 + QStringLiteral("io.veyon.veyon-server.desktop");
-			switch(desktopEnvironment)
+			switch (desktopEnvironment)
 			{
 			case LinuxSessionFunctions::DesktopEnvironment::KDE:
 				QProcess::start(QStringLiteral("kioclient"), {QStringLiteral("exec"), desktopFile});
@@ -187,20 +203,20 @@ void LinuxServerProcess::stop()
 	const auto pid = pid_t(processId());
 
 	// manually set process state since we're managing the process termination on our own
-	setProcessState( QProcess::NotRunning );
+	setProcessState(QProcess::NotRunning);
 
 	// tell x11vnc and child processes (in case spawned via catchsegv) to shutdown
-	sendSignalRecursively( pid, SIGINT );
+	sendSignalRecursively(pid, SIGINT);
 
-	if( LinuxCoreFunctions::waitForProcess( pid, ServerShutdownTimeout, ServerWaitSleepInterval ) == false )
+	if(LinuxCoreFunctions::waitForProcess(pid, ServerShutdownTimeout, ServerWaitSleepInterval) == false)
 	{
-		sendSignalRecursively( pid, SIGTERM );
+		sendSignalRecursively(pid, SIGTERM);
 
-		if( LinuxCoreFunctions::waitForProcess( pid, ServerTerminateTimeout, ServerWaitSleepInterval ) == false )
+		if( LinuxCoreFunctions::waitForProcess(pid, ServerTerminateTimeout, ServerWaitSleepInterval) == false)
 		{
 			vWarning() << "server for session" << m_sessionPath << "still running - killing now";
-			sendSignalRecursively( pid, SIGKILL );
-			LinuxCoreFunctions::waitForProcess( pid, ServerKillTimeout, ServerWaitSleepInterval );
+			sendSignalRecursively(pid, SIGKILL);
+			LinuxCoreFunctions::waitForProcess(pid, ServerKillTimeout, ServerWaitSleepInterval);
 		}
 	}
 }
@@ -213,7 +229,7 @@ void LinuxServerProcess::setProcessUserId()
 	{
 		// Look up the user's full credential data before dropping privileges
 		const auto pw_entry = getpwuid(m_sessionUserId);
-		if (pw_entry != nullptr)
+		if(pw_entry != nullptr)
 		{
 			// Set supplementary groups first (needs EUID=root)
 			initgroups(pw_entry->pw_name, pw_entry->pw_gid);
