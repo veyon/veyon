@@ -23,6 +23,7 @@
  */
 
 #include <QDBusReply>
+#include <QDir>
 #include <QEventLoop>
 #include <QFileInfo>
 #include <QTimer>
@@ -31,6 +32,7 @@
 #include "LinuxServerProcess.h"
 #include "LinuxServiceCore.h"
 #include "LinuxSessionFunctions.h"
+#include "LinuxUserFunctions.h"
 #include "VeyonConfiguration.h"
 
 
@@ -227,6 +229,62 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 		sessionEnvironment.contains(LinuxSessionFunctions::kdeSessionVersionEnvVarName()) == false)
 	{
 		sessionEnvironment.insert(LinuxSessionFunctions::xdgCurrentDesktopEnvVarName(), QStringLiteral("X-Generic"));
+	}
+
+	// Wayland: inject critical environment variables from well-known paths
+	// if they were not captured from the session leader's process tree.
+	// This ensures DBUS_SESSION_BUS_ADDRESS, XDG_RUNTIME_DIR and
+	// WAYLAND_DISPLAY are always available for the portal-based screen
+	// capture even if /proc/<pid>/environ could not provide them.
+	if (sessionType == LinuxSessionFunctions::Type::Wayland)
+	{
+		const auto sessionUserPath = LinuxSessionFunctions::getSessionUser(sessionPath);
+		if (sessionUserPath.isEmpty() == false)
+		{
+			const auto uid = LinuxUserFunctions::getUserProperty(
+				sessionUserPath, QStringLiteral("UID")).toUInt();
+
+			if (uid > 0)
+			{
+				if (sessionEnvironment.contains(QStringLiteral("DBUS_SESSION_BUS_ADDRESS")) == false)
+				{
+					sessionEnvironment.insert(QStringLiteral("DBUS_SESSION_BUS_ADDRESS"),
+											  QStringLiteral("unix:path=/run/user/%1/bus").arg(uid));
+					vDebug() << "Wayland: injected DBUS_SESSION_BUS_ADDRESS from known path";
+				}
+
+				if (sessionEnvironment.contains(QStringLiteral("XDG_RUNTIME_DIR")) == false)
+				{
+					sessionEnvironment.insert(QStringLiteral("XDG_RUNTIME_DIR"),
+											  QStringLiteral("/run/user/%1").arg(uid));
+				}
+
+				if (sessionEnvironment.contains(QStringLiteral("WAYLAND_DISPLAY")) == false)
+				{
+					QDir dir(QStringLiteral("/run/user/%1").arg(uid));
+					const auto sockets = dir.entryList({QStringLiteral("wayland-*")}, QDir::System);
+					if (sockets.isEmpty() == false)
+					{
+						sessionEnvironment.insert(QStringLiteral("WAYLAND_DISPLAY"), sockets.first());
+					}
+				}
+			}
+		}
+
+		// Warn about any remaining missing critical variables
+		static const QStringList criticalVars = {
+			QStringLiteral("DBUS_SESSION_BUS_ADDRESS"),
+			QStringLiteral("WAYLAND_DISPLAY"),
+			QStringLiteral("XDG_RUNTIME_DIR"),
+		};
+		for (const auto& var : criticalVars)
+		{
+			if (sessionEnvironment.contains(var) == false)
+			{
+				vWarning() << "Wayland session:" << var
+						   << "not available - Portal/RemoteDesktop screen capture may not work";
+			}
+		}
 	}
 
 	const auto sessionId = m_sessionManager.openSession( sessionPath );
