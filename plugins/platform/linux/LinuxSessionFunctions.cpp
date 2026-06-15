@@ -25,7 +25,6 @@
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDBusReply>
-#include <QFile>
 #include <QHostInfo>
 #include <QProcessEnvironment>
 #include <QSettings>
@@ -389,28 +388,6 @@ LinuxSessionFunctions::LoginDBusSessionSeat LinuxSessionFunctions::getSessionSea
 QProcessEnvironment LinuxSessionFunctions::getSessionEnvironment( int sessionLeaderPid )
 {
 	QProcessEnvironment sessionEnv;
-
-	// Read environment of the session leader itself (e.g. systemd --user).
-	// This provides variables set by pam_systemd such as XDG_RUNTIME_DIR,
-	// XDG_SESSION_TYPE, HOME and USER.
-	QFile leaderEnvFile( QStringLiteral( "/proc/%1/environ" ).arg( sessionLeaderPid ) );
-	if( leaderEnvFile.open( QIODevice::ReadOnly ) )
-	{
-		const auto leaderEnvData = leaderEnvFile.readAll();
-		for( const auto& entry : leaderEnvData.split( '\0' ) )
-		{
-			if( entry.isEmpty() )
-			{
-				continue;
-			}
-			const auto env = QString::fromUtf8( entry );
-			const auto separatorPos = env.indexOf( QLatin1Char( '=' ) );
-			if( separatorPos > 0 )
-			{
-				sessionEnv.insert( env.left( separatorPos ), env.mid( separatorPos + 1 ) );
-			}
-		}
-	}
 
 #ifdef HAVE_LIBPROCPS
 	LinuxCoreFunctions::forEachChildProcess(
