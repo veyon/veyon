@@ -6,12 +6,18 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+    }:
     let
       cmakeFile = builtins.readFile ./CMakeLists.txt;
       cmakeFlat = builtins.replaceStrings [ "\n" ] [ " " ] cmakeFile;
 
-      extractVersion = attr: default:
+      extractVersion =
+        attr: default:
         let
           regex = ".*set\\(" + attr + " ([0-9]+)\\).*";
           m = builtins.match regex cmakeFlat;
@@ -76,49 +82,59 @@
               patchelf
             ];
 
-            buildInputs = with final; [
-              qtPkgs.qtbase
-              qtPkgs.qttools
-              qtPkgs.qttranslations
-              openssl
-              openldap
-              libvncserver
-              libx11
-              libxext
-              libxi
-              libxinerama
-              libxrandr
-              libxcursor
-              libxdamage
-              libxcomposite
-              libxfixes
-              libxtst
-              libxxf86vm
-              libxkbcommon
-              libxcb
-              libxcb-util
-              libxcb-wm
-              libxcb-image
-              libxcb-cursor
-              libxcb-keysyms
-              libxcb-render-util
-              pam
-              systemd
-              libglvnd
-              libnl
-              libpulseaudio
-              libxslt
-              cyrus_sasl
-              procps
-              libdbusmenu-qt5
-            ] ++ final.lib.optionals isQt6 (with final; [
-              qt6.qt5compat
-              qt6.qthttpserver
-              qt6Packages.qca
-            ]) ++ final.lib.optionals (!isQt6) (with final; [
-              qt5.qtx11extras
-              qt5Packages.qca
-            ]);
+            buildInputs =
+              with final;
+              [
+                qtPkgs.qtbase
+                qtPkgs.qttools
+                qtPkgs.qttranslations
+                openssl
+                openldap
+                libvncserver
+                libx11
+                libxext
+                libxi
+                libxinerama
+                libxrandr
+                libxcursor
+                libxdamage
+                libxcomposite
+                libxfixes
+                libxtst
+                libxxf86vm
+                libxkbcommon
+                libxcb
+                libxcb-util
+                libxcb-wm
+                libxcb-image
+                libxcb-cursor
+                libxcb-keysyms
+                libxcb-render-util
+                pam
+                systemd
+                libglvnd
+                libnl
+                libpulseaudio
+                libxslt
+                cyrus_sasl
+                procps
+                libdbusmenu-qt5
+              ]
+              ++ final.lib.optionals isQt6 (
+                with final;
+                [
+                  qt6.qt5compat
+                  qt6.qthttpserver
+                  qt6Packages.qca
+                ]
+              )
+              ++ final.lib.optionals (!isQt6) (
+                with final;
+                [
+                  qt5.qtx11extras
+                  qt5Packages.qca
+                ]
+              );
 
             cmakeFlags = [
               "-DWITH_QT6=${if isQt6 then "ON" else "OFF"}"
@@ -126,11 +142,16 @@
               "-DWITH_TESTS=${if withTests then "ON" else "OFF"}"
               "-DWITH_LTO=${if withLTO then "ON" else "OFF"}"
               "-DCMAKE_BUILD_TYPE=${buildType}"
-              "-DCMAKE_C_FLAGS=-Wno-error=maybe-uninitialized"
+              "-DCMAKE_C_FLAGS=-Wno-error"
               "-DCMAKE_INSTALL_RPATH=${placeholder "out"}/lib/veyon"
               "-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=ON"
               "-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON"
-            ] ++ extraCMakeFlags;
+            ]
+            ++ extraCMakeFlags;
+
+            env = {
+              NIX_CFLAGS_COMPILE = "-Wno-error";
+            };
 
             installTargets = "install";
 
@@ -156,7 +177,8 @@
         veyon = final.veyon-unwrapped;
       };
     in
-    flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (system:
+    flake-utils.lib.eachSystem [ "x86_64-linux" "aarch64-linux" ] (
+      system:
       let
         pkgs = import nixpkgs {
           inherit system;
@@ -176,7 +198,8 @@
           packages = [ pkgs.gnumake ];
         };
       }
-    ) // {
+    )
+    // {
       overlays.default = overlay;
 
       nixosModules.default = {
