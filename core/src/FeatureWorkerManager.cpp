@@ -124,7 +124,7 @@ bool FeatureWorkerManager::startUnmanagedSessionWorker( Feature::Uid featureUid 
 
 	stopWorker( featureUid );
 
-	Worker worker;
+	Worker worker{};
 
 	vDebug() << "Starting worker (unmanaged session process) for feature" << featureUid;
 
@@ -136,9 +136,10 @@ bool FeatureWorkerManager::startUnmanagedSessionWorker( Feature::Uid featureUid 
 	}
 
 	const auto ret = VeyonCore::platform().coreFunctions().
-					 runProgramAsUser( VeyonCore::filesystem().workerFilePath(), { featureUid.toString() },
-									   currentUser,
-									   VeyonCore::platform().coreFunctions().activeDesktopName() );
+					 runProgramAsUser(VeyonCore::filesystem().workerFilePath(), { featureUid.toString() },
+									  currentUser,
+									  VeyonCore::platform().coreFunctions().activeDesktopName(),
+									  worker.token + '\n');
 	if( ret == false )
 	{
 		vWarning() << "failed to start worker for feature" << featureUid;
@@ -244,9 +245,8 @@ bool FeatureWorkerManager::isWorkerRunning( Feature::Uid featureUid )
 
 void FeatureWorkerManager::acceptConnection()
 {
-	vDebug() << "accepting connection";
-
-	QTcpSocket* socket = m_tcpServer.nextPendingConnection();
+	auto socket = m_tcpServer.nextPendingConnection();
+	vDebug() << "new connection from worker at" << socket->peerPort();
 
 	// connect to readyRead() signal of new connection
 	connect(socket, &QTcpSocket::readyRead,
@@ -267,13 +267,25 @@ void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 
 		m_workersMutex.lock();
 
-		// set socket information
 		if (m_workers.contains(message.featureUid()))
 		{
-			if (m_workers[message.featureUid()].socket.isNull())
+			Worker& worker = m_workers[message.featureUid()];
+
+			// authenticate and set socket information
+			if (worker.socket.isNull())
 			{
-				m_workers[message.featureUid()].socket = socket;
-				sendPendingMessages();
+				worker.socket = socket;
+				if (message.command() == FeatureMessage::Command::Init &&
+					message.argument(MessageArgument::AuthToken).toByteArray() == worker.token)
+				{
+					vDebug() << "worker at" << socket->peerPort() << "authenticated successfully";
+					sendPendingMessages();
+				}
+				else
+				{
+					vCritical() << "worker at" << socket->peerPort() << "failed to authenticate - closing connection";
+					closeConnection(socket);
+				}
 			}
 
 			m_workersMutex.unlock();

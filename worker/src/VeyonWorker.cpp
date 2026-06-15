@@ -22,19 +22,22 @@
  *
  */
 
+#include <iostream>
+
 #include <QCoreApplication>
 
 #include "FeatureManager.h"
 #include "FeatureWorkerManagerConnection.h"
+#include "PlatformCoreFunctions.h"
 #include "VeyonConfiguration.h"
 #include "VeyonWorker.h"
 
 
-VeyonWorker::VeyonWorker( QUuid featureUid, QObject* parent ) :
-	QObject( parent ),
-	m_core( QCoreApplication::instance(),
-			VeyonCore::Component::Worker,
-			QStringLiteral("FeatureWorker-") + featureUid.toString(QUuid::WithoutBraces))
+VeyonWorker::VeyonWorker(QUuid featureUid, QObject* parent) :
+	QObject(parent),
+	m_core(QCoreApplication::instance(),
+		   VeyonCore::Component::Worker,
+		   QStringLiteral("FeatureWorker-") + featureUid.toString(QUuid::WithoutBraces))
 {
 	const Feature* workerFeature = nullptr;
 
@@ -57,6 +60,19 @@ VeyonWorker::VeyonWorker( QUuid featureUid, QObject* parent ) :
 	}
 
 	m_workerManagerConnection = new FeatureWorkerManagerConnection(*this, featureUid);
+
+	VeyonCore::platform().coreFunctions().notifyOnStandardInputReadyRead([this](QObject* notifier) {
+		const auto authToken = QTextStream(stdin).readLine().toUtf8();
+		if (authToken.isEmpty() == false)
+		{
+			m_workerManagerConnection->setAuthToken(authToken);
+			notifier->deleteLater();
+		}
+		else
+		{
+			vCritical() << "failed to read auth token from stdin";
+		}
+	});
 
 	vInfo() << "Running worker for feature" << workerFeature->name();
 }
