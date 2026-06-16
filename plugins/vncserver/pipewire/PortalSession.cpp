@@ -30,7 +30,6 @@
 #include <QDBusPendingCallWatcher>
 #include <QDBusPendingReply>
 #include <QDBusUnixFileDescriptor>
-#include <QGuiApplication>
 #include <QProcess>
 #include <QRandomGenerator>
 
@@ -40,11 +39,18 @@
 // XDG Desktop Portal service and interface names
 static const auto PortalService = QStringLiteral("org.freedesktop.portal.Desktop");
 static const auto PortalObjectPath = QStringLiteral("/org/freedesktop/portal/desktop");
+
+// Stable well-known application identifier used for D-Bus service registration
+// and XDG permission-store lookups.  Using a compile-time constant makes
+// PortalSession work correctly under both QGuiApplication (main server) and
+// QCoreApplication (veyon-portal-helper) contexts.
+static const auto AppId = QStringLiteral("io.veyon.veyon-server");
+
 PortalSession::PortalSession(QObject* parent)
 	: QObject(parent)
 	, m_sessionBus(QDBusConnection::sessionBus())
 {
-	const auto appId = QGuiApplication::desktopFileName();
+	const auto appId = AppId;
 
 	// Use the default session bus connection so the portal can properly
 	// identify this application by its well-known bus name and match
@@ -80,7 +86,7 @@ PortalSession::PortalSession(QObject* parent)
 PortalSession::~PortalSession()
 {
 	close();
-	m_sessionBus.unregisterService(QGuiApplication::desktopFileName());
+	m_sessionBus.unregisterService(AppId);
 }
 
 

@@ -1,4 +1,5 @@
 include(BuildVeyonPlugin)
+include(BuildVeyonApplication)
 
 find_package(PipeWire)
 find_package(Qt${QT_MAJOR_VERSION} COMPONENTS DBus)
@@ -22,6 +23,29 @@ if(PipeWire_FOUND AND Qt${QT_MAJOR_VERSION}DBus_FOUND)
 		OrgFreedesktopPortalSession
 	)
 
+	# veyon-portal-helper: out-of-process executable that performs all D-Bus
+	# portal interactions under the session user's credentials.  The main
+	# veyon-server plugin (pipewire-vnc-server) launches this helper and
+	# communicates with it via a Unix SOCK_SEQPACKET socket pair using the
+	# protocol defined in PortalHelperProtocol.h.
+	build_veyon_application(veyon-portal-helper
+		SOURCES
+		portal_helper_main.cpp
+		PortalSession.cpp
+		PortalSession.h
+		${DBUS_GENERATED_SOURCES}
+	)
+
+	# The helper sources live in the plugin directory, not a src/ subdirectory,
+	# so add the plugin source directory to the include path explicitly.
+	target_include_directories(veyon-portal-helper PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+	target_link_libraries(veyon-portal-helper PRIVATE
+		Qt${QT_MAJOR_VERSION}::DBus
+	)
+
+	# pipewire-vnc-server plugin: D-Bus-free main-process side.
+	# All D-Bus work is delegated to veyon-portal-helper via PortalHelperProcess.
 	build_veyon_plugin(pipewire-vnc-server
 		NAME PipeWireVncServer
 		SOURCES
@@ -29,14 +53,13 @@ if(PipeWire_FOUND AND Qt${QT_MAJOR_VERSION}DBus_FOUND)
 		PipeWireVncServer.h
 		PipeWireFramebuffer.cpp
 		PipeWireFramebuffer.h
-		PortalSession.cpp
-		PortalSession.h
-		${DBUS_GENERATED_SOURCES}
+		PortalHelperProcess.cpp
+		PortalHelperProcess.h
+		PortalHelperProtocol.h
 	)
 
 	target_link_libraries(pipewire-vnc-server PRIVATE
 		PipeWire::PipeWire
-		Qt${QT_MAJOR_VERSION}::DBus
 	)
 
 	if(WITH_BUNDLED_LIBVNC)

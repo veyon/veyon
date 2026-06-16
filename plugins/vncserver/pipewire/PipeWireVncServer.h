@@ -27,7 +27,7 @@
 #include "PluginInterface.h"
 #include "VncServerPluginInterface.h"
 
-class PortalSession;
+class PortalHelperProcess;
 class PipeWireFramebuffer;
 
 extern "C" {
@@ -133,7 +133,7 @@ private:
 	static void onKbdAddEvent(rfbBool down, rfbKeySym keySym, rfbClientRec* cl);
 	static void onPtrAddEvent(int buttonMask, int x, int y, rfbClientRec* cl);
 
-	PortalSession*       m_portalSession{nullptr};
+	PortalHelperProcess*  m_portalSession{nullptr};
 	PipeWireFramebuffer* m_framebuffer{nullptr};
 	rfbScreenInfoPtr     m_rfbScreen{nullptr};
 	char*                m_framebufferData{nullptr};

@@ -24,7 +24,7 @@
 
 #include "PipeWireVncServer.h"
 #include "PipeWireFramebuffer.h"
-#include "PortalSession.h"
+#include "PortalHelperProcess.h"
 
 #include "VeyonCore.h"
 #include "PlatformCoreFunctions.h"
@@ -54,7 +54,10 @@ PipeWireVncServer::~PipeWireVncServer()
 
 void PipeWireVncServer::prepareServer()
 {
-	VeyonCore::platform().coreFunctions().prepareSessionBusAccess();
+	// No session-bus access preparation needed here: all D-Bus interactions
+	// are delegated to the veyon-portal-helper subprocess, which runs under
+	// the session user's credentials and therefore does not require the main
+	// server process to impersonate a different UID.
 }
 
 bool PipeWireVncServer::runServer(int serverPort, const Password& password)
@@ -77,14 +80,17 @@ bool PipeWireVncServer::runServer(int serverPort, const Password& password)
 
 	m_serverRunning = true;
 
-	// Portal session manages the XDG Desktop Portal RemoteDesktop DBus interaction.
+	// PortalHelperProcess delegates all D-Bus portal interactions to the
+	// veyon-portal-helper subprocess so that D-Bus calls happen under the
+	// correct session-user credentials without requiring the main server
+	// process to use seteuid().
 	// Created with nullptr parent to avoid the cross-thread QObject parent warning:
 	// runServer() is called from the VncServer thread while PipeWireVncServer itself
 	// lives on a different thread. Ownership is transferred to cleanupVncServer().
-	m_portalSession = new PortalSession(nullptr);
-	connect(m_portalSession, &PortalSession::started, this, &PipeWireVncServer::onPortalStarted,
+	m_portalSession = new PortalHelperProcess(nullptr);
+	connect(m_portalSession, &PortalHelperProcess::started, this, &PipeWireVncServer::onPortalStarted,
 			Qt::QueuedConnection);
-	connect(m_portalSession, &PortalSession::failed,  this, &PipeWireVncServer::onPortalFailed,
+	connect(m_portalSession, &PortalHelperProcess::failed,  this, &PipeWireVncServer::onPortalFailed,
 			Qt::QueuedConnection);
 
 	// PipeWireFramebuffer consumes the PipeWire stream and feeds the rfbScreen.
