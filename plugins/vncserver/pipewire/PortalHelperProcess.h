@@ -46,11 +46,13 @@ class QSocketNotifier;
  *
  * IPC mechanism
  * -------------
- * A Unix socketpair(AF_UNIX, SOCK_STREAM) is created before fork/exec.
+ * A Unix socketpair(AF_UNIX, SOCK_SEQPACKET) is created before fork/exec.
  *   - The parent (main process) holds fds[0].
  *   - The child  (helper)       holds fds[1], passed as "--socket-fd=<N>".
  *
  * Messages are fixed-size packed structs defined in PortalHelperProtocol.h.
+ * SOCK_SEQPACKET preserves record boundaries so each sendmsg() produces
+ * exactly one recvmsg() call with no partial reads or coalescing.
  * The PipeWire remote FD is returned from the helper via SCM_RIGHTS ancillary
  * data alongside the H2MStarted payload so that no open() / dup() race can
  * occur between the two processes.
