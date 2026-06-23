@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.services.veyon;
@@ -18,7 +23,11 @@ in
     };
 
     vncServer = lib.mkOption {
-      type = lib.types.enum [ "none" "builtin" "external" ];
+      type = lib.types.enum [
+        "none"
+        "builtin"
+        "external"
+      ];
       default = "builtin";
     };
 
@@ -57,8 +66,7 @@ in
 
     # writes:
     # /etc/veyon/keys/public/<name>/key
-    environment.etc."veyon/keys/public/${cfg.publicKey.name}/key".text =
-      cfg.publicKey.value;
+    environment.etc."veyon/keys/public/${cfg.publicKey.name}/key".text = cfg.publicKey.value;
 
     systemd.tmpfiles.rules = [
       "d ${cfg.dataDir} 0750 root veyon - -"
@@ -67,9 +75,18 @@ in
     systemd.services.veyon-service = {
       description = "Veyon Service (client daemon)";
       wantedBy = [ "multi-user.target" ];
-      after = [ "network-online.target" "dbus.service" "systemd-logind.service" ];
+      after = [
+        "graphical-session.target"
+        "network-online.target"
+        "dbus.service"
+        "systemd-logind.service"
+      ];
       wants = [ "network-online.target" ];
-      requires = [ "dbus.service" "systemd-logind.service" ];
+      requires = [
+        "graphical-session.target"
+        "dbus.service"
+        "systemd-logind.service"
+      ];
 
       serviceConfig = {
         Type = "simple";
