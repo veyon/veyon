@@ -216,7 +216,7 @@ if(WITH_BUNDLED_LIBVNC)
 	set_default_target_properties(vncserver)
 
 	target_compile_options(vncclient PRIVATE "-Wno-unused-function;-Wno-unused-variable;-Wno-deprecated-declarations")
-	target_compile_options(vncserver PRIVATE "-Wno-deprecated-declarations;-Wno-unused-function;-Wno-unused-variable;-Wno-discarded-qualifiers;-Wno-unused-result;-Wno-restrict")
+	target_compile_options(vncserver PRIVATE "-Wno-deprecated-declarations;-Wno-unused-function;-Wno-unused-variable;-Wno-unused-but-set-variable;-Wno-discarded-qualifiers;-Wno-unused-result;-Wno-restrict")
 
 	target_include_directories(vncclient PUBLIC
 		${libvncserver_SOURCE_DIR}/src/common
