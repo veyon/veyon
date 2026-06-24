@@ -27,6 +27,7 @@
 #include "FileTransferController.h"
 #include "FileTransferDialog.h"
 #include "FileTransferListModel.h"
+#include "Filesystem.h"
 
 #include "ui_FileTransferDialog.h"
 
@@ -61,6 +62,7 @@ FileTransferDialog::~FileTransferDialog()
 
 void FileTransferDialog::accept()
 {
+	ui->destinationGroupBox->setDisabled( true );
 	ui->optionsGroupBox->setDisabled( true );
 	ui->buttonBox->setStandardButtons( QDialogButtonBox::Cancel );
 
@@ -79,6 +81,13 @@ void FileTransferDialog::accept()
 	if( ui->overwriteExistingFiles->isChecked() )
 	{
 		flags |= FileTransferController::OverwriteExistingFiles;
+	}
+
+	// Set custom destination directory if provided
+	const auto destDir = ui->destinationDirectoryEdit->text().trimmed();
+	if( destDir.isEmpty() == false )
+	{
+		m_controller->setDestinationDirectory( destDir );
 	}
 
 	m_controller->setFlags( flags );

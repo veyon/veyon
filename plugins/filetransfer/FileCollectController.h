@@ -79,6 +79,15 @@ public:
 	void setInterfaces(const ComputerControlInterfaceList& computerControlInterfaces);
 	void setCollectionName(const QString& collectionName);
 
+	void setCollectSourceDirectory(const QString& sourceDir);
+	void setFilePattern(const QString& pattern);
+	void setCollectRecursively(bool recursive);
+	void setDestinationDirectory(const QString& destDir);
+
+	QString collectSourceDirectory() const { return m_collectSourceDirectory; }
+	QString filePattern() const { return m_filePattern; }
+	bool collectRecursively() const { return m_collectRecursively; }
+
 	QString outputDirectory() const;
 
 	QString outputFilePath(ComputerControlInterface::Pointer computerControlInterface,
@@ -140,6 +149,10 @@ private:
 	CollectionDirectory m_collectionDirectory;
 	CollectedFilesGroupingMode m_collectedFilesGroupingMode;
 	std::array<CollectedFilesGroupingAttribute, 3> m_collectedFilesGroupingAttributes;
+
+	QString m_collectSourceDirectory;
+	QString m_filePattern;
+	bool m_collectRecursively = false;
 
 	bool m_running = false;
 
