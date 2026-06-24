@@ -80,10 +80,21 @@ static QStringList listFilesInDirectory(const QString& dirPath, const QList<QReg
 
 
 
-FileCollectWorker::FileCollectWorker(FileTransferPlugin* plugin) :
+FileCollectWorker::FileCollectWorker(FileTransferPlugin* plugin,
+									 const QString& sourceDirectory,
+									 const QString& filePattern,
+									 bool collectRecursively) :
 	QObject(plugin),
 	m_configuration(plugin->configuration()),
-	m_sourceDirectory(VeyonCore::filesystem().expandPath(m_configuration.filesToCollectSourceDirectory()))
+	m_sourceDirectory(sourceDirectory.isEmpty() ?
+						  VeyonCore::filesystem().expandPath(m_configuration.filesToCollectSourceDirectory())
+						:
+						  (QDir::isAbsolutePath(sourceDirectory) ?
+						   sourceDirectory
+						 :
+						   QDir::toNativeSeparators(QDir::homePath() + QLatin1Char('/') + sourceDirectory))),
+	m_filePattern(filePattern),
+	m_collectRecursively(collectRecursively || m_configuration.collectFilesRecursively())
 {
 	if (m_sourceDirectory.endsWith(QDir::separator()) == false)
 	{
@@ -156,7 +167,9 @@ bool FileCollectWorker::currentFileAtEnd() const
 
 void FileCollectWorker::initFiles()
 {
-	m_files = listFilesInDirectory(m_sourceDirectory, excludeRegExes(), m_configuration.collectFilesRecursively());
+	m_files = listFilesInDirectory(m_sourceDirectory, excludeRegExes(), m_collectRecursively);
+
+	m_files = filterFilesByPattern(m_files, m_filePattern);
 
 	for (auto it = m_files.begin(); it != m_files.end(); ) // clazy:exclude=detaching-member
 	{
@@ -199,4 +212,53 @@ QList<QRegularExpression> FileCollectWorker::excludeRegExes() const
 	});
 
 	return regExes;
+}
+
+
+
+QStringList FileCollectWorker::filterFilesByPattern(const QStringList& files, const QString& pattern) const
+{
+	if (pattern.isEmpty())
+	{
+		return files;
+	}
+
+	auto patternStr = pattern;
+	const auto globPatterns = patternStr.replace(u';', u' ')
+								       .replace(u',', u' ').split(u' ', Qt::SkipEmptyParts);
+	if (globPatterns.isEmpty())
+	{
+		return files;
+	}
+
+	QList<QRegularExpression> regExes;
+	std::transform(globPatterns.begin(), globPatterns.end(),
+				   std::back_inserter(regExes),
+				   [](const QString& glob) {
+		return QRegularExpression(QString(glob).replace(u'*', QStringLiteral(".*")),
+								  QRegularExpression::CaseInsensitiveOption);
+	});
+
+	QStringList filtered;
+	filtered.reserve(files.size());
+
+	for (const auto& file : files)
+	{
+		const auto fileName = QFileInfo(file).fileName();
+		bool matched = false;
+		for (const auto& re : regExes)
+		{
+			if (re.match(fileName).hasMatch())
+			{
+				matched = true;
+				break;
+			}
+		}
+		if (matched)
+		{
+			filtered.append(file);
+		}
+	}
+
+	return filtered;
 }

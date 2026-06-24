@@ -36,7 +36,10 @@ FileCollectController::FileCollectController(FileTransferPlugin* plugin) :
 	m_collectedFilesGroupingMode(configuration().collectedFilesGroupingMode()),
 	m_collectedFilesGroupingAttributes({configuration().collectedFilesGroupingAttribute1(),
 									   configuration().collectedFilesGroupingAttribute2(),
-									   configuration().collectedFilesGroupingAttribute3()})
+									   configuration().collectedFilesGroupingAttribute3()}),
+	m_collectSourceDirectory(),
+	m_filePattern(),
+	m_collectRecursively(configuration().collectFilesRecursively())
 {
 	connect (this, &FileCollectController::collectionChanged, this, &FileCollectController::overallProgressChanged);
 }
@@ -52,6 +55,34 @@ FileCollectController::~FileCollectController()
 const FileTransferConfiguration& FileCollectController::configuration() const
 {
 	return m_plugin->configuration();
+}
+
+
+
+void FileCollectController::setCollectSourceDirectory(const QString& sourceDir)
+{
+	m_collectSourceDirectory = sourceDir;
+}
+
+
+
+void FileCollectController::setFilePattern(const QString& pattern)
+{
+	m_filePattern = pattern;
+}
+
+
+
+void FileCollectController::setCollectRecursively(bool recursive)
+{
+	m_collectRecursively = recursive;
+}
+
+
+
+void FileCollectController::setDestinationDirectory(const QString& destDir)
+{
+	m_destinationDirectory = destDir;
 }
 
 
@@ -176,7 +207,8 @@ void FileCollectController::start()
 	{
 		for (auto it = m_collections.constBegin(), end = m_collections.constEnd(); it != end; ++it)
 		{
-			m_plugin->sendInitFileCollectionMessage(it.value(), it.key());
+			m_plugin->sendInitFileCollectionMessage(it.value(), it.key(),
+													m_collectSourceDirectory, m_filePattern, m_collectRecursively);
 		}
 
 		m_running = true;
