@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.services.veyon;
@@ -15,16 +20,6 @@ in
     dataDir = lib.mkOption {
       type = lib.types.path;
       default = "/var/lib/veyon";
-    };
-
-    vncServer = lib.mkOption {
-      type = lib.types.enum [ "none" "builtin" "external" ];
-      default = "builtin";
-    };
-
-    vncServerPort = lib.mkOption {
-      type = lib.types.port;
-      default = 5900;
     };
 
     publicKey = lib.mkOption {
@@ -55,49 +50,54 @@ in
 
     environment.systemPackages = [ cfg.package ];
 
-    # writes:
-    # /etc/veyon/keys/public/<name>/key
-    environment.etc."veyon/keys/public/${cfg.publicKey.name}/key".text =
-      cfg.publicKey.value;
+    environment.etc."veyon/keys/public/${cfg.publicKey.name}/key".text = cfg.publicKey.value;
 
-    systemd.tmpfiles.rules = [
-      "d ${cfg.dataDir} 0750 root veyon - -"
-    ];
+    systemd.tmpfiles.rules = [ "d ${cfg.dataDir} 0750 root veyon - -" ];
 
     systemd.services.veyon-service = {
-      description = "Veyon Service (client daemon)";
+      description = "Veyon Service";
+
+      documentation = [ "man:veyon-service(1)" ];
+
+      after = [
+        "network-online.target"
+        "dbus.service"
+        "systemd-logind.service"
+      ];
+
+      wants = [
+        "network-online.target"
+      ];
+
+      requires = [
+        "dbus.service"
+        "systemd-logind.service"
+      ];
+
       wantedBy = [ "multi-user.target" ];
-      after = [ "network-online.target" "dbus.service" "systemd-logind.service" ];
-      wants = [ "network-online.target" ];
-      requires = [ "dbus.service" "systemd-logind.service" ];
 
       serviceConfig = {
+        ExecStart = "${cfg.package}/bin/veyon-service";
         Type = "simple";
         Restart = "always";
-        RestartSec = 60;
-
-        ExecStart = "${cfg.package}/bin/veyon-service";
-        Group = "veyon";
-        SupplementaryGroups = [ "veyon" ];
-
-        Environment = [
-          "HOME=%h"
-          "QT_QPA_PLATFORM=offscreen"
-          "QT_PLUGIN_PATH=${cfg.package}/lib/qt-6/plugins"
-        ];
-
-        EnvironmentFile = "-${cfg.dataDir}/environment";
-
-        ProtectSystem = "strict";
-        ReadWritePaths = [ cfg.dataDir ];
-        PrivateTmp = true;
-        NoNewPrivileges = true;
+        RestartSec = 0;
       };
+
+      startLimitIntervalSec = 60;
+      startLimitBurst = 10;
     };
 
-    networking.firewall = lib.mkIf (cfg.vncServer != "none") {
-      allowedTCPPorts = [ cfg.vncServerPort ];
-      allowedUDPPorts = [ cfg.vncServerPort ];
+    networking.firewall = {
+      allowedTCPPorts = [
+        11100
+        11200
+        11300
+      ];
+      allowedUDPPorts = [
+        11100
+        11200
+        11300
+      ];
     };
 
     security.wrappers.veyon-auth-helper = {
