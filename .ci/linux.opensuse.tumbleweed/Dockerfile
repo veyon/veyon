@@ -7,6 +7,7 @@ RUN \
 		libXtst-devel libXrandr-devel libXinerama-devel libXcursor-devel libXrandr-devel libXdamage-devel libXcomposite-devel libXfixes-devel \
 		pipewire-devel \
 		libfakekey-devel \
+		LibVNCServer-devel \
 		libjpeg8-devel \
 		zlib-devel \
 		libpng16-devel libpng16-compat-devel \

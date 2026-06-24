@@ -15,53 +15,6 @@ set(core_RESOURCES
 	${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc
 	)
 
-if(NOT WITH_BUILTIN_LIBVNC)
-	find_package(LibVNCClient 0.9.14)
-endif()
-
-if(LibVNCClient_FOUND)
-	include(CheckCSourceCompiles)
-	set(CMAKE_REQUIRED_LIBRARIES LibVNC::LibVNCClient)
-	check_c_source_compiles("
-		#include <rfb/rfbclient.h>
-
-		int main()
-		{
-		rfbClient* client = rfbGetClient( 8, 3, 4 );
-		client->ReadFromSocket = NULL;
-		client->WriteToSocket = NULL;
-		return 0;
-		}
-		"
-		LIBVNCCLIENT_SUPPORTS_CUSTOM_SOCKET_IO)
-	if(NOT LIBVNCCLIENT_SUPPORTS_CUSTOM_SOCKET_IO)
-		message(WARNING "Outdated development version of LibVNCClient found")
-		unset(LibVNCClient_FOUND)
-	endif()
-	unset(CMAKE_REQUIRED_LIBRARIES)
-endif()
-
-if(LibVNCClient_FOUND)
-	set_property(GLOBAL PROPERTY HAVE_LIBVNCCLIENT TRUE)
-else()
-	message(WARNING "Performing internal build of LibVNCClient which requires additional development packages")
-	include(LibVNCServerIntegration)
-	set(libvncclient_SOURCES
-		${libvncserver_DIR}/src/libvncclient/cursor.c
-		${libvncserver_DIR}/src/libvncclient/listen.c
-		${libvncserver_DIR}/src/libvncclient/rfbclient.c
-		${libvncserver_DIR}/src/libvncclient/sockets.c
-		${libvncserver_DIR}/src/libvncclient/tls_openssl.c
-		${libvncserver_DIR}/src/libvncclient/vncviewer.c
-		${libvncserver_DIR}/src/common/crypto_openssl.c
-		${libvncserver_DIR}/src/common/sockets.c
-		${libvncserver_DIR}/src/common/turbojpeg.c)
-
-	set_source_files_properties(${libvncclient_SOURCES} PROPERTIES
-		COMPILE_FLAGS "-Wno-unused-function -Wno-unused-variable -fvisibility=default -Wno-deprecated-declarations"
-		SKIP_PRECOMPILE_HEADERS TRUE)
-endif()
-
 add_library(veyon-core SHARED ${veyoncore_SOURCES} ${core_RESOURCES} ${libvncclient_SOURCES})
 
 target_compile_definitions(veyon-core PRIVATE XK_KOREAN)
@@ -96,25 +49,10 @@ endif()
 
 target_link_libraries(veyon-core PUBLIC OpenSSL::SSL)
 
-if(LibVNCClient_FOUND)
-	target_link_libraries(veyon-core PRIVATE LibVNC::LibVNCClient)
+if(WITH_BUNDLED_LIBVNC)
+	target_link_libraries(veyon-core PUBLIC vncclient)
 else()
-	target_include_directories(veyon-core PRIVATE
-		${ZLIB_INCLUDE_DIR}
-		${JPEG_INCLUDE_DIR}
-		${LZO_INCLUDE_DIR}
-		)
-	target_include_directories(veyon-core PUBLIC
-		${libvncserver_DIR}/src/common/
-		${libvncserver_DIR}/include
-		)
-	target_link_libraries(veyon-core PRIVATE
-		Threads::Threads
-		PNG::PNG
-		${ZLIB_LIBRARIES}
-		${JPEG_LIBRARIES}
-		${LZO_LIBRARIES}
-		)
+	target_link_libraries(veyon-core PUBLIC LibVNC::LibVNCClient)
 endif()
 
 if(VEYON_BUILD_WINDOWS)
