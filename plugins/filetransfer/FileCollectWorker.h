@@ -42,7 +42,10 @@ public:
 		AllFinished
 	};
 
-	explicit FileCollectWorker(FileTransferPlugin* plugin);
+	explicit FileCollectWorker(FileTransferPlugin* plugin,
+							   const QString& sourceDirectory = {},
+							   const QString& filePattern = {},
+							   bool collectRecursively = false);
 	~FileCollectWorker() override;
 
 	FileCollection::TransferId currentTransferId() const
@@ -75,11 +78,14 @@ public:
 private:
 	void initFiles();
 	QList<QRegularExpression> excludeRegExes() const;
+	QStringList filterFilesByPattern(const QStringList& files, const QString& pattern) const;
 
 	static constexpr int ChunkSize = 256*1024;
 
 	const FileTransferConfiguration& m_configuration;
 	QString m_sourceDirectory;
+	QString m_filePattern;
+	bool m_collectRecursively;
 
 	QStringList m_files;
 	int m_currentFileIndex = -1;

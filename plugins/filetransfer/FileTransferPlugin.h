@@ -68,6 +68,10 @@ public:
 		Files,
 		CollectionId,
 		FileSize,
+		SourceDirectory,
+		FilePattern,
+		CollectRecursively,
+		DestinationDirectory,
 	};
 	Q_ENUM(Argument)
 
@@ -132,7 +136,8 @@ public:
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 
 	void sendStartMessage( QUuid transferId, const QString& fileName,
-						   bool overwriteExistingFile, const ComputerControlInterfaceList& interfaces );
+						   bool overwriteExistingFile, const ComputerControlInterfaceList& interfaces,
+						   const QString& destinationDirectory = {} );
 	void sendDataMessage( QUuid transferId, const QByteArray& data, const ComputerControlInterfaceList& interfaces );
 	void sendCancelMessage( QUuid transferId, const ComputerControlInterfaceList& interfaces );
 	void sendFinishMessage( QUuid transferId, const QString& fileName,
@@ -142,6 +147,11 @@ public:
 
 	void sendInitFileCollectionMessage(const FileCollection& collection,
 									   ComputerControlInterface::Pointer computerControlInterface);
+	void sendInitFileCollectionMessage(const FileCollection& collection,
+									   ComputerControlInterface::Pointer computerControlInterface,
+									   const QString& sourceDirectory,
+									   const QString& filePattern,
+									   bool collectRecursively);
 	void sendFinishFileCollectionMessage(const FileCollection& collection,
 										 ComputerControlInterface::Pointer computerControlInterface);
 

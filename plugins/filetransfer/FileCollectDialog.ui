@@ -11,6 +11,43 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
+    <widget class="QGroupBox" name="sourceGroupBox">
+     <property name="title">
+      <string>Source (on student computers)</string>
+     </property>
+     <layout class="QGridLayout" name="sourceLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="sourceDirLabel">
+        <property name="text">
+         <string>Source directory:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="sourceDirectoryEdit">
+        <property name="placeholderText">
+         <string>Documents/ or /home/user/... (leave empty for the default Documents folder from global config)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="filePatternLabel">
+        <property name="text">
+         <string>File pattern:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="filePatternEdit">
+        <property name="placeholderText">
+         <string>*.* or *.docx;*.pdf (leave empty for all files)</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
       <string>Collected files</string>
@@ -45,16 +82,24 @@
    <item>
     <widget class="QGroupBox" name="outputDirectoryGroupBox">
      <property name="title">
-      <string>Output directory</string>
+      <string>Output directory (local)</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QLineEdit" name="outputDirectoryEdit">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
         <property name="readOnly">
          <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="browseOutputDirectoryButton">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="icon">
+         <iconset resource="../../core/resources/core.qrc">
+          <normaloff>:/core/document-edit.png</normaloff>:/core/document-edit.png</iconset>
         </property>
        </widget>
       </item>

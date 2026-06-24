@@ -12,6 +12,22 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
+    <widget class="QGroupBox" name="destinationGroupBox">
+     <property name="title">
+      <string>Destination (on student computers)</string>
+     </property>
+     <layout class="QVBoxLayout" name="destinationLayout">
+      <item>
+       <widget class="QLineEdit" name="destinationDirectoryEdit">
+        <property name="placeholderText">
+         <string>Desktop/ or /home/user/... (leave empty for home folder)</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <widget class="QGroupBox" name="optionsGroupBox">
      <property name="title">
       <string>Options</string>
@@ -89,6 +105,7 @@
   </layout>
  </widget>
  <tabstops>
+  <tabstop>destinationDirectoryEdit</tabstop>
   <tabstop>overwriteExistingFiles</tabstop>
   <tabstop>transferOnly</tabstop>
   <tabstop>transferAndOpenProgram</tabstop>

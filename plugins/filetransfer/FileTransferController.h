@@ -51,6 +51,7 @@ public:
 	void setFiles( const QStringList& files );
 	void setInterfaces( const ComputerControlInterfaceList& interfaces );
 	void setFlags( Flags flags );
+	void setDestinationDirectory( const QString& destDir );
 
 	void start();
 	void stop();
@@ -101,5 +102,7 @@ private:
 	FileState m_fileState;
 
 	QTimer m_processTimer;
+
+	QString m_destinationDirectory;
 
 };

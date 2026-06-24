@@ -23,6 +23,7 @@
  */
 
 #include <QDesktopServices>
+#include <QFileDialog>
 #include <QInputDialog>
 #include <QPushButton>
 #include <QScreen>
@@ -30,6 +31,7 @@
 #include "FileCollectController.h"
 #include "FileCollectDialog.h"
 #include "FileCollectTreeModel.h"
+#include "FileSystemBrowser.h"
 #include "Filesystem.h"
 #include "ProgressItemDelegate.h"
 
@@ -47,6 +49,25 @@ FileCollectDialog::FileCollectDialog(FileCollectController* controller, QWidget*
 	ui->collectionsTreeView->setItemDelegateForColumn(int(FileCollectTreeModel::Column::Progress),
 													  new ProgressItemDelegate(ui->collectionsTreeView));
 	ui->collectionsTreeView->setModel(m_model);
+
+	// Initialize source directory from controller / default config
+	ui->sourceDirectoryEdit->setText(m_controller->collectSourceDirectory());
+
+	// Initialize file pattern
+	ui->filePatternEdit->setText(m_controller->filePattern());
+
+	// Initialize output directory
+	ui->outputDirectoryEdit->setText(m_controller->outputDirectory());
+
+	connect (ui->browseOutputDirectoryButton, &QAbstractButton::clicked, this, [this]() {
+		const auto dir = QFileDialog::getExistingDirectory(this, tr("Select output directory"),
+														   ui->outputDirectoryEdit->text());
+		if (dir.isEmpty() == false)
+		{
+			ui->outputDirectoryEdit->setText(dir);
+			m_controller->setDestinationDirectory(dir);
+		}
+	});
 
 	connect (ui->openOutputDirectoryButton, &QAbstractButton::clicked, this, &FileCollectDialog::openOutputDirectory);
 
@@ -104,6 +125,19 @@ void FileCollectDialog::accept()
 		break;
 	}
 
+	// Pass source directory and file pattern to controller
+	const auto sourceDir = ui->sourceDirectoryEdit->text().trimmed();
+	if (sourceDir.isEmpty() == false)
+	{
+		m_controller->setCollectSourceDirectory(sourceDir);
+	}
+
+	const auto filePattern = ui->filePatternEdit->text().trimmed();
+	if (filePattern.isEmpty() == false)
+	{
+		m_controller->setFilePattern(filePattern);
+	}
+
 	if (VeyonCore::filesystem().ensurePathExists(m_controller->outputDirectory()) == false)
 	{
 		QMessageBox::critical(this, tr("Output directory creation failed"),
@@ -114,6 +148,11 @@ void FileCollectDialog::accept()
 
 	ui->outputDirectoryEdit->setText(m_controller->outputDirectory());
 	ui->openOutputDirectoryButton->setEnabled(true);
+
+	// Disable source/pattern and output dir editing during transfer
+	ui->sourceGroupBox->setEnabled(false);
+	ui->outputDirectoryEdit->setEnabled(false);
+	ui->browseOutputDirectoryButton->setEnabled(false);
 
 	m_controller->start();
 }
