@@ -710,9 +710,9 @@ SmartHandle WindowsCoreFunctions::runProgramInSession(const QString& program,
 	if (stdInData.isEmpty() == false)
 	{
 		DWORD written = 0;
-
-		if (WriteFile(stdinWrite.get(), stdInData.constData(), DWORD(stdInData.size()), &written, nullptr) == false ||
-			written != stdInData.size())
+		const auto stdInDataSize = DWORD(stdInData.size());
+		if (WriteFile(stdinWrite.get(), stdInData.constData(), stdInDataSize, &written, nullptr) == false ||
+			written != stdInDataSize)
 		{
 			vCritical() << "failed to write stdin data";
 		}
