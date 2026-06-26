@@ -75,7 +75,7 @@ public:
 
 	QString description() const override
 	{
-		return tr("Wayland VNC server (PipeWire/XDG Portal)");
+		return tr("Wayland VNC server (PipeWire/XDG Desktop Portal)");
 	}
 
 	QString vendor() const override
