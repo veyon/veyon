@@ -692,7 +692,7 @@ SmartHandle WindowsCoreFunctions::runProgramInSession(const QString& program,
 			commandLine.get(),	 // command line
 			nullptr,			  // pointer to process SECURITY_ATTRIBUTES
 			nullptr,			  // pointer to thread SECURITY_ATTRIBUTES
-			true,			 // handles are not inheritable
+			stdInData.isEmpty() == false, // handles are inheritable when we need to pass data via stdin
 			CREATE_UNICODE_ENVIRONMENT | NORMAL_PRIORITY_CLASS,   // creation flags
 			fullEnvironment ? fullEnvironment.get() : userEnvironment.get(),			  // pointer to new environment block
 			profileDir.get(),			  // name of current directory
