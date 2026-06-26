@@ -513,7 +513,7 @@ bool WindowsCoreFunctions::enablePrivilege( LPCWSTR privilegeName, bool enable )
 	LUID luid{};
 	if (!LookupPrivilegeValue(nullptr, privilegeName, &luid))
 	{
-		vCritical() << "could not lookup privilege value";
+		vCritical() << "could not lookup privilege value" << privilegeName;
 		return false;
 	}
 
@@ -523,8 +523,13 @@ bool WindowsCoreFunctions::enablePrivilege( LPCWSTR privilegeName, bool enable )
 	tokenPrivileges.Privileges[0].Attributes = enable ? SE_PRIVILEGE_ENABLED : 0;
 
 	const auto ret = AdjustTokenPrivileges(processToken.get(), false, &tokenPrivileges, 0, nullptr, nullptr );
+	if (ret == false || GetLastError() != ERROR_SUCCESS)
+	{
+		vCritical() << "could not enable or disable privilege" << privilegeName;
+		return false;
+	}
 
-	return ret;
+	return true;
 }
 
 
