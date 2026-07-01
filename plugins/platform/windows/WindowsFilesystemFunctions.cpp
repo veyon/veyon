@@ -75,12 +75,12 @@ QString WindowsFilesystemFunctions::globalTempPath() const
 
 QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 {
-	SmartSID ownerSID;
+	PSID ownerSID = nullptr;
 	SmartSecurityDescriptor securityDescriptor;
 
 	const auto secInfoResult = GetNamedSecurityInfo(WindowsCoreFunctions::toConstWCharArray( filePath ),
 													SE_FILE_OBJECT, OWNER_SECURITY_INFORMATION,
-													ownerSID.put(), nullptr, nullptr, nullptr, securityDescriptor.put());
+													&ownerSID, nullptr, nullptr, nullptr, securityDescriptor.put());
 	if( secInfoResult != ERROR_SUCCESS )
 	{
 		vCritical() << "GetSecurityInfo() failed:" << secInfoResult;
@@ -91,7 +91,7 @@ QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 	DWORD domainSize = 0;
 	SID_NAME_USE sidNameUse = SidTypeUnknown;
 
-	LookupAccountSid( nullptr, ownerSID.get(), nullptr, &nameSize, nullptr, &domainSize, &sidNameUse );
+	LookupAccountSid(nullptr, ownerSID, nullptr, &nameSize, nullptr, &domainSize, &sidNameUse);
 
 	if( nameSize == 0 || domainSize == 0)
 	{
@@ -102,7 +102,7 @@ QString WindowsFilesystemFunctions::fileOwnerGroup( const QString& filePath )
 	SmartWCharPtr name{new wchar_t[nameSize]};
 	SmartWCharPtr domain{new wchar_t[domainSize]};
 
-	if (LookupAccountSid(nullptr, ownerSID.get(), name.get(), &nameSize, domain.get(), &domainSize, &sidNameUse) == false)
+	if (LookupAccountSid(nullptr, ownerSID, name.get(), &nameSize, domain.get(), &domainSize, &sidNameUse) == false)
 	{
 		vCritical() << "LookupAccountSid() (2) failed:" << GetLastError();
 		return {};
