@@ -25,6 +25,7 @@
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QInputDialog>
+#include <QMessageBox>
 #include <QPushButton>
 #include <QScreen>
 
@@ -56,29 +57,36 @@ FileCollectDialog::FileCollectDialog(FileCollectController* controller, QWidget*
 	// Initialize file pattern
 	ui->filePatternEdit->setText(m_controller->filePattern());
 
-	// Initialize output directory
-	ui->outputDirectoryEdit->setText(m_controller->outputDirectory());
+	// Initialize destination directory
+	ui->destinationDirectoryEdit->setText(m_controller->destinationDirectory());
 
-	connect (ui->browseOutputDirectoryButton, &QAbstractButton::clicked, this, [this]() {
-		const auto dir = QFileDialog::getExistingDirectory(this, tr("Select output directory"),
-														   ui->outputDirectoryEdit->text());
+	connect (ui->browseDestinationDirectoryButton, &QAbstractButton::clicked, this, [this]() {
+		const auto dir = QFileDialog::getExistingDirectory(this, tr("Select destination directory"),
+														   ui->destinationDirectoryEdit->text());
 		if (dir.isEmpty() == false)
 		{
-			ui->outputDirectoryEdit->setText(dir);
+			ui->destinationDirectoryEdit->setText(dir);
 			m_controller->setDestinationDirectory(dir);
 		}
 	});
 
-	connect (ui->openOutputDirectoryButton, &QAbstractButton::clicked, this, &FileCollectDialog::openOutputDirectory);
-
 	connect (m_controller, &FileCollectController::overallProgressChanged, this, [this]() {
 		ui->progressBar->setValue(m_controller->overallProgress());
 	});
+
 	connect (m_controller, &FileCollectController::started, this, [this]() {
+		// disable settings during transfer
+		ui->settingsGroupBox->setEnabled(false);
+
 		ui->buttonBox->setStandardButtons(QDialogButtonBox::Cancel);
 	});
+
 	connect (m_controller, &FileCollectController::finished, this, [this]() {
-		ui->buttonBox->setStandardButtons(QDialogButtonBox::Close);
+		ui->buttonBox->setStandardButtons(QDialogButtonBox::Open | QDialogButtonBox::Close);
+
+		const auto darkSuffix = VeyonCore::useDarkMode() ? QStringLiteral("-dark") : QString();
+		ui->buttonBox->button(QDialogButtonBox::Open)->setText(tr("Open output directory"));
+		ui->buttonBox->button(QDialogButtonBox::Open)->setIcon(QIcon(QStringLiteral(":/core/document-open%1.png").arg(darkSuffix)));
 	});
 
 	const auto availableSize = screen()->availableSize();
@@ -95,14 +103,7 @@ FileCollectDialog::~FileCollectDialog()
 
 
 
-void FileCollectDialog::openOutputDirectory()
-{
-	QDesktopServices::openUrl(QUrl::fromLocalFile(ui->outputDirectoryEdit->text() + QDir::separator()));
-}
-
-
-
-void FileCollectDialog::accept()
+void FileCollectDialog::start()
 {
 	switch (m_controller->collectionDirectory())
 	{
@@ -146,15 +147,29 @@ void FileCollectDialog::accept()
 		return;
 	}
 
-	ui->outputDirectoryEdit->setText(m_controller->outputDirectory());
-	ui->openOutputDirectoryButton->setEnabled(true);
-
-	// Disable source/pattern and output dir editing during transfer
-	ui->sourceGroupBox->setEnabled(false);
-	ui->outputDirectoryEdit->setEnabled(false);
-	ui->browseOutputDirectoryButton->setEnabled(false);
-
 	m_controller->start();
+}
+
+
+
+void FileCollectDialog::openOutputDirectory()
+{
+	QDesktopServices::openUrl(QUrl::fromLocalFile(m_controller->outputDirectory() + QDir::separator()));
+
+}
+
+
+
+void FileCollectDialog::accept()
+{
+	if (ui->buttonBox->standardButtons().testFlag(QDialogButtonBox::Open))
+	{
+		openOutputDirectory();
+	}
+	else
+	{
+		start();
+	}
 }
 
 

@@ -41,6 +41,7 @@ public:
 	~FileCollectDialog() override;
 
 private:
+	void start();
 	void openOutputDirectory();
 
 	void accept() override;

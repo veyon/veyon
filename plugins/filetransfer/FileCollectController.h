@@ -88,6 +88,11 @@ public:
 	QString filePattern() const { return m_filePattern; }
 	bool collectRecursively() const { return m_collectRecursively; }
 
+	QString destinationDirectory() const
+	{
+		return m_destinationDirectory;
+	}
+
 	QString outputDirectory() const;
 
 	QString outputFilePath(ComputerControlInterface::Pointer computerControlInterface,
