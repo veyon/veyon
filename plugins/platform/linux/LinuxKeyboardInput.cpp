@@ -183,14 +183,14 @@ void LinuxKeyboardInput::pressAndReleaseKeyUinput( uint32_t linuxKeycode )
 	std::memset( &ev, 0, sizeof( ev ) );
 
 	ev.type = EV_KEY; ev.code = linuxKeycode; ev.value = 1;
-	::write( m_uinputFd, &ev, sizeof( ev ) );
+	(void)!::write( m_uinputFd, &ev, sizeof( ev ) );
 	ev.type = EV_SYN; ev.code = SYN_REPORT; ev.value = 0;
-	::write( m_uinputFd, &ev, sizeof( ev ) );
+	(void)!::write( m_uinputFd, &ev, sizeof( ev ) );
 
 	ev.type = EV_KEY; ev.code = linuxKeycode; ev.value = 0;
-	::write( m_uinputFd, &ev, sizeof( ev ) );
+	(void)!::write( m_uinputFd, &ev, sizeof( ev ) );
 	ev.type = EV_SYN; ev.code = SYN_REPORT; ev.value = 0;
-	::write( m_uinputFd, &ev, sizeof( ev ) );
+	(void)!::write( m_uinputFd, &ev, sizeof( ev ) );
 }
 
 

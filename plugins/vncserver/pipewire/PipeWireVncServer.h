@@ -24,6 +24,7 @@
 
 #pragma once
 
+#include <atomic>
 #include "PluginInterface.h"
 #include "VncServerPluginInterface.h"
 
@@ -121,6 +122,8 @@ private Q_SLOTS:
 	void onPortalStarted();
 	void onPortalFailed();
 	void onStreamEnded();
+	void onFirstClientConnected();
+	void onLastClientDisconnected();
 
 private:
 	bool initVncServer(int serverPort, const Password& password);
@@ -133,6 +136,10 @@ private:
 	static void onKbdAddEvent(rfbBool down, rfbKeySym keySym, rfbClientRec* cl);
 	static void onPtrAddEvent(int buttonMask, int x, int y, rfbClientRec* cl);
 
+	// LibVNCServer client lifecycle callbacks
+	static enum rfbNewClientAction onNewClientHook(rfbClientRec* cl);
+	static void onClientGone(rfbClientRec* cl);
+
 	PortalSession*       m_portalSession{nullptr};
 	PipeWireFramebuffer* m_framebuffer{nullptr};
 	rfbScreenInfoPtr     m_rfbScreen{nullptr};
@@ -142,4 +149,5 @@ private:
 
 	bool m_serverRunning{false};
 	bool m_shouldRestart{false};
+	std::atomic<int> m_connectedClients{0};
 };
