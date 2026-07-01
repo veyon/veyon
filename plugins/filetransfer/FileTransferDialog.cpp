@@ -62,7 +62,6 @@ FileTransferDialog::~FileTransferDialog()
 
 void FileTransferDialog::accept()
 {
-	ui->destinationGroupBox->setDisabled( true );
 	ui->optionsGroupBox->setDisabled( true );
 	ui->buttonBox->setStandardButtons( QDialogButtonBox::Cancel );
 
