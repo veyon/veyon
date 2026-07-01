@@ -38,8 +38,7 @@ FileCollectController::FileCollectController(FileTransferPlugin* plugin) :
 									   configuration().collectedFilesGroupingAttribute2(),
 									   configuration().collectedFilesGroupingAttribute3()}),
 	m_collectSourceDirectory(),
-	m_filePattern(),
-	m_collectRecursively(configuration().collectFilesRecursively())
+	m_filePattern()
 {
 	connect (this, &FileCollectController::collectionChanged, this, &FileCollectController::overallProgressChanged);
 }
@@ -73,9 +72,9 @@ void FileCollectController::setFilePattern(const QString& pattern)
 
 
 
-void FileCollectController::setCollectRecursively(bool recursive)
+void FileCollectController::setSubfolderHandling(SubfolderHandling subfolderHandling)
 {
-	m_collectRecursively = recursive;
+	m_subfolderHandling = subfolderHandling;
 }
 
 
@@ -208,7 +207,7 @@ void FileCollectController::start()
 		for (auto it = m_collections.constBegin(), end = m_collections.constEnd(); it != end; ++it)
 		{
 			m_plugin->sendInitFileCollectionMessage(it.value(), it.key(),
-													m_collectSourceDirectory, m_filePattern, m_collectRecursively);
+													m_collectSourceDirectory, m_filePattern, m_subfolderHandling);
 		}
 
 		m_running = true;

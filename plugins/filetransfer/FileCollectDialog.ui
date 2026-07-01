@@ -16,7 +16,28 @@
       <string>Settings</string>
      </property>
      <layout class="QGridLayout" name="sourceLayout">
-      <item row="2" column="2">
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Subfolder handling</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="destinationDirectoryEdit">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" colspan="2">
+       <widget class="QLineEdit" name="filePatternEdit">
+        <property name="placeholderText">
+         <string>*.* or *.docx;*.pdf (leave empty for all files)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="2">
        <widget class="QToolButton" name="browseDestinationDirectoryButton">
         <property name="enabled">
          <bool>true</bool>
@@ -27,13 +48,6 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="sourceDirLabel">
-        <property name="text">
-         <string>Source directory on remote computers</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="0">
        <widget class="QLabel" name="filePatternLabel">
         <property name="text">
@@ -41,7 +55,7 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
+      <item row="3" column="0">
        <widget class="QLabel" name="filePatternLabel_2">
         <property name="text">
          <string>Local destination directory</string>
@@ -55,18 +69,30 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
-       <widget class="QLineEdit" name="destinationDirectoryEdit">
-        <property name="readOnly">
-         <bool>true</bool>
+      <item row="0" column="0">
+       <widget class="QLabel" name="sourceDirLabel">
+        <property name="text">
+         <string>Source directory on remote computers</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="1" colspan="2">
-       <widget class="QLineEdit" name="filePatternEdit">
-        <property name="placeholderText">
-         <string>*.* or *.docx;*.pdf (leave empty for all files)</string>
-        </property>
+      <item row="2" column="1" colspan="2">
+       <widget class="QComboBox" name="subfolderHandlingComboBox">
+        <item>
+         <property name="text">
+          <string>Default</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Files in source directory only</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Files in source directory and subdirectories</string>
+         </property>
+        </item>
        </widget>
       </item>
      </layout>

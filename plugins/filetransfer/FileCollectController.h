@@ -66,6 +66,13 @@ public:
 	};
 	Q_ENUM(CollectedFilesGroupingAttribute)
 
+	enum class SubfolderHandling {
+		Default,
+		NonRecursive,
+		Recursive,
+	};
+	Q_ENUM(SubfolderHandling)
+
 	explicit FileCollectController(FileTransferPlugin* plugin);
 	~FileCollectController() override;
 
@@ -81,12 +88,11 @@ public:
 
 	void setCollectSourceDirectory(const QString& sourceDir);
 	void setFilePattern(const QString& pattern);
-	void setCollectRecursively(bool recursive);
+	void setSubfolderHandling(SubfolderHandling subfolderHandling);
 	void setDestinationDirectory(const QString& destDir);
 
 	QString collectSourceDirectory() const { return m_collectSourceDirectory; }
 	QString filePattern() const { return m_filePattern; }
-	bool collectRecursively() const { return m_collectRecursively; }
 
 	QString destinationDirectory() const
 	{
@@ -157,7 +163,7 @@ private:
 
 	QString m_collectSourceDirectory;
 	QString m_filePattern;
-	bool m_collectRecursively = false;
+	SubfolderHandling m_subfolderHandling = SubfolderHandling::Default;
 
 	bool m_running = false;
 

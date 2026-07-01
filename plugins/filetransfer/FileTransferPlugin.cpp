@@ -373,7 +373,7 @@ void FileTransferPlugin::sendInitFileCollectionMessage(const FileCollection& col
 													   ComputerControlInterface::Pointer computerControlInterface,
 													   const QString& sourceDirectory,
 													   const QString& filePattern,
-													   bool collectRecursively)
+													   FileCollectController::SubfolderHandling subfolderHandling)
 {
 	FeatureMessage msg(m_collectFilesFeature.uid(), FeatureCommand::InitFileCollection);
 	msg.addArgument(Argument::CollectionId, collection.id);
@@ -386,7 +386,11 @@ void FileTransferPlugin::sendInitFileCollectionMessage(const FileCollection& col
 	{
 		msg.addArgument(Argument::FilePattern, filePattern);
 	}
-	msg.addArgument(Argument::CollectRecursively, collectRecursively);
+	if (subfolderHandling != FileCollectController::SubfolderHandling::Default)
+	{
+		msg.addArgument(Argument::CollectRecursively,
+						subfolderHandling == FileCollectController::SubfolderHandling::Recursive);
+	}
 
 	computerControlInterface->sendFeatureMessage(msg);
 }
@@ -607,7 +611,11 @@ bool FileTransferPlugin::handleCollectFilesMessage(VeyonWorkerInterface& worker,
 		{
 			const auto sourceDir = message.argument(Argument::SourceDirectory).toString();
 			const auto filePattern = message.argument(Argument::FilePattern).toString();
-			const auto collectRecursively = message.argument(Argument::CollectRecursively).toBool();
+			auto collectRecursively = m_configuration.collectFilesRecursively();
+			if (message.hasArgument(Argument::CollectRecursively))
+			{
+				collectRecursively = message.argument(Argument::CollectRecursively).toBool();
+			}
 			fileCollectWorker = new FileCollectWorker(this, sourceDir, filePattern, collectRecursively);
 			m_fileCollectWorkers[collectionId] = fileCollectWorker;
 		}

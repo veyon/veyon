@@ -31,7 +31,6 @@
 #include "FileTransferConfiguration.h"
 #include "FileCollection.h"
 
-class FileCollectController;
 class FileCollectWorker;
 class FileTransferController;
 
@@ -151,7 +150,7 @@ public:
 									   ComputerControlInterface::Pointer computerControlInterface,
 									   const QString& sourceDirectory,
 									   const QString& filePattern,
-									   bool collectRecursively);
+									   FileCollectController::SubfolderHandling subfolderHandling);
 	void sendFinishFileCollectionMessage(const FileCollection& collection,
 										 ComputerControlInterface::Pointer computerControlInterface);
 
