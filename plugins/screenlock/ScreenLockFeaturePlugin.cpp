@@ -122,11 +122,16 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server
 	if( message.featureUid() == m_screenLockFeature.uid() ||
 		message.featureUid() == m_lockInputDevicesFeature.uid() )
 	{
-		if (server.featureWorkerManager().isWorkerRunning( message.featureUid() ) == false &&
-			message.command<FeatureCommand>() == FeatureCommand::StopLock)
-		{
-			return true;
-		}
+			if (message.command<FeatureCommand>() == FeatureCommand::StopLock)
+			{
+				VeyonCore::platform().inputDeviceFunctions().enableInputDevices();
+				if (server.featureWorkerManager().isWorkerRunning( message.featureUid() ))
+					server.featureWorkerManager().sendMessageToManagedSystemWorker( message );
+				return true;
+			}
+			// Block input devices immediately — worker handles the visual LockWidget
+			VeyonCore::platform().inputDeviceFunctions().disableInputDevices();
+
 
 		if( VeyonCore::platform().sessionFunctions().currentSessionHasUser() == false )
 		{

@@ -28,6 +28,7 @@
 
 #include "VeyonCore.h"
 #include "PlatformCoreFunctions.h"
+#include "PlatformInputDeviceFunctions.h"
 
 #include <QCoreApplication>
 #include <QThread>
@@ -206,10 +207,14 @@ bool PipeWireVncServer::initVncServer(int serverPort, const Password& password)
 
 	// Store a back-pointer so the static C callbacks can access this instance.
 	m_rfbScreen->screenData = this;
-	m_rfbScreen->kbdAddEvent = &PipeWireVncServer::onKbdAddEvent;
-	m_rfbScreen->ptrAddEvent = &PipeWireVncServer::onPtrAddEvent;
 
 	rfbInitServer(m_rfbScreen);
+
+	// Install hooks AFTER rfbInitServer (resets them to defaults)
+	m_rfbScreen->kbdAddEvent = &PipeWireVncServer::onKbdAddEvent;
+	m_rfbScreen->ptrAddEvent = &PipeWireVncServer::onPtrAddEvent;
+	m_rfbScreen->newClientHook = &PipeWireVncServer::onNewClientHook;
+
 	rfbMarkRectAsModified(m_rfbScreen, 0, 0, DefaultWidth, DefaultHeight);
 
 	return true;
@@ -287,4 +292,36 @@ void PipeWireVncServer::onPtrAddEvent(int buttonMask, int x, int y, rfbClientRec
 	{
 		self->m_portalSession->notifyPointer(buttonMask, x, y);
 	}
+}
+
+// ---------------------------------------------------------------------------
+// LibVNCServer client lifecycle callbacks
+// ---------------------------------------------------------------------------
+
+enum rfbNewClientAction PipeWireVncServer::onNewClientHook(rfbClientRec* cl)
+{
+	auto* self = static_cast<PipeWireVncServer*>(cl->screen->screenData);
+	cl->clientGoneHook = &PipeWireVncServer::onClientGone;
+	if (self->m_connectedClients.fetch_add(1) == 0)
+		QMetaObject::invokeMethod(self, "onFirstClientConnected", Qt::QueuedConnection);
+	return RFB_CLIENT_ACCEPT;
+}
+
+void PipeWireVncServer::onClientGone(rfbClientRec* cl)
+{
+	auto* self = static_cast<PipeWireVncServer*>(cl->screen->screenData);
+	if (self->m_connectedClients.fetch_sub(1) == 1)
+		QMetaObject::invokeMethod(self, "onLastClientDisconnected", Qt::QueuedConnection);
+}
+
+void PipeWireVncServer::onFirstClientConnected()
+{
+	VeyonCore::setRemoteControlActive(true);
+	VeyonCore::platform().inputDeviceFunctions().disableInputDevices();
+}
+
+void PipeWireVncServer::onLastClientDisconnected()
+{
+	VeyonCore::setRemoteControlActive(false);
+	VeyonCore::platform().inputDeviceFunctions().enableInputDevices();
 }
