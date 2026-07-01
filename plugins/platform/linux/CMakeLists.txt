@@ -1,4 +1,5 @@
 add_subdirectory(auth-helper)
+add_subdirectory(input-helper)
 
 include(BuildVeyonPlugin)
 
@@ -21,6 +22,8 @@ build_veyon_plugin(linux-platform
 	LinuxPlatformConfigurationPage.ui
 	LinuxFilesystemFunctions.cpp
 	LinuxInputDeviceFunctions.cpp
+		InputBlockHelper.cpp
+		InputBlockHelper.h
 	LinuxNetworkFunctions.cpp
 	LinuxServerProcess.cpp
 	LinuxServiceCore.cpp
@@ -59,6 +62,7 @@ target_include_directories(linux-platform PRIVATE ../common)
 
 target_link_libraries(linux-platform PRIVATE
 	Qt${QT_MAJOR_VERSION}::DBus
+	Qt${QT_MAJOR_VERSION}::Network
 	${X11_LIBRARIES}
 )
 

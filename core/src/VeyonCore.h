@@ -145,6 +145,16 @@ public:
 		return *( instance()->m_platformPlugin );
 	}
 
+	static bool isRemoteControlActive()
+	{
+		return instance()->m_remoteControlActive;
+	}
+
+	static void setRemoteControlActive(bool active)
+	{
+		instance()->m_remoteControlActive = active;
+	}
+
 	static BuiltinFeatures& builtinFeatures()
 	{
 		return *( instance()->m_builtinFeatures );
@@ -237,6 +247,7 @@ private:
 	bool m_debugging;
 
 	int m_sessionId{0};
+	bool m_remoteControlActive{false};
 
 Q_SIGNALS:
 	void initialized();
