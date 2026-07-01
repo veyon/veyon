@@ -192,7 +192,8 @@ QString WtsSessionManager::queryUserSid(SessionId sessionId)
 		return {};
 	}
 
-	const auto userInfo = reinterpret_cast<PTOKEN_USER>(HeapAlloc(GetProcessHeap(), 0, tokenSize));
+	std::vector<std::byte> userInfoBuffer(tokenSize);
+	const auto userInfo = reinterpret_cast<PTOKEN_USER>(userInfoBuffer.data());
 	if (!userInfo)
 	{
 		return {};
@@ -200,7 +201,7 @@ QString WtsSessionManager::queryUserSid(SessionId sessionId)
 
 	if (!GetTokenInformation(userToken.get(), TokenUser, userInfo, tokenSize, &tokenSize))
 	{
-		HeapFree(GetProcessHeap(), 0, userInfo);
+		vCritical() << "failed to obtain information about user token for session" << sessionId;
 		return {};
 	}
 
@@ -210,8 +211,6 @@ QString WtsSessionManager::queryUserSid(SessionId sessionId)
 	{
 		sid = QString::fromWCharArray(stringSid.get());
 	}
-
-	HeapFree(GetProcessHeap(), 0, userInfo);
 
 	return sid;
 }
