@@ -22,10 +22,8 @@
  *
  */
 
-#include <QDir>
-#include <QFile>
-
 #include "PlatformServiceFunctions.h"
+#include "InputBlockHelper.h"
 #include "LinuxInputDeviceFunctions.h"
 #include "LinuxKeyboardShortcutTrapper.h"
 
@@ -33,32 +31,34 @@
 LinuxInputDeviceFunctions::LinuxInputDeviceFunctions() :
 	m_isWaylandSession(qEnvironmentVariableIsSet("WAYLAND_DISPLAY"))
 {
+	if( m_isWaylandSession )
+	{
+		m_inputBlockHelper = new InputBlockHelper;
+	}
+}
+
+LinuxInputDeviceFunctions::~LinuxInputDeviceFunctions()
+{
+	delete m_inputBlockHelper;
 }
 
 #include <X11/XKBlib.h>
 
-#include <fcntl.h>
-#include <linux/input.h>
-#include <sys/ioctl.h>
-#include <unistd.h>
-
 
 void LinuxInputDeviceFunctions::enableInputDevices()
 {
-	if( m_inputDevicesDisabled == false )
+	if( m_isWaylandSession )
 	{
+		// Always send unblock — the daemon tracks state, unblock is idempotent
+		enableInputDevicesWayland();
+		m_inputDevicesDisabled = false;
 		return;
 	}
 
-	if (m_isWaylandSession)
-	{
-		enableInputDevicesWayland();
-	}
-	else
-	{
-		restoreKeyMapTable();
-	}
+	if( m_inputDevicesDisabled == false )
+		return;
 
+	restoreKeyMapTable();
 	m_inputDevicesDisabled = false;
 }
 
@@ -67,18 +67,12 @@ void LinuxInputDeviceFunctions::enableInputDevices()
 void LinuxInputDeviceFunctions::disableInputDevices()
 {
 	if( m_inputDevicesDisabled )
-	{
 		return;
-	}
 
-	if (m_isWaylandSession)
-	{
+	if( m_isWaylandSession )
 		disableInputDevicesWayland();
-	}
 	else
-	{
 		setEmptyKeyMapTable();
-	}
 
 	m_inputDevicesDisabled = true;
 }
@@ -95,9 +89,7 @@ KeyboardShortcutTrapper* LinuxInputDeviceFunctions::createKeyboardShortcutTrappe
 void LinuxInputDeviceFunctions::setEmptyKeyMapTable()
 {
 	if( m_origKeyTable )
-	{
 		XFree( m_origKeyTable );
-	}
 
 	auto display = XOpenDisplay( nullptr );
 	XDisplayKeycodes( display, &m_keyCodeMin, &m_keyCodeMax );
@@ -108,9 +100,7 @@ void LinuxInputDeviceFunctions::setEmptyKeyMapTable()
 	auto newKeyTable = XGetKeyboardMapping( display, ::KeyCode( m_keyCodeMin ), m_keyCodeCount, &m_keySymsPerKeyCode );
 
 	for( int i = 0; i < m_keyCodeCount * m_keySymsPerKeyCode; i++ )
-	{
 		newKeyTable[i] = 0;
-	}
 
 	XChangeKeyboardMapping( display, m_keyCodeMin, m_keySymsPerKeyCode, newKeyTable, m_keyCodeCount );
 	XFlush( display );
@@ -137,81 +127,19 @@ void LinuxInputDeviceFunctions::restoreKeyMapTable()
 
 
 // ---------------------------------------------------------------------------
-// Wayland input device blocking via evdev EVIOCGRAB
+// Wayland input device blocking via privileged daemon (EVIOCGRAB)
 // ---------------------------------------------------------------------------
-
-int LinuxInputDeviceFunctions::openAndGrabInputDevice(const QString& path)
-{
-	const int fd = ::open( path.toUtf8().constData(), O_RDWR | O_NONBLOCK );
-	if( fd < 0 )
-	{
-		return -1;
-	}
-
-	// Try to grab the device exclusively. This prevents Wayland/compositor
-	// from receiving events from this device while we hold the grab.
-	if( ::ioctl( fd, EVIOCGRAB, reinterpret_cast<void*>( 1L ) ) < 0 )
-	{
-		::close( fd );
-		return -1;
-	}
-
-	return fd;
-}
-
-
 
 void LinuxInputDeviceFunctions::disableInputDevicesWayland()
 {
-	// Close any previously grabbed devices first
-	enableInputDevicesWayland();
-
-	const QDir inputDir( QStringLiteral("/dev/input") );
-	if( inputDir.exists() == false )
-	{
-		vWarning() << "No /dev/input directory found - cannot grab input devices on Wayland";
-		return;
-	}
-
-	const auto eventFiles = inputDir.entryList( { QStringLiteral("event*") }, QDir::System | QDir::Files );
-	for( const auto& eventFile : eventFiles )
-	{
-		const auto devicePath = inputDir.absoluteFilePath( eventFile );
-
-		// Skip touchpads and other non-keyboard devices? We grab all input
-		// devices to ensure complete input blocking for classroom control.
-		const int fd = openAndGrabInputDevice( devicePath );
-		if( fd >= 0 )
-		{
-			m_grabbedDeviceFds.append( fd );
-			vDebug() << "Grabbed input device:" << devicePath;
-		}
-	}
-
-	if( m_grabbedDeviceFds.isEmpty() )
-	{
-		vWarning() << "Could not grab any input device - you might need to run as root";
-	}
-	else
-	{
-		vInfo() << "Grabbed" << m_grabbedDeviceFds.size() << "input devices on Wayland";
-	}
+	if (m_inputBlockHelper)
+		m_inputBlockHelper->block();
 }
 
 
 
 void LinuxInputDeviceFunctions::enableInputDevicesWayland()
 {
-	for( const auto fd : std::as_const( m_grabbedDeviceFds ) )
-	{
-		// Release the grab
-		if( fd >= 0 )
-		{
-			::ioctl( fd, EVIOCGRAB, reinterpret_cast<void*>( 0L ) );
-			::close( fd );
-		}
-	}
-
-	m_grabbedDeviceFds.clear();
-	vDebug() << "Released all grabbed input devices";
+	if (m_inputBlockHelper)
+		m_inputBlockHelper->unblock();
 }
