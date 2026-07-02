@@ -24,19 +24,16 @@ public:
 	KeyboardShortcutTrapper* createKeyboardShortcutTrapper( QObject* parent ) override;
 
 private:
-	void setEmptyKeyMapTable();
-	void restoreKeyMapTable();
+	void grabX11InputDevices();
+	void ungrabX11InputDevices();
 
 	void disableInputDevicesWayland();
 	void enableInputDevicesWayland();
 
 	bool m_inputDevicesDisabled{false};
-	void* m_origKeyTable{nullptr};
-	int m_keyCodeMin{0};
-	int m_keyCodeMax{0};
-	int m_keyCodeCount{0};
-	int m_keySymsPerKeyCode{0};
 
 	const bool m_isWaylandSession;
 	InputBlockHelper* m_inputBlockHelper{nullptr};
+
+	void* m_x11GrabDisplay{nullptr};
 };

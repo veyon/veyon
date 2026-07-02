@@ -64,6 +64,7 @@ target_link_libraries(linux-platform PRIVATE
 	Qt${QT_MAJOR_VERSION}::DBus
 	Qt${QT_MAJOR_VERSION}::Network
 	${X11_LIBRARIES}
+	Xi
 )
 
 pkg_check_modules(procps libproc2)

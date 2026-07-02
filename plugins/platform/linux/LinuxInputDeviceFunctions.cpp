@@ -27,6 +27,9 @@
 #include "LinuxInputDeviceFunctions.h"
 #include "LinuxKeyboardShortcutTrapper.h"
 
+#include <X11/Xlib.h>
+#include <X11/extensions/XInput2.h>
+
 
 LinuxInputDeviceFunctions::LinuxInputDeviceFunctions() :
 	m_isWaylandSession(qEnvironmentVariableIsSet("WAYLAND_DISPLAY"))
@@ -39,10 +42,9 @@ LinuxInputDeviceFunctions::LinuxInputDeviceFunctions() :
 
 LinuxInputDeviceFunctions::~LinuxInputDeviceFunctions()
 {
+	ungrabX11InputDevices();
 	delete m_inputBlockHelper;
 }
-
-#include <X11/XKBlib.h>
 
 
 void LinuxInputDeviceFunctions::enableInputDevices()
@@ -58,7 +60,7 @@ void LinuxInputDeviceFunctions::enableInputDevices()
 	if( m_inputDevicesDisabled == false )
 		return;
 
-	restoreKeyMapTable();
+	ungrabX11InputDevices();
 	m_inputDevicesDisabled = false;
 }
 
@@ -72,7 +74,7 @@ void LinuxInputDeviceFunctions::disableInputDevices()
 	if( m_isWaylandSession )
 		disableInputDevicesWayland();
 	else
-		setEmptyKeyMapTable();
+		grabX11InputDevices();
 
 	m_inputDevicesDisabled = true;
 }
@@ -86,42 +88,77 @@ KeyboardShortcutTrapper* LinuxInputDeviceFunctions::createKeyboardShortcutTrappe
 
 
 
-void LinuxInputDeviceFunctions::setEmptyKeyMapTable()
+void LinuxInputDeviceFunctions::grabX11InputDevices()
 {
-	if( m_origKeyTable )
-		XFree( m_origKeyTable );
+	if(m_x11GrabDisplay)
+		return;
 
-	auto display = XOpenDisplay( nullptr );
-	XDisplayKeycodes( display, &m_keyCodeMin, &m_keyCodeMax );
-	m_keyCodeCount = m_keyCodeMax - m_keyCodeMin;
+	auto* display = XOpenDisplay(nullptr);
+	if(!display)
+		return;
 
-	m_origKeyTable = XGetKeyboardMapping( display, ::KeyCode( m_keyCodeMin ), m_keyCodeCount, &m_keySymsPerKeyCode );
+	m_x11GrabDisplay = display;
 
-	auto newKeyTable = XGetKeyboardMapping( display, ::KeyCode( m_keyCodeMin ), m_keyCodeCount, &m_keySymsPerKeyCode );
+	int ndevices = 0;
+	auto* devices = XIQueryDevice(display, XIAllDevices, &ndevices);
 
-	for( int i = 0; i < m_keyCodeCount * m_keySymsPerKeyCode; i++ )
-		newKeyTable[i] = 0;
+	for(int i = 0; i < ndevices; ++i)
+	{
+		const auto& dev = devices[i];
 
-	XChangeKeyboardMapping( display, m_keyCodeMin, m_keySymsPerKeyCode, newKeyTable, m_keyCodeCount );
-	XFlush( display );
-	XFree( newKeyTable );
-	XCloseDisplay( display );
+		// Grab only physical slave devices (skip master devices and XTEST virtual device)
+		if(dev.use != XISlavePointer && dev.use != XISlaveKeyboard)
+			continue;
+
+		if(strstr(dev.name, "XTEST") != nullptr)
+			continue;
+
+		if(strstr(dev.name, "XTEST") != nullptr)
+			continue;
+
+		XIEventMask mask{};
+		mask.deviceid = dev.deviceid;
+		mask.mask_len = 0;
+		mask.mask = nullptr;
+
+		XIGrabDevice(display, dev.deviceid, DefaultRootWindow(display),
+					  CurrentTime, None, GrabModeAsync, GrabModeAsync,
+					  False, &mask);
+	}
+
+	XIFreeDeviceInfo(devices);
+	XFlush(display);
 }
 
 
 
-void LinuxInputDeviceFunctions::restoreKeyMapTable()
+void LinuxInputDeviceFunctions::ungrabX11InputDevices()
 {
-	Display* display = XOpenDisplay( nullptr );
+	if(m_x11GrabDisplay == nullptr)
+		return;
 
-	XChangeKeyboardMapping( display, m_keyCodeMin, m_keySymsPerKeyCode,
-							static_cast<::KeySym *>( m_origKeyTable ), m_keyCodeCount );
+	auto* display = static_cast<Display*>(m_x11GrabDisplay);
 
-	XFlush( display );
-	XCloseDisplay( display );
+	int ndevices = 0;
+	auto* devices = XIQueryDevice(display, XIAllDevices, &ndevices);
 
-	XFree( m_origKeyTable );
-	m_origKeyTable = nullptr;
+	for(int i = 0; i < ndevices; ++i)
+	{
+		const auto& dev = devices[i];
+
+		if(dev.use != XISlavePointer && dev.use != XISlaveKeyboard)
+			continue;
+
+		if(strstr( dev.name, "XTEST" ) != nullptr)
+			continue;
+
+		XIUngrabDevice(display, dev.deviceid, CurrentTime);
+	}
+
+	XIFreeDeviceInfo(devices);
+
+	XCloseDisplay(display);
+	m_x11GrabDisplay = nullptr;
 }
 
 
