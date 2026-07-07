@@ -9,6 +9,8 @@
  * "block" / "unblock" commands from the Veyon Server.
  */
 
+#define _GNU_SOURCE
+
 #include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -32,6 +34,7 @@ static volatile sig_atomic_t g_running = 1;
 static int g_blocked = 0;
 static int *g_fds = NULL;
 static int g_fd_count = 0;
+static pid_t g_allowed_pid = 0;
 
 static void handle_signal(int sig)
 {
@@ -137,8 +140,8 @@ static int create_socket(void)
 		return -1;
 	}
 
-	/* Allow any user to connect */
-	chmod(SOCKET_PATH, 0666);
+	/* Restrict to owner and group */
+	chmod(SOCKET_PATH, 0660);
 
 	if (listen(fd, BACKLOG) < 0)
 	{
@@ -152,6 +155,15 @@ static int create_socket(void)
 
 static void handle_client(int client_fd)
 {
+	/* Verify the connecting process is the allowed veyon-server */
+	struct ucred peer_cred;
+	socklen_t cred_len = sizeof(peer_cred);
+	if (getsockopt(client_fd, SOL_SOCKET, SO_PEERCRED, &peer_cred, &cred_len) < 0)
+		return;
+
+	if (g_allowed_pid != 0 && peer_cred.pid != g_allowed_pid)
+		return;
+
 	char buf[16];
 	memset(buf, 0, sizeof(buf));
 
@@ -179,7 +191,7 @@ static void handle_client(int client_fd)
 	}
 }
 
-int main(void)
+int main(int argc, char *argv[])
 {
 	/* Must be invoked with effective UID root (setuid) */
 	if (geteuid() != 0)
@@ -187,6 +199,17 @@ int main(void)
 		fprintf(stderr, "input-block-helper: not running as root (euid=%d)\n",
 			geteuid());
 		return 1;
+	}
+
+	/* Parse the allowed client PID from command line */
+	if (argc >= 2)
+	{
+		char *endptr = NULL;
+		const long pid = strtol(argv[1], &endptr, 10);
+		if (endptr != argv[1] && *endptr == '\0' && pid > 0)
+			g_allowed_pid = (pid_t)pid;
+		else
+			fprintf(stderr, "input-block-helper: invalid PID argument '%s'\n", argv[1]);
 	}
 
 	/* Ignore SIGPIPE */
