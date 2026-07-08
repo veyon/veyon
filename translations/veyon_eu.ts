@@ -1283,11 +1283,11 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Server.</source>
-        <translation>Ezin izan da Veyon zerbitzariaren suebakiaren konfigurazioa konfiguratu.</translation>
+        <translation>Ezin izan da Veyon zerbitzariaren suebakiaren konfigurazioa ezarri.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Worker.</source>
-        <translation type="unfinished"/>
+        <translation>Ezin izan da Veyon Worker-en suebakiaren konfigurazioa ezarri.</translation>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1689,7 +1689,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Master</source>
-        <translation>Master</translation>
+        <translation>Irakaslea</translation>
     </message>
     <message>
         <source>Service</source>
@@ -1743,6 +1743,46 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <translation>Fitxategien transferentzia</translation>
     </message>
     <message>
+        <source>Settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subfolder handling</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>*.* or *.docx;*.pdf (leave empty for all files)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File pattern</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Relative (Documents/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory on remote computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Lehenetsia</translation>
+    </message>
+    <message>
+        <source>Files in source directory only</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files in source directory and subdirectories</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collected files</source>
         <translation type="unfinished"/>
     </message>
@@ -1751,12 +1791,16 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Output directory</source>
+        <source>Start</source>
+        <translation>Abiarazi</translation>
+    </message>
+    <message>
+        <source>Select destination directory</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Start</source>
-        <translation>Abiarazi</translation>
+        <source>Open output directory</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enter collection name</source>
@@ -1941,6 +1985,14 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     <message>
         <source>Options</source>
         <translation>Aukerak</translation>
+    </message>
+    <message>
+        <source>Destination directory on remote computers:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Relative (Desktop/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -2896,7 +2948,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
-        <translation type="unfinished"/>
+        <translation>Mapeatu edukiontzia/OU egitura 1:1 kokapenekin</translation>
     </message>
 </context>
 <context>
@@ -3026,7 +3078,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     <name>MainWindow</name>
     <message>
         <source>Veyon Configurator</source>
-        <translation>Veyon Configurator</translation>
+        <translation>Veyon Konfiguratzailea</translation>
     </message>
     <message>
         <source>General</source>
@@ -3038,7 +3090,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Master</source>
-        <translation>Master</translation>
+        <translation>Irakaslea</translation>
     </message>
     <message>
         <source>Access control</source>
@@ -3150,7 +3202,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Veyon Configurator %1</source>
-        <translation>Veyon konfiguratzailea %1</translation>
+        <translation>Veyon Konfiguratzailea %1</translation>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3521,7 +3573,7 @@ Luze sakatu fitxategi batetik kargatzeko edo uneko antolamendua fitxategi batera
     </message>
     <message>
         <source>Session meta data hash</source>
-        <translation type="unfinished"/>
+        <translation>Saioko metadatuen hash</translation>
     </message>
 </context>
 <context>
@@ -3626,6 +3678,13 @@ Luze sakatu fitxategi batetik kargatzeko edo uneko antolamendua fitxategi batera
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>Ezin izan da saioa hasi emandako erabiltzaile-izen eta pasahitzarekin. Mesedez, saiatu berriro!</translation>
+    </message>
+</context>
+<context>
+    <name>PipeWireVncServer</name>
+    <message>
+        <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4335,7 +4394,7 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
     </message>
     <message>
         <source>Veyon Master – Slideshow</source>
-        <translation>Veyon Master – Diaporama</translation>
+        <translation>Veyon Irakaslea – Diaporama</translation>
     </message>
 </context>
 <context>

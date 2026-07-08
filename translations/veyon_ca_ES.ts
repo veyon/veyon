@@ -1745,6 +1745,46 @@ Assegureu-vos que els noms de les claus que pertanyen entre si són idèntics en
         <translation>Transferència de fitxers</translation>
     </message>
     <message>
+        <source>Settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subfolder handling</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>*.* or *.docx;*.pdf (leave empty for all files)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File pattern</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Relative (Documents/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory on remote computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Per defecte</translation>
+    </message>
+    <message>
+        <source>Files in source directory only</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files in source directory and subdirectories</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collected files</source>
         <translation type="unfinished"/>
     </message>
@@ -1753,12 +1793,16 @@ Assegureu-vos que els noms de les claus que pertanyen entre si són idèntics en
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Output directory</source>
-        <translation>Directori de sortida</translation>
-    </message>
-    <message>
         <source>Start</source>
         <translation>Inici</translation>
+    </message>
+    <message>
+        <source>Select destination directory</source>
+        <translation>Seleccioneu la carpeta de destí</translation>
+    </message>
+    <message>
+        <source>Open output directory</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enter collection name</source>
@@ -1943,6 +1987,14 @@ Assegureu-vos que els noms de les claus que pertanyen entre si són idèntics en
     <message>
         <source>Options</source>
         <translation>Opcions</translation>
+    </message>
+    <message>
+        <source>Destination directory on remote computers:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Relative (Desktop/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -3626,6 +3678,13 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>L&apos;inici de sessió ha fallat amb el nom d&apos;usuari i la contrasenya indicats. Torneu-ho a provar!</translation>
+    </message>
+</context>
+<context>
+    <name>PipeWireVncServer</name>
+    <message>
+        <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

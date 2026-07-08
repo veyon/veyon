@@ -1743,6 +1743,46 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Передача файлов</translation>
     </message>
     <message>
+        <source>Settings</source>
+        <translation>Параметры</translation>
+    </message>
+    <message>
+        <source>Subfolder handling</source>
+        <translation>Обработка подпапок</translation>
+    </message>
+    <message>
+        <source>*.* or *.docx;*.pdf (leave empty for all files)</source>
+        <translation>*.* или *.docx;*.pdf (оставьте пустым для всех файлов)</translation>
+    </message>
+    <message>
+        <source>File pattern</source>
+        <translation>Шаблон файла</translation>
+    </message>
+    <message>
+        <source>Local destination directory</source>
+        <translation>Локальный целевой каталог</translation>
+    </message>
+    <message>
+        <source>Relative (Documents/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation>Относительный (Documents/) или абсолютный путь (/tmp/ или C:\TMP), либо пустое значение для использования настроенного каталога</translation>
+    </message>
+    <message>
+        <source>Source directory on remote computers</source>
+        <translation>Исходный каталог на удалённых компьютерах:</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>По умолчанию</translation>
+    </message>
+    <message>
+        <source>Files in source directory only</source>
+        <translation>Файлы только в исходном каталоге</translation>
+    </message>
+    <message>
+        <source>Files in source directory and subdirectories</source>
+        <translation>Файлы в исходном каталоге и подкаталогах</translation>
+    </message>
+    <message>
         <source>Collected files</source>
         <translation>Собранные файлы</translation>
     </message>
@@ -1751,12 +1791,16 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Общий прогресс</translation>
     </message>
     <message>
-        <source>Output directory</source>
-        <translation>Каталог для сохранения</translation>
-    </message>
-    <message>
         <source>Start</source>
         <translation>Начать</translation>
+    </message>
+    <message>
+        <source>Select destination directory</source>
+        <translation>Выберите каталог назначения</translation>
+    </message>
+    <message>
+        <source>Open output directory</source>
+        <translation>Открыть каталог для сохранения</translation>
     </message>
     <message>
         <source>Enter collection name</source>
@@ -1787,7 +1831,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Number of files</source>
-        <translation type="unfinished"/>
+        <translation>Количество файлов</translation>
     </message>
 </context>
 <context>
@@ -1941,6 +1985,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Options</source>
         <translation>Параметры</translation>
+    </message>
+    <message>
+        <source>Destination directory on remote computers:</source>
+        <translation>Целевой каталог на удалённых компьютерах:</translation>
+    </message>
+    <message>
+        <source>Relative (Desktop/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation>Относительный (Desktop/) или абсолютный путь (/tmp/ или C:\TMP), либо пустое значение для использования настроенного каталога</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -3361,7 +3413,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Guest user identity extension</source>
-        <translation type="unfinished"/>
+        <translation>Расширение идентификации гостевого пользователя</translation>
     </message>
     <message>
         <source>None</source>
@@ -3369,11 +3421,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>Префикс</translation>
     </message>
     <message>
         <source>Suffix</source>
-        <translation type="unfinished"/>
+        <translation>Суффикс</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3626,6 +3678,13 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>Не удалось войти, используя указанные имя пользователя и пароль. Пожалуйста, повторите попытку!</translation>
+    </message>
+</context>
+<context>
+    <name>PipeWireVncServer</name>
+    <message>
+        <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
+        <translation>VNC-сервер Wayland (PipeWire/XDG Desktop Portal)</translation>
     </message>
 </context>
 <context>
@@ -4657,7 +4716,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Lifetime</source>
-        <translation>Срок службы</translation>
+        <translation>Время жизни соединения</translation>
     </message>
     <message>
         <source> h</source>
@@ -4669,15 +4728,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Idle timeout</source>
-        <translation>Время ожидания бездействия</translation>
+        <translation>Тайм-аут бездействия</translation>
     </message>
     <message>
         <source>Authentication timeout</source>
-        <translation>Время ожидания на подключение</translation>
+        <translation>Тайм-аут аутентификации</translation>
     </message>
     <message>
         <source>Maximum number of open connections</source>
-        <translation>Максимальное число открытых соединений</translation>
+        <translation>Максимальное количество открытых соединений</translation>
     </message>
     <message>
         <source>Connection encryption</source>
@@ -4685,7 +4744,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>TLS certificate file</source>
-        <translation>Файл TLS сертификата</translation>
+        <translation>Файл TLS-сертификата</translation>
     </message>
     <message>
         <source>TLS private key file</source>
@@ -4786,7 +4845,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Use custom power scheme with disabled power and sleep buttons</source>
-        <translation type="unfinished"/>
+        <translation>Использовать пользовательскую схему электропитания с отключёнными кнопками питания и перехода в спящий режим</translation>
     </message>
     <message>
         <source>Use input device interception driver</source>
@@ -4794,15 +4853,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Disable touchpads and touchscreens</source>
-        <translation type="unfinished"/>
+        <translation>Отключить сенсорные панели и сенсорные экраны</translation>
     </message>
     <message>
         <source>Disable keyboard devices</source>
-        <translation type="unfinished"/>
+        <translation>Отключить устройства клавиатуры</translation>
     </message>
     <message>
         <source>Disable mouse devices</source>
-        <translation type="unfinished"/>
+        <translation>Отключить устройства мыши</translation>
     </message>
     <message>
         <source>Handling of interfering windows</source>

@@ -1743,6 +1743,46 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>Dosya transferi</translation>
     </message>
     <message>
+        <source>Settings</source>
+        <translation>Ayarlar</translation>
+    </message>
+    <message>
+        <source>Subfolder handling</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>*.* or *.docx;*.pdf (leave empty for all files)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File pattern</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Relative (Documents/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory on remote computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Varsayılan</translation>
+    </message>
+    <message>
+        <source>Files in source directory only</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files in source directory and subdirectories</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collected files</source>
         <translation>Toplanan dosyalar</translation>
     </message>
@@ -1751,12 +1791,16 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>Genel ilerleme</translation>
     </message>
     <message>
-        <source>Output directory</source>
-        <translation>Çıkış dizini</translation>
-    </message>
-    <message>
         <source>Start</source>
         <translation>Başlat</translation>
+    </message>
+    <message>
+        <source>Select destination directory</source>
+        <translation>Hedef dizini seç</translation>
+    </message>
+    <message>
+        <source>Open output directory</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enter collection name</source>
@@ -1941,6 +1985,14 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     <message>
         <source>Options</source>
         <translation>Seçenekler</translation>
+    </message>
+    <message>
+        <source>Destination directory on remote computers:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Relative (Desktop/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -3626,6 +3678,13 @@ Düzenlemeyi bir dosyadan yüklemek veya mevcut düzenlemeyi bir dosyaya kaydetm
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>Verilen kullanıcı adı ve parola ile giriş başarısız. Lütfen yeniden deneyin!</translation>
+    </message>
+</context>
+<context>
+    <name>PipeWireVncServer</name>
+    <message>
+        <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

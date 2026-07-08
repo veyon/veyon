@@ -43,7 +43,7 @@ Als je geïnteresseerd bent in het vertalen van Veyon in je eigen taal of een an
     </message>
     <message>
         <source>About Veyon %1</source>
-        <translation type="unfinished"/>
+        <translation>Over Veyon %1</translation>
     </message>
 </context>
 <context>
@@ -708,11 +708,11 @@ Zorg ervoor dat de namen van de sleutels die bij elkaar horen identiek zijn op a
     </message>
     <message>
         <source>Move selected computer up</source>
-        <translation type="unfinished"/>
+        <translation>Selecteerde computer omhoog verplaatsen</translation>
     </message>
     <message>
         <source>Move selected computer down</source>
-        <translation type="unfinished"/>
+        <translation>Selecteerde computer omlaag verplaatsen</translation>
     </message>
     <message>
         <source>Name</source>
@@ -736,11 +736,11 @@ Zorg ervoor dat de namen van de sleutels die bij elkaar horen identiek zijn op a
     </message>
     <message>
         <source>Move selected location up</source>
-        <translation type="unfinished"/>
+        <translation>De geselecteerde locatie omhoog verplaatsen</translation>
     </message>
     <message>
         <source>Move selected location down</source>
-        <translation type="unfinished"/>
+        <translation>De geselecteerde locatie naar beneden verplaatsen</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -1119,7 +1119,7 @@ Zorg ervoor dat de namen van de sleutels die bij elkaar horen identiek zijn op a
     </message>
     <message>
         <source>Veyon Service %1 at %2:%3</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Service 1% bij 2%:3%</translation>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1142,7 +1142,7 @@ Zorg ervoor dat de namen van de sleutels die bij elkaar horen identiek zijn op a
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Er is geen standaardplug-in voor de netwerkobjectmap gevonden. Controleer uw installatie of configureer een andere backend voor de netwerkobjectmap via Veyon Configurator.</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1279,15 +1279,15 @@ Zorg ervoor dat de namen van de sleutels die bij elkaar horen identiek zijn op a
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the Veyon Service.</source>
-        <translation type="unfinished"/>
+        <translation>De eigenschap ‘autostart’ voor de Veyon-service kon niet worden gewijzigd.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Server.</source>
-        <translation type="unfinished"/>
+        <translation>De firewallinstellingen voor de Veyon-server konden niet worden geconfigureerd.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Worker.</source>
-        <translation type="unfinished"/>
+        <translation>De firewallinstellingen voor de Veyon Worker konden niet worden geconfigureerd.</translation>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1302,7 +1302,7 @@ Zorg ervoor dat de namen van de sleutels die bij elkaar horen identiek zijn op a
     <name>DemoClient</name>
     <message>
         <source>Veyon Demo</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Demo</translation>
     </message>
 </context>
 <context>
@@ -1745,6 +1745,46 @@ Translated with DeepL</translation>
         <translation>Bestandsoverdracht</translation>
     </message>
     <message>
+        <source>Settings</source>
+        <translation>Instellingen</translation>
+    </message>
+    <message>
+        <source>Subfolder handling</source>
+        <translation>Submapverwerking</translation>
+    </message>
+    <message>
+        <source>*.* or *.docx;*.pdf (leave empty for all files)</source>
+        <translation>*.* of *.docx;*.pdf (laat leeg voor alle bestanden)</translation>
+    </message>
+    <message>
+        <source>File pattern</source>
+        <translation>Bestandspatroon</translation>
+    </message>
+    <message>
+        <source>Local destination directory</source>
+        <translation>Lokale bestemmingsmap</translation>
+    </message>
+    <message>
+        <source>Relative (Documents/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation>Relatief (Documents/) of absoluut (/tmp/ of C:\TMP) of leeg voor de geconfigureerde map</translation>
+    </message>
+    <message>
+        <source>Source directory on remote computers</source>
+        <translation>Bronmap op externe computers</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Standaard</translation>
+    </message>
+    <message>
+        <source>Files in source directory only</source>
+        <translation>Bestanden alleen in de bronmap</translation>
+    </message>
+    <message>
+        <source>Files in source directory and subdirectories</source>
+        <translation>Bestanden in bronmap en submappen</translation>
+    </message>
+    <message>
         <source>Collected files</source>
         <translation>Verzamelde bestanden</translation>
     </message>
@@ -1753,12 +1793,16 @@ Translated with DeepL</translation>
         <translation>Algemene voortgang</translation>
     </message>
     <message>
-        <source>Output directory</source>
-        <translation>Uitvoermap</translation>
-    </message>
-    <message>
         <source>Start</source>
         <translation>Start</translation>
+    </message>
+    <message>
+        <source>Select destination directory</source>
+        <translation>Selecteer de doelmap</translation>
+    </message>
+    <message>
+        <source>Open output directory</source>
+        <translation>Uitvoermap openen</translation>
     </message>
     <message>
         <source>Enter collection name</source>
@@ -1789,7 +1833,7 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>Number of files</source>
-        <translation type="unfinished"/>
+        <translation>Aantal bestanden</translation>
     </message>
 </context>
 <context>
@@ -1824,11 +1868,11 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>First part of user name</source>
-        <translation type="unfinished"/>
+        <translation>Eerste deel van de gebruikersnaam</translation>
     </message>
     <message>
         <source>Last part of user name</source>
-        <translation type="unfinished"/>
+        <translation>Laatste deel van de gebruikersnaam</translation>
     </message>
     <message>
         <source>Collect all files from configured source directory</source>
@@ -1844,31 +1888,31 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>Grouping attribute 3:</source>
-        <translation type="unfinished"/>
+        <translation>Groeperingskenmerk 3:</translation>
     </message>
     <message>
         <source>Destination directory:</source>
-        <translation type="unfinished"/>
+        <translation>Bestemmingsmap:</translation>
     </message>
     <message>
         <source>Store collected files in:</source>
-        <translation type="unfinished"/>
+        <translation>Sla de verzamelde bestanden op in:</translation>
     </message>
     <message>
         <source>Group collected files:</source>
-        <translation type="unfinished"/>
+        <translation>Groep verzamelde bestanden:</translation>
     </message>
     <message>
         <source>Grouping attribute 1:</source>
-        <translation type="unfinished"/>
+        <translation>Groeperingskenmerk 1:</translation>
     </message>
     <message>
         <source>Grouping attribute 2:</source>
-        <translation type="unfinished"/>
+        <translation>Groeperingskenmerk 2:</translation>
     </message>
     <message>
         <source>Directly in the destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Rechtstreeks in de doelmap</translation>
     </message>
     <message>
         <source>Subdirectory based on date &amp; time</source>
@@ -1880,15 +1924,15 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>Files to collect:</source>
-        <translation type="unfinished"/>
+        <translation>Te verzamelen bestanden</translation>
     </message>
     <message>
         <source>Files to exclude:</source>
-        <translation type="unfinished"/>
+        <translation>Uit te sluiten bestanden:</translation>
     </message>
     <message>
         <source>e.g. *.lnk or *.desktop</source>
-        <translation type="unfinished"/>
+        <translation>bijv. *.lnk of *.desktop</translation>
     </message>
     <message>
         <source>Collect files recursively</source>
@@ -1896,15 +1940,15 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>Destination directory (remote):</source>
-        <translation type="unfinished"/>
+        <translation>Bestemmingsmap (op afstand):</translation>
     </message>
     <message>
         <source>Default source directory:</source>
-        <translation type="unfinished"/>
+        <translation>Standaard bronmap:</translation>
     </message>
     <message>
         <source>Source directory (remote):</source>
-        <translation type="unfinished"/>
+        <translation>Bronmap (op afstand):</translation>
     </message>
     <message>
         <source>User login name</source>
@@ -1931,7 +1975,7 @@ Translated with DeepL</translation>
     <name>FileTransferController</name>
     <message>
         <source>Could not open file %1 for reading! Please check your permissions!</source>
-        <translation type="unfinished"/>
+        <translation>Kon bestand &quot;%1&quot; niet openen om te lezen! Controleer uw rechten!</translation>
     </message>
 </context>
 <context>
@@ -1943,6 +1987,14 @@ Translated with DeepL</translation>
     <message>
         <source>Options</source>
         <translation>Opties</translation>
+    </message>
+    <message>
+        <source>Destination directory on remote computers:</source>
+        <translation>Bestemmingsmap op externe computers:</translation>
+    </message>
+    <message>
+        <source>Relative (Desktop/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation>Relatief (Desktop/) of absoluut (/tmp/ of C:\TMP) of leeg voor de geconfigureerde map</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -1997,31 +2049,31 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>Received file %1.</source>
-        <translation type="unfinished"/>
+        <translation>Ontvangen bestand %1.</translation>
     </message>
     <message>
         <source>The file %1 is to be collected, but is still open in an application.</source>
-        <translation type="unfinished"/>
+        <translation>Het bestand %1 moet worden opgehaald, maar is nog steeds geopend in een toepassing.</translation>
     </message>
     <message>
         <source>The file %1 is to be collected, but is still open in the application &lt;b&gt;%2&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Het bestand %1 moet worden opgehaald, maar is nog steeds geopend in een toepassing &lt;b&gt;%2&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Please save your changes and close the program so that the transfer can be completed.</source>
-        <translation type="unfinished"/>
+        <translation>Sla uw wijzigingen op en sluit het programma, zodat de overdracht kan worden voltooid.</translation>
     </message>
     <message>
         <source>Are you sure you want to skip transferring the file %1?</source>
-        <translation type="unfinished"/>
+        <translation>Weet je zeker dat je het overzetten van het bestand %1 wilt overslaan?</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Kon bestand %1 niet ontvangen omdat het al bestaat.</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it could not be opened for writing!</source>
-        <translation type="unfinished"/>
+        <translation>Kon bestand %1 niet ontvangen omdat het niet geopend kon worden om te schrijven!</translation>
     </message>
     <message>
         <source>Transfer files between computers</source>
@@ -2160,11 +2212,11 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>Veyon service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon service</translation>
     </message>
     <message>
         <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation type="unfinished"/>
+        <translation>De Veyon-service moet tijdelijk worden gestopt om de logbestanden te verwijderen. Wilt u doorgaan?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -2984,11 +3036,11 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>Key press interval for text input</source>
-        <translation type="unfinished"/>
+        <translation>Toetsaanslaginterval voor tekstinvoer</translation>
     </message>
     <message>
         <source>Key press interval to control input fields</source>
-        <translation type="unfinished"/>
+        <translation>Toetsaanslaginterval om invoervelden te beheren</translation>
     </message>
 </context>
 <context>
@@ -3056,7 +3108,7 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;View</translation>
+        <translation>&amp;Bekijken</translation>
     </message>
     <message>
         <source>&amp;Quit</source>
@@ -3152,7 +3204,7 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>Veyon Configurator %1</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Configurator %1</translation>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3188,7 +3240,7 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
-        <translation type="unfinished"/>
+        <translation>De lokale configuratie-backend heeft gemeld dat de configuratie niet beschrijfbaar is! Voer Veyon Configurator uit met hogere rechten.</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
@@ -3196,7 +3248,7 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
-        <translation type="unfinished"/>
+        <translation>Er zijn geen authenticatiesleutelbestanden gevonden of uw huidige bestanden zijn verouderd. Maak alstublieft nieuwe sleutelbestanden aan met behulp van Veyon Configurator. U kunt ook de aanmeldingsauthenticatie instellen via Veyon Configurator. Anders kunt u geen toegang krijgen tot computers via Veyon.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3212,7 +3264,7 @@ Translated with DeepL</translation>
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
-        <translation type="unfinished"/>
+        <translation>De functie &quot;%1&quot; is nog steeds actief. Sluit deze af voordat u Veyon afsluit.</translation>
     </message>
     <message>
         <source>Use custom computer arrangement.
@@ -3343,27 +3395,27 @@ Houd ingedrukt om een arrangement vanuit een bestand te laden of het huidige arr
     </message>
     <message>
         <source>Identify users in guest sessions</source>
-        <translation type="unfinished"/>
+        <translation>Gebruikers in gastsessies identificeren</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"/>
+        <translation>Nooit</translation>
     </message>
     <message>
         <source>If login name matches</source>
-        <translation type="unfinished"/>
+        <translation>Als de gebruikersnaam overeenkomt</translation>
     </message>
     <message>
         <source>If full name matches</source>
-        <translation type="unfinished"/>
+        <translation>Als de volledige naam overeenkomt</translation>
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>Gast</translation>
     </message>
     <message>
         <source>Guest user identity extension</source>
-        <translation type="unfinished"/>
+        <translation>Uitbreiding voor de identiteit van gastgebruikers</translation>
     </message>
     <message>
         <source>None</source>
@@ -3371,11 +3423,11 @@ Houd ingedrukt om een arrangement vanuit een bestand te laden of het huidige arr
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>Voorvoegsel</translation>
     </message>
     <message>
         <source>Suffix</source>
-        <translation type="unfinished"/>
+        <translation>Achtervoegsel</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3550,19 +3602,19 @@ Houd ingedrukt om een arrangement vanuit een bestand te laden of het huidige arr
     </message>
     <message>
         <source>Identify users in guest sessions</source>
-        <translation type="unfinished"/>
+        <translation>Gebruikers in gastsessies identificeren</translation>
     </message>
     <message>
         <source>Identification request</source>
-        <translation type="unfinished"/>
+        <translation>Verzoek om identificatie</translation>
     </message>
     <message>
         <source>Please enter your name:</source>
-        <translation type="unfinished"/>
+        <translation>Vul uw naam in:</translation>
     </message>
     <message>
         <source>First name + last name</source>
-        <translation type="unfinished"/>
+        <translation>Voornaam + achternaam</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3628,6 +3680,13 @@ Houd ingedrukt om een arrangement vanuit een bestand te laden of het huidige arr
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>Inloggen mislukt met de opgegeven gebruikersnaam en wachtwoord. Probeer het opnieuw!</translation>
+    </message>
+</context>
+<context>
+    <name>PipeWireVncServer</name>
+    <message>
+        <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
+        <translation>Wayland VNC-server (PipeWire/XDG Desktop Portaal)</translation>
     </message>
 </context>
 <context>
@@ -3834,11 +3893,11 @@ Sla je werk op en sluit alle programma&apos;s af.</translation>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - Veyon Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - Veyon Externe Toegang</translation>
     </message>
     <message>
         <source>%1 - %2 - Veyon Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - Veyon Externe Toegang</translation>
     </message>
 </context>
 <context>
@@ -4177,7 +4236,7 @@ Dit is meestal nodig om terminalservers te ondersteunen.</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
-        <translation type="unfinished"/>
+        <translation>Alle instellingen zijn succesvol opgeslagen. Om de wijzigingen door te voeren, moet de Veyon-service opnieuw worden gestart. Wilt u deze nu opnieuw starten?</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4337,7 +4396,7 @@ Voorbeeld: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Veyon Master – Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Master – Diavoorstelling</translation>
     </message>
 </context>
 <context>
@@ -4614,7 +4673,7 @@ Voorbeeld: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>Gast</translation>
     </message>
 </context>
 <context>
@@ -4625,7 +4684,7 @@ Voorbeeld: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Je persoonlijke instellingen konden niet worden opgeslagen! Controleer het pad naar het gebruikersconfiguratiebestand via Veyon Configurator.</translation>
     </message>
 </context>
 <context>
@@ -4788,7 +4847,7 @@ Voorbeeld: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Use custom power scheme with disabled power and sleep buttons</source>
-        <translation type="unfinished"/>
+        <translation>Gebruik een aangepast energiebeheerschema waarbij de aan/uit- en slaapknoppen zijn uitgeschakeld</translation>
     </message>
     <message>
         <source>Use input device interception driver</source>
@@ -4796,15 +4855,15 @@ Voorbeeld: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Disable touchpads and touchscreens</source>
-        <translation type="unfinished"/>
+        <translation>Touchpads en touchscreens uitschakelen</translation>
     </message>
     <message>
         <source>Disable keyboard devices</source>
-        <translation type="unfinished"/>
+        <translation>Toetsenbordapparaten uitschakelen</translation>
     </message>
     <message>
         <source>Disable mouse devices</source>
-        <translation type="unfinished"/>
+        <translation>Muisapparaten uitschakelen</translation>
     </message>
     <message>
         <source>Handling of interfering windows</source>

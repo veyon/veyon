@@ -1743,6 +1743,46 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Transferir archivo</translation>
     </message>
     <message>
+        <source>Settings</source>
+        <translation>Configuración</translation>
+    </message>
+    <message>
+        <source>Subfolder handling</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>*.* or *.docx;*.pdf (leave empty for all files)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File pattern</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Relative (Documents/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory on remote computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files in source directory only</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files in source directory and subdirectories</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collected files</source>
         <translation type="unfinished"/>
     </message>
@@ -1751,12 +1791,16 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Output directory</source>
-        <translation>Directorio de salida</translation>
-    </message>
-    <message>
         <source>Start</source>
         <translation>Iniciar</translation>
+    </message>
+    <message>
+        <source>Select destination directory</source>
+        <translation>Seleccione directorio de destino</translation>
+    </message>
+    <message>
+        <source>Open output directory</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enter collection name</source>
@@ -1941,6 +1985,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Options</source>
         <translation>Opciones</translation>
+    </message>
+    <message>
+        <source>Destination directory on remote computers:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Relative (Desktop/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -3624,6 +3676,13 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>Error de inicio de sesión con el nombre de usuario y contraseña dados. Por favor, ¡inténtelo de nuevo!</translation>
+    </message>
+</context>
+<context>
+    <name>PipeWireVncServer</name>
+    <message>
+        <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

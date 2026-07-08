@@ -1740,6 +1740,46 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Trasferimento di file</translation>
     </message>
     <message>
+        <source>Settings</source>
+        <translation>Impostazioni</translation>
+    </message>
+    <message>
+        <source>Subfolder handling</source>
+        <translation>Gestione delle sottocartelle</translation>
+    </message>
+    <message>
+        <source>*.* or *.docx;*.pdf (leave empty for all files)</source>
+        <translation>*.* o *.docx;*.pdf (lasciare vuoto per tutti i file)</translation>
+    </message>
+    <message>
+        <source>File pattern</source>
+        <translation>Modello di file</translation>
+    </message>
+    <message>
+        <source>Local destination directory</source>
+        <translation>Directory di destinazione locale</translation>
+    </message>
+    <message>
+        <source>Relative (Documents/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation>Percorso relativo (Documents/) o assoluto (/tmp/ o C:\TMP) oppure vuoto per usare la directory configurata</translation>
+    </message>
+    <message>
+        <source>Source directory on remote computers</source>
+        <translation>Directory sorgente sui computer remoti</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Predefinito</translation>
+    </message>
+    <message>
+        <source>Files in source directory only</source>
+        <translation>“Solo i file nella directory sorgente</translation>
+    </message>
+    <message>
+        <source>Files in source directory and subdirectories</source>
+        <translation>“File nella directory sorgente e nelle sottodirectory</translation>
+    </message>
+    <message>
         <source>Collected files</source>
         <translation>File raccolti</translation>
     </message>
@@ -1748,12 +1788,16 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Progresso complessivo</translation>
     </message>
     <message>
-        <source>Output directory</source>
-        <translation>Directory di output</translation>
-    </message>
-    <message>
         <source>Start</source>
         <translation>Inizio</translation>
+    </message>
+    <message>
+        <source>Select destination directory</source>
+        <translation>Indica la cartela di destinazione</translation>
+    </message>
+    <message>
+        <source>Open output directory</source>
+        <translation>Apri la directory di output</translation>
     </message>
     <message>
         <source>Enter collection name</source>
@@ -1938,6 +1982,14 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     <message>
         <source>Options</source>
         <translation>Opzioni</translation>
+    </message>
+    <message>
+        <source>Destination directory on remote computers:</source>
+        <translation>Directory di destinazione sui computer remoti:</translation>
+    </message>
+    <message>
+        <source>Relative (Desktop/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation>Relativo (Desktop/) o assoluto (/tmp/ o C:\TMP) o vuoto per la directory configurata</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -3348,7 +3400,7 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
     </message>
     <message>
         <source>Guest user identity extension</source>
-        <translation type="unfinished"/>
+        <translation>Estensione identità utente ospite</translation>
     </message>
     <message>
         <source>None</source>
@@ -3356,11 +3408,11 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>Prefisso</translation>
     </message>
     <message>
         <source>Suffix</source>
-        <translation type="unfinished"/>
+        <translation>Suffisso</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3613,6 +3665,13 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>Logon fallito con le credenziali fornite. Riprova!</translation>
+    </message>
+</context>
+<context>
+    <name>PipeWireVncServer</name>
+    <message>
+        <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
+        <translation>“Wayland VNC server (PipeWire/XDG Desktop Portal)</translation>
     </message>
 </context>
 <context>

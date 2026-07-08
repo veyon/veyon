@@ -3,7 +3,7 @@
     <name>AboutDialog</name>
     <message>
         <source>About Veyon</source>
-        <translation>حول فيون</translation>
+        <translation>حول Veyon</translation>
     </message>
     <message>
         <source>About</source>
@@ -118,7 +118,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access allowed</source>
-        <translation>حق الوصول مسموح</translation>
+        <translation>الوصول مسموح</translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
@@ -126,7 +126,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access denied</source>
-        <translation>حق الوصول ممنوع</translation>
+        <translation>الوصول ممنوع</translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
@@ -236,11 +236,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Accessing user</source>
-        <translation>مستخدم الوصول</translation>
+        <translation>المستخدم الذي يقوم بالوصول</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation>حاسوب الوصول</translation>
+        <translation>الحاسوب الذي يتم الوصول منه</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
@@ -1740,6 +1740,46 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subfolder handling</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>*.* or *.docx;*.pdf (leave empty for all files)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File pattern</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Relative (Documents/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory on remote computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>افتراضي</translation>
+    </message>
+    <message>
+        <source>Files in source directory only</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files in source directory and subdirectories</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collected files</source>
         <translation type="unfinished"/>
     </message>
@@ -1748,11 +1788,15 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Output directory</source>
-        <translation>دليل الإخراج</translation>
+        <source>Start</source>
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Start</source>
+        <source>Select destination directory</source>
+        <translation>اختيار دليل الوجهة</translation>
+    </message>
+    <message>
+        <source>Open output directory</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -1938,6 +1982,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Options</source>
         <translation>خيارات</translation>
+    </message>
+    <message>
+        <source>Destination directory on remote computers:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Relative (Desktop/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -3603,6 +3655,13 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>PipeWireVncServer</name>
+    <message>
+        <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
         <translation type="unfinished"/>
     </message>
 </context>

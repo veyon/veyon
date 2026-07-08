@@ -1740,6 +1740,46 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Dateiübertragung</translation>
     </message>
     <message>
+        <source>Settings</source>
+        <translation>Einstellungen</translation>
+    </message>
+    <message>
+        <source>Subfolder handling</source>
+        <translation>Umgang mit Unterordnern</translation>
+    </message>
+    <message>
+        <source>*.* or *.docx;*.pdf (leave empty for all files)</source>
+        <translation>*.* oder *.docx;*.pdf (leer lassen für alle Dateien)</translation>
+    </message>
+    <message>
+        <source>File pattern</source>
+        <translation>Dateimuster</translation>
+    </message>
+    <message>
+        <source>Local destination directory</source>
+        <translation>Lokales Zielverzeichnis</translation>
+    </message>
+    <message>
+        <source>Relative (Documents/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation>Relativ (Dokumente/) oder absolut (/tmp oder C:\TMP) oder leer lassen für konfiguriertes Verzeichnis</translation>
+    </message>
+    <message>
+        <source>Source directory on remote computers</source>
+        <translation>Quellverzeichnis auf Zielcomputern</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Standard</translation>
+    </message>
+    <message>
+        <source>Files in source directory only</source>
+        <translation>Nur Dateien im Quellverzeichnis</translation>
+    </message>
+    <message>
+        <source>Files in source directory and subdirectories</source>
+        <translation>Dateien im Quellverzeichnis und in den Unterverzeichnissen</translation>
+    </message>
+    <message>
         <source>Collected files</source>
         <translation>Eingesammelte Dateien</translation>
     </message>
@@ -1748,12 +1788,16 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Gesamtfortschritt</translation>
     </message>
     <message>
-        <source>Output directory</source>
-        <translation>Ausgabeverzeichnis</translation>
-    </message>
-    <message>
         <source>Start</source>
         <translation>Start</translation>
+    </message>
+    <message>
+        <source>Select destination directory</source>
+        <translation>Zielverzeichnis wählen</translation>
+    </message>
+    <message>
+        <source>Open output directory</source>
+        <translation>Ausgabeverzeichnis öffnen</translation>
     </message>
     <message>
         <source>Enter collection name</source>
@@ -1938,6 +1982,14 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
     <message>
         <source>Options</source>
         <translation>Optionen</translation>
+    </message>
+    <message>
+        <source>Destination directory on remote computers:</source>
+        <translation>Zielverzeichnis auf Zielcomputern:</translation>
+    </message>
+    <message>
+        <source>Relative (Desktop/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation>Relativ (Desktop/) oder absolut (/tmp oder C:\TMP) oder leer lassen für konfiguriertes Verzeichnis</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -3623,6 +3675,13 @@ Gedrückt halten, um die Anordnung aus einer Datei zu laden oder die aktuelle An
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>Die Anmeldung mit dem angegebenen Benutzername und Passwort ist fehlgeschlagen. Bitte versuchen Sie es erneut!</translation>
+    </message>
+</context>
+<context>
+    <name>PipeWireVncServer</name>
+    <message>
+        <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
+        <translation>Wayland-VNC-Server (Pipewire/XDG Desktop Portal)</translation>
     </message>
 </context>
 <context>

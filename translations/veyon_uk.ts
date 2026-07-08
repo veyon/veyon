@@ -1740,6 +1740,46 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Передавання файлів</translation>
     </message>
     <message>
+        <source>Settings</source>
+        <translation>Параметри</translation>
+    </message>
+    <message>
+        <source>Subfolder handling</source>
+        <translation>Обробка підтек</translation>
+    </message>
+    <message>
+        <source>*.* or *.docx;*.pdf (leave empty for all files)</source>
+        <translation>*.* або *.docx;*.pdf (не заповнюйте, якщо слід обробити усі файли)</translation>
+    </message>
+    <message>
+        <source>File pattern</source>
+        <translation>Взірець назви файла</translation>
+    </message>
+    <message>
+        <source>Local destination directory</source>
+        <translation>Локальний каталог призначення</translation>
+    </message>
+    <message>
+        <source>Relative (Documents/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation>Відносний (Documents/) або абсолютний (/tmp/ або C:\TMP) шлях чи порожнє значення для налаштованого каталогу</translation>
+    </message>
+    <message>
+        <source>Source directory on remote computers</source>
+        <translation>Початковий каталог на віддалених комп&apos;ютерах</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Типове</translation>
+    </message>
+    <message>
+        <source>Files in source directory only</source>
+        <translation>Лише файли у початковому каталозі</translation>
+    </message>
+    <message>
+        <source>Files in source directory and subdirectories</source>
+        <translation>Файли у початковому каталозі та його підкаталогах</translation>
+    </message>
+    <message>
         <source>Collected files</source>
         <translation>Зібрані файли</translation>
     </message>
@@ -1748,12 +1788,16 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Загальний поступ</translation>
     </message>
     <message>
-        <source>Output directory</source>
-        <translation>Каталог виведення</translation>
-    </message>
-    <message>
         <source>Start</source>
         <translation>Почати</translation>
+    </message>
+    <message>
+        <source>Select destination directory</source>
+        <translation>Виберіть каталог призначення</translation>
+    </message>
+    <message>
+        <source>Open output directory</source>
+        <translation>Відкрити катало виведених даних</translation>
     </message>
     <message>
         <source>Enter collection name</source>
@@ -1938,6 +1982,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Options</source>
         <translation>Параметри</translation>
+    </message>
+    <message>
+        <source>Destination directory on remote computers:</source>
+        <translation>Каталог призначення на віддалених комп&apos;ютерах:</translation>
+    </message>
+    <message>
+        <source>Relative (Desktop/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation>Відносний (Desktop/) або абсолютний (/tmp/ або C:\TMP) шлях чи порожнє значення для налаштованого каталогу</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -3360,7 +3412,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Guest user identity extension</source>
-        <translation type="unfinished"/>
+        <translation>Розширення профілю гостьового користувача</translation>
     </message>
     <message>
         <source>None</source>
@@ -3368,11 +3420,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>Префікс</translation>
     </message>
     <message>
         <source>Suffix</source>
-        <translation type="unfinished"/>
+        <translation>Суфікс</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3625,6 +3677,13 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>Не вдалося увійти на основі вказаних імені користувача і пароля. Будь ласка, повторіть спробу!</translation>
+    </message>
+</context>
+<context>
+    <name>PipeWireVncServer</name>
+    <message>
+        <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
+        <translation>Сервер VNC Wayland (Портал PipeWire/стільниці XDG)</translation>
     </message>
 </context>
 <context>

@@ -43,7 +43,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     </message>
     <message>
         <source>About Veyon %1</source>
-        <translation type="unfinished"/>
+        <translation>Veyon %1 에 대하여</translation>
     </message>
 </context>
 <context>
@@ -137,7 +137,7 @@ Veyon 번역에 관심이 있거나 번역을 개선하실 의향이 있으신 �
     <name>AccessControlProvider</name>
     <message>
         <source>Provider for access control features</source>
-        <translation type="unfinished"/>
+        <translation>접근 제어 기능을 위한 제공자</translation>
     </message>
 </context>
 <context>
@@ -1741,6 +1741,46 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>화일 전송</translation>
     </message>
     <message>
+        <source>Settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subfolder handling</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>*.* or *.docx;*.pdf (leave empty for all files)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File pattern</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Relative (Documents/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory on remote computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files in source directory only</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files in source directory and subdirectories</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collected files</source>
         <translation type="unfinished"/>
     </message>
@@ -1749,12 +1789,16 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Output directory</source>
+        <source>Start</source>
+        <translation>시작</translation>
+    </message>
+    <message>
+        <source>Select destination directory</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Start</source>
-        <translation>시작</translation>
+        <source>Open output directory</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enter collection name</source>
@@ -1941,6 +1985,14 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>옵션</translation>
     </message>
     <message>
+        <source>Destination directory on remote computers:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Relative (Desktop/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Overwrite existing files</source>
         <translation>기존 화일을 덮어 씀</translation>
     </message>
@@ -1993,7 +2045,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Received file %1.</source>
-        <translation type="unfinished"/>
+        <translation>받은 파일: %1</translation>
     </message>
     <message>
         <source>The file %1 is to be collected, but is still open in an application.</source>
@@ -3620,6 +3672,13 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>입력한 사용자이름과 패스워드로 로그온 실패. 다시 시도하세요!</translation>
+    </message>
+</context>
+<context>
+    <name>PipeWireVncServer</name>
+    <message>
+        <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

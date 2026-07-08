@@ -1164,7 +1164,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Unknown location</source>
-        <translation type="unfinished"/>
+        <translation>Emplacement inconnu</translation>
     </message>
 </context>
 <context>
@@ -1741,6 +1741,46 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Transfert de fichier</translation>
     </message>
     <message>
+        <source>Settings</source>
+        <translation>Paramètres</translation>
+    </message>
+    <message>
+        <source>Subfolder handling</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>*.* or *.docx;*.pdf (leave empty for all files)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File pattern</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Relative (Documents/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory on remote computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Par défaut</translation>
+    </message>
+    <message>
+        <source>Files in source directory only</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files in source directory and subdirectories</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collected files</source>
         <translation type="unfinished"/>
     </message>
@@ -1749,12 +1789,16 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Output directory</source>
-        <translation>Répertoire de sortie</translation>
-    </message>
-    <message>
         <source>Start</source>
         <translation>Démarrer</translation>
+    </message>
+    <message>
+        <source>Select destination directory</source>
+        <translation>Choisir un répertoire de destination</translation>
+    </message>
+    <message>
+        <source>Open output directory</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enter collection name</source>
@@ -1939,6 +1983,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Options</source>
         <translation>Options</translation>
+    </message>
+    <message>
+        <source>Destination directory on remote computers:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Relative (Desktop/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -3481,7 +3533,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Par défaut</translation>
     </message>
     <message>
         <source>Host address</source>
@@ -3622,6 +3674,13 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>La connexion a échoué avec le nom d&apos;utilisateur et le mot de passe donné. Veuillez réessayer!</translation>
+    </message>
+</context>
+<context>
+    <name>PipeWireVncServer</name>
+    <message>
+        <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4201,7 +4260,9 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
 
 Example: [^-]*-(PC[0-9]*)</source>
-        <translation type="unfinished"/>
+        <translation>Vous pouvez, si vous le souhaitez, saisir une expression régulière avec une capture afin d&apos;extraire une partie du nom de l&apos;ordinateur et de l&apos;utiliser comme nom d&apos;affichage pour celui-ci.
+
+Exemple : [^-]*-(ORD[0-9]*)</translation>
     </message>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>

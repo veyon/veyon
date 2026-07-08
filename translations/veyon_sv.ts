@@ -1743,6 +1743,46 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Filöverföring</translation>
     </message>
     <message>
+        <source>Settings</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Subfolder handling</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>*.* or *.docx;*.pdf (leave empty for all files)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File pattern</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Local destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Relative (Documents/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Source directory on remote computers</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Standard</translation>
+    </message>
+    <message>
+        <source>Files in source directory only</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Files in source directory and subdirectories</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Collected files</source>
         <translation>Insamlade filer</translation>
     </message>
@@ -1751,12 +1791,16 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Övergripande förlopp</translation>
     </message>
     <message>
-        <source>Output directory</source>
-        <translation>Utdata katalog</translation>
-    </message>
-    <message>
         <source>Start</source>
         <translation>Starta</translation>
+    </message>
+    <message>
+        <source>Select destination directory</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Open output directory</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enter collection name</source>
@@ -1941,6 +1985,14 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     <message>
         <source>Options</source>
         <translation>Alternativ</translation>
+    </message>
+    <message>
+        <source>Destination directory on remote computers:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Relative (Desktop/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -3629,6 +3681,13 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
     </message>
 </context>
 <context>
+    <name>PipeWireVncServer</name>
+    <message>
+        <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>PluginCommands</name>
     <message>
         <source>List names of all installed plugins</source>
@@ -4038,7 +4097,7 @@ Spara ditt arbete och stäng alla program.</translation>
     </message>
     <message>
         <source>Access allowed by rule &quot;%1&quot;</source>
-        <translation>Åtkomst godkänd av regel ”%1”</translation>
+        <translation>Åtkomst tillåten av regel ”%1”</translation>
     </message>
     <message>
         <source>Access denied by rule &quot;%1&quot;</source>
@@ -4046,7 +4105,7 @@ Spara ditt arbete och stäng alla program.</translation>
     </message>
     <message>
         <source>No rule allowed access</source>
-        <translation>Ingen regel godkänner åtkomst</translation>
+        <translation>Ingen regel tillåter åtkomst</translation>
     </message>
     <message>
         <source>Accessing user not member of an authorized user group</source>
