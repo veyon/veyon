@@ -27,22 +27,22 @@
 #include "LinuxInputDeviceFunctions.h"
 #include "LinuxKeyboardShortcutTrapper.h"
 
+#include <X11/XKBlib.h>
 
 LinuxInputDeviceFunctions::LinuxInputDeviceFunctions() :
 	m_isWaylandSession(qEnvironmentVariableIsSet("WAYLAND_DISPLAY"))
 {
-	if( m_isWaylandSession )
+	if (m_isWaylandSession)
 	{
 		m_inputBlockHelper = new InputBlockHelper;
 	}
 }
 
+
 LinuxInputDeviceFunctions::~LinuxInputDeviceFunctions()
 {
 	delete m_inputBlockHelper;
 }
-
-#include <X11/XKBlib.h>
 
 
 void LinuxInputDeviceFunctions::enableInputDevices()
