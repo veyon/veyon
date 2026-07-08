@@ -7,8 +7,8 @@
    <string>File transfer</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>:/filetransfer/applications-office.png</normaloff>:/filetransfer/applications-office.png</iconset>
+   <iconset resource="filetransfer.qrc">
+    <normaloff>:/filetransfer/distribute-files.png</normaloff>:/filetransfer/distribute-files.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
@@ -109,7 +109,9 @@
   <tabstop>transferAndOpenFolder</tabstop>
   <tabstop>fileListView</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="filetransfer.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>
