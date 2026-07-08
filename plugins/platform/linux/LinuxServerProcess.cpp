@@ -108,8 +108,16 @@ void LinuxServerProcess::start()
 		const auto desktopPortalHasRegistry = [this]()
 		{
 			const auto originalUserId = getuid();
-			seteuid(m_sessionUserId);
-			auto revertUserIdGuard = qScopeGuard([=]() { seteuid(originalUserId); });
+			if (seteuid(m_sessionUserId) != 0)
+			{
+				vWarning() << "failed to impersonate session user - xdg-desktop-portal version detection likely will fail";
+			}
+			const auto revertUserIdGuard = qScopeGuard([=]() {
+				if (seteuid(originalUserId) != 0)
+				{
+					vWarning() << "failed to revert session user impersonation";
+				}
+			});
 
 			// Connect to the user's session D-Bus via the known socket path to
 			// check for xdg-desktop-portal >= 1.20 (presence of the
