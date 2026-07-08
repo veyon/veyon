@@ -23,6 +23,7 @@
  */
 
 #include <QPushButton>
+#include <QScreen>
 
 #include "FileTransferController.h"
 #include "FileTransferDialog.h"
@@ -47,6 +48,10 @@ FileTransferDialog::FileTransferDialog( FileTransferController* controller, QWid
 
 	connect( m_controller, &FileTransferController::finished,
 			 this, &FileTransferDialog::finish );
+
+	const auto availableSize = screen()->availableSize();
+	move(availableSize.width() / 8, availableSize.height() / 8);
+	resize(availableSize * 3 / 4);
 }
 
 
