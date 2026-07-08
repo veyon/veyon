@@ -108,8 +108,16 @@ void LinuxServerProcess::start()
 		const auto desktopPortalHasRegistry = [this]()
 		{
 			const auto originalUserId = getuid();
-			seteuid(m_sessionUserId);
-			auto revertUserIdGuard = qScopeGuard([=]() { seteuid(originalUserId); });
+			if (seteuid(m_sessionUserId) != 0)
+			{
+				vWarning() << "failed to impersonate session user - xdg-desktop-portal version detection likely will fail";
+			}
+			const auto revertUserIdGuard = qScopeGuard([=]() {
+				if (seteuid(originalUserId) != 0)
+				{
+					vWarning() << "failed to revert session user impersonation";
+				}
+			});
 
 			// Connect to the user's session D-Bus via the known socket path to
 			// check for xdg-desktop-portal >= 1.20 (presence of the
@@ -257,9 +265,15 @@ void LinuxServerProcess::setProcessUserId()
 			// Set supplementary groups first (needs EUID=root)
 			initgroups(pw_entry->pw_name, pw_entry->pw_gid);
 			// Set primary group GID
-			setgid(pw_entry->pw_gid);
+			if (setgid(pw_entry->pw_gid) != 0)
+			{
+				vCritical() << "failed to set GID";
+			}
 		}
 		// Set UID last — after this the process has no more root privileges
-		setuid(m_sessionUserId);
+		if (setuid(m_sessionUserId) != 0)
+		{
+			vCritical() << "failed to set UID";
+		}
 	}
 }
