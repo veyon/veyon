@@ -105,6 +105,8 @@ bool FeatureWorkerManager::startManagedSystemWorker( Feature::Uid featureUid )
 		worker.process->start( VeyonCore::filesystem().workerFilePath(), { featureUid.toString() } );
 	}
 
+	worker.process->write(worker.token + '\n');
+
 	m_workersMutex.lock();
 	m_workers[featureUid] = worker;
 	m_workersMutex.unlock();
