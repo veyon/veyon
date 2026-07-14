@@ -44,4 +44,16 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 
 	add_test(NAME PipeWireVncServerTest COMMAND PipeWireVncServerTest)
 
+	add_executable(VncProtocolRobustnessTest
+		VncProtocolRobustnessTest.cpp
+	)
+
+	target_link_libraries(VncProtocolRobustnessTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+		veyon-core
+	)
+
+	add_test(NAME VncProtocolRobustnessTest COMMAND VncProtocolRobustnessTest)
+
 endif()

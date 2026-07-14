@@ -107,6 +107,8 @@ protected:
 
 private:
 	static constexpr auto MaxMessageSize = 64*1024*1024;
+	static constexpr auto MaximumFramebufferDimension = 16384;
+	static constexpr auto MaximumRectanglesPerUpdate = 16384;
 
 	bool readProtocol();
 	bool receiveSecurityTypes();

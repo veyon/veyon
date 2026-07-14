@@ -71,6 +71,7 @@
 	OP( VeyonConfiguration, VeyonCore::config(), bool, activeSessionModeEnabled, setActiveSessionModeEnabled, "ActiveSession", "Service", false, Configuration::Property::Flag::Standard )			\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, multiSessionModeEnabled, setMultiSessionModeEnabled, "MultiSession", "Service", false, Configuration::Property::Flag::Standard )			\
 	OP( VeyonConfiguration, VeyonCore::config(), int, maximumSessionCount, setMaximumSessionCount, "MaximumSessionCount", "Service", 100, Configuration::Property::Flag::Standard ) \
+	OP( VeyonConfiguration, VeyonCore::config(), int, serverConnectionLimit, setServerConnectionLimit, "ServerConnectionLimit", "Service", 128, Configuration::Property::Flag::Advanced ) \
 	OP( VeyonConfiguration, VeyonCore::config(), bool, autostartService, setServiceAutostart, "Autostart", "Service", true, Configuration::Property::Flag::Advanced )			\
 	OP( VeyonConfiguration, VeyonCore::config(), bool, clipboardSynchronizationDisabled, setClipboardSynchronizationDisabled, "ClipboardSynchronizationDisabled", "Service", false, Configuration::Property::Flag::Advanced )					\
 	OP( VeyonConfiguration, VeyonCore::config(), PlatformSessionFunctions::SessionMetaDataContent, sessionMetaDataContent, setSessionMetaDataContent, "SessionMetaDataContent", "Service", QVariant::fromValue(PlatformSessionFunctions::SessionMetaDataContent::None), Configuration::Property::Flag::Advanced )	\

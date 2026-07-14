@@ -192,6 +192,10 @@ void ComputerControlServer::showAuthenticationMessage( VncServerClient* client )
 
 			if( m_failedAuthHosts.contains( client->hostAddress() ) == false )
 			{
+				if( m_failedAuthHosts.size() >= MaximumResolvedHostNames )
+				{
+					m_failedAuthHosts.removeFirst();
+				}
 				m_failedAuthHosts += client->hostAddress();
 
 				const auto fqdn = HostAddress( client->hostAddress() ).tryConvert( HostAddress::Type::FullyQualifiedDomainName );
@@ -239,6 +243,10 @@ void ComputerControlServer::showAccessControlMessage( VncServerClient* client )
 
 			if( m_failedAccessControlHosts.contains( client->hostAddress() ) == false )
 			{
+				if( m_failedAccessControlHosts.size() >= MaximumResolvedHostNames )
+				{
+					m_failedAccessControlHosts.removeFirst();
+				}
 				m_failedAccessControlHosts += client->hostAddress();
 
 				const auto fqdn = HostAddress( client->hostAddress() ).tryConvert( HostAddress::Type::FullyQualifiedDomainName );
@@ -256,22 +264,37 @@ void ComputerControlServer::showAccessControlMessage( VncServerClient* client )
 
 
 
-QFutureWatcher<void>* ComputerControlServer::resolveFQDNs( const QStringList& hosts )
+QFutureWatcher<QMap<QString, QString>>* ComputerControlServer::resolveFQDNs( const QStringList& hosts )
 {
-	auto watcher = new QFutureWatcher<void>();
+	auto watcher = new QFutureWatcher<QMap<QString, QString>>(this);
 
-	watcher->setFuture( QtConcurrent::run( [this, hosts]() {
+	watcher->setFuture( QtConcurrent::run( [hosts]() {
+		QMap<QString, QString> resolvedHostNames;
 		for( const auto& host : hosts )
 		{
-			const auto fqdn = HostAddress( host ).tryConvert( HostAddress::Type::FullyQualifiedDomainName );
-
-			m_dataMutex.lock();
-			m_resolvedHostNames[host] = fqdn;
-			m_dataMutex.unlock();
+			resolvedHostNames[host] = HostAddress(host).tryConvert(HostAddress::Type::FullyQualifiedDomainName);
 		}
+		return resolvedHostNames;
 	} ) );
 
-	connect( watcher, &QFutureWatcher<void>::finished, watcher, &QObject::deleteLater );
+	connect(watcher, &QFutureWatcher<QMap<QString, QString>>::finished, this, [this, watcher, hosts]() {
+		QMutexLocker locker(&m_dataMutex);
+		for( const auto& host : hosts )
+		{
+			m_pendingHostResolutions.remove(host);
+		}
+		const auto resolvedHostNames = watcher->result();
+		for( auto it = resolvedHostNames.constBegin(); it != resolvedHostNames.constEnd(); ++it )
+		{
+			while( m_resolvedHostNames.size() >= MaximumResolvedHostNames &&
+				m_resolvedHostNames.contains(it.key()) == false )
+			{
+				m_resolvedHostNames.erase(m_resolvedHostNames.begin());
+			}
+			m_resolvedHostNames[it.key()] = it.value();
+		}
+	});
+	connect( watcher, &QFutureWatcher<QMap<QString, QString>>::finished, watcher, &QObject::deleteLater );
 
 	return watcher;
 }
@@ -307,7 +330,11 @@ void ComputerControlServer::updateTrayIconToolTip()
 		const auto clientIpAddress = client->proxyClientSocket()->peerAddress().toString();
 		if( m_resolvedHostNames.contains( clientIpAddress ) == false )
 		{
-			hostsToResolve.append( clientIpAddress );
+			if( m_pendingHostResolutions.contains(clientIpAddress) == false )
+			{
+				m_pendingHostResolutions.insert(clientIpAddress);
+				hostsToResolve.append(clientIpAddress);
+			}
 			clients.append( clientIpAddress );
 		}
 		else
@@ -319,7 +346,8 @@ void ComputerControlServer::updateTrayIconToolTip()
 	if( hostsToResolve.isEmpty() == false )
 	{
 		auto watcher = resolveFQDNs( hostsToResolve );
-		connect( watcher, &QFutureWatcher<void>::finished, this, &ComputerControlServer::updateTrayIconToolTip );
+		connect( watcher, &QFutureWatcher<QMap<QString, QString>>::finished,
+				 this, &ComputerControlServer::updateTrayIconToolTip );
 	}
 
 	if( clients.isEmpty() == false )

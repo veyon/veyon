@@ -242,7 +242,8 @@ bool VncClientProtocol::receiveMessage()
 
 bool VncClientProtocol::readProtocol()
 {
-	if( m_socket->bytesAvailable() == sz_rfbProtocolVersionMsg )
+	// More protocol data may already be queued when TCP combines packets.
+	if( m_socket->bytesAvailable() >= sz_rfbProtocolVersionMsg )
 	{
 		const auto protocol = m_socket->read( sz_rfbProtocolVersionMsg );
 
@@ -281,11 +282,14 @@ bool VncClientProtocol::readProtocol()
 
 bool VncClientProtocol::receiveSecurityTypes()
 {
-	if( m_socket->bytesAvailable() >= 2 )
+	if( m_socket->bytesAvailable() >= 1 )
 	{
 		uint8_t securityTypeCount = 0;
-
-		m_socket->read( reinterpret_cast<char *>( &securityTypeCount ), sizeof(securityTypeCount) );
+		if( m_socket->peek(reinterpret_cast<char *>(&securityTypeCount), sizeof(securityTypeCount)) !=
+			sizeof(securityTypeCount) )
+		{
+			return false;
+		}
 
 		if( securityTypeCount == 0 )
 		{
@@ -294,6 +298,12 @@ bool VncClientProtocol::receiveSecurityTypes()
 
 			return false;
 		}
+		if( m_socket->bytesAvailable() < qint64(sizeof(securityTypeCount)) + securityTypeCount )
+		{
+			return false;
+		}
+
+		m_socket->read( reinterpret_cast<char *>( &securityTypeCount ), sizeof(securityTypeCount) );
 
 		const auto securityTypeList = m_socket->read( securityTypeCount );
 		if( securityTypeList.size() != securityTypeCount )
@@ -411,14 +421,36 @@ bool VncClientProtocol::receiveServerInitMessage()
 		m_pixelFormat.redMax = qFromBigEndian(m_pixelFormat.redMax);
 		m_pixelFormat.greenMax = qFromBigEndian(m_pixelFormat.greenMax);
 		m_pixelFormat.blueMax = qFromBigEndian(m_pixelFormat.blueMax);
-
-		if( static_cast<uint32_t>( m_socket->peek( nameLength ).size() ) == nameLength )
+		if( (m_pixelFormat.bitsPerPixel != 8 && m_pixelFormat.bitsPerPixel != 16 && m_pixelFormat.bitsPerPixel != 32) ||
+			m_pixelFormat.depth == 0 || m_pixelFormat.depth > m_pixelFormat.bitsPerPixel )
 		{
-			m_serverInitMessage = m_socket->read( sz_rfbServerInitMsg + nameLength );
+			vCritical() << "invalid server pixel format" << m_pixelFormat.bitsPerPixel << m_pixelFormat.depth;
+			m_socket->close();
+			return false;
+		}
+
+		const auto totalMessageSize = qint64(sz_rfbServerInitMsg) + nameLength;
+		if( totalMessageSize <= MaxMessageSize && m_socket->bytesAvailable() >= totalMessageSize )
+		{
+			m_serverInitMessage = m_socket->read(totalMessageSize);
+			if( m_serverInitMessage.size() != totalMessageSize )
+			{
+				m_serverInitMessage.clear();
+				return false;
+			}
 
 			const auto serverInitMessage = reinterpret_cast<const rfbServerInitMsg *>( m_serverInitMessage.constData() );
 			m_framebufferWidth = qFromBigEndian( serverInitMessage->framebufferWidth );
 			m_framebufferHeight = qFromBigEndian( serverInitMessage->framebufferHeight );
+			if( m_framebufferWidth == 0 || m_framebufferHeight == 0 ||
+				m_framebufferWidth > MaximumFramebufferDimension ||
+				m_framebufferHeight > MaximumFramebufferDimension )
+			{
+				vCritical() << "invalid framebuffer size" << m_framebufferWidth << m_framebufferHeight;
+				m_serverInitMessage.clear();
+				m_socket->close();
+				return false;
+			}
 
 			m_state = Running;
 
@@ -448,6 +480,12 @@ bool VncClientProtocol::receiveFramebufferUpdateMessage()
 	QRegion updatedRegion;
 
 	const auto nRects = qFromBigEndian( message.nRects );
+	if( nRects > MaximumRectanglesPerUpdate )
+	{
+		vCritical() << "too many rectangles in framebuffer update" << nRects;
+		m_socket->close();
+		return false;
+	}
 
 	for( int i = 0; i < nRects; ++i )
 	{
@@ -466,6 +504,14 @@ bool VncClientProtocol::receiveFramebufferUpdateMessage()
 		if( rectHeader.encoding == rfbEncodingLastRect )
 		{
 			break;
+		}
+		if( isPseudoEncoding(rectHeader) == false &&
+			(quint32(rectHeader.r.x) + rectHeader.r.w > m_framebufferWidth ||
+			 quint32(rectHeader.r.y) + rectHeader.r.h > m_framebufferHeight) )
+		{
+			vCritical() << "framebuffer update rectangle outside framebuffer";
+			m_socket->close();
+			return false;
 		}
 
 		if( handleRect( buffer, rectHeader ) == false )
@@ -518,7 +564,15 @@ bool VncClientProtocol::receiveCutTextMessage()
 		return false;
 	}
 
-	return readMessage( sz_rfbServerCutTextMsg + static_cast<int>( qFromBigEndian( message.length ) ) );
+	const auto textLength = qFromBigEndian(message.length);
+	if( textLength > static_cast<uint32_t>(MaxMessageSize - sz_rfbServerCutTextMsg) )
+	{
+		vCritical() << "server cut text message too large" << textLength;
+		m_socket->close();
+		return false;
+	}
+
+	return readMessage(sz_rfbServerCutTextMsg + static_cast<int>(textLength));
 }
 
 
@@ -557,6 +611,13 @@ bool VncClientProtocol::receiveXvpMessage()
 
 bool VncClientProtocol::readMessage( int size )
 {
+	if( size < 0 || size > MaxMessageSize )
+	{
+		vCritical() << "invalid RFB message size" << size;
+		m_socket->close();
+		return false;
+	}
+
 	if( m_socket->bytesAvailable() < size )
 	{
 		return false;
@@ -590,14 +651,23 @@ bool VncClientProtocol::handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHea
 		return true;
 
 	case rfbEncodingXCursor:
+	{
+		const auto dataSize = quint64(2) * bytesPerRow * height;
 		return width * height == 0 ||
-				( buffer.read( sz_rfbXCursorColors ).size() == sz_rfbXCursorColors &&
-				  buffer.read( size_t(2) * bytesPerRow * height ).size() == static_cast<int>( 2 * bytesPerRow * height ) );
+				(dataSize + sz_rfbXCursorColors <= MaxMessageSize &&
+				 buffer.read(sz_rfbXCursorColors).size() == sz_rfbXCursorColors &&
+				 buffer.read(static_cast<qint64>(dataSize)).size() == static_cast<qint64>(dataSize));
+	}
 
 	case rfbEncodingRichCursor:
+	{
+		const auto pixelBytes = quint64(width) * height * bytesPerPixel;
+		const auto maskBytes = quint64(bytesPerRow) * height;
 		return width * height == 0 ||
-				( buffer.read( size_t(width) * height * bytesPerPixel ).size() == static_cast<int>( width * height * bytesPerPixel ) &&
-				  buffer.read( size_t(bytesPerRow) * height ).size() == static_cast<int>( bytesPerRow * height ) );
+				(pixelBytes + maskBytes <= MaxMessageSize &&
+				 buffer.read(static_cast<qint64>(pixelBytes)).size() == static_cast<qint64>(pixelBytes) &&
+				 buffer.read(static_cast<qint64>(maskBytes)).size() == static_cast<qint64>(maskBytes));
+	}
 
 	case rfbEncodingSupportedMessages:
 		return buffer.read( sz_rfbSupportedMessages ).size() == sz_rfbSupportedMessages;
@@ -608,7 +678,11 @@ bool VncClientProtocol::handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHea
 		return buffer.read( width ).size() == static_cast<int>( width );
 
 	case rfbEncodingRaw:
-		return buffer.read( size_t(width) * height * bytesPerPixel ).size() == static_cast<int>( width * height * bytesPerPixel );
+	{
+		const auto dataSize = quint64(width) * height * bytesPerPixel;
+		return dataSize <= MaxMessageSize &&
+			buffer.read(static_cast<qint64>(dataSize)).size() == static_cast<qint64>(dataSize);
+	}
 
 	case rfbEncodingCopyRect:
 		return buffer.read( sz_rfbCopyRect ).size() == sz_rfbCopyRect;
@@ -663,10 +737,11 @@ bool VncClientProtocol::handleRectEncodingRRE( QBuffer& buffer, uint bytesPerPix
 		return false;
 	}
 
-	const auto rectDataSize = qFromBigEndian( hdr.nSubrects ) * ( bytesPerPixel + sz_rfbRectangle );
-	const auto totalDataSize = static_cast<int>( bytesPerPixel + rectDataSize );
+	const auto rectDataSize = quint64(qFromBigEndian(hdr.nSubrects)) * (bytesPerPixel + sz_rfbRectangle);
+	const auto totalDataSize = quint64(bytesPerPixel) + rectDataSize;
 
-	return totalDataSize < MaxMessageSize && buffer.read( totalDataSize ).size() == totalDataSize;
+	return totalDataSize < MaxMessageSize &&
+		buffer.read(static_cast<qint64>(totalDataSize)).size() == static_cast<qint64>(totalDataSize);
 }
 
 
@@ -680,10 +755,11 @@ bool VncClientProtocol::handleRectEncodingCoRRE( QBuffer& buffer, uint bytesPerP
 		return false;
 	}
 
-	const auto rectDataSize = qFromBigEndian( hdr.nSubrects ) * ( bytesPerPixel + 4 );
-	const auto totalDataSize = static_cast<int>( bytesPerPixel + rectDataSize );
+	const auto rectDataSize = quint64(qFromBigEndian(hdr.nSubrects)) * (bytesPerPixel + 4);
+	const auto totalDataSize = quint64(bytesPerPixel) + rectDataSize;
 
-	return totalDataSize < MaxMessageSize && buffer.read( totalDataSize ).size() == totalDataSize;
+	return totalDataSize < MaxMessageSize &&
+		buffer.read(static_cast<qint64>(totalDataSize)).size() == static_cast<qint64>(totalDataSize);
 
 }
 

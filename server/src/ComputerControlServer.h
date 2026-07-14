@@ -24,7 +24,9 @@
 
 #pragma once
 
+#include <QMap>
 #include <QMutex>
+#include <QSet>
 #include <QtConcurrent>
 
 #include "FeatureWorkerManager.h"
@@ -82,7 +84,7 @@ private:
 	void checkForIncompleteAuthentication( VncServerClient* client );
 	void showAuthenticationMessage( VncServerClient* client );
 	void showAccessControlMessage( VncServerClient* client );
-	QFutureWatcher<void>* resolveFQDNs( const QStringList& hosts );
+	QFutureWatcher<QMap<QString, QString>>* resolveFQDNs( const QStringList& hosts );
 
 	void sendAsyncFeatureMessages(VncProxyConnection* connection);
 	void updateTrayIconToolTip();
@@ -91,6 +93,8 @@ private:
 	QStringList m_allowedIPs;
 
 	QMap<QString, QString> m_resolvedHostNames;
+	QSet<QString> m_pendingHostResolutions;
+	static constexpr auto MaximumResolvedHostNames = 1024;
 
 	QStringList m_failedAuthHosts;
 	QStringList m_failedAccessControlHosts;

@@ -193,6 +193,12 @@ VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthenticati
 		auto privateKey = client->privateKey();
 
 		CryptoCore::SecureArray encryptedPassword( message.read().toByteArray() ); // Flawfinder: ignore
+		constexpr auto MaxEncryptedPasswordSize = 8192;
+		if( encryptedPassword.isEmpty() || encryptedPassword.size() > MaxEncryptedPasswordSize )
+		{
+			vWarning() << "invalid encrypted password size" << encryptedPassword.size();
+			return VncServerClient::AuthState::Failed;
+		}
 
 		CryptoCore::SecureArray decryptedPassword;
 

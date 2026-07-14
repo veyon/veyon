@@ -23,6 +23,7 @@
  */
 
 #include <QTcpSocket>
+#include <cstring>
 
 #include "VeyonCore.h"
 #include "ComputerControlClient.h"
@@ -79,9 +80,14 @@ bool ComputerControlClient::receiveClientMessage()
 		}
 
 		const auto messageData = socket->read(sz_rfbFramebufferUpdateRequestMsg);
-		const auto updateRequestMessage = reinterpret_cast<const rfbFramebufferUpdateRequestMsg *>(messageData.constData());
+		if( messageData.size() != sz_rfbFramebufferUpdateRequestMsg )
+		{
+			return false;
+		}
+		rfbFramebufferUpdateRequestMsg updateRequestMessage{};
+		std::memcpy(&updateRequestMessage, messageData.constData(), sz_rfbFramebufferUpdateRequestMsg);
 
-		if (updateRequestMessage->incremental &&
+		if (updateRequestMessage.incremental &&
 			m_framebufferUpdateTimer.hasExpired(m_minimumFramebufferUpdateInterval) == false)
 		{
 			// discard update request

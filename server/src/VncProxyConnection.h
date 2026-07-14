@@ -25,6 +25,7 @@
 #pragma once
 
 #include <QObject>
+#include <QTimer>
 
 class QBuffer;
 class QTcpSocket;
@@ -73,12 +74,22 @@ protected:
 	virtual VncServerProtocol& serverProtocol() = 0;
 
 private:
+	void updateHandshakeState();
+
+	static constexpr auto HandshakeTimeout = 30000;
+	static constexpr auto MaximumReadBufferSize = 64 * 1024 * 1024;
+	static constexpr auto MaximumPendingWriteSize = 64 * 1024 * 1024;
+
 	const int m_vncServerPort;
 
 	QTcpSocket* m_proxyClientSocket;
 	QTcpSocket* m_vncServerSocket;
 
 	const QMap<int, int> m_rfbClientToServerMessageSizes;
+	QTimer m_clientRetryTimer{this};
+	QTimer m_serverRetryTimer{this};
+	QTimer m_handshakeTimer{this};
+	QByteArray m_pendingClientData{};
 
 Q_SIGNALS:
 	void clientConnectionClosed();

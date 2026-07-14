@@ -128,7 +128,8 @@ void VncServerProtocol::setState( VncServerProtocol::State state )
 
 bool VncServerProtocol::readProtocol()
 {
-	if( m_socket->bytesAvailable() == sz_rfbProtocolVersionMsg )
+	// More protocol data may already be queued when TCP combines packets.
+	if( m_socket->bytesAvailable() >= sz_rfbProtocolVersionMsg )
 	{
 		const auto protocol = m_socket->read( sz_rfbProtocolVersionMsg );
 
@@ -140,7 +141,9 @@ bool VncServerProtocol::readProtocol()
 		}
 
 		static const QRegularExpression rfbRX{QStringLiteral("RFB (\\d\\d\\d)\\.(\\d\\d\\d)\n")};
-		if (rfbRX.match(QString::fromUtf8(protocol)).hasMatch() == false)
+		const auto match = rfbRX.match(QString::fromUtf8(protocol));
+		if( match.hasMatch() == false || match.captured(1).toInt() != 3 ||
+			match.captured(2).toInt() < 7 || match.captured(2).toInt() > 8 )
 		{
 			vCritical() << "invalid protocol version";
 			m_socket->close();

@@ -42,11 +42,15 @@ VariantArrayMessage::VariantArrayMessage( QIODevice* ioDevice ) :
 
 bool VariantArrayMessage::send()
 {
-	const auto messageSize = qToBigEndian<MessageSize>( static_cast<MessageSize>( m_buffer.size() ) );
-	m_ioDevice->write( reinterpret_cast<const char *>( &messageSize ), sizeof(messageSize) );
-	m_ioDevice->write( m_buffer.data() );
+	if( m_buffer.size() > MaxMessageSize )
+	{
+		vCritical() << "refusing to send oversized variant message" << m_buffer.size();
+		return false;
+	}
 
-	return true;
+	const auto messageSize = qToBigEndian<MessageSize>( static_cast<MessageSize>( m_buffer.size() ) );
+	return m_ioDevice->write(reinterpret_cast<const char *>(&messageSize), sizeof(messageSize)) == sizeof(messageSize) &&
+		m_ioDevice->write(m_buffer.data()) == m_buffer.size();
 }
 
 
@@ -58,8 +62,14 @@ bool VariantArrayMessage::isReadyForReceive()
 	if( m_ioDevice->peek( reinterpret_cast<char *>( &messageSize ), sizeof(messageSize) ) == sizeof(messageSize) )
 	{
 		messageSize = qFromBigEndian(messageSize);
+		if( messageSize > MaxMessageSize )
+		{
+			vWarning() << "invalid variant message size" << messageSize;
+			m_ioDevice->close();
+			return false;
+		}
 
-		return m_ioDevice->bytesAvailable() >= static_cast<MessageSize>( sizeof(messageSize) + messageSize );
+		return m_ioDevice->bytesAvailable() >= qint64(sizeof(messageSize)) + messageSize;
 	}
 
 	return false;
@@ -81,6 +91,7 @@ bool VariantArrayMessage::receive()
 	if( messageSize > MaxMessageSize )
 	{
 		vDebug() << "invalid message size" << messageSize;
+		m_ioDevice->close();
 		return false;
 	}
 

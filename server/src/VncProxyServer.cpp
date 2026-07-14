@@ -58,6 +58,12 @@ VncProxyServer::~VncProxyServer()
 
 bool VncProxyServer::start( int vncServerPort, const Password& vncServerPassword )
 {
+	if( m_server->isListening() )
+	{
+		vWarning() << "VNC proxy server is already listening";
+		return false;
+	}
+
 	m_vncServerPort = vncServerPort;
 	m_vncServerPassword = vncServerPassword;
 
@@ -76,49 +82,74 @@ bool VncProxyServer::start( int vncServerPort, const Password& vncServerPassword
 
 void VncProxyServer::stop()
 {
+	if( m_server )
+	{
+		m_server->close();
+	}
+
 	for( auto connection : std::as_const( m_connections ) )
 	{
 		delete connection;
 	}
 
 	m_connections.clear();
-
-	delete m_server;
-	m_server = nullptr;
 }
 
 
 
 void VncProxyServer::acceptConnection()
 {
-	auto clientSocket = m_server->nextPendingConnection();
-	if( clientSocket == nullptr )
+	while( m_server->hasPendingConnections() )
 	{
-		vCritical() << "ignoring invalid client socket";
-		return;
-	}
+		auto clientSocket = m_server->nextPendingConnection();
+		if( clientSocket == nullptr )
+		{
+			vCritical() << "ignoring invalid client socket";
+			continue;
+		}
 
-	auto connection = m_connectionFactory->createVncProxyConnection( clientSocket,
-																	 m_vncServerPort,
-																	 m_vncServerPassword,
-																	 this );
+		const auto connectionLimit = qMax(1, VeyonCore::config().serverConnectionLimit());
+		if( m_connections.size() >= connectionLimit )
+		{
+			vWarning() << "rejecting connection from" << clientSocket->peerAddress().toString()
+					   << "because the connection limit of" << connectionLimit << "has been reached";
+			clientSocket->abort();
+			clientSocket->deleteLater();
+			continue;
+		}
 
-	connect(connection, &VncProxyConnection::serverMessageProcessed, this,
+		auto connection = m_connectionFactory->createVncProxyConnection( clientSocket,
+														 m_vncServerPort,
+														 m_vncServerPassword,
+														 this );
+		if( connection == nullptr )
+		{
+			vCritical() << "connection factory returned no VNC proxy connection";
+			clientSocket->abort();
+			clientSocket->deleteLater();
+			continue;
+		}
+
+		connect(connection, &VncProxyConnection::serverMessageProcessed, this,
 			[=, this]() { Q_EMIT serverMessageProcessed(connection); }, Qt::DirectConnection);
 
-	connect(connection, &VncProxyConnection::clientConnectionClosed, this, [=, this]() { closeConnection(connection); });
-	connect(connection, &VncProxyConnection::serverConnectionClosed, this, [=, this]() { closeConnection(connection); });
+		connect(connection, &VncProxyConnection::clientConnectionClosed, this, [=, this]() { closeConnection(connection); });
+		connect(connection, &VncProxyConnection::serverConnectionClosed, this, [=, this]() { closeConnection(connection); });
 
-	connection->start();
+		m_connections += connection;
 
-	m_connections += connection;
+		connection->start();
+	}
 }
 
 
 
 void VncProxyServer::closeConnection( VncProxyConnection* connection )
 {
-	m_connections.removeAll( connection );
+	if( m_connections.removeAll(connection) == 0 )
+	{
+		return;
+	}
 
 	Q_EMIT connectionClosed( connection );
 
