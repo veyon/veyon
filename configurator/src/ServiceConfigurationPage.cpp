@@ -45,6 +45,7 @@ ServiceConfigurationPage::ServiceConfigurationPage() :
 	Configuration::UiMapping::setFlags(ui->networkPortNumbersGroupBox, Configuration::Property::Flag::Advanced);
 	Configuration::UiMapping::setFlags(ui->miscSettingsGroupBox, Configuration::Property::Flag::Advanced);
 	Configuration::UiMapping::setFlags(ui->sessionMetaDataGroupBox, Configuration::Property::Flag::Advanced);
+	Configuration::UiMapping::setFlags(ui->serverConnectionLimitLabel, Configuration::Property::Flag::Advanced);
 
 	updateServiceControl();
 	populateVncServerPluginComboBox();

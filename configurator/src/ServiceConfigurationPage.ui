@@ -32,6 +32,26 @@
         </property>
        </widget>
       </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="serverConnectionLimitLabel">
+        <property name="text">
+         <string>Maximum simultaneous server connections</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QSpinBox" name="serverConnectionLimit">
+        <property name="toolTip">
+         <string>Limits simultaneous remote connections to protect the server against resource exhaustion.</string>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>10000</number>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="0" colspan="2">
        <widget class="QCheckBox" name="isTrayIconHidden">
         <property name="text">
@@ -423,6 +443,7 @@ Example: [^-]*-(PC[0-9]*)</string>
   <tabstop>activeSessionModeEnabled</tabstop>
   <tabstop>multiSessionModeEnabled</tabstop>
   <tabstop>maximumSessionCount</tabstop>
+  <tabstop>serverConnectionLimit</tabstop>
   <tabstop>veyonServerPort</tabstop>
   <tabstop>vncServerPort</tabstop>
   <tabstop>featureWorkerManagerPort</tabstop>
