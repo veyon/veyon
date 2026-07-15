@@ -56,6 +56,11 @@ public:
 		return m_lockable;
 	}
 
+	explicit operator bool() const
+	{
+		return static_cast<bool>( m_lockable );
+	}
+
 private:
 	T m_lockable;
 };

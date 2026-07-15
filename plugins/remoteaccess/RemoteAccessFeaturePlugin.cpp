@@ -214,6 +214,11 @@ bool RemoteAccessFeaturePlugin::handleFeatureMessage(VeyonWorkerInterface &worke
 void RemoteAccessFeaturePlugin::sendAsyncFeatureMessages(VeyonServerInterface& server,
 														 const MessageContext& messageContext)
 {
+	if( messageContext.ioDevice() == nullptr )
+	{
+		return;
+	}
+
 	const auto clipboardDataVersion = messageContext.ioDevice()->property(clipboardDataVersionProperty()).toInt();
 
 	if (m_clipboardSynchronizationDisabled == false && clipboardDataVersion != m_clipboardDataVersion)
