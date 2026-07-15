@@ -228,6 +228,12 @@ bool VncProxyConnection::receiveClientMessage()
 			if (socket->peek(reinterpret_cast<char *>(&setPixelFormatMessage), sz_rfbSetPixelFormatMsg) == sz_rfbSetPixelFormatMsg)
 			{
 				auto format = setPixelFormatMessage.format;
+				if( ( format.bitsPerPixel != 8 && format.bitsPerPixel != 16 && format.bitsPerPixel != 32 ) ||
+					format.depth > format.bitsPerPixel )
+				{
+					vCritical() << "rejecting invalid pixel format" << format.bitsPerPixel << format.depth;
+					return false;
+				}
 				format.redMax = qFromBigEndian(format.redMax);
 				format.greenMax = qFromBigEndian(format.greenMax);
 				format.blueMax = qFromBigEndian(format.blueMax);
