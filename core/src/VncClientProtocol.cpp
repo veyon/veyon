@@ -480,7 +480,13 @@ bool VncClientProtocol::receiveFramebufferUpdateMessage()
 	QRegion updatedRegion;
 
 	const auto nRects = qFromBigEndian( message.nRects );
-	if( nRects > MaximumRectanglesPerUpdate )
+	// 0xFFFF = sentinelle LastRect (extension RFB de streaming) : le nombre reel de
+	// rectangles est inconnu, la boucle se termine sur le pseudo-rectangle
+	// rfbEncodingLastRect ci-dessous. UltraVNC (serveur builtin Veyon) l'envoie des
+	// que le client annonce l'encoding LastRect -> il faut l'exempter du plafond
+	// anti-DoS, sinon chaque FramebufferUpdate est rejete, la socket fermee, et la
+	// vignette/prise de main reste noire (regression du durcissement parsing VNC).
+	if( nRects != 0xFFFF && nRects > MaximumRectanglesPerUpdate )
 	{
 		vCritical() << "too many rectangles in framebuffer update" << nRects;
 		m_socket->close();
