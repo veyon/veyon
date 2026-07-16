@@ -111,11 +111,22 @@ void BuiltinDirectoryConfigurationPage::updateLocation()
 
 void BuiltinDirectoryConfigurationPage::removeLocation()
 {
+	auto currentRow = ui->locationTableWidget->currentRow();
+
 	ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
 	objectManager.remove( currentLocationObject().uid(), true );
 	m_configuration.setNetworkObjects( objectManager.objects() );
 
 	populateLocations();
+
+	if( currentRow > 0 )
+	{
+		ui->locationTableWidget->setCurrentCell( currentRow-1, 0 );
+	}
+	else if ( ui->locationTableWidget->rowCount() > 0 )
+	{
+		ui->locationTableWidget->setCurrentCell( currentRow, 0 );
+	}
 }
 
 
@@ -253,6 +264,9 @@ void BuiltinDirectoryConfigurationPage::populateLocations()
 {
 	ui->locationTableWidget->setUpdatesEnabled( false );
 	ui->locationTableWidget->clear();
+	ui->locationTableWidget->setRowCount( 0 );
+
+	ui->addComputerButton->setEnabled( false );
 
 	int rowCount = 0;
 
@@ -270,6 +284,9 @@ void BuiltinDirectoryConfigurationPage::populateLocations()
 	}
 
 	ui->locationTableWidget->setUpdatesEnabled( true );
+
+	if( rowCount > 0 )
+		ui->addComputerButton->setEnabled( true );
 }
 
 
@@ -304,6 +321,8 @@ void BuiltinDirectoryConfigurationPage::populateComputers()
 	}
 
 	ui->computerTableWidget->setUpdatesEnabled( true );
+
+	ui->addComputerButton->setEnabled( currentLocationObject().uid().isNull() == false );
 }
 
 
