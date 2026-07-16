@@ -267,6 +267,7 @@ void BuiltinDirectoryConfigurationPage::populateLocations()
 {
 	ui->locationTableWidget->setUpdatesEnabled( false );
 	ui->locationTableWidget->clear();
+	ui->locationTableWidget->setRowCount( 0 );
 
 	ui->addComputerButton->setEnabled( false );
 
@@ -325,6 +326,8 @@ void BuiltinDirectoryConfigurationPage::populateComputers()
 	}
 
 	ui->computerTableWidget->setUpdatesEnabled( true );
+
+	ui->addComputerButton->setEnabled( currentLocationObject().uid().isNull() == false );
 }
 
 
