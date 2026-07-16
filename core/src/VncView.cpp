@@ -259,7 +259,7 @@ QRect VncView::mapFromFramebuffer( QRect r )
 
 
 
-void VncView::updateCursorShape( const QPixmap& cursorShape, int xh, int yh )
+void VncView::updateCursorShape( const QImage& cursorShape, int xh, int yh )
 {
 	const auto scale = scaleFactor();
 
@@ -690,7 +690,7 @@ void VncView::updateLocalCursor()
 {
 	if( m_cursorShape.isNull() == false && viewOnly() == false )
 	{
-		setViewCursor( QCursor( m_cursorShape, m_cursorHot.x(), m_cursorHot.y() ) );
+		setViewCursor( QCursor( QPixmap::fromImage( m_cursorShape ), m_cursorHot.x(), m_cursorHot.y() ) );
 	}
 	else
 	{

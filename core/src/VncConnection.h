@@ -162,7 +162,7 @@ Q_SIGNALS:
 	void framebufferUpdateComplete();
 	void framebufferSizeChanged( int w, int h );
 	void cursorPosChanged( int x, int y );
-	void cursorShapeUpdated( const QPixmap& cursorShape, int xh, int yh );
+	void cursorShapeUpdated( const QImage& cursorShape, int xh, int yh );
 	void gotCut( const QString& text );
 	void stateChanged();
 
