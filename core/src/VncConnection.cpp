@@ -824,7 +824,8 @@ void VncConnection::updateEncodingSettingsFromQuality()
 											"zrle ultra copyrect hextile zlib corre rre raw" :
 											"tight zywrle zrle ultra";
 
-	m_client->appData.compressLevel = 9;
+	m_client->appData.compressLevel =
+		m_quality == VncConnectionConfiguration::Quality::Highest ? 1 : 9;
 
 	m_client->appData.qualityLevel = [this] {
 		switch(m_quality)
