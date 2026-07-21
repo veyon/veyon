@@ -90,10 +90,12 @@ private:
 	QTimer m_serverRetryTimer{this};
 	QTimer m_handshakeTimer{this};
 	QByteArray m_pendingClientData{};
+	bool m_connectionEstablishedEmitted{false};
 
 Q_SIGNALS:
 	void clientConnectionClosed();
 	void serverConnectionClosed();
 	void serverMessageProcessed();
+	void connectionEstablished();
 
 } ;

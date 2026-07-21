@@ -367,5 +367,11 @@ void VncProxyConnection::updateHandshakeState()
 		clientProtocol().state() == VncClientProtocol::Running )
 	{
 		m_handshakeTimer.stop();
+
+		if (m_connectionEstablishedEmitted == false)
+		{
+			m_connectionEstablishedEmitted = true;
+			Q_EMIT connectionEstablished();
+		}
 	}
 }
