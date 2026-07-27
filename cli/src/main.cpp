@@ -138,8 +138,6 @@ int main( int argc, char **argv )
 				runResult = CommandLinePluginInterface::NotEnoughArguments;
 			}
 
-			delete core;
-			delete app;
 
 			switch( runResult )
 			{
