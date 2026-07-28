@@ -1,47 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ja">
+<TS version="2.1" language="ja_JP">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About Veyon</source>
-        <translation>Veyonについて</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About</source>
-        <translation>詳細</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>バージョン:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation>ウェブサイト:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation>寄付してVeyonプロジェクトを支援する</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation>貢献者</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation>翻訳</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>現在の言語(または現地の英語)は翻訳されていません。
-
-この言語への翻訳や既存の翻訳の改善に興味がある方はVeyonの開発者に連絡してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>License</source>
-        <translation>ライセンス</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About Veyon %1</source>
@@ -71,87 +69,87 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation>コンピューターアクセスコントロール</translation>
-    </message>
-    <message>
-        <source>Restrict access to members of specific user groups</source>
-        <translation>特定のグループのメンバーのアクセスを制限する</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>テスト</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation>アクセスコントロールのルールを処理</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation>すべての認証されたユーザーにアクセスを許可（デフォルト）</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restrict access to members of specific user groups</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation>コンピューターへのアクセスを許可されたユーザーグループ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation>あなたのVeyonネットワーク上のコンピューターにアクセスすることを許可するメンバーのグループを追加してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation>認証されたユーザーグループ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation>すべてのグループ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Access control rules</source>
-        <translation>アクセスコントロールルール</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation>選択したルールを上げる</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation>選択したルールを編集</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation>アクセスコントロールルールを追加</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation>アクセスコントロールルールを削除</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation>選択したルールを下げる</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation>ユーザー名を入力</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation>アクセス権限をテストするユーザー名を入力してください:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Access allowed</source>
-        <translation>アクセス許可</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation>このユーザーはこの設定でコンピューターにアクセス許可されています。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Access denied</source>
-        <translation>アクセス拒否</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>このユーザーは設定によりコンピューターへのアクセスが拒否されました。</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -196,114 +194,114 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation>アクセスコントロールルールを編集</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>General</source>
-        <translation>一般</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation>このルールの短い名前を入力</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation>ルール名:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation>このルールの説明を入力</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation>ルール説明:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>反転する</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation>常にルールを有効にし、コンディションを無視する</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Conditions</source>
-        <translation>コンディション</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation>はグループのメンバーです</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>もし1つ以上のコンディションが有効にされている場合、ルールが有効になるようそれぞれのコンディションを調整する必要があります。もし複数のコンディションを使用したい場合複数のコントロールルールを作ってください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
-        <translation>アクセスしているコンピューターとローカルコンピューターが同じ場所にあります</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>ログインユーザーなし</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>is located at</source>
-        <translation>の場所</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation>アクセスしているコンピューターはローカルホストです</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>アクセスしているユーザーは1つかそれ以上のグループにローカルユーザーと共通で所属しています</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation>アクセスしているユーザーはユーザーでログインしています</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation>アクセスしているユーザーは既に接続されています</translation>
-    </message>
-    <message>
-        <source>Action</source>
-        <translation>実行</translation>
-    </message>
-    <message>
-        <source>Allow access</source>
-        <translation>アクセス許可</translation>
-    </message>
-    <message>
-        <source>Deny access</source>
-        <translation>アクセス拒否</translation>
-    </message>
-    <message>
-        <source>Ask logged on user for permission</source>
-        <translation>ログインしているユーザーに権限を確認</translation>
-    </message>
-    <message>
-        <source>None (rule disabled)</source>
-        <translation>なし（ルール無効）</translation>
-    </message>
-    <message>
-        <source>Accessing user</source>
-        <translation>ユーザーにアクセス中</translation>
-    </message>
-    <message>
-        <source>Accessing computer</source>
-        <translation>コンピューターにアクセス中</translation>
-    </message>
-    <message>
-        <source>Local (logged on) user</source>
-        <translation>ローカルユーザー</translation>
-    </message>
-    <message>
-        <source>Local computer</source>
-        <translation>ローカルコンピューター</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Local computer is already being accessed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allow access</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deny access</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ask logged on user for permission</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None (rule disabled)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accessing user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accessing computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Local (logged on) user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Local computer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -311,50 +309,50 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlRulesTestDialog</name>
     <message>
         <source>Access control rules test</source>
-        <translation>アクセスコントロールルールのテスト</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation>アクセス中のユーザー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Local computer:</source>
-        <translation>ローカルコンピューター:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation>アクセス中のコンピューター:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation>設定されたルールをテストするために以下のユーザーとコンピューター情報を入力してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Local user:</source>
-        <translation>ローカルユーザー:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation>接続されたユーザー:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation>このシナリオでのアクセスが許可されています。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation>このシナリオでのアクセスが拒否されています。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation>このシナリオでのアクセスにはログインしているユーザーの許可が必要です。</translation>
-    </message>
-    <message>
-        <source>Test result</source>
-        <translation>テスト結果</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test result</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -377,6 +375,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AppBlockerDialog</name>
     <message>
         <source>Kara Liste Yönetimi (Uygulama Engelleyici)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sadece sistem ve program klasörlerindeki uygulamalara izin ver
+(Taşınabilir/İndirilen uygulamaları engelle)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -407,11 +410,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Bu uygulama zaten listede!</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Sadece sistem ve program klasörlerindeki uygulamalara izin ver
-(Taşınabilir/İndirilen uygulamaları engelle)</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>AppBlockerPlugin</name>
@@ -432,109 +430,94 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation>認証キー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Introduction</source>
-        <translation>紹介</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>キーファイル認証を設定するために以下の手順を追ってください</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation>1.マスターPCで認証キーを作成</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2.他のコンピューターへのアクセスを許可するメンバーのグループを設定</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3.パブリックキーをエクスポートし、すべてのクライアントPCに同じ名前でインポートしてください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>詳細は&lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon管理者マニュアル&lt;/a&gt;を確認してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key file directories</source>
-        <translation>キーファイルの場所:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation>パブリックキーのファイルの場所</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation>プライベートキーのファイルの場所</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation>使用可能な認証キー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>1つの認証キーのペアは、プライベートキーとパブリックキーの2つの暗号キーで構成されています。
-プライベートキーを使用すると、マスターコンピューターのユーザーがクライアントPCにアクセスすることができます。
-許可されたユーザーのみがプライベートキーを読む権限があるようにしてください。
-パブリックキーはクライアントPCが他からのアクセス要求を認証するために使用します。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Create key pair</source>
-        <translation>キーを作成</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation>キーを削除</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation>キーをインポート</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation>キーをエクスポート</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Set access group</source>
-        <translation>アクセスグループを設定</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation>キーファイル（拡張子.pem）</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation>認証キーの名前</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation>認証キーを作るユーザーグループかルールの名前を入力してください:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation>認証キー&quot;%1/%2&quot;を削除して良いですか？</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation>削除するキーを選択してください!</translation>
-    </message>
-    <message>
-        <source>Please select a key to export!</source>
-        <translation>エクスポートするキーを選択してください!</translation>
-    </message>
-    <message>
-        <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation>認証キー:&quot;%1&quot;にアクセス許可するユーザーグループを選択してください:</translation>
-    </message>
-    <message>
-        <source>Please select a key which to set the access group for!</source>
-        <translation>アクセスグループに設定するキーを選択してください!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key.
@@ -542,289 +525,301 @@ The public key is used on client computers to authenticate incoming connection r
 Make sure that the names of the keys belonging to each other are identical on all computers.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Please select a key to export!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select a key which to set the access group for!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation>権限を確認してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation>キーの名前に使えない文字が入っています!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>無効なキータイプが指定されました。&quot;%1&quot; か &quot;%2&quot;を指定してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
-        <translation>指定したキーが見つかりませんでした。“list”コマンドを使用してキーをインストールしてください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
-        <translation>1つ以上のキーが既に存在しています。“delete”コマンドを使用して削除してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation>&quot;%1&quot;に新しいキーペアを作成</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation>パブリックキーかプライベートキーの作成に失敗しました!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation>新しく作成されたキーは&quot;%1&quot; と &quot;%2&quot;に保存されました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation>&quot;%1&quot;のキーファイルを削除できませんでした!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
-        <translation>&quot;%1&quot;キーの保存場所を削除できませんでした。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to create directory for output file.</source>
-        <translation>書き出しファイル用の保存場所の作成に失敗しました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation>ファイル &quot;%1&quot; が既に存在します。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation>書き出しに失敗しました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
-        <translation>キー&quot;%1/%2&quot;を&quot;%3&quot;に書き出しました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation>ファイルの読み込みに失敗しました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
-        <translation>ファイル（ &quot;%1&quot;）に有効なプライベートキーがありません。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation>ファイル（ &quot;%1&quot;）に有効なパブリックキーがありません。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation>キーファイル用のディレクトリーの作成に失敗しました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation>キーファイル&quot;%1&quot;の書き込みに失敗しました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation>キーファイル&quot;%1へのアクセス権限の設定に失敗しました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation>キー&quot;%1/%2&quot;のインポートに成功しました。許可されていないアクセスを防ぐため、&quot;%3&quot;へのアクセス権限を確認してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
-        <translation>プライベートキーからパブリックキーへの変換に失敗しました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation>プライベートキーファイル&quot;%1&quot;のディレクトリーの作成に失敗しました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
-        <translation>&quot;%1&quot;へのプライベートキーの保存に失敗しました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
-        <translation>プライベートキー&quot;%1&quot;へのアクセス権限の設定に失敗しました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to create directory for public key file &quot;%1&quot;.</source>
-        <translation>パブリックキーのファイル&quot;%1&quot;のディレクトリーの作成に失敗しました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to save public key in file &quot;%1&quot;!</source>
-        <translation>&quot;%1&quot;のファイルへのパブリックキーの保存に失敗しました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
-        <translation>パブリックキー&quot;%1&quot;へのアクセス権限の設定に失敗しました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation>キーファイル&quot;%1&quot; から &quot;%2&quot;への所有者の設定に失敗しました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;.</source>
-        <translation>キーファイル&quot;%1&quot;へのアクセス権限の設定に失敗しました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
-        <translation>キー&quot;%1&quot;はユーザーグループ&quot;%2&quot;によってアクセス可能になりました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation>キーファイルの読み込みに失敗しました。</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>AuthKeysPlugin</name>
     <message>
         <source>Create new authentication key pair</source>
-        <translation>新しい認証キーキーペアの作成</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation>認証キーを削除</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>List authentication keys</source>
-        <translation>認証キーリスト</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Import public or private key</source>
-        <translation>パブリックまたはプライベートキーのインポート</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export public or private key</source>
-        <translation>パブリックまたはプライベートキーのエクスポート</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Extract public key from existing private key</source>
-        <translation>既存のプライベートキーからパブリックキーを作成</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
-        <translation>ユーザーグループをキーにアクセス可能にする</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation>ヘルプを表示するコマンドを指定してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation>名前</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation>このコマンドは&lt;NAME&gt;という名前で認証キーペアを作成し、設定されたキーの保存ディレクトリーに保存されます。このパラメーターは文字だけを含む名前である必要があります。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>KEY</source>
-        <translation>キー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation>このコマンドは認証キー&lt;KEY&gt;を設定されたーディレクトリーから削除します。一度削除したキーは復元できないことに注意してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation>ファイル</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation>このコマンドは認証キー&lt;KEY&gt;を&lt;FILE&gt;にエクスポートします。&lt;FILE&gt;が指定されていない場合、&lt;KEY&gt;の名前とタイプから新しい名前が作成されます。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation>このコマンドはプライベートキー&lt;KEY&gt;からパブリックキーを作成し、対応するパブリックキーとして保存します。別のマスターPCを設定する際はプライベートキーを転送すると便利です。パブリックキーが作成されます。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation>このコマンドは認証キー&lt;KEY&gt;を&lt;FILE&gt;からインポートします。&lt;FILE&gt;が指定されていない場合、&lt;KEY&gt;の名前とタイプから新しい名前が作成されます。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation>このコマンドは設定されたキーディレクトリーにあるすべての有効な認証キーを一覧にします。&quot;%1&quot;が指定されていれば、キーの詳細が表で表示されます。キーにアクセス権限が無いなどキーにアクセスできなかった場合、いくつかの詳細が表示されない場合があります。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation>アクセスグループ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation>このコマンドはファイルのアクセス権限を、ユーザーグループ&lt;ACCESS GROUP&gt;がアクセスできるよう、&lt;KEY&gt;に設定します。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation>指定されたコマンドが存在しないか、そのコマンドに対するヘルプがありません。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation>第一引数にキー名（例：&quot;teacher/public&quot;）を指定してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>TYPE</source>
-        <translation>タイプ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation>ペアID</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
-        <translation>認証キーを管理するためのコマンドラインのサポート</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
-        <translation>認証キーを管理するコマンド</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>AuthKeysTableModel</name>
     <message>
         <source>Name</source>
-        <translation>名前</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>タイプ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Access group</source>
-        <translation>アクセスグループ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Pair ID</source>
-        <translation>ペアID</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
         <source>Locations &amp; computers</source>
-        <translation>場所＆コンピューター</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Builtin directory</source>
-        <translation>ビルトインディクショナリー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computers</source>
-        <translation>コンピューター</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Locations</source>
-        <translation>場所</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add new computer</source>
-        <translation>新しいコンピューターを追加</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation>選択したコンピューターを削除</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Move selected computer up</source>
@@ -835,24 +830,32 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Scan network for computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ağı Tara</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Name</source>
-        <translation>名前</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation>ホストアドレス/IP</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>MACアドレス</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add new location</source>
-        <translation>新しい場所を追加</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation>選択した場所を削除</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Move selected location up</source>
@@ -864,265 +867,281 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation>コマンドラインでCSVを使ってインポートできます。詳細は&lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;オンラインドキュメント&lt;/a&gt;を確認してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>New location</source>
-        <translation>新しい場所</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>New computer</source>
-        <translation>新しいコンピューター</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select a location first.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No computers found in the workgroup.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation>指定したコマンドのヘルプを表示</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation>場所かコンピューターを追加</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
-        <translation>全ての場所とコンピューターを削除</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
-        <translation>全てまたは個別の場所かコンピューターを削除</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>List all locations and computers</source>
-        <translation>全てのコンピューターと場所の一覧</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove a location or computer</source>
-        <translation>場所かコンピューターを削除</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Import objects from given file</source>
-        <translation>ファイルからオブジェクトを追加</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export objects to given file</source>
-        <translation>ファイルへオブジェクトをエクスポート</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation>ファイル</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>LOCATION</source>
-        <translation>場所</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
-        <translation>プレースホルダ付きフォーマット文字列</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
-        <translation>プレースホルダ付き正規表現</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>指定されたフォーマット文字列か、1つまたは複数のプレースホルダーを含む正規表現を使用して、指定されたテキストファイルからオブジェクトをインポートします。 有効なプレースホルダーは次のとおりです：％1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
-        <translation>CSVファイルを1つの部屋にインポート</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Import CSV file with location name in first column</source>
-        <translation>最初の列に場所の名前があるCSVファイルをインポート</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Import text file with with key/value pairs using regular expressions</source>
-        <translation>正規表現を使ってキーと値のペアを持つテキストファイルをインポート</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Import arbitrarily formatted data</source>
-        <translation>任意のフォーマットのデータをインポート</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>1つまたは複数のプレースホルダーを含む指定のフォーマット文字列を使用して、オブジェクトを指定のテキストファイルにエクスポートします。有効なプレースホルダーは次のとおりです。%1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export all objects to a CSV file</source>
-        <translation>すべてのオブジェクトをCSVファイルにエクスポート</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export all computers in a specific location to a CSV file</source>
-        <translation>特定の場所にあるすべてのコンピューターをCSVファイルにエクスポート</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>TYPE</source>
-        <translation>タイプ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation>名前</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
-        <translation>ホストアドレス</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation>MACアドレス</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>PARENT</source>
-        <translation>親</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
-        <translation>％1が「％2」または「％3」のいずれかになり得るオブジェクトを追加します。 ％4は、名前またはUUIDで指定できます。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add a room</source>
-        <translation>部屋を追加</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add a computer to room %1</source>
-        <translation>新しいコンピューターを部屋&quot;%1&quot;に追加</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>OBJECT</source>
-        <translation>オブジェクト</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
-        <translation>指定されたオブジェクトをディレクトリから削除します。%1 は名前または UUID で指定できます。場所を削除すると、関連するすべてのコンピュータも削除されます。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove a computer by name</source>
-        <translation>名前を指定してコンピューターを削除</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove an object by UUID</source>
-        <translation>UUIDを指定してオブジェクトを削除</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation>指定されたコマンドが存在しないか、そのコマンドに対するヘルプがありません。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>無効なタイプが指定されました。有効な値は&quot;%1&quot; か &quot;%2&quot;です。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Object UUID</source>
-        <translation>オブジェクトUUID</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation>ペアレントUUID</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>タイプ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>名前</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Host address</source>
-        <translation>ホストアドレス</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>MACアドレス</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Specified object not found.</source>
-        <translation>指定したオブジェクトが見つかりませんでした。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>ファイル&quot;%1&quot;が存在しません!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation>&quot;%1&quot;の読み込みに失敗</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
-        <translation>不明な因数&quot;%1&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
-        <translation>ストリングや一般の表現が指定されていません。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation>&quot;%1&quot;に書き込むことができませんでした。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No format string specified!</source>
-        <translation>フォーマットが指定されていません!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Location &quot;%1&quot;</source>
-        <translation>場所&quot;%1&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation>コンピューター&quot;%1&quot;（ホストアドレス:&quot;%2&quot; MACアドレス:&quot;%3&quot;）</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation>未分類のオブジェクト&quot;%1&quot;、ID&quot;%2&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>None</source>
-        <translation>なし</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid</source>
-        <translation>無効</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
-        <translation>&quot;%1&quot;の解析中にエラーが発生しました。</translation>
-    </message>
-    <message>
-        <source>Network object directory which stores objects in local configuration</source>
-        <translation>ローカル設定でオブジェクトを保管するネットワークオブジェクトの保存先</translation>
-    </message>
-    <message>
-        <source>Builtin (computers and locations in local configuration)</source>
-        <translation>ビルトイン（ローカル設定内のコンピューターと場所）</translation>
-    </message>
-    <message>
-        <source>Commands for managing the builtin network object directory</source>
-        <translation>ビルトインのネットワークオブジェクト保存先を管理するためのコマンド</translation>
-    </message>
-    <message>
-        <source>Location</source>
-        <translation>場所</translation>
-    </message>
-    <message>
-        <source>Computer</source>
-        <translation>コンピューター</translation>
-    </message>
-    <message>
-        <source>Root</source>
-        <translation>ルート</translation>
-    </message>
-    <message>
-        <source>&quot;Room 01&quot;</source>
-        <translation>&quot;ルーム01&quot;</translation>
-    </message>
-    <message>
-        <source>&quot;Computer 01&quot;</source>
-        <translation>&quot;コンピューター01&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network object directory which stores objects in local configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Builtin (computers and locations in local configuration)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Commands for managing the builtin network object directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Root</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;Room 01&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&quot;Computer 01&quot;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1130,14 +1149,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>BuiltinUltraVncServer</name>
     <message>
         <source>Builtin VNC server (UltraVNC)</source>
-        <translation>ビルトインVNCサーバー(UltraVNC)</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>BuiltinX11VncServer</name>
     <message>
         <source>Builtin VNC server (x11vnc)</source>
-        <translation>ビルトインVNCサーバー(x11vnc)</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1189,51 +1208,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerControlListModel</name>
     <message>
         <source>Name: %1</source>
-        <translation>名前: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Location: %1</source>
-        <translation>場所: %1</translation>
-    </message>
-    <message>
-        <source>Active features: %1</source>
-        <translation>アクティブな機能: %1</translation>
-    </message>
-    <message>
-        <source>[no user]</source>
-        <translation>[ユーザー無し]</translation>
-    </message>
-    <message>
-        <source>Online and connected</source>
-        <translation>オンラインで接続</translation>
-    </message>
-    <message>
-        <source>Establishing connection</source>
-        <translation>接続の確立</translation>
-    </message>
-    <message>
-        <source>Computer offline or switched off</source>
-        <translation>コンピューターがオフライン、または電源OFF</translation>
-    </message>
-    <message>
-        <source>Veyon Server unreachable or not running</source>
-        <translation>Veyonサーバーに到達できないか動作していない</translation>
-    </message>
-    <message>
-        <source>Authentication failed or access denied</source>
-        <translation>認証失敗、またはアクセス拒否</translation>
-    </message>
-    <message>
-        <source>Disconnected</source>
-        <translation>切断</translation>
-    </message>
-    <message>
-        <source>No user logged on</source>
-        <translation>ログインユーザーなし</translation>
-    </message>
-    <message>
-        <source>Logged on user: %1</source>
-        <translation>ログインしたユーザー: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Hostname: %1</source>
@@ -1248,11 +1227,51 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>[no user]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Online and connected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Establishing connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer offline or switched off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Hostname could not be resolved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Veyon Server unreachable or not running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentication failed or access denied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logged on user: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>No features active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active features: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1260,27 +1279,27 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerControlServer</name>
     <message>
         <source>Authentication error</source>
-        <translation>認証エラー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation>ホスト&quot;%2&quot;のユーザー&quot;%1&quot;がこのコンピューターにアクセスしようとしましたが、正常に認証できませんでした。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remote access</source>
-        <translation>リモートアクセス</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation>現在ホスト&quot;%2&quot;のユーザー&quot;%1&quot;がこのコンピューターにアクセスしています。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Access control error</source>
-        <translation>アクセスコントロールエラー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
-        <translation>ホスト&quot;%2&quot;のユーザー&quot;%1&quot;がこのコンピューターにアクセスしようとしましたが、アクセスコントロール設定によりブロックされました。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Veyon Service %1 at %2:%3</source>
@@ -1288,14 +1307,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Active connections:</source>
-        <translation>アクティブな接続:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation>ユーザー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Logged in since</source>
@@ -1303,7 +1322,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Missing network object directory plugin</source>
-        <translation>ネットワークオブジェクトプラグインが見つかりません</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
@@ -1311,7 +1330,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
-        <translation>コンピュータ名;ホスト名;ユーザー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>%1 days</source>
@@ -1323,7 +1342,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Location detection failed</source>
-        <translation>場所の検出に失敗</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
@@ -1331,7 +1350,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Unknown location</source>
-        <translation>不明な場所</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1342,46 +1361,46 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add location</source>
-        <translation>場所を追加</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Save computer/user list</source>
-        <translation>コンピューター/ユーザーのリストを保存</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Select output filename</source>
-        <translation>出力先ファイル名を選択</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>CSV files (*.csv)</source>
-        <translation>CSVファイル(*.csv)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File error</source>
-        <translation>ファイルエラー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation>コンピュータとユーザのリストを %1 に書き込めません! ファイルのアクセス許可を確認してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ConfigCommands</name>
     <message>
         <source>Clear system-wide Veyon configuration</source>
-        <translation>システム全体のVeyon設定をクリア</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>List all configuration keys and values</source>
-        <translation>すべての設定のキーと値の一覧を表示</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Import configuration from given file</source>
-        <translation>設定をファイルからインポート</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export configuration to given file</source>
-        <translation>設定をファイルにエクスポート</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Read and output configuration value for given key</source>
@@ -1397,15 +1416,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
-        <translation>プログラムおよびプラグインのアップグレードと設定の保存</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please specify an existing configuration file to import.</source>
-        <translation>インポートする既存の設定ファイルを指定してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
-        <translation>設定ファイルは読み込む事ができません！</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please specify a valid filename for the configuration export.</source>
@@ -1413,31 +1432,31 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation>出力ファイルは書き込む事ができません！</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation>出力先ディレクトリは書き込むことができません！</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please specify a valid key.</source>
-        <translation>有効なキーを指定してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Specified key does not exist in current configuration!</source>
-        <translation>指定されたキーは現在の構成に存在しません！</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please specify a valid value.</source>
-        <translation>有効な値を指定してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Configure Veyon at command line</source>
-        <translation>コマンドラインからVeynを設定する</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Commands for managing the configuration of Veyon</source>
-        <translation>Veyonの設定を管理するためのコマンド</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1474,39 +1493,39 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>デモサーバ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Tunables</source>
-        <translation>チューニング</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> s</source>
-        <translation> s</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Update interval</source>
-        <translation>更新間隔</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> ms</source>
-        <translation> ms</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation>デモの実行中はサムネイルの更新を遅くする</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Memory limit</source>
-        <translation>メモリ制限</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key frame interval</source>
-        <translation>キーフレーム間隔</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Bandwidth limit</source>
@@ -1521,67 +1540,67 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Demo</source>
-        <translation>デモ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Stop demo</source>
-        <translation>デモ停止</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation>自分の画面、または選択したユーザーの画面を他のユーザーに共有します</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation>フルスクリーンデモ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>ウィンドウデモ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation>自分の画面をフルスクリーンで共有</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation>このモードでは、全てのコンピューターの入力を停止し、このコンピューターの画面をフルスクリーンで全てのPCに表示します。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation>自分の画面をウィンドウで共有</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation>このモードでは、このPCの画面が全てのコンピューターの画面にウィンドウとして表示されます。全てのユーザーは必要に応じて他のウィンドウに切り替えることができます。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation>選択したユーザーの画面をフルスクリーンで共有</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation>このモードでは、全てのコンピューターの入力を停止し、選択したユーザーの画面をフルスクリーンで全てのPCに表示します。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation>選択したユーザーの画面をウィンドウで共有</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation>このモードでは、選択したユーザーの画面が全てのコンピューターの画面にウィンドウとして表示されます。全てのユーザーは必要に応じて他のウィンドウに切り替えることができます。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation>共有するユーザーの画面を選択してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation>共有するユーザーの画面を一つだけ選択してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>All screens</source>
-        <translation>全ての画面</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
@@ -1596,7 +1615,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Confirm desktop access</source>
-        <translation>デスクトップアクセスの確認</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
@@ -1615,86 +1634,86 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Applications &amp; websites</source>
-        <translation>アプリケーションとWebサイト</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Predefined applications</source>
-        <translation>定義済みアプリケーション</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>名前</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Path</source>
-        <translation>パス</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add new application</source>
-        <translation>新しいアプリケーションを追加</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove selected application</source>
-        <translation>選択したアプリケーションを削除</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Predefined websites</source>
-        <translation>定義済みWebサイト</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add new website</source>
-        <translation>新しいWebサイトを追加</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation>選択したWebサイトを削除</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>URL</source>
-        <translation>URL</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>New application</source>
-        <translation>新しいアプリケーション</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>New website</source>
-        <translation>新しいWebサイト</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Start application</source>
-        <translation>アプリケーションを開始</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
-        <translation>全てのコンピューターでアプリケーションを起動します</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open website</source>
-        <translation>Webサイトを開く</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>全てのコンピューターでWebサイトを開きます。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
-        <translation>アプリケーション &quot;%1&quot; を開始</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom application</source>
-        <translation>カスタムアプリケーション</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation>Webサイト &quot;%1&quot; を開く</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation>カスタムWebサイト</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
@@ -1705,12 +1724,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DocumentationFigureCreator</name>
     <message>
         <source>Teacher</source>
-        <translation>先生</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Room %1</source>
-        <translation>ルーム %1
-</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>generic-student-user</source>
@@ -1722,11 +1740,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Custom website</source>
-        <translation>カスタムWebサイト</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open file manager</source>
-        <translation>ファイルマネージャーを開く</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start learning tool</source>
@@ -1734,41 +1752,41 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Play tutorial video</source>
-        <translation>チュートリアルビデオを再生</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom application</source>
-        <translation>カスタムアプリケーション</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Handout</source>
-        <translation>配布資料</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Texts to read</source>
-        <translation>テキストを読み上げる</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
-        <translation>外部VNCサーバー</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServerConfigurationWidget</name>
     <message>
         <source>External VNC server configuration</source>
-        <translation>外部VNCサーバー構成</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation>ポート:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation>パスワード:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1791,7 +1809,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation>ヘルプを表示するコマンドを指定してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
@@ -1803,7 +1821,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>HOST ADDRESS</source>
-        <translation>ホストアドレス</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>FEATURE</source>
@@ -1823,7 +1841,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Display a text message</source>
-        <translation>テキストメッセージを表示する</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Test message</source>
@@ -1843,23 +1861,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation>指定されたコマンドが存在しないか、そのコマンドに対するヘルプがありません。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>名前</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Description</source>
-        <translation>説明</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Master</source>
-        <translation>マスター</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Service</source>
-        <translation>サービス</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Worker</source>
@@ -1867,7 +1885,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>UID</source>
-        <translation>UID</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Plugin</source>
@@ -1906,7 +1924,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileCollectDialog</name>
     <message>
         <source>File transfer</source>
-        <translation>ファイル転送</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Settings</source>
@@ -1958,7 +1976,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Start</source>
-        <translation>開始</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Select destination directory</source>
@@ -1988,15 +2006,15 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileCollectTreeModel</name>
     <message>
-        <source>Progress</source>
+        <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Name</source>
-        <translation>名前</translation>
+        <source>Number of files</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Number of files</source>
+        <source>Progress</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2004,14 +2022,42 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
-        <translation>ファイル転送</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Settings for distributing files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Remember last source directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Destination directory (remote):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default source directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Settings for collecting files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Store collected files in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group collected files:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files to collect:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2028,7 +2074,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>None</source>
-        <translation>なし</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>First part of user name</source>
@@ -2036,6 +2090,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Last part of user name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Device name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Source directory (remote):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2048,22 +2110,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Prompt user for files to collect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Grouping attribute 3:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Destination directory:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Store collected files in:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Group collected files:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2087,11 +2133,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Files to collect:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Files to exclude:</source>
+        <source>Destination directory:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2099,40 +2141,16 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Files to exclude:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Collect files recursively</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Destination directory (remote):</source>
+        <source>Grouping attribute 3:</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Default source directory:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Source directory (remote):</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User login name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Full name of user</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Device name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remember last source directory</source>
-        <translation>最後に使用したソースディレクトリを記憶する</translation>
-    </message>
-    <message>
-        <source>Create destination directory if it does not exist</source>
-        <translation>宛先ディレクトリが存在しない場合は作成する</translation>
     </message>
 </context>
 <context>
@@ -2146,11 +2164,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation>ファイル転送</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>オプション</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Destination directory on remote computers:</source>
@@ -2161,28 +2179,28 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Overwrite existing files</source>
-        <translation>既存のファイルを上書き</translation>
-    </message>
-    <message>
-        <source>Transfer only</source>
-        <translation>転送のみ</translation>
+        <source>Transfer and open destination folder</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
-        <translation>転送後、割り当てられているプログラムでファイルを開く</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Transfer and open destination folder</source>
-        <translation>転送後、宛先フォルダを開く</translation>
+        <source>Transfer only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overwrite existing files</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>ファイル</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>開始</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2205,11 +2223,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation>一つ、または複数の配布ファイルを選択</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File transfer</source>
-        <translation>ファイル転送</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Received file %1.</source>
@@ -2325,18 +2343,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation>ユーザーインターフェイス</translation>
-    </message>
-    <message>
-        <source>Use system language setting</source>
-        <translation>システムの言語設定を使用する</translation>
-    </message>
-    <message>
-        <source>Language:</source>
-        <translation>言語:</translation>
-    </message>
-    <message>
-        <source>Style:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2344,8 +2350,32 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Use system language setting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Authentication</source>
-        <translation>認証</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Method:</source>
@@ -2353,63 +2383,71 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation>ログオン認証</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation>キーファイル認証</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>テスト</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network object directory</source>
-        <translation>ネットワーク オブジェクト ディレクトリ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Backend:</source>
-        <translation>バックエンド:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Update interval:</source>
-        <translation>更新間隔:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> seconds</source>
-        <translation>秒</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Logging</source>
-        <translation>ロギング</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Log file directory</source>
-        <translation>ログファイルのディレクトリ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Log level</source>
-        <translation>ログレベル</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Nothing</source>
-        <translation>無し</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Only critical messages</source>
-        <translation>致命的なエラーのみ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Errors and critical messages</source>
-        <translation>エラーと致命的なエラー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Warnings and errors</source>
-        <translation>警告とエラー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Information, warnings and errors</source>
-        <translation>情報、警告とエラー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Debug messages and everything else</source>
@@ -2421,31 +2459,39 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Rotate log files</source>
-        <translation>ログファイルをローテーション</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Limit log file size</source>
-        <translation>ログファイルサイズ上限</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Log to standard error output</source>
-        <translation>ログを標準エラー出力に出力する</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Write to logging system of operating system</source>
-        <translation>OSのシステムログに書き込む</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Clear all log files</source>
-        <translation>すべてのログファイルをクリア</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
-        <translation>このコンピューターでは認証が正しく設定されています。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authentication keys are not set up properly on this computer.</source>
@@ -2469,7 +2515,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Error</source>
-        <translation>エラー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not remove all log files.</source>
@@ -2477,34 +2523,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Authentication test</source>
-        <translation>認証テスト</translation>
-    </message>
-    <message>
-        <source>User groups</source>
-        <translation>ユーザーグループ</translation>
-    </message>
-    <message>
-        <source>Include user groups from domain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>ユーザーグループのバックエンドが不明</translation>
-    </message>
-    <message>
-        <source>No user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Color scheme:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Light</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2551,7 +2569,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished">エラー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not open file for writing!</source>
@@ -2622,11 +2640,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>LdapConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation>基本設定</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>General</source>
-        <translation>一般</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Anonymous bind</source>
@@ -2642,15 +2660,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Bind DN</source>
-        <translation>Bind DN</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> ms</source>
-        <translation> ms</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>LDAP server and port</source>
-        <translation>LDAPサーバとポート</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Bind password</source>
@@ -2658,39 +2676,39 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Connection security</source>
-        <translation>接続の安全性</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>TLS certificate verification</source>
-        <translation>TLS証明書の検証</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Encryption protocol</source>
-        <translation>暗号化プロトコル</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>System defaults</source>
-        <translation>システムの標準</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation>しない（安全ではありません！）</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
-        <translation>カスタムCA証明書ファイル</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>None</source>
-        <translation>なし</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>TLS</source>
-        <translation>TLS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>SSL</source>
-        <translation>SSL</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -2710,11 +2728,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. dc=example,dc=org</source>
-        <translation>例： dc=example,dc=org</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Environment settings</source>
-        <translation>環境設定</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Object trees</source>
@@ -2738,7 +2756,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. OU=Computers</source>
-        <translation>例：OU=Computers</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Group tree</source>
@@ -2750,11 +2768,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. OU=Users</source>
-        <translation>例：OU=Users</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. OU=Groups</source>
-        <translation>例：OU=Groups</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Object attributes</source>
@@ -2762,7 +2780,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. name or description</source>
-        <translation>例：name または description</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2770,7 +2788,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. room or computerLab</source>
-        <translation>例：room または computerLab</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User login name attribute</source>
@@ -2782,7 +2800,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. member or memberUid</source>
-        <translation>例：member または memberUid</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Group member attribute</source>
@@ -2790,7 +2808,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. hwAddress</source>
-        <translation>例：hwAddress</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computer MAC address attribute</source>
@@ -2798,11 +2816,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. dNSHostName</source>
-        <translation>例：dNSHostName</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
-        <translation>例：uid または sAMAccountName</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computer display name attribute</source>
@@ -2822,7 +2840,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Advanced settings</source>
-        <translation>拡張設定</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Optional object filters</source>
@@ -2877,6 +2895,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Group member identification</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2890,7 +2912,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Computer locations identification</source>
-        <translation>コンピューターの場所の識別</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Identify computer locations (e.g. rooms) via:</source>
@@ -2910,7 +2932,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Integration tests</source>
-        <translation>統合テスト</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -2930,15 +2952,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>List all locations</source>
-        <translation>すべての場所をリスト</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Browse</source>
-        <translation>参照</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>テスト</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
@@ -2997,7 +3019,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Enter username</source>
-        <translation>ユーザー名を入力</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -3009,7 +3031,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Enter group name</source>
-        <translation>グループ名を入力</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
@@ -3041,7 +3063,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Enter computer name</source>
-        <translation>コンピューター名を入力</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
@@ -3049,7 +3071,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Invalid hostname</source>
-        <translation>無効なホスト名</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
@@ -3061,7 +3083,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Enter computer DN</source>
-        <translation>コンピューターDNを入力</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
@@ -3069,7 +3091,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>computer MAC addresses</source>
-        <translation>コンピュータのMACアドレス</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enter computer location name</source>
@@ -3081,19 +3103,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>computer locations</source>
-        <translation>コンピューターの場所</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enter location name</source>
-        <translation>場所の名前を入力</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>users</source>
-        <translation>ユーザー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation>ユーザーグループ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>computers</source>
@@ -3145,7 +3167,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Enter computer IP address</source>
-        <translation>コンピューターのIPアドレスを入力</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
@@ -3173,7 +3195,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>LDAP connection failed</source>
-        <translation>LDAP接続失敗</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not connect to the LDAP server. Please check the server parameters.
@@ -3183,7 +3205,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>LDAP bind failed</source>
-        <translation>LDAPバインド失敗</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
@@ -3193,7 +3215,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>LDAP bind successful</source>
-        <translation>LDAPバインド成功</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
@@ -3239,9 +3261,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation>%1 %2 が正常にクエリされました:
-
-%3</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>LDAP filter test failed</source>
@@ -3261,10 +3281,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Map container/OU structure 1:1 to locations</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3278,7 +3294,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>コマンドに関するヘルプを表示する</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
@@ -3297,19 +3313,19 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>LDAP/AD support for Veyon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation>%1 (LDAP/ADからコンピューターとその場所を読み込む)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation>%1 (LDAP/ADからユーザーとグループを読み込む)</translation>
-    </message>
-    <message>
-        <source>LDAP/AD support for Veyon</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3317,11 +3333,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
-        <translation>Linux</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation>ユーザー認証</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
@@ -3329,7 +3345,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User sessions</source>
-        <translation>ユーザーセッション</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
@@ -3337,15 +3353,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User login</source>
-        <translation>ユーザーログイン</translation>
-    </message>
-    <message>
-        <source>Login key sequence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation>入力開始遅延</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key press interval for text input</source>
@@ -3367,11 +3383,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>LocationDialog</name>
     <message>
         <source>Select location</source>
-        <translation>場所を選択</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation>検索フィルターを入力...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3385,7 +3401,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
-        <translation>構成</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Disable tooltips</source>
@@ -3393,50 +3409,50 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Show icons only</source>
-        <translation>アイコンのみ表示</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Veyon Configurator</source>
-        <translation>Veyon構成</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>General</source>
-        <translation>一般</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Service</source>
-        <translation>サービス</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Master</source>
-        <translation>マスター</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Access control</source>
-        <translation>アクセスコントロール</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;ファイル</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;ヘルプ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;表示</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>&amp;終了</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Save settings to file</source>
@@ -3444,11 +3460,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation>設定をファイルに保存する</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
@@ -3456,67 +3472,73 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>Veyonについて</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About Qt</source>
-        <translation>Qtについて</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reset configuration</source>
-        <translation>構成のリセット</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation>標準</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
-        <translation>拡張</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
-        <translation>コンピューターアイコンのサイズを自動で調整する</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>自動</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About</source>
-        <translation>詳細</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation>ユーザーとコンピューターを検索</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Align computers to grid</source>
-        <translation>コンピューターをグリッドに揃える</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Only show powered on computers</source>
-        <translation>電源ONのコンピューターのみ表示</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation>場所とコンピューター</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>スクリーンショット</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Slideshow</source>
-        <translation>スライドショー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation>スポットライト</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Only show computers with logged on users</source>
@@ -3528,27 +3550,27 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation>設定をファイルから読み込む</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
-        <translation>JSON files (*.json)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation>ローカル設定をリセットし、すべての設定をデフォルトに戻して良いですか？</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Unsaved settings</source>
-        <translation>未保存の設定</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation>未保存の設定があります。終了しますか？</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Insufficient privileges</source>
-        <translation>権限が不足</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
@@ -3563,6 +3585,14 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Authentication impossible</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3572,7 +3602,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Access denied</source>
-        <translation>アクセス拒否</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -3586,102 +3616,92 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Use custom computer arrangement.
-
-Press and hold to load arrangement from a file or save current arrangement to a file.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Load computer positions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save computer positions</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation>基本設定</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Directories</source>
-        <translation>ディレクトリ</translation>
-    </message>
-    <message>
-        <source>User configuration</source>
-        <translation>ユーザー構成</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>スクリーンショット</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User interface</source>
-        <translation>ユーザーインターフェイス</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Text color</source>
-        <translation>文字色</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> ms</source>
-        <translation> ms</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Background color</source>
-        <translation>背景色</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation>サムネイル間隔</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> px</source>
-        <translation> px</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation>自動</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
-        <translation>コンピューターサムネイルの見出し</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation>コンピューター名とユーザー名</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Only user name</source>
-        <translation>ユーザー名のみ</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only computer name</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Only last part of user name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Only computer name</source>
-        <translation>コンピューター名のみ</translation>
-    </message>
-    <message>
         <source>User and computer name</source>
-        <translation>ユーザー名とコンピューター名</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>
-        <translation>サムネイル更新間隔</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Sort order</source>
-        <translation>ソート順</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
-        <translation>サムネイルアスペクト比</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Highest</source>
@@ -3712,7 +3732,23 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Advanced</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Identify users in guest sessions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3732,136 +3768,12 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Guest user identity extension</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>なし</translation>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Suffix</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Behaviour</source>
-        <translation>動作</translation>
-    </message>
-    <message>
-        <source>Program start</source>
-        <translation>起動設定</translation>
-    </message>
-    <message>
-        <source>Perform access control</source>
-        <translation>アクセスコントロールの実行</translation>
-    </message>
-    <message>
-        <source>Automatically select current location</source>
-        <translation>自動的に現在の場所を選択する</translation>
-    </message>
-    <message>
-        <source>Automatically adjust computer icon size</source>
-        <translation>自動的にコンピューターのアイコンサイズを調整する</translation>
-    </message>
-    <message>
-        <source>Automatically open computer select panel</source>
-        <translation>自動的にコンピューター選択パネルを開く</translation>
-    </message>
-    <message>
-        <source>Computer locations</source>
-        <translation>コンピューターの場所</translation>
-    </message>
-    <message>
-        <source>Show current location only</source>
-        <translation>現在の場所のみを表示</translation>
-    </message>
-    <message>
-        <source>Allow adding hidden locations manually</source>
-        <translation>非表示の場所を手動で追加することを許可する</translation>
-    </message>
-    <message>
-        <source>Hide local computer</source>
-        <translation>ローカルコンピューターを隠す</translation>
-    </message>
-    <message>
-        <source>Hide local session</source>
-        <translation>ローカルセッションを隠す</translation>
-    </message>
-    <message>
-        <source>Hide empty locations</source>
-        <translation>空の場所を隠す</translation>
-    </message>
-    <message>
-        <source>Hide computer filter field</source>
-        <translation>&quot;コンピューターを検索&quot;の欄を隠す</translation>
-    </message>
-    <message>
-        <source>Modes and features</source>
-        <translation>モードと機能</translation>
-    </message>
-    <message>
-        <source>Enforce selected mode for client computers</source>
-        <translation>クライアントコンピューターに選択したモードを適用する</translation>
-    </message>
-    <message>
-        <source>Actions such as rebooting or powering down computers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation>安全ではない可能性のあるアクションに対する確認ダイアログを表示する</translation>
-    </message>
-    <message>
-        <source>Feature on computer double click:</source>
-        <translation>コンピューターをダブルクリックした時の機能：</translation>
-    </message>
-    <message>
-        <source>Open feature windows on the same screen as the main window</source>
-        <translation>メインウィンドウと同じ画面で機能ウィンドウを開く</translation>
-    </message>
-    <message>
-        <source>Features</source>
-        <translation>機能</translation>
-    </message>
-    <message>
-        <source>All features</source>
-        <translation>すべての機能</translation>
-    </message>
-    <message>
-        <source>Disabled features</source>
-        <translation>無効な機能</translation>
-    </message>
-    <message>
-        <source>&lt;no feature&gt;</source>
-        <translation>機能指定無し</translation>
-    </message>
-    <message>
-        <source>Always expand all locations</source>
-        <translation>常にすべてのロケーションを展開する</translation>
-    </message>
-    <message>
-        <source>Configuration templates</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Advanced</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Computer name source</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Default</source>
+        <source>Computer UID role</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Host address</source>
-        <translation>ホストアドレス</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Session client address</source>
@@ -3888,11 +3800,115 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Computer UID role</source>
+        <source>Guest user identity extension</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Session meta data hash</source>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefix</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suffix</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Behaviour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Program start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Modes and features</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Actions such as rebooting or powering down computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Feature on computer double click:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Features</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All features</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disabled features</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;no feature&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3900,23 +3916,23 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation>モニタリング</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
-        <translation>このモードでは、全てのコンピューターを1つ以上の場所でモニターできるようになります。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Query application version of the server</source>
-        <translation>サーバのアプリケーションバージョンを照会する</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Query active features</source>
-        <translation>有効な機能を照会する</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Query properties of remotely available screens</source>
-        <translation>リモートで利用可能な画面のプロパティを照会する</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Identify users in guest sessions</source>
@@ -3936,68 +3952,79 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Builtin monitoring mode</source>
-        <translation>組み込み監視モード</translation>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NetworkDiscoveryDialog</name>
+    <message>
+        <source>Bilgisayarları Seçin (Select Computers)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ağda bulunan bilgisayarlar. Eklemek istediklerinizi seçin:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
-        <translation>場所/コンピューター</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>OpenWebsiteDialog</name>
     <message>
         <source>Open website</source>
-        <translation>Webサイトを開く</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation>例：Veyon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation>Webサイトのメニューに追加・記録する</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation>例：www.veyon.io</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation>開くウェブサイトのURLを入力してください:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation>名前:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PasswordDialog</name>
     <message>
         <source>Veyon Logon</source>
-        <translation>Veyonログオン</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation>アクセスするにはユーザー名とパスワードを入力してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>ユーザー名</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>パスワード</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>認証エラー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
-        <translation>入力したユーザー名とパスワードでログインに失敗しました。再試行してください!</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4011,86 +4038,86 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>PluginCommands</name>
     <message>
         <source>List names of all installed plugins</source>
-        <translation>インストールされているすべてのプラグインの名前を一覧表示</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Show table with details of all installed plugins</source>
-        <translation>インストールされているすべてのプラグインの詳細を表で表示</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>名前</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Description</source>
-        <translation>説明</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Version</source>
-        <translation>バージョン</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>UID</source>
-        <translation>UID</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
-        <translation>プラグイン関連のCLI操作</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Commands for managing plugins</source>
-        <translation>プラグインを管理するためのコマンド</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>Wake-on-LAN(WOL)でコンピュータの電源を入れる</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Power on</source>
-        <translation>電源オン</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
-        <translation>全てのコンピューターの電源をオンにします。各コンピューターの電源を手動でオンにする必要はありません。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reboot</source>
-        <translation>再起動</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation>全てのコンピューターを再起動します。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Power down</source>
-        <translation>電源オフ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
-        <translation>全てのコンピューターの電源をオフにします。各コンピューターの電源を手動でオフにする必要はありません。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Power down now</source>
-        <translation>今すぐ電源オフ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation>更新をインストールしてシャットダウン</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation>ユーザーに確認後にシャットダウン</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation>タイムアウト後にシャットダウン</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation>MACアドレス</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
@@ -4098,7 +4125,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation>ヘルプを表示するコマンドを指定してください!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Confirm reboot</source>
@@ -4106,23 +4133,23 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation>全てのコンピューターを再起動しても良いですか？</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation>選択したコンピューターを再起動して良いですか？</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation>パワーダウンを確認</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation>全てのコンピューターをシャットダウンしても良いですか？</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
-        <translation>選択したコンピューターをシャットダウンしても良いですか？</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
@@ -4130,8 +4157,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation>このコンピューターは遠隔操作でシャットダウンが要求されました。
-コンピューターをシャットダウンして良いですか？</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
@@ -4141,7 +4167,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation>電源オン・オフ・再起動</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Commands for controlling power status of computers</source>
@@ -4152,19 +4178,19 @@ Please save your work and close all programs.</source>
     <name>PowerDownTimeInputDialog</name>
     <message>
         <source>Power down</source>
-        <translation>電源オフ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
-        <translation>選択されているコンピュータの電源を切るまでのタイムアウト時間を指定してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation>分</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation>秒</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4252,19 +4278,19 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation>リモートビュー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
-        <translation>通知なしにリモートビューを開始</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>リモート操作</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation>リモート操作ウィンドウを開きます</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Exchange clipboard contents</source>
@@ -4272,11 +4298,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>コマンドに関するヘルプを表示する</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remote access</source>
-        <translation>リモートアクセス</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
@@ -4306,7 +4332,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>リモート操作</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Select screen</source>
@@ -4318,11 +4344,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>スクリーンショット</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation>フルスクリーン</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Window</source>
@@ -4334,7 +4360,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation>Ctrl+Alt+Del</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+Esc</source>
@@ -4374,22 +4400,22 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>All screens</source>
-        <translation>全ての画面</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation>ロック</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation>ロック解除</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
-        <translation>ユーザーの注意をひくためには、このボタンを使用して全てのコンピューターの入力をロック・黒画面を表示し、PCをロックできます。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Lock input devices</source>
@@ -4404,15 +4430,15 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Lock screen and input devices of a computer</source>
-        <translation>コンピューターのスクリーンと入力機器をロック</translation>
-    </message>
-    <message>
         <source>Lock Screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enter a custom message to display on locked screens (leave empty for default):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lock screen and input devices of a computer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4428,7 +4454,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>スクリーンショット</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
@@ -4439,23 +4465,23 @@ Please save your work and close all programs.</source>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation>スクリーンショット</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
-        <translation>選択しているコンピューターのスクリーンショットを取得します。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Screenshots taken</source>
-        <translation>スクリーンショット取得</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
-        <translation>%1 台のコンピューターのスクリーンショットを正常に取得しました</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
-        <translation>コンピューターのスクリーンショットを取得しローカルに保存しました</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4466,35 +4492,35 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>User:</source>
-        <translation>ユーザー:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computer:</source>
-        <translation>コンピューター:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation>日付:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation>時刻:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Show</source>
-        <translation>表示</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>削除</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>スクリーンショット</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation>選択したスクリーンショットを削除しても良いですか？</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4532,47 +4558,55 @@ Please save your work and close all programs.</source>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation>一般</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
-        <translation>許可されていないアクセスがブロックされた時、通知を表示</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Show notification on remote connection</source>
-        <translation>リモート接続時、通知を表示</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation>通知領域のアイコンを非表示</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Autostart</source>
-        <translation>自動起動</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>State:</source>
-        <translation>状態: </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>停止</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start service</source>
-        <translation>サービスを起動</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Stop service</source>
-        <translation>サービスを停止</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Session mode</source>
-        <translation>セッションモード</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Local session mode (single server instance for primary local session)</source>
-        <translation>ローカルセッションモード（プライマリローカルセッション用の単一サーバーインスタンス）</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
@@ -4580,36 +4614,32 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation>アクティブセッションモード（アクティブなローカルまたはリモートセッション用の単一サーバーインスタンス）</translation>
-    </message>
-    <message>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation>マルチセッションモード（ローカルおよびリモートデスクトップセッションごとに異なるサーバーインスタンス）</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Maximum session count</source>
-        <translation>最大セッション数</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network port numbers</source>
-        <translation>通信ポート番号</translation>
-    </message>
-    <message>
-        <source>Veyon server</source>
-        <translation>Veyonサーバ</translation>
-    </message>
-    <message>
-        <source>Internal VNC server</source>
-        <translation>内部VNCサーバ</translation>
-    </message>
-    <message>
-        <source>Feature manager</source>
-        <translation>機能マネージャー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation>デモサーバ</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Miscellaneous settings</source>
@@ -4617,11 +4647,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation>ファイアウォールの例外を有効にする</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
-        <translation>localhostからの接続のみ許可</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Disable clipboard synchronization</source>
@@ -4629,23 +4659,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>VNC server</source>
-        <translation>VNCサーバー</translation>
-    </message>
-    <message>
-        <source>Plugin:</source>
-        <translation>プラグイン:</translation>
-    </message>
-    <message>
-        <source>Restart Veyon Service</source>
-        <translation>Veyonサービスを再起動</translation>
-    </message>
-    <message>
-        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Running</source>
-        <translation>実行中</translation>
+        <source>Plugin:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Session metadata</source>
@@ -4657,7 +4675,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>None</source>
-        <translation>なし</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Value of an environment variable</source>
@@ -4668,16 +4686,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
-
-Example: [^-]*-(PC[0-9]*)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Environment variable name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4685,13 +4693,27 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Registry key name</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restart Veyon Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
-    <message>
-        <source>Service control</source>
-        <translation>サービス制御</translation>
-    </message>
     <message>
         <source>Starting %1</source>
         <translation type="unfinished"></translation>
@@ -4712,28 +4734,32 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Unregistering %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Service control</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
-        <translation>Veyonサービスを登録</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation>Veyonサービスの登録を解除</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation>Veyonサービスを開始</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation>Veyonサービスを停止</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation>Veyonサービスを再起動</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
@@ -4741,15 +4767,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Service is running</source>
-        <translation>サービス実行中</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation>サービス停止中</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
-        <translation>Veyonサービスの構成と制御</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Commands for configuring and controlling Veyon Service</source>
@@ -4764,7 +4790,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>ファイル&quot;%1&quot;が存在しません!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon CLI</source>
@@ -4779,19 +4805,19 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation>前へ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation>開始/一時停止</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Next</source>
-        <translation>次へ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation>期限:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>View in separate window</source>
@@ -4806,59 +4832,58 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>SpotlightPanel</name>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation>マウスの中ボタンをクリックするか、下の１つ目のボタンをクリックして、コンピューターを追加します</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add selected computers</source>
-        <translation>選択したコンピューターを追加</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation>選択したコンピューターを削除</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation>リアルタイムでコンピュータを更新</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation>スポットライト</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation>追加するコンピューターを少なくとも１台は選択してください</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation>削除するコンピューターを少なくとも１台は選択してください</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation>アプリケーションを開始</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation>名前:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>（例）&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remember and add to application menu</source>
-        <translation>アプリケーションのメニューに追加・記録する</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation>（例） VLC</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
-        <translation>選択したコンピューターで起動するアプリケーションを入力してください
-複数のアプリケーションを行ごとに分けることができます</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4921,7 +4946,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished">コンピューター</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Answer</source>
@@ -4986,7 +5011,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
-        <translation>システムトレイアイコン</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Soru Sor / Öğretmenle Sohbet Et</source>
@@ -5005,83 +5030,83 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>SystemUserGroupsPlugin</name>
     <message>
         <source>User groups backend for system user groups</source>
-        <translation>システムユーザグループのためのユーザグループバックエンド</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Default (system user groups)</source>
-        <translation>デフォルト（システムユーザーグループ）</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TestingCommandLinePlugin</name>
     <message>
         <source>Test internal Veyon components and functions</source>
-        <translation>Veyonの内部コンポーネントや機能のテスト</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
-        <translation>内部コンポーネントやVeyonの機能をテストするためのコマンド</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>テキストメッセージを送信</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>下のフィールドを使用して、選択したすべてのユーザーに送信するメッセージを入力します</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
     <message>
         <source>Text message</source>
-        <translation>テキストメッセージ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation>例えば新しい作業を指示するなど、この機能を使用してすべてのユーザーにテキストメッセージを送信できます</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Message from teacher</source>
-        <translation>先生からのメッセージ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation>ユーザーへメッセージを送信</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>UltraVncConfigurationWidget</name>
     <message>
         <source>Builtin UltraVNC server configuration</source>
-        <translation>ビルトインUltraVNCサーバー構成</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation>CPUの最大使用率</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation>低精度（ターボモード）</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
-        <translation>フルスクリーンでポーリング（デフォルトで有効のまま）</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation>Windows 8以降でDesktop Duplication Engineを有効化する</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation>マルチモニターサポートを有効</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>レイヤー（半透明）ウィンドウのキャプチャを可能にする</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5111,73 +5136,73 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation>ユーザーログイン</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation>すべてのコンピュータで自動ログインする為にユーザー名とパスワードを入力してください。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>ユーザー名</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>パスワード</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation>ログイン</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation>全てのコンピューターに特定のユーザーでログインします。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Log off</source>
-        <translation>ログオフ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation>全てのコンピューターをログオフします。</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation>ユーザーログオフの確認</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation>全てのユーザーをログオフしても良いですか？</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation>選択したユーザーをログオフしても良いですか？</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User session control</source>
-        <translation>ユーザーセッション制御</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation>[OK]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation>[失敗]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation>無効なコマンドです！</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
-        <translation>無効な引数が指定されました</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
@@ -5185,19 +5210,19 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Plugin not licensed</source>
-        <translation>プラグインはライセンスされていません</translation>
-    </message>
-    <message>
-        <source>Unknown result!</source>
-        <translation>不明な結果!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation>使用可能なコマンド：</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown result!</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Available modules:</source>
-        <translation>有効なモジュール:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
@@ -5205,34 +5230,34 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>INFO</source>
-        <translation>方</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>WARNING</source>
-        <translation>警告</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation>エラー</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>USAGE</source>
-        <translation>使用法</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation>説明</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation>例</translation>
-    </message>
-    <message>
-        <source>Screen %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Screen %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5240,7 +5265,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>VeyonMaster</name>
     <message>
         <source>No write access</source>
-        <translation>書込不可</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
@@ -5251,7 +5276,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation>Veyon サービス</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5262,7 +5287,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>General</source>
-        <translation>一般</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network port</source>
@@ -5286,7 +5311,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source> s</source>
-        <translation> s</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Idle timeout</source>
@@ -5314,7 +5339,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
@@ -5359,81 +5384,21 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>WindowsPlatformConfiguration</name>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>SAS生成の設定をソフトウェアで変更することができませんでした。リモコンでCtrl+Alt+Delを送っても動作しません！</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation>Windows</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>General</source>
-        <translation>一般</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>ソフトウェアによるSAS生成を有効にする（Ctrl + Alt + Del）</translation>
-    </message>
-    <message>
-        <source>User authentication</source>
-        <translation>ユーザー認証</translation>
-    </message>
-    <message>
-        <source>Use alternative user authentication mechanism</source>
-        <translation>代替のユーザー認証機構を使用する</translation>
-    </message>
-    <message>
-        <source>User login</source>
-        <translation>ユーザーログイン</translation>
-    </message>
-    <message>
-        <source>Input start delay</source>
-        <translation>入力開始遅延</translation>
-    </message>
-    <message>
-        <source>Simulated key presses interval</source>
-        <translation>キー押下シミュレート間隔</translation>
-    </message>
-    <message>
-        <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation>法的通知の確認（メッセージはユーザーがログインする前に表示されます）</translation>
-    </message>
-    <message>
-        <source>Screen lock</source>
-        <translation>スクリーンロック</translation>
-    </message>
-    <message>
-        <source>Hide taskbar</source>
-        <translation>タスクバーを隠す</translation>
-    </message>
-    <message>
-        <source>Hide start menu</source>
-        <translation>スタートメニュー隠す</translation>
-    </message>
-    <message>
-        <source>Hide desktop</source>
-        <translation>デスクトップを隠す</translation>
-    </message>
-    <message>
-        <source>Use custom power scheme with disabled power and sleep buttons</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use input device interception driver</source>
-        <translation>入力デバイス遮断ドライバを使用する</translation>
-    </message>
-    <message>
-        <source>Disable touchpads and touchscreens</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Disable keyboard devices</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Disable mouse devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5442,7 +5407,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>None</source>
-        <translation>なし</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Fix window attributes</source>
@@ -5456,16 +5421,76 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Close session</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>User authentication</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use alternative user authentication mechanism</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Input start delay</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Simulated key presses interval</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Confirm legal notice (message displayed before user logs in)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Screen lock</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide taskbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide start menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide desktop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use custom power scheme with disabled power and sleep buttons</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use input device interception driver</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable touchpads and touchscreens</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable keyboard devices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disable mouse devices</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Internal display</source>
-        <translation>内蔵ディスプレイ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation>Windows環境用の抽象関数を実装したプラグイン</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5500,22 +5525,22 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation>サービス &quot;％1&quot;が見つかりませんでした。</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>X11VncConfigurationWidget</name>
     <message>
         <source>Builtin x11vnc server configuration</source>
-        <translation>ビルトインx11vncサーバー構成</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom x11vnc parameters:</source>
-        <translation>カスタムx11vncパラメーター:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do not use X Damage extension</source>
-        <translation>X Damage extensionは使わないでください</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

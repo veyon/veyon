@@ -1,47 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="lv">
+<TS version="2.1" language="lv_LV">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About Veyon</source>
-        <translation>Par Veyon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Par</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>Versija:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation>Mājas lapa:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation>Atbalsti Veyon projektu ar ziedojumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation>Atbalstītāji</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation>Tulkojumi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>Pašreizējā valoda vēl nav pārtulkota.
-
-Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, lūdzu sazinieties ar Veyon veidotājiem.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>License</source>
-        <translation>Licenze</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About Veyon %1</source>
@@ -71,87 +69,87 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation>Datora piekļuves kontrole</translation>
-    </message>
-    <message>
-        <source>Restrict access to members of specific user groups</source>
-        <translation>Ierobežot piekļuvi konkrētas grupas lietotājiem</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>Tests</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation>Procesa piekļuves kontroles noteikumi</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation>Piešķirt piekļuvi katram autentificētam lietotājam (noklusējuma)</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restrict access to members of specific user groups</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation>Lietotāju grupas, kurām ir atļauta piekļuve datoram</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation>Lūdzu pievienojiet grupu, kuras lietotājiem vajadzētu būt autorizētām piekļūt datoriem Jūsu Veyon tīklā.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation>Autorizētās lietotāju grupas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation>Visas grupas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Access control rules</source>
-        <translation>Piekļuves kontroles noteikumi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation>Paaugstināt izvēlēto noteikumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation>Labot izvēlētās lomas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation>Pievienot piekļuves kontroles noteikumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation>Noņemt piekļuves kontroles noteikumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation>Pazemināt izvēlēto noteikumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Ievadi lietotājvārdu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation>Lūdzu ievadi lietotājvārdus, kuriem ļaut piekļuvi testam:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Access allowed</source>
-        <translation>Piekļuve atļauta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation>Izvēlētajam lietotājam ir atļauja piekļūt datoriem ar šiem iestatījumiem.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Access denied</source>
-        <translation>Piekļuve liegta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>Norādītajam lietotājam nav piekļuve datoriem ar šo konfigurāciju.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -196,63 +194,63 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation>Labot piekļuves kontroles noteikumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Vispārīgi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation>ievadi nosaukumu noteikumam šeit</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation>Noteikuma nosaukums:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation>ievadu aprakstu noteikumam šeit</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation>Noteikuma apraksts:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>Apgriezt visus nosacījumus (&quot;ir/bija&quot; interpretēt kā &quot;nav/nebija&quot;)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation>Vienmēr apstrādāt noteikumus un ignorēt nosacījumus</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Conditions</source>
-        <translation>Nosacījumi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation>ir biedrs grupai</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>Ja ir vairāk kā viens nosacījums aktivizēts, tad visiem nosacījumiem jāizpildās, lai izpildītos (loģiskais UN). Ja vienam vai vairākiem nosacījumiem jāizpildās (loģiskais VAI), lūdzu izveidojiet vairākus piekļuves kontroles noteikumus.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
-        <translation>Piekļūstošais dators un vietējais dators atrodas vienā un tajā pašā vietā</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Nav lietotājs pieslēdzies</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>is located at</source>
-        <translation>atrodas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation>Piekļuves dators ir vietējais</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
@@ -260,50 +258,50 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation>Piekļūstošais lietotājs ir pieslēdzies kā lietotājs</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation>Piekļūstošais lietotājs ir jau pieslēdzies</translation>
-    </message>
-    <message>
-        <source>Action</source>
-        <translation>Darbības</translation>
-    </message>
-    <message>
-        <source>Allow access</source>
-        <translation>Atļaut piekļuvi</translation>
-    </message>
-    <message>
-        <source>Deny access</source>
-        <translation>Liegt atļauju</translation>
-    </message>
-    <message>
-        <source>Ask logged on user for permission</source>
-        <translation>Vaicāt lietotājam atļauju</translation>
-    </message>
-    <message>
-        <source>None (rule disabled)</source>
-        <translation>Nav (noteikumi izslēgti)</translation>
-    </message>
-    <message>
-        <source>Accessing user</source>
-        <translation>Piekļūstošais lietotājs</translation>
-    </message>
-    <message>
-        <source>Accessing computer</source>
-        <translation>Piekļūstošais dators</translation>
-    </message>
-    <message>
-        <source>Local (logged on) user</source>
-        <translation>Vietējais (pieslēdzies) lietotājs</translation>
-    </message>
-    <message>
-        <source>Local computer</source>
-        <translation>Vietējais dators</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Local computer is already being accessed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allow access</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deny access</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ask logged on user for permission</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None (rule disabled)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accessing user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accessing computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Local (logged on) user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Local computer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -311,50 +309,50 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     <name>AccessControlRulesTestDialog</name>
     <message>
         <source>Access control rules test</source>
-        <translation>Piekļuves kontroles noteikuma tests</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation>Piekļūstošais lietotājs:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Local computer:</source>
-        <translation>Vietējais dators:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation>Piekļūstošais dators:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation>Lai pārbaudītu konfigurēto kārtulu kopu, lūdzu, ievadiet tālāk norādīto lietotāja un datora informāciju.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Local user:</source>
-        <translation>Vietējie lietotāji:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation>Pieslēgušies lietotāji:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation>Piekļuve izvēlētajam scenārijam ir atļauta.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation>Piekļuve izvēlētajam scenārijam ir liegta.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation>Piekļuvei dotajā scenārijā ir nepieciešama no lietotāja, kurš šobrīd ir pierakstījies.</translation>
-    </message>
-    <message>
-        <source>Test result</source>
-        <translation>Testa rezultāti</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test result</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -377,6 +375,11 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     <name>AppBlockerDialog</name>
     <message>
         <source>Kara Liste Yönetimi (Uygulama Engelleyici)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sadece sistem ve program klasörlerindeki uygulamalara izin ver
+(Taşınabilir/İndirilen uygulamaları engelle)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -407,11 +410,6 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
         <source>Bu uygulama zaten listede!</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Sadece sistem ve program klasörlerindeki uygulamalara izin ver
-(Taşınabilir/İndirilen uygulamaları engelle)</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>AppBlockerPlugin</name>
@@ -432,109 +430,94 @@ Ja esat ieinteresēti tulkot Veyon citā valodā vai uzlabot esošo tulkojumu, l
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation>Autorizācijas atslēga</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Introduction</source>
-        <translation>Ievads</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Lai iestatītu atslēgas faila autentifikāciju, veiciet šādas darbības:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Izveido atslēgu pāri galvenajam datoram</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) Izveido piekļuves grupu dalībniekiem kuru dalībniekiem atļauts piekļūt citu datoriem</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Izgul publisko atslēgu un iegul, ar vienādu vārdu, visos klientu datoros.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Lūdzu skaties &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon administratoru pamācību &lt;/a&gt; vairāk informācijai</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key file directories</source>
-        <translation>Atslēgfaila mapes</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation>Publisko atslēgfailu atrašanās mape</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation>Privāto atslēgfailu atrašanās mape</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation>Pieejamās autentifikācijas atslēgas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Autentifikācijas atslēgu pāris sastāv no divām savienotām kriptogrāfiskām atslēgām - privātas un publiskas atslēgas.
-Privātā atslēga ļauj lietotājiem galvenajā datorā piekļūt klientu datoriem.
-Ir svarīgi, lai piekļuve privātās atslēgas failam būtu tikai autorizētiem lietotājiem.
-Publiskā atslēga tiek izmantota klientu datoros, lai autentificētu ienākošā savienojuma pieprasījumu.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Create key pair</source>
-        <translation>Izveidot atslēgu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation>Dzēst atslēgu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation>Iegult atslēgu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation>Izgult atslēgu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Set access group</source>
-        <translation>Veidot piekļuves grupu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation>Atslēgu faili (*.pem)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation>Autentifikācijas atslēgas nosaukums</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation>Lūdzu, ievadiet tās lietotāju grupas vai lomas nosaukumu, kurai jāizveido autentifikācijas atslēgu pāris:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation>Vai tiešām izdzēst autentifikācijas atslēgu &quot;%1/%2&quot;?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation>Lūdzu, izvēlieties atslēgu kuru izdzēst!</translation>
-    </message>
-    <message>
-        <source>Please select a key to export!</source>
-        <translation>Lūdzu, izvēlieties atslēgfailu, kuru izvadīt!</translation>
-    </message>
-    <message>
-        <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation>Lūdzu, atlasiet lietotāju grupu, kurai piešķirt piekļuvi atslēgai “%1”:</translation>
-    </message>
-    <message>
-        <source>Please select a key which to set the access group for!</source>
-        <translation>Izvēlies atslēgu kuru piešķirt piekļuves grupai!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key.
@@ -542,24 +525,36 @@ Publiskā atslēga tiek izmantota klientu datoros, lai autentificētu ienākoš�
 Make sure that the names of the keys belonging to each other are identical on all computers.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Please select a key to export!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select a key which to set the access group for!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation>Lūdzu, pārbaudiet atļaujas.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation>Atslēga satur neatbilstošus simbolus!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>Norādīts nederīgs atslēgas tips! Lūdzu, norādiet “%1” vai “%2”.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
-        <translation>Norādītā atslēga nepastāv! Lūdzu, izmantojiet komandu “list”, lai uzskaitītu visas instalētās atslēgas.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
@@ -567,7 +562,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation>Veido jaunu atslēgu pāri priekš &quot;%1&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
@@ -579,7 +574,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation>Nevar noņemt atslēgas failu &quot;%1&quot;!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
@@ -591,11 +586,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation>Fails &quot;%1&quot; jau eksistē.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation>Neizdevās izveidot failu.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
@@ -603,7 +598,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation>Neizdevās nolasīt failu.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
@@ -615,15 +610,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation>Neizdevās izveidot mapi atslēgas failam.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation>Neizdevās ierakstīt atslēgas failā &quot;%1&quot;.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation>Neizdevās piešķirt atļaujas atslēgas failam &quot;%1&quot;.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
@@ -671,34 +666,34 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation>Kļūda lasot atslēgfailu.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>AuthKeysPlugin</name>
     <message>
         <source>Create new authentication key pair</source>
-        <translation>Izveidot jaunu autentificēšanās atslēgas pāri</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation>Izdzēst autentifikācijas failu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>List authentication keys</source>
-        <translation>Saraksts ar autentificēšanās atslēgām</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Import public or private key</source>
-        <translation>Importēt publisko vai privāto atslēgu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export public or private key</source>
-        <translation>Eksporēt publisko vai privāto atslēgu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Extract public key from existing private key</source>
@@ -714,7 +709,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>NAME</source>
-        <translation>VĀRDS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
@@ -722,7 +717,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>KEY</source>
-        <translation>ATSLĒGA</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
@@ -730,7 +725,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>FILE</source>
-        <translation>FAILS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
@@ -750,7 +745,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation>PIEKĻUVES GURPA</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
@@ -766,11 +761,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>TYPE</source>
-        <translation>TIPS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>PAIR ID</source>
-        <translation>Pāra ID</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
@@ -785,46 +780,46 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>AuthKeysTableModel</name>
     <message>
         <source>Name</source>
-        <translation>Vārds</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Tips</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Access group</source>
-        <translation>Piekļuves grupas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Pair ID</source>
-        <translation>Pāra ID</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
         <source>Locations &amp; computers</source>
-        <translation>Vietas un datori</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Builtin directory</source>
-        <translation>Iebūvētās mapes</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computers</source>
-        <translation>Datori</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Locations</source>
-        <translation>Vietas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add new computer</source>
-        <translation>Pievienot jaunu datoru</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation>Izdzēst izvēlēto datoru</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Move selected computer up</source>
@@ -835,24 +830,32 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Scan network for computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ağı Tara</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Name</source>
-        <translation>Vārds</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation>Dalībnieku adreses un IP</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>MAC adrese</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add new location</source>
-        <translation>Pievienot jaunu vietu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation>Noņemt izvēlēto vietu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Move selected location up</source>
@@ -868,26 +871,42 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>New location</source>
-        <translation>Jauna vieta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>New computer</source>
-        <translation>Jauns dators</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select a location first.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No computers found in the workgroup.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation>Parādīt palīdzību izvēlētajai komandai</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation>Pievienot vietu vai datoru</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
-        <translation>Notīrīt visas vietas un datorus</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
@@ -895,11 +914,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>List all locations and computers</source>
-        <translation>Saraksts ar vietām un datoriem</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove a location or computer</source>
-        <translation>Noņemt vietu vai datoru</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Import objects from given file</source>
@@ -911,11 +930,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>FILE</source>
-        <translation>FAILS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>LOCATION</source>
-        <translation>VIETA</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
@@ -959,11 +978,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>TYPE</source>
-        <translation>TIPS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation>VĀRDS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -971,7 +990,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation>MAC adrese</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>PARENT</source>
@@ -983,7 +1002,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add a room</source>
-        <translation>Pievienot istabu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add a computer to room %1</source>
@@ -991,7 +1010,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>OBJECT</source>
-        <translation>OBJEKTS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
@@ -999,7 +1018,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Remove a computer by name</source>
-        <translation>Noņemt datorus ar vārdu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove an object by UUID</source>
@@ -1015,43 +1034,43 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Object UUID</source>
-        <translation>Objekta UUID</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation>Vecāka UUID</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>Tips</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Vārds</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Host address</source>
-        <translation>Dalībnieku adreses</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>MAC adrese</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Specified object not found.</source>
-        <translation>Izvēlētais mērķis nav atrasts.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>Fails &quot;%1&quot; neeksistē!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation>Nevar atvērt failu &quot;%1&quot; lasīšanai!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
-        <translation>Nezināma arguments &quot;%1&quot;.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
@@ -1059,7 +1078,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation>Nevar atvērt failu &quot;%1&quot; rakstīšanai!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No format string specified!</source>
@@ -1067,7 +1086,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Location &quot;%1&quot;</source>
-        <translation>Vieta &quot;%1&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
@@ -1079,15 +1098,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>None</source>
-        <translation>Nav</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid</source>
-        <translation>Neatbilstošs</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
-        <translation>Kļūda nolasot %1 līniju.</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
@@ -1103,26 +1126,22 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Location</source>
-        <translation>Vieta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computer</source>
-        <translation>Dators</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Root</source>
-        <translation>Sākums</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&quot;Room 01&quot;</source>
-        <translation>&quot;Istaba 01&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
-        <translation>&quot;Dators 01&quot;</translation>
-    </message>
-    <message>
-        <source>Location &quot;%1&quot; not found.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1137,7 +1156,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>BuiltinX11VncServer</name>
     <message>
         <source>Builtin VNC server (x11vnc)</source>
-        <translation>Iebūvētais VNC serveris (x11vnc)</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1189,31 +1208,43 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerControlListModel</name>
     <message>
         <source>Name: %1</source>
-        <translation>Vārds: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Location: %1</source>
-        <translation>Vieta: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Active features: %1</source>
-        <translation>Aktīvās iespējas: %1</translation>
+        <source>Hostname: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>[no user]</source>
-        <translation>[nav lietotājs]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Online and connected</source>
-        <translation>Tiešsaistē un pieslēdzies</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Establishing connection</source>
-        <translation>Veido savienojumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computer offline or switched off</source>
-        <translation>Dators nav tiešsaistē vai ir izslēgts</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
@@ -1225,34 +1256,22 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Disconnected</source>
-        <translation>Atslēdzies</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Nav lietotājs pieslēdzies</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
-        <translation>Ielogojies lietotajā: %1</translation>
-    </message>
-    <message>
-        <source>Hostname: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>unknown</source>
-        <translation>nezināms</translation>
-    </message>
-    <message>
-        <source>IP address: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hostname could not be resolved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No features active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active features: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1260,7 +1279,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerControlServer</name>
     <message>
         <source>Authentication error</source>
-        <translation>Autentifikācijas kļūda</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
@@ -1268,7 +1287,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Remote access</source>
-        <translation>Attālināta piekļuve</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
@@ -1276,7 +1295,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Access control error</source>
-        <translation>Piekļuves kontroles kļūda</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
@@ -1288,18 +1307,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Active connections:</source>
-        <translation>Aktīvās konekcijas:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation>Lietotājs</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Logged in since</source>
-        <translation>Pieslēdzies kopš</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
@@ -1315,11 +1334,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>%1 days</source>
-        <translation>%1 days</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation>1 diena</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Location detection failed</source>
@@ -1338,27 +1357,27 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerSelectPanel</name>
     <message>
         <source>Search computers</source>
-        <translation>Meklēt darorus</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add location</source>
-        <translation>Pievienot vietu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Save computer/user list</source>
-        <translation>Saglabāt datoru/lietotāju sarakstu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Select output filename</source>
-        <translation>Izvēlies izejas faila nosaukumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>CSV files (*.csv)</source>
-        <translation>CSV faili (*.csv)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File error</source>
-        <translation>Faila kļūda</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
@@ -1373,7 +1392,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>List all configuration keys and values</source>
-        <translation>Saraksts ar konfigurācijas atslēgām un vērtībām</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Import configuration from given file</source>
@@ -1413,15 +1432,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Output file is not writable!</source>
-        <translation>Izejas fails nav rakstāms!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation>Izejas mape nav rakstāma!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please specify a valid key.</source>
-        <translation>Precizē derīgu atslēgu.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Specified key does not exist in current configuration!</source>
@@ -1429,11 +1448,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Please specify a valid value.</source>
-        <translation>Lūdzu precizē derīgu vērtību.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Configure Veyon at command line</source>
-        <translation>Konfirugē Veyon komandrindā</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Commands for managing the configuration of Veyon</source>
@@ -1474,27 +1493,27 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>Demonstrējuma serveris</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Tunables</source>
-        <translation>Noregulējumi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> s</source>
-        <translation>s</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Update interval</source>
-        <translation>Atjaunot intervālu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> ms</source>
-        <translation>ms</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
@@ -1502,7 +1521,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Memory limit</source>
-        <translation>Atmiņas limits</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key frame interval</source>
@@ -1510,22 +1529,22 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Bandwidth limit</source>
-        <translation>Joslas platuma limits</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> MB/s</source>
-        <translation> MB/s</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Demo</source>
-        <translation>Priekšskatījums</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Stop demo</source>
-        <translation>Apturēt demonstrējumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
@@ -1533,15 +1552,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation>Pilna ekrāna priekšskatījums</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>Logā demonstrējums</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation>Dalies ar savu ekrānu pilnekrāna veidā</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
@@ -1549,7 +1568,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation>Dalies ar savu ekrānu logā</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -1581,11 +1600,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>All screens</source>
-        <translation>Visi ekrāni</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation>Dot demonstrējumu caur ekrāna raidīšanu</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1596,7 +1615,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Confirm desktop access</source>
-        <translation>Apstiprini darba virsmas piekļuvi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
@@ -1604,18 +1623,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Never for this session</source>
-        <translation>Nekad šai sesijai</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Always for this session</source>
-        <translation>Vienmēr šai sesijai</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Applications &amp; websites</source>
-        <translation>Lietotnes un web adreses</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Predefined applications</source>
@@ -1623,78 +1642,78 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Name</source>
-        <translation>Vārds</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Path</source>
-        <translation>Ceļš</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add new application</source>
-        <translation>Pievienot jaunu lietotni</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove selected application</source>
-        <translation>Noņemt izvēlēto lietotni</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Predefined websites</source>
-        <translation>Iepriekšdefinētas web lapas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add new website</source>
-        <translation>Pievienot jaunu web adresi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation>Noņemt izvēlēto web adresi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>URL</source>
-        <translation>URL</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>New application</source>
-        <translation>Jauna lietotne</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>New website</source>
-        <translation>Jauna web adrese</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Start application</source>
-        <translation>Palaist lietotni</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
-        <translation>Spied šo pogu lai palaistu lietotni visos datoros.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open website</source>
-        <translation>Atvērt vietni</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>Spied šo pogu lai atvērtu web adresi visos datoros.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
-        <translation>Palaist lietotni &quot;%1&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom application</source>
-        <translation>Pielāgota lietotne</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation>Atvērt web adresi &quot;1%&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation>Pielāgota web adrese</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
@@ -1705,11 +1724,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DocumentationFigureCreator</name>
     <message>
         <source>Teacher</source>
-        <translation>Skolotājs</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Room %1</source>
-        <translation>Istaba %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>generic-student-user</source>
@@ -1721,38 +1740,38 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Custom website</source>
-        <translation>Pielāgota web adrese</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open file manager</source>
-        <translation>Atvērt failu pārvaldnieku</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start learning tool</source>
-        <translation>Sākt mācīšanās rīku</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Play tutorial video</source>
-        <translation>Atskaņot pamācību video</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom application</source>
-        <translation>Pielāgota lietotne</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Handout</source>
-        <translation>Izdale</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Texts to read</source>
-        <translation>Teksts lasīšanai</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
-        <translation>Ārējais VNC serveris</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1763,18 +1782,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Port:</source>
-        <translation>Ports:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation>Parole:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>FeatureCommands</name>
     <message>
         <source>List names of all available features</source>
-        <translation>Saraksts ar visām pieejām iespējām</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Show table with details of all available features</source>
@@ -1810,7 +1829,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>ARGUMENTS</source>
-        <translation>ARGUMENTI</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
@@ -1818,19 +1837,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Lock the screen</source>
-        <translation>Aizslēgt ekrānu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Display a text message</source>
-        <translation>Parādīt teksta ziņojumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Test message</source>
-        <translation>Testa ziņojums</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start an application</source>
-        <translation>Palaist lietotni</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
@@ -1838,7 +1857,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Unlock the screen</source>
-        <translation>Ieslēgt ekrānu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
@@ -1846,31 +1865,31 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Name</source>
-        <translation>Vārds</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Description</source>
-        <translation>Apraksts</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Master</source>
-        <translation>Galvenais</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Service</source>
-        <translation>Pakalpojums</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Worker</source>
-        <translation>Darbinieks</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>UID</source>
-        <translation>UID</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Plugin</source>
-        <translation>Spraudnis</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid feature name or UID specified</source>
@@ -1905,7 +1924,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileCollectDialog</name>
     <message>
         <source>File transfer</source>
-        <translation>Faila pārsūtīšana</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Settings</source>
@@ -1957,7 +1976,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Start</source>
-        <translation>Sākt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Select destination directory</source>
@@ -1987,15 +2006,15 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileCollectTreeModel</name>
     <message>
-        <source>Progress</source>
+        <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Name</source>
-        <translation>Vārds</translation>
+        <source>Number of files</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Number of files</source>
+        <source>Progress</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2003,14 +2022,42 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
-        <translation>Faila pārsūtīšana</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Settings for distributing files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Remember last source directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Destination directory (remote):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default source directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Settings for collecting files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Store collected files in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group collected files:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files to collect:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2027,7 +2074,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>None</source>
-        <translation>Nav</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>First part of user name</source>
@@ -2035,6 +2090,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Last part of user name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Device name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Source directory (remote):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2047,22 +2110,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Prompt user for files to collect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Grouping attribute 3:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Destination directory:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Store collected files in:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Group collected files:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2086,11 +2133,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Files to collect:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Files to exclude:</source>
+        <source>Destination directory:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2098,39 +2141,15 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Files to exclude:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Collect files recursively</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Destination directory (remote):</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Default source directory:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Source directory (remote):</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User login name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Full name of user</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Device name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remember last source directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Create destination directory if it does not exist</source>
+        <source>Grouping attribute 3:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2145,11 +2164,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation>Faila pārsūtīšana</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Iespējas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Destination directory on remote computers:</source>
@@ -2160,28 +2179,28 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Overwrite existing files</source>
-        <translation>Pārrakstīt esošos failus</translation>
-    </message>
-    <message>
-        <source>Transfer only</source>
-        <translation>Pārsūtīšana tikai</translation>
+        <source>Transfer and open destination folder</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Transfer and open destination folder</source>
+        <source>Transfer only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overwrite existing files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>Faili</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>Sākt</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2208,7 +2227,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>File transfer</source>
-        <translation>Faila pārsūtīšana</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Received file %1.</source>
@@ -2324,18 +2343,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation>Lietotāja saskarne</translation>
-    </message>
-    <message>
-        <source>Use system language setting</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Language:</source>
-        <translation>Valodas:</translation>
-    </message>
-    <message>
-        <source>Style:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2343,12 +2350,36 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Use system language setting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Authentication</source>
-        <translation>Autentifikācija</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Method:</source>
-        <translation>Metode:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Logon authentication</source>
@@ -2360,7 +2391,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Test</source>
-        <translation>Tests</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network object directory</source>
@@ -2372,19 +2403,27 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Update interval:</source>
-        <translation>Atsvaidzināšanas intervāls:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> seconds</source>
-        <translation>sekundes</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Logging</source>
-        <translation>Žurnalēšana</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Log file directory</source>
-        <translation>Žurnālfaila mape</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Log level</source>
@@ -2392,7 +2431,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Nothing</source>
-        <translation>Nekas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Only critical messages</source>
@@ -2400,11 +2439,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Errors and critical messages</source>
-        <translation>Kļūdas un kritisko kļūdu ziņojumi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Warnings and errors</source>
-        <translation>Brīdinājumi un kļūdas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Information, warnings and errors</source>
@@ -2416,7 +2455,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>x</source>
-        <translation>x</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Rotate log files</source>
@@ -2424,11 +2463,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> MB</source>
-        <translation>MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Limit log file size</source>
-        <translation>Žurnālfaila izmēra ierobežojums</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Log to standard error output</source>
@@ -2440,7 +2479,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Clear all log files</source>
-        <translation>Noņemt visus ziņojumu failus</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Missing user groups backend</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
@@ -2468,7 +2515,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Error</source>
-        <translation>Ķļūda</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not remove all log files.</source>
@@ -2476,34 +2523,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Authentication test</source>
-        <translation>Autentifikācijas tests</translation>
-    </message>
-    <message>
-        <source>User groups</source>
-        <translation>Lietotāju grupas</translation>
-    </message>
-    <message>
-        <source>Include user groups from domain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>Trūks lietotāju grupas backends</translation>
-    </message>
-    <message>
-        <source>No user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Color scheme:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Light</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2550,7 +2569,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished">Ķļūda</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not open file for writing!</source>
@@ -2621,11 +2640,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>LdapConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation>Pamata iestatījumi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Vispārīgi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Anonymous bind</source>
@@ -2637,7 +2656,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Query timeout</source>
-        <translation>Pieprasījuma noilgums</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Bind DN</source>
@@ -2645,7 +2664,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> ms</source>
-        <translation>ms</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>LDAP server and port</source>
@@ -2665,15 +2684,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Encryption protocol</source>
-        <translation>Kriptēšanas protokols</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>System defaults</source>
-        <translation>Sistēmas noklusējums</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation>Nekad (nedrošs!)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
@@ -2681,15 +2700,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>None</source>
-        <translation>Nav</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>TLS</source>
-        <translation>TLS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>SSL</source>
-        <translation>SSL</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -2717,7 +2736,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Object trees</source>
-        <translation>Objektu koks</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>(only if different from group tree)</source>
@@ -2725,7 +2744,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Computer tree</source>
-        <translation>Datoru koks</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Perform recursive search operations in object trees</source>
@@ -2733,7 +2752,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User tree</source>
-        <translation>Lietotāju koks</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
@@ -2741,11 +2760,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Group tree</source>
-        <translation>Grupu koks</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computer group tree</source>
-        <translation>Datoru grupu koks</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. OU=Users</source>
@@ -2761,7 +2780,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. name or description</source>
-        <translation>piemēram vārds vai apraksts</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2821,7 +2840,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Advanced settings</source>
-        <translation>Paplašināti iestatījumi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Optional object filters</source>
@@ -2845,7 +2864,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Filter for users</source>
-        <translation>Lietotāju filtrs</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Filter for computers</source>
@@ -2876,6 +2895,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Group member identification</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2897,7 +2920,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Computer groups</source>
-        <translation>Datoru grupas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computer containers or OUs</source>
@@ -2929,7 +2952,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>List all locations</source>
-        <translation>Saraksts ar visām vietām</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Browse</source>
@@ -2937,7 +2960,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Test</source>
-        <translation>Tests</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
@@ -2988,7 +3011,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>computer tree</source>
-        <translation>datoru koks</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>computer group tree</source>
@@ -2996,7 +3019,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Ievadi lietotājvārdu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -3008,7 +3031,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Enter group name</source>
-        <translation>Ievadi grupas nosaukumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
@@ -3016,11 +3039,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>group members</source>
-        <translation>grupas dalībnieki</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Group not found</source>
-        <translation>Grupa nav atrasta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
@@ -3040,7 +3063,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Enter computer name</source>
-        <translation>Ievadi datora nosaukumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
@@ -3060,7 +3083,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Enter computer DN</source>
-        <translation>Ievadi datora DN</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter the DN of a computer whose MAC address to query:</source>
@@ -3088,19 +3111,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>users</source>
-        <translation>lietotāji</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation>lietotāju grupas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>computers</source>
-        <translation>datori</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>computer groups</source>
-        <translation>datoru grupas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>computer containers</source>
@@ -3116,7 +3139,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User not found</source>
-        <translation>Lietotājs nav atrasts</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
@@ -3136,7 +3159,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Computer not found</source>
-        <translation>Dators nav atrasts</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
@@ -3144,7 +3167,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Enter computer IP address</source>
-        <translation>Ievadi datora IP adresi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
@@ -3228,7 +3251,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>and</source>
-        <translation>un</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>LDAP test successful</source>
@@ -3258,10 +3281,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Map container/OU structure 1:1 to locations</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -3275,7 +3294,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>Parādīt palīdzību par komandu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
@@ -3294,6 +3313,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>LDAP/AD support for Veyon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3305,20 +3328,16 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>LDAP/AD support for Veyon</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>LinuxPlatformConfigurationPage</name>
     <message>
         <source>Linux</source>
-        <translation>Linux</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation>Lietotāja autentificēšanās</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
@@ -3334,15 +3353,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User login</source>
-        <translation>Lietotāja logins</translation>
-    </message>
-    <message>
-        <source>Login key sequence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation>Ievadi palaišanas aizkavi</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key press interval for text input</source>
@@ -3368,7 +3387,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation>ievadi meklēšanas filtru...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3390,7 +3409,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Show icons only</source>
-        <translation>Rādīt ikonas tikai</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3401,15 +3420,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>General</source>
-        <translation>Vispārīgi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Service</source>
-        <translation>Pakalpojums</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Master</source>
-        <translation>Galvenais</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Access control</source>
@@ -3417,11 +3436,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Fails</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Palīdzība</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;View</source>
@@ -3429,11 +3448,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>&amp;Iziet</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Save settings to file</source>
@@ -3445,7 +3464,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
@@ -3453,11 +3472,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>Par Veyon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About Qt</source>
@@ -3481,11 +3500,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Auto</source>
-        <translation>Automātiski</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About</source>
-        <translation>Par</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Search users and computers</source>
@@ -3493,7 +3512,13 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Align computers to grid</source>
-        <translation>Sakārtot datorus režģī</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Only show powered on computers</source>
@@ -3505,7 +3530,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>Ekranšāviņi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Slideshow</source>
@@ -3513,7 +3538,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Spotlight</source>
-        <translation>Izcelt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Only show computers with logged on users</source>
@@ -3560,6 +3585,14 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Authentication impossible</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3569,7 +3602,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Access denied</source>
-        <translation>Piekļuve liegta</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -3583,54 +3616,44 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Use custom computer arrangement.
-
-Press and hold to load arrangement from a file or save current arrangement to a file.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Load computer positions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save computer positions</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation>Pamata iestatījumi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Directories</source>
-        <translation>Mapes</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User configuration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Screenshots</source>
-        <translation>Ekranšāviņi</translation>
+        <source>Configuration templates</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User interface</source>
-        <translation>Lietotāja saskarne</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Text color</source>
-        <translation>Teksta krāsa</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> ms</source>
-        <translation>ms</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Background color</source>
-        <translation>Fona krāsa</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Thumbnail spacing</source>
@@ -3642,7 +3665,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Auto</source>
-        <translation>Automātiski</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
@@ -3650,23 +3673,23 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation>Datoru un lietotāju vārdi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Only user name</source>
-        <translation>Tikai lietotāja vārdu</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only computer name</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Only last part of user name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Only computer name</source>
-        <translation>Tikai datora vārds</translation>
-    </message>
-    <message>
         <source>User and computer name</source>
-        <translation>Lietotāja un datora vārds</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>
@@ -3674,7 +3697,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Sort order</source>
-        <translation>Kārtošanas kārtība</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
@@ -3709,7 +3732,23 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Advanced</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Identify users in guest sessions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3729,136 +3768,12 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Guest user identity extension</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Nav</translation>
-    </message>
-    <message>
-        <source>Prefix</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Suffix</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Behaviour</source>
-        <translation>Rīcība</translation>
-    </message>
-    <message>
-        <source>Program start</source>
-        <translation>Programmas izpilde</translation>
-    </message>
-    <message>
-        <source>Perform access control</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Automatically select current location</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Automatically open computer select panel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Computer locations</source>
-        <translation>Datoru atrašanās vietas</translation>
-    </message>
-    <message>
-        <source>Show current location only</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Allow adding hidden locations manually</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hide local computer</source>
-        <translation>Slēpt lokālos datorus</translation>
-    </message>
-    <message>
-        <source>Hide local session</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hide empty locations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hide computer filter field</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Modes and features</source>
-        <translation>Režīmi un iespējas</translation>
-    </message>
-    <message>
-        <source>Enforce selected mode for client computers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Actions such as rebooting or powering down computers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Feature on computer double click:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open feature windows on the same screen as the main window</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Features</source>
-        <translation>Iespējas</translation>
-    </message>
-    <message>
-        <source>All features</source>
-        <translation>Visas iespējas</translation>
-    </message>
-    <message>
-        <source>Disabled features</source>
-        <translation>Atslēgt iespējas</translation>
-    </message>
-    <message>
-        <source>&lt;no feature&gt;</source>
-        <translation>&lt;no feature&gt;</translation>
-    </message>
-    <message>
-        <source>Always expand all locations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Configuration templates</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Advanced</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Computer name source</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Default</source>
+        <source>Computer UID role</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Host address</source>
-        <translation>Dalībnieku adreses</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Session client address</source>
@@ -3885,11 +3800,115 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Computer UID role</source>
+        <source>Guest user identity extension</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Session meta data hash</source>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Prefix</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suffix</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Behaviour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Program start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Perform access control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically select current location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically adjust computer icon size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically open computer select panel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer locations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show current location only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allow adding hidden locations manually</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide local computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide local session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide computer filter field</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Modes and features</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enforce selected mode for client computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Actions such as rebooting or powering down computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show confirmation dialog for potentially unsafe actions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Feature on computer double click:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open feature windows on the same screen as the main window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Features</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All features</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disabled features</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;no feature&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3897,7 +3916,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation>Uzraudzība</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
@@ -3937,29 +3956,40 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
 </context>
 <context>
+    <name>NetworkDiscoveryDialog</name>
+    <message>
+        <source>Bilgisayarları Seçin (Select Computers)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ağda bulunan bilgisayarlar. Eklemek istediklerinizi seçin:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
-        <translation>Atrašanās vietas/Datori</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>OpenWebsiteDialog</name>
     <message>
         <source>Open website</source>
-        <translation>Atvērt vietni</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation>piem. Veyon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation>Atcerēties un pievienot mājaslapu izvēlei</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation>piem. www.veyon.io</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
@@ -3967,7 +3997,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Name:</source>
-        <translation>Vārds:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3982,15 +4012,15 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Username</source>
-        <translation>Lietotājvārds</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Parole</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>Autentifikācijas kļūda</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
@@ -4016,19 +4046,19 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Name</source>
-        <translation>Vārds</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Description</source>
-        <translation>Apraksts</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Version</source>
-        <translation>Versija</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>UID</source>
-        <translation>UID</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
@@ -4043,11 +4073,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>Ieslēgt datoru izmantojot Wake-on-LAN (WOL)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Power on</source>
-        <translation>Ieslēgt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
@@ -4055,114 +4085,112 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Reboot</source>
-        <translation>Restartēt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation>Noklikšķiniet uz šīs pogas, lai restartētu visus datorus.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Power down</source>
-        <translation>Izslēgt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
-        <translation>Noklikšķiniet uz šīs pogas, lai izslēgtu visus datorus. Tādējādi nav nepieciešams katru datoru izslēgt atsevišķi.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Power down now</source>
-        <translation>Izslēgt tagad</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation>Instalēt atjauninājumus un izslēgt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation>Izslēgt pēc lietotāja piekrišanas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation>Izslēgt pēc noteikta laika</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
-        <translation>MAC adrese</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation>Šī komanda pārraida tīklā Wake-on-LAN (WOL) paketi, lai ieslēgtu datoru ar norādīto MAC adresi.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please specify the command to display help for!</source>
-        <translation>Lūdzu, norādiet komandu, kurai parādīt palīdzību!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation>Apstiprināt restartēšanu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation>Vai tiešām vēlaties restartēt &lt;b&gt;ALL&lt;/b&gt; datorus?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
-        <translation>Vai Tu tiešām vēlies restartēt izvēlētos datorus?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation>Apstriprināt izslēgšanu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation>Vai tiešām vēlaties izslēgt &lt;b&gt;ALL&lt;/b&gt; datorus?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
-        <translation>Vai tiešām vēlaties izslēgt atlasītos datorus?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
-        <translation>Norādītā MAC adrese nav pareiza!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation>Datoram pieprasa attālināti izslēgties. Vai vēlaties izslēgt datoru tagad?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
-        <translation>Dators tiks izslēgts pēc %1 minūtēm, %2 sekundēm.
-
-Lūdzu, saglabājiet savu darbu un aizveriet visas programmas.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation>Ieslēgt/Izslēgt vai restartēt datoru</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Commands for controlling power status of computers</source>
-        <translation>Datoru statusa kontroles komandas</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PowerDownTimeInputDialog</name>
     <message>
         <source>Power down</source>
-        <translation>Izslēgt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
-        <translation>Lūdzu, norādiet taimautu, lai izslēgtu atlasītos datorus:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation>minūtes</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation>sekundes</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4250,19 +4278,19 @@ Lūdzu, saglabājiet savu darbu un aizveriet visas programmas.</translation>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation>Attālināts skats</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
-        <translation>Atvērt attālinātu skatu datoram bez iejaukšanās</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Attālināta kontrole</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation>Atvērt attālinātu kontroles logu datoram</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Exchange clipboard contents</source>
@@ -4270,11 +4298,11 @@ Lūdzu, saglabājiet savu darbu un aizveriet visas programmas.</translation>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>Parādīt palīdzību par komandu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remote access</source>
-        <translation>Attālināta piekļuve</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
@@ -4282,7 +4310,7 @@ Lūdzu, saglabājiet savu darbu un aizveriet visas programmas.</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation>Datora attālā skatīšana vai vadība</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4300,11 +4328,11 @@ Lūdzu, saglabājiet savu darbu un aizveriet visas programmas.</translation>
     <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
-        <translation>Skats tikai</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>Attālināta kontrole</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Select screen</source>
@@ -4312,98 +4340,94 @@ Lūdzu, saglabājiet savu darbu un aizveriet visas programmas.</translation>
     </message>
     <message>
         <source>Send shortcut</source>
-        <translation>Nosūtīt saīsni</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Ekrānšāviņš</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation>Pilnekrāns</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Window</source>
-        <translation>Logs</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation>Iziet</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation>Ctrl+Alt+Del</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+Esc</source>
-        <translation>Ctrl+Esc</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Alt+Tab</source>
-        <translation>Alt+Tab</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Alt+F4</source>
-        <translation>Alt+F4</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Win+Tab</source>
-        <translation>Win+Tab</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Win</source>
-        <translation>Win</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation>Izvēlne</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
-        <translation>Alt+Ctrl+F1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Connected.</source>
-        <translation>Pieslēdzies.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation>Pieslēdzas...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>All screens</source>
-        <translation>Visi ekrāni</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation>Slēgt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation>Atslēgt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
-        <translation>Lai atgūtu visu lietotāja uzmanību, varat bloķēt viņu datorus, izmantojot šo pogu. Šajā režīmā visas ievades ierīces ir bloķētas un ekrāni ir melni.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Lock input devices</source>
-        <translation>Slēgt ievadierīces</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Unlock input devices</source>
-        <translation>Pieslēgt ievadierīces</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Lock screen and input devices of a computer</source>
-        <translation>Bloķēt datora ekrānu un ievadierīces.</translation>
     </message>
     <message>
         <source>Lock Screen</source>
@@ -4413,12 +4437,16 @@ Lūdzu, saglabājiet savu darbu un aizveriet visas programmas.</translation>
         <source>Enter a custom message to display on locked screens (leave empty for default):</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Lock screen and input devices of a computer</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation>nezināms</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
@@ -4426,7 +4454,7 @@ Lūdzu, saglabājiet savu darbu un aizveriet visas programmas.</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Ekrānšāviņš</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
@@ -4437,23 +4465,23 @@ Lūdzu, saglabājiet savu darbu un aizveriet visas programmas.</translation>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation>Ekrānšāviņš</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
-        <translation>Lieto šo funkciju lai uzņemtu ekrānšāviņu izvēlētajiem datoriem.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Screenshots taken</source>
-        <translation>Ekrānšāviņš veikts</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
-        <translation>Ekrānšāviņs veiksmīgi uzņemts datoram %1.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
-        <translation>Uzņemt datora ekrānšāviņu un saglabāt lokāli.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4464,31 +4492,31 @@ Lūdzu, saglabājiet savu darbu un aizveriet visas programmas.</translation>
     </message>
     <message>
         <source>User:</source>
-        <translation>Lietotājs:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computer:</source>
-        <translation>Dators:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation>Datums:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation>Laiks:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Show</source>
-        <translation>Parādīt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Izdzēst</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Ekrānšāviņš</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
@@ -4530,7 +4558,7 @@ Lūdzu, saglabājiet savu darbu un aizveriet visas programmas.</translation>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation>Vispārīgi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
@@ -4542,11 +4570,11 @@ Lūdzu, saglabājiet savu darbu un aizveriet visas programmas.</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation>Paslēpt palodzes ikonu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Autostart</source>
-        <translation>Automātiskā palaišana</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>State:</source>
@@ -4554,15 +4582,15 @@ Lūdzu, saglabājiet savu darbu un aizveriet visas programmas.</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>Apstādināts</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start service</source>
-        <translation>Palaist pakalpojumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Stop service</source>
-        <translation>Apstādināt pakalpojumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Session mode</source>
@@ -4573,12 +4601,16 @@ Lūdzu, saglabājiet savu darbu un aizveriet visas programmas.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
-Typically this is required to support terminal servers.</source>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
+Typically this is required to support terminal servers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4587,27 +4619,27 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Maximum session count</source>
-        <translation>Maksimālais sesiju skaits</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network port numbers</source>
-        <translation>Tīkla porta numurs</translation>
-    </message>
-    <message>
-        <source>Veyon server</source>
-        <translation>Veyon serveris</translation>
-    </message>
-    <message>
-        <source>Internal VNC server</source>
-        <translation>Iekšējais VNC serveris</translation>
-    </message>
-    <message>
-        <source>Feature manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation>Demonstrējuma serveris</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Miscellaneous settings</source>
@@ -4615,7 +4647,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation>Iespējot ugunsmūra izņēmumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
@@ -4627,23 +4659,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>VNC server</source>
-        <translation>VNC serveris</translation>
-    </message>
-    <message>
-        <source>Plugin:</source>
-        <translation>Spraudņi:</translation>
-    </message>
-    <message>
-        <source>Restart Veyon Service</source>
-        <translation>Restartēt Veyon pakalpojumu</translation>
-    </message>
-    <message>
-        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Running</source>
-        <translation>Darbojas</translation>
+        <source>Plugin:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Session metadata</source>
@@ -4655,7 +4675,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>None</source>
-        <translation>Nav</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Value of an environment variable</source>
@@ -4666,16 +4686,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
-
-Example: [^-]*-(PC[0-9]*)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Environment variable name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4683,13 +4693,27 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Registry key name</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restart Veyon Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
-    <message>
-        <source>Service control</source>
-        <translation>Pakalpojuma kontrole</translation>
-    </message>
     <message>
         <source>Starting %1</source>
         <translation type="unfinished"></translation>
@@ -4710,28 +4734,32 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Unregistering %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Service control</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
-        <translation>Reģistrēt Veyon pakalpojumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation>Atcelt reģistrāciju Veyon pakalpojumam</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation>Sāknēt Veyon pakalpojumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation>Apturēt Veyon pakalpojumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation>Restartēt Veyon pakalpojumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
@@ -4739,11 +4767,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Service is running</source>
-        <translation>Pakalpojums darbojas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation>Pakalpojums nedarbojas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
@@ -4758,11 +4786,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
-        <translation>Palaist komandu failu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>Fails &quot;%1&quot; neeksistē!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon CLI</source>
@@ -4777,19 +4805,19 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation>Iepriekšējais</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation>Starts/pauze</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Next</source>
-        <translation>Nākošais</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation>Ilgums:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>View in separate window</source>
@@ -4808,19 +4836,19 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Add selected computers</source>
-        <translation>Pievienot izvēlētos datorus</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation>Noņemt izvēlētos datorus</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation>Atjaunot datorus tiešsaistē</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation>Izcelt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
@@ -4835,11 +4863,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation>Palaist lietotni</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation>Vārds:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
@@ -4851,7 +4879,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation>piemēram VLC</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
@@ -4918,7 +4946,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished">Dators</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Answer</source>
@@ -4983,7 +5011,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
-        <translation>Sistēmas teknes ikona</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Soru Sor / Öğretmenle Sohbet Et</source>
@@ -5024,7 +5052,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>Nosūtīt teksta ziņojumu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
@@ -5035,7 +5063,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>TextMessageFeaturePlugin</name>
     <message>
         <source>Text message</source>
-        <translation>Teksta ziņojums</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
@@ -5043,11 +5071,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Message from teacher</source>
-        <translation>Ziņojums no skolotāja</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation>Nosūtīt ziņojumu lietotājam</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5058,11 +5086,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation>Maksimālais procesora lietojums</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation>Zemu precizitāti (turbo režīms)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
@@ -5108,7 +5136,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation>Lietotāja logins</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
@@ -5116,18 +5144,18 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Username</source>
-        <translation>Lietotājvārds</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>Parole</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation>Pieslēgties</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
@@ -5135,7 +5163,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Log off</source>
-        <translation>Atslēgties</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
@@ -5143,7 +5171,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation>Apstiprināt lietotāja atslēgšanu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
@@ -5162,15 +5190,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation>[OK]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation>[FAIL]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation>Neatbilstoša komanda!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
@@ -5182,19 +5210,19 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Plugin not licensed</source>
-        <translation>Spraudnis nav licenzēts</translation>
-    </message>
-    <message>
-        <source>Unknown result!</source>
-        <translation>Nezināms rezultāts!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation>Pieejamās komandas:</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown result!</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Available modules:</source>
-        <translation>Pieejamie moduļi:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
@@ -5202,34 +5230,34 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>INFO</source>
-        <translation>Info</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>WARNING</source>
-        <translation>BRĪDINĀJUMS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation>Kļūda</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>USAGE</source>
-        <translation>LIETOJUMS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation>APRAKSTS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation>PIEMĒRI</translation>
-    </message>
-    <message>
-        <source>Screen %1</source>
-        <translation>Ekrāns %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Screen %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5237,7 +5265,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>VeyonMaster</name>
     <message>
         <source>No write access</source>
-        <translation>Nav rakstīšanas atļauja</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
@@ -5248,22 +5276,22 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation>Veyon pakalpojums</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>WebApiConfigurationPage</name>
     <message>
         <source>Web API</source>
-        <translation>Web API</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Vispārīgi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network port</source>
-        <translation>Tīkla ports</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enable WebAPI server</source>
@@ -5271,27 +5299,27 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Connection settings</source>
-        <translation>Saslēgšanās iestatījumi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Lifetime</source>
-        <translation>Mūžs</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> h</source>
-        <translation>h</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> s</source>
-        <translation>s</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Idle timeout</source>
-        <translation>Neaktivitātes noilgums</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authentication timeout</source>
-        <translation>Autentifikācijas noilgums</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Maximum number of open connections</source>
@@ -5299,19 +5327,19 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Connection encryption</source>
-        <translation>Saslēgšanās kriptēšana</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>TLS certificate file</source>
-        <translation>TLS sertificēts fails</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>TLS private key file</source>
-        <translation>TLS privātās atslēgas fails</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
@@ -5363,19 +5391,39 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation>Windows</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Vispārīgi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Handling of interfering windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fix window attributes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Terminate related process</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>User authentication</source>
-        <translation>Lietotāja autentificēšanās</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
@@ -5383,11 +5431,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>User login</source>
-        <translation>Lietotāja logins</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation>Ievadi palaišanas aizkavi</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Simulated key presses interval</source>
@@ -5399,19 +5447,19 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation>Aizslēgt ekrānu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation>Paslēpt uzdevumu joslu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Hide start menu</source>
-        <translation>Paslēpt start menu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation>Paslēpt darba virsmu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use custom power scheme with disabled power and sleep buttons</source>
@@ -5433,32 +5481,12 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Disable mouse devices</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Handling of interfering windows</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>Nav</translation>
-    </message>
-    <message>
-        <source>Fix window attributes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Terminate related process</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Close session</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Internal display</source>
-        <translation>Iekšējais ekrāns</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>

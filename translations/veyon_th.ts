@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="th">
+<TS version="2.1" language="th_TH">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About Veyon</source>
-        <translation>เกี่ยวกับ Veyon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About</source>
-        <translation>เกี่ยวกับ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>เวอร์ชั่น:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation>เว็บไซต์:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation>สนับสนุนโครงการ Veyon ด้วยการบริจาค</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation>ผู้มีส่วนช่วยเหลือ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation>การแปลภาษา</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
@@ -39,7 +39,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>License</source>
-        <translation>ลิขสิทธิ์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About Veyon %1</source>
@@ -72,19 +72,19 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Restrict access to members of specific user groups</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>ทดสอบ</translation>
-    </message>
-    <message>
         <source>Process access control rules</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Grant access to every authenticated user (default)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restrict access to members of specific user groups</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -97,11 +97,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation>กลุ่มผู้ใช้ที่ได้รับอนุญาต</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation>กลุ่มทั้งหมด</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Access control rules</source>
@@ -113,7 +113,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation>แก้ไขกฏที่เลือก</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add access control rule</source>
@@ -129,7 +129,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Enter username</source>
-        <translation>ใส่ชื่อผู้ใช้</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
@@ -137,7 +137,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access allowed</source>
-        <translation>การเข้าถึงได้รับอนุญาต</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
@@ -145,7 +145,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Access denied</source>
-        <translation>การเข้าถึงถูกปฏิเสธ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
@@ -198,7 +198,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>General</source>
-        <translation>ทั่วไป</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
@@ -206,15 +206,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Rule name:</source>
-        <translation>ชื่อกฏ:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation>กรอกคำอธิบายสำหรับกฏได้ที่นี่</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation>คำอธิบายกฏ:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
@@ -226,11 +226,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Conditions</source>
-        <translation>เงื่อนไข</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation>เป็นสมาชิกของกลุ่ม</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
@@ -242,7 +242,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>ไม่มีผู้ใช้เข้าสู่ระบบ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>is located at</source>
@@ -265,43 +265,43 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Local computer is already being accessed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Action</source>
-        <translation>การกระทำ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Allow access</source>
-        <translation>อนุญาตเข้าถึง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Deny access</source>
-        <translation>ปฏิเสธการเข้าถึง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation>ถามผู้ใช้ที่อยู่ในระบบเพื่อขออนุญาต</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation>ไม่มี (ปิดการใช้งานกฏ)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing user</source>
-        <translation>ผู้ใช้ที่เข้าถึง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation>คอมพิวเตอร์ที่เข้าถึง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation>ผู้ใช้ท้องที่ (อยู่ในระบบ)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Local computer</source>
-        <translation>คอมพิวเตอร์ท้องที่</translation>
-    </message>
-    <message>
-        <source>Local computer is already being accessed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -333,7 +333,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Connected users:</source>
-        <translation>ผู้ใช้ที่เชื่อมต่ออยู่:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
@@ -348,11 +348,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Test result</source>
-        <translation>ผลการทดสอบ</translation>
+        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <source>Test result</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -375,6 +375,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AppBlockerDialog</name>
     <message>
         <source>Kara Liste Yönetimi (Uygulama Engelleyici)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sadece sistem ve program klasörlerindeki uygulamalara izin ver
+(Taşınabilir/İndirilen uygulamaları engelle)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -403,11 +408,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Bu uygulama zaten listede!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sadece sistem ve program klasörlerindeki uygulamalara izin ver
-(Taşınabilir/İndirilen uygulamaları engelle)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -442,15 +442,15 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation>1) สร้างคู่กุญแจบนคอมพิวเตอร์หลัก</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) ตั้งกลุ่มการเข้าถึง โดยสมาชิกใดบ้างที่จะสามารถเข้าถึงคอมพิวเตอร์เครื่องอื่นได้</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) ส่งออกไฟล์กุญแจสาธารณะ และนำเข้าลงในเครื่องคอมพิวเตอร์ลูกข่ายโดยใช้ชื่อไฟล์เดียวกัน</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
@@ -458,7 +458,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Key file directories</source>
-        <translation>ไดเรกทอรีเก็บไฟล์กุญแจ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Public key file base directory</source>
@@ -477,26 +477,23 @@ If you&apos;re interested in translating Veyon into your local or another langua
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>คู่กุญแจยืนยันตัวตนนั้นจะประกอบด้วยกุญแจคริปโตกราฟิกสองดอกกุญแจสาธารณะและกุญแจส่วนตัว
-กุญแจส่วนตัวจะอนุญาตให้ผู้ใช้งานในเครื่องมาสเตอร์ในการการเข้าถึงเครื่องลูกข่าย
-ซึ่งเป็นสิ่งที่สำคัญว่า ต้องกำหนดให้ผู้ใช้ที่ได้รับการอนุญาตเท่านั้นที่จะสามารถอ่านไฟล์กุญแจส่วนตัวได้
-ไฟล์กุญแจสาธารณะจะใช้บนเครื่องลูกข่ายเพื่อรับการยืนยันตัวตนจากการร้องขอการเชื่อมต่อที่เข้ามา</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Create key pair</source>
-        <translation>สร้างคู่กุญแจ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation>ลบกุญแจ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation>นำเข้ากุญแจ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation>ส่งออกกุญแจ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Set access group</source>
@@ -504,7 +501,7 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation>ไฟล์กุญแจ (*.pem)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authentication key name</source>
@@ -520,11 +517,17 @@ The public key is used on client computers to authenticate incoming connection r
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation>โปรดเลือกกุญแจที่จะลบก่อน!</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation>กรุณาเลือกกุญแจที่จะส่งออกก่อน!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
@@ -534,22 +537,16 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Please select a key which to set the access group for!</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key.
-
-Make sure that the names of the keys belonging to each other are identical on all computers.</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation>กรุณาตรวจสอบสิทธิ์อนุญาตของคุณ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation>ชื่อไฟล์กุญแจประกอบด้วยตัวอักษรที่ไม่สามารถใช้ได้</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
@@ -565,19 +562,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation>กำลังสร้างคู่กุญแจใหม่สำหรับ &quot;%1&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation>ล้มเหลวในการสร้างกุญแจสาธารณะหรือส่วนตัว</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation>คู่กุญแจที่ถูกสร้างขึ้นใหม่ได้บันทึกลงใน &quot;%1&quot; และ &quot;%2&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation>ไม่สามารถลบไฟล์กุญแจ &quot;%1&quot; ได้!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
@@ -589,7 +586,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation>ไฟล์ &quot;%1&quot; มีอยู่แล้ว</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
@@ -669,22 +666,22 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation>&lt;N/A&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation>ไม่สามารถอ่านไฟล์กุญแจได้</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>AuthKeysPlugin</name>
     <message>
         <source>Create new authentication key pair</source>
-        <translation>สร้างคู่กุญแจยืนยันตัวตนใหม่</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Delete authentication key</source>
-        <translation>ลบกุญแจยืนยันตัวตน</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>List authentication keys</source>
@@ -783,15 +780,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>AuthKeysTableModel</name>
     <message>
         <source>Name</source>
-        <translation>ชื่อ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>ประเภท</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Access group</source>
-        <translation>กลุ่มการเข้าถึง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Pair ID</source>
@@ -802,7 +799,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>BuiltinDirectoryConfigurationPage</name>
     <message>
         <source>Locations &amp; computers</source>
-        <translation>สถานที่และคอมพิวเตอร์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Builtin directory</source>
@@ -810,19 +807,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Computers</source>
-        <translation>คอมพิวเตอร์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Locations</source>
-        <translation>สถานที่</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add new computer</source>
-        <translation>เพิ่มคอมพิวเตอร์ใหม่</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation>ลบคอมพิวเตอร์ที่เลือก</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Move selected computer up</source>
@@ -833,24 +830,32 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Scan network for computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ağı Tara</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Name</source>
-        <translation>ชื่อ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation>โฮสแอดแดรส/IP</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>MAC แอดแดรส</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add new location</source>
-        <translation>เพิ่มสถานที่ใหม่</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation>ลบสถานที่ที่เลือก</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Move selected location up</source>
@@ -866,11 +871,27 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>New location</source>
-        <translation>สถานที่ใหม่</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>New computer</source>
-        <translation>คอมพิวเตอร์ใหม่</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select a location first.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No computers found in the workgroup.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -881,11 +902,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation>เพิ่มสถานที่หรือคอมพิวเตอร์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
-        <translation>ล้างรายการสถานที่และคอมพิวเตอร์ทั้งหมด</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
@@ -981,11 +1002,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add a room</source>
-        <translation>เพิ่มห้อง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add a computer to room %1</source>
-        <translation>เพิ่มคอมพิวเตอร์ไปยังห้อง %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>OBJECT</source>
@@ -1021,19 +1042,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Type</source>
-        <translation>ประเภท</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>ชื่อ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Host address</source>
-        <translation>โฮสแอดแดรส</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>MAC แอดแดรส</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Specified object not found.</source>
@@ -1041,7 +1062,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>ไฟล์ &quot;%1&quot; ไม่มีอยู่!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
@@ -1077,14 +1098,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>None</source>
-        <translation>ไม่มี</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid</source>
-        <translation>ไม่ถูกต้อง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1105,7 +1130,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Computer</source>
-        <translation>คอมพิวเตอร์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Root</source>
@@ -1113,14 +1138,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>&quot;Room 01&quot;</source>
-        <translation>&quot;ห้อง 01&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
-        <translation>&quot;คอมพิวเตอร์ 01&quot;</translation>
-    </message>
-    <message>
-        <source>Location &quot;%1&quot; not found.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1128,14 +1149,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>BuiltinUltraVncServer</name>
     <message>
         <source>Builtin VNC server (UltraVNC)</source>
-        <translation>เซิฟเวอร์ VNC ในตัว (UltraVNC)</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>BuiltinX11VncServer</name>
     <message>
         <source>Builtin VNC server (x11vnc)</source>
-        <translation>เซิฟเวอร์ VNC ในตัว (x11vnc)</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1194,7 +1215,15 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Active features: %1</source>
+        <source>Hostname: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1203,15 +1232,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Online and connected</source>
-        <translation>ออนไลน์และเชื่อมต่อแล้ว</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Establishing connection</source>
-        <translation>กำลังสร้างการเชื่อมต่อ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computer offline or switched off</source>
-        <translation>คอมพิวเตอร์ออฟไลน์หรือปิดเครื่องอยู่</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
@@ -1223,34 +1256,22 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Disconnected</source>
-        <translation>ถูกตัดการเชื่อมต่อ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>ไม่มีผู้ใช้เข้าสู่ระบบ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
-        <translation>ผู้ใช้ที่เข้าสู่ระบบ: %1</translation>
-    </message>
-    <message>
-        <source>Hostname: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>unknown</source>
-        <translation>ไม่รู้จัก</translation>
-    </message>
-    <message>
-        <source>IP address: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hostname could not be resolved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No features active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active features: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1258,7 +1279,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerControlServer</name>
     <message>
         <source>Authentication error</source>
-        <translation>การยืนยันตัวตนผิดพลาด</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
@@ -1266,7 +1287,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Remote access</source>
-        <translation>การเข้าถึงระยะไกล</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
@@ -1293,7 +1314,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation>ผู้ใช้</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Logged in since</source>
@@ -1340,7 +1361,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add location</source>
-        <translation>เพิ่มสถานที่</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Save computer/user list</source>
@@ -1352,11 +1373,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>CSV files (*.csv)</source>
-        <translation>ไฟล์ CSV (*.csv)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File error</source>
-        <translation>ไฟล์มีข้อผิดพลาด</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
@@ -1472,7 +1493,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>เซิฟเวอร์สาธิต</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Tunables</source>
@@ -1480,7 +1501,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> s</source>
-        <translation>วิ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Update interval</source>
@@ -1488,19 +1509,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> MB</source>
-        <translation> MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> ms</source>
-        <translation> ms</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation>ลดความเร็วการอัปเดตภาพทัมเนลลงเมื่ออยู่ในโหมดสาธิต</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Memory limit</source>
-        <translation>จำกัดหน่วยความจำ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key frame interval</source>
@@ -1519,27 +1540,27 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Demo</source>
-        <translation>สาธิต</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Stop demo</source>
-        <translation>หยุดการสาธิต</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation>แบ่งปันหน้าจอของคุณเอง หรืออนุญาตให้ผู้ใช้ได้แบ่งหน้าจอของเขาให้ผู้ใช้คนอื่น</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation>สาธิตแบบเต็มจอ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>สาธิตแบบมีหน้าต่าง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation>แบ่งปันหน้าจอของคุณในโหมดเต็มหน้าจอ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
@@ -1547,7 +1568,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation>แบ่งปันหน้าจอของคุณในหน้าต่างแยก</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -1579,11 +1600,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>All screens</source>
-        <translation>หน้าจอทั้งหมด</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
-        <translation>อธิบายสาธิตด้วยการถ่ายทอดสดจากหน้าจอ</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1621,7 +1642,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Name</source>
-        <translation>ชื่อ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Path</source>
@@ -1649,22 +1670,22 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>URL</source>
-        <translation>URL</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>New application</source>
-        <translation>แอพพลิเคชั่นใหม่</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>New website</source>
-        <translation>เว็บไซต์ใหม่</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Start application</source>
-        <translation>เริ่มแอพพลิเคชั่น</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
@@ -1672,11 +1693,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Open website</source>
-        <translation>เปิดเว็บไซต์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>คลิกที่ปุ่มนี้เพื่อเปิดเว็บไซต์ทั้งหมด</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
@@ -1688,11 +1709,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation>เปิดเว็บไซต์ &quot;%1&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation>เว็บไซต์กำหนดเอง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
@@ -1703,11 +1724,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DocumentationFigureCreator</name>
     <message>
         <source>Teacher</source>
-        <translation>ครู</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Room %1</source>
-        <translation>ห้อง %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>generic-student-user</source>
@@ -1715,11 +1736,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
-        <translation>กรุณาทำงานตามที่ได้มอบหมายที่ให้ไว้ภายใน 5 นาทีข้างหน้า</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation>เว็บไซต์กำหนดเอง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open file manager</source>
@@ -1750,22 +1771,22 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ExternalVncServer</name>
     <message>
         <source>External VNC server</source>
-        <translation>เซิฟเวอร์ VNC ภายนอก</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ExternalVncServerConfigurationWidget</name>
     <message>
         <source>External VNC server configuration</source>
-        <translation>การตั้งค่าเซิฟเวอร์ VNC ภายนอก</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation>พอร์ท:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation>รหัสผ่าน:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1816,11 +1837,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Lock the screen</source>
-        <translation>ล็อกหน้าจอ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Display a text message</source>
-        <translation>แสดงข้อความตัวอักษร</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Test message</source>
@@ -1836,7 +1857,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Unlock the screen</source>
-        <translation>ปลดล็อกหน้าจอ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
@@ -1844,7 +1865,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Name</source>
-        <translation>ชื่อ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Description</source>
@@ -1903,7 +1924,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileCollectDialog</name>
     <message>
         <source>File transfer</source>
-        <translation>การถ่ายโอนไฟล์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Settings</source>
@@ -1955,7 +1976,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Start</source>
-        <translation>เริ่ม</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Select destination directory</source>
@@ -1985,15 +2006,15 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileCollectTreeModel</name>
     <message>
-        <source>Progress</source>
+        <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Name</source>
-        <translation>ชื่อ</translation>
+        <source>Number of files</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Number of files</source>
+        <source>Progress</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2001,14 +2022,42 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
-        <translation>การถ่ายโอนไฟล์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Settings for distributing files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Remember last source directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Destination directory (remote):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default source directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Settings for collecting files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Store collected files in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group collected files:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files to collect:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2025,7 +2074,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>None</source>
-        <translation>ไม่มี</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>First part of user name</source>
@@ -2033,6 +2090,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Last part of user name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Device name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Source directory (remote):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2045,22 +2110,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Prompt user for files to collect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Grouping attribute 3:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Destination directory:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Store collected files in:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Group collected files:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2084,11 +2133,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Files to collect:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Files to exclude:</source>
+        <source>Destination directory:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2096,39 +2141,15 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Files to exclude:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Collect files recursively</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Destination directory (remote):</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Default source directory:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Source directory (remote):</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User login name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Full name of user</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Device name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remember last source directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Create destination directory if it does not exist</source>
+        <source>Grouping attribute 3:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2143,11 +2164,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation>การถ่ายโอนไฟล์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>ตัวเลือก</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Destination directory on remote computers:</source>
@@ -2158,28 +2179,28 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Overwrite existing files</source>
-        <translation>บันทึกทับไฟล์ที่มีอยู่แล้ว</translation>
-    </message>
-    <message>
-        <source>Transfer only</source>
-        <translation>ถ่ายโอนไฟล์เท่านั้น</translation>
+        <source>Transfer and open destination folder</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
-        <translation>ถ่ายโอนและเปิดไฟล์ด้วยโปรแกรมที่เกี่ยวข้อง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Transfer and open destination folder</source>
-        <translation>ถ่ายโอนและเปิดโฟลเดอร์ที่เก็บปลายทาง</translation>
+        <source>Transfer only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overwrite existing files</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>ไฟล์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>เริ่ม</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2202,11 +2223,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation>เลือกไฟล์อย่างน้อยหนึ่งไฟล์เพื่อนำไปถ่ายโอน</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File transfer</source>
-        <translation>การถ่ายโอนไฟล์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Received file %1.</source>
@@ -2322,18 +2343,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation>ส่วนติดต่อผู้ใช้</translation>
-    </message>
-    <message>
-        <source>Use system language setting</source>
-        <translation>ใช้การตั้งค่าภาษาตามระบบ</translation>
-    </message>
-    <message>
-        <source>Language:</source>
-        <translation>ภาษา:</translation>
-    </message>
-    <message>
-        <source>Style:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2341,24 +2350,48 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Use system language setting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Authentication</source>
-        <translation>การยืนยันตัวตน</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Method:</source>
-        <translation>วิธีการ:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation>การยืนยันตัวตนด้วยการลงชื่อเข้าใช้</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation>การยืนยันตัวตนด้วยไฟล์กุญแจ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>ทดสอบ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network object directory</source>
@@ -2374,7 +2407,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> seconds</source>
-        <translation>วินาที</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Logging</source>
@@ -2390,7 +2431,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Nothing</source>
-        <translation>ไม่มี</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Only critical messages</source>
@@ -2414,7 +2455,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>x</source>
-        <translation>x</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Rotate log files</source>
@@ -2422,7 +2463,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> MB</source>
-        <translation> MB</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Limit log file size</source>
@@ -2441,12 +2482,20 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Missing user groups backend</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Authentication is set up properly on this computer.</source>
-        <translation>การยืนยันตัวตนถูกติดตั้งบนคอมพิวเตอร์ได้อย่างถูกต้องแล้ว</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authentication keys are not set up properly on this computer.</source>
-        <translation>การยืนยันตัวตนยังไม่ได้รับถูกติดตั้งบนคอมพิวเตอร์อย่างถูกต้อง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Veyon service</source>
@@ -2474,34 +2523,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Authentication test</source>
-        <translation>การทดสอบการยืนยันตัวตน</translation>
-    </message>
-    <message>
-        <source>User groups</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Include user groups from domain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Color scheme:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Light</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2619,11 +2640,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>LdapConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation>การตั้งค่าพื้นฐาน</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>General</source>
-        <translation>ทั่วไป</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Anonymous bind</source>
@@ -2643,7 +2664,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> ms</source>
-        <translation> ms</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>LDAP server and port</source>
@@ -2671,7 +2692,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation>ไม่เลย (ไม่ปลอดภัย!)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
@@ -2679,15 +2700,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>None</source>
-        <translation>ไม่มี</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>TLS</source>
-        <translation>TLS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>SSL</source>
-        <translation>SSL</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -2707,7 +2728,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. dc=example,dc=org</source>
-        <translation>เช่น dc=example,dc=org</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Environment settings</source>
@@ -2735,7 +2756,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. OU=Computers</source>
-        <translation>เช่น OU=Computers</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Group tree</source>
@@ -2747,7 +2768,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. OU=Users</source>
-        <translation>เช่น OU=Users</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. OU=Groups</source>
@@ -2819,7 +2840,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Advanced settings</source>
-        <translation>การตั้งค่าขั้นสูง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Optional object filters</source>
@@ -2831,15 +2852,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
-        <translation>เช่น (objectClass=computer)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. (objectClass=group)</source>
-        <translation>เช่น (objectClass=group)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
-        <translation>เช่น (objectClass=person)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Filter for users</source>
@@ -2855,7 +2876,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation>เช่น (objectClass=room) หรือ (objectClass=computerLab)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Filter for computer containers</source>
@@ -2863,7 +2884,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation>เช่น (objectClass=container) หรือ (objectClass=organizationalUnit)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Query options</source>
@@ -2871,6 +2892,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Map container/OU structure 1:1 to locations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2927,7 +2952,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>List all locations</source>
-        <translation>แสดงรายชื่อสถานที่ทั้งหมด</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Browse</source>
@@ -2935,11 +2960,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Test</source>
-        <translation>ทดสอบ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
-        <translation>การทดสอบ LDAP base DN ล้มเหลว</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not query the configured base DN. Please check the base DN parameter.
@@ -2949,7 +2974,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>LDAP base DN test successful</source>
-        <translation>การทดสอบ LDAP base DN สำเร็จลุล่วง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
@@ -2994,7 +3019,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Enter username</source>
-        <translation>ใส่ชื่อผู้ใช้</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -3014,11 +3039,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>group members</source>
-        <translation>สมาชิกกลุ่ม</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Group not found</source>
-        <translation>ไม่พบกลุ่ม</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
@@ -3074,7 +3099,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation>กรุณากรอกชื่อของสถานที่ของคอมพิวเตอร์ (อนุญาตใช้อักขระแทนได้ เช่น ดอกจัน):</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>computer locations</source>
@@ -3114,7 +3139,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User not found</source>
-        <translation>ไม่พบผู้ใช้</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
@@ -3134,7 +3159,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Computer not found</source>
-        <translation>ไม่พบคอมพิวเตอร์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
@@ -3198,7 +3223,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>LDAP %1 test failed</source>
-        <translation>การทดสอบ LDAP %1 ล้มเหลว</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
@@ -3208,7 +3233,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>LDAP %1 test successful</source>
-        <translation>การทดสอบ LDAP %1 สำเร็จลุล่วง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
@@ -3216,7 +3241,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>LDAP test failed</source>
-        <translation>การทดสอบ LDAP ล้มเหลว</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
@@ -3230,7 +3255,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>LDAP test successful</source>
-        <translation>การทดสอบ LDAP สำเร็จลุล่วง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
@@ -3254,10 +3279,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Map container/OU structure 1:1 to locations</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3292,6 +3313,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>LDAP/AD support for Veyon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3303,10 +3328,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>LDAP/AD support for Veyon</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>LinuxPlatformConfigurationPage</name>
@@ -3316,7 +3337,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User authentication</source>
-        <translation>การยืนยันตัวตนผู้ใช้</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
@@ -3335,11 +3356,11 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Login key sequence</source>
+        <source>Input start delay</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Input start delay</source>
+        <source>Login key sequence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3362,11 +3383,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>LocationDialog</name>
     <message>
         <source>Select location</source>
-        <translation>เลือกสถานที่</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation>กรอกตัวกรองการค้นหา...</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3388,18 +3409,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Show icons only</source>
-        <translation>แสดงไอคอนเท่านั้น</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Veyon Configurator</source>
-        <translation>Veyon Configurator</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>General</source>
-        <translation>ทั่วไป</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Service</source>
@@ -3415,23 +3436,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>ไ&amp;ฟล์ </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>วิ&amp;ธีใช้</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;มุมมอง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Quit</source>
-        <translation>&amp;ออก</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation>Ctrl+Q</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Save settings to file</source>
@@ -3439,27 +3460,27 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation>บันทึกการตั้งค่าลงในไฟล์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
-        <translation>โ&amp;หลดการตั้งค่าจากไฟล์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation>Ctrl+O</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>เกี่ยวกับ Veyon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About Qt</source>
-        <translation>เกี่ยวกับ Qt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reset configuration</source>
@@ -3467,15 +3488,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation>&amp;มาตรฐาน</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
-        <translation>&amp;ขั้นสูง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
-        <translation>ตั้งค่าขนาดไอคอนคอมพิวเตอร์โดยอัตโนมัติ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Auto</source>
@@ -3483,35 +3504,41 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>About</source>
-        <translation>เกี่ยวกับ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation>ค้นหาผู้ใช้และคอมพิวเตอร์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Align computers to grid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Only show powered on computers</source>
-        <translation>แสดงเฉพาะคอมพิวเตอร์ที่เปิดอยู่เท่านั้น</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
-        <translation>สถานที่ &amp;&amp; คอมพิวเตอร์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>ภาพถ่ายหน้าจอ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Slideshow</source>
-        <translation>สไลด์โชว์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation>สปอร์ตไลท์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Only show computers with logged on users</source>
@@ -3523,11 +3550,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation>โหลดการตั้งค่าจากไฟล์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
-        <translation>ไฟล์ JSON (*.json)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
@@ -3543,7 +3570,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Insufficient privileges</source>
-        <translation>สิทธิไม่เพียงพอ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
@@ -3558,6 +3585,14 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Authentication impossible</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3567,7 +3602,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Access denied</source>
-        <translation>การเข้าถึงถูกปฏิเสธ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -3581,29 +3616,19 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Use custom computer arrangement.
-
-Press and hold to load arrangement from a file or save current arrangement to a file.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Load computer positions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save computer positions</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation>การตั้งค่าพื้นฐาน</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Directories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Screenshots</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3611,24 +3636,24 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Screenshots</source>
-        <translation>ภาพถ่ายหน้าจอ</translation>
+        <source>Configuration templates</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User interface</source>
-        <translation>ส่วนติดต่อผู้ใช้</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Text color</source>
-        <translation>สีของข้อความ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> ms</source>
-        <translation> ms</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Background color</source>
-        <translation>สีพื้นหลัง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Thumbnail spacing</source>
@@ -3648,23 +3673,23 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation>คอมพิวเตอร์และชื่อผู้ใช้</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Only user name</source>
-        <translation>เฉพาะชื่อผู้ใช้</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only computer name</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Only last part of user name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Only computer name</source>
-        <translation>เฉพาะชื่อคอมพิวเตอร์</translation>
-    </message>
-    <message>
         <source>User and computer name</source>
-        <translation>ผู้ใช้และชื่อคอมพิวเตอร์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Thumbnail update interval</source>
@@ -3672,7 +3697,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Sort order</source>
-        <translation>การจัดเรียงลำดับ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
@@ -3707,7 +3732,23 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Advanced</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Identify users in guest sessions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3727,12 +3768,44 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Guest user identity extension</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>None</source>
-        <translation>ไม่มี</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Prefix</source>
@@ -3760,7 +3833,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Automatically adjust computer icon size</source>
-        <translation>ปรับเปลี่ยนขนาดไอคอนของคอมพิวเตอร์โดยอัตโนมัติ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Automatically open computer select panel</source>
@@ -3768,11 +3841,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Computer locations</source>
-        <translation>สถานที่ของคอมพิวเตอร์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Show current location only</source>
-        <translation>แสดงสถานที่ปัจจุบันเท่านั้น</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Allow adding hidden locations manually</source>
@@ -3780,7 +3853,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Hide local computer</source>
-        <translation>ซ่อนคอมพิวเตอร์ท้องที่</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Hide local session</source>
@@ -3788,10 +3861,14 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Hide empty locations</source>
-        <translation>ซ่อนสถานที่ว่างเปล่า</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Hide computer filter field</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Always expand all locations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3804,7 +3881,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
-        <translation>การกระทำอย่างเช่นการสั่งบู๊ตเครื่องใหม่ หรือการสั่งปิดคอมพิวเตอร์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Show confirmation dialog for potentially unsafe actions</source>
@@ -3832,62 +3909,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
-        <translation>&lt;no feature&gt;</translation>
-    </message>
-    <message>
-        <source>Always expand all locations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Configuration templates</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Advanced</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Computer name source</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Host address</source>
-        <translation>โฮสแอดแดรส</translation>
-    </message>
-    <message>
-        <source>Session client address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Session client name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Session host name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Session metadata</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Full name of user</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User login name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Computer UID role</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Session meta data hash</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3895,11 +3916,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation>สังเกตการณ์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
-        <translation>โหมดนี้จะให้คุณได้สังเกตการณ์คอมพิวเตอร์ทุกเครื่องจากสถานที่ใดสถานที่หนึ่งหรือมากกว่านั้น</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Query application version of the server</source>
@@ -3935,37 +3956,48 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
 </context>
 <context>
+    <name>NetworkDiscoveryDialog</name>
+    <message>
+        <source>Bilgisayarları Seçin (Select Computers)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ağda bulunan bilgisayarlar. Eklemek istediklerinizi seçin:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
-        <translation>สถานที่/คอมพิวเตอร์</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>OpenWebsiteDialog</name>
     <message>
         <source>Open website</source>
-        <translation>เปิดเว็บไซต์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. Veyon</source>
-        <translation>เช่น Veyon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation>จำไว้และเพิ่มไปยังเมนูเว็บไซต์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
-        <translation>เช่น www.veyon.io</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation>กรุณากรอก URL ของเว็บไซต์ที่ต้องการเปิด:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation>ชื่อ:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3980,15 +4012,15 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Username</source>
-        <translation>ชื่อผู้ใช้</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>รหัสผ่าน</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>การยืนยันตัวตนผิดพลาด</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
@@ -4014,7 +4046,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Name</source>
-        <translation>ชื่อ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Description</source>
@@ -4041,47 +4073,47 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation>เปิดเครื่องคอมพิวเตอร์โดยใช้ Wake-on-LAN (WOL)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Power on</source>
-        <translation>เปิดเครื่อง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
-        <translation>คลิกที่นี่เพื่อเปิดเครื่องคอมพิวเตอร์ทั้งหมด วิธีนี้จะทำให้คุณไม่ต้องเดินไปเปิดเครื่องทีละเครื่อง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Reboot</source>
-        <translation>รีบู๊ต</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation>คลิกปุ่มนี้ เพื่อทำการรีบู๊ตคอมพิวเตอร์ทุกเครื่อง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Power down</source>
-        <translation>ปิดเครื่อง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
-        <translation>คลิกที่ปุ่มนี้เพื่อทำการสั่งปิดเครื่องคอมพิวเตอร์ทั้งหมด วิธีนี้จะทำให้คุณไม่จำเป็นต้องเดินไปปิดคอมพิวเตอร์ด้วยตัวเองทีละเครื่อง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Power down now</source>
-        <translation>ปิดเครื่องตอนนี้</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Install updates and power down</source>
-        <translation>ติดตั้งอัปเดตแล้วปิดเครื่อง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation>ปิดเครื่องหลังจากการยืนยันของผู้ใช้</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation>ปิดเครื่องหลังจากหมดเวลา</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
@@ -4097,7 +4129,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation>ยืนยันการรีบู๊ต</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
@@ -4109,7 +4141,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation>ยืนยันการปิดเครื่อง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
@@ -4125,18 +4157,17 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation>คอมพิวเตอร์ได้รับการร้องขอจากระยะไกลให้ปิดเครื่องลง คุณต้องการปิดเครื่องลงตอนนี้หรือไม่?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
-        <translation>คอมพิวเตอร์จะปิดลงใน %1 นาที %2 วินาที
-กรุณาบันทึกงานให้เรียบร้อยแล้วปิดโปรแกรมทุกโปรแกรม</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation>เปิด/ปิดเครื่อง หรือรีสตาร์ทคอมพิวเตอร์ใหม่</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Commands for controlling power status of computers</source>
@@ -4147,7 +4178,7 @@ Please save your work and close all programs.</source>
     <name>PowerDownTimeInputDialog</name>
     <message>
         <source>Power down</source>
-        <translation>ปิดเครื่อง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
@@ -4155,11 +4186,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>minutes</source>
-        <translation>นาที</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation>วินาที</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4247,19 +4278,19 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessFeaturePlugin</name>
     <message>
         <source>Remote view</source>
-        <translation>มองระยะไกล</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
-        <translation>เปิดการดูจากระยะไกลโดยไม่ต้องมีการควบคุมอะไร</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>ควบคุมระยะไกล</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation>เปิดหน้าต่างการเข้าควบคุมระยะไกลสำหรับคอมพิวเตอร์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Exchange clipboard contents</source>
@@ -4271,7 +4302,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Remote access</source>
-        <translation>การเข้าถึงระยะไกล</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
@@ -4279,7 +4310,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Remote view or control a computer</source>
-        <translation>ดูจากระยะไกลหรือเข้าควบคุมคอมพิวเตอร์</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4297,11 +4328,11 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
-        <translation>ดูเท่านั้น</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>ควบคุมระยะไกล</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Select screen</source>
@@ -4309,82 +4340,82 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Send shortcut</source>
-        <translation>ส่งคีย์ลัด</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>ภาพหน้าจอ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation>เต็มหน้าจอ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Window</source>
-        <translation>หน้าต่าง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation>ออก</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation>Ctrl+Alt+Del</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+Esc</source>
-        <translation>Ctrl+Esc</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Alt+Tab</source>
-        <translation>Alt+Tab</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Alt+F4</source>
-        <translation>Alt+F4</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Win+Tab</source>
-        <translation>Win+Tab</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Win</source>
-        <translation>Win</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation>เมนู</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
-        <translation>Alt+Ctrl+F1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Connected.</source>
-        <translation>เชื่อมต่อแล้ว</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation>กำลังเชื่อมต่อ...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>All screens</source>
-        <translation>หน้าจอทั้งหมด</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation>ล็อก</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation>ปลดล็อก</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
-        <translation>เพื่อที่จะดึงความสนใจจากผู้ใช้ทั้งหมดให้กลับมา คุณสามารถล็อกคอมพิวเตอร์ของเขาโดยใช้ปุ่มนี้ ในโหมดนี้ อุปกรณ์ประเภทนำเข้าข้อมูล เช่น เมาส์ คีย์บอร์ด จะถูกล็อกและหน้าจอจะดับลง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Lock input devices</source>
@@ -4399,10 +4430,6 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Lock screen and input devices of a computer</source>
-        <translation>ล็อกหน้าจอและอุปกรณ์นำเข้าของคอมพิวเตอร์</translation>
-    </message>
-    <message>
         <source>Lock Screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4410,12 +4437,16 @@ Please save your work and close all programs.</source>
         <source>Enter a custom message to display on locked screens (leave empty for default):</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Lock screen and input devices of a computer</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation>ไม่รู้จัก</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
@@ -4423,7 +4454,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>ภาพหน้าจอ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
@@ -4434,15 +4465,15 @@ Please save your work and close all programs.</source>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation>ภาพหน้าจอ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
-        <translation>ใช้ฟังก์ชั่นนี้เพื่อเก็บภาพหน้าจอจากคอมพิวเตอร์ที่เลือกไว้</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Screenshots taken</source>
-        <translation>ถ่ายภาพหน้าจอแล้ว</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
@@ -4461,31 +4492,31 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>User:</source>
-        <translation>ผู้ใช้:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computer:</source>
-        <translation>คอมพิวเตอร์:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation>วันที่:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation>เวลา:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Show</source>
-        <translation>แสดง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>ลบ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>ภาพหน้าจอ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
@@ -4527,15 +4558,15 @@ Please save your work and close all programs.</source>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation>ทั่วไป</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
-        <translation>แสดงการแจ้งเตือนเมื่อการเข้าถึงที่ไม่ได้รับอนุญาตถูกบล็อก</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Show notification on remote connection</source>
-        <translation>แสดงการแจ้งเตือนเมื่อมีการเชื่อมต่อจากระยะไกล</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4543,7 +4574,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Autostart</source>
-        <translation>เริ่มอัตโนมัติ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>State:</source>
@@ -4551,15 +4582,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>หยุดแล้ว</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start service</source>
-        <translation>เริ่ม service</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Stop service</source>
-        <translation>หยุด service</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Session mode</source>
@@ -4570,12 +4601,16 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
-Typically this is required to support terminal servers.</source>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
+Typically this is required to support terminal servers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4591,7 +4626,7 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Veyon server</source>
+        <source>Demo server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4599,12 +4634,12 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Feature manager</source>
+        <source>Veyon server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>เซิฟเวอร์สาธิต</translation>
+        <source>Feature manager</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Miscellaneous settings</source>
@@ -4612,11 +4647,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation>เปิดใช้ข้อยกเว้นของไฟร์วอลล์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
-        <translation>อนุญาตการเชื่อมต่อจาก localhost เท่านั้น</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Disable clipboard synchronization</source>
@@ -4624,23 +4659,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>VNC server</source>
-        <translation>เซิฟเวอร์ VNC</translation>
-    </message>
-    <message>
-        <source>Plugin:</source>
-        <translation>ปลั๊กอิน:</translation>
-    </message>
-    <message>
-        <source>Restart Veyon Service</source>
-        <translation>เริ่ม Veyon Service ใหม่</translation>
-    </message>
-    <message>
-        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Running</source>
-        <translation>กำลังทำงาน</translation>
+        <source>Plugin:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Session metadata</source>
@@ -4652,7 +4675,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>None</source>
-        <translation>ไม่มี</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Value of an environment variable</source>
@@ -4663,16 +4686,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
-
-Example: [^-]*-(PC[0-9]*)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Environment variable name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4680,13 +4693,27 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Registry key name</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restart Veyon Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
-    <message>
-        <source>Service control</source>
-        <translation>การควบคุมเซอร์วิส</translation>
-    </message>
     <message>
         <source>Starting %1</source>
         <translation type="unfinished"></translation>
@@ -4707,28 +4734,32 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Unregistering %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Service control</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
-        <translation>ลงทะเบียน Veyon Service</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation>ถอนการลงทะเบียน Veyon Service</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation>เริ่ม Veyon Service</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation>หยุด Veyon Service</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation>เริ่ม Veyon Service ใหม่</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
@@ -4736,15 +4767,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Service is running</source>
-        <translation>เซอร์วิสกำลังทำงาน</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation>เซอร์วิสไม่ได้ทำงาน</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
-        <translation>ตั้งค่าและควบคุม Veyon Service</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Commands for configuring and controlling Veyon Service</source>
@@ -4759,7 +4790,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
-        <translation>ไฟล์ &quot;%1&quot; ไม่มีอยู่!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon CLI</source>
@@ -4786,7 +4817,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Duration:</source>
-        <translation>ระยะเวลา:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>View in separate window</source>
@@ -4817,7 +4848,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation>สปอร์ตไลท์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
@@ -4832,15 +4863,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation>เริ่มแอพพลิเคชั่น</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation>ชื่อ:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
-        <translation>เช่น &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remember and add to application menu</source>
@@ -4848,7 +4879,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation>เช่น VLC</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
@@ -4915,7 +4946,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished">คอมพิวเตอร์</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Answer</source>
@@ -5021,7 +5052,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>ส่งข้อความอักษระ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
@@ -5032,26 +5063,26 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>TextMessageFeaturePlugin</name>
     <message>
         <source>Text message</source>
-        <translation>ข้อความอักษระ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation>ใช้ฟังก์ชั่นนี้เพื่อส่งข้อความอักษระให้ผู้ใช้ทุกคน เช่น การสั่งงานใหม่ เป็นต้น</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Message from teacher</source>
-        <translation>ข้อความจากครูผู้สอน</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation>ส่งข้อความไปยังผู้ใช้</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>UltraVncConfigurationWidget</name>
     <message>
         <source>Builtin UltraVNC server configuration</source>
-        <translation>การตั้งค่าเซิฟเวอร์ UltraVNC ในตัว</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Maximum CPU usage</source>
@@ -5059,7 +5090,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation>ความแม่นยำต่ำ (โหมดเทอร์โบ)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
@@ -5071,7 +5102,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation>เปิดใช้การสนับสนุนการแสดงหลายหน้าจอ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
@@ -5113,11 +5144,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Username</source>
-        <translation>ชื่อผู้ใช้</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>รหัสผ่าน</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5132,15 +5163,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Log off</source>
-        <translation>ล็อกออฟ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation>คลิกปุ่มนี้เพื่อล็อกออฟผู้ใช้จากคอมพิวเตอร์ทุกเครื่อง</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation>ยืนยันการล็อกออฟผู้ใช้</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
@@ -5148,7 +5179,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation>คุณต้องการล็อกออฟผู้ใช้ที่เลือกไว้หรือไม่</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User session control</source>
@@ -5159,15 +5190,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation>[เรียบร้อย]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation>[ล้มเหลว]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation>คำสั่งไม่ถูกต้อง!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
@@ -5182,11 +5213,11 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unknown result!</source>
-        <translation>ผลลัพธ์ที่ไม่รู้จัก!</translation>
+        <source>Available commands:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Available commands:</source>
+        <source>Unknown result!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5222,11 +5253,11 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Screen %1</source>
+        <source>Guest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Guest</source>
+        <source>Screen %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5245,7 +5276,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation>Veyon Service</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5256,7 +5287,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>General</source>
-        <translation>ทั่วไป</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network port</source>
@@ -5280,7 +5311,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source> s</source>
-        <translation>วิ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Idle timeout</source>
@@ -5308,7 +5339,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
@@ -5364,15 +5395,35 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>General</source>
-        <translation>ทั่วไป</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Handling of interfering windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fix window attributes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Terminate related process</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>User authentication</source>
-        <translation>การยืนยันตัวตนผู้ใช้</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
@@ -5396,7 +5447,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation>ล็อกจอ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Hide taskbar</source>
@@ -5408,7 +5459,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation>ซ่อนเดสก์ท็อป</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use custom power scheme with disabled power and sleep buttons</source>
@@ -5430,26 +5481,6 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Disable mouse devices</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Handling of interfering windows</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>ไม่มี</translation>
-    </message>
-    <message>
-        <source>Fix window attributes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Terminate related process</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Close session</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
@@ -5466,7 +5497,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation>เซอร์วิส &quot;%1&quot; ถูกติดตั้งอยู่ก่อนแล้ว</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
@@ -5478,7 +5509,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation>เซอร์วิส &quot;%1&quot; ได้รับการติดตั้งอย่างเสร็จสมบูรณ์แล้ว</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
@@ -5486,7 +5517,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>เซอร์วิส &quot;%1&quot; ได้รับการยกเลิกการติดตั้งอย่างเสร็จสมบูรณ์แล้ว</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
@@ -5509,7 +5540,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Do not use X Damage extension</source>
-        <translation>ห้ามใช่ส่วนเสริม X Damage เป็นอันขาด</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

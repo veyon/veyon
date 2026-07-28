@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="he">
+<TS version="2.1" language="he_IL">
 <context>
     <name>AboutDialog</name>
     <message>
         <source>About Veyon</source>
-        <translation>אודות Veyon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About</source>
-        <translation>אודות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Version:</source>
-        <translation>גרסה:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Website:</source>
-        <translation>אתר אינטרנט:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation>לתמיכה כספית</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation>תורמים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation>תרגום</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>השפה הנוכחית אינה תורגמה עדיין. אם את/ה מעוניין לתרגם את Veyon לשפה שלך או שפה אחרת או רוצה לשפר תרגום הנוכחי נא תפנה למיישם Veyon.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>License</source>
-        <translation>רישיון</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About Veyon %1</source>
@@ -69,87 +69,87 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlPage</name>
     <message>
         <source>Computer access control</source>
-        <translation>בקרת גישה מחשב</translation>
-    </message>
-    <message>
-        <source>Restrict access to members of specific user groups</source>
-        <translation>הגבל הרשאה לחברי קבוצה מסוימת</translation>
-    </message>
-    <message>
-        <source>Test</source>
-        <translation>בדיקה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Process access control rules</source>
-        <translation>הרצת בקרה כללי גישה</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation>תן גישה לכל משתמש רשום (ברירת מחדל)</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restrict access to members of specific user groups</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation>קבוצת משתמשים רשאים לבצע גישה למחשבים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation>נא להוסיף קבוצות חברים בהם יהיו רשאים לגשת למחשבים ברשת Veyon שלך</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation>קבוצות משתמשים רשומים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>All groups</source>
-        <translation>כל הקבוצות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Access control rules</source>
-        <translation>כללי בקרת גישה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Move selected rule up</source>
-        <translation>הזזת כלל נבחר מעלה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Edit selected rule</source>
-        <translation>שינוי כלל נבחר</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add access control rule</source>
-        <translation>הוסף כלל בקרת גישה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove access control rule</source>
-        <translation>הסר כלל בקרת גישה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation>הזזת כלל נבחר מטה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation>הכנס שם משתמש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation>נא הכנס שם משתמש עם הרשאות לבדיקה:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Access allowed</source>
-        <translation>גישה מאופשרת</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation>המשתמש הזה רשאי לבצע גישה למחשבים עם הגדרה נוכחית</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Access denied</source>
-        <translation>גישה נדחתה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>המשתמש הזה אינו רשאי לבצע גישה למחשבים עם הגדרה נוכחית</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -194,114 +194,114 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlRuleEditDialog</name>
     <message>
         <source>Edit access control rule</source>
-        <translation>ערוך כלל בקרת גישה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>General</source>
-        <translation>כללי</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
-        <translation>הכנס שם מקוצר לכלל כאן</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Rule name:</source>
-        <translation>שם כלל :</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation>הכנס תיאור עבור כלל כאן</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation>תיאור כלל:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>הפוך את כל התנאים (מקיים\קיים הופך ללא מקיים\קיים)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation>תמיד הפעל את החור והתעלם מהתנאים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Conditions</source>
-        <translation>תנאים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>is member of group</source>
-        <translation>חבר קבוצה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>אם יותר מאחד התנאים מופעל, כל אחד מהתנאים צריך להתקיים על מנת לקיים את התנאי (&quot;וגם&quot; לוגי). אם רק אחד מהתנאים צריך להתקיים (&quot;או&quot; לוגי), יש ליצור מספר כללי גישה.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
-        <translation>מחשב ניגש ומחשב מקומי נמצאים באותו מיקום</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>אין אף משתמש מחובר</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>is located at</source>
-        <translation>ממוקם ב</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation>המחשב הניגש הוא המקומי</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>משתמש ניגש בעל אחת או יותר קבוצות במשותף עם המשתמש המקומי (המחובר)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation>משתמש ניגש מחובר כמשתמש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation>משתמש ניגש כבר מחובר</translation>
-    </message>
-    <message>
-        <source>Action</source>
-        <translation>פעולה</translation>
-    </message>
-    <message>
-        <source>Allow access</source>
-        <translation>אפשר גישה</translation>
-    </message>
-    <message>
-        <source>Deny access</source>
-        <translation>חסום גישה</translation>
-    </message>
-    <message>
-        <source>Ask logged on user for permission</source>
-        <translation>בקש אישור משתמש מחובר לגישה</translation>
-    </message>
-    <message>
-        <source>None (rule disabled)</source>
-        <translation>אין (כלל מושבת)</translation>
-    </message>
-    <message>
-        <source>Accessing user</source>
-        <translation>משתמש ניגש</translation>
-    </message>
-    <message>
-        <source>Accessing computer</source>
-        <translation>מחשב ניגש</translation>
-    </message>
-    <message>
-        <source>Local (logged on) user</source>
-        <translation>משתמש מקומי (מחובר)</translation>
-    </message>
-    <message>
-        <source>Local computer</source>
-        <translation>מחשב מקומי</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Local computer is already being accessed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Action</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Allow access</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Deny access</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ask logged on user for permission</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None (rule disabled)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accessing user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accessing computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Local (logged on) user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Local computer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -309,50 +309,50 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AccessControlRulesTestDialog</name>
     <message>
         <source>Access control rules test</source>
-        <translation>בדיקת כללי גישה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation>משתמש ניגש:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Local computer:</source>
-        <translation>מחשב מקומי:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Accessing computer:</source>
-        <translation>מתחבר למחשב:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation>אנא הזן את המשתמש הבא ואת המידע אודות המחשב על מנת לבדוק את קבוצת החוקים.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Local user:</source>
-        <translation>משתמש מקומי:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation>משתמשים מחוברים:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation>הגישה במקרה הניתן מאופשרת.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation>הגישה במקרה הניתן נדחית.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation>הגישה במקרה הניתן דורשת הרשאה מצד המשתמש המחובר.</translation>
-    </message>
-    <message>
-        <source>Test result</source>
-        <translation>תוצאות בדיקה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>There is no matching rule with a valid action. The access is therefore denied.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Test result</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -375,6 +375,11 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AppBlockerDialog</name>
     <message>
         <source>Kara Liste Yönetimi (Uygulama Engelleyici)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sadece sistem ve program klasörlerindeki uygulamalara izin ver
+(Taşınabilir/İndirilen uygulamaları engelle)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -405,11 +410,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <source>Bu uygulama zaten listede!</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Sadece sistem ve program klasörlerindeki uygulamalara izin ver
-(Taşınabilir/İndirilen uygulamaları engelle)</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>AppBlockerPlugin</name>
@@ -430,109 +430,94 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation>מפתחות התחברות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Introduction</source>
-        <translation>מבוא</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>יש לעקוב אחר הלשבים הבאים על מנת להגדיר התחברות באמצעות מפתחות:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation>1) צור זוג מפתחות על מחשב המאסטר</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
-        <translation>2) הגדר קבוצת גישה אשר חבריה אמורים לגשת למחשבים אחרים.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) ייצא את המפתח הפומבי וייבא אותו בכל אחד ממחשבי הלקוחות עם שם זהה.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>אנה פנה אל &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;המדריך למנהל של Veyon&lt;/a&gt; למידע נוסף.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key file directories</source>
-        <translation>נתיבים של קבצי מפתחות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation>נתיב בסיס למפתחות פומביים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation>נתיב בסיס למפתחות פרטיים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation>מפתחות התחברות זמינים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>זוג מפתחות אימות כולל זוג מפתחות קריפטוגרפיים, מפתח פרטי ומפתח פומבי.
-מפתח פרט מאפשר למשתמשים על מחשב המאסטר לגשת לכל שאר מחשבי הלקוח.
-זה חשוב שרק מחשבים מורשים יוכלו לקרוא את המפתח הפרטי.
-המפתח הפומבי משמש במחשבי לקוח על מנת שיוכלו לאמת בקשות לחיבורים נכנסים.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Create key pair</source>
-        <translation>יצירת זוג מפתחות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Delete key</source>
-        <translation>מחק מפתח</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Import key</source>
-        <translation>ייבא מפתח</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export key</source>
-        <translation>ייצא מפתח</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Set access group</source>
-        <translation>הגדר קבוצת גישה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key files (*.pem)</source>
-        <translation>קבצי מפתחות (*.pem)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation>שם מפתח אימות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation>אנא הכניסו את שם קבוצת המשתמשים או התפקיד עבורם יש ליצור את זוג המפתחות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
-        <translation>אתה בטוח שברצונך למחוק את המפתח &quot;%1/%2&quot;?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation>נא לבחור מפתח למחיקה!</translation>
-    </message>
-    <message>
-        <source>Please select a key to export!</source>
-        <translation>יש לבחור מפתח לייצוא!</translation>
-    </message>
-    <message>
-        <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation>נא לבחור קבוצת משתמשים עבורה יש לתת גישה למפתח &quot;%1&quot;:</translation>
-    </message>
-    <message>
-        <source>Please select a key which to set the access group for!</source>
-        <translation>נא לבחור מפתח עבורו יש להגדיר את קבוצת הגישה!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key.
@@ -540,100 +525,112 @@ The public key is used on client computers to authenticate incoming connection r
 Make sure that the names of the keys belonging to each other are identical on all computers.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Please select a key to export!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select a key which to set the access group for!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation>בדוק את ההרשאות שלך.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
-        <translation>שם מפתח כולל תווים לא חוקיים!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>סוג מפתח לא חוקי נבחר! נא לבחור &quot;%1&quot; או &quot;%2&quot;.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
-        <translation>המפתח שנבחר אינו קיים. אנא השתמש בפקודה &quot;list&quot; על מנת למנות את כל המפתחות המותקנים.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
-        <translation>אחד או יותר מהמפתחות כבר קיימים! השתמשו בפקודה &quot;delete&quot; ומחקו אותם ראשית.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation>יוצר מפתח חדש עבור &quot;%1&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation>לא ניתן היה ליצור מפתח פומבי או פרטי!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation>זוג המפתחות שנוצרו נשמרו ל&quot;%1&quot; ול&quot;&quot;%2&quot;.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
-        <translation>לא ניתן היה להסיר את קובץ המפתח &quot;%1&quot;!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
-        <translation>לא ניתן היה להסיר את נתיב המפתחות &quot;%1&quot;!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to create directory for output file.</source>
-        <translation>לא ניתן היה ליצור נתיב לקובץ הפלט.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation>הקובץ &quot;%1&quot; כבר קיים.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
-        <translation>לא ניתן היה לכתוב את קובץ הפלט.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
-        <translation>המפתח &quot;%1/%2&quot; יוצא בהצלחה ל&quot;%3&quot;.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation>לא ניתן היה לקלוט את קובץ הקלט</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
-        <translation>הקובץ &quot;%1&quot; לא כולל מפתח פרטי תקין!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation>הקובץ &quot;%1&quot; לא כולל מפתח פומבי תקין!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation>לא ניתן היה ליצור נתיב לקובץ המפתח.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation>כתיבת קובץ המפתח &quot;%1&quot; נכשלה.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
-        <translation>הגדרת ההרשאות לקובץ המפתח &quot;%1&quot; נכשלה.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation>המפתח &quot;%1\%2&quot; יובר בהצלחה. יש לבדוק את הרשאות הקובץ &quot;%3&quot; על מנת למנוע גישה לא מורשית.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
-        <translation>לא ניתן היה להמיר מפתח פרטי למפתח פומבי.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation>יצירת הנתיב למפתח הפרטי &quot;%1&quot; נכשלה.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
@@ -669,7 +666,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
-        <translation>לא</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Failed to read key file.</source>
@@ -712,7 +709,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>NAME</source>
-        <translation>שם</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
@@ -720,7 +717,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>KEY</source>
-        <translation>מפתח</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
@@ -728,7 +725,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>FILE</source>
-        <translation>קובץ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
@@ -748,7 +745,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>ACCESS GROUP</source>
-        <translation>קבוצת גישה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
@@ -764,7 +761,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>TYPE</source>
-        <translation>סוג</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>PAIR ID</source>
@@ -783,15 +780,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>AuthKeysTableModel</name>
     <message>
         <source>Name</source>
-        <translation>שם</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Type</source>
-        <translation>סוג</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Access group</source>
-        <translation>קבוצת גישה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Pair ID</source>
@@ -810,19 +807,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Computers</source>
-        <translation>מחשבים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Locations</source>
-        <translation>מיקומים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add new computer</source>
-        <translation>הוסף מחשב חדש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove selected computer</source>
-        <translation>הסר מחשבים שנבחרו</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Move selected computer up</source>
@@ -833,24 +830,32 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Scan network for computers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ağı Tara</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Name</source>
-        <translation>שם</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation>שם מחשב / IP</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>MAC address</source>
-        <translation>כתובות MAC</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add new location</source>
-        <translation>הוסף מיקום חדש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove selected location</source>
-        <translation>הסר את המיקום שנבחר</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Move selected location up</source>
@@ -866,22 +871,38 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>New location</source>
-        <translation>מיקום חדש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>New computer</source>
-        <translation>מחשב חדש</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select a location first.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No computers found in the workgroup.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation>הצג עזרה עבור פקודה מסויימת</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add a location or computer</source>
-        <translation>הוסף מיקום או מחשב</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Clear all locations and computers</source>
@@ -897,23 +918,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Remove a location or computer</source>
-        <translation>הסר מיקום או מחשב</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Import objects from given file</source>
-        <translation>יבוא אובייקטים מקובץ נתון</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Export objects to given file</source>
-        <translation>יצוא אובייקטים לקובץ נתון</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>FILE</source>
-        <translation>קובץ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>LOCATION</source>
-        <translation>מיקום</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
@@ -957,11 +978,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>TYPE</source>
-        <translation>סוג</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>NAME</source>
-        <translation>שם</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -973,7 +994,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>PARENT</source>
-        <translation>הורה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
@@ -981,7 +1002,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add a room</source>
-        <translation>הוסף חדר</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add a computer to room %1</source>
@@ -989,7 +1010,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>OBJECT</source>
-        <translation>חפץ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
@@ -1021,11 +1042,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Type</source>
-        <translation>סוג</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>שם</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Host address</source>
@@ -1033,7 +1054,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>MAC address</source>
-        <translation>כתובות MAC</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Specified object not found.</source>
@@ -1077,14 +1098,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>None</source>
-        <translation>כלום</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid</source>
-        <translation>לא בתוקף</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location &quot;%1&quot; not found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1101,11 +1126,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Location</source>
-        <translation>מיקום</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computer</source>
-        <translation>מחשב</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Root</source>
@@ -1113,14 +1138,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>&quot;Room 01&quot;</source>
-        <translation>&quot;חדר 01&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&quot;Computer 01&quot;</source>
-        <translation>&quot;מחשב 01&quot;</translation>
-    </message>
-    <message>
-        <source>Location &quot;%1&quot; not found.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1191,10 +1212,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Location: %1</source>
-        <translation>מיקום: %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Active features: %1</source>
+        <source>Hostname: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1214,6 +1243,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Hostname could not be resolved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Veyon Server unreachable or not running</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1223,34 +1256,22 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Disconnected</source>
-        <translation>מנותק</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>אין אף משתמש מחובר</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
-        <translation>מחובר בתור: %1</translation>
-    </message>
-    <message>
-        <source>Hostname: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>unknown</source>
-        <translation>לא ידוע</translation>
-    </message>
-    <message>
-        <source>IP address: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hostname could not be resolved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No features active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Active features: %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1258,7 +1279,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerControlServer</name>
     <message>
         <source>Authentication error</source>
-        <translation>שגיאה באימות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
@@ -1266,7 +1287,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Remote access</source>
-        <translation>גישה מרחוק</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
@@ -1293,7 +1314,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation>משתמש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Logged in since</source>
@@ -1340,11 +1361,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add location</source>
-        <translation>הוסף מיקום</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Save computer/user list</source>
-        <translation>שמור רשימת מחשבים / משתמשים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Select output filename</source>
@@ -1352,11 +1373,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>CSV files (*.csv)</source>
-        <translation>קובץ CSV (*.csv)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File error</source>
-        <translation>שגיאת קובץ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
@@ -1472,11 +1493,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DemoConfigurationPage</name>
     <message>
         <source>Demo server</source>
-        <translation>שרת דוגמא</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Tunables</source>
-        <translation>מכוונים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source> s</source>
@@ -1500,7 +1521,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Memory limit</source>
-        <translation>הגבלת זיכרון</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key frame interval</source>
@@ -1519,11 +1540,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DemoFeaturePlugin</name>
     <message>
         <source>Demo</source>
-        <translation>הדגמה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Stop demo</source>
-        <translation>עצור הדגמה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
@@ -1531,11 +1552,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation>הדגמה במסך מלא</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>חלון הדגמה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
@@ -1547,7 +1568,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation>שתף מסך שלך בחלון</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -1555,7 +1576,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation>שתף את המסך של המשתמש שנבחר במצב מסך מלא</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
@@ -1563,7 +1584,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation>שתף את המסך של המשתמש שנבחר בחלון</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
@@ -1579,7 +1600,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>All screens</source>
-        <translation>כל המסכים </translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Give a demonstration by screen broadcasting</source>
@@ -1590,11 +1611,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DesktopAccessDialog</name>
     <message>
         <source>Desktop access dialog</source>
-        <translation>תיבת דו-שיח לגישה לשולחן העבודה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Confirm desktop access</source>
-        <translation>אשר גישה לשולחן העבודה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
@@ -1613,7 +1634,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Applications &amp; websites</source>
-        <translation>אפליקציה ואתר</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Predefined applications</source>
@@ -1621,15 +1642,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Name</source>
-        <translation>שם</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Path</source>
-        <translation>נתיב</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add new application</source>
-        <translation>הוסף אפליקציה חדשה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove selected application</source>
@@ -1641,30 +1662,30 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add new website</source>
-        <translation>הוסף אתר חדש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation>הסר את האתר הנבחר</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>URL</source>
-        <translation>קישור</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>New application</source>
-        <translation>אפליקציה חדשה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>New website</source>
-        <translation>אתר חדש</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Start application</source>
-        <translation>התחל אפליקציה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
@@ -1672,7 +1693,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Open website</source>
-        <translation>פתח אתר אינטרנט</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
@@ -1684,7 +1705,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Custom application</source>
-        <translation>אפליקציה מותאם אישית</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
@@ -1692,7 +1713,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Custom website</source>
-        <translation>אתר מותאם אישית</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
@@ -1703,11 +1724,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DocumentationFigureCreator</name>
     <message>
         <source>Teacher</source>
-        <translation>מורה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Room %1</source>
-        <translation>חדר %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>generic-student-user</source>
@@ -1719,7 +1740,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Custom website</source>
-        <translation>אתר מותאם אישית</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open file manager</source>
@@ -1735,11 +1756,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Custom application</source>
-        <translation>אפליקציה מותאם אישית</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Handout</source>
-        <translation>למסור</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Texts to read</source>
@@ -1765,7 +1786,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Password:</source>
-        <translation>סיסמה:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1844,23 +1865,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Name</source>
-        <translation>שם</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Description</source>
-        <translation>תאור</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Master</source>
-        <translation>מנהל</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Service</source>
-        <translation>שרות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Worker</source>
-        <translation>עובד</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>UID</source>
@@ -1903,11 +1924,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileCollectDialog</name>
     <message>
         <source>File transfer</source>
-        <translation>העברת קבצים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation>הגדרות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Subfolder handling</source>
@@ -1955,7 +1976,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Start</source>
-        <translation>התחל</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Select destination directory</source>
@@ -1985,15 +2006,15 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileCollectTreeModel</name>
     <message>
-        <source>Progress</source>
+        <source>Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Name</source>
-        <translation>שם</translation>
+        <source>Number of files</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Number of files</source>
+        <source>Progress</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2001,14 +2022,42 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileTransferConfigurationPage</name>
     <message>
         <source>File transfer</source>
-        <translation>העברת קבצים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Settings for distributing files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Remember last source directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Destination directory (remote):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default source directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Settings for collecting files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Store collected files in:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group collected files:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files to collect:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2025,7 +2074,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>None</source>
-        <translation>כלום</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>First part of user name</source>
@@ -2033,6 +2090,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Last part of user name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Device name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Source directory (remote):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2045,22 +2110,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Prompt user for files to collect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Grouping attribute 3:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Destination directory:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Store collected files in:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Group collected files:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2084,11 +2133,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Files to collect:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Files to exclude:</source>
+        <source>Destination directory:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2096,39 +2141,15 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Files to exclude:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Collect files recursively</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Destination directory (remote):</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Default source directory:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Source directory (remote):</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User login name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Full name of user</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Device name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Remember last source directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Create destination directory if it does not exist</source>
+        <source>Grouping attribute 3:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2143,11 +2164,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileTransferDialog</name>
     <message>
         <source>File transfer</source>
-        <translation>העברת קבצים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>אפשרויות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Destination directory on remote computers:</source>
@@ -2158,11 +2179,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Overwrite existing files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Transfer only</source>
+        <source>Transfer and open destination folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2170,16 +2187,20 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Transfer and open destination folder</source>
+        <source>Transfer only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Overwrite existing files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Files</source>
-        <translation>קובץ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start</source>
-        <translation>התחל</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2206,7 +2227,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>File transfer</source>
-        <translation>העברת קבצים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Received file %1.</source>
@@ -2322,18 +2343,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation>ממשק משתמש</translation>
-    </message>
-    <message>
-        <source>Use system language setting</source>
-        <translation>השתמש בשפת המערכת</translation>
-    </message>
-    <message>
-        <source>Language:</source>
-        <translation>שפה:</translation>
-    </message>
-    <message>
-        <source>Style:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2341,8 +2350,32 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Use system language setting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Style:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Authentication</source>
-        <translation>אימות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Method:</source>
@@ -2358,7 +2391,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Test</source>
-        <translation>בדיקה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network object directory</source>
@@ -2374,11 +2407,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source> seconds</source>
-        <translation>שניות</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Logging</source>
-        <translation>רישום</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Log file directory</source>
@@ -2390,11 +2431,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Nothing</source>
-        <translation>כלום</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Only critical messages</source>
-        <translation>רק הודעות קריטיות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Errors and critical messages</source>
@@ -2441,6 +2482,14 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Missing user groups backend</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Authentication is set up properly on this computer.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2466,7 +2515,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Error</source>
-        <translation>שגיאה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not remove all log files.</source>
@@ -2474,34 +2523,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Authentication test</source>
-        <translation>בדיקת התחברות</translation>
-    </message>
-    <message>
-        <source>User groups</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Include user groups from domain</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Missing user groups backend</source>
-        <translation>חסר שרת קבוצות משתמשים</translation>
-    </message>
-    <message>
-        <source>No user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Color scheme:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Light</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2548,7 +2569,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished">שגיאה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not open file for writing!</source>
@@ -2619,11 +2640,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>LdapConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation>הגדרות בסיסיות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>General</source>
-        <translation>כללי</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Anonymous bind</source>
@@ -2679,15 +2700,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>None</source>
-        <translation>כלום</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>TLS</source>
-        <translation>TLS</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>SSL</source>
-        <translation>SSL</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Base DN</source>
@@ -2819,7 +2840,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Advanced settings</source>
-        <translation>הגדרות מתקדמות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Optional object filters</source>
@@ -2871,6 +2892,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Map container/OU structure 1:1 to locations</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2931,11 +2956,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Browse</source>
-        <translation>לדפדף</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>בדיקה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
@@ -2994,7 +3019,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Enter username</source>
-        <translation>הכנס שם משתמש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
@@ -3038,7 +3063,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Enter computer name</source>
-        <translation>הכנס שם מחשב</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
@@ -3086,19 +3111,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>users</source>
-        <translation>משתמשים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation>קבוצות משתמשים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>computers</source>
-        <translation>מחשבים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>computer groups</source>
-        <translation>קבוצות מחשבים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>computer containers</source>
@@ -3114,7 +3139,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User not found</source>
-        <translation>משתמש לא נמצא</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
@@ -3226,7 +3251,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>and</source>
-        <translation>ו</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>LDAP test successful</source>
@@ -3254,10 +3279,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Map container/OU structure 1:1 to locations</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3292,6 +3313,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>LDAP/AD support for Veyon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3303,10 +3328,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>LDAP/AD support for Veyon</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>LinuxPlatformConfigurationPage</name>
@@ -3316,7 +3337,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User authentication</source>
-        <translation>אימות משתמש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
@@ -3332,15 +3353,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User login</source>
-        <translation>התחברות משתמש</translation>
-    </message>
-    <message>
-        <source>Login key sequence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation>עיכוב התחלת הקלט</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Key press interval for text input</source>
@@ -3380,7 +3401,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>MainToolBar</name>
     <message>
         <source>Configuration</source>
-        <translation>הגדרות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Disable tooltips</source>
@@ -3399,15 +3420,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>General</source>
-        <translation>כללי</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Service</source>
-        <translation>שרות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Master</source>
-        <translation>מנהל</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Access control</source>
@@ -3415,11 +3436,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;קובץ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;עזרה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;View</source>
@@ -3439,7 +3460,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Save settings to file</source>
-        <translation>שמור הגדרות לקובץ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+S</source>
@@ -3455,7 +3476,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>About Veyon</source>
-        <translation>אודות Veyon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About Qt</source>
@@ -3463,11 +3484,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Reset configuration</source>
-        <translation>אפס הגדרות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation>&amp;רגיל</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
@@ -3479,18 +3500,24 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Auto</source>
-        <translation>אוטומטי</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>About</source>
-        <translation>אודות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation>חפש משתמשים ומחשבים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Align computers to grid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3503,15 +3530,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>צילומי מסך</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Slideshow</source>
-        <translation>מצגת</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation>זרקוֹר</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Only show computers with logged on users</source>
@@ -3523,7 +3550,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Load settings from file</source>
-        <translation>טען הגדרות מקובץ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
@@ -3558,6 +3585,14 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Load computer positions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save computer positions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Authentication impossible</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3567,7 +3602,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Access denied</source>
-        <translation>גישה נדחתה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
@@ -3581,42 +3616,32 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Use custom computer arrangement.
-
-Press and hold to load arrangement from a file or save current arrangement to a file.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Load computer positions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save computer positions</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation>הגדרות בסיסיות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Directories</source>
-        <translation>מדריכים</translation>
-    </message>
-    <message>
-        <source>User configuration</source>
-        <translation>הדגרות משתמש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>צילומי מסך</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Configuration templates</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User interface</source>
-        <translation>ממשק משתמש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Text color</source>
@@ -3640,7 +3665,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Auto</source>
-        <translation>אוטומטי</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computer thumbnail caption</source>
@@ -3655,11 +3680,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Only last part of user name</source>
+        <source>Only computer name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Only computer name</source>
+        <source>Only last part of user name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3707,7 +3732,23 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Advanced</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Identify users in guest sessions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3727,12 +3768,44 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Computer UID role</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Guest user identity extension</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>None</source>
-        <translation>כלום</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Prefix</source>
@@ -3744,7 +3817,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Behaviour</source>
-        <translation>התנהגות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Program start</source>
@@ -3795,6 +3868,10 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Always expand all locations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Modes and features</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3820,7 +3897,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Features</source>
-        <translation>תכונות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>All features</source>
@@ -3834,68 +3911,12 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <source>&lt;no feature&gt;</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Always expand all locations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Configuration templates</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Advanced</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Computer name source</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Default</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Host address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Session client address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Session client name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Session host name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Session metadata</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Full name of user</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User login name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Computer UID role</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Session meta data hash</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation>פיקוח</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
@@ -3935,17 +3956,28 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
 </context>
 <context>
+    <name>NetworkDiscoveryDialog</name>
+    <message>
+        <source>Bilgisayarları Seçin (Select Computers)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ağda bulunan bilgisayarlar. Eklemek istediklerinizi seçin:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>NetworkObjectTreeModel</name>
     <message>
         <source>Locations/Computers</source>
-        <translation>מיקומים/מחשבים</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>OpenWebsiteDialog</name>
     <message>
         <source>Open website</source>
-        <translation>פתח אתר אינטרנט</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. Veyon</source>
@@ -3965,7 +3997,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Name:</source>
-        <translation>שם:</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3980,15 +4012,15 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Username</source>
-        <translation>שם משתמש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>סיסמה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>שגיאה באימות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
@@ -4014,15 +4046,15 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Name</source>
-        <translation>שם</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Description</source>
-        <translation>תאור</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Version</source>
-        <translation>גרסה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>UID</source>
@@ -4045,7 +4077,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Power on</source>
-        <translation>הדלקה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
@@ -4053,7 +4085,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Reboot</source>
-        <translation>איתחול</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
@@ -4061,7 +4093,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Power down</source>
-        <translation>כיבוי</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
@@ -4097,7 +4129,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Confirm reboot</source>
-        <translation>אשר הפעלה מחדש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
@@ -4109,7 +4141,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Confirm power down</source>
-        <translation>אשר כיבוי</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
@@ -4146,7 +4178,7 @@ Please save your work and close all programs.</source>
     <name>PowerDownTimeInputDialog</name>
     <message>
         <source>Power down</source>
-        <translation>כיבוי</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
@@ -4154,11 +4186,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>minutes</source>
-        <translation>דקות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation>שניות</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4254,7 +4286,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>שליטה מרחוק</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
@@ -4270,7 +4302,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Remote access</source>
-        <translation>גישה מרחוק</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
@@ -4296,11 +4328,11 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessWidgetToolBar</name>
     <message>
         <source>View only</source>
-        <translation>צפייה בלבד</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remote control</source>
-        <translation>שליטה מרחוק</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Select screen</source>
@@ -4312,39 +4344,39 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>צילום מסך</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Fullscreen</source>
-        <translation>מסך מלא</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Window</source>
-        <translation>חלון</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation>יציאה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+Alt+Del</source>
-        <translation>Ctrl+Alt+Del</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Ctrl+Esc</source>
-        <translation>Ctrl+Esc</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Alt+Tab</source>
-        <translation>Alt+Tab</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Alt+F4</source>
-        <translation>Alt+F4</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Win+Tab</source>
-        <translation>Win+Tab</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Win</source>
@@ -4352,34 +4384,34 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Menu</source>
-        <translation>תפריט</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Alt+Ctrl+F1</source>
-        <translation>Alt+Ctrl+F1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Connected.</source>
-        <translation>מחובר.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation>מתחבר...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>All screens</source>
-        <translation>כל המסכים </translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ScreenLockFeaturePlugin</name>
     <message>
         <source>Lock</source>
-        <translation>נעילה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation>שחרור</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
@@ -4387,18 +4419,14 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Lock input devices</source>
-        <translation>נעל מכשירי קלט</translation>
-    </message>
-    <message>
-        <source>Unlock input devices</source>
-        <translation>שחרר מכשירי קלט</translation>
-    </message>
-    <message>
-        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Lock screen and input devices of a computer</source>
+        <source>Unlock input devices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4409,12 +4437,16 @@ Please save your work and close all programs.</source>
         <source>Enter a custom message to display on locked screens (leave empty for default):</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Lock screen and input devices of a computer</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Screenshot</name>
     <message>
         <source>unknown</source>
-        <translation>לא ידוע</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
@@ -4422,7 +4454,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>צילום מסך</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
@@ -4433,7 +4465,7 @@ Please save your work and close all programs.</source>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation>צילום מסך</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
@@ -4441,7 +4473,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshots taken</source>
-        <translation>צילום מסך בוצע</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
@@ -4460,31 +4492,31 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>User:</source>
-        <translation>משתמש:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Computer:</source>
-        <translation>מחשב:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation>תאריך:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Time:</source>
-        <translation>זמן:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Show</source>
-        <translation>הצג</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>מחק</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>צילום מסך</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
@@ -4526,7 +4558,7 @@ Please save your work and close all programs.</source>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation>כללי</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
@@ -4538,27 +4570,27 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation>הסתרת סמליל מגש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Autostart</source>
-        <translation>הפעלה אוטומטית</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>State:</source>
-        <translation>מצב:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>נעצר</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start service</source>
-        <translation>התחל שרות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Stop service</source>
-        <translation>הפסק שרות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Session mode</source>
@@ -4569,12 +4601,16 @@ Please save your work and close all programs.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
-Typically this is required to support terminal servers.</source>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Active session mode (single server instance for active local or remote session)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
+Typically this is required to support terminal servers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4587,23 +4623,23 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Network port numbers</source>
-        <translation>מספרי מפתחים (פורטים)</translation>
-    </message>
-    <message>
-        <source>Veyon server</source>
-        <translation>שרת Veyon</translation>
-    </message>
-    <message>
-        <source>Internal VNC server</source>
-        <translation>שרת VNC פנימי</translation>
-    </message>
-    <message>
-        <source>Feature manager</source>
-        <translation>מנהל מאפיינים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Demo server</source>
-        <translation>שרת דוגמא</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Internal VNC server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Veyon server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Feature manager</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Miscellaneous settings</source>
@@ -4611,11 +4647,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation>הפעל חריגה בחומת אש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
-        <translation>אפשר חיבורים ממחשב מקומי בלבד</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Disable clipboard synchronization</source>
@@ -4623,23 +4659,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>VNC server</source>
-        <translation>שרת VNC</translation>
-    </message>
-    <message>
-        <source>Plugin:</source>
-        <translation>תוסף</translation>
-    </message>
-    <message>
-        <source>Restart Veyon Service</source>
-        <translation>הפעל מחדש את שירות Veyon</translation>
-    </message>
-    <message>
-        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Running</source>
-        <translation>רץ</translation>
+        <source>Plugin:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Session metadata</source>
@@ -4651,7 +4675,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>None</source>
-        <translation>כלום</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Value of an environment variable</source>
@@ -4662,16 +4686,6 @@ Typically this is required to support terminal servers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
-
-Example: [^-]*-(PC[0-9]*)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Environment variable name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4679,13 +4693,27 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Registry key name</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
+
+Example: [^-]*-(PC[0-9]*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restart Veyon Service</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ServiceControl</name>
-    <message>
-        <source>Service control</source>
-        <translation>שליטה בשירות</translation>
-    </message>
     <message>
         <source>Starting %1</source>
         <translation type="unfinished"></translation>
@@ -4706,44 +4734,48 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Unregistering %1</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Service control</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ServiceControlCommands</name>
     <message>
         <source>Register Veyon Service</source>
-        <translation>הוסף שירות Veyon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Unregister Veyon Service</source>
-        <translation>מחק שירות Veyon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start Veyon Service</source>
-        <translation>הפעל שירות Veyon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Stop Veyon Service</source>
-        <translation>עצור שירות Veyon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation>הפעל מחדש את שירות Veyon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
-        <translation>בדוק מצד של שירות Veyon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Service is running</source>
-        <translation>שירות רץ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation>שירות לא רץ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
-        <translation>הגדר ושלוט בשירות Veyon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Commands for configuring and controlling Veyon Service</source>
@@ -4773,19 +4805,19 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation>הקודם</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation>הפעל\השהה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Next</source>
-        <translation>הבא</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation>משך זמן:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>View in separate window</source>
@@ -4800,42 +4832,42 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>SpotlightPanel</name>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation>הוסף מחשבים על ידי לחיצה על כפתור העכבר האמצעי או על ידי לחיצה על הכפתור למטה.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Add selected computers</source>
-        <translation>הוספצ מחשבים נבחרים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation>הסרת מחשבים נבחרים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation>עדכון מחשבים בזמן אמת</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation>זרקוֹר</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation>נא לבחור לפחות מחשב אחד להוספה.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation>נא לבחור לפחות מחשב אחד להסדרה.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation>התחל אפליקציה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation>שם:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>e.g. &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot;</source>
@@ -4847,7 +4879,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>e.g. VLC</source>
-        <translation>לדוגמה VLC</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
@@ -4914,7 +4946,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Computer</source>
-        <translation type="unfinished">מחשב</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Answer</source>
@@ -4979,7 +5011,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>SystemTrayIcon</name>
     <message>
         <source>System tray icon</source>
-        <translation>סמליל של מגש מערכת</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Soru Sor / Öğretmenle Sohbet Et</source>
@@ -5002,55 +5034,55 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Default (system user groups)</source>
-        <translation>ברירת מחדל (קבוצות משתמשים של מערכת)</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TestingCommandLinePlugin</name>
     <message>
         <source>Test internal Veyon components and functions</source>
-        <translation>בדוק רכיבים פנימיים ופונקציות פנימיות של Veyon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
-        <translation>פקודות לבדיקת רכיבים פנימיים של Veyon</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>שלחו הודעת טקסט</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>השתמש בשדה מטה על מנת להקליד את ההודעה שתישלח לכל המשתמשים</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
     <message>
         <source>Text message</source>
-        <translation>הודעת טקסט</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation>השתמש באפשרות זאת על מנת לשלוח הודעה לכל המשתמשים - לדוגמה, לתת משימה חדשה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Message from teacher</source>
-        <translation>הודעה מהמורה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation>שלח הודעה למשתמש</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>UltraVncConfigurationWidget</name>
     <message>
         <source>Builtin UltraVNC server configuration</source>
-        <translation>הגדרות שרת UltraVNC בנוי</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Maximum CPU usage</source>
@@ -5058,7 +5090,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation>דיוק נמוך (מצב טורבו)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
@@ -5066,15 +5098,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation>הפעל מנוע שכפול שולחן עבודה על ווינדוס 8 ומעלה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation>הפעל תמיכה במספר מסכים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>אפשר לכידה של חלונות בעלי שכבות (שקופים חלקית)</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5104,42 +5136,42 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation>התחברות משתמש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation>נא להזין שם משתמש וסיסמה להתחברות אוטומטית בכל המחשבים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>שם משתמש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Password</source>
-        <translation>סיסמה</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>UserSessionControlPlugin</name>
     <message>
         <source>Log in</source>
-        <translation>התחברות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation>לחץ על כפתור זה על מנת לחבר משתמש מסוים</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Log off</source>
-        <translation>ניתוק</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation>לחץ על כפתור זה על מנת לנתק את כל המשתמשים מכל המחשבים.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation>וידוא ניתוק משתמש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
@@ -5147,7 +5179,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation>אתה באמת רוצה לנתק את המשתמשים הנבחרים?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User session control</source>
@@ -5158,19 +5190,19 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>VeyonCore</name>
     <message>
         <source>[OK]</source>
-        <translation>[הצלחה]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>[FAIL]</source>
-        <translation>[כישלון]</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid command!</source>
-        <translation>פקודה לא תקינה!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Invalid arguments given</source>
-        <translation>ארגומנט לא תקין ניתן</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
@@ -5178,15 +5210,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Plugin not licensed</source>
-        <translation>תוסף אינו מורשה</translation>
-    </message>
-    <message>
-        <source>Unknown result!</source>
-        <translation>תוצאה לא ידועה!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Available commands:</source>
-        <translation>פקודות זמינות</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown result!</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -5198,34 +5230,34 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>INFO</source>
-        <translation>מידע</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>WARNING</source>
-        <translation>אזהרה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation>שגיאה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>USAGE</source>
-        <translation>שימוש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation>הסבר</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>EXAMPLES</source>
-        <translation>דוגמות</translation>
-    </message>
-    <message>
-        <source>Screen %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Screen %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5233,7 +5265,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>VeyonMaster</name>
     <message>
         <source>No write access</source>
-        <translation>אין גישת כתיבה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
@@ -5244,7 +5276,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation>שירות Veyon</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5255,7 +5287,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>General</source>
-        <translation>כללי</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Network port</source>
@@ -5307,7 +5339,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
@@ -5359,31 +5391,51 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>WindowsPlatformConfigurationPage</name>
     <message>
         <source>Windows</source>
-        <translation>ווינדוס</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>General</source>
-        <translation>כללי</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Handling of interfering windows</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fix window attributes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Terminate related process</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close session</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>User authentication</source>
-        <translation>אימות משתמש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation>השתמש במנגנון התחברות משתמש אלטרנטיבי</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>User login</source>
-        <translation>התחברות משתמש</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation>עיכוב התחלת הקלט</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Simulated key presses interval</source>
@@ -5391,23 +5443,23 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation>וודא התראה משפטית (הודעה שקופצת לפני שמשתמש מתחבר)</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Screen lock</source>
-        <translation>נעילת מסך</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Hide taskbar</source>
-        <translation>הסתר את שורת המשימות</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Hide start menu</source>
-        <translation>הסתר תפריט &quot;התחל&quot;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Hide desktop</source>
-        <translation>הסתר שולחן עבודה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use custom power scheme with disabled power and sleep buttons</source>
@@ -5429,26 +5481,6 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Disable mouse devices</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Handling of interfering windows</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>None</source>
-        <translation>כלום</translation>
-    </message>
-    <message>
-        <source>Fix window attributes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Terminate related process</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Close session</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
@@ -5458,14 +5490,14 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation>התוסף ממש פונקציות אבסטרקטיות של פלטפורמת Windows</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>WindowsServiceControl</name>
     <message>
         <source>The service &quot;%1&quot; is already installed.</source>
-        <translation>השירות &quot;%1&quot; כבר מותקן.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
@@ -5477,7 +5509,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation>השירות &quot;%1&quot; הותקן בהצלחה.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
@@ -5485,7 +5517,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>השירות &quot;%1&quot; נמחק בהצלחה.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
@@ -5493,22 +5525,22 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
-        <translation>השירות &quot;%1&quot; לא יכול היה להימצא.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>X11VncConfigurationWidget</name>
     <message>
         <source>Builtin x11vnc server configuration</source>
-        <translation>הגדרת שרת x11vnc המובנה</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Custom x11vnc parameters:</source>
-        <translation>פרמטרים מותאמים אישית של x11vnc:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Do not use X Damage extension</source>
-        <translation>אין להשתמש בהרחבה X Damage</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
