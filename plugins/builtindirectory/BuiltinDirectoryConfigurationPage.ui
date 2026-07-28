@@ -107,6 +107,20 @@
           </property>
          </spacer>
         </item>
+        <item>
+         <widget class="QPushButton" name="scanWorkgroupButton">
+          <property name="toolTip">
+           <string>Scan network for computers</string>
+          </property>
+          <property name="text">
+           <string>Ağı Tara</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../../core/resources/core.qrc">
+            <normaloff>:/core/network.png</normaloff>:/core/network.png</iconset>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
       <item row="1" column="1">
@@ -416,6 +430,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>scanWorkgroupButton</sender>
+   <signal>clicked()</signal>
+   <receiver>BuiltinDirectoryConfigurationPage</receiver>
+   <slot>scanWorkgroup()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>850</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>507</x>
+     <y>351</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>addLocation()</slot>
@@ -428,5 +458,6 @@
   <slot>moveLocationDown()</slot>
   <slot>moveComputerUp()</slot>
   <slot>moveComputerDown()</slot>
+  <slot>scanWorkgroup()</slot>
  </slots>
 </ui>

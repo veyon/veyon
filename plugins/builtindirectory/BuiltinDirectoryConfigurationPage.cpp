@@ -31,6 +31,15 @@
 #include "ObjectManager.h"
 
 #include "ui_BuiltinDirectoryConfigurationPage.h"
+#include "NetworkDiscoveryDialog.h"
+#include <QMessageBox>
+
+#ifdef Q_OS_WIN
+#include <windows.h>
+#include <lm.h>
+#else
+#include <QProcess>
+#endif
 
 BuiltinDirectoryConfigurationPage::BuiltinDirectoryConfigurationPage( BuiltinDirectoryConfiguration& configuration, QWidget* parent ) :
 	ConfigurationPage( parent ),
@@ -346,4 +355,98 @@ NetworkObject BuiltinDirectoryConfigurationPage::currentComputerObject() const
 	}
 
 	return NetworkObject();
+}
+
+void BuiltinDirectoryConfigurationPage::scanWorkgroup()
+{
+	auto currentLocationUid = currentLocationObject().uid();
+	if( currentLocationUid.isNull() )
+	{
+		QMessageBox::warning(this, tr("Warning"), tr("Please select a location first."));
+		return;
+	}
+
+	QStringList discoveredComputers;
+
+#ifdef Q_OS_WIN
+	DWORD entriesRead = 0;
+	DWORD totalEntries = 0;
+	DWORD resumeHandle = 0;
+	SERVER_INFO_100* serverInfo = nullptr;
+
+	NET_API_STATUS status = NetServerEnum(NULL, 100, (LPBYTE*)&serverInfo, MAX_PREFERRED_LENGTH,
+										  &entriesRead, &totalEntries, SV_TYPE_WORKSTATION | SV_TYPE_SERVER,
+										  NULL, &resumeHandle);
+
+	if( (status == NERR_Success || status == ERROR_MORE_DATA) && serverInfo != nullptr )
+	{
+		for( DWORD i = 0; i < entriesRead; i++ )
+		{
+			discoveredComputers.append( QString::fromWCharArray((wchar_t*)serverInfo[i].sv100_name) );
+		}
+		NetApiBufferFree( serverInfo );
+	}
+#else
+	QProcess process;
+	process.start( QStringLiteral("nmblookup"), QStringList() << QStringLiteral("-S") << QStringLiteral("WORKGROUP") );
+	if( process.waitForFinished( 10000 ) )
+	{
+		QByteArray output = process.readAllStandardOutput();
+		QString outputStr = QString::fromUtf8( output );
+		QStringList lines = outputStr.split( QLatin1Char('\n'), Qt::SkipEmptyParts );
+		for( const QString& line : lines )
+		{
+			if( line.contains(QStringLiteral("<ACTIVE>")) && !line.contains(QStringLiteral("<GROUP>")) )
+			{
+				QString name = line.section( QLatin1Char('<'), 0, 0 ).trimmed();
+				if( !name.isEmpty() && !discoveredComputers.contains(name, Qt::CaseInsensitive) )
+				{
+					discoveredComputers.append( name );
+				}
+			}
+		}
+	}
+#endif
+
+	if( discoveredComputers.isEmpty() )
+	{
+		QMessageBox::information(this, tr("Information"), tr("No computers found in the workgroup."));
+		return;
+	}
+
+	NetworkDiscoveryDialog dialog( discoveredComputers, this );
+	if( dialog.exec() == QDialog::Accepted )
+	{
+		QStringList selected = dialog.selectedComputers();
+		if( selected.isEmpty() )
+		{
+			return;
+		}
+
+		ObjectManager<NetworkObject> objectManager( m_configuration.networkObjects() );
+
+		for( const QString& pcName : selected )
+		{
+			bool exists = false;
+			for( const auto& objValue : objectManager.objects() )
+			{
+				NetworkObject obj( objValue.toObject() );
+				if( obj.type() == NetworkObject::Type::Host &&
+					obj.parentUid() == currentLocationUid &&
+					obj.name().compare(pcName, Qt::CaseInsensitive) == 0 )
+				{
+					exists = true;
+					break;
+				}
+			}
+
+			if( !exists )
+			{
+				objectManager.add( NetworkObject( NetworkObject::Type::Host, pcName, pcName, {}, {}, QUuid::createUuid(), currentLocationUid ) );
+			}
+		}
+
+		m_configuration.setNetworkObjects( objectManager.objects() );
+		populateComputers();
+	}
 }

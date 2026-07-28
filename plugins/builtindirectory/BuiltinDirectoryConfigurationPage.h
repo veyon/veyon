@@ -55,6 +55,7 @@ private Q_SLOTS:
 	void removeComputer();
 	void moveComputerUp();
 	void moveComputerDown();
+	void scanWorkgroup();
 
 private:
 	void populateLocations();

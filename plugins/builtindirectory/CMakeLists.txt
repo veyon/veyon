@@ -6,10 +6,13 @@ build_veyon_plugin(builtindirectory
 	BuiltinDirectoryPlugin.cpp
 	BuiltinDirectoryConfigurationPage.cpp
 	BuiltinDirectoryConfigurationPage.ui
+	NetworkDiscoveryDialog.cpp
+	NetworkDiscoveryDialog.ui
 	BuiltinDirectory.cpp
 	BuiltinDirectoryPlugin.h
 	BuiltinDirectoryConfiguration.h
 	BuiltinDirectoryConfigurationPage.h
+	NetworkDiscoveryDialog.h
 	BuiltinDirectory.h
 	builtindirectory.qrc
 	)
