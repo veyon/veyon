@@ -296,9 +296,7 @@ CommandLinePluginInterface::RunResult PowerControlFeaturePlugin::handle_help( co
 		return NoResult;
 	}
 
-	print( tr("Please specify the command to display help for!") );
-
-	return Unknown;
+	return InvalidCommand;
 }
 
 
