@@ -83,6 +83,7 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 	if( index.row() >= m_computerControlInterfaces.count() )
 	{
 		vCritical() << "index out of range!";
+		return {};
 	}
 
 	const auto computerControl = m_computerControlInterfaces[index.row()];
