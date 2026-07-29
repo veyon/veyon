@@ -90,14 +90,13 @@ Logger::~Logger()
 {
 	vDebug() << "Shutdown";
 
-	QMutexLocker l( &m_logMutex );
-
 	qInstallMessageHandler(nullptr);
 
 	s_instanceMutex.lock();
 	s_instance = nullptr;
 	s_instanceMutex.unlock();
 
+	QMutexLocker l(&m_logMutex);
 	delete m_logFile;
 }
 
