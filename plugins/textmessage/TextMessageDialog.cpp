@@ -49,6 +49,6 @@ TextMessageDialog::~TextMessageDialog()
 
 void TextMessageDialog::accept()
 {
-	m_msgStr = ui->textEdit->toHtml();
+	m_msgStr = ui->textEdit->toPlainText().trimmed().isEmpty() ? QString{} : ui->textEdit->toHtml();
 	QDialog::accept();
 }
