@@ -191,9 +191,9 @@ rfbBool VeyonConnection::handleSecTypeVeyon( rfbClient* client, uint32_t authSch
 
 	const auto authTypeCount = message.read().toInt();
 
-	if( authTypeCount == 0 )
+	if (authTypeCount == 0 || authTypeCount > 32)
 	{
-		vDebug() << QThread::currentThreadId() << "no auth types received";
+		vDebug() << QThread::currentThreadId() << "no or too many auth types received";
 		if( proxy )
 		{
 			proxy->notifyProtocolError();
