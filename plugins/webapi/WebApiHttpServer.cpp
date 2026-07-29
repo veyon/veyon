@@ -299,10 +299,12 @@ bool WebApiHttpServer::start()
 		return false;
 	}
 
-	if( m_configuration.httpsEnabled() &&
-		setupTls() == false )
+	if( m_configuration.httpsEnabled())
 	{
-		return false;
+		if (setupTls() == false)
+		{
+			return false;
+		}
 	}
 #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
 	else
