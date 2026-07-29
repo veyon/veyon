@@ -34,6 +34,17 @@ class ScreenLockFeaturePlugin : public QObject, FeatureProviderInterface, Plugin
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.ScreenLock")
 	Q_INTERFACES(PluginInterface FeatureProviderInterface)
 public:
+	enum class FeatureCommand
+	{
+		StartLock,
+		StopLock
+	};
+
+	enum class Argument
+	{
+		CustomMessage = 0
+	};
+
 	explicit ScreenLockFeaturePlugin( QObject* parent = nullptr );
 	~ScreenLockFeaturePlugin() override;
 
@@ -82,11 +93,7 @@ public:
 	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
 
 private:
-	enum class FeatureCommand
-	{
-		StartLock,
-		StopLock
-	};
+
 
 	const Feature m_screenLockFeature;
 	const Feature m_lockInputDevicesFeature;

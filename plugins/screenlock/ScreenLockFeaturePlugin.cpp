@@ -23,6 +23,7 @@
  */
 
 #include <QCoreApplication>
+#include <QInputDialog>
 
 #include "ScreenLockFeaturePlugin.h"
 #include "ComputerControlInterface.h"
@@ -96,7 +97,15 @@ bool ScreenLockFeaturePlugin::controlFeature( Feature::Uid featureUid, Operation
 		auto lockControlInterfaces = computerControlInterfaces;
 		lockControlInterfaces.removeLocalHostInterfaces();
 
-		sendFeatureMessage(FeatureMessage{featureUid, FeatureCommand::StartLock}, lockControlInterfaces);
+		QString customMessage;
+		if (VeyonCore::component() == VeyonCore::Component::Master) {
+			customMessage = QInputDialog::getText(nullptr, tr("Lock Screen"), tr("Enter a custom message to display on locked screens (leave empty for default):"));
+		}
+
+		FeatureMessage msg(featureUid, FeatureCommand::StartLock);
+		msg.addArgument(Argument::CustomMessage, customMessage);
+
+		sendFeatureMessage(msg, lockControlInterfaces);
 
 		return true;
 	}
@@ -170,8 +179,9 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker
 					mode = LockWidget::DesktopVisible;
 				}
 
+				QString customMessage = message.argument(Argument::CustomMessage).toString();
 				m_lockWidget = new LockWidget( mode,
-											   QPixmap( QStringLiteral(":/screenlock/locked-screen-background.png" ) ) );
+											   QPixmap( QStringLiteral(":/screenlock/locked-screen-background.png" ) ), customMessage );
 			}
 			return true;
 

@@ -39,3 +39,22 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           files: veyon*
+
+  build-windows:
+    strategy:
+      matrix:
+        arch:
+          - i686
+          - x86_64
+    runs-on: ubuntu-latest
+    container: veyon/ci-mingw-w64:main
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          submodules: recursive
+      - run: git config --global --add safe.directory $GITHUB_WORKSPACE
+      - run: .ci/windows/build.sh ${{matrix.arch}}
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: veyon*

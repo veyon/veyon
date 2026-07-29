@@ -5,3 +5,4 @@ foreach(plugin ${plugins})
 		add_subdirectory(${plugin})
 	endif()
 endforeach()
+

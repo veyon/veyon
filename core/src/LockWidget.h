@@ -40,7 +40,7 @@ public:
 		NoBackground
 	} ;
 
-	explicit LockWidget( Mode mode, const QPixmap& background = QPixmap(), QWidget* parent = nullptr );
+	explicit LockWidget( Mode mode, const QPixmap& background = QPixmap(), const QString& customMessage = QString(), QWidget* parent = nullptr );
 	~LockWidget() override;
 
 
@@ -49,5 +49,6 @@ private:
 
 	QPixmap m_background;
 	Mode m_mode;
+	QString m_customMessage;
 
 } ;

@@ -46,5 +46,9 @@
     <file>toast-warning.png</file>
     <file>view-fullscreen.png</file>
     <file>view-fullscreen-dark.png</file>
+    <file>block-internet.png</file>
+    <file>block-apps.png</file>
+    <file>block-usb.png</file>
+    <file>survey.png</file>
   </qresource>
 </RCC>

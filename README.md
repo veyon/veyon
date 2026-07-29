@@ -1,12 +1,22 @@
-# Veyon - Virtual Eye On Networks
+# Veyon - Virtual Eye On Networks (Custom Lab Edition)
 
-[![.github/workflows/build.yml](https://github.com/veyon/veyon/actions/workflows/build.yml/badge.svg?branch=4.5)](https://github.com/veyon/veyon/actions/workflows/build.yml)
-[![Latest stable release](https://img.shields.io/github/release/veyon/veyon.svg?maxAge=3600)](https://github.com/veyon/veyon/releases)
-[![Overall downloads on Github](https://img.shields.io/github/downloads/veyon/veyon/total.svg?maxAge=3600)](https://github.com/veyon/veyon/releases)
-[![Documentation Status](https://readthedocs.org/projects/veyon/badge/?version=latest)](https://docs.veyon.io/)
-[![Localise on Transifex](https://img.shields.io/badge/localise-on_transifex-green.svg)](https://app.transifex.com/veyon-solutions/veyon/)
-[![license](https://img.shields.io/badge/license-GPLv2-green.svg)](LICENSE)
+Bu depo (repository), standart Veyon yazılımının üzerine **gelişmiş eğitim ve laboratuvar yönetimi** özellikleri eklenerek özelleştirilmiş halidir. Projeye dahil edilen yeni `plugins` (eklentiler) şunlardır:
 
+### 🌟 Yeni Eklenen Özellikler:
+* **El Kaldırma ve Özel Sohbet (`chat`):** Öğrenciler takıldıkları yerde öğretmene anında el kaldırıp özel sohbet penceresi başlatabilir.
+* **Oyunlaştırma (`gamification`):** Başarılı öğrencilerin ekranlarına hareketli rozet (Yıldız, Kupa vb.) göndererek motivasyonu artırın.
+* **Kalıcı Kara Liste (`appblocker`):** İstenmeyen programlar ve oyunlar tek tıkla engellenir ve liste öğrenci bilgisayarına kalıcı olarak kazınır. Ayrıca Zirve Finansman (`c:\zirvenet`, `c:\zirve`) uygulamasının engellenmesini önleyen özel beyaz liste (whitelist) koruması eklenmiştir.
+* **Otomatik Ağı Tara (Network Discovery):** Konfigüratör üzerinden Laboratuvardaki (çalışma grubundaki) tüm bilgisayarları otomatik bulup saniyeler içinde listeye ekleyebilirsiniz.
+* **Sınav Kiosk Modu (`kioskmode`):** Tüm ekranı kilitleyerek öğrenciyi sadece öğretmenin belirlediği eğitim web sitesine (örn: EBA, Wikipedia) veya uygulamaya kilitler.
+* **Hızlı Anket Sistemi (`quickquiz`):** Anında çoktan seçmeli (A,B,C,D) pop-up sorular yollayarak sınıfın konuyu anlayıp anlamadığını gerçek zamanlı ölçün.
+* **Şans Çarkı (`randompicker`):** Tahtaya kaldırılacak veya soru sorulacak kişiyi aktif bilgisayarlar arasından rastgele seçerek şanslı öğrencinin ekranında konfeti patlatın!
+* **Dikkat Takibi (`focustracker`):** Öğrencilerin o an hangi programda veya web sitesinde gezindiğini canlı takip edin.
+* **Beyaz Tahta Modu (`annotation`):** Öğrenci ekranlarına kendi farenizle çizimler, oklar ve notlar ekleyerek uzaktan rehberlik yapın.
+* **USB Kilidi (`usblock`):** Bilgisayarlara takılan dış bellekleri (Flash Bellek) engelleyerek virüs bulaşmasını veya oyun getirilmesini önleyin.
+* **Gelişmiş Envanter (`inventory`):** Laboratuvardaki tüm cihazların MAC, IP, CPU ve RAM bilgilerini tek tıkla CSV dosyası olarak dışa aktarın.
+* **Özelleştirilebilir Ekran Kilidi (`screenlock`):** Siyah kilit ekranına kendi yazdığınız mesajı (Örn: "Dersi Dinleyin") yansıtın.
+
+---
 
 ## What is Veyon?
 

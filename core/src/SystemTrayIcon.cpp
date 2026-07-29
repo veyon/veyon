@@ -27,6 +27,9 @@
 #include <QPainter>
 #include <QPixmap>
 #include <QSystemTrayIcon>
+#include <QMenu>
+#include <QUdpSocket>
+#include <QHostInfo>
 
 #include "SystemTrayIcon.h"
 #include "FeatureWorkerManager.h"
@@ -131,6 +134,16 @@ bool SystemTrayIcon::handleFeatureMessage( VeyonWorkerInterface& worker, const F
 		m_systemTrayIcon = new QSystemTrayIcon( this );
 
 		updateIcon();
+
+		QMenu* menu = new QMenu();
+		QAction* raiseHandAction = menu->addAction(tr("Soru Sor / Öğretmenle Sohbet Et"));
+		connect(raiseHandAction, &QAction::triggered, this, [](){
+			QUdpSocket udp;
+			QByteArray data = QStringLiteral("HAND:%1").arg(QHostInfo::localHostName()).toUtf8();
+			udp.writeDatagram(data, QHostAddress::Broadcast, 11411);
+			QMessageBox::information(nullptr, tr("Bildirim"), tr("Öğretmeninize el kaldırma bildiriminiz iletildi."));
+		});
+		m_systemTrayIcon->setContextMenu(menu);
 
 		m_systemTrayIcon->show();
 	}

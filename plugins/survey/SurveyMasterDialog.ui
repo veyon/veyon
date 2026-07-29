@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SurveyMasterDialog</class>
+ <widget class="QDialog" name="SurveyMasterDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>700</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Survey Control Panel</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayoutTop">
+     <item>
+      <widget class="QLabel" name="labelType">
+       <property name="text"><string>Question Type:</string></property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="typeComboBox">
+       <item><property name="text"><string>Single Choice (Radio)</string></property></item>
+       <item><property name="text"><string>Multiple Choice (Checkbox)</string></property></item>
+       <item><property name="text"><string>Short Text (1 line)</string></property></item>
+       <item><property name="text"><string>Long Text (Multi-line)</string></property></item>
+       <item><property name="text"><string>True / False</string></property></item>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text"><string>Question:</string></property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTextEdit" name="questionEdit">
+     <property name="maximumHeight"><number>60</number></property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QWidget" name="optionsWidget">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <property name="margin"><number>0</number></property>
+      <item>
+       <widget class="QLabel" name="label_options">
+        <property name="text"><string>Options:</string></property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QListWidget" name="optionsList"/>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayoutOptions">
+        <item>
+         <widget class="QLineEdit" name="addOptionEdit">
+          <property name="placeholderText"><string>Enter new option here...</string></property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="addOptionButton">
+          <property name="text"><string>Add Option</string></property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="removeOptionButton">
+          <property name="text"><string>Remove Selected</string></property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="sendButton">
+       <property name="text"><string>Send Survey</string></property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="stopButton">
+       <property name="text"><string>Stop Survey (Close on students)</string></property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTableWidget" name="answersTable"/>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
