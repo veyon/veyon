@@ -266,24 +266,41 @@ void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 		{
 			Worker& worker = m_workers[message.featureUid()];
 
+			bool authorized = false;
+
 			// authenticate and set socket information
 			if (worker.socket.isNull())
 			{
-				worker.socket = socket;
 				if (message.command() == FeatureMessage::Command::Init &&
 					message.argument(MessageArgument::AuthToken).toByteArray() == worker.token)
 				{
 					vDebug() << "worker at" << socket->peerPort() << "authenticated successfully";
+					worker.socket = socket;
+					worker.authenticated = true;
+					authorized = true;
 					sendPendingMessages();
 				}
 				else
 				{
 					vCritical() << "worker at" << socket->peerPort() << "failed to authenticate - closing connection";
 					closeConnection(socket);
+					m_workersMutex.unlock();
+					return;
 				}
+			}
+			else
+			{
+				authorized = worker.authenticated && worker.socket == socket;
 			}
 
 			m_workersMutex.unlock();
+
+			if (authorized == false)
+			{
+				vCritical() << "rejecting message from unauthenticated socket for" << message.featureUid();
+				closeConnection(socket);
+				return;
+			}
 
 			if (message.command<FeatureMessage::CommandType>() >= 0)
 			{
