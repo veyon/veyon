@@ -155,7 +155,6 @@ bool SystemTrayIcon::handleFeatureMessage( VeyonWorkerInterface& worker, const F
 			QMessageBox::information( nullptr,
 									  message.argument( Argument::MessageTitle ).toString(),
 									  message.argument( Argument::MessageText ).toString() );
-			QCoreApplication::instance()->quit();
 		}
 		return true;
 
