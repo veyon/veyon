@@ -275,7 +275,7 @@ void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
 		{
 			const auto totalKBytes = queueSize / BytesPerKB;
 			const auto kbytesPerSecond = qMax<int>(1, (totalKBytes * 1000) / m_keyFrameTimer.elapsed());
-			const auto clientCount = qMin(1, findChildren<DemoServerConnection *>().count());
+			const auto clientCount = qMax(1, findChildren<DemoServerConnection *>().count());
 			const auto totalKBytesPerSecond = kbytesPerSecond * clientCount;
 
 			auto newQuality = m_quality;
