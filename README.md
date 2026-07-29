@@ -5,7 +5,8 @@ Bu depo (repository), standart Veyon yazılımının üzerine **gelişmiş eğit
 ### 🌟 Yeni Eklenen Özellikler:
 * **El Kaldırma ve Özel Sohbet (`chat`):** Öğrenciler takıldıkları yerde öğretmene anında el kaldırıp özel sohbet penceresi başlatabilir.
 * **Oyunlaştırma (`gamification`):** Başarılı öğrencilerin ekranlarına hareketli rozet (Yıldız, Kupa vb.) göndererek motivasyonu artırın.
-* **Kalıcı Kara Liste (`appblocker`):** İstenmeyen programlar ve oyunlar tek tıkla engellenir ve liste öğrenci bilgisayarına kalıcı olarak kazınır.
+* **Kalıcı Kara Liste (`appblocker`):** İstenmeyen programlar ve oyunlar tek tıkla engellenir ve liste öğrenci bilgisayarına kalıcı olarak kazınır. Ayrıca Zirve Finansman (`c:\zirvenet`, `c:\zirve`) uygulamasının engellenmesini önleyen özel beyaz liste (whitelist) koruması eklenmiştir.
+* **Otomatik Ağı Tara (Network Discovery):** Konfigüratör üzerinden Laboratuvardaki (çalışma grubundaki) tüm bilgisayarları otomatik bulup saniyeler içinde listeye ekleyebilirsiniz.
 * **Sınav Kiosk Modu (`kioskmode`):** Tüm ekranı kilitleyerek öğrenciyi sadece öğretmenin belirlediği eğitim web sitesine (örn: EBA, Wikipedia) veya uygulamaya kilitler.
 * **Hızlı Anket Sistemi (`quickquiz`):** Anında çoktan seçmeli (A,B,C,D) pop-up sorular yollayarak sınıfın konuyu anlayıp anlamadığını gerçek zamanlı ölçün.
 * **Şans Çarkı (`randompicker`):** Tahtaya kaldırılacak veya soru sorulacak kişiyi aktif bilgisayarlar arasından rastgele seçerek şanslı öğrencinin ekranında konfeti patlatın!
