@@ -39,6 +39,7 @@ public:
 		Failed,
 		InvalidArguments,
 		NotEnoughArguments,
+		EmptyCommand,
 		InvalidCommand,
 		NotLicensed,
 		NoResult,

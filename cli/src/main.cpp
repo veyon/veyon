@@ -133,8 +133,19 @@ int main( int argc, char **argv )
 			}
 			else
 			{
-				runResult = CommandLinePluginInterface::NotEnoughArguments;
+				runResult = CommandLinePluginInterface::EmptyCommand;
 			}
+
+			const auto printCommands = [=]() {
+				auto commands = it.key()->commands();
+				std::sort( commands.begin(), commands.end() );
+
+				CommandLineIO::print( VeyonCore::tr( "Available commands:" ) );
+				for (const auto& command : std::as_const(commands))
+				{
+					CommandLineIO::print( QStringLiteral("    %1 - %2").arg( command, it.key()->commandHelp( command ) ) );
+				}
+			};
 
 			switch( runResult )
 			{
@@ -146,9 +157,6 @@ int main( int argc, char **argv )
 			case CommandLinePluginInterface::Failed:
 				CommandLineIO::print( VeyonCore::tr( "[FAIL]" ) );
 				return -1;
-			case CommandLinePluginInterface::InvalidCommand:
-				CommandLineIO::error( VeyonCore::tr( "Invalid command!" ) );
-				break;
 			case CommandLinePluginInterface::InvalidArguments:
 				CommandLineIO::error( VeyonCore::tr( "Invalid arguments given" ) );
 				return -1;
@@ -156,23 +164,20 @@ int main( int argc, char **argv )
 				CommandLineIO::error( VeyonCore::tr( "Not enough arguments given - "
 													 "use \"%1 help\" for more information" ).arg( module ) );
 				return -1;
+			case CommandLinePluginInterface::EmptyCommand:
+				CommandLineIO::error(VeyonCore::tr("No command given"));
+				printCommands();
+				return -1;
+			case CommandLinePluginInterface::InvalidCommand:
+				CommandLineIO::error(VeyonCore::tr("Invalid command given" ) );
+				printCommands();
+				return -1;
 			case CommandLinePluginInterface::NotLicensed:
 				CommandLineIO::error( VeyonCore::tr( "Plugin not licensed" ) );
 				return -1;
 			case CommandLinePluginInterface::Unknown:
-			{
-				auto commands = it.key()->commands();
-				std::sort( commands.begin(), commands.end() );
-
-				CommandLineIO::print( VeyonCore::tr( "Available commands:" ) );
-				for( const auto& command : commands )
-				{
-					CommandLineIO::print( QStringLiteral("    %1 - %2").arg( command, it.key()->commandHelp( command ) ) );
-				}
-				return -1;
-			}
 			default:
-				CommandLineIO::error( VeyonCore::tr( "Unknown result!" ) );
+				CommandLineIO::error(VeyonCore::tr("Unknown command result"));
 				return -1;
 			}
 		}
