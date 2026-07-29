@@ -71,7 +71,7 @@ int AccessControlRuleListModel::rowCount(const QModelIndex &parent) const
 
 QVariant AccessControlRuleListModel::data(const QModelIndex &index, int role) const
 {
-	if (!index.isValid() || index.row() > rowCount() )
+	if (!index.isValid() || index.row() >= rowCount())
 	{
 		return {};
 	}
