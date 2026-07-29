@@ -81,7 +81,8 @@ CommandLinePluginInterface::RunResult ShellCommands::handle_main()
 CommandLinePluginInterface::RunResult ShellCommands::handle_run( const QStringList& arguments )
 {
 	QFile scriptFile( arguments.value( 0 ) );
-	if( scriptFile.exists() == false )
+	if (scriptFile.exists() == false ||
+		scriptFile.open(QFile::ReadOnly | QFile::Text) == false)
 	{
 		CommandLineIO::error( tr( "File \"%1\" does not exist!" ).arg( scriptFile.fileName() ) );
 		return Failed;
