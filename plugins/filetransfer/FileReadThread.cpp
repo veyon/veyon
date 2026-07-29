@@ -49,6 +49,7 @@ FileReadThread::FileReadThread( const QString& fileName, QObject* parent ) :
 FileReadThread::~FileReadThread()
 {
 	m_thread->quit();
+	m_thread->wait();
 }
 
 
