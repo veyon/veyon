@@ -39,20 +39,20 @@ int main( int argc, char **argv )
 {
 	VeyonCore::setupApplicationParameters();
 
-	QCoreApplication* app = nullptr;
+	std::unique_ptr<QCoreApplication> app{};
 
 #ifdef Q_OS_LINUX
 	// do not create graphical application if DISPLAY is not available
 	if( qEnvironmentVariableIsSet( "DISPLAY" ) == false )
 	{
-		app = new QCoreApplication( argc, argv );
+		app = std::make_unique<QCoreApplication>(argc, argv);
 	}
 	else
 	{
-		app = new QApplication( argc, argv );
+		app = std::make_unique<QApplication>(argc, argv);
 	}
 #else
-	app = new QApplication( argc, argv );
+	app = std::make_unique<QCoreApplication>(argc, argv);
 #endif
 
 	const auto arguments = QCoreApplication::arguments();
@@ -62,7 +62,6 @@ int main( int argc, char **argv )
 		if( arguments.last() == QLatin1String("-v") || arguments.last() == QLatin1String("--version") )
 		{
 			CommandLineIO::print( VeyonCore::versionString() );
-			delete app;
 			return 0;
 		}
 		if( arguments.last() == QLatin1String("about") )
@@ -73,7 +72,6 @@ int main( int argc, char **argv )
 								  arg( QLatin1String(QT_VERSION_STR) ).
 								  arg( QSysInfo::buildAbi() ) );
 			CommandLineIO::print( QStringLiteral("OpenSSL: %1").arg( QLatin1String(SSLeay_version(SSLEAY_VERSION)) ) );
-			delete app;
 			return 0;
 		}
 	}
@@ -84,12 +82,12 @@ int main( int argc, char **argv )
 		qputenv( Logger::logLevelEnvironmentVariable(), QByteArray::number( static_cast<int>(Logger::LogLevel::Nothing) ) );
 	}
 
-	auto core = new VeyonCore( app, VeyonCore::Component::CLI, QStringLiteral("CLI") );
-	VeyonCore::pluginManager().registerExtraPluginInterface( new ConfigCommands( core ) );
-	VeyonCore::pluginManager().registerExtraPluginInterface( new FeatureCommands( core ) );
-	VeyonCore::pluginManager().registerExtraPluginInterface( new PluginCommands( core ) );
-	VeyonCore::pluginManager().registerExtraPluginInterface( new ServiceControlCommands( core ) );
-	VeyonCore::pluginManager().registerExtraPluginInterface( new ShellCommands( core ) );
+	const auto core = std::make_unique<VeyonCore>(app.get(), VeyonCore::Component::CLI, QStringLiteral("CLI"));
+	VeyonCore::pluginManager().registerExtraPluginInterface(new ConfigCommands(core.get()));
+	VeyonCore::pluginManager().registerExtraPluginInterface(new FeatureCommands(core.get()));
+	VeyonCore::pluginManager().registerExtraPluginInterface(new PluginCommands(core.get()));
+	VeyonCore::pluginManager().registerExtraPluginInterface(new ServiceControlCommands(core.get()));
+	VeyonCore::pluginManager().registerExtraPluginInterface(new ShellCommands(core.get()));
 
 	QHash<CommandLinePluginInterface *, QObject *> commandLinePluginInterfaces;
 	const auto pluginObjects = VeyonCore::pluginManager().pluginObjects();
@@ -137,9 +135,6 @@ int main( int argc, char **argv )
 			{
 				runResult = CommandLinePluginInterface::NotEnoughArguments;
 			}
-
-			delete core;
-			delete app;
 
 			switch( runResult )
 			{
@@ -205,9 +200,6 @@ int main( int argc, char **argv )
 	std::sort( modulesHelpStrings.begin(), modulesHelpStrings.end() );
 	std::for_each( modulesHelpStrings.begin(), modulesHelpStrings.end(), [](const QString& s) {
 		CommandLineIO::print( QStringLiteral( "    " ) + s ); } );
-
-	delete core;
-	delete app;
 
 	return rc;
 }
