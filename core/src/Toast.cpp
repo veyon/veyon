@@ -1796,7 +1796,7 @@ QPoint Toast::calculatePosition()
 	}
 	else
 	{
-		QList<QScreen*> screens = QGuiApplication::screens();
+		const QList<QScreen*> screens = QGuiApplication::screens();
 
 		for (QScreen* screen : screens)
 		{
@@ -1812,6 +1812,11 @@ QPoint Toast::calculatePosition()
 					break;
 				}
 			}
+		}
+
+		if (!currentScreen)
+		{
+			currentScreen = primaryScreen;
 		}
 	}
 
