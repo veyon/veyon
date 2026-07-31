@@ -99,7 +99,7 @@ void LinuxInputDeviceFunctions::setEmptyKeyMapTable()
 	}
 
 	XDisplayKeycodes( display, &m_keyCodeMin, &m_keyCodeMax );
-	m_keyCodeCount = m_keyCodeMax - m_keyCodeMin;
+	m_keyCodeCount = m_keyCodeMax - m_keyCodeMin + 1;
 
 	m_origKeyTable = XGetKeyboardMapping( display, ::KeyCode( m_keyCodeMin ), m_keyCodeCount, &m_keySymsPerKeyCode );
 
