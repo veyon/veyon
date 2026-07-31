@@ -244,25 +244,32 @@ NetworkObjectList NetworkObjectDirectory::queryParents( const NetworkObject& chi
 		update();
 	}
 
-	if( child.type() == NetworkObject::Type::Root )
+	NetworkObjectList parents;
+	auto current = child;
+	for (int depth = 0; current.type() != NetworkObject::Type::Root && depth < 64; ++depth)
 	{
-		return {};
-	}
-
-	for( auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it )
-	{
-		const auto& objectList = it.value();
-
-		for( const auto& object : objectList )
+		bool found = false;
+		for (auto it = m_objects.constBegin(); it != m_objects.constEnd() && found == false; ++it)
 		{
-			if( object.uid() == child.parentUid() )
+			for (const auto& object : it.value())
 			{
-				return queryParents( object ) + NetworkObjectList( { object } );
+				if (object.uid() == current.parentUid())
+				{
+					parents.prepend(object);
+					current = object;
+					found = true;
+					break;
+				}
 			}
+		}
+
+		if (found == false)
+		{
+			break;
 		}
 	}
 
-	return {};
+	return parents;
 }
 
 
