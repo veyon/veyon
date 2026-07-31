@@ -320,7 +320,7 @@ QString WindowsUserFunctions::currentUserLoginName()
 	if( !domainName.isEmpty() )
 	{
 		std::array<wchar_t, MAX_COMPUTERNAME_LENGTH+1> computerName{}; // Flawfinder: ignore
-		DWORD size = MAX_COMPUTERNAME_LENGTH;
+		DWORD size = computerName.size();
 		GetComputerName( computerName.data(), &size );
 
 		if( domainName == QString::fromWCharArray( computerName.data() ) )
