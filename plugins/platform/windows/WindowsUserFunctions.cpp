@@ -157,12 +157,15 @@ QString WindowsUserFunctions::userGroupSecurityIdentifier(const QString& groupNa
 {
 	WindowsCoreFunctions::SecurityIdentifierBuffer groupSid{};
 	DWORD sidLen = groupSid.size();
+	std::array<wchar_t, DOMAIN_LENGTH> domain{};
+
+	DWORD domainLen = domain.size();
 
 	SID_NAME_USE sidNameUse;
 
 	if (LookupAccountName(nullptr, WindowsCoreFunctions::toConstWCharArray(groupName),
 						  groupSid.data(), &sidLen,
-						  NULL, 0, &sidNameUse) == false)
+						  domain.data(), &domainLen, &sidNameUse) == false)
 	{
 		vCritical() << "Could not look up SID structure:" << GetLastError();
 		return {};
