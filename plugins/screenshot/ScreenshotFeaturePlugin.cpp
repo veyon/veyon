@@ -62,6 +62,26 @@ bool ScreenshotFeaturePlugin::controlFeature( Feature::Uid featureUid,
 	{
 		for( const auto& controlInterface : computerControlInterfaces )
 		{
+			if (VeyonCore::component() == VeyonCore::Component::CLI &&
+				controlInterface->framebuffer().isNull())
+			{
+				// maximum time to wait for the first framebuffer update when the feature is
+				// invoked right after connecting (e.g. via CLI or WebAPI)
+				static constexpr int FramebufferWaitTimeout = 10 * 1000;
+
+				QEventLoop eventLoop;
+				QTimer::singleShot(FramebufferWaitTimeout, &eventLoop, &QEventLoop::quit);
+				connect(controlInterface.data(), &ComputerControlInterface::framebufferUpdated,
+						&eventLoop, &QEventLoop::quit);
+				eventLoop.exec();
+
+				if (controlInterface->framebuffer().isNull())
+				{
+					vWarning() << "no framebuffer data received for host"
+							   << controlInterface->computer().hostAddress();
+				}
+			}
+
 			Screenshot().take( controlInterface );
 		}
 
