@@ -31,6 +31,7 @@
 
 #include "SystemTrayIcon.h"
 #include "FeatureWorkerManager.h"
+#include "PlatformCoreFunctions.h"
 #include "VeyonCore.h"
 #include "VeyonConfiguration.h"
 #include "VeyonServerInterface.h"
@@ -161,6 +162,7 @@ bool SystemTrayIcon::handleFeatureMessage( VeyonWorkerInterface& worker, const F
 					QCoreApplication::instance(), &QCoreApplication::quit);
 			QTimer::singleShot(MessageBoxAutoCloseInterval, messageBox, &QWidget::close);
 			messageBox->show();
+			VeyonCore::platform().coreFunctions().raiseWindow(messageBox, true);
 		}
 		return true;
 
