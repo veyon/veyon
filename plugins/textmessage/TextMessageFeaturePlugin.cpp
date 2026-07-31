@@ -150,9 +150,11 @@ bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worke
 										   message.argument( Argument::Text ).toString() );
 		messageBox->setTextFormat( Qt::RichText );
 		messageBox->setTextInteractionFlags( Qt::TextBrowserInteraction | Qt::TextSelectableByKeyboard );
+		messageBox->setAttribute( Qt::WA_DeleteOnClose );
+		messageBox->setWindowFlags( messageBox->windowFlags() | Qt::WindowStaysOnTopHint );
 		messageBox->show();
-
-		connect( messageBox, &QMessageBox::accepted, messageBox, &QMessageBox::deleteLater );
+		messageBox->raise();
+		messageBox->activateWindow();
 
 		return true;
 	}
