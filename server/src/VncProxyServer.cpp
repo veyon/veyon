@@ -41,6 +41,7 @@ VncProxyServer::VncProxyServer( const QHostAddress& listenAddress,
 	m_vncServerPassword(),
 	m_listenAddress( listenAddress ),
 	m_listenPort( listenPort ),
+	m_connectionLimit(qMax(1, VeyonCore::config().serverConnectionLimit())),
 	m_server( new QTcpServer( this ) ),
 	m_connectionFactory( connectionFactory )
 {
@@ -109,11 +110,10 @@ void VncProxyServer::acceptConnection()
 			continue;
 		}
 
-		const auto connectionLimit = qMax(1, VeyonCore::config().serverConnectionLimit());
-		if( m_connections.size() >= connectionLimit )
+		if( m_connections.size() >= m_connectionLimit )
 		{
 			vWarning() << "rejecting connection from" << clientSocket->peerAddress().toString()
-					   << "because the connection limit of" << connectionLimit << "has been reached";
+					   << "because the connection limit of" << m_connectionLimit << "has been reached";
 			clientSocket->abort();
 			clientSocket->deleteLater();
 			continue;
