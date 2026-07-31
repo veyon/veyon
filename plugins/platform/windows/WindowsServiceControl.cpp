@@ -193,6 +193,12 @@ bool WindowsServiceControl::install( const QString& filePath, const QString& dis
 
 	const wchar_t* dependencies = L"Tcpip\0RpcSs\0LSM\0\0";
 
+	if (m_serviceHandle)
+	{
+		CloseServiceHandle(m_serviceHandle);
+		m_serviceHandle = nullptr;
+	}
+
 	m_serviceHandle = CreateService(
 				m_serviceManager,		// SCManager database
 				WindowsCoreFunctions::toConstWCharArray( m_name ),	// name of service
