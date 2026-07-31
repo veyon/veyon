@@ -22,7 +22,7 @@
  *
  */
 
-#include <openssl/bn.h>
+#include <QRandomGenerator>
 
 #include "CryptoCore.h"
 
@@ -54,21 +54,14 @@ CryptoCore::~CryptoCore()
 
 QByteArray CryptoCore::generateChallenge()
 {
-	const auto challengeBigNum = BN_new();
+	static_assert(ChallengeSize % sizeof(quint32) == 0);
 
-	if( challengeBigNum == nullptr )
-	{
-		vCritical() << "BN_new() failed";
-		return QByteArray();
-	}
+	using ChallengeWords = std::array<quint32, ChallengeSize / sizeof(quint32)>;
 
-	// generate a random challenge
-	BN_rand( challengeBigNum, ChallengeSize * 8, 0, 0 );
-	QByteArray chall( BN_num_bytes( challengeBigNum ), 0 );
-	BN_bn2bin( challengeBigNum, reinterpret_cast<unsigned char *>( chall.data() ) );
-	BN_free( challengeBigNum );
+	ChallengeWords challenge{};
+	QRandomGenerator::system()->fillRange(challenge.data(), challenge.size());
 
-	return chall;
+	return QByteArray(reinterpret_cast<const char*>(challenge.data()), ChallengeSize);
 }
 
 
