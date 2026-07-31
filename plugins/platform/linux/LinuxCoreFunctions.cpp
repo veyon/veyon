@@ -380,14 +380,14 @@ bool LinuxCoreFunctions::runProgramAsUser(const QString& program, const QStringL
 	Q_UNUSED(desktop);
 
 	const auto uid = LinuxUserFunctions::userIdFromName( username );
-	if( uid < 0 )
+	if (uid == LinuxUserFunctions::InvalidUserId)
 	{
 		vCritical() << "failed to resolve uid from username" << username;
 		return false;
 	}
 
 	const auto gid = LinuxUserFunctions::userGroupIdFromName( username );
-	if( gid < 0 )
+	if (gid == LinuxUserFunctions::InvalidGroupId)
 	{
 		vCritical() << "failed to resolve gid from username" << username;
 		return false;
