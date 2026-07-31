@@ -28,6 +28,7 @@
 #include "TextMessageDialog.h"
 #include "FeatureWorkerManager.h"
 #include "ComputerControlInterface.h"
+#include "PlatformCoreFunctions.h"
 #include "VeyonMasterInterface.h"
 #include "VeyonServerInterface.h"
 
@@ -151,10 +152,8 @@ bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worke
 		messageBox->setTextFormat( Qt::RichText );
 		messageBox->setTextInteractionFlags( Qt::TextBrowserInteraction | Qt::TextSelectableByKeyboard );
 		messageBox->setAttribute( Qt::WA_DeleteOnClose );
-		messageBox->setWindowFlags( messageBox->windowFlags() | Qt::WindowStaysOnTopHint );
 		messageBox->show();
-		messageBox->raise();
-		messageBox->activateWindow();
+		VeyonCore::platform().coreFunctions().raiseWindow(messageBox, true);
 
 		return true;
 	}
