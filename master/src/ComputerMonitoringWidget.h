@@ -28,6 +28,7 @@
 #include "FlexibleListView.h"
 #include "ComputerZoomWidget.h"
 
+#include <QPointer>
 #include <QWidget>
 
 class FlexibleListView;
@@ -93,7 +94,7 @@ private:
 	static constexpr auto IgnoredNumberOfMouseEventsWhileHold = 3;
 	static constexpr auto ItemsLayoutDebounceTimeout = 250;
 
-	ComputerZoomWidget* m_computerZoomWidget{nullptr};
+	QPointer<ComputerZoomWidget> m_computerZoomWidget;
 
 	QTimer* m_itemsLayoutDebounceTimer;
 

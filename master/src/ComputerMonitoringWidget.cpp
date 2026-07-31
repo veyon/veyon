@@ -346,12 +346,15 @@ void ComputerMonitoringWidget::runMousePressAndHoldFeature( )
 
 void ComputerMonitoringWidget::stopMousePressAndHoldFeature( )
 {
-	disconnect( m_computerZoomWidget, &ComputerZoomWidget::keypressInComputerZoomWidget, this, &ComputerMonitoringWidget::resetIgnoreNumberOfMouseEvents );
 	m_ignoreMousePressAndHoldEvent = false;
 	m_ignoreNumberOfMouseEvents = 0;
-	m_computerZoomWidget->close();
-	delete m_computerZoomWidget;
-	m_computerZoomWidget = nullptr;
+	if (m_computerZoomWidget)
+	{
+		disconnect( m_computerZoomWidget, &ComputerZoomWidget::keypressInComputerZoomWidget, this, &ComputerMonitoringWidget::resetIgnoreNumberOfMouseEvents );
+		m_computerZoomWidget->close();
+		delete m_computerZoomWidget;
+		m_computerZoomWidget = nullptr;
+	}
 }
 
 
