@@ -66,7 +66,10 @@ LinuxKeyboardInput::~LinuxKeyboardInput()
 	else
 	{
 		free( m_fakeKeyHandle );
-		XCloseDisplay( m_display );
+		if (m_display)
+		{
+			XCloseDisplay(m_display);
+		}
 	}
 }
 

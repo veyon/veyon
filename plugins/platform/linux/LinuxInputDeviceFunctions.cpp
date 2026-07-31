@@ -92,6 +92,12 @@ void LinuxInputDeviceFunctions::setEmptyKeyMapTable()
 		XFree( m_origKeyTable );
 
 	auto display = XOpenDisplay( nullptr );
+	if (display == nullptr)
+	{
+		vCritical() << "cannot open X display";
+		return;
+	}
+
 	XDisplayKeycodes( display, &m_keyCodeMin, &m_keyCodeMax );
 	m_keyCodeCount = m_keyCodeMax - m_keyCodeMin;
 
