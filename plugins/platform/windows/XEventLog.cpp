@@ -385,6 +385,8 @@ PSID CXEventLog::GetUserSid()
 	// retrieve the user information from the token
 	if (!GetTokenInformation(hToken, TokenUser, ptiUser, cbti, &cbti))
 	{
+		HeapFree(GetProcessHeap(), 0, ptiUser);
+		CloseHandle(hToken);
 		return nullptr;
 	}
 
@@ -394,12 +396,17 @@ PSID CXEventLog::GetUserSid()
 	auto psid = reinterpret_cast<PSID>( HeapAlloc(GetProcessHeap(), 0, dwLen) );
 	if (!psid)
 	{
+		HeapFree(GetProcessHeap(), 0, ptiUser);
+		CloseHandle(hToken);
 		return nullptr;
 	}
 
 	BOOL bRet = ::CopySid(dwLen, psid, ptiUser->User.Sid);
 	if (!bRet)
 	{
+		HeapFree(GetProcessHeap(), 0, psid);
+		HeapFree(GetProcessHeap(), 0, ptiUser);
+		CloseHandle(hToken);
 		return nullptr;
 	}
 
