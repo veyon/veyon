@@ -509,7 +509,7 @@ bool AccessControlProvider::matchList(const QStringList& list, const QString& pa
 
 	if (pattern.endsWith(QLatin1Char('*')))
 	{
-		const QRegularExpression rx(pattern);
+		const auto rx = QRegularExpression(QRegularExpression::wildcardToRegularExpression(pattern));
 		if (rx.isValid())
 		{
 			return list.indexOf(rx) >= 0;
