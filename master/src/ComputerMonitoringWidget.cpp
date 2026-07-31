@@ -364,7 +364,7 @@ void ComputerMonitoringWidget::mousePressEvent( QMouseEvent* event )
 		{
 			m_mousePressAndHold.setInterval( 500 );
 			m_mousePressAndHold.start();
-			connect(&m_mousePressAndHold, &QTimer::timeout, this, &ComputerMonitoringWidget::runMousePressAndHoldFeature );
+			connect(&m_mousePressAndHold, &QTimer::timeout, this, &ComputerMonitoringWidget::runMousePressAndHoldFeature, Qt::UniqueConnection);
 		}
 	}
 	QListView::mousePressEvent( event );
