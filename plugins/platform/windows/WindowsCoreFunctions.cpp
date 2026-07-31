@@ -247,7 +247,7 @@ QString WindowsCoreFunctions::activeDesktopName()
 	auto desktopHandle = GetThreadDesktop( GetCurrentThreadId() );
 
 	std::array<wchar_t, MAX_PATH> inputDesktopName{};
-	if( GetUserObjectInformation( desktopHandle, UOI_NAME, inputDesktopName.data(), inputDesktopName.size(), nullptr ) )
+	if (GetUserObjectInformation(desktopHandle, UOI_NAME, inputDesktopName.data(), inputDesktopName.size() * sizeof(wchar_t), nullptr))
 	{
 		desktopName = QString( QStringLiteral( "winsta0\\%1" ) ).arg( QString::fromWCharArray( inputDesktopName.data() ) );
 	}
