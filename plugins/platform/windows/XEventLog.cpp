@@ -277,7 +277,7 @@ BOOL CXEventLog::RegisterSource(LPCTSTR lpszApp,
 	TCHAR szKey[MAX_PATH*2]; // Flawfinder: ignore
 	memset(szKey, 0, MAX_PATH*2*sizeof(TCHAR));
 	wcsncpy(szKey, szRegPath, MAX_PATH*2-2); // Flawfinder: ignore
-	wcsncat(szKey, lpszApp, MAX_PATH*2-2); // Flawfinder: ignore
+	wcsncat(szKey, lpszApp, MAX_PATH*2 - wcslen(szKey) - 1); // Flawfinder: ignore
 
 	// open the registry event source key
 	DWORD dwResult = 0;
