@@ -75,7 +75,7 @@ bool WindowsServiceControl::isRunning()
 		return false;
 	}
 
-	SERVICE_STATUS status;
+	SERVICE_STATUS status{};
 	if( QueryServiceStatus( m_serviceHandle, &status ) )
 	{
 		return status.dwCurrentState == SERVICE_RUNNING;
