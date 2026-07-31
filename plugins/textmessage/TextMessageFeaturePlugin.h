@@ -35,7 +35,8 @@ class TextMessageFeaturePlugin : public QObject, FeatureProviderInterface, Plugi
 public:
 	enum class Argument {
 		Text,
-		Icon
+		Icon,
+		Title
 	};
 	Q_ENUM(Argument)
 

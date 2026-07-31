@@ -30,12 +30,15 @@
 #include "ui_TextMessageDialog.h"
 
 
-TextMessageDialog::TextMessageDialog( QString &msgStr, QWidget *parent ) :
+TextMessageDialog::TextMessageDialog( QString &msgStr, QString &titleStr, QWidget *parent ) :
 	QDialog( parent ),
 	ui( new Ui::TextMessageDialog ),
-	m_msgStr( msgStr )
+	m_msgStr( msgStr ),
+	m_titleStr( titleStr )
 {
 	ui->setupUi( this );
+
+	ui->titleEdit->setPlaceholderText( tr( "Message from teacher" ) );
 }
 
 
@@ -50,5 +53,6 @@ TextMessageDialog::~TextMessageDialog()
 void TextMessageDialog::accept()
 {
 	m_msgStr = ui->textEdit->toPlainText().trimmed().isEmpty() ? QString{} : ui->textEdit->toHtml();
+	m_titleStr = ui->titleEdit->text().trimmed();
 	QDialog::accept();
 }

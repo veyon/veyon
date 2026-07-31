@@ -69,10 +69,12 @@ bool TextMessageFeaturePlugin::controlFeature( Feature::Uid featureUid,
 	{
 		const auto text = arguments.value( argToString(Argument::Text) ).toString();
 		const auto icon = arguments.value( argToString(Argument::Icon) ).toInt();
+		const auto title = arguments.value( argToString(Argument::Title) ).toString();
 
 		sendFeatureMessage(FeatureMessage{featureUid, FeatureCommand::ShowTextMessage}
 						   .addArgument(Argument::Text, text)
-						   .addArgument(Argument::Icon, icon), computerControlInterfaces);
+						   .addArgument(Argument::Icon, icon)
+						   .addArgument(Argument::Title, title), computerControlInterfaces);
 
 		return true;
 	}
@@ -91,15 +93,17 @@ bool TextMessageFeaturePlugin::startFeature( VeyonMasterInterface& master, const
 	}
 
 	QString textMessage;
+	QString messageTitle;
 
-	TextMessageDialog( textMessage, master.mainWindow() ).exec();
+	TextMessageDialog( textMessage, messageTitle, master.mainWindow() ).exec();
 
 	if( textMessage.isEmpty() == false )
 	{
 		controlFeature( m_textMessageFeature.uid(), Operation::Start,
 						{
 							{ argToString(Argument::Text), textMessage },
-							{ argToString(Argument::Icon), QMessageBox::Information }
+							{ argToString(Argument::Icon), QMessageBox::Information },
+							{ argToString(Argument::Title), messageTitle }
 						},
 						computerControlInterfaces );
 	}
@@ -135,8 +139,14 @@ bool TextMessageFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worke
 
 	if( message.featureUid() == m_textMessageFeature.uid() )
 	{
+		auto title = message.argument( Argument::Title ).toString();
+		if( title.isEmpty() )
+		{
+			title = tr( "Message from teacher" );
+		}
+
 		auto messageBox = new QMessageBox( static_cast<QMessageBox::Icon>( message.argument( Argument::Icon ).toInt() ),
-										   tr( "Message from teacher" ),
+										   title,
 										   message.argument( Argument::Text ).toString() );
 		messageBox->setTextFormat( Qt::RichText );
 		messageBox->setTextInteractionFlags( Qt::TextBrowserInteraction | Qt::TextSelectableByKeyboard );

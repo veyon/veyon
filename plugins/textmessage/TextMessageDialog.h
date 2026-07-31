@@ -35,7 +35,7 @@ class TextMessageDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	TextMessageDialog( QString &msgStr, QWidget *parent );
+	TextMessageDialog( QString &msgStr, QString &titleStr, QWidget *parent );
 	~TextMessageDialog() override;
 
 private Q_SLOTS:
@@ -45,5 +45,6 @@ private Q_SLOTS:
 private:
 	Ui::TextMessageDialog *ui;
 	QString &m_msgStr;
+	QString &m_titleStr;
 
 } ;
