@@ -117,6 +117,8 @@ public:
 private:
 	void updateIcon(const QString& overlayIconUrl = {});
 
+	static constexpr int MessageBoxAutoCloseInterval = 10000;
+
 	enum class FeatureCommand
 	{
 		SetToolTip,
