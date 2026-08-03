@@ -178,9 +178,21 @@ void LinuxCoreFunctions::raiseWindow( QWidget* widget, bool stayOnTop )
 	widget->activateWindow();
 	widget->raise();
 
-	if( stayOnTop )
+	if (stayOnTop)
 	{
-		widget->setWindowFlag( Qt::WindowStaysOnTopHint, true );
+		const auto isVisible = widget->isVisible();
+		const auto isFullscreen = widget->isFullScreen();
+
+		widget->setWindowFlag(Qt::WindowStaysOnTopHint, true);
+
+		if (isFullscreen)
+		{
+			widget->showFullScreen();
+		}
+		else if (isVisible)
+		{
+			widget->show();
+		}
 	}
 }
 
