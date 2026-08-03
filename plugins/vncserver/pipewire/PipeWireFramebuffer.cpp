@@ -22,6 +22,8 @@
  *
  */
 
+#include <QMutex>
+
 #include "PipeWireFramebuffer.h"
 
 #include "VeyonCore.h"
@@ -33,8 +35,9 @@ extern "C" {
 #include <spa/pod/builder.h>
 }
 
-PipeWireFramebuffer::PipeWireFramebuffer(QObject* parent)
+PipeWireFramebuffer::PipeWireFramebuffer(QMutex* screenMutex, QObject* parent)
 	: QObject(parent)
+	, m_screenMutex(screenMutex)
 {
 }
 
@@ -45,6 +48,8 @@ PipeWireFramebuffer::~PipeWireFramebuffer()
 
 bool PipeWireFramebuffer::open(int fd, quint32 nodeId, rfbScreenInfoPtr screen)
 {
+	QMutexLocker lock(m_screenMutex);
+
 	m_rfbScreen = screen;
 	m_frameSize = {};
 
@@ -320,6 +325,8 @@ void PipeWireFramebuffer::onStreamProcess(void* data)
 
 void PipeWireFramebuffer::processFrame()
 {
+	QMutexLocker lock(m_screenMutex);
+
 	if (!m_stream || !m_rfbScreen)
 	{
 		return;

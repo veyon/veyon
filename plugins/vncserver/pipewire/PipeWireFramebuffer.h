@@ -34,6 +34,8 @@ extern "C" {
 #include <rfb/rfb.h>
 }
 
+class QMutex;
+
 /**
  * @brief Connects to a PipeWire node and copies frames into an rfbScreen framebuffer.
  *
@@ -50,7 +52,7 @@ class PipeWireFramebuffer : public QObject
 {
 	Q_OBJECT
 public:
-	explicit PipeWireFramebuffer(QObject* parent = nullptr);
+	explicit PipeWireFramebuffer(QMutex* screenMutex, QObject* parent = nullptr);
 	~PipeWireFramebuffer() override;
 
 	/**
@@ -74,7 +76,7 @@ private:
 	// PipeWire C callbacks (called from PipeWire loop thread)
 	static void onCoreError(void* data, uint32_t id, int seq, int res, const char* message);
 	static void onStreamStateChanged(void* data, pw_stream_state old,
-	                                 pw_stream_state state, const char* error);
+									 pw_stream_state state, const char* error);
 	static void onStreamParamChanged(void* data, uint32_t id, const spa_pod* param);
 	static void onStreamProcess(void* data);
 
@@ -88,6 +90,7 @@ private:
 	spa_hook m_coreListener{};
 	spa_hook m_streamListener{};
 
+	QMutex* m_screenMutex;
 	rfbScreenInfoPtr m_rfbScreen{nullptr};
 	QSize            m_frameSize;
 	uint32_t         m_videoFormat{SPA_VIDEO_FORMAT_UNKNOWN};

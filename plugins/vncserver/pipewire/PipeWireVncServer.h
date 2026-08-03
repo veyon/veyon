@@ -25,6 +25,9 @@
 #pragma once
 
 #include <atomic>
+
+#include <QMutex>
+
 #include "PluginInterface.h"
 #include "VncServerPluginInterface.h"
 
@@ -145,6 +148,8 @@ private:
 	rfbScreenInfoPtr     m_rfbScreen{nullptr};
 	char*                m_vncPassword{nullptr};
 	char*                m_vncPasswords[2]{nullptr, nullptr};
+
+	QMutex m_screenMutex;
 
 	bool m_serverRunning{false};
 	bool m_shouldRestart{false};

@@ -90,7 +90,7 @@ bool PipeWireVncServer::runServer(int serverPort, const Password& password)
 
 	// PipeWireFramebuffer consumes the PipeWire stream and feeds the rfbScreen.
 	// Created with nullptr parent for the same cross-thread reason as m_portalSession.
-	m_framebuffer = new PipeWireFramebuffer(nullptr);
+	m_framebuffer = new PipeWireFramebuffer(&m_screenMutex);
 	connect(m_framebuffer, &PipeWireFramebuffer::streamEnded,
 			this, &PipeWireVncServer::onStreamEnded, Qt::QueuedConnection);
 
@@ -102,10 +102,12 @@ bool PipeWireVncServer::runServer(int serverPort, const Password& password)
 	{
 		QCoreApplication::processEvents(QEventLoop::AllEvents, EventLoopTickMs);
 
+		m_screenMutex.lock();
 		if (m_rfbScreen)
 		{
 			rfbProcessEvents(m_rfbScreen, 0);
 		}
+		m_screenMutex.unlock();
 
 		if (m_shouldRestart)
 		{
