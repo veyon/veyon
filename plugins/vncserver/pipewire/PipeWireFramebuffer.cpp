@@ -22,6 +22,7 @@
  *
  */
 
+#include <QImage>
 #include <QMutex>
 
 #include "PipeWireFramebuffer.h"
@@ -387,19 +388,13 @@ void PipeWireFramebuffer::processFrame()
 
 	if (m_videoFormat == SPA_VIDEO_FORMAT_BGRx)
 	{
+		const QImage srcImage(reinterpret_cast<const uchar*>(src), width, height,
+							  srcStride, QImage::Format_RGB32); // ARGB32 layout matches BGRx-in-memory as ARGB32 on little-endian
+		const auto swapped = srcImage.rgbSwapped(); // allocates its own buffer, SIMD-accelerated internally
 		for (int y = 0; y < height; ++y)
 		{
-			const auto* srcLine = reinterpret_cast<const uint8_t*>(src + y * srcStride);
-			auto* dstLine = reinterpret_cast<uint8_t*>(dst + y * dstStride);
-
-			for (int x = 0; x < width; ++x)
-			{
-				const int i = x * 4;
-				dstLine[i + 0] = srcLine[i + 2];
-				dstLine[i + 1] = srcLine[i + 1];
-				dstLine[i + 2] = srcLine[i + 0];
-				dstLine[i + 3] = srcLine[i + 3];
-			}
+			std::memcpy(dst + y * dstStride, swapped.constScanLine(y),
+						static_cast<size_t>(dstStride));
 		}
 	}
 	else
