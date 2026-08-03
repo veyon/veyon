@@ -52,6 +52,25 @@
 #include <X11/extensions/dpms.h>
 
 
+static QString systemctlPath()
+{
+	static const auto DefaultSystemctlPath = QStringLiteral("/usr/bin/systemctl");
+	static const auto LegacySystemctlPath = QStringLiteral("/bin/systemctl");
+
+	if (QFile::exists(DefaultSystemctlPath))
+	{
+		return DefaultSystemctlPath;
+	}
+
+	if (QFile::exists(LegacySystemctlPath))
+	{
+		return LegacySystemctlPath;
+	}
+
+	return {};
+}
+
+
 LinuxCoreFunctions::LinuxCoreFunctions() :
 	m_isWaylandSession(qEnvironmentVariableIsSet("WAYLAND_DISPLAY"))
 {
@@ -562,7 +581,7 @@ bool LinuxCoreFunctions::isSystemdManaged()
 		return false;
 	}
 
-	const auto status = ProcessHelper(QStringLiteral("systemctl"), {QStringLiteral("is-system-running")}).runAndReadAll().trimmed();
+	const auto status = ProcessHelper(::systemctlPath(), {QStringLiteral("is-system-running")}).runAndReadAll().trimmed();
 	return status.isEmpty() == false && status != "offline";
 }
 
@@ -571,8 +590,8 @@ bool LinuxCoreFunctions::isSystemdManaged()
 int LinuxCoreFunctions::systemctl( const QStringList& arguments )
 {
 	QProcess process;
-	process.start( QStringLiteral("systemctl"),
-							  QStringList( { QStringLiteral("--no-pager"), QStringLiteral("-q") } ) + arguments );
+	process.start(::systemctlPath(),
+				  QStringList({QStringLiteral("--no-pager"), QStringLiteral("-q")}) + arguments);
 
 	if( process.waitForFinished() && process.exitStatus() == QProcess::NormalExit )
 	{
