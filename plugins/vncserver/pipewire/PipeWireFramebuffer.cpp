@@ -231,19 +231,32 @@ void PipeWireFramebuffer::onCoreError(void* data, uint32_t /*id*/, int /*seq*/,
 }
 
 void PipeWireFramebuffer::onStreamStateChanged(void* data,
-												pw_stream_state /*old*/,
+												pw_stream_state oldState,
 												pw_stream_state state,
 												const char* error)
 {
 	auto* self = static_cast<PipeWireFramebuffer*>(data);
 	vDebug() << "PipeWire stream state:" << pw_stream_state_as_string(state);
 
-	if (state == PW_STREAM_STATE_ERROR || state == PW_STREAM_STATE_UNCONNECTED)
+	if (state == PW_STREAM_STATE_ERROR ||
+		state == PW_STREAM_STATE_UNCONNECTED ||
+		(state == PW_STREAM_STATE_PAUSED && oldState == PW_STREAM_STATE_STREAMING))
 	{
 		if (error)
 		{
 			vCritical() << "PipeWire stream error:" << error;
 		}
+
+		if (state == PW_STREAM_STATE_PAUSED)
+		{
+			// Some compositors pause the stream (rather than erroring out)
+			// during output reconfiguration, e.g. switching between internal
+			// and external monitors. Reactivating in place is unreliable
+			// across compositors, so force a clean teardown/reconnect via
+			// the existing recovery path instead of trying to resume.
+			vWarning() << "PipeWire stream paused – forcing clean reconnect";
+		}
+
 		self->m_running = false;
 		if (self->m_loop)
 		{
