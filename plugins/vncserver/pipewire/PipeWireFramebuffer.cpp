@@ -161,10 +161,10 @@ bool PipeWireFramebuffer::open(int fd, quint32 nodeId, rfbScreenInfoPtr screen)
 	m_running = true;
 
 	// Run the PipeWire main loop in a dedicated thread so it doesn't block Qt
-	connect(&m_loopThread, &QThread::started, this, [this]() {
+	m_loopThread.reset(QThread::create([this]() {
 		pw_main_loop_run(m_loop);
-	}, Qt::DirectConnection);
-	m_loopThread.start();
+	}));
+	m_loopThread->start();
 
 	vDebug() << "PipeWire stream opened for node" << nodeId;
 	return true;
@@ -179,11 +179,11 @@ void PipeWireFramebuffer::close()
 		pw_main_loop_quit(m_loop);
 	}
 
-	if (m_loopThread.isRunning())
+	if (m_loopThread && m_loopThread->isRunning())
 	{
-		m_loopThread.quit();
-		m_loopThread.wait(3000);
+		m_loopThread->wait(3000);
 	}
+	m_loopThread.reset();
 
 	if (m_stream)
 	{

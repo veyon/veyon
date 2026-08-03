@@ -28,6 +28,8 @@
 #include <QSize>
 #include <QThread>
 
+#include <memory>
+
 extern "C" {
 #include <pipewire/pipewire.h>
 #include <spa/param/video/format-utils.h>
@@ -96,5 +98,5 @@ private:
 	uint32_t         m_videoFormat{SPA_VIDEO_FORMAT_UNKNOWN};
 	bool             m_running{false};
 
-	QThread m_loopThread;
+	std::unique_ptr<QThread> m_loopThread;
 };
