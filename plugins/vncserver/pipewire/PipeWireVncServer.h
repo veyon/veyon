@@ -143,7 +143,6 @@ private:
 	PortalSession*       m_portalSession{nullptr};
 	PipeWireFramebuffer* m_framebuffer{nullptr};
 	rfbScreenInfoPtr     m_rfbScreen{nullptr};
-	char*                m_framebufferData{nullptr};
 	char*                m_vncPassword{nullptr};
 	char*                m_vncPasswords[2]{nullptr, nullptr};
 

@@ -168,15 +168,14 @@ void PipeWireVncServer::onStreamEnded()
 bool PipeWireVncServer::initVncServer(int serverPort, const Password& password)
 {
 	const int fbSize = DefaultWidth * DefaultHeight * 4;
-	m_framebufferData = new char[fbSize];
-	std::memset(m_framebufferData, 0, static_cast<size_t>(fbSize));
+	auto framebufferData = new char[fbSize];
+	std::memset(framebufferData, 0, static_cast<size_t>(fbSize));
 
 	m_rfbScreen = rfbGetScreen(nullptr, nullptr, DefaultWidth, DefaultHeight, 8, 3, 4);
 	if (!m_rfbScreen)
 	{
 		vCritical() << "rfbGetScreen failed";
-		delete[] m_framebufferData;
-		m_framebufferData = nullptr;
+		delete[] framebufferData;
 		return false;
 	}
 
@@ -185,7 +184,7 @@ bool PipeWireVncServer::initVncServer(int serverPort, const Password& password)
 	m_vncPasswords[1] = nullptr;
 
 	m_rfbScreen->desktopName     = "VeyonVNC";
-	m_rfbScreen->frameBuffer     = m_framebufferData;
+	m_rfbScreen->frameBuffer     = framebufferData;
 	m_rfbScreen->port            = serverPort;
 	m_rfbScreen->ipv6port        = serverPort;
 	m_rfbScreen->authPasswdData  = m_vncPasswords;
@@ -241,12 +240,11 @@ void PipeWireVncServer::cleanupVncServer()
 	if (m_rfbScreen)
 	{
 		rfbShutdownServer(m_rfbScreen, true);
+		delete[] m_rfbScreen->frameBuffer;
+		m_rfbScreen->frameBuffer = nullptr;
 		rfbScreenCleanup(m_rfbScreen);
 		m_rfbScreen = nullptr;
 	}
-
-	delete[] m_framebufferData;
-	m_framebufferData = nullptr;
 
 	delete[] m_vncPassword;
 	m_vncPassword = nullptr;
