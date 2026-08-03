@@ -212,6 +212,12 @@ int main(int argc, char *argv[])
 			fprintf(stderr, "input-block-helper: invalid PID argument '%s'\n", argv[1]);
 	}
 
+	if (g_allowed_pid == 0)
+	{
+		fprintf(stderr, "input-block-helper: missing PID argument\n");
+		return 1;
+	}
+
 	/* Ignore SIGPIPE */
 	signal(SIGPIPE, SIG_IGN);
 
