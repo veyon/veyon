@@ -83,6 +83,8 @@ private:
 	static void onStreamProcess(void* data);
 
 	void processFrame();
+	void convertFrame(char* dst, const char* src, int srcStride, int dstStride,
+					  int width, int height, const spa_meta_region* damage, bool forceFullFrame);
 
 	pw_main_loop*    m_loop{nullptr};
 	pw_context*      m_context{nullptr};

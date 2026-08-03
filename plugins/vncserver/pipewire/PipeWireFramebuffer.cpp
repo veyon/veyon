@@ -333,6 +333,83 @@ void PipeWireFramebuffer::onStreamProcess(void* data)
 	static_cast<PipeWireFramebuffer*>(data)->processFrame();
 }
 
+
+void PipeWireFramebuffer::convertFrame(char* dst, const char* src, int srcStride, int dstStride,
+										int width, int height, const spa_meta_region* damage, bool forceFullFrame)
+{
+	const auto convertRect = [](char* dst, int dstStride,
+							 const char* src, int srcStride,
+							 int w, int h, uint32_t videoFormat)
+	{
+		const size_t rowBytes = static_cast<size_t>(w) * 4;
+
+		if (videoFormat == SPA_VIDEO_FORMAT_BGRx)
+		{
+			const QImage srcImage(reinterpret_cast<const uchar*>(src), w, h,
+								  srcStride, QImage::Format_RGB32); // ARGB32 layout matches BGRx-in-memory as ARGB32 on little-endian
+			const auto swapped = srcImage.rgbSwapped(); // allocates its own buffer, SIMD-accelerated internally
+
+			for (int y = 0; y < h; ++y)
+			{
+				std::memcpy(dst + y * dstStride, swapped.constScanLine(y), rowBytes);
+			}
+		}
+		else
+		{
+			for (int y = 0; y < h; ++y)
+			{
+				std::memcpy(dst + y * dstStride, src + y * srcStride, rowBytes);
+			}
+		}
+	};
+
+	// Fall back to a single full-frame conversion when there's no usable damage
+	// info, or when the caller forces it (e.g. framebuffer was just resized).
+	if (forceFullFrame || !damage || !spa_meta_region_is_valid(damage))
+	{
+		convertRect(dst, dstStride, src, srcStride, width, height, m_videoFormat);
+		return;
+	}
+
+	// Sum up the damaged area first so we can bail out to a full-frame
+	// conversion if damage covers most of the screen anyway - iterating many
+	// rects individually only pays off when a meaningful portion of the frame
+	// is actually unchanged.
+	static constexpr double FullFrameFallbackThreshold = 0.6;
+
+	int64_t damagedArea = 0;
+	int rectCount = 0;
+	for (const spa_meta_region* r = damage; spa_meta_region_is_valid(r); ++r)
+	{
+		damagedArea += static_cast<int64_t>(r->region.size.width) * r->region.size.height;
+		++rectCount;
+	}
+
+	if (rectCount == 0 ||
+		damagedArea > static_cast<int64_t>(FullFrameFallbackThreshold * width * height))
+	{
+		convertRect(dst, dstStride, src, srcStride, width, height, m_videoFormat);
+		return;
+	}
+
+	for (const spa_meta_region* r = damage; spa_meta_region_is_valid(r); ++r)
+	{
+		// Clamp to framebuffer bounds
+		const int x1 = qBound(0, static_cast<int>(r->region.position.x), width);
+		const int y1 = qBound(0, static_cast<int>(r->region.position.y), height);
+		const int x2 = qBound(0, x1 + static_cast<int>(r->region.size.width), width);
+		const int y2 = qBound(0, y1 + static_cast<int>(r->region.size.height), height);
+
+		if (x2 > x1 && y2 > y1)
+		{
+			convertRect(dst + y1 * dstStride + x1 * 4, dstStride,
+						src + y1 * srcStride + x1 * 4, srcStride,
+						x2 - x1, y2 - y1, m_videoFormat);
+		}
+	}
+}
+
+
 // ---------------------------------------------------------------------------
 // Frame processing (runs in PipeWire loop thread)
 // ---------------------------------------------------------------------------
@@ -382,36 +459,19 @@ void PipeWireFramebuffer::processFrame()
 
 	spa_data& d = buf->datas[0];
 	const int srcStride = d.chunk->stride > 0 ? d.chunk->stride : width * 4;
-	const int dstStride = width * 4;
+	const int dstStride = m_rfbScreen->paddedWidthInBytes;
 	const char* src = static_cast<const char*>(d.data) + d.chunk->offset;
 	char* dst = m_rfbScreen->frameBuffer;
 
-	if (m_videoFormat == SPA_VIDEO_FORMAT_BGRx)
-	{
-		const QImage srcImage(reinterpret_cast<const uchar*>(src), width, height,
-							  srcStride, QImage::Format_RGB32); // ARGB32 layout matches BGRx-in-memory as ARGB32 on little-endian
-		const auto swapped = srcImage.rgbSwapped(); // allocates its own buffer, SIMD-accelerated internally
-		for (int y = 0; y < height; ++y)
-		{
-			std::memcpy(dst + y * dstStride, swapped.constScanLine(y),
-						static_cast<size_t>(dstStride));
-		}
-	}
-	else
-	{
-		for (int y = 0; y < height; ++y)
-		{
-			std::memcpy(dst + y * dstStride, src + y * srcStride,
-						static_cast<size_t>(dstStride));
-		}
-	}
-
-	// Notify VNC clients about the changed regions.
-	// Try to use SPA_META_VideoDamage for precise dirty-rectangle tracking; fall
-	// back to marking the full frame when the compositor does not provide damage
-	// metadata or when the framebuffer was just resized.
+	// Damage metadata drives both which regions we mark modified for VNC
+	// clients AND (as an optimization) which regions we actually need to
+	// convert/copy - falling back to a full-frame conversion when unavailable,
+	// when the framebuffer was just resized, or when damage covers most of
+	// the frame anyway.
 	const auto* damage = static_cast<const spa_meta_region*>(
 		spa_buffer_find_meta_data(buf, SPA_META_VideoDamage, sizeof(spa_meta_region)));
+
+	convertFrame(dst, src, srcStride, dstStride, width, height, damage, sizeChanged);
 
 	if (damage && spa_meta_region_is_valid(damage) && !sizeChanged)
 	{
