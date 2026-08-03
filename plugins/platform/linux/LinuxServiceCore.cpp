@@ -22,6 +22,9 @@
  *
  */
 
+#include <sys/stat.h>
+#include <unistd.h>
+
 #include <QDBusReply>
 #include <QDir>
 #include <QEventLoop>
@@ -174,6 +177,87 @@ static QProcessEnvironment sessionToServerEnvironment(const QProcessEnvironment&
 
 	serverEnvironment.insert(QStringLiteral("PATH"), QStringLiteral("/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"));
 	return serverEnvironment;
+}
+
+
+// Resolves a path, following symlinks, and verifies it is owned by the given uid
+// and not writable by other users. Returns false if the path is missing, owned by
+// someone else, or looks unsafe.
+static bool isPathOwnedBySessionUser(const QString& path, uint expectedUid)
+{
+	if (path.isEmpty())
+	{
+		return false;
+	}
+
+	struct stat st{};
+	// use stat() (not lstat()) so we resolve through symlinks and check the
+	// real target - a malicious symlink pointing elsewhere will still be
+	// caught because the resolved target's ownership is what's checked
+	if (::stat(path.toUtf8().constData(), &st) != 0)
+	{
+		if (errno == ENOENT)
+		{
+			vDebug() << "path" << path << "does not exist";
+		}
+		else
+		{
+			vWarning() << "could not stat path" << path << "-" << strerror(errno);
+		}
+		return false;
+	}
+
+	if (st.st_uid != expectedUid)
+	{
+		vWarning() << "path" << path << "is not owned by expected session user (uid"
+				   << expectedUid << ") but by uid" << st.st_uid;
+		return false;
+	}
+
+	// reject world- or group-writable files/sockets to avoid TOCTOU / hijack via
+	// another local user replacing the target after our check
+	if (st.st_mode & (S_IWGRP | S_IWOTH))
+	{
+		vWarning() << "path" << path << "is group- or world-writable, rejecting";
+		return false;
+	}
+
+	return true;
+}
+
+// Validates a "unix:path=/run/user/<uid>/bus"-style DBUS address, ensuring the
+// socket path exists, belongs to expectedUid, and isn't a tcp:/abstract address
+// pointing somewhere unexpected.
+static bool isValidDBusSessionBusAddress(const QString& address, uint expectedUid)
+{
+	if (address.isEmpty())
+	{
+		return false;
+	}
+
+	// only accept the standard unix domain socket transport with a concrete path;
+	// reject tcp:, abstract sockets (unix:abstract=...), or anything else we can't
+	// verify via filesystem ownership checks
+	static const QString unixPathPrefix = QStringLiteral("unix:path=");
+
+	QString socketPath;
+	const auto parts = address.split(QLatin1Char(','));
+	for (const auto& part : parts)
+	{
+		if (part.startsWith(unixPathPrefix))
+		{
+			socketPath = part.mid(unixPathPrefix.length());
+			break;
+		}
+	}
+
+	if (socketPath.isEmpty())
+	{
+		vWarning() << "unsupported or unparsable D-Bus session bus address:" << address;
+		return false;
+	}
+
+	return isPathOwnedBySessionUser(socketPath, expectedUid);
 }
 
 
@@ -364,6 +448,17 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 		}
 	}
 
+	// resolve the session user's uid up front so path-valued environment variables
+	// can be checked against it
+	const auto sessionUserPath = LinuxSessionFunctions::getSessionUser(sessionPath);
+	if (sessionUserPath.isEmpty())
+	{
+		vCritical() << "session" << sessionPath << "in state" << sessionState << "has no resolvable user - not starting server";
+		return;
+	}
+
+	const auto sessionUid = LinuxUserFunctions::getUserProperty(sessionUserPath, QStringLiteral("UID")).toUInt();
+
 	// workaround for #817 where LinuxSessionFunctions::getSessionEnvironment() does not return all
 	// environment variables when executed via systemd for an established KDE session and xdg-open fails
 	if (sessionType != LinuxSessionFunctions::Type::Wayland &&
@@ -380,35 +475,28 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 	// capture even if /proc/<pid>/environ could not provide them.
 	if (sessionType == LinuxSessionFunctions::Type::Wayland)
 	{
-		const auto sessionUserPath = LinuxSessionFunctions::getSessionUser(sessionPath);
-		if (sessionUserPath.isEmpty() == false)
+		if (sessionUid > 0)
 		{
-			const auto uid = LinuxUserFunctions::getUserProperty(
-								 sessionUserPath, QStringLiteral("UID")).toUInt();
-
-			if (uid > 0)
+			if (serverEnvironment.contains(QStringLiteral("DBUS_SESSION_BUS_ADDRESS")) == false)
 			{
-				if (serverEnvironment.contains(QStringLiteral("DBUS_SESSION_BUS_ADDRESS")) == false)
-				{
-					serverEnvironment.insert(QStringLiteral("DBUS_SESSION_BUS_ADDRESS"),
-											 QStringLiteral("unix:path=/run/user/%1/bus").arg(uid));
-					vDebug() << "Wayland: injected DBUS_SESSION_BUS_ADDRESS from known path";
-				}
+				serverEnvironment.insert(QStringLiteral("DBUS_SESSION_BUS_ADDRESS"),
+										 QStringLiteral("unix:path=/run/user/%1/bus").arg(sessionUid));
+				vDebug() << "Wayland: injected DBUS_SESSION_BUS_ADDRESS from known path";
+			}
 
-				if (serverEnvironment.contains(QStringLiteral("XDG_RUNTIME_DIR")) == false)
-				{
-					serverEnvironment.insert(QStringLiteral("XDG_RUNTIME_DIR"),
-											 QStringLiteral("/run/user/%1").arg(uid));
-				}
+			if (serverEnvironment.contains(QStringLiteral("XDG_RUNTIME_DIR")) == false)
+			{
+				serverEnvironment.insert(QStringLiteral("XDG_RUNTIME_DIR"),
+										 QStringLiteral("/run/user/%1").arg(sessionUid));
+			}
 
-				if (serverEnvironment.contains(QStringLiteral("WAYLAND_DISPLAY")) == false)
+			if (serverEnvironment.contains(QStringLiteral("WAYLAND_DISPLAY")) == false)
+			{
+				QDir dir(QStringLiteral("/run/user/%1").arg(sessionUid));
+				const auto sockets = dir.entryList({QStringLiteral("wayland-*")}, QDir::System);
+				if (sockets.isEmpty() == false)
 				{
-					QDir dir(QStringLiteral("/run/user/%1").arg(uid));
-					const auto sockets = dir.entryList({QStringLiteral("wayland-*")}, QDir::System);
-					if (sockets.isEmpty() == false)
-					{
-						serverEnvironment.insert(QStringLiteral("WAYLAND_DISPLAY"), sockets.first());
-					}
+					serverEnvironment.insert(QStringLiteral("WAYLAND_DISPLAY"), sockets.first());
 				}
 			}
 		}
@@ -427,6 +515,38 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 						   << "not available - Portal/RemoteDesktop screen capture may not work";
 			}
 		}
+	}
+
+	if (sessionUid > 0)
+	{
+		if (serverEnvironment.contains(QStringLiteral("XAUTHORITY")) &&
+			isPathOwnedBySessionUser(serverEnvironment.value(QStringLiteral("XAUTHORITY")), sessionUid) == false)
+		{
+			vDebug() << "discarding untrusted XAUTHORITY for session" << sessionPath;
+			serverEnvironment.remove(QStringLiteral("XAUTHORITY"));
+		}
+
+		if (serverEnvironment.contains(QStringLiteral("PULSE_COOKIE")) &&
+			isPathOwnedBySessionUser(serverEnvironment.value(QStringLiteral("PULSE_COOKIE")), sessionUid) == false)
+		{
+			vDebug() << "discarding untrusted PULSE_COOKIE for session" << sessionPath;
+			serverEnvironment.remove(QStringLiteral("PULSE_COOKIE"));
+		}
+
+		if (serverEnvironment.contains(QStringLiteral("DBUS_SESSION_BUS_ADDRESS")) &&
+			isValidDBusSessionBusAddress(serverEnvironment.value(QStringLiteral("DBUS_SESSION_BUS_ADDRESS")), sessionUid) == false)
+		{
+			vDebug() << "discarding untrusted DBUS_SESSION_BUS_ADDRESS for session" << sessionPath;
+			serverEnvironment.remove(QStringLiteral("DBUS_SESSION_BUS_ADDRESS"));
+		}
+	}
+	else
+	{
+		vWarning() << "could not resolve session user uid for" << sessionPath
+				   << "- discarding path-valued environment variables as a precaution";
+		serverEnvironment.remove(QStringLiteral("XAUTHORITY"));
+		serverEnvironment.remove(QStringLiteral("PULSE_COOKIE"));
+		serverEnvironment.remove(QStringLiteral("DBUS_SESSION_BUS_ADDRESS"));
 	}
 
 	const auto sessionId = m_sessionManager.openSession( sessionPath );
