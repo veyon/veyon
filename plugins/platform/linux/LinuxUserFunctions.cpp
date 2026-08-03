@@ -69,7 +69,7 @@ QStringList LinuxUserFunctions::userGroups( bool queryDomainGroups )
 	QStringList groupList;
 
 	QProcess getentProcess;
-	getentProcess.start( QStringLiteral("getent"), { QStringLiteral("group") } );
+	getentProcess.start(QStringLiteral("/usr/bin/getent"), {QStringLiteral("group")});
 	getentProcess.waitForFinished();
 
 	const auto groups = QString::fromUtf8( getentProcess.readAll() ).split( QLatin1Char('\n') );
@@ -176,7 +176,7 @@ QStringList LinuxUserFunctions::groupsOfUser( const QString& username, bool quer
 	QStringList groupList;
 
 	QProcess getentProcess;
-	getentProcess.start( QStringLiteral("getent"), { QStringLiteral("group") } );
+	getentProcess.start(QStringLiteral("/usr/bin/getent"), {QStringLiteral("group")});
 	getentProcess.waitForFinished();
 
 	const auto groups = QString::fromUtf8( getentProcess.readAll() ).split( QLatin1Char('\n') );
