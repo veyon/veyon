@@ -463,6 +463,12 @@ void PipeWireFramebuffer::processFrame()
 	const char* src = static_cast<const char*>(d.data) + d.chunk->offset;
 	char* dst = m_rfbScreen->frameBuffer;
 
+	if (static_cast<size_t>(srcStride) * height > d.chunk->size)
+	{
+		pw_stream_queue_buffer(m_stream, pwBuf);
+		return; // short/partial frame - skip rather than read OOB
+	}
+
 	// Damage metadata drives both which regions we mark modified for VNC
 	// clients AND (as an optimization) which regions we actually need to
 	// convert/copy - falling back to a full-frame conversion when unavailable,
