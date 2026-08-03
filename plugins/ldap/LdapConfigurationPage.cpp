@@ -612,8 +612,11 @@ void LdapConfigurationPage::testLocationEntries()
 		vDebug() << "[TEST][LDAP] Testing location entries for" << locationName;
 
 		LdapDirectory ldapDirectory( m_configuration );
-		reportLdapObjectQueryResults( tr( "location entries" ), { ui->computerGroupsFilterLabel->text(),
-																  ui->computerLocationsIdentifications->title() },
+		reportLdapObjectQueryResults( tr( "location entries" ), {
+										  ui->computerLocationsIdentifications->title(),
+										  ui->locationNameAttributeLabel->text(),
+										  ui->computerGroupsFilterLabel->text()
+									  },
 									  ldapDirectory.computerLocationEntries( locationName ), ldapDirectory );
 	}
 }
