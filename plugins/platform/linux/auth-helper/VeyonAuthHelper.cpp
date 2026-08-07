@@ -22,6 +22,11 @@
  *
  */
 
+#include <QCoreApplication>
+
+#include "VeyonConfiguration.h"
+#include "../LinuxPlatformConfiguration.h"
+
 #include <QDataStream>
 #include <QFile>
 
@@ -67,7 +72,7 @@ static int pam_conv(int num_msg, const struct pam_message** msg, struct pam_resp
 }
 
 
-int main()
+int main(int argc, char** argv)
 {
 	QFile stdIn;
 	if (stdIn.open(0, QFile::ReadOnly | QFile::Unbuffered) == false)
@@ -78,7 +83,10 @@ int main()
 	QDataStream ds(&stdIn);
 	ds >> pam_username;
 	ds >> pam_password;
-	ds >> pam_service;
+
+	QCoreApplication app(argc, argv);
+	VeyonCore core(&app, VeyonCore::Component::AuthHelper, QStringLiteral("AuthHelper"));
+	pam_service = LinuxPlatformConfiguration{&VeyonCore::config()}.pamServiceName().toUtf8();
 
 	if (pam_service.isEmpty())
 	{
@@ -113,3 +121,6 @@ int main()
 
 	return err == PAM_SUCCESS ? 0 : -1;
 }
+
+
+IMPLEMENT_CONFIG_PROXY(LinuxPlatformConfiguration)

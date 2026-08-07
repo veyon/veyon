@@ -84,7 +84,8 @@ public:
 		Worker,
 		Master,
 		CLI,
-		Configurator
+		Configurator,
+		AuthHelper,
 	};
 	Q_ENUM(Component)
 
