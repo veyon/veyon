@@ -42,6 +42,7 @@ private:
 	void finish();
 
 	void updateProgress( int progress );
+	void reportError(const QString& message);
 
 	Ui::FileTransferDialog* ui;
 

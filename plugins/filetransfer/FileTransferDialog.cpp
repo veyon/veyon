@@ -22,6 +22,7 @@
  *
  */
 
+#include <QMessageBox>
 #include <QPushButton>
 #include <QScreen>
 
@@ -48,6 +49,9 @@ FileTransferDialog::FileTransferDialog( FileTransferController* controller, QWid
 
 	connect( m_controller, &FileTransferController::finished,
 			 this, &FileTransferDialog::finish );
+
+	connect(m_controller, &FileTransferController::errorOccurred,
+			 this, &FileTransferDialog::reportError);
 
 	const auto availableSize = screen()->availableSize();
 	move(availableSize.width() / 8, availableSize.height() / 8);
@@ -124,4 +128,11 @@ void FileTransferDialog::finish()
 void FileTransferDialog::updateProgress( int progress )
 {
 	ui->progressBar->setValue( progress );
+}
+
+
+
+void FileTransferDialog::reportError(const QString& message)
+{
+	QMessageBox::critical(this, tr("File transfer error"), message);
 }
