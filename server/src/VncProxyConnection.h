@@ -74,6 +74,10 @@ protected:
 	virtual VncServerProtocol& serverProtocol() = 0;
 
 private:
+	bool flushPendingToSocket( QTcpSocket* target, QByteArray& pending );
+	bool forwardPeekedChunk( QTcpSocket* source, QTcpSocket* target, qint64 size,
+							 QByteArray& pending, const char* slowPeerLog );
+
 	void updateHandshakeState();
 
 	static constexpr auto HandshakeTimeout = 30000;
@@ -90,6 +94,7 @@ private:
 	QTimer m_serverRetryTimer{this};
 	QTimer m_handshakeTimer{this};
 	QByteArray m_pendingClientData{};
+	QByteArray m_pendingServerData{};
 	bool m_connectionEstablishedEmitted{false};
 
 Q_SIGNALS:
