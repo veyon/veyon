@@ -274,7 +274,11 @@ MainWindow::MainWindow( VeyonMaster &masterCore, QWidget* parent ) :
 	addFeaturesToToolBar();
 	reloadSubFeatures();
 
-	m_modeGroup->button(int(qHash(VeyonCore::builtinFeatures().monitoringMode().feature().uid())))->setChecked(true); // clazy:exclude=qt6-qhash-signature
+	const auto monitoringModeButton = m_modeGroup->button(int(qHash(VeyonCore::builtinFeatures().monitoringMode().feature().uid()))); // clazy:exclude=qt6-qhash-signature
+	if (monitoringModeButton)
+	{
+		monitoringModeButton->setChecked(true);
+	}
 }
 
 
