@@ -272,7 +272,7 @@ static Object::DataMap removeValueRecursive( Object::DataMap data,
 	}
 
 	const QString level = subLevels.takeFirst();
-	if (data.contains(level) && data[level].userType() != QMetaType::QVariantMap)
+	if (data.contains(level) && data[level].userType() == QMetaType::QVariantMap)
 	{
 		data[level] = removeValueRecursive( data[level].toMap(), subLevels, key );
 	}
@@ -304,7 +304,7 @@ static void addSubObjectRecursive( const Object::DataMap& dataMap,
 {
 	for( auto it = dataMap.begin(), end = dataMap.end(); it != end; ++it )
 	{
-		if (it.value().userType() != QMetaType::QVariantMap)
+		if (it.value().userType() == QMetaType::QVariantMap)
 		{
 			auto newParentKey = it.key();
 			if( parentKey.isEmpty() == false )
