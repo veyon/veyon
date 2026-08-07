@@ -607,10 +607,12 @@ QString LdapClient::constructQueryFilter( const QString& filterAttribute,
 
 QString LdapClient::escapeFilterValue( const QString& filterValue )
 {
-	return QString( filterValue )
-			.replace( QStringLiteral("\\"), QStringLiteral("\\\\") )
-			.replace( QStringLiteral("("), QStringLiteral("\\(") )
-			.replace( QStringLiteral(")"), QStringLiteral("\\)") );
+	return QString(filterValue)
+			.replace(QStringLiteral("\\"), QStringLiteral("\\5c"))
+			.replace(QStringLiteral("("), QStringLiteral("\\28"))
+			.replace(QStringLiteral(")"), QStringLiteral("\\29"))
+			.replace(QStringLiteral("*"), QStringLiteral("\\2a"))
+			.replace(QChar(QChar::Null), QStringLiteral("\\00"));
 }
 
 
