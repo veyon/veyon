@@ -143,7 +143,8 @@ void FileCollectDialog::start()
 	{
 		QMessageBox::critical(this, tr("Output directory creation failed"),
 							  tr("The output directory \"%1\" does not exist and could not be created. "
-								 "Please check the configuration and the file permissions for the configured destination directory."));
+								 "Please check the configuration and the file permissions for the configured destination directory.")
+							  .arg(m_controller->outputDirectory()));
 		return;
 	}
 
