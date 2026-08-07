@@ -32,6 +32,9 @@
 
 #include <cstring>
 #include <security/pam_appl.h>
+#include <sys/resource.h>
+#include <sys/prctl.h>
+#include <sys/stat.h>
 
 static QByteArray pam_username; // clazy:exclude=non-pod-global-static
 static QByteArray pam_password; // clazy:exclude=non-pod-global-static
@@ -85,6 +88,23 @@ static int pam_conv(int num_msg, const struct pam_message** msg, struct pam_resp
 
 int main(int argc, char** argv)
 {
+	// Make the process as hard to inspect/attach to as possible: it holds
+	// a plaintext password in memory while running setuid-root.
+	prctl(PR_SET_DUMPABLE, 0);
+
+	struct rlimit noCore {0, 0};
+	setrlimit(RLIMIT_CORE, &noCore);
+
+	// Sanitize the environment before touching PAM: PAM modules (LDAP,
+	// Kerberos, custom stacks) may consult environment variables, and this
+	// process inherits its environment from an arbitrary, possibly
+	// unprivileged, calling process.
+	static char safePath[] = "PATH=/usr/sbin:/usr/bin:/sbin:/bin";
+	clearenv();
+	putenv(safePath);
+
+	umask(077);
+
 	QFile stdIn;
 	if (stdIn.open(0, QFile::ReadOnly | QFile::Unbuffered) == false)
 	{
