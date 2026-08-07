@@ -187,20 +187,6 @@ bool PowerControlFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 		return controlFeature( feature.uid(), Operation::Start, {}, computerControlInterfaces );
 	}
 
-	if( feature == m_powerDownDelayedFeature )
-	{
-		PowerDownTimeInputDialog dialog( master.mainWindow() );
-
-		if( dialog.exec() )
-		{
-			return controlFeature( feature.uid(), Operation::Start,
-								   { { argToString(Argument::ShutdownTimeout), dialog.seconds() } },
-								   computerControlInterfaces );
-		}
-
-		return true;
-	}
-
 	const auto executeOnAllComputers =
 		computerControlInterfaces.size() >= master.filteredComputerControlInterfaces().size();
 
@@ -208,6 +194,21 @@ bool PowerControlFeaturePlugin::startFeature( VeyonMasterInterface& master, cons
 	{
 		return false;
 	}
+
+	if (feature == m_powerDownDelayedFeature)
+	{
+		PowerDownTimeInputDialog dialog(master.mainWindow());
+
+		if (dialog.exec())
+		{
+			return controlFeature(feature.uid(), Operation::Start,
+								  {{argToString(Argument::ShutdownTimeout), dialog.seconds()}},
+								  computerControlInterfaces);
+		}
+
+		return true;
+	}
+
 
 	return controlFeature( feature.uid(), Operation::Start, {}, computerControlInterfaces );
 }
