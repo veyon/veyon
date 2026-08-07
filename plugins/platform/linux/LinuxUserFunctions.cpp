@@ -369,7 +369,13 @@ bool LinuxUserFunctions::authenticate( const QString& username, const Password& 
 	ds << username.toUtf8();
 	ds << password.toByteArray();
 
-	p.waitForFinished( AuthHelperTimeout );
+	if (p.waitForFinished(AuthHelperTimeout) == false)
+	{
+		vCritical() << "VeyonAuthHelper timed out - terminating";
+		p.kill();
+		p.waitForFinished(AuthHelperTimeout);
+		return false;
+	}
 
 	if( p.state() != QProcess::NotRunning || p.exitCode() != 0 )
 	{
