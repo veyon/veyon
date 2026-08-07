@@ -39,7 +39,7 @@ public:
 	using Table = QPair<TableHeader, TableRows>;
 	using ArgumentValue = QString;
 	using ArgumentSpecifier = QString;
-	using Arguments = QMap<ArgumentValue, ArgumentSpecifier>;
+	using Arguments = QList<QPair<ArgumentValue, ArgumentSpecifier>>;
 	using Examples = QList<QPair<QString, QStringList> >;
 
 	static void print( const QString& message );

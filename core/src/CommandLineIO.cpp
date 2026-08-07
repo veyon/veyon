@@ -106,27 +106,27 @@ void CommandLineIO::printUsage( const QString& module, const QString& command,
 								const Arguments& mandatoryArguments, const Arguments& optionalArguments )
 {
 	QStringList arguments;
-	for( auto it = mandatoryArguments.begin(), end = mandatoryArguments.end(); it != end; ++it )
+	for (const auto& argument : mandatoryArguments)
 	{
-		if( it.value().isEmpty() )
+		if (argument.second.isEmpty())
 		{
-			arguments.append( QStringLiteral("<%1>").arg( it.key() ) );
+			arguments.append(QStringLiteral("<%1>").arg(argument.first));
 		}
 		else
 		{
-			arguments.append( QStringLiteral("%1 <%2>").arg( it.value(), it.key() ) );
+			arguments.append(QStringLiteral("%1 <%2>").arg(argument.second, argument.first));
 		}
 	}
 
-	for( auto it = optionalArguments.begin(), end = optionalArguments.end(); it != end; ++it )
+	for (const auto& argument : optionalArguments)
 	{
-		if( it.value().isEmpty() )
+		if (argument.second.isEmpty())
 		{
-			arguments.append( QStringLiteral("[<%1>]").arg( it.key() ) );
+			arguments.append(QStringLiteral("[<%1>]").arg(argument.first));
 		}
 		else
 		{
-			arguments.append( QStringLiteral("[%1 <%2>]").arg( it.value(), it.key() ) );
+			arguments.append(QStringLiteral("[%1 <%2>]").arg(argument.second, argument.first));
 		}
 	}
 
