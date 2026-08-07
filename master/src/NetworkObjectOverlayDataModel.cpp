@@ -131,11 +131,14 @@ bool NetworkObjectOverlayDataModel::setExtraColumnData( const QModelIndex &paren
 	if (extraColumn >= rowData.count() ||
 		rowData[extraColumn] != data)
 	{
+		if (extraColumn >= rowData.count())
+		{
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-		rowData.resize(extraColumn+1);
+			rowData.resize(extraColumn+1);
 #else
-		std::fill_n(std::back_inserter(rowData), extraColumn + 1 - rowData.size(), QVariant{});
+			std::fill_n(std::back_inserter(rowData), extraColumn + 1 - rowData.size(), QVariant{});
 #endif
+		}
 		rowData[extraColumn] = data;
 		m_extraColumnsData[networkObjectUid] = rowData;
 		extraColumnDataChanged( parent, row, extraColumn, { m_overlayDataRole } );
