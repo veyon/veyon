@@ -30,6 +30,7 @@
 #include <QDataStream>
 #include <QFile>
 
+#include <cstring>
 #include <security/pam_appl.h>
 
 static QByteArray pam_username; // clazy:exclude=non-pod-global-static
@@ -43,6 +44,8 @@ static int pam_conv(int num_msg, const struct pam_message** msg, struct pam_resp
 	{
 		return PAM_CONV_ERR;
 	}
+
+	memset(reply, 0, sizeof(struct pam_response) * size_t(num_msg));
 
 	for (int replies = 0; replies < num_msg; ++replies)
 	{
@@ -62,6 +65,14 @@ static int pam_conv(int num_msg, const struct pam_message** msg, struct pam_resp
 			reply[replies].resp = nullptr;
 			break;
 		default:
+			for (int i = 0; i < replies; ++i)
+			{
+				if (reply[i].resp != nullptr)
+				{
+					explicit_bzero(reply[i].resp, strlen(reply[i].resp));
+					free(reply[i].resp);
+				}
+			}
 			free(reply);
 			return PAM_CONV_ERR;
 		}
@@ -118,6 +129,9 @@ int main(int argc, char** argv)
 	}
 
 	pam_end(pamh, err);
+
+	explicit_bzero(pam_password.data(), size_t(pam_password.size()));
+	explicit_bzero(pam_username.data(), size_t(pam_username.size()));
 
 	return err == PAM_SUCCESS ? 0 : -1;
 }
