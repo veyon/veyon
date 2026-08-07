@@ -1894,7 +1894,7 @@ void Toast::updatePositionX()
 	QPropertyAnimation* posAnimation = new QPropertyAnimation(this, "pos");
 	posAnimation->setEndValue(QPoint(position.x(), y()));
 	posAnimation->setDuration(sc_updatePositionDuration);
-	posAnimation->start();
+	posAnimation->start(QPropertyAnimation::DeleteWhenStopped);
 }
 
 void Toast::updatePositionY()
