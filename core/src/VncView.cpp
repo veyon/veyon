@@ -587,6 +587,7 @@ void VncView::keyEventHandler( QKeyEvent* event )
 				m_connection->keyEvent( XK_Control_L, false );
 			}
 		}
+		key = 0;
 	}
 
 	// handle modifiers
