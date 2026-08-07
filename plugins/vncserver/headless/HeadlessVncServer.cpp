@@ -128,6 +128,9 @@ bool HeadlessVncServer::initVncServer( int serverPort, const VncServerPluginInte
 	rfbScreen->port = serverPort;
 	rfbScreen->ipv6port = serverPort;
 
+	rfbScreen->listenInterface = htonl(INADDR_LOOPBACK);
+	rfbScreen->listen6Interface = const_cast<char*>("::1");
+
 	rfbScreen->authPasswdData = screen->passwords.data();
 	rfbScreen->passwordCheck = rfbCheckPasswordByList;
 
