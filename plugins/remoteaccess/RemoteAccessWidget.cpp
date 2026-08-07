@@ -79,13 +79,13 @@ RemoteAccessWidgetToolBar::RemoteAccessWidgetToolBar( RemoteAccessWidget* parent
 	auto vncView = parent->vncView();
 	connect( vncView->connection(), &VncConnection::stateChanged, this, &RemoteAccessWidgetToolBar::updateConnectionState );
 
-	m_selectScreenButton->setMenu( new QMenu );
+	m_selectScreenButton->setMenu(new QMenu(this));
 	m_selectScreenButton->setPopupMode( QToolButton::InstantPopup );
 	m_selectScreenButton->setObjectName( QStringLiteral("screens") );
 
 	updateScreens();
 
-	auto shortcutMenu = new QMenu();
+	auto shortcutMenu = new QMenu(this);
 	shortcutMenu->addAction( tr( "Ctrl+Alt+Del" ), this, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlAltDel ); }  );
 	shortcutMenu->addAction( tr( "Ctrl+Esc" ), this, [=]() { vncView->sendShortcut( VncView::ShortcutCtrlEscape ); }  );
 	shortcutMenu->addAction( tr( "Alt+Tab" ), this, [=]() { vncView->sendShortcut( VncView::ShortcutAltTab ); }  );
