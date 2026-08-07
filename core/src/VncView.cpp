@@ -49,8 +49,8 @@ VncView::VncView( const ComputerControlInterface::Pointer& computerControlInterf
 		return computerControlInterface;
 	}() ),
 	m_previousUpdateMode( m_computerControlInterface->updateMode() ),
-	m_connection( computerControlInterface->connection()->vncConnection() ),
-	m_framebufferSize( m_connection->image().size() ),
+	m_connection(computerControlInterface->connection() ? computerControlInterface->connection()->vncConnection() : nullptr),
+	m_framebufferSize(m_connection ? m_connection->image().size() : QSize{}),
 	m_keyboardShortcutTrapper( VeyonCore::platform().inputDeviceFunctions().createKeyboardShortcutTrapper( nullptr ) )
 {
 	// handle/forward trapped keyboard shortcuts
@@ -299,7 +299,10 @@ void VncView::pressModifiers(const QList<KeyCode>& modifierKeyCodes)
 	for(auto keyCode : modifierKeyCodes)
 	{
 		m_modifierKeys[keyCode] = true;
-		m_connection->keyEvent(keyCode, true);
+		if (m_connection)
+		{
+			m_connection->keyEvent(keyCode, true);
+		}
 	}
 }
 
@@ -310,7 +313,10 @@ void VncView::unpressModifiers(const QList<KeyCode>& modifierKeyCodes)
 	for(auto keyCode : modifierKeyCodes)
 	{
 		m_modifierKeys.remove(keyCode);
-		m_connection->keyEvent(keyCode, false);
+		if (m_connection)
+		{
+			m_connection->keyEvent(keyCode, false);
+		}
 	}
 }
 
@@ -321,7 +327,10 @@ void VncView::unpressAllModifiers()
 	const auto keys = m_modifierKeys.keys();
 	for( auto key : keys )
 	{
-		m_connection->keyEvent( key, false );
+		if (m_connection)
+		{
+			m_connection->keyEvent(key, false);
+		}
 	}
 	m_modifierKeys.clear();
 }
@@ -349,7 +358,7 @@ void VncView::handleShortcut( KeyboardShortcutTrapper::Shortcut shortcut )
 		break;
 	}
 
-	if( key )
+	if (key && m_connection)
 	{
 		m_connection->keyEvent( key, true );
 		m_connection->keyEvent( key, false );
@@ -392,7 +401,7 @@ bool VncView::handleEvent( QEvent* event )
 
 void VncView::hoverEventHandler( QHoverEvent* event )
 {
-	if( event && m_viewOnly == false )
+	if (m_connection && event && m_viewOnly == false)
 	{
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 		const auto pos = mapToFramebuffer(event->position().toPoint());
@@ -569,13 +578,15 @@ void VncView::keyEventHandler( QKeyEvent* event )
 		if( pressed )
 		{
 			unpressAllModifiers();
-			m_connection->keyEvent( XK_Control_L, true );
-			m_connection->keyEvent( XK_Alt_L, true );
-			m_connection->keyEvent( XK_Delete, true );
-			m_connection->keyEvent( XK_Delete, false );
-			m_connection->keyEvent( XK_Alt_L, false );
-			m_connection->keyEvent( XK_Control_L, false );
-			key = 0;
+			if (m_connection)
+			{
+				m_connection->keyEvent( XK_Control_L, true );
+				m_connection->keyEvent( XK_Alt_L, true );
+				m_connection->keyEvent( XK_Delete, true );
+				m_connection->keyEvent( XK_Delete, false );
+				m_connection->keyEvent( XK_Alt_L, false );
+				m_connection->keyEvent( XK_Control_L, false );
+			}
 		}
 	}
 
@@ -617,7 +628,7 @@ void VncView::keyEventHandler( QKeyEvent* event )
 		break;
 	}
 
-	if (key)
+	if (key && m_connection)
 	{
 		m_connection->keyEvent(key, pressed);
 	}
@@ -666,22 +677,23 @@ void VncView::mouseEventHandler( QMouseEvent* event )
 	}
 
 	const auto pos = mapToFramebuffer( event->pos() );
-	m_connection->mouseEvent( pos.x(), pos.y(), m_buttonMask );
+	if (m_connection)
+	{
+		m_connection->mouseEvent(pos.x(), pos.y(), m_buttonMask);
+	}
 }
 
 
 
 void VncView::wheelEventHandler( QWheelEvent* event )
 {
-	if( event == nullptr )
+	if (event && m_connection)
 	{
-		return;
+		const auto p = mapToFramebuffer(event->position().toPoint());
+		const uint scrollButtonMask = (event->angleDelta().y() < 0) ? rfbButton5Mask : rfbButton4Mask;
+		m_connection->mouseEvent(p.x(), p.y(), m_buttonMask | scrollButtonMask);
+		m_connection->mouseEvent(p.x(), p.y(), m_buttonMask);
 	}
-
-	const auto p = mapToFramebuffer( event->position().toPoint() );
-	const uint scrollButtonMask = ( event->angleDelta().y() < 0 ) ? rfbButton5Mask : rfbButton4Mask;
-	m_connection->mouseEvent( p.x(), p.y(), m_buttonMask | scrollButtonMask );
-	m_connection->mouseEvent( p.x(), p.y(), m_buttonMask );
 }
 
 
@@ -702,12 +714,18 @@ void VncView::updateLocalCursor()
 
 void VncView::pressKey(KeyCode key)
 {
-	m_connection->keyEvent( key, true );
+	if (m_connection)
+	{
+		m_connection->keyEvent(key, true);
+	}
 }
 
 
 
 void VncView::unpressKey(KeyCode key)
 {
-	m_connection->keyEvent( key, false );
+	if (m_connection)
+	{
+		m_connection->keyEvent(key, false);
+	}
 }
