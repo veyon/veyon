@@ -42,11 +42,13 @@ ComputerZoomWidget::ComputerZoomWidget( const ComputerControlInterface::Pointer&
 	const auto openOnMasterScreen = VeyonCore::config().showFeatureWindowsOnSameScreen();
 	const auto master = VeyonCore::instance()->findChild<VeyonMasterInterface *>();
 	const auto masterWindow = master ? master->mainWindow() : nullptr;
-	if( master && openOnMasterScreen )
+	if (masterWindow && openOnMasterScreen)
 	{
-		move( masterWindow->x(), masterWindow->y() );
-	} else {
-		move( 0, 0 );
+		move(masterWindow->x(), masterWindow->y());
+	}
+	else
+	{
+		move(0, 0);
 	}
 
 	updateComputerZoomWidgetTitle();
