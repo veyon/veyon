@@ -571,8 +571,7 @@ void VncView::keyEventHandler( QKeyEvent* event )
 
 	// handle Ctrl+Alt+Del replacement (Meta/Super key+Del)
 	if ((m_modifierKeys.contains(XK_Super_L) ||
-		 m_modifierKeys.contains(XK_Super_R) ||
-		 m_modifierKeys.contains(XK_Meta_L)) &&
+		 m_modifierKeys.contains(XK_Super_R)) &&
 		event->key() == Qt::Key_Delete)
 	{
 		if( pressed )
@@ -612,8 +611,6 @@ void VncView::keyEventHandler( QKeyEvent* event )
 		break;
 	case XK_Shift_L:
 	case XK_Control_L:
-	case XK_Meta_L:
-	case XK_Meta_R:
 	case XK_Alt_L:
 	case XK_Super_L:
 	case XK_Super_R:
