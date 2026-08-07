@@ -479,7 +479,9 @@ void PowerControlFeaturePlugin::displayShutdownTimeout( int shutdownTimeout )
 		updateDialog( &dialog, dialog.value()+1 );
 	} );
 
-	dialog.exec();
+	while (dialog.exec() != QDialog::Accepted)
+	{
+	}
 
 	VeyonCore::platform().coreFunctions().powerDown(false);
 }
