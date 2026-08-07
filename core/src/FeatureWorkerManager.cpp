@@ -45,10 +45,12 @@ FeatureWorkerManager::FeatureWorkerManager( VeyonServerInterface& server, QObjec
 	connect( &m_tcpServer, &QTcpServer::newConnection,
 			 this, &FeatureWorkerManager::acceptConnection );
 
-	if( !m_tcpServer.listen( QHostAddress::LocalHost,
-							 static_cast<quint16>( VeyonCore::config().featureWorkerManagerPort() + VeyonCore::sessionId() ) ) )
+	const auto port = VeyonCore::config().featureWorkerManagerPort() + VeyonCore::sessionId();
+
+	if (!m_tcpServer.listen( QHostAddress::LocalHost, static_cast<quint16>(port)))
 	{
-		vCritical() << "can't listen on localhost!";
+		vCritical() << "can't listen at port" << port;
+		qFatal("listen error");
 	}
 
 	auto pendingMessagesTimer = new QTimer( this );
