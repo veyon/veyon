@@ -132,10 +132,20 @@ void SpotlightPanel::remove()
 		return;
 	}
 
-	for( const auto& index : selection )
+	// resolve all target interfaces first, while indices are still valid
+	ComputerControlInterfaceList interfacesToRemove;
+	interfacesToRemove.reserve(selection.size());
+
+	for (const auto& index : selection)
 	{
-		m_model->remove( m_model->data( index, SpotlightModel::ControlInterfaceRole )
-							 .value<ComputerControlInterface::Pointer>() );
+		interfacesToRemove.append(m_model->data(index, SpotlightModel::ControlInterfaceRole )
+								  .value<ComputerControlInterface::Pointer>());
+	}
+
+	// now remove by stable pointer identity, independent of row/index shifts
+	for (const auto& controlInterface : interfacesToRemove)
+	{
+		m_model->remove(controlInterface);
 	}
 }
 
