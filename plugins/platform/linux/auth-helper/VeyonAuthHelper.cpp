@@ -35,6 +35,7 @@
 #include <sys/resource.h>
 #include <sys/prctl.h>
 #include <sys/stat.h>
+#include <syslog.h>
 
 static QByteArray pam_username; // clazy:exclude=non-pod-global-static
 static QByteArray pam_password; // clazy:exclude=non-pod-global-static
@@ -132,20 +133,23 @@ int main(int argc, char** argv)
 		err = pam_authenticate(pamh, PAM_SILENT);
 		if (err != PAM_SUCCESS)
 		{
-			printf( "pam_authenticate: %s\n", pam_strerror(pamh, err));
+			syslog(LOG_AUTHPRIV | LOG_NOTICE, "veyon-auth-helper: pam_authenticate failed: %s",
+				   pam_strerror(pamh, err));
 		}
 		else
 		{
 			err = pam_acct_mgmt(pamh, PAM_SILENT);
 			if (err != PAM_SUCCESS)
 			{
-				printf("pam_acct_mgmt: %s\n", pam_strerror(pamh, err));
+				syslog(LOG_AUTHPRIV | LOG_NOTICE, "veyon-auth-helper: pam_acct_mgmt failed: %s",
+					   pam_strerror(pamh, err));
 			}
 		}
 	}
 	else
 	{
-		printf("pam_start: %s\n", pam_strerror(pamh, err));
+		syslog(LOG_AUTHPRIV | LOG_NOTICE, "veyon-auth-helper: pam_start failed: %s",
+			   pam_strerror(pamh, err));
 	}
 
 	pam_end(pamh, err);
