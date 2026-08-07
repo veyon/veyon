@@ -351,7 +351,7 @@ void VncView::handleShortcut( KeyboardShortcutTrapper::Shortcut shortcut )
 		break;
 	case KeyboardShortcutTrapper::AltTab: key = XK_Tab; break;
 	case KeyboardShortcutTrapper::AltEsc: key = XK_Escape; break;
-	case KeyboardShortcutTrapper::AltSpace: key = XK_KP_Space; break;
+	case KeyboardShortcutTrapper::AltSpace: key = XK_space; break;
 	case KeyboardShortcutTrapper::AltF4: key = XK_F4; break;
 	case KeyboardShortcutTrapper::CtrlEsc: key = XK_Escape; break;
 	default:
