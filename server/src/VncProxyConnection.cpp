@@ -186,7 +186,8 @@ bool VncProxyConnection::flushPendingToSocket( QTcpSocket* target, QByteArray& p
 	}
 	if( pending.size() > MaximumPendingWriteSize )
 	{
-		vCritical() << "closing slow peer with oversized pending write buffer";
+		vCritical() << "closing slow peer" << target->peerAddress().toString()
+					<< "with oversized pending write buffer";
 		m_proxyClientSocket->close();
 		m_vncServerSocket->close();
 		return false;
@@ -219,7 +220,7 @@ bool VncProxyConnection::forwardPeekedChunk( QTcpSocket* source, QTcpSocket* tar
 
 	if( written < size )
 	{
-		pending = data.mid( static_cast<int>( written ) );
+		pending.append( data.mid( static_cast<int>( written ) ) );
 		if( pending.size() > MaximumPendingWriteSize )
 		{
 			vCritical() << slowPeerLog;
