@@ -189,6 +189,9 @@ bool PipeWireVncServer::initVncServer(int serverPort, const Password& password)
 	m_rfbScreen->frameBuffer     = framebufferData;
 	m_rfbScreen->port            = serverPort;
 	m_rfbScreen->ipv6port        = serverPort;
+	m_rfbScreen->listenInterface = htonl(INADDR_LOOPBACK);
+	m_rfbScreen->listen6Interface = const_cast<char*>("::1");
+
 	m_rfbScreen->authPasswdData  = m_vncPasswords;
 	m_rfbScreen->passwordCheck   = rfbCheckPasswordByList;
 
