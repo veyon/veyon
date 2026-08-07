@@ -167,64 +167,98 @@ void VncProxyConnection::readFromServer()
 
 
 
-bool VncProxyConnection::forwardDataToClient( qint64 size )
+bool VncProxyConnection::flushPendingToSocket( QTcpSocket* target, QByteArray& pending )
 {
-	if( m_vncServerSocket->bytesAvailable() >= size )
+	if( pending.isEmpty() )
 	{
-		const auto data = m_vncServerSocket->peek(size);
-		if( data.size() == size )
-		{
-			const auto written = m_proxyClientSocket->write(data);
-			if( written > 0 )
-			{
-				m_vncServerSocket->read(written);
-			}
-			else if( written < 0 )
-			{
-				m_proxyClientSocket->close();
-			}
-			if( written >= 0 && written != size )
-			{
-				vWarning() << "partial write to proxy client; closing connection";
-				m_proxyClientSocket->close();
-				m_vncServerSocket->close();
-			}
-			return written == size;
-		}
+		return true;
 	}
 
-	return false;
+	const auto written = target->write( pending );
+	if( written < 0 )
+	{
+		target->close();
+		return false;
+	}
+	if( written > 0 )
+	{
+		pending.remove( 0, static_cast<int>( written ) );
+	}
+	if( pending.size() > MaximumPendingWriteSize )
+	{
+		vCritical() << "closing slow peer" << target->peerAddress().toString()
+					<< "with oversized pending write buffer";
+		m_proxyClientSocket->close();
+		m_vncServerSocket->close();
+		return false;
+	}
+	return pending.isEmpty();
+}
+
+
+
+bool VncProxyConnection::forwardPeekedChunk( QTcpSocket* source, QTcpSocket* target, qint64 size,
+											 QByteArray& pending, const char* slowPeerLog )
+{
+	if( source->bytesAvailable() < size )
+	{
+		return false;
+	}
+
+	const auto data = source->read( size );
+	if( data.size() != size )
+	{
+		return false;
+	}
+
+	const auto written = target->write( data );
+	if( written < 0 )
+	{
+		target->close();
+		return false;
+	}
+
+	if( written < size )
+	{
+		pending.append( data.mid( static_cast<int>( written ) ) );
+		if( pending.size() > MaximumPendingWriteSize )
+		{
+			vCritical() << slowPeerLog;
+			m_proxyClientSocket->close();
+			m_vncServerSocket->close();
+		}
+		return false;
+	}
+
+	return true;
+}
+
+
+
+bool VncProxyConnection::forwardDataToClient( qint64 size )
+{
+	if( !flushPendingToSocket( m_proxyClientSocket, m_pendingClientData ) )
+	{
+		return false;
+	}
+
+	return forwardPeekedChunk( m_vncServerSocket, m_proxyClientSocket, size,
+							   m_pendingClientData,
+							   "closing slow client with oversized pending write buffer" );
 }
 
 
 
 bool VncProxyConnection::forwardDataToServer( qint64 size )
 {
-	if( m_proxyClientSocket->bytesAvailable() >= size )
+	if( !flushPendingToSocket( m_vncServerSocket, m_pendingServerData ) )
 	{
-		const auto data = m_proxyClientSocket->peek(size);
-		if( data.size() == size )
-		{
-			const auto written = m_vncServerSocket->write(data);
-			if( written > 0 )
-			{
-				m_proxyClientSocket->read(written);
-			}
-			else if( written < 0 )
-			{
-				m_vncServerSocket->close();
-			}
-			if( written >= 0 && written != size )
-			{
-				vWarning() << "partial write to VNC server; closing connection";
-				m_proxyClientSocket->close();
-				m_vncServerSocket->close();
-			}
-			return written == size;
-		}
+		return false;
 	}
 
-	return false;
+	return forwardPeekedChunk( m_proxyClientSocket, m_vncServerSocket, size,
+							   m_pendingServerData,
+							   "closing slow VNC server with oversized pending write buffer" );
 }
 
 
