@@ -52,7 +52,7 @@ int main( int argc, char **argv )
 		app = std::make_unique<QApplication>(argc, argv);
 	}
 #else
-	app = std::make_unique<QCoreApplication>(argc, argv);
+	app = std::make_unique<QApplication>(argc, argv);
 #endif
 
 	const auto arguments = QCoreApplication::arguments();
