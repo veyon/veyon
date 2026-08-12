@@ -406,11 +406,6 @@ void VncConnection::setFramebufferUpdateInterval( int interval )
 
 	if (state() == State::Connected)
 	{
-		if (m_framebufferUpdateInterval <= 0)
-		{
-			setControlFlag(ControlFlag::TriggerFramebufferUpdate, true);
-		}
-
 		m_updateIntervalSleeper.wakeAll();
 	}
 }
@@ -662,11 +657,6 @@ void VncConnection::handleConnection()
 		{
 			requestFrameufferUpdate(FramebufferUpdateType::Incremental);
 			m_incrementalFramebufferUpdateTimer.restart();
-		}
-		else if (isControlFlagSet(ControlFlag::TriggerFramebufferUpdate))
-		{
-			setControlFlag(ControlFlag::TriggerFramebufferUpdate, false);
-			requestFrameufferUpdate(FramebufferUpdateType::Incremental);
 		}
 
 		const auto throttlingDuration = MinimumFramebufferUpdateInterval - loopTimer.elapsed();
