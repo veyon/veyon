@@ -1972,7 +1972,7 @@ Pastikan nama kunci milik satu sama lain sama di semua komputer.</translation>
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2016,6 +2016,10 @@ Pastikan nama kunci milik satu sama lain sama di semua komputer.</translation>
     </message>
     <message>
         <source>Start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File transfer error</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2427,10 +2431,6 @@ Pastikan nama kunci milik satu sama lain sama di semua komputer.</translation>
     <message>
         <source>Object attributes</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>misalnya nama atau deskripsi</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2929,6 +2929,10 @@ Pastikan nama kunci milik satu sama lain sama di semua komputer.</translation>
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. name, ou or description</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3756,10 +3760,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Perintah ini menyiarkan paket Wake-on-LAN (WOL) ke jaringan untuk menghidupkan komputer dengan alamat MAC yang diberikan.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Confirm reboot</source>
         <translation type="unfinished"/>
     </message>
@@ -4109,6 +4109,14 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Show notification on remote connection</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum simultaneous server connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4468,6 +4476,18 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional custom title for the message window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Pesan dari guru</translation>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
@@ -4584,10 +4604,6 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>[GAGAL]</translation>
     </message>
     <message>
-        <source>Invalid command!</source>
-        <translation>Perintah salah!</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation type="unfinished"/>
     </message>
@@ -4596,16 +4612,24 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>No command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Plugin not licensed</source>
         <translation>Pengaya tidak berlisensi</translation>
     </message>
     <message>
-        <source>Unknown result!</source>
-        <translation>Hasil tidak diketahui</translation>
-    </message>
-    <message>
         <source>Available commands:</source>
         <translation>Perintah yang tersedia:</translation>
+    </message>
+    <message>
+        <source>Unknown command result</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available modules:</source>

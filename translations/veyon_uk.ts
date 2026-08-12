@@ -1969,8 +1969,8 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file %1 for reading! Please check your permissions!</source>
-        <translation>Не вдалося відкрити файл %1 для читання! Будь ласка, перевірте, чи маєте ви достатні права доступу!</translation>
+        <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
+        <translation>Не вдалося відкрити файл %1 для читання. Будь ласка, перевірте ваші права доступу. Файл буде пропущено. Решту файлів буде передано.</translation>
     </message>
 </context>
 <context>
@@ -2014,6 +2014,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Start</source>
         <translation>Почати</translation>
+    </message>
+    <message>
+        <source>File transfer error</source>
+        <translation>Помилка передавання файла</translation>
     </message>
 </context>
 <context>
@@ -2424,10 +2428,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Object attributes</source>
         <translation>Атрибути об’єкта</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>наприклад назва чи опис</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2948,6 +2948,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
         <translation>Відтворити структуру контейнера/ОО 1:1 у місцях</translation>
+    </message>
+    <message>
+        <source>e.g. name, ou or description</source>
+        <translation>наприклад, назва, ou або опис</translation>
     </message>
 </context>
 <context>
@@ -3776,10 +3780,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Ця команда транслює пакет Wake-on-LAN (WOL) до мережі з метою вмикання живлення на комп&apos;ютері із вказаною MAC-адресою.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Будь ласка, вкажіть команду, для якої слід показати довідку!</translation>
-    </message>
-    <message>
         <source>Confirm reboot</source>
         <translation>Підтвердження перезавантаження</translation>
     </message>
@@ -4132,6 +4132,14 @@ Please save your work and close all programs.</source>
     <message>
         <source>Show notification on remote connection</source>
         <translation>Показувати сповіщення щодо віддаленого з&apos;єднання</translation>
+    </message>
+    <message>
+        <source>Maximum simultaneous server connections</source>
+        <translation>Максимальна кількість одночасних з&apos;єднань із сервером</translation>
+    </message>
+    <message>
+        <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
+        <translation>Обмежує кількість одночасних віддалених з&apos;єднань для захисту сервера від вичерпання ресурсів.</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4493,6 +4501,18 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
         <translation>Використовуйте це поле, щоб набрати текст повідомлення, яке буде надіслано всім позначеним користувачам.</translation>
     </message>
+    <message>
+        <source>Title:</source>
+        <translation>Заголовок:</translation>
+    </message>
+    <message>
+        <source>Optional custom title for the message window</source>
+        <translation>Необов&apos;язковий нетиповий заголовок для вікна повідомлень</translation>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Повідомлення від вчителя</translation>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
@@ -4609,10 +4629,6 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>[ПОМИЛКА]</translation>
     </message>
     <message>
-        <source>Invalid command!</source>
-        <translation>Некоректна команда!</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>Вказано некоректні аргументи</translation>
     </message>
@@ -4621,16 +4637,24 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Вказано недостатньо аргументів — скористайтеся командою «%1 help», щоб дізнатися більше</translation>
     </message>
     <message>
+        <source>No command given</source>
+        <translation>Не вказано команди</translation>
+    </message>
+    <message>
+        <source>Invalid command given</source>
+        <translation>Вказано некоректну команду</translation>
+    </message>
+    <message>
         <source>Plugin not licensed</source>
         <translation>Додаток не ліцензовано</translation>
     </message>
     <message>
-        <source>Unknown result!</source>
-        <translation>Невідомий результат!</translation>
-    </message>
-    <message>
         <source>Available commands:</source>
         <translation>Доступні команди:</translation>
+    </message>
+    <message>
+        <source>Unknown command result</source>
+        <translation>Невідомий результат команди</translation>
     </message>
     <message>
         <source>Available modules:</source>

@@ -1970,7 +1970,7 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2015,6 +2015,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Start</source>
         <translation>Uruchom</translation>
+    </message>
+    <message>
+        <source>File transfer error</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2425,10 +2429,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Object attributes</source>
         <translation>Atrybuty obiektów</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>np. nazwa lub opis</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2941,6 +2941,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. name, ou or description</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3768,10 +3772,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>To polecenie wysyła pakiet Wake-on-LAN (WOL) do sieci w celu włączenia komputera o podanym adresie MAC.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Podaj polecenie aby wyświetlić pomoc!</translation>
-    </message>
-    <message>
         <source>Confirm reboot</source>
         <translation>Potwierdź ponowne uruchomienie</translation>
     </message>
@@ -4124,6 +4124,14 @@ Zapisz swoją pracę i zamknij wszystkie programy.</translation>
     <message>
         <source>Show notification on remote connection</source>
         <translation>Pokaż powiadomienie o zdalnym połączeniu</translation>
+    </message>
+    <message>
+        <source>Maximum simultaneous server connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4483,6 +4491,18 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
         <translation>W polu poniżej napisz wiadomość, która ma zostać wysłana do wybranych użytkowników.</translation>
     </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional custom title for the message window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Wiadomość od nauczyciela</translation>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
@@ -4599,10 +4619,6 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>[BŁĄD]</translation>
     </message>
     <message>
-        <source>Invalid command!</source>
-        <translation>Niepoprawna komenda!</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>Podano złe argumenty</translation>
     </message>
@@ -4611,16 +4627,24 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Podano za mało argumentów - użyj „%1 help”, aby uzyskać więcej informacji</translation>
     </message>
     <message>
+        <source>No command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Plugin not licensed</source>
         <translation>Nielicencjonowana wtyczka</translation>
     </message>
     <message>
-        <source>Unknown result!</source>
-        <translation>Nieznany wynik!</translation>
-    </message>
-    <message>
         <source>Available commands:</source>
         <translation>Dostępne polecenia:</translation>
+    </message>
+    <message>
+        <source>Unknown command result</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available modules:</source>

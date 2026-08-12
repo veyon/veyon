@@ -1971,7 +1971,7 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2016,6 +2016,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Start</source>
         <translation>開始</translation>
+    </message>
+    <message>
+        <source>File transfer error</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2426,10 +2430,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Object attributes</source>
         <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>例：name または description</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2930,6 +2930,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. name, ou or description</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3757,10 +3761,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>ヘルプを表示するコマンドを指定してください!</translation>
-    </message>
-    <message>
         <source>Confirm reboot</source>
         <translation type="unfinished"/>
     </message>
@@ -4112,6 +4112,14 @@ Please save your work and close all programs.</source>
     <message>
         <source>Show notification on remote connection</source>
         <translation>リモート接続時、通知を表示</translation>
+    </message>
+    <message>
+        <source>Maximum simultaneous server connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4471,6 +4479,18 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
         <translation>下のフィールドを使用して、選択したすべてのユーザーに送信するメッセージを入力します</translation>
     </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional custom title for the message window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>先生からのメッセージ</translation>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
@@ -4587,10 +4607,6 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>[失敗]</translation>
     </message>
     <message>
-        <source>Invalid command!</source>
-        <translation>無効なコマンドです！</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>無効な引数が指定されました</translation>
     </message>
@@ -4599,16 +4615,24 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>No command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Plugin not licensed</source>
         <translation>プラグインはライセンスされていません</translation>
     </message>
     <message>
-        <source>Unknown result!</source>
-        <translation>不明な結果!</translation>
-    </message>
-    <message>
         <source>Available commands:</source>
         <translation>使用可能なコマンド：</translation>
+    </message>
+    <message>
+        <source>Unknown command result</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available modules:</source>

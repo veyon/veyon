@@ -1971,7 +1971,7 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2016,6 +2016,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Start</source>
         <translation>开始</translation>
+    </message>
+    <message>
+        <source>File transfer error</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2426,10 +2430,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Object attributes</source>
         <translation>对象属性</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>例如：名称或描述</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2947,6 +2947,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. name, ou or description</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3774,10 +3778,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>此命令将网络唤醒(WOL)数据包广播到网络，以便使用给定的MAC地址打开计算机的电源。</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>请指定需要显示用法命令！</translation>
-    </message>
-    <message>
         <source>Confirm reboot</source>
         <translation>确认重启</translation>
     </message>
@@ -4130,6 +4130,14 @@ Please save your work and close all programs.</source>
     <message>
         <source>Show notification on remote connection</source>
         <translation>在远程连接上显示通知</translation>
+    </message>
+    <message>
+        <source>Maximum simultaneous server connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4489,6 +4497,18 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
         <translation>在下面的文本框中输入您要发送给所选用户的消息。</translation>
     </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional custom title for the message window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>来自教师的消息</translation>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
@@ -4605,10 +4625,6 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>[失败]</translation>
     </message>
     <message>
-        <source>Invalid command!</source>
-        <translation>无效的命令！</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>给定的参数无效</translation>
     </message>
@@ -4617,16 +4633,24 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>没有给出足够的参数 - 使用 &quot;%1 help&quot; 获取更多信息</translation>
     </message>
     <message>
+        <source>No command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Plugin not licensed</source>
         <translation>插件没有许可</translation>
     </message>
     <message>
-        <source>Unknown result!</source>
-        <translation>未知的结果！</translation>
-    </message>
-    <message>
         <source>Available commands:</source>
         <translation>可用命令：</translation>
+    </message>
+    <message>
+        <source>Unknown command result</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available modules:</source>

@@ -1974,8 +1974,8 @@ Translated with DeepL</translation>
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file %1 for reading! Please check your permissions!</source>
-        <translation>Kon bestand &quot;%1&quot; niet openen om te lezen! Controleer uw rechten!</translation>
+        <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2019,6 +2019,10 @@ Translated with DeepL</translation>
     <message>
         <source>Start</source>
         <translation>Start</translation>
+    </message>
+    <message>
+        <source>File transfer error</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2429,10 +2433,6 @@ Translated with DeepL</translation>
     <message>
         <source>Object attributes</source>
         <translation>Object attributen</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>bv. naam of beschrijving</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2951,6 +2951,10 @@ Translated with DeepL</translation>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
         <translation>Kaartcontainer/OU-structuur 1:1 naar locaties</translation>
+    </message>
+    <message>
+        <source>e.g. name, ou or description</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3779,10 +3783,6 @@ Houd ingedrukt om een arrangement vanuit een bestand te laden of het huidige arr
         <translation>Dit commando zendt een Wake-on-LAN (WOL) pakket uit naar het netwerk om de computer met het opgegeven MAC-adres in te schakelen.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Geef het commando op waarvoor hulp moet worden weergegeven!</translation>
-    </message>
-    <message>
         <source>Confirm reboot</source>
         <translation>Bevestig heropstart</translation>
     </message>
@@ -4135,6 +4135,14 @@ Sla je werk op en sluit alle programma&apos;s af.</translation>
     <message>
         <source>Show notification on remote connection</source>
         <translation>Toon melding bij externe verbinding</translation>
+    </message>
+    <message>
+        <source>Maximum simultaneous server connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4496,6 +4504,18 @@ Voorbeeld: [^-]*-(PC[0-9]*)</translation>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
         <translation>Gebruik de onderstaande veld om uw bericht dat voor alle geselecteerde gebruikers wordt verzonden te typen.</translation>
     </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional custom title for the message window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Bericht van de leraar</translation>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
@@ -4612,10 +4632,6 @@ Voorbeeld: [^-]*-(PC[0-9]*)</translation>
         <translation>[FAIL]</translation>
     </message>
     <message>
-        <source>Invalid command!</source>
-        <translation>Ongeldig commando!</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>Ongeldige argumenten gegeven</translation>
     </message>
@@ -4624,16 +4640,24 @@ Voorbeeld: [^-]*-(PC[0-9]*)</translation>
         <translation>Niet genoeg argumenten opgegeven - gebruik &quot;%1 help&quot; voor meer informatie</translation>
     </message>
     <message>
+        <source>No command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Plugin not licensed</source>
         <translation>Plugin niet gelicentieerd</translation>
     </message>
     <message>
-        <source>Unknown result!</source>
-        <translation>Onbekend resultaat!</translation>
-    </message>
-    <message>
         <source>Available commands:</source>
         <translation>Beschikbare commando&apos;s:</translation>
+    </message>
+    <message>
+        <source>Unknown command result</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available modules:</source>

@@ -1974,7 +1974,7 @@ Assegureu-vos que els noms de les claus que pertanyen entre si són idèntics en
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2019,6 +2019,10 @@ Assegureu-vos que els noms de les claus que pertanyen entre si són idèntics en
     <message>
         <source>Start</source>
         <translation>Inici</translation>
+    </message>
+    <message>
+        <source>File transfer error</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2429,10 +2433,6 @@ Assegureu-vos que els noms de les claus que pertanyen entre si són idèntics en
     <message>
         <source>Object attributes</source>
         <translation>Atributs de l&apos;objecte</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>p. ex. nom o descripció</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2950,6 +2950,10 @@ Assegureu-vos que els noms de les claus que pertanyen entre si són idèntics en
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. name, ou or description</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3777,10 +3781,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Aquesta ordre emet un paquet Wake-on-LAN (WOL) a la xarxa per tal d&apos;engegar l&apos;ordinador amb l&apos;adreça MAC indicada.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Indiqueu l&apos;ordre per a la qual es mostrarà l&apos;ajuda!</translation>
-    </message>
-    <message>
         <source>Confirm reboot</source>
         <translation>Confirma el reinici</translation>
     </message>
@@ -4133,6 +4133,14 @@ Deseu el vostre treball i tanqueu tots els programes.</translation>
     <message>
         <source>Show notification on remote connection</source>
         <translation>Mostra la notificació a la connexió remota</translation>
+    </message>
+    <message>
+        <source>Maximum simultaneous server connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4492,6 +4500,18 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
         <translation>Utilitzeu el camp de sota per escriure el missatge que serà enviat als usuaris seleccionats.</translation>
     </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional custom title for the message window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Missatge del professor</translation>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
@@ -4608,10 +4628,6 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>[FALLADA]</translation>
     </message>
     <message>
-        <source>Invalid command!</source>
-        <translation>L&apos;ordre no és vàlida!</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>S&apos;han donat arguments no vàlids</translation>
     </message>
@@ -4620,16 +4636,24 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>No s&apos;han donat prou arguments - useu «%1 help» per a més informació</translation>
     </message>
     <message>
+        <source>No command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Plugin not licensed</source>
         <translation>Connector sense llicència</translation>
     </message>
     <message>
-        <source>Unknown result!</source>
-        <translation>Resultat desconegut!</translation>
-    </message>
-    <message>
         <source>Available commands:</source>
         <translation>Ordres disponibles:</translation>
+    </message>
+    <message>
+        <source>Unknown command result</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available modules:</source>

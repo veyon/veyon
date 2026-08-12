@@ -1965,7 +1965,7 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2009,6 +2009,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>File transfer error</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2419,10 +2423,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Object attributes</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2922,6 +2922,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. name, ou or description</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3749,10 +3753,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Confirm reboot</source>
         <translation type="unfinished"/>
     </message>
@@ -4102,6 +4102,14 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Show notification on remote connection</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximum simultaneous server connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -4461,6 +4469,18 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
         <translation type="unfinished"/>
     </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional custom title for the message window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
@@ -4577,10 +4597,6 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Invalid command!</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation type="unfinished"/>
     </message>
@@ -4589,15 +4605,23 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>No command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Plugin not licensed</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Unknown result!</source>
+        <source>Available commands:</source>
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Available commands:</source>
+        <source>Unknown command result</source>
         <translation type="unfinished"/>
     </message>
     <message>

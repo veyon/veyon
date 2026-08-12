@@ -1969,8 +1969,8 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file %1 for reading! Please check your permissions!</source>
-        <translation>Impossibile aprire il file %1 per la lettura! Per favore controlla le tue autorizzazioni!</translation>
+        <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
+        <translation>Impossibile aprire il file %1 in lettura. Verificare i permessi. Il file verrà saltato, mentre i restanti file verranno comunque trasferiti.</translation>
     </message>
 </context>
 <context>
@@ -2014,6 +2014,10 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     <message>
         <source>Start</source>
         <translation>Inizio</translation>
+    </message>
+    <message>
+        <source>File transfer error</source>
+        <translation>Errore nel trasferimento del file</translation>
     </message>
 </context>
 <context>
@@ -2424,10 +2428,6 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     <message>
         <source>Object attributes</source>
         <translation>Attributi degli oggetti</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>es. nome o descrizione</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2936,6 +2936,10 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
         <translation>Mappa struttura del container/UO 1:1 alle posizioni</translation>
+    </message>
+    <message>
+        <source>e.g. name, ou or description</source>
+        <translation>es. nome, ou o descrizione</translation>
     </message>
 </context>
 <context>
@@ -3764,10 +3768,6 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
         <translation>Questo comando trasmette un pacchetto Wake-on-LAN (WOL) alla rete per accendere il computer con l&apos;indirizzo MAC specificato.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Si prega di specificare il comando per visualizzare la guida per!</translation>
-    </message>
-    <message>
         <source>Confirm reboot</source>
         <translation>Conferma riavvio</translation>
     </message>
@@ -4120,6 +4120,14 @@ Si prega di salvare il lavoro e chiudere tutti i programmi.</translation>
     <message>
         <source>Show notification on remote connection</source>
         <translation>Mostra notifica sulla connessione remota</translation>
+    </message>
+    <message>
+        <source>Maximum simultaneous server connections</source>
+        <translation>Numero massimo di connessioni simultanee al server</translation>
+    </message>
+    <message>
+        <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
+        <translation>Limita il numero di connessioni remote simultanee per proteggere il server dall&apos;esaurimento delle risorse.</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4480,6 +4488,18 @@ Esempio: [^-]*-(PC[0-9]*)</translation>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
         <translation>Utilizza il campo qui sotto per scrivere il messaggio che vuoi inviare agli utenti selezionati.</translation>
     </message>
+    <message>
+        <source>Title:</source>
+        <translation>Titolo:</translation>
+    </message>
+    <message>
+        <source>Optional custom title for the message window</source>
+        <translation>Titolo personalizzato facoltativo per la finestra del messaggio</translation>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Messaggio dall&apos;insegnante</translation>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
@@ -4596,10 +4616,6 @@ Esempio: [^-]*-(PC[0-9]*)</translation>
         <translation>[FALLITO]</translation>
     </message>
     <message>
-        <source>Invalid command!</source>
-        <translation>Comando non valido!</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>Argomenti dati non validi</translation>
     </message>
@@ -4608,16 +4624,24 @@ Esempio: [^-]*-(PC[0-9]*)</translation>
         <translation>Non sono stati dati abbastanza argomenti - usa &quot;%1 help&quot; per maggiori informazioni</translation>
     </message>
     <message>
+        <source>No command given</source>
+        <translation>Nessun comando specificato</translation>
+    </message>
+    <message>
+        <source>Invalid command given</source>
+        <translation>Comando non valido</translation>
+    </message>
+    <message>
         <source>Plugin not licensed</source>
         <translation>Plugin non concesso in licenza</translation>
     </message>
     <message>
-        <source>Unknown result!</source>
-        <translation>Risultato sconosciuto!</translation>
-    </message>
-    <message>
         <source>Available commands:</source>
         <translation>Comandi disponibili:</translation>
+    </message>
+    <message>
+        <source>Unknown command result</source>
+        <translation>Risultato del comando sconosciuto</translation>
     </message>
     <message>
         <source>Available modules:</source>

@@ -1972,7 +1972,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2017,6 +2017,10 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     <message>
         <source>Start</source>
         <translation>Starta</translation>
+    </message>
+    <message>
+        <source>File transfer error</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2427,10 +2431,6 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     <message>
         <source>Object attributes</source>
         <translation>Objektets attribut</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>t.ex. namn eller beskrivning</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2948,6 +2948,10 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. name, ou or description</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3777,10 +3781,6 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
         <translation>Detta kommando sänder ett WOL-paket (Wake-on-LAN) till nätverket för att slå på datorn med den angivna MAC-adressen.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Ange det kommando som du vill visa hjälp för!</translation>
-    </message>
-    <message>
         <source>Confirm reboot</source>
         <translation>Bekräfta omstart</translation>
     </message>
@@ -4133,6 +4133,14 @@ Spara ditt arbete och stäng alla program.</translation>
     <message>
         <source>Show notification on remote connection</source>
         <translation>Visa meddelande om fjärranslutning</translation>
+    </message>
+    <message>
+        <source>Maximum simultaneous server connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4494,6 +4502,18 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
         <translation>Använd fältet nedan för att skriva ditt meddelande som ska skickas till alla valda användare.</translation>
     </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional custom title for the message window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Meddelande från lärare</translation>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
@@ -4610,10 +4630,6 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
         <translation>[FAIL]</translation>
     </message>
     <message>
-        <source>Invalid command!</source>
-        <translation>Ogiltigt kommando!</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>Ogiltiga argument angivna</translation>
     </message>
@@ -4622,16 +4638,24 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
         <translation>Inte tillräckligt med argument angivna - använd &quot;%1 help&quot; för mer information</translation>
     </message>
     <message>
+        <source>No command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Plugin not licensed</source>
         <translation>Plugin inte licensierat</translation>
     </message>
     <message>
-        <source>Unknown result!</source>
-        <translation>Okänt resultat!</translation>
-    </message>
-    <message>
         <source>Available commands:</source>
         <translation>Tillgängliga kommandon:</translation>
+    </message>
+    <message>
+        <source>Unknown command result</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available modules:</source>

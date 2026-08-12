@@ -1970,7 +1970,7 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2015,6 +2015,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Start</source>
         <translation>Start</translation>
+    </message>
+    <message>
+        <source>File transfer error</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2425,10 +2429,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Object attributes</source>
         <translation>Object attributes</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>e.g. name or description</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2946,6 +2946,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. name, ou or description</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3773,10 +3777,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Please specify the command to display help for!</translation>
-    </message>
-    <message>
         <source>Confirm reboot</source>
         <translation>Confirm reboot</translation>
     </message>
@@ -4129,6 +4129,14 @@ Please save your work and close all programs.</translation>
     <message>
         <source>Show notification on remote connection</source>
         <translation>Show notification on remote connection</translation>
+    </message>
+    <message>
+        <source>Maximum simultaneous server connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4488,6 +4496,18 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
         <translation>Use the field below to type your message which will be sent to all selected users.</translation>
     </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional custom title for the message window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Message from teacher</translation>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
@@ -4604,10 +4624,6 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>[FAIL]</translation>
     </message>
     <message>
-        <source>Invalid command!</source>
-        <translation>Invalid command!</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>Invalid arguments given</translation>
     </message>
@@ -4616,16 +4632,24 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Not enough arguments given - use &quot;%1 help&quot; for more information</translation>
     </message>
     <message>
+        <source>No command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Plugin not licensed</source>
         <translation>Plugin not licensed</translation>
     </message>
     <message>
-        <source>Unknown result!</source>
-        <translation>Unknown result!</translation>
-    </message>
-    <message>
         <source>Available commands:</source>
         <translation>Available commands:</translation>
+    </message>
+    <message>
+        <source>Unknown command result</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available modules:</source>

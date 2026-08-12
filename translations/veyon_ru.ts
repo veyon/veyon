@@ -1972,8 +1972,8 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file %1 for reading! Please check your permissions!</source>
-        <translation>Не удалось открыть файл &quot;%1&quot; для чтения! Пожалуйста, проверьте, есть ли у вас достаточные права доступа!</translation>
+        <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2017,6 +2017,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Start</source>
         <translation>Начать</translation>
+    </message>
+    <message>
+        <source>File transfer error</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2427,10 +2431,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Object attributes</source>
         <translation>Атрибуты объектов</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>например, имя или описание</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2949,6 +2949,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
         <translation>Сопоставить структуру контейнера/подразделения 1:1 с местоположениями</translation>
+    </message>
+    <message>
+        <source>e.g. name, ou or description</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3777,10 +3781,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Эта команда транслирует пакет Wake-on-LAN (WOL) в сеть с целью включения питания на компьютере с указанным MAC-адресом.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Пожалуйста, укажите команду, для которой следует показать справку!</translation>
-    </message>
-    <message>
         <source>Confirm reboot</source>
         <translation>Потверждение перезагрузки</translation>
     </message>
@@ -4133,6 +4133,14 @@ Please save your work and close all programs.</source>
     <message>
         <source>Show notification on remote connection</source>
         <translation>Показывать оповещение по удалённому доступу</translation>
+    </message>
+    <message>
+        <source>Maximum simultaneous server connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4494,6 +4502,18 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
         <translation>Используйте это поле для набора сообщения, которое хотите послать всем выбранным пользователям.</translation>
     </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional custom title for the message window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Сообщение от учителя</translation>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
@@ -4610,10 +4630,6 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>[НЕУДАЧА]</translation>
     </message>
     <message>
-        <source>Invalid command!</source>
-        <translation>Неправильная команда!</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>Даны неправильные аргументы</translation>
     </message>
@@ -4622,16 +4638,24 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Недостаточно аргументов - используйте &quot;%1 help&quot; для получения дополнительной информации</translation>
     </message>
     <message>
+        <source>No command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Plugin not licensed</source>
         <translation>Плагин не лицензирован</translation>
     </message>
     <message>
-        <source>Unknown result!</source>
-        <translation>Неизвестный результат!</translation>
-    </message>
-    <message>
         <source>Available commands:</source>
         <translation>Доступные команды:</translation>
+    </message>
+    <message>
+        <source>Unknown command result</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available modules:</source>

@@ -1972,7 +1972,7 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2017,6 +2017,10 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     <message>
         <source>Start</source>
         <translation>Başlat</translation>
+    </message>
+    <message>
+        <source>File transfer error</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2427,10 +2431,6 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     <message>
         <source>Object attributes</source>
         <translation>Nesne öznitelikleri</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>örn. ad ve tanımlama</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2949,6 +2949,10 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
         <translation>Harita konteyneri/OU yapısı 1:1 konumlara göre</translation>
+    </message>
+    <message>
+        <source>e.g. name, ou or description</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3777,10 +3781,6 @@ Düzenlemeyi bir dosyadan yüklemek veya mevcut düzenlemeyi bir dosyaya kaydetm
         <translation>Bu komut, verilen MAC adresine sahip bilgisayarı ağ üzerinden uyandırmak için Ağdan-Uyandırma (WOL) paketi yayımlar</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Lütfen yardım görüntüleme komutunu belirtin!</translation>
-    </message>
-    <message>
         <source>Confirm reboot</source>
         <translation>Yeniden başlatmayı onayla</translation>
     </message>
@@ -4133,6 +4133,14 @@ Lütfen çalışmalarınızı kaydedip tüm açık pencereleri kapatın.</transl
     <message>
         <source>Show notification on remote connection</source>
         <translation>Uzak bağlantıda bildirim göster</translation>
+    </message>
+    <message>
+        <source>Maximum simultaneous server connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4494,6 +4502,18 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
         <translation>Tüm seçili kullanıcılara gönderilecek iletinizi yazmak için aşağıdaki alanı kullanın.</translation>
     </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional custom title for the message window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Öğretmenden ileti</translation>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
@@ -4610,10 +4630,6 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>[BAŞARISIZ]</translation>
     </message>
     <message>
-        <source>Invalid command!</source>
-        <translation>Geçersiz komut!</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>Geçersiz argümanlar verildi</translation>
     </message>
@@ -4622,16 +4638,24 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Yeteri kadar argüman verilmedi - ayrıntılı bilgi için &quot;%1 help&quot; kullanın</translation>
     </message>
     <message>
+        <source>No command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Plugin not licensed</source>
         <translation>Eklenti lisanslı değil</translation>
     </message>
     <message>
-        <source>Unknown result!</source>
-        <translation>Bilinmeyen sonuç!</translation>
-    </message>
-    <message>
         <source>Available commands:</source>
         <translation>Kullanılabilir komutlar:</translation>
+    </message>
+    <message>
+        <source>Unknown command result</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available modules:</source>

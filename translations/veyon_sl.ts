@@ -1970,7 +1970,7 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2015,6 +2015,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Start</source>
         <translation>Začetek</translation>
+    </message>
+    <message>
+        <source>File transfer error</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2425,10 +2429,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Object attributes</source>
         <translation>Atributi objekta</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>npr. ime ali opis</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2946,6 +2946,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. name, ou or description</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3773,10 +3777,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Ta ukaz oddaja paket Wake-on-LAN (WOL) v omrežje, da bi lahko vklopil računalnik z danim naslovom MAC.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Navedite ukaz za prikaz pomoči!</translation>
-    </message>
-    <message>
         <source>Confirm reboot</source>
         <translation>Potrdi ponovni zagon</translation>
     </message>
@@ -4127,6 +4127,14 @@ Please save your work and close all programs.</source>
     <message>
         <source>Show notification on remote connection</source>
         <translation>Prikaži obvestilo o oddaljeni povezavi</translation>
+    </message>
+    <message>
+        <source>Maximum simultaneous server connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4486,6 +4494,18 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
         <translation>Uporabite spodnje polje za vpis sporočila, ki ga želite poslati izbranim uporabnikom.</translation>
     </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional custom title for the message window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Sporočilo predavatelja</translation>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
@@ -4602,10 +4622,6 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>[SPODLETELO]</translation>
     </message>
     <message>
-        <source>Invalid command!</source>
-        <translation>Neveljaven ukaz!</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>Neveljavni argumenti so podani</translation>
     </message>
@@ -4614,16 +4630,24 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Ni dovolj argumentov - uporabite &quot;%1 pomoč&quot; za več informacij</translation>
     </message>
     <message>
+        <source>No command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Plugin not licensed</source>
         <translation>Vtičnik ni licenciran</translation>
     </message>
     <message>
-        <source>Unknown result!</source>
-        <translation>Neznan rezultat!</translation>
-    </message>
-    <message>
         <source>Available commands:</source>
         <translation>Razpoložljivi ukazi:</translation>
+    </message>
+    <message>
+        <source>Unknown command result</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available modules:</source>

@@ -1972,7 +1972,7 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2017,6 +2017,10 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     <message>
         <source>Start</source>
         <translation>Start</translation>
+    </message>
+    <message>
+        <source>File transfer error</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2427,10 +2431,6 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     <message>
         <source>Object attributes</source>
         <translation>Objekti atribuudid</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>näit. nimi või kirjeldus</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2949,6 +2949,10 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
         <translation>Konteineri/OU struktuuri 1:1 kaardistamine asukohtadega</translation>
+    </message>
+    <message>
+        <source>e.g. name, ou or description</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3777,10 +3781,6 @@ Failist arranžeeringu laadimiseks või praeguse arranžeeringu faili salvestami
         <translation>See käsk edastab võrgus Wake-on-LAN (WOL) paketi, et antud MAC-aadressiga arvuti sisse lülitada.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Palun määrake käsk, mille jaoks abi kuvatakse!</translation>
-    </message>
-    <message>
         <source>Confirm reboot</source>
         <translation>Kinnitage taaskäivitamine</translation>
     </message>
@@ -4133,6 +4133,14 @@ Salvestage oma töö ja sulgege kõik programmid.</translation>
     <message>
         <source>Show notification on remote connection</source>
         <translation>Kuva teated kaugühenduse korral</translation>
+    </message>
+    <message>
+        <source>Maximum simultaneous server connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4494,6 +4502,18 @@ Näide: [^-]*-(PC[0-9]*)</translation>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
         <translation>Kasutage allolevat välja, et sisestada sõnum, mis saadetakse kõigile valitud kasutajatele.</translation>
     </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional custom title for the message window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Sõnum õpetajalt</translation>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
@@ -4610,10 +4630,6 @@ Näide: [^-]*-(PC[0-9]*)</translation>
         <translation>[FAIL]</translation>
     </message>
     <message>
-        <source>Invalid command!</source>
-        <translation>Tundmatu käsk!</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>Esitatud valed argumendid</translation>
     </message>
@@ -4622,16 +4638,24 @@ Näide: [^-]*-(PC[0-9]*)</translation>
         <translation>Ei ole piisavalt argumente esitatud - lisateabe saamiseks kasutage &quot;%1 abi&quot;</translation>
     </message>
     <message>
+        <source>No command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Plugin not licensed</source>
         <translation>Pistikprogramm pole litsentsitud</translation>
     </message>
     <message>
-        <source>Unknown result!</source>
-        <translation>Tundmatu tulemus!</translation>
-    </message>
-    <message>
         <source>Available commands:</source>
         <translation>Saadaolevad käsud:</translation>
+    </message>
+    <message>
+        <source>Unknown command result</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available modules:</source>

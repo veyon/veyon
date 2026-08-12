@@ -1970,7 +1970,7 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2015,6 +2015,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Start</source>
         <translation>시작</translation>
+    </message>
+    <message>
+        <source>File transfer error</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2425,10 +2429,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Object attributes</source>
         <translation>개체 특성</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>예. 이름 또는 설명</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2944,6 +2944,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. name, ou or description</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3771,10 +3775,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>이 명령어는 주어진 MAC 주소를 갖는 컴퓨터 파워를 켜기 위해 네트워크에 Wake-on-LAN(WOL) 패킷을 배포함.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>도움말을 표시할 명령어를 지정하세요</translation>
-    </message>
-    <message>
         <source>Confirm reboot</source>
         <translation>리부팅 확인</translation>
     </message>
@@ -4127,6 +4127,14 @@ Please save your work and close all programs.</source>
     <message>
         <source>Show notification on remote connection</source>
         <translation>원격 연결이면 알림 보이기</translation>
+    </message>
+    <message>
+        <source>Maximum simultaneous server connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4486,6 +4494,18 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
         <translation>선택된 사용자에세 메세지를 보내려면 아래 빈칸에 내용을 입력하세요</translation>
     </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional custom title for the message window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>교사의 메세지</translation>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
@@ -4602,10 +4622,6 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>[실패]</translation>
     </message>
     <message>
-        <source>Invalid command!</source>
-        <translation>잘못된 명령어</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>인자가 잘못됨</translation>
     </message>
@@ -4614,16 +4630,24 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>필수 인자 미입력 - 자세한 정보는 %1 HELP를 사용하세요</translation>
     </message>
     <message>
+        <source>No command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Plugin not licensed</source>
         <translation>플러그인 라이센스 안됨</translation>
     </message>
     <message>
-        <source>Unknown result!</source>
-        <translation>알수 없는 결과!</translation>
-    </message>
-    <message>
         <source>Available commands:</source>
         <translation>사용가능한 명령어:</translation>
+    </message>
+    <message>
+        <source>Unknown command result</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available modules:</source>

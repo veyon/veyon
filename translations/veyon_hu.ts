@@ -1970,7 +1970,7 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2015,6 +2015,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Start</source>
         <translation>Indítás</translation>
+    </message>
+    <message>
+        <source>File transfer error</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2425,10 +2429,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Object attributes</source>
         <translation>Objektum attribútumok</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>például név vagy leírás</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2946,6 +2946,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. name, ou or description</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3773,10 +3777,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Ez a parancs egy hálózati ébresztő jelcsomagot (WOL) szór a hálózaton, hogy a megadott fizikai című számítógépeket bekapcsolja.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Kérem, válaszd ki az a parancsot, melynek súgóját megjelenítsük!</translation>
-    </message>
-    <message>
         <source>Confirm reboot</source>
         <translation>Újraindítás megerősítése</translation>
     </message>
@@ -4127,6 +4127,14 @@ Please save your work and close all programs.</source>
     <message>
         <source>Show notification on remote connection</source>
         <translation>Távoli csatlakozás esetén értesítés megjelenítése</translation>
+    </message>
+    <message>
+        <source>Maximum simultaneous server connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4487,6 +4495,18 @@ Példa: [^-]*-(PC[0-9]*)</translation>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
         <translation>Az alábbi mezőbe gépeld az összes kiválasztott felhasználóknak küldendő üzenetedet.</translation>
     </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional custom title for the message window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Üzenet a tanártól</translation>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
@@ -4603,10 +4623,6 @@ Példa: [^-]*-(PC[0-9]*)</translation>
         <translation>[SIKERTELEN]</translation>
     </message>
     <message>
-        <source>Invalid command!</source>
-        <translation>Érvénytelen parancs!</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>Érvénytelen az argumentum</translation>
     </message>
@@ -4615,16 +4631,24 @@ Példa: [^-]*-(PC[0-9]*)</translation>
         <translation>Nincs elegendő argumentum - további információért használja a &quot;%1 súgót&quot;</translation>
     </message>
     <message>
+        <source>No command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Plugin not licensed</source>
         <translation>A bővítmény nem licencelt</translation>
     </message>
     <message>
-        <source>Unknown result!</source>
-        <translation>Ismeretlen végeredmény!</translation>
-    </message>
-    <message>
         <source>Available commands:</source>
         <translation>Elérhető műveletek:</translation>
+    </message>
+    <message>
+        <source>Unknown command result</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available modules:</source>

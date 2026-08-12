@@ -1972,7 +1972,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
 <context>
     <name>FileTransferController</name>
     <message>
-        <source>Could not open file %1 for reading! Please check your permissions!</source>
+        <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -2017,6 +2017,10 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     <message>
         <source>Start</source>
         <translation>Abiarazi</translation>
+    </message>
+    <message>
+        <source>File transfer error</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2427,10 +2431,6 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     <message>
         <source>Object attributes</source>
         <translation>Objektu-atributuak</translation>
-    </message>
-    <message>
-        <source>e.g. name or description</source>
-        <translation>adib. izena edo deskribapena</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2949,6 +2949,10 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
         <translation>Mapeatu edukiontzia/OU egitura 1:1 kokapenekin</translation>
+    </message>
+    <message>
+        <source>e.g. name, ou or description</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -3777,10 +3781,6 @@ Luze sakatu fitxategi batetik kargatzeko edo uneko antolamendua fitxategi batera
         <translation>Komando honek Wake-on-LAN (WOL) pakete bat igortzen du sarera, emandako MAC helbidea duen ordenagailua pizteko.</translation>
     </message>
     <message>
-        <source>Please specify the command to display help for!</source>
-        <translation>Zehaztu laguntza bistaratzeko komandoa!</translation>
-    </message>
-    <message>
         <source>Confirm reboot</source>
         <translation>Berretsi berrabiaraztea</translation>
     </message>
@@ -4133,6 +4133,14 @@ Mesedez, gorde zure lana eta itxi programa guztiak.</translation>
     <message>
         <source>Show notification on remote connection</source>
         <translation>Erakutsi jakinarazpena urrutiko konexioan</translation>
+    </message>
+    <message>
+        <source>Maximum simultaneous server connections</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4494,6 +4502,18 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
         <translation>Erabili beheko eremua hautatutako erabiltzaile guztiei bidaliko zaien mezua idazteko.</translation>
     </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Optional custom title for the message window</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Message from teacher</source>
+        <translation>Irakaslearen mezua</translation>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
@@ -4610,10 +4630,6 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
         <translation>[PORROT]</translation>
     </message>
     <message>
-        <source>Invalid command!</source>
-        <translation>Agindu baliogabea!</translation>
-    </message>
-    <message>
         <source>Invalid arguments given</source>
         <translation>Emandako argumentu baliogabeak</translation>
     </message>
@@ -4622,16 +4638,24 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
         <translation>Ez da nahikoa argumentu eman - erabili &quot;%1 laguntza&quot; informazio gehiago lortzeko</translation>
     </message>
     <message>
+        <source>No command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Invalid command given</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Plugin not licensed</source>
         <translation>Lizentziarik gabeko plugina</translation>
     </message>
     <message>
-        <source>Unknown result!</source>
-        <translation>Emaitza ezezaguna!</translation>
-    </message>
-    <message>
         <source>Available commands:</source>
         <translation>Eskuragarri dauden komandoak:</translation>
+    </message>
+    <message>
+        <source>Unknown command result</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Available modules:</source>
