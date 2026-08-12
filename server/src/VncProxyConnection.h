@@ -61,7 +61,6 @@ protected Q_SLOTS:
 	void readFromServer();
 
 protected:
-	bool forwardDataToClient( qint64 size );
 	bool forwardDataToServer( qint64 size );
 
 	void readFromServerLater();

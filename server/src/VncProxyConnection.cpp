@@ -167,24 +167,24 @@ void VncProxyConnection::readFromServer()
 
 
 
-bool VncProxyConnection::flushPendingToSocket( QTcpSocket* target, QByteArray& pending )
+bool VncProxyConnection::flushPendingToSocket(QTcpSocket* target, QByteArray& pending)
 {
-	if( pending.isEmpty() )
+	if(pending.isEmpty())
 	{
 		return true;
 	}
 
-	const auto written = target->write( pending );
-	if( written < 0 )
+	const auto written = target->write(pending);
+	if(written < 0)
 	{
 		target->close();
 		return false;
 	}
-	if( written > 0 )
+	if(written > 0)
 	{
-		pending.remove( 0, static_cast<int>( written ) );
+		pending.remove(0, static_cast<int>(written));
 	}
-	if( pending.size() > MaximumPendingWriteSize )
+	if(pending.size() > MaximumPendingWriteSize)
 	{
 		vCritical() << "closing slow peer" << target->peerAddress().toString()
 					<< "with oversized pending write buffer";
@@ -197,31 +197,31 @@ bool VncProxyConnection::flushPendingToSocket( QTcpSocket* target, QByteArray& p
 
 
 
-bool VncProxyConnection::forwardPeekedChunk( QTcpSocket* source, QTcpSocket* target, qint64 size,
-											 QByteArray& pending, const char* slowPeerLog )
+bool VncProxyConnection::forwardPeekedChunk(QTcpSocket* source, QTcpSocket* target, qint64 size,
+											QByteArray& pending, const char* slowPeerLog)
 {
-	if( source->bytesAvailable() < size )
+	if(source->bytesAvailable() < size)
 	{
 		return false;
 	}
 
-	const auto data = source->read( size );
-	if( data.size() != size )
+	const auto data = source->read(size);
+	if(data.size() != size)
 	{
 		return false;
 	}
 
-	const auto written = target->write( data );
-	if( written < 0 )
+	const auto written = target->write(data);
+	if(written < 0)
 	{
 		target->close();
 		return false;
 	}
 
-	if( written < size )
+	if(written < size)
 	{
-		pending.append( data.mid( static_cast<int>( written ) ) );
-		if( pending.size() > MaximumPendingWriteSize )
+		pending.append(data.mid(static_cast<int>(written)));
+		if(pending.size() > MaximumPendingWriteSize)
 		{
 			vCritical() << slowPeerLog;
 			m_proxyClientSocket->close();
@@ -235,30 +235,16 @@ bool VncProxyConnection::forwardPeekedChunk( QTcpSocket* source, QTcpSocket* tar
 
 
 
-bool VncProxyConnection::forwardDataToClient( qint64 size )
+bool VncProxyConnection::forwardDataToServer(qint64 size)
 {
-	if( !flushPendingToSocket( m_proxyClientSocket, m_pendingClientData ) )
+	if(!flushPendingToSocket(m_vncServerSocket, m_pendingServerData))
 	{
 		return false;
 	}
 
-	return forwardPeekedChunk( m_vncServerSocket, m_proxyClientSocket, size,
-							   m_pendingClientData,
-							   "closing slow client with oversized pending write buffer" );
-}
-
-
-
-bool VncProxyConnection::forwardDataToServer( qint64 size )
-{
-	if( !flushPendingToSocket( m_vncServerSocket, m_pendingServerData ) )
-	{
-		return false;
-	}
-
-	return forwardPeekedChunk( m_proxyClientSocket, m_vncServerSocket, size,
-							   m_pendingServerData,
-							   "closing slow VNC server with oversized pending write buffer" );
+	return forwardPeekedChunk(m_proxyClientSocket, m_vncServerSocket, size,
+							  m_pendingServerData,
+							  "closing slow VNC server with oversized pending write buffer");
 }
 
 
@@ -354,39 +340,15 @@ bool VncProxyConnection::receiveClientMessage()
 
 bool VncProxyConnection::receiveServerMessage()
 {
-	if( m_pendingClientData.isEmpty() == false )
+	if(!flushPendingToSocket(m_proxyClientSocket, m_pendingClientData))
 	{
-		const auto written = m_proxyClientSocket->write(m_pendingClientData);
-		if( written > 0 )
-		{
-			m_pendingClientData.remove(0, static_cast<int>(written));
-		}
-		else if( written < 0 )
-		{
-			m_proxyClientSocket->close();
-		}
 		return false;
 	}
 
-	if( clientProtocol().receiveMessage() )
+	if(clientProtocol().receiveMessage())
 	{
-		const auto& message = clientProtocol().lastMessage();
-		const auto written = m_proxyClientSocket->write(message);
-		if( written < 0 )
-		{
-			m_proxyClientSocket->close();
-			return false;
-		}
-		if( written < message.size() )
-		{
-			m_pendingClientData = message.mid(static_cast<int>(written));
-			if( m_pendingClientData.size() > MaximumPendingWriteSize )
-			{
-				vCritical() << "closing slow client with oversized pending write buffer";
-				m_proxyClientSocket->close();
-			}
-		}
-
+		m_pendingClientData = clientProtocol().lastMessage();
+		flushPendingToSocket(m_proxyClientSocket, m_pendingClientData);
 		return true;
 	}
 
