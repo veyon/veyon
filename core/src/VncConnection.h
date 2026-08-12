@@ -235,6 +235,7 @@ private:
 	int m_socketKeepaliveIdleTime{VncConnectionConfiguration::DefaultSocketKeepaliveIdleTime};
 	int m_socketKeepaliveInterval{VncConnectionConfiguration::DefaultSocketKeepaliveInterval};
 	int m_socketKeepaliveCount{VncConnectionConfiguration::DefaultSocketKeepaliveCount};
+	static constexpr int MinimumFramebufferUpdateInterval = 10;
 
 	// states and flags
 	std::atomic<State> m_state;
@@ -252,6 +253,7 @@ private:
 	// thread and timing control
 	QMutex m_globalMutex;
 	QMutex m_eventQueueMutex;
+	QWaitCondition m_throttleSleeper;
 	QWaitCondition m_updateIntervalSleeper;
 	QAtomicInt m_framebufferUpdateInterval;
 	QElapsedTimer m_fullFramebufferUpdateTimer{};

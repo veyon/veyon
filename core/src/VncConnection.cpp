@@ -658,8 +658,7 @@ void VncConnection::handleConnection()
 			requestFrameufferUpdate(FramebufferUpdateType::Full);
 			m_fullFramebufferUpdateTimer.restart();
 		}
-		else if (m_framebufferUpdateInterval > 0 &&
-				 m_incrementalFramebufferUpdateTimer.elapsed() > incrementalFramebufferUpdateTimeout())
+		else if (m_incrementalFramebufferUpdateTimer.elapsed() > incrementalFramebufferUpdateTimeout())
 		{
 			requestFrameufferUpdate(FramebufferUpdateType::Incremental);
 			m_incrementalFramebufferUpdateTimer.restart();
@@ -668,6 +667,14 @@ void VncConnection::handleConnection()
 		{
 			setControlFlag(ControlFlag::TriggerFramebufferUpdate, false);
 			requestFrameufferUpdate(FramebufferUpdateType::Incremental);
+		}
+
+		const auto throttlingDuration = MinimumFramebufferUpdateInterval - loopTimer.elapsed();
+		if (throttlingDuration > 0)
+		{
+			sleeperMutex.lock();
+			m_throttleSleeper.wait(&sleeperMutex, throttlingDuration);
+			sleeperMutex.unlock();
 		}
 
 		const auto remainingUpdateInterval = m_framebufferUpdateInterval - loopTimer.elapsed();
@@ -819,10 +826,11 @@ int VncConnection::fullFramebufferUpdateTimeout() const
 
 int VncConnection::incrementalFramebufferUpdateTimeout() const
 {
-	return m_framebufferState == FramebufferState::Valid ?
-				int(m_framebufferUpdateInterval)
-			  :
-				std::min(int(m_framebufferUpdateInterval), m_initialFramebufferUpdateTimeout);
+	return std::max(MinimumFramebufferUpdateInterval,
+					m_framebufferState == FramebufferState::Valid ?
+						int(m_framebufferUpdateInterval)
+					  :
+						std::min(int(m_framebufferUpdateInterval), m_initialFramebufferUpdateTimeout));
 }
 
 
