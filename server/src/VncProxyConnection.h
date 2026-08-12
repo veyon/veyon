@@ -61,7 +61,6 @@ protected Q_SLOTS:
 	void readFromServer();
 
 protected:
-	bool forwardDataToClient( qint64 size );
 	bool forwardDataToServer( qint64 size );
 
 	void readFromServerLater();
@@ -74,6 +73,8 @@ protected:
 	virtual VncServerProtocol& serverProtocol() = 0;
 
 private:
+	bool flushPendingToSocket(QTcpSocket* target, QByteArray& pending);
+
 	void updateHandshakeState();
 
 	static constexpr auto HandshakeTimeout = 30000;
@@ -90,6 +91,7 @@ private:
 	QTimer m_serverRetryTimer{this};
 	QTimer m_handshakeTimer{this};
 	QByteArray m_pendingClientData{};
+	QByteArray m_pendingServerData{};
 	bool m_connectionEstablishedEmitted{false};
 
 Q_SIGNALS:
