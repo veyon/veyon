@@ -95,11 +95,6 @@ public:
 		return static_cast<uint8_t>( m_lastMessage.constData()[0] );
 	}
 
-	const QRect& lastUpdatedRect() const
-	{
-		return m_lastUpdatedRect;
-	}
-
 protected:
 	void setState(State state)
 	{
@@ -156,6 +151,5 @@ private:
 	quint16 m_framebufferHeight;
 
 	QByteArray m_lastMessage;
-	QRect m_lastUpdatedRect;
 
 } ;

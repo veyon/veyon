@@ -494,8 +494,6 @@ bool VncClientProtocol::receiveFramebufferUpdateMessage()
 		return false;
 	}
 
-	QRegion updatedRegion;
-
 	const auto nRects = qFromBigEndian( message.nRects );
 	if( nRects != 0xFFFF && nRects > MaximumRectanglesPerUpdate )
 	{
@@ -535,16 +533,7 @@ bool VncClientProtocol::receiveFramebufferUpdateMessage()
 		{
 			return false;
 		}
-
-		if( isPseudoEncoding( rectHeader ) == false &&
-			rectHeader.r.x+rectHeader.r.w <= m_framebufferWidth &&
-			rectHeader.r.y+rectHeader.r.h <= m_framebufferHeight )
-		{
-			updatedRegion += QRect( rectHeader.r.x, rectHeader.r.y, rectHeader.r.w, rectHeader.r.h );
-		}
 	}
-
-	m_lastUpdatedRect = updatedRegion.boundingRect();
 
 	// save as much data as we read by processing rects
 	return readMessage( static_cast<int>( buffer.pos() ) );
