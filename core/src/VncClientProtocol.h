@@ -56,6 +56,7 @@ public:
 		return m_state;
 	}
 
+	void reset();
 	void start();
 	bool read();  // Flawfinder: ignore
 

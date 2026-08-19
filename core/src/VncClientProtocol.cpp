@@ -79,6 +79,23 @@ VncClientProtocol::VncClientProtocol( QIODevice* socket, const Password& vncPass
 
 
 
+void VncClientProtocol::reset()
+{
+	m_state = Disconnected;
+
+	m_serverInitMessage = {};
+
+	m_pixelFormat = rfbPixelFormat{};
+	m_encodings.clear();
+
+	m_framebufferWidth = 0;
+	m_framebufferHeight = 0;
+
+	m_lastMessage = {};
+}
+
+
+
 void VncClientProtocol::start()
 {
 	m_state = Protocol;
