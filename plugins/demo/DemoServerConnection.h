@@ -46,6 +46,14 @@ public:
 	DemoServerConnection( DemoServer* demoServer, const Password& demoAccessToken, quintptr socketDescriptor );
 	~DemoServerConnection() = default;
 
+	qsizetype fbuSequenceNumber() const
+	{
+		return m_fbuSequenceNumber;
+	}
+
+Q_SIGNALS:
+	void synchronizationLost();
+
 private:
 	void run() override;
 
@@ -65,8 +73,8 @@ private:
 
 	const QMap<int, int> m_rfbClientToServerMessageSizes;
 
-	int m_keyFrame;
-	int m_framebufferUpdateMessageIndex;
+	QAtomicInteger<qsizetype> m_fbuSequenceNumber = 0;
+	int m_epochId;
 
 	const int m_framebufferUpdateInterval;
 

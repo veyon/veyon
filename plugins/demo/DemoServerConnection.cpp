@@ -47,8 +47,7 @@ DemoServerConnection::DemoServerConnection( DemoServer* demoServer,
 									 std::pair<int, int>( rfbKeyEvent, sz_rfbKeyEventMsg ),
 									 std::pair<int, int>( rfbPointerEvent, sz_rfbPointerEventMsg ),
 									 } ),
-	m_keyFrame( -1 ),
-	m_framebufferUpdateMessageIndex( 0 ),
+	m_epochId(demoServer->epochId()),
 	m_framebufferUpdateInterval( m_demoServer->configuration().framebufferUpdateInterval() )
 {
 	start();
@@ -184,30 +183,28 @@ void DemoServerConnection::sendFramebufferUpdate()
 {
 	m_demoServer->lockDataForRead();
 
+	QList<QByteArray> messages;
 	const auto& framebufferUpdateMessages = m_demoServer->framebufferUpdateMessages();
+	const auto framebufferUpdateMessageCount = framebufferUpdateMessages.count();
+	const auto offset = m_fbuSequenceNumber - m_demoServer->fbuSequenceNumber();
 
-	const int framebufferUpdateMessageCount = framebufferUpdateMessages.count();
-
-	if( m_demoServer->keyFrame() != m_keyFrame ||
-			m_framebufferUpdateMessageIndex > framebufferUpdateMessageCount )
+	if (offset >= 0 && m_demoServer->epochId() == m_epochId)
 	{
-		m_framebufferUpdateMessageIndex = 0;
-		m_keyFrame = m_demoServer->keyFrame();
+		for (qsizetype i = offset; i < framebufferUpdateMessageCount; ++i)
+		{
+			messages.append(framebufferUpdateMessages[i].second);
+			++m_fbuSequenceNumber;
+		}
 	}
-
-	bool sentUpdates = false;
-	while( m_framebufferUpdateMessageIndex < framebufferUpdateMessageCount )
+	else
 	{
-		m_socket->write( framebufferUpdateMessages[m_framebufferUpdateMessageIndex] );
-		++m_framebufferUpdateMessageIndex;
-		sentUpdates = true;
+		Q_EMIT synchronizationLost();
 	}
 
 	m_demoServer->unlockData();
 
-	if( sentUpdates == false )
+	for (const auto& message : std::as_const(messages))
 	{
-		// did not send updates but client still waiting for update? then try again soon
-		QTimer::singleShot( m_framebufferUpdateInterval, m_socket, [this]() { sendFramebufferUpdate(); } );
+		m_socket->write(message);
 	}
 }

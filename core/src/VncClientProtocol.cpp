@@ -79,6 +79,23 @@ VncClientProtocol::VncClientProtocol( QIODevice* socket, const Password& vncPass
 
 
 
+void VncClientProtocol::reset()
+{
+	m_state = Disconnected;
+
+	m_serverInitMessage = {};
+
+	m_pixelFormat = rfbPixelFormat{};
+	m_encodings.clear();
+
+	m_framebufferWidth = 0;
+	m_framebufferHeight = 0;
+
+	m_lastMessage = {};
+}
+
+
+
 void VncClientProtocol::start()
 {
 	m_state = Protocol;
@@ -477,15 +494,7 @@ bool VncClientProtocol::receiveFramebufferUpdateMessage()
 		return false;
 	}
 
-	QRegion updatedRegion;
-
 	const auto nRects = qFromBigEndian( message.nRects );
-	// 0xFFFF = sentinelle LastRect (extension RFB de streaming) : le nombre reel de
-	// rectangles est inconnu, la boucle se termine sur le pseudo-rectangle
-	// rfbEncodingLastRect ci-dessous. UltraVNC (serveur builtin Veyon) l'envoie des
-	// que le client annonce l'encoding LastRect -> il faut l'exempter du plafond
-	// anti-DoS, sinon chaque FramebufferUpdate est rejete, la socket fermee, et la
-	// vignette/prise de main reste noire (regression du durcissement parsing VNC).
 	if( nRects != 0xFFFF && nRects > MaximumRectanglesPerUpdate )
 	{
 		vCritical() << "too many rectangles in framebuffer update" << nRects;
@@ -524,16 +533,7 @@ bool VncClientProtocol::receiveFramebufferUpdateMessage()
 		{
 			return false;
 		}
-
-		if( isPseudoEncoding( rectHeader ) == false &&
-			rectHeader.r.x+rectHeader.r.w <= m_framebufferWidth &&
-			rectHeader.r.y+rectHeader.r.h <= m_framebufferHeight )
-		{
-			updatedRegion += QRect( rectHeader.r.x, rectHeader.r.y, rectHeader.r.w, rectHeader.r.h );
-		}
 	}
-
-	m_lastUpdatedRect = updatedRegion.boundingRect();
 
 	// save as much data as we read by processing rects
 	return readMessage( static_cast<int>( buffer.pos() ) );

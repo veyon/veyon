@@ -47,8 +47,7 @@ DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, co
 	m_vncClientProtocol( new VncClientProtocol( m_vncServerSocket, vncServerPassword ) ),
 	m_framebufferUpdateTimer( this ),
 	m_lastFullFramebufferUpdate(),
-	m_requestFullFramebufferUpdate( false ),
-	m_keyFrame(0)
+	m_requestFullFramebufferUpdate(false)
 {
 	auto bandwidthLimit = m_configuration.bandwidthLimit();
 	if (bandwidthLimit == DefaultBandwidthLimit)
@@ -74,7 +73,6 @@ DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, co
 	m_maxKBytesPerSecond = qMax(1, bandwidthLimit) * BytesPerKB;
 
 	connect( m_vncServerSocket, &QTcpSocket::readyRead, this, &DemoServer::readFromVncServer );
-	connect( m_vncServerSocket, &QTcpSocket::disconnected, this, &DemoServer::reconnectToVncServer );
 
 	connect( &m_framebufferUpdateTimer, &QTimer::timeout, this, &DemoServer::requestFramebufferUpdate );
 
@@ -153,7 +151,7 @@ void DemoServer::incomingConnection( qintptr socketDescriptor )
 {
 	vDebug() << socketDescriptor;
 
-	m_pendingConnections.append( socketDescriptor );
+	m_pendingConnectionSockets.append( socketDescriptor );
 
 	if( m_vncClientProtocol->state() == VncClientProtocol::State::Running )
 	{
@@ -165,9 +163,14 @@ void DemoServer::incomingConnection( qintptr socketDescriptor )
 
 void DemoServer::acceptPendingConnections()
 {
-	while( m_pendingConnections.isEmpty() == false )
+	while( m_pendingConnectionSockets.isEmpty() == false )
 	{
-		new DemoServerConnection( this, m_demoAccessToken, m_pendingConnections.takeFirst() );
+		auto connection = new DemoServerConnection(this, m_demoAccessToken, m_pendingConnectionSockets.takeFirst());
+		connect (connection, &DemoServerConnection::synchronizationLost, this, &DemoServer::reconnectToVncServer);
+		connect (connection, &QObject::destroyed, this, [this, connection]() {
+			m_connections.removeAll(connection);
+		});
+		m_connections.append(connection);
 	}
 }
 
@@ -175,9 +178,35 @@ void DemoServer::acceptPendingConnections()
 
 void DemoServer::reconnectToVncServer()
 {
+	vDebug();
+
+	++m_epochId;
+
+	for (const auto& connection : std::as_const(m_connections))
+	{
+		if (connection)
+		{
+			connection->deleteLater();
+		}
+	}
+	m_connections.clear();
+
+	m_dataLock.lockForWrite();
+	m_framebufferUpdateMessages.clear();
+	m_fbuSequenceNumber = 0;
+	m_bytesSinceLastQualityAdjust = 0;
+	m_dataLock.unlock();
+
+	disconnect(m_vncServerSocket, &QTcpSocket::disconnected, this, &DemoServer::reconnectToVncServer);
+	m_vncServerSocket->disconnectFromHost();
+
+	m_vncClientProtocol->reset();
+
 	m_vncClientProtocol->start();
 
 	m_vncServerSocket->connectToHost( QHostAddress::LocalHost, static_cast<quint16>( m_vncServerPort ) );
+
+	connect(m_vncServerSocket, &QTcpSocket::disconnected, this, &DemoServer::reconnectToVncServer);
 }
 
 
@@ -209,6 +238,7 @@ void DemoServer::requestFramebufferUpdate()
 {
 	if( m_vncClientProtocol->state() != VncClientProtocol::Running )
 	{
+		vWarning() << "not running";
 		return;
 	}
 
@@ -261,61 +291,94 @@ void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
 		vDebug() << "locking for write took" << writeLockTime.elapsed() << "ms";
 	}
 
-	const auto lastUpdatedRect = m_vncClientProtocol->lastUpdatedRect();
+	discardUnusedFramebufferUpdateMessages();
 
-	const bool isFullUpdate = ( lastUpdatedRect.x() == 0 && lastUpdatedRect.y() == 0 &&
-								lastUpdatedRect.width() == m_vncClientProtocol->framebufferWidth() &&
-								lastUpdatedRect.height() == m_vncClientProtocol->framebufferHeight() );
-
-	const auto queueSize = framebufferUpdateMessageQueueSize();
-
-	if( isFullUpdate || queueSize > m_memoryLimit*2 )
+	if (m_qualityAdjustTimer.elapsed() >= QualityAdjustInterval)
 	{
-		if( m_keyFrameTimer.elapsed() > 1 )
+		const auto totalKBytes = m_bytesSinceLastQualityAdjust / BytesPerKB;
+		const auto kbytesPerSecond = qMax<int>(1, (totalKBytes * 1000) / m_qualityAdjustTimer.elapsed());
+		const auto clientCount = qMax(1, m_connections.count());
+		const auto totalKBytesPerSecond = kbytesPerSecond * clientCount;
+
+		auto newQuality = m_quality;
+		if (totalKBytesPerSecond > m_maxKBytesPerSecond)
 		{
-			const auto totalKBytes = queueSize / BytesPerKB;
-			const auto kbytesPerSecond = qMax<int>(1, (totalKBytes * 1000) / m_keyFrameTimer.elapsed());
-			const auto clientCount = qMax(1, findChildren<DemoServerConnection *>().count());
-			const auto totalKBytesPerSecond = kbytesPerSecond * clientCount;
-
-			auto newQuality = m_quality;
-			if (totalKBytesPerSecond > m_maxKBytesPerSecond)
-			{
-				newQuality = qMax(int(MinimumQuality),
-								  m_quality - qMax(1, int(totalKBytesPerSecond / m_maxKBytesPerSecond)));
-			}
-			else if (totalKBytesPerSecond < m_maxKBytesPerSecond * 4 / 5)
-			{
-				newQuality = qMin(int(MaximumQuality),
-								  m_quality + qMax(1, int(m_maxKBytesPerSecond / totalKBytesPerSecond)));
-			}
-
-			if (newQuality != m_quality)
-			{
-				setVncServerEncodings(newQuality);
-			}
-
-			vDebug() << "message count:" << m_framebufferUpdateMessages.size()
-					 << "queue size (KB):" << totalKBytes
-					 << "total bandwidth (KB/s):" << totalKBytesPerSecond << "of" << m_maxKBytesPerSecond
-					 << "bandwidth per client (KB/s):" << kbytesPerSecond
-					 << "quality" << m_quality;
+			newQuality = qMax(int(MinimumQuality),
+							  m_quality - qMax(1, int(totalKBytesPerSecond / m_maxKBytesPerSecond)));
 		}
-		m_keyFrameTimer.restart();
-		++m_keyFrame;
+		else if (totalKBytesPerSecond < m_maxKBytesPerSecond * 4 / 5)
+		{
+			newQuality = qMin(int(MaximumQuality),
+							  m_quality + qMax(1, int(m_maxKBytesPerSecond / totalKBytesPerSecond)));
+		}
 
-		m_framebufferUpdateMessages.clear();
+		if (newQuality != m_quality)
+		{
+			setVncServerEncodings(newQuality);
+		}
+
+		vDebug() << "currently queued messages:" << m_framebufferUpdateMessages.size()
+				 << "current queue size (KB):" << framebufferUpdateMessageQueueSize() / BytesPerKB
+				 << "transferred in total (KB):" << totalKBytes
+				 << "total bandwidth (KB/s):" << totalKBytesPerSecond << "of" << m_maxKBytesPerSecond
+				 << "bandwidth per client (KB/s):" << kbytesPerSecond
+				 << "quality" << m_quality;
+
+		m_qualityAdjustTimer.restart();
+		m_bytesSinceLastQualityAdjust = 0;
 	}
 
-	m_framebufferUpdateMessages.append( message );
+	// one or more clients lagging so much behind that the message queue cannot be shrinked enough?
+	const auto timestamp = QDateTime::currentMSecsSinceEpoch();
+	const auto needReconnect = m_framebufferUpdateMessages.isEmpty() == false &&
+							   timestamp - m_framebufferUpdateMessages.constFirst().first > FramebufferUpdateMessageMaxAge;
+	if (!needReconnect)
+	{
+		m_framebufferUpdateMessages.append({timestamp, message});
+		m_bytesSinceLastQualityAdjust += message.size();
+	}
 
 	m_dataLock.unlock();
 
-	// we're about to reach memory limits?
-	if( framebufferUpdateMessageQueueSize() > m_memoryLimit )
+	if (needReconnect)
 	{
-		// then request a full update so we can clear our queue
-		m_requestFullFramebufferUpdate = true;
+		vWarning() << "restarting due to lagging or reconnected client";
+		reconnectToVncServer();
+	}
+}
+
+
+
+void DemoServer::discardUnusedFramebufferUpdateMessages()
+{
+	auto lowestFbuSequenceNumber = m_fbuSequenceNumber + m_framebufferUpdateMessages.count();
+
+	for (const auto& connection : std::as_const(m_connections))
+	{
+		if (connection)
+		{
+			lowestFbuSequenceNumber = std::min(connection->fbuSequenceNumber(), lowestFbuSequenceNumber);
+		}
+	}
+
+	if (lowestFbuSequenceNumber > m_fbuSequenceNumber)
+	{
+		const auto timestamp = QDateTime::currentMSecsSinceEpoch();
+
+		const auto unusedMessagesCount = lowestFbuSequenceNumber - m_fbuSequenceNumber;
+		for (qsizetype i = 0; i < unusedMessagesCount; ++i)
+		{
+			const auto age = timestamp - m_framebufferUpdateMessages.constFirst().first;
+			if (age >= FramebufferUpdateMessageMinAge)
+			{
+				m_framebufferUpdateMessages.removeFirst();
+				m_fbuSequenceNumber++;
+			}
+			else
+			{
+				break;
+			}
+		}
 	}
 }
 
@@ -327,7 +390,7 @@ qint64 DemoServer::framebufferUpdateMessageQueueSize() const
 
 	for( const auto& message : std::as_const( m_framebufferUpdateMessages ) )
 	{
-		size += message.size();
+		size += message.second.size();
 	}
 
 	return size;
@@ -343,6 +406,7 @@ void DemoServer::start()
 	setVncServerEncodings(DefaultQuality);
 
 	m_requestFullFramebufferUpdate = true;
+	m_qualityAdjustTimer.restart();
 
 	requestFramebufferUpdate();
 

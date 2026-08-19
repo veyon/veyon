@@ -56,6 +56,7 @@ public:
 		return m_state;
 	}
 
+	void reset();
 	void start();
 	bool read();  // Flawfinder: ignore
 
@@ -92,11 +93,6 @@ public:
 	uint8_t lastMessageType() const
 	{
 		return static_cast<uint8_t>( m_lastMessage.constData()[0] );
-	}
-
-	const QRect& lastUpdatedRect() const
-	{
-		return m_lastUpdatedRect;
 	}
 
 protected:
@@ -155,6 +151,5 @@ private:
 	quint16 m_framebufferHeight;
 
 	QByteArray m_lastMessage;
-	QRect m_lastUpdatedRect;
 
 } ;
