@@ -48,11 +48,11 @@ TextMessageDialog::TextMessageDialog( QString &msgStr, QString &titleStr, QWidge
 
 	if (username.isEmpty())
 	{
-		ui->titleEdit->setPlaceholderText(tr("Message from teacher"));
+		ui->titleEdit->setText(tr("Message from teacher"));
 	}
 	else
 	{
-		ui->titleEdit->setPlaceholderText(tr("Message from %1").arg(username));
+		ui->titleEdit->setText(tr("Message from %1").arg(username));
 	}
 }
 
