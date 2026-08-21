@@ -26,6 +26,8 @@
 
 #include "TextMessageDialog.h"
 #include "VeyonCore.h"
+#include "PlatformPluginInterface.h"
+#include "PlatformUserFunctions.h"
 
 #include "ui_TextMessageDialog.h"
 
@@ -38,7 +40,20 @@ TextMessageDialog::TextMessageDialog( QString &msgStr, QString &titleStr, QWidge
 {
 	ui->setupUi( this );
 
-	ui->titleEdit->setPlaceholderText( tr( "Message from teacher" ) );
+	auto username = VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::FullName);
+	if (username.isEmpty())
+	{
+		username = VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName);
+	}
+
+	if (username.isEmpty())
+	{
+		ui->titleEdit->setPlaceholderText(tr("Message from teacher"));
+	}
+	else
+	{
+		ui->titleEdit->setPlaceholderText(tr("Message from %1").arg(username));
+	}
 }
 
 
