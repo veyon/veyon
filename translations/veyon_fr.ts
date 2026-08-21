@@ -2431,6 +2431,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Attributs d&apos;objet</translation>
     </message>
     <message>
+        <source>e.g. name, ou or description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
         <translation>Noms d&apos;hôtes enregistrés comme des noms de domaine pleinement nommé (FQDN, ex: monhote.exemple.org)</translation>
     </message>
@@ -2946,10 +2950,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. name, ou or description</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4509,6 +4509,10 @@ Exemple : [^-]*-(ORD[0-9]*)</translation>
     <message>
         <source>Message from teacher</source>
         <translation>Message de la part de l&apos;enseignant</translation>
+    </message>
+    <message>
+        <source>Message from %1</source>
+        <translation>Message de %1</translation>
     </message>
 </context>
 <context>

@@ -4483,6 +4483,10 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Message from teacher</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Message from %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>

@@ -708,11 +708,11 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Move selected computer up</source>
-        <translation type="unfinished"/>
+        <translation>Eraman hautatutako ordenagailua gora</translation>
     </message>
     <message>
         <source>Move selected computer down</source>
-        <translation type="unfinished"/>
+        <translation>Eraman hautatutako ordenagailua behera</translation>
     </message>
     <message>
         <source>Name</source>
@@ -736,7 +736,7 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     </message>
     <message>
         <source>Move selected location up</source>
-        <translation type="unfinished"/>
+        <translation>Mugitu hautatutako kokapena gora</translation>
     </message>
     <message>
         <source>Move selected location down</source>
@@ -2433,6 +2433,10 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <translation>Objektu-atributuak</translation>
     </message>
     <message>
+        <source>e.g. name, ou or description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
         <translation>Ostalari-izenak guztiz kualifikatutako domeinu-izen gisa gordetakoak (FQDN, adibidez, nireostalaria.adibide.org)</translation>
     </message>
@@ -2949,10 +2953,6 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
         <translation>Mapeatu edukiontzia/OU egitura 1:1 kokapenekin</translation>
-    </message>
-    <message>
-        <source>e.g. name, ou or description</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4514,6 +4514,10 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
         <source>Message from teacher</source>
         <translation>Irakaslearen mezua</translation>
     </message>
+    <message>
+        <source>Message from %1</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>TextMessageFeaturePlugin</name>
@@ -4877,15 +4881,15 @@ Adibidea: [^ -] * - (PC [0-9] *)</translation>
     </message>
     <message>
         <source>Disable touchpads and touchscreens</source>
-        <translation type="unfinished"/>
+        <translation>Desgaitu ukipen-panelak eta ukipen-pantailak</translation>
     </message>
     <message>
         <source>Disable keyboard devices</source>
-        <translation type="unfinished"/>
+        <translation>Desgaitu teklatu-gailuak</translation>
     </message>
     <message>
         <source>Disable mouse devices</source>
-        <translation type="unfinished"/>
+        <translation>Desgaitu sagu-gailuak</translation>
     </message>
     <message>
         <source>Handling of interfering windows</source>

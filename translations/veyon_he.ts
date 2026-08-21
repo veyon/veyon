@@ -2328,11 +2328,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Connection security</source>
-        <translation type="unfinished"/>
+        <translation>אבטחת חיבור</translation>
     </message>
     <message>
         <source>TLS certificate verification</source>
-        <translation type="unfinished"/>
+        <translation>אימות אישור TLS</translation>
     </message>
     <message>
         <source>Encryption protocol</source>
@@ -2340,15 +2340,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>System defaults</source>
-        <translation type="unfinished"/>
+        <translation>ברירות מחדל של המערכת</translation>
     </message>
     <message>
         <source>Never (insecure!)</source>
-        <translation type="unfinished"/>
+        <translation>אף פעם לא (לא מאובטח!)</translation>
     </message>
     <message>
         <source>Custom CA certificate file</source>
-        <translation type="unfinished"/>
+        <translation>קובץ אישור CA (רשות אישורים) בהתאמה אישית</translation>
     </message>
     <message>
         <source>None</source>
@@ -2428,6 +2428,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Object attributes</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>e.g. name, ou or description</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -2564,7 +2568,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Computer groups</source>
-        <translation type="unfinished"/>
+        <translation>קבוצות מחשבים</translation>
     </message>
     <message>
         <source>Computer containers or OUs</source>
@@ -2799,15 +2803,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>groups of computer</source>
-        <translation type="unfinished"/>
+        <translation>קבוצות של מחשבים</translation>
     </message>
     <message>
         <source>Computer not found</source>
-        <translation type="unfinished"/>
+        <translation>מחשב לא נמצא</translation>
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>לא ניתן למצוא מחשב עם שם המארח „%1”. נא לבדוק את שם המארח או את משתנה עץ המחשבים.</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2819,11 +2823,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Hostname lookup failed</source>
-        <translation type="unfinished"/>
+        <translation>איתור שם המארח נכשל</translation>
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation type="unfinished"/>
+        <translation>לא ניתן לאתר את שם המארח או את כתובת ה־IP‏ %1. נא לבדוק את הגדרות שרת ה־DNS שלך.</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
@@ -2831,7 +2835,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>location entries</source>
-        <translation type="unfinished"/>
+        <translation>רשומות מקום</translation>
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
@@ -2931,10 +2935,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. name, ou or description</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -3727,7 +3727,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Click this button to reboot all computers.</source>
-        <translation type="unfinished"/>
+        <translation>לחיצה על הכפתור הזה תפעיל את כל המחשבים מחדש.</translation>
     </message>
     <message>
         <source>Power down</source>
@@ -3735,7 +3735,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
-        <translation type="unfinished"/>
+        <translation>לחיצה על הכפתור הזה תכבה את כל המחשבים. ככה נחסכת ממך מלאכת כיבוי כל המחשבים ידנית.</translation>
     </message>
     <message>
         <source>Power down now</source>
@@ -3767,7 +3767,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>להפעיל מחדש את &lt;b&gt;כל&lt;/b&gt; המחשבים?</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
@@ -3803,7 +3803,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation type="unfinished"/>
+        <translation>הדלקה/כיבוי או הפעלת מחשב מחדש.</translation>
     </message>
     <message>
         <source>Commands for controlling power status of computers</source>
@@ -4491,6 +4491,10 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Message from teacher</source>
         <translation>הודעה מהמורה</translation>
+    </message>
+    <message>
+        <source>Message from %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

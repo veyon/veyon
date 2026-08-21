@@ -2433,6 +2433,10 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
         <translation>Nesne öznitelikleri</translation>
     </message>
     <message>
+        <source>e.g. name, ou or description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
         <translation>Tam nitelikli alan adları (FQDN, örn. myhost.example.org) olarak depolanan ana bilgisayar adları</translation>
     </message>
@@ -2949,10 +2953,6 @@ Birbirine ait anahtarların isimlerinin tüm bilgisayarlarda aynı olduğundan e
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
         <translation>Harita konteyneri/OU yapısı 1:1 konumlara göre</translation>
-    </message>
-    <message>
-        <source>e.g. name, ou or description</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4513,6 +4513,10 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Message from teacher</source>
         <translation>Öğretmenden ileti</translation>
+    </message>
+    <message>
+        <source>Message from %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

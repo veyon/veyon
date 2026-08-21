@@ -2430,6 +2430,10 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Objektattribute</translation>
     </message>
     <message>
+        <source>e.g. name, ou or description</source>
+        <translation>z.B. name, ou oder description</translation>
+    </message>
+    <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
         <translation>Hostnamen sind als vollqualifizierte Domainnamen gespeichert (FQDN, z.B. myhost.example.org)</translation>
     </message>
@@ -2946,10 +2950,6 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
         <translation>Container-/OU-Struktur 1:1 in Standorte abbilden</translation>
-    </message>
-    <message>
-        <source>e.g. name, ou or description</source>
-        <translation>z.B. name, ou oder description</translation>
     </message>
 </context>
 <context>
@@ -4510,6 +4510,10 @@ Beispiel: [^-]*-(PC[0-9]*)</translation>
     <message>
         <source>Message from teacher</source>
         <translation>Nachricht der Lehrkraft</translation>
+    </message>
+    <message>
+        <source>Message from %1</source>
+        <translation>Nachricht von %1</translation>
     </message>
 </context>
 <context>

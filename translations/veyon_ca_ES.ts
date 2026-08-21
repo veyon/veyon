@@ -2435,6 +2435,10 @@ Assegureu-vos que els noms de les claus que pertanyen entre si són idèntics en
         <translation>Atributs de l&apos;objecte</translation>
     </message>
     <message>
+        <source>e.g. name, ou or description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
         <translation>Noms d&apos;amfitrió emmagatzemats com a noms de domini plenament qualificats (FQDN, p. ex. myhost.example.org)</translation>
     </message>
@@ -2950,10 +2954,6 @@ Assegureu-vos que els noms de les claus que pertanyen entre si són idèntics en
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. name, ou or description</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4511,6 +4511,10 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Message from teacher</source>
         <translation>Missatge del professor</translation>
+    </message>
+    <message>
+        <source>Message from %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

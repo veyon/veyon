@@ -252,7 +252,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Local computer is already being accessed</source>
-        <translation type="unfinished"/>
+        <translation>本地计算机已被访问</translation>
     </message>
 </context>
 <context>
@@ -303,7 +303,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>There is no matching rule with a valid action. The access is therefore denied.</source>
-        <translation type="unfinished"/>
+        <translation>没有匹配到具有有效操作的规则。因此，访问被拒绝。</translation>
     </message>
 </context>
 <context>
@@ -419,7 +419,9 @@ The public key is used on client computers to authenticate incoming connection r
         <source>Please enter the name of the user group or role for which to import the authentication key.
 
 Make sure that the names of the keys belonging to each other are identical on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>请输入要为其导入身份验证密钥的用户组或角色的名称。
+
+请确保属于同一组的密钥在所有计算机上的名称完全一致。</translation>
     </message>
 </context>
 <context>
@@ -707,11 +709,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Move selected computer up</source>
-        <translation type="unfinished"/>
+        <translation>所选计算机上移</translation>
     </message>
     <message>
         <source>Move selected computer down</source>
-        <translation type="unfinished"/>
+        <translation>所选计算机下移</translation>
     </message>
     <message>
         <source>Name</source>
@@ -735,11 +737,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Move selected location up</source>
-        <translation type="unfinished"/>
+        <translation>所选位置上移</translation>
     </message>
     <message>
         <source>Move selected location down</source>
-        <translation type="unfinished"/>
+        <translation>所选位置下移</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -1087,7 +1089,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>No features active</source>
-        <translation type="unfinished"/>
+        <translation>未启用任何功能</translation>
     </message>
 </context>
 <context>
@@ -1118,7 +1120,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Veyon Service %1 at %2:%3</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 服务 %1 于 %2:%3</translation>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1141,7 +1143,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>未找到默认网络对象目录插件。请检查您的安装或通过 Veyon 配置器配置其他网络对象目录后端。</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1161,7 +1163,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
-        <translation type="unfinished"/>
+        <translation>无法确定此计算机的位置。这表明系统配置存在问题。“位置和计算机”面板中将不会显示任何位置和计算机。</translation>
     </message>
     <message>
         <source>Unknown location</source>
@@ -1278,15 +1280,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the Veyon Service.</source>
-        <translation type="unfinished"/>
+        <translation>无法修改 Veyon 服务的自动启动属性。</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Server.</source>
-        <translation type="unfinished"/>
+        <translation>无法为 Veyon 服务器配置防火墙。</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Worker.</source>
-        <translation type="unfinished"/>
+        <translation>无法为 Veyon Worker 配置防火墙。</translation>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1301,7 +1303,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DemoClient</name>
     <message>
         <source>Veyon Demo</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 演示</translation>
     </message>
 </context>
 <context>
@@ -1395,7 +1397,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation type="unfinished"/>
+        <translation>在此模式下，所选用户的屏幕将在所有计算机上以全屏模式显示，而用户的输入设备将被锁定。</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
@@ -1403,7 +1405,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation type="unfinished"/>
+        <translation>在此模式下，所选用户的屏幕会以窗口形式显示在所有计算机上。用户可以根据需要切换到其他窗口。</translation>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
@@ -1532,7 +1534,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
-        <translation type="unfinished"/>
+        <translation>在用户会话中启动应用程序并打开网站</translation>
     </message>
 </context>
 <context>
@@ -1628,11 +1630,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
-        <translation type="unfinished"/>
+        <translation>显示所有可用功能的名称列表。</translation>
     </message>
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation type="unfinished"/>
+        <translation>显示一个表格，其中包含所有可用功能的详细信息。这些信息包括功能描述、UID、提供相应功能的插件名称以及其他一些与实现相关的详细信息。</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
@@ -1644,11 +1646,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>ARGUMENTS</source>
-        <translation type="unfinished"/>
+        <translation>论点</translation>
     </message>
     <message>
         <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
-        <translation type="unfinished"/>
+        <translation>通过连接到远程运行的 Veyon 服务器，在指定主机上启动指定功能。功能可以通过名称或 UID 指定。使用 ``show`` 命令查看所有可用功能。根据功能的不同，可能需要指定其他参数（例如要显示的文本消息），这些参数以单个 JSON 字符串的形式编码。请参阅开发者文档了解更多信息。</translation>
     </message>
     <message>
         <source>Lock the screen</source>
@@ -1668,7 +1670,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
-        <translation type="unfinished"/>
+        <translation>通过连接到远程运行的 Veyon 服务器，停止指定主机上的指定功能。功能可以通过名称或 UID 指定。使用 ``show`` 命令查看所有可用功能。</translation>
     </message>
     <message>
         <source>Unlock the screen</source>
@@ -1708,11 +1710,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Invalid feature name or UID specified</source>
-        <translation type="unfinished"/>
+        <translation>指定的功能名称或 UID 无效</translation>
     </message>
     <message>
         <source>Error parsing the JSON-encoded arguments: %1</source>
-        <translation type="unfinished"/>
+        <translation>解析 JSON 编码的参数时出错：%1</translation>
     </message>
     <message>
         <source>Failed to initialize credentials</source>
@@ -1724,15 +1726,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Failed to send feature control message to host %1</source>
-        <translation type="unfinished"/>
+        <translation>向主机 %1 发送功能控制消息失败</translation>
     </message>
     <message>
         <source>Feature-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>与功能相关的 CLI 操作</translation>
     </message>
     <message>
         <source>Commands for controlling features</source>
-        <translation type="unfinished"/>
+        <translation>控制功能的命令</translation>
     </message>
 </context>
 <context>
@@ -1747,47 +1749,47 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Subfolder handling</source>
-        <translation type="unfinished"/>
+        <translation>子文件夹处理</translation>
     </message>
     <message>
         <source>*.* or *.docx;*.pdf (leave empty for all files)</source>
-        <translation type="unfinished"/>
+        <translation>*.* 或 *.docx;*.pdf（留空则表示所有文件）</translation>
     </message>
     <message>
         <source>File pattern</source>
-        <translation type="unfinished"/>
+        <translation>文件模式</translation>
     </message>
     <message>
         <source>Local destination directory</source>
-        <translation type="unfinished"/>
+        <translation>本地目标目录</translation>
     </message>
     <message>
         <source>Relative (Documents/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
-        <translation type="unfinished"/>
+        <translation>对于已配置的目录，可以是相对路径（Documents/）、绝对路径（/tmp/ 或 C:\TMP）或留空。</translation>
     </message>
     <message>
         <source>Source directory on remote computers</source>
-        <translation type="unfinished"/>
+        <translation>远程计算机上的源目录</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>默认</translation>
     </message>
     <message>
         <source>Files in source directory only</source>
-        <translation type="unfinished"/>
+        <translation>仅源目录中的文件</translation>
     </message>
     <message>
         <source>Files in source directory and subdirectories</source>
-        <translation type="unfinished"/>
+        <translation>源目录及其子目录中的文件</translation>
     </message>
     <message>
         <source>Collected files</source>
-        <translation type="unfinished"/>
+        <translation>收集的文件</translation>
     </message>
     <message>
         <source>Overall progress</source>
-        <translation type="unfinished"/>
+        <translation>总体进度</translation>
     </message>
     <message>
         <source>Start</source>
@@ -1799,30 +1801,30 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Open output directory</source>
-        <translation type="unfinished"/>
+        <translation>打开输出目录</translation>
     </message>
     <message>
         <source>Enter collection name</source>
-        <translation type="unfinished"/>
+        <translation>输入收藏名称</translation>
     </message>
     <message>
         <source>Please enter a name for this file collection:</source>
-        <translation type="unfinished"/>
+        <translation>请输入此文件集合的名称：</translation>
     </message>
     <message>
         <source>Output directory creation failed</source>
-        <translation type="unfinished"/>
+        <translation>无法创建输出目录</translation>
     </message>
     <message>
         <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
-        <translation type="unfinished"/>
+        <translation>输出目录“%1”不存在，且无法创建。请检查配置以及所配置目标目录的文件权限。</translation>
     </message>
 </context>
 <context>
     <name>FileCollectTreeModel</name>
     <message>
         <source>Progress</source>
-        <translation type="unfinished"/>
+        <translation>进度</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1830,7 +1832,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Number of files</source>
-        <translation type="unfinished"/>
+        <translation>文件数量</translation>
     </message>
 </context>
 <context>
@@ -1841,23 +1843,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Settings for distributing files</source>
-        <translation type="unfinished"/>
+        <translation>文件分发设置</translation>
     </message>
     <message>
         <source>Settings for collecting files</source>
-        <translation type="unfinished"/>
+        <translation>文件收集设置</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished"/>
+        <translation>否</translation>
     </message>
     <message>
         <source>Prefix filenames with grouping attribute</source>
-        <translation type="unfinished"/>
+        <translation>在文件名中添加分组属性作为前缀</translation>
     </message>
     <message>
         <source>Store files in subdirectories based on the grouping attribute</source>
-        <translation type="unfinished"/>
+        <translation>根据分组属性将文件存储在子目录中</translation>
     </message>
     <message>
         <source>None</source>
@@ -1865,99 +1867,99 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>First part of user name</source>
-        <translation type="unfinished"/>
+        <translation>用户名的前半部分</translation>
     </message>
     <message>
         <source>Last part of user name</source>
-        <translation type="unfinished"/>
+        <translation>用户名的最后一部分</translation>
     </message>
     <message>
         <source>Collect all files from configured source directory</source>
-        <translation type="unfinished"/>
+        <translation>从配置的源目录收集所有文件</translation>
     </message>
     <message>
         <source>Prompt user for folder to collect</source>
-        <translation type="unfinished"/>
+        <translation>提示用户选择要收集的文件夹</translation>
     </message>
     <message>
         <source>Prompt user for files to collect</source>
-        <translation type="unfinished"/>
+        <translation>提示用户选择要收集的文件</translation>
     </message>
     <message>
         <source>Grouping attribute 3:</source>
-        <translation type="unfinished"/>
+        <translation>分组属性 3：</translation>
     </message>
     <message>
         <source>Destination directory:</source>
-        <translation type="unfinished"/>
+        <translation>目标目录：</translation>
     </message>
     <message>
         <source>Store collected files in:</source>
-        <translation type="unfinished"/>
+        <translation>收集的文件存储在：</translation>
     </message>
     <message>
         <source>Group collected files:</source>
-        <translation type="unfinished"/>
+        <translation>小组收集的文件：</translation>
     </message>
     <message>
         <source>Grouping attribute 1:</source>
-        <translation type="unfinished"/>
+        <translation>分组属性 1：</translation>
     </message>
     <message>
         <source>Grouping attribute 2:</source>
-        <translation type="unfinished"/>
+        <translation>分组属性 2：</translation>
     </message>
     <message>
         <source>Directly in the destination directory</source>
-        <translation type="unfinished"/>
+        <translation>直接在目标目录中</translation>
     </message>
     <message>
         <source>Subdirectory based on date &amp; time</source>
-        <translation type="unfinished"/>
+        <translation>基于日期和时间的子目录</translation>
     </message>
     <message>
         <source>Subdirectory with name entered by the collecting user</source>
-        <translation type="unfinished"/>
+        <translation>由采集用户输入名称的子目录</translation>
     </message>
     <message>
         <source>Files to collect:</source>
-        <translation type="unfinished"/>
+        <translation>需收集的文件：</translation>
     </message>
     <message>
         <source>Files to exclude:</source>
-        <translation type="unfinished"/>
+        <translation>要排除的文件：</translation>
     </message>
     <message>
         <source>e.g. *.lnk or *.desktop</source>
-        <translation type="unfinished"/>
+        <translation>例如 *.lnk 或 *.desktop</translation>
     </message>
     <message>
         <source>Collect files recursively</source>
-        <translation type="unfinished"/>
+        <translation>递归收集文件</translation>
     </message>
     <message>
         <source>Destination directory (remote):</source>
-        <translation type="unfinished"/>
+        <translation>目标目录（远程）：</translation>
     </message>
     <message>
         <source>Default source directory:</source>
-        <translation type="unfinished"/>
+        <translation>默认源目录：</translation>
     </message>
     <message>
         <source>Source directory (remote):</source>
-        <translation type="unfinished"/>
+        <translation>源目录（远程）：</translation>
     </message>
     <message>
         <source>User login name</source>
-        <translation type="unfinished"/>
+        <translation>用户登录名</translation>
     </message>
     <message>
         <source>Full name of user</source>
-        <translation type="unfinished"/>
+        <translation>用户全名</translation>
     </message>
     <message>
         <source>Device name</source>
-        <translation type="unfinished"/>
+        <translation>设备名称</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1972,7 +1974,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileTransferController</name>
     <message>
         <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
-        <translation type="unfinished"/>
+        <translation>无法打开文件 %1 进行读取。请检查您的权限。该文件将被跳过，其余文件仍将继续传输。</translation>
     </message>
 </context>
 <context>
@@ -1987,11 +1989,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Destination directory on remote computers:</source>
-        <translation type="unfinished"/>
+        <translation>远程计算机上的目标目录：</translation>
     </message>
     <message>
         <source>Relative (Desktop/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
-        <translation type="unfinished"/>
+        <translation>配置目录可以是相对路径（Desktop/）、绝对路径（/tmp/ 或 C:\TMP）或留空。</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -2019,26 +2021,26 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>File transfer error</source>
-        <translation type="unfinished"/>
+        <translation>文件传输错误</translation>
     </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
     <message>
         <source>Distribute</source>
-        <translation type="unfinished"/>
+        <translation>分发</translation>
     </message>
     <message>
         <source>Click this button to distribute files from your computer to all computers.</source>
-        <translation type="unfinished"/>
+        <translation>点击此按钮，将文件从您的计算机分发到所有计算机。</translation>
     </message>
     <message>
         <source>Collect</source>
-        <translation type="unfinished"/>
+        <translation>收集</translation>
     </message>
     <message>
         <source>Click this button to collect files from all computers to your computer.</source>
-        <translation type="unfinished"/>
+        <translation>点击此按钮，将所有计算机上的文件收集到您的计算机上。</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
@@ -2050,35 +2052,35 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Received file %1.</source>
-        <translation type="unfinished"/>
+        <translation>已接收文件 %1。</translation>
     </message>
     <message>
         <source>The file %1 is to be collected, but is still open in an application.</source>
-        <translation type="unfinished"/>
+        <translation>文件 %1 待收集，但仍被某个应用程序打开。</translation>
     </message>
     <message>
         <source>The file %1 is to be collected, but is still open in the application &lt;b&gt;%2&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>文件 %1 待收集，但仍在应用程序 &lt;b&gt;%2&lt;/b&gt;中处于打开状态。</translation>
     </message>
     <message>
         <source>Please save your changes and close the program so that the transfer can be completed.</source>
-        <translation type="unfinished"/>
+        <translation>请保存更改并关闭程序，以便完成传输。</translation>
     </message>
     <message>
         <source>Are you sure you want to skip transferring the file %1?</source>
-        <translation type="unfinished"/>
+        <translation>您确定要跳过传输文件 %1 吗？</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it already exists.</source>
-        <translation type="unfinished"/>
+        <translation>无法接收文件 %1，因为它已存在。</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it could not be opened for writing!</source>
-        <translation type="unfinished"/>
+        <translation>无法接收文件 %1，因为它无法以写入模式打开！</translation>
     </message>
     <message>
         <source>Transfer files between computers</source>
-        <translation type="unfinished"/>
+        <translation>在计算机之间传输文件</translation>
     </message>
 </context>
 <context>
@@ -2101,7 +2103,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Native</source>
-        <translation type="unfinished"/>
+        <translation>原生</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -2217,7 +2219,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation type="unfinished"/>
+        <translation>需要暂时停止 Veyon 服务以删除日志文件。是否继续？</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -2245,7 +2247,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Include user groups from domain</source>
-        <translation type="unfinished"/>
+        <translation>包含域中的用户组</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
@@ -2253,7 +2255,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>No user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>未找到用户组插件。请检查您的安装！</translation>
     </message>
     <message>
         <source>Color scheme:</source>
@@ -2272,7 +2274,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>HeadlessVncServer</name>
     <message>
         <source>Headless VNC server</source>
-        <translation type="unfinished"/>
+        <translation>无头 VNC 服务器</translation>
     </message>
 </context>
 <context>
@@ -2309,7 +2311,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Query timeout</source>
-        <translation type="unfinished"/>
+        <translation>查询超时</translation>
     </message>
     <message>
         <source>Bind DN</source>
@@ -2432,6 +2434,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>对象属性</translation>
     </message>
     <message>
+        <source>e.g. name, ou or description</source>
+        <translation>例如：姓名、ou 或描述</translation>
+    </message>
+    <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
         <translation>主机名称存储为完全限定域名（FQDN，例如 myhost.example.org）</translation>
     </message>
@@ -2541,7 +2547,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
-        <translation type="unfinished"/>
+        <translation>查询嵌套用户组（仅 AD 支持）</translation>
     </message>
     <message>
         <source>Group member identification</source>
@@ -2549,7 +2555,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Distinguished name (Samba/AD/FreeIPA)</source>
-        <translation type="unfinished"/>
+        <translation>专有名称（Samba/AD/FreeIPA）</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -2947,11 +2953,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. name, ou or description</source>
-        <translation type="unfinished"/>
+        <translation>容器/组织单元结构与位置的一对一映射</translation>
     </message>
 </context>
 <context>
@@ -2998,7 +3000,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>LDAP/AD support for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 的 LDAP/AD 支持</translation>
     </message>
 </context>
 <context>
@@ -3021,7 +3023,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
-        <translation type="unfinished"/>
+        <translation>服务器启动前的最小会话持续时间</translation>
     </message>
     <message>
         <source>User login</source>
@@ -3029,7 +3031,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Login key sequence</source>
-        <translation type="unfinished"/>
+        <translation>登录键序列</translation>
     </message>
     <message>
         <source>Input start delay</source>
@@ -3037,11 +3039,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Key press interval for text input</source>
-        <translation type="unfinished"/>
+        <translation>文本输入按键间隔</translation>
     </message>
     <message>
         <source>Key press interval to control input fields</source>
-        <translation type="unfinished"/>
+        <translation>按键间隔控制输入字段</translation>
     </message>
 </context>
 <context>
@@ -3070,7 +3072,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Disable tooltips</source>
-        <translation type="unfinished"/>
+        <translation>禁用工具提示</translation>
     </message>
     <message>
         <source>Show icons only</source>
@@ -3161,7 +3163,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"/>
+        <translation>自动调整计算机图标的大小</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -3193,7 +3195,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>幻灯片</translation>
     </message>
     <message>
         <source>Spotlight</source>
@@ -3201,11 +3203,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Only show computers with logged on users</source>
-        <translation type="unfinished"/>
+        <translation>仅显示已登录用户的计算机</translation>
     </message>
     <message>
         <source>Veyon Configurator %1</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 配置器 %1</translation>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3241,7 +3243,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
-        <translation type="unfinished"/>
+        <translation>本地配置后端报告配置不可写入！请以更高权限运行 Veyon Configurator。</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
@@ -3249,7 +3251,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
-        <translation type="unfinished"/>
+        <translation>未找到身份验证密钥文件，或者您现有的密钥文件已过期。请使用 Veyon Configurator 创建新的密钥文件，或者通过 Veyon Configurator 设置登录身份验证。否则，您将无法使用 Veyon 访问计算机。</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3265,21 +3267,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
-        <translation type="unfinished"/>
+        <translation>功能“%1”当前处于活动状态。请在关闭 Veyon 之前将其停止。</translation>
     </message>
     <message>
         <source>Use custom computer arrangement.
 
 Press and hold to load arrangement from a file or save current arrangement to a file.</source>
-        <translation type="unfinished"/>
+        <translation>使用自定义电脑编曲。
+
+按住此键可从文件中加载编曲或将当前编曲保存到文件。</translation>
     </message>
     <message>
         <source>Load computer positions</source>
-        <translation type="unfinished"/>
+        <translation>加载计算机位置</translation>
     </message>
     <message>
         <source>Save computer positions</source>
-        <translation type="unfinished"/>
+        <translation>保存计算机位置</translation>
     </message>
 </context>
 <context>
@@ -3318,7 +3322,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
+        <translation>缩略图间距</translation>
     </message>
     <message>
         <source> px</source>
@@ -3342,7 +3346,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Only last part of user name</source>
-        <translation type="unfinished"/>
+        <translation>仅限用户名的最后一部分</translation>
     </message>
     <message>
         <source>Only computer name</source>
@@ -3362,59 +3366,59 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"/>
+        <translation>缩略图纵横比</translation>
     </message>
     <message>
         <source>Highest</source>
-        <translation type="unfinished"/>
+        <translation>最高</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished"/>
+        <translation>高</translation>
     </message>
     <message>
         <source>Medium</source>
-        <translation type="unfinished"/>
+        <translation>中等</translation>
     </message>
     <message>
         <source>Low</source>
-        <translation type="unfinished"/>
+        <translation>低</translation>
     </message>
     <message>
         <source>Lowest</source>
-        <translation type="unfinished"/>
+        <translation>最低</translation>
     </message>
     <message>
         <source>Image quality in monitoring mode</source>
-        <translation type="unfinished"/>
+        <translation>监控模式下的图像质量</translation>
     </message>
     <message>
         <source>Remote access image quality</source>
-        <translation type="unfinished"/>
+        <translation>远程访问图像质量</translation>
     </message>
     <message>
         <source>Identify users in guest sessions</source>
-        <translation type="unfinished"/>
+        <translation>识别访客会话中的用户</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"/>
+        <translation>从不</translation>
     </message>
     <message>
         <source>If login name matches</source>
-        <translation type="unfinished"/>
+        <translation>如果登录名匹配</translation>
     </message>
     <message>
         <source>If full name matches</source>
-        <translation type="unfinished"/>
+        <translation>如果全名匹配</translation>
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>来宾</translation>
     </message>
     <message>
         <source>Guest user identity extension</source>
-        <translation type="unfinished"/>
+        <translation>访客用户身份扩展</translation>
     </message>
     <message>
         <source>None</source>
@@ -3422,11 +3426,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>前缀</translation>
     </message>
     <message>
         <source>Suffix</source>
-        <translation type="unfinished"/>
+        <translation>后缀</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3446,7 +3450,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"/>
+        <translation>自动调整电脑图标大小</translation>
     </message>
     <message>
         <source>Automatically open computer select panel</source>
@@ -3502,7 +3506,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
-        <translation type="unfinished"/>
+        <translation>在与主窗口相同的屏幕上打开功能窗口</translation>
     </message>
     <message>
         <source>Features</source>
@@ -3522,23 +3526,23 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Always expand all locations</source>
-        <translation type="unfinished"/>
+        <translation>始终展开所有位置</translation>
     </message>
     <message>
         <source>Configuration templates</source>
-        <translation type="unfinished"/>
+        <translation>配置模板</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished"/>
+        <translation>高级</translation>
     </message>
     <message>
         <source>Computer name source</source>
-        <translation type="unfinished"/>
+        <translation>计算机名称来源</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>默认</translation>
     </message>
     <message>
         <source>Host address</source>
@@ -3546,35 +3550,35 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Session client address</source>
-        <translation type="unfinished"/>
+        <translation>会话客户端地址</translation>
     </message>
     <message>
         <source>Session client name</source>
-        <translation type="unfinished"/>
+        <translation>会话客户端名称</translation>
     </message>
     <message>
         <source>Session host name</source>
-        <translation type="unfinished"/>
+        <translation>会话主机名</translation>
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>会话元数据</translation>
     </message>
     <message>
         <source>Full name of user</source>
-        <translation type="unfinished"/>
+        <translation>用户全名</translation>
     </message>
     <message>
         <source>User login name</source>
-        <translation type="unfinished"/>
+        <translation>用户登录名</translation>
     </message>
     <message>
         <source>Computer UID role</source>
-        <translation type="unfinished"/>
+        <translation>计算机 UID 角色</translation>
     </message>
     <message>
         <source>Session meta data hash</source>
-        <translation type="unfinished"/>
+        <translation>会话元数据哈希</translation>
     </message>
 </context>
 <context>
@@ -3589,31 +3593,31 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Query application version of the server</source>
-        <translation type="unfinished"/>
+        <translation>查询服务器的应用程序版本</translation>
     </message>
     <message>
         <source>Query active features</source>
-        <translation type="unfinished"/>
+        <translation>查询活动功能</translation>
     </message>
     <message>
         <source>Query properties of remotely available screens</source>
-        <translation type="unfinished"/>
+        <translation>查询远程可用屏幕的属性</translation>
     </message>
     <message>
         <source>Identify users in guest sessions</source>
-        <translation type="unfinished"/>
+        <translation>识别访客会话中的用户</translation>
     </message>
     <message>
         <source>Identification request</source>
-        <translation type="unfinished"/>
+        <translation>身份识别请求</translation>
     </message>
     <message>
         <source>Please enter your name:</source>
-        <translation type="unfinished"/>
+        <translation>请输入您的姓名：</translation>
     </message>
     <message>
         <source>First name + last name</source>
-        <translation type="unfinished"/>
+        <translation>名 + 姓</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3685,18 +3689,18 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>PipeWireVncServer</name>
     <message>
         <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
-        <translation type="unfinished"/>
+        <translation>Wayland VNC 服务器（PipeWire/XDG Desktop Portal）</translation>
     </message>
 </context>
 <context>
     <name>PluginCommands</name>
     <message>
         <source>List names of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>列出所有已安装插件的名称</translation>
     </message>
     <message>
         <source>Show table with details of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>显示包含所有已安装插件详细信息的表格</translation>
     </message>
     <message>
         <source>Name</source>
@@ -3716,11 +3720,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>插件相关的 CLI 操作</translation>
     </message>
     <message>
         <source>Commands for managing plugins</source>
-        <translation type="unfinished"/>
+        <translation>插件管理命令</translation>
     </message>
 </context>
 <context>
@@ -3799,7 +3803,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>您确定要关闭选定的计算机吗？</translation>
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
@@ -3865,7 +3869,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Exchange clipboard contents</source>
-        <translation type="unfinished"/>
+        <translation>交换剪贴板内容</translation>
     </message>
     <message>
         <source>Show help about command</source>
@@ -3877,7 +3881,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
-        <translation type="unfinished"/>
+        <translation>目前尚未选择任何计算机，您可以输入计算机的主机名或 IP 地址以手动访问：</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
@@ -3888,11 +3892,11 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - Veyon Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - Veyon 远程访问</translation>
     </message>
     <message>
         <source>%1 - %2 - Veyon Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - Veyon 远程访问</translation>
     </message>
 </context>
 <context>
@@ -3998,7 +4002,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
-        <translation type="unfinished"/>
+        <translation>为了让用户完全集中注意力，您可以使用此按钮锁定他们的电脑。在此模式下，所有输入设备都将被锁定，但桌面仍然可见。</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
@@ -4021,7 +4025,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
-        <translation type="unfinished"/>
+        <translation>无法打开屏幕截图文件 %1 进行写入。</translation>
     </message>
 </context>
 <context>
@@ -4090,31 +4094,31 @@ Please save your work and close all programs.</source>
     <name>ServerAccessControlManager</name>
     <message>
         <source>Requested authentication method not available</source>
-        <translation type="unfinished"/>
+        <translation>请求的身份验证方法不可用</translation>
     </message>
     <message>
         <source>Access allowed by rule &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>规则“%1”允许的访问</translation>
     </message>
     <message>
         <source>Access denied by rule &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>规则“%1”拒绝访问</translation>
     </message>
     <message>
         <source>No rule allowed access</source>
-        <translation type="unfinished"/>
+        <translation>没有规则允许访问</translation>
     </message>
     <message>
         <source>Accessing user not member of an authorized user group</source>
-        <translation type="unfinished"/>
+        <translation>访问用户并非授权用户组成员</translation>
     </message>
     <message>
         <source>User has denied access</source>
-        <translation type="unfinished"/>
+        <translation>用户已拒绝访问</translation>
     </message>
     <message>
         <source>User confirmed access</source>
-        <translation type="unfinished"/>
+        <translation>用户已确认访问</translation>
     </message>
 </context>
 <context>
@@ -4133,11 +4137,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Maximum simultaneous server connections</source>
-        <translation type="unfinished"/>
+        <translation>最大并发服务器连接数</translation>
     </message>
     <message>
         <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
-        <translation type="unfinished"/>
+        <translation>限制同时进行的远程连接数，以防止服务器资源耗尽。</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4169,7 +4173,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Local session mode (single server instance for primary local session)</source>
-        <translation type="unfinished"/>
+        <translation>本地会话模式（主本地会话使用单个服务器实例）</translation>
     </message>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
@@ -4179,23 +4183,23 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation type="unfinished"/>
+        <translation>活动会话模式（单个服务器实例用于本地或远程活动会话）</translation>
     </message>
     <message>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
+        <translation>多会话模式（每个本地桌面会话和远程桌面会话使用不同的服务器实例）</translation>
     </message>
     <message>
         <source>Maximum session count</source>
-        <translation type="unfinished"/>
+        <translation>最大会话数</translation>
     </message>
     <message>
         <source>Network port numbers</source>
-        <translation type="unfinished"/>
+        <translation>网络端口号</translation>
     </message>
     <message>
         <source>Veyon server</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 服务器</translation>
     </message>
     <message>
         <source>Internal VNC server</source>
@@ -4203,7 +4207,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Feature manager</source>
-        <translation type="unfinished"/>
+        <translation>功能管理器</translation>
     </message>
     <message>
         <source>Demo server</source>
@@ -4211,7 +4215,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Miscellaneous settings</source>
-        <translation type="unfinished"/>
+        <translation>其他设置</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
@@ -4223,7 +4227,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Disable clipboard synchronization</source>
-        <translation type="unfinished"/>
+        <translation>禁用剪贴板同步</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -4239,7 +4243,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
-        <translation type="unfinished"/>
+        <translation>所有设置已成功保存。要使设置生效，需要重启 Veyon 服务。现在重启吗？</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4247,11 +4251,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>会话元数据</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"/>
+        <translation>内容</translation>
     </message>
     <message>
         <source>None</source>
@@ -4259,29 +4263,31 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Value of an environment variable</source>
-        <translation type="unfinished"/>
+        <translation>环境变量的值</translation>
     </message>
     <message>
         <source>Value of a registry key</source>
-        <translation type="unfinished"/>
+        <translation>注册表项的值</translation>
     </message>
     <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
 
 Example: [^-]*-(PC[0-9]*)</source>
-        <translation type="unfinished"/>
+        <translation>您可以选择输入一个包含捕获组的正则表达式，以提取计算机名称的一部分，并将其用作该计算机的显示名称。
+
+示例：[^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
-        <translation type="unfinished"/>
+        <translation>启用此选项后，无论本地会话还是远程会话，都应为当前活动会话启动单个 Veyon Server 实例。</translation>
     </message>
     <message>
         <source>Environment variable name</source>
-        <translation type="unfinished"/>
+        <translation>环境变量名称</translation>
     </message>
     <message>
         <source>Registry key name</source>
-        <translation type="unfinished"/>
+        <translation>注册表项名称</translation>
     </message>
 </context>
 <context>
@@ -4292,23 +4298,23 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Starting %1</source>
-        <translation type="unfinished"/>
+        <translation>正在启动 %1</translation>
     </message>
     <message>
         <source>Stopping %1</source>
-        <translation type="unfinished"/>
+        <translation>正在停止 %1</translation>
     </message>
     <message>
         <source>Restarting %1</source>
-        <translation type="unfinished"/>
+        <translation>正在重新启动 %1</translation>
     </message>
     <message>
         <source>Registering %1</source>
-        <translation type="unfinished"/>
+        <translation>正在注册 %1</translation>
     </message>
     <message>
         <source>Unregistering %1</source>
-        <translation type="unfinished"/>
+        <translation>正在取消注册 %1</translation>
     </message>
 </context>
 <context>
@@ -4366,7 +4372,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon CLI</source>
-        <translation type="unfinished"/>
+        <translation>Veyon CLI 的交互式 shell 和脚本执行</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
@@ -4377,15 +4383,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>上一个</translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation type="unfinished"/>
+        <translation>开始/暂停</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished"/>
+        <translation>下一个</translation>
     </message>
     <message>
         <source>Duration:</source>
@@ -4393,18 +4399,18 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>View in separate window</source>
-        <translation type="unfinished"/>
+        <translation>在新窗口中查看</translation>
     </message>
     <message>
         <source>Veyon Master – Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Master – 幻灯片</translation>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation type="unfinished"/>
+        <translation>单击鼠标中键或单击下面的第一个按钮来添加计算机。</translation>
     </message>
     <message>
         <source>Add selected computers</source>
@@ -4424,11 +4430,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation type="unfinished"/>
+        <translation>请至少选择一台计算机添加。</translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
+        <translation>请至少选择一台计算机进行移除。</translation>
     </message>
 </context>
 <context>
@@ -4447,7 +4453,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Remember and add to application menu</source>
-        <translation type="unfinished"/>
+        <translation>记住并添加到应用程序菜单</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
@@ -4455,7 +4461,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
-        <translation type="unfinished"/>
+        <translation>请输入要在所选计算机上启动的应用程序。多个应用程序可以分行显示。</translation>
     </message>
 </context>
 <context>
@@ -4499,15 +4505,19 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Title:</source>
-        <translation type="unfinished"/>
+        <translation>标题：</translation>
     </message>
     <message>
         <source>Optional custom title for the message window</source>
-        <translation type="unfinished"/>
+        <translation>消息窗口的可选自定义标题</translation>
     </message>
     <message>
         <source>Message from teacher</source>
         <translation>来自教师的消息</translation>
+    </message>
+    <message>
+        <source>Message from %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4537,7 +4547,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
+        <translation>CPU 使用率最高</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
@@ -4634,11 +4644,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>No command given</source>
-        <translation type="unfinished"/>
+        <translation>未发出任何命令</translation>
     </message>
     <message>
         <source>Invalid command given</source>
-        <translation type="unfinished"/>
+        <translation>命令无效</translation>
     </message>
     <message>
         <source>Plugin not licensed</source>
@@ -4650,7 +4660,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Unknown command result</source>
-        <translation type="unfinished"/>
+        <translation>未知命令结果</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -4690,7 +4700,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>来宾</translation>
     </message>
 </context>
 <context>
@@ -4701,7 +4711,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>无法保存您的个人设置！请使用 Veyon 配置器检查用户配置文件路径。</translation>
     </message>
 </context>
 <context>
@@ -4715,7 +4725,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>WebApiConfigurationPage</name>
     <message>
         <source>Web API</source>
-        <translation type="unfinished"/>
+        <translation>Web API</translation>
     </message>
     <message>
         <source>General</source>
@@ -4735,11 +4745,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Lifetime</source>
-        <translation type="unfinished"/>
+        <translation>终身</translation>
     </message>
     <message>
         <source> h</source>
-        <translation type="unfinished"/>
+        <translation> h</translation>
     </message>
     <message>
         <source> s</source>
@@ -4747,7 +4757,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Idle timeout</source>
-        <translation type="unfinished"/>
+        <translation>空闲超时</translation>
     </message>
     <message>
         <source>Authentication timeout</source>
@@ -4755,7 +4765,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Maximum number of open connections</source>
-        <translation type="unfinished"/>
+        <translation>最大开放连接数</translation>
     </message>
     <message>
         <source>Connection encryption</source>
@@ -4767,7 +4777,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>TLS private key file</source>
-        <translation type="unfinished"/>
+        <translation>TLS 私钥文件</translation>
     </message>
     <message>
         <source>...</source>
@@ -4775,7 +4785,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
-        <translation type="unfinished"/>
+        <translation>使用 HTTPS 和 TLS 1.3 代替 HTTP</translation>
     </message>
 </context>
 <context>
@@ -4786,19 +4796,19 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Failed to start WebAPI server at port %1</source>
-        <translation type="unfinished"/>
+        <translation>无法在端口 %1 启动 WebAPI 服务器</translation>
     </message>
     <message>
         <source>WebAPI server running at port %1</source>
-        <translation type="unfinished"/>
+        <translation>WebAPI 服务器运行在端口 %1</translation>
     </message>
     <message>
         <source>Provide access to a computer via HTTP</source>
-        <translation type="unfinished"/>
+        <translation>通过 HTTP 提供对计算机的访问权限</translation>
     </message>
     <message>
         <source>Commands for running the WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>运行 WebAPI 服务器的命令</translation>
     </message>
 </context>
 <context>
@@ -4844,7 +4854,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation type="unfinished"/>
+        <translation>确认法律声明（用户登录前显示的消息）</translation>
     </message>
     <message>
         <source>Screen lock</source>
@@ -4864,27 +4874,27 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Use custom power scheme with disabled power and sleep buttons</source>
-        <translation type="unfinished"/>
+        <translation>使用自定义电源方案，禁用电源和睡眠按钮</translation>
     </message>
     <message>
         <source>Use input device interception driver</source>
-        <translation type="unfinished"/>
+        <translation>使用输入设备拦截驱动程序</translation>
     </message>
     <message>
         <source>Disable touchpads and touchscreens</source>
-        <translation type="unfinished"/>
+        <translation>禁用触摸板和触摸屏</translation>
     </message>
     <message>
         <source>Disable keyboard devices</source>
-        <translation type="unfinished"/>
+        <translation>禁用键盘设备</translation>
     </message>
     <message>
         <source>Disable mouse devices</source>
-        <translation type="unfinished"/>
+        <translation>禁用鼠标设备</translation>
     </message>
     <message>
         <source>Handling of interfering windows</source>
-        <translation type="unfinished"/>
+        <translation>处理干扰窗口</translation>
     </message>
     <message>
         <source>None</source>
@@ -4892,15 +4902,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Fix window attributes</source>
-        <translation type="unfinished"/>
+        <translation>修复窗口属性</translation>
     </message>
     <message>
         <source>Terminate related process</source>
-        <translation type="unfinished"/>
+        <translation>终止相关进程</translation>
     </message>
     <message>
         <source>Close session</source>
-        <translation type="unfinished"/>
+        <translation>关闭会话</translation>
     </message>
 </context>
 <context>
@@ -4922,11 +4932,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>服务“%1”无法安装（错误 %2）。</translation>
     </message>
     <message>
         <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>无法更改服务“%1”的故障操作配置（错误 %2）。</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
@@ -4934,7 +4944,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>服务“%1”无法卸载（错误 %2）。</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
@@ -4942,7 +4952,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>无法更改服务“%1”的启动类型（错误 %2）。</translation>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>

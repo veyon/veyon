@@ -2430,6 +2430,10 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Attributi degli oggetti</translation>
     </message>
     <message>
+        <source>e.g. name, ou or description</source>
+        <translation>es. nome, ou o descrizione</translation>
+    </message>
+    <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
         <translation>Nomi host memorizzati come nomi di dominio completi (FQDN, ad es. Myhost.example.org)</translation>
     </message>
@@ -2936,10 +2940,6 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
         <translation>Mappa struttura del container/UO 1:1 alle posizioni</translation>
-    </message>
-    <message>
-        <source>e.g. name, ou or description</source>
-        <translation>es. nome, ou o descrizione</translation>
     </message>
 </context>
 <context>
@@ -4499,6 +4499,10 @@ Esempio: [^-]*-(PC[0-9]*)</translation>
     <message>
         <source>Message from teacher</source>
         <translation>Messaggio dall&apos;insegnante</translation>
+    </message>
+    <message>
+        <source>Message from %1</source>
+        <translation>Messaggio da %1</translation>
     </message>
 </context>
 <context>

@@ -2430,6 +2430,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Атрибути об’єкта</translation>
     </message>
     <message>
+        <source>e.g. name, ou or description</source>
+        <translation>наприклад, назва, ou або опис</translation>
+    </message>
+    <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
         <translation>Назви вузлів збережено як повні доменні назви (FQDN, наприклад myhost.example.org)</translation>
     </message>
@@ -2948,10 +2952,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
         <translation>Відтворити структуру контейнера/ОО 1:1 у місцях</translation>
-    </message>
-    <message>
-        <source>e.g. name, ou or description</source>
-        <translation>наприклад, назва, ou або опис</translation>
     </message>
 </context>
 <context>
@@ -4512,6 +4512,10 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Message from teacher</source>
         <translation>Повідомлення від вчителя</translation>
+    </message>
+    <message>
+        <source>Message from %1</source>
+        <translation>Повідомлення від %1</translation>
     </message>
 </context>
 <context>

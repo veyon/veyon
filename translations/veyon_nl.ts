@@ -2435,6 +2435,10 @@ Translated with DeepL</translation>
         <translation>Object attributen</translation>
     </message>
     <message>
+        <source>e.g. name, ou or description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
         <translation>Hostnamen opgeslagen als volledig gekwalificeerde domeinnamen (FQDN, bijv. myhost.example.org)</translation>
     </message>
@@ -2951,10 +2955,6 @@ Translated with DeepL</translation>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
         <translation>Kaartcontainer/OU-structuur 1:1 naar locaties</translation>
-    </message>
-    <message>
-        <source>e.g. name, ou or description</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4515,6 +4515,10 @@ Voorbeeld: [^-]*-(PC[0-9]*)</translation>
     <message>
         <source>Message from teacher</source>
         <translation>Bericht van de leraar</translation>
+    </message>
+    <message>
+        <source>Message from %1</source>
+        <translation>Bericht van %1</translation>
     </message>
 </context>
 <context>

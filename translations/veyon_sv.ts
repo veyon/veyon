@@ -2433,6 +2433,10 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Objektets attribut</translation>
     </message>
     <message>
+        <source>e.g. name, ou or description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
         <translation>Värdnamn lagrade som fullständigt kvalificerade domännamn (FQDN, t.ex. myhost.example.org)</translation>
     </message>
@@ -2948,10 +2952,6 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>e.g. name, ou or description</source>
         <translation type="unfinished"/>
     </message>
 </context>
@@ -4513,6 +4513,10 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
     <message>
         <source>Message from teacher</source>
         <translation>Meddelande från lärare</translation>
+    </message>
+    <message>
+        <source>Message from %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

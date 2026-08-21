@@ -43,7 +43,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>About Veyon %1</source>
-        <translation type="unfinished"/>
+        <translation>關於 Veyon %1</translation>
     </message>
 </context>
 <context>
@@ -708,11 +708,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Move selected computer up</source>
-        <translation type="unfinished"/>
+        <translation>將選取的機器上移</translation>
     </message>
     <message>
         <source>Move selected computer down</source>
-        <translation type="unfinished"/>
+        <translation>將選取的機器下移</translation>
     </message>
     <message>
         <source>Name</source>
@@ -736,11 +736,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Move selected location up</source>
-        <translation type="unfinished"/>
+        <translation>將選取的位置上移</translation>
     </message>
     <message>
         <source>Move selected location down</source>
-        <translation type="unfinished"/>
+        <translation>將選取的位置下移</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -1119,7 +1119,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Veyon Service %1 at %2:%3</source>
-        <translation type="unfinished"/>
+        <translation>位於 %2:%3 的 Veyon Service %1</translation>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1142,7 +1142,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>找不到預設網路物件目錄外掛程式。 請檢查您的安裝或透過 Veyon Configurator設定不同的網路物件目錄後端。</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1162,7 +1162,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
-        <translation>無法確定這個電腦的位置。 這表明系統組態有問題。 在「位置和電腦」面板中不會顯示位置和電腦。</translation>
+        <translation>無法確定這個電腦的位置。 這表示系統組態存在問題。 「位置和電腦」面板中不會顯示任何位置和電腦。</translation>
     </message>
     <message>
         <source>Unknown location</source>
@@ -1279,15 +1279,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the Veyon Service.</source>
-        <translation type="unfinished"/>
+        <translation>無法修改 Veyon 服務的自動啟動內容。</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Server.</source>
-        <translation type="unfinished"/>
+        <translation>無法組態 Veyon 伺服器的防火牆組態。</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Worker.</source>
-        <translation type="unfinished"/>
+        <translation>無法為 Veyon Worker 組態防火牆組態。</translation>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1302,7 +1302,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DemoClient</name>
     <message>
         <source>Veyon Demo</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 展示</translation>
     </message>
 </context>
 <context>
@@ -1748,27 +1748,27 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Subfolder handling</source>
-        <translation type="unfinished"/>
+        <translation>子資料夾處理</translation>
     </message>
     <message>
         <source>*.* or *.docx;*.pdf (leave empty for all files)</source>
-        <translation type="unfinished"/>
+        <translation>*.* 或 *.docx;*.pdf (所有檔案留空)</translation>
     </message>
     <message>
         <source>File pattern</source>
-        <translation type="unfinished"/>
+        <translation>檔案圖案</translation>
     </message>
     <message>
         <source>Local destination directory</source>
-        <translation type="unfinished"/>
+        <translation>本機目標目錄</translation>
     </message>
     <message>
         <source>Relative (Documents/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
-        <translation type="unfinished"/>
+        <translation>相對 (Documents/) 或絕對 (/tmp/ 或 C:\TMP) 或設定目錄為空</translation>
     </message>
     <message>
         <source>Source directory on remote computers</source>
-        <translation type="unfinished"/>
+        <translation>遠端電腦上的來源目錄</translation>
     </message>
     <message>
         <source>Default</source>
@@ -1776,19 +1776,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Files in source directory only</source>
-        <translation type="unfinished"/>
+        <translation>僅來源目錄中的檔案</translation>
     </message>
     <message>
         <source>Files in source directory and subdirectories</source>
-        <translation type="unfinished"/>
+        <translation>來源目錄和子目錄中的檔案</translation>
     </message>
     <message>
         <source>Collected files</source>
-        <translation type="unfinished"/>
+        <translation>收集的檔案</translation>
     </message>
     <message>
         <source>Overall progress</source>
-        <translation type="unfinished"/>
+        <translation>整體進度</translation>
     </message>
     <message>
         <source>Start</source>
@@ -1796,34 +1796,34 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Select destination directory</source>
-        <translation>選擇目的地目錄</translation>
+        <translation>選取目標目錄</translation>
     </message>
     <message>
         <source>Open output directory</source>
-        <translation type="unfinished"/>
+        <translation>開啟輸出目錄</translation>
     </message>
     <message>
         <source>Enter collection name</source>
-        <translation type="unfinished"/>
+        <translation>輸入集合名稱</translation>
     </message>
     <message>
         <source>Please enter a name for this file collection:</source>
-        <translation type="unfinished"/>
+        <translation>請輸入該檔案集合的名稱:</translation>
     </message>
     <message>
         <source>Output directory creation failed</source>
-        <translation type="unfinished"/>
+        <translation>輸出目錄建立失敗</translation>
     </message>
     <message>
         <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
-        <translation type="unfinished"/>
+        <translation>輸出目錄 &quot;%1&quot; 不存在且無法建立。 請檢查設定的目標目錄的設定和檔案權限。</translation>
     </message>
 </context>
 <context>
     <name>FileCollectTreeModel</name>
     <message>
         <source>Progress</source>
-        <translation type="unfinished"/>
+        <translation>進度</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1831,7 +1831,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Number of files</source>
-        <translation type="unfinished"/>
+        <translation>檔案數量</translation>
     </message>
 </context>
 <context>
@@ -1842,23 +1842,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Settings for distributing files</source>
-        <translation type="unfinished"/>
+        <translation>分發檔案的設定</translation>
     </message>
     <message>
         <source>Settings for collecting files</source>
-        <translation type="unfinished"/>
+        <translation>收集檔案的設定</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished"/>
+        <translation>否</translation>
     </message>
     <message>
         <source>Prefix filenames with grouping attribute</source>
-        <translation type="unfinished"/>
+        <translation>含分組屬性前綴檔名</translation>
     </message>
     <message>
         <source>Store files in subdirectories based on the grouping attribute</source>
-        <translation type="unfinished"/>
+        <translation>根據分組屬性將檔案儲存在子目錄中</translation>
     </message>
     <message>
         <source>None</source>
@@ -1866,87 +1866,87 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>First part of user name</source>
-        <translation type="unfinished"/>
+        <translation>使用者名稱的第一部分</translation>
     </message>
     <message>
         <source>Last part of user name</source>
-        <translation type="unfinished"/>
+        <translation>使用者名稱的最後一部分</translation>
     </message>
     <message>
         <source>Collect all files from configured source directory</source>
-        <translation type="unfinished"/>
+        <translation>從設定的資源目錄收集所有檔案</translation>
     </message>
     <message>
         <source>Prompt user for folder to collect</source>
-        <translation type="unfinished"/>
+        <translation>提示使用者收集資料夾</translation>
     </message>
     <message>
         <source>Prompt user for files to collect</source>
-        <translation type="unfinished"/>
+        <translation>提示使用者收集檔案</translation>
     </message>
     <message>
         <source>Grouping attribute 3:</source>
-        <translation type="unfinished"/>
+        <translation>分組屬性 3:</translation>
     </message>
     <message>
         <source>Destination directory:</source>
-        <translation type="unfinished"/>
+        <translation>目的地目錄:</translation>
     </message>
     <message>
         <source>Store collected files in:</source>
-        <translation type="unfinished"/>
+        <translation>將收集的檔案儲存在:</translation>
     </message>
     <message>
         <source>Group collected files:</source>
-        <translation type="unfinished"/>
+        <translation>分組收集的檔案:</translation>
     </message>
     <message>
         <source>Grouping attribute 1:</source>
-        <translation type="unfinished"/>
+        <translation>分組屬性 1:</translation>
     </message>
     <message>
         <source>Grouping attribute 2:</source>
-        <translation type="unfinished"/>
+        <translation>分組屬性 2:</translation>
     </message>
     <message>
         <source>Directly in the destination directory</source>
-        <translation type="unfinished"/>
+        <translation>直接在目標目錄中</translation>
     </message>
     <message>
         <source>Subdirectory based on date &amp; time</source>
-        <translation type="unfinished"/>
+        <translation>基於日期與時間的子目錄</translation>
     </message>
     <message>
         <source>Subdirectory with name entered by the collecting user</source>
-        <translation type="unfinished"/>
+        <translation>收集使用者輸入名稱的子目錄</translation>
     </message>
     <message>
         <source>Files to collect:</source>
-        <translation type="unfinished"/>
+        <translation>要收集的檔案:</translation>
     </message>
     <message>
         <source>Files to exclude:</source>
-        <translation type="unfinished"/>
+        <translation>要排除的檔案:</translation>
     </message>
     <message>
         <source>e.g. *.lnk or *.desktop</source>
-        <translation type="unfinished"/>
+        <translation>例如 *.lnk 或 *.desktop</translation>
     </message>
     <message>
         <source>Collect files recursively</source>
-        <translation type="unfinished"/>
+        <translation>遞迴收集檔案</translation>
     </message>
     <message>
         <source>Destination directory (remote):</source>
-        <translation type="unfinished"/>
+        <translation>目標目錄 (遠端):</translation>
     </message>
     <message>
         <source>Default source directory:</source>
-        <translation type="unfinished"/>
+        <translation>預設來源目錄:</translation>
     </message>
     <message>
         <source>Source directory (remote):</source>
-        <translation type="unfinished"/>
+        <translation>來源目錄 (遠端):</translation>
     </message>
     <message>
         <source>User login name</source>
@@ -1958,7 +1958,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Device name</source>
-        <translation type="unfinished"/>
+        <translation>裝置名稱</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1973,7 +1973,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileTransferController</name>
     <message>
         <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
-        <translation type="unfinished"/>
+        <translation>無法開啟檔案 %1 來讀取! 請檢查您的權限! 檔案將略過，剩餘檔案仍會傳輸。</translation>
     </message>
 </context>
 <context>
@@ -1988,11 +1988,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Destination directory on remote computers:</source>
-        <translation type="unfinished"/>
+        <translation>遠端電腦上的目標目錄:</translation>
     </message>
     <message>
         <source>Relative (Desktop/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
-        <translation type="unfinished"/>
+        <translation>相對 (Desktop/) 或絕對 (/tmp/ 或 C:\TMP) 或組態的目錄為空</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -2020,26 +2020,26 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>File transfer error</source>
-        <translation type="unfinished"/>
+        <translation>檔案傳輸錯誤</translation>
     </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
     <message>
         <source>Distribute</source>
-        <translation type="unfinished"/>
+        <translation>分發</translation>
     </message>
     <message>
         <source>Click this button to distribute files from your computer to all computers.</source>
-        <translation type="unfinished"/>
+        <translation>按一下此按鈕將檔案從您的電腦分發到所有電腦。</translation>
     </message>
     <message>
         <source>Collect</source>
-        <translation type="unfinished"/>
+        <translation>收集</translation>
     </message>
     <message>
         <source>Click this button to collect files from all computers to your computer.</source>
-        <translation type="unfinished"/>
+        <translation>按一下此按鈕將所有電腦上的檔案收集到您的電腦上。</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
@@ -2051,35 +2051,35 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Received file %1.</source>
-        <translation type="unfinished"/>
+        <translation>已收到檔案 %1。</translation>
     </message>
     <message>
         <source>The file %1 is to be collected, but is still open in an application.</source>
-        <translation type="unfinished"/>
+        <translation>將收集檔案 %1，但該檔案仍在應用程式中開啟。</translation>
     </message>
     <message>
         <source>The file %1 is to be collected, but is still open in the application &lt;b&gt;%2&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>將收集檔案 %1，但該檔案仍在應用程式 &lt;b&gt;%2&lt;/b&gt; 中開啟。</translation>
     </message>
     <message>
         <source>Please save your changes and close the program so that the transfer can be completed.</source>
-        <translation type="unfinished"/>
+        <translation>請儲存您的變更並關閉程式，以便完成傳輸。</translation>
     </message>
     <message>
         <source>Are you sure you want to skip transferring the file %1?</source>
-        <translation type="unfinished"/>
+        <translation>您確定要略過傳輸檔案 %1?</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it already exists.</source>
-        <translation type="unfinished"/>
+        <translation>無法接收檔案 %1，因為它已經存在。</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it could not be opened for writing!</source>
-        <translation type="unfinished"/>
+        <translation>無法接收檔案 %1，因為無法開啟該檔案進行寫入!</translation>
     </message>
     <message>
         <source>Transfer files between computers</source>
-        <translation type="unfinished"/>
+        <translation>在機器之間傳輸檔案</translation>
     </message>
 </context>
 <context>
@@ -2214,11 +2214,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Veyon service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 服務</translation>
     </message>
     <message>
         <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation type="unfinished"/>
+        <translation>需要暫時停止 Veyon 服務才能刪除日誌檔案。 繼續?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -2433,6 +2433,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>物件屬性</translation>
     </message>
     <message>
+        <source>e.g. name, ou or description</source>
+        <translation>例如: 名稱, 組織單位或描述</translation>
+    </message>
+    <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
         <translation>主機名稱存儲為完全限定網域名稱 (FQDN， 例如: myhost.example.org)</translation>
     </message>
@@ -2550,7 +2554,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Distinguished name (Samba/AD/FreeIPA)</source>
-        <translation type="unfinished"/>
+        <translation>可分辨名稱 (Samba/AD/FreeIPA)</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -2950,10 +2954,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Map container/OU structure 1:1 to locations</source>
         <translation>將容器/OU 結構 1:1 對應到位置</translation>
     </message>
-    <message>
-        <source>e.g. name, ou or description</source>
-        <translation type="unfinished"/>
-    </message>
 </context>
 <context>
     <name>LdapPlugin</name>
@@ -2999,7 +2999,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>LDAP/AD support for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Veyon 的 LDAP/AD 支援</translation>
     </message>
 </context>
 <context>
@@ -3038,11 +3038,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Key press interval for text input</source>
-        <translation type="unfinished"/>
+        <translation>文字輸入的按鍵間隔</translation>
     </message>
     <message>
         <source>Key press interval to control input fields</source>
-        <translation type="unfinished"/>
+        <translation>控制輸入欄位的按鍵間隔</translation>
     </message>
 </context>
 <context>
@@ -3206,7 +3206,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Veyon Configurator %1</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Configurator %1</translation>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3242,7 +3242,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
-        <translation type="unfinished"/>
+        <translation>本機設定後端報設定不可寫入! 請使用更高權限執行 Veyon Configurator。</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
@@ -3250,7 +3250,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
-        <translation type="unfinished"/>
+        <translation>找不到身份驗證金鑰檔案或您目前的金鑰檔案已過時。 請使用 Veyon Configurator 建立新的金鑰檔案。 或使用 Veyon Configurator設定登入身份驗證。 否則您將無法使用 Veyon 存取電腦。</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3266,7 +3266,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; 功能仍處於作用中狀態。 請在關閉 Veyon 之前停止它。</translation>
     </message>
     <message>
         <source>Use custom computer arrangement.
@@ -3397,27 +3397,27 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Identify users in guest sessions</source>
-        <translation type="unfinished"/>
+        <translation>識別訪客工作階段中的使用者</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"/>
+        <translation>永不</translation>
     </message>
     <message>
         <source>If login name matches</source>
-        <translation type="unfinished"/>
+        <translation>如果登入名稱符合</translation>
     </message>
     <message>
         <source>If full name matches</source>
-        <translation type="unfinished"/>
+        <translation>如果全名符合</translation>
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>訪客</translation>
     </message>
     <message>
         <source>Guest user identity extension</source>
-        <translation type="unfinished"/>
+        <translation>訪客使用者身份擴展</translation>
     </message>
     <message>
         <source>None</source>
@@ -3425,11 +3425,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>前綴</translation>
     </message>
     <message>
         <source>Suffix</source>
-        <translation type="unfinished"/>
+        <translation>後綴</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3525,7 +3525,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Always expand all locations</source>
-        <translation>一律展開所有位置</translation>
+        <translation>始終展開所有位置</translation>
     </message>
     <message>
         <source>Configuration templates</source>
@@ -3604,19 +3604,19 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Identify users in guest sessions</source>
-        <translation type="unfinished"/>
+        <translation>識別訪客工作階段中的使用者</translation>
     </message>
     <message>
         <source>Identification request</source>
-        <translation type="unfinished"/>
+        <translation>身份證明請求</translation>
     </message>
     <message>
         <source>Please enter your name:</source>
-        <translation type="unfinished"/>
+        <translation>請輸入您的姓名:</translation>
     </message>
     <message>
         <source>First name + last name</source>
-        <translation type="unfinished"/>
+        <translation>名字 + 姓氏</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3688,7 +3688,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>PipeWireVncServer</name>
     <message>
         <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
-        <translation type="unfinished"/>
+        <translation>Wayland VNC 伺服器 (PipeWire/XDG Desktop Portal)</translation>
     </message>
 </context>
 <context>
@@ -3891,11 +3891,11 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - Veyon Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - Veyon 遠端存取</translation>
     </message>
     <message>
         <source>%1 - %2 - Veyon Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - Veyon 遠端存取</translation>
     </message>
 </context>
 <context>
@@ -4136,11 +4136,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Maximum simultaneous server connections</source>
-        <translation type="unfinished"/>
+        <translation>最大同時間伺服器連線</translation>
     </message>
     <message>
         <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
-        <translation type="unfinished"/>
+        <translation>限制同時間遠端連線，以保護伺服器避免資源耗盡。</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4242,7 +4242,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
-        <translation type="unfinished"/>
+        <translation>所有設定已成功儲存。 若要讓設定生效，需要重新啟動 Veyon 服務。 要立即重新啟動嗎?</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4402,7 +4402,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Veyon Master – Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Master – 投影片播放</translation>
     </message>
 </context>
 <context>
@@ -4504,15 +4504,19 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Title:</source>
-        <translation type="unfinished"/>
+        <translation>標題:</translation>
     </message>
     <message>
         <source>Optional custom title for the message window</source>
-        <translation type="unfinished"/>
+        <translation>訊息視窗的可選自訂標題</translation>
     </message>
     <message>
         <source>Message from teacher</source>
         <translation>來自老師的訊息</translation>
+    </message>
+    <message>
+        <source>Message from %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4639,11 +4643,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>No command given</source>
-        <translation type="unfinished"/>
+        <translation>沒有給予命令</translation>
     </message>
     <message>
         <source>Invalid command given</source>
-        <translation type="unfinished"/>
+        <translation>給予的命令無效</translation>
     </message>
     <message>
         <source>Plugin not licensed</source>
@@ -4655,7 +4659,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Unknown command result</source>
-        <translation type="unfinished"/>
+        <translation>未知命令結果</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -4695,7 +4699,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>訪客</translation>
     </message>
 </context>
 <context>
@@ -4706,7 +4710,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>無法儲存您的個人設定! 請使用 Veyon Configurator 檢查使用者設定檔路徑。</translation>
     </message>
 </context>
 <context>
@@ -4869,7 +4873,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Use custom power scheme with disabled power and sleep buttons</source>
-        <translation type="unfinished"/>
+        <translation>使用停用電源和睡眠按鈕的自訂電源方案</translation>
     </message>
     <message>
         <source>Use input device interception driver</source>
@@ -4877,15 +4881,15 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Disable touchpads and touchscreens</source>
-        <translation type="unfinished"/>
+        <translation>停用觸控板和觸控螢幕</translation>
     </message>
     <message>
         <source>Disable keyboard devices</source>
-        <translation type="unfinished"/>
+        <translation>停用鍵盤裝置</translation>
     </message>
     <message>
         <source>Disable mouse devices</source>
-        <translation type="unfinished"/>
+        <translation>停用滑鼠裝置</translation>
     </message>
     <message>
         <source>Handling of interfering windows</source>

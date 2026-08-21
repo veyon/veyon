@@ -2433,6 +2433,10 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
         <translation>Objekti atribuudid</translation>
     </message>
     <message>
+        <source>e.g. name, ou or description</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
         <translation>Hosti nimed, mis on salvestatud täielikult kvalifitseeritud domeeninimedena (FQDN, nt myhost.example.org)</translation>
     </message>
@@ -2949,10 +2953,6 @@ Veenduge, et üksteisele kuuluvate võtmete nimed oleksid kõikides arvutites id
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
         <translation>Konteineri/OU struktuuri 1:1 kaardistamine asukohtadega</translation>
-    </message>
-    <message>
-        <source>e.g. name, ou or description</source>
-        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -4513,6 +4513,10 @@ Näide: [^-]*-(PC[0-9]*)</translation>
     <message>
         <source>Message from teacher</source>
         <translation>Sõnum õpetajalt</translation>
+    </message>
+    <message>
+        <source>Message from %1</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
