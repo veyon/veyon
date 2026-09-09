@@ -263,7 +263,15 @@ QString HostAddress::toFQDN( HostAddress::Type type, const QString& address )
 	switch( type )
 	{
 	case Type::HostName:
-		return toFQDN( Type::IpAddress, toIpAddress( address ) );
+	{
+		const auto ipAddress = toIpAddress(address);
+		const auto fqdn = toFQDN(Type::IpAddress, toIpAddress(address));
+		if (fqdn == ipAddress)
+		{
+			return address;
+		}
+		return fqdn;
+	}
 
 	case Type::IpAddress:
 	{
