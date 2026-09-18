@@ -2384,7 +2384,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Environment settings</source>
-        <translation type="unfinished"/>
+        <translation>הגדרות סביבה</translation>
     </message>
     <message>
         <source>Object trees</source>
@@ -2392,7 +2392,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>(only if different from group tree)</source>
-        <translation type="unfinished"/>
+        <translation>(רק אם שונה מעץ הקבוצה)</translation>
     </message>
     <message>
         <source>Computer tree</source>
@@ -2440,7 +2440,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. room or computerLab</source>
-        <translation type="unfinished"/>
+        <translation>למשל: חדר או מעבדת_מחשבים</translation>
     </message>
     <message>
         <source>User login name attribute</source>
@@ -2520,7 +2520,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Filter for computers</source>
-        <translation type="unfinished"/>
+        <translation>סינון מחשבים</translation>
     </message>
     <message>
         <source>Filter for user groups</source>
@@ -2580,7 +2580,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Integration tests</source>
-        <translation type="unfinished"/>
+        <translation>בדיקות שילוב</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -2739,7 +2739,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>computer MAC addresses</source>
-        <translation type="unfinished"/>
+        <translation>כתובות חומרה (MAC) של מחשבים</translation>
     </message>
     <message>
         <source>Enter computer location name</source>
@@ -3285,10 +3285,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>צילומי מסך</translation>
     </message>
     <message>
-        <source>User interface</source>
-        <translation>ממשק משתמש</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>צבע טקסט</translation>
     </message>
@@ -3301,20 +3297,12 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>צבע רקע</translation>
     </message>
     <message>
-        <source>Thumbnail spacing</source>
-        <translation>ריווח בין תמונות ממוזערות</translation>
-    </message>
-    <message>
         <source> px</source>
         <translation>פיקסלים</translation>
     </message>
     <message>
         <source>Auto</source>
         <translation>אוטומטי</translation>
-    </message>
-    <message>
-        <source>Computer thumbnail caption</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Computer and user name</source>
@@ -3337,16 +3325,8 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>שם משתמש ומחשב</translation>
     </message>
     <message>
-        <source>Thumbnail update interval</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Sort order</source>
         <translation>סדר מיון</translation>
-    </message>
-    <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation>יחס גובה רוחב של התמונות הממוזערות</translation>
     </message>
     <message>
         <source>Highest</source>
@@ -3367,14 +3347,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Lowest</source>
         <translation>הכי נמוכה</translation>
-    </message>
-    <message>
-        <source>Image quality in monitoring mode</source>
-        <translation>איכות תמונה במצב פיקוח</translation>
-    </message>
-    <message>
-        <source>Remote access image quality</source>
-        <translation>איכות תמונה לגישה מרחוק</translation>
     </message>
     <message>
         <source>Identify users in guest sessions</source>
@@ -3511,6 +3483,50 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Configuration templates</source>
         <translation>תבניות הגדרה</translation>
+    </message>
+    <message>
+        <source>Monitoring view</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Visibility mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Blurred</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation>גישה מרחוק</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -3861,7 +3877,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
-        <translation type="unfinished"/>
+        <translation>לא נבחרו מחשבים כך שניתן למלא שם מארח או כתובת IP של מחשב לגישה ידנית:</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
@@ -3986,7 +4002,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
-        <translation type="unfinished"/>
+        <translation>נעילת מסך והתקני קלט של מחשב</translation>
     </message>
 </context>
 <context>

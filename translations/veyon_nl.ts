@@ -3306,10 +3306,6 @@ Houd ingedrukt om een arrangement vanuit een bestand te laden of het huidige arr
         <translation>Schermafbeeldingen</translation>
     </message>
     <message>
-        <source>User interface</source>
-        <translation>Gebruikersomgeving</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>Tekstkleur</translation>
     </message>
@@ -3322,20 +3318,12 @@ Houd ingedrukt om een arrangement vanuit een bestand te laden of het huidige arr
         <translation>Achtergrond kleur</translation>
     </message>
     <message>
-        <source>Thumbnail spacing</source>
-        <translation>Tussenruimte voor miniaturen</translation>
-    </message>
-    <message>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
         <source>Auto</source>
         <translation>Auto</translation>
-    </message>
-    <message>
-        <source>Computer thumbnail caption</source>
-        <translation>Bijschrift van de computerminiatuur</translation>
     </message>
     <message>
         <source>Computer and user name</source>
@@ -3358,16 +3346,8 @@ Houd ingedrukt om een arrangement vanuit een bestand te laden of het huidige arr
         <translation>Gebruiker en computer naam</translation>
     </message>
     <message>
-        <source>Thumbnail update interval</source>
-        <translation>Miniatuurweergave update interval</translation>
-    </message>
-    <message>
         <source>Sort order</source>
         <translation>Sorteer volgorde</translation>
-    </message>
-    <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation>Beeldverhouding miniaturen</translation>
     </message>
     <message>
         <source>Highest</source>
@@ -3388,14 +3368,6 @@ Houd ingedrukt om een arrangement vanuit een bestand te laden of het huidige arr
     <message>
         <source>Lowest</source>
         <translation>Laagste</translation>
-    </message>
-    <message>
-        <source>Image quality in monitoring mode</source>
-        <translation>Beeldkwaliteit in bewakingsmodus</translation>
-    </message>
-    <message>
-        <source>Remote access image quality</source>
-        <translation>Beeldkwaliteit van externe toegang</translation>
     </message>
     <message>
         <source>Identify users in guest sessions</source>
@@ -3532,6 +3504,50 @@ Houd ingedrukt om een arrangement vanuit een bestand te laden of het huidige arr
     <message>
         <source>Configuration templates</source>
         <translation>Configuratiesjablonen</translation>
+    </message>
+    <message>
+        <source>Monitoring view</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Beeldkwaliteit</translation>
+    </message>
+    <message>
+        <source>Visibility mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Blurred</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation>Toegang op afstand</translation>
     </message>
     <message>
         <source>Advanced</source>

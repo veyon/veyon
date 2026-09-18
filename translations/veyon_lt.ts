@@ -11,7 +11,7 @@
     </message>
     <message>
         <source>Version:</source>
-        <translation>Versija</translation>
+        <translation>Versija:</translation>
     </message>
     <message>
         <source>Website:</source>
@@ -19,11 +19,11 @@
     </message>
     <message>
         <source>Support Veyon project with a donation</source>
-        <translation>Paremti Veyon projektą</translation>
+        <translation>Paremti Veyon projektą paaukojant</translation>
     </message>
     <message>
         <source>Contributors</source>
-        <translation>Autoriai</translation>
+        <translation>Bendraautoriai</translation>
     </message>
     <message>
         <source>Translation</source>
@@ -33,8 +33,9 @@
         <source>Current language not translated yet (or native English).
 
 If you&apos;re interested in translating Veyon into your local or another language or want to improve an existing translation, please contact a Veyon developer!</source>
-        <translation>Dabartinė naudojama kalba dar neišversta (arba pagrindinė yra Anglų)
-Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite patobulinti esamą vertimą, susisiekite su Veyon kūrėjais</translation>
+        <translation>Dabartinė kalba dar neišversta (arba tai yra originalo kalba – anglų).
+
+Jei norite išversti Veyon į savo ar kitą kalbą arba patobulinti esamą vertimą, susisiekite su Veyon kūrėju!</translation>
     </message>
     <message>
         <source>License</source>
@@ -42,7 +43,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>About Veyon %1</source>
-        <translation type="unfinished"/>
+        <translation>Apie Veyon %1</translation>
     </message>
 </context>
 <context>
@@ -53,11 +54,11 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Restrict access to members of specific user groups</source>
-        <translation>Apriboti prieigą speficinių grupių nariams</translation>
+        <translation>Apriboti prieigą iki konkrečių vartotojų grupių narių</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Testuoti</translation>
+        <translation>Tikrinti</translation>
     </message>
     <message>
         <source>Process access control rules</source>
@@ -65,19 +66,19 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation>Suteikti prieigą kiekvienam prijungtam naudotojui (numatytasis)</translation>
+        <translation>Suteikti prieigą kiekvienam autentifikuotam vartotojui (numatytasis nustatymas)</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
-        <translation>Naudotojų grupės kurioms suteikta prieiga prie kompiuterio</translation>
+        <translation>Vartotojų grupės, kurioms suteikta prieiga prie kompiuterių</translation>
     </message>
     <message>
         <source>Please add the groups whose members should be authorized to access computers in your Veyon network.</source>
-        <translation>Pridėkite grupes kurių nariai kuriems turėtų būti leista prieiti prie kompiuterių esančių Veyon tinkle</translation>
+        <translation>Pridėkite grupes, kurių nariams turi būti leidžiama pasiekti Veyon tinklo kompiuterius.</translation>
     </message>
     <message>
         <source>Authorized user groups</source>
-        <translation>Autorizuotų naudotojų grupės</translation>
+        <translation>Įgaliotos vartotojų grupės</translation>
     </message>
     <message>
         <source>All groups</source>
@@ -85,7 +86,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Access control rules</source>
-        <translation>Prieigos valdymas</translation>
+        <translation>Prieigos valdymo taisyklės</translation>
     </message>
     <message>
         <source>Move selected rule up</source>
@@ -105,15 +106,15 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Move selected rule down</source>
-        <translation>Pakelti pasirinktą taisyklę žemyn</translation>
+        <translation>Nuleisti pasirinktą taisyklę</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Įveskite naudotojo vardą</translation>
+        <translation>Įveskite vartotojo vardą</translation>
     </message>
     <message>
         <source>Please enter a user login name whose access permissions to test:</source>
-        <translation>Įveskite naudotojo vardą kurio prieigos teises tikrinsite:</translation>
+        <translation>Įveskite vartotojo, kurio prieigos teises norite patikrinti, prisijungimo vardą:</translation>
     </message>
     <message>
         <source>Access allowed</source>
@@ -121,7 +122,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation>Pasirinktas naudotojui suteikta prieiga prie kompiuterių su šia konfigūracija.</translation>
+        <translation>Nurodytam vartotojui leidžiama pasiekti kompiuterius su šia konfigūracija.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -129,14 +130,14 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>Pasirinktam naudotojui neleidžiama prieiga prie kompiuterių su šia konfigūracija.</translation>
+        <translation>Nurodytam vartotojui neleidžiama pasiekti kompiuterių su šia konfigūracija.</translation>
     </message>
 </context>
 <context>
     <name>AccessControlProvider</name>
     <message>
         <source>Provider for access control features</source>
-        <translation type="unfinished"/>
+        <translation>Prieigos valdymo funkcijų teikiklis</translation>
     </message>
 </context>
 <context>
@@ -147,7 +148,7 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>General</source>
-        <translation>Pagrindinis</translation>
+        <translation>Bendrieji nustatymai</translation>
     </message>
     <message>
         <source>enter a short name for the rule here</source>
@@ -159,19 +160,19 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>enter a description for the rule here</source>
-        <translation>įveskite trumpą taisyklės aprašymą</translation>
+        <translation>čia įveskite taisyklės aprašą</translation>
     </message>
     <message>
         <source>Rule description:</source>
-        <translation>Taisyklės aprašymas</translation>
+        <translation>Taisyklės aprašas:</translation>
     </message>
     <message>
         <source>Invert all conditions (&quot;is/has&quot; interpreted as &quot;is/has not&quot;)</source>
-        <translation>Invertuoti visas sąlygas (&quot;yra turi&quot; interpretuojama kaip &quot;nėra/neturi&quot;)</translation>
+        <translation>Invertuoti visas sąlygas („yra / turi“ laikoma „nėra / neturi“)</translation>
     </message>
     <message>
         <source>Always process rule and ignore conditions</source>
-        <translation>Visados vykdyti šią taisyklę ir ignoruoti sąlygas</translation>
+        <translation>Visada vykdyti taisyklę ir nepaisyti sąlygų</translation>
     </message>
     <message>
         <source>Conditions</source>
@@ -183,15 +184,15 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>If more than one condition is activated each condition has to meet in order to make the rule apply (logical AND). If only one of multiple conditions has to meet (logical OR) please create multiple access control rules.</source>
-        <translation>Jeigu daugiau negu viena sąlyga yra aktyvuota kiekviena sąlyga turi atitikti nustatytus kriterijus, kad taisyklė veiktų (loginis IR). Jeigu viena iš kelių salygų atitinka (loginis ARBA). Prašome sukurti kelias prieigos valdymo taisykles.</translation>
+        <translation>Jei aktyvinta daugiau nei viena sąlyga, taisyklė taikoma tik tada, kai tenkinamos visos sąlygos (loginis IR). Jei turi būti tenkinama tik viena iš kelių sąlygų (loginis ARBA), sukurkite kelias prieigos valdymo taisykles.</translation>
     </message>
     <message>
         <source>Accessing computer and local computer are at the same location</source>
-        <translation>Prisijungiantis kompiuteris ir vietinis kompiuteris yra toje pačioje vietoje</translation>
+        <translation>Prisijungiantis ir vietinis kompiuteriai yra toje pačioje vietoje</translation>
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Nėra prisijungusių naudotojų</translation>
+        <translation>Nėra prisijungusių vartotojų</translation>
     </message>
     <message>
         <source>is located at</source>
@@ -199,23 +200,23 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Accessing computer is localhost</source>
-        <translation>Pasiekiamas kompiuteris yra vietiniame tinkle</translation>
+        <translation>Prisijungiantis kompiuteris yra vietinis kompiuteris</translation>
     </message>
     <message>
         <source>Accessing user has one or more groups in common with local (logged on) user</source>
-        <translation>Naudotojas kurį bandoma pasiekti turi vieną ar daugiau bendrų grupių su vietiniu (prisijungusiu) naudotoju</translation>
+        <translation>Prisijungiantis vartotojas priklauso bent vienai tai pačiai grupei kaip vietinis (prisijungęs) vartotojas</translation>
     </message>
     <message>
         <source>Accessing user is logged on user</source>
-        <translation>Prisijungiantis naudotojas yra prisijungęs naudotojas</translation>
+        <translation>Prisijungiantis vartotojas yra vietinis prisijungęs vartotojas</translation>
     </message>
     <message>
         <source>Accessing user is already connected</source>
-        <translation>Naudotojas kuris bando prisijungti jau yra prisijungęs</translation>
+        <translation>Prisijungiantis vartotojas jau yra prisijungęs</translation>
     </message>
     <message>
         <source>Action</source>
-        <translation>Veiksmai</translation>
+        <translation>Veiksmas</translation>
     </message>
     <message>
         <source>Allow access</source>
@@ -223,27 +224,27 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Deny access</source>
-        <translation>Nesuteikti prieigos</translation>
+        <translation>Uždrausti prieigą</translation>
     </message>
     <message>
         <source>Ask logged on user for permission</source>
-        <translation>Prašyti prisijungusio naudotojo leidimo</translation>
+        <translation>Prašyti prisijungusio vartotojo leidimo</translation>
     </message>
     <message>
         <source>None (rule disabled)</source>
-        <translation>Nėra (Taisyklė išjungta)</translation>
+        <translation>Nėra (taisyklė išjungta)</translation>
     </message>
     <message>
         <source>Accessing user</source>
-        <translation>Prisijungti kaip naudotojas</translation>
+        <translation>Prisijungiantis vartotojas</translation>
     </message>
     <message>
         <source>Accessing computer</source>
-        <translation>Prisijungiama prie kompiuterio</translation>
+        <translation>Prisijungiantis kompiuteris</translation>
     </message>
     <message>
         <source>Local (logged on) user</source>
-        <translation>Vietinis (prisijungęs) naudotojas</translation>
+        <translation>Vietinis (prisijungęs) vartotojas</translation>
     </message>
     <message>
         <source>Local computer</source>
@@ -251,18 +252,18 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Local computer is already being accessed</source>
-        <translation type="unfinished"/>
+        <translation>Vietinis kompiuteris jau yra pasiekiamas nuotoliniu būdu</translation>
     </message>
 </context>
 <context>
     <name>AccessControlRulesTestDialog</name>
     <message>
         <source>Access control rules test</source>
-        <translation>Prieigos kontrolės taisyklių testavimas</translation>
+        <translation>Prieigos valdymo taisyklių tikrinimas</translation>
     </message>
     <message>
         <source>Accessing user:</source>
-        <translation>Prisijungiantis naudotojas</translation>
+        <translation>Prisijungiantis vartotojas:</translation>
     </message>
     <message>
         <source>Local computer:</source>
@@ -274,42 +275,42 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Please enter the following user and computer information in order to test the configured ruleset.</source>
-        <translation>Įveskite naudotojo ir kompiuterio informaciją jeigu norite patikrinti sukonfigūruotą taisyklių rinkinį</translation>
+        <translation>Įveskite vartotojo ir kompiuterio informaciją, kad patikrintumėte sukonfigūruotą taisyklių rinkinį.</translation>
     </message>
     <message>
         <source>Local user:</source>
-        <translation>Vietinis naudotojas:</translation>
+        <translation>Vietinis vartotojas:</translation>
     </message>
     <message>
         <source>Connected users:</source>
-        <translation>Prijungti naudotojai:</translation>
+        <translation>Prisijungę vartotojai:</translation>
     </message>
     <message>
         <source>The access in the given scenario is allowed.</source>
-        <translation>Prieiga šiomis salygomis yra leidžiama.</translation>
+        <translation>Pagal nurodytą scenarijų prieiga leidžiama.</translation>
     </message>
     <message>
         <source>The access in the given scenario is denied.</source>
-        <translation>Prieiga šiomis salygomis yra draudžiama</translation>
+        <translation>Pagal nurodytą scenarijų prieiga draudžiama.</translation>
     </message>
     <message>
         <source>The access in the given scenario needs permission of the logged on user.</source>
-        <translation>Prieiga šiomis sąlygomis reikalauja patvirtinimo iš prisijungusio naudotojo</translation>
+        <translation>Pagal nurodytą scenarijų reikia prisijungusio vartotojo leidimo.</translation>
     </message>
     <message>
         <source>Test result</source>
-        <translation>Testo rezultatai</translation>
+        <translation>Tikrinimo rezultatas</translation>
     </message>
     <message>
         <source>There is no matching rule with a valid action. The access is therefore denied.</source>
-        <translation type="unfinished"/>
+        <translation>Nėra atitinkančios taisyklės su tinkamu veiksmu. Todėl prieiga uždrausta.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysConfigurationPage</name>
     <message>
         <source>Authentication keys</source>
-        <translation>Prieigos raktai</translation>
+        <translation>Autentifikavimo raktai</translation>
     </message>
     <message>
         <source>Introduction</source>
@@ -317,11 +318,11 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>Please perform the following steps to set up key file authentication:</source>
-        <translation>Atlikite šiuos veiksmus, kad nustatytumėte prieigą naudojant rakto failą</translation>
+        <translation>Norėdami nustatyti autentifikavimą rakto failu, atlikite šiuos veiksmus:</translation>
     </message>
     <message>
         <source>1) Create a key pair on the master computer.</source>
-        <translation>1) Sukurkite raktų porą pagrindiniame kompiuteryje</translation>
+        <translation>1) Pagrindiniame kompiuteryje sukurkite raktų porą.</translation>
     </message>
     <message>
         <source>2) Set an access group whose members should be allowed to access other computers.</source>
@@ -329,37 +330,37 @@ Jeigu domina Veyon programos vertimas į vietinę ar kitą kalbą, arba norite p
     </message>
     <message>
         <source>3) Export the public key and import it on all client computers with the same name.</source>
-        <translation>3) Eksportuokite viešajį raktą ir importuokite visuose klientų kompiuteriuose naudojant tą patį vardą.</translation>
+        <translation>3) Eksportuokite viešąjį raktą ir tuo pačiu pavadinimu importuokite jį visuose klientų kompiuteriuose.</translation>
     </message>
     <message>
         <source>Please refer to the &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administrator Manual&lt;/a&gt; for more information.</source>
-        <translation>Daugiau informacijos galite rasti &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon Administratoriaus Instrukcijoje&lt;/a&gt; </translation>
+        <translation>Daugiau informacijos rasite &lt;a href=&quot;https://veyon.readthedocs.io/en/latest/admin/index.html&quot;&gt;Veyon administratoriaus vadove&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>Key file directories</source>
-        <translation>Direktorija raktų failams</translation>
+        <translation>Raktų failų katalogai</translation>
     </message>
     <message>
         <source>Public key file base directory</source>
-        <translation>Katalogas kuriame saugomas viešas raktas</translation>
+        <translation>Viešojo rakto failų bazinis katalogas</translation>
     </message>
     <message>
         <source>Private key file base directory</source>
-        <translation>Privataus rakto saugojimo direktorija</translation>
+        <translation>Privačiojo rakto failų bazinis katalogas</translation>
     </message>
     <message>
         <source>Available authentication keys</source>
-        <translation>Galimi autorizavimo raktai</translation>
+        <translation>Prieinami autentifikavimo raktai</translation>
     </message>
     <message>
         <source>An authentication key pair consist of two coupled cryptographic keys, a private and a public key.
 A private key allows users on the master computer to access client computers.
 It is important that only authorized users have read access to the private key file.
 The public key is used on client computers to authenticate incoming connection request.</source>
-        <translation>Autorizavimo raktų pora susideda iš dviejų kriptografinių raktų privataus ir viešojo.
-Privatus raktas leidžia pagrindiniam kompiuteriui pasiekti klientų kompiuterius
-Svarbu, kad tik autorizuoti naudotojai turėtų prieigą prie privataus rakto failo
-Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio užklausą.</translation>
+        <translation>Autentifikavimo raktų porą sudaro du susieti kriptografiniai raktai – privatusis ir viešasis.
+Privatusis raktas suteikia pagrindinio kompiuterio vartotojams prieigą prie klientų kompiuterių.
+Svarbu, kad teisę skaityti privačiojo rakto failą turėtų tik įgalioti vartotojai.
+Viešasis raktas klientų kompiuteriuose naudojamas gaunamai ryšio užklausai autentifikuoti.</translation>
     </message>
     <message>
         <source>Create key pair</source>
@@ -387,11 +388,11 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Authentication key name</source>
-        <translation>Raktų failo vardas</translation>
+        <translation>Autentifikavimo rakto pavadinimas</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to create an authentication key pair:</source>
-        <translation>Įveskite naudotojų grupės vardą arba rolę kuriai bus kuriama raktų pora:</translation>
+        <translation>Įveskite vartotojų grupės arba vaidmens, kuriam bus sukurta autentifikavimo raktų pora, pavadinimą:</translation>
     </message>
     <message>
         <source>Do you really want to delete authentication key &quot;%1/%2&quot;?</source>
@@ -399,32 +400,34 @@ Viešasis raktas skirtas kliento kompiuteriams patvirtinti įeinančio ryšio u�
     </message>
     <message>
         <source>Please select a key to delete!</source>
-        <translation>Pasirinkite raktą kurį norite ištrinti!</translation>
+        <translation>Pasirinkite norimą ištrinti raktą!</translation>
     </message>
     <message>
         <source>Please select a key to export!</source>
-        <translation>Pasirinkite raktą kurį norite eksportuoti</translation>
+        <translation>Pasirinkite norimą eksportuoti raktą!</translation>
     </message>
     <message>
         <source>Please select a user group which to grant access to key &quot;%1&quot;:</source>
-        <translation>Pasirinkite naudotojų grupę kuriai bus suteikta prieiga prie rakto &quot;%1&quot;:</translation>
+        <translation>Pasirinkite vartotojų grupę, kuriai suteikti prieigą prie rakto „%1“:</translation>
     </message>
     <message>
         <source>Please select a key which to set the access group for!</source>
-        <translation>Pasirinkite vartotojų grupę kuriai norite nustatyti prieigos grupę</translation>
+        <translation>Pasirinkite raktą, kuriam norite nustatyti prieigos grupę!</translation>
     </message>
     <message>
         <source>Please enter the name of the user group or role for which to import the authentication key.
 
 Make sure that the names of the keys belonging to each other are identical on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite vartotojų grupės arba vaidmens, kuriam importuojamas autentifikavimo raktas, pavadinimą.
+
+Įsitikinkite, kad vienas kitam priklausančių raktų pavadinimai visuose kompiuteriuose yra vienodi.</translation>
     </message>
 </context>
 <context>
     <name>AuthKeysManager</name>
     <message>
         <source>Please check your permissions.</source>
-        <translation>Patikrinkite savo leidimus.</translation>
+        <translation>Patikrinkite savo prieigos teises.</translation>
     </message>
     <message>
         <source>Key name contains invalid characters!</source>
@@ -432,27 +435,27 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Invalid key type specified! Please specify &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>Pasirinktas negalimas rakto tipas! Pasirinkite &quot;%1&quot; arba &quot;%2&quot;.</translation>
+        <translation>Nurodytas netinkamas rakto tipas! Nurodykite „%1“ arba „%2“.</translation>
     </message>
     <message>
         <source>Specified key does not exist! Please use the &quot;list&quot; command to list all installed keys.</source>
-        <translation>Nurodytas raktas neegzistuoja! Pasinaudokite komanda &quot;list&quot; , kad peržiūrėtumėte visus įdiegtus raktus</translation>
+        <translation>Nurodyto rakto nėra! Visus įdiegtus raktus išvardykite komanda „list“.</translation>
     </message>
     <message>
         <source>One or more key files already exist! Please delete them using the &quot;delete&quot; command.</source>
-        <translation>Vienas ar daugiau raktų failai jau egzistuoja! Ištrinkite juos naudojantis &quot;delete&quot; komanda.</translation>
+        <translation>Vienas arba keli raktų failai jau yra! Pašalinkite juos komanda „delete“.</translation>
     </message>
     <message>
         <source>Creating new key pair for &quot;%1&quot;</source>
-        <translation>Sukurkite naują raktų porą &quot;%1&quot;</translation>
+        <translation>Kuriama nauja „%1“ raktų pora</translation>
     </message>
     <message>
         <source>Failed to create public or private key!</source>
-        <translation>Nepavyko sukurti viešojo arba privataus rakto</translation>
+        <translation>Nepavyko sukurti viešojo arba privačiojo rakto!</translation>
     </message>
     <message>
         <source>Newly created key pair has been saved to &quot;%1&quot; and &quot;%2&quot;.</source>
-        <translation>Naujai sukurta raktų pora buvo išsaugota: &quot;%1&quot; ir &quot;%2&quot;.</translation>
+        <translation>Naujai sukurta raktų pora įrašyta failuose „%1“ ir „%2“.</translation>
     </message>
     <message>
         <source>Could not remove key file &quot;%1&quot;!</source>
@@ -460,15 +463,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Could not remove key file directory &quot;%1&quot;!</source>
-        <translation>Nepavyko ištrinti rakto failo direktorijos &quot;%1&quot;!</translation>
+        <translation>Nepavyko pašalinti rakto failo katalogo „%1“!</translation>
     </message>
     <message>
         <source>Failed to create directory for output file.</source>
-        <translation>Nepavyko sukurti direktorijos išvesties failams</translation>
+        <translation>Nepavyko sukurti išvesties failo katalogo.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; already exists.</source>
-        <translation>Failas &quot;%1&quot; jau egzistuoja</translation>
+        <translation>Failas „%1“ jau yra.</translation>
     </message>
     <message>
         <source>Failed to write output file.</source>
@@ -476,27 +479,27 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been exported to &quot;%3&quot; successfully.</source>
-        <translation>Raktas &quot;%1/%2&quot; eksportuotas į &quot;%3&quot; sėkmingai.</translation>
+        <translation>Raktas „%1/%2“ sėkmingai eksportuotas į „%3“.</translation>
     </message>
     <message>
         <source>Failed read input file.</source>
-        <translation>Nepavyko nuskaityti įvesties failo</translation>
+        <translation>Nepavyko perskaityti įvesties failo.</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid private key!</source>
-        <translation>Failas &quot;%1&quot; neturi tinkamo privataus rakto</translation>
+        <translation>Faile „%1“ nėra tinkamo privačiojo rakto!</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not contain a valid public key!</source>
-        <translation>Failas &quot;%1&quot; neturi tinkamo viešo rakto</translation>
+        <translation>Faile „%1“ nėra tinkamo viešojo rakto!</translation>
     </message>
     <message>
         <source>Failed to create directory for key file.</source>
-        <translation>Nepavyko sukurti direktorijos raktų failams.</translation>
+        <translation>Nepavyko sukurti rakto failo katalogo.</translation>
     </message>
     <message>
         <source>Failed to write key file &quot;%1&quot;.</source>
-        <translation>Nepavyko įrašyti į rakto failą &quot;%1&quot;.</translation>
+        <translation>Nepavyko įrašyti rakto failo „%1“.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;!</source>
@@ -504,19 +507,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Key &quot;%1/%2&quot; has been imported successfully. Please check file permissions of &quot;%3&quot; in order to prevent unauthorized accesses.</source>
-        <translation>Raktai &quot;%1/%2&quot; buvo sėkmingai importuoti. Patikrinkite failų teises &quot;%3&quot; , kad būtų apribota neleistina prieiga.</translation>
+        <translation>Raktas „%1/%2“ sėkmingai importuotas. Kad išvengtumėte neleistinos prieigos, patikrinkite failo „%3“ prieigos teises.</translation>
     </message>
     <message>
         <source>Failed to convert private key to public key</source>
-        <translation>Nepavyko konvertuoti privataus rakto į viešajį.</translation>
+        <translation>Nepavyko konvertuoti privačiojo rakto į viešąjį</translation>
     </message>
     <message>
         <source>Failed to create directory for private key file &quot;%1&quot;.</source>
-        <translation>Nepavyko sukurti direktorijos privataus rakto failui &quot;%1&quot;.</translation>
+        <translation>Nepavyko sukurti privačiojo rakto failo „%1“ katalogo.</translation>
     </message>
     <message>
         <source>Failed to save private key in file &quot;%1&quot;!</source>
-        <translation>Nepavyko išsaugoti privataus rakto &quot;%1&quot;.</translation>
+        <translation>Nepavyko įrašyti privačiojo rakto į failą „%1“!</translation>
     </message>
     <message>
         <source>Failed to set permissions for private key file &quot;%1&quot;!</source>
@@ -524,11 +527,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Failed to create directory for public key file &quot;%1&quot;.</source>
-        <translation>Nepavyko sukurti direktorijos viešojo rakto failui &quot;%1&quot;.</translation>
+        <translation>Nepavyko sukurti viešojo rakto failo „%1“ katalogo.</translation>
     </message>
     <message>
         <source>Failed to save public key in file &quot;%1&quot;!</source>
-        <translation>Nepavyko išsaugoti viešojo rakto &quot;%1&quot;.</translation>
+        <translation>Nepavyko įrašyti viešojo rakto į failą „%1“!</translation>
     </message>
     <message>
         <source>Failed to set permissions for public key file &quot;%1&quot;!</source>
@@ -536,7 +539,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Failed to set owner of key file &quot;%1&quot; to &quot;%2&quot;.</source>
-        <translation>Nepavyko nustatyti rakto failo šeimininko &quot;%1&quot; to &quot;%2&quot;.</translation>
+        <translation>Nepavyko rakto failo „%1“ savininku nustatyti „%2“.</translation>
     </message>
     <message>
         <source>Failed to set permissions for key file &quot;%1&quot;.</source>
@@ -544,7 +547,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Key &quot;%1&quot; is now accessible by user group &quot;%2&quot;.</source>
-        <translation>Raktas &quot;%1&quot; dabar yra pasiekiamas naudotojų grupės: &quot;%2&quot;.</translation>
+        <translation>Raktas „%1“ dabar prieinamas vartotojų grupei „%2“.</translation>
     </message>
     <message>
         <source>&lt;N/A&gt;</source>
@@ -552,7 +555,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Failed to read key file.</source>
-        <translation>Nepavyko nuskaityti rakto failo</translation>
+        <translation>Nepavyko perskaityti rakto failo.</translation>
     </message>
 </context>
 <context>
@@ -567,27 +570,27 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>List authentication keys</source>
-        <translation>Atvaizduoti prieigos raktus</translation>
+        <translation>Išvardyti autentifikavimo raktus</translation>
     </message>
     <message>
         <source>Import public or private key</source>
-        <translation>Importuoti privatujį ar viešajį raktą</translation>
+        <translation>Importuoti viešąjį arba privatųjį raktą</translation>
     </message>
     <message>
         <source>Export public or private key</source>
-        <translation>Eksportuoti privatujį ar viešajį raktą</translation>
+        <translation>Eksportuoti viešąjį arba privatųjį raktą</translation>
     </message>
     <message>
         <source>Extract public key from existing private key</source>
-        <translation>Gauti viešajį raktą iš esamo privataus rakto</translation>
+        <translation>Iš esamo privačiojo rakto išgauti viešąjį raktą</translation>
     </message>
     <message>
         <source>Set user group allowed to access a key</source>
-        <translation>Nustatyta naudotojų grupė turi prieigą prie rakto.</translation>
+        <translation>Nustatyti vartotojų grupę, kuriai leidžiama pasiekti raktą</translation>
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Nurodykite komandą, kurios žinyną norite peržiūrėti.</translation>
     </message>
     <message>
         <source>NAME</source>
@@ -595,7 +598,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>This command creates a new authentication key pair with name &lt;NAME&gt; and saves private and public key to the configured key directories. The parameter must be a name for the key, which may only contain letters.</source>
-        <translation>Ši komanda sukuria naują prieigos raktą su vardu &lt;NAME&gt; ir išsaugo privatų ir viešajį raktus į sukonfigūruotą raktų direktoriją. Parametras turi būti rakto vardas kuris gali būti sudarytas tik iš raidžių.</translation>
+        <translation>Ši komanda sukuria naują autentifikavimo raktų porą pavadinimu &lt;NAME&gt; ir įrašo privatųjį bei viešąjį raktus į sukonfigūruotus raktų katalogus. Parametras turi būti tik iš raidžių sudarytas rakto pavadinimas.</translation>
     </message>
     <message>
         <source>KEY</source>
@@ -603,7 +606,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>This command deletes the authentication key &lt;KEY&gt; from the configured key directory. Please note that a key can&apos;t be recovered once it has been deleted.</source>
-        <translation>Ši komanda ištrina prieigos raktą &lt;KEY&gt; iš sukonfigūruotų raktų direktorijos. Pastaba: ištrynus raktą jis negali būti atkurtas.</translation>
+        <translation>Ši komanda pašalina autentifikavimo raktą &lt;KEY&gt; iš sukonfigūruoto raktų katalogo. Atminkite, kad pašalinto rakto atkurti negalima.</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -611,19 +614,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>This command exports the authentication key &lt;KEY&gt; to &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation>Ši komanda eksportuoja prieigos raktą &lt;KEY&gt; į &lt;FILE&gt;. Jeigu &lt;FILE&gt; nėra nurodytas, vardas bus sukurtas iš vardo ir tipo &lt;KEY&gt;.</translation>
+        <translation>Ši komanda eksportuoja autentifikavimo raktą &lt;KEY&gt; į &lt;FILE&gt;. Jei &lt;FILE&gt; nenurodytas, failo pavadinimas sudaromas iš rakto &lt;KEY&gt; pavadinimo ir tipo.</translation>
     </message>
     <message>
         <source>This command extracts the public key part from the private key &lt;KEY&gt; and saves it as the corresponding public key. When setting up another master computer, it is therefore sufficient to transfer the private key only. The public key can then be extracted.</source>
-        <translation>Ši komanda sugeneruoja viešajį raktą iš privataus rakto &lt;KEY&gt; ir išsaugo kaip atitinkamą viešajį raktą. Kai bus nustatomas kitas pagrindinis kompiuteris, užtenka perkelti tik privatujį raktą. Viešasis raktas gali būti sugeneruotas iš privataus rakto.</translation>
+        <translation>Ši komanda sugeneruoja viešąjį raktą iš privataus rakto &lt;KEY&gt; ir išsaugo kaip atitinkamą viešąjį raktą. Kai bus nustatomas kitas pagrindinis kompiuteris, užtenka perkelti tik privatųjį raktą. Viešasis raktas gali būti sugeneruotas iš privataus rakto.</translation>
     </message>
     <message>
         <source>This command imports the authentication key &lt;KEY&gt; from &lt;FILE&gt;. If &lt;FILE&gt; is not specified a name will be constructed from name and type of &lt;KEY&gt;.</source>
-        <translation>Ši komanda importuoja prieigos raktą &lt;KEY&gt; į &lt;FILE&gt;. Jeigu &lt;FILE&gt; nėra nurodytas, vardas bus sukurtas iš vardo ir tipo &lt;KEY&gt;.</translation>
+        <translation>Ši komanda importuoja autentifikavimo raktą &lt;KEY&gt; iš &lt;FILE&gt;. Jei &lt;FILE&gt; nenurodytas, failo pavadinimas sudaromas iš rakto &lt;KEY&gt; pavadinimo ir tipo.</translation>
     </message>
     <message>
         <source>This command lists all available authentication keys in the configured key directory. If the option &quot;%1&quot; is specified a table with key details will be displayed instead. Some details might be missing if a key is not accessible e.g. due to the lack of read permissions.</source>
-        <translation>Ši komanda parodo visus galimus prieigos raktus, kurie yra sukonfigūruoti raktų direktorijoje. Jeigu opcija &quot;%1&quot; yra užpildyta, lentelė su rakto duomenimis bus parodyta. Ne visos detalės gali būti rodomos jeigu raktas yra nepasiekiamas, pavyzdžiui dėl teisių trūkumo.</translation>
+        <translation>Ši komanda išvardija visus sukonfigūruotame raktų kataloge esančius autentifikavimo raktus. Nurodžius parinktį „%1“, vietoje sąrašo rodoma lentelė su išsamia raktų informacija. Kai kurios informacijos gali nebūti, jei raktas nepasiekiamas, pavyzdžiui, dėl skaitymo teisių trūkumo.</translation>
     </message>
     <message>
         <source>ACCESS GROUP</source>
@@ -631,15 +634,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>This command adjusts file access permissions to &lt;KEY&gt; such that only the user group &lt;ACCESS GROUP&gt; has read access to it.</source>
-        <translation>Ši komanda pakeičia failų prieigos teises į &lt;KEY&gt; tam, kad tik naudotojų grupė &lt;ACCESS GROUP&gt; turėtų skaitymo teises.</translation>
+        <translation>Ši komanda pakeičia rakto failo &lt;KEY&gt; prieigos teises taip, kad jį skaityti galėtų tik vartotojų grupė &lt;ACCESS GROUP&gt;.</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>Nurodytos komandos nėra arba jos žinynas nepasiekiamas.</translation>
     </message>
     <message>
         <source>Please specify the key name (e.g. &quot;teacher/public&quot;) as the first argument.</source>
-        <translation type="unfinished"/>
+        <translation>Kaip pirmąjį argumentą nurodykite rakto pavadinimą (pvz., „teacher/public“).</translation>
     </message>
     <message>
         <source>TYPE</source>
@@ -651,11 +654,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Command line support for managing authentication keys</source>
-        <translation>Komandinės eilutės prieiga autentifikacijos raktų valdymui</translation>
+        <translation>Komandų eilutės palaikymas autentifikavimo raktams valdyti</translation>
     </message>
     <message>
         <source>Commands for managing authentication keys</source>
-        <translation>Komandos prieigos raktų valdymui</translation>
+        <translation>Autentifikavimo raktų valdymo komandos</translation>
     </message>
 </context>
 <context>
@@ -685,7 +688,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Builtin directory</source>
-        <translation>Standartinė direktorija</translation>
+        <translation>Integruotasis katalogas</translation>
     </message>
     <message>
         <source>Computers</source>
@@ -705,11 +708,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Move selected computer up</source>
-        <translation type="unfinished"/>
+        <translation>Perkelti pasirinktą kompiuterį aukštyn</translation>
     </message>
     <message>
         <source>Move selected computer down</source>
-        <translation type="unfinished"/>
+        <translation>Perkelti pasirinktą kompiuterį žemyn</translation>
     </message>
     <message>
         <source>Name</source>
@@ -717,7 +720,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Host address/IP</source>
-        <translation>Tinklo adresas/IP</translation>
+        <translation>Pagrindinio kompiuterio adresas / IP</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -733,15 +736,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Move selected location up</source>
-        <translation type="unfinished"/>
+        <translation>Perkelti pasirinktą vietą aukštyn</translation>
     </message>
     <message>
         <source>Move selected location down</source>
-        <translation type="unfinished"/>
+        <translation>Perkelti pasirinktą vietą žemyn</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
-        <translation>CSV failų importavimas įmanomas naudojant komandinę eilutę. Daugiau informacijos žiūrėkite skiltyje  &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;internetinėje dokumentacijoje &lt;/a&gt;.</translation>
+        <translation>CSV failus galima importuoti naudojant komandų eilutės sąsają. Daugiau informacijos rasite &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;internetinėje dokumentacijoje&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>New location</source>
@@ -756,7 +759,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>BuiltinDirectoryPlugin</name>
     <message>
         <source>Show help for specific command</source>
-        <translation>Parodyti specifinės komandos pagalbą</translation>
+        <translation>Rodyti konkrečios komandos žinyną</translation>
     </message>
     <message>
         <source>Add a location or computer</source>
@@ -764,15 +767,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Clear all locations and computers</source>
-        <translation>Išvalyti visas vietas ar kompiuterius</translation>
+        <translation>Išvalyti visas vietas ir kompiuterius</translation>
     </message>
     <message>
         <source>Dump all or individual locations and computers</source>
-        <translation>Išvalyti visas ar individualias vietas ir kompiuterius</translation>
+        <translation>Išvesti visas arba atskiras vietas ir kompiuterius</translation>
     </message>
     <message>
         <source>List all locations and computers</source>
-        <translation>Atvaizduoti visas vietas ir kompiuterius</translation>
+        <translation>Išvardyti visas vietas ir kompiuterius</translation>
     </message>
     <message>
         <source>Remove a location or computer</source>
@@ -784,7 +787,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Export objects to given file</source>
-        <translation>Eksportuoti pasirinktus objektus į failą</translation>
+        <translation>Eksportuoti objektus į nurodytą failą</translation>
     </message>
     <message>
         <source>FILE</source>
@@ -796,19 +799,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>FORMAT-STRING-WITH-PLACEHOLDERS</source>
-        <translation>FORMATUOTI-TEKSTĄ-SU-ŠABLONAIS</translation>
+        <translation>FORMATO-EILUTĖ-SU-PAKAITAIS</translation>
     </message>
     <message>
         <source>REGULAR-EXPRESSION-WITH-PLACEHOLDER</source>
-        <translation>REGULIARI-IŠRAIŠKA-SU-ŠABLONU</translation>
+        <translation>REGULIARIOJI-IŠRAIŠKA-SU-PAKAITU</translation>
     </message>
     <message>
         <source>Imports objects from the specified text file using the given format string or regular expression containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>Importuoja objektus iš nurodyto tekstinio failo, naudojant numatytą formatą ar reguliarą formą kurioje yra viena ar daugiau užpildytų vietų. Tinkami šablonai yra: %1</translation>
+        <translation>Importuoja objektus iš nurodyto tekstinio failo, naudodama pateiktą formato eilutę arba reguliariąją išraišką su vienu ar keliais pakaitais. Galimi pakaitai: %1</translation>
     </message>
     <message>
         <source>Import simple CSV file to a single room</source>
-        <translation>Importuoti paprastą CSV failą į vieną kambarį</translation>
+        <translation>Importuoti paprastą CSV failą į vieną patalpą</translation>
     </message>
     <message>
         <source>Import CSV file with location name in first column</source>
@@ -816,15 +819,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Import text file with with key/value pairs using regular expressions</source>
-        <translation>Importuoti tekstinį failą su raktu/verčių poromis naudojant reguliarias išraiškas.</translation>
+        <translation>Importuoti tekstinį failą su rakto / reikšmės poromis naudojant reguliariąsias išraiškas</translation>
     </message>
     <message>
         <source>Import arbitrarily formatted data</source>
-        <translation>Importuoti arbitruotai suformuotus duomenis</translation>
+        <translation>Importuoti laisvai suformatuotus duomenis</translation>
     </message>
     <message>
         <source>Exports objects to the specified text file using the given format string containing one or multiple placeholders. Valid placeholders are: %1</source>
-        <translation>Eksportuoja objektus į nurodytą tekstinį failą, naudojant numatytą formatą ar reguliarą išraišką kurioje yra viena ar daugiau užpildytų vietų. Tinkami šablonai yra: %1</translation>
+        <translation>Eksportuoja objektus į nurodytą tekstinį failą, naudodama pateiktą formato eilutę su vienu ar keliais pakaitais. Galimi pakaitai: %1</translation>
     </message>
     <message>
         <source>Export all objects to a CSV file</source>
@@ -844,7 +847,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>HOST ADDRESS</source>
-        <translation>SERVERIO ADRESAS</translation>
+        <translation>PAGRINDINIO KOMPIUTERIO ADRESAS</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
@@ -852,11 +855,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>PARENT</source>
-        <translation>TĖVINIS</translation>
+        <translation>PIRMINIS OBJEKTAS</translation>
     </message>
     <message>
         <source>Adds an object where %1 can be one of &quot;%2&quot; or &quot;%3&quot;. %4 can be specified by name or UUID.</source>
-        <translation>Prideda objektą kur %1 gali būti vienas iš &quot;%2&quot; ar  &quot;%3&quot;. %4 gali būti nurodyta pagal vardą arba UUID.</translation>
+        <translation>Prideda objektą, kurio %1 gali būti „%2“ arba „%3“. %4 galima nurodyti pavadinimu arba UUID.</translation>
     </message>
     <message>
         <source>Add a room</source>
@@ -864,7 +867,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add a computer to room %1</source>
-        <translation>Pridėti kompiuterį prie kambario %1</translation>
+        <translation>Pridėti kompiuterį į patalpą %1</translation>
     </message>
     <message>
         <source>OBJECT</source>
@@ -872,7 +875,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Removes the specified object from the directory. %1 can be specified by name or UUID. Removing a location will also remove all related computers.</source>
-        <translation>Pašalina nurodytą objektą iš direktorijos. %1  gali būti nurodytas pagal vardą ar UUID. Pašalinant vietą bus pašalinti visi susieti kompiuteriai.</translation>
+        <translation>Pašalina nurodytą objektą iš katalogo. %1 galima nurodyti pavadinimu arba UUID. Pašalinus vietą taip pat bus pašalinti visi susiję kompiuteriai.</translation>
     </message>
     <message>
         <source>Remove a computer by name</source>
@@ -884,11 +887,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>Nurodytos komandos nėra arba jos žinynas nepasiekiamas.</translation>
     </message>
     <message>
         <source>Invalid type specified. Valid values are &quot;%1&quot; or &quot;%2&quot;.</source>
-        <translation>Nurodytas neteisingas tipas. Tinkamos vertės yra&quot;%1&quot; ar &quot;%2&quot;.</translation>
+        <translation>Nurodytas netinkamas tipas. Galimos reikšmės: „%1“ arba „%2“.</translation>
     </message>
     <message>
         <source>Object UUID</source>
@@ -896,7 +899,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Parent UUID</source>
-        <translation>Tėvinis UUID</translation>
+        <translation>Pirminio objekto UUID</translation>
     </message>
     <message>
         <source>Type</source>
@@ -908,7 +911,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Host address</source>
-        <translation>Kompiuterio adresas</translation>
+        <translation>Pagrindinio kompiuterio adresas</translation>
     </message>
     <message>
         <source>MAC address</source>
@@ -924,7 +927,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for reading!</source>
-        <translation>Negaliu atidaryti failo &quot;%1&quot; skaitymui!</translation>
+        <translation>Nepavyko atverti failo „%1“ skaityti!</translation>
     </message>
     <message>
         <source>Unknown argument &quot;%1&quot;.</source>
@@ -932,11 +935,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>No format string or regular expression specified!</source>
-        <translation>Nenurodytas formatas, ar regex</translation>
+        <translation>Nenurodyta formato eilutė arba reguliarioji išraiška!</translation>
     </message>
     <message>
         <source>Can&apos;t open file &quot;%1&quot; for writing!</source>
-        <translation>Negalima atidaryti failo  &quot;%1&quot; įrašymui!</translation>
+        <translation>Nepavyko atverti failo „%1“ rašyti!</translation>
     </message>
     <message>
         <source>No format string specified!</source>
@@ -948,11 +951,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Computer &quot;%1&quot; (host address: &quot;%2&quot; MAC address: &quot;%3&quot;)</source>
-        <translation>Kompiuteris &quot;%1&quot; (tinklo adresas: &quot;%2&quot; MAC adresas: &quot;%3&quot;)</translation>
+        <translation>Kompiuteris „%1“ (pagrindinio kompiuterio adresas: „%2“, MAC adresas: „%3“)</translation>
     </message>
     <message>
         <source>Unclassified object &quot;%1&quot; with ID &quot;%2&quot;</source>
-        <translation>Nesuklasifikuotas objektas &quot;%1&quot; su ID &quot;%2&quot;</translation>
+        <translation>Neklasifikuotas objektas „%1“, kurio ID „%2“</translation>
     </message>
     <message>
         <source>None</source>
@@ -960,23 +963,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Invalid</source>
-        <translation>Neteisingas</translation>
+        <translation>Netinkamas</translation>
     </message>
     <message>
         <source>Error while parsing line %1.</source>
-        <translation>Klaida šifruojant eilutę %1.</translation>
+        <translation>Klaida analizuojant %1 eilutę.</translation>
     </message>
     <message>
         <source>Network object directory which stores objects in local configuration</source>
-        <translation>Tinklo objektų direktorija kurioje saugomi objektai vietinėje konfigūracijoje</translation>
+        <translation>Vietinės konfigūracijos tinklo objektų katalogas</translation>
     </message>
     <message>
         <source>Builtin (computers and locations in local configuration)</source>
-        <translation>Kompiuteriai ar vietos vietinėje konfigūracijoje</translation>
+        <translation>Integruotasis (kompiuteriai ir vietos vietinėje konfigūracijoje)</translation>
     </message>
     <message>
         <source>Commands for managing the builtin network object directory</source>
-        <translation> Komandos skirtos valdyti tinklo objektų direktoriją</translation>
+        <translation>Integruotojo tinklo objektų katalogo valdymo komandos</translation>
     </message>
     <message>
         <source>Location</source>
@@ -988,7 +991,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Root</source>
-        <translation>Pagrindinis</translation>
+        <translation>Šakninis objektas</translation>
     </message>
     <message>
         <source>&quot;Room 01&quot;</source>
@@ -1000,7 +1003,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Location &quot;%1&quot; not found.</source>
-        <translation type="unfinished"/>
+        <translation>Vieta „%1“ nerasta.</translation>
     </message>
 </context>
 <context>
@@ -1021,7 +1024,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ComputerControlListModel</name>
     <message>
         <source>Name: %1</source>
-        <translation type="unfinished"/>
+        <translation>Pavadinimas: %1</translation>
     </message>
     <message>
         <source>Location: %1</source>
@@ -1037,7 +1040,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Online and connected</source>
-        <translation>Įjungtas ir prisijungta</translation>
+        <translation>Įjungtas ir prijungtas</translation>
     </message>
     <message>
         <source>Establishing connection</source>
@@ -1049,11 +1052,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
-        <translation>Veyon Serveris nepasiekiamas ar nepaleistas</translation>
+        <translation>Veyon serveris nepasiekiamas arba neveikia</translation>
     </message>
     <message>
         <source>Authentication failed or access denied</source>
-        <translation>Autorizacija nepavyko arba prieiga negalima</translation>
+        <translation>Autentifikuoti nepavyko arba prieiga uždrausta</translation>
     </message>
     <message>
         <source>Disconnected</source>
@@ -1061,15 +1064,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>No user logged on</source>
-        <translation>Nėra prisijungusių naudotojų</translation>
+        <translation>Nėra prisijungusių vartotojų</translation>
     </message>
     <message>
         <source>Logged on user: %1</source>
-        <translation>Prisijungęs naudotojas: %1</translation>
+        <translation>Prisijungęs vartotojas: %1</translation>
     </message>
     <message>
         <source>Hostname: %1</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterio vardas: %1</translation>
     </message>
     <message>
         <source>unknown</source>
@@ -1077,34 +1080,34 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>IP adresas: %1</translation>
     </message>
     <message>
         <source>Hostname could not be resolved</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko nustatyti kompiuterio vardo</translation>
     </message>
     <message>
         <source>No features active</source>
-        <translation type="unfinished"/>
+        <translation>Nėra aktyvių funkcijų</translation>
     </message>
 </context>
 <context>
     <name>ComputerControlServer</name>
     <message>
         <source>Authentication error</source>
-        <translation>Autorizacijos klaida</translation>
+        <translation>Autentifikavimo klaida</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but could not authenticate successfully.</source>
-        <translation>Naudotojas &quot;%1&quot; iš kompiuterio &quot;%2&quot; bandė prisijungti prie šio kompiuterio, bet netinkamai autorizavosi.</translation>
+        <translation>Vartotojas „%1“ iš kompiuterio „%2“ bandė pasiekti šį kompiuterį, tačiau jo nepavyko autentifikuoti.</translation>
     </message>
     <message>
         <source>Remote access</source>
-        <translation>Nutolusi prieiga</translation>
+        <translation>Nuotolinė prieiga</translation>
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; is now accessing this computer.</source>
-        <translation>Naudotojas &quot;%1&quot; iš kompiuterio &quot;%2&quot; dabar prisjungęs prie šio kompiuterio.</translation>
+        <translation>Vartotojas „%1“ iš kompiuterio „%2“ dabar pasiekia šį kompiuterį.</translation>
     </message>
     <message>
         <source>Access control error</source>
@@ -1112,46 +1115,46 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User &quot;%1&quot; at host &quot;%2&quot; attempted to access this computer but has been blocked due to access control settings.</source>
-        <translation>Naudotojas &quot;%1&quot; iš kompiuterio &quot;%2&quot; bandė prisijungti prie šio kompiuterio, bet buvo užblokuotas dėl priėjimo kontrolės nustatymų.</translation>
+        <translation>Vartotojas „%1“ iš kompiuterio „%2“ bandė pasiekti šį kompiuterį, tačiau buvo užblokuotas dėl prieigos valdymo nustatymų.</translation>
     </message>
     <message>
         <source>Veyon Service %1 at %2:%3</source>
-        <translation type="unfinished"/>
+        <translation>Veyon tarnyba %1 adresu %2:%3</translation>
     </message>
     <message>
         <source>Active connections:</source>
-        <translation>Aktyvūs prisijungimai:</translation>
+        <translation>Aktyvūs ryšiai:</translation>
     </message>
 </context>
 <context>
     <name>ComputerManager</name>
     <message>
         <source>User</source>
-        <translation>Naudotojas</translation>
+        <translation>Vartotojas</translation>
     </message>
     <message>
         <source>Logged in since</source>
-        <translation type="unfinished"/>
+        <translation>Prisijungęs nuo</translation>
     </message>
     <message>
         <source>Missing network object directory plugin</source>
-        <translation>Trūksta tinklo objektų direktorijos įskiepio</translation>
+        <translation>Trūksta tinklo objektų katalogo papildinio</translation>
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Numatytasis tinklo objektų katalogo papildinys nerastas. Patikrinkite diegimą arba Veyon konfigūratoriuje nustatykite kitą tinklo objektų katalogo posistemę.</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
-        <translation>Kompiuterio vardas;Hostname;Naudotojas</translation>
+        <translation>Kompiuterio pavadinimas;Pagrindinio kompiuterio vardas;Vartotojas</translation>
     </message>
     <message>
         <source>%1 days</source>
-        <translation type="unfinished"/>
+        <translation>%1 d.</translation>
     </message>
     <message>
         <source>1 day</source>
-        <translation type="unfinished"/>
+        <translation>1 diena</translation>
     </message>
     <message>
         <source>Location detection failed</source>
@@ -1159,18 +1162,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko nustatyti šio kompiuterio vietos. Tai rodo sistemos konfigūracijos problemą. Skydelyje „Vietos ir kompiuteriai“ nebus rodoma jokių vietų ir kompiuterių.</translation>
     </message>
     <message>
         <source>Unknown location</source>
-        <translation type="unfinished"/>
+        <translation>Nežinoma vieta</translation>
     </message>
 </context>
 <context>
     <name>ComputerSelectPanel</name>
     <message>
         <source>Search computers</source>
-        <translation type="unfinished"/>
+        <translation>Ieškoti kompiuterių</translation>
     </message>
     <message>
         <source>Add location</source>
@@ -1178,15 +1181,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Save computer/user list</source>
-        <translation>Išsaugoti kompiuterių/naudotojų sąrašą</translation>
+        <translation>Įrašyti kompiuterių / vartotojų sąrašą</translation>
     </message>
     <message>
         <source>Select output filename</source>
-        <translation>Pasirinkti išvesties failo vardą</translation>
+        <translation>Pasirinkti išvesties failo pavadinimą</translation>
     </message>
     <message>
         <source>CSV files (*.csv)</source>
-        <translation>CSV failas (*.csv)</translation>
+        <translation>CSV failai (*.csv)</translation>
     </message>
     <message>
         <source>File error</source>
@@ -1194,7 +1197,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Could not write the computer and users list to %1! Please check the file access permissions.</source>
-        <translation>Neįmanoma įrašyti kompiuterio ir vartotojų sąrašo į %1! Patikrinkite failo prieigos teises.</translation>
+        <translation>Nepavyko įrašyti kompiuterių ir vartotojų sąrašo į %1! Patikrinkite failo prieigos teises.</translation>
     </message>
 </context>
 <context>
@@ -1205,7 +1208,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>List all configuration keys and values</source>
-        <translation>Parodyti visus konfigūracijos parametrus.</translation>
+        <translation>Išvardyti visus konfigūracijos raktus ir reikšmes</translation>
     </message>
     <message>
         <source>Import configuration from given file</source>
@@ -1217,27 +1220,27 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Read and output configuration value for given key</source>
-        <translation>Nuskaityti ir išvesti konfigūracijos vertę pasirinktam parametrui.</translation>
+        <translation>Perskaityti ir išvesti nurodyto konfigūracijos rakto reikšmę</translation>
     </message>
     <message>
         <source>Write given value to given configuration key</source>
-        <translation>Įrašyti nurodytą vertę pasirinktam parametrui.</translation>
+        <translation>Įrašyti nurodytą reikšmę į nurodytą konfigūracijos raktą</translation>
     </message>
     <message>
         <source>Unset (remove) given configuration key</source>
-        <translation>Atstatyti (pašalinti) pasirinktą parametrą.</translation>
+        <translation>Pašalinti nurodytą konfigūracijos raktą</translation>
     </message>
     <message>
         <source>Upgrade and save configuration of program and plugins</source>
-        <translation>Atnaujinti ir išsaugoti programos ir plėtinių konfigūraciją.</translation>
+        <translation>Naujinti ir įrašyti programos bei papildinių konfigūraciją</translation>
     </message>
     <message>
         <source>Please specify an existing configuration file to import.</source>
-        <translation>Nurodytkite esamą konfigūraciją kurią norite importuoti.</translation>
+        <translation>Nurodykite esamą konfigūracijos failą, kurį norite importuoti.</translation>
     </message>
     <message>
         <source>Configuration file is not readable!</source>
-        <translation>Neįmanoma nuskaityti konfigūracijos failo</translation>
+        <translation>Konfigūracijos failo negalima perskaityti!</translation>
     </message>
     <message>
         <source>Please specify a valid filename for the configuration export.</source>
@@ -1249,15 +1252,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation>Neįmanoma rašyti į išvesties direktoriją</translation>
+        <translation>Į išvesties katalogą negalima rašyti!</translation>
     </message>
     <message>
         <source>Please specify a valid key.</source>
-        <translation>Nurodykite tinkamą raktą</translation>
+        <translation>Nurodykite tinkamą raktą.</translation>
     </message>
     <message>
         <source>Specified key does not exist in current configuration!</source>
-        <translation>Nurodyta vertė neegzistuoja esamoje konfigūracijoje</translation>
+        <translation>Nurodyto rakto dabartinėje konfigūracijoje nėra!</translation>
     </message>
     <message>
         <source>Please specify a valid value.</source>
@@ -1265,41 +1268,41 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Configure Veyon at command line</source>
-        <translation>Konfigūruoti Veyon naudojant komandinę eilutę</translation>
+        <translation>Konfigūruoti Veyon komandų eilutėje</translation>
     </message>
     <message>
         <source>Commands for managing the configuration of Veyon</source>
-        <translation>Komandos skirtos valdyti Veyon konfigūraciją</translation>
+        <translation>Veyon konfigūracijos valdymo komandos</translation>
     </message>
 </context>
 <context>
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the Veyon Service.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko pakeisti Veyon tarnybos automatinio paleidimo ypatybės.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Server.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko sukonfigūruoti Veyon serverio užkardos.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Worker.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko sukonfigūruoti Veyon darbinio proceso ugniasienės.</translation>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
-        <translation>Nepavyko pritaikyti konfigūracijos parametrų specifinei platformai.</translation>
+        <translation>Nepavyko pritaikyti konkrečiai platformai skirtų konfigūracijos nustatymų.</translation>
     </message>
     <message>
         <source>Configuration is not writable. Please check your permissions!</source>
-        <translation>Konfigūracija nėra įrašoma. Patikrinkite konfigūracijos prieigos teises</translation>
+        <translation>Konfigūracijos negalima įrašyti. Patikrinkite savo prieigos teises!</translation>
     </message>
 </context>
 <context>
     <name>DemoClient</name>
     <message>
         <source>Veyon Demo</source>
-        <translation type="unfinished"/>
+        <translation>Veyon demonstracija</translation>
     </message>
 </context>
 <context>
@@ -1310,7 +1313,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Tunables</source>
-        <translation>Derinamieji</translation>
+        <translation>Derinami parametrai</translation>
     </message>
     <message>
         <source> s</source>
@@ -1330,7 +1333,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Slow down thumbnail updates while demo is running</source>
-        <translation>Sulėtinti miniatūrų atnaujinimą, kol vyksta prezentacija</translation>
+        <translation>Sulėtinti miniatiūrų naujinimą vykstant demonstracijai</translation>
     </message>
     <message>
         <source>Memory limit</source>
@@ -1342,11 +1345,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Bandwidth limit</source>
-        <translation type="unfinished"/>
+        <translation>Pralaidumo ribojimas</translation>
     </message>
     <message>
         <source> MB/s</source>
-        <translation type="unfinished"/>
+        <translation> MB/s</translation>
     </message>
 </context>
 <context>
@@ -1361,55 +1364,55 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Share your screen or allow a user to share his screen with other users.</source>
-        <translation>Dalintis savo ekranu, ar leisti vartotojui dalintis savo ekranu su kitais vartotojais.</translation>
+        <translation>Bendrinti savo ekraną arba leisti vartotojui bendrinti jo ekraną su kitais vartotojais.</translation>
     </message>
     <message>
         <source>Full screen demo</source>
-        <translation>Pilno ekrano demonstracija.</translation>
+        <translation>Demonstracija visame ekrane</translation>
     </message>
     <message>
         <source>Window demo</source>
-        <translation>Prezentacija ekrane</translation>
+        <translation>Demonstravimas lange</translation>
     </message>
     <message>
         <source>Share your own screen in fullscreen mode</source>
-        <translation>Dalintis savo ekranu pilno ekrano režime.</translation>
+        <translation>Bendrinti savo ekraną viso ekrano režimu</translation>
     </message>
     <message>
         <source>In this mode your screen is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation>Šiame režime jūsų ekranas rodomas visiems kompiuteriams pilnojo ekrano režimu. Visuose kompiuteriuose įvesties įrenginiai yra užblokuoti.</translation>
+        <translation>Šiuo režimu jūsų ekranas visuose kompiuteriuose rodomas per visą ekraną, o vartotojų įvesties įrenginiai užrakinami.</translation>
     </message>
     <message>
         <source>Share your own screen in a window</source>
-        <translation>Dalintis savo ekranu lange.</translation>
+        <translation>Bendrinti savo ekraną lange</translation>
     </message>
     <message>
         <source>In this mode your screen being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation>Šiame rėžime jūsų ekranas bus demonstruojamas lange visiems kompiuteriams. Vartotojai gali perjungti langus pagal poreikį.</translation>
+        <translation>Šiuo režimu jūsų ekranas visuose kompiuteriuose rodomas lange. Prireikus vartotojai gali perjungti kitus langus.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in fullscreen mode</source>
-        <translation>Dalintis pasirinkto vartotojo ekranu pilnojo ekrano režime</translation>
+        <translation>Bendrinti pasirinkto vartotojo ekraną viso ekrano režimu</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user is being displayed in full screen mode on all computers while the input devices of the users are locked.</source>
-        <translation>Šiame režime bus rodomas pasirinkto vartotojo ekranas visiems vartotojams pilnojo ekrano režimu. Visuose kompiuteriuose įvesties įrenginiai yra užblokuoti.</translation>
+        <translation>Šiuo režimu pasirinkto vartotojo ekranas visuose kompiuteriuose rodomas per visą ekraną, o vartotojų įvesties įrenginiai užrakinami.</translation>
     </message>
     <message>
         <source>Share selected user&apos;s screen in a window</source>
-        <translation>Dalintis pasirinkto vartotojo ekranu lange.</translation>
+        <translation>Bendrinti pasirinkto vartotojo ekraną lange</translation>
     </message>
     <message>
         <source>In this mode the screen of the selected user being displayed in a window on all computers. The users are able to switch to other windows as needed.</source>
-        <translation>Šiame režime bus rodomas pasirinkto vartotojo ekranas visiems vartotojams lange. Vartotojai gali perjungti į kitus langus pagal poreikį.</translation>
+        <translation>Šiuo režimu pasirinkto vartotojo ekranas visuose kompiuteriuose rodomas lange. Prireikus vartotojai gali perjungti kitus langus.</translation>
     </message>
     <message>
         <source>Please select a user screen to share.</source>
-        <translation>Pasirinkite vartotoją kurio ekranu dalinsitės</translation>
+        <translation>Pasirinkite vartotoją, kurio ekraną norite bendrinti.</translation>
     </message>
     <message>
         <source>Please select only one user screen to share.</source>
-        <translation>Pasirinkite tik vieną vartotoją kurio ekranu dalinsitės</translation>
+        <translation>Pasirinkite tik vieną vartotoją, kurio ekraną norite bendrinti.</translation>
     </message>
     <message>
         <source>All screens</source>
@@ -1428,11 +1431,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Confirm desktop access</source>
-        <translation>Patvirtinti darbalaukio valdymą</translation>
+        <translation>Patvirtinti prieigą prie darbalaukio</translation>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
-        <translation> Naudotojas %1 iš kompiuterio %2 nori prisijungti prie jūsų kompiuterio. Ar norite tai leisti?</translation>
+        <translation>Vartotojas %1 iš kompiuterio %2 nori pasiekti jūsų darbalaukį. Ar suteikti prieigą?</translation>
     </message>
     <message>
         <source>Never for this session</source>
@@ -1447,11 +1450,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DesktopServicesConfigurationPage</name>
     <message>
         <source>Applications &amp; websites</source>
-        <translation type="unfinished"/>
+        <translation>Programos ir svetainės</translation>
     </message>
     <message>
         <source>Predefined applications</source>
-        <translation type="unfinished"/>
+        <translation>Iš anksto nustatytos programos</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1463,23 +1466,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Add new application</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti naują programą</translation>
     </message>
     <message>
         <source>Remove selected application</source>
-        <translation type="unfinished"/>
+        <translation>Pašalinti pasirinktą programą</translation>
     </message>
     <message>
         <source>Predefined websites</source>
-        <translation>Numatytieji puslapiai</translation>
+        <translation>Iš anksto nustatytos svetainės</translation>
     </message>
     <message>
         <source>Add new website</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti naują svetainę</translation>
     </message>
     <message>
         <source>Remove selected website</source>
-        <translation>Pašalinti pasirinktą puslapį</translation>
+        <translation>Pašalinti pasirinktą svetainę</translation>
     </message>
     <message>
         <source>URL</source>
@@ -1487,50 +1490,50 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>New application</source>
-        <translation type="unfinished"/>
+        <translation>Nauja programa</translation>
     </message>
     <message>
         <source>New website</source>
-        <translation>Naujas puslapis</translation>
+        <translation>Nauja svetainė</translation>
     </message>
 </context>
 <context>
     <name>DesktopServicesFeaturePlugin</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Paleisti programą</translation>
     </message>
     <message>
         <source>Click this button to start an application on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Spustelėkite šį mygtuką, kad paleistumėte programą visuose kompiuteriuose.</translation>
     </message>
     <message>
         <source>Open website</source>
-        <translation>Atidaryti tinklalapį</translation>
+        <translation>Atverti svetainę</translation>
     </message>
     <message>
         <source>Click this button to open a website on all computers.</source>
-        <translation>Paspauskite šį mygtuką, kad atidarytumėte puslapį visuose kompiuteriuose.</translation>
+        <translation>Spustelėkite šį mygtuką, kad atvertumėte svetainę visuose kompiuteriuose.</translation>
     </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Paleisti programą „%1“</translation>
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinktinė programa</translation>
     </message>
     <message>
         <source>Open website &quot;%1&quot;</source>
-        <translation>Atidaryti puslapį &quot;%1&quot;</translation>
+        <translation>Atverti svetainę „%1“</translation>
     </message>
     <message>
         <source>Custom website</source>
-        <translation>Pasirinktinis puslapis</translation>
+        <translation>Pasirinktinė svetainė</translation>
     </message>
     <message>
         <source>Start apps and open websites in user sessions</source>
-        <translation type="unfinished"/>
+        <translation>Paleisti programas ir atverti svetaines vartotojų sesijose</translation>
     </message>
 </context>
 <context>
@@ -1545,7 +1548,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>generic-student-user</source>
-        <translation>bendrinis-besimokantysis-naudotojas</translation>
+        <translation>bendrinis-mokinio-vartotojas</translation>
     </message>
     <message>
         <source>Please complete all tasks within the next 5 minutes.</source>
@@ -1553,7 +1556,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Custom website</source>
-        <translation>Pasirinktinis puslapis</translation>
+        <translation>Pasirinktinė svetainė</translation>
     </message>
     <message>
         <source>Open file manager</source>
@@ -1565,11 +1568,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Play tutorial video</source>
-        <translation>Paleisti mokomajį vaizdo įrašą</translation>
+        <translation>Paleisti mokomąjį vaizdo įrašą</translation>
     </message>
     <message>
         <source>Custom application</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinktinė programa</translation>
     </message>
     <message>
         <source>Handout</source>
@@ -1577,7 +1580,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Texts to read</source>
-        <translation>Medžiaga skaitymui</translation>
+        <translation>Skaitiniai</translation>
     </message>
 </context>
 <context>
@@ -1591,7 +1594,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ExternalVncServerConfigurationWidget</name>
     <message>
         <source>External VNC server configuration</source>
-        <translation>Išorinė VNC serverio konfigūracija</translation>
+        <translation>Išorinio VNC serverio konfigūracija</translation>
     </message>
     <message>
         <source>Port:</source>
@@ -1606,75 +1609,75 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FeatureCommands</name>
     <message>
         <source>List names of all available features</source>
-        <translation type="unfinished"/>
+        <translation>Išvardyti visų prieinamų funkcijų pavadinimus</translation>
     </message>
     <message>
         <source>Show table with details of all available features</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti lentelę su išsamia informacija apie visas prieinamas funkcijas</translation>
     </message>
     <message>
         <source>Start a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>Paleisti funkciją nuotoliniame kompiuteryje</translation>
     </message>
     <message>
         <source>Stop a feature on a remote host</source>
-        <translation type="unfinished"/>
+        <translation>Sustabdyti funkciją nuotoliniame kompiuteryje</translation>
     </message>
     <message>
         <source>Please specify the command to display help for.</source>
-        <translation type="unfinished"/>
+        <translation>Nurodykite komandą, kurios žinyną norite peržiūrėti.</translation>
     </message>
     <message>
         <source>Displays a list with the names of all available features.</source>
-        <translation type="unfinished"/>
+        <translation>Parodo visų prieinamų funkcijų pavadinimų sąrašą.</translation>
     </message>
     <message>
         <source>Displays a table with detailed information about all available features. This information include a description, the UID, the name of the plugin providing the respective feature and some other implementation-related details.</source>
-        <translation type="unfinished"/>
+        <translation>Parodo lentelę su išsamia informacija apie visas prieinamas funkcijas. Joje pateikiamas aprašas, UID, atitinkamą funkciją teikiančio papildinio pavadinimas ir kita su įgyvendinimu susijusi informacija.</translation>
     </message>
     <message>
         <source>HOST ADDRESS</source>
-        <translation>SERVERIO ADRESAS</translation>
+        <translation>PAGRINDINIO KOMPIUTERIO ADRESAS</translation>
     </message>
     <message>
         <source>FEATURE</source>
-        <translation type="unfinished"/>
+        <translation>FUNKCIJA</translation>
     </message>
     <message>
         <source>ARGUMENTS</source>
-        <translation type="unfinished"/>
+        <translation>ARGUMENTAI</translation>
     </message>
     <message>
         <source>Starts the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features. Depending on the feature, additional arguments (such as the text message to display) encoded as a single JSON string have to be specified. Please refer to the developer documentation for more information</source>
-        <translation type="unfinished"/>
+        <translation>Prisijungia prie nuotoliniame kompiuteryje veikiančio Veyon serverio ir paleidžia nurodytą funkciją. Funkciją galima nurodyti pavadinimu arba UID. Visas prieinamas funkcijas peržiūrėsite naudodami komandą ``show``. Atsižvelgiant į funkciją, gali reikėti pateikti papildomų argumentų (pavyzdžiui, rodomo tekstinio pranešimo), užkoduotų vienoje JSON eilutėje. Daugiau informacijos rasite kūrėjų dokumentacijoje.</translation>
     </message>
     <message>
         <source>Lock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Užrakinti ekraną</translation>
     </message>
     <message>
         <source>Display a text message</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti tekstinį pranešimą</translation>
     </message>
     <message>
         <source>Test message</source>
-        <translation type="unfinished"/>
+        <translation>Bandomasis pranešimas</translation>
     </message>
     <message>
         <source>Start an application</source>
-        <translation type="unfinished"/>
+        <translation>Paleisti programą</translation>
     </message>
     <message>
         <source>Stops the specified feature on the specified host by connecting to the Veyon Server running remotely. The feature can be specified by name or UID. Use the ``show`` command to see all available features.</source>
-        <translation type="unfinished"/>
+        <translation>Prisijungia prie nuotoliniame kompiuteryje veikiančio Veyon serverio ir sustabdo nurodytą funkciją. Funkciją galima nurodyti pavadinimu arba UID. Visas prieinamas funkcijas peržiūrėsite naudodami komandą ``show``.</translation>
     </message>
     <message>
         <source>Unlock the screen</source>
-        <translation type="unfinished"/>
+        <translation>Atrakinti ekraną</translation>
     </message>
     <message>
         <source>The specified command does not exist or no help is available for it.</source>
-        <translation type="unfinished"/>
+        <translation>Nurodytos komandos nėra arba jos žinynas nepasiekiamas.</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1682,11 +1685,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Aprašas</translation>
     </message>
     <message>
         <source>Master</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Master</translation>
     </message>
     <message>
         <source>Service</source>
@@ -1694,43 +1697,43 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Worker</source>
-        <translation type="unfinished"/>
+        <translation>Darbinis procesas</translation>
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin</source>
-        <translation>Plėtinys</translation>
+        <translation>Papildinys</translation>
     </message>
     <message>
         <source>Invalid feature name or UID specified</source>
-        <translation type="unfinished"/>
+        <translation>Nurodytas netinkamas funkcijos pavadinimas arba UID</translation>
     </message>
     <message>
         <source>Error parsing the JSON-encoded arguments: %1</source>
-        <translation type="unfinished"/>
+        <translation>Klaida analizuojant JSON formatu užkoduotus argumentus: %1</translation>
     </message>
     <message>
         <source>Failed to initialize credentials</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko inicijuoti prisijungimo duomenų</translation>
     </message>
     <message>
         <source>Could not establish a connection to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko prisijungti prie kompiuterio %1</translation>
     </message>
     <message>
         <source>Failed to send feature control message to host %1</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko išsiųsti funkcijos valdymo pranešimo kompiuteriui %1</translation>
     </message>
     <message>
         <source>Feature-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>Su funkcijomis susijusios CLI operacijos</translation>
     </message>
     <message>
         <source>Commands for controlling features</source>
-        <translation type="unfinished"/>
+        <translation>Funkcijų valdymo komandos</translation>
     </message>
 </context>
 <context>
@@ -1741,51 +1744,51 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>Nustatymai</translation>
     </message>
     <message>
         <source>Subfolder handling</source>
-        <translation type="unfinished"/>
+        <translation>Poaplankių tvarkymas</translation>
     </message>
     <message>
         <source>*.* or *.docx;*.pdf (leave empty for all files)</source>
-        <translation type="unfinished"/>
+        <translation>*.* arba *.docx;*.pdf (palikite tuščią, jei norite įtraukti visus failus)</translation>
     </message>
     <message>
         <source>File pattern</source>
-        <translation type="unfinished"/>
+        <translation>Failų šablonas</translation>
     </message>
     <message>
         <source>Local destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Vietinis paskirties katalogas</translation>
     </message>
     <message>
         <source>Relative (Documents/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
-        <translation type="unfinished"/>
+        <translation>Santykinis (Documents/) arba absoliutus (/tmp/ arba C:\TMP) kelias; palikite tuščią, kad būtų naudojamas sukonfigūruotas katalogas</translation>
     </message>
     <message>
         <source>Source directory on remote computers</source>
-        <translation type="unfinished"/>
+        <translation>Šaltinio katalogas nuotoliniuose kompiuteriuose</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Numatytasis</translation>
     </message>
     <message>
         <source>Files in source directory only</source>
-        <translation type="unfinished"/>
+        <translation>Tik failai šaltinio kataloge</translation>
     </message>
     <message>
         <source>Files in source directory and subdirectories</source>
-        <translation type="unfinished"/>
+        <translation>Failai šaltinio kataloge ir poaplankiuose</translation>
     </message>
     <message>
         <source>Collected files</source>
-        <translation type="unfinished"/>
+        <translation>Surinkti failai</translation>
     </message>
     <message>
         <source>Overall progress</source>
-        <translation type="unfinished"/>
+        <translation>Bendra eiga</translation>
     </message>
     <message>
         <source>Start</source>
@@ -1793,34 +1796,34 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Select destination directory</source>
-        <translation>Pasirinkite katalogą</translation>
+        <translation>Pasirinkti paskirties katalogą</translation>
     </message>
     <message>
         <source>Open output directory</source>
-        <translation type="unfinished"/>
+        <translation>Atverti išvesties katalogą</translation>
     </message>
     <message>
         <source>Enter collection name</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite rinkinio pavadinimą</translation>
     </message>
     <message>
         <source>Please enter a name for this file collection:</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite šio failų rinkinio pavadinimą:</translation>
     </message>
     <message>
         <source>Output directory creation failed</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko sukurti išvesties katalogo</translation>
     </message>
     <message>
         <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
-        <translation type="unfinished"/>
+        <translation>Išvesties katalogo „%1“ nėra ir jo nepavyko sukurti. Patikrinkite sukonfigūruotą paskirties katalogą ir failų prieigos teises.</translation>
     </message>
 </context>
 <context>
     <name>FileCollectTreeModel</name>
     <message>
         <source>Progress</source>
-        <translation type="unfinished"/>
+        <translation>Eiga</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1828,7 +1831,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Number of files</source>
-        <translation type="unfinished"/>
+        <translation>Failų skaičius</translation>
     </message>
 </context>
 <context>
@@ -1839,23 +1842,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Settings for distributing files</source>
-        <translation type="unfinished"/>
+        <translation>Failų platinimo nustatymai</translation>
     </message>
     <message>
         <source>Settings for collecting files</source>
-        <translation type="unfinished"/>
+        <translation>Failų surinkimo nustatymai</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished"/>
+        <translation>Ne</translation>
     </message>
     <message>
         <source>Prefix filenames with grouping attribute</source>
-        <translation type="unfinished"/>
+        <translation>Failų pavadinimų pradžioje pridėti grupavimo atributo reikšmę</translation>
     </message>
     <message>
         <source>Store files in subdirectories based on the grouping attribute</source>
-        <translation type="unfinished"/>
+        <translation>Failus saugoti poaplankiuose pagal grupavimo atributą</translation>
     </message>
     <message>
         <source>None</source>
@@ -1863,114 +1866,114 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>First part of user name</source>
-        <translation type="unfinished"/>
+        <translation>Pirmoji vartotojo vardo dalis</translation>
     </message>
     <message>
         <source>Last part of user name</source>
-        <translation type="unfinished"/>
+        <translation>Paskutinė vartotojo vardo dalis</translation>
     </message>
     <message>
         <source>Collect all files from configured source directory</source>
-        <translation type="unfinished"/>
+        <translation>Surinkti visus failus iš sukonfigūruoto šaltinio katalogo</translation>
     </message>
     <message>
         <source>Prompt user for folder to collect</source>
-        <translation type="unfinished"/>
+        <translation>Paraginti vartotoją pasirinkti renkamą aplanką</translation>
     </message>
     <message>
         <source>Prompt user for files to collect</source>
-        <translation type="unfinished"/>
+        <translation>Paraginti vartotoją pasirinkti renkamus failus</translation>
     </message>
     <message>
         <source>Grouping attribute 3:</source>
-        <translation type="unfinished"/>
+        <translation>Grupavimo atributas 3:</translation>
     </message>
     <message>
         <source>Destination directory:</source>
-        <translation type="unfinished"/>
+        <translation>Paskirties katalogas:</translation>
     </message>
     <message>
         <source>Store collected files in:</source>
-        <translation type="unfinished"/>
+        <translation>Surinktus failus saugoti:</translation>
     </message>
     <message>
         <source>Group collected files:</source>
-        <translation type="unfinished"/>
+        <translation>Grupuoti surinktus failus:</translation>
     </message>
     <message>
         <source>Grouping attribute 1:</source>
-        <translation type="unfinished"/>
+        <translation>Grupavimo atributas 1:</translation>
     </message>
     <message>
         <source>Grouping attribute 2:</source>
-        <translation type="unfinished"/>
+        <translation>Grupavimo atributas 2:</translation>
     </message>
     <message>
         <source>Directly in the destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Tiesiogiai paskirties kataloge</translation>
     </message>
     <message>
         <source>Subdirectory based on date &amp; time</source>
-        <translation type="unfinished"/>
+        <translation>Poaplankyje pagal datą ir laiką</translation>
     </message>
     <message>
         <source>Subdirectory with name entered by the collecting user</source>
-        <translation type="unfinished"/>
+        <translation>Poaplankyje, kurio pavadinimą įveda failus renkantis vartotojas</translation>
     </message>
     <message>
         <source>Files to collect:</source>
-        <translation type="unfinished"/>
+        <translation>Renkami failai:</translation>
     </message>
     <message>
         <source>Files to exclude:</source>
-        <translation type="unfinished"/>
+        <translation>Neįtraukiami failai:</translation>
     </message>
     <message>
         <source>e.g. *.lnk or *.desktop</source>
-        <translation type="unfinished"/>
+        <translation>pvz., *.lnk arba *.desktop</translation>
     </message>
     <message>
         <source>Collect files recursively</source>
-        <translation type="unfinished"/>
+        <translation>Rinkti failus rekursyviai</translation>
     </message>
     <message>
         <source>Destination directory (remote):</source>
-        <translation type="unfinished"/>
+        <translation>Paskirties katalogas (nuotolinis):</translation>
     </message>
     <message>
         <source>Default source directory:</source>
-        <translation type="unfinished"/>
+        <translation>Numatytasis šaltinio katalogas:</translation>
     </message>
     <message>
         <source>Source directory (remote):</source>
-        <translation type="unfinished"/>
+        <translation>Šaltinio katalogas (nuotolinis):</translation>
     </message>
     <message>
         <source>User login name</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojo prisijungimo vardas</translation>
     </message>
     <message>
         <source>Full name of user</source>
-        <translation type="unfinished"/>
+        <translation>Visas vartotojo vardas</translation>
     </message>
     <message>
         <source>Device name</source>
-        <translation type="unfinished"/>
+        <translation>Įrenginio pavadinimas</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
-        <translation>Atsiminti paskutinę pradinę direktoriją.</translation>
+        <translation>Atsiminti paskutinį šaltinio katalogą</translation>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
-        <translation>Sukurti paskirties direktoriją jeigu ji neegistuoja.</translation>
+        <translation>Sukurti paskirties katalogą, jei jo nėra</translation>
     </message>
 </context>
 <context>
     <name>FileTransferController</name>
     <message>
         <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko atverti failo %1 skaitymui. Patikrinkite savo prieigos teises. Šis failas bus praleistas, o likę failai vis tiek bus perduoti.</translation>
     </message>
 </context>
 <context>
@@ -1981,15 +1984,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Options</source>
-        <translation>Nustatymai</translation>
+        <translation>Parinktys</translation>
     </message>
     <message>
         <source>Destination directory on remote computers:</source>
-        <translation type="unfinished"/>
+        <translation>Paskirties katalogas nuotoliniuose kompiuteriuose:</translation>
     </message>
     <message>
         <source>Relative (Desktop/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
-        <translation type="unfinished"/>
+        <translation>Santykinis (Desktop/) arba absoliutus (/tmp/ arba C:\TMP) kelias; palikite tuščią, kad būtų naudojamas sukonfigūruotas katalogas</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -2001,11 +2004,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
-        <translation>Perkelti ir atidaryti failą(-us) su numatytąja programa </translation>
+        <translation>Perkelti ir atverti failą (-us) susieta programa</translation>
     </message>
     <message>
         <source>Transfer and open destination folder</source>
-        <translation>Perkelti ir atidaryti failo katalogą</translation>
+        <translation>Perkelti ir atverti paskirties aplanką</translation>
     </message>
     <message>
         <source>Files</source>
@@ -2017,30 +2020,30 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>File transfer error</source>
-        <translation type="unfinished"/>
+        <translation>Failų perdavimo klaida</translation>
     </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
     <message>
         <source>Distribute</source>
-        <translation type="unfinished"/>
+        <translation>Platinti</translation>
     </message>
     <message>
         <source>Click this button to distribute files from your computer to all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Spustelėkite šį mygtuką, kad iš savo kompiuterio išplatintumėte failus į visus kompiuterius.</translation>
     </message>
     <message>
         <source>Collect</source>
-        <translation type="unfinished"/>
+        <translation>Surinkti</translation>
     </message>
     <message>
         <source>Click this button to collect files from all computers to your computer.</source>
-        <translation type="unfinished"/>
+        <translation>Spustelėkite šį mygtuką, kad surinktumėte failus iš visų kompiuterių į savo kompiuterį.</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
-        <translation>Pasirinkite vieną ar daugiau failų perkėlimui</translation>
+        <translation>Pasirinkite vieną arba daugiau norimų perduoti failų</translation>
     </message>
     <message>
         <source>File transfer</source>
@@ -2048,42 +2051,42 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Received file %1.</source>
-        <translation type="unfinished"/>
+        <translation>Gautas failas %1.</translation>
     </message>
     <message>
         <source>The file %1 is to be collected, but is still open in an application.</source>
-        <translation type="unfinished"/>
+        <translation>Failas %1 turi būti surinktas, tačiau jis vis dar atvertas programoje.</translation>
     </message>
     <message>
         <source>The file %1 is to be collected, but is still open in the application &lt;b&gt;%2&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Failas %1 turi būti surinktas, tačiau jis vis dar atvertas programoje &lt;b&gt;%2&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Please save your changes and close the program so that the transfer can be completed.</source>
-        <translation type="unfinished"/>
+        <translation>Įrašykite pakeitimus ir užverkite programą, kad būtų galima užbaigti perdavimą.</translation>
     </message>
     <message>
         <source>Are you sure you want to skip transferring the file %1?</source>
-        <translation type="unfinished"/>
+        <translation>Ar tikrai norite praleisti failo %1 perdavimą?</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko gauti failo %1, nes toks failas jau yra.</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it could not be opened for writing!</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko gauti failo %1, nes jo nepavyko atverti rašymui!</translation>
     </message>
     <message>
         <source>Transfer files between computers</source>
-        <translation type="unfinished"/>
+        <translation>Perduoti failus tarp kompiuterių</translation>
     </message>
 </context>
 <context>
     <name>GeneralConfigurationPage</name>
     <message>
         <source>User interface</source>
-        <translation>Naudotojo sąsaja</translation>
+        <translation>Vartotojo sąsaja</translation>
     </message>
     <message>
         <source>Use system language setting</source>
@@ -2091,19 +2094,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Language:</source>
-        <translation>Kalba</translation>
+        <translation>Kalba:</translation>
     </message>
     <message>
         <source>Style:</source>
-        <translation type="unfinished"/>
+        <translation>Stilius:</translation>
     </message>
     <message>
         <source>Native</source>
-        <translation type="unfinished"/>
+        <translation>Sistemos</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation>Autorizavimas</translation>
+        <translation>Autentifikavimas</translation>
     </message>
     <message>
         <source>Method:</source>
@@ -2111,55 +2114,55 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Logon authentication</source>
-        <translation>Autorizacija naudojant prisijungimą prie sistemos</translation>
+        <translation>Prisijungimo autentifikavimas</translation>
     </message>
     <message>
         <source>Key file authentication</source>
-        <translation>Autorizuotis naudojant prieigos raktą</translation>
+        <translation>Autentifikavimas rakto failu</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation>Testuoti</translation>
+        <translation>Tikrinti</translation>
     </message>
     <message>
         <source>Network object directory</source>
-        <translation>Tinklo objektų direktorija</translation>
+        <translation>Tinklo objektų katalogas</translation>
     </message>
     <message>
         <source>Backend:</source>
-        <translation>Sisteminė konfigūracija</translation>
+        <translation>Posistemė:</translation>
     </message>
     <message>
         <source>Update interval:</source>
-        <translation>Atnaujinimo intervalai:</translation>
+        <translation>Atnaujinimo intervalas:</translation>
     </message>
     <message>
         <source> seconds</source>
-        <translation>Sekundės</translation>
+        <translation> sekundės</translation>
     </message>
     <message>
         <source>Logging</source>
-        <translation>Įrašymas į įvykių žurnalą</translation>
+        <translation>Registravimas žurnale</translation>
     </message>
     <message>
         <source>Log file directory</source>
-        <translation>Įvykių žurnalo direktorija</translation>
+        <translation>Žurnalo failų katalogas</translation>
     </message>
     <message>
         <source>Log level</source>
-        <translation>Įvykių žurnalo lygmuo</translation>
+        <translation>Žurnalo lygis</translation>
     </message>
     <message>
         <source>Nothing</source>
-        <translation>Nevygdyti įvykių žurnalo</translation>
+        <translation>Nieko</translation>
     </message>
     <message>
         <source>Only critical messages</source>
-        <translation>Tik kritines klaidas</translation>
+        <translation>Tik kritiniai pranešimai</translation>
     </message>
     <message>
         <source>Errors and critical messages</source>
-        <translation>Visas klaidas</translation>
+        <translation>Klaidos ir kritiniai pranešimai</translation>
     </message>
     <message>
         <source>Warnings and errors</source>
@@ -2167,11 +2170,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Information, warnings and errors</source>
-        <translation>Informaciniai įspėjimai ir klaidos</translation>
+        <translation>Informacija, įspėjimai ir klaidos</translation>
     </message>
     <message>
         <source>Debug messages and everything else</source>
-        <translation>Patarimų žinutės ir visa kita</translation>
+        <translation>Derinimo pranešimai ir visa kita</translation>
     </message>
     <message>
         <source>x</source>
@@ -2179,7 +2182,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Rotate log files</source>
-        <translation>Keisti įvykio žurnalo failus</translation>
+        <translation>Rotuoti žurnalo failus</translation>
     </message>
     <message>
         <source> MB</source>
@@ -2187,43 +2190,43 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Limit log file size</source>
-        <translation>Limituoti žurnalo failo dydį</translation>
+        <translation>Riboti žurnalo failo dydį</translation>
     </message>
     <message>
         <source>Log to standard error output</source>
-        <translation>Persijungti į įvykių žurnalą</translation>
+        <translation>Rašyti į standartinę klaidų išvestį</translation>
     </message>
     <message>
         <source>Write to logging system of operating system</source>
-        <translation>Įrašyti į operacinės sistemos įvykių žurnalą</translation>
+        <translation>Rašyti į operacinės sistemos žurnalų sistemą</translation>
     </message>
     <message>
         <source>Clear all log files</source>
-        <translation>Išvalyti visus įvykių žurnalo failus</translation>
+        <translation>Išvalyti visus žurnalo failus</translation>
     </message>
     <message>
         <source>Authentication is set up properly on this computer.</source>
-        <translation>Autorizacija nustatyta tinkamai šiame kompiuteryje.</translation>
+        <translation>Autentifikavimas šiame kompiuteryje nustatytas tinkamai.</translation>
     </message>
     <message>
         <source>Authentication keys are not set up properly on this computer.</source>
-        <translation>Autentifikacijos raktai nenustatyti tinkamai šiame kompiuteryje.</translation>
+        <translation>Autentifikavimo raktai šiame kompiuteryje nustatyti netinkamai.</translation>
     </message>
     <message>
         <source>Veyon service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon tarnyba</translation>
     </message>
     <message>
         <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation type="unfinished"/>
+        <translation>Norint pašalinti žurnalo failus, Veyon tarnybą reikia laikinai sustabdyti. Tęsti?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
-        <translation>Įvykio failai ištrinti</translation>
+        <translation>Žurnalo failai išvalyti</translation>
     </message>
     <message>
         <source>All log files were cleared successfully.</source>
-        <translation>Visi įvyko failai pašalinti sėkmingai.</translation>
+        <translation>Visi žurnalo failai sėkmingai išvalyti.</translation>
     </message>
     <message>
         <source>Error</source>
@@ -2231,46 +2234,46 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Could not remove all log files.</source>
-        <translation>Nepavyko pašalinti visų įvykio failų.</translation>
+        <translation>Nepavyko pašalinti visų žurnalo failų.</translation>
     </message>
     <message>
         <source>Authentication test</source>
-        <translation>Autentifikacijos testas</translation>
+        <translation>Autentifikavimo tikrinimas</translation>
     </message>
     <message>
         <source>User groups</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojų grupės</translation>
     </message>
     <message>
         <source>Include user groups from domain</source>
-        <translation type="unfinished"/>
+        <translation>Įtraukti vartotojų grupes iš domeno</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
-        <translation>Naudotojų grupių valdymas nerastas</translation>
+        <translation>Trūksta vartotojų grupių posistemės</translation>
     </message>
     <message>
         <source>No user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojų grupių papildinys nerastas. Patikrinkite diegimą!</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished"/>
+        <translation>Spalvų schema:</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>Šviesi</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>Tamsi</translation>
     </message>
 </context>
 <context>
     <name>HeadlessVncServer</name>
     <message>
         <source>Headless VNC server</source>
-        <translation>Nevaldomas VNC serveris.</translation>
+        <translation>VNC serveris be grafinės sąsajos</translation>
     </message>
 </context>
 <context>
@@ -2291,27 +2294,27 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>LdapConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation>Baziniai nustatymai</translation>
+        <translation>Pagrindiniai nustatymai</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Pagrindinis</translation>
+        <translation>Bendrieji nustatymai</translation>
     </message>
     <message>
         <source>Anonymous bind</source>
-        <translation>Anoniminis prisirišimas</translation>
+        <translation>Anoniminis susiejimas</translation>
     </message>
     <message>
         <source>Use bind credentials</source>
-        <translation>Naudoti prisirišimo duomenis</translation>
+        <translation>Naudoti susiejimo prisijungimo duomenis</translation>
     </message>
     <message>
         <source>Query timeout</source>
-        <translation type="unfinished"/>
+        <translation>Užklausos skirtasis laikas</translation>
     </message>
     <message>
         <source>Bind DN</source>
-        <translation>Pririšti BN</translation>
+        <translation>Susiejimo DN</translation>
     </message>
     <message>
         <source> ms</source>
@@ -2319,19 +2322,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>LDAP server and port</source>
-        <translation>LDAP serverio adresas ir prievadas</translation>
+        <translation>LDAP serveris ir prievadas</translation>
     </message>
     <message>
         <source>Bind password</source>
-        <translation>Pririšti slaptažodį</translation>
+        <translation>Susiejimo slaptažodis</translation>
     </message>
     <message>
         <source>Connection security</source>
-        <translation>Prisijungimo sauga</translation>
+        <translation>Ryšio saugumas</translation>
     </message>
     <message>
         <source>TLS certificate verification</source>
-        <translation>TLS sertifikato patvirtinimas</translation>
+        <translation>TLS sertifikato tikrinimas</translation>
     </message>
     <message>
         <source>Encryption protocol</source>
@@ -2339,7 +2342,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>System defaults</source>
-        <translation>Gamykliniai nustatymai</translation>
+        <translation>Sistemos numatytosios reikšmės</translation>
     </message>
     <message>
         <source>Never (insecure!)</source>
@@ -2367,7 +2370,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Discover base DN by naming context</source>
-        <translation type="unfinished"/>
+        <translation>Aptikti bazinį DN pagal vardų suteikimo kontekstą</translation>
     </message>
     <message>
         <source>e.g. namingContexts or defaultNamingContext</source>
@@ -2379,7 +2382,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. dc=example,dc=org</source>
-        <translation>pvz. dc=pavyzdys, dc=org</translation>
+        <translation>pvz., dc=example,dc=org</translation>
     </message>
     <message>
         <source>Environment settings</source>
@@ -2387,11 +2390,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Object trees</source>
-        <translation>Objektų medis</translation>
+        <translation>Objektų medžiai</translation>
     </message>
     <message>
         <source>(only if different from group tree)</source>
-        <translation type="unfinished"/>
+        <translation>(tik jei skiriasi nuo grupių medžio)</translation>
     </message>
     <message>
         <source>Computer tree</source>
@@ -2399,11 +2402,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Perform recursive search operations in object trees</source>
-        <translation>Vykdyti rekursyvią paiešką objektų medyje</translation>
+        <translation>Objektų medžiuose vykdyti rekursyviosios paieškos operacijas</translation>
     </message>
     <message>
         <source>User tree</source>
-        <translation>Naudotojų medis</translation>
+        <translation>Vartotojų medis</translation>
     </message>
     <message>
         <source>e.g. OU=Computers</source>
@@ -2427,35 +2430,35 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Object attributes</source>
-        <translation>Objekto atributai</translation>
+        <translation>Objektų atributai</translation>
     </message>
     <message>
         <source>e.g. name, ou or description</source>
-        <translation type="unfinished"/>
+        <translation>pvz., name, ou arba description</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation type="unfinished"/>
+        <translation>Pagrindinių kompiuterių vardai saugomi kaip visiškai apibrėžti domenų vardai (FQDN, pvz., myhost.example.org)</translation>
     </message>
     <message>
         <source>e.g. room or computerLab</source>
-        <translation type="unfinished"/>
+        <translation>pvz., room arba computerLab</translation>
     </message>
     <message>
         <source>User login name attribute</source>
-        <translation>Prisijungimo vardo atributai</translation>
+        <translation>Vartotojo prisijungimo vardo atributas</translation>
     </message>
     <message>
         <source>Computer location attribute</source>
-        <translation>Kompiuterio vietos atributai</translation>
+        <translation>Kompiuterio vietos atributas</translation>
     </message>
     <message>
         <source>e.g. member or memberUid</source>
-        <translation type="unfinished"/>
+        <translation>pvz., member arba memberUid</translation>
     </message>
     <message>
         <source>Group member attribute</source>
-        <translation>Grupių narių atributai</translation>
+        <translation>Grupės nario atributas</translation>
     </message>
     <message>
         <source>e.g. hwAddress</source>
@@ -2463,27 +2466,27 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Computer MAC address attribute</source>
-        <translation>Kompiuterio MAC adreso atributai</translation>
+        <translation>Kompiuterio MAC adreso atributas</translation>
     </message>
     <message>
         <source>e.g. dNSHostName</source>
-        <translation type="unfinished"/>
+        <translation>pvz., dNSHostName</translation>
     </message>
     <message>
         <source>e.g. uid or sAMAccountName</source>
-        <translation type="unfinished"/>
+        <translation>pvz., uid arba sAMAccountName</translation>
     </message>
     <message>
         <source>Computer display name attribute</source>
-        <translation>Kompiuterio atvaizduojamo vardo atributai</translation>
+        <translation>Rodomo kompiuterio pavadinimo atributas</translation>
     </message>
     <message>
         <source>Computer hostname attribute</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterio vardo atributas</translation>
     </message>
     <message>
         <source>Location name attribute</source>
-        <translation>Vietos pavadinimo atributai</translation>
+        <translation>Vietos pavadinimo atributas</translation>
     </message>
     <message>
         <source>e.g. cn or displayName</source>
@@ -2495,7 +2498,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Optional object filters</source>
-        <translation>Pasirinktiniai filtrai</translation>
+        <translation>Pasirinktiniai objektų filtrai</translation>
     </message>
     <message>
         <source>Filter for computer groups</source>
@@ -2503,67 +2506,67 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. (objectClass=computer)</source>
-        <translation type="unfinished"/>
+        <translation>pvz., (objectClass=computer)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=group)</source>
-        <translation type="unfinished"/>
+        <translation>pvz., (objectClass=group)</translation>
     </message>
     <message>
         <source>e.g. (objectClass=person)</source>
-        <translation type="unfinished"/>
+        <translation>pvz., (objectClass=person)</translation>
     </message>
     <message>
         <source>Filter for users</source>
-        <translation>Filtras naudotojams</translation>
+        <translation>Vartotojų filtras</translation>
     </message>
     <message>
         <source>Filter for computers</source>
-        <translation>Filtrai kompiuteriams</translation>
+        <translation>Kompiuterių filtras</translation>
     </message>
     <message>
         <source>Filter for user groups</source>
-        <translation>Filtras naudotojų grupėms</translation>
+        <translation>Vartotojų grupių filtras</translation>
     </message>
     <message>
         <source>e.g. (objectClass=room) or (objectClass=computerLab)</source>
-        <translation type="unfinished"/>
+        <translation>pvz., (objectClass=room) arba (objectClass=computerLab)</translation>
     </message>
     <message>
         <source>Filter for computer containers</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterių konteinerių filtras</translation>
     </message>
     <message>
         <source>e.g. (objectClass=container) or (objectClass=organizationalUnit)</source>
-        <translation type="unfinished"/>
+        <translation>pvz., (objectClass=container) arba (objectClass=organizationalUnit)</translation>
     </message>
     <message>
         <source>Query options</source>
-        <translation type="unfinished"/>
+        <translation>Užklausos parinktys</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
-        <translation type="unfinished"/>
+        <translation>Užklausti įdėtąsias vartotojų grupes (palaiko tik AD)</translation>
     </message>
     <message>
         <source>Group member identification</source>
-        <translation>Grupių vartotojų indentifikacija</translation>
+        <translation>Grupės narių identifikavimas</translation>
     </message>
     <message>
         <source>Distinguished name (Samba/AD/FreeIPA)</source>
-        <translation type="unfinished"/>
+        <translation>Skiriamasis vardas (Samba / AD / FreeIPA)</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
-        <translation type="unfinished"/>
+        <translation>Sukonfigūruotas vartotojo prisijungimo vardo arba kompiuterio vardo atributas (OpenLDAP)</translation>
     </message>
     <message>
         <source>Computer locations identification</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterių vietų nustatymas</translation>
     </message>
     <message>
         <source>Identify computer locations (e.g. rooms) via:</source>
-        <translation type="unfinished"/>
+        <translation>Nustatyti kompiuterių vietas (pvz., kabinetus) pagal:</translation>
     </message>
     <message>
         <source>Computer groups</source>
@@ -2571,31 +2574,31 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Computer containers or OUs</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterių konteineriai arba OU</translation>
     </message>
     <message>
         <source>Location attribute in computer objects</source>
-        <translation type="unfinished"/>
+        <translation>Vietos atributas kompiuterių objektuose</translation>
     </message>
     <message>
         <source>Integration tests</source>
-        <translation>Integraciniai testai</translation>
+        <translation>Integravimo testai</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
-        <translation>Atvaizduoti visas naudotojo grupes</translation>
+        <translation>Išvardyti visas vartotojo grupes</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
-        <translation>Atvaizduoti visas grupes kompiuteriui</translation>
+        <translation>Išvardyti visas kompiuterio grupes</translation>
     </message>
     <message>
         <source>Get computer object by IP address</source>
-        <translation>Gaukite kompiuterio objektą pagal IP adresą</translation>
+        <translation>Gauti kompiuterio objektą pagal IP adresą</translation>
     </message>
     <message>
         <source>List all entries of a location</source>
-        <translation type="unfinished"/>
+        <translation>Išvardyti visus vietos įrašus</translation>
     </message>
     <message>
         <source>List all locations</source>
@@ -2607,7 +2610,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Test</source>
-        <translation>Testuoti</translation>
+        <translation>Tikrinti</translation>
     </message>
     <message>
         <source>LDAP base DN test failed</source>
@@ -2617,45 +2620,51 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Could not query the configured base DN. Please check the base DN parameter.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko užklausti sukonfigūruoto bazinio DN. Patikrinkite bazinio DN parametrą.
+
+%1</translation>
     </message>
     <message>
         <source>LDAP base DN test successful</source>
-        <translation>LDAP bazinis DN testas sėkmingas</translation>
+        <translation>LDAP bazinio DN tikrinimas sėkmingas</translation>
     </message>
     <message>
         <source>The LDAP base DN has been queried successfully. The following entries were found:
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>LDAP bazinio DN užklausa sėkmingai įvykdyta. Rasti šie įrašai:
+
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test failed</source>
-        <translation>Nepavyko atlikti LDAP pavadinimo konteksto testo</translation>
+        <translation>LDAP vardų suteikimo konteksto tikrinimas nepavyko</translation>
     </message>
     <message>
         <source>Could not query the base DN via naming contexts. Please check the naming context attribute parameter.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko užklausti bazinio DN naudojant vardų suteikimo kontekstus. Patikrinkite vardų suteikimo konteksto atributo parametrą.
+
+%1</translation>
     </message>
     <message>
         <source>LDAP naming context test successful</source>
-        <translation>LDAP įvardijimo konteksto testas sėkmingas</translation>
+        <translation>LDAP vardų suteikimo konteksto tikrinimas sėkmingas</translation>
     </message>
     <message>
         <source>The LDAP naming context has been queried successfully. The following base DN was found:
 %1</source>
-        <translation>LDAP pavadinimų konteksto užklausa buvo sėkmingai pateikta. Rasta ši bazinė DN:
+        <translation>LDAP vardų suteikimo konteksto užklausa sėkmingai įvykdyta. Rastas šis bazinis DN:
 %1</translation>
     </message>
     <message>
         <source>user tree</source>
-        <translation>naudotojų medis</translation>
+        <translation>vartotojų medis</translation>
     </message>
     <message>
         <source>group tree</source>
-        <translation>grupės medis</translation>
+        <translation>grupių medis</translation>
     </message>
     <message>
         <source>computer tree</source>
@@ -2663,19 +2672,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>computer group tree</source>
-        <translation type="unfinished"/>
+        <translation>kompiuterių grupių medis</translation>
     </message>
     <message>
         <source>Enter username</source>
-        <translation>Įveskite naudotojo vardą</translation>
+        <translation>Įveskite vartotojo vardą</translation>
     </message>
     <message>
         <source>Please enter a user login name (wildcards allowed) which to query:</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite vartotojo prisijungimo vardą, kurio užklausą vykdyti (galima naudoti pakaitos simbolius):</translation>
     </message>
     <message>
         <source>user objects</source>
-        <translation>naudotojo objektai</translation>
+        <translation>vartotojų objektai</translation>
     </message>
     <message>
         <source>Enter group name</source>
@@ -2695,15 +2704,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Could not find a group with the name &quot;%1&quot;. Please check the group name or the group tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Grupė pavadinimu „%1“ nerasta. Patikrinkite grupės pavadinimą arba grupių medžio parametrą.</translation>
     </message>
     <message>
         <source>Enter computer display name</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite rodomą kompiuterio pavadinimą</translation>
     </message>
     <message>
         <source>Please enter a computer display name to query:</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite rodomą kompiuterio pavadinimą, kurio užklausą vykdyti:</translation>
     </message>
     <message>
         <source>computer objects</source>
@@ -2715,7 +2724,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Please enter a computer hostname to query:</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite kompiuterio vardą, kurio užklausą vykdyti:</translation>
     </message>
     <message>
         <source>Invalid hostname</source>
@@ -2723,11 +2732,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>You configured computer hostnames to be stored as fully qualified domain names (FQDN) but entered a hostname without domain.</source>
-        <translation type="unfinished"/>
+        <translation>Nustatėte, kad kompiuterių vardai saugomi kaip visavardžiai domenų vardai (FQDN), tačiau įvedėte kompiuterio vardą be domeno.</translation>
     </message>
     <message>
         <source>You configured computer hostnames to be stored as simple hostnames without a domain name but entered a hostname with a domain name part.</source>
-        <translation type="unfinished"/>
+        <translation>Nustatėte, kad kompiuterių vardai saugomi kaip paprastieji vardai be domeno, tačiau įvedėte vardą su domeno dalimi.</translation>
     </message>
     <message>
         <source>Enter computer DN</source>
@@ -2743,27 +2752,27 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Enter computer location name</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite kompiuterio vietos pavadinimą</translation>
     </message>
     <message>
         <source>Please enter the name of a computer location (wildcards allowed):</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite kompiuterio vietos pavadinimą (galima naudoti pakaitos simbolius):</translation>
     </message>
     <message>
         <source>computer locations</source>
-        <translation type="unfinished"/>
+        <translation>kompiuterių vietos</translation>
     </message>
     <message>
         <source>Enter location name</source>
-        <translation>Įveskite vietovės pavadinimą</translation>
+        <translation>Įveskite vietos pavadinimą</translation>
     </message>
     <message>
         <source>users</source>
-        <translation>naudotojai</translation>
+        <translation>vartotojai</translation>
     </message>
     <message>
         <source>user groups</source>
-        <translation>naudotojų grupės</translation>
+        <translation>vartotojų grupės</translation>
     </message>
     <message>
         <source>computers</source>
@@ -2775,23 +2784,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>computer containers</source>
-        <translation type="unfinished"/>
+        <translation>kompiuterių konteineriai</translation>
     </message>
     <message>
         <source>Please enter a user login name whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite vartotojo prisijungimo vardą, kurio narystę grupėse užklausti:</translation>
     </message>
     <message>
         <source>groups of user</source>
-        <translation>naudotojo grupės</translation>
+        <translation>vartotojo grupės</translation>
     </message>
     <message>
         <source>User not found</source>
-        <translation>Naudotojas nerastas</translation>
+        <translation>Vartotojas nerastas</translation>
     </message>
     <message>
         <source>Could not find a user with the name &quot;%1&quot;. Please check the username or the user tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojas vardu „%1“ nerastas. Patikrinkite vartotojo vardą arba vartotojų medžio parametrą.</translation>
     </message>
     <message>
         <source>Enter hostname</source>
@@ -2799,7 +2808,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Please enter a computer hostname whose group memberships to query:</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite kompiuterio vardą, kurio narystę grupėse užklausti:</translation>
     </message>
     <message>
         <source>groups of computer</source>
@@ -2811,7 +2820,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Could not find a computer with the hostname &quot;%1&quot;. Please check the hostname or the computer tree parameter.</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuteris vardu „%1“ nerastas. Patikrinkite kompiuterio vardą arba kompiuterių medžio parametrą.</translation>
     </message>
     <message>
         <source>Enter computer IP address</source>
@@ -2819,23 +2828,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Please enter a computer IP address which to resolve to an computer object:</source>
-        <translation>Įveskite kompiuterio IP adresą, kurį reikia naudoti kompiuterio objektui atskirti:</translation>
+        <translation>Įveskite kompiuterio IP adresą, pagal kurį rasti kompiuterio objektą:</translation>
     </message>
     <message>
         <source>Hostname lookup failed</source>
-        <translation>Nepavyko ieškoti pagrindinio kompiuterio vardo</translation>
+        <translation>Nepavyko rasti pagrindinio kompiuterio vardo</translation>
     </message>
     <message>
         <source>Could not lookup hostname for IP address %1. Please check your DNS server settings.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko pagal IP adresą %1 rasti kompiuterio vardo. Patikrinkite DNS serverio nustatymus.</translation>
     </message>
     <message>
         <source>Please enter the name of a location whose entries to query:</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite vietos, kurios įrašus užklausti, pavadinimą:</translation>
     </message>
     <message>
         <source>location entries</source>
-        <translation type="unfinished"/>
+        <translation>vietos įrašai</translation>
     </message>
     <message>
         <source>Certificate files (*.pem)</source>
@@ -2849,21 +2858,25 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Could not connect to the LDAP server. Please check the server parameters.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko prisijungti prie LDAP serverio. Patikrinkite serverio parametrus.
+
+%1</translation>
     </message>
     <message>
         <source>LDAP bind failed</source>
-        <translation>Nepavyko susieti su LDAP</translation>
+        <translation>LDAP susiejimas nepavyko</translation>
     </message>
     <message>
         <source>Could not bind to the LDAP server. Please check the server parameters and bind credentials.
 
 %1</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko susieti su LDAP serveriu. Patikrinkite serverio parametrus ir susiejimo prisijungimo duomenis.
+
+%1</translation>
     </message>
     <message>
         <source>LDAP bind successful</source>
-        <translation>Susiejimas su LDAP sėkmingas</translation>
+        <translation>LDAP susiejimas sėkmingas</translation>
     </message>
     <message>
         <source>Successfully connected to the LDAP server and performed an LDAP bind. The basic LDAP settings are configured correctly.</source>
@@ -2877,7 +2890,9 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Could not query any entries in configured %1. Please check the parameter &quot;%2&quot;.
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Sukonfigūruoto objekto „%1“ užklausa negrąžino jokių įrašų. Patikrinkite parametrą „%2“.
+
+%3</translation>
     </message>
     <message>
         <source>LDAP %1 test successful</source>
@@ -2885,17 +2900,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The %1 has been queried successfully and %2 entries were found.</source>
-        <translation type="unfinished"/>
+        <translation>Objekto „%1“ užklausa sėkmingai įvykdyta, rasta įrašų: %2.</translation>
     </message>
     <message>
         <source>LDAP test failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP tikrinimas nepavyko</translation>
     </message>
     <message>
         <source>Could not query any %1. Please check the parameter(s) %2 and enter the name of an existing object.
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Objekto „%1“ užklausa negrąžino jokių rezultatų. Patikrinkite parametrą (-us) %2 ir įveskite esamo objekto pavadinimą.
+
+%3</translation>
     </message>
     <message>
         <source>and</source>
@@ -2903,82 +2920,86 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>LDAP test successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP tikrinimas sėkmingas</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation type="unfinished"/>
+        <translation>Sėkmingai gauti %1 %2:
+
+%3</translation>
     </message>
     <message>
         <source>LDAP filter test failed</source>
-        <translation type="unfinished"/>
+        <translation>LDAP filtro bandymas nepavyko</translation>
     </message>
     <message>
         <source>Could not query any %1 using the configured filter. Please check the LDAP filter for %1.
 
 %2</source>
-        <translation type="unfinished"/>
+        <translation>Naudojant sukonfigūruotą filtrą nepavyko užklausti jokių „%1“ objektų. Patikrinkite „%1“ LDAP filtrą.
+
+%2</translation>
     </message>
     <message>
         <source>LDAP filter test successful</source>
-        <translation type="unfinished"/>
+        <translation>LDAP filtro bandymas sėkmingas</translation>
     </message>
     <message>
         <source>%1 %2 have been queried successfully using the configured filter.</source>
-        <translation type="unfinished"/>
+        <translation>Naudojant sukonfigūruotą filtrą sėkmingai gauti %1 %2.</translation>
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
-        <translation type="unfinished"/>
+        <translation>Konteinerių / OU struktūrą 1:1 susieti su vietomis</translation>
     </message>
 </context>
 <context>
     <name>LdapPlugin</name>
     <message>
         <source>Auto-configure the base DN via naming context</source>
-        <translation type="unfinished"/>
+        <translation>Automatiškai sukonfigūruoti bazinį DN pagal vardų suteikimo kontekstą</translation>
     </message>
     <message>
         <source>Query objects from LDAP directory</source>
-        <translation type="unfinished"/>
+        <translation>Užklausti objektus iš LDAP katalogo</translation>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>Parodyti pagalbos komandą</translation>
+        <translation>Rodyti komandos žinyną</translation>
     </message>
     <message>
         <source>Please specify a valid LDAP url following the schema &quot;ldap[s]://[user[:password]@]hostname[:port]&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Nurodykite tinkamą LDAP URL pagal schemą „ldap[s]://[user[:password]@]hostname[:port]“</translation>
     </message>
     <message>
         <source>No naming context attribute name given - falling back to configured value.</source>
-        <translation type="unfinished"/>
+        <translation>Nenurodytas vardų suteikimo konteksto atributo pavadinimas – naudojama sukonfigūruota reikšmė.</translation>
     </message>
     <message>
         <source>Could not query base DN. Please check your LDAP configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko užklausti bazinio DN. Patikrinkite LDAP konfigūraciją.</translation>
     </message>
     <message>
         <source>Configuring %1 as base DN and disabling naming context queries.</source>
-        <translation type="unfinished"/>
+        <translation>Bazinis DN nustatomas į %1, o vardų suteikimo konteksto užklausos išjungiamos.</translation>
     </message>
     <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
-        <translation type="unfinished"/>
+        <translation>LDAP / AD integravimo konfigūravimo ir tikrinimo komandos</translation>
     </message>
     <message>
         <source>%1 (load computers and locations from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (įkelti kompiuterius ir vietas iš LDAP / AD)</translation>
     </message>
     <message>
         <source>%1 (load users and groups from LDAP/AD)</source>
-        <translation type="unfinished"/>
+        <translation>%1 (įkelti vartotojus ir grupes iš LDAP / AD)</translation>
     </message>
     <message>
         <source>LDAP/AD support for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>LDAP / AD palaikymas programoje Veyon</translation>
     </message>
 </context>
 <context>
@@ -2989,46 +3010,46 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>User authentication</source>
-        <translation>Naudotojo autorizavimas</translation>
+        <translation>Vartotojo autentifikavimas</translation>
     </message>
     <message>
         <source>Custom PAM service for user authentication</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinktinė PAM tarnyba vartotojams autentifikuoti</translation>
     </message>
     <message>
         <source>User sessions</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojų sesijos</translation>
     </message>
     <message>
         <source>Minimum session lifetime before server start</source>
-        <translation type="unfinished"/>
+        <translation>Mažiausia sesijos trukmė prieš paleidžiant serverį</translation>
     </message>
     <message>
         <source>User login</source>
-        <translation>Naudotojo prisijungimas</translation>
+        <translation>Vartotojo prisijungimas</translation>
     </message>
     <message>
         <source>Login key sequence</source>
-        <translation type="unfinished"/>
+        <translation>Prisijungimo klavišų seka</translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation>Įvesties vėlinimas</translation>
+        <translation>Įvesties pradžios delsa</translation>
     </message>
     <message>
         <source>Key press interval for text input</source>
-        <translation type="unfinished"/>
+        <translation>Klavišų paspaudimų intervalas įvedant tekstą</translation>
     </message>
     <message>
         <source>Key press interval to control input fields</source>
-        <translation type="unfinished"/>
+        <translation>Klavišų paspaudimų intervalas valdant įvesties laukus</translation>
     </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
-        <translation type="unfinished"/>
+        <translation>Papildinys, įgyvendinantis abstrakčias Linux platformos funkcijas</translation>
     </message>
 </context>
 <context>
@@ -3039,7 +3060,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>enter search filter...</source>
-        <translation type="unfinished"/>
+        <translation>įveskite paieškos filtrą...</translation>
     </message>
 </context>
 <context>
@@ -3050,22 +3071,22 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Disable tooltips</source>
-        <translation type="unfinished"/>
+        <translation>Išjungti paaiškinimus</translation>
     </message>
     <message>
         <source>Show icons only</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti tik piktogramas</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Veyon Configurator</source>
-        <translation>Veyon Configurator</translation>
+        <translation>Veyon konfigūratorius</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Pagrindinis</translation>
+        <translation>Bendrieji nustatymai</translation>
     </message>
     <message>
         <source>Service</source>
@@ -3073,7 +3094,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Master</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Master</translation>
     </message>
     <message>
         <source>Access control</source>
@@ -3097,7 +3118,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation>CTRL+Q</translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>&amp;Save settings to file</source>
@@ -3109,7 +3130,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Ctrl+S</source>
-        <translation>CTRL+S</translation>
+        <translation>Ctrl+S</translation>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
@@ -3117,7 +3138,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Ctrl+O</source>
-        <translation>CTRL+O</translation>
+        <translation>Ctrl+O</translation>
     </message>
     <message>
         <source>About Veyon</source>
@@ -3129,23 +3150,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Reset configuration</source>
-        <translation>Atstatyti numatytają konfigūraciją</translation>
+        <translation>Nustatyti konfigūraciją iš naujo</translation>
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Standartinis</translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Išplėstinis</translation>
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
-        <translation type="unfinished"/>
+        <translation>Automatiškai koreguoti kompiuterių piktogramų dydį</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
+        <translation>Automatiškai</translation>
     </message>
     <message>
         <source>About</source>
@@ -3153,15 +3174,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Search users and computers</source>
-        <translation>Ieškoti naudotojų bei kompiuterių</translation>
+        <translation>Ieškoti vartotojų ir kompiuterių</translation>
     </message>
     <message>
         <source>Align computers to grid</source>
-        <translation type="unfinished"/>
+        <translation>Lygiuoti kompiuterius pagal tinklelį</translation>
     </message>
     <message>
         <source>Only show powered on computers</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti tik įjungtus kompiuterius</translation>
     </message>
     <message>
         <source>Locations &amp;&amp; computers</source>
@@ -3169,23 +3190,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>Ekrano nuotraukos</translation>
+        <translation>Ekrano vaizdai</translation>
     </message>
     <message>
         <source>Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>Skaidrių demonstracija</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>Dėmesio centras</translation>
     </message>
     <message>
         <source>Only show computers with logged on users</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti tik kompiuterius su prisijungusiais vartotojais</translation>
     </message>
     <message>
         <source>Veyon Configurator %1</source>
-        <translation type="unfinished"/>
+        <translation>Veyon konfigūratorius %1</translation>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3193,11 +3214,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>JSON files (*.json)</source>
-        <translation type="unfinished"/>
+        <translation>JSON failai (*.json)</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
-        <translation type="unfinished"/>
+        <translation>Ar tikrai norite atkurti numatytąsias vietinės konfigūracijos reikšmes?</translation>
     </message>
     <message>
         <source>Unsaved settings</source>
@@ -3205,31 +3226,31 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>There are unsaved settings. Quit anyway?</source>
-        <translation>Egzistuoja dar neišsaugoti nustatymai. Vistiek išeiti?</translation>
+        <translation>Yra neįrašytų nustatymų. Vis tiek išeiti?</translation>
     </message>
     <message>
         <source>Insufficient privileges</source>
-        <translation type="unfinished"/>
+        <translation>Nepakanka teisių</translation>
     </message>
     <message>
         <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko paleisti su administratoriaus teisėmis. Įsitikinkite, kad jūsų darbalaukio aplinkoje įdiegta programa, panaši į sudo! Programa bus paleista įprastomis vartotojo teisėmis.</translation>
     </message>
     <message>
         <source>Configuration not writable</source>
-        <translation>Konfiguracinis failas negali būti įrašytas</translation>
+        <translation>Konfigūracijos negalima įrašyti</translation>
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
-        <translation type="unfinished"/>
+        <translation>Vietinės konfigūracijos posistemė pranešė, kad konfigūracijos negalima įrašyti! Paleiskite Veyon konfigūratorių su aukštesnėmis teisėmis.</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
-        <translation>Autorizavimas neįmanomas</translation>
+        <translation>Autentifikuoti neįmanoma</translation>
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
-        <translation type="unfinished"/>
+        <translation>Autentifikavimo raktų failų nerasta arba dabartiniai failai yra pasenę. Naudodami Veyon konfigūratorių sukurkite naujus raktų failus. Taip pat Veyon konfigūratoriuje galite nustatyti prisijungimo autentifikavimą. To nepadarę negalėsite pasiekti kompiuterių naudodami Veyon.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3237,7 +3258,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
-        <translation type="unfinished"/>
+        <translation>Pagal vietinę konfigūraciją jums neleidžiama pasiekti tinklo kompiuterių. Prisijunkite naudodami kitą paskyrą arba paprašykite sistemos administratoriaus patikrinti vietinę konfigūraciją.</translation>
     </message>
     <message>
         <source>Feature active</source>
@@ -3245,28 +3266,30 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
-        <translation type="unfinished"/>
+        <translation>Funkcija „%1“ vis dar aktyvi. Prieš uždarydami Veyon ją sustabdykite.</translation>
     </message>
     <message>
         <source>Use custom computer arrangement.
 
 Press and hold to load arrangement from a file or save current arrangement to a file.</source>
-        <translation type="unfinished"/>
+        <translation>Naudoti pasirinktinį kompiuterių išdėstymą.
+
+Paspauskite ir palaikykite, kad įkeltumėte išdėstymą iš failo arba įrašytumėte dabartinį išdėstymą į failą.</translation>
     </message>
     <message>
         <source>Load computer positions</source>
-        <translation type="unfinished"/>
+        <translation>Įkelti kompiuterių padėtis</translation>
     </message>
     <message>
         <source>Save computer positions</source>
-        <translation type="unfinished"/>
+        <translation>Įrašyti kompiuterių padėtis</translation>
     </message>
 </context>
 <context>
     <name>MasterConfigurationPage</name>
     <message>
         <source>Basic settings</source>
-        <translation>Baziniai nustatymai</translation>
+        <translation>Pagrindiniai nustatymai</translation>
     </message>
     <message>
         <source>Directories</source>
@@ -3274,15 +3297,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>User configuration</source>
-        <translation>Naudotojo konfigūravimas</translation>
+        <translation>Vartotojo konfigūracija</translation>
     </message>
     <message>
         <source>Screenshots</source>
-        <translation>Ekrano nuotraukos</translation>
-    </message>
-    <message>
-        <source>User interface</source>
-        <translation>Naudotojo sąsaja</translation>
+        <translation>Ekrano vaizdai</translation>
     </message>
     <message>
         <source>Text color</source>
@@ -3297,32 +3316,24 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Fono spalva</translation>
     </message>
     <message>
-        <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source> px</source>
-        <translation type="unfinished"/>
+        <translation> px</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer thumbnail caption</source>
-        <translation>Kompiuterio piktogramos užrašas</translation>
+        <translation>Automatiškai</translation>
     </message>
     <message>
         <source>Computer and user name</source>
-        <translation>Kompiuterio ir naudotojo vardas</translation>
+        <translation>Kompiuterio ir vartotojo vardas</translation>
     </message>
     <message>
         <source>Only user name</source>
-        <translation>Tik naudotojo vardas</translation>
+        <translation>Tik vartotojo vardas</translation>
     </message>
     <message>
         <source>Only last part of user name</source>
-        <translation type="unfinished"/>
+        <translation>Tik paskutinė vartotojo vardo dalis</translation>
     </message>
     <message>
         <source>Only computer name</source>
@@ -3330,71 +3341,55 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>User and computer name</source>
-        <translation>Naudotojo ir kompiuterio vardas</translation>
-    </message>
-    <message>
-        <source>Thumbnail update interval</source>
-        <translation>Piktogramų atnaujinimo intervalas</translation>
+        <translation>Vartotojo ir kompiuterio vardas</translation>
     </message>
     <message>
         <source>Sort order</source>
         <translation>Rikiavimo tvarka</translation>
     </message>
     <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Highest</source>
-        <translation type="unfinished"/>
+        <translation>Aukščiausia</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished"/>
+        <translation>Aukšta</translation>
     </message>
     <message>
         <source>Medium</source>
-        <translation type="unfinished"/>
+        <translation>Vidutinė</translation>
     </message>
     <message>
         <source>Low</source>
-        <translation type="unfinished"/>
+        <translation>Žema</translation>
     </message>
     <message>
         <source>Lowest</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Image quality in monitoring mode</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remote access image quality</source>
-        <translation type="unfinished"/>
+        <translation>Žemiausia</translation>
     </message>
     <message>
         <source>Identify users in guest sessions</source>
-        <translation type="unfinished"/>
+        <translation>Nustatyti vartotojų tapatybę svečio sesijose</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"/>
+        <translation>Niekada</translation>
     </message>
     <message>
         <source>If login name matches</source>
-        <translation type="unfinished"/>
+        <translation>Jei sutampa prisijungimo vardas</translation>
     </message>
     <message>
         <source>If full name matches</source>
-        <translation type="unfinished"/>
+        <translation>Jei sutampa visas vardas</translation>
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>Svečias</translation>
     </message>
     <message>
         <source>Guest user identity extension</source>
-        <translation type="unfinished"/>
+        <translation>Svečio vartotojo tapatybės papildymas</translation>
     </message>
     <message>
         <source>None</source>
@@ -3402,35 +3397,35 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>Priešdėlis</translation>
     </message>
     <message>
         <source>Suffix</source>
-        <translation type="unfinished"/>
+        <translation>Priesaga</translation>
     </message>
     <message>
         <source>Behaviour</source>
-        <translation>Elgsena</translation>
+        <translation>Veikimas</translation>
     </message>
     <message>
         <source>Program start</source>
-        <translation type="unfinished"/>
+        <translation>Programos paleidimas</translation>
     </message>
     <message>
         <source>Perform access control</source>
-        <translation>Atlikti prieigos kontrolę</translation>
+        <translation>Vykdyti prieigos valdymą</translation>
     </message>
     <message>
         <source>Automatically select current location</source>
-        <translation type="unfinished"/>
+        <translation>Automatiškai pasirinkti dabartinę vietą</translation>
     </message>
     <message>
         <source>Automatically adjust computer icon size</source>
-        <translation type="unfinished"/>
+        <translation>Automatiškai koreguoti kompiuterių piktogramų dydį</translation>
     </message>
     <message>
         <source>Automatically open computer select panel</source>
-        <translation type="unfinished"/>
+        <translation>Automatiškai atverti kompiuterių pasirinkimo skydelį</translation>
     </message>
     <message>
         <source>Computer locations</source>
@@ -3438,19 +3433,19 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Show current location only</source>
-        <translation>Parodyti dabartinę vietą</translation>
+        <translation>Rodyti tik dabartinę vietą</translation>
     </message>
     <message>
         <source>Allow adding hidden locations manually</source>
-        <translation type="unfinished"/>
+        <translation>Leisti rankiniu būdu pridėti paslėptas vietas</translation>
     </message>
     <message>
         <source>Hide local computer</source>
-        <translation type="unfinished"/>
+        <translation>Slėpti vietinį kompiuterį</translation>
     </message>
     <message>
         <source>Hide local session</source>
-        <translation type="unfinished"/>
+        <translation>Slėpti vietinę sesiją</translation>
     </message>
     <message>
         <source>Hide empty locations</source>
@@ -3458,31 +3453,31 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Hide computer filter field</source>
-        <translation type="unfinished"/>
+        <translation>Slėpti kompiuterių filtro lauką</translation>
     </message>
     <message>
         <source>Modes and features</source>
-        <translation type="unfinished"/>
+        <translation>Režimai ir funkcijos</translation>
     </message>
     <message>
         <source>Enforce selected mode for client computers</source>
-        <translation>Įgalinti pasirinktą rėžimą kliento kompiuteriuose</translation>
+        <translation>Priverstinai įjungti pasirinktą režimą klientų kompiuteriuose</translation>
     </message>
     <message>
         <source>Actions such as rebooting or powering down computers</source>
-        <translation type="unfinished"/>
+        <translation>Veiksmai, pavyzdžiui, kompiuterių paleidimas iš naujo arba išjungimas</translation>
     </message>
     <message>
         <source>Show confirmation dialog for potentially unsafe actions</source>
-        <translation>Parodyti patvirtinimo langą galimai nesaugiems veiksmams</translation>
+        <translation>Rodyti patvirtinimo dialogo langą prieš galimai nesaugius veiksmus</translation>
     </message>
     <message>
         <source>Feature on computer double click:</source>
-        <translation type="unfinished"/>
+        <translation>Funkcija dukart spustelėjus kompiuterį:</translation>
     </message>
     <message>
         <source>Open feature windows on the same screen as the main window</source>
-        <translation type="unfinished"/>
+        <translation>Atverti funkcijų langus tame pačiame ekrane kaip pagrindinis langas</translation>
     </message>
     <message>
         <source>Features</source>
@@ -3498,106 +3493,150 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>&lt;no feature&gt;</source>
-        <translation type="unfinished"/>
+        <translation>&lt;nėra funkcijos&gt;</translation>
     </message>
     <message>
         <source>Always expand all locations</source>
-        <translation type="unfinished"/>
+        <translation>Visada išskleisti visas vietas</translation>
     </message>
     <message>
         <source>Configuration templates</source>
+        <translation>Konfigūracijos šablonai</translation>
+    </message>
+    <message>
+        <source>Monitoring view</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Vaizdo kokybė</translation>
+    </message>
+    <message>
+        <source>Visibility mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Blurred</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation>Nuotolinė prieiga</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished"/>
+        <translation>Išplėstiniai</translation>
     </message>
     <message>
         <source>Computer name source</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterio pavadinimo šaltinis</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation>Numatytasis</translation>
     </message>
     <message>
         <source>Host address</source>
-        <translation>Kompiuterio adresas</translation>
+        <translation>Pagrindinio kompiuterio adresas</translation>
     </message>
     <message>
         <source>Session client address</source>
-        <translation type="unfinished"/>
+        <translation>Sesijos kliento adresas</translation>
     </message>
     <message>
         <source>Session client name</source>
-        <translation type="unfinished"/>
+        <translation>Sesijos kliento vardas</translation>
     </message>
     <message>
         <source>Session host name</source>
-        <translation type="unfinished"/>
+        <translation>Sesijos pagrindinio kompiuterio vardas</translation>
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>Sesijos metaduomenys</translation>
     </message>
     <message>
         <source>Full name of user</source>
-        <translation type="unfinished"/>
+        <translation>Visas vartotojo vardas</translation>
     </message>
     <message>
         <source>User login name</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojo prisijungimo vardas</translation>
     </message>
     <message>
         <source>Computer UID role</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterio UID vaidmuo</translation>
     </message>
     <message>
         <source>Session meta data hash</source>
-        <translation type="unfinished"/>
+        <translation>Sesijos metaduomenų maišos reikšmė</translation>
     </message>
 </context>
 <context>
     <name>MonitoringMode</name>
     <message>
         <source>Monitoring</source>
-        <translation type="unfinished"/>
+        <translation>Stebėjimas</translation>
     </message>
     <message>
         <source>This mode allows you to monitor all computers at one or more locations.</source>
-        <translation type="unfinished"/>
+        <translation>Šiuo režimu galite stebėti visus kompiuterius vienoje ar keliose vietose.</translation>
     </message>
     <message>
         <source>Query application version of the server</source>
-        <translation type="unfinished"/>
+        <translation>Užklausti serverio programos versiją</translation>
     </message>
     <message>
         <source>Query active features</source>
-        <translation type="unfinished"/>
+        <translation>Užklausti aktyvias funkcijas</translation>
     </message>
     <message>
         <source>Query properties of remotely available screens</source>
-        <translation type="unfinished"/>
+        <translation>Užklausti nuotoliniu būdu pasiekiamų ekranų ypatybes</translation>
     </message>
     <message>
         <source>Identify users in guest sessions</source>
-        <translation type="unfinished"/>
+        <translation>Nustatyti vartotojų tapatybę svečio sesijose</translation>
     </message>
     <message>
         <source>Identification request</source>
-        <translation type="unfinished"/>
+        <translation>Tapatybės nustatymo užklausa</translation>
     </message>
     <message>
         <source>Please enter your name:</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite savo vardą:</translation>
     </message>
     <message>
         <source>First name + last name</source>
-        <translation type="unfinished"/>
+        <translation>Vardas + pavardė</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
-        <translation type="unfinished"/>
+        <translation>Integruotasis stebėjimo režimas</translation>
     </message>
 </context>
 <context>
@@ -3611,7 +3650,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>OpenWebsiteDialog</name>
     <message>
         <source>Open website</source>
-        <translation>Atidaryti tinklalapį</translation>
+        <translation>Atverti svetainę</translation>
     </message>
     <message>
         <source>e.g. Veyon</source>
@@ -3619,7 +3658,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Remember and add to website menu</source>
-        <translation type="unfinished"/>
+        <translation>Įsiminti ir pridėti į svetainių meniu</translation>
     </message>
     <message>
         <source>e.g. www.veyon.io</source>
@@ -3627,7 +3666,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Please enter the URL of the website to open:</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite norimos atverti svetainės URL:</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -3638,15 +3677,15 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>PasswordDialog</name>
     <message>
         <source>Veyon Logon</source>
-        <translation>Veyon Prisijungimas</translation>
+        <translation>Veyon prisijungimas</translation>
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>
-        <translation>Įveskite savo naudotojo vardą ir slaptažodį, kad pasiektumėte kompiuterius.</translation>
+        <translation>Įveskite savo vartotojo vardą ir slaptažodį, kad galėtumėte pasiekti kompiuterius.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Naudotojo vardas</translation>
+        <translation>Vartotojo vardas</translation>
     </message>
     <message>
         <source>Password</source>
@@ -3654,29 +3693,29 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Authentication error</source>
-        <translation>Autorizacijos klaida</translation>
+        <translation>Autentifikavimo klaida</translation>
     </message>
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
-        <translation>Nepavyko prisijungti su įvestu naudotojo vardu bei slaptažodžiu. Pabandykite dar kartą!</translation>
+        <translation>Nepavyko prisijungti naudojant nurodytą vartotojo vardą ir slaptažodį. Bandykite dar kartą!</translation>
     </message>
 </context>
 <context>
     <name>PipeWireVncServer</name>
     <message>
         <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
-        <translation type="unfinished"/>
+        <translation>Wayland VNC serveris (PipeWire / XDG Desktop Portal)</translation>
     </message>
 </context>
 <context>
     <name>PluginCommands</name>
     <message>
         <source>List names of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Išvardyti visų įdiegtų papildinių pavadinimus</translation>
     </message>
     <message>
         <source>Show table with details of all installed plugins</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti lentelę su išsamia informacija apie visus įdiegtus papildinius</translation>
     </message>
     <message>
         <source>Name</source>
@@ -3684,30 +3723,30 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"/>
+        <translation>Aprašas</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished"/>
+        <translation>Versija</translation>
     </message>
     <message>
         <source>UID</source>
-        <translation type="unfinished"/>
+        <translation>UID</translation>
     </message>
     <message>
         <source>Plugin-related CLI operations</source>
-        <translation type="unfinished"/>
+        <translation>Su papildiniais susijusios CLI operacijos</translation>
     </message>
     <message>
         <source>Commands for managing plugins</source>
-        <translation type="unfinished"/>
+        <translation>Papildinių valdymo komandos</translation>
     </message>
 </context>
 <context>
     <name>PowerControlFeaturePlugin</name>
     <message>
         <source>Power on a computer via Wake-on-LAN (WOL)</source>
-        <translation type="unfinished"/>
+        <translation>Įjungti kompiuterį per Wake-on-LAN (WOL)</translation>
     </message>
     <message>
         <source>Power on</source>
@@ -3715,7 +3754,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Click this button to power on all computers. This way you do not have to power on each computer by hand.</source>
-        <translation type="unfinished"/>
+        <translation>Spustelėkite šį mygtuką, kad įjungtumėte visus kompiuterius. Taip nereikės rankiniu būdu įjungti kiekvieno kompiuterio.</translation>
     </message>
     <message>
         <source>Reboot</source>
@@ -3731,7 +3770,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Click this button to power down all computers. This way you do not have to power down each computer by hand.</source>
-        <translation type="unfinished"/>
+        <translation>Spustelėkite šį mygtuką, kad išjungtumėte visus kompiuterius. Taip nereikės rankiniu būdu išjungti kiekvieno kompiuterio.</translation>
     </message>
     <message>
         <source>Power down now</source>
@@ -3743,11 +3782,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Power down after user confirmation</source>
-        <translation type="unfinished"/>
+        <translation>Išjungti gavus vartotojo patvirtinimą</translation>
     </message>
     <message>
         <source>Power down after timeout</source>
-        <translation type="unfinished"/>
+        <translation>Išjungti pasibaigus skirtajam laikui</translation>
     </message>
     <message>
         <source>MAC ADDRESS</source>
@@ -3755,7 +3794,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>This command broadcasts a Wake-on-LAN (WOL) packet to the network in order to power on the computer with the given MAC address.</source>
-        <translation>Ši komanda persiunčia Wake-on-LAN(WOL) paketą tinklui, kad kompiuteris su nustatytu MAC adresu būtų įjungtas</translation>
+        <translation>Ši komanda tinkle transliuoja Wake-on-LAN (WOL) paketą, kad būtų įjungtas nurodytą MAC adresą turintis kompiuteris.</translation>
     </message>
     <message>
         <source>Confirm reboot</source>
@@ -3763,7 +3802,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>Ar tikrai norite iš naujo paleisti &lt;b&gt;VISUS&lt;/b&gt; kompiuterius?</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
@@ -3775,33 +3814,35 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation type="unfinished"/>
+        <translation>Ar tikrai norite išjungti &lt;b&gt;VISUS&lt;/b&gt; kompiuterius?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
-        <translation type="unfinished"/>
+        <translation>Ar tikrai norite išjungti pasirinktus kompiuterius?</translation>
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
-        <translation type="unfinished"/>
+        <translation>Nurodytas netinkamas MAC adresas!</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
-        <translation type="unfinished"/>
+        <translation>Gautas nuotolinis prašymas išjungti kompiuterį. Ar norite jį išjungti dabar?</translation>
     </message>
     <message>
         <source>The computer will be powered down in %1 minutes, %2 seconds.
 
 Please save your work and close all programs.</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuteris bus išjungtas po %1 min. ir %2 sek.
+
+Įrašykite savo darbą ir užverkite visas programas.</translation>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
-        <translation>Į(iš)jungti kompiuterį ar paleisti iš naujo</translation>
+        <translation>Įjungti, išjungti arba paleisti iš naujo kompiuterį</translation>
     </message>
     <message>
         <source>Commands for controlling power status of computers</source>
-        <translation type="unfinished"/>
+        <translation>Kompiuterių maitinimo būsenos valdymo komandos</translation>
     </message>
 </context>
 <context>
@@ -3812,7 +3853,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Please specify a timeout for powering down the selected computers:</source>
-        <translation type="unfinished"/>
+        <translation>Nurodykite, po kiek laiko išjungti pasirinktus kompiuterius:</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -3831,7 +3872,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Open a remote view for a computer without interaction.</source>
-        <translation type="unfinished"/>
+        <translation>Atverti kompiuterio nuotolinio rodymo langą be sąveikos.</translation>
     </message>
     <message>
         <source>Remote control</source>
@@ -3839,23 +3880,23 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Open a remote control window for a computer.</source>
-        <translation type="unfinished"/>
+        <translation>Atverti kompiuterio nuotolinio valdymo langą.</translation>
     </message>
     <message>
         <source>Exchange clipboard contents</source>
-        <translation type="unfinished"/>
+        <translation>Keistis iškarpinės turiniu</translation>
     </message>
     <message>
         <source>Show help about command</source>
-        <translation>Parodyti pagalbos komandą</translation>
+        <translation>Rodyti komandos žinyną</translation>
     </message>
     <message>
         <source>Remote access</source>
-        <translation>Nutolusi prieiga</translation>
+        <translation>Nuotolinė prieiga</translation>
     </message>
     <message>
         <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
-        <translation type="unfinished"/>
+        <translation>Nepasirinktas joks kompiuteris, todėl galite įvesti kompiuterio vardą arba IP adresą, kad prisijungtumėte rankiniu būdu:</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
@@ -3866,11 +3907,11 @@ Please save your work and close all programs.</source>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - Veyon Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 – Veyon nuotolinė prieiga</translation>
     </message>
     <message>
         <source>%1 - %2 - Veyon Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 – %2 – Veyon nuotolinė prieiga</translation>
     </message>
 </context>
 <context>
@@ -3885,15 +3926,15 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Select screen</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkti ekraną</translation>
     </message>
     <message>
         <source>Send shortcut</source>
-        <translation type="unfinished"/>
+        <translation>Siųsti klavišų derinį</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Ekrano nuotrauka</translation>
+        <translation>Ekrano vaizdas</translation>
     </message>
     <message>
         <source>Fullscreen</source>
@@ -3945,7 +3986,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Connecting...</source>
-        <translation type="unfinished"/>
+        <translation>Jungiamasi...</translation>
     </message>
     <message>
         <source>All screens</source>
@@ -3964,19 +4005,19 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked and the screens are blacked.</source>
-        <translation type="unfinished"/>
+        <translation>Norėdami sutelkti visą vartotojų dėmesį, šiuo mygtuku galite užrakinti jų kompiuterius. Šiuo režimu visi įvesties įrenginiai užrakinami, o ekranai užtemdomi.</translation>
     </message>
     <message>
         <source>Lock input devices</source>
-        <translation type="unfinished"/>
+        <translation>Užrakinti įvesties įrenginius</translation>
     </message>
     <message>
         <source>Unlock input devices</source>
-        <translation type="unfinished"/>
+        <translation>Atrakinti įvesties įrenginius</translation>
     </message>
     <message>
         <source>To reclaim all user&apos;s full attention you can lock their computers using this button. In this mode all input devices are locked while the desktop is still visible.</source>
-        <translation type="unfinished"/>
+        <translation>Norėdami sutelkti visą vartotojų dėmesį, šiuo mygtuku galite užrakinti jų kompiuterius. Šiuo režimu visi įvesties įrenginiai užrakinami, tačiau darbalaukis lieka matomas.</translation>
     </message>
     <message>
         <source>Lock screen and input devices of a computer</source>
@@ -3991,49 +4032,49 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Could not take a screenshot as directory %1 doesn&apos;t exist and couldn&apos;t be created.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko užfiksuoti ekrano vaizdo, nes katalogo %1 nėra ir jo nepavyko sukurti.</translation>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Ekrano nuotrauka</translation>
+        <translation>Ekrano vaizdas</translation>
     </message>
     <message>
         <source>Could not open screenshot file %1 for writing.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko atverti ekrano vaizdo failo %1 rašyti.</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotFeaturePlugin</name>
     <message>
         <source>Screenshot</source>
-        <translation>Ekrano nuotrauka</translation>
+        <translation>Ekrano vaizdas</translation>
     </message>
     <message>
         <source>Use this function to take a screenshot of selected computers.</source>
-        <translation type="unfinished"/>
+        <translation>Naudokite šią funkciją pasirinktų kompiuterių ekranų vaizdams užfiksuoti.</translation>
     </message>
     <message>
         <source>Screenshots taken</source>
-        <translation type="unfinished"/>
+        <translation>Ekrano vaizdai užfiksuoti</translation>
     </message>
     <message>
         <source>Screenshot of %1 computer have been taken successfully.</source>
-        <translation type="unfinished"/>
+        <translation>Sėkmingai užfiksuoti %1 kompiuterių ekranų vaizdai.</translation>
     </message>
     <message>
         <source>Take screenshots of computers and save them locally.</source>
-        <translation type="unfinished"/>
+        <translation>Fiksuoti kompiuterių ekranų vaizdus ir įrašyti juos vietoje.</translation>
     </message>
 </context>
 <context>
     <name>ScreenshotManagementPanel</name>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation type="unfinished"/>
+        <translation>Čia pateikiami visi jūsų užfiksuoti ekranų vaizdai. Juos galite fiksuoti kompiuterio kontekstiniame meniu spustelėję „Ekrano vaizdas“. Ekranų vaizdus galite tvarkyti toliau pateiktais mygtukais.</translation>
     </message>
     <message>
         <source>User:</source>
-        <translation>Naudotojas:</translation>
+        <translation>Vartotojas:</translation>
     </message>
     <message>
         <source>Computer:</source>
@@ -4057,73 +4098,73 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Screenshot</source>
-        <translation>Ekrano nuotrauka</translation>
+        <translation>Ekrano vaizdas</translation>
     </message>
     <message>
         <source>Do you really want to delete all selected screenshots?</source>
-        <translation type="unfinished"/>
+        <translation>Ar tikrai norite ištrinti visas pasirinktas ekrano kopijas?</translation>
     </message>
 </context>
 <context>
     <name>ServerAccessControlManager</name>
     <message>
         <source>Requested authentication method not available</source>
-        <translation type="unfinished"/>
+        <translation>Prašomas autentifikavimo būdas nepasiekiamas</translation>
     </message>
     <message>
         <source>Access allowed by rule &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Prieiga leista pagal taisyklę „%1“</translation>
     </message>
     <message>
         <source>Access denied by rule &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Prieiga uždrausta pagal taisyklę „%1“</translation>
     </message>
     <message>
         <source>No rule allowed access</source>
-        <translation type="unfinished"/>
+        <translation>Nė viena taisyklė neleido prieigos</translation>
     </message>
     <message>
         <source>Accessing user not member of an authorized user group</source>
-        <translation type="unfinished"/>
+        <translation>Prisijungiantis vartotojas nepriklauso įgaliotai vartotojų grupei</translation>
     </message>
     <message>
         <source>User has denied access</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojas atmetė prieigos prašymą</translation>
     </message>
     <message>
         <source>User confirmed access</source>
-        <translation type="unfinished"/>
+        <translation>Vartotojas patvirtino prieigą</translation>
     </message>
 </context>
 <context>
     <name>ServiceConfigurationPage</name>
     <message>
         <source>General</source>
-        <translation>Pagrindinis</translation>
+        <translation>Bendrieji nustatymai</translation>
     </message>
     <message>
         <source>Show notification when an unauthorized access is blocked</source>
-        <translation>Rodyti pranešimą, kai neautorizuota prieiga užblokuota</translation>
+        <translation>Rodyti pranešimą užblokavus neleistiną prieigą</translation>
     </message>
     <message>
         <source>Show notification on remote connection</source>
-        <translation>Rodyti pranešimą nuotoliniame kompiuteryje</translation>
+        <translation>Rodyti pranešimą užmezgus nuotolinį ryšį</translation>
     </message>
     <message>
         <source>Maximum simultaneous server connections</source>
-        <translation type="unfinished"/>
+        <translation>Didžiausias vienalaikių serverio ryšių skaičius</translation>
     </message>
     <message>
         <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
-        <translation type="unfinished"/>
+        <translation>Riboja vienalaikius nuotolinius ryšius, kad serveris būtų apsaugotas nuo išteklių išeikvojimo.</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
-        <translation>Paslėpti piktogramą Start juostoje</translation>
+        <translation>Slėpti sistemos dėklo piktogramą</translation>
     </message>
     <message>
         <source>Autostart</source>
-        <translation>Paleisti automatiškai</translation>
+        <translation>Automatinis paleidimas</translation>
     </message>
     <message>
         <source>State:</source>
@@ -4131,7 +4172,7 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Stopped</source>
-        <translation>Sustabdytas</translation>
+        <translation>Sustabdyta</translation>
     </message>
     <message>
         <source>Start service</source>
@@ -4143,36 +4184,37 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Session mode</source>
-        <translation type="unfinished"/>
+        <translation>Sesijos režimas</translation>
     </message>
     <message>
         <source>Local session mode (single server instance for primary local session)</source>
-        <translation type="unfinished"/>
+        <translation>Vietinės sesijos režimas (vienas serverio egzempliorius pagrindinei vietinei sesijai)</translation>
     </message>
     <message>
         <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
 Typically this is required to support terminal servers.</source>
-        <translation type="unfinished"/>
+        <translation>Įjungus šią parinktį, tarnyba kiekvienai interaktyviajai kompiuterio sesijai paleis atskirą serverio procesą.
+Paprastai to reikia terminalų serveriams palaikyti.</translation>
     </message>
     <message>
         <source>Active session mode (single server instance for active local or remote session)</source>
-        <translation type="unfinished"/>
+        <translation>Aktyvios sesijos režimas (vienas serverio egzempliorius aktyviai vietinei arba nuotolinei sesijai)</translation>
     </message>
     <message>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
-        <translation type="unfinished"/>
+        <translation>Kelių sesijų režimas (atskiras serverio egzempliorius kiekvienai vietinei ir nuotolinio darbalaukio sesijai)</translation>
     </message>
     <message>
         <source>Maximum session count</source>
-        <translation type="unfinished"/>
+        <translation>Didžiausias sesijų skaičius</translation>
     </message>
     <message>
         <source>Network port numbers</source>
-        <translation type="unfinished"/>
+        <translation>Tinklo prievadų numeriai</translation>
     </message>
     <message>
         <source>Veyon server</source>
-        <translation type="unfinished"/>
+        <translation>Veyon serveris</translation>
     </message>
     <message>
         <source>Internal VNC server</source>
@@ -4180,7 +4222,7 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Feature manager</source>
-        <translation>Funkcijų valdymas</translation>
+        <translation>Funkcijų tvarkytuvė</translation>
     </message>
     <message>
         <source>Demo server</source>
@@ -4188,19 +4230,19 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Miscellaneous settings</source>
-        <translation type="unfinished"/>
+        <translation>Kiti nustatymai</translation>
     </message>
     <message>
         <source>Enable firewall exception</source>
-        <translation>Pridėti išimtį ugniasienėje </translation>
+        <translation>Įjungti ugniasienės išimtį</translation>
     </message>
     <message>
         <source>Allow connections from localhost only</source>
-        <translation>Leisti prisijungimus tik iš vietinio tinklo</translation>
+        <translation>Leisti ryšius tik iš vietinio kompiuterio</translation>
     </message>
     <message>
         <source>Disable clipboard synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Išjungti iškarpinės sinchronizavimą</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -4208,15 +4250,15 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Plugin:</source>
-        <translation>Įskiepis:</translation>
+        <translation>Papildinys:</translation>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation>Perkrauti Veyon tarnybą</translation>
+        <translation>Paleisti Veyon tarnybą iš naujo</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
-        <translation type="unfinished"/>
+        <translation>Visi nustatymai sėkmingai įrašyti. Kad jie įsigaliotų, Veyon tarnybą reikia paleisti iš naujo. Paleisti ją iš naujo dabar?</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4224,11 +4266,11 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>Sesijos metaduomenys</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"/>
+        <translation>Turinys</translation>
     </message>
     <message>
         <source>None</source>
@@ -4236,56 +4278,58 @@ Typically this is required to support terminal servers.</source>
     </message>
     <message>
         <source>Value of an environment variable</source>
-        <translation type="unfinished"/>
+        <translation>Aplinkos kintamojo reikšmė</translation>
     </message>
     <message>
         <source>Value of a registry key</source>
-        <translation type="unfinished"/>
+        <translation>Registro rakto reikšmė</translation>
     </message>
     <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
 
 Example: [^-]*-(PC[0-9]*)</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinktinai įveskite reguliarųjį reiškinį su fiksavimo grupe, kad išskirtumėte dalį kompiuterio vardo ir naudotumėte ją kaip rodomą kompiuterio pavadinimą.
+
+Pavyzdys: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
-        <translation type="unfinished"/>
+        <translation>Įjunkite, jei šiuo metu aktyviai sesijai turi būti paleistas vienas Veyon serverio egzempliorius, neatsižvelgiant į tai, ar sesija vietinė, ar nuotolinė.</translation>
     </message>
     <message>
         <source>Environment variable name</source>
-        <translation type="unfinished"/>
+        <translation>Aplinkos kintamojo pavadinimas</translation>
     </message>
     <message>
         <source>Registry key name</source>
-        <translation type="unfinished"/>
+        <translation>Registro rakto pavadinimas</translation>
     </message>
 </context>
 <context>
     <name>ServiceControl</name>
     <message>
         <source>Service control</source>
-        <translation>Serviso valdymas</translation>
+        <translation>Tarnybos valdymas</translation>
     </message>
     <message>
         <source>Starting %1</source>
-        <translation type="unfinished"/>
+        <translation>Paleidžiama: %1</translation>
     </message>
     <message>
         <source>Stopping %1</source>
-        <translation type="unfinished"/>
+        <translation>Stabdoma: %1</translation>
     </message>
     <message>
         <source>Restarting %1</source>
-        <translation type="unfinished"/>
+        <translation>Paleidžiama iš naujo: %1</translation>
     </message>
     <message>
         <source>Registering %1</source>
-        <translation type="unfinished"/>
+        <translation>Registruojama: %1</translation>
     </message>
     <message>
         <source>Unregistering %1</source>
-        <translation type="unfinished"/>
+        <translation>Išregistruojama: %1</translation>
     </message>
 </context>
 <context>
@@ -4308,34 +4352,34 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Restart Veyon Service</source>
-        <translation>Perkrauti Veyon tarnybą</translation>
+        <translation>Paleisti Veyon tarnybą iš naujo</translation>
     </message>
     <message>
         <source>Query status of Veyon Service</source>
-        <translation>Užklausti Veyon tarnybos statuso</translation>
+        <translation>Užklausti Veyon tarnybos būseną</translation>
     </message>
     <message>
         <source>Service is running</source>
-        <translation>Tarnyba vykdoma</translation>
+        <translation>Tarnyba veikia</translation>
     </message>
     <message>
         <source>Service is not running</source>
-        <translation>Tarnyba nevykdoma</translation>
+        <translation>Tarnyba neveikia</translation>
     </message>
     <message>
         <source>Configure and control Veyon service</source>
-        <translation>Konfigūruoti ir kontroliuoti Veyon tarnybą</translation>
+        <translation>Konfigūruoti ir valdyti Veyon tarnybą</translation>
     </message>
     <message>
         <source>Commands for configuring and controlling Veyon Service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon tarnybos konfigūravimo ir valdymo komandos</translation>
     </message>
 </context>
 <context>
     <name>ShellCommands</name>
     <message>
         <source>Run command file</source>
-        <translation>Paleisti komandos failą</translation>
+        <translation>Vykdyti komandų failą</translation>
     </message>
     <message>
         <source>File &quot;%1&quot; does not exist!</source>
@@ -4343,76 +4387,76 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Interactive shell and script execution for Veyon CLI</source>
-        <translation type="unfinished"/>
+        <translation>Interaktyvus apvalkalas ir scenarijų vykdymas per Veyon CLI</translation>
     </message>
     <message>
         <source>Commands for shell functionalities</source>
-        <translation>Shell funkcijų komandos</translation>
+        <translation>Apvalkalo funkcijų komandos</translation>
     </message>
 </context>
 <context>
     <name>SlideshowPanel</name>
     <message>
         <source>Previous</source>
-        <translation type="unfinished"/>
+        <translation>Ankstesnis</translation>
     </message>
     <message>
         <source>Start/pause</source>
-        <translation type="unfinished"/>
+        <translation>Pradėti / pristabdyti</translation>
     </message>
     <message>
         <source>Next</source>
-        <translation type="unfinished"/>
+        <translation>Kitas</translation>
     </message>
     <message>
         <source>Duration:</source>
-        <translation type="unfinished"/>
+        <translation>Trukmė:</translation>
     </message>
     <message>
         <source>View in separate window</source>
-        <translation type="unfinished"/>
+        <translation>Rodyti atskirame lange</translation>
     </message>
     <message>
         <source>Veyon Master – Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Master – skaidrių demonstracija</translation>
     </message>
 </context>
 <context>
     <name>SpotlightPanel</name>
     <message>
         <source>Add computers by clicking with the middle mouse button or clicking the first button below.</source>
-        <translation type="unfinished"/>
+        <translation>Pridėkite kompiuterius spustelėdami viduriniuoju pelės mygtuku arba pirmuoju toliau pateiktu mygtuku.</translation>
     </message>
     <message>
         <source>Add selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Pridėti pasirinktus kompiuterius</translation>
     </message>
     <message>
         <source>Remove selected computers</source>
-        <translation type="unfinished"/>
+        <translation>Pašalinti pasirinktus kompiuterius</translation>
     </message>
     <message>
         <source>Update computers in realtime</source>
-        <translation type="unfinished"/>
+        <translation>Atnaujinti kompiuterius realiuoju laiku</translation>
     </message>
     <message>
         <source>Spotlight</source>
-        <translation type="unfinished"/>
+        <translation>Dėmesio centras</translation>
     </message>
     <message>
         <source>Please select at least one computer to add.</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkite bent vieną norimą pridėti kompiuterį.</translation>
     </message>
     <message>
         <source>Please select at least one computer to remove.</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinkite bent vieną norimą pašalinti kompiuterį.</translation>
     </message>
 </context>
 <context>
     <name>StartAppDialog</name>
     <message>
         <source>Start application</source>
-        <translation type="unfinished"/>
+        <translation>Paleisti programą</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -4424,7 +4468,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Remember and add to application menu</source>
-        <translation type="unfinished"/>
+        <translation>Įsiminti ir pridėti į programų meniu</translation>
     </message>
     <message>
         <source>e.g. VLC</source>
@@ -4432,7 +4476,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
-        <translation type="unfinished"/>
+        <translation>Įveskite programas, kurias norite paleisti pasirinktuose kompiuteriuose. Kelias programas galite atskirti naujomis eilutėmis.</translation>
     </message>
 </context>
 <context>
@@ -4446,11 +4490,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     <name>SystemUserGroupsPlugin</name>
     <message>
         <source>User groups backend for system user groups</source>
-        <translation type="unfinished"/>
+        <translation>Sistemos vartotojų grupių posistemė</translation>
     </message>
     <message>
         <source>Default (system user groups)</source>
-        <translation>Numatytasis (sistemos naudotojų grupės)</translation>
+        <translation>Numatytasis (sistemos vartotojų grupės)</translation>
     </message>
 </context>
 <context>
@@ -4461,26 +4505,26 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Commands for testing internal components and functions of Veyon</source>
-        <translation>Komandos naudojamos tikrinti vidinius komponentus ir funkcijas Veyon programinėje įrangoje</translation>
+        <translation>Veyon vidinių komponentų ir funkcijų tikrinimo komandos</translation>
     </message>
 </context>
 <context>
     <name>TextMessageDialog</name>
     <message>
         <source>Send text message</source>
-        <translation>Nusiųsti tekstine žinutę</translation>
+        <translation>Siųsti tekstinę žinutę</translation>
     </message>
     <message>
         <source>Use the field below to type your message which will be sent to all selected users.</source>
-        <translation>Apačioje esančiame laukelyje įveskite žinutę kuri bus išsiųsta visiems pasirinktiems naudotojams</translation>
+        <translation>Toliau esančiame lauke įveskite žinutę, kuri bus išsiųsta visiems pasirinktiems vartotojams.</translation>
     </message>
     <message>
         <source>Title:</source>
-        <translation type="unfinished"/>
+        <translation>Pavadinimas:</translation>
     </message>
     <message>
         <source>Optional custom title for the message window</source>
-        <translation type="unfinished"/>
+        <translation>Pasirinktinis pranešimo lango pavadinimas</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -4488,7 +4532,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Message from %1</source>
-        <translation type="unfinished"/>
+        <translation>Pranešimas nuo %1</translation>
     </message>
 </context>
 <context>
@@ -4499,7 +4543,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
-        <translation>Naudokite šią funkciją norėdami išsiųsti žinutę visiems naudotojams, pvz., priskirti jiems naujas užduotis.</translation>
+        <translation>Naudokite šią funkciją tekstinei žinutei išsiųsti visiems vartotojams, pavyzdžiui, naujoms užduotims paskirti.</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -4507,7 +4551,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Send a message to a user</source>
-        <translation>Nusiųsti žinutę naudotojui</translation>
+        <translation>Siųsti žinutę vartotojui</translation>
     </message>
 </context>
 <context>
@@ -4518,42 +4562,42 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Maximum CPU usage</source>
-        <translation type="unfinished"/>
+        <translation>Didžiausias procesoriaus naudojimas</translation>
     </message>
     <message>
         <source>Low accuracy (turbo mode)</source>
-        <translation>Žemo tikslumo (Didelio greičio rėžimas)</translation>
+        <translation>Mažas tikslumas (spartusis režimas)</translation>
     </message>
     <message>
         <source>Poll full screen (leave this enabled per default)</source>
-        <translation>Apklausa naudojant pilną ekraną (Palikite tai įjungta numatytuose nustatymuose)</translation>
+        <translation>Tikrinti visą ekraną (pagal numatytuosius nustatymus palikite įjungta)</translation>
     </message>
     <message>
         <source>Enable Desktop Duplication Engine on Windows 8 and newer</source>
-        <translation>Įgalinti darbalaukio dubliavimo variklį Windows 8 ar naujesnėje versijoje</translation>
+        <translation>Įjungti darbalaukio dubliavimo modulį Windows 8 ir naujesnėse versijose</translation>
     </message>
     <message>
         <source>Enable multi monitor support</source>
-        <translation>Įgalinti daugiau nei vieno monitoriaus palaikymą</translation>
+        <translation>Įjungti kelių monitorių palaikymą</translation>
     </message>
     <message>
         <source>Enable capturing of layered (semi-transparent) windows</source>
-        <translation>Leisti įrašinėti sluoksniuotus ( permatomus ) langus</translation>
+        <translation>Įjungti sluoksniuotų (pusiau permatomų) langų fiksavimą</translation>
     </message>
 </context>
 <context>
     <name>UserLoginDialog</name>
     <message>
         <source>User login</source>
-        <translation>Naudotojo prisijungimas</translation>
+        <translation>Vartotojo prisijungimas</translation>
     </message>
     <message>
         <source>Please enter a username and password for automatic login on all computers.</source>
-        <translation>Įveskite naudotojo vardą ir slaptažodį, kad galėtumėte automatiškai prisijungti visuose kompiuteriuose.</translation>
+        <translation>Įveskite vartotojo vardą ir slaptažodį, kad galėtumėte automatiškai prisijungti visuose kompiuteriuose.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Naudotojo vardas</translation>
+        <translation>Vartotojo vardas</translation>
     </message>
     <message>
         <source>Password</source>
@@ -4568,7 +4612,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Click this button to log in a specific user on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Spustelėkite šį mygtuką, kad visuose kompiuteriuose prijungtumėte konkretų vartotoją.</translation>
     </message>
     <message>
         <source>Log off</source>
@@ -4576,23 +4620,23 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Click this button to log off users from all computers.</source>
-        <translation>Paspauskite šį mygtuką, kad atjungtumėte naudotojus visuose kompiuteriuose.</translation>
+        <translation>Spustelėkite šį mygtuką, kad atjungtumėte vartotojus nuo visų kompiuterių.</translation>
     </message>
     <message>
         <source>Confirm user logoff</source>
-        <translation>Patvirtinti naudotojo atsijungimą</translation>
+        <translation>Patvirtinti vartotojų atjungimą</translation>
     </message>
     <message>
         <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation type="unfinished"/>
+        <translation>Ar tikrai norite atjungti &lt;b&gt;VISUS&lt;/b&gt; vartotojus?</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
-        <translation>Ar tikrai norite atjungti visus pasirinktus naudotojus?</translation>
+        <translation>Ar tikrai norite atjungti pasirinktus vartotojus?</translation>
     </message>
     <message>
         <source>User session control</source>
-        <translation>Naudotojo seanso valdymas</translation>
+        <translation>Vartotojų seansų valdymas</translation>
     </message>
 </context>
 <context>
@@ -4607,23 +4651,23 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Invalid arguments given</source>
-        <translation>Klaidingi argumentai</translation>
+        <translation>Pateikti netinkami argumentai</translation>
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
-        <translation>Per mažai argumentų - naudokite &quot;%1 help&quot;, norėdami gauti daugiau informacijos</translation>
+        <translation>Pateikta per mažai argumentų – daugiau informacijos gausite įvedę „%1 help“</translation>
     </message>
     <message>
         <source>No command given</source>
-        <translation type="unfinished"/>
+        <translation>Nenurodyta komanda</translation>
     </message>
     <message>
         <source>Invalid command given</source>
-        <translation type="unfinished"/>
+        <translation>Nurodyta netinkama komanda</translation>
     </message>
     <message>
         <source>Plugin not licensed</source>
-        <translation>Įskiepis neįdiegtas</translation>
+        <translation>Papildinys nelicencijuotas</translation>
     </message>
     <message>
         <source>Available commands:</source>
@@ -4631,7 +4675,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Unknown command result</source>
-        <translation type="unfinished"/>
+        <translation>Nežinomas komandos rezultatas</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -4639,7 +4683,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>No module specified or module not found - available modules are:</source>
-        <translation>Nenurodytas modulis arba modulis nerastas - galimi moduliai yra:</translation>
+        <translation>Modulis nenurodytas arba nerastas – galimi moduliai:</translation>
     </message>
     <message>
         <source>INFO</source>
@@ -4659,7 +4703,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>DESCRIPTION</source>
-        <translation>APIBŪDINIMAS</translation>
+        <translation>APRAŠAS</translation>
     </message>
     <message>
         <source>EXAMPLES</source>
@@ -4667,60 +4711,60 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Screen %1</source>
-        <translation type="unfinished"/>
+        <translation>Ekranas %1</translation>
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>Svečias</translation>
     </message>
 </context>
 <context>
     <name>VeyonMaster</name>
     <message>
         <source>No write access</source>
-        <translation>Neturite leidimo įrašyti</translation>
+        <translation>Nėra rašymo prieigos</translation>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko įrašyti asmeninių nustatymų! Naudodami Veyon konfigūratorių patikrinkite vartotojo konfigūracijos failo kelią.</translation>
     </message>
 </context>
 <context>
     <name>VeyonServiceControl</name>
     <message>
         <source>Veyon Service</source>
-        <translation>Veyon Service</translation>
+        <translation>Veyon tarnyba</translation>
     </message>
 </context>
 <context>
     <name>WebApiConfigurationPage</name>
     <message>
         <source>Web API</source>
-        <translation type="unfinished"/>
+        <translation>Žiniatinklio API</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Pagrindinis</translation>
+        <translation>Bendrieji nustatymai</translation>
     </message>
     <message>
         <source>Network port</source>
-        <translation>Tiklo prievadas</translation>
+        <translation>Tinklo prievadas</translation>
     </message>
     <message>
         <source>Enable WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>Įjungti Web API serverį</translation>
     </message>
     <message>
         <source>Connection settings</source>
-        <translation type="unfinished"/>
+        <translation>Ryšio nustatymai</translation>
     </message>
     <message>
         <source>Lifetime</source>
-        <translation type="unfinished"/>
+        <translation>Galiojimo trukmė</translation>
     </message>
     <message>
         <source> h</source>
-        <translation type="unfinished"/>
+        <translation> val.</translation>
     </message>
     <message>
         <source> s</source>
@@ -4728,27 +4772,27 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Idle timeout</source>
-        <translation type="unfinished"/>
+        <translation>Neveiklos skirtasis laikas</translation>
     </message>
     <message>
         <source>Authentication timeout</source>
-        <translation type="unfinished"/>
+        <translation>Autentifikavimo skirtasis laikas</translation>
     </message>
     <message>
         <source>Maximum number of open connections</source>
-        <translation type="unfinished"/>
+        <translation>Didžiausias atvertų ryšių skaičius</translation>
     </message>
     <message>
         <source>Connection encryption</source>
-        <translation type="unfinished"/>
+        <translation>Ryšio šifravimas</translation>
     </message>
     <message>
         <source>TLS certificate file</source>
-        <translation type="unfinished"/>
+        <translation>TLS sertifikato failas</translation>
     </message>
     <message>
         <source>TLS private key file</source>
-        <translation type="unfinished"/>
+        <translation>TLS privačiojo rakto failas</translation>
     </message>
     <message>
         <source>...</source>
@@ -4756,37 +4800,37 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Use HTTPS with TLS 1.3 instead of HTTP</source>
-        <translation type="unfinished"/>
+        <translation>Naudoti HTTPS su TLS 1.3 vietoje HTTP</translation>
     </message>
 </context>
 <context>
     <name>WebApiPlugin</name>
     <message>
         <source>Run WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>Paleisti Web API serverį</translation>
     </message>
     <message>
         <source>Failed to start WebAPI server at port %1</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko paleisti Web API serverio prievade %1</translation>
     </message>
     <message>
         <source>WebAPI server running at port %1</source>
-        <translation type="unfinished"/>
+        <translation>Web API serveris veikia prievade %1</translation>
     </message>
     <message>
         <source>Provide access to a computer via HTTP</source>
-        <translation type="unfinished"/>
+        <translation>Suteikti prieigą prie kompiuterio per HTTP</translation>
     </message>
     <message>
         <source>Commands for running the WebAPI server</source>
-        <translation type="unfinished"/>
+        <translation>Web API serverio paleidimo komandos</translation>
     </message>
 </context>
 <context>
     <name>WindowsPlatformConfiguration</name>
     <message>
         <source>Could not change the setting for SAS generation by software. Sending Ctrl+Alt+Del via remote control will not work!</source>
-        <translation>Neįmanoma išsaugoti SAS generavimo nustatymo programinėje įrangoje. Komandos Ctrl+Alt+Del siuntimas nuotoliniu valdymu neveiks!</translation>
+        <translation>Nepavyko pakeisti programinio SAS generavimo nustatymo. Siųsti Ctrl+Alt+Del nuotolinio valdymo režimu nepavyks!</translation>
     </message>
 </context>
 <context>
@@ -4797,35 +4841,35 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>General</source>
-        <translation>Pagrindinis</translation>
+        <translation>Bendrieji nustatymai</translation>
     </message>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
-        <translation>Įgalinti SAS generavimą programinėje įrangoje (Ctrl+Alt+Del)</translation>
+        <translation>Įjungti programinį SAS generavimą (Ctrl+Alt+Del)</translation>
     </message>
     <message>
         <source>User authentication</source>
-        <translation>Naudotojo autorizavimas</translation>
+        <translation>Vartotojo autentifikavimas</translation>
     </message>
     <message>
         <source>Use alternative user authentication mechanism</source>
-        <translation>Naudoti alternatyvų naudotojo autentifikavimo mechanizmą</translation>
+        <translation>Naudoti alternatyvų vartotojo autentifikavimo mechanizmą</translation>
     </message>
     <message>
         <source>User login</source>
-        <translation>Naudotojo prisijungimas</translation>
+        <translation>Vartotojo prisijungimas</translation>
     </message>
     <message>
         <source>Input start delay</source>
-        <translation>Įvesties vėlinimas</translation>
+        <translation>Įvesties pradžios delsa</translation>
     </message>
     <message>
         <source>Simulated key presses interval</source>
-        <translation type="unfinished"/>
+        <translation>Imituojamų klavišų paspaudimų intervalas</translation>
     </message>
     <message>
         <source>Confirm legal notice (message displayed before user logs in)</source>
-        <translation type="unfinished"/>
+        <translation>Patvirtinti teisinį pranešimą (pranešimą, rodomą prieš vartotojui prisijungiant)</translation>
     </message>
     <message>
         <source>Screen lock</source>
@@ -4845,27 +4889,27 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Use custom power scheme with disabled power and sleep buttons</source>
-        <translation type="unfinished"/>
+        <translation>Naudoti pasirinktinę energijos vartojimo schemą su išjungtais maitinimo ir miego režimo mygtukais</translation>
     </message>
     <message>
         <source>Use input device interception driver</source>
-        <translation type="unfinished"/>
+        <translation>Naudoti įvesties įrenginių perėmimo tvarkyklę</translation>
     </message>
     <message>
         <source>Disable touchpads and touchscreens</source>
-        <translation type="unfinished"/>
+        <translation>Išjungti jutiklinius kilimėlius ir jutiklinius ekranus</translation>
     </message>
     <message>
         <source>Disable keyboard devices</source>
-        <translation type="unfinished"/>
+        <translation>Išjungti klaviatūros įrenginius</translation>
     </message>
     <message>
         <source>Disable mouse devices</source>
-        <translation type="unfinished"/>
+        <translation>Išjungti pelės įrenginius</translation>
     </message>
     <message>
         <source>Handling of interfering windows</source>
-        <translation type="unfinished"/>
+        <translation>Trukdančių langų tvarkymas</translation>
     </message>
     <message>
         <source>None</source>
@@ -4873,26 +4917,26 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Fix window attributes</source>
-        <translation type="unfinished"/>
+        <translation>Taisyti lango atributus</translation>
     </message>
     <message>
         <source>Terminate related process</source>
-        <translation type="unfinished"/>
+        <translation>Nutraukti susijusį procesą</translation>
     </message>
     <message>
         <source>Close session</source>
-        <translation type="unfinished"/>
+        <translation>Uždaryti sesiją</translation>
     </message>
 </context>
 <context>
     <name>WindowsPlatformPlugin</name>
     <message>
         <source>Internal display</source>
-        <translation type="unfinished"/>
+        <translation>Vidinis ekranas</translation>
     </message>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
-        <translation>Plėtinio įgyvendinimo abstrakčios funkcijos Windows platformai</translation>
+        <translation>Papildinys, įgyvendinantis abstrakčiąsias Windows platformos funkcijas</translation>
     </message>
 </context>
 <context>
@@ -4903,27 +4947,27 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be installed (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko įdiegti tarnybos „%1“ (klaida %2).</translation>
     </message>
     <message>
         <source>Could not change the failure actions config for service &quot;%1&quot; (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko pakeisti tarnybos „%1“ veiksmų gedimo atveju konfigūracijos (klaida %2).</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been installed successfully.</source>
-        <translation>Tarnyba &quot;%1&quot; buvo sėkmingai įdiegta.</translation>
+        <translation>Tarnyba „%1“ sėkmingai įdiegta.</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; could not be uninstalled (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko pašalinti tarnybos „%1“ (klaida %2).</translation>
     </message>
     <message>
         <source>The service &quot;%1&quot; has been uninstalled successfully.</source>
-        <translation>Tarnyba &quot;%1&quot; buvo sėkmingai išdiegta.</translation>
+        <translation>Tarnyba „%1“ sėkmingai pašalinta.</translation>
     </message>
     <message>
         <source>The start type of service &quot;%1&quot; could not be changed (error %2).</source>
-        <translation type="unfinished"/>
+        <translation>Nepavyko pakeisti tarnybos „%1“ paleidimo tipo (klaida %2).</translation>
     </message>
     <message>
         <source>Service &quot;%1&quot; could not be found.</source>
@@ -4942,7 +4986,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Do not use X Damage extension</source>
-        <translation>Nenaudokite X Damage papildinio.</translation>
+        <translation>Nenaudoti X Damage plėtinio</translation>
     </message>
 </context>
 </TS>

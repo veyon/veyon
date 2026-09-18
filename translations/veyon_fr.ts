@@ -43,7 +43,7 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>About Veyon %1</source>
-        <translation type="unfinished"/>
+        <translation>À propos de Veyon %1</translation>
     </message>
 </context>
 <context>
@@ -137,7 +137,7 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     <name>AccessControlProvider</name>
     <message>
         <source>Provider for access control features</source>
-        <translation type="unfinished"/>
+        <translation>Fournisseur des fonctionnalités de contrôle d&apos;accès</translation>
     </message>
 </context>
 <context>
@@ -252,7 +252,7 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>Local computer is already being accessed</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;ordinateur local est déjà en cours d&apos;accès</translation>
     </message>
 </context>
 <context>
@@ -303,7 +303,7 @@ Cependant, si vous êtes intéressé pour traduire Veyon dans une autre langue, 
     </message>
     <message>
         <source>There is no matching rule with a valid action. The access is therefore denied.</source>
-        <translation type="unfinished"/>
+        <translation>Aucune règle ne correspond à une action valide. L&apos;accès est donc refusé.</translation>
     </message>
 </context>
 <context>
@@ -418,7 +418,9 @@ La clé publique est utilisée sur les ordinateurs clients pour l&apos;authentif
         <source>Please enter the name of the user group or role for which to import the authentication key.
 
 Make sure that the names of the keys belonging to each other are identical on all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez saisir le nom du groupe d&apos;utilisateurs ou du rôle pour lequel vous souhaitez importer la clé d&apos;authentification.
+
+Assurez-vous que les noms des clés associées soient identiques sur tous les ordinateurs.</translation>
     </message>
 </context>
 <context>
@@ -706,11 +708,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Move selected computer up</source>
-        <translation type="unfinished"/>
+        <translation>Déplacer l&apos;ordinateur sélectionné vers le haut</translation>
     </message>
     <message>
         <source>Move selected computer down</source>
-        <translation type="unfinished"/>
+        <translation>Déplacer l&apos;ordinateur sélectionné vers le bas</translation>
     </message>
     <message>
         <source>Name</source>
@@ -734,11 +736,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Move selected location up</source>
-        <translation type="unfinished"/>
+        <translation>Déplacer l&apos;emplacement sélectionné vers le haut</translation>
     </message>
     <message>
         <source>Move selected location down</source>
-        <translation type="unfinished"/>
+        <translation>Déplacer l&apos;emplacement sélectionné vers le bas</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -1001,7 +1003,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Location &quot;%1&quot; not found.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;emplacement « %1 » est introuvable.</translation>
     </message>
 </context>
 <context>
@@ -1070,7 +1072,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Hostname: %1</source>
-        <translation type="unfinished"/>
+        <translation>Nom d&apos;hôte : %1</translation>
     </message>
     <message>
         <source>unknown</source>
@@ -1078,15 +1080,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>IP address: %1</source>
-        <translation type="unfinished"/>
+        <translation>Adresse IP : %1</translation>
     </message>
     <message>
         <source>Hostname could not be resolved</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de résoudre le nom d&apos;hôte</translation>
     </message>
     <message>
         <source>No features active</source>
-        <translation type="unfinished"/>
+        <translation>Aucune fonctionnalité n&apos;est activée</translation>
     </message>
 </context>
 <context>
@@ -1117,7 +1119,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Veyon Service %1 at %2:%3</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Service %1 à %2:%3</translation>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1140,7 +1142,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Aucune extension de répertoire d&apos;objet réseau par défaut n&apos;a été trouvée. Veuillez vérifier votre installation ou configurer un processus d&apos;annuaire d&apos;objets réseau différent via Veyon Configurator.</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1160,7 +1162,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
-        <translation type="unfinished"/>
+        <translation>L&apos;emplacement de cet ordinateur n&apos;a pas pu être déterminé. Cela indique un problème de configuration du système. Aucun emplacement ni aucun ordinateur n&apos;apparaîtra dans le panneau « Emplacements et ordinateurs ».</translation>
     </message>
     <message>
         <source>Unknown location</source>
@@ -1277,15 +1279,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the Veyon Service.</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de modifier la propriété « autostart » du service Veyon.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Server.</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de configurer les paramètres du pare-feu pour le serveur Veyon.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Worker.</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de configurer le pare-feu pour le worker Veyon.</translation>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1300,7 +1302,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>DemoClient</name>
     <message>
         <source>Veyon Demo</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Demo</translation>
     </message>
 </context>
 <context>
@@ -1746,27 +1748,27 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Subfolder handling</source>
-        <translation type="unfinished"/>
+        <translation>Gestion des sous-dossiers</translation>
     </message>
     <message>
         <source>*.* or *.docx;*.pdf (leave empty for all files)</source>
-        <translation type="unfinished"/>
+        <translation>*.* ou *.docx;*.pdf (laisser vide pour tous les fichiers)</translation>
     </message>
     <message>
         <source>File pattern</source>
-        <translation type="unfinished"/>
+        <translation>Modèle de fichier</translation>
     </message>
     <message>
         <source>Local destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Annuaire des lieux d&apos;intérêt locaux</translation>
     </message>
     <message>
         <source>Relative (Documents/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
-        <translation type="unfinished"/>
+        <translation>Relatif (Documents/) ou absolu (/tmp/ ou C:\TMP) ou vide pour le répertoire configuré</translation>
     </message>
     <message>
         <source>Source directory on remote computers</source>
-        <translation type="unfinished"/>
+        <translation>Répertoire source sur les ordinateurs distants</translation>
     </message>
     <message>
         <source>Default</source>
@@ -1774,19 +1776,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Files in source directory only</source>
-        <translation type="unfinished"/>
+        <translation>Fichiers du répertoire source uniquement</translation>
     </message>
     <message>
         <source>Files in source directory and subdirectories</source>
-        <translation type="unfinished"/>
+        <translation>Fichiers du répertoire source et de ses sous-répertoires</translation>
     </message>
     <message>
         <source>Collected files</source>
-        <translation type="unfinished"/>
+        <translation>Fichiers rassemblés</translation>
     </message>
     <message>
         <source>Overall progress</source>
-        <translation type="unfinished"/>
+        <translation>Progrès globaux</translation>
     </message>
     <message>
         <source>Start</source>
@@ -1798,30 +1800,30 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Open output directory</source>
-        <translation type="unfinished"/>
+        <translation>Ouvrir le répertoire de sortie</translation>
     </message>
     <message>
         <source>Enter collection name</source>
-        <translation type="unfinished"/>
+        <translation>Saisissez le nom de la collection</translation>
     </message>
     <message>
         <source>Please enter a name for this file collection:</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez saisir un nom pour cette collection de fichiers :</translation>
     </message>
     <message>
         <source>Output directory creation failed</source>
-        <translation type="unfinished"/>
+        <translation>Échec de la création du répertoire de sortie</translation>
     </message>
     <message>
         <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
-        <translation type="unfinished"/>
+        <translation>Le répertoire de sortie « %1 » n&apos;existe pas et n&apos;a pas pu être créé. Veuillez vérifier la configuration et les droits d&apos;accès du répertoire de destination configuré.</translation>
     </message>
 </context>
 <context>
     <name>FileCollectTreeModel</name>
     <message>
         <source>Progress</source>
-        <translation type="unfinished"/>
+        <translation>Progrès</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1829,7 +1831,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Number of files</source>
-        <translation type="unfinished"/>
+        <translation>Nombre de fichiers</translation>
     </message>
 </context>
 <context>
@@ -1840,23 +1842,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Settings for distributing files</source>
-        <translation type="unfinished"/>
+        <translation>Paramètres de partage de fichiers</translation>
     </message>
     <message>
         <source>Settings for collecting files</source>
-        <translation type="unfinished"/>
+        <translation>Paramètres de collecte des fichiers</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished"/>
+        <translation>Non</translation>
     </message>
     <message>
         <source>Prefix filenames with grouping attribute</source>
-        <translation type="unfinished"/>
+        <translation>Ajouter un préfixe aux noms de fichiers avec l&apos;attribut de regroupement</translation>
     </message>
     <message>
         <source>Store files in subdirectories based on the grouping attribute</source>
-        <translation type="unfinished"/>
+        <translation>Enregistrer les fichiers dans des sous-répertoires en fonction de l&apos;attribut de regroupement</translation>
     </message>
     <message>
         <source>None</source>
@@ -1864,87 +1866,87 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>First part of user name</source>
-        <translation type="unfinished"/>
+        <translation>Première partie du nom d&apos;utilisateur</translation>
     </message>
     <message>
         <source>Last part of user name</source>
-        <translation type="unfinished"/>
+        <translation>Dernière partie du nom d&apos;utilisateur</translation>
     </message>
     <message>
         <source>Collect all files from configured source directory</source>
-        <translation type="unfinished"/>
+        <translation>Récupérer tous les fichiers du répertoire source configuré</translation>
     </message>
     <message>
         <source>Prompt user for folder to collect</source>
-        <translation type="unfinished"/>
+        <translation>Demander à l&apos;utilisateur le dossier à récupérer</translation>
     </message>
     <message>
         <source>Prompt user for files to collect</source>
-        <translation type="unfinished"/>
+        <translation>Demander à l&apos;utilisateur les fichiers à récupérer</translation>
     </message>
     <message>
         <source>Grouping attribute 3:</source>
-        <translation type="unfinished"/>
+        <translation>Attribut de regroupement 3 :</translation>
     </message>
     <message>
         <source>Destination directory:</source>
-        <translation type="unfinished"/>
+        <translation>Répertoire de destination :</translation>
     </message>
     <message>
         <source>Store collected files in:</source>
-        <translation type="unfinished"/>
+        <translation>Enregistrer les fichiers collectés dans :</translation>
     </message>
     <message>
         <source>Group collected files:</source>
-        <translation type="unfinished"/>
+        <translation>Regrouper les fichiers collectés :</translation>
     </message>
     <message>
         <source>Grouping attribute 1:</source>
-        <translation type="unfinished"/>
+        <translation>Attribut de regroupement 1 :</translation>
     </message>
     <message>
         <source>Grouping attribute 2:</source>
-        <translation type="unfinished"/>
+        <translation>Attribut de regroupement 2 :</translation>
     </message>
     <message>
         <source>Directly in the destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Directement dans le répertoire de destination</translation>
     </message>
     <message>
         <source>Subdirectory based on date &amp; time</source>
-        <translation type="unfinished"/>
+        <translation>Sous-répertoire basé sur la date et l&apos;heure</translation>
     </message>
     <message>
         <source>Subdirectory with name entered by the collecting user</source>
-        <translation type="unfinished"/>
+        <translation>Sous-dossier portant le nom saisi par l&apos;utilisateur collecteur</translation>
     </message>
     <message>
         <source>Files to collect:</source>
-        <translation type="unfinished"/>
+        <translation>Fichiers à collecter :</translation>
     </message>
     <message>
         <source>Files to exclude:</source>
-        <translation type="unfinished"/>
+        <translation>Fichiers à exclure :</translation>
     </message>
     <message>
         <source>e.g. *.lnk or *.desktop</source>
-        <translation type="unfinished"/>
+        <translation>par exemple *.lnk ou *.desktop</translation>
     </message>
     <message>
         <source>Collect files recursively</source>
-        <translation type="unfinished"/>
+        <translation>Collecter les fichiers de manière récursive</translation>
     </message>
     <message>
         <source>Destination directory (remote):</source>
-        <translation type="unfinished"/>
+        <translation>Répertoire de destination (à distance) :</translation>
     </message>
     <message>
         <source>Default source directory:</source>
-        <translation type="unfinished"/>
+        <translation>Répertoire source par défaut :</translation>
     </message>
     <message>
         <source>Source directory (remote):</source>
-        <translation type="unfinished"/>
+        <translation>Répertoire source (à distance) :</translation>
     </message>
     <message>
         <source>User login name</source>
@@ -1956,7 +1958,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Device name</source>
-        <translation type="unfinished"/>
+        <translation>Nom de l&apos;appareil</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
@@ -1971,7 +1973,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileTransferController</name>
     <message>
         <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
-        <translation type="unfinished"/>
+        <translation>Impossible d&apos;ouvrir le fichier %1 en lecture. Veuillez vérifier vos droits d&apos;accès. Ce fichier sera ignoré, mais les autres fichiers seront tout de même transférés.</translation>
     </message>
 </context>
 <context>
@@ -1986,11 +1988,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Destination directory on remote computers:</source>
-        <translation type="unfinished"/>
+        <translation>Répertoire de destination sur les ordinateurs distants :</translation>
     </message>
     <message>
         <source>Relative (Desktop/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
-        <translation type="unfinished"/>
+        <translation>Relatif (Desktop/) ou absolu (/tmp/ ou C:\TMP) ou vide pour le répertoire configuré</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -2018,26 +2020,26 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>File transfer error</source>
-        <translation type="unfinished"/>
+        <translation>Erreur de transfert de fichier</translation>
     </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
     <message>
         <source>Distribute</source>
-        <translation type="unfinished"/>
+        <translation>Distribuer</translation>
     </message>
     <message>
         <source>Click this button to distribute files from your computer to all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Cliquez sur ce bouton pour distribuer les fichiers de votre ordinateur vers tous les autres ordinateurs.</translation>
     </message>
     <message>
         <source>Collect</source>
-        <translation type="unfinished"/>
+        <translation>Collecter</translation>
     </message>
     <message>
         <source>Click this button to collect files from all computers to your computer.</source>
-        <translation type="unfinished"/>
+        <translation>Cliquez sur ce bouton pour collecter les fichiers de tous les ordinateurs et les transférer sur le vôtre.</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
@@ -2049,35 +2051,35 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Received file %1.</source>
-        <translation type="unfinished"/>
+        <translation>Fichier %1 reçu.</translation>
     </message>
     <message>
         <source>The file %1 is to be collected, but is still open in an application.</source>
-        <translation type="unfinished"/>
+        <translation>Le fichier %1 doit être collecté, mais il est encore ouvert dans une application.</translation>
     </message>
     <message>
         <source>The file %1 is to be collected, but is still open in the application &lt;b&gt;%2&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Le fichier %1 doit être collecté, mais il est encore ouvert dans l&apos;application &lt;b&gt;%2&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Please save your changes and close the program so that the transfer can be completed.</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez enregistrer vos modifications et fermer le programme afin que le transfert puisse être mené à bien.</translation>
     </message>
     <message>
         <source>Are you sure you want to skip transferring the file %1?</source>
-        <translation type="unfinished"/>
+        <translation>Êtes-vous sûr de vouloir ignorer le transfert du fichier %1 ?</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de recevoir le fichier %1 puisqu&apos;il existe déjà.</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it could not be opened for writing!</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de recevoir le fichier &quot;%1&quot; puisqu&apos;il ne peut pas être ouvert en écriture!</translation>
     </message>
     <message>
         <source>Transfer files between computers</source>
-        <translation type="unfinished"/>
+        <translation>Transférer des fichiers entre ordinateurs</translation>
     </message>
 </context>
 <context>
@@ -2212,11 +2214,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Veyon service</source>
-        <translation type="unfinished"/>
+        <translation>Service Veyon</translation>
     </message>
     <message>
         <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation type="unfinished"/>
+        <translation>Le service Veyon a besoin d&apos;être temporairement arrêté afin de supprimer les fichiers de journalisation. Souhaitez vous pour continuer ?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -2244,7 +2246,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Include user groups from domain</source>
-        <translation type="unfinished"/>
+        <translation>Inclure les groupes d&apos;utilisateurs du domaine</translation>
     </message>
     <message>
         <source>Missing user groups backend</source>
@@ -2252,19 +2254,19 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>No user groups plugin was found. Please check your installation!</source>
-        <translation type="unfinished"/>
+        <translation>Aucun plugin de groupes d&apos;utilisateurs n&apos;a été trouvé. Veuillez vérifier votre installation !</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished"/>
+        <translation>Thème de couleur :</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"/>
+        <translation>Clair</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"/>
+        <translation>Sombre</translation>
     </message>
 </context>
 <context>
@@ -2432,7 +2434,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. name, ou or description</source>
-        <translation type="unfinished"/>
+        <translation>Ex: nom, ou ou description </translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2950,7 +2952,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
-        <translation type="unfinished"/>
+        <translation>Associer 1:1 la structure des conteneurs/OU aux emplacements</translation>
     </message>
 </context>
 <context>
@@ -2997,7 +2999,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>LDAP/AD support for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>Support LDAP/AD pour Veyon</translation>
     </message>
 </context>
 <context>
@@ -3036,11 +3038,11 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Key press interval for text input</source>
-        <translation type="unfinished"/>
+        <translation>Intervalle entre les frappes pour la saisie de texte</translation>
     </message>
     <message>
         <source>Key press interval to control input fields</source>
-        <translation type="unfinished"/>
+        <translation>Intervalle entre les frappes pour contrôler les champs de saisie</translation>
     </message>
 </context>
 <context>
@@ -3204,7 +3206,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Veyon Configurator %1</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Configurator %1</translation>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3240,7 +3242,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
-        <translation type="unfinished"/>
+        <translation>Le processus de configuration locale rapporte que le fichier de configuration ne peut pas s&apos;enregistrer! Veuillez exécuter Veyon Configurator avec des droits plus importants.</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
@@ -3248,7 +3250,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
-        <translation type="unfinished"/>
+        <translation>Aucun fichier de clé d&apos;authentification n&apos;a été trouvé ou ceux dont vous disposez actuellement ne sont plus à jour. Veuillez créer de nouveaux fichiers de clé à l&apos;aide de Veyon Configurator. Vous pouvez également configurer l&apos;authentification de connexion à l&apos;aide de Veyon Configurator. Sinon, vous ne pourrez pas accéder aux ordinateurs via Veyon.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3264,21 +3266,23 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
-        <translation type="unfinished"/>
+        <translation>La fonctionnalité &quot;%1&quot; est toujours active. Veuillez l&apos;interrompre avant de fermer Veyon.</translation>
     </message>
     <message>
         <source>Use custom computer arrangement.
 
 Press and hold to load arrangement from a file or save current arrangement to a file.</source>
-        <translation type="unfinished"/>
+        <translation>Utiliser une configuration personnalisée de l&apos;ordinateur.
+
+Appuyez et maintenez enfoncé pour charger une configuration à partir d&apos;un fichier ou pour enregistrer la configuration actuelle dans un fichier.</translation>
     </message>
     <message>
         <source>Load computer positions</source>
-        <translation type="unfinished"/>
+        <translation>Charger les positions de l&apos;ordinateur</translation>
     </message>
     <message>
         <source>Save computer positions</source>
-        <translation type="unfinished"/>
+        <translation>Enregistrer les positions de l&apos;ordinateur</translation>
     </message>
 </context>
 <context>
@@ -3300,10 +3304,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Captures d&apos;écrans</translation>
     </message>
     <message>
-        <source>User interface</source>
-        <translation>Interface de l&apos;utilisateur</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>Couleur du texte</translation>
     </message>
@@ -3316,20 +3316,12 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Couleur d&apos;arrière plan</translation>
     </message>
     <message>
-        <source>Thumbnail spacing</source>
-        <translation>Espacement des miniatures</translation>
-    </message>
-    <message>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
         <source>Auto</source>
         <translation>Auto</translation>
-    </message>
-    <message>
-        <source>Computer thumbnail caption</source>
-        <translation>Légende de la vignette ordinateur</translation>
     </message>
     <message>
         <source>Computer and user name</source>
@@ -3352,16 +3344,8 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Utilisateur et nom d&apos;ordinateur</translation>
     </message>
     <message>
-        <source>Thumbnail update interval</source>
-        <translation>Intervalle de rafraichissement des miniatures d&apos;écran</translation>
-    </message>
-    <message>
         <source>Sort order</source>
         <translation>Ordre de tri</translation>
-    </message>
-    <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation>Rapport hauteur / largeur de la miniature</translation>
     </message>
     <message>
         <source>Highest</source>
@@ -3384,36 +3368,28 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>La plus basse</translation>
     </message>
     <message>
-        <source>Image quality in monitoring mode</source>
-        <translation>Qualité d&apos;image en mode surveillance</translation>
-    </message>
-    <message>
-        <source>Remote access image quality</source>
-        <translation>Qualité de l&apos;image de l&apos;accès à distance</translation>
-    </message>
-    <message>
         <source>Identify users in guest sessions</source>
-        <translation type="unfinished"/>
+        <translation>Identifier les utilisateurs dans les sessions invités</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"/>
+        <translation>Jamais</translation>
     </message>
     <message>
         <source>If login name matches</source>
-        <translation type="unfinished"/>
+        <translation>Si le nom d&apos;utilisateur correspond</translation>
     </message>
     <message>
         <source>If full name matches</source>
-        <translation type="unfinished"/>
+        <translation>Si le nom complet correspond</translation>
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>Invité</translation>
     </message>
     <message>
         <source>Guest user identity extension</source>
-        <translation type="unfinished"/>
+        <translation>Extension d&apos;identité de l&apos;utilisateur invité</translation>
     </message>
     <message>
         <source>None</source>
@@ -3421,11 +3397,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>Préfixe</translation>
     </message>
     <message>
         <source>Suffix</source>
-        <translation type="unfinished"/>
+        <translation>Suffixe</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3521,19 +3497,63 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Always expand all locations</source>
-        <translation type="unfinished"/>
+        <translation>Toujours afficher tous les emplacements</translation>
     </message>
     <message>
         <source>Configuration templates</source>
-        <translation type="unfinished"/>
+        <translation>Modèles de configuration</translation>
+    </message>
+    <message>
+        <source>Monitoring view</source>
+        <translation>Vue de surveillance</translation>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation>Fréquence de rafraîchissement</translation>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation>Étiquette d&apos;affichage</translation>
+    </message>
+    <message>
+        <source>Aspect ratio</source>
+        <translation>Format d&apos;image</translation>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation>Espacement de la grille</translation>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Qualité d&apos;image</translation>
+    </message>
+    <message>
+        <source>Visibility mode</source>
+        <translation>Mode de visibilité</translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation>Normal</translation>
+    </message>
+    <message>
+        <source>Blurred</source>
+        <translation>Flouté</translation>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation>Masqué</translation>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation>Accès à distance</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished"/>
+        <translation>Avancé</translation>
     </message>
     <message>
         <source>Computer name source</source>
-        <translation type="unfinished"/>
+        <translation>Source du nom de l&apos;ordinateur</translation>
     </message>
     <message>
         <source>Default</source>
@@ -3553,11 +3573,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Session host name</source>
-        <translation type="unfinished"/>
+        <translation>Nom de l&apos;hôte de la session</translation>
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>Métadonnées de session</translation>
     </message>
     <message>
         <source>Full name of user</source>
@@ -3569,11 +3589,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Computer UID role</source>
-        <translation type="unfinished"/>
+        <translation>Rôle UID de l&apos;ordinateur</translation>
     </message>
     <message>
         <source>Session meta data hash</source>
-        <translation type="unfinished"/>
+        <translation>Hachage des métadonnées de session</translation>
     </message>
 </context>
 <context>
@@ -3600,19 +3620,19 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Identify users in guest sessions</source>
-        <translation type="unfinished"/>
+        <translation>Identifier les utilisateurs dans les sessions en mode invité</translation>
     </message>
     <message>
         <source>Identification request</source>
-        <translation type="unfinished"/>
+        <translation>Demande d&apos;identification</translation>
     </message>
     <message>
         <source>Please enter your name:</source>
-        <translation type="unfinished"/>
+        <translation>Veuillez saisir votre nom :</translation>
     </message>
     <message>
         <source>First name + last name</source>
-        <translation type="unfinished"/>
+        <translation>Prénom + nom</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3684,7 +3704,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>PipeWireVncServer</name>
     <message>
         <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
-        <translation type="unfinished"/>
+        <translation>Serveur VNC Wayland (PipeWire/XDG Desktop Portal)</translation>
     </message>
 </context>
 <context>
@@ -3887,11 +3907,11 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - Veyon Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - Accès à distance Veyon</translation>
     </message>
     <message>
         <source>%1 - %2 - Veyon Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 - %2 - Accès à distance Veyon</translation>
     </message>
 </context>
 <context>
@@ -4089,31 +4109,31 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     <name>ServerAccessControlManager</name>
     <message>
         <source>Requested authentication method not available</source>
-        <translation type="unfinished"/>
+        <translation>La méthode d&apos;authentification demandée n&apos;est pas disponible</translation>
     </message>
     <message>
         <source>Access allowed by rule &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Accès autorisé par la règle « %1 »</translation>
     </message>
     <message>
         <source>Access denied by rule &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Accès refusé en vertu de la règle « %1 »</translation>
     </message>
     <message>
         <source>No rule allowed access</source>
-        <translation type="unfinished"/>
+        <translation>Aucune règle n&apos;autorisait l&apos;accès</translation>
     </message>
     <message>
         <source>Accessing user not member of an authorized user group</source>
-        <translation type="unfinished"/>
+        <translation>Accès d&apos;un utilisateur n&apos;appartenant pas à un groupe d&apos;utilisateurs autorisés</translation>
     </message>
     <message>
         <source>User has denied access</source>
-        <translation type="unfinished"/>
+        <translation>Accès refusé à l&apos;utilisateur</translation>
     </message>
     <message>
         <source>User confirmed access</source>
-        <translation type="unfinished"/>
+        <translation>Accès confirmé par l&apos;utilisateur</translation>
     </message>
 </context>
 <context>
@@ -4132,11 +4152,11 @@ Veuillez sauvegarder votre travail et fermer tous les programmes.</translation>
     </message>
     <message>
         <source>Maximum simultaneous server connections</source>
-        <translation type="unfinished"/>
+        <translation>Nombre maximal de connexions simultanées au serveur</translation>
     </message>
     <message>
         <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
-        <translation type="unfinished"/>
+        <translation>Limite le nombre de connexions à distance simultanées afin de protéger le serveur contre l&apos;épuisement des ressources.</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4222,7 +4242,7 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>Disable clipboard synchronization</source>
-        <translation type="unfinished"/>
+        <translation>Désactiver la synchronisation du presse-papiers</translation>
     </message>
     <message>
         <source>VNC server</source>
@@ -4238,7 +4258,7 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
-        <translation type="unfinished"/>
+        <translation>Tous les paramètres ont été sauvegardés avec succès. Afin de prendre effet, le service Veyon doit être redémarré. Souhaitez vous le faire maintenant ?</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4246,11 +4266,11 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>Session metadata</source>
-        <translation type="unfinished"/>
+        <translation>Métadonnées de session</translation>
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished"/>
+        <translation>Contenu</translation>
     </message>
     <message>
         <source>None</source>
@@ -4258,11 +4278,11 @@ Généralement, ceci est nécessaire pour prendre en charge les serveurs de term
     </message>
     <message>
         <source>Value of an environment variable</source>
-        <translation type="unfinished"/>
+        <translation>Valeur d&apos;une variable d&apos;environnement</translation>
     </message>
     <message>
         <source>Value of a registry key</source>
-        <translation type="unfinished"/>
+        <translation>Valeur d&apos;une clé de registre</translation>
     </message>
     <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
@@ -4274,15 +4294,15 @@ Exemple : [^-]*-(ORD[0-9]*)</translation>
     </message>
     <message>
         <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
-        <translation type="unfinished"/>
+        <translation>Cochez cette case si vous souhaitez qu&apos;une seule instance de Veyon Server soit lancée pour la session actuellement active, qu&apos;elle soit locale ou distante.</translation>
     </message>
     <message>
         <source>Environment variable name</source>
-        <translation type="unfinished"/>
+        <translation>Nom de la variable d&apos;environnement</translation>
     </message>
     <message>
         <source>Registry key name</source>
-        <translation type="unfinished"/>
+        <translation>Nom de la clé de registre</translation>
     </message>
 </context>
 <context>
@@ -4293,23 +4313,23 @@ Exemple : [^-]*-(ORD[0-9]*)</translation>
     </message>
     <message>
         <source>Starting %1</source>
-        <translation type="unfinished"/>
+        <translation>Démarrage %1</translation>
     </message>
     <message>
         <source>Stopping %1</source>
-        <translation type="unfinished"/>
+        <translation>Arrêt %1</translation>
     </message>
     <message>
         <source>Restarting %1</source>
-        <translation type="unfinished"/>
+        <translation>Redémarrage %1</translation>
     </message>
     <message>
         <source>Registering %1</source>
-        <translation type="unfinished"/>
+        <translation>Inscription %1</translation>
     </message>
     <message>
         <source>Unregistering %1</source>
-        <translation type="unfinished"/>
+        <translation>Désinscription %1</translation>
     </message>
 </context>
 <context>
@@ -4394,11 +4414,11 @@ Exemple : [^-]*-(ORD[0-9]*)</translation>
     </message>
     <message>
         <source>View in separate window</source>
-        <translation type="unfinished"/>
+        <translation>Afficher dans une fenêtre séparée</translation>
     </message>
     <message>
         <source>Veyon Master – Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Master – Diaporama</translation>
     </message>
 </context>
 <context>
@@ -4500,11 +4520,11 @@ Exemple : [^-]*-(ORD[0-9]*)</translation>
     </message>
     <message>
         <source>Title:</source>
-        <translation type="unfinished"/>
+        <translation>Titre :</translation>
     </message>
     <message>
         <source>Optional custom title for the message window</source>
-        <translation type="unfinished"/>
+        <translation>Titre personnalisé facultatif pour la fenêtre de message</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -4639,11 +4659,11 @@ Exemple : [^-]*-(ORD[0-9]*)</translation>
     </message>
     <message>
         <source>No command given</source>
-        <translation type="unfinished"/>
+        <translation>Aucune commande spécifiée</translation>
     </message>
     <message>
         <source>Invalid command given</source>
-        <translation type="unfinished"/>
+        <translation>Commande non valide spécifiée</translation>
     </message>
     <message>
         <source>Plugin not licensed</source>
@@ -4655,7 +4675,7 @@ Exemple : [^-]*-(ORD[0-9]*)</translation>
     </message>
     <message>
         <source>Unknown command result</source>
-        <translation type="unfinished"/>
+        <translation>Résultat de commande inconnu</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -4695,7 +4715,7 @@ Exemple : [^-]*-(ORD[0-9]*)</translation>
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>Invité</translation>
     </message>
 </context>
 <context>
@@ -4706,7 +4726,7 @@ Exemple : [^-]*-(ORD[0-9]*)</translation>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Impossible de sauvegarder vos paramètres personnels ! Veuillez vérifier le chemin d&apos;accès au fichier de configuration utilisateur à l&apos;aide de Veyon Configurator.</translation>
     </message>
 </context>
 <context>
@@ -4869,7 +4889,7 @@ Exemple : [^-]*-(ORD[0-9]*)</translation>
     </message>
     <message>
         <source>Use custom power scheme with disabled power and sleep buttons</source>
-        <translation type="unfinished"/>
+        <translation>Utiliser un profil d&apos;alimentation personnalisé avec les boutons d&apos;alimentation et de veille désactivés</translation>
     </message>
     <message>
         <source>Use input device interception driver</source>
@@ -4877,19 +4897,19 @@ Exemple : [^-]*-(ORD[0-9]*)</translation>
     </message>
     <message>
         <source>Disable touchpads and touchscreens</source>
-        <translation type="unfinished"/>
+        <translation>Désactiver les pavés tactiles et les écrans tactiles</translation>
     </message>
     <message>
         <source>Disable keyboard devices</source>
-        <translation type="unfinished"/>
+        <translation>Désactiver les claviers</translation>
     </message>
     <message>
         <source>Disable mouse devices</source>
-        <translation type="unfinished"/>
+        <translation>Désactiver les souris</translation>
     </message>
     <message>
         <source>Handling of interfering windows</source>
-        <translation type="unfinished"/>
+        <translation>Gestion des fenêtres interférentes</translation>
     </message>
     <message>
         <source>None</source>
@@ -4897,15 +4917,15 @@ Exemple : [^-]*-(ORD[0-9]*)</translation>
     </message>
     <message>
         <source>Fix window attributes</source>
-        <translation type="unfinished"/>
+        <translation>Corriger les attributs de fenêtre</translation>
     </message>
     <message>
         <source>Terminate related process</source>
-        <translation type="unfinished"/>
+        <translation>Arrêter le processus lié</translation>
     </message>
     <message>
         <source>Close session</source>
-        <translation type="unfinished"/>
+        <translation>Fermer la session</translation>
     </message>
 </context>
 <context>

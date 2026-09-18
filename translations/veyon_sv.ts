@@ -137,7 +137,7 @@ Om du är intresserad av att översätta Veyon till ditt lokala eller ett ett an
     <name>AccessControlProvider</name>
     <message>
         <source>Provider for access control features</source>
-        <translation type="unfinished"/>
+        <translation>Tillhandahållare av funktioner för åtkomstkontroll</translation>
     </message>
 </context>
 <context>
@@ -303,7 +303,7 @@ Om du är intresserad av att översätta Veyon till ditt lokala eller ett ett an
     </message>
     <message>
         <source>There is no matching rule with a valid action. The access is therefore denied.</source>
-        <translation type="unfinished"/>
+        <translation>Det finns ingen matchande regel med en giltig åtgärd. Åtkomst nekas därför.</translation>
     </message>
 </context>
 <context>
@@ -708,11 +708,11 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Move selected computer up</source>
-        <translation type="unfinished"/>
+        <translation>Flytta vald dator uppåt</translation>
     </message>
     <message>
         <source>Move selected computer down</source>
-        <translation type="unfinished"/>
+        <translation>Flytta vald dator nedåt</translation>
     </message>
     <message>
         <source>Name</source>
@@ -736,11 +736,11 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Move selected location up</source>
-        <translation type="unfinished"/>
+        <translation>Flytta vald plats uppåt</translation>
     </message>
     <message>
         <source>Move selected location down</source>
-        <translation type="unfinished"/>
+        <translation>Flytta vald plats nedåt</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -1119,7 +1119,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Veyon Service %1 at %2:%3</source>
-        <translation type="unfinished"/>
+        <translation>Veyon-tjänst %1 på %2:%3</translation>
     </message>
     <message>
         <source>Active connections:</source>
@@ -1142,7 +1142,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Ingen standardinsticksmodul för nätverksobjektkatalog hittades. Kontrollera installationen eller konfigurera en annan backend för nätverksobjektkatalog via Veyon Configurator.</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1279,15 +1279,15 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     <name>ConfigurationManager</name>
     <message>
         <source>Could not modify the autostart property for the Veyon Service.</source>
-        <translation type="unfinished"/>
+        <translation>Det gick inte att ändra egenskapen för automatisk start av Veyon-tjänsten.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Server.</source>
-        <translation type="unfinished"/>
+        <translation>Det gick inte att konfigurera brandväggsinställningarna för Veyon Server.</translation>
     </message>
     <message>
         <source>Could not configure the firewall configuration for the Veyon Worker.</source>
-        <translation type="unfinished"/>
+        <translation>Det gick inte att konfigurera brandväggsinställningarna för Veyon Worker.</translation>
     </message>
     <message>
         <source>Could not apply platform-specific configuration settings.</source>
@@ -1302,7 +1302,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     <name>DemoClient</name>
     <message>
         <source>Veyon Demo</source>
-        <translation type="unfinished"/>
+        <translation>Veyon-demo</translation>
     </message>
 </context>
 <context>
@@ -1744,31 +1744,31 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"/>
+        <translation>Inställningar</translation>
     </message>
     <message>
         <source>Subfolder handling</source>
-        <translation type="unfinished"/>
+        <translation>Hantering av undermappar</translation>
     </message>
     <message>
         <source>*.* or *.docx;*.pdf (leave empty for all files)</source>
-        <translation type="unfinished"/>
+        <translation>*.* eller *.docx;*.pdf (lämna tomt för alla filer)</translation>
     </message>
     <message>
         <source>File pattern</source>
-        <translation type="unfinished"/>
+        <translation>Filmönster</translation>
     </message>
     <message>
         <source>Local destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Lokal målkatalog</translation>
     </message>
     <message>
         <source>Relative (Documents/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
-        <translation type="unfinished"/>
+        <translation>Relativ (Dokument/) eller absolut (/tmp/ eller C:\TMP) eller tom för konfigurerad katalog</translation>
     </message>
     <message>
         <source>Source directory on remote computers</source>
-        <translation type="unfinished"/>
+        <translation>Källkatalog på fjärrdatorer</translation>
     </message>
     <message>
         <source>Default</source>
@@ -1776,11 +1776,11 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Files in source directory only</source>
-        <translation type="unfinished"/>
+        <translation>Endast filer i källkatalogen</translation>
     </message>
     <message>
         <source>Files in source directory and subdirectories</source>
-        <translation type="unfinished"/>
+        <translation>Filer i källkatalogen och dess undermappar</translation>
     </message>
     <message>
         <source>Collected files</source>
@@ -1796,11 +1796,11 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Select destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Välj målkatalog</translation>
     </message>
     <message>
         <source>Open output directory</source>
-        <translation type="unfinished"/>
+        <translation>Öppna utdatakatalog</translation>
     </message>
     <message>
         <source>Enter collection name</source>
@@ -1831,7 +1831,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Number of files</source>
-        <translation type="unfinished"/>
+        <translation>Antal filer</translation>
     </message>
 </context>
 <context>
@@ -1850,15 +1850,15 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished"/>
+        <translation>Nej</translation>
     </message>
     <message>
         <source>Prefix filenames with grouping attribute</source>
-        <translation type="unfinished"/>
+        <translation>Förse filnamn med grupperingsattributet som prefix</translation>
     </message>
     <message>
         <source>Store files in subdirectories based on the grouping attribute</source>
-        <translation type="unfinished"/>
+        <translation>Spara filer i undermappar baserat på grupperingsattributet</translation>
     </message>
     <message>
         <source>None</source>
@@ -1866,11 +1866,11 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>First part of user name</source>
-        <translation type="unfinished"/>
+        <translation>Första delen av användarnamnet</translation>
     </message>
     <message>
         <source>Last part of user name</source>
-        <translation type="unfinished"/>
+        <translation>Sista delen av användarnamnet</translation>
     </message>
     <message>
         <source>Collect all files from configured source directory</source>
@@ -1878,59 +1878,59 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Prompt user for folder to collect</source>
-        <translation type="unfinished"/>
+        <translation>Be användaren välja mapp att samla in</translation>
     </message>
     <message>
         <source>Prompt user for files to collect</source>
-        <translation type="unfinished"/>
+        <translation>Be användaren välja filer att samla in</translation>
     </message>
     <message>
         <source>Grouping attribute 3:</source>
-        <translation type="unfinished"/>
+        <translation>Grupperingsattribut 3:</translation>
     </message>
     <message>
         <source>Destination directory:</source>
-        <translation type="unfinished"/>
+        <translation>Målkatalog:</translation>
     </message>
     <message>
         <source>Store collected files in:</source>
-        <translation type="unfinished"/>
+        <translation>Spara insamlade filer i:</translation>
     </message>
     <message>
         <source>Group collected files:</source>
-        <translation type="unfinished"/>
+        <translation>Gruppera insamlade filer:</translation>
     </message>
     <message>
         <source>Grouping attribute 1:</source>
-        <translation type="unfinished"/>
+        <translation>Grupperingsattribut 1:</translation>
     </message>
     <message>
         <source>Grouping attribute 2:</source>
-        <translation type="unfinished"/>
+        <translation>Grupperingsattribut 2:</translation>
     </message>
     <message>
         <source>Directly in the destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Direkt i målkatalogen</translation>
     </message>
     <message>
         <source>Subdirectory based on date &amp; time</source>
-        <translation type="unfinished"/>
+        <translation>Undermapp baserad på datum och tid</translation>
     </message>
     <message>
         <source>Subdirectory with name entered by the collecting user</source>
-        <translation type="unfinished"/>
+        <translation>Undermapp med namn som anges av den insamlande användaren</translation>
     </message>
     <message>
         <source>Files to collect:</source>
-        <translation type="unfinished"/>
+        <translation>Filer att samla in:</translation>
     </message>
     <message>
         <source>Files to exclude:</source>
-        <translation type="unfinished"/>
+        <translation>Filer att utesluta:</translation>
     </message>
     <message>
         <source>e.g. *.lnk or *.desktop</source>
-        <translation type="unfinished"/>
+        <translation>t.ex. *.lnk eller *.desktop</translation>
     </message>
     <message>
         <source>Collect files recursively</source>
@@ -1938,15 +1938,15 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Destination directory (remote):</source>
-        <translation type="unfinished"/>
+        <translation>Målkatalog (fjärr):</translation>
     </message>
     <message>
         <source>Default source directory:</source>
-        <translation type="unfinished"/>
+        <translation>Standardkällkatalog:</translation>
     </message>
     <message>
         <source>Source directory (remote):</source>
-        <translation type="unfinished"/>
+        <translation>Källkatalog (fjärr):</translation>
     </message>
     <message>
         <source>User login name</source>
@@ -1973,7 +1973,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     <name>FileTransferController</name>
     <message>
         <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
-        <translation type="unfinished"/>
+        <translation>Kunde inte öppna filen %1 för läsning. Kontrollera behörigheterna. Filen hoppas över, men återstående filer överförs ändå.</translation>
     </message>
 </context>
 <context>
@@ -1988,11 +1988,11 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Destination directory on remote computers:</source>
-        <translation type="unfinished"/>
+        <translation>Målkatalog på fjärrdatorer:</translation>
     </message>
     <message>
         <source>Relative (Desktop/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
-        <translation type="unfinished"/>
+        <translation>Relativ (Skrivbord/) eller absolut (/tmp/ eller C:\TMP) eller tom för konfigurerad katalog</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -2020,7 +2020,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>File transfer error</source>
-        <translation type="unfinished"/>
+        <translation>Fel vid filöverföring</translation>
     </message>
 </context>
 <context>
@@ -2051,31 +2051,31 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Received file %1.</source>
-        <translation type="unfinished"/>
+        <translation>Tog emot filen %1.</translation>
     </message>
     <message>
         <source>The file %1 is to be collected, but is still open in an application.</source>
-        <translation type="unfinished"/>
+        <translation>Filen %1 ska samlas in, men är fortfarande öppen i ett program.</translation>
     </message>
     <message>
         <source>The file %1 is to be collected, but is still open in the application &lt;b&gt;%2&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>Filen %1 ska samlas in, men är fortfarande öppen i programmet &lt;b&gt;%2&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Please save your changes and close the program so that the transfer can be completed.</source>
-        <translation type="unfinished"/>
+        <translation>Spara ändringarna och stäng programmet så att överföringen kan slutföras.</translation>
     </message>
     <message>
         <source>Are you sure you want to skip transferring the file %1?</source>
-        <translation type="unfinished"/>
+        <translation>Är du säker på att du vill hoppa över överföringen av filen %1?</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it already exists.</source>
-        <translation type="unfinished"/>
+        <translation>Kunde inte ta emot filen %1 eftersom den redan finns.</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it could not be opened for writing!</source>
-        <translation type="unfinished"/>
+        <translation>Kunde inte ta emot filen %1 eftersom den inte kunde öppnas för skrivning!</translation>
     </message>
     <message>
         <source>Transfer files between computers</source>
@@ -2214,11 +2214,11 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Veyon service</source>
-        <translation type="unfinished"/>
+        <translation>Veyon-tjänsten</translation>
     </message>
     <message>
         <source>The Veyon service needs to be stopped temporarily in order to remove the log files. Continue?</source>
-        <translation type="unfinished"/>
+        <translation>Veyon-tjänsten måste tillfälligt stoppas för att loggfilerna ska kunna tas bort. Fortsätt?</translation>
     </message>
     <message>
         <source>Log files cleared</source>
@@ -2434,7 +2434,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>e.g. name, ou or description</source>
-        <translation type="unfinished"/>
+        <translation>t.ex. namn, ou eller beskrivning</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2952,7 +2952,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Map container/OU structure 1:1 to locations</source>
-        <translation type="unfinished"/>
+        <translation>Mappa container-/OU-struktur 1:1 till platser</translation>
     </message>
 </context>
 <context>
@@ -2999,7 +2999,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>LDAP/AD support for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>LDAP/AD-stöd för Veyon</translation>
     </message>
 </context>
 <context>
@@ -3038,11 +3038,11 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Key press interval for text input</source>
-        <translation type="unfinished"/>
+        <translation>Tangenttrycksintervall för textinmatning</translation>
     </message>
     <message>
         <source>Key press interval to control input fields</source>
-        <translation type="unfinished"/>
+        <translation>Tangenttrycksintervall för att styra inmatningsfält</translation>
     </message>
 </context>
 <context>
@@ -3154,11 +3154,11 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>&amp;Standard</source>
-        <translation>Skärm %1$u Standard (%2$u:%3$u)</translation>
+        <translation>&amp;Standard</translation>
     </message>
     <message>
         <source>&amp;Advanced</source>
-        <translation>Avancerat</translation>
+        <translation>&amp;Avancerat</translation>
     </message>
     <message>
         <source>Adjust size of computer icons automatically</source>
@@ -3206,7 +3206,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Veyon Configurator %1</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Configurator %1</translation>
     </message>
     <message>
         <source>Load settings from file</source>
@@ -3242,7 +3242,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
-        <translation type="unfinished"/>
+        <translation>Den lokala konfigurationsbackendrapporten anger att konfigurationen inte är skrivbar! Kör Veyon Configurator med högre behörighet.</translation>
     </message>
     <message>
         <source>Authentication impossible</source>
@@ -3250,7 +3250,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
-        <translation type="unfinished"/>
+        <translation>Inga autentiseringsnyckelfiler hittades eller så är de nuvarande föråldrade. Skapa nya nyckelfiler med Veyon Configurator. Du kan också konfigurera inloggningsautentisering med Veyon Configurator. Annars kan du inte komma åt datorer med Veyon.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3266,7 +3266,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
-        <translation type="unfinished"/>
+        <translation>Funktionen ”%1” är fortfarande aktiv. Stoppa den innan du stänger Veyon.</translation>
     </message>
     <message>
         <source>Use custom computer arrangement.
@@ -3304,10 +3304,6 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
         <translation>Skärmbilder</translation>
     </message>
     <message>
-        <source>User interface</source>
-        <translation>Användargränssnitt</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>Textfärg</translation>
     </message>
@@ -3320,20 +3316,12 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
         <translation>Bakgrundsfärg</translation>
     </message>
     <message>
-        <source>Thumbnail spacing</source>
-        <translation>Avstånd mellan miniatyrbilder</translation>
-    </message>
-    <message>
         <source> px</source>
         <translation> bildpunkter</translation>
     </message>
     <message>
         <source>Auto</source>
         <translation>Auto</translation>
-    </message>
-    <message>
-        <source>Computer thumbnail caption</source>
-        <translation>Bildtext för datorns miniatyrbild</translation>
     </message>
     <message>
         <source>Computer and user name</source>
@@ -3356,16 +3344,8 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
         <translation>Användar- och datornamn</translation>
     </message>
     <message>
-        <source>Thumbnail update interval</source>
-        <translation>Uppdateringsintervall för miniatyrbilder</translation>
-    </message>
-    <message>
         <source>Sort order</source>
         <translation>Sorteringsordning</translation>
-    </message>
-    <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation>Bildförhållande för miniatyrbilder</translation>
     </message>
     <message>
         <source>Highest</source>
@@ -3388,28 +3368,20 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
         <translation>Lägsta</translation>
     </message>
     <message>
-        <source>Image quality in monitoring mode</source>
-        <translation>Bildkvalitet i övervakningsläge</translation>
-    </message>
-    <message>
-        <source>Remote access image quality</source>
-        <translation>Bildkvalitet för fjärråtkomst</translation>
-    </message>
-    <message>
         <source>Identify users in guest sessions</source>
-        <translation type="unfinished"/>
+        <translation>Identifiera användare i gästsessioner</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"/>
+        <translation>Aldrig</translation>
     </message>
     <message>
         <source>If login name matches</source>
-        <translation type="unfinished"/>
+        <translation>Om inloggningsnamnet matchar</translation>
     </message>
     <message>
         <source>If full name matches</source>
-        <translation type="unfinished"/>
+        <translation>Om hela namnet matchar</translation>
     </message>
     <message>
         <source>Guest</source>
@@ -3417,7 +3389,7 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
     </message>
     <message>
         <source>Guest user identity extension</source>
-        <translation type="unfinished"/>
+        <translation>Tillägg för gästidentitet</translation>
     </message>
     <message>
         <source>None</source>
@@ -3425,11 +3397,11 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>Prefix</translation>
     </message>
     <message>
         <source>Suffix</source>
-        <translation type="unfinished"/>
+        <translation>Suffix</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3532,6 +3504,50 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
         <translation>Konfigurationsmallar</translation>
     </message>
     <message>
+        <source>Monitoring view</source>
+        <translation>Övervakningsvy</translation>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation>Uppdateringsfrekvens</translation>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation>Visningsetikett</translation>
+    </message>
+    <message>
+        <source>Aspect ratio</source>
+        <translation>Bildförhållande</translation>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation>Rutnätsavstånd</translation>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Bildkvalitet</translation>
+    </message>
+    <message>
+        <source>Visibility mode</source>
+        <translation>Synlighetsläge</translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation>Normal</translation>
+    </message>
+    <message>
+        <source>Blurred</source>
+        <translation>Suddig</translation>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation>Dold</translation>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation>Fjärråtkomst</translation>
+    </message>
+    <message>
         <source>Advanced</source>
         <translation>Avancerat</translation>
     </message>
@@ -3604,7 +3620,7 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
     </message>
     <message>
         <source>Identify users in guest sessions</source>
-        <translation type="unfinished"/>
+        <translation>Identifiera användare i gästsessioner</translation>
     </message>
     <message>
         <source>Identification request</source>
@@ -3616,7 +3632,7 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
     </message>
     <message>
         <source>First name + last name</source>
-        <translation type="unfinished"/>
+        <translation>Förnamn + efternamn</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3688,7 +3704,7 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
     <name>PipeWireVncServer</name>
     <message>
         <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
-        <translation type="unfinished"/>
+        <translation>Wayland VNC-server (PipeWire/XDG Desktop Portal)</translation>
     </message>
 </context>
 <context>
@@ -3891,11 +3907,11 @@ Spara ditt arbete och stäng alla program.</translation>
     <name>RemoteAccessWidget</name>
     <message>
         <source>%1 - Veyon Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 – Veyon-fjärråtkomst</translation>
     </message>
     <message>
         <source>%1 - %2 - Veyon Remote Access</source>
-        <translation type="unfinished"/>
+        <translation>%1 – %2 – Veyon-fjärråtkomst</translation>
     </message>
 </context>
 <context>
@@ -4136,11 +4152,11 @@ Spara ditt arbete och stäng alla program.</translation>
     </message>
     <message>
         <source>Maximum simultaneous server connections</source>
-        <translation type="unfinished"/>
+        <translation>Maximalt antal samtidiga serveranslutningar</translation>
     </message>
     <message>
         <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
-        <translation type="unfinished"/>
+        <translation>Begränsar samtidiga fjärranslutningar för att skydda servern mot resursuttömning.</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4242,7 +4258,7 @@ Detta krävs vanligtvis för att stödja terminalservrar.</translation>
     </message>
     <message>
         <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
-        <translation type="unfinished"/>
+        <translation>Alla inställningar har sparats. Veyon-tjänsten måste startas om för att ändringarna ska börja gälla. Starta om den nu?</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4402,7 +4418,7 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Veyon Master – Slideshow</source>
-        <translation type="unfinished"/>
+        <translation>Veyon Master – bildspel</translation>
     </message>
 </context>
 <context>
@@ -4504,11 +4520,11 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Title:</source>
-        <translation type="unfinished"/>
+        <translation>Titel:</translation>
     </message>
     <message>
         <source>Optional custom title for the message window</source>
-        <translation type="unfinished"/>
+        <translation>Valfri anpassad titel för meddelandefönstret</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -4516,7 +4532,7 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Message from %1</source>
-        <translation type="unfinished"/>
+        <translation>Meddelande från %1</translation>
     </message>
 </context>
 <context>
@@ -4643,11 +4659,11 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>No command given</source>
-        <translation type="unfinished"/>
+        <translation>Inget kommando angavs</translation>
     </message>
     <message>
         <source>Invalid command given</source>
-        <translation type="unfinished"/>
+        <translation>Ogiltigt kommando angavs</translation>
     </message>
     <message>
         <source>Plugin not licensed</source>
@@ -4659,7 +4675,7 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Unknown command result</source>
-        <translation type="unfinished"/>
+        <translation>Okänt kommandoresultat</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -4710,7 +4726,7 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
-        <translation type="unfinished"/>
+        <translation>Kunde inte spara dina personliga inställningar. Kontrollera sökvägen till användarkonfigurationsfilen med Veyon Configurator.</translation>
     </message>
 </context>
 <context>
@@ -4873,7 +4889,7 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Use custom power scheme with disabled power and sleep buttons</source>
-        <translation type="unfinished"/>
+        <translation>Använd anpassat energischema med avstängda ström- och viloknappar</translation>
     </message>
     <message>
         <source>Use input device interception driver</source>
@@ -4881,15 +4897,15 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Disable touchpads and touchscreens</source>
-        <translation type="unfinished"/>
+        <translation>Inaktivera styrplattor och pekskärmar</translation>
     </message>
     <message>
         <source>Disable keyboard devices</source>
-        <translation type="unfinished"/>
+        <translation>Inaktivera tangentbordsenheter</translation>
     </message>
     <message>
         <source>Disable mouse devices</source>
-        <translation type="unfinished"/>
+        <translation>Inaktivera musenheter</translation>
     </message>
     <message>
         <source>Handling of interfering windows</source>

@@ -3301,10 +3301,6 @@ Gedrückt halten, um die Anordnung aus einer Datei zu laden oder die aktuelle An
         <translation>Bildschirmfotos</translation>
     </message>
     <message>
-        <source>User interface</source>
-        <translation>Benutzeroberfläche</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>Textfarbe</translation>
     </message>
@@ -3317,20 +3313,12 @@ Gedrückt halten, um die Anordnung aus einer Datei zu laden oder die aktuelle An
         <translation>Hintergrundfarbe</translation>
     </message>
     <message>
-        <source>Thumbnail spacing</source>
-        <translation>Abstand Miniaturbilder</translation>
-    </message>
-    <message>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
         <source>Auto</source>
         <translation>Auto</translation>
-    </message>
-    <message>
-        <source>Computer thumbnail caption</source>
-        <translation>Computerminiaturbild-Beschriftung</translation>
     </message>
     <message>
         <source>Computer and user name</source>
@@ -3353,16 +3341,8 @@ Gedrückt halten, um die Anordnung aus einer Datei zu laden oder die aktuelle An
         <translation>Benutzer- und Computername</translation>
     </message>
     <message>
-        <source>Thumbnail update interval</source>
-        <translation>Aktualisierungsintervall Miniaturbilder</translation>
-    </message>
-    <message>
         <source>Sort order</source>
         <translation>Sortierreihenfolge</translation>
-    </message>
-    <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation>Seitenverhältnis Miniaturbilder</translation>
     </message>
     <message>
         <source>Highest</source>
@@ -3383,14 +3363,6 @@ Gedrückt halten, um die Anordnung aus einer Datei zu laden oder die aktuelle An
     <message>
         <source>Lowest</source>
         <translation>Niedrigste</translation>
-    </message>
-    <message>
-        <source>Image quality in monitoring mode</source>
-        <translation>Bildqualität im Beobachtungsmodus</translation>
-    </message>
-    <message>
-        <source>Remote access image quality</source>
-        <translation>Bildqualität beim Fernzugriff</translation>
     </message>
     <message>
         <source>Identify users in guest sessions</source>
@@ -3527,6 +3499,50 @@ Gedrückt halten, um die Anordnung aus einer Datei zu laden oder die aktuelle An
     <message>
         <source>Configuration templates</source>
         <translation>Konfigurationsvorlagen</translation>
+    </message>
+    <message>
+        <source>Monitoring view</source>
+        <translation>Beobachtungsansicht</translation>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation>Aktualisierungsrate</translation>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation>Anzeigebeschriftung</translation>
+    </message>
+    <message>
+        <source>Aspect ratio</source>
+        <translation>Seitenverhältnis</translation>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation>Gitterabstand</translation>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Bildqualität</translation>
+    </message>
+    <message>
+        <source>Visibility mode</source>
+        <translation>Sichtbarkeitsmodus</translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation>Normal</translation>
+    </message>
+    <message>
+        <source>Blurred</source>
+        <translation>Weichgezeichnet</translation>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation>Ausgeblendet</translation>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation>Fernzugriff</translation>
     </message>
     <message>
         <source>Advanced</source>

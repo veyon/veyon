@@ -3305,10 +3305,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>屏幕截图</translation>
     </message>
     <message>
-        <source>User interface</source>
-        <translation>用户界面</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>文本颜色</translation>
     </message>
@@ -3321,20 +3317,12 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>背景色</translation>
     </message>
     <message>
-        <source>Thumbnail spacing</source>
-        <translation>缩略图间距</translation>
-    </message>
-    <message>
         <source> px</source>
         <translation>px</translation>
     </message>
     <message>
         <source>Auto</source>
         <translation>自动</translation>
-    </message>
-    <message>
-        <source>Computer thumbnail caption</source>
-        <translation>计算机缩略图名称</translation>
     </message>
     <message>
         <source>Computer and user name</source>
@@ -3357,16 +3345,8 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>用户和计算机名称</translation>
     </message>
     <message>
-        <source>Thumbnail update interval</source>
-        <translation>缩略图更新时间</translation>
-    </message>
-    <message>
         <source>Sort order</source>
         <translation>排序</translation>
-    </message>
-    <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation>缩略图纵横比</translation>
     </message>
     <message>
         <source>Highest</source>
@@ -3387,14 +3367,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Lowest</source>
         <translation>最低</translation>
-    </message>
-    <message>
-        <source>Image quality in monitoring mode</source>
-        <translation>监控模式下的图像质量</translation>
-    </message>
-    <message>
-        <source>Remote access image quality</source>
-        <translation>远程访问图像质量</translation>
     </message>
     <message>
         <source>Identify users in guest sessions</source>
@@ -3531,6 +3503,50 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Configuration templates</source>
         <translation>配置模板</translation>
+    </message>
+    <message>
+        <source>Monitoring view</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>图像质量</translation>
+    </message>
+    <message>
+        <source>Visibility mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Blurred</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation>远程访问</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -4517,7 +4533,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Message from %1</source>
-        <translation type="unfinished"/>
+        <translation>来自 %1 的消息</translation>
     </message>
 </context>
 <context>

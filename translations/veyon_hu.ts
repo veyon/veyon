@@ -708,11 +708,11 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>Move selected computer up</source>
-        <translation type="unfinished"/>
+        <translation>Kiválasztott számítógép mozgatása felfelé</translation>
     </message>
     <message>
         <source>Move selected computer down</source>
-        <translation type="unfinished"/>
+        <translation>Kiválasztott számítógép mozgatása lefelé</translation>
     </message>
     <message>
         <source>Name</source>
@@ -736,11 +736,11 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>Move selected location up</source>
-        <translation type="unfinished"/>
+        <translation>Kiválasztott helyszín mozgatása felfelé</translation>
     </message>
     <message>
         <source>Move selected location down</source>
-        <translation type="unfinished"/>
+        <translation>Kiválasztott helyszín mozgatása lefelé</translation>
     </message>
     <message>
         <source>The import of CSV files is possible through the command line interface. For more information, see the &lt;a href=&quot;https://docs.veyon.io/en/latest/admin/cli.html#network-object-directory&quot;&gt;online documentation&lt;/a&gt;.</source>
@@ -1252,7 +1252,7 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>Output directory is not writable!</source>
-        <translation>Kimeneti könyvtár nem írható!</translation>
+        <translation>Kimeneti mappa nem írható!</translation>
     </message>
     <message>
         <source>Please specify a valid key.</source>
@@ -1748,27 +1748,27 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>Subfolder handling</source>
-        <translation type="unfinished"/>
+        <translation>Almappa kezelése</translation>
     </message>
     <message>
         <source>*.* or *.docx;*.pdf (leave empty for all files)</source>
-        <translation type="unfinished"/>
+        <translation>*.* or *.docx;*.pdf (üres = összes fájl)</translation>
     </message>
     <message>
         <source>File pattern</source>
-        <translation type="unfinished"/>
+        <translation>Fájlminta</translation>
     </message>
     <message>
         <source>Local destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Helyi célmappa</translation>
     </message>
     <message>
         <source>Relative (Documents/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
-        <translation type="unfinished"/>
+        <translation>Relatív (Documents/) vagy abszolút (/tmp/ or C:\TMP) vagy üres a konfigurált mappához</translation>
     </message>
     <message>
         <source>Source directory on remote computers</source>
-        <translation type="unfinished"/>
+        <translation>Forrásmappa a távoli számítógépen</translation>
     </message>
     <message>
         <source>Default</source>
@@ -1776,19 +1776,19 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>Files in source directory only</source>
-        <translation type="unfinished"/>
+        <translation>Csak a forrásmappában lévő fájlok</translation>
     </message>
     <message>
         <source>Files in source directory and subdirectories</source>
-        <translation type="unfinished"/>
+        <translation>Forrásmappában és almappákban lévő fájlok</translation>
     </message>
     <message>
         <source>Collected files</source>
-        <translation type="unfinished"/>
+        <translation>Begyűjtött fájlok</translation>
     </message>
     <message>
         <source>Overall progress</source>
-        <translation type="unfinished"/>
+        <translation>Teljes előrehaladás</translation>
     </message>
     <message>
         <source>Start</source>
@@ -1796,34 +1796,34 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>Select destination directory</source>
-        <translation>Válassz célkönyvtárat</translation>
+        <translation>Válassz célmappát</translation>
     </message>
     <message>
         <source>Open output directory</source>
-        <translation type="unfinished"/>
+        <translation>Kimeneti mappa megnyitása</translation>
     </message>
     <message>
         <source>Enter collection name</source>
-        <translation type="unfinished"/>
+        <translation>Add meg a gyűjtemény nevét</translation>
     </message>
     <message>
         <source>Please enter a name for this file collection:</source>
-        <translation type="unfinished"/>
+        <translation>Adj egy nevet ennek a fájlgyűjteménynek:</translation>
     </message>
     <message>
         <source>Output directory creation failed</source>
-        <translation type="unfinished"/>
+        <translation>Kimeneti mappa létrehozása sikertelen</translation>
     </message>
     <message>
         <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; kimeneti mappa nem létezik, és nem is hozható létre. Ellenőrizd a konfigurációt és a konfigurált célmappa fájlengedélyeit.</translation>
     </message>
 </context>
 <context>
     <name>FileCollectTreeModel</name>
     <message>
         <source>Progress</source>
-        <translation type="unfinished"/>
+        <translation>Folyamat</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1831,7 +1831,7 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>Number of files</source>
-        <translation type="unfinished"/>
+        <translation>Fájlok száma</translation>
     </message>
 </context>
 <context>
@@ -1842,23 +1842,23 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>Settings for distributing files</source>
-        <translation type="unfinished"/>
+        <translation>Fájlok elosztására vonatkozó beállítások</translation>
     </message>
     <message>
         <source>Settings for collecting files</source>
-        <translation type="unfinished"/>
+        <translation>Fájlok begyűjtésére vonatkozó beállítások</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished"/>
+        <translation>Nem</translation>
     </message>
     <message>
         <source>Prefix filenames with grouping attribute</source>
-        <translation type="unfinished"/>
+        <translation>Fájlnevek előtagja csoportosítási attribútummal</translation>
     </message>
     <message>
         <source>Store files in subdirectories based on the grouping attribute</source>
-        <translation type="unfinished"/>
+        <translation>Fájlok tárolása almappákban csoportosítási attribútum alapján</translation>
     </message>
     <message>
         <source>None</source>
@@ -1866,87 +1866,87 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>First part of user name</source>
-        <translation type="unfinished"/>
+        <translation>A felhasználónév első része</translation>
     </message>
     <message>
         <source>Last part of user name</source>
-        <translation type="unfinished"/>
+        <translation>A felhasználónév utolsó része</translation>
     </message>
     <message>
         <source>Collect all files from configured source directory</source>
-        <translation type="unfinished"/>
+        <translation>Az összes fájl begyűjtése a konfigurált forráskönyvtárból</translation>
     </message>
     <message>
         <source>Prompt user for folder to collect</source>
-        <translation type="unfinished"/>
+        <translation>A begyűjtendő mappa bekérése a felhasználótól</translation>
     </message>
     <message>
         <source>Prompt user for files to collect</source>
-        <translation type="unfinished"/>
+        <translation>A begyűjtendő fájlok bekérése a felhasználótól</translation>
     </message>
     <message>
         <source>Grouping attribute 3:</source>
-        <translation type="unfinished"/>
+        <translation>Csoportosítási attribútum 3:</translation>
     </message>
     <message>
         <source>Destination directory:</source>
-        <translation type="unfinished"/>
+        <translation>Célmappa:</translation>
     </message>
     <message>
         <source>Store collected files in:</source>
-        <translation type="unfinished"/>
+        <translation>Begyűjtött fájlok tárolása itt:</translation>
     </message>
     <message>
         <source>Group collected files:</source>
-        <translation type="unfinished"/>
+        <translation>Begyűjtött fájlok csoportosítása:</translation>
     </message>
     <message>
         <source>Grouping attribute 1:</source>
-        <translation type="unfinished"/>
+        <translation>Csoportosítási attribútum 1:</translation>
     </message>
     <message>
         <source>Grouping attribute 2:</source>
-        <translation type="unfinished"/>
+        <translation>Csoportosítási attribútum 2:</translation>
     </message>
     <message>
         <source>Directly in the destination directory</source>
-        <translation type="unfinished"/>
+        <translation>Közvetlenül a célmappába</translation>
     </message>
     <message>
         <source>Subdirectory based on date &amp; time</source>
-        <translation type="unfinished"/>
+        <translation>Dátum / idő alapján almappa</translation>
     </message>
     <message>
         <source>Subdirectory with name entered by the collecting user</source>
-        <translation type="unfinished"/>
+        <translation>A begyűjtő felhasználó által megadott nevű almappa</translation>
     </message>
     <message>
         <source>Files to collect:</source>
-        <translation type="unfinished"/>
+        <translation>Begyűjtendő fájlok:</translation>
     </message>
     <message>
         <source>Files to exclude:</source>
-        <translation type="unfinished"/>
+        <translation>Kizárandó fájlok:</translation>
     </message>
     <message>
         <source>e.g. *.lnk or *.desktop</source>
-        <translation type="unfinished"/>
+        <translation>pl. *.lnk vagy *.desktop</translation>
     </message>
     <message>
         <source>Collect files recursively</source>
-        <translation type="unfinished"/>
+        <translation>Fájlok begyűjtése rekurzívan</translation>
     </message>
     <message>
         <source>Destination directory (remote):</source>
-        <translation type="unfinished"/>
+        <translation>Célmappa (távoli):</translation>
     </message>
     <message>
         <source>Default source directory:</source>
-        <translation type="unfinished"/>
+        <translation>Alapértelmezett forrásmappa:</translation>
     </message>
     <message>
         <source>Source directory (remote):</source>
-        <translation type="unfinished"/>
+        <translation>Forrásmappa (távoli):</translation>
     </message>
     <message>
         <source>User login name</source>
@@ -1958,11 +1958,11 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>Device name</source>
-        <translation type="unfinished"/>
+        <translation>Eszköz neve</translation>
     </message>
     <message>
         <source>Remember last source directory</source>
-        <translation>Emlékezz az utolsó forráskönyvtárra</translation>
+        <translation>Emlékezz az utolsó forrásmappára</translation>
     </message>
     <message>
         <source>Create destination directory if it does not exist</source>
@@ -1973,7 +1973,7 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     <name>FileTransferController</name>
     <message>
         <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
-        <translation type="unfinished"/>
+        <translation>%1 fájl nem nyitható meg olvasásra. Ellenőrizze a jogosultságaidat. A fájlt kihagyjuk, a fennmaradó fájlokat átvisszük.</translation>
     </message>
 </context>
 <context>
@@ -1988,11 +1988,11 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>Destination directory on remote computers:</source>
-        <translation type="unfinished"/>
+        <translation>Célmappa a távoli számítógépeken:</translation>
     </message>
     <message>
         <source>Relative (Desktop/) or absolute (/tmp/ or C:\TMP) or empty for configured directory</source>
-        <translation type="unfinished"/>
+        <translation>Relatív (Documents/) vagy abszolút (/tmp/ vagy C:\TMP) vagy üres a konfigurált mappához</translation>
     </message>
     <message>
         <source>Overwrite existing files</source>
@@ -2020,26 +2020,26 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>File transfer error</source>
-        <translation type="unfinished"/>
+        <translation>Fájlátviteli hiba</translation>
     </message>
 </context>
 <context>
     <name>FileTransferPlugin</name>
     <message>
         <source>Distribute</source>
-        <translation type="unfinished"/>
+        <translation>Terjesztés</translation>
     </message>
     <message>
         <source>Click this button to distribute files from your computer to all computers.</source>
-        <translation type="unfinished"/>
+        <translation>Kattints erre gombra, hogy fájlokat küldj át a számítógépedről az összes számítógépre.</translation>
     </message>
     <message>
         <source>Collect</source>
-        <translation type="unfinished"/>
+        <translation>Begyűjtés</translation>
     </message>
     <message>
         <source>Click this button to collect files from all computers to your computer.</source>
-        <translation type="unfinished"/>
+        <translation>Kattints erre gombra, hogy begyűjtsd a fájlokat az összes számítógépről a számítógépedre.</translation>
     </message>
     <message>
         <source>Select one or more files to transfer</source>
@@ -2051,35 +2051,35 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>Received file %1.</source>
-        <translation type="unfinished"/>
+        <translation>%1 fájl fogadva.</translation>
     </message>
     <message>
         <source>The file %1 is to be collected, but is still open in an application.</source>
-        <translation type="unfinished"/>
+        <translation>%1 fájlt be kellene gyűjteni, de még mindig nyitva van egy alkalmazásban.</translation>
     </message>
     <message>
         <source>The file %1 is to be collected, but is still open in the application &lt;b&gt;%2&lt;/b&gt;.</source>
-        <translation type="unfinished"/>
+        <translation>%1 fájlt be kellene gyűjteni, de még mindig nyitva van &lt;b&gt;%2&lt;/b&gt; alkalmazásban.</translation>
     </message>
     <message>
         <source>Please save your changes and close the program so that the transfer can be completed.</source>
-        <translation type="unfinished"/>
+        <translation>Mentsd a módosításokat, és zárd be a programot, hogy az átvitel befejeződhessen.</translation>
     </message>
     <message>
         <source>Are you sure you want to skip transferring the file %1?</source>
-        <translation type="unfinished"/>
+        <translation>Biztos, hogy kihagyod %1 fájl átvitelét?</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it already exists.</source>
-        <translation type="unfinished"/>
+        <translation>%1 fájl nem fogadható, mert már létezik.</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it could not be opened for writing!</source>
-        <translation type="unfinished"/>
+        <translation>%1 fájl fogadása sikertelen, mert nem nyitható meg írásra!</translation>
     </message>
     <message>
         <source>Transfer files between computers</source>
-        <translation type="unfinished"/>
+        <translation>Fájlok átvitele számítógépek között</translation>
     </message>
 </context>
 <context>
@@ -2434,7 +2434,7 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>e.g. name, ou or description</source>
-        <translation type="unfinished"/>
+        <translation>pl. név, ou vagy leírás</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2554,7 +2554,7 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>Distinguished name (Samba/AD/FreeIPA)</source>
-        <translation type="unfinished"/>
+        <translation>Megkülönböztetett név (Samba/AD/FreeIPA)</translation>
     </message>
     <message>
         <source>Configured attribute for user login name or computer hostname (OpenLDAP)</source>
@@ -2752,7 +2752,7 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>Enter computer location name</source>
-        <translation>Adja meg a számítógép helyszínének nevét</translation>
+        <translation>Add meg a számítógép helyszínének nevét</translation>
     </message>
     <message>
         <source>Please enter the name of a computer location (wildcards allowed):</source>
@@ -2764,7 +2764,7 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>Enter location name</source>
-        <translation>Adja meg a helyszín nevét</translation>
+        <translation>Add meg a helyszín nevét</translation>
     </message>
     <message>
         <source>users</source>
@@ -2999,7 +2999,7 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>LDAP/AD support for Veyon</source>
-        <translation type="unfinished"/>
+        <translation>LDAP/AD támogatás a Veyon számára</translation>
     </message>
 </context>
 <context>
@@ -3038,11 +3038,11 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>Key press interval for text input</source>
-        <translation type="unfinished"/>
+        <translation>Billentyűleütési időköz szövegbevitelhez</translation>
     </message>
     <message>
         <source>Key press interval to control input fields</source>
-        <translation type="unfinished"/>
+        <translation>Billentyűleütési időköz a beviteli mezők vezérléséhez</translation>
     </message>
 </context>
 <context>
@@ -3250,7 +3250,7 @@ Győződj meg arról, hogy az egymáshoz tartozó kulcsok nevei minden számít�
     </message>
     <message>
         <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
-        <translation type="unfinished"/>
+        <translation>Nincsenek hitelesítési kulcsok vagy a jelenlegi kulcsok elavultak. Készíts új kulcsfájlokat Veyon  Konfigurátorral. Másik megoldás lehet bejelentkezési hitelesítés beállítása Veyon Konfigurátorral. Különben nem tudod majd elérni a számítógépeket Veyon használatával.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -3304,10 +3304,6 @@ Nyomd meg és tartsd lenyomva az elrendezés betöltéséhez egy fájlból vagy 
         <translation>Képernyőképek</translation>
     </message>
     <message>
-        <source>User interface</source>
-        <translation>Felhasználói felület</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>Betűszín</translation>
     </message>
@@ -3320,20 +3316,12 @@ Nyomd meg és tartsd lenyomva az elrendezés betöltéséhez egy fájlból vagy 
         <translation>Háttérszín</translation>
     </message>
     <message>
-        <source>Thumbnail spacing</source>
-        <translation>Indexkép térköze</translation>
-    </message>
-    <message>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
         <source>Auto</source>
         <translation>Automatikus</translation>
-    </message>
-    <message>
-        <source>Computer thumbnail caption</source>
-        <translation>Számítógép indexképének felirata</translation>
     </message>
     <message>
         <source>Computer and user name</source>
@@ -3356,16 +3344,8 @@ Nyomd meg és tartsd lenyomva az elrendezés betöltéséhez egy fájlból vagy 
         <translation>Felhasználó- és számítógépnév</translation>
     </message>
     <message>
-        <source>Thumbnail update interval</source>
-        <translation>Indexkép-frissítési időköz</translation>
-    </message>
-    <message>
         <source>Sort order</source>
         <translation>Rendezés</translation>
-    </message>
-    <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation>Indexkép méretaránya</translation>
     </message>
     <message>
         <source>Highest</source>
@@ -3388,36 +3368,28 @@ Nyomd meg és tartsd lenyomva az elrendezés betöltéséhez egy fájlból vagy 
         <translation>Legalacsonyabb</translation>
     </message>
     <message>
-        <source>Image quality in monitoring mode</source>
-        <translation>Képminőség a monitorozási módban</translation>
-    </message>
-    <message>
-        <source>Remote access image quality</source>
-        <translation>Távoli hozzáférés képminősége</translation>
-    </message>
-    <message>
         <source>Identify users in guest sessions</source>
-        <translation type="unfinished"/>
+        <translation>Felhasználók azonosítása vendégmunkamenetekben</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"/>
+        <translation>Soha</translation>
     </message>
     <message>
         <source>If login name matches</source>
-        <translation type="unfinished"/>
+        <translation>Ha a bejelentkezési név egyezik</translation>
     </message>
     <message>
         <source>If full name matches</source>
-        <translation type="unfinished"/>
+        <translation>Ha a teljes név egyezik</translation>
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>Vendég</translation>
     </message>
     <message>
         <source>Guest user identity extension</source>
-        <translation type="unfinished"/>
+        <translation>Vendégfelhasználó-identitás bővítmény</translation>
     </message>
     <message>
         <source>None</source>
@@ -3425,11 +3397,11 @@ Nyomd meg és tartsd lenyomva az elrendezés betöltéséhez egy fájlból vagy 
     </message>
     <message>
         <source>Prefix</source>
-        <translation type="unfinished"/>
+        <translation>Előtag</translation>
     </message>
     <message>
         <source>Suffix</source>
-        <translation type="unfinished"/>
+        <translation>Utótag</translation>
     </message>
     <message>
         <source>Behaviour</source>
@@ -3532,6 +3504,50 @@ Nyomd meg és tartsd lenyomva az elrendezés betöltéséhez egy fájlból vagy 
         <translation>Konfigurációs sablonok</translation>
     </message>
     <message>
+        <source>Monitoring view</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Képminőség</translation>
+    </message>
+    <message>
+        <source>Visibility mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Blurred</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation>Távoli elérés</translation>
+    </message>
+    <message>
         <source>Advanced</source>
         <translation>Haladó</translation>
     </message>
@@ -3604,19 +3620,19 @@ Nyomd meg és tartsd lenyomva az elrendezés betöltéséhez egy fájlból vagy 
     </message>
     <message>
         <source>Identify users in guest sessions</source>
-        <translation type="unfinished"/>
+        <translation>Felhasználók azonosítása vendégmunkamenetekben</translation>
     </message>
     <message>
         <source>Identification request</source>
-        <translation type="unfinished"/>
+        <translation>Azonosítási kérelem</translation>
     </message>
     <message>
         <source>Please enter your name:</source>
-        <translation type="unfinished"/>
+        <translation>Add meg a neved:</translation>
     </message>
     <message>
         <source>First name + last name</source>
-        <translation type="unfinished"/>
+        <translation>Keresztnév + vezetéknév</translation>
     </message>
     <message>
         <source>Builtin monitoring mode</source>
@@ -3688,7 +3704,7 @@ Nyomd meg és tartsd lenyomva az elrendezés betöltéséhez egy fájlból vagy 
     <name>PipeWireVncServer</name>
     <message>
         <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
-        <translation type="unfinished"/>
+        <translation>Wayland VNC szerver (PipeWire/XDG Desktop Portal)</translation>
     </message>
 </context>
 <context>
@@ -4134,11 +4150,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Maximum simultaneous server connections</source>
-        <translation type="unfinished"/>
+        <translation>Egyidejű kapcsolatok maximális száma</translation>
     </message>
     <message>
         <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
-        <translation type="unfinished"/>
+        <translation>Korlátozza az egyidejű távoli kapcsolatokat, hogy megvédje a szervert az erőforrások kimerülésétől.</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4501,11 +4517,11 @@ Példa: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Title:</source>
-        <translation type="unfinished"/>
+        <translation>Cím:</translation>
     </message>
     <message>
         <source>Optional custom title for the message window</source>
-        <translation type="unfinished"/>
+        <translation>Opcionális egyéni cím az üzenetablakhoz</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -4513,7 +4529,7 @@ Példa: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Message from %1</source>
-        <translation type="unfinished"/>
+        <translation>%1 üzenete</translation>
     </message>
 </context>
 <context>
@@ -4640,11 +4656,11 @@ Példa: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>No command given</source>
-        <translation type="unfinished"/>
+        <translation>Nincs kiadva parancs</translation>
     </message>
     <message>
         <source>Invalid command given</source>
-        <translation type="unfinished"/>
+        <translation>Érvénytelen kiadott parancsot</translation>
     </message>
     <message>
         <source>Plugin not licensed</source>
@@ -4656,7 +4672,7 @@ Példa: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Unknown command result</source>
-        <translation type="unfinished"/>
+        <translation>Ismeretlen parancseredmény</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -4696,7 +4712,7 @@ Példa: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Guest</source>
-        <translation type="unfinished"/>
+        <translation>Vendég</translation>
     </message>
 </context>
 <context>
@@ -4870,7 +4886,7 @@ Példa: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Use custom power scheme with disabled power and sleep buttons</source>
-        <translation type="unfinished"/>
+        <translation>Egyéni energiagazdálkodási séma használata letiltott bekapcsoló- és alvásgombbal</translation>
     </message>
     <message>
         <source>Use input device interception driver</source>
@@ -4878,15 +4894,15 @@ Példa: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
         <source>Disable touchpads and touchscreens</source>
-        <translation type="unfinished"/>
+        <translation>Érintőpad és érintőképernyő kikapcsolása</translation>
     </message>
     <message>
         <source>Disable keyboard devices</source>
-        <translation type="unfinished"/>
+        <translation>Billentyűzeteszköz kikapcsolása</translation>
     </message>
     <message>
         <source>Disable mouse devices</source>
-        <translation type="unfinished"/>
+        <translation>Egéreszköz kikapcsolása</translation>
     </message>
     <message>
         <source>Handling of interfering windows</source>

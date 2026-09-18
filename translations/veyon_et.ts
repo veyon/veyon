@@ -3304,10 +3304,6 @@ Failist arranžeeringu laadimiseks või praeguse arranžeeringu faili salvestami
         <translation>Ekraanipildid</translation>
     </message>
     <message>
-        <source>User interface</source>
-        <translation>Kasutajaliides</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>Teksti värv</translation>
     </message>
@@ -3320,20 +3316,12 @@ Failist arranžeeringu laadimiseks või praeguse arranžeeringu faili salvestami
         <translation>Taustavärv</translation>
     </message>
     <message>
-        <source>Thumbnail spacing</source>
-        <translation>Pisipiltide vahe</translation>
-    </message>
-    <message>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
         <source>Auto</source>
         <translation>Auto</translation>
-    </message>
-    <message>
-        <source>Computer thumbnail caption</source>
-        <translation>Arvuti pisipiltide pealdis</translation>
     </message>
     <message>
         <source>Computer and user name</source>
@@ -3356,16 +3344,8 @@ Failist arranžeeringu laadimiseks või praeguse arranžeeringu faili salvestami
         <translation>Kasutaja ja arvuti nimi</translation>
     </message>
     <message>
-        <source>Thumbnail update interval</source>
-        <translation>Pisipiltide uuendamise sagedus</translation>
-    </message>
-    <message>
         <source>Sort order</source>
         <translation>Järjestamine</translation>
-    </message>
-    <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation>Pisipildi kuvasuhe</translation>
     </message>
     <message>
         <source>Highest</source>
@@ -3386,14 +3366,6 @@ Failist arranžeeringu laadimiseks või praeguse arranžeeringu faili salvestami
     <message>
         <source>Lowest</source>
         <translation>Madalaim</translation>
-    </message>
-    <message>
-        <source>Image quality in monitoring mode</source>
-        <translation>Pildikvaliteet jälgimisrežiimis</translation>
-    </message>
-    <message>
-        <source>Remote access image quality</source>
-        <translation>Kaugjuurdepääsu pildikvaliteet</translation>
     </message>
     <message>
         <source>Identify users in guest sessions</source>
@@ -3530,6 +3502,50 @@ Failist arranžeeringu laadimiseks või praeguse arranžeeringu faili salvestami
     <message>
         <source>Configuration templates</source>
         <translation>Konfiguratsioonimallid</translation>
+    </message>
+    <message>
+        <source>Monitoring view</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Pildikvaliteet</translation>
+    </message>
+    <message>
+        <source>Visibility mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Blurred</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation>Kaugjuurdepääs</translation>
     </message>
     <message>
         <source>Advanced</source>

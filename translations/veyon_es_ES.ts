@@ -3302,10 +3302,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Capturas</translation>
     </message>
     <message>
-        <source>User interface</source>
-        <translation>Interfaz de usuario</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>Color del texto</translation>
     </message>
@@ -3318,20 +3314,12 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Color de fondo</translation>
     </message>
     <message>
-        <source>Thumbnail spacing</source>
-        <translation>Espaciado de miniaturas</translation>
-    </message>
-    <message>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
         <source>Auto</source>
         <translation>Auto</translation>
-    </message>
-    <message>
-        <source>Computer thumbnail caption</source>
-        <translation>Nombre de miniatura</translation>
     </message>
     <message>
         <source>Computer and user name</source>
@@ -3354,16 +3342,8 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Nombre del usuario y equipo</translation>
     </message>
     <message>
-        <source>Thumbnail update interval</source>
-        <translation>Intervalo de actualización de miniaturas</translation>
-    </message>
-    <message>
         <source>Sort order</source>
         <translation>Orden de clasificación</translation>
-    </message>
-    <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation>Relación de aspecto de la miniatura</translation>
     </message>
     <message>
         <source>Highest</source>
@@ -3384,14 +3364,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Lowest</source>
         <translation>El más bajo</translation>
-    </message>
-    <message>
-        <source>Image quality in monitoring mode</source>
-        <translation>Calidad de imagen en modo de monitoreo</translation>
-    </message>
-    <message>
-        <source>Remote access image quality</source>
-        <translation>Calidad de imagen de acceso remoto</translation>
     </message>
     <message>
         <source>Identify users in guest sessions</source>
@@ -3528,6 +3500,50 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Configuration templates</source>
         <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Monitoring view</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Calidad de imagen</translation>
+    </message>
+    <message>
+        <source>Visibility mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Blurred</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation>Acceso remoto</translation>
     </message>
     <message>
         <source>Advanced</source>

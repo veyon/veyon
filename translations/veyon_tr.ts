@@ -3304,10 +3304,6 @@ Düzenlemeyi bir dosyadan yüklemek veya mevcut düzenlemeyi bir dosyaya kaydetm
         <translation>Ekran görüntüleri</translation>
     </message>
     <message>
-        <source>User interface</source>
-        <translation>Kullanıcı arayüzü</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>Metin rengi</translation>
     </message>
@@ -3320,20 +3316,12 @@ Düzenlemeyi bir dosyadan yüklemek veya mevcut düzenlemeyi bir dosyaya kaydetm
         <translation>Arka plan rengi</translation>
     </message>
     <message>
-        <source>Thumbnail spacing</source>
-        <translation>Küçük resim aralığı</translation>
-    </message>
-    <message>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
         <source>Auto</source>
         <translation>Kendiliğinden</translation>
-    </message>
-    <message>
-        <source>Computer thumbnail caption</source>
-        <translation>Bilgisayar küçük resminin açıklaması</translation>
     </message>
     <message>
         <source>Computer and user name</source>
@@ -3356,16 +3344,8 @@ Düzenlemeyi bir dosyadan yüklemek veya mevcut düzenlemeyi bir dosyaya kaydetm
         <translation>Kullanıcı ve bilgisayar adı</translation>
     </message>
     <message>
-        <source>Thumbnail update interval</source>
-        <translation>Küçük resim güncelleme aralığı</translation>
-    </message>
-    <message>
         <source>Sort order</source>
         <translation>Sıralama düzeni</translation>
-    </message>
-    <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation>Küçük resim en boy oranı</translation>
     </message>
     <message>
         <source>Highest</source>
@@ -3386,14 +3366,6 @@ Düzenlemeyi bir dosyadan yüklemek veya mevcut düzenlemeyi bir dosyaya kaydetm
     <message>
         <source>Lowest</source>
         <translation>En düşük</translation>
-    </message>
-    <message>
-        <source>Image quality in monitoring mode</source>
-        <translation>İzleme modunda görüntü kalitesi</translation>
-    </message>
-    <message>
-        <source>Remote access image quality</source>
-        <translation>Uzaktan erişim görüntü kalitesi</translation>
     </message>
     <message>
         <source>Identify users in guest sessions</source>
@@ -3530,6 +3502,50 @@ Düzenlemeyi bir dosyadan yüklemek veya mevcut düzenlemeyi bir dosyaya kaydetm
     <message>
         <source>Configuration templates</source>
         <translation>Yapılandırma şablonları</translation>
+    </message>
+    <message>
+        <source>Monitoring view</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Görüntü kalitesi</translation>
+    </message>
+    <message>
+        <source>Visibility mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Blurred</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation>Uzaktan erişim</translation>
     </message>
     <message>
         <source>Advanced</source>

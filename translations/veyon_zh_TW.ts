@@ -3304,10 +3304,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>螢幕快照</translation>
     </message>
     <message>
-        <source>User interface</source>
-        <translation>使用者介面</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>文字色彩</translation>
     </message>
@@ -3320,20 +3316,12 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>背景色</translation>
     </message>
     <message>
-        <source>Thumbnail spacing</source>
-        <translation>縮圖間距</translation>
-    </message>
-    <message>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
         <source>Auto</source>
         <translation>自動</translation>
-    </message>
-    <message>
-        <source>Computer thumbnail caption</source>
-        <translation>電腦縮圖標題</translation>
     </message>
     <message>
         <source>Computer and user name</source>
@@ -3356,16 +3344,8 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>使用者和電腦名稱</translation>
     </message>
     <message>
-        <source>Thumbnail update interval</source>
-        <translation>縮圖更新間隔</translation>
-    </message>
-    <message>
         <source>Sort order</source>
         <translation>排序</translation>
-    </message>
-    <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation>縮圖外觀比例</translation>
     </message>
     <message>
         <source>Highest</source>
@@ -3386,14 +3366,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Lowest</source>
         <translation>最低</translation>
-    </message>
-    <message>
-        <source>Image quality in monitoring mode</source>
-        <translation>監控模式中圖片品質</translation>
-    </message>
-    <message>
-        <source>Remote access image quality</source>
-        <translation>遠端存取圖片品質</translation>
     </message>
     <message>
         <source>Identify users in guest sessions</source>
@@ -3530,6 +3502,50 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Configuration templates</source>
         <translation>組態範本</translation>
+    </message>
+    <message>
+        <source>Monitoring view</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>圖片品質</translation>
+    </message>
+    <message>
+        <source>Visibility mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Blurred</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation>遠端存取</translation>
     </message>
     <message>
         <source>Advanced</source>

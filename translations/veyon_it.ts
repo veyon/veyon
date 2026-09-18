@@ -3291,10 +3291,6 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
         <translation>Catture dello schermo</translation>
     </message>
     <message>
-        <source>User interface</source>
-        <translation>Interfaccia Utente</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>Colore del testo</translation>
     </message>
@@ -3307,20 +3303,12 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
         <translation>Colore di sfondo</translation>
     </message>
     <message>
-        <source>Thumbnail spacing</source>
-        <translation>Spaziatura delle miniature</translation>
-    </message>
-    <message>
         <source> px</source>
         <translation> px</translation>
     </message>
     <message>
         <source>Auto</source>
         <translation>Automatico</translation>
-    </message>
-    <message>
-        <source>Computer thumbnail caption</source>
-        <translation>Miniatura anteprima computer</translation>
     </message>
     <message>
         <source>Computer and user name</source>
@@ -3343,16 +3331,8 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
         <translation>Nome dell&apos;utente e del computer</translation>
     </message>
     <message>
-        <source>Thumbnail update interval</source>
-        <translation>Intervallo di aggiornamento delle miniature</translation>
-    </message>
-    <message>
         <source>Sort order</source>
         <translation>Ordinamento</translation>
-    </message>
-    <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation>Proporzioni delle miniature</translation>
     </message>
     <message>
         <source>Highest</source>
@@ -3373,14 +3353,6 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
     <message>
         <source>Lowest</source>
         <translation>Minima</translation>
-    </message>
-    <message>
-        <source>Image quality in monitoring mode</source>
-        <translation>Qualità dell&apos;immagine in modalità di monitoraggio</translation>
-    </message>
-    <message>
-        <source>Remote access image quality</source>
-        <translation>Qualità dell&apos;immagine per l&apos;accesso remoto</translation>
     </message>
     <message>
         <source>Identify users in guest sessions</source>
@@ -3517,6 +3489,50 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
     <message>
         <source>Configuration templates</source>
         <translation>Modelli di configurazione</translation>
+    </message>
+    <message>
+        <source>Monitoring view</source>
+        <translation>Vista di monitoraggio</translation>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation>Frequenza di aggiornamento</translation>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation>Etichetta di visualizzazione</translation>
+    </message>
+    <message>
+        <source>Aspect ratio</source>
+        <translation>Proporzioni</translation>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation>Spaziatura della griglia</translation>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Qualità dell&apos;immagine</translation>
+    </message>
+    <message>
+        <source>Visibility mode</source>
+        <translation>Modalità di visibilità</translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation>Normale</translation>
+    </message>
+    <message>
+        <source>Blurred</source>
+        <translation>Sfocato</translation>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation>Nascosto</translation>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation>Accesso remoto</translation>
     </message>
     <message>
         <source>Advanced</source>

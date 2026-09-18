@@ -41,7 +41,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>About Veyon %1</source>
-        <translation type="unfinished"/>
+        <translation>เกี่ยวกับ Veyon %1</translation>
     </message>
 </context>
 <context>
@@ -64,7 +64,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>Grant access to every authenticated user (default)</source>
-        <translation type="unfinished"/>
+        <translation>อนุญาตการเข้าถึงสำหรับผู้ใช้ที่เข้าสู่ระบบอยู่ (ค่าเริ่มต้น)</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -3279,10 +3279,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>ภาพถ่ายหน้าจอ</translation>
     </message>
     <message>
-        <source>User interface</source>
-        <translation>ส่วนติดต่อผู้ใช้</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>สีของข้อความ</translation>
     </message>
@@ -3295,19 +3291,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>สีพื้นหลัง</translation>
     </message>
     <message>
-        <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source> px</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer thumbnail caption</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3331,16 +3319,8 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>ผู้ใช้และชื่อคอมพิวเตอร์</translation>
     </message>
     <message>
-        <source>Thumbnail update interval</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Sort order</source>
         <translation>การจัดเรียงลำดับ</translation>
-    </message>
-    <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation type="unfinished"/>
     </message>
     <message>
         <source>Highest</source>
@@ -3360,14 +3340,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Lowest</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Image quality in monitoring mode</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remote access image quality</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3507,6 +3479,50 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"/>
     </message>
     <message>
+        <source>Monitoring view</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Visibility mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Blurred</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation>การเข้าถึงระยะไกล</translation>
+    </message>
+    <message>
         <source>Advanced</source>
         <translation type="unfinished"/>
     </message>
@@ -3636,7 +3652,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>PasswordDialog</name>
     <message>
         <source>Veyon Logon</source>
-        <translation type="unfinished"/>
+        <translation>เข้าสู่ระบบ Veyon</translation>
     </message>
     <message>
         <source>Please enter your username and password in order to access computers.</source>

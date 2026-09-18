@@ -3303,10 +3303,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Знімки вікон</translation>
     </message>
     <message>
-        <source>User interface</source>
-        <translation>Інтерфейс користувача</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation>Колір тексту</translation>
     </message>
@@ -3319,20 +3315,12 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Колір тла</translation>
     </message>
     <message>
-        <source>Thumbnail spacing</source>
-        <translation>Інтервали між мініатюрами</translation>
-    </message>
-    <message>
         <source> px</source>
         <translation>пк</translation>
     </message>
     <message>
         <source>Auto</source>
         <translation>Авто</translation>
-    </message>
-    <message>
-        <source>Computer thumbnail caption</source>
-        <translation>Підпис мініатюри комп&apos;ютера</translation>
     </message>
     <message>
         <source>Computer and user name</source>
@@ -3355,16 +3343,8 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Користувач і назва комп&apos;ютера</translation>
     </message>
     <message>
-        <source>Thumbnail update interval</source>
-        <translation>Інтервал оновлення мініатюри</translation>
-    </message>
-    <message>
         <source>Sort order</source>
         <translation>Критерій упорядковування</translation>
-    </message>
-    <message>
-        <source>Thumbnail aspect ratio</source>
-        <translation>Співвідношення розмірів мініатюри</translation>
     </message>
     <message>
         <source>Highest</source>
@@ -3385,14 +3365,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Lowest</source>
         <translation>Найнижча</translation>
-    </message>
-    <message>
-        <source>Image quality in monitoring mode</source>
-        <translation>Якість зображення у режимі стеження</translation>
-    </message>
-    <message>
-        <source>Remote access image quality</source>
-        <translation>Якість зображення віддаленого доступу</translation>
     </message>
     <message>
         <source>Identify users in guest sessions</source>
@@ -3529,6 +3501,50 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Configuration templates</source>
         <translation>Шаблони налаштувань</translation>
+    </message>
+    <message>
+        <source>Monitoring view</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Якість зображення</translation>
+    </message>
+    <message>
+        <source>Visibility mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Blurred</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation>Віддалений доступ</translation>
     </message>
     <message>
         <source>Advanced</source>

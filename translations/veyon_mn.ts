@@ -3276,10 +3276,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>User interface</source>
-        <translation>Хэрэглэгчийн интерфейс</translation>
-    </message>
-    <message>
         <source>Text color</source>
         <translation type="unfinished"/>
     </message>
@@ -3292,19 +3288,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Thumbnail spacing</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source> px</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Computer thumbnail caption</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3328,15 +3316,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Thumbnail update interval</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
         <source>Sort order</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Thumbnail aspect ratio</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3357,14 +3337,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Lowest</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Image quality in monitoring mode</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Remote access image quality</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3501,6 +3473,50 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Configuration templates</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Monitoring view</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Aspect ratio</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Visibility mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Blurred</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Hidden</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remote access</source>
         <translation type="unfinished"/>
     </message>
     <message>
