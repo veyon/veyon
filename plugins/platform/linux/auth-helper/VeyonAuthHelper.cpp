@@ -22,13 +22,9 @@
  *
  */
 
-#include <QCoreApplication>
-
-#include "VeyonConfiguration.h"
-#include "../LinuxPlatformConfiguration.h"
-
 #include <QDataStream>
 #include <QFile>
+#include <QSettings>
 
 #include <cstring>
 #include <security/pam_appl.h>
@@ -87,7 +83,7 @@ static int pam_conv(int num_msg, const struct pam_message** msg, struct pam_resp
 }
 
 
-int main(int argc, char** argv)
+int main()
 {
 	// Make the process as hard to inspect/attach to as possible: it holds
 	// a plaintext password in memory while running setuid-root.
@@ -116,9 +112,9 @@ int main(int argc, char** argv)
 	ds >> pam_username;
 	ds >> pam_password;
 
-	QCoreApplication app(argc, argv);
-	VeyonCore core(&app, VeyonCore::Component::AuthHelper, QStringLiteral("AuthHelper"));
-	pam_service = LinuxPlatformConfiguration{&VeyonCore::config()}.pamServiceName().toUtf8();
+	const QSettings settings( QSettings::NativeFormat, QSettings::SystemScope,
+							  QStringLiteral("Veyon Solutions"), QStringLiteral("Veyon") );
+	pam_service = settings.value( QStringLiteral("Linux/PamServiceName") ).toString().toUtf8();
 
 	if (pam_service.isEmpty())
 	{
@@ -159,6 +155,3 @@ int main(int argc, char** argv)
 
 	return err == PAM_SUCCESS ? 0 : -1;
 }
-
-
-IMPLEMENT_CONFIG_PROXY(LinuxPlatformConfiguration)
