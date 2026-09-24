@@ -157,6 +157,11 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 	auto connection = runInWorkerThread<WebApiConnectionPointer>([this, host, proxy]() {
 		auto connection = new WebApiConnection{host.isEmpty() ? QStringLiteral("localhost") : host};
 		connection->controlInterface()->start({}, ComputerControlInterface::UpdateMode::Basic, proxy);
+		// API clients receive the framebuffer as one image, which must not be an update half decoded
+		if (const auto vncConnection = connection->controlInterface()->vncConnection())
+		{
+			vncConnection->setPresentCompleteUpdates(true);
+		}
 
 		// make shared pointer destroy the connection in management thread again
 		return WebApiConnectionPointer{connection,
