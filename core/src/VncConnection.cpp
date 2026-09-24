@@ -62,7 +62,15 @@ void VncConnection::hookUpdateFB( rfbClient* client, int x, int y, int w, int h 
 	auto connection = static_cast<VncConnection *>( clientData( client, VncConnectionTag ) );
 	if( connection )
 	{
-		Q_EMIT connection->imageUpdated( x, y, w, h );
+		if (connection->m_presentingCompleteUpdates)
+		{
+			// shown with the rest of this framebuffer update, see presentFramebufferUpdate()
+			connection->m_updatedRects.append(QRect(x, y, w, h));
+		}
+		else
+		{
+			Q_EMIT connection->imageUpdated( x, y, w, h );
+		}
 	}
 }
 
@@ -680,6 +688,8 @@ void VncConnection::handleConnection()
 		}
 
 		sendEvents();
+
+		updatePresentationMode();
 	}
 }
 
@@ -746,9 +756,13 @@ bool VncConnection::initFrameBuffer()
 
 	// initialize framebuffer image which just wraps the allocated memory and ensures cleanup after last
 	// image copy using the framebuffer gets destroyed
+	m_framebuffer = QImage(m_client->frameBuffer, m_client->width, m_client->height, QImage::Format_RGB32,
+						   framebufferCleanup, m_client->frameBuffer);
+	m_updatedRects.clear();
+	m_presentingCompleteUpdates = isControlFlagSet(ControlFlag::PresentCompleteUpdates);
+
 	m_imgLock.lockForWrite();
-	m_image = QImage(m_client->frameBuffer, m_client->width, m_client->height, QImage::Format_RGB32,
-					 framebufferCleanup, m_client->frameBuffer);
+	m_image = m_presentingCompleteUpdates ? m_framebuffer.copy() : m_framebuffer;
 	m_imgLock.unlock();
 
 	// set up pixel format according to QImage
@@ -793,6 +807,9 @@ void VncConnection::requestFrameufferUpdate(FramebufferUpdateType updateType)
 
 void VncConnection::finishFrameBufferUpdate()
 {
+	presentFramebufferUpdate();
+	updatePresentationMode();
+
 	m_incrementalFramebufferUpdateTimer.restart();
 	m_fullFramebufferUpdateTimer.restart();
 
@@ -800,6 +817,64 @@ void VncConnection::finishFrameBufferUpdate()
 	setControlFlag( ControlFlag::ScaledFramebufferNeedsUpdate, true );
 
 	Q_EMIT framebufferUpdateComplete();
+}
+
+
+
+void VncConnection::presentFramebufferUpdate()
+{
+	if (m_updatedRects.isEmpty())
+	{
+		return;
+	}
+
+	const auto bounds = m_framebuffer.rect();
+	const auto* source = m_framebuffer.constBits();
+	const auto sourceStride = m_framebuffer.bytesPerLine();
+
+	m_imgLock.lockForWrite();
+
+	// a reader still holding the previous image keeps it intact: bits() detaches from it
+	auto* target = m_image.bits();
+	const auto targetStride = m_image.bytesPerLine();
+
+	for (const auto& updatedRect : std::as_const(m_updatedRects))
+	{
+		const auto rect = updatedRect.intersected(bounds);
+		const auto rowBytes = static_cast<size_t>(rect.width()) * RfbBytesPerPixel;
+		for (int y = rect.top(); y <= rect.bottom(); ++y)
+		{
+			memcpy(target + y * targetStride + rect.left() * RfbBytesPerPixel,
+				   source + y * sourceStride + rect.left() * RfbBytesPerPixel, rowBytes);
+		}
+	}
+
+	m_imgLock.unlock();
+
+	for (const auto& rect : std::as_const(m_updatedRects))
+	{
+		Q_EMIT imageUpdated(rect.x(), rect.y(), rect.width(), rect.height());
+	}
+
+	m_updatedRects.clear();
+}
+
+
+
+void VncConnection::updatePresentationMode()
+{
+	const auto requested = isControlFlagSet(ControlFlag::PresentCompleteUpdates);
+	if (requested == m_presentingCompleteUpdates || m_framebuffer.isNull())
+	{
+		return;
+	}
+
+	m_presentingCompleteUpdates = requested;
+
+	// called between framebuffer updates only, so the buffer holds a complete one
+	m_imgLock.lockForWrite();
+	m_image = requested ? m_framebuffer.copy() : m_framebuffer;
+	m_imgLock.unlock();
 }
 
 
