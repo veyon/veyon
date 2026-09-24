@@ -84,3 +84,9 @@ class VncUpdateFormatAndEncodingsEvent : public VncEvent
 public:
 	void fire( rfbClient* client ) override;
 };
+
+class VncFullFramebufferUpdateRequestEvent : public VncEvent
+{
+public:
+	void fire( rfbClient* client ) override;
+};
