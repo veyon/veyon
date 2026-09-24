@@ -349,6 +349,9 @@ void ComputerControlInterface::setUpdateMode( UpdateMode updateMode )
 	if (vncConnection())
 	{
 		vncConnection()->setSkipHostPing(m_updateMode == UpdateMode::Basic || m_updateMode == UpdateMode::FeatureControlOnly);
+		// a live view paints every update at full size, so it must never catch one half decoded;
+		// thumbnails are rescaled copies and do not justify a second framebuffer per computer
+		vncConnection()->setPresentCompleteUpdates(m_updateMode == UpdateMode::Live);
 	}
 }
 
