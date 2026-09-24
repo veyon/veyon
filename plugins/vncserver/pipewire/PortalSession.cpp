@@ -30,9 +30,15 @@
 #include <QDBusPendingCallWatcher>
 #include <QDBusPendingReply>
 #include <QDBusUnixFileDescriptor>
+#include <QDir>
+#include <QFile>
+#include <QFileInfo>
 #include <QGuiApplication>
 #include <QProcess>
 #include <QRandomGenerator>
+#include <QSaveFile>
+#include <QStandardPaths>
+#include <QUuid>
 
 #include "PortalSession.h"
 #include "VeyonCore.h"
@@ -40,9 +46,10 @@
 // XDG Desktop Portal service and interface names
 static const auto PortalService = QStringLiteral("org.freedesktop.portal.Desktop");
 static const auto PortalObjectPath = QStringLiteral("/org/freedesktop/portal/desktop");
-PortalSession::PortalSession(QObject* parent)
+PortalSession::PortalSession(bool persistRestoreToken, QObject* parent)
 	: QObject(parent)
 	, m_sessionBus(QDBusConnection::sessionBus())
+	, m_persistRestoreToken(persistRestoreToken)
 {
 	const auto appId = QGuiApplication::desktopFileName();
 
@@ -73,6 +80,17 @@ PortalSession::PortalSession(QObject* parent)
 
 	m_remoteDesktop = new OrgFreedesktopPortalRemoteDesktopInterface(PortalService, PortalObjectPath, m_sessionBus, this);
 	m_screenCast = new OrgFreedesktopPortalScreenCastInterface(PortalService, PortalObjectPath, m_sessionBus, this);
+
+	// persist_mode 2 only pays off across server runs if the token outlives this process; a
+	// token left from when persistence was enabled is removed so it no longer grants anything
+	if (m_persistRestoreToken)
+	{
+		loadRestoreToken();
+	}
+	else
+	{
+		QFile::remove(restoreTokenFilePath());
+	}
 }
 
 
@@ -317,7 +335,11 @@ void PortalSession::onPortalResponse(uint response, const QVariantMap& results)
 	if (results.contains(QStringLiteral("restore_token")))
 	{
 		m_restoreToken = results.value(QStringLiteral("restore_token")).toString();
-		vDebug() << "Got portal restore_token:" << m_restoreToken;
+		vDebug() << "Got portal restore_token";
+		if (m_persistRestoreToken)
+		{
+			storeRestoreToken();
+		}
 	}
 
 	switch (m_state)
@@ -375,6 +397,49 @@ void PortalSession::onPortalResponse(uint response, const QVariantMap& results)
 	default:
 		vWarning() << "Unexpected portal response in state" << static_cast<int>(m_state);
 		break;
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Restore token persistence
+// ---------------------------------------------------------------------------
+
+QString PortalSession::restoreTokenFilePath()
+{
+	return QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation) +
+		   QStringLiteral("/veyon/portal-restore-token");
+}
+
+
+
+void PortalSession::loadRestoreToken()
+{
+	QFile file(restoreTokenFilePath());
+	if (file.open(QFile::ReadOnly))
+	{
+		const auto token = QString::fromUtf8(file.read(64)).trimmed();
+		// the portal fails the whole SelectDevices call for anything but a bare
+		// UUID, and QUuid would also accept one in braces
+		if (token.size() == 36 && QUuid::fromString(token).isNull() == false)
+		{
+			m_restoreToken = token;
+		}
+	}
+}
+
+
+
+void PortalSession::storeRestoreToken() const
+{
+	const auto path = restoreTokenFilePath();
+	QSaveFile file(path);
+	if (QDir().mkpath(QFileInfo(path).path()) == false ||
+		file.open(QFile::WriteOnly) == false ||
+		file.setPermissions(QFile::ReadOwner | QFile::WriteOwner) == false ||
+		file.write(m_restoreToken.toUtf8()) < 0 ||
+		file.commit() == false)
+	{
+		vWarning() << "could not store portal restore token";
 	}
 }
 
