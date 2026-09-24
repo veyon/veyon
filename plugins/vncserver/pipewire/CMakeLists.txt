@@ -27,6 +27,10 @@ if(PipeWire_FOUND AND Qt${QT_MAJOR_VERSION}DBus_FOUND)
 		SOURCES
 		PipeWireVncServer.cpp
 		PipeWireVncServer.h
+		PipeWireVncConfiguration.h
+		PipeWireVncConfigurationWidget.cpp
+		PipeWireVncConfigurationWidget.h
+		PipeWireVncConfigurationWidget.ui
 		PipeWireFramebuffer.cpp
 		PipeWireFramebuffer.h
 		PortalSession.cpp

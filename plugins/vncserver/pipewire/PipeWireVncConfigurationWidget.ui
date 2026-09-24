@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PipeWireVncConfigurationWidget</class>
+ <widget class="QWidget" name="PipeWireVncConfigurationWidget">
+  <property name="windowTitle">
+   <string>PipeWire VNC server configuration</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QCheckBox" name="persistRestoreToken">
+     <property name="text">
+      <string>Remember the screen sharing approval across restarts</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="persistRestoreTokenNote">
+     <property name="text">
+      <string>The approval token is stored in the user's state directory. Any program running as the same user can read it and share the screen without asking.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

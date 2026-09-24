@@ -28,6 +28,7 @@
 
 #include <QMutex>
 
+#include "PipeWireVncConfiguration.h"
 #include "PluginInterface.h"
 #include "VncServerPluginInterface.h"
 
@@ -102,10 +103,7 @@ public:
 		return { QStringLiteral("wayland") };
 	}
 
-	QWidget* configurationWidget() override
-	{
-		return nullptr;
-	}
+	QWidget* configurationWidget() override;
 
 	void prepareServer() override;
 
@@ -136,6 +134,8 @@ private:
 	// LibVNCServer input event callbacks (C linkage function pointers)
 	static void onKbdAddEvent(rfbBool down, rfbKeySym keySym, rfbClientRec* cl);
 	static void onPtrAddEvent(int buttonMask, int x, int y, rfbClientRec* cl);
+
+	PipeWireVncConfiguration m_configuration;
 
 	PortalSession*       m_portalSession{nullptr};
 	PipeWireFramebuffer* m_framebuffer{nullptr};

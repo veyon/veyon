@@ -65,7 +65,11 @@ public:
 	};
 	Q_ENUM(State)
 
-	explicit PortalSession(QObject* parent = nullptr);
+	/**
+	 * @param persistRestoreToken keep the portal's restore token in the user's state directory,
+	 * so the screen sharing approval outlives this process (see PipeWireVncConfiguration)
+	 */
+	explicit PortalSession(bool persistRestoreToken, QObject* parent = nullptr);
 	~PortalSession() override;
 
 	/**
@@ -130,6 +134,10 @@ private:
 	void connectResponseSignal(const QString& requestPath);
 	void disconnectResponseSignal();
 
+	void loadRestoreToken();
+	void storeRestoreToken() const;
+	static QString restoreTokenFilePath();
+
 	void setState(State s);
 
 	QString makeRequestToken() const;
@@ -143,6 +151,7 @@ private:
 
 	QString m_sessionHandle;
 	QString m_restoreToken;
+	const bool m_persistRestoreToken;
 	State m_state{State::Idle};
 	int m_pipewireFd{-1};
 	quint32 m_pipeWireNodeId{0};
