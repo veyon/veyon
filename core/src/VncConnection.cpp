@@ -355,12 +355,23 @@ void VncConnection::setPort( int port )
 
 void VncConnection::setQuality(VncConnectionConfiguration::Quality quality)
 {
+	// Quality lists its values best first
+	const auto improves = quality < m_quality;
+
 	m_quality = quality;
 
 	if (m_client)
 	{
 		updateEncodingSettingsFromQuality();
 		enqueueEvent(new VncUpdateFormatAndEncodingsEvent);
+
+		// an incremental update only resends what changes, so whatever the server sent at the
+		// lower quality (JPEG while monitoring) would otherwise stay on screen, in the remote
+		// view, until that region changes
+		if (improves && isControlFlagSet(ControlFlag::SkipFramebufferUpdates) == false)
+		{
+			enqueueEvent(new VncFullFramebufferUpdateRequestEvent);
+		}
 	}
 }
 

@@ -75,3 +75,10 @@ void VncUpdateFormatAndEncodingsEvent::fire( rfbClient* client )
 {
 	SetFormatAndEncodings(client);
 }
+
+
+
+void VncFullFramebufferUpdateRequestEvent::fire( rfbClient* client )
+{
+	SendFramebufferUpdateRequest(client, 0, 0, client->width, client->height, FALSE);
+}
