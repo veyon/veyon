@@ -195,9 +195,11 @@ bool PipeWireVncServer::initVncServer(int serverPort, const Password& password)
 	m_rfbScreen->authPasswdData  = m_vncPasswords;
 	m_rfbScreen->passwordCheck   = rfbCheckPasswordByList;
 
-	m_rfbScreen->serverFormat.redShift     = 16;
+	// PipeWireFramebuffer::convertFrame() writes R,G,B,x bytes (rgbSwapped() of the
+	// BGRx stream), and rfbNewFramebuffer() resets to exactly that (little-endian) on a resize
+	m_rfbScreen->serverFormat.redShift     = 0;
 	m_rfbScreen->serverFormat.greenShift   = 8;
-	m_rfbScreen->serverFormat.blueShift    = 0;
+	m_rfbScreen->serverFormat.blueShift    = 16;
 	m_rfbScreen->serverFormat.redMax       = 255;
 	m_rfbScreen->serverFormat.greenMax     = 255;
 	m_rfbScreen->serverFormat.blueMax      = 255;
