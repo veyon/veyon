@@ -38,6 +38,8 @@ jobs:
             mingw-w64-x86_64-qca-qt6
             mingw-w64-x86_64-nsis
             mingw-w64-x86_64-openssl
+            mingw-w64-x86_64-openldap
+            mingw-w64-x86_64-cyrus-sasl
             mingw-w64-x86_64-libjpeg-turbo
             mingw-w64-x86_64-libpng
             mingw-w64-x86_64-lzo2
@@ -51,7 +53,11 @@ jobs:
             -DCMAKE_BUILD_TYPE=Release \
             -DWITH_QT6=ON \
             -DWITH_TESTS=OFF \
-            -DMINGW_PREFIX=/mingw64
+            -DMINGW_PREFIX=/mingw64 \
+            -DLdap_INCLUDE_DIRS=/mingw64/include \
+            -DLdap_LIBRARIES="/mingw64/lib/libldap.dll.a;/mingw64/lib/liblber.dll.a" \
+            -DSasl2_INCLUDE_DIRS=/mingw64/include \
+            -DSasl2_LIBRARIES=/mingw64/lib/libsasl2.dll.a
           ninja create-windows-installer || ninja windows-binaries
           cp -f *setup.exe ../ || true
           cp -f InsightTeacher* ../ || true

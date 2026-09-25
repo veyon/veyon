@@ -37,8 +37,8 @@ add_custom_target(windows-binaries
 	COMMAND cp ${DLLDIR}/libpng16-16.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND cp ${DLLDIR}/libcrypto-3*.dll ${DLLDIR}/libssl-3*.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND cp ${DLLDIR}/libqca-qt6.dll ${WINDOWS_INSTALL_FILES}
-	COMMAND cp ${DLLDIR}/libsasl2-3.dll ${WINDOWS_INSTALL_FILES}
-	COMMAND cp ${DLLDIR}/libldap.dll ${DLLDIR}/liblber.dll ${WINDOWS_INSTALL_FILES}
+	COMMAND cp ${DLLDIR}/libsasl*.dll ${WINDOWS_INSTALL_FILES} || true
+	COMMAND cp ${DLLDIR}/libldap*.dll ${DLLDIR}/liblber*.dll ${WINDOWS_INSTALL_FILES} || true
 	COMMAND cp ${DLLDIR}/interception.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND cp ${DLLDIR}/liblzo2-2.dll ${WINDOWS_INSTALL_FILES}
 	COMMAND cp ${DLLDIR}/libvncclient.dll ${WINDOWS_INSTALL_FILES}
