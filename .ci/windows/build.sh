@@ -19,10 +19,12 @@ $PREFIX/bin/qt-cmake $BASEDIR \
 	$CMAKE_FLAGS
 
 if [ -z "$2" ] ; then
-	ninja windows-binaries
+	ninja create-windows-installer
 else
 	ninja ${@:2}
 fi
 
-mv veyon-*win* $BASEDIR
+mv *setup.exe $BASEDIR || true
+mv InsightTeacher-* $BASEDIR || true
+mv veyon-*win* $BASEDIR || true
 

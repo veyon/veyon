@@ -1,18 +1,40 @@
-name: "CI Builds"
-on: [push]
+name: "Insight Teacher Build & Release"
+
+on:
+  push:
+    branches: [ "**" ]
+  workflow_dispatch:
+
 jobs:
-  build-linux:
-    strategy:
-      matrix:
-        dist:
-          - debian.bookworm
-          - fedora.39
-          - opensuse.tumbleweed
-          - ubuntu.focal
+  build-windows:
+    name: "Build Windows Installer (x86_64)"
     runs-on: ubuntu-latest
-    container: veyon/ci.linux.${{matrix.dist}}
+    container:
+      image: docker.io/veyon/ci-mingw-w64:4.8
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Code
+        uses: actions/checkout@v4
         with:
           submodules: recursive
-      - run: .ci/linux.${{matrix.dist}}/script.sh $GITHUB_WORKSPACE /tmp
+          fetch-depth: 0
+
+      - name: Mark safe git directory
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Build Windows Installer
+        run: |
+          .ci/windows/build.sh x86_64
+
+      - name: List Output Files
+        run: |
+          ls -la *setup.exe InsightTeacher* || true
+
+      - name: Upload Windows Setup Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: InsightTeacher-Windows-Setup
+          path: |
+            *setup.exe
+            *.exe
+            !*.dll

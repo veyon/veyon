@@ -72,7 +72,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, Component component, const 
 	m_userGroupsBackendManager( nullptr ),
 	m_networkObjectDirectoryManager( nullptr ),
 	m_component( component ),
-	m_applicationName( QStringLiteral( "Veyon" ) ),
+	m_applicationName( QStringLiteral( "Insight Teacher" ) ),
 	m_debugging( false )
 {
 	Q_ASSERT( application != nullptr );
@@ -209,9 +209,9 @@ QString VeyonCore::sessionIdEnvironmentVariable()
 
 void VeyonCore::setupApplicationParameters()
 {
-	QCoreApplication::setOrganizationName( QStringLiteral( "Veyon Solutions" ) );
-	QCoreApplication::setOrganizationDomain( QStringLiteral( "veyon.io" ) );
-	QCoreApplication::setApplicationName( QStringLiteral( "Veyon" ) );
+	QCoreApplication::setOrganizationName( QStringLiteral( "SMA Muhammadiyah 1 Palembang" ) );
+	QCoreApplication::setOrganizationDomain( QStringLiteral( "smam1plg.sch.id" ) );
+	QCoreApplication::setApplicationName( QStringLiteral( "Insight Teacher" ) );
 
 	QCoreApplication::setAttribute( Qt::AA_ShareOpenGLContexts );
 

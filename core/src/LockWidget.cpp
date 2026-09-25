@@ -29,6 +29,8 @@
 #include <QPainter>
 #include <QScreen>
 #include <QWindow>
+#include <QLinearGradient>
+#include <QFont>
 
 
 LockWidget::LockWidget( Mode mode, const QPixmap& background, QWidget* parent ) :
@@ -107,11 +109,67 @@ void LockWidget::paintEvent( QPaintEvent* event )
 		break;
 
 	case BackgroundPixmap:
-		p.fillRect( rect(), QColor( 64, 64, 64 ) );
-		p.drawPixmap( ( width() - m_background.width() ) / 2,
-					  ( height() - m_background.height() ) / 2,
-					  m_background );
+	{
+		p.setRenderHint( QPainter::Antialiasing );
+		p.setRenderHint( QPainter::TextAntialiasing );
+
+		// Elegant background gradient (Dark Slate & Muhammadiyah Green)
+		QLinearGradient gradient( 0, 0, 0, height() );
+		gradient.setColorAt( 0.0, QColor( 6, 44, 26 ) );   // Deep dark green #062C1A
+		gradient.setColorAt( 0.6, QColor( 10, 86, 51 ) );  // Rich Muhammadiyah green #0A5633
+		gradient.setColorAt( 1.0, QColor( 4, 30, 18 ) );   // Bottom dark accent #041E12
+		p.fillRect( rect(), gradient );
+
+		const int centerX = width() / 2;
+		const int centerY = height() / 2;
+
+		// Draw icon centered slightly above middle
+		if( !m_background.isNull() )
+		{
+			const int iconW = qMin( m_background.width(), 128 );
+			const int iconH = qMin( m_background.height(), 128 );
+			const int iconX = centerX - ( iconW / 2 );
+			const int iconY = centerY - 150;
+			p.drawPixmap( iconX, iconY, iconW, iconH, m_background );
+		}
+
+		// Title: LAYAR TERKUNCI (Gold)
+		QFont titleFont = p.font();
+		titleFont.setPointSize( 26 );
+		titleFont.setBold( true );
+		p.setFont( titleFont );
+		p.setPen( QColor( 245, 158, 11 ) );
+		QRect titleRect( 0, centerY - 10, width(), 45 );
+		p.drawText( titleRect, Qt::AlignCenter, QStringLiteral( "LAYAR TERKUNCI" ) );
+
+		// Subtitle: Harap Perhatikan Instruksi Guru
+		QFont subFont = p.font();
+		subFont.setPointSize( 14 );
+		subFont.setBold( false );
+		p.setFont( subFont );
+		p.setPen( QColor( 255, 255, 255 ) );
+		QRect subRect( 0, centerY + 42, width(), 35 );
+		p.drawText( subRect, Qt::AlignCenter, QStringLiteral( "Harap Perhatikan Instruksi Guru di Depan Kelas" ) );
+
+		// School: SMA MUHAMMADIYAH 1 PALEMBANG
+		QFont schoolFont = p.font();
+		schoolFont.setPointSize( 12 );
+		schoolFont.setBold( true );
+		p.setFont( schoolFont );
+		p.setPen( QColor( 167, 243, 208 ) );
+		QRect schoolRect( 0, centerY + 85, width(), 30 );
+		p.drawText( schoolRect, Qt::AlignCenter, QStringLiteral( "SMA MUHAMMADIYAH 1 PALEMBANG" ) );
+
+		// System Footer
+		QFont sysFont = p.font();
+		sysFont.setPointSize( 9 );
+		sysFont.setBold( false );
+		p.setFont( sysFont );
+		p.setPen( QColor( 148, 163, 184, 180 ) );
+		QRect sysRect( 0, height() - 50, width(), 30 );
+		p.drawText( sysRect, Qt::AlignCenter, QStringLiteral( "Insight Teacher - Sistem Manajemen Laboratorium Komputer" ) );
 		break;
+	}
 
 	default:
 		break;

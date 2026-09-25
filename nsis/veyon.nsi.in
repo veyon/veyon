@@ -1,11 +1,11 @@
-!define APP_NAME "Veyon"
-!define COMP_NAME "Veyon Solutions"
-!define WEB_SITE "https://veyon.io"
+!define APP_NAME "Insight Teacher"
+!define COMP_NAME "SMA Muhammadiyah 1 Palembang"
+!define WEB_SITE "https://smam1plg.sch.id"
 !define VERSION "@VERSION_MAJOR@.@VERSION_MINOR@.@VERSION_PATCH@.@VERSION_BUILD@"
-!define COPYRIGHT "2004-2024 Veyon Solutions / Tobias Junghans"
-!define DESCRIPTION "Veyon Installer"
+!define COPYRIGHT "SMA Muhammadiyah 1 Palembang / Veyon"
+!define DESCRIPTION "Insight Teacher - Sistem Manajemen Laboratorium Komputer"
 !define LICENSE_TXT "COPYING"
-!define INSTALLER_NAME "veyon-${VERSION}-@VEYON_WINDOWS_ARCH@-setup.exe"
+!define INSTALLER_NAME "InsightTeacher-${VERSION}-@VEYON_WINDOWS_ARCH@-Setup.exe"
 !define MAIN_APP_EXE "veyon-master.exe"
 !define INSTALL_TYPE "SetShellVarContext all"
 !define REG_ROOT "HKLM"
@@ -31,7 +31,7 @@ OutFile "${INSTALLER_NAME}"
 BrandingText "${APP_NAME} ${VERSION}"
 XPStyle on
 InstallDirRegKey "${REG_ROOT}" "${REG_APP_PATH}" ""
-InstallDir "$PROGRAMFILES64\Veyon"
+InstallDir "$PROGRAMFILES64\Insight Teacher"
 ShowInstDetails hide
 RequestExecutionLevel admin
 
@@ -68,10 +68,10 @@ RequestExecutionLevel admin
 !insertmacro MUI_PAGE_INSTFILES
 
 !define MUI_FINISHPAGE_RUN
-!define MUI_FINISHPAGE_RUN_TEXT "Run Veyon Configurator now"
+!define MUI_FINISHPAGE_RUN_TEXT "Buka Insight Konfigurator sekarang"
 !define MUI_FINISHPAGE_RUN_FUNCTION "RunConfigurator"
-!define MUI_FINISHPAGE_LINK "Support Veyon project with a donation"
-!define MUI_FINISHPAGE_LINK_LOCATION "https://www.paypal.com/cgi-bin/webscr?item_name=Donation+to+Veyon+-+OpenSource+classroom+management&cmd=_donations&business=donate%40veyon.io"
+!define MUI_FINISHPAGE_LINK "Website SMA Muhammadiyah 1 Palembang"
+!define MUI_FINISHPAGE_LINK_LOCATION "https://smam1plg.sch.id"
 
 !insertmacro MUI_PAGE_FINISH
 
@@ -81,7 +81,8 @@ RequestExecutionLevel admin
 
 !insertmacro MUI_UNPAGE_FINISH
 
-!insertmacro MUI_LANGUAGE "English" ;first language is the default language
+!insertmacro MUI_LANGUAGE "Indonesian" ;first language is the default language
+!insertmacro MUI_LANGUAGE "English"
 !insertmacro MUI_LANGUAGE "Afrikaans"
 !insertmacro MUI_LANGUAGE "Albanian"
 !insertmacro MUI_LANGUAGE "Arabic"
@@ -106,7 +107,6 @@ RequestExecutionLevel admin
 !insertmacro MUI_LANGUAGE "Hebrew"
 !insertmacro MUI_LANGUAGE "Hungarian"
 !insertmacro MUI_LANGUAGE "Icelandic"
-!insertmacro MUI_LANGUAGE "Indonesian"
 !insertmacro MUI_LANGUAGE "Irish"
 !insertmacro MUI_LANGUAGE "Italian"
 !insertmacro MUI_LANGUAGE "Japanese"
@@ -189,10 +189,19 @@ File "styles/*.dll"
 # Qt TLS backend
 SetOutPath "$INSTDIR\tls"
 File "tls/qopensslbackend.dll"
+# default authentication keys
+SetOutPath "$INSTDIR\default-keys"
+File "default-keys/*"
 # configuration
 ExecWait '"$INSTDIR\veyon-wcli.exe" service register'
 ExecWait '"$INSTDIR\veyon-wcli.exe" config set Network/FirewallExceptionEnabled 1'
 ExecWait '"$INSTDIR\veyon-wcli.exe" config set Windows/SoftwareSASEnabled 1'
+ExecWait '"$INSTDIR\veyon-wcli.exe" config set UI/Language "id_ID"'
+ExecWait '"$INSTDIR\veyon-wcli.exe" config set Authentication/Method 1'
+${If} ${FileExists} "$INSTDIR\default-keys\public.key"
+  ExecWait '"$INSTDIR\veyon-wcli.exe" authkeys import teacher/public "$INSTDIR\default-keys\public.key"'
+${EndIf}
+ExecWait '"$INSTDIR\veyon-wcli.exe" networkobjects add location "Lab Komputer SMA Muhammadiyah 1 Palembang"'
 # disable forced guest logon as otherwise logon authentication fails
 WriteRegDWORD ${REG_ROOT} "SYSTEM\CurrentControlSet\Control\Lsa"  "ForceGuest" "0"
 ${GetParameters} $R0
@@ -207,18 +216,23 @@ ${EndIf}
 ExecWait '"$INSTDIR\veyon-wcli.exe" service start'
 SectionEnd
 
-Section "Veyon Master" SEC_MASTER
+Section "Insight Teacher (Master / Guru)" SEC_MASTER
 ${INSTALL_TYPE}
 SetOutPath "$INSTDIR"
 File "veyon-master.exe"
 
+# Pre-configured private key for Teacher Master PC
+${If} ${FileExists} "$INSTDIR\default-keys\private.key"
+  ExecWait '"$INSTDIR\veyon-wcli.exe" authkeys import teacher/private "$INSTDIR\default-keys\private.key"'
+${EndIf}
+
 ${GetParameters} $R0
 ${GetOptions} $R0 "/NoStartMenuFolder" $R1
 ${If} ${Errors}
-CreateDirectory "$SMPROGRAMS\Veyon"
-CreateShortCut "$SMPROGRAMS\Veyon\Veyon Master.lnk" "$INSTDIR\${MAIN_APP_EXE}"
+CreateDirectory "$SMPROGRAMS\Insight Teacher"
+CreateShortCut "$SMPROGRAMS\Insight Teacher\Insight Teacher.lnk" "$INSTDIR\${MAIN_APP_EXE}"
 ${EndIf}
-CreateShortCut "$DESKTOP\Veyon Master.lnk" "$INSTDIR\${MAIN_APP_EXE}"
+CreateShortCut "$DESKTOP\Insight Teacher.lnk" "$INSTDIR\${MAIN_APP_EXE}"
 SectionEnd
 
 Section "Interception driver" SEC_INTERCEPTION
@@ -247,7 +261,7 @@ ${EndIf}
 UserInfo::GetAccountType
 pop $0
 ${If} $0 != "admin"
-	MessageBox mb_iconstop "Please run the installer with administrative rights!"
+	MessageBox mb_iconstop "Silakan jalankan installer dengan hak Administrator!"
 	SetErrorLevel 740 ;ERROR_ELEVATION_REQUIRED
 	Quit
 ${EndIf}
@@ -262,15 +276,15 @@ WriteUninstaller "$INSTDIR\uninstall.exe"
 ${GetParameters} $R0
 ${GetOptions} $R0 "/NoStartMenuFolder" $R1
 ${If} ${Errors}
-CreateDirectory "$SMPROGRAMS\Veyon"
-CreateShortCut "$SMPROGRAMS\Veyon\Veyon Configurator.lnk" "$INSTDIR\veyon-configurator.exe"
-CreateShortCut "$SMPROGRAMS\Veyon\Uninstall Veyon.lnk" "$INSTDIR\uninstall.exe"
-WriteIniStr "$INSTDIR\Veyon website.url" "InternetShortcut" "URL" "${WEB_SITE}"
-CreateShortCut "$SMPROGRAMS\Veyon\Veyon Website.lnk" "$INSTDIR\Veyon website.url"
+CreateDirectory "$SMPROGRAMS\Insight Teacher"
+CreateShortCut "$SMPROGRAMS\Insight Teacher\Insight Konfigurator.lnk" "$INSTDIR\veyon-configurator.exe"
+CreateShortCut "$SMPROGRAMS\Insight Teacher\Uninstall Insight Teacher.lnk" "$INSTDIR\uninstall.exe"
+WriteIniStr "$INSTDIR\Website Sekolah.url" "InternetShortcut" "URL" "${WEB_SITE}"
+CreateShortCut "$SMPROGRAMS\Insight Teacher\Website Sekolah.lnk" "$INSTDIR\Website Sekolah.url"
 ${EndIf}
 
 WriteRegStr ${REG_ROOT} "${REG_APP_PATH}" "" "$INSTDIR\${MAIN_APP_EXE}"
-WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "DisplayName" "Veyon"
+WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "DisplayName" "Insight Teacher"
 WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "UninstallString" "$INSTDIR\uninstall.exe"
 WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "DisplayIcon" "$INSTDIR\${MAIN_APP_EXE}"
 WriteRegStr ${REG_ROOT} "${UNINSTALL_PATH}"  "DisplayVersion" "${VERSION}"
@@ -308,16 +322,17 @@ RmDir /r "$INSTDIR\styles"
 RmDir /r "$INSTDIR\tls"
 RmDir /r "$INSTDIR\translations"
 RmDir /r "$INSTDIR\interception"
+RmDir /r "$INSTDIR\default-keys"
 
 RmDir "$INSTDIR"
 
-Delete "$SMPROGRAMS\Veyon\Veyon Master.lnk"
-Delete "$SMPROGRAMS\Veyon\Veyon Configurator.lnk"
-Delete "$SMPROGRAMS\Veyon\Uninstall Veyon.lnk"
-Delete "$SMPROGRAMS\Veyon\Veyon Website.lnk"
-RmDir "$SMPROGRAMS\Veyon"
+Delete "$SMPROGRAMS\Insight Teacher\Insight Teacher.lnk"
+Delete "$SMPROGRAMS\Insight Teacher\Insight Konfigurator.lnk"
+Delete "$SMPROGRAMS\Insight Teacher\Uninstall Insight Teacher.lnk"
+Delete "$SMPROGRAMS\Insight Teacher\Website Sekolah.lnk"
+RmDir "$SMPROGRAMS\Insight Teacher"
 
-Delete "$DESKTOP\Veyon Master.lnk"
+Delete "$DESKTOP\Insight Teacher.lnk"
 
 DeleteRegKey ${REG_ROOT} "${REG_APP_PATH}"
 DeleteRegKey ${REG_ROOT} "${UNINSTALL_PATH}"
@@ -331,12 +346,12 @@ FunctionEnd
 
 ######################################################################
 
-LangString DESC_SEC_SERVICE ${LANG_ENGLISH} "Veyon service and common files required on all computers"
-LangString DESC_SEC_SERVICE ${LANG_GERMAN} "Veyon-Dienst und gemeinsame Dateien, die auf allen Computern benötigt werden"
-LangString DESC_SEC_MASTER ${LANG_ENGLISH} "Master application for monitoring and controlling Veyon client computers"
-LangString DESC_SEC_MASTER ${LANG_GERMAN} "Master-Applikation zum Beobachten und Steuern von Veyon-Client-Computern"
-LangString DESC_SEC_INTERCEPTION ${LANG_ENGLISH} "Special input device driver required for intercepting keyboard shortcuts such as Ctrl+Alt+Del in screen lock mode"
-LangString DESC_SEC_INTERCEPTION ${LANG_GERMAN} "Spezieller Eingabegerätetreiber, der zum Abfangen von Tastenkombinationen wie Strg+Alt+Entf im Bildschirmsperr-Modus benötigt wird"
+LangString DESC_SEC_SERVICE ${LANG_INDONESIAN} "Layanan latar belakang Insight Student dan file inti yang wajib ada di setiap PC laboratorium"
+LangString DESC_SEC_SERVICE ${LANG_ENGLISH} "Insight Student service and common files required on all computers"
+LangString DESC_SEC_MASTER ${LANG_INDONESIAN} "Aplikasi Guru untuk memantau, mendemonstrasikan layar, dan mengontrol PC siswa"
+LangString DESC_SEC_MASTER ${LANG_ENGLISH} "Teacher application for monitoring and controlling client computers"
+LangString DESC_SEC_INTERCEPTION ${LANG_INDONESIAN} "Driver sistem untuk mengunci shortcut keyboard saat layar siswa dikunci"
+LangString DESC_SEC_INTERCEPTION ${LANG_ENGLISH} "Special input device driver required for intercepting keyboard shortcuts in screen lock mode"
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
 !insertmacro MUI_DESCRIPTION_TEXT ${SEC_SERVICE} $(DESC_SEC_SERVICE)
