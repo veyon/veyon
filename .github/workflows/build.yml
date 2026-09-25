@@ -3,14 +3,17 @@ name: "Insight Teacher Build & Release"
 on:
   push:
     branches: [ "**" ]
+    tags: [ "v*" ]
   workflow_dispatch:
 
 jobs:
   build-windows:
     name: "Build Windows Installer (x86_64)"
-    runs-on: ubuntu-latest
-    container:
-      image: docker.io/veyon/ci-mingw-w64:4.8
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -18,17 +21,40 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
-      - name: Mark safe git directory
-        run: |
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Setup MSYS2 Toolchain
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          cache: true
+          install: >-
+            git
+            mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-ninja
+            mingw-w64-x86_64-qt6-base
+            mingw-w64-x86_64-qt6-5compat
+            mingw-w64-x86_64-qt6-tools
+            mingw-w64-x86_64-qca-qt6
+            mingw-w64-x86_64-nsis
+            mingw-w64-x86_64-openssl
+            mingw-w64-x86_64-libjpeg-turbo
+            mingw-w64-x86_64-libpng
+            mingw-w64-x86_64-lzo2
 
-      - name: Build Windows Installer
+      - name: Configure CMake & Build Installer
         run: |
-          .ci/windows/build.sh x86_64
-
-      - name: List Output Files
-        run: |
-          ls -la *setup.exe InsightTeacher* || true
+          mkdir -p build
+          cd build
+          cmake .. \
+            -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DWITH_QT6=ON \
+            -DWITH_TESTS=OFF \
+            -DMINGW_PREFIX=/mingw64
+          ninja create-windows-installer || ninja windows-binaries
+          cp -f *setup.exe ../ || true
+          cp -f InsightTeacher* ../ || true
 
       - name: Upload Windows Setup Artifact
         uses: actions/upload-artifact@v4
@@ -36,5 +62,14 @@ jobs:
           name: InsightTeacher-Windows-Setup
           path: |
             *setup.exe
-            *.exe
-            !*.dll
+            InsightTeacher*.exe
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            *setup.exe
+            InsightTeacher*.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
