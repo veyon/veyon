@@ -84,6 +84,7 @@ protected:
 	virtual bool performIconSizeAutoAdjust();
 
 	void initiateIconSizeAutoAdjust();
+	void updateIconSize();
 
 	VeyonMaster* master() const
 	{

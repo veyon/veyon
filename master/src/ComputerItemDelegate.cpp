@@ -22,6 +22,7 @@
  *
  */
 
+#include <QApplication>
 #include <QPainter>
 
 #include "ComputerControlListModel.h"
@@ -29,8 +30,9 @@
 #include "FeatureManager.h"
 
 
-ComputerItemDelegate::ComputerItemDelegate(QObject* parent) :
-	QStyledItemDelegate(parent)
+ComputerItemDelegate::ComputerItemDelegate(bool fullLengthLabels, QObject* parent) :
+	QStyledItemDelegate(parent),
+	m_fullLengthLabels(fullLengthLabels)
 {
 	initFeaturePixmaps();
 }
@@ -55,7 +57,7 @@ QSize ComputerItemDelegate::sizeHint(const QStyleOptionViewItem& option, const Q
 	QStyleOptionViewItem opt = option;
 	const auto style = QApplication::style();
 
-	if (index.model())
+	if (m_fullLengthLabels && index.model())
 	{
 		QSize maxSize;
 		for (int i = 0; i < index.model()->rowCount(); ++i)
@@ -68,7 +70,9 @@ QSize ComputerItemDelegate::sizeHint(const QStyleOptionViewItem& option, const Q
 	}
 
 	initStyleOption(&opt, index);
-	return style->sizeFromContents(QStyle::CT_ItemViewItem, &opt, QSize(), nullptr);
+	const auto size = style->sizeFromContents(QStyle::CT_ItemViewItem, &opt, QSize(), nullptr);
+
+	return {std::min(size.width(), option.decorationSize.width()), size.height()};
 }
 
 

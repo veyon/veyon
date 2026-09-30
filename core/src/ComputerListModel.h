@@ -55,6 +55,12 @@ public:
 	};
 	Q_ENUM(UidRoleContent)
 
+	enum class GridSizingMode {
+		FullLengthLabels,
+		MaximizedThumbnails,
+	};
+	Q_ENUM(GridSizingMode)
+
 	enum class VisibilityMode {
 		Normal,
 		Blurred,
@@ -96,11 +102,15 @@ public:
 		return m_uidRoleContent;
 	}
 
+	GridSizingMode gridSizingMode() const
+	{
+		return m_gridSizingMode;
+	}
+
 	VisibilityMode visibilityMode() const
 	{
 		return m_visibilityMode;
 	}
-
 
 	SortOrder sortOrder() const
 	{
@@ -115,6 +125,7 @@ public:
 private:
 	DisplayRoleContent m_displayRoleContent;
 	UidRoleContent m_uidRoleContent;
+	GridSizingMode m_gridSizingMode;
 	VisibilityMode m_visibilityMode;
 	SortOrder m_sortOrder;
 	AspectRatio m_aspectRatio;

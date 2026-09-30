@@ -58,7 +58,10 @@ ComputerMonitoringWidget::ComputerMonitoringWidget( QWidget *parent ) :
 	setUniformItemSizes( true );
 	setSelectionRectVisible( true );
 
-	setItemDelegate(new ComputerItemDelegate(this));
+	const auto fullLengthLabels = VeyonCore::config().computerMonitoringGridSizingMode() ==
+								  ComputerListModel::GridSizingMode::FullLengthLabels;
+	setTextElideMode(fullLengthLabels ? Qt::ElideNone : Qt::ElideRight);
+	setItemDelegate(new ComputerItemDelegate(fullLengthLabels, this));
 
 	setUidRole( ComputerControlListModel::UidRole );
 

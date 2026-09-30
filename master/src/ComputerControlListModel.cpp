@@ -163,6 +163,7 @@ void ComputerControlListModel::updateComputerScreenSize()
 
 		Q_EMIT computerScreenSizeChanged();
 	}
+
 }
 
 

@@ -33,7 +33,7 @@ class ComputerItemDelegate : public QStyledItemDelegate
 {
 	Q_OBJECT
 public:
-	ComputerItemDelegate(QObject* parent = nullptr);
+	ComputerItemDelegate(bool fullLengthLabels, QObject* parent = nullptr);
 
 	virtual void paint(QPainter* painter, const QStyleOptionViewItem& option, const QModelIndex& index) const override;
 
@@ -49,5 +49,6 @@ private:
 	static constexpr int OverlayIconsRadius = 6;
 
 	QMap<QUuid, QPixmap> m_featurePixmaps;
+	bool m_fullLengthLabels;
 
 };
