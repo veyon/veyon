@@ -406,8 +406,13 @@ void PortalSession::onPortalResponse(uint response, const QVariantMap& results)
 
 QString PortalSession::restoreTokenFilePath()
 {
-	return QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation) +
-		   QStringLiteral("/veyon/portal-restore-token");
+#if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
+	const auto genericStateDir = QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation);
+#else
+	const auto genericStateDir = QDir::homePath() + QStringLiteral("/.local/share");
+#endif
+
+	return genericStateDir + QStringLiteral("/veyon/portal-restore-token");
 }
 
 
