@@ -29,6 +29,7 @@ build_veyon_plugin(windows-platform
 	${ultravnc_DIR}/winvnc/winvnc/vnckeymap.cpp
 	${ultravnc_DIR}/addon/ms-logon/authSSP/authSSP.cpp
 	${ultravnc_DIR}/addon/ms-logon/authSSP/GenClientServerContext.cpp
+
 	WindowsPlatformConfiguration.h
 	WindowsPlatformPlugin.h
 	WindowsCoreFunctions.h

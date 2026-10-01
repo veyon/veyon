@@ -47,6 +47,7 @@
 #include "LinuxUserFunctions.h"
 #include "PlatformUserFunctions.h"
 #include "ProcessHelper.h"
+#include "StandardInputReader.h"
 
 #include <X11/XKBlib.h>
 #include <X11/extensions/dpms.h>
@@ -122,13 +123,18 @@ void LinuxCoreFunctions::writeToNativeLoggingSystem( const QString& message, Log
 }
 
 
-QObject* LinuxCoreFunctions::notifyOnStandardInputReadyRead(const NotifierCallback& callback)
+
+StandardInputReader* LinuxCoreFunctions::createStandardInputReader(QObject* parent)
 {
-	auto notifier = new QSocketNotifier(STDIN_FILENO, QSocketNotifier::Read);
+	auto reader = new StandardInputReader(parent);
+
+	auto notifier = new QSocketNotifier(STDIN_FILENO, QSocketNotifier::Read, reader);
 	QObject::connect(notifier, &QSocketNotifier::activated,
-					 QCoreApplication::instance(),
-					 [notifier, callback]() { callback(notifier); });
-	return notifier;
+					 reader, [reader]() {
+		reader->lineRead(QTextStream(stdin).readLine());
+	});
+
+	return reader;
 }
 
 

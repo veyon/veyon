@@ -33,13 +33,13 @@
 
 class QScreen;
 
+class StandardInputReader;
+
 class PlatformCoreFunctions
 {
 public:
 	using ProcessId = qint64;
 	static constexpr ProcessId InvalidProcessId = -1;
-
-	using NotifierCallback = std::function<void(QObject* )>;
 
 	virtual ~PlatformCoreFunctions() = default;
 
@@ -50,7 +50,7 @@ public:
 	virtual void initNativeLoggingSystem( const QString& appName ) = 0;
 	virtual void writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel ) = 0;
 
-	virtual QObject* notifyOnStandardInputReadyRead(const NotifierCallback& callback) = 0;
+	virtual StandardInputReader* createStandardInputReader(QObject* parent) = 0;
 
 	virtual void reboot() = 0;
 	virtual void powerDown( bool installUpdates ) = 0;

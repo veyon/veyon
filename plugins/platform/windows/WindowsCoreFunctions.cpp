@@ -25,14 +25,15 @@
 #include <QGuiApplication>
 #include <QScreen>
 #include <QWidget>
-#include <QWinEventNotifier>
 #include <qpa/qplatformnativeinterface.h>
 
+#include <iostream>
 #include <shlobj.h>
 #include <userenv.h>
 #include <sddl.h>
 #include <tlhelp32.h>
 
+#include "StandardInputReader.h"
 #include "VeyonConfiguration.h"
 #include "WindowsCoreFunctions.h"
 #include "WindowsPlatformConfiguration.h"
@@ -71,6 +72,39 @@ static bool configureSoftwareSAS( bool enabled )
 	return true;
 }
 
+
+class StandardInputReaderThread : public QThread
+{
+public:
+	StandardInputReaderThread(StandardInputReader* reader, QObject* parent) :
+		QThread(parent),
+		m_reader(reader)
+	{
+	}
+
+protected:
+	void run() override
+	{
+		std::ios_base::sync_with_stdio(false);
+
+		while (isInterruptionRequested() == false)
+		{
+			std::string line;
+			if (std::getline(std::cin, line))
+			{
+				m_reader->lineRead(QString::fromStdString(line));
+			}
+			else
+			{
+				vCritical() << "failed to read from stdin or EOF reached";
+			}
+			QThread::msleep(10);
+		}
+	}
+
+private:
+	StandardInputReader* m_reader;
+};
 
 
 WindowsCoreFunctions::~WindowsCoreFunctions()
@@ -128,13 +162,17 @@ void WindowsCoreFunctions::writeToNativeLoggingSystem( const QString& message, L
 
 
 
-QObject* WindowsCoreFunctions::notifyOnStandardInputReadyRead(const NotifierCallback& callback)
+StandardInputReader* WindowsCoreFunctions::createStandardInputReader(QObject* parent)
 {
-	auto notifier = new QWinEventNotifier(GetStdHandle(STD_INPUT_HANDLE));
-	QObject::connect(notifier, &QWinEventNotifier::activated,
-					 QCoreApplication::instance(),
-					 [notifier, callback]() { callback(notifier); });
-	return notifier;
+	auto reader = new StandardInputReader(parent);
+	auto thread = new StandardInputReaderThread(reader, parent);
+
+	QObject::connect(reader, &QObject::destroyed, thread, &QThread::quit);
+	QObject::connect(thread, &QThread::finished, reader, &QThread::deleteLater);
+
+	thread->start();
+
+	return reader;
 }
 
 

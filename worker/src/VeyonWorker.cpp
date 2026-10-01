@@ -22,13 +22,12 @@
  *
  */
 
-#include <iostream>
-
 #include <QCoreApplication>
 
 #include "FeatureManager.h"
 #include "FeatureWorkerManagerConnection.h"
 #include "PlatformCoreFunctions.h"
+#include "StandardInputReader.h"
 #include "VeyonConfiguration.h"
 #include "VeyonWorker.h"
 
@@ -61,17 +60,18 @@ VeyonWorker::VeyonWorker(QUuid featureUid, QObject* parent) :
 
 	m_workerManagerConnection = new FeatureWorkerManagerConnection(*this, featureUid);
 
-	VeyonCore::platform().coreFunctions().notifyOnStandardInputReadyRead([this](QObject* notifier) {
-		const auto authToken = QTextStream(stdin).readLine().toUtf8();
+	auto stdInReader = VeyonCore::platform().coreFunctions().createStandardInputReader(this);
+	connect (stdInReader, &StandardInputReader::lineRead, this, [this, stdInReader](const QString& line) {
+		const auto authToken = line.toUtf8();
 		if (authToken.isEmpty() == false)
 		{
 			m_workerManagerConnection->setAuthToken(authToken);
-			notifier->deleteLater();
 		}
 		else
 		{
 			vCritical() << "failed to read auth token from stdin";
 		}
+		stdInReader->deleteLater();
 	});
 
 	vInfo() << "Running worker for feature" << workerFeature->name();
