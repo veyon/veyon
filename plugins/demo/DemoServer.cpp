@@ -192,7 +192,7 @@ void DemoServer::reconnectToVncServer()
 	{
 		if (connection)
 		{
-			connection->deleteLater();
+			connection->quit();
 		}
 	}
 	m_connections.clear();
