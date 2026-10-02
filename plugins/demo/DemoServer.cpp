@@ -204,7 +204,7 @@ void DemoServer::reconnectToVncServer()
 	m_dataLock.unlock();
 
 	disconnect(m_vncServerSocket, &QTcpSocket::disconnected, this, &DemoServer::reconnectToVncServer);
-	m_vncServerSocket->disconnectFromHost();
+	m_vncServerSocket->abort();
 
 	m_vncClientProtocol->reset();
 
