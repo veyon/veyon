@@ -59,6 +59,9 @@ LdapDirectory::LdapDirectory( const LdapConfiguration& configuration, QObject* p
 	m_computerLocationsByAttribute = m_configuration.computerLocationsByAttribute();
 	m_computerLocationAttribute = m_configuration.computerLocationAttribute();
 
+	m_queryUserGroupsFromUserAttribute = m_configuration.queryUserGroupsFromUserAttribute();
+	m_userGroupsAttribute = m_configuration.userGroupsAttribute();
+
 	m_mapContainerStructureToLocations = m_configuration.mapContainerStructureToLocations();
 }
 
@@ -176,6 +179,14 @@ QStringList LdapDirectory::groups( const QString& filterValue )
 
 QStringList LdapDirectory::userGroups( const QString& filterValue )
 {
+	if (m_queryUserGroupsFromUserAttribute)
+	{
+		return m_client.queryAttributeValues(usersDn(),
+											 m_userGroupsAttribute,
+											 LdapClient::constructQueryFilter(m_userGroupsAttribute, filterValue, m_usersFilter),
+											 m_defaultSearchScope);
+	}
+
 	return m_client.queryDistinguishedNames( groupsDn(),
 											 LdapClient::constructQueryFilter( LdapClient::cn(), filterValue, m_userGroupsFilter ),
 											 m_defaultSearchScope );
@@ -259,6 +270,14 @@ QStringList LdapDirectory::groupMembers( const QString& groupDn )
 
 QStringList LdapDirectory::groupsOfUser( const QString& userDn )
 {
+	if (m_queryUserGroupsFromUserAttribute)
+	{
+		return m_client.queryAttributeValues(userDn,
+											 m_userGroupsAttribute,
+											 m_usersFilter,
+											 m_defaultSearchScope);
+	}
+
 	const auto userId = groupMemberUserIdentification( userDn );
 	if( m_groupMemberFilterAttribute.isEmpty() || userId.isEmpty() )
 	{

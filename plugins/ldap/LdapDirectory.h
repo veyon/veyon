@@ -137,6 +137,9 @@ private:
 	bool m_computerLocationsByAttribute = false;
 	bool m_computerHostNameAsFQDN = false;
 
+	bool m_queryUserGroupsFromUserAttribute = false;
+	QString m_userGroupsAttribute;
+
 	bool m_mapContainerStructureToLocations = false;
 
 };
