@@ -181,10 +181,12 @@ QStringList LdapDirectory::userGroups( const QString& filterValue )
 {
 	if (m_queryUserGroupsFromUserAttribute)
 	{
-		return m_client.queryAttributeValues(usersDn(),
-											 m_userGroupsAttribute,
-											 LdapClient::constructQueryFilter(m_userGroupsAttribute, filterValue, m_usersFilter),
-											 m_defaultSearchScope);
+		auto groups = m_client.queryAttributeValues(usersDn(),
+													m_userGroupsAttribute,
+													LdapClient::constructQueryFilter(m_userGroupsAttribute, filterValue, m_usersFilter),
+													m_defaultSearchScope);
+		groups.removeDuplicates();
+		return groups;
 	}
 
 	return m_client.queryDistinguishedNames( groupsDn(),
