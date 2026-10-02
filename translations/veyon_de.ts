@@ -2542,6 +2542,10 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Abfrageoptionen</translation>
     </message>
     <message>
+        <source>Query user groups from user attribute</source>
+        <translation>Benutzergruppen aus Benutzerattribut abfragen</translation>
+    </message>
+    <message>
         <source>Query nested user groups (supported by AD only)</source>
         <translation>Verschachtelte Benutzergruppen abfragen (nur von AD unterstützt)</translation>
     </message>
@@ -2582,8 +2586,28 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
         <translation>Integrationstests</translation>
     </message>
     <message>
+        <source>User groups</source>
+        <translation>Benutzergruppen</translation>
+    </message>
+    <message>
+        <source>List all user groups</source>
+        <translation>Alle Benutzergruppen auflisten</translation>
+    </message>
+    <message>
         <source>List all groups of a user</source>
         <translation>Alle Gruppen eines Benutzers auflisten</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>Standorte</translation>
+    </message>
+    <message>
+        <source>List all computers at a specific location</source>
+        <translation>Alle Computer an einem bestimmten Standort auflisten</translation>
+    </message>
+    <message>
+        <source>Computers</source>
+        <translation>Computer</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
@@ -2592,10 +2616,6 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
     <message>
         <source>Get computer object by IP address</source>
         <translation>Computerobjekt über IP-Adresse ermitteln</translation>
-    </message>
-    <message>
-        <source>List all entries of a location</source>
-        <translation>Alle Einträge eines Standortes auflisten</translation>
     </message>
     <message>
         <source>List all locations</source>
@@ -2685,7 +2705,7 @@ Achten Sie darauf, dass die Namen der zueinander gehörenden Schlüssel auf alle
     </message>
     <message>
         <source>Enter group name</source>
-        <translation>Grupenname eingeben</translation>
+        <translation>Gruppenname eingeben</translation>
     </message>
     <message>
         <source>Please enter a group name whose members to query:</source>
@@ -3505,28 +3525,12 @@ Gedrückt halten, um die Anordnung aus einer Datei zu laden oder die aktuelle An
         <translation>Beobachtungsansicht</translation>
     </message>
     <message>
-        <source>Refresh rate</source>
-        <translation>Aktualisierungsrate</translation>
-    </message>
-    <message>
-        <source>Display label</source>
-        <translation>Anzeigebeschriftung</translation>
+        <source>Visibility mode</source>
+        <translation>Sichtbarkeitsmodus</translation>
     </message>
     <message>
         <source>Aspect ratio</source>
         <translation>Seitenverhältnis</translation>
-    </message>
-    <message>
-        <source>Grid spacing</source>
-        <translation>Gitterabstand</translation>
-    </message>
-    <message>
-        <source>Image quality</source>
-        <translation>Bildqualität</translation>
-    </message>
-    <message>
-        <source>Visibility mode</source>
-        <translation>Sichtbarkeitsmodus</translation>
     </message>
     <message>
         <source>Normal</source>
@@ -3539,6 +3543,34 @@ Gedrückt halten, um die Anordnung aus einer Datei zu laden oder die aktuelle An
     <message>
         <source>Hidden</source>
         <translation>Ausgeblendet</translation>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation>Gitterabstand</translation>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Bildqualität</translation>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation>Anzeigebeschriftung</translation>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation>Aktualisierungsrate</translation>
+    </message>
+    <message>
+        <source>Grid sizing mode</source>
+        <translation>Gitterdimensionierungsmodus</translation>
+    </message>
+    <message>
+        <source>Full-length labels (scales down all thumbnails)</source>
+        <translation>Vollständige Beschriftungen (verkleinert alle Vorschaubilder)</translation>
+    </message>
+    <message>
+        <source>Maximized thumbnails (truncated labels)</source>
+        <translation>Maximierte Vorschaubilder (abgeschnittene Beschriftungen)</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -3695,6 +3727,21 @@ Gedrückt halten, um die Anordnung aus einer Datei zu laden oder die aktuelle An
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>Die Anmeldung mit dem angegebenen Benutzername und Passwort ist fehlgeschlagen. Bitte versuchen Sie es erneut!</translation>
+    </message>
+</context>
+<context>
+    <name>PipeWireVncConfigurationWidget</name>
+    <message>
+        <source>PipeWire VNC server configuration</source>
+        <translation>Konfiguration des PipeWire-VNC-Servers</translation>
+    </message>
+    <message>
+        <source>Remember the screen sharing approval across restarts</source>
+        <translation>Freigabe für die Bildschirmübertragung dauerhaft merken</translation>
+    </message>
+    <message>
+        <source>The approval token is stored in the user&apos;s state directory. Any program running as the same user can read it and share the screen without asking.</source>
+        <translation>Das Freigabe-Token wird im Statusverzeichnis des Benutzers gespeichert. Jedes Programm, das unter demselben Benutzer ausgeführt wird, kann dieses Token lesen und den Bildschirm ohne erneute Nachfrage freigeben.</translation>
     </message>
 </context>
 <context>

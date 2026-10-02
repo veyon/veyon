@@ -2545,6 +2545,10 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Alternativ för frågor</translation>
     </message>
     <message>
+        <source>Query user groups from user attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Query nested user groups (supported by AD only)</source>
         <translation>Fråga efter nästlade användargrupper (stöds endast av AD)</translation>
     </message>
@@ -2585,8 +2589,28 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Integrationstest</translation>
     </message>
     <message>
+        <source>User groups</source>
+        <translation>Användargrupper</translation>
+    </message>
+    <message>
+        <source>List all user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>List all groups of a user</source>
         <translation>Lista alla grupper för en användare</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>Platser</translation>
+    </message>
+    <message>
+        <source>List all computers at a specific location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computers</source>
+        <translation>Datorer</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
@@ -2595,10 +2619,6 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     <message>
         <source>Get computer object by IP address</source>
         <translation>Hämta datorobjekt via IP-adress</translation>
-    </message>
-    <message>
-        <source>List all entries of a location</source>
-        <translation>Lista alla poster för en plats</translation>
     </message>
     <message>
         <source>List all locations</source>
@@ -3508,28 +3528,12 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
         <translation>Övervakningsvy</translation>
     </message>
     <message>
-        <source>Refresh rate</source>
-        <translation>Uppdateringsfrekvens</translation>
-    </message>
-    <message>
-        <source>Display label</source>
-        <translation>Visningsetikett</translation>
+        <source>Visibility mode</source>
+        <translation>Synlighetsläge</translation>
     </message>
     <message>
         <source>Aspect ratio</source>
         <translation>Bildförhållande</translation>
-    </message>
-    <message>
-        <source>Grid spacing</source>
-        <translation>Rutnätsavstånd</translation>
-    </message>
-    <message>
-        <source>Image quality</source>
-        <translation>Bildkvalitet</translation>
-    </message>
-    <message>
-        <source>Visibility mode</source>
-        <translation>Synlighetsläge</translation>
     </message>
     <message>
         <source>Normal</source>
@@ -3542,6 +3546,34 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
     <message>
         <source>Hidden</source>
         <translation>Dold</translation>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation>Rutnätsavstånd</translation>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Bildkvalitet</translation>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation>Visningsetikett</translation>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation>Uppdateringsfrekvens</translation>
+    </message>
+    <message>
+        <source>Grid sizing mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full-length labels (scales down all thumbnails)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximized thumbnails (truncated labels)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remote access</source>
@@ -3698,6 +3730,21 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>Inloggning misslyckades med angivet användarnamn och lösenord. Vänligen försök igen!</translation>
+    </message>
+</context>
+<context>
+    <name>PipeWireVncConfigurationWidget</name>
+    <message>
+        <source>PipeWire VNC server configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remember the screen sharing approval across restarts</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The approval token is stored in the user&apos;s state directory. Any program running as the same user can read it and share the screen without asking.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

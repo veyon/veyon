@@ -2542,6 +2542,10 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Параметри запиту</translation>
     </message>
     <message>
+        <source>Query user groups from user attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Query nested user groups (supported by AD only)</source>
         <translation>Опитати вкладені групи користувачів (лише для AD)</translation>
     </message>
@@ -2582,8 +2586,28 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Перевірки інтеграції</translation>
     </message>
     <message>
+        <source>User groups</source>
+        <translation>Групи користувачів</translation>
+    </message>
+    <message>
+        <source>List all user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>List all groups of a user</source>
         <translation>Список усіх груп користувача</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>Місця</translation>
+    </message>
+    <message>
+        <source>List all computers at a specific location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computers</source>
+        <translation>Комп&apos;ютери</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
@@ -2592,10 +2616,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Get computer object by IP address</source>
         <translation>Отримати об’єкт комп’ютера за IP-адресою</translation>
-    </message>
-    <message>
-        <source>List all entries of a location</source>
-        <translation>Вивести список усіх записів місця</translation>
     </message>
     <message>
         <source>List all locations</source>
@@ -3507,27 +3527,11 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Refresh rate</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Display label</source>
+        <source>Visibility mode</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Aspect ratio</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Grid spacing</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Image quality</source>
-        <translation>Якість зображення</translation>
-    </message>
-    <message>
-        <source>Visibility mode</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3540,6 +3544,34 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Hidden</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Якість зображення</translation>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grid sizing mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full-length labels (scales down all thumbnails)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximized thumbnails (truncated labels)</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3697,6 +3729,21 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>Не вдалося увійти на основі вказаних імені користувача і пароля. Будь ласка, повторіть спробу!</translation>
+    </message>
+</context>
+<context>
+    <name>PipeWireVncConfigurationWidget</name>
+    <message>
+        <source>PipeWire VNC server configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remember the screen sharing approval across restarts</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The approval token is stored in the user&apos;s state directory. Any program running as the same user can read it and share the screen without asking.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

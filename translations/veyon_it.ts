@@ -2542,6 +2542,10 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Opzioni di query</translation>
     </message>
     <message>
+        <source>Query user groups from user attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Query nested user groups (supported by AD only)</source>
         <translation>Interroga gruppi di utenti annidati (supportato solo da AD)</translation>
     </message>
@@ -2582,8 +2586,28 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Test integrazione</translation>
     </message>
     <message>
+        <source>User groups</source>
+        <translation>Gruppi utenti</translation>
+    </message>
+    <message>
+        <source>List all user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>List all groups of a user</source>
         <translation>Visualizza i gruppi a cui appartiene un User</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>Posizioni</translation>
+    </message>
+    <message>
+        <source>List all computers at a specific location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computers</source>
+        <translation>Computer</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
@@ -2592,10 +2616,6 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     <message>
         <source>Get computer object by IP address</source>
         <translation>Identifica il computer mediante indirizzo IP</translation>
-    </message>
-    <message>
-        <source>List all entries of a location</source>
-        <translation>Elenca tutte le voci di una posizione</translation>
     </message>
     <message>
         <source>List all locations</source>
@@ -3495,28 +3515,12 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
         <translation>Vista di monitoraggio</translation>
     </message>
     <message>
-        <source>Refresh rate</source>
-        <translation>Frequenza di aggiornamento</translation>
-    </message>
-    <message>
-        <source>Display label</source>
-        <translation>Etichetta di visualizzazione</translation>
+        <source>Visibility mode</source>
+        <translation>Modalità di visibilità</translation>
     </message>
     <message>
         <source>Aspect ratio</source>
         <translation>Proporzioni</translation>
-    </message>
-    <message>
-        <source>Grid spacing</source>
-        <translation>Spaziatura della griglia</translation>
-    </message>
-    <message>
-        <source>Image quality</source>
-        <translation>Qualità dell&apos;immagine</translation>
-    </message>
-    <message>
-        <source>Visibility mode</source>
-        <translation>Modalità di visibilità</translation>
     </message>
     <message>
         <source>Normal</source>
@@ -3529,6 +3533,34 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
     <message>
         <source>Hidden</source>
         <translation>Nascosto</translation>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation>Spaziatura della griglia</translation>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Qualità dell&apos;immagine</translation>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation>Etichetta di visualizzazione</translation>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation>Frequenza di aggiornamento</translation>
+    </message>
+    <message>
+        <source>Grid sizing mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full-length labels (scales down all thumbnails)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximized thumbnails (truncated labels)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remote access</source>
@@ -3685,6 +3717,21 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>Logon fallito con le credenziali fornite. Riprova!</translation>
+    </message>
+</context>
+<context>
+    <name>PipeWireVncConfigurationWidget</name>
+    <message>
+        <source>PipeWire VNC server configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remember the screen sharing approval across restarts</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The approval token is stored in the user&apos;s state directory. Any program running as the same user can read it and share the screen without asking.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

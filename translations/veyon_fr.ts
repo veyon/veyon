@@ -2545,6 +2545,10 @@ Assurez-vous que les noms des clés associées soient identiques sur tous les or
         <translation>Options de requête</translation>
     </message>
     <message>
+        <source>Query user groups from user attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Query nested user groups (supported by AD only)</source>
         <translation>Interroger des groupes d&apos;utilisateurs imbriqués (pris en charge par AD uniquement)</translation>
     </message>
@@ -2585,8 +2589,28 @@ Assurez-vous que les noms des clés associées soient identiques sur tous les or
         <translation>Tests d&apos;intégration</translation>
     </message>
     <message>
+        <source>User groups</source>
+        <translation>Groupes d&apos;utilisateurs</translation>
+    </message>
+    <message>
+        <source>List all user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>List all groups of a user</source>
         <translation>Lister tous les groupes d&apos;un utilisateur</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>Emplacements</translation>
+    </message>
+    <message>
+        <source>List all computers at a specific location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computers</source>
+        <translation>Ordinateurs</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
@@ -2595,10 +2619,6 @@ Assurez-vous que les noms des clés associées soient identiques sur tous les or
     <message>
         <source>Get computer object by IP address</source>
         <translation>Trouver un ordinateur par son adresse IP</translation>
-    </message>
-    <message>
-        <source>List all entries of a location</source>
-        <translation>Lister toutes les entrées d&apos;un emplacement</translation>
     </message>
     <message>
         <source>List all locations</source>
@@ -3508,28 +3528,12 @@ Appuyez et maintenez enfoncé pour charger une configuration à partir d&apos;un
         <translation>Vue de surveillance</translation>
     </message>
     <message>
-        <source>Refresh rate</source>
-        <translation>Fréquence de rafraîchissement</translation>
-    </message>
-    <message>
-        <source>Display label</source>
-        <translation>Étiquette d&apos;affichage</translation>
+        <source>Visibility mode</source>
+        <translation>Mode de visibilité</translation>
     </message>
     <message>
         <source>Aspect ratio</source>
         <translation>Format d&apos;image</translation>
-    </message>
-    <message>
-        <source>Grid spacing</source>
-        <translation>Espacement de la grille</translation>
-    </message>
-    <message>
-        <source>Image quality</source>
-        <translation>Qualité d&apos;image</translation>
-    </message>
-    <message>
-        <source>Visibility mode</source>
-        <translation>Mode de visibilité</translation>
     </message>
     <message>
         <source>Normal</source>
@@ -3542,6 +3546,34 @@ Appuyez et maintenez enfoncé pour charger une configuration à partir d&apos;un
     <message>
         <source>Hidden</source>
         <translation>Masqué</translation>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation>Espacement de la grille</translation>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Qualité d&apos;image</translation>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation>Étiquette d&apos;affichage</translation>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation>Fréquence de rafraîchissement</translation>
+    </message>
+    <message>
+        <source>Grid sizing mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full-length labels (scales down all thumbnails)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximized thumbnails (truncated labels)</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remote access</source>
@@ -3698,6 +3730,21 @@ Appuyez et maintenez enfoncé pour charger une configuration à partir d&apos;un
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>La connexion a échoué avec le nom d&apos;utilisateur et le mot de passe donné. Veuillez réessayer!</translation>
+    </message>
+</context>
+<context>
+    <name>PipeWireVncConfigurationWidget</name>
+    <message>
+        <source>PipeWire VNC server configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remember the screen sharing approval across restarts</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The approval token is stored in the user&apos;s state directory. Any program running as the same user can read it and share the screen without asking.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>

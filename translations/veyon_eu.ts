@@ -2545,6 +2545,10 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <translation>Kontsulta aukerak</translation>
     </message>
     <message>
+        <source>Query user groups from user attribute</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Query nested user groups (supported by AD only)</source>
         <translation>Kontsultatu habiaratutako erabiltzaile-taldeak (AD soilik onartzen du)</translation>
     </message>
@@ -2585,8 +2589,28 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
         <translation>Integrazio probak</translation>
     </message>
     <message>
+        <source>User groups</source>
+        <translation>Erabiltzaile taldeak</translation>
+    </message>
+    <message>
+        <source>List all user groups</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>List all groups of a user</source>
         <translation>Zerrendatu erabiltzaile baten talde guztiak</translation>
+    </message>
+    <message>
+        <source>Locations</source>
+        <translation>Kokalekuak</translation>
+    </message>
+    <message>
+        <source>List all computers at a specific location</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Computers</source>
+        <translation>Ordenagailuak</translation>
     </message>
     <message>
         <source>List all groups of a computer</source>
@@ -2595,10 +2619,6 @@ Ziurtatu gakoen izenak ordenagailu guztietan berdinak direla.</translation>
     <message>
         <source>Get computer object by IP address</source>
         <translation>Lortu ordenagailuaren objektua IP helbidearen bidez</translation>
-    </message>
-    <message>
-        <source>List all entries of a location</source>
-        <translation>Zerrendatu kokaleku batek sortutako sarrera guztiak</translation>
     </message>
     <message>
         <source>List all locations</source>
@@ -3508,27 +3528,11 @@ Luze sakatu fitxategi batetik kargatzeko edo uneko antolamendua fitxategi batera
         <translation type="unfinished"/>
     </message>
     <message>
-        <source>Refresh rate</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Display label</source>
+        <source>Visibility mode</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <source>Aspect ratio</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Grid spacing</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Image quality</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Visibility mode</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3541,6 +3545,34 @@ Luze sakatu fitxategi batetik kargatzeko edo uneko antolamendua fitxategi batera
     </message>
     <message>
         <source>Hidden</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Grid sizing mode</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Full-length labels (scales down all thumbnails)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Maximized thumbnails (truncated labels)</source>
         <translation type="unfinished"/>
     </message>
     <message>
@@ -3698,6 +3730,21 @@ Luze sakatu fitxategi batetik kargatzeko edo uneko antolamendua fitxategi batera
     <message>
         <source>Logon failed with given username and password. Please try again!</source>
         <translation>Ezin izan da saioa hasi emandako erabiltzaile-izen eta pasahitzarekin. Mesedez, saiatu berriro!</translation>
+    </message>
+</context>
+<context>
+    <name>PipeWireVncConfigurationWidget</name>
+    <message>
+        <source>PipeWire VNC server configuration</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Remember the screen sharing approval across restarts</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The approval token is stored in the user&apos;s state directory. Any program running as the same user can read it and share the screen without asking.</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
