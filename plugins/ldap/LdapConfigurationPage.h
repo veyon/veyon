@@ -52,6 +52,7 @@ private:
 	void testComputerGroupsFilter();
 	void testComputerContainersFilter();
 	void testUserGroupsAttribute();
+	void testUserGroups();
 	void testGroupsOfUser();
 	void testGroupsOfComputer();
 	void testComputerObjectByIpAddress();

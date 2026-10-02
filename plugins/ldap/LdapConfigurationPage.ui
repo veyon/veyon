@@ -773,7 +773,7 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QLabel" name="label_36">
+           <widget class="QLabel" name="userGroupsFilterLabel">
             <property name="text">
              <string>Filter for user groups</string>
             </property>
@@ -1007,58 +1007,96 @@
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <widget class="QPushButton" name="testGroupsOfUser">
-         <property name="text">
-          <string>List all groups of a user</string>
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
+          <string>User groups</string>
          </property>
-         <property name="icon">
-          <iconset resource="ldap.qrc">
-           <normaloff>:/ldap/user-group-properties.png</normaloff>:/ldap/user-group-properties.png</iconset>
-         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_7">
+          <item>
+           <widget class="QPushButton" name="testUserGroups">
+            <property name="text">
+             <string>List all user groups</string>
+            </property>
+            <property name="icon">
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/user-group-properties.png</normaloff>:/ldap/user-group-properties.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="testGroupsOfUser">
+            <property name="text">
+             <string>List all groups of a user</string>
+            </property>
+            <property name="icon">
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/user-group-properties.png</normaloff>:/ldap/user-group-properties.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="testGroupsOfComputer">
-         <property name="text">
-          <string>List all groups of a computer</string>
+        <widget class="QGroupBox" name="groupBox_4">
+         <property name="title">
+          <string>Locations</string>
          </property>
-         <property name="icon">
-          <iconset resource="ldap.qrc">
-           <normaloff>:/ldap/computer.png</normaloff>:/ldap/computer.png</iconset>
-         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QPushButton" name="testLocations">
+            <property name="text">
+             <string>List all locations</string>
+            </property>
+            <property name="icon">
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/distribute-vertical-margin.png</normaloff>:/ldap/distribute-vertical-margin.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="testLocationEntries">
+            <property name="text">
+             <string>List all computers at a specific location</string>
+            </property>
+            <property name="icon">
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/configure.png</normaloff>:/ldap/configure.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="testComputerObjectByIpAddress">
-         <property name="text">
-          <string>Get computer object by IP address</string>
+        <widget class="QGroupBox" name="groupBox_5">
+         <property name="title">
+          <string>Computers</string>
          </property>
-         <property name="icon">
-          <iconset resource="ldap.qrc">
-           <normaloff>:/ldap/computer.png</normaloff>:/ldap/computer.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="testLocationEntries">
-         <property name="text">
-          <string>List all entries of a location</string>
-         </property>
-         <property name="icon">
-          <iconset resource="ldap.qrc">
-           <normaloff>:/ldap/configure.png</normaloff>:/ldap/configure.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="testLocations">
-         <property name="text">
-          <string>List all locations</string>
-         </property>
-         <property name="icon">
-          <iconset resource="ldap.qrc">
-           <normaloff>:/ldap/distribute-vertical-margin.png</normaloff>:/ldap/distribute-vertical-margin.png</iconset>
-         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <item>
+           <widget class="QPushButton" name="testComputerObjectByIpAddress">
+            <property name="text">
+             <string>Get computer object by IP address</string>
+            </property>
+            <property name="icon">
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/computer.png</normaloff>:/ldap/computer.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="testGroupsOfComputer">
+            <property name="text">
+             <string>List all groups of a computer</string>
+            </property>
+            <property name="icon">
+             <iconset resource="ldap.qrc">
+              <normaloff>:/ldap/computer.png</normaloff>:/ldap/computer.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </item>
        <item>
@@ -1096,6 +1134,7 @@
   <tabstop>browseCACertificateFile</tabstop>
   <tabstop>isFixedBaseDn</tabstop>
   <tabstop>baseDn</tabstop>
+  <tabstop>browseBaseDn</tabstop>
   <tabstop>testBaseDn</tabstop>
   <tabstop>queryNamingContext</tabstop>
   <tabstop>namingContextAttribute</tabstop>
@@ -1156,11 +1195,6 @@
   <tabstop>computerLocationsByGroups</tabstop>
   <tabstop>computerLocationsByContainer</tabstop>
   <tabstop>computerLocationsByAttribute</tabstop>
-  <tabstop>testGroupsOfUser</tabstop>
-  <tabstop>testGroupsOfComputer</tabstop>
-  <tabstop>testComputerObjectByIpAddress</tabstop>
-  <tabstop>testLocationEntries</tabstop>
-  <tabstop>testLocations</tabstop>
  </tabstops>
  <resources>
   <include location="../../core/resources/core.qrc"/>

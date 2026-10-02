@@ -63,6 +63,7 @@ LdapConfigurationPage::LdapConfigurationPage( LdapConfiguration& configuration, 
 	CONNECT_BUTTON_SLOT( testComputerContainersFilter )
 	CONNECT_BUTTON_SLOT( testUserGroupsAttribute )
 
+	CONNECT_BUTTON_SLOT(testUserGroups)
 	CONNECT_BUTTON_SLOT( testGroupsOfUser )
 	CONNECT_BUTTON_SLOT( testGroupsOfComputer )
 	CONNECT_BUTTON_SLOT( testComputerObjectByIpAddress )
@@ -539,6 +540,30 @@ void LdapConfigurationPage::testUserGroupsAttribute()
 									"or the user tree parameter.").arg(username));
 		}
 	}
+}
+
+
+
+void LdapConfigurationPage::testUserGroups()
+{
+	vDebug() << "[TEST][LDAP] Querying all user groups";
+
+	QStringList parameters{
+		ui->groupTreeLabel->text(),
+		ui->userGroupsFilter->text(),
+		ui->groupMemberIdentification->title()
+	};
+
+	if (m_configuration.queryUserGroupsFromUserAttribute())
+	{
+		parameters = QStringList{
+			ui->userTreeLabel->text(),
+			ui->queryUserGroupsFromUserAttribute->text()
+		};
+	}
+
+	LdapDirectory ldapDirectory(m_configuration);
+	reportLdapObjectQueryResults(tr("user groups"), parameters, ldapDirectory.userGroups(), ldapDirectory);
 }
 
 
