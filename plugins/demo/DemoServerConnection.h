@@ -52,7 +52,7 @@ public:
 	}
 
 Q_SIGNALS:
-	void synchronizationLost();
+	void synchronizationLost(int epochId);
 
 private:
 	void run() override;

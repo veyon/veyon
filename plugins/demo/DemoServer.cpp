@@ -166,7 +166,13 @@ void DemoServer::acceptPendingConnections()
 	while( m_pendingConnectionSockets.isEmpty() == false )
 	{
 		auto connection = new DemoServerConnection(this, m_demoAccessToken, m_pendingConnectionSockets.takeFirst());
-		connect (connection, &DemoServerConnection::synchronizationLost, this, &DemoServer::reconnectToVncServer);
+		connect (connection, &DemoServerConnection::synchronizationLost, this, [this](int epochId)
+		{
+			if (epochId == m_epochId)
+			{
+				reconnectToVncServer();
+			}
+		});
 		connect (connection, &QObject::destroyed, this, [this, connection]() {
 			m_connections.removeAll(connection);
 		});

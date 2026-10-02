@@ -199,7 +199,7 @@ void DemoServerConnection::sendFramebufferUpdate()
 	else
 	{
 		vWarning() << "synchronization lost for client" << m_socket->peerAddress();
-		Q_EMIT synchronizationLost();
+		Q_EMIT synchronizationLost(m_epochId);
 	}
 
 	m_demoServer->unlockData();
