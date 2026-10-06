@@ -33,6 +33,7 @@
 
 #include "LinuxPlatformConfiguration.h"
 #include "LinuxServerProcess.h"
+#include "LinuxServiceBusInterface.h"
 #include "LinuxServiceCore.h"
 #include "LinuxSessionFunctions.h"
 #include "LinuxUserFunctions.h"
@@ -279,6 +280,18 @@ LinuxServiceCore::~LinuxServiceCore()
 
 void LinuxServiceCore::run()
 {
+	if(m_busInterface == nullptr)
+	{
+		m_busInterface = new LinuxServiceBusInterface(
+			[this](uid_t uid) { return isActiveSessionUser(uid); },
+			this);
+	}
+
+	if(m_busInterface->registerOnSystemBus() == false)
+	{
+		vCritical() << "authentication requests via D-Bus will not be available";
+	}
+
 	startServers();
 
 	// in single session mode a start may have been given up on (e.g. failed D-Bus queries
@@ -575,7 +588,13 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 	serverEnvironment.insert(QLatin1String(ServiceDataManager::serviceDataTokenEnvironmentVariable()),
 							 QString::fromUtf8(m_dataManager.token().toByteArray()));
 
-	auto serverProcess = new LinuxServerProcess(serverEnvironment, sessionPath, sessionId, sessionType, this);
+	const auto serverUserId = sessionUid > 0 ?
+				static_cast<LinuxUserFunctions::UserId>(sessionUid) :
+				LinuxUserFunctions::InvalidUserId;
+
+	auto serverProcess = new LinuxServerProcess(serverEnvironment, sessionPath, sessionId,
+												serverUserId,
+												sessionType, this);
 	serverProcess->start();
 
 	connect(serverProcess, &QProcess::stateChanged, this, [=, this]() { checkSessionState(sessionPath); });
@@ -685,4 +704,19 @@ void LinuxServiceCore::checkSessionState( const QString& sessionPath )
 			QTimer::singleShot(ServerRestartInterval, serverProcess, [serverProcess]() { serverProcess->start(); });
 		}
 	}
+}
+
+
+
+bool LinuxServiceCore::isActiveSessionUser(uid_t uid) const
+{
+	for(const auto& serverProcess : m_serverProcesses)
+	{
+		if(serverProcess->sessionUserId() == uid)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }

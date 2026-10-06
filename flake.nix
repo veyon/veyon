@@ -67,14 +67,9 @@
             src = final.lib.cleanSource self;
 
             postPatch = ''
-              substituteInPlace service/CMakeLists.txt \
+              substituteInPlace CMakeLists.txt \
                 --replace-fail 'set(SYSTEMD_SERVICE_INSTALL_DIR /lib/systemd/system)' \
                                'set(SYSTEMD_SERVICE_INSTALL_DIR ''${CMAKE_INSTALL_PREFIX}/lib/systemd/system)'
-
-              substituteInPlace plugins/platform/linux/auth-helper/CMakeLists.txt \
-                --replace-fail \
-                  'PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE SETUID GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE' \
-                  'PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE'
 
               substituteInPlace core/src/veyonconfig.h.in \
                 --replace-fail '@VEYON_PLUGIN_DIR@' "$out/lib/veyon"

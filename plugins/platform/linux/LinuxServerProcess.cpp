@@ -47,12 +47,14 @@
 
 LinuxServerProcess::LinuxServerProcess(const QProcessEnvironment& processEnvironment,
 									   const QString& sessionPath, int sessionId,
+									   LinuxUserFunctions::UserId sessionUserId,
 									   LinuxSessionFunctions::Type sessionType,
 									   QObject* parent) :
 	QProcess(parent),
 	m_sessionPath(sessionPath),
 	m_sessionId(sessionId),
-	m_sessionType(sessionType)
+	m_sessionType(sessionType),
+	m_sessionUserId(sessionUserId)
 {
 	setProcessEnvironment( processEnvironment );
 }
@@ -87,18 +89,9 @@ void LinuxServerProcess::start()
 	}
 	else if (m_sessionType == LinuxSessionFunctions::Type::Wayland)
 	{
-		const auto sessionUserPath = LinuxSessionFunctions::getSessionUser(m_sessionPath);
-		const auto sessionUserName = LinuxUserFunctions::getUserProperty(sessionUserPath, QStringLiteral("Name")).toString();
-		if (sessionUserName.isEmpty())
-		{
-			vCritical() << "failed to determine user name of session user" << sessionUserPath;
-		}
-
-		m_sessionUserId = LinuxUserFunctions::userIdFromName(sessionUserName);
-
 		if (m_sessionUserId == LinuxUserFunctions::InvalidUserId)
 		{
-			vCritical() << "failed to determine user ID of user" << sessionUserName;
+			vCritical() << "failed to determine user ID of session user for" << m_sessionPath;
 		}
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
