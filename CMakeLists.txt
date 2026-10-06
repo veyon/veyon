@@ -237,6 +237,10 @@ find_package(OpenSSL REQUIRED)
 # find Linux-specific packages
 if(VEYON_BUILD_LINUX)
 	include(XdgInstall)
+
+	if(NOT SYSTEMD_SERVICE_INSTALL_DIR)
+		set(SYSTEMD_SERVICE_INSTALL_DIR /lib/systemd/system)
+	endif()
 endif()
 
 if(WITH_UNITY_BUILD)

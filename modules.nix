@@ -100,11 +100,26 @@ in
       ];
     };
 
-    security.wrappers.veyon-auth-helper = {
-      source = "${cfg.package}/bin/veyon-auth-helper";
-      owner = "root";
-      group = "root";
-      setuid = true;
+    services.dbus.packages = [ cfg.package ];
+
+    systemd.services.veyon-auth-helper = {
+      description = "Veyon Authentication Helper";
+
+      requires = [ "dbus.service" ];
+      after = [ "dbus.service" ];
+
+      serviceConfig = {
+        Type = "dbus";
+        BusName = "io.veyon.AuthHelper";
+        ExecStart = "${cfg.package}/bin/veyon-auth-helper";
+        NoNewPrivileges = true;
+        PrivateTmp = true;
+        ProtectKernelTunables = true;
+        ProtectKernelModules = true;
+        ProtectControlGroups = true;
+        RestrictSUIDSGID = true;
+        LockPersonality = true;
+      };
     };
   };
 }

@@ -67,7 +67,8 @@ private:
 
 	QDBusConnection m_systemBus = QDBusConnection::systemBus();
 
-	static constexpr auto AuthHelperTimeout = 10000;
+	// must exceed the timeout used by the service when talking to the auth helper
+	static constexpr auto AuthHelperTimeout = 15000;
 
 	LogonHelper m_logonHelper{};
 
