@@ -251,14 +251,49 @@ WtsSessionManager::ProcessId WtsSessionManager::findUserProcessId( const QString
 
 	auto pid = InvalidProcess;
 
-	for( DWORD proc = 0; proc < processCount; ++proc )
-	{
-		if( processInfo[proc].ProcessId > 0 &&
-			processInfo[proc].pUserSid != nullptr &&
-			EqualSid(processInfo[proc].pUserSid, userSID))
+	const auto isExplorerProcess = [](LPCWSTR processName) {
+		if (processName == nullptr)
 		{
-			pid = processInfo[proc].ProcessId;
+			return false;
+		}
+		return _wcsicmp(processName, L"explorer.exe") == 0;
+	};
+
+	const auto isProcessAccessible = [](DWORD processId) {
+		if (processId == 0)
+		{
+			return false;
+		}
+
+		SmartHandle processHandle{OpenProcess(PROCESS_ALL_ACCESS, FALSE, processId)};
+		return processHandle.isValid();
+	};
+
+	for (DWORD i = 0; i < processCount; ++i)
+	{
+		if (processInfo[i].ProcessId > 0 &&
+			processInfo[i].pUserSid != nullptr &&
+			EqualSid(processInfo[i].pUserSid, userSID) &&
+			isExplorerProcess(processInfo[i].pProcessName) &&
+			isProcessAccessible(processInfo[i].ProcessId))
+		{
+			pid = processInfo[i].ProcessId;
 			break;
+		}
+	}
+
+	if (pid == InvalidProcess)
+	{
+		for (DWORD i = 0; i < processCount; ++i)
+		{
+			if (processInfo[i].ProcessId > 0 &&
+				processInfo[i].pUserSid != nullptr &&
+				EqualSid(processInfo[i].pUserSid, userSID) &&
+				isProcessAccessible(processInfo[i].ProcessId))
+			{
+				pid = processInfo[i].ProcessId;
+				break;
+			}
 		}
 	}
 
