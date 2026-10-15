@@ -67,6 +67,7 @@ private:
 	QMap<QString, LinuxServerProcess *> m_serverProcesses;
 	QStringList m_deferredServerSessions;
 	QSet<QString> m_sessionsWithUnknownState;
+	QSet<QString> m_sessionsWithPendingStateRecheck;
 
 	ServiceDataManager m_dataManager{};
 	PlatformSessionManager m_sessionManager{};

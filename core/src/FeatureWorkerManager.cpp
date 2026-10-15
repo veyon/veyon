@@ -259,10 +259,10 @@ void FeatureWorkerManager::enqueueSessionWorkerMessage(const FeatureMessage& mes
 	auto& queue = m_pendingSessionWorkerMessages[message.featureUid()];
 	if (queue.size() >= MaximumPendingSessionWorkerMessages)
 	{
+		// keep the most recent state (e.g. the last tooltip/mode) rather than the oldest messages
 		vWarning() << "too many messages pending for session worker of feature" << message.featureUid()
-				   << "- discarding them";
-		m_pendingSessionWorkerMessages.remove(message.featureUid());
-		return;
+				   << "- discarding the oldest one";
+		queue.removeFirst();
 	}
 
 	if (queue.isEmpty())
@@ -357,6 +357,23 @@ void FeatureWorkerManager::acceptConnection()
 
 	connect(socket, &QTcpSocket::disconnected,
 			this, [=, this] () { closeConnection(socket); });
+
+	// a connection which is not associated with an authenticated worker in time is closed: the
+	// worker process then quits on its own (it can't be killed when not started by us, e.g.
+	// unmanaged session workers) and no stale worker accumulates in the user session
+	QTimer::singleShot(WorkerAuthenticationTimeout, socket, [=, this]() {
+		QMutexLocker locker(&m_workersMutex);
+		for (const auto& worker : std::as_const(m_workers))
+		{
+			if (worker.socket == socket && worker.authenticated)
+			{
+				return;
+			}
+		}
+		locker.unlock();
+		vWarning() << "closing unauthenticated worker connection from port" << socket->peerPort();
+		socket->close();
+	});
 }
 
 
@@ -420,6 +437,9 @@ void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 			m_workersMutex.unlock();
 
 			vCritical() << "got data from non-existing worker!" << message.featureUid();
+			// make the orphaned worker quit instead of lingering with an open connection
+			socket->close();
+			return;
 		}
 	}
 }

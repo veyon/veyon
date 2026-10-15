@@ -167,8 +167,10 @@ static LRESULT CALLBACK swallowPhysicalKeyboardInput(int code, WPARAM wParam, LP
 	if (code == HC_ACTION)
 	{
 		const auto* event = reinterpret_cast<const KBDLLHOOKSTRUCT *>(lParam);
-		// let injected input pass so that remote control by the teacher keeps working
-		if ((event->flags & (LLKHF_INJECTED | LLKHF_LOWER_IL_INJECTED)) == 0)
+		// let injected input pass so that remote control by the teacher keeps working, and let key
+		// releases pass so that a key held while locking (Alt, Win…) does not stay stuck afterwards
+		const auto isKeyRelease = wParam == WM_KEYUP || wParam == WM_SYSKEYUP;
+		if (isKeyRelease == false && (event->flags & (LLKHF_INJECTED | LLKHF_LOWER_IL_INJECTED)) == 0)
 		{
 			return 1;
 		}
@@ -197,7 +199,8 @@ void WindowsInputDeviceFunctions::enableInterception()
 		}
 	}
 
-	if (m_interceptionContext == nullptr && m_keyboardHook == nullptr)
+	if (m_interceptionContext == nullptr && m_keyboardHook == nullptr &&
+		VeyonCore::component() == VeyonCore::Component::Worker)
 	{
 		m_keyboardHook = SetWindowsHookEx(WH_KEYBOARD_LL, swallowPhysicalKeyboardInput, GetModuleHandle(nullptr), 0);
 		if (m_keyboardHook == nullptr)

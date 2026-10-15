@@ -602,6 +602,9 @@ void LinuxServiceCore::stopServer( const QString& sessionPath )
 {
 	m_sessionManager.closeSession( sessionPath );
 
+	m_sessionsWithUnknownState.remove(sessionPath);
+	m_sessionsWithPendingStateRecheck.remove(sessionPath);
+
 	if( m_serverProcesses.contains( sessionPath ) == false )
 	{
 		return;
@@ -631,6 +634,13 @@ void LinuxServiceCore::stopAllServers()
 
 void LinuxServiceCore::checkSessionState( const QString& sessionPath )
 {
+	// a re-check after an unknown state is already scheduled: don't decide on another
+	// stateChanged() in the meantime
+	if (m_sessionsWithPendingStateRecheck.contains(sessionPath))
+	{
+		return;
+	}
+
 	const auto sessionState = LinuxSessionFunctions::getSessionState( sessionPath );
 
 	// an unknown state usually means a failed or timed out D-Bus query (e.g. while the system is
@@ -639,8 +649,10 @@ void LinuxServiceCore::checkSessionState( const QString& sessionPath )
 		m_sessionsWithUnknownState.contains(sessionPath) == false)
 	{
 		m_sessionsWithUnknownState.insert(sessionPath);
+		m_sessionsWithPendingStateRecheck.insert(sessionPath);
 		vDebug() << "State of session" << sessionPath << "unknown - checking again in" << SessionStateProbingInterval << "msecs";
-		QTimer::singleShot(SessionStateProbingInterval, this, [=, this]() {
+		QTimer::singleShot( SessionStateProbingInterval, this, [=, this]() {
+			m_sessionsWithPendingStateRecheck.remove(sessionPath);
 			if (m_serverProcesses.contains(sessionPath))
 			{
 				checkSessionState(sessionPath);
