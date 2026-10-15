@@ -360,18 +360,31 @@ void VncConnection::setQuality(VncConnectionConfiguration::Quality quality)
 
 	m_quality = quality;
 
-	if (m_client)
-	{
-		updateEncodingSettingsFromQuality();
-		enqueueEvent(new VncUpdateFormatAndEncodingsEvent);
+	// m_client belongs to the connection thread, which may free it at any time (disconnect,
+	// failed reconnect): testing it here and then writing to it crashed the master/broker
+	// (SIGSEGV in updateEncodingSettingsFromQuality() via setServerVersion()). The new encoding
+	// settings are therefore applied by the connection thread, see applyQualityChange().
+	setControlFlag(ControlFlag::UpdateQuality, true);
 
-		// an incremental update only resends what changes, so whatever the server sent at the
-		// lower quality (JPEG while monitoring) would otherwise stay on screen, in the remote
-		// view, until that region changes
-		if (improves && isControlFlagSet(ControlFlag::SkipFramebufferUpdates) == false)
-		{
-			enqueueEvent(new VncFullFramebufferUpdateRequestEvent);
-		}
+	// an incremental update only resends what changes, so whatever the server sent at the
+	// lower quality (JPEG while monitoring) would otherwise stay on screen, in the remote
+	// view, until that region changes
+	if (improves && isControlFlagSet(ControlFlag::SkipFramebufferUpdates) == false)
+	{
+		enqueueEvent(new VncFullFramebufferUpdateRequestEvent);
+	}
+}
+
+
+
+void VncConnection::applyQualityChange()
+{
+	// connection thread only
+	if (m_client && isControlFlagSet(ControlFlag::UpdateQuality))
+	{
+		setControlFlag(ControlFlag::UpdateQuality, false);
+		updateEncodingSettingsFromQuality();
+		SetFormatAndEncodings(m_client);
 	}
 }
 
@@ -698,6 +711,8 @@ void VncConnection::handleConnection()
 			sleeperMutex.unlock();
 		}
 
+		applyQualityChange();
+
 		sendEvents();
 
 		updatePresentationMode();
@@ -787,6 +802,8 @@ bool VncConnection::initFrameBuffer()
 	m_client->appData.useRemoteCursor = m_useRemoteCursor ? TRUE : FALSE;
 	m_client->appData.useBGR233 = false;
 
+	// the current quality is applied right here
+	setControlFlag(ControlFlag::UpdateQuality, false);
 	updateEncodingSettingsFromQuality();
 
 	m_framebufferState = FramebufferState::Initialized;
