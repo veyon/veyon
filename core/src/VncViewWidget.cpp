@@ -36,7 +36,8 @@
 VncViewWidget::VncViewWidget( const ComputerControlInterface::Pointer& computerControlInterface,
 							  QRect viewport, QWidget* parent ) :
 	QWidget( parent ),
-	VncView( computerControlInterface )
+	VncView(computerControlInterface),
+	m_forceOpaqueFramebuffer(QGuiApplication::platformName().startsWith(QLatin1String("wayland")))
 {
 	setViewport( viewport );
 
@@ -281,6 +282,17 @@ void VncViewWidget::paintEvent( QPaintEvent* paintEvent )
 	else
 	{
 		p.drawImage( { 0, 0 }, image, source );
+	}
+
+	if (m_forceOpaqueFramebuffer)
+	{
+		// the framebuffer is Format_RGB32 but VNC servers leave the unused byte at 0; on Wayland the
+		// window surface is composited with that byte as alpha, so the remote screen showed up
+		// overexposed/transparent - make the painted area opaque again
+		const auto paintedSize = isScaledView() ? scaledSize() : source.size();
+		p.setCompositionMode(QPainter::CompositionMode_DestinationOver);
+		p.fillRect(QRect(QPoint(0, 0), paintedSize), Qt::black);
+		p.setCompositionMode(QPainter::CompositionMode_SourceOver);
 	}
 
 	if( connection()->state() != VncConnection::State::Connected )

@@ -79,5 +79,6 @@ private:
 	QImage m_scaledImage{};
 	QRect m_scaledImageSource{};
 	bool m_scaledImageOutdated{true};
+	bool m_forceOpaqueFramebuffer{false};
 
 } ;
