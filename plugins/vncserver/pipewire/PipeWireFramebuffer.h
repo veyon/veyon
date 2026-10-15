@@ -99,6 +99,7 @@ private:
 	QSize            m_frameSize;
 	uint32_t         m_videoFormat{SPA_VIDEO_FORMAT_UNKNOWN};
 	bool             m_running{false};
+	bool             m_forceFullFrame{true};
 
 	std::unique_ptr<QThread> m_loopThread;
 };

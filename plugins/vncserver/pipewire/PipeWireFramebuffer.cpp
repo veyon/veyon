@@ -53,6 +53,8 @@ bool PipeWireFramebuffer::open(int fd, quint32 nodeId, rfbScreenInfoPtr screen)
 
 	m_rfbScreen = screen;
 	m_frameSize = {};
+	// a (re)opened stream starts from scratch while rfbScreen may keep its size and stale content
+	m_forceFullFrame = true;
 
 	pw_init(nullptr, nullptr);
 
@@ -466,7 +468,10 @@ void PipeWireFramebuffer::processFrame()
 	if (static_cast<size_t>(srcStride) * height > d.chunk->size)
 	{
 		pw_stream_queue_buffer(m_stream, pwBuf);
-		return; // short/partial frame - skip rather than read OOB
+		// short/partial frame - skip rather than read OOB; its damage is lost,
+		// so the next frame has to be converted and sent in full
+		m_forceFullFrame = true;
+		return;
 	}
 
 	// Damage metadata drives both which regions we mark modified for VNC
@@ -477,9 +482,14 @@ void PipeWireFramebuffer::processFrame()
 	const auto* damage = static_cast<const spa_meta_region*>(
 		spa_buffer_find_meta_data(buf, SPA_META_VideoDamage, sizeof(spa_meta_region)));
 
-	convertFrame(dst, src, srcStride, dstStride, width, height, damage, sizeChanged);
+	// the first frame after (re)opening the stream or after a skipped frame must be complete:
+	// otherwise areas never reported as damaged keep stale/blank content
+	const bool fullFrame = sizeChanged || m_forceFullFrame;
+	m_forceFullFrame = false;
 
-	if (damage && spa_meta_region_is_valid(damage) && !sizeChanged)
+	convertFrame(dst, src, srcStride, dstStride, width, height, damage, fullFrame);
+
+	if (damage && spa_meta_region_is_valid(damage) && !fullFrame)
 	{
 		for (const spa_meta_region* r = damage; spa_meta_region_is_valid(r); ++r)
 		{
