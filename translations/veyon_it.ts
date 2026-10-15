@@ -2543,7 +2543,7 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     </message>
     <message>
         <source>Query user groups from user attribute</source>
-        <translation type="unfinished"/>
+        <translation>Interroga i gruppi di utenti in base all&apos;attributo utente</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
@@ -2591,7 +2591,7 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     </message>
     <message>
         <source>List all user groups</source>
-        <translation type="unfinished"/>
+        <translation>Elenca tutti i gruppi di utenti</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -2603,7 +2603,7 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     </message>
     <message>
         <source>List all computers at a specific location</source>
-        <translation type="unfinished"/>
+        <translation>Elenca tutti i computer in una posizione specifica</translation>
     </message>
     <message>
         <source>Computers</source>
@@ -3552,15 +3552,15 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
     </message>
     <message>
         <source>Grid sizing mode</source>
-        <translation type="unfinished"/>
+        <translation>Modalità di dimensionamento della griglia</translation>
     </message>
     <message>
         <source>Full-length labels (scales down all thumbnails)</source>
-        <translation type="unfinished"/>
+        <translation>Etichette a lunghezza intera (ridimensiona tutte le miniature)</translation>
     </message>
     <message>
         <source>Maximized thumbnails (truncated labels)</source>
-        <translation type="unfinished"/>
+        <translation>Miniature ingrandite (etichette troncate)</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -3723,15 +3723,15 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
     <name>PipeWireVncConfigurationWidget</name>
     <message>
         <source>PipeWire VNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configurazione del server VNC PipeWire</translation>
     </message>
     <message>
         <source>Remember the screen sharing approval across restarts</source>
-        <translation type="unfinished"/>
+        <translation>Ricorda l&apos;approvazione della condivisione dello schermo tra i riavvii</translation>
     </message>
     <message>
         <source>The approval token is stored in the user&apos;s state directory. Any program running as the same user can read it and share the screen without asking.</source>
-        <translation type="unfinished"/>
+        <translation>Il token di approvazione viene memorizzato nella cartella di stato dell&apos;utente. Qualsiasi programma eseguito dallo stesso utente può leggere e condividere lo schermo senza chiedere autorizzazione.</translation>
     </message>
 </context>
 <context>

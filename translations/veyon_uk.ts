@@ -2543,7 +2543,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Query user groups from user attribute</source>
-        <translation type="unfinished"/>
+        <translation>Запитувати групи користувача з атрибута користувача</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
@@ -2591,7 +2591,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>List all user groups</source>
-        <translation type="unfinished"/>
+        <translation>Вивести список усіх груп користувача</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -2603,7 +2603,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>List all computers at a specific location</source>
-        <translation type="unfinished"/>
+        <translation>Вивести список усіх комп&apos;ютерів у вказаному місці</translation>
     </message>
     <message>
         <source>Computers</source>
@@ -3524,31 +3524,31 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Monitoring view</source>
-        <translation type="unfinished"/>
+        <translation>Панель спостереження</translation>
     </message>
     <message>
         <source>Visibility mode</source>
-        <translation type="unfinished"/>
+        <translation>Режим видимості</translation>
     </message>
     <message>
         <source>Aspect ratio</source>
-        <translation type="unfinished"/>
+        <translation>Співвідношення розмірів</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished"/>
+        <translation>Звичайний</translation>
     </message>
     <message>
         <source>Blurred</source>
-        <translation type="unfinished"/>
+        <translation>Розмитий</translation>
     </message>
     <message>
         <source>Hidden</source>
-        <translation type="unfinished"/>
+        <translation>Прихований</translation>
     </message>
     <message>
         <source>Grid spacing</source>
-        <translation type="unfinished"/>
+        <translation>Інтервали у таблиці</translation>
     </message>
     <message>
         <source>Image quality</source>
@@ -3556,23 +3556,23 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Display label</source>
-        <translation type="unfinished"/>
+        <translation>Мітка дисплея</translation>
     </message>
     <message>
         <source>Refresh rate</source>
-        <translation type="unfinished"/>
+        <translation>Частота оновлення</translation>
     </message>
     <message>
         <source>Grid sizing mode</source>
-        <translation type="unfinished"/>
+        <translation>Режим масштабування таблиці</translation>
     </message>
     <message>
         <source>Full-length labels (scales down all thumbnails)</source>
-        <translation type="unfinished"/>
+        <translation>Повні мітки (зменшити масштаб усіх мініатюр)</translation>
     </message>
     <message>
         <source>Maximized thumbnails (truncated labels)</source>
-        <translation type="unfinished"/>
+        <translation>Максимізовані мініатюри (обрізані мітки)</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -3735,15 +3735,15 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>PipeWireVncConfigurationWidget</name>
     <message>
         <source>PipeWire VNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>Налаштування сервера VNC PipeWire</translation>
     </message>
     <message>
         <source>Remember the screen sharing approval across restarts</source>
-        <translation type="unfinished"/>
+        <translation>Запам&apos;ятовувати стан підтвердження оприлюднення екрана між перезапусками</translation>
     </message>
     <message>
         <source>The approval token is stored in the user&apos;s state directory. Any program running as the same user can read it and share the screen without asking.</source>
-        <translation type="unfinished"/>
+        <translation>Жетон дозволу зберігається в каталозі стану користувача. Будь-яка програма, що працює від імені того самого користувача, може прочитати його та надати спільний доступ до екрана без запиту.</translation>
     </message>
 </context>
 <context>

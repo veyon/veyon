@@ -2546,7 +2546,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>Query user groups from user attribute</source>
-        <translation type="unfinished"/>
+        <translation>Hämta användargrupper från användarattribut</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
@@ -2594,7 +2594,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>List all user groups</source>
-        <translation type="unfinished"/>
+        <translation>Lista alla användargrupper</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -2606,7 +2606,7 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
     <message>
         <source>List all computers at a specific location</source>
-        <translation type="unfinished"/>
+        <translation>Lista alla datorer på en angiven plats</translation>
     </message>
     <message>
         <source>Computers</source>
@@ -3565,15 +3565,15 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
     </message>
     <message>
         <source>Grid sizing mode</source>
-        <translation type="unfinished"/>
+        <translation>Storleksläge för rutnät</translation>
     </message>
     <message>
         <source>Full-length labels (scales down all thumbnails)</source>
-        <translation type="unfinished"/>
+        <translation>Etiketter i full längd (skalar ned alla miniatyrbilder)</translation>
     </message>
     <message>
         <source>Maximized thumbnails (truncated labels)</source>
-        <translation type="unfinished"/>
+        <translation>Maximerade miniatyrbilder (avkortade etiketter)</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -3736,15 +3736,15 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
     <name>PipeWireVncConfigurationWidget</name>
     <message>
         <source>PipeWire VNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>Konfiguration av PipeWire VNC-server</translation>
     </message>
     <message>
         <source>Remember the screen sharing approval across restarts</source>
-        <translation type="unfinished"/>
+        <translation>Kom ihåg godkännandet av skärmdelning mellan omstarter</translation>
     </message>
     <message>
         <source>The approval token is stored in the user&apos;s state directory. Any program running as the same user can read it and share the screen without asking.</source>
-        <translation type="unfinished"/>
+        <translation>Godkännandetoken lagras i användarens tillståndskatalog. Alla program som körs som samma användare kan läsa den och dela skärmen utan att be om godkännande.</translation>
     </message>
 </context>
 <context>
