@@ -448,6 +448,7 @@ void VncView::keyEventHandler( QKeyEvent* event )
 		case Qt::Key_Backtab: return XK_Tab;
 		case Qt::Key_Backspace: return XK_BackSpace;
 		case Qt::Key_Return: return XK_Return;
+		case Qt::Key_Enter: return XK_KP_Enter;
 		case Qt::Key_Insert: return XK_Insert;
 		case Qt::Key_Delete: return XK_Delete;
 		case Qt::Key_Pause: return XK_Pause;
