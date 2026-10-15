@@ -28,6 +28,7 @@
 #include <QProcess>
 #include <QTcpServer>
 #include <QTcpSocket>
+#include <QTimer>
 
 #include <QRecursiveMutex>
 
@@ -69,7 +70,14 @@ private:
 
 	void sendPendingMessages();
 
+	void enqueueSessionWorkerMessage(const FeatureMessage& message);
+	void retryPendingSessionWorkerMessages();
+	void watchWorkerAuthentication(Feature::Uid featureUid, const QByteArray& token);
+	void removeStaleWorker(Feature::Uid featureUid, const QByteArray& token);
+
 	static constexpr auto UnmanagedSessionProcessRetryInterval = 5000;
+	static constexpr auto MaximumPendingSessionWorkerMessages = 256;
+	static constexpr auto WorkerAuthenticationTimeout = 30000;
 
 	VeyonServerInterface& m_server;
 	QTcpServer m_tcpServer;
@@ -87,5 +95,8 @@ private:
 	WorkerMap m_workers;
 
 	QRecursiveMutex m_workersMutex;
+
+	QMap<Feature::Uid, QList<FeatureMessage>> m_pendingSessionWorkerMessages;
+	QTimer m_sessionWorkerRetryTimer;
 
 } ;

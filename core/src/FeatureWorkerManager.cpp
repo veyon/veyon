@@ -57,6 +57,10 @@ FeatureWorkerManager::FeatureWorkerManager( VeyonServerInterface& server, QObjec
 	connect( pendingMessagesTimer, &QTimer::timeout, this, &FeatureWorkerManager::sendPendingMessages );
 
 	pendingMessagesTimer->start( 100 );
+
+	m_sessionWorkerRetryTimer.setInterval(UnmanagedSessionProcessRetryInterval);
+	connect (&m_sessionWorkerRetryTimer, &QTimer::timeout,
+			 this, &FeatureWorkerManager::retryPendingSessionWorkerMessages);
 }
 
 
@@ -89,8 +93,16 @@ bool FeatureWorkerManager::startManagedSystemWorker( Feature::Uid featureUid )
 	worker.process = new QProcess;
 	worker.process->setProcessChannelMode( QProcess::ForwardedChannels );
 
-	connect( worker.process, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished),
-			 worker.process, &QProcess::deleteLater );
+	// a worker that terminates before connecting should not remain registered;
+	// otherwise, `isWorkerRunning()` remains true and the feature appears active
+	// until the server is restarted
+	const auto token = worker.token;
+
+	connect (worker.process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+			 this, [=, this]() { removeStaleWorker(featureUid, token); });
+
+	connect (worker.process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+			 worker.process, &QProcess::deleteLater);
 
 	vDebug() << "Starting managed system worker for feature" << VeyonCore::featureManager().feature(featureUid).name();
 	if( qEnvironmentVariableIsSet("VEYON_VALGRIND_WORKERS") )
@@ -112,6 +124,8 @@ bool FeatureWorkerManager::startManagedSystemWorker( Feature::Uid featureUid )
 	m_workersMutex.lock();
 	m_workers[featureUid] = worker;
 	m_workersMutex.unlock();
+
+	watchWorkerAuthentication(featureUid, token);
 
 	return true;
 }
@@ -153,6 +167,8 @@ bool FeatureWorkerManager::startUnmanagedSessionWorker( Feature::Uid featureUid 
 	m_workersMutex.lock();
 	m_workers[featureUid] = worker;
 	m_workersMutex.unlock();
+
+	watchWorkerAuthentication(featureUid, worker.token);
 
 	return true;
 }
@@ -218,16 +234,106 @@ void FeatureWorkerManager::sendMessageToManagedSystemWorker( const FeatureMessag
 
 void FeatureWorkerManager::sendMessageToUnmanagedSessionWorker( const FeatureMessage& message )
 {
-	if( isWorkerRunning( message.featureUid() ) == false &&
-		startUnmanagedSessionWorker( message.featureUid() ) == false )
+	// maintain the order: as long as there are older messages waiting, add them to the list
+	if (m_pendingSessionWorkerMessages.contains(message.featureUid()) ||
+		(isWorkerRunning(message.featureUid()) == false &&
+		  startUnmanagedSessionWorker(message.featureUid()) == false))
 	{
-		vDebug() << "User session likely not yet available - retrying worker start";
-		QTimer::singleShot(UnmanagedSessionProcessRetryInterval, this,
-						   [=, this]() { sendMessageToUnmanagedSessionWorker(message); });
+		enqueueSessionWorkerMessage(message);
 		return;
 	}
 
 	sendMessage( message );
+}
+
+
+
+void FeatureWorkerManager::enqueueSessionWorkerMessage(const FeatureMessage& message)
+{
+	if (m_pendingSessionWorkerMessages.contains(message.featureUid()) == false)
+	{
+		vWarning() << "message queue does not exist for feature" << message.featureUid();
+		return;
+	}
+
+	auto& queue = m_pendingSessionWorkerMessages[message.featureUid()];
+	if (queue.size() >= MaximumPendingSessionWorkerMessages)
+	{
+		vWarning() << "too many messages pending for session worker of feature" << message.featureUid()
+				   << "- discarding them";
+		m_pendingSessionWorkerMessages.remove(message.featureUid());
+		return;
+	}
+
+	if (queue.isEmpty())
+	{
+		vDebug() << "User session likely not yet available - retrying worker start";
+	}
+
+	queue.append(message);
+
+	if (m_sessionWorkerRetryTimer.isActive() == false)
+	{
+		m_sessionWorkerRetryTimer.start();
+	}
+}
+
+
+
+void FeatureWorkerManager::retryPendingSessionWorkerMessages()
+{
+	for (auto it = m_pendingSessionWorkerMessages.begin(); it != m_pendingSessionWorkerMessages.end();)
+	{
+		const auto featureUid = it.key();
+		if (isWorkerRunning(featureUid) || startUnmanagedSessionWorker(featureUid))
+		{
+			for (const auto& message : std::as_const(it.value()))
+			{
+				sendMessage(message);
+			}
+			it = m_pendingSessionWorkerMessages.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+
+	if (m_pendingSessionWorkerMessages.isEmpty())
+	{
+		m_sessionWorkerRetryTimer.stop();
+	}
+}
+
+
+
+void FeatureWorkerManager::watchWorkerAuthentication(Feature::Uid featureUid, const QByteArray& token)
+{
+	// a worker that was launched but never authenticated (token not read, process terminated, etc.) would block
+	// the feature indefinitely: we remove it so that a subsequent message can restart it
+	QTimer::singleShot(WorkerAuthenticationTimeout, this, [=, this]() {
+		QMutexLocker locker(&m_workersMutex);
+		const auto it = m_workers.constFind(featureUid);
+		if (it != m_workers.constEnd() && it->token == token && it->authenticated == false)
+		{
+			locker.unlock();
+			vWarning() << "worker for feature" << featureUid << "did not authenticate in time - stopping it";
+			stopWorker(featureUid);
+		}
+	});
+}
+
+
+
+void FeatureWorkerManager::removeStaleWorker(Feature::Uid featureUid, const QByteArray& token)
+{
+	QMutexLocker locker(&m_workersMutex);
+	const auto it = m_workers.find(featureUid);
+	if (it != m_workers.end() && it->token == token && it->socket.isNull())
+	{
+		vDebug() << "removing stale worker for feature" << featureUid;
+		m_workers.erase(it);
+	}
 }
 
 
