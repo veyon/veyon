@@ -272,20 +272,24 @@ bool VncClientProtocol::readProtocol()
 			return false;
 		}
 
-		static const QRegularExpression rfbRX{QStringLiteral("RFB (\\d\\d\\d)\\.(\\d\\d\\d)\n")};
-		const auto match = rfbRX.match(QString::fromUtf8(protocol));
+		// Veyon servers from 4.10.4 to 4.11.2 send "RFB 003.008\0", i.e. a NUL instead of
+		// the trailing newline, so accept both terminators to stay compatible with them.
+		// Pass the size explicitly: the QByteArray overloads stop at the first NUL in Qt 5.
+		static const QRegularExpression rfbRX{QStringLiteral("RFB (\\d\\d\\d)\\.(\\d\\d\\d)[\\n\\x00]")};
+		const auto match = rfbRX.match(QString::fromLatin1(protocol.constData(), protocol.size()));
 
 		if( match.hasMatch() == false ||
 			match.captured( 1 ).toInt() != 3 ||
 			match.captured( 2 ).toInt() < 7 )
 		{
-			vCritical() << "invalid protocol version";
+			vCritical() << "invalid protocol version" << protocol.toHex();
 			m_socket->close();
 
 			return false;
 		}
 
-		m_socket->write( protocol );
+		// Reply with a well-formed version string instead of echoing a possible NUL back.
+		m_socket->write( QStringLiteral("RFB %1.%2\n").arg( match.captured(1), match.captured(2) ).toLatin1() );
 
 		m_state = SecurityInit;
 
