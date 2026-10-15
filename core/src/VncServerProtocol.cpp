@@ -60,11 +60,12 @@ void VncServerProtocol::start()
 {
 	if( state() == State::Disconnected )
 	{
-		std::array<char, sz_rfbProtocolVersionMsg> protocol{};
+		// One extra byte for snprintf's terminator, otherwise it replaces the trailing newline
+		std::array<char, sz_rfbProtocolVersionMsg + 1> protocol{};
 
 		std::snprintf(protocol.data(), protocol.size(), rfbProtocolVersionFormat, 3, 8); // Flawfinder: ignore
 
-		m_socket->write(protocol.data(), protocol.size());
+		m_socket->write(protocol.data(), sz_rfbProtocolVersionMsg);
 
 		setState( State::Protocol );
 	}
