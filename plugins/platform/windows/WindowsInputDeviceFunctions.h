@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include <windows.h>
+
 #include <interception.h>
 
 #include "PlatformInputDeviceFunctions.h"
@@ -65,6 +67,7 @@ private:
 
 	bool m_inputDevicesDisabled{false};
 	InterceptionContext m_interceptionContext{nullptr};
+	HHOOK m_keyboardHook{nullptr};
 	QString m_hidServiceName{QStringLiteral("hidserv")};
 	bool m_hidServiceStatusInitialized{false};
 	bool m_hidServiceActivated{false};
