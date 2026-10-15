@@ -132,6 +132,14 @@ bool InputBlockHelper::sendCommand(const QString& cmd)
 
 bool InputBlockHelper::ensureRunning()
 {
+	// restart a helper which crashed or got killed - otherwise input blocking silently stops working
+	if (m_process && m_process->state() == QProcess::NotRunning)
+	{
+		vWarning() << "veyon-input-helper is not running anymore - restarting it";
+		delete m_process;
+		m_process = nullptr;
+	}
+
 	if (m_process == nullptr && start() == false)
 	{
 		return false;
