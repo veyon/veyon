@@ -132,7 +132,7 @@ private:
 	QAtomicInt m_epochId = 0;
 
 	int m_quality = DefaultQuality;
-	int m_bytesSinceLastQualityAdjust = 0;
+	qint64 m_bytesSinceLastQualityAdjust = 0;
 	int m_maxKBytesPerSecond = 0;
 
 } ;
