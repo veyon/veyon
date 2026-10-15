@@ -281,6 +281,18 @@ void LinuxServiceCore::run()
 {
 	startServers();
 
+	// in single session mode a start may have been given up on (e.g. failed D-Bus queries
+	// on a slow system right after login) without any later event retriggering it
+	QTimer serverWatchdog;
+	connect(&serverWatchdog, &QTimer::timeout, this, [this]() {
+		if (m_sessionManager.mode() != PlatformSessionManager::Mode::Multi &&
+			m_serverProcesses.isEmpty() && m_deferredServerSessions.isEmpty())
+		{
+			startServers();
+		}
+	});
+	serverWatchdog.start(ServerWatchdogInterval);
+
 	QEventLoop eventLoop;
 	eventLoop.exec();
 }
@@ -370,6 +382,10 @@ void LinuxServiceCore::startServers()
 
 void LinuxServiceCore::startServer( const QString& sessionPath )
 {
+	// a pending deferral (if any) is handled now - re-added below whenever the start is deferred
+	// again, so that a session given up on here is not skipped forever by startServers()
+	m_deferredServerSessions.removeAll(sessionPath);
+
 	const auto sessionType = LinuxSessionFunctions::getSessionType( sessionPath );
 
 	// do not start server for non-graphical sessions
@@ -430,8 +446,9 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 	if( sessionUptime >= 0 &&
 		sessionUptime < minimumSessionUptime )
 	{
-		vDebug() << "Session" << sessionPath << "too young - retrying in" << minimumSessionUptime - sessionUptime << "msecs";
-		deferServerStart( sessionPath, int(minimumSessionUptime - sessionUptime) );
+		vDebug() << "Session" << sessionPath << "too young - retrying in" << minimumSessionUptime - sessionUptime << "secs";
+		// MinimumUserSessionLifetime and the session uptime are in seconds
+		deferServerStart(sessionPath, int(minimumSessionUptime - sessionUptime) * 1000);
 		return;
 	}
 
@@ -615,11 +632,37 @@ void LinuxServiceCore::stopAllServers()
 void LinuxServiceCore::checkSessionState( const QString& sessionPath )
 {
 	const auto sessionState = LinuxSessionFunctions::getSessionState( sessionPath );
+
+	// an unknown state usually means a failed or timed out D-Bus query (e.g. while the system is
+	// still busy after login) rather than a vanished session - re-check once before giving up
+	if (sessionState == LinuxSessionFunctions::State::Unknown &&
+		m_sessionsWithUnknownState.contains(sessionPath) == false)
+	{
+		m_sessionsWithUnknownState.insert(sessionPath);
+		vDebug() << "State of session" << sessionPath << "unknown - checking again in" << SessionStateProbingInterval << "msecs";
+		QTimer::singleShot(SessionStateProbingInterval, this, [=, this]() {
+			if (m_serverProcesses.contains(sessionPath))
+			{
+				checkSessionState(sessionPath);
+			}
+		});
+		return;
+	}
+
+	m_sessionsWithUnknownState.remove( sessionPath );
+
 	if( sessionState == LinuxSessionFunctions::State::Closing ||
 		sessionState == LinuxSessionFunctions::State::Unknown )
 	{
 		vDebug() << "Stopping server for currently closing session" << sessionPath;
 		stopServer( sessionPath );
+
+		// as when a session is removed: (re-)start servers for other sessions, e.g. the one
+		// preempted by the closing session
+		if (m_sessionManager.mode() != PlatformSessionManager::Mode::Multi)
+		{
+			startServers();
+		}
 	}
 	else
 	{

@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include <QSet>
+
 #include "LinuxCoreFunctions.h"
 #include "PlatformSessionManager.h"
 #include "ServiceDataManager.h"
@@ -50,6 +52,7 @@ private:
 	static constexpr auto SessionEnvironmentProbingInterval = 1000;
 	static constexpr auto SessionStateProbingInterval = 1000;
 	static constexpr auto ServerRestartInterval = 5000;
+	static constexpr auto ServerWatchdogInterval = 10000;
 
 	void connectToLoginManager();
 	void startServers();
@@ -63,6 +66,7 @@ private:
 	LinuxCoreFunctions::DBusInterfacePointer m_loginManager{LinuxCoreFunctions::systemdLoginManager()};
 	QMap<QString, LinuxServerProcess *> m_serverProcesses;
 	QStringList m_deferredServerSessions;
+	QSet<QString> m_sessionsWithUnknownState;
 
 	ServiceDataManager m_dataManager{};
 	PlatformSessionManager m_sessionManager{};
