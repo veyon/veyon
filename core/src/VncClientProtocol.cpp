@@ -33,6 +33,8 @@ extern "C"
 #include <QRegularExpression>
 #include <QTcpSocket>
 
+#include "RfbVeyonAuth.h"
+#include "VariantArrayMessage.h"
 #include "VncClientProtocol.h"
 
 
@@ -67,10 +69,11 @@ vncEncryptBytes(unsigned char *bytes, const char *passwd, size_t passwd_length)
 
 
 
-VncClientProtocol::VncClientProtocol( QIODevice* socket, const Password& vncPassword ) :
+VncClientProtocol::VncClientProtocol( QIODevice* socket, const Password& vncPassword, const Password& token ) :
 	m_socket( socket ),
 	m_state( Disconnected ),
 	m_vncPassword( vncPassword ),
+	m_token( token ),
 	m_serverInitMessage(),
 	m_framebufferWidth( 0 ),
 	m_framebufferHeight( 0 )
@@ -115,6 +118,12 @@ bool VncClientProtocol::read() // Flawfinder: ignore
 
 	case SecurityChallenge:
 		return receiveSecurityChallenge();
+
+	case SecurityVeyonAuth:
+		return receiveSecurityVeyonAuth();
+
+	case SecurityVeyonToken:
+		return receiveSecurityVeyonToken();
 
 	case SecurityResult:
 		return receiveSecurityResult();
@@ -333,7 +342,12 @@ bool VncClientProtocol::receiveSecurityTypes()
 
 		char securityType = rfbSecTypeInvalid;
 
-		if( securityTypeList.contains( rfbSecTypeVncAuth ) )
+		if( securityTypeList.contains( rfbSecTypeVeyon ) && m_token.isEmpty() == false )
+		{
+			securityType = rfbSecTypeVeyon;
+			m_state = State::SecurityVeyonAuth;
+		}
+		else if( securityTypeList.contains( rfbSecTypeVncAuth ) )
 		{
 			securityType = rfbSecTypeVncAuth;
 			m_state = State::SecurityChallenge;
@@ -352,6 +366,85 @@ bool VncClientProtocol::receiveSecurityTypes()
 
 		m_socket->write( &securityType, sizeof(securityType) );
 
+		return true;
+	}
+
+	return false;
+}
+
+
+
+bool VncClientProtocol::receiveSecurityVeyonAuth()
+{
+	VariantArrayMessage message( m_socket );
+
+	if( message.isReadyForReceive() && message.receive() )
+	{
+		const auto count = message.read().toInt();
+
+		if( count <= 0 || count > MaximumAuthTypes )
+		{
+			vCritical() << "invalid number of authentication types:" << count;
+			m_socket->close();
+			return false;
+		}
+
+		QVector<RfbVeyonAuth::Type> authTypes;
+		authTypes.reserve( count );
+
+		for( int i = 0; i < count; ++i )
+		{
+			const auto authType = message.read().value<RfbVeyonAuth::Type>();
+			if( authType == RfbVeyonAuth::Invalid )
+			{
+				vCritical() << "invalid authentication type received";
+				m_socket->close();
+				return false;
+			}
+			authTypes.append( authType );
+		}
+
+		if( authTypes.contains( RfbVeyonAuth::Token ) == false )
+		{
+			vCritical() << "Token authentication not supported by server!";
+			m_socket->close();
+			return false;
+		}
+
+		VariantArrayMessage response( m_socket );
+		response.write( RfbVeyonAuth::Token );
+		// the demo server identifies clients by their token, not by a user name
+		response.write( QString() );
+		if( response.send() == false )
+		{
+			m_socket->close();
+			return false;
+		}
+
+		m_state = State::SecurityVeyonToken;
+		return true;
+	}
+
+	return false;
+}
+
+
+
+bool VncClientProtocol::receiveSecurityVeyonToken()
+{
+	VariantArrayMessage ack( m_socket );
+
+	if( ack.isReadyForReceive() && ack.receive() )
+	{
+		VariantArrayMessage tokenMessage( m_socket );
+		tokenMessage.write( m_token.toByteArray() );
+		if( tokenMessage.send() == false )
+		{
+			m_socket->close();
+			return false;
+		}
+
+		m_state = State::SecurityResult;
 		return true;
 	}
 
