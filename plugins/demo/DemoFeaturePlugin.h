@@ -25,6 +25,7 @@
 #pragma once
 
 #include <QGuiApplication>
+#include <QPointer>
 
 #include "ConfigurationPagePluginInterface.h"
 #include "DemoConfiguration.h"
@@ -54,12 +55,13 @@ public:
 		ViewportY,
 		ViewportWidth,
 		ViewportHeight,
-		VncServerPortOffset
+		VncServerPortOffset,
+		IsRelay
 	};
 	Q_ENUM(Argument)
 
 	explicit DemoFeaturePlugin( QObject* parent = nullptr );
-	~DemoFeaturePlugin() override = default;
+	~DemoFeaturePlugin() override;
 
 	Plugin::Uid uid() const override
 	{
@@ -158,8 +160,8 @@ private:
 
 	DemoConfiguration m_configuration;
 
-	DemoServer* m_demoServer;
-	DemoClient* m_demoClient;
+	QPointer<DemoServer> m_demoServer;
+	QPointer<DemoClient> m_demoClient;
 
 	ComputerControlInterfaceList m_demoServerControlInterfaces{};
 	ComputerControlInterfaceList m_demoServerClients{};

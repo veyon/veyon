@@ -35,16 +35,23 @@
 #include "VncClientProtocol.h"
 
 
-DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, const Password& demoAccessToken,
-						const DemoConfiguration& configuration, int demoServerPort, QObject *parent ) :
+DemoServer::DemoServer( const QString& vncServerHost, int vncServerPort, const Password& vncServerPassword,
+						const Password& demoAccessToken, const DemoConfiguration& configuration,
+						int demoServerPort, QObject *parent ) :
 	QTcpServer( parent ),
 	m_configuration( configuration ),
 	m_memoryLimit(m_configuration.memoryLimit() * BytesPerMB),
 	m_keyFrameInterval( m_configuration.keyFrameInterval() * 1000 ),
+	m_vncServerHost( vncServerHost ),
 	m_vncServerPort( vncServerPort ),
 	m_demoAccessToken( demoAccessToken ),
 	m_vncServerSocket( new QTcpSocket( this ) ),
-	m_vncClientProtocol( new VncClientProtocol( m_vncServerSocket, vncServerPassword ) ),
+	// The master's own demo server reads from the local VNC server and
+	// authenticates with the VNC password. A relay node connects to an
+	// upstream demo server and authenticates with the demo access token
+	// instead - that is why only one of the two is ever in use here.
+	m_vncClientProtocol( new VncClientProtocol( m_vncServerSocket, vncServerPassword,
+												vncServerPassword.isEmpty() ? demoAccessToken : Password() ) ),
 	m_framebufferUpdateTimer( this ),
 	m_lastFullFramebufferUpdate(),
 	m_requestFullFramebufferUpdate(false)
@@ -74,6 +81,24 @@ DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, co
 
 	connect( m_vncServerSocket, &QTcpSocket::readyRead, this, &DemoServer::readFromVncServer );
 
+	// When acting as a relay node the upstream demo server may not be listening
+	// yet (the master starts its own demo server after having dispatched the
+	// demo clients). Retry until the upstream becomes available instead of
+	// staying disconnected forever. Only the upstream connection is retried -
+	// reconnectToVncServer() would additionally drop the clients of this node,
+	// which must not happen while only the upstream is unavailable.
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+	connect( m_vncServerSocket, &QAbstractSocket::errorOccurred, this,
+#else
+	connect( m_vncServerSocket, QOverload<QAbstractSocket::SocketError>::of( &QAbstractSocket::error ), this,
+#endif
+			 [this]( QAbstractSocket::SocketError ) {
+		if( m_terminating == false )
+		{
+			QTimer::singleShot( ReconnectInterval, this, &DemoServer::connectToUpstream );
+		}
+	} );
+
 	connect( &m_framebufferUpdateTimer, &QTimer::timeout, this, &DemoServer::requestFramebufferUpdate );
 
 	if( listen( QHostAddress::Any, demoServerPort ) == false )
@@ -89,6 +114,17 @@ DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, co
 
 
 
+// The master's own demo server serves the screen of the machine it runs on, so
+// it reads from the local VNC server.
+DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, const Password& demoAccessToken,
+						const DemoConfiguration& configuration, int demoServerPort, QObject *parent ) :
+	DemoServer( QStringLiteral( "127.0.0.1" ), vncServerPort, vncServerPassword, demoAccessToken,
+				configuration, demoServerPort, parent )
+{
+}
+
+
+
 DemoServer::~DemoServer()
 {
 	delete m_vncClientProtocol;
@@ -99,6 +135,8 @@ DemoServer::~DemoServer()
 
 void DemoServer::terminate()
 {
+	m_terminating = true;
+
 	m_vncServerSocket->disconnect( this );
 
 	const auto connections = findChildren<DemoServerConnection *>();
@@ -182,6 +220,27 @@ void DemoServer::acceptPendingConnections()
 
 
 
+void DemoServer::connectToUpstream()
+{
+	// A missing host is a programming error: falling back to the local host
+	// here would make a relay node silently serve its own screen instead of
+	// the shared one.
+	Q_ASSERT( m_vncServerHost.isEmpty() == false );
+
+	disconnect(m_vncServerSocket, &QTcpSocket::disconnected, this, &DemoServer::reconnectToVncServer);
+	m_vncServerSocket->abort();
+
+	m_vncClientProtocol->reset();
+
+	m_vncClientProtocol->start();
+
+	m_vncServerSocket->connectToHost( QHostAddress( m_vncServerHost ), static_cast<quint16>( m_vncServerPort ) );
+
+	connect(m_vncServerSocket, &QTcpSocket::disconnected, this, &DemoServer::reconnectToVncServer);
+}
+
+
+
 void DemoServer::reconnectToVncServer()
 {
 	vDebug();
@@ -203,16 +262,7 @@ void DemoServer::reconnectToVncServer()
 	m_bytesSinceLastQualityAdjust = 0;
 	m_dataLock.unlock();
 
-	disconnect(m_vncServerSocket, &QTcpSocket::disconnected, this, &DemoServer::reconnectToVncServer);
-	m_vncServerSocket->abort();
-
-	m_vncClientProtocol->reset();
-
-	m_vncClientProtocol->start();
-
-	m_vncServerSocket->connectToHost( QHostAddress::LocalHost, static_cast<quint16>( m_vncServerPort ) );
-
-	connect(m_vncServerSocket, &QTcpSocket::disconnected, this, &DemoServer::reconnectToVncServer);
+	connectToUpstream();
 }
 
 
