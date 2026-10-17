@@ -44,12 +44,14 @@ public:
 		SecurityInit,
 		SecurityChallenge,
 		SecurityResult,
+		SecurityVeyonAuth,
+		SecurityVeyonToken,
 		FramebufferInit,
 		Running,
 		StateCount
 	} ;
 
-	VncClientProtocol( QIODevice* socket, const Password& vncPassword );
+	VncClientProtocol( QIODevice* socket, const Password& vncPassword, const Password& token = {} );
 
 	State state() const
 	{
@@ -105,11 +107,14 @@ private:
 	static constexpr auto MaxMessageSize = 64*1024*1024;
 	static constexpr auto MaximumFramebufferDimension = 16384;
 	static constexpr auto MaximumRectanglesPerUpdate = 16384;
+	static constexpr auto MaximumAuthTypes = 32;
 
 	bool readProtocol();
 	bool receiveSecurityTypes();
 	bool receiveSecurityChallenge();
 	bool receiveSecurityResult();
+	bool receiveSecurityVeyonAuth();
+	bool receiveSecurityVeyonToken();
 	bool receiveServerInitMessage();
 
 	bool receiveFramebufferUpdateMessage();
@@ -141,6 +146,7 @@ private:
 	State m_state;
 
 	Password m_vncPassword;
+	Password m_token{};
 
 	QByteArray m_serverInitMessage;
 
