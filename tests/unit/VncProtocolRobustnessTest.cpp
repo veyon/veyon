@@ -75,6 +75,7 @@ class VncProtocolRobustnessTest : public QObject
 
 private Q_SLOTS:
 	void handlesPipelinedAndFragmentedHandshake();
+	void acceptsNulTerminatedProtocolVersion();
 	void rejectsOversizedCutText();
 	void rejectsOversizedVariantMessageEarly();
 
@@ -130,6 +131,22 @@ void VncProtocolRobustnessTest::handlesPipelinedAndFragmentedHandshake()
 	device.appendInput(QByteArray(&secondFragment, 1));
 	QVERIFY(protocol.read());
 	QCOMPARE(protocol.state(), VncClientProtocol::SecurityChallenge);
+}
+
+
+void VncProtocolRobustnessTest::acceptsNulTerminatedProtocolVersion()
+{
+	DuplexDevice device;
+	VncClientProtocol protocol(&device, {});
+	protocol.start();
+
+	// Veyon servers from 4.10.4 to 4.11.2 terminate the version message with a NUL
+	device.appendInput(QByteArray("RFB 003.008\0", sz_rfbProtocolVersionMsg));
+	QVERIFY(protocol.read());
+	QCOMPARE(protocol.state(), VncClientProtocol::SecurityInit);
+
+	// the reply has to be well-formed no matter what the server sent
+	QCOMPARE(device.output(), QByteArrayLiteral("RFB 003.008\n"));
 }
 
 
