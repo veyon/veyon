@@ -181,9 +181,6 @@ void LinuxCoreFunctions::powerDown( bool installUpdates )
 
 void LinuxCoreFunctions::raiseWindow( QWidget* widget, bool stayOnTop )
 {
-	widget->activateWindow();
-	widget->raise();
-
 	if (stayOnTop)
 	{
 		const auto isVisible = widget->isVisible();
@@ -200,6 +197,9 @@ void LinuxCoreFunctions::raiseWindow( QWidget* widget, bool stayOnTop )
 			widget->show();
 		}
 	}
+
+	widget->activateWindow();
+	widget->raise();
 }
 
 
