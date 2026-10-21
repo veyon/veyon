@@ -1,0 +1,4 @@
+# Administrator overrides in /etc/lightdm take precedence over this file.
+# Keep the existing greeter-session setting (GTK or KDE).
+[Seat:*]
+greeter-wrapper=@CMAKE_INSTALL_FULL_BINDIR@/veyon-lightdm-greeter

@@ -25,6 +25,7 @@
 #include "LinuxServiceBusInterface.h"
 
 #include "LinuxDBusInterfaces.h"
+#include "login-helper/LoginInterfaces.h"
 #include "VeyonCore.h"
 
 #include <QCoreApplication>
@@ -42,9 +43,10 @@
 #include <utility>
 
 
-LinuxServiceBusInterface::LinuxServiceBusInterface(SessionUserCheck sessionUserCheck, QObject* parent):
+LinuxServiceBusInterface::LinuxServiceBusInterface(SessionUserCheck sessionUserCheck, SessionAccessCheck sessionAccessCheck, QObject* parent):
 	QObject(parent),
-	m_sessionUserCheck(std::move(sessionUserCheck))
+	m_sessionUserCheck(std::move(sessionUserCheck)),
+	m_sessionAccessCheck(std::move(sessionAccessCheck))
 {
 }
 
@@ -125,7 +127,48 @@ bool LinuxServiceBusInterface::Authenticate(const QString& username, const QByte
 
 
 
-bool LinuxServiceBusInterface::verifyCaller() const
+bool LinuxServiceBusInterface::Login(const QString& sessionPath, const QString& username, const QByteArray& password, const QString& desktop)
+{
+	const auto bus = QDBusConnection::systemBus();
+	const auto uid = bus.interface()->serviceUid(message().service());
+	const auto pid = bus.interface()->servicePid(message().service());
+	if (!verifyCaller(true) || !uid.isValid() || !pid.isValid() ||
+		!m_sessionAccessCheck(uid.value(), pid.value(), sessionPath))
+	{
+		vCritical() << "Rejected LightDM login request for session" << sessionPath
+			<< "caller PID" << (pid.isValid() ? pid.value() : 0);
+		sendErrorReply(QDBusError::AccessDenied, QStringLiteral("The caller cannot request login for this Veyon session"));
+		return false;
+	}
+	vInfo() << "Forwarding LightDM login request for session" << sessionPath << "from managed server PID" << pid.value();
+	auto request = QDBusMessage::createMethodCall(QString::fromLatin1(LoginHelperInterface::Service),
+		QString::fromLatin1(LoginHelperInterface::Path), QString::fromLatin1(LoginHelperInterface::Interface), QStringLiteral("Login"));
+	request.setArguments({sessionPath, username, password, desktop});
+	auto successReply = message().createReply();
+	auto errorReply = message().createErrorReply(QStringLiteral("io.veyon.VeyonService.Error.LoginFailed"), QString());
+	setDelayedReply(true);
+	auto* watcher = new QDBusPendingCallWatcher(bus.asyncCall(request, LoginHelperInterface::ServiceTimeout), this);
+	connect(watcher, &QDBusPendingCallWatcher::finished, this, [watcher, successReply, errorReply]() mutable {
+		const QDBusPendingReply<bool> reply = *watcher;
+		if (reply.isError())
+		{
+			vCritical() << "Login helper request failed:" << reply.error().message();
+			errorReply.setArguments({reply.error().message()});
+			QDBusConnection::systemBus().send(errorReply);
+		}
+		else
+		{
+			successReply.setArguments({reply.value()});
+			QDBusConnection::systemBus().send(successReply);
+		}
+		watcher->deleteLater();
+	});
+	return false;
+}
+
+
+
+bool LinuxServiceBusInterface::verifyCaller(bool serverOnly) const
 {
 	const auto sender = message().service();
 	if(sender.isEmpty())
@@ -179,7 +222,8 @@ bool LinuxServiceBusInterface::verifyCaller() const
 
 	const auto binaryDirectory = QFileInfo(QCoreApplication::applicationDirPath()).canonicalFilePath();
 	if(QFileInfo(executable).absolutePath() != binaryDirectory ||
-		allowedExecutables.contains(executableName) == false)
+		allowedExecutables.contains(executableName) == false ||
+		(serverOnly && executableName != QStringLiteral("veyon-server") + VeyonCore::executableSuffix()))
 	{
 		vCritical() << "rejecting authentication request from untrusted executable" << executable;
 		return false;

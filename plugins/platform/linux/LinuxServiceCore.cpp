@@ -37,6 +37,8 @@
 #include "LinuxServiceCore.h"
 #include "LinuxSessionFunctions.h"
 #include "LinuxUserFunctions.h"
+#include "SessionFileAccess.h"
+#include "login-helper/LoginSession.h"
 #include "VeyonConfiguration.h"
 
 
@@ -284,6 +286,11 @@ void LinuxServiceCore::run()
 	{
 		m_busInterface = new LinuxServiceBusInterface(
 			[this](uid_t uid) { return isActiveSessionUser(uid); },
+			[this](uid_t uid, uint pid, const QString& path) {
+				const auto process = m_serverProcesses.value(path);
+				return process && process->matchesLoginCaller(pid, uid) &&
+					(uid == 0 || process->sessionUserId() == uid);
+			},
 			this);
 	}
 
@@ -294,15 +301,20 @@ void LinuxServiceCore::run()
 
 	startServers();
 
-	// in single session mode a start may have been given up on (e.g. failed D-Bus queries
-	// on a slow system right after login) without any later event retriggering it
+	// SessionNew can arrive before Type/User/environment is available, or be
+	// missed while logind restarts. Reconcile every mode, including greeters in
+	// multi-session mode, rather than relying solely on one D-Bus notification.
 	QTimer serverWatchdog;
 	connect(&serverWatchdog, &QTimer::timeout, this, [this]() {
-		if (m_sessionManager.mode() != PlatformSessionManager::Mode::Multi &&
-			m_serverProcesses.isEmpty() && m_deferredServerSessions.isEmpty())
+		const auto managedSessions = m_serverProcesses.keys();
+		for (const auto& path : managedSessions)
 		{
-			startServers();
+			if (m_serverProcesses.contains(path))
+			{
+				checkSessionState(path);
+			}
 		}
+		startServers();
 	});
 	serverWatchdog.start(ServerWatchdogInterval);
 
@@ -332,6 +344,7 @@ void LinuxServiceCore::stopServer( const QString& login1SessionId, const QDBusOb
 	const auto sessionPath = sessionObjectPath.path();
 
 	vDebug() << "session removed" << sessionPath;
+	m_deferredServerSessions.removeAll(sessionPath);
 
 	if( m_serverProcesses.contains( sessionPath ) )
 	{
@@ -379,6 +392,23 @@ void LinuxServiceCore::startServers()
 	vDebug();
 
 	const auto sessions = LinuxSessionFunctions::listSessions();
+	if (m_sessionManager.mode() != PlatformSessionManager::Mode::Multi)
+	{
+		// Switching back to an existing greeter may only change State; logind
+		// does not emit SessionNew again. Follow the active graphical session.
+		for (const auto& path : sessions)
+		{
+			const auto session = LoginSession::read(QDBusConnection::systemBus(), path);
+			if (session.state == QLatin1String("active") && (session.isGraphical() || session.isLightDmGreeter()))
+			{
+				if (!m_serverProcesses.contains(path) && !m_deferredServerSessions.contains(path))
+				{
+					startServer(path);
+				}
+				return;
+			}
+		}
+	}
 
 	for( const auto& s : sessions )
 	{
@@ -398,8 +428,21 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 	// a pending deferral (if any) is handled now - re-added below whenever the start is deferred
 	// again, so that a session given up on here is not skipped forever by startServers()
 	m_deferredServerSessions.removeAll(sessionPath);
+	if (m_serverProcesses.contains(sessionPath))
+	{
+		return;
+	}
 
-	const auto sessionType = LinuxSessionFunctions::getSessionType( sessionPath );
+	const auto session = LoginSession::read(QDBusConnection::systemBus(), sessionPath);
+	if (session.path.isEmpty())
+	{
+		// The session may have vanished between enumeration and this read.
+		// The watchdog retries sessions still listed by logind; do not create
+		// a permanent retry timer for an already removed object.
+		vWarning() << "Could not read session identity for" << sessionPath << "- waiting for session reconciliation";
+		return;
+	}
+	auto sessionType = LinuxSessionFunctions::getSessionType( sessionPath );
 
 	// do not start server for non-graphical sessions
 	if( sessionType == LinuxSessionFunctions::Type::TTY )
@@ -409,7 +452,7 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 	}
 
 	// do not start server for sessions with unspecified type
-	if (sessionType == LinuxSessionFunctions::Type::Unspecified)
+	if (sessionType == LinuxSessionFunctions::Type::Unspecified && !session.isLightDmGreeter())
 	{
 		vDebug() << "Not starting Veyon Server in a session with unspecified type";
 		return;
@@ -430,15 +473,27 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 		vInfo() << "Not starting server for session" << sessionPath << "in state" << sessionState;
 		return;
 	}
-
-	const auto sessionLeader = LinuxSessionFunctions::getSessionLeaderPid( sessionPath );
-	if( sessionLeader < 0 )
+	if (m_sessionManager.mode() != PlatformSessionManager::Mode::Multi &&
+		sessionState == LinuxSessionFunctions::State::Online)
 	{
-		vCritical() << "No leader available for session" << sessionPath;
-		return;
+		for (const auto& path : m_serverProcesses.keys())
+		{
+			if (path != sessionPath && LinuxSessionFunctions::getSessionState(path) == LinuxSessionFunctions::State::Active)
+			{
+				return; // an old deferred start must not preempt the active session
+			}
+		}
 	}
 
-	const auto sessionEnvironment = LinuxSessionFunctions::getSessionEnvironment(sessionLeader);
+	if (session.uid == uint(-1) || session.leader == 0)
+	{
+		vWarning() << "Session identity not ready for" << sessionPath << "- retrying";
+		deferServerStart(sessionPath, SessionEnvironmentProbingInterval);
+		return;
+	}
+	const bool isGreeter = session.sessionClass == QLatin1String("greeter") || session.isLightDmGreeter();
+
+	const auto sessionEnvironment = LinuxSessionFunctions::getSessionEnvironment(int(session.leader));
 	if (sessionEnvironment.isEmpty())
 	{
 		vWarning() << "Environment for session" << sessionPath << "not yet available - retrying in"
@@ -446,11 +501,23 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 		deferServerStart( sessionPath, SessionEnvironmentProbingInterval );
 		return;
 	}
-
-	if( m_sessionManager.mode() != PlatformSessionManager::Mode::Multi )
+	if (sessionType == LinuxSessionFunctions::Type::Unspecified)
 	{
-		// make sure no other server is still running
-		stopAllServers();
+		if (!sessionEnvironment.value(QStringLiteral("WAYLAND_DISPLAY")).isEmpty())
+		{
+			sessionType = LinuxSessionFunctions::Type::Wayland;
+		}
+		else if (!sessionEnvironment.value(QStringLiteral("DISPLAY")).isEmpty())
+		{
+			sessionType = LinuxSessionFunctions::Type::X11;
+		}
+		else
+		{
+			vWarning() << "LightDM greeter has no display environment yet for" << sessionPath << "- retrying";
+			deferServerStart(sessionPath, SessionEnvironmentProbingInterval);
+			return;
+		}
+		vInfo() << "Resolved unspecified LightDM greeter display type for" << sessionPath << sessionType;
 	}
 
 	const auto sessionUptime = LinuxSessionFunctions::getSessionUptimeSeconds( sessionPath );
@@ -467,6 +534,20 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 
 	auto serverEnvironment = sessionToServerEnvironment(sessionEnvironment);
 	serverEnvironment.insert(LinuxSessionFunctions::sessionPathEnvVarName(), sessionPath);
+	if (sessionType == LinuxSessionFunctions::Type::X11 &&
+		serverEnvironment.value(QStringLiteral("DISPLAY")).isEmpty())
+	{
+		vWarning() << "X11 display not ready for session" << sessionPath << "- retrying";
+		deferServerStart(sessionPath, SessionEnvironmentProbingInterval);
+		return;
+	}
+	if (isGreeter && sessionType == LinuxSessionFunctions::Type::X11)
+	{
+		// The next desktop's selection must not make a root X11 greeter server
+		// try a Wayland Qt backend.
+		serverEnvironment.remove(QStringLiteral("WAYLAND_DISPLAY"));
+		serverEnvironment.insert(QStringLiteral("QT_QPA_PLATFORM"), QStringLiteral("xcb"));
+	}
 
 	// if pam-systemd is not in use, we have to set the XDG_SESSION_ID environment variable manually
 	if (serverEnvironment.contains(LinuxSessionFunctions::xdgSessionIdEnvVarName()) == false)
@@ -478,16 +559,9 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 		}
 	}
 
-	// resolve the session user's uid up front so path-valued environment variables
-	// can be checked against it
-	const auto sessionUserPath = LinuxSessionFunctions::getSessionUser(sessionPath);
-	if (sessionUserPath.isEmpty())
-	{
-		vCritical() << "session" << sessionPath << "in state" << sessionState << "has no resolvable user - not starting server";
-		return;
-	}
-
-	const auto sessionUid = LinuxUserFunctions::getUserProperty(sessionUserPath, QStringLiteral("UID")).toUInt();
+	// Decode logind's User=(uo) tuple through LoginSession, preserving its
+	// object-path type and rejecting missing UIDs instead of converting them to 0.
+	const auto sessionUid = session.uid;
 
 	// workaround for #817 where LinuxSessionFunctions::getSessionEnvironment() does not return all
 	// environment variables when executed via systemd for an established KDE session and xdg-open fails
@@ -550,7 +624,8 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 	if (sessionUid > 0)
 	{
 		if (serverEnvironment.contains(QStringLiteral("XAUTHORITY")) &&
-			isPathOwnedBySessionUser(serverEnvironment.value(QStringLiteral("XAUTHORITY")), sessionUid) == false)
+			!SessionFileAccess::isXAuthoritySafe(serverEnvironment.value(QStringLiteral("XAUTHORITY")), sessionUid,
+				isGreeter && sessionType == LinuxSessionFunctions::Type::X11))
 		{
 			vDebug() << "discarding untrusted XAUTHORITY for session" << sessionPath;
 			serverEnvironment.remove(QStringLiteral("XAUTHORITY"));
@@ -578,12 +653,19 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 		serverEnvironment.remove(QStringLiteral("PULSE_COOKIE"));
 		serverEnvironment.remove(QStringLiteral("DBUS_SESSION_BUS_ADDRESS"));
 	}
+	if (m_sessionManager.mode() != PlatformSessionManager::Mode::Multi)
+	{
+		// Preserve the running greeter server while a new session is still
+		// opening, below its minimum age, or waiting for its environment.
+		stopAllServers();
+	}
 
 	const auto sessionId = m_sessionManager.openSession( sessionPath );
 
 	vInfo() << "Starting server for new session" << sessionPath
 			<< "with ID" << sessionId
-			<< "at seat" << LinuxSessionFunctions::getSessionSeat( sessionPath ).path;
+			<< "at seat" << session.seat << "greeter" << isGreeter
+			<< "type" << session.type << "service" << session.service;
 
 	serverEnvironment.insert(QLatin1String(ServiceDataManager::serviceDataTokenEnvironmentVariable()),
 							 QString::fromUtf8(m_dataManager.token().toByteArray()));
@@ -594,12 +676,20 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 
 	auto serverProcess = new LinuxServerProcess(serverEnvironment, sessionPath, sessionId,
 												serverUserId,
-												sessionType, this);
-	serverProcess->start();
-
-	connect(serverProcess, &QProcess::stateChanged, this, [=, this]() { checkSessionState(sessionPath); });
-
+												sessionType, isGreeter, this);
 	m_serverProcesses[sessionPath] = serverProcess;
+	connect(serverProcess, &QProcess::stateChanged, this, [=, this]() { checkSessionState(sessionPath); });
+	connect(serverProcess, &QProcess::started, this, [sessionPath, serverProcess]() {
+		vInfo() << "Veyon server process started for" << sessionPath << "PID" << serverProcess->processId();
+	});
+	connect(serverProcess, &QProcess::errorOccurred, this, [sessionPath, serverProcess](QProcess::ProcessError error) {
+		vCritical() << "Veyon server process error for" << sessionPath << error << serverProcess->errorString();
+	});
+	connect(serverProcess, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this,
+		[sessionPath](int code, QProcess::ExitStatus status) {
+			vWarning() << "Veyon server process exited for" << sessionPath << "code" << code << "status" << status;
+		});
+	serverProcess->start();
 	m_deferredServerSessions.removeAll( sessionPath );
 }
 
@@ -607,22 +697,29 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 
 void LinuxServiceCore::deferServerStart( const QString& sessionPath, int delay )
 {
-	QTimer::singleShot(delay, this, [=, this]() { startServer(sessionPath); });
-
-	if( m_deferredServerSessions.contains( sessionPath ) == false )
+	if (m_deferredServerSessions.contains(sessionPath))
 	{
-		m_deferredServerSessions.append( sessionPath );
+		return;
 	}
+	m_deferredServerSessions.append(sessionPath);
+	QTimer::singleShot(delay, this, [this, sessionPath]() {
+		if (m_deferredServerSessions.contains(sessionPath))
+		{
+			startServer(sessionPath);
+		}
+	});
 }
 
 
 
 void LinuxServiceCore::stopServer( const QString& sessionPath )
 {
+	m_deferredServerSessions.removeAll(sessionPath);
 	m_sessionManager.closeSession( sessionPath );
 
 	m_sessionsWithUnknownState.remove(sessionPath);
 	m_sessionsWithPendingStateRecheck.remove(sessionPath);
+	m_serversWithPendingRestart.remove(sessionPath);
 
 	if( m_serverProcesses.contains( sessionPath ) == false )
 	{
@@ -699,9 +796,21 @@ void LinuxServiceCore::checkSessionState( const QString& sessionPath )
 	{
 		// restart server if crashed
 		const auto serverProcess = m_serverProcesses.value(sessionPath);
-		if (serverProcess && serverProcess->state() == QProcess::NotRunning)
+		if (serverProcess && serverProcess->state() == QProcess::NotRunning &&
+			!m_serversWithPendingRestart.contains(sessionPath))
 		{
-			QTimer::singleShot(ServerRestartInterval, serverProcess, [serverProcess]() { serverProcess->start(); });
+			m_serversWithPendingRestart.insert(sessionPath);
+			vWarning() << "Restarting Veyon server for" << sessionPath << "in" << ServerRestartInterval << "msecs";
+			QTimer::singleShot(ServerRestartInterval, serverProcess, [this, sessionPath, serverProcess]() {
+				m_serversWithPendingRestart.remove(sessionPath);
+				if (m_serverProcesses.value(sessionPath) == serverProcess && serverProcess->state() == QProcess::NotRunning)
+				{
+					// Refresh DISPLAY/XAUTHORITY rather than retrying a permanently
+					// stale environment captured during greeter startup.
+					stopServer(sessionPath);
+					startServer(sessionPath);
+				}
+			});
 		}
 	}
 }

@@ -36,6 +36,7 @@
 #include "LinuxCoreFunctions.h"
 #include "LinuxSessionFunctions.h"
 #include "PlatformSessionManager.h"
+#include "login-helper/LoginSession.h"
 
 
 LinuxSessionFunctions::SessionId LinuxSessionFunctions::currentSessionId()
@@ -93,7 +94,12 @@ QString LinuxSessionFunctions::currentSessionType() const
 
 bool LinuxSessionFunctions::currentSessionHasUser() const
 {
-	return getSessionClass( currentSessionPath() ) == Class::User;
+	const auto path = currentSessionPath();
+	if (LoginSession::read(QDBusConnection::systemBus(), path).isLightDmGreeter())
+	{
+		return false;
+	}
+	return getSessionClass(path) == Class::User;
 }
 
 
@@ -329,7 +335,7 @@ QString LinuxSessionFunctions::getSessionId(const QString& session, bool logErro
 QString LinuxSessionFunctions::getSessionUser(const QString& session)
 {
 	quint32 uid{0};
-	QString userObjectPath;
+	QDBusObjectPath userObjectPath;
 
 	const auto reply = getSessionProperty(session, QStringLiteral("User"));
 	if (reply.isValid())
@@ -339,7 +345,7 @@ QString LinuxSessionFunctions::getSessionUser(const QString& session)
 		replyData >> uid >> userObjectPath;
 		replyData.endStructure();
 
-		return userObjectPath;
+		return userObjectPath.path();
 	}
 
 	return {};

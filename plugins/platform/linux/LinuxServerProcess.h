@@ -28,6 +28,7 @@
 
 #include "LinuxSessionFunctions.h"
 #include "LinuxUserFunctions.h"
+#include "login-helper/ProcessIdentity.h"
 
 // clazy:excludeall=copyable-polymorphic
 
@@ -39,11 +40,13 @@ public:
 								const QString& sessionPath, int sessionId,
 								LinuxUserFunctions::UserId sessionUserId,
 								LinuxSessionFunctions::Type sessionType,
+								bool isGreeter,
 								QObject* parent = nullptr);
 	~LinuxServerProcess() override;
 
 	void start();
 	void stop();
+	bool matchesLoginCaller(uint pid, uint uid) const;
 
 	LinuxUserFunctions::UserId sessionUserId() const
 	{
@@ -71,6 +74,8 @@ private:
 	const QString m_sessionPath;
 	int m_sessionId;
 	const LinuxSessionFunctions::Type m_sessionType;
+	const bool m_isGreeter;
 	LinuxUserFunctions::UserId m_sessionUserId{LinuxUserFunctions::InvalidUserId};
+	ProcessIdentity m_processIdentity;
 
 };

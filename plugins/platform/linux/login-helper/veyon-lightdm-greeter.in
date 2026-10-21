@@ -1,0 +1,10 @@
+#!/bin/sh
+# LightDM's greeter-wrapper accepts one executable path, without arguments.
+# Keep exec so the trusted bridge retains LightDM's original child PID.
+if [ -x "@CMAKE_INSTALL_FULL_SYSCONFDIR@/veyon/lightdm-greeter-wrapper" ]; then
+	set -- "@CMAKE_INSTALL_FULL_SYSCONFDIR@/veyon/lightdm-greeter-wrapper" "$@"
+elif [ -x "@CMAKE_INSTALL_FULL_SYSCONFDIR@/X11/Xgreeter.lightdm" ]; then
+	# Preserve ALT Linux's greeter environment setup for both GTK and KDE.
+	set -- "@CMAKE_INSTALL_FULL_SYSCONFDIR@/X11/Xgreeter.lightdm" "$@"
+fi
+exec "@CMAKE_INSTALL_FULL_BINDIR@/veyon-login-helper" --lightdm-greeter -- "$@"
