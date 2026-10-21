@@ -75,7 +75,7 @@ bool ScreenshotFeaturePlugin::controlFeature( Feature::Uid featureUid,
 						&eventLoop, &QEventLoop::quit);
 				eventLoop.exec();
 
-				if (controlInterface->framebuffer().isNull())
+				if (controlInterface->hasValidFramebuffer() == false)
 				{
 					vWarning() << "no framebuffer data received for host"
 							   << controlInterface->computer().hostAddress();
