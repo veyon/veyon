@@ -46,6 +46,9 @@ public:
 	using MessageList = QList<QPair<qint64, QByteArray>>;
 	static constexpr auto DefaultBandwidthLimit = 100;
 
+	DemoServer( const QString& vncServerHost, int vncServerPort, const Password& vncServerPassword,
+				const Password& demoAccessToken, const DemoConfiguration& configuration,
+				int demoServerPort, QObject *parent );
 	DemoServer( int vncServerPort, const Password& vncServerPassword, const Password& demoAccessToken,
 				const DemoConfiguration& configuration, int demoServerPort, QObject *parent );
 	~DemoServer() override;
@@ -84,6 +87,7 @@ public:
 private:
 	void incomingConnection( qintptr socketDescriptor ) override;
 	void acceptPendingConnections();
+	void connectToUpstream();
 	void reconnectToVncServer();
 	void readFromVncServer();
 	void requestFramebufferUpdate();
@@ -112,7 +116,11 @@ private:
 	const DemoConfiguration& m_configuration;
 	const qint64 m_memoryLimit;
 	const int m_keyFrameInterval;
+	static constexpr auto ReconnectInterval = 1000;
+
+	const QString m_vncServerHost;
 	const int m_vncServerPort;
+	bool m_terminating = false;
 	const Password m_demoAccessToken;
 
 	QList<quintptr> m_pendingConnectionSockets;

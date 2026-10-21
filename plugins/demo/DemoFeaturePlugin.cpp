@@ -23,6 +23,7 @@
  */
 
 #include <QMessageBox>
+#include <QRandomGenerator>
 #include <QScreen>
 
 #include "AuthenticationCredentials.h"
@@ -117,6 +118,19 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 	connect( &m_demoServerControlTimer, &QTimer::timeout, this, &DemoFeaturePlugin::controlDemoServer );
 
 	updateFeatures();
+}
+
+
+
+// A relay node owns a demo server which has to be shut down explicitly,
+// otherwise its connection threads keep running after the plugin is unloaded.
+DemoFeaturePlugin::~DemoFeaturePlugin()
+{
+	if( m_demoServer )
+	{
+		m_demoServer->terminate();
+	}
+	delete m_demoClient;
 }
 
 
@@ -433,15 +447,46 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 				const auto demoServerPort = message.argument( Argument::DemoServerPort ).toInt();
 				const auto isFullscreenDemo = message.featureUid() == m_demoClientFullScreenFeature.uid();
 				const auto viewport = message.argument( Argument::Viewport ).toRect();
+				const auto isRelay = message.argument( Argument::IsRelay ).toBool();
 
-				vDebug() << "connecting with master" << demoServerHost;
-				m_demoClient = new DemoClient( demoServerHost, demoServerPort, isFullscreenDemo, viewport );
+				vDebug() << "connecting with host" << demoServerHost << "isRelay:" << isRelay;
+
+				if( isRelay )
+				{
+					if( m_demoServer == nullptr )
+					{
+						// An upstream demo server authenticates with the demo
+						// access token, so no VNC password is needed here. The
+						// relay is limited by its own configuration (bandwidth,
+						// key frame interval, ...), therefore these values
+						// should be identical on all computers of a room.
+						m_demoServer = new DemoServer( demoServerHost, demoServerPort,
+													   {},
+													   message.argument( Argument::DemoAccessToken ).toByteArray(),
+													   m_configuration,
+													   demoServerPort,
+													   this );
+					}
+					// the relay serves the shared screen to itself through its
+					// own demo server so that the local user sees it as well
+					m_demoClient = new DemoClient( QStringLiteral("127.0.0.1"), demoServerPort, isFullscreenDemo, viewport );
+				}
+				else
+				{
+					m_demoClient = new DemoClient( demoServerHost, demoServerPort, isFullscreenDemo, viewport );
+				}
 			}
 			return true;
 
 		case FeatureCommand::StopDemoClient:
 			delete m_demoClient;
 			m_demoClient = nullptr;
+
+			if( m_demoServer )
+			{
+				m_demoServer->terminate();
+				m_demoServer = nullptr;
+			}
 
 			QCoreApplication::quit();
 
@@ -642,11 +687,99 @@ bool DemoFeaturePlugin::controlDemoClient( Feature::Uid featureUid, Operation op
 			}
 		}
 
+		// Known limitation: a relay node which disappears during a running
+		// demonstration takes its whole subtree with it, since the clients
+		// below it only know their parent. Recovering from this would require
+		// the master to watch the tree and re-dispatch affected clients.
+		if( m_configuration.treeRelayEnabled() && computerControlInterfaces.size() > 1 )
+		{
+			const auto startDemoClient = [&]( const ComputerControlInterface::Pointer& iface,
+											  const QString& host, bool relay )
+			{
+				sendFeatureMessage( FeatureMessage{ featureUid, FeatureCommand::StartDemoClient }
+										.addArgument( Argument::DemoAccessToken, demoAccessToken )
+										.addArgument( Argument::DemoServerHost, host )
+										.addArgument( Argument::DemoServerPort, demoServerPort )
+										.addArgument( Argument::Viewport, viewport )
+										.addArgument( Argument::IsRelay, relay ),
+									{ iface } );
+			};
+
+			// Only reachable computers may take part in the tree - an
+			// unreachable one must not become the parent of others.
+			ComputerControlInterfaceList treeInterfaces;
+			ComputerControlInterfaceList unreachableInterfaces;
+			for( const auto& iface : computerControlInterfaces )
+			{
+				if( iface == nullptr )
+				{
+					continue;
+				}
+
+				if( iface->state() == ComputerControlInterface::State::Connected )
+				{
+					treeInterfaces.append( iface );
+				}
+				else
+				{
+					unreachableInterfaces.append( iface );
+				}
+			}
+
+			if( treeInterfaces.size() > 1 )
+			{
+				// Randomly shuffle the tree members so that the relay role
+				// rotates between demonstrations
+				auto rng = QRandomGenerator::global();
+				for( int i = int( treeInterfaces.size() ) - 1; i > 0; --i )
+				{
+					const int j = rng->bounded( i + 1 );
+					treeInterfaces.swapItemsAt( i, j );
+				}
+
+				const auto totalNodes = treeInterfaces.size();
+				const auto fanOut = qMax( 2, m_configuration.treeFanOut() );
+
+				for( qsizetype i = 0; i < totalNodes; ++i )
+				{
+					QString parentHost;
+					if( i < fanOut )
+					{
+						// the root layer is served by the master itself
+						parentHost = demoServerHost;
+					}
+					else
+					{
+						const auto parentIface = treeInterfaces[( i - fanOut ) / fanOut];
+						parentHost = HostAddress::parseHost( parentIface->computer().hostName() );
+						if( parentHost.isEmpty() )
+						{
+							parentHost = parentIface->computer().hostAddress().toString();
+						}
+					}
+
+					const bool isRelay = ( i * fanOut + fanOut < totalNodes );
+
+					startDemoClient( treeInterfaces[i], parentHost, isRelay );
+				}
+			}
+
+			// A computer which is not reachable can not relay anything, so it
+			// is left to connect to the master directly.
+			for( const auto& iface : unreachableInterfaces )
+			{
+				startDemoClient( iface, demoServerHost, false );
+			}
+
+			return true;
+		}
+
 		sendFeatureMessage(FeatureMessage{featureUid, FeatureCommand::StartDemoClient}
 								.addArgument( Argument::DemoAccessToken, demoAccessToken )
 								.addArgument( Argument::DemoServerHost, demoServerHost )
 								.addArgument( Argument::DemoServerPort, demoServerPort )
-								.addArgument( Argument::Viewport, viewport ),
+								.addArgument( Argument::Viewport, viewport )
+								.addArgument( Argument::IsRelay, false ),
 							computerControlInterfaces );
 
 		return true;
