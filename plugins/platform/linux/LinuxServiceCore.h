@@ -30,7 +30,10 @@
 #include "PlatformSessionManager.h"
 #include "ServiceDataManager.h"
 
+#include <sys/types.h>
+
 class LinuxServerProcess;
+class LinuxServiceBusInterface;
 
 // clazy:excludeall=copyable-polymorphic
 
@@ -63,11 +66,15 @@ private:
 
 	void checkSessionState( const QString& sessionPath );
 
+	bool isActiveSessionUser(uid_t uid) const;
+
 	LinuxCoreFunctions::DBusInterfacePointer m_loginManager{LinuxCoreFunctions::systemdLoginManager()};
 	QMap<QString, LinuxServerProcess *> m_serverProcesses;
 	QStringList m_deferredServerSessions;
 	QSet<QString> m_sessionsWithUnknownState;
 	QSet<QString> m_sessionsWithPendingStateRecheck;
+
+	LinuxServiceBusInterface* m_busInterface = nullptr;
 
 	ServiceDataManager m_dataManager{};
 	PlatformSessionManager m_sessionManager{};

@@ -22,12 +22,13 @@
  *
  */
 
-#include <QDataStream>
+#include <QDBusInterface>
 #include <QDBusReply>
 #include <QProcess>
 #include <QRegularExpression>
 
 #include "LinuxCoreFunctions.h"
+#include "LinuxDBusInterfaces.h"
 #include "LinuxDesktopIntegration.h"
 #include "LinuxKeyboardInput.h"
 #include "LinuxPlatformConfiguration.h"
@@ -357,30 +358,23 @@ void LinuxUserFunctions::logoff()
 
 bool LinuxUserFunctions::authenticate( const QString& username, const Password& password )
 {
-	QProcess p;
-	p.start( QStringLiteral( "veyon-auth-helper" ), QStringList{}, QProcess::ReadWrite | QProcess::Unbuffered );
-	if( p.waitForStarted() == false )
+	QDBusInterface service(VeyonServiceInterface::ServiceName,
+						   VeyonServiceInterface::ObjectPath,
+						   VeyonServiceInterface::InterfaceName,
+						   QDBusConnection::systemBus());
+	service.setTimeout(AuthHelperTimeout);
+
+	const QDBusReply<bool> reply = service.call(VeyonServiceInterface::AuthenticateMethod,
+												 username, password.toByteArray());
+	if(reply.isValid() == false)
 	{
-		vCritical() << "failed to start VeyonAuthHelper";
+		vCritical() << "authentication request failed:" << reply.error().message();
 		return false;
 	}
 
-	QDataStream ds( &p );
-	ds << username.toUtf8();
-	ds << password.toByteArray();
-
-	if (p.waitForFinished(AuthHelperTimeout) == false)
+	if(reply.value() == false)
 	{
-		vCritical() << "VeyonAuthHelper timed out - terminating";
-		p.kill();
-		p.waitForFinished(AuthHelperTimeout);
-		return false;
-	}
-
-	if( p.state() != QProcess::NotRunning || p.exitCode() != 0 )
-	{
-		vCritical() << "VeyonAuthHelper failed:" << p.exitCode()
-					<< p.readAllStandardOutput().trimmed() << p.readAllStandardError().trimmed();
+		vDebug() << "User authentication failed";
 		return false;
 	}
 

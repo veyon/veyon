@@ -1,0 +1,16 @@
+[Unit]
+Description=Veyon Authentication Helper
+Requires=dbus.service
+After=dbus.service
+
+[Service]
+Type=dbus
+BusName=io.veyon.AuthHelper
+ExecStart=@CMAKE_INSTALL_PREFIX@/bin/veyon-auth-helper
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes

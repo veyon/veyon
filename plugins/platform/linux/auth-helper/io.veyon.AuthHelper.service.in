@@ -1,0 +1,4 @@
+[D-BUS Service]
+Name=io.veyon.AuthHelper
+Exec=@CMAKE_INSTALL_PREFIX@/bin/veyon-auth-helper
+SystemdService=veyon-auth-helper.service

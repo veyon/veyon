@@ -26,6 +26,7 @@ build_veyon_plugin(linux-platform
 	InputBlockHelper.h
 	LinuxNetworkFunctions.cpp
 	LinuxServerProcess.cpp
+	LinuxServiceBusInterface.cpp
 	LinuxServiceCore.cpp
 	LinuxServiceFunctions.cpp
 	LinuxSessionFunctions.cpp
@@ -33,6 +34,7 @@ build_veyon_plugin(linux-platform
 	LinuxPlatformPlugin.h
 	LinuxPlatformConfiguration.h
 	LinuxCoreFunctions.h
+	LinuxDBusInterfaces.h
 	LinuxDesktopIntegration.h
 	LinuxFilesystemFunctions.h
 	LinuxInputDeviceFunctions.h
@@ -41,6 +43,7 @@ build_veyon_plugin(linux-platform
 	LinuxKeyboardShortcutTrapper.h
 	LinuxNetworkFunctions.h
 	LinuxServerProcess.h
+	LinuxServiceBusInterface.h
 	LinuxServiceCore.h
 	LinuxServiceFunctions.h
 	LinuxSessionFunctions.h

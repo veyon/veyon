@@ -37,12 +37,18 @@ class LinuxServerProcess : public QProcess
 public:
 	explicit LinuxServerProcess(const QProcessEnvironment& processEnvironment,
 								const QString& sessionPath, int sessionId,
+								LinuxUserFunctions::UserId sessionUserId,
 								LinuxSessionFunctions::Type sessionType,
 								QObject* parent = nullptr);
 	~LinuxServerProcess() override;
 
 	void start();
 	void stop();
+
+	LinuxUserFunctions::UserId sessionUserId() const
+	{
+		return m_sessionUserId;
+	}
 
 private:
 	void setProcessUserId();
