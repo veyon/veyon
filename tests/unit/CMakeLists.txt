@@ -1,4 +1,13 @@
 if(WITH_TESTS AND VEYON_BUILD_LINUX)
+	add_executable(GreeterVncServerTest
+		GreeterVncServerTest.cpp
+		${CMAKE_SOURCE_DIR}/server/src/GreeterVncServer.cpp
+	)
+	target_include_directories(GreeterVncServerTest PRIVATE ${CMAKE_SOURCE_DIR}/server/src)
+	set_default_target_properties(GreeterVncServerTest)
+	target_link_libraries(GreeterVncServerTest PRIVATE Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Network veyon-core)
+	add_test(NAME GreeterVncServerTest COMMAND GreeterVncServerTest)
+	set_tests_properties(GreeterVncServerTest PROPERTIES TIMEOUT 20)
 
 	find_package(X11 REQUIRED)
 	add_executable(SessionFileAccessTest

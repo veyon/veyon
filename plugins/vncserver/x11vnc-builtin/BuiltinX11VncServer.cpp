@@ -27,12 +27,54 @@
 #include <QTemporaryFile>
 #include <QThread>
 
+#ifdef VEYON_X11VNC_EXTERNAL
+#include <csignal>
+#include <sys/prctl.h>
+#include <unistd.h>
+#endif
+
 #include "BuiltinX11VncServer.h"
 #include "VeyonConfiguration.h"
 #include "X11VncConfigurationWidget.h"
 
 extern "C" int x11vnc_main( int argc, char * * argv );
 extern "C" int hasWorkingXShm();
+
+#ifdef VEYON_X11VNC_EXTERNAL
+namespace
+{
+class ExternalX11VncProcess : public QProcess
+{
+public:
+	explicit ExternalX11VncProcess(bool greeter) : m_greeter(greeter)
+	{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+		if (m_greeter)
+		{
+			setChildProcessModifier([this] { guardParent(); });
+		}
+#endif
+	}
+
+private:
+	void guardParent()
+	{
+		if (::prctl(PR_SET_PDEATHSIG, SIGKILL) != 0 || ::getppid() != m_parentPid)
+		{
+			::_exit(127);
+		}
+	}
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+	void setupChildProcess() override
+	{
+		if (m_greeter) { guardParent(); }
+	}
+#endif
+	const bool m_greeter;
+	const pid_t m_parentPid{::getpid()};
+};
+}
+#endif
 
 
 BuiltinX11VncServer::BuiltinX11VncServer( QObject* parent ) :
@@ -58,6 +100,7 @@ void BuiltinX11VncServer::prepareServer()
 
 bool BuiltinX11VncServer::runServer( int serverPort, const Password& password )
 {
+	const bool greeter = QCoreApplication::arguments().value(1) == QLatin1String("--greeter-vnc");
 	QStringList cmdline = { QStringLiteral("-localhost"),
 							QStringLiteral("-nosel"),			// do not exchange clipboard-contents
 							QStringLiteral("-nosetclipboard"),	// do not exchange clipboard-contents
@@ -68,7 +111,7 @@ bool BuiltinX11VncServer::runServer( int serverPort, const Password& password )
 
 	const auto extraArguments = m_configuration.extraArguments();
 
-	if( extraArguments.isEmpty() == false )
+	if( !greeter && extraArguments.isEmpty() == false )
 	{
 		cmdline.append( extraArguments.split( QLatin1Char(' ') ) );
 	}
@@ -109,7 +152,7 @@ bool BuiltinX11VncServer::runServer( int serverPort, const Password& password )
 	cmdline.append( QStringLiteral("-nocmds") );
 	cmdline.append( QStringLiteral("-noremote") );
 
-	QProcess x11vnc;
+	ExternalX11VncProcess x11vnc(greeter);
 	x11vnc.setProcessChannelMode( QProcess::ForwardedChannels );
 	x11vnc.start( QStringLiteral("x11vnc"), cmdline );
 	if( x11vnc.waitForStarted() == false )

@@ -27,6 +27,7 @@
 
 #include "AuthenticationCredentials.h"
 #include "CryptoCore.h"
+#include "GreeterVncServer.h"
 #include "VeyonConfiguration.h"
 #include "PlatformPluginInterface.h"
 #include "PlatformSessionFunctions.h"
@@ -35,14 +36,21 @@
 #include "VncServerPluginInterface.h"
 
 
-VncServer::VncServer( QObject* parent ) :
+VncServer::VncServer( bool greeter, QObject* parent ) :
 	QThread( parent ),
-	m_pluginInterface( nullptr )
+	m_pluginInterface( nullptr ),
+	m_greeter(greeter)
 {
 	const auto currentSessionType = VeyonCore::platform().sessionFunctions().currentSessionType();
 
 	VeyonCore::authenticationCredentials().setInternalVncServerPassword(
 				CryptoCore::generateChallenge().toBase64().left( MAXPWLEN ) );
+	if (m_greeter)
+	{
+		// The greeter's actual display decides capture. Do not use the
+		// configured desktop backend, its port/password or its portal setup.
+		return;
+	}
 
 	VncServerPluginInterfaceList defaultVncServerPlugins;
 
@@ -140,6 +148,15 @@ VncServer::Password VncServer::password() const
 
 void VncServer::run()
 {
+	if (m_greeter)
+	{
+		const auto sessionType = VeyonCore::platform().sessionFunctions().currentSessionType();
+		GreeterVncServer::runForSession(QCoreApplication::applicationFilePath(), sessionType,
+									  quint16(serverPort()), password().toByteArray());
+		vCritical() << "All greeter VNC backends stopped; the service must restart this server";
+		return;
+	}
+
 	if( m_pluginInterface )
 	{
 		vDebug() << "running";

@@ -523,7 +523,7 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 	const auto sessionUptime = LinuxSessionFunctions::getSessionUptimeSeconds( sessionPath );
 	const auto minimumSessionUptime = LinuxPlatformConfiguration(&VeyonCore::config()).minimumUserSessionLifetime();
 
-	if( sessionUptime >= 0 &&
+	if( !isGreeter && sessionUptime >= 0 &&
 		sessionUptime < minimumSessionUptime )
 	{
 		vDebug() << "Session" << sessionPath << "too young - retrying in" << minimumSessionUptime - sessionUptime << "secs";
@@ -534,7 +534,7 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 
 	auto serverEnvironment = sessionToServerEnvironment(sessionEnvironment);
 	serverEnvironment.insert(LinuxSessionFunctions::sessionPathEnvVarName(), sessionPath);
-	if (sessionType == LinuxSessionFunctions::Type::X11 &&
+	if (!isGreeter && sessionType == LinuxSessionFunctions::Type::X11 &&
 		serverEnvironment.value(QStringLiteral("DISPLAY")).isEmpty())
 	{
 		vWarning() << "X11 display not ready for session" << sessionPath << "- retrying";
@@ -547,6 +547,12 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 		// try a Wayland Qt backend.
 		serverEnvironment.remove(QStringLiteral("WAYLAND_DISPLAY"));
 		serverEnvironment.insert(QStringLiteral("QT_QPA_PLATFORM"), QStringLiteral("xcb"));
+	}
+	if (isGreeter)
+	{
+		serverEnvironment.insert(QStringLiteral("XDG_SESSION_CLASS"), QStringLiteral("greeter"));
+		serverEnvironment.insert(QStringLiteral("XDG_SESSION_TYPE"),
+				sessionType == LinuxSessionFunctions::Type::Wayland ? QStringLiteral("wayland") : QStringLiteral("x11"));
 	}
 
 	// if pam-systemd is not in use, we have to set the XDG_SESSION_ID environment variable manually

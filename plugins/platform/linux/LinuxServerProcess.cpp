@@ -95,6 +95,24 @@ void LinuxServerProcess::start()
 	{
 		setProcessChannelMode( QProcess::ForwardedChannels );
 	}
+	if (m_isGreeter)
+	{
+		if (m_sessionType == LinuxSessionFunctions::Type::Wayland)
+		{
+			if (m_sessionUserId == LinuxUserFunctions::InvalidUserId)
+			{
+				vCritical() << "failed to determine greeter user ID for" << m_sessionPath;
+				return;
+			}
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+			setChildProcessModifier([this] { setProcessUserId(); });
+#endif
+		}
+		// Keep the control PID owned by this QProcess. A greeter has no
+		// logged-in desktop or portal launcher, regardless of the next session.
+		QProcess::start(VeyonCore::filesystem().serverFilePath(), {QStringLiteral("--greeter")});
+		return;
+	}
 
 	const auto catchsegv{ QStringLiteral("/usr/bin/catchsegv") };
 	if( qEnvironmentVariableIsSet("VEYON_VALGRIND_SERVERS") )
@@ -119,14 +137,6 @@ void LinuxServerProcess::start()
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 		setChildProcessModifier([this] { setProcessUserId(); });
 #endif
-		if (m_isGreeter)
-		{
-			// A greeter is not a logged-in Plasma/GNOME desktop. Do not depend
-			// on its portals or hand the process to a user-session D-Bus launcher.
-			QProcess::start(VeyonCore::filesystem().serverFilePath(), QStringList{});
-			return;
-		}
-
 		const auto desktopPortalHasRegistry = [this]()
 		{
 			const auto originalUserId = getuid();

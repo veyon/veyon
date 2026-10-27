@@ -44,7 +44,7 @@ class ComputerControlServer : public VeyonServerInterface, VncProxyConnectionFac
 {
 	Q_OBJECT
 public:
-	explicit ComputerControlServer( QObject* parent = nullptr );
+	explicit ComputerControlServer( QObject* parent = nullptr, bool greeter = false );
 	~ComputerControlServer() override;
 
 	bool start();
