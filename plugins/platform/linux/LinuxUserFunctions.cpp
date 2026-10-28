@@ -44,6 +44,9 @@
 #include <pwd.h>
 #include <unistd.h>
 
+#include <algorithm>
+#include <vector>
+
 #ifdef None
 #undef None
 #endif
@@ -175,6 +178,47 @@ QStringList LinuxUserFunctions::groupsOfUser( const QString& username, bool quer
 
 	QStringList groupList;
 
+	// query group memberships through NSS first - this also works with directory services
+	// (SSSD, winbind, nslcd) which do not enumerate all groups (e.g. SSSD with enumerate=false)
+	const auto user = username.toUtf8();
+	const auto pw_entry = getpwnam(user.constData());
+	if (pw_entry)
+	{
+		static constexpr int MaxGroupCount = 65536;
+		const auto primaryGroupId = pw_entry->pw_gid;
+		std::vector<gid_t> groupIds(64);
+		auto groupCount = int(groupIds.size());
+		while (getgrouplist(user.constData(), primaryGroupId, groupIds.data(), &groupCount) < 0)
+		{
+			// not all implementations report the required size
+			groupCount = std::max(groupCount, int(groupIds.size()) * 2);
+			if (groupCount > MaxGroupCount)
+			{
+				groupCount = 0;
+				break;
+			}
+			groupIds.resize(groupCount);
+		}
+
+		for (int i = 0; i < groupCount; ++i)
+		{
+			const auto gr_entry = getgrgid(groupIds[i]);
+			if (gr_entry && gr_entry->gr_name)
+			{
+				groupList.append(QString::fromUtf8(gr_entry->gr_name)); // clazy:exclude=reserve-candidates
+			}
+		}
+
+		groupList.removeDuplicates();
+		groupList.removeAll(QString());
+
+		if (groupList.isEmpty() == false)
+		{
+			return groupList;
+		}
+	}
+
+	// fall back to enumerating all groups
 	QProcess getentProcess;
 	getentProcess.start(QStringLiteral("/usr/bin/getent"), {QStringLiteral("group")});
 	getentProcess.waitForFinished();
