@@ -106,5 +106,12 @@ in
       group = "root";
       setuid = true;
     };
+
+    security.wrappers.veyon-input-helper = {
+      source = "${cfg.package}/bin/veyon-input-helper";
+      owner = "root";
+      group = "root";
+      setuid = true;
+    };
   };
 }
