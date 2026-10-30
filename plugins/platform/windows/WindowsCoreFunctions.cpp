@@ -90,7 +90,7 @@ protected:
 		while (isInterruptionRequested() == false)
 		{
 			std::string line;
-			if (std::getline(std::cin, line))
+			if (std::getline(std::cin, line) && m_reader)
 			{
 				m_reader->lineRead(QString::fromStdString(line));
 			}
@@ -103,7 +103,7 @@ protected:
 	}
 
 private:
-	StandardInputReader* m_reader;
+	QPointer<StandardInputReader> m_reader;
 };
 
 
@@ -167,7 +167,7 @@ StandardInputReader* WindowsCoreFunctions::createStandardInputReader(QObject* pa
 	auto reader = new StandardInputReader(parent);
 	auto thread = new StandardInputReaderThread(reader, parent);
 
-	QObject::connect(reader, &QObject::destroyed, thread, &QThread::quit);
+	QObject::connect(reader, &QObject::destroyed, thread, &QThread::requestInterruption);
 	QObject::connect(thread, &QThread::finished, reader, &QThread::deleteLater);
 
 	thread->start();
