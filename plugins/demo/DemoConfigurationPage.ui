@@ -124,6 +124,33 @@
         </property>
        </widget>
       </item>
+      <item row="5" column="0" colspan="2">
+       <widget class="QCheckBox" name="treeRelayEnabled">
+        <property name="text">
+         <string>Distribute screen via tree-based relay (scales to large rooms)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>Tree fan-out</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1">
+       <widget class="QSpinBox" name="treeFanOut">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>16</number>
+        </property>
+        <property name="value">
+         <number>4</number>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -148,6 +175,8 @@
   <tabstop>keyFrameInterval</tabstop>
   <tabstop>memoryLimit</tabstop>
   <tabstop>bandwidthLimit</tabstop>
+  <tabstop>treeRelayEnabled</tabstop>
+  <tabstop>treeFanOut</tabstop>
  </tabstops>
  <resources>
   <include location="demo.qrc"/>
