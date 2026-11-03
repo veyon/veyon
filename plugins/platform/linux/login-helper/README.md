@@ -144,22 +144,76 @@ Capture uses explicit `-display`/`-auth`, disables shared memory, and ignores
 X11 runs as root;
 a Wayland greeter server runs under the greeter account's UID.
 
-An X11 backend which fails before becoming ready is attempted up to three
+An X11 or KWin backend which fails before becoming ready is attempted up to three
 times, one second apart, with the display environment refreshed before each
 attempt. Each authenticated RFB startup probe has a 10-second limit. If all
 attempts fail, or a backend exits after becoming ready,
 the parent starts the headless backend on the same internal port with the same
 random VNC password. The teacher sees a placeholder instead of the greeter,
 but can reconnect and send an authenticated login command. Existing VNC
-connections may disconnect when switching to the fallback. After entering
-the fallback, capture is not retried until the greeter server restarts; this avoids repeatedly interrupting
-login connections. If the fallback also fails, the server exits and the
-service's existing restart mechanism retries it. Both `builtin-x11vnc-server`
-and `headless-vnc-server` plugins must be included in the installed package.
+connections may disconnect when switching to the fallback. While the placeholder
+is running, the supervisor checks the greeter environment once per second.
+A newly available display or changed display/socket/authority metadata triggers
+another bounded native startup attempt. Unchanged failing environments do not
+continuously restart capture. The old placeholder is stopped before the native
+listener reuses its port; viewers may reconnect, while the authenticated login
+channel stays available. If the fallback also fails, the server exits and the
+service's existing restart mechanism retries it. The `builtin-x11vnc-server`,
+`kwin-greeter-vnc-server` and `headless-vnc-server` plugins must be included in
+the installed package.
 
-A native Wayland greeter currently uses the headless backend immediately.
-The desktop PipeWire/portal backend is not started at the login screen. This
-mode does not implement Wayland greeter capture or a GDM login adapter.
+A native **KDE/KWin Wayland greeter** launches `--greeter-vnc kwin` under the
+greeter's UID. The separate `kwin-greeter-vnc-server` plugin requests a continuous
+PipeWire stream directly through KWin's
+[`zkde_screencast_unstable_v1`](https://invent.kde.org/libraries/plasma-wayland-protocols/-/blob/master/src/protocols/zkde-screencast-unstable-v1.xml)
+Wayland protocol (version 3). It captures the union of logical output geometries
+at logical resolution, including the cursor, so fractional scaling and multiple
+monitors do not require guessing pixel-to-logical coordinate ratios. There is
+no screenshot polling, desktop portal or consent dialog. The normal desktop
+backend retains its portal-based setup. This is image-only capture: keyboard
+and mouse injection are not implemented; remote login uses the LightDM bridge.
+Other Wayland compositors, including GNOME/Mutter, retain the headless fallback.
+The compositor must already run in the greeter session. Selecting a future
+Plasma Wayland desktop does not turn an X11 LightDM greeter into a Wayland one.
+
+KWin authorizes the installed `veyon-server` executable through
+`X-KDE-Wayland-Interfaces=zkde_screencast_unstable_v1` in the installed
+`io.veyon.veyon-server.desktop`. Include that desktop file even when splitting
+the native greeter plugin into a separate RPM. Do not disable KWin's permission
+checks. This is separate from the system-bus `LoginAgent.Login`/`Cancel`
+permissions below. Capture connects to the greeter's `WAYLAND_DISPLAY`, resolved
+relative to `XDG_RUNTIME_DIR` if needed, and verifies the socket peer's UID.
+
+The backend reuses PipeWire on that account's socket. If no daemon is listening,
+it starts and supervises `pipewire -c <datadir>/veyon/greeter-pipewire.conf`
+under the greeter account, then stops that child when capture ends. It never
+stops an existing daemon or removes another instance's socket. This minimal
+configuration loads native transport, client nodes, link factory and access
+checks, with no audio devices or PulseAudio server. The consumer creates its
+video link explicitly, so WirePlumber and pipewire-media-session are unnecessary.
+PipeWire must be available to KWin on the same socket: `PIPEWIRE_RUNTIME_DIR`
+(default `XDG_RUNTIME_DIR`) and `PIPEWIRE_REMOTE` (default `pipewire-0`) must
+match the compositor's environment. The runtime directory must belong to the
+greeter and have no group/other permissions; socket connections are checked
+against that UID. A custom remote name must be a basename, not a path.
+
+Packaging requires `kwin-greeter-vnc-server.so`, the server desktop file,
+`<datadir>/veyon/greeter-pipewire.conf`, and the PipeWire daemon with the four
+modules listed above. Building this optional backend (`WITH_KWIN_GREETER=ON`,
+the default) requires PipeWire/SPA development headers, `wayland-client >= 1.18`
+and `wayland-scanner`. `WITH_KWIN_GREETER=OFF` keeps the remaining backends
+available, with the placeholder on native Wayland greeters. No extra LightDM
+configuration is required beyond the existing login wrapper integration.
+
+Startup has an 8.5-second first-frame deadline within the supervisor's 10-second
+RFB probe. PipeWire startup is limited to three seconds; Wayland negotiation to
+five seconds. Image dimensions, stride, mapped-buffer bounds and bounded damage
+metadata are validated (maximum 128 MiB per frame). The internal RFB listener
+opens only after a complete actual frame. Capture failure, stream closure or an
+output removal falls back to the placeholder while preserving the login channel.
+Capture has no fixed five-frame limit; the compositor produces frames as the
+screen changes. Output layout changes require restarting the capture backend.
+This does not add a GDM login adapter.
 
 The capture child serves password-protected RFB on loopback. The random
 internal VNC password is separate from the student's login password and is
@@ -325,10 +379,23 @@ result and session-start result without passwords or prompt text.
 * `Greeter capture unavailable`: inspect `Greeter capture session type`,
   `Greeter X11 capture using display`, `DISPLAY`/`XAUTHORITY` and capture logs.
   `Greeter X11 capture requires DISPLAY and a validated XAUTHORITY file` means
-  no usable display address or cookie file was found. `Retrying greeter X11
-  capture` reports a fresh startup attempt.
+  no usable display address or cookie file was found. `Retrying greeter capture`
+  reports a fresh startup attempt and its backend.
   The placeholder preserves the remote login channel; capture failure alone
   does not imply a failed login.
+* `KWin screencast or logical-output protocol is unavailable`: check that the
+  greeter really runs under KWin Wayland and that the installed server desktop
+  file declares `X-KDE-Wayland-Interfaces=zkde_screencast_unstable_v1`.
+* `Cannot connect to the greeter-owned Wayland socket`: check the greeter's
+  `WAYLAND_DISPLAY` and `XDG_RUNTIME_DIR`; a desktop's socket is not sufficient.
+* `Greeter PipeWire daemon failed/exited` or a startup timeout: check that
+  `pipewire` and the installed `greeter-pipewire.conf` modules are present.
+  Check the daemon's forwarded errors in the Veyon journal. Never start the
+  greeter's PipeWire as root.
+* `KWin greeter stream did not deliver a first frame before the deadline`:
+  inspect KWin/PipeWire errors and verify both processes use the same runtime
+  directory and PipeWire socket. `KWin greeter PipeWire stream ready with actual
+  frame` confirms that the consumer received real compositor pixels.
 
 ### D-Bus permissions
 
@@ -373,14 +440,20 @@ when uninstalling the integration.
 Configure with `WITH_TESTS=ON`, build the test targets and run:
 
 ```sh
-cmake --build <build-directory> --target LightDmLoginTest LoginProcessIdentityTest SessionFileAccessTest GreeterVncServerTest
-ctest --test-dir <build-directory> -R '^(LightDm(Login|Wrapper)|LoginProcessIdentity|SessionFileAccess|GreeterVncServer)Test$' --output-on-failure
+cmake --build <build-directory> --target LightDmLoginTest LoginProcessIdentityTest SessionFileAccessTest GreeterEnvironmentTest GreeterVncServerTest KWinScreencastTest PipeWireFrameTest
+ctest --test-dir <build-directory> -R '^(LightDm(Login|Wrapper)|LoginProcessIdentity|SessionFileAccess|GreeterEnvironment|GreeterVncServer|KWinScreencast|PipeWireFrame)Test$' --output-on-failure
 ```
 
 These tests cover protocol framing, manual/remote conversation isolation,
 authentication failures, cancellation, process identity, authority-file checks
 and capture fallback/retries. `GreeterEnvironmentTest` covers display selection
-and authority-file validation. With Python 3 and `dbus-run-session`, `LightDmWrapperTest`
+and authority-file checks. With `wayland-server` development files,
+`KWinScreencastTest` talks to a fake compositor over a real Wayland socket and
+checks logical workspace selection, embedded cursor requests, protocol errors,
+closure, negotiation timeout, and local socket peer ownership. It never starts
+a live compositor or PipeWire daemon. `PipeWireFrameTest` covers padded rows,
+truncated chunks, mapped-memory bounds and oversized frames.
+With Python 3 and `dbus-run-session`, `LightDmWrapperTest`
 also checks the helper/launcher and ALT/custom wrapper chains with a fake
 LightDM daemon and greeter. No live display manager is required. The isolated
 bus test does not exercise the installed system bus policy or the complete
@@ -402,7 +475,14 @@ and KDE greeters:
    `veyon-server --greeter` and `--greeter-vnc x11`, monitoring and remote login.
    Terminate the capture child or use invalid X authority: the headless fallback
    must permit a new connection and login.
-5. Check the legacy path on another display manager, then disabling and
+5. For a native KWin Wayland greeter, confirm `--greeter-vnc kwin` and the
+   `KWin greeter PipeWire stream ready with actual frame` log. Check image updates,
+   cursor, fractional scaling and multiple monitors. Check capture first with an
+   existing greeter PipeWire instance, then with no instance or session manager.
+   Confirm that only a Veyon-started daemon is stopped when capture ends. Deny
+   capture permission or remove an output and check the fallback and remote
+   LightDM login. Then log in and confirm the ordinary desktop backend starts.
+6. Check the legacy path on another display manager, then disabling and
    removing the LightDM integration with restoration of the original wrapper.
 
 Verify denial of `RegisterAgent` from ordinary accounts, other processes with

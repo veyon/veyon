@@ -14,7 +14,7 @@
 class GreeterVncServer
 {
 public:
-	enum class Backend { X11, Headless };
+	enum class Backend { X11, KWin, Headless };
 	using EnvironmentProvider = std::function<QProcessEnvironment()>;
 
 	static QList<Backend> backendsForSession(const QString& sessionType);
@@ -27,5 +27,6 @@ public:
 	// password-authenticated RFB handshake, including framebuffer init.
 	static bool run(const QString& program, Backend backend, quint16 port,
 					const QByteArray& password, int startupTimeout = 10000,
-					const QProcessEnvironment& environment = QProcessEnvironment::systemEnvironment());
+					const QProcessEnvironment& environment = QProcessEnvironment::systemEnvironment(),
+					const std::function<bool()>& restartRequested = {});
 };

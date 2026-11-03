@@ -5,6 +5,9 @@
 
 #include <QDebug>
 #include <QElapsedTimer>
+#include <QDateTime>
+#include <QDir>
+#include <QFileInfo>
 #include <QHostAddress>
 #include <QProcess>
 #include <QTcpSocket>
@@ -21,6 +24,30 @@
 
 namespace
 {
+bool captureEnvironmentReady(GreeterVncServer::Backend backend, const QProcessEnvironment& environment)
+{
+	if (backend == GreeterVncServer::Backend::X11) { return !environment.value(QStringLiteral("DISPLAY")).isEmpty(); }
+	const auto display = environment.value(QStringLiteral("WAYLAND_DISPLAY"));
+	return !display.isEmpty() && (QDir::isAbsolutePath(display) || !environment.value(QStringLiteral("XDG_RUNTIME_DIR")).isEmpty());
+}
+
+QStringList captureEnvironmentIdentity(const QProcessEnvironment& environment)
+{
+	QStringList identity;
+	for (const auto* name : {"DISPLAY", "XAUTHORITY", "WAYLAND_DISPLAY", "XDG_RUNTIME_DIR", "DBUS_SESSION_BUS_ADDRESS"})
+	{
+		identity.append(environment.value(QString::fromLatin1(name)));
+	}
+	const auto display = environment.value(QStringLiteral("WAYLAND_DISPLAY"));
+	for (const auto& path : {environment.value(QStringLiteral("XAUTHORITY")),
+		QDir(environment.value(QStringLiteral("XDG_RUNTIME_DIR"))).filePath(display)})
+	{
+		const QFileInfo info(path);
+		identity.append(info.exists() ? info.lastModified().toString(Qt::ISODateWithMs) : QString());
+	}
+	return identity;
+}
+
 class BackendProcess : public QProcess
 {
 public:
@@ -80,13 +107,23 @@ QList<GreeterVncServer::Backend> GreeterVncServer::backendsForSession(const QStr
 	{
 		return {Backend::X11, Backend::Headless};
 	}
+	if (sessionType.compare(QLatin1String("wayland"), Qt::CaseInsensitive) == 0)
+	{
+		return {Backend::KWin, Backend::Headless};
+	}
 	// Desktop portals belong to a logged-in desktop, not to the greeter.
 	return {Backend::Headless};
 }
 
 QString GreeterVncServer::backendName(Backend backend)
 {
-	return backend == Backend::X11 ? QStringLiteral("x11") : QStringLiteral("headless");
+	switch (backend)
+	{
+	case Backend::X11: return QStringLiteral("x11");
+	case Backend::KWin: return QStringLiteral("kwin");
+	case Backend::Headless: return QStringLiteral("headless");
+	}
+	return {};
 }
 
 bool GreeterVncServer::runForSession(const QString& program, const QString& sessionType, quint16 port,
@@ -95,34 +132,42 @@ bool GreeterVncServer::runForSession(const QString& program, const QString& sess
 {
 	bool wasReady = false;
 	qInfo() << "Greeter capture session type:" << sessionType;
-	for (const auto backend : backendsForSession(sessionType))
+	const auto backends = backendsForSession(sessionType);
+	const auto native = backends.first();
+	while (true)
 	{
-		if (backend == Backend::Headless)
-		{
-			qWarning() << "Greeter capture unavailable; serving a placeholder while keeping remote login available";
-		}
-		// LightDM can publish a session before its display and cookie are
-		// usable. Re-read them before each bounded attempt instead of keeping
-		// the environment captured at service startup forever.
-		const auto attempts = backend == Backend::X11 ? 3 : 1;
-		for (int attempt = 0; attempt < attempts; ++attempt)
+		QProcessEnvironment lastEnvironment;
+		for (int attempt = 0; native != Backend::Headless && attempt < 3; ++attempt)
 		{
 			if (attempt > 0)
 			{
-				qInfo() << "Retrying greeter X11 capture; attempt" << attempt + 1;
+				qInfo() << "Retrying greeter capture:" << backendName(native) << "attempt" << attempt + 1;
 				QThread::msleep(1000);
 			}
-			const auto environment = environmentProvider ? environmentProvider() : QProcessEnvironment::systemEnvironment();
-			const bool ready = run(program, backend, port, password, startupTimeout, environment);
+			lastEnvironment = environmentProvider ? environmentProvider() : QProcessEnvironment::systemEnvironment();
+			const bool ready = run(program, native, port, password, startupTimeout, lastEnvironment);
 			wasReady |= ready;
 			if (ready) { break; }
 		}
+		qWarning() << "Greeter capture unavailable; serving a placeholder while keeping remote login available";
+		const auto failedIdentity = captureEnvironmentIdentity(lastEnvironment);
+		bool retryNative = false;
+		const auto recover = [&]() {
+			if (native == Backend::Headless || !environmentProvider) { return false; }
+			const auto fresh = environmentProvider();
+			retryNative = captureEnvironmentReady(native, fresh) && captureEnvironmentIdentity(fresh) != failedIdentity;
+			if (retryNative) { qInfo() << "Greeter display environment changed; retrying native capture"; }
+			return retryNative;
+		};
+		const auto environment = environmentProvider ? environmentProvider() : QProcessEnvironment::systemEnvironment();
+		wasReady |= run(program, Backend::Headless, port, password, startupTimeout, environment, recover);
+		if (!retryNative) { return wasReady; }
 	}
-	return wasReady;
 }
 
 bool GreeterVncServer::run(const QString& program, Backend backend, quint16 port,
-						   const QByteArray& password, int startupTimeout, const QProcessEnvironment& environment)
+						   const QByteArray& password, int startupTimeout, const QProcessEnvironment& environment,
+						   const std::function<bool()>& restartRequested)
 {
 	BackendProcess process;
 	process.setProcessEnvironment(environment);
@@ -185,7 +230,10 @@ bool GreeterVncServer::run(const QString& program, Backend backend, quint16 port
 	if (ready)
 	{
 		qInfo() << "Greeter backend ready:" << backendName(backend) << "PID" << process.processId();
-		process.waitForFinished(-1);
+		while (!process.waitForFinished(1000))
+		{
+			if (process.state() == QProcess::NotRunning || (restartRequested && restartRequested())) { break; }
+		}
 	}
 	else
 	{

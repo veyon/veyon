@@ -18,7 +18,7 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	)
 	target_include_directories(GreeterEnvironmentTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/platform/linux)
 	set_default_target_properties(GreeterEnvironmentTest)
-	target_link_libraries(GreeterEnvironmentTest PRIVATE Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::DBus)
+	target_link_libraries(GreeterEnvironmentTest PRIVATE Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::DBus Qt${QT_MAJOR_VERSION}::Network)
 	add_test(NAME GreeterEnvironmentTest COMMAND GreeterEnvironmentTest)
 
 	add_executable(SessionFileAccessTest
@@ -63,6 +63,17 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	add_test(NAME LoginProcessIdentityTest COMMAND LoginProcessIdentityTest)
 	find_package(Python3 COMPONENTS Interpreter QUIET)
 	find_program(DBUS_RUN_SESSION_EXECUTABLE dbus-run-session)
+	if(TARGET kwin-greeter-capture)
+		pkg_check_modules(WaylandServer QUIET IMPORTED_TARGET wayland-server>=1.18)
+		if(WaylandServer_FOUND)
+			add_executable(KWinScreencastTest KWinScreencastTest.cpp)
+			set_default_target_properties(KWinScreencastTest)
+			target_link_libraries(KWinScreencastTest PRIVATE kwin-greeter-capture
+				Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Network PkgConfig::WaylandServer)
+			add_test(NAME KWinScreencastTest COMMAND KWinScreencastTest)
+			set_tests_properties(KWinScreencastTest PROPERTIES TIMEOUT 30)
+		endif()
+	endif()
 	if(Python3_Interpreter_FOUND AND DBUS_RUN_SESSION_EXECUTABLE)
 		add_test(NAME LightDmWrapperTest COMMAND ${DBUS_RUN_SESSION_EXECUTABLE} --
 			${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/lightdm_wrapper_test.py $<TARGET_FILE:veyon-login-helper>
@@ -101,6 +112,12 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	# PipeWireVncServerTest: tests BGRx→RGB conversion, damage rect clamping,
 	# and portal session token/path generation.
 	#
+	add_executable(PipeWireFrameTest PipeWireFrameTest.cpp)
+	set_default_target_properties(PipeWireFrameTest)
+	target_include_directories(PipeWireFrameTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/vncserver/pipewire)
+	target_link_libraries(PipeWireFrameTest PRIVATE Qt${QT_MAJOR_VERSION}::Test)
+	add_test(NAME PipeWireFrameTest COMMAND PipeWireFrameTest)
+
 	add_executable(PipeWireVncServerTest
 		PipeWireVncServerTest.cpp
 	)

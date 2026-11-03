@@ -69,6 +69,8 @@ static const QStringList safeSessionEnvironmentVariables = {
 
 	// Display server (Wayland)
 	QStringLiteral("WAYLAND_DISPLAY"),
+	QStringLiteral("PIPEWIRE_RUNTIME_DIR"),
+	QStringLiteral("PIPEWIRE_REMOTE"),
 	QStringLiteral("XDG_RUNTIME_DIR"),
 
 	// IPC / bus infrastructure

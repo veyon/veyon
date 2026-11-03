@@ -26,9 +26,9 @@
 
 #include <QObject>
 #include <QSize>
-#include <QThread>
 
-#include <memory>
+#include <atomic>
+#include <map>
 
 extern "C" {
 #include <pipewire/pipewire.h>
@@ -41,7 +41,7 @@ class QMutex;
 /**
  * @brief Connects to a PipeWire node and copies frames into an rfbScreen framebuffer.
  *
- * The PipeWire main loop runs in a dedicated QThread so it does not block Qt's
+ * The PipeWire loop runs in its own synchronized worker thread so it does not block Qt's
  * event loop.  Format parameters are captured via the param_changed callback
  * before frame processing begins.
  *
@@ -60,11 +60,12 @@ public:
 	/**
 	 * @brief Open a PipeWire connection and start streaming into the rfbScreen.
 	 * @param fd      PipeWire remote FD (takes ownership)
-	 * @param nodeId  PipeWire node ID from portal Start response
+	 * @param nodeId  PipeWire node ID from the portal or KWin stream
 	 * @param screen  rfbScreen to write frames into (must outlive close())
+	 * @param linkDirectly create the video link without relying on a session manager
 	 * @return true on success
 	 */
-	bool open(int fd, quint32 nodeId, rfbScreenInfoPtr screen);
+	bool open(int fd, quint32 nodeId, rfbScreenInfoPtr screen, bool linkDirectly = false);
 
 	/** @brief Stop the PipeWire loop and free all resources. */
 	void close();
@@ -73,6 +74,7 @@ public:
 
 Q_SIGNALS:
 	void streamEnded();
+	void firstFrameReady();
 
 private:
 	// PipeWire C callbacks (called from PipeWire loop thread)
@@ -81,25 +83,36 @@ private:
 									 pw_stream_state state, const char* error);
 	static void onStreamParamChanged(void* data, uint32_t id, const spa_pod* param);
 	static void onStreamProcess(void* data);
+	static void onRegistryGlobal(void* data, uint32_t id, uint32_t permissions,
+		const char* type, uint32_t version, const spa_dict* properties);
+	static void onRegistryGlobalRemove(void* data, uint32_t id);
+	void linkPorts();
 
 	void processFrame();
 	void convertFrame(char* dst, const char* src, int srcStride, int dstStride,
-					  int width, int height, const spa_meta_region* damage, bool forceFullFrame);
+					  int width, int height, const spa_meta_region* damage, size_t damageCount, bool forceFullFrame);
 
-	pw_main_loop*    m_loop{nullptr};
+	pw_thread_loop*  m_loop{nullptr};
 	pw_context*      m_context{nullptr};
 	pw_core*         m_core{nullptr};
 	pw_stream*       m_stream{nullptr};
 
 	spa_hook m_coreListener{};
 	spa_hook m_streamListener{};
+	spa_hook m_registryListener{};
+	pw_registry* m_registry{nullptr};
+	pw_proxy* m_link{nullptr};
+	struct Port { uint32_t node; bool input; };
+	std::map<uint32_t, Port> m_ports;
+	uint32_t m_sourceNode{SPA_ID_INVALID};
+	bool m_linkDirectly{false};
 
 	QMutex* m_screenMutex;
 	rfbScreenInfoPtr m_rfbScreen{nullptr};
 	QSize            m_frameSize;
 	uint32_t         m_videoFormat{SPA_VIDEO_FORMAT_UNKNOWN};
-	bool             m_running{false};
+	std::atomic_bool m_running{false};
 	bool             m_forceFullFrame{true};
+	bool             m_firstFrame{true};
 
-	std::unique_ptr<QThread> m_loopThread;
 };

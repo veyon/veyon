@@ -20,6 +20,8 @@ class GreeterVncServerTest : public QObject
 	Q_OBJECT
 private Q_SLOTS:
 	void x11UsesNativeCaptureThenFallback();
+	void waylandUsesKWinCaptureThenFallback();
+	void failedKWinCaptureKeepsTheLoginFallback();
 	void otherSessionTypesDoNotUseDesktopPortals_data();
 	void otherSessionTypesDoNotUseDesktopPortals();
 	void failedCaptureCanFallBackWithPrivatePassword_data();
@@ -27,6 +29,7 @@ private Q_SLOTS:
 	void hungBackendHasBoundedStartup();
 	void unauthenticatedListenerIsNotReady();
 	void transientCaptureFailureIsRetriedWithFreshEnvironment();
+	void readyWaylandEnvironmentReplacesThePlaceholder();
 };
 
 void GreeterVncServerTest::x11UsesNativeCaptureThenFallback()
@@ -39,9 +42,15 @@ void GreeterVncServerTest::x11UsesNativeCaptureThenFallback()
 void GreeterVncServerTest::otherSessionTypesDoNotUseDesktopPortals_data()
 {
 	QTest::addColumn<QString>("sessionType");
-	QTest::newRow("wayland") << QStringLiteral("wayland");
 	QTest::newRow("unknown") << QStringLiteral("unspecified");
 	QTest::newRow("empty") << QString();
+}
+
+void GreeterVncServerTest::waylandUsesKWinCaptureThenFallback()
+{
+	const QList<GreeterVncServer::Backend> expected{GreeterVncServer::Backend::KWin, GreeterVncServer::Backend::Headless};
+	QVERIFY(GreeterVncServer::backendsForSession(QStringLiteral("wayland")) == expected);
+	QCOMPARE(GreeterVncServer::backendName(GreeterVncServer::Backend::KWin), QStringLiteral("kwin"));
 }
 
 void GreeterVncServerTest::otherSessionTypesDoNotUseDesktopPortals()
@@ -59,6 +68,14 @@ static quint16 unusedPort()
 		return 0;
 	}
 	return reservation.serverPort();
+}
+
+void GreeterVncServerTest::failedKWinCaptureKeepsTheLoginFallback()
+{
+	const auto port = unusedPort();
+	QVERIFY(port != 0);
+	QVERIFY(GreeterVncServer::runForSession(QCoreApplication::applicationFilePath(),
+		QStringLiteral("wayland"), port, "testpass", 2000));
 }
 
 void GreeterVncServerTest::failedCaptureCanFallBackWithPrivatePassword_data()
@@ -119,6 +136,28 @@ void GreeterVncServerTest::transientCaptureFailureIsRetriedWithFreshEnvironment(
 	QCOMPARE(result.readAll(), QByteArrayLiteral("x11"));
 }
 
+void GreeterVncServerTest::readyWaylandEnvironmentReplacesThePlaceholder()
+{
+	QTemporaryDir directory;
+	QVERIFY(directory.isValid());
+	const auto port = unusedPort();
+	QVERIFY(port != 0);
+	int snapshots = 0;
+	const auto environment = [&]() {
+		auto result = QProcessEnvironment::systemEnvironment();
+		result.remove(QStringLiteral("WAYLAND_DISPLAY"));
+		result.insert(QStringLiteral("XDG_RUNTIME_DIR"), directory.path());
+		if (++snapshots > 3) { result.insert(QStringLiteral("WAYLAND_DISPLAY"), QStringLiteral("wayland-late")); }
+		result.insert(QStringLiteral("VEYON_CAPTURE_RESULT"), directory.filePath(QStringLiteral("backend")));
+		return result;
+	};
+	QVERIFY(GreeterVncServer::runForSession(QCoreApplication::applicationFilePath(),
+		QStringLiteral("wayland"), port, "latepwd1", 2000, environment));
+	QFile result(directory.filePath(QStringLiteral("backend")));
+	QVERIFY(result.open(QIODevice::ReadOnly));
+	QCOMPARE(result.readAll(), QByteArrayLiteral("headless\nkwin\n"));
+}
+
 static QByteArray readExactly(QTcpSocket* socket, int size)
 {
 	QByteArray data;
@@ -152,7 +191,7 @@ static int runBackendFixture(const QStringList& arguments)
 		QThread::msleep(5000);
 		return 43;
 	}
-	if (password != "testpass" && password != "crashpwd" && password != "nonepass" && password != "retrypwd")
+	if (password != "testpass" && password != "crashpwd" && password != "nonepass" && password != "retrypwd" && password != "latepwd1")
 	{
 		return 44;
 	}
@@ -163,6 +202,8 @@ static int runBackendFixture(const QStringList& arguments)
 			return 48;
 		}
 	}
+	if (arguments[2] == QLatin1String("kwin") &&
+		(password != "latepwd1" || qEnvironmentVariable("WAYLAND_DISPLAY").isEmpty())) { return 45; }
 	if (arguments[2] == QLatin1String("x11"))
 	{
 		if (password == "crashpwd")
@@ -178,6 +219,11 @@ static int runBackendFixture(const QStringList& arguments)
 	{
 		// Do not let the fallback satisfy the native-recovery assertion.
 		return 54;
+	}
+	if (password == "latepwd1" && arguments[2] == QLatin1String("headless"))
+	{
+		QFile previous(qEnvironmentVariable("VEYON_CAPTURE_RESULT"));
+		if (previous.open(QIODevice::ReadOnly) && previous.readAll().contains("kwin\n")) { return 54; }
 	}
 	QTcpServer server;
 	if (!server.listen(QHostAddress::LocalHost, arguments[3].toUShort()) || !server.waitForNewConnection(2000))
@@ -217,6 +263,14 @@ static int runBackendFixture(const QStringList& arguments)
 		QFile result(qEnvironmentVariable("VEYON_CAPTURE_RESULT"));
 		if (!result.open(QIODevice::WriteOnly) || result.write("x11") != 3) { return 55; }
 		result.close();
+	}
+	if (password == "latepwd1")
+	{
+		QFile result(qEnvironmentVariable("VEYON_CAPTURE_RESULT"));
+		if (!result.open(QIODevice::Append)) { return 55; }
+		result.write(arguments[2].toUtf8() + '\n');
+		result.close();
+		if (arguments[2] == QLatin1String("headless")) { QThread::msleep(10000); }
 	}
 	return 0;
 }

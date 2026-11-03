@@ -114,7 +114,12 @@ LinuxSessionFunctions::EnvironmentVariables LinuxSessionFunctions::currentSessio
 	{
 		sessionEnv = QProcessEnvironment::systemEnvironment();
 	}
-	sessionEnv = GreeterEnvironment::prepare(LoginSession::read(QDBusConnection::systemBus(), sessionPath), sessionEnv);
+	const auto session = LoginSession::read(QDBusConnection::systemBus(), sessionPath);
+	if (session.path.isEmpty() && qEnvironmentVariable("XDG_SESSION_CLASS") == QLatin1String("greeter"))
+	{
+		return {}; // Do not refresh capture credentials from an unidentified session.
+	}
+	sessionEnv = GreeterEnvironment::prepare(session, sessionEnv);
 	const auto sessionEnvVars = sessionEnv.keys();
 
 	EnvironmentVariables envVars;

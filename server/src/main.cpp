@@ -56,7 +56,7 @@ int runGreeterBackend(QCoreApplication& app)
 	const auto port = arguments.value(3).toUShort(&portOk);
 	const auto backend = arguments.value(2);
 	if (arguments.size() != 4 || !portOk || port == 0 ||
-		(backend != QLatin1String("x11") && backend != QLatin1String("headless")))
+		(backend != QLatin1String("x11") && backend != QLatin1String("kwin") && backend != QLatin1String("headless")))
 	{
 		return 1;
 	}
@@ -75,6 +75,7 @@ int runGreeterBackend(QCoreApplication& app)
 	// ComputerControlServer or a second feature-worker listener.
 	const auto uid = backend == QLatin1String("x11") ?
 		QUuid{QStringLiteral("39d7a07f-94db-4912-aa1a-c4df8aee3879")} :
+		backend == QLatin1String("kwin") ? QUuid{QStringLiteral("b547e4ce-27a1-40bc-8a06-6709c89980ef")} :
 		QUuid{QStringLiteral("f626f759-7691-45c0-bd4a-37171d98d219")};
 	for (auto object : std::as_const(VeyonCore::pluginManager().pluginObjects()))
 	{
