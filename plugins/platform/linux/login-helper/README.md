@@ -130,6 +130,11 @@ for `MinimumUserSessionLifetime`. After login, the ordinary server starts with
 the existing user-session behavior and configured VNC backend.
 
 The authenticated control endpoint runs independently of display capture.
+During boot it can accept a Master connection before the internal capture
+listener is ready. A refused internal connection is retried every 250 ms within
+the original 30-second RFB handshake deadline, retaining the authenticated
+external connection. This does not retry authentication failures or bypass
+access control. Disconnecting Master stops further connection attempts.
 For an X11 greeter it launches the built-in X11 capture backend in a child
 of the same executable (`--greeter-vnc x11 <internal-port>`), independently of the desktop backend
 selected in Veyon. Desktop `X11Vnc/ExtraArguments` are not applied in this
@@ -170,19 +175,64 @@ Wayland protocol (version 3). It captures the union of logical output geometries
 at logical resolution, including the cursor, so fractional scaling and multiple
 monitors do not require guessing pixel-to-logical coordinate ratios. There is
 no screenshot polling, desktop portal or consent dialog. The normal desktop
-backend retains its portal-based setup. This is image-only capture: keyboard
-and mouse injection are not implemented; remote login uses the LightDM bridge.
+backend retains its portal-based setup. Remote account login still uses the
+LightDM bridge; interactive control of the greeter uses KWin's input interface.
 Other Wayland compositors, including GNOME/Mutter, retain the headless fallback.
 The compositor must already run in the greeter session. Selecting a future
 Plasma Wayland desktop does not turn an X11 LightDM greeter into a Wayland one.
 
 KWin authorizes the installed `veyon-server` executable through
-`X-KDE-Wayland-Interfaces=zkde_screencast_unstable_v1` in the installed
-`io.veyon.veyon-server.desktop`. Include that desktop file even when splitting
-the native greeter plugin into a separate RPM. Do not disable KWin's permission
+`X-KDE-Wayland-Interfaces=zkde_screencast_unstable_v1,org_kde_kwin_fake_input`
+in the installed `io.veyon.veyon-server.desktop`. Include that desktop file even when splitting
+the native greeter plugin into a separate RPM. This KDE-specific list uses
+commas, not the semicolons used by standard desktop-entry list fields such as
+`Categories`. A semicolon-separated value does not grant either interface.
+After correcting an installed file, reboot or restart the greeter/compositor
+after ending any user session to refresh KDE's application metadata and restart
+the capture backend. Do not disable KWin's permission
 checks. This is separate from the system-bus `LoginAgent.Login`/`Cancel`
 permissions below. Capture connects to the greeter's `WAYLAND_DISPLAY`, resolved
 relative to `XDG_RUNTIME_DIR` if needed, and verifies the socket peer's UID.
+
+Remote control forwards authenticated internal RFB key and pointer events to
+[`org_kde_kwin_fake_input`](https://invent.kde.org/libraries/plasma-wayland-protocols/-/blob/master/src/protocols/fake-input.xml)
+on a separate verified Wayland connection, opened only after the first captured
+frame. Input protocol errors or disconnections disable remote input without
+closing the capture connection or switching the image to a placeholder.
+Absolute pointer coordinates are mapped
+from the framebuffer to the captured logical workspace, including negative
+monitor origins. Left/middle/right buttons, side buttons, dragging, and vertical
+and horizontal wheel events are supported. The existing Master remote-control
+window is used; no additional network listener or privileged input daemon is
+introduced. View-only connections do not send input events.
+
+KWin 6.1 exposes fake-input version 5, which takes physical evdev keycodes.
+The backend reads the greeter's `wl_keyboard` keymap (bounded to 1 MiB), uses
+libxkbcommon to map RFB keysyms, and supplies Shift/level-3 modifiers when needed.
+Unicode RFB symbols can be matched to equivalent legacy keysyms in the keymap.
+The backend subscribes to KWin `org_kde_kwin_keystate` version 1 for CapsLock
+state without taking keyboard focus. Modifier selection accounts for that
+state, including changes made locally while remote control is connected.
+Legacy keyboard input waits for the initial CapsLock state; if this protocol
+is unavailable, the pointer and video remain usable but v5 keyboard input is
+disabled. No additional daemon or service is required.
+The active layout and lock states remain those selected in the greeter: select
+the matching layout there before typing. A symbol absent from the configured
+keymap is ignored. This path does not switch layouts or insert arbitrary Unicode
+text. Keypad keysyms map to physical keypad keys, including NumLock-dependent
+levels; set the greeter's NumLock state for the desired keypad behavior.
+The mapper does not toggle lock keys. With fake-input version 6 the backend
+sends keysyms directly instead.
+Clipboard exchange remains unavailable in the greeter's QCoreApplication mode.
+
+Held keys and buttons are tracked per RFB client, with shared references when
+multiple clients hold the same input. Disconnecting a client releases only its
+own references; stopping capture releases all remaining input and keeps the
+input connection alive until a Wayland sync confirms processing or a one-second
+deadline expires. Duplicate key presses and unmatched releases are ignored.
+Typed characters and login credentials are never logged. If fake-input is not
+advertised, capture stays available in view-only mode. A missing/invalid keymap
+on version 5 disables keyboard input while preserving the pointer and video.
 
 The backend reuses PipeWire on that account's socket. If no daemon is listening,
 it starts and supervises `pipewire -c <datadir>/veyon/greeter-pipewire.conf`
@@ -201,8 +251,9 @@ Packaging requires `kwin-greeter-vnc-server.so`, the server desktop file,
 `<datadir>/veyon/greeter-pipewire.conf`, and the PipeWire daemon with the four
 modules listed above. Building this optional backend (`WITH_KWIN_GREETER=ON`,
 the default) requires PipeWire/SPA development headers, `wayland-client >= 1.18`
-and `wayland-scanner`. `WITH_KWIN_GREETER=OFF` keeps the remaining backends
-available, with the placeholder on native Wayland greeters. No extra LightDM
+and `wayland-scanner`, plus `xkbcommon >= 1.0` development files.
+`WITH_KWIN_GREETER=OFF` keeps the remaining backends available, with the
+placeholder on native Wayland greeters. No extra LightDM
 configuration is required beyond the existing login wrapper integration.
 
 Startup has an 8.5-second first-frame deadline within the supervisor's 10-second
@@ -396,6 +447,18 @@ result and session-start result without passwords or prompt text.
   inspect KWin/PipeWire errors and verify both processes use the same runtime
   directory and PipeWire socket. `KWin greeter PipeWire stream ready with actual
   frame` confirms that the consumer received real compositor pixels.
+* `KWin fake-input is unavailable; greeter capture remains view-only`: verify
+  `org_kde_kwin_fake_input` is present in the installed desktop file's
+  `X-KDE-Wayland-Interfaces` list. Do not disable KWin's permission checks.
+* `KWin greeter remote input disabled; capture continues`: input negotiation or
+  its connection failed. The log includes the Wayland interface, object ID and
+  protocol error code when available. Capture uses a different connection;
+  inspect separate capture/PipeWire errors if a placeholder is shown.
+* `KWin greeter remote input availability: pointer true keyboard true` confirms
+  that input interfaces and the required keymap are available; it does not
+  prove a particular greeter consumed an event. If only the keyboard is false,
+  inspect the keymap warning. If characters differ, check the greeter's selected
+  layout and Caps Lock/Num Lock state.
 
 ### D-Bus permissions
 
@@ -440,8 +503,8 @@ when uninstalling the integration.
 Configure with `WITH_TESTS=ON`, build the test targets and run:
 
 ```sh
-cmake --build <build-directory> --target LightDmLoginTest LoginProcessIdentityTest SessionFileAccessTest GreeterEnvironmentTest GreeterVncServerTest KWinScreencastTest PipeWireFrameTest
-ctest --test-dir <build-directory> -R '^(LightDm(Login|Wrapper)|LoginProcessIdentity|SessionFileAccess|GreeterEnvironment|GreeterVncServer|KWinScreencast|PipeWireFrame)Test$' --output-on-failure
+cmake --build <build-directory> --target LightDmLoginTest LoginProcessIdentityTest SessionFileAccessTest GreeterEnvironmentTest GreeterVncServerTest KWinScreencastTest KWinKeyboardTest PipeWireFrameTest VncProxyConnectionTest
+ctest --test-dir <build-directory> -R '^(LightDm(Login|Wrapper)|LoginProcessIdentity|SessionFileAccess|GreeterEnvironment|GreeterVncServer|KWinScreencast|KWinKeyboard|PipeWireFrame|VncProxyConnection)Test$' --output-on-failure
 ```
 
 These tests cover protocol framing, manual/remote conversation isolation,
@@ -450,9 +513,16 @@ and capture fallback/retries. `GreeterEnvironmentTest` covers display selection
 and authority-file checks. With `wayland-server` development files,
 `KWinScreencastTest` talks to a fake compositor over a real Wayland socket and
 checks logical workspace selection, embedded cursor requests, protocol errors,
-closure, negotiation timeout, and local socket peer ownership. It never starts
-a live compositor or PipeWire daemon. `PipeWireFrameTest` covers padded rows,
-truncated chunks, mapped-memory bounds and oversized frames.
+closure, negotiation timeout, and local socket peer ownership. Input tests cover
+fake-input versions 5 and 6, key/button ownership across clients, disconnect
+cleanup, pointer coordinate scaling, and wheel transitions. It never starts a
+live compositor or PipeWire daemon. `KWinKeyboardTest` covers symbol mapping,
+Shift, Unicode equivalence and rejected keymaps. `PipeWireFrameTest` covers
+padded rows, truncated chunks, mapped-memory bounds and oversized frames.
+`VncProxyConnectionTest` exercises real loopback sockets and the production
+protocol parsers: a late capture listener must serve a frame through the same
+external connection after repeated refusals, and an external disconnect must
+cancel further connection attempts.
 With Python 3 and `dbus-run-session`, `LightDmWrapperTest`
 also checks the helper/launcher and ALT/custom wrapper chains with a fake
 LightDM daemon and greeter. No live display manager is required. The isolated
@@ -482,7 +552,18 @@ and KDE greeters:
    Confirm that only a Veyon-started daemon is stopped when capture ends. Deny
    capture permission or remove an output and check the fallback and remote
    LightDM login. Then log in and confirm the ordinary desktop backend starts.
-6. Check the legacy path on another display manager, then disabling and
+6. Open remote control during a native KWin greeter. Check clicking/focusing the
+   username and password fields, typing, Shift/Ctrl/Alt shortcuts, dragging and
+   wheel scrolling. Check view-only mode does not move the pointer. Match the
+   greeter's layout when using fake-input version 5, then test layout changes
+   through the normal greeter UI. Disconnect while holding a key or button;
+   verify no stuck input, including with two controlling connections. Remove
+   only input permission and confirm video and the LightDM API login still work.
+7. Keep Master monitoring and the remote-view window open on a logged-in
+   student desktop, reboot the student, and check automatic reconnection to
+   the greeter without restarting Master. Then log in and check reconnection
+   to the desktop again. Repeat with logout instead of reboot.
+8. Check the legacy path on another display manager, then disabling and
    removing the LightDM integration with restoration of the original wrapper.
 
 Verify denial of `RegisterAgent` from ordinary accounts, other processes with

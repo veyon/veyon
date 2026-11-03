@@ -10,6 +10,8 @@
 #include <QMutex>
 #include <QScopeGuard>
 #include <QTimer>
+#include <cerrno>
+#include <cstring>
 #include <unistd.h>
 
 bool KWinGreeterVncServer::runServer(int serverPort, const Password& password)
@@ -70,6 +72,12 @@ bool KWinGreeterVncServer::runServer(int serverPort, const Password& password)
 	};
 	connect(&pipewire, &GreeterPipeWire::failed, &loop, fail);
 	connect(&capture, &KWinScreencast::failed, &loop, fail);
+	connect(&capture, &KWinScreencast::inputAvailabilityChanged, &loop, [](bool pointer, bool keyboard) {
+		vInfo() << "KWin greeter remote input availability: pointer" << pointer << "keyboard" << keyboard;
+	});
+	connect(&capture, &KWinScreencast::inputFailed, &loop, [](const QString& error) {
+		vWarning() << "KWin greeter remote input disabled; capture continues:" << error;
+	});
 	connect(&startupDeadline, &QTimer::timeout, &loop, [&]() { fail(QStringLiteral("KWin greeter stream did not deliver a first frame before the deadline")); });
 	connect(&framebuffer, &PipeWireFramebuffer::streamEnded, &loop, [&]() {
 		fail(QStringLiteral("KWin greeter PipeWire stream ended"));
@@ -77,8 +85,20 @@ bool KWinGreeterVncServer::runServer(int serverPort, const Password& password)
 	connect(&framebuffer, &PipeWireFramebuffer::firstFrameReady, &loop, [&]() {
 		QMutexLocker lock(&screenMutex);
 		rfbInitServer(screen);
-		screen->kbdAddEvent = [](rfbBool, rfbKeySym, rfbClientPtr) {};
-		screen->ptrAddEvent = [](int, int, int, rfbClientPtr) {};
+		screen->screenData = &capture;
+		screen->kbdAddEvent = [](rfbBool down, rfbKeySym key, rfbClientPtr client) {
+			static_cast<KWinScreencast*>(client->screen->screenData)->keyEvent(quintptr(client), quint32(key), down != 0);
+		};
+		screen->ptrAddEvent = [](int buttons, int x, int y, rfbClientPtr client) {
+			static_cast<KWinScreencast*>(client->screen->screenData)->pointerEvent(quintptr(client), buttons, x, y,
+				QSize(client->screen->width, client->screen->height));
+		};
+		screen->newClientHook = [](rfbClientPtr client) -> rfbNewClientAction {
+			client->clientGoneHook = [](rfbClientPtr client) {
+				static_cast<KWinScreencast*>(client->screen->screenData)->releaseClient(quintptr(client));
+			};
+			return RFB_CLIENT_ACCEPT;
+		};
 		if (screen->listenSock < 0 && screen->listen6Sock < 0)
 		{
 			fail(QStringLiteral("Could not listen on the internal KWin greeter VNC port"));
@@ -90,6 +110,17 @@ bool KWinGreeterVncServer::runServer(int serverPort, const Password& password)
 		rfbMarkRectAsModified(screen, 0, 0, screen->width, screen->height);
 		vInfo() << "KWin greeter PipeWire stream ready with actual frame" << screen->width << screen->height;
 		events.start(10);
+		// Capture is ready before discovering any input protocols. A rejected
+		// input request closes only this second Wayland connection.
+		QTimer::singleShot(0, &capture, [&]() {
+			const auto fd = GreeterPipeWire::connectSocket(displayPath, uint(::getuid()));
+			if (fd < 0)
+			{
+				vWarning() << "Cannot connect to greeter input socket; capture continues:" << std::strerror(errno);
+				return;
+			}
+			capture.startInput(fd);
+		});
 	}, Qt::QueuedConnection);
 	connect(&events, &QTimer::timeout, &loop, [&]() {
 		QMutexLocker lock(&screenMutex);
@@ -115,8 +146,19 @@ bool KWinGreeterVncServer::runServer(int serverPort, const Password& password)
 	loop.exec();
 	events.stop();
 	framebuffer.close(); // joins its thread before releasing the shared RFB screen
-	capture.stop();
 	if (listening) { rfbShutdownServer(screen, true); }
+	QEventLoop inputDrain;
+	bool inputStopped = false;
+	connect(&capture, &KWinScreencast::inputStopped, &inputDrain, [&]() {
+		inputStopped = true;
+		inputDrain.quit();
+	});
+	capture.stop();
+	if (!inputStopped)
+	{
+		QTimer::singleShot(1100, &inputDrain, &QEventLoop::quit);
+		inputDrain.exec();
+	}
 	delete[] screen->frameBuffer;
 	screen->frameBuffer = nullptr;
 	rfbScreenCleanup(screen);

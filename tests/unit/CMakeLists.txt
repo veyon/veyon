@@ -64,6 +64,10 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	find_package(Python3 COMPONENTS Interpreter QUIET)
 	find_program(DBUS_RUN_SESSION_EXECUTABLE dbus-run-session)
 	if(TARGET kwin-greeter-capture)
+		add_executable(KWinKeyboardTest KWinKeyboardTest.cpp)
+		set_default_target_properties(KWinKeyboardTest)
+		target_link_libraries(KWinKeyboardTest PRIVATE kwin-greeter-capture Qt${QT_MAJOR_VERSION}::Test)
+		add_test(NAME KWinKeyboardTest COMMAND KWinKeyboardTest)
 		pkg_check_modules(WaylandServer QUIET IMPORTED_TARGET wayland-server>=1.18)
 		if(WaylandServer_FOUND)
 			add_executable(KWinScreencastTest KWinScreencastTest.cpp)
@@ -140,5 +144,14 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	)
 
 	add_test(NAME VncProtocolRobustnessTest COMMAND VncProtocolRobustnessTest)
+	add_executable(VncProxyConnectionTest
+		VncProxyConnectionTest.cpp
+		${CMAKE_SOURCE_DIR}/server/src/VncProxyConnection.cpp
+	)
+	target_include_directories(VncProxyConnectionTest PRIVATE ${CMAKE_SOURCE_DIR}/server/src)
+	set_default_target_properties(VncProxyConnectionTest)
+	target_link_libraries(VncProxyConnectionTest PRIVATE Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Network veyon-core)
+	add_test(NAME VncProxyConnectionTest COMMAND VncProxyConnectionTest)
+	set_tests_properties(VncProxyConnectionTest PROPERTIES TIMEOUT 30)
 
 endif()
