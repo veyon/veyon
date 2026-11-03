@@ -5,6 +5,7 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QTest>
+#include <QTemporaryDir>
 #include <QThread>
 #include <QtEndian>
 
@@ -25,6 +26,7 @@ private Q_SLOTS:
 	void failedCaptureCanFallBackWithPrivatePassword();
 	void hungBackendHasBoundedStartup();
 	void unauthenticatedListenerIsNotReady();
+	void transientCaptureFailureIsRetriedWithFreshEnvironment();
 };
 
 void GreeterVncServerTest::x11UsesNativeCaptureThenFallback()
@@ -97,6 +99,26 @@ void GreeterVncServerTest::unauthenticatedListenerIsNotReady()
 			GreeterVncServer::Backend::Headless, port, "nonepass", 500));
 }
 
+void GreeterVncServerTest::transientCaptureFailureIsRetriedWithFreshEnvironment()
+{
+	QTemporaryDir directory;
+	QVERIFY(directory.isValid());
+	const auto port = unusedPort();
+	QVERIFY(port != 0);
+	int snapshots = 0;
+	const auto environment = [&]() {
+		auto result = QProcessEnvironment::systemEnvironment();
+		result.insert(QStringLiteral("VEYON_CAPTURE_ATTEMPT"), QString::number(++snapshots));
+		result.insert(QStringLiteral("VEYON_CAPTURE_RESULT"), directory.filePath(QStringLiteral("backend")));
+		return result;
+	};
+	QVERIFY(GreeterVncServer::runForSession(QCoreApplication::applicationFilePath(),
+		QStringLiteral("x11"), port, "retrypwd", 2000, environment));
+	QFile result(directory.filePath(QStringLiteral("backend")));
+	QVERIFY(result.open(QIODevice::ReadOnly));
+	QCOMPARE(result.readAll(), QByteArrayLiteral("x11"));
+}
+
 static QByteArray readExactly(QTcpSocket* socket, int size)
 {
 	QByteArray data;
@@ -130,7 +152,7 @@ static int runBackendFixture(const QStringList& arguments)
 		QThread::msleep(5000);
 		return 43;
 	}
-	if (password != "testpass" && password != "crashpwd" && password != "nonepass")
+	if (password != "testpass" && password != "crashpwd" && password != "nonepass" && password != "retrypwd")
 	{
 		return 44;
 	}
@@ -147,7 +169,15 @@ static int runBackendFixture(const QStringList& arguments)
 		{
 			std::raise(SIGKILL);
 		}
-		return 45;
+		if (password != "retrypwd" || qEnvironmentVariableIntValue("VEYON_CAPTURE_ATTEMPT") < 2)
+		{
+			return 45;
+		}
+	}
+	else if (password == "retrypwd")
+	{
+		// Do not let the fallback satisfy the native-recovery assertion.
+		return 54;
 	}
 	QTcpServer server;
 	if (!server.listen(QHostAddress::LocalHost, arguments[3].toUShort()) || !server.waitForNewConnection(2000))
@@ -181,7 +211,14 @@ static int runBackendFixture(const QStringList& arguments)
 	init.format.redShift = 16;
 	init.format.greenShift = 8;
 	socket->write(reinterpret_cast<const char*>(&init), sz_rfbServerInitMsg);
-	return socket->waitForBytesWritten(2000) ? 0 : 53;
+	if (!socket->waitForBytesWritten(2000)) { return 53; }
+	if (password == "retrypwd")
+	{
+		QFile result(qEnvironmentVariable("VEYON_CAPTURE_RESULT"));
+		if (!result.open(QIODevice::WriteOnly) || result.write("x11") != 3) { return 55; }
+		result.close();
+	}
+	return 0;
 }
 
 int main(int argc, char** argv)

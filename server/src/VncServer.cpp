@@ -152,7 +152,18 @@ void VncServer::run()
 	{
 		const auto sessionType = VeyonCore::platform().sessionFunctions().currentSessionType();
 		GreeterVncServer::runForSession(QCoreApplication::applicationFilePath(), sessionType,
-									  quint16(serverPort()), password().toByteArray());
+									  quint16(serverPort()), password().toByteArray(), 10000, []() {
+			auto environment = QProcessEnvironment::systemEnvironment();
+			const auto current = VeyonCore::platform().sessionFunctions().currentSessionEnvironmentVariables();
+			// Do not import arbitrary greeter environment variables into a root
+			// process. Only refresh display access for the capture child.
+			for (const auto& key : {QStringLiteral("DISPLAY"), QStringLiteral("XAUTHORITY")})
+			{
+				environment.remove(key);
+				if (!current.value(key).isEmpty()) { environment.insert(key, current.value(key)); }
+			}
+			return environment;
+		});
 		vCritical() << "All greeter VNC backends stopped; the service must restart this server";
 		return;
 	}

@@ -8,6 +8,7 @@
 #include <QHostAddress>
 #include <QProcess>
 #include <QTcpSocket>
+#include <QThread>
 
 #ifdef Q_OS_LINUX
 #include <csignal>
@@ -89,24 +90,42 @@ QString GreeterVncServer::backendName(Backend backend)
 }
 
 bool GreeterVncServer::runForSession(const QString& program, const QString& sessionType, quint16 port,
-									const QByteArray& password, int startupTimeout)
+									const QByteArray& password, int startupTimeout,
+									const EnvironmentProvider& environmentProvider)
 {
 	bool wasReady = false;
+	qInfo() << "Greeter capture session type:" << sessionType;
 	for (const auto backend : backendsForSession(sessionType))
 	{
 		if (backend == Backend::Headless)
 		{
 			qWarning() << "Greeter capture unavailable; serving a placeholder while keeping remote login available";
 		}
-		wasReady = run(program, backend, port, password, startupTimeout) || wasReady;
+		// LightDM can publish a session before its display and cookie are
+		// usable. Re-read them before each bounded attempt instead of keeping
+		// the environment captured at service startup forever.
+		const auto attempts = backend == Backend::X11 ? 3 : 1;
+		for (int attempt = 0; attempt < attempts; ++attempt)
+		{
+			if (attempt > 0)
+			{
+				qInfo() << "Retrying greeter X11 capture; attempt" << attempt + 1;
+				QThread::msleep(1000);
+			}
+			const auto environment = environmentProvider ? environmentProvider() : QProcessEnvironment::systemEnvironment();
+			const bool ready = run(program, backend, port, password, startupTimeout, environment);
+			wasReady |= ready;
+			if (ready) { break; }
+		}
 	}
 	return wasReady;
 }
 
 bool GreeterVncServer::run(const QString& program, Backend backend, quint16 port,
-						   const QByteArray& password, int startupTimeout)
+						   const QByteArray& password, int startupTimeout, const QProcessEnvironment& environment)
 {
 	BackendProcess process;
+	process.setProcessEnvironment(environment);
 	process.setProcessChannelMode(QProcess::ForwardedChannels);
 	process.start(program, {QStringLiteral("--greeter-vnc"), backendName(backend), QString::number(port)});
 	if (!process.waitForStarted(startupTimeout))

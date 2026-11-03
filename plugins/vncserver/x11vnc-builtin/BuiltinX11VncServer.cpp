@@ -108,6 +108,20 @@ bool BuiltinX11VncServer::runServer( int serverPort, const Password& password )
 							QStringLiteral("-rfbportv6"), QString::number( serverPort ), // set IPv6 port at which the VNC server should listen
 							QStringLiteral("-no6"),
 						  } ;
+	if (greeter)
+	{
+		const auto display = qEnvironmentVariable("DISPLAY");
+		const auto authority = qEnvironmentVariable("XAUTHORITY");
+		if (display.isEmpty() || authority.isEmpty())
+		{
+			vCritical() << "Greeter X11 capture requires DISPLAY and a validated XAUTHORITY file; display"
+						<< display << "authority" << authority;
+			return false;
+		}
+		vInfo() << "Greeter X11 capture using display" << display << "authority" << authority;
+		cmdline.append({QStringLiteral("-norc"), QStringLiteral("-display"), display,
+			QStringLiteral("-auth"), authority, QStringLiteral("-noshm")});
+	}
 
 	const auto extraArguments = m_configuration.extraArguments();
 
@@ -117,7 +131,7 @@ bool BuiltinX11VncServer::runServer( int serverPort, const Password& password )
 	}
 
 #ifndef VEYON_X11VNC_EXTERNAL
-	if( hasWorkingXShm() == false )
+	if( !greeter && hasWorkingXShm() == false )
 	{
 		vDebug() << "X shared memory extension not available - passing -noshm to x11vnc";
 		cmdline.append( QStringLiteral("-noshm") );

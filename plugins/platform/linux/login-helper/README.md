@@ -133,16 +133,26 @@ The authenticated control endpoint runs independently of display capture.
 For an X11 greeter it launches the built-in X11 capture backend in a child
 of the same executable (`--greeter-vnc x11 <internal-port>`), independently of the desktop backend
 selected in Veyon. Desktop `X11Vnc/ExtraArguments` are not applied in this
-mode. That child uses the greeter's `DISPLAY`/`XAUTHORITY`; GUI
-feature workers still inherit the real display environment. X11 runs as root;
+mode. The greeter's X11 `Display` property from logind takes precedence over
+an inherited `DISPLAY`. The service validates `XAUTHORITY`; if unavailable,
+it checks the greeter's `$HOME/.Xauthority`, then the standard LightDM
+`/run/lightdm/root/:N` cookie for that exact local display. These fallbacks
+retain the same ownership and permission checks. A custom LightDM
+`run-directory` requires the correct `XAUTHORITY` in the greeter environment.
+Capture uses explicit `-display`/`-auth`, disables shared memory, and ignores
+`~/.x11vncrc`. GUI feature workers still inherit the real display environment.
+X11 runs as root;
 a Wayland greeter server runs under the greeter account's UID.
 
-If capture exits, crashes or fails its authenticated RFB startup probe within 10 seconds,
+An X11 backend which fails before becoming ready is attempted up to three
+times, one second apart, with the display environment refreshed before each
+attempt. Each authenticated RFB startup probe has a 10-second limit. If all
+attempts fail, or a backend exits after becoming ready,
 the parent starts the headless backend on the same internal port with the same
 random VNC password. The teacher sees a placeholder instead of the greeter,
 but can reconnect and send an authenticated login command. Existing VNC
-connections may disconnect when switching to the fallback. Capture is not
-retried until the greeter server restarts; this avoids repeatedly interrupting
+connections may disconnect when switching to the fallback. After entering
+the fallback, capture is not retried until the greeter server restarts; this avoids repeatedly interrupting
 login connections. If the fallback also fails, the server exits and the
 service's existing restart mechanism retries it. Both `builtin-x11vnc-server`
 and `headless-vnc-server` plugins must be included in the installed package.
@@ -312,7 +322,11 @@ result and session-start result without passwords or prompt text.
 * A failed `LightDM PAM authentication result`: inspect the account, credentials
   and LightDM PAM stack. A successful PAM result followed by a failed
   session-start result points to desktop session startup.
-* `Greeter capture unavailable`: inspect `DISPLAY`/`XAUTHORITY` and capture logs.
+* `Greeter capture unavailable`: inspect `Greeter capture session type`,
+  `Greeter X11 capture using display`, `DISPLAY`/`XAUTHORITY` and capture logs.
+  `Greeter X11 capture requires DISPLAY and a validated XAUTHORITY file` means
+  no usable display address or cookie file was found. `Retrying greeter X11
+  capture` reports a fresh startup attempt.
   The placeholder preserves the remote login channel; capture failure alone
   does not imply a failed login.
 
@@ -365,7 +379,8 @@ ctest --test-dir <build-directory> -R '^(LightDm(Login|Wrapper)|LoginProcessIden
 
 These tests cover protocol framing, manual/remote conversation isolation,
 authentication failures, cancellation, process identity, authority-file checks
-and capture fallback. With Python 3 and `dbus-run-session`, `LightDmWrapperTest`
+and capture fallback/retries. `GreeterEnvironmentTest` covers display selection
+and authority-file validation. With Python 3 and `dbus-run-session`, `LightDmWrapperTest`
 also checks the helper/launcher and ALT/custom wrapper chains with a fake
 LightDM daemon and greeter. No live display manager is required. The isolated
 bus test does not exercise the installed system bus policy or the complete

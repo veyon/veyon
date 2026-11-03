@@ -34,6 +34,8 @@ build_veyon_plugin(linux-platform
 	LinuxUserFunctions.cpp
 	SessionFileAccess.cpp
 	SessionFileAccess.h
+	GreeterEnvironment.cpp
+	GreeterEnvironment.h
 	login-helper/LoginSession.cpp
 	login-helper/LoginSession.h
 	login-helper/ProcessIdentity.cpp

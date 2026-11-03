@@ -34,6 +34,7 @@
 #endif
 
 #include "LinuxCoreFunctions.h"
+#include "GreeterEnvironment.h"
 #include "LinuxSessionFunctions.h"
 #include "PlatformSessionManager.h"
 #include "login-helper/LoginSession.h"
@@ -106,12 +107,14 @@ bool LinuxSessionFunctions::currentSessionHasUser() const
 
 LinuxSessionFunctions::EnvironmentVariables LinuxSessionFunctions::currentSessionEnvironmentVariables() const
 {
-	const auto sessionLeader = getSessionLeaderPid(currentSessionPath());
+	const auto sessionPath = currentSessionPath();
+	const auto sessionLeader = getSessionLeaderPid(sessionPath);
 	auto sessionEnv = getSessionEnvironment(sessionLeader);
 	if (sessionEnv.isEmpty())
 	{
 		sessionEnv = QProcessEnvironment::systemEnvironment();
 	}
+	sessionEnv = GreeterEnvironment::prepare(LoginSession::read(QDBusConnection::systemBus(), sessionPath), sessionEnv);
 	const auto sessionEnvVars = sessionEnv.keys();
 
 	EnvironmentVariables envVars;

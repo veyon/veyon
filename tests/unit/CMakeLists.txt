@@ -10,6 +10,17 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	set_tests_properties(GreeterVncServerTest PROPERTIES TIMEOUT 20)
 
 	find_package(X11 REQUIRED)
+	add_executable(GreeterEnvironmentTest
+		GreeterEnvironmentTest.cpp
+		${CMAKE_SOURCE_DIR}/plugins/platform/linux/GreeterEnvironment.cpp
+		${CMAKE_SOURCE_DIR}/plugins/platform/linux/SessionFileAccess.cpp
+		${CMAKE_SOURCE_DIR}/plugins/platform/linux/login-helper/LoginSession.cpp
+	)
+	target_include_directories(GreeterEnvironmentTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/platform/linux)
+	set_default_target_properties(GreeterEnvironmentTest)
+	target_link_libraries(GreeterEnvironmentTest PRIVATE Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::DBus)
+	add_test(NAME GreeterEnvironmentTest COMMAND GreeterEnvironmentTest)
+
 	add_executable(SessionFileAccessTest
 		SessionFileAccessTest.cpp
 		${CMAKE_SOURCE_DIR}/plugins/platform/linux/SessionFileAccess.cpp

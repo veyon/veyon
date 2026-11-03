@@ -54,6 +54,7 @@ LoginSession LoginSession::read(const QDBusConnection& bus, const QString& path)
 	result.name = values.value(QStringLiteral("Name")).toString();
 	result.service = values.value(QStringLiteral("Service")).toString();
 	result.type = values.value(QStringLiteral("Type")).toString();
+	result.display = values.value(QStringLiteral("Display")).toString();
 	result.state = values.value(QStringLiteral("State")).toString();
 	result.sessionClass = values.value(QStringLiteral("Class")).toString();
 	result.leader = values.value(QStringLiteral("Leader")).toUInt();

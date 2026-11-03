@@ -13,6 +13,7 @@ struct LoginSession
 	QString seat;
 	QString service;
 	QString type;
+	QString display;
 	QString state;
 	QString sessionClass;
 	uint uid = uint(-1);

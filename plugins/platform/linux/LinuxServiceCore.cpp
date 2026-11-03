@@ -32,6 +32,7 @@
 #include <QTimer>
 
 #include "LinuxPlatformConfiguration.h"
+#include "GreeterEnvironment.h"
 #include "LinuxServerProcess.h"
 #include "LinuxServiceBusInterface.h"
 #include "LinuxServiceCore.h"
@@ -493,7 +494,8 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 	}
 	const bool isGreeter = session.sessionClass == QLatin1String("greeter") || session.isLightDmGreeter();
 
-	const auto sessionEnvironment = LinuxSessionFunctions::getSessionEnvironment(int(session.leader));
+	const auto sessionEnvironment = GreeterEnvironment::prepare(session,
+		LinuxSessionFunctions::getSessionEnvironment(int(session.leader)));
 	if (sessionEnvironment.isEmpty())
 	{
 		vWarning() << "Environment for session" << sessionPath << "not yet available - retrying in"
@@ -627,7 +629,7 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 		}
 	}
 
-	if (sessionUid > 0)
+	if (sessionUid > 0 || (isGreeter && sessionType == LinuxSessionFunctions::Type::X11))
 	{
 		if (serverEnvironment.contains(QStringLiteral("XAUTHORITY")) &&
 			!SessionFileAccess::isXAuthoritySafe(serverEnvironment.value(QStringLiteral("XAUTHORITY")), sessionUid,
