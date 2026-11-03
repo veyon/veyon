@@ -63,6 +63,17 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	add_test(NAME LoginProcessIdentityTest COMMAND LoginProcessIdentityTest)
 	find_package(Python3 COMPONENTS Interpreter QUIET)
 	find_program(DBUS_RUN_SESSION_EXECUTABLE dbus-run-session)
+	if(DBUS_RUN_SESSION_EXECUTABLE)
+		add_executable(KdeSessionControlTest
+			KdeSessionControlTest.cpp
+			${CMAKE_SOURCE_DIR}/plugins/platform/linux/KdeSessionControl.cpp
+		)
+		target_include_directories(KdeSessionControlTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/platform/linux)
+		set_default_target_properties(KdeSessionControlTest)
+		target_link_libraries(KdeSessionControlTest PRIVATE Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::DBus)
+		add_test(NAME KdeSessionControlTest COMMAND ${DBUS_RUN_SESSION_EXECUTABLE} -- $<TARGET_FILE:KdeSessionControlTest>)
+		set_tests_properties(KdeSessionControlTest PROPERTIES TIMEOUT 30)
+	endif()
 	if(TARGET kwin-greeter-capture)
 		add_executable(KWinKeyboardTest KWinKeyboardTest.cpp)
 		set_default_target_properties(KWinKeyboardTest)

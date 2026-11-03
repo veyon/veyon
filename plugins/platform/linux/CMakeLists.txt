@@ -18,6 +18,8 @@ build_veyon_plugin(linux-platform
 	SOURCES
 	LinuxPlatformPlugin.cpp
 	LinuxCoreFunctions.cpp
+	KdeSessionControl.cpp
+	KdeSessionControl.h
 	LinuxPlatformConfigurationPage.h
 	LinuxPlatformConfigurationPage.cpp
 	LinuxPlatformConfigurationPage.ui

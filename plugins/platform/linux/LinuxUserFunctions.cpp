@@ -34,6 +34,7 @@
 #include "LinuxPlatformConfiguration.h"
 #include "LinuxSessionFunctions.h"
 #include "LinuxUserFunctions.h"
+#include "KdeSessionControl.h"
 #include "login-helper/LoginInterfaces.h"
 #include "login-helper/LoginSession.h"
 #include "VeyonConfiguration.h"
@@ -376,17 +377,17 @@ void LinuxUserFunctions::logoff()
 {
 	VeyonCore::platform().coreFunctions().prepareSessionBusAccess();
 
-	// logout via common session managers
-	// logout via common session managers
+	const auto kdeReply = KdeSessionControl::request(KdeSessionControl::Operation::Logout, QDBusConnection::sessionBus());
+	if (kdeReply.type() == QDBusMessage::ReplyMessage) { return; }
+	if (!KdeSessionControl::isUnavailable(kdeReply))
+	{
+		vCritical() << "KDE logout request failed:" << kdeReply.errorName() << kdeReply.errorMessage();
+		return;
+	}
+
+	// logout via other session managers
 	for( const auto& call : std::initializer_list<std::function<QDBusMessage()>>
 	{
-		 []() {
-		 return LinuxCoreFunctions::kdeSessionManager()
-		 ->call( QStringLiteral("logout"),
-				 LinuxDesktopIntegration::KDE::ShutdownConfirmNo,
-				 LinuxDesktopIntegration::KDE::ShutdownTypeLogout,
-				 LinuxDesktopIntegration::KDE::ShutdownModeForceNow );
-},
 		 []() {
 		 return LinuxCoreFunctions::gnomeSessionManager()
 		 ->call( QStringLiteral("Logout"),
