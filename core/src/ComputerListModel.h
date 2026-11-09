@@ -46,6 +46,7 @@ public:
 		UserAndComputerName,
 		UserName,
 		ComputerName,
+		ComputerAndUserName,
 	};
 	Q_ENUM(DisplayRoleContent)
 
