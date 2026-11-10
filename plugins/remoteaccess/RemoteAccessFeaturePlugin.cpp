@@ -64,7 +64,8 @@ RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin( QObject* parent ) :
 { QStringLiteral("control"), m_remoteControlFeature.displayName() },
 { QStringLiteral("help"), tr( "Show help about command" ) },
 				} ),
-	m_clipboardSynchronizationDisabled(VeyonCore::config().clipboardSynchronizationDisabled())
+	m_clipboardSynchronizationDisabled(VeyonCore::config().clipboardSynchronizationDisabled() ||
+									  !qobject_cast<QGuiApplication*>(QCoreApplication::instance()))
 {
 	if (VeyonCore::component() == VeyonCore::Component::Server && m_clipboardSynchronizationDisabled == false)
 	{

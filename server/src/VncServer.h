@@ -37,7 +37,7 @@ class VncServer : public QThread
 public:
 	using Password = CryptoCore::SecureArray;
 
-	explicit VncServer( QObject* parent = nullptr );
+	explicit VncServer( bool greeter = false, QObject* parent = nullptr );
 	~VncServer() override;
 
 	void prepare();
@@ -51,5 +51,6 @@ private:
 	void run() override;
 
 	VncServerPluginInterface* m_pluginInterface;
+	const bool m_greeter;
 
 } ;
