@@ -7,3 +7,5 @@ Name=Veyon Server
 Comment=Veyon remote desktop server
 Icon=veyon
 Categories=Qt;Education;Network;RemoteAccess;
+# KDE reads this custom list as comma-separated entries.
+X-KDE-Wayland-Interfaces=zkde_screencast_unstable_v1,org_kde_kwin_fake_input

@@ -34,8 +34,10 @@
 #endif
 
 #include "LinuxCoreFunctions.h"
+#include "GreeterEnvironment.h"
 #include "LinuxSessionFunctions.h"
 #include "PlatformSessionManager.h"
+#include "login-helper/LoginSession.h"
 
 
 LinuxSessionFunctions::SessionId LinuxSessionFunctions::currentSessionId()
@@ -93,19 +95,31 @@ QString LinuxSessionFunctions::currentSessionType() const
 
 bool LinuxSessionFunctions::currentSessionHasUser() const
 {
-	return getSessionClass( currentSessionPath() ) == Class::User;
+	const auto path = currentSessionPath();
+	if (LoginSession::read(QDBusConnection::systemBus(), path).isLightDmGreeter())
+	{
+		return false;
+	}
+	return getSessionClass(path) == Class::User;
 }
 
 
 
 LinuxSessionFunctions::EnvironmentVariables LinuxSessionFunctions::currentSessionEnvironmentVariables() const
 {
-	const auto sessionLeader = getSessionLeaderPid(currentSessionPath());
+	const auto sessionPath = currentSessionPath();
+	const auto sessionLeader = getSessionLeaderPid(sessionPath);
 	auto sessionEnv = getSessionEnvironment(sessionLeader);
 	if (sessionEnv.isEmpty())
 	{
 		sessionEnv = QProcessEnvironment::systemEnvironment();
 	}
+	const auto session = LoginSession::read(QDBusConnection::systemBus(), sessionPath);
+	if (session.path.isEmpty() && qEnvironmentVariable("XDG_SESSION_CLASS") == QLatin1String("greeter"))
+	{
+		return {}; // Do not refresh capture credentials from an unidentified session.
+	}
+	sessionEnv = GreeterEnvironment::prepare(session, sessionEnv);
 	const auto sessionEnvVars = sessionEnv.keys();
 
 	EnvironmentVariables envVars;
@@ -329,7 +343,7 @@ QString LinuxSessionFunctions::getSessionId(const QString& session, bool logErro
 QString LinuxSessionFunctions::getSessionUser(const QString& session)
 {
 	quint32 uid{0};
-	QString userObjectPath;
+	QDBusObjectPath userObjectPath;
 
 	const auto reply = getSessionProperty(session, QStringLiteral("User"));
 	if (reply.isValid())
@@ -339,7 +353,7 @@ QString LinuxSessionFunctions::getSessionUser(const QString& session)
 		replyData >> uid >> userObjectPath;
 		replyData.endStructure();
 
-		return userObjectPath;
+		return userObjectPath.path();
 	}
 
 	return {};

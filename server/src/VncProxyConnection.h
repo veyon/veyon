@@ -25,6 +25,7 @@
 #pragma once
 
 #include <QObject>
+#include <QMap>
 #include <QTimer>
 
 class QBuffer;

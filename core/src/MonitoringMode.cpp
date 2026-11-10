@@ -90,10 +90,12 @@ MonitoringMode::MonitoringMode( QObject* parent ) :
 
 		updateUserInfo();
 		updateSessionInfo();
-		updateScreenInfoList();
-
-		connect(qGuiApp, &QGuiApplication::screenAdded, this, &MonitoringMode::updateScreenInfoList);
-		connect(qGuiApp, &QGuiApplication::screenRemoved, this, &MonitoringMode::updateScreenInfoList);
+		if (auto gui = qobject_cast<QGuiApplication*>(QCoreApplication::instance()))
+		{
+			updateScreenInfoList();
+			connect(gui, &QGuiApplication::screenAdded, this, &MonitoringMode::updateScreenInfoList);
+			connect(gui, &QGuiApplication::screenRemoved, this, &MonitoringMode::updateScreenInfoList);
+		}
 	}
 }
 

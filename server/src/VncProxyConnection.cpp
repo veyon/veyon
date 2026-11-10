@@ -65,6 +65,25 @@ VncProxyConnection::VncProxyConnection( QTcpSocket* clientSocket,
 	} );
 	connect( m_vncServerSocket, &QTcpSocket::bytesWritten, this, [this] { readFromClientLater(); } );
 	connect( m_proxyClientSocket, &QTcpSocket::bytesWritten, this, [this] { readFromServerLater(); } );
+	connect(m_vncServerSocket, &QTcpSocket::errorOccurred, this, [this](QAbstractSocket::SocketError error) {
+		if (m_proxyClientSocket->state() != QAbstractSocket::ConnectedState) { return; }
+		if (error == QAbstractSocket::ConnectionRefusedError && m_handshakeTimer.isActive() &&
+			serverProtocol().state() == VncServerProtocol::State::FramebufferInit &&
+			clientProtocol().state() == VncClientProtocol::Protocol)
+		{
+			// At boot the authenticated endpoint can precede the capture listener.
+			// A refused connect emits no disconnected signal and used to leave
+			// the internal protocol waiting for a banner on an unconnected socket.
+			// Keep the external handshake and its original deadline while retrying.
+			vDebug() << "VNC backend is not listening yet; retrying internal connection";
+			clientProtocol().reset();
+			readFromClientLater();
+			return;
+		}
+		vWarning() << "VNC backend connection failed:" << m_vncServerSocket->errorString();
+		m_proxyClientSocket->abort();
+		m_vncServerSocket->abort();
+	});
 
 	connect( m_vncServerSocket, &QTcpSocket::disconnected, this, &VncProxyConnection::clientConnectionClosed );
 	connect( m_proxyClientSocket, &QTcpSocket::disconnected, this, &VncProxyConnection::serverConnectionClosed );
@@ -94,6 +113,7 @@ void VncProxyConnection::start()
 
 void VncProxyConnection::readFromClient()
 {
+	if (m_proxyClientSocket->state() != QAbstractSocket::ConnectedState) { return; }
 	if( serverProtocol().state() != VncServerProtocol::State::Running )
 	{
 		while( serverProtocol().read() ) // Flawfinder: ignore
@@ -120,9 +140,8 @@ void VncProxyConnection::readFromClient()
 	if( serverProtocol().state() == VncServerProtocol::State::FramebufferInit &&
 		clientProtocol().state() == VncClientProtocol::Disconnected )
 	{
-		m_vncServerSocket->connectToHost( QHostAddress::LocalHost, quint16(m_vncServerPort) );
-
 		clientProtocol().start();
+		m_vncServerSocket->connectToHost( QHostAddress::LocalHost, quint16(m_vncServerPort) );
 	}
 
 	updateHandshakeState();
@@ -132,6 +151,7 @@ void VncProxyConnection::readFromClient()
 
 void VncProxyConnection::readFromServer()
 {
+	if (m_proxyClientSocket->state() != QAbstractSocket::ConnectedState) { return; }
 	if( clientProtocol().state() != VncClientProtocol::Running )
 	{
 		while( clientProtocol().read() ) // Flawfinder: ignore

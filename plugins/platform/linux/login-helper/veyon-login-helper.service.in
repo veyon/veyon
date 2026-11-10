@@ -1,0 +1,23 @@
+[Unit]
+Description=Veyon Login Helper
+Requires=dbus.service systemd-logind.service
+After=dbus.service systemd-logind.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=dbus
+BusName=io.veyon.LoginHelper
+ExecStart=@CMAKE_INSTALL_FULL_BINDIR@/veyon-login-helper --service
+Restart=always
+RestartSec=3
+StandardOutput=journal
+StandardError=journal
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes

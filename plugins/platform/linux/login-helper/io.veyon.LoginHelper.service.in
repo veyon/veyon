@@ -1,0 +1,5 @@
+[D-BUS Service]
+Name=io.veyon.LoginHelper
+Exec=@CMAKE_INSTALL_FULL_BINDIR@/veyon-login-helper --service
+User=root
+SystemdService=veyon-login-helper.service
