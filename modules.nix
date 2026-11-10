@@ -60,13 +60,15 @@ in
       documentation = [ "man:veyon-service(1)" ];
 
       after = [
-        "network-online.target"
         "dbus.service"
         "systemd-logind.service"
+        "veyon-login-helper.service"
       ];
 
+      before = [ "display-manager.service" ];
+
       wants = [
-        "network-online.target"
+        "veyon-login-helper.service"
       ];
 
       requires = [
@@ -80,11 +82,12 @@ in
         ExecStart = "${cfg.package}/bin/veyon-service";
         Type = "simple";
         Restart = "always";
-        RestartSec = 0;
+        RestartSec = 3;
+        StandardOutput = "journal";
+        StandardError = "journal";
       };
 
-      startLimitIntervalSec = 60;
-      startLimitBurst = 10;
+      startLimitIntervalSec = 0;
     };
 
     networking.firewall = {
@@ -114,6 +117,31 @@ in
         ExecStart = "${cfg.package}/bin/veyon-auth-helper";
         NoNewPrivileges = true;
         PrivateTmp = true;
+        ProtectKernelTunables = true;
+        ProtectKernelModules = true;
+        ProtectControlGroups = true;
+        RestrictSUIDSGID = true;
+        LockPersonality = true;
+      };
+    };
+
+    systemd.services.veyon-login-helper = {
+      description = "Veyon Login Helper";
+      requires = [ "dbus.service" "systemd-logind.service" ];
+      after = [ "dbus.service" "systemd-logind.service" ];
+      startLimitIntervalSec = 0;
+      serviceConfig = {
+        Type = "dbus";
+        BusName = "io.veyon.LoginHelper";
+        ExecStart = "${cfg.package}/bin/veyon-login-helper --service";
+        Restart = "always";
+        RestartSec = 3;
+        StandardOutput = "journal";
+        StandardError = "journal";
+        NoNewPrivileges = true;
+        PrivateTmp = true;
+        ProtectSystem = "strict";
+        ProtectHome = true;
         ProtectKernelTunables = true;
         ProtectKernelModules = true;
         ProtectControlGroups = true;

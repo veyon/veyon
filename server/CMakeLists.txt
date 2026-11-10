@@ -7,6 +7,8 @@ build_veyon_application(veyon-server
 	src/ComputerControlClient.h
 	src/ComputerControlServer.cpp
 	src/ComputerControlServer.h
+	src/GreeterVncServer.cpp
+	src/GreeterVncServer.h
 	src/main.cpp
 	src/ServerAccessControlManager.cpp
 	src/ServerAccessControlManager.h

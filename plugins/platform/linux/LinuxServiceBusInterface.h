@@ -39,19 +39,22 @@ class LinuxServiceBusInterface : public QObject, protected QDBusContext
 	Q_CLASSINFO("D-Bus Interface", "io.veyon.VeyonService")
 public:
 	using SessionUserCheck = std::function<bool(uid_t)>;
+	using SessionAccessCheck = std::function<bool(uid_t, uint, const QString&)>;
 
-	explicit LinuxServiceBusInterface(SessionUserCheck sessionUserCheck, QObject* parent = nullptr);
+	explicit LinuxServiceBusInterface(SessionUserCheck sessionUserCheck, SessionAccessCheck sessionAccessCheck, QObject* parent = nullptr);
 
 	bool registerOnSystemBus();
 
 public Q_SLOTS:
 	bool Authenticate(const QString& username, const QByteArray& password);
+	bool Login(const QString& sessionPath, const QString& username, const QByteArray& password, const QString& desktop);
 
 private:
-	bool verifyCaller() const;
+	bool verifyCaller(bool serverOnly = false) const;
 
 	static constexpr auto AuthenticateTimeout = 10000;
 
 	SessionUserCheck m_sessionUserCheck;
+	SessionAccessCheck m_sessionAccessCheck;
 
 };

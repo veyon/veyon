@@ -34,6 +34,8 @@
 #include "LinuxPlatformConfiguration.h"
 #include "LinuxSessionFunctions.h"
 #include "LinuxUserFunctions.h"
+#include "login-helper/LoginInterfaces.h"
+#include "login-helper/LoginSession.h"
 #include "VeyonConfiguration.h"
 
 #define XK_MISCELLANY
@@ -262,7 +264,8 @@ bool LinuxUserFunctions::isAnyUserLoggedOn()
 	{
 		if( LinuxSessionFunctions::isOpen( session ) &&
 			LinuxSessionFunctions::isGraphical( session ) &&
-			LinuxSessionFunctions::getSessionClass( session ) == LinuxSessionFunctions::Class::User )
+			LinuxSessionFunctions::getSessionClass( session ) == LinuxSessionFunctions::Class::User &&
+			!LoginSession::read(QDBusConnection::systemBus(), session).isLightDmGreeter() )
 		{
 			return true;
 		}
@@ -275,6 +278,27 @@ bool LinuxUserFunctions::isAnyUserLoggedOn()
 
 bool LinuxUserFunctions::prepareLogon( const QString& username, const Password& password )
 {
+	const auto sessionPath = LinuxSessionFunctions::currentSessionPath(true);
+	const auto session = LoginSession::read(QDBusConnection::systemBus(), sessionPath);
+	if (session.isLightDmGreeter())
+	{
+		vInfo() << "Requesting LightDM API login for session" << sessionPath;
+		const LinuxPlatformConfiguration config(&VeyonCore::config());
+		auto request = QDBusMessage::createMethodCall(VeyonServiceInterface::ServiceName,
+			VeyonServiceInterface::ObjectPath, VeyonServiceInterface::InterfaceName, QStringLiteral("Login"));
+		request.setArguments({sessionPath, username, password.toByteArray(), config.userLoginSession()});
+		const QDBusReply<bool> reply = QDBusConnection::systemBus().call(request, QDBus::Block, LoginHelperInterface::ClientTimeout);
+		if (!reply.isValid())
+		{
+			vCritical() << "LightDM login failed:" << reply.error().message();
+			return false;
+		}
+		return reply.value();
+	}
+	vInfo() << "Using legacy login for session" << sessionPath << "service" << session.service
+		<< "class" << session.sessionClass << "type" << session.type << "state" << session.state;
+
+	// Preserve the existing keyboard-based path for other display managers.
 	if( m_logonHelper.prepare( username, password ) )
 	{
 		LinuxCoreFunctions::restartDisplayManagers();

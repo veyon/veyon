@@ -112,8 +112,11 @@ DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
 	m_demoServer( nullptr ),
 	m_demoClient( nullptr )
 {
-	connect( qGuiApp, &QGuiApplication::screenAdded, this, &DemoFeaturePlugin::addScreen );
-	connect( qGuiApp, &QGuiApplication::screenRemoved, this, &DemoFeaturePlugin::removeScreen );
+	if (auto gui = qobject_cast<QGuiApplication*>(QCoreApplication::instance()))
+	{
+		connect(gui, &QGuiApplication::screenAdded, this, &DemoFeaturePlugin::addScreen);
+		connect(gui, &QGuiApplication::screenRemoved, this, &DemoFeaturePlugin::removeScreen);
+	}
 	connect( &m_demoServerControlTimer, &QTimer::timeout, this, &DemoFeaturePlugin::controlDemoServer );
 
 	updateFeatures();

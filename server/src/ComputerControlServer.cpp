@@ -36,14 +36,14 @@
 #include "SystemTrayIcon.h"
 
 
-ComputerControlServer::ComputerControlServer( QObject* parent ) :
+ComputerControlServer::ComputerControlServer( QObject* parent, bool greeter ) :
 	VeyonServerInterface(parent),
 	m_allowedIPs(),
 	m_failedAuthHosts(),
 	m_featureWorkerManager( *this ),
 	m_serverAuthenticationManager( this ),
 	m_serverAccessControlManager( m_featureWorkerManager, VeyonCore::builtinFeatures().desktopAccessDialog(), this ),
-	m_vncServer(),
+	m_vncServer(greeter),
 	m_vncProxyServer( VeyonCore::config().localConnectOnly() || VeyonCore::builtinFeatures().accessControlProvider().isAccessToLocalComputerDenied() ?
 						  QHostAddress::LocalHost : QHostAddress::Any,
 					  VeyonCore::config().veyonServerPort() + VeyonCore::sessionId(),
