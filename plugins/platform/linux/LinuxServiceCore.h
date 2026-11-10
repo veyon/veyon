@@ -73,6 +73,7 @@ private:
 	QStringList m_deferredServerSessions;
 	QSet<QString> m_sessionsWithUnknownState;
 	QSet<QString> m_sessionsWithPendingStateRecheck;
+	QSet<QString> m_serversWithPendingRestart;
 
 	LinuxServiceBusInterface* m_busInterface = nullptr;
 

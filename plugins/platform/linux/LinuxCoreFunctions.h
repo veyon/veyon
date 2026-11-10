@@ -109,6 +109,8 @@ public:
 	static bool waitForProcess( qint64 pid, int timeout, int sleepInterval );
 
 private:
+	void requestPowerAction(bool reboot);
+
 	int m_screenSaverTimeout{0};
 	int m_screenSaverPreferBlanking{0};
 	bool m_dpmsEnabled{false};

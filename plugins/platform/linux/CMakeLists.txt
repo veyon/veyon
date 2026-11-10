@@ -1,5 +1,6 @@
 add_subdirectory(auth-helper)
 add_subdirectory(input-helper)
+add_subdirectory(login-helper)
 
 include(BuildVeyonPlugin)
 
@@ -17,6 +18,8 @@ build_veyon_plugin(linux-platform
 	SOURCES
 	LinuxPlatformPlugin.cpp
 	LinuxCoreFunctions.cpp
+	KdeSessionControl.cpp
+	KdeSessionControl.h
 	LinuxPlatformConfigurationPage.h
 	LinuxPlatformConfigurationPage.cpp
 	LinuxPlatformConfigurationPage.ui
@@ -31,6 +34,14 @@ build_veyon_plugin(linux-platform
 	LinuxServiceFunctions.cpp
 	LinuxSessionFunctions.cpp
 	LinuxUserFunctions.cpp
+	SessionFileAccess.cpp
+	SessionFileAccess.h
+	GreeterEnvironment.cpp
+	GreeterEnvironment.h
+	login-helper/LoginSession.cpp
+	login-helper/LoginSession.h
+	login-helper/ProcessIdentity.cpp
+	login-helper/ProcessIdentity.h
 	LinuxPlatformPlugin.h
 	LinuxPlatformConfiguration.h
 	LinuxCoreFunctions.h
@@ -59,7 +70,15 @@ build_veyon_plugin(linux-platform
 	../common/ServiceDataManager.cpp
 )
 
-set_source_files_properties(LinuxCoreFunctions.cpp PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE)
+# Xlib/libfakekey macros such as None, Success and index conflict with Qt/QCA
+# and Veyon headers when they leak into other sources in a Unity build.
+set_source_files_properties(
+	LinuxCoreFunctions.cpp
+	LinuxInputDeviceFunctions.cpp
+	LinuxKeyboardInput.cpp
+	LinuxUserFunctions.cpp
+	PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE
+)
 
 target_include_directories(linux-platform PRIVATE ../common)
 

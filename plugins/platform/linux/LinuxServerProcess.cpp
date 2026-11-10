@@ -49,14 +49,19 @@ LinuxServerProcess::LinuxServerProcess(const QProcessEnvironment& processEnviron
 									   const QString& sessionPath, int sessionId,
 									   LinuxUserFunctions::UserId sessionUserId,
 									   LinuxSessionFunctions::Type sessionType,
+									   bool isGreeter,
 									   QObject* parent) :
 	QProcess(parent),
 	m_sessionPath(sessionPath),
 	m_sessionId(sessionId),
 	m_sessionType(sessionType),
+	m_isGreeter(isGreeter),
 	m_sessionUserId(sessionUserId)
 {
 	setProcessEnvironment( processEnvironment );
+	connect(this, &QProcess::started, this, [this]() {
+		m_processIdentity = ProcessIdentity::read(uint(processId()));
+	});
 }
 
 
@@ -66,13 +71,47 @@ LinuxServerProcess::~LinuxServerProcess()
 	stop();
 }
 
+bool LinuxServerProcess::matchesLoginCaller(uint pid, uint uid) const
+{
+	if (pid == 0 || state() != QProcess::Running || processId() != qint64(pid))
+	{
+		return false;
+	}
+	const auto current = ProcessIdentity::read(pid);
+	// A packaged launcher may exec the real binary after QProcess::started.
+	// PID/start time must remain ours; verifyCaller() separately restricts the
+	// current executable to the installed veyon-server binary.
+	return m_processIdentity.isValid() && current.isValid() &&
+		m_processIdentity.trustedExecutable && current.trustedExecutable &&
+		m_processIdentity.pid == current.pid && m_processIdentity.startTime == current.startTime &&
+		m_processIdentity.parentPid == current.parentPid && m_processIdentity.uid == uid && current.uid == uid;
+}
+
 
 
 void LinuxServerProcess::start()
 {
-	if( VeyonCore::config().logToSystem() )
+	if( m_isGreeter || VeyonCore::config().logToSystem() )
 	{
 		setProcessChannelMode( QProcess::ForwardedChannels );
+	}
+	if (m_isGreeter)
+	{
+		if (m_sessionType == LinuxSessionFunctions::Type::Wayland)
+		{
+			if (m_sessionUserId == LinuxUserFunctions::InvalidUserId)
+			{
+				vCritical() << "failed to determine greeter user ID for" << m_sessionPath;
+				return;
+			}
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+			setChildProcessModifier([this] { setProcessUserId(); });
+#endif
+		}
+		// Keep the control PID owned by this QProcess. A greeter has no
+		// logged-in desktop or portal launcher, regardless of the next session.
+		QProcess::start(VeyonCore::filesystem().serverFilePath(), {QStringLiteral("--greeter")});
+		return;
 	}
 
 	const auto catchsegv{ QStringLiteral("/usr/bin/catchsegv") };
@@ -92,12 +131,12 @@ void LinuxServerProcess::start()
 		if (m_sessionUserId == LinuxUserFunctions::InvalidUserId)
 		{
 			vCritical() << "failed to determine user ID of session user for" << m_sessionPath;
+			return;
 		}
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 		setChildProcessModifier([this] { setProcessUserId(); });
 #endif
-
 		const auto desktopPortalHasRegistry = [this]()
 		{
 			const auto originalUserId = getuid();

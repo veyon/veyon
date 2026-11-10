@@ -1,16 +1,19 @@
 [Unit]
 Description=Veyon Service
-After=network-online.target dbus.service systemd-logind.service
-Wants=network-online.target
+After=dbus.service systemd-logind.service veyon-login-helper.service
+Before=display-manager.service
+Wants=veyon-login-helper.service
 Requires=dbus.service systemd-logind.service
 Documentation=man:veyon-service(1)
+StartLimitIntervalSec=0
 
 [Service]
 ExecStart=@CMAKE_INSTALL_PREFIX@/bin/veyon-service
 Type=simple
 Restart=always
-StartLimitInterval=60
-StartLimitBurst=10
+RestartSec=3
+StandardOutput=journal
+StandardError=journal
 
 [Install]
 WantedBy=multi-user.target

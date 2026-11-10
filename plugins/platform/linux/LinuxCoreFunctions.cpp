@@ -43,7 +43,7 @@
 #endif
 
 #include "LinuxCoreFunctions.h"
-#include "LinuxDesktopIntegration.h"
+#include "KdeSessionControl.h"
 #include "LinuxUserFunctions.h"
 #include "PlatformUserFunctions.h"
 #include "ProcessHelper.h"
@@ -141,19 +141,7 @@ StandardInputReader* LinuxCoreFunctions::createStandardInputReader(QObject* pare
 
 void LinuxCoreFunctions::reboot()
 {
-	if( systemdLoginManager()->call( QStringLiteral("Reboot"), false ).type() != QDBusMessage::ReplyMessage &&
-		consoleKitManager()->call( QStringLiteral("Restart") ).type() != QDBusMessage::ReplyMessage )
-	{
-		prepareSessionBusAccess();
-
-		kdeSessionManager()->asyncCall( QStringLiteral("logout"),
-										LinuxDesktopIntegration::KDE::ShutdownConfirmNo,
-										LinuxDesktopIntegration::KDE::ShutdownTypeReboot,
-										LinuxDesktopIntegration::KDE::ShutdownModeForceNow );
-		gnomeSessionManager()->asyncCall( QStringLiteral("RequestReboot") );
-		mateSessionManager()->asyncCall( QStringLiteral("RequestReboot") );
-		xfcePowerManager()->asyncCall( QStringLiteral("Reboot") );
-	}
+	requestPowerAction(true);
 }
 
 
@@ -161,20 +149,51 @@ void LinuxCoreFunctions::reboot()
 void LinuxCoreFunctions::powerDown( bool installUpdates )
 {
 	Q_UNUSED(installUpdates)
+	requestPowerAction(false);
+}
 
-	if( systemdLoginManager()->call( QStringLiteral("PowerOff"), false ).type() != QDBusMessage::ReplyMessage &&
-		consoleKitManager()->call( QStringLiteral("Stop") ).type() != QDBusMessage::ReplyMessage )
+
+
+void LinuxCoreFunctions::requestPowerAction(bool reboot)
+{
+	const auto method = reboot ? QStringLiteral("Reboot") : QStringLiteral("PowerOff");
+	const auto loginReply = systemdLoginManager()->call(method, false);
+	if (loginReply.type() == QDBusMessage::ReplyMessage) { return; }
+	vWarning() << "logind" << method << "request failed:" << loginReply.errorName() << loginReply.errorMessage();
+
+	if (consoleKitManager()->call(reboot ? QStringLiteral("Restart") : QStringLiteral("Stop")).type() == QDBusMessage::ReplyMessage)
 	{
-		prepareSessionBusAccess();
-
-		kdeSessionManager()->asyncCall( QStringLiteral("logout"),
-										LinuxDesktopIntegration::KDE::ShutdownConfirmNo,
-										LinuxDesktopIntegration::KDE::ShutdownTypeHalt,
-										LinuxDesktopIntegration::KDE::ShutdownModeForceNow );
-		gnomeSessionManager()->asyncCall( QStringLiteral("RequestShutdown") );
-		mateSessionManager()->asyncCall( QStringLiteral("RequestShutdown") );
-		xfcePowerManager()->asyncCall( QStringLiteral("Shutdown") );
+		return;
 	}
+
+	prepareSessionBusAccess();
+	const auto kdeReply = KdeSessionControl::request(reboot ? KdeSessionControl::Operation::Reboot :
+		KdeSessionControl::Operation::PowerOff, QDBusConnection::sessionBus());
+	if (kdeReply.type() == QDBusMessage::ReplyMessage) { return; }
+	if (!KdeSessionControl::isUnavailable(kdeReply))
+	{
+		vCritical() << "KDE" << method << "request failed:" << kdeReply.errorName() << kdeReply.errorMessage();
+		return;
+	}
+
+	// Older/non-KDE desktops retain their fallback interfaces. Observe replies
+	// and stop once one manager accepts the action instead of broadcasting it.
+	const auto sessionMethod = reboot ? QStringLiteral("RequestReboot") : QStringLiteral("RequestShutdown");
+	for (const auto& manager : {gnomeSessionManager(), mateSessionManager(), xfcePowerManager()})
+	{
+		if (!manager->isValid()) { continue; }
+		manager->setTimeout(5000);
+		const auto reply = manager->call(manager->service() == QLatin1String("org.freedesktop.PowerManagement") ?
+			(reboot ? QStringLiteral("Reboot") : QStringLiteral("Shutdown")) : sessionMethod);
+		if (reply.type() == QDBusMessage::ReplyMessage) { return; }
+		if (!KdeSessionControl::isUnavailable(reply))
+		{
+			vCritical() << "Desktop" << method << "request failed:" << manager->service() << reply.errorName() << reply.errorMessage();
+			return;
+		}
+	}
+	vCritical() << "No desktop power interface accepted" << method
+		<< "and logind failed with" << loginReply.errorName() << loginReply.errorMessage();
 }
 
 
