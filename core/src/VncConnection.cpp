@@ -252,7 +252,13 @@ void VncConnection::initLogging( bool debug )
 QImage VncConnection::image()
 {
 	QReadLocker locker( &m_imgLock );
+#ifdef Q_OS_MACOS
+	// On macOS with Metal renderer, convert from RGB32 to ARGB32 for proper rendering.
+	// RGB32 causes white/corrupted blocks with Metal backend, but ARGB32 works correctly.
+	return m_image.convertToFormat(QImage::Format_ARGB32);
+#else
 	return m_image;
+#endif
 }
 
 
@@ -464,7 +470,13 @@ void VncConnection::rescaleFramebuffer()
 		return;
 	}
 
+#ifdef Q_OS_MACOS
+	// On macOS with Metal renderer, convert to ARGB32 before scaling
+	auto imageToScale = m_image.convertToFormat(QImage::Format_ARGB32);
+	m_scaledFramebuffer = imageToScale.scaled( m_scaledSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+#else
 	m_scaledFramebuffer = m_image.scaled( m_scaledSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+#endif
 
 	setControlFlag( ControlFlag::ScaledFramebufferNeedsUpdate, false );
 }
@@ -590,6 +602,9 @@ void VncConnection::establishConnection()
 											  m_socketKeepaliveIdleTime, m_socketKeepaliveInterval, m_socketKeepaliveCount );
 
 			setState( State::Connected );
+
+			// Request initial full framebuffer update immediately to avoid white/unrefreshed blocks
+			requestFrameufferUpdate( FramebufferUpdateType::Full );
 		}
 		else
 		{

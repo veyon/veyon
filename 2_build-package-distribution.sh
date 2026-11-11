@@ -36,6 +36,20 @@ else
     log_info "Build directory exists, skipping cmake configuration"
 fi
 
+# Force rebuild of macvnc if it's a submodule with uncommitted changes
+if [[ -d "${SCRIPT_DIR}/3rdparty/macvnc/.git" ]]; then
+    cd "${SCRIPT_DIR}/3rdparty/macvnc"
+    if git diff-index --quiet HEAD -- 2>/dev/null; then
+        log_info "macvnc submodule has no changes"
+    else
+        log_info "macvnc submodule has uncommitted changes - forcing rebuild"
+        rm -f "${SCRIPT_DIR}/build/3rdparty/macvnc/libmacvnc.a"
+        rm -f "${SCRIPT_DIR}/build/3rdparty/macvnc/CMakeFiles/macvnc.dir/src/"*.o
+        log_info "Cleaned macvnc build artifacts"
+    fi
+    cd "${SCRIPT_DIR}"
+fi
+
 log_info "Building..."
 cmake --build build --parallel
 

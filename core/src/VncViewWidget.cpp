@@ -44,6 +44,7 @@ VncViewWidget::VncViewWidget( const ComputerControlInterface::Pointer& computerC
 	connectUpdateFunctions( this );
 
 	connect( connection(), &VncConnection::stateChanged, this, &VncViewWidget::updateConnectionState );
+	connect( connection(), &VncConnection::framebufferUpdateComplete, this, &VncViewWidget::updateConnectionState );
 	connect( &m_busyIndicatorTimer, &QTimer::timeout, this, QOverload<>::of(&QWidget::repaint) );
 
 	// set up mouse border signal timer
@@ -249,9 +250,11 @@ void VncViewWidget::paintEvent( QPaintEvent* paintEvent )
 	QPainter p( this );
 	p.setRenderHint( QPainter::SmoothPixmapTransform );
 
+	const auto framebufferReady = connection()->hasValidFramebuffer();
 	const auto& image = connection()->image();
 
-	if( image.isNull() || image.format() == QImage::Format_Invalid )
+	if( framebufferReady == false ||
+		image.isNull() || image.format() == QImage::Format_Invalid )
 	{
 		p.fillRect( paintEvent->rect(), Qt::black );
 		drawBusyIndicator( &p );
@@ -363,7 +366,8 @@ void VncViewWidget::drawBusyIndicator( QPainter* painter )
 
 void VncViewWidget::updateConnectionState()
 {
-	if( connection()->state() != VncConnection::State::Connected )
+	if( connection()->state() != VncConnection::State::Connected ||
+		connection()->hasValidFramebuffer() == false )
 	{
 		m_busyIndicatorTimer.start( BusyIndicatorUpdateInterval );
 	}
