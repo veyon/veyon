@@ -24,8 +24,16 @@
 
 #include <QtHttpServer/qhttpserver.h>
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#include <QtHttpServer/qhttpserverfutureresponse.h>
+#	if defined(__has_include)
+#		if __has_include(<QtHttpServer/qhttpserverfutureresponse.h>)
+#			define VEYON_HAS_QHTTPSERVER_FUTURE_RESPONSE 1
+#			include <QtHttpServer/qhttpserverfutureresponse.h>
+#		endif
+#	endif
 #endif
+#include <QtConcurrent/QtConcurrent>
+#include <QFuture>
+#include <QFutureInterface>
 #include <QJsonDocument>
 #include <QSslCertificate>
 #include <QSslKey>
@@ -39,6 +47,14 @@
 #include "WebApiHttpServer.h"
 #include "WebApiConfiguration.h"
 #include "WebApiController.h"
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+using WebApiRouteReturnType = QFuture<QHttpServerResponse>;
+#elif defined(VEYON_HAS_QHTTPSERVER_FUTURE_RESPONSE)
+using WebApiRouteReturnType = QHttpServerFutureResponse;
+#else
+using WebApiRouteReturnType = QHttpServerResponse;
+#endif
 
 static inline QByteArray toJson(const QVariant& data)
 {
@@ -259,12 +275,7 @@ bool WebApiHttpServer::addRoute( const QString& path,
 			case Method::Delete: return QHttpServerRequest::Method::Delete;
 			}
 		}(),
-		[=, this](Args... args, const QHttpServerRequest& request) ->
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-	QFuture<QHttpServerResponse>
-#else
-	QHttpServerFutureResponse
-#endif
+		[=, this](Args... args, const QHttpServerRequest& request) -> WebApiRouteReturnType
 		{
 #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
 			const auto headers = request.headers().toListOfPairs();
@@ -274,19 +285,28 @@ bool WebApiHttpServer::addRoute( const QString& path,
 			const auto data = dataFromRequest<M>( request );
 			const auto controllerRequest = WebApiController::Request{path, headers, data};
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0) || defined(VEYON_HAS_QHTTPSERVER_FUTURE_RESPONSE)
 			if( m_threadPool.activeThreadCount() >= m_threadPool.maxThreadCount() )
 			{
 				auto response = convertResponse(controllerRequest, WebApiController::Error::ConnectionLimitReached);
 				QFutureInterface<QHttpServerResponse> fi;
 				fi.reportAndMoveResult( std::move(response) );
 				fi.reportFinished();
+#	if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 				return QFuture<QHttpServerResponse>{ &fi };
+#	else
+				return QHttpServerFutureResponse{ QFuture<QHttpServerResponse>{ &fi } };
+#	endif
 			}
 
 			return QtConcurrent::run(&m_threadPool, [=, this] {
 				return convertResponse(controllerRequest,
 									   (m_controller->*controllerMethod)(controllerRequest, std::forward<Args>(args)... ));
 			});
+#else
+			return convertResponse(controllerRequest,
+								   (m_controller->*controllerMethod)(controllerRequest, std::forward<Args>(args)... ));
+#endif
 		} );
 }
 

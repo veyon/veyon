@@ -104,7 +104,7 @@ QString OsXUserFunctions::userGroupSecurityIdentifier( const QString& groupName 
 bool OsXUserFunctions::isAnyUserLoggedOn()
 {
 	QProcess process;
-	process.start( QStringLiteral("/usr/bin/who") );
+	process.start( QStringLiteral("/usr/bin/who"), QStringList{} );
 	const auto entries = readProcessOutputLines( process );
 	return entries.isEmpty() == false;
 }
@@ -164,7 +164,7 @@ void OsXUserFunctions::logoff()
 bool OsXUserFunctions::authenticate( const QString& username, const Password& password )
 {
 	QProcess helper;
-	helper.start( QStringLiteral("veyon-auth-helper") );
+	helper.start( QStringLiteral("veyon-auth-helper"), QStringList{} );
 	if( helper.waitForStarted() == false )
 	{
 		vCritical() << "OsXUserFunctions: failed to start veyon-auth-helper";
