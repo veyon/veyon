@@ -37,6 +37,29 @@
 #include "Toast.h"
 #include "VeyonCore.h"
 
+namespace {
+
+constexpr int toastDurationFactor()
+{
+#if defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+	return 10;
+#else
+	return 1;
+#endif
+}
+
+int applyPlatformDuration(int duration)
+{
+	if (duration <= 0)
+	{
+		return duration;
+	}
+
+	return duration * toastDurationFactor();
+}
+
+}
+
 // Static
 int Toast::s_maximumOnScreen = 3;
 int Toast::s_spacing = 10;
@@ -73,7 +96,7 @@ Toast::Toast(QWidget* parent)
 	: QDialog(parent)
 {
 	// Init attributes
-	m_duration = 5000;
+	m_duration = applyPlatformDuration(5000);
 	m_showDurationBar = true;
 	m_icon = getIconFromEnum(Icon::Information);
 	m_showIcon = false;
@@ -534,7 +557,7 @@ void Toast::setDuration(int duration)
 	{
 		return;
 	}
-	m_duration = duration;
+	m_duration = applyPlatformDuration(duration);
 }
 
 void Toast::setShowDurationBar(bool enabled)

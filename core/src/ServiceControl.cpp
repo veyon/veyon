@@ -23,6 +23,8 @@
  */
 
 #include <QCoreApplication>
+#include <QElapsedTimer>
+#include <QThread>
 #include <QtConcurrent/QtConcurrent>
 
 #include "PlatformServiceFunctions.h"
@@ -129,10 +131,28 @@ void ServiceControl::graphicalFeedback(const QString& title, const Operation& op
 	toast->setDuration(0);
 	toast->show();
 
+	QElapsedTimer timer;
+	timer.start();
+
 	while (operation.isRunning())
 	{
 		QCoreApplication::processEvents();
 		QThread::msleep(10);
+	}
+
+#if defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+	constexpr qint64 MinimumVisibleMs = 5000;
+#else
+	constexpr qint64 MinimumVisibleMs = 0;
+#endif
+
+	qint64 remaining = MinimumVisibleMs - timer.elapsed();
+	while (remaining > 0)
+	{
+		const qint64 chunk = remaining > 50 ? 50 : remaining;
+		QCoreApplication::processEvents();
+		QThread::msleep(static_cast<unsigned long>(chunk));
+		remaining -= chunk;
 	}
 
 	toast->hide();

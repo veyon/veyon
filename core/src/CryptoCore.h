@@ -27,6 +27,7 @@
 #include "VeyonCore.h"
 
 #include <QtCrypto>
+#include <memory>
 
 // clazy:excludeall=rule-of-three
 
@@ -56,7 +57,7 @@ public:
 	PlaintextPassword decryptPassword( const QString& encryptedPassword ) const;
 
 private:
-	QCA::Initializer m_qcaInitializer;
+	std::unique_ptr<QCA::Initializer> m_qcaInitializer;
 	PrivateKey m_defaultPrivateKey;
 
 };

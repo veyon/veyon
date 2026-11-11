@@ -27,7 +27,7 @@
 #include "CryptoCore.h"
 
 CryptoCore::CryptoCore() :
-	m_qcaInitializer(),
+	m_qcaInitializer(std::make_unique<QCA::Initializer>()),
 	m_defaultPrivateKey()
 {
 	const auto paths = QCA::pluginPaths();
@@ -50,6 +50,14 @@ CryptoCore::CryptoCore() :
 
 CryptoCore::~CryptoCore()
 {
+#if defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+	if (m_qcaInitializer)
+	{
+		// QCA::deinit() crashes on macOS when tearing down the bundled plugins.
+		// Keep the initializer alive until process exit to avoid unloading the providers.
+		m_qcaInitializer.release();
+	}
+#endif
 	vDebug();
 }
 

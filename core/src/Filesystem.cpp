@@ -108,6 +108,35 @@ QString resolveBundledExecutable(const QString& baseName)
 			{
 				return nestedCandidate;
 			}
+
+			const QStringList sharedExecutables{
+				QStringLiteral("veyon-service"),
+				QStringLiteral("veyon-worker")
+			};
+
+			if (sharedExecutables.contains(baseName))
+			{
+				for (const auto& hostApp : { QStringLiteral("veyon-server") })
+				{
+					const auto hostCandidate =
+							QDir::toNativeSeparators(parent.absoluteFilePath(
+								QStringLiteral("%1.app/Contents/MacOS/%2%3")
+									.arg(hostApp, baseName, suffix)));
+					if (QFile::exists(hostCandidate))
+					{
+						return hostCandidate;
+					}
+
+					const auto nestedHostCandidate =
+							QDir::toNativeSeparators(parent.absoluteFilePath(
+								QStringLiteral("Veyon/%1.app/Contents/MacOS/%2%3")
+									.arg(hostApp, baseName, suffix)));
+					if (QFile::exists(nestedHostCandidate))
+					{
+						return nestedHostCandidate;
+					}
+				}
+			}
 		}
 	}
 #endif

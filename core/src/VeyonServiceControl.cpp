@@ -22,10 +22,8 @@
  *
  */
 
-#include <QCoreApplication>
-#include <QDir>
-
 #include "PlatformServiceFunctions.h"
+#include "Filesystem.h"
 #include "VeyonServiceControl.h"
 
 
@@ -54,10 +52,7 @@ QString VeyonServiceControl::name()
 
 QString VeyonServiceControl::filePath()
 {
-	return QDir::toNativeSeparators(
-				QCoreApplication::applicationDirPath() +
-				QDir::separator() +
-				QStringLiteral("veyon-service") + VeyonCore::executableSuffix() );
+	return VeyonCore::filesystem().resolveExecutable(QStringLiteral("veyon-service"));
 }
 
 

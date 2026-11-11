@@ -22,9 +22,6 @@ if(APPLE)
 	set(_veyon_macos_helpers
 		veyon-auth-helper
 		veyon-cli
-		veyon-server
-		veyon-service
-		veyon-worker
 	)
 	foreach(_helper ${_veyon_macos_helpers})
 		if(TARGET ${_helper})

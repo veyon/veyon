@@ -43,6 +43,10 @@
 #include <QToolTip>
 
 #if defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+#include <unistd.h>
+#endif
+
+#if defined(Q_OS_MACOS) || defined(Q_OS_MAC)
 #include <QtCrypto>
 #include <cstdlib>
 #endif
@@ -563,6 +567,13 @@ int VeyonCore::exec()
 	vDebug() << "Exit";
 
 	Q_EMIT exited();
+
+#if defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+	// Avoid macOS-specific teardown crashes triggered by Qt's post routines (e.g. QCA::deinit())
+	// by terminating the process immediately once we've emitted the exit signal and performed
+	// all Veyon cleanup.
+	::_Exit(result);
+#endif
 
 	return result;
 }
