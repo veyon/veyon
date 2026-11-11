@@ -20,3 +20,6 @@
 [submodule "3rdparty/kldap-qt5"]
 	path = 3rdparty/kldap-qt5
 	url = https://invent.kde.org/pim/kldap.git
+[submodule "3rdparty/osxvnc"]
+	path = 3rdparty/osxvnc
+	url = https://github.com/pgilfernandez/OSXvnc.git
