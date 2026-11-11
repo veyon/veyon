@@ -22,6 +22,7 @@
  *
  */
 
+#include <QAbstractSocket>
 #include <QTcpServer>
 #include <QTcpSocket>
 
@@ -69,12 +70,40 @@ bool VncProxyServer::start( int vncServerPort, const Password& vncServerPassword
 	m_vncServerPort = vncServerPort;
 	m_vncServerPassword = vncServerPassword;
 
-	if( m_listenPort < 0 ||
-			m_server->listen( m_listenAddress, static_cast<quint16>( m_listenPort ) ) == false )
+	const bool useEphemeralPort = ( m_listenPort < 0 );
+	const auto requestedPort = static_cast<quint16>( m_listenPort );
+
+	const auto listen = [this]( quint16 port ) {
+		return m_server->listen( m_listenAddress, port );
+	};
+
+	if( useEphemeralPort )
 	{
-		vWarning() << "could not listen on port" << m_listenPort << m_server->errorString();
-		return false;
+		if( listen( 0 ) == false )
+		{
+			vWarning() << "could not listen on any port" << m_server->errorString();
+			return false;
+		}
 	}
+	else if( listen( requestedPort ) == false )
+	{
+		if( m_server->serverError() == QAbstractSocket::AddressInUseError )
+		{
+			vWarning() << "requested port" << requestedPort << "already in use – falling back to an ephemeral port.";
+			if( listen( 0 ) == false )
+			{
+				vWarning() << "could not listen on any port" << m_server->errorString();
+				return false;
+			}
+		}
+		else
+		{
+			vWarning() << "could not listen on port" << requestedPort << m_server->errorString();
+			return false;
+		}
+	}
+
+	m_listenPort = static_cast<int>( m_server->serverPort() );
 
 	vDebug() << "started on port" << m_listenPort;
 	return true;

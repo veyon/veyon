@@ -22,6 +22,8 @@
  *
  */
 
+#include <QtGlobal>
+
 #include "Configuration/LocalStore.h"
 #include "ConfigurationManager.h"
 #include "Filesystem.h"
@@ -51,6 +53,14 @@ bool ConfigurationManager::clearConfiguration()
 
 bool ConfigurationManager::applyConfiguration()
 {
+#if defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+	if( VeyonCore::platform().coreFunctions().applyConfiguration() == false )
+	{
+		m_errorString =  tr( "Could not apply platform-specific configuration settings." );
+		return false;
+	}
+	return true;
+#else
 	// update Veyon Service configuration
 	if( VeyonServiceControl().setAutostart( m_configuration.autostartService() ) == false )
 	{
@@ -83,6 +93,7 @@ bool ConfigurationManager::applyConfiguration()
 	}
 
 	return true;
+#endif
 }
 
 

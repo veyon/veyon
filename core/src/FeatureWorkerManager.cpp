@@ -40,7 +40,8 @@
 FeatureWorkerManager::FeatureWorkerManager( VeyonServerInterface& server, QObject* parent ) :
 	QObject( parent ),
 	m_server( server ),
-	m_tcpServer( this )
+	m_tcpServer( this ),
+	m_available( true )
 {
 	connect( &m_tcpServer, &QTcpServer::newConnection,
 			 this, &FeatureWorkerManager::acceptConnection );
@@ -49,8 +50,8 @@ FeatureWorkerManager::FeatureWorkerManager( VeyonServerInterface& server, QObjec
 
 	if (!m_tcpServer.listen( QHostAddress::LocalHost, static_cast<quint16>(port)))
 	{
-		vCritical() << "can't listen at port" << port;
-		qFatal("listen error");
+		vWarning() << "FeatureWorkerManager: can't listen on localhost - disabling feature workers.";
+		m_available = false;
 	}
 
 	auto pendingMessagesTimer = new QTimer( this );
@@ -83,6 +84,12 @@ bool FeatureWorkerManager::startManagedSystemWorker( Feature::Uid featureUid )
 	if( thread() != QThread::currentThread() )
 	{
 		vCritical() << "thread mismatch for feature" << featureUid;
+		return false;
+	}
+
+	if( m_available == false )
+	{
+		vWarning() << "FeatureWorkerManager: workers disabled, not starting managed worker for feature" << featureUid;
 		return false;
 	}
 
@@ -140,6 +147,12 @@ bool FeatureWorkerManager::startUnmanagedSessionWorker( Feature::Uid featureUid 
 		return false;
 	}
 
+	if( m_available == false )
+	{
+		vWarning() << "FeatureWorkerManager: workers disabled, not starting unmanaged worker for feature" << featureUid;
+		return false;
+	}
+
 	stopWorker( featureUid );
 
 	Worker worker{};
@@ -177,6 +190,11 @@ bool FeatureWorkerManager::startUnmanagedSessionWorker( Feature::Uid featureUid 
 
 bool FeatureWorkerManager::stopWorker( Feature::Uid featureUid )
 {
+	if( m_available == false )
+	{
+		return false;
+	}
+
 	if( thread() != QThread::currentThread() )
 	{
 		vCritical() << "thread mismatch for feature" << featureUid;
@@ -219,6 +237,12 @@ bool FeatureWorkerManager::stopWorker( Feature::Uid featureUid )
 
 void FeatureWorkerManager::sendMessageToManagedSystemWorker( const FeatureMessage& message )
 {
+	if( m_available == false )
+	{
+		vWarning() << "FeatureWorkerManager: workers disabled, dropping message for feature" << message.featureUid();
+		return;
+	}
+
 	if( isWorkerRunning( message.featureUid() ) == false &&
 		startManagedSystemWorker( message.featureUid() ) == false )
 	{
@@ -234,6 +258,12 @@ void FeatureWorkerManager::sendMessageToManagedSystemWorker( const FeatureMessag
 
 void FeatureWorkerManager::sendMessageToUnmanagedSessionWorker( const FeatureMessage& message )
 {
+	if( m_available == false )
+	{
+		vWarning() << "FeatureWorkerManager: workers disabled, dropping message for feature" << message.featureUid();
+		return;
+	}
+
 	// maintain the order: as long as there are older messages waiting, add them to the list
 	if (m_pendingSessionWorkerMessages.contains(message.featureUid()) ||
 		(isWorkerRunning(message.featureUid()) == false &&
@@ -348,6 +378,11 @@ bool FeatureWorkerManager::isWorkerRunning( Feature::Uid featureUid )
 
 void FeatureWorkerManager::acceptConnection()
 {
+	if( m_available == false )
+	{
+		return;
+	}
+
 	auto socket = m_tcpServer.nextPendingConnection();
 	vDebug() << "new connection from worker at" << socket->peerPort();
 
@@ -380,6 +415,11 @@ void FeatureWorkerManager::acceptConnection()
 
 void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 {
+	if( m_available == false )
+	{
+		return;
+	}
+
 	FeatureMessage message;
 	while (message.isReadyForReceive(socket))
 	{
@@ -472,6 +512,11 @@ void FeatureWorkerManager::closeConnection( QTcpSocket* socket )
 
 void FeatureWorkerManager::sendMessage( const FeatureMessage& message )
 {
+	if( m_available == false )
+	{
+		return;
+	}
+
 	m_workersMutex.lock();
 
 	if( m_workers.contains( message.featureUid() ) )
@@ -490,6 +535,11 @@ void FeatureWorkerManager::sendMessage( const FeatureMessage& message )
 
 void FeatureWorkerManager::sendPendingMessages()
 {
+	if( m_available == false )
+	{
+		return;
+	}
+
 	m_workersMutex.lock();
 
 	for( auto it = m_workers.begin(); it != m_workers.end(); ++it )

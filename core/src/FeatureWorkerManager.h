@@ -99,4 +99,6 @@ private:
 	QMap<Feature::Uid, QList<FeatureMessage>> m_pendingSessionWorkerMessages;
 	QTimer m_sessionWorkerRetryTimer;
 
+	bool m_available{true};
+
 } ;

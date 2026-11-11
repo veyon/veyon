@@ -27,6 +27,7 @@
 #include "PluginInterface.h"
 #include "VncServerPluginInterface.h"
 #include "ExternalVncServerConfiguration.h"
+#include <QtGlobal>
 
 class ExternalVncServer : public QObject, VncServerPluginInterface, PluginInterface
 {
@@ -68,7 +69,11 @@ public:
 
 	Plugin::Flags flags() const override
 	{
+#if defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+		return Plugin::ProvidesDefaultImplementation;
+#else
 		return Plugin::NoFlags;
+#endif
 	}
 
 	QStringList supportedSessionTypes() const override

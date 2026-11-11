@@ -23,11 +23,14 @@
  */
 
 #include <QCoreApplication>
+#include <QDir>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QRegularExpression>
 #include <QSettings>
+#include <QStandardPaths>
+#include <QtGlobal>
 
 #include "Configuration/LocalStore.h"
 #include "Configuration/Object.h"
@@ -173,7 +176,16 @@ void LocalStore::flush( const Object *obj )
 bool LocalStore::isWritable() const
 {
 	auto s = createSettingsObject();
-	bool ret = s->isWritable();
+#if defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+	const QString probeKey = QStringLiteral("__veyon_write_probe__");
+	s->setValue( probeKey, true );
+	s->sync();
+	const bool ret = ( s->status() == QSettings::NoError );
+	s->remove( probeKey );
+	s->sync();
+#else
+	const bool ret = s->isWritable();
+#endif
 	delete s;
 
 	return ret;
@@ -193,7 +205,22 @@ void LocalStore::clear()
 
 QSettings *LocalStore::createSettingsObject() const
 {
-	return new QSettings(
+#if defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+	const QString baseDir = QStandardPaths::writableLocation( QStandardPaths::AppConfigLocation );
+	QDir dir( baseDir );
+	if( dir.exists() == false )
+	{
+		if( dir.mkpath( QStringLiteral(".") ) == false )
+		{
+			vWarning() << "Configuration::LocalStore: could not create configuration directory" << dir.path();
+		}
+	}
+
+	const QString settingsFile = dir.filePath( QStringLiteral("veyon.conf") );
+	auto settings = new QSettings( settingsFile, QSettings::IniFormat );
+	settings->setFallbacksEnabled( false );
+#else
+	auto settings = new QSettings(
 #ifdef Q_OS_WIN
 				QSettings::Registry64Format,
 #else
@@ -202,8 +229,9 @@ QSettings *LocalStore::createSettingsObject() const
 				scope() == Scope::System ? QSettings::SystemScope : QSettings::UserScope,
 				QCoreApplication::organizationName(),
 				QCoreApplication::applicationName());
+#endif
+	return settings;
 }
 
 
 }
-

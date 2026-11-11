@@ -4,6 +4,31 @@ include(BuildVeyonPlugin)
 find_package(Ldap REQUIRED)
 find_package(Sasl2 REQUIRED)
 
+if(APPLE AND Ldap_LIBRARIES MATCHES "LDAP.framework")
+	find_path(OPENLDAP_INCLUDE_DIR ldap.h
+		PATHS
+			/opt/homebrew/opt/openldap/include
+			/usr/local/opt/openldap/include
+		NO_DEFAULT_PATH)
+	find_library(OPENLDAP_LIB ldap
+		PATHS
+			/opt/homebrew/opt/openldap/lib
+			/usr/local/opt/openldap/lib
+		NO_DEFAULT_PATH)
+	find_library(OPENLDAP_LBER_LIB lber
+		PATHS
+			/opt/homebrew/opt/openldap/lib
+			/usr/local/opt/openldap/lib
+		NO_DEFAULT_PATH)
+	if(OPENLDAP_INCLUDE_DIR AND OPENLDAP_LIB AND OPENLDAP_LBER_LIB)
+		message(STATUS "Using Homebrew OpenLDAP instead of system LDAP framework")
+		set(Ldap_INCLUDE_DIRS ${OPENLDAP_INCLUDE_DIR})
+		set(Ldap_LIBRARIES ${OPENLDAP_LIB} ${OPENLDAP_LBER_LIB})
+	else()
+		message(WARNING "Homebrew OpenLDAP not found, falling back to system LDAP framework")
+	endif()
+endif()
+
 set(CMAKE_REQUIRED_INCLUDES lber.h ldap.h)
 set(CMAKE_REQUIRED_LIBRARIES ${Ldap_LIBRARIES} ${Sasl2_LIBRARIES} ${OPENSSL_LIBRARIES})
 check_function_exists(ldap_start_tls_s HAVE_LDAP_START_TLS_S)

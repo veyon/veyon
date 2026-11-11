@@ -24,6 +24,7 @@
 
 #include <QApplication>
 #include <QMessageBox>
+#include <QtGlobal>
 
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
@@ -41,6 +42,7 @@ int main( int argc, char **argv )
 
 	VeyonCore core( &app, VeyonCore::Component::Configurator, QStringLiteral("Configurator") );
 
+#if !defined(Q_OS_MACOS) && !defined(Q_OS_MAC)
 	// make sure to run as admin
 	if( qEnvironmentVariableIntValue( "VEYON_CONFIGURATOR_NO_ELEVATION" ) == 0 &&
 		VeyonCore::platform().coreFunctions().isRunningAsAdmin() == false &&
@@ -58,16 +60,26 @@ int main( int argc, char **argv )
 											  "for your desktop environment! The program will "
 											  "be run with normal user privileges.") );
 	}
+#endif
 
 	if( VeyonConfiguration().isStoreWritable() == false &&
 		VeyonCore::config().logLevel() != Logger::LogLevel::Debug )
 	{
-		QMessageBox::critical(nullptr,
-							  MainWindow::tr("Configuration not writable"),
-							  MainWindow::tr("The local configuration backend reported that the "
-											 "configuration is not writable! Please run Veyon "
-											 "Configurator with higher privileges."));
+#if defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+		QMessageBox::warning( nullptr,
+							  MainWindow::tr( "Configuration not writable" ),
+							  MainWindow::tr( "The local configuration backend reported that the "
+											  "configuration is not writable! The %1 Configurator "
+											  "will run in read-only mode." ).arg( VeyonCore::applicationName() ) );
+		// On macOS we keep running in read-only mode
+#else
+		QMessageBox::critical( nullptr,
+							   MainWindow::tr( "Configuration not writable" ),
+							   MainWindow::tr( "The local configuration backend reported that the "
+											   "configuration is not writable! Please run the %1 "
+											   "Configurator with higher privileges." ).arg( VeyonCore::applicationName() ) );
 		return -1;
+#endif
 	}
 
 	// now create the main window
