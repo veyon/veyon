@@ -133,15 +133,36 @@ install_helper_binaries() {
 	local target_app="$1"
 	local app_id="$2"
 
+	local app_name
+	app_name="$(basename "$target_app")"
+
+	# veyon-server needs veyon-worker in MacOS/ for UI display
+	if [[ "$app_id" == "veyon-server" ]]; then
+		local dest_dir="${target_app}/Contents/MacOS"
+		mkdir -p "$dest_dir"
+
+		local helper="veyon-worker"
+		local dest="${dest_dir}/${helper}"
+
+		if [[ ! -x "$dest" ]]; then
+			local source
+			if source="$(find_helper_binary "$helper")"; then
+				cp "$source" "$dest"
+				chmod 755 "$dest"
+				log_info "  ✓ Helper ${helper} added to ${app_name}"
+			else
+				log_warn "  Helper ${helper} not found for ${app_name}"
+			fi
+		fi
+		return
+	fi
+
 	# Only the configurator needs to include local helpers to manage the service
 	if [[ "$app_id" != "veyon-configurator" ]]; then
 		return
 	fi
 
 	local helpers_dir="${target_app}/Contents/Resources/Helpers"
-	local app_name
-	app_name="$(basename "$target_app")"
-
 	mkdir -p "$helpers_dir"
 
 	for helper in "${HELPER_APPS[@]}"; do
