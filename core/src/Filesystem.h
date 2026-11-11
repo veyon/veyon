@@ -44,6 +44,7 @@ public:
 
 	QString serverFilePath() const;
 	QString workerFilePath() const;
+	QString resolveExecutable(const QString& baseName) const;
 
 Q_SIGNALS:
 	void screenshotDirectoryModified();

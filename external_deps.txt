@@ -1,0 +1,413 @@
+veyon-macos-package/veyon-configurator.app/Contents/PlugIns/platforms/libqwebgl.dylib.disabled
+  /usr/local/opt/qt@5/plugins/platforms/libqwebgl.dylib
+  /usr/local/opt/glib/lib/libgthread-2.0.0.dylib
+  /usr/local/opt/glib/lib/libglib-2.0.0.dylib
+  /usr/local/opt/gettext/lib/libintl.8.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtDBus.framework/Versions/5/QtDBus
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtQuick.framework/Versions/5/QtQuick
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtGui.framework/Versions/5/QtGui
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtWebSockets.framework/Versions/5/QtWebSockets
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtQmlModels.framework/Versions/5/QtQmlModels
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtQml.framework/Versions/5/QtQml
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtNetwork.framework/Versions/5/QtNetwork
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtCore.framework/Versions/5/QtCore
+veyon-macos-package/veyon-configurator.app/Contents/PlugIns/platforms/libqoffscreen.dylib
+  /usr/local/opt/qt@5/plugins/platforms/libqoffscreen.dylib
+  /usr/local/opt/glib/lib/libgthread-2.0.0.dylib
+  /usr/local/opt/glib/lib/libglib-2.0.0.dylib
+  /usr/local/opt/gettext/lib/libintl.8.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/PlugIns/platforms/libqminimal.dylib
+  /usr/local/opt/qt@5/plugins/platforms/libqminimal.dylib
+  /usr/local/opt/glib/lib/libgthread-2.0.0.dylib
+  /usr/local/opt/glib/lib/libglib-2.0.0.dylib
+  /usr/local/opt/gettext/lib/libintl.8.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/PlugIns/platforms/libqcocoa.dylib
+  /usr/local/opt/qt@5/plugins/platforms/libqcocoa.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/PlugIns/styles/libqmacstyle.dylib
+  /usr/local/opt/qt@5/plugins/styles/libqmacstyle.dylib
+veyon-macos-package/veyon-configurator.app/Contents/PlugIns/iconengines/libqsvgicon.dylib
+  /usr/local/opt/qt@5/plugins/iconengines/libqsvgicon.dylib
+veyon-macos-package/veyon-configurator.app/Contents/PlugIns/imageformats/libqgif.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqgif.dylib
+veyon-macos-package/veyon-configurator.app/Contents/PlugIns/imageformats/libqwbmp.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqwbmp.dylib
+veyon-macos-package/veyon-configurator.app/Contents/PlugIns/imageformats/libqwebp.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqwebp.dylib
+  /usr/local/opt/webp/lib/libwebp.7.dylib
+  /usr/local/opt/webp/lib/libwebpmux.3.dylib
+  /usr/local/opt/webp/lib/libwebpdemux.2.dylib
+veyon-macos-package/veyon-configurator.app/Contents/PlugIns/imageformats/libqpdf.dylib.disabled
+  /usr/local/opt/qt@5/plugins/imageformats/libqpdf.dylib
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtPdf.framework/Versions/5/QtPdf
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtGui.framework/Versions/5/QtGui
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtCore.framework/Versions/5/QtCore
+veyon-macos-package/veyon-configurator.app/Contents/PlugIns/imageformats/libqico.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqico.dylib
+veyon-macos-package/veyon-configurator.app/Contents/PlugIns/imageformats/libqmacheif.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqmacheif.dylib
+veyon-macos-package/veyon-configurator.app/Contents/PlugIns/imageformats/libqjpeg.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqjpeg.dylib
+  /usr/local/opt/jpeg-turbo/lib/libjpeg.8.dylib
+veyon-macos-package/veyon-configurator.app/Contents/PlugIns/imageformats/libqtiff.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqtiff.dylib
+  /usr/local/opt/libtiff/lib/libtiff.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/PlugIns/imageformats/libqsvg.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqsvg.dylib
+veyon-macos-package/veyon-configurator.app/Contents/PlugIns/imageformats/libqicns.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqicns.dylib
+veyon-macos-package/veyon-configurator.app/Contents/PlugIns/imageformats/libqtga.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqtga.dylib
+veyon-macos-package/veyon-configurator.app/Contents/PlugIns/imageformats/libqmacjp2.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqmacjp2.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/PlugIns/platforms/libqwebgl.dylib.disabled
+  /usr/local/opt/qt@5/plugins/platforms/libqwebgl.dylib
+  /usr/local/opt/glib/lib/libgthread-2.0.0.dylib
+  /usr/local/opt/glib/lib/libglib-2.0.0.dylib
+  /usr/local/opt/gettext/lib/libintl.8.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtDBus.framework/Versions/5/QtDBus
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtQuick.framework/Versions/5/QtQuick
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtGui.framework/Versions/5/QtGui
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtWebSockets.framework/Versions/5/QtWebSockets
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtQmlModels.framework/Versions/5/QtQmlModels
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtQml.framework/Versions/5/QtQml
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtNetwork.framework/Versions/5/QtNetwork
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtCore.framework/Versions/5/QtCore
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/PlugIns/platforms/libqoffscreen.dylib
+  /usr/local/opt/qt@5/plugins/platforms/libqoffscreen.dylib
+  /usr/local/opt/glib/lib/libgthread-2.0.0.dylib
+  /usr/local/opt/glib/lib/libglib-2.0.0.dylib
+  /usr/local/opt/gettext/lib/libintl.8.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/PlugIns/platforms/libqminimal.dylib
+  /usr/local/opt/qt@5/plugins/platforms/libqminimal.dylib
+  /usr/local/opt/glib/lib/libgthread-2.0.0.dylib
+  /usr/local/opt/glib/lib/libglib-2.0.0.dylib
+  /usr/local/opt/gettext/lib/libintl.8.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/PlugIns/platforms/libqcocoa.dylib
+  /usr/local/opt/qt@5/plugins/platforms/libqcocoa.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/PlugIns/styles/libqmacstyle.dylib
+  /usr/local/opt/qt@5/plugins/styles/libqmacstyle.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/PlugIns/iconengines/libqsvgicon.dylib
+  /usr/local/opt/qt@5/plugins/iconengines/libqsvgicon.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/PlugIns/imageformats/libqgif.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqgif.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/PlugIns/imageformats/libqwbmp.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqwbmp.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/PlugIns/imageformats/libqwebp.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqwebp.dylib
+  /usr/local/opt/webp/lib/libwebp.7.dylib
+  /usr/local/opt/webp/lib/libwebpmux.3.dylib
+  /usr/local/opt/webp/lib/libwebpdemux.2.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/PlugIns/imageformats/libqpdf.dylib.disabled
+  /usr/local/opt/qt@5/plugins/imageformats/libqpdf.dylib
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtPdf.framework/Versions/5/QtPdf
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtGui.framework/Versions/5/QtGui
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtCore.framework/Versions/5/QtCore
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/PlugIns/imageformats/libqico.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqico.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/PlugIns/imageformats/libqmacheif.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqmacheif.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/PlugIns/imageformats/libqjpeg.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqjpeg.dylib
+  /usr/local/opt/jpeg-turbo/lib/libjpeg.8.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/PlugIns/imageformats/libqtiff.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqtiff.dylib
+  /usr/local/opt/libtiff/lib/libtiff.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/PlugIns/imageformats/libqsvg.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqsvg.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/PlugIns/imageformats/libqicns.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqicns.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/PlugIns/imageformats/libqtga.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqtga.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/PlugIns/imageformats/libqmacjp2.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqmacjp2.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/lib/veyon/webapi.dylib.disabled
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtHttpServer.framework/Versions/5/QtHttpServer
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtSslServer.framework/Versions/5/QtSslServer
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/Frameworks/qca-qt5.framework/qca-qt5
+  /usr/local/lib/qca-qt5.framework/Versions/2/qca-qt5
+  /usr/local/opt/qt@5/lib/QtCore.framework/Versions/5/QtCore
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/Frameworks/qca-qt5.framework/Versions/2/qca-qt5
+  /usr/local/lib/qca-qt5.framework/Versions/2/qca-qt5
+  /usr/local/opt/qt@5/lib/QtCore.framework/Versions/5/QtCore
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/Frameworks/openssl/libssl.3.dylib
+  /opt/local/libexec/openssl3/lib/libssl.3.dylib
+  /opt/local/libexec/openssl3/lib/libcrypto.3.dylib
+  /opt/local/lib/libz.1.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-worker.app/Contents/Frameworks/openssl/libcrypto.3.dylib
+  /opt/local/libexec/openssl3/lib/libcrypto.3.dylib
+  /opt/local/lib/libz.1.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/PlugIns/platforms/libqwebgl.dylib.disabled
+  /usr/local/opt/qt@5/plugins/platforms/libqwebgl.dylib
+  /usr/local/opt/glib/lib/libgthread-2.0.0.dylib
+  /usr/local/opt/glib/lib/libglib-2.0.0.dylib
+  /usr/local/opt/gettext/lib/libintl.8.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtDBus.framework/Versions/5/QtDBus
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtQuick.framework/Versions/5/QtQuick
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtGui.framework/Versions/5/QtGui
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtWebSockets.framework/Versions/5/QtWebSockets
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtQmlModels.framework/Versions/5/QtQmlModels
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtQml.framework/Versions/5/QtQml
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtNetwork.framework/Versions/5/QtNetwork
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtCore.framework/Versions/5/QtCore
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/PlugIns/platforms/libqoffscreen.dylib
+  /usr/local/opt/qt@5/plugins/platforms/libqoffscreen.dylib
+  /usr/local/opt/glib/lib/libgthread-2.0.0.dylib
+  /usr/local/opt/glib/lib/libglib-2.0.0.dylib
+  /usr/local/opt/gettext/lib/libintl.8.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/PlugIns/platforms/libqminimal.dylib
+  /usr/local/opt/qt@5/plugins/platforms/libqminimal.dylib
+  /usr/local/opt/glib/lib/libgthread-2.0.0.dylib
+  /usr/local/opt/glib/lib/libglib-2.0.0.dylib
+  /usr/local/opt/gettext/lib/libintl.8.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/PlugIns/platforms/libqcocoa.dylib
+  /usr/local/opt/qt@5/plugins/platforms/libqcocoa.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/PlugIns/styles/libqmacstyle.dylib
+  /usr/local/opt/qt@5/plugins/styles/libqmacstyle.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/PlugIns/iconengines/libqsvgicon.dylib
+  /usr/local/opt/qt@5/plugins/iconengines/libqsvgicon.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/PlugIns/imageformats/libqgif.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqgif.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/PlugIns/imageformats/libqwbmp.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqwbmp.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/PlugIns/imageformats/libqwebp.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqwebp.dylib
+  /usr/local/opt/webp/lib/libwebp.7.dylib
+  /usr/local/opt/webp/lib/libwebpmux.3.dylib
+  /usr/local/opt/webp/lib/libwebpdemux.2.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/PlugIns/imageformats/libqpdf.dylib.disabled
+  /usr/local/opt/qt@5/plugins/imageformats/libqpdf.dylib
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtPdf.framework/Versions/5/QtPdf
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtGui.framework/Versions/5/QtGui
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtCore.framework/Versions/5/QtCore
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/PlugIns/imageformats/libqico.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqico.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/PlugIns/imageformats/libqmacheif.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqmacheif.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/PlugIns/imageformats/libqjpeg.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqjpeg.dylib
+  /usr/local/opt/jpeg-turbo/lib/libjpeg.8.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/PlugIns/imageformats/libqtiff.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqtiff.dylib
+  /usr/local/opt/libtiff/lib/libtiff.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/PlugIns/imageformats/libqsvg.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqsvg.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/PlugIns/imageformats/libqicns.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqicns.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/PlugIns/imageformats/libqtga.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqtga.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/PlugIns/imageformats/libqmacjp2.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqmacjp2.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/lib/veyon/webapi.dylib.disabled
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtHttpServer.framework/Versions/5/QtHttpServer
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtSslServer.framework/Versions/5/QtSslServer
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/Frameworks/qca-qt5.framework/qca-qt5
+  /usr/local/lib/qca-qt5.framework/Versions/2/qca-qt5
+  /usr/local/opt/qt@5/lib/QtCore.framework/Versions/5/QtCore
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/Frameworks/qca-qt5.framework/Versions/2/qca-qt5
+  /usr/local/lib/qca-qt5.framework/Versions/2/qca-qt5
+  /usr/local/opt/qt@5/lib/QtCore.framework/Versions/5/QtCore
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/Frameworks/openssl/libssl.3.dylib
+  /opt/local/libexec/openssl3/lib/libssl.3.dylib
+  /opt/local/libexec/openssl3/lib/libcrypto.3.dylib
+  /opt/local/lib/libz.1.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-cli.app/Contents/Frameworks/openssl/libcrypto.3.dylib
+  /opt/local/libexec/openssl3/lib/libcrypto.3.dylib
+  /opt/local/lib/libz.1.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/PlugIns/platforms/libqwebgl.dylib.disabled
+  /usr/local/opt/qt@5/plugins/platforms/libqwebgl.dylib
+  /usr/local/opt/glib/lib/libgthread-2.0.0.dylib
+  /usr/local/opt/glib/lib/libglib-2.0.0.dylib
+  /usr/local/opt/gettext/lib/libintl.8.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtDBus.framework/Versions/5/QtDBus
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtQuick.framework/Versions/5/QtQuick
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtGui.framework/Versions/5/QtGui
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtWebSockets.framework/Versions/5/QtWebSockets
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtQmlModels.framework/Versions/5/QtQmlModels
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtQml.framework/Versions/5/QtQml
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtNetwork.framework/Versions/5/QtNetwork
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtCore.framework/Versions/5/QtCore
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/PlugIns/platforms/libqoffscreen.dylib
+  /usr/local/opt/qt@5/plugins/platforms/libqoffscreen.dylib
+  /usr/local/opt/glib/lib/libgthread-2.0.0.dylib
+  /usr/local/opt/glib/lib/libglib-2.0.0.dylib
+  /usr/local/opt/gettext/lib/libintl.8.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/PlugIns/platforms/libqminimal.dylib
+  /usr/local/opt/qt@5/plugins/platforms/libqminimal.dylib
+  /usr/local/opt/glib/lib/libgthread-2.0.0.dylib
+  /usr/local/opt/glib/lib/libglib-2.0.0.dylib
+  /usr/local/opt/gettext/lib/libintl.8.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/PlugIns/platforms/libqcocoa.dylib
+  /usr/local/opt/qt@5/plugins/platforms/libqcocoa.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/PlugIns/styles/libqmacstyle.dylib
+  /usr/local/opt/qt@5/plugins/styles/libqmacstyle.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/PlugIns/iconengines/libqsvgicon.dylib
+  /usr/local/opt/qt@5/plugins/iconengines/libqsvgicon.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/PlugIns/imageformats/libqgif.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqgif.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/PlugIns/imageformats/libqwbmp.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqwbmp.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/PlugIns/imageformats/libqwebp.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqwebp.dylib
+  /usr/local/opt/webp/lib/libwebp.7.dylib
+  /usr/local/opt/webp/lib/libwebpmux.3.dylib
+  /usr/local/opt/webp/lib/libwebpdemux.2.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/PlugIns/imageformats/libqpdf.dylib.disabled
+  /usr/local/opt/qt@5/plugins/imageformats/libqpdf.dylib
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtPdf.framework/Versions/5/QtPdf
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtGui.framework/Versions/5/QtGui
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtCore.framework/Versions/5/QtCore
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/PlugIns/imageformats/libqico.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqico.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/PlugIns/imageformats/libqmacheif.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqmacheif.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/PlugIns/imageformats/libqjpeg.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqjpeg.dylib
+  /usr/local/opt/jpeg-turbo/lib/libjpeg.8.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/PlugIns/imageformats/libqtiff.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqtiff.dylib
+  /usr/local/opt/libtiff/lib/libtiff.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/PlugIns/imageformats/libqsvg.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqsvg.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/PlugIns/imageformats/libqicns.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqicns.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/PlugIns/imageformats/libqtga.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqtga.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/PlugIns/imageformats/libqmacjp2.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqmacjp2.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/lib/veyon/webapi.dylib.disabled
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtHttpServer.framework/Versions/5/QtHttpServer
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtSslServer.framework/Versions/5/QtSslServer
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/Frameworks/qca-qt5.framework/qca-qt5
+  /usr/local/lib/qca-qt5.framework/Versions/2/qca-qt5
+  /usr/local/opt/qt@5/lib/QtCore.framework/Versions/5/QtCore
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/Frameworks/qca-qt5.framework/Versions/2/qca-qt5
+  /usr/local/lib/qca-qt5.framework/Versions/2/qca-qt5
+  /usr/local/opt/qt@5/lib/QtCore.framework/Versions/5/QtCore
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/Frameworks/openssl/libssl.3.dylib
+  /opt/local/libexec/openssl3/lib/libssl.3.dylib
+  /opt/local/libexec/openssl3/lib/libcrypto.3.dylib
+  /opt/local/lib/libz.1.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-service.app/Contents/Frameworks/openssl/libcrypto.3.dylib
+  /opt/local/libexec/openssl3/lib/libcrypto.3.dylib
+  /opt/local/lib/libz.1.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/MacOS/veyon-auth-helper
+  /usr/local/opt/qt@5/lib/QtCore.framework/Versions/5/QtCore
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/MacOS/veyon-worker
+  /usr/local/opt/qt@5/lib/QtConcurrent.framework/Versions/5/QtConcurrent
+  /usr/local/opt/qt@5/lib/QtNetwork.framework/Versions/5/QtNetwork
+  /usr/local/opt/qt@5/lib/QtWidgets.framework/Versions/5/QtWidgets
+  /usr/local/opt/qt@5/lib/QtGui.framework/Versions/5/QtGui
+  /usr/local/lib/qca-qt5.framework/Versions/2/qca-qt5
+  /usr/local/opt/qt@5/lib/QtCore.framework/Versions/5/QtCore
+  /opt/local/libexec/openssl3/lib/libssl.3.dylib
+  /opt/local/libexec/openssl3/lib/libcrypto.3.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/PlugIns/platforms/libqwebgl.dylib.disabled
+  /usr/local/opt/qt@5/plugins/platforms/libqwebgl.dylib
+  /usr/local/opt/glib/lib/libgthread-2.0.0.dylib
+  /usr/local/opt/glib/lib/libglib-2.0.0.dylib
+  /usr/local/opt/gettext/lib/libintl.8.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtDBus.framework/Versions/5/QtDBus
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtQuick.framework/Versions/5/QtQuick
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtGui.framework/Versions/5/QtGui
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtWebSockets.framework/Versions/5/QtWebSockets
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtQmlModels.framework/Versions/5/QtQmlModels
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtQml.framework/Versions/5/QtQml
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtNetwork.framework/Versions/5/QtNetwork
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtCore.framework/Versions/5/QtCore
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/PlugIns/platforms/libqoffscreen.dylib
+  /usr/local/opt/qt@5/plugins/platforms/libqoffscreen.dylib
+  /usr/local/opt/glib/lib/libgthread-2.0.0.dylib
+  /usr/local/opt/glib/lib/libglib-2.0.0.dylib
+  /usr/local/opt/gettext/lib/libintl.8.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/PlugIns/platforms/libqminimal.dylib
+  /usr/local/opt/qt@5/plugins/platforms/libqminimal.dylib
+  /usr/local/opt/glib/lib/libgthread-2.0.0.dylib
+  /usr/local/opt/glib/lib/libglib-2.0.0.dylib
+  /usr/local/opt/gettext/lib/libintl.8.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/PlugIns/platforms/libqcocoa.dylib
+  /usr/local/opt/qt@5/plugins/platforms/libqcocoa.dylib
+  /usr/local/opt/freetype/lib/libfreetype.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/PlugIns/styles/libqmacstyle.dylib
+  /usr/local/opt/qt@5/plugins/styles/libqmacstyle.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/PlugIns/iconengines/libqsvgicon.dylib
+  /usr/local/opt/qt@5/plugins/iconengines/libqsvgicon.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/PlugIns/imageformats/libqgif.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqgif.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/PlugIns/imageformats/libqwbmp.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqwbmp.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/PlugIns/imageformats/libqwebp.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqwebp.dylib
+  /usr/local/opt/webp/lib/libwebp.7.dylib
+  /usr/local/opt/webp/lib/libwebpmux.3.dylib
+  /usr/local/opt/webp/lib/libwebpdemux.2.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/PlugIns/imageformats/libqpdf.dylib.disabled
+  /usr/local/opt/qt@5/plugins/imageformats/libqpdf.dylib
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtPdf.framework/Versions/5/QtPdf
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtGui.framework/Versions/5/QtGui
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtCore.framework/Versions/5/QtCore
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/PlugIns/imageformats/libqico.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqico.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/PlugIns/imageformats/libqmacheif.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqmacheif.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/PlugIns/imageformats/libqjpeg.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqjpeg.dylib
+  /usr/local/opt/jpeg-turbo/lib/libjpeg.8.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/PlugIns/imageformats/libqtiff.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqtiff.dylib
+  /usr/local/opt/libtiff/lib/libtiff.6.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/PlugIns/imageformats/libqsvg.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqsvg.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/PlugIns/imageformats/libqicns.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqicns.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/PlugIns/imageformats/libqtga.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqtga.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/PlugIns/imageformats/libqmacjp2.dylib
+  /usr/local/opt/qt@5/plugins/imageformats/libqmacjp2.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/lib/veyon/webapi.dylib.disabled
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtHttpServer.framework/Versions/5/QtHttpServer
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtSslServer.framework/Versions/5/QtSslServer
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/Frameworks/qca-qt5.framework/qca-qt5
+  /usr/local/lib/qca-qt5.framework/Versions/2/qca-qt5
+  /usr/local/opt/qt@5/lib/QtCore.framework/Versions/5/QtCore
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/Frameworks/qca-qt5.framework/Versions/2/qca-qt5
+  /usr/local/lib/qca-qt5.framework/Versions/2/qca-qt5
+  /usr/local/opt/qt@5/lib/QtCore.framework/Versions/5/QtCore
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/Frameworks/openssl/libssl.3.dylib
+  /opt/local/libexec/openssl3/lib/libssl.3.dylib
+  /opt/local/libexec/openssl3/lib/libcrypto.3.dylib
+  /opt/local/lib/libz.1.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Resources/Helpers/veyon-server.app/Contents/Frameworks/openssl/libcrypto.3.dylib
+  /opt/local/libexec/openssl3/lib/libcrypto.3.dylib
+  /opt/local/lib/libz.1.dylib
+veyon-macos-package/veyon-configurator.app/Contents/lib/veyon/webapi.dylib.disabled
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtHttpServer.framework/Versions/5/QtHttpServer
+  /usr/local/Cellar/qt@5/5.15.13/lib/QtSslServer.framework/Versions/5/QtSslServer
+veyon-macos-package/veyon-configurator.app/Contents/Frameworks/libpng16.16.dylib
+  /usr/local/opt/libpng/lib/libpng16.16.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Frameworks/libjpeg.8.dylib
+  /usr/local/opt/jpeg-turbo/lib/libjpeg.8.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Frameworks/openssl/libssl.3.dylib
+  /opt/local/libexec/openssl3/lib/libssl.3.dylib
+  /opt/local/lib/libz.1.dylib
+veyon-macos-package/veyon-configurator.app/Contents/Frameworks/openssl/libcrypto.3.dylib
+  /opt/local/libexec/openssl3/lib/libcrypto.3.dylib
+  /opt/local/lib/libz.1.dylib

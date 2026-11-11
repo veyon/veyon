@@ -63,14 +63,22 @@
 find_path(Ldap_INCLUDE_DIRS NAMES ldap.h)
 
 if(APPLE)
-   find_path(Ldap_LIBRARIES NAMES LDAP
-	  PATHS
-	  /System/Library/Frameworks
-	  /Library/Frameworks
-   )
+  if(NOT Ldap_LIBRARIES)
+    find_library(Ldap_LIBRARIES NAMES ldap)
+  endif()
+  if(NOT Ldap_LIBRARIES)
+    find_path(Ldap_LIBRARIES NAMES LDAP
+      PATHS
+      /System/Library/Frameworks
+      /Library/Frameworks
+    )
+  endif()
+  if(Ldap_LIBRARIES AND NOT Lber_LIBRARIES)
+    find_library(Lber_LIBRARIES NAMES lber)
+  endif()
 else()
-   find_library(Ldap_LIBRARIES NAMES ldap)
-   find_library(Lber_LIBRARIES NAMES lber)
+  find_library(Ldap_LIBRARIES NAMES ldap)
+  find_library(Lber_LIBRARIES NAMES lber)
 endif()
 
 if(Ldap_LIBRARIES AND Lber_LIBRARIES)

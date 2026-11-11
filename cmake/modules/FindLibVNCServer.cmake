@@ -45,13 +45,22 @@ find_package_handle_standard_args(LibVNCServer
 
 mark_as_advanced(LibVNCServer_INCLUDE_DIRS LibVNCServer_LIBRARIES)
 
-if(LibVNCServer_FOUND AND NOT TARGET LibVNCServer::LibVNCServer)
+if(LibVNCServer_FOUND AND NOT TARGET LibVNC::LibVNCServer)
 	add_library(LibVNC::LibVNCServer UNKNOWN IMPORTED)
 	set_target_properties(LibVNC::LibVNCServer PROPERTIES
 		IMPORTED_LOCATION "${LibVNCServer_LIBRARIES}"
 		INTERFACE_INCLUDE_DIRECTORIES "${LibVNCServer_INCLUDE_DIRS}"
 		INTERFACE_COMPILE_DEFINITIONS "${PC_LIBVNCCLIENT_CFLAGS_OTHER}"
 	)
+endif()
+
+if(LibVNCServer_FOUND)
+	if(NOT TARGET LibVNCServer::LibVNCServer)
+		add_library(LibVNCServer::LibVNCServer ALIAS LibVNC::LibVNCServer)
+	endif()
+	if(NOT TARGET LibVNCServer::vncserver)
+		add_library(LibVNCServer::vncserver ALIAS LibVNC::LibVNCServer)
+	endif()
 endif()
 
 include(FeatureSummary)

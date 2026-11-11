@@ -4,3 +4,6 @@ svg
 Makefile
 plugins/addons
 plugins/extra
+result
+result-*
+.direnv

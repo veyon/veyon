@@ -5,6 +5,7 @@ endif()
 if(WITH_QT6)
 	find_package(Qt6 COMPONENTS HttpServer)
 else()
+	set(CMAKE_FIND_PACKAGE_PREFER_CONFIG FALSE)
 	find_package(Qt5HttpServer)
 endif()
 

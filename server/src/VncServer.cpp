@@ -133,7 +133,18 @@ VncServer::Password VncServer::password() const
 		return m_pluginInterface->configuredPassword();
 	}
 
-	return VeyonCore::authenticationCredentials().internalVncServerPassword();
+	auto password = VeyonCore::authenticationCredentials().internalVncServerPassword();
+
+	if( password.isEmpty() )
+	{
+		const auto challenge = CryptoCore::generateChallenge().toBase64().left( MAXPWLEN );
+		Password regeneratedPassword( challenge );
+		VeyonCore::authenticationCredentials().setInternalVncServerPassword( regeneratedPassword );
+		password = regeneratedPassword;
+		vWarning() << "Internal VNC server password unavailable - generated temporary password for this session";
+	}
+
+	return password;
 }
 
 

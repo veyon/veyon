@@ -24,6 +24,7 @@
 
 #include <QCoreApplication>
 #include <QDir>
+#include <QFile>
 #include <QHostInfo>
 #include <QStandardPaths>
 
@@ -31,6 +32,58 @@
 #include "Filesystem.h"
 #include "PlatformFilesystemFunctions.h"
 #include "PlatformUserFunctions.h"
+
+namespace {
+
+QString resolveBundledExecutable(const QString& baseName)
+{
+	const auto suffix = VeyonCore::executableSuffix();
+	const auto executableName = baseName + suffix;
+
+	const auto localCandidate =
+			QDir::toNativeSeparators(QCoreApplication::applicationDirPath() +
+									 QDir::separator() + executableName);
+
+	if (QFile::exists(localCandidate))
+	{
+		return localCandidate;
+	}
+
+#ifdef Q_OS_DARWIN
+	QDir dir(QCoreApplication::applicationDirPath());
+
+	// Mac bundle structure: <App>.app/Contents/MacOS/<binary>
+	// Walk up to the parent directory containing the other app bundles.
+	if (dir.cdUp() && dir.cdUp())
+	{
+		QDir parent(dir);
+		if (parent.cdUp())
+		{
+			const auto siblingCandidate =
+					QDir::toNativeSeparators(parent.absoluteFilePath(
+						QStringLiteral("%1.app/Contents/MacOS/%1%2")
+							.arg(baseName, suffix)));
+			if (QFile::exists(siblingCandidate))
+			{
+				return siblingCandidate;
+			}
+
+			const auto nestedCandidate =
+					QDir::toNativeSeparators(parent.absoluteFilePath(
+						QStringLiteral("Veyon/%1.app/Contents/MacOS/%1%2")
+							.arg(baseName, suffix)));
+			if (QFile::exists(nestedCandidate))
+			{
+				return nestedCandidate;
+			}
+		}
+	}
+#endif
+
+	return executableName;
+}
+
+}
 
 
 QString Filesystem::expandPath( QString path ) const
@@ -176,14 +229,19 @@ QString Filesystem::screenshotDirectoryPath() const
 
 QString Filesystem::serverFilePath() const
 {
-	return QDir::toNativeSeparators( QCoreApplication::applicationDirPath() + QDir::separator() +
-									 QStringLiteral("veyon-server" ) + VeyonCore::executableSuffix() );
+	return resolveExecutable(QStringLiteral("veyon-server"));
 }
 
 
 
 QString Filesystem::workerFilePath() const
 {
-	return QDir::toNativeSeparators( QCoreApplication::applicationDirPath() + QDir::separator() +
-									 QStringLiteral("veyon-worker" ) + VeyonCore::executableSuffix() );
+	return resolveExecutable(QStringLiteral("veyon-worker"));
+}
+
+
+
+QString Filesystem::resolveExecutable(const QString& baseName) const
+{
+	return resolveBundledExecutable(baseName);
 }

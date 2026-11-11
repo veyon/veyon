@@ -23,6 +23,8 @@
  */
 
 #include <QApplication>
+#include <QDir>
+#include <QFileInfo>
 #include <QSplashScreen>
 
 #include "DocumentationFigureCreator.h"
@@ -33,6 +35,16 @@
 int main( int argc, char** argv )
 {
 	VeyonCore::setupApplicationParameters();
+
+#if defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+	const QFileInfo execInfo(QString::fromLocal8Bit(argv[0]));
+	const QString modulesBase = QDir(execInfo.absoluteDir()).absoluteFilePath(QStringLiteral("../Frameworks/openssl/ossl-modules"));
+	const QString modulesCanonical = QDir(modulesBase).canonicalPath();
+	if( modulesCanonical.isEmpty() == false )
+	{
+		qputenv("OPENSSL_MODULES", modulesCanonical.toUtf8());
+	}
+#endif
 
 	QApplication app( argc, argv );
 	app.connect( &app, &QApplication::lastWindowClosed, &QApplication::quit );

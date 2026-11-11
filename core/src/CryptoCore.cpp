@@ -30,6 +30,9 @@ CryptoCore::CryptoCore() :
 	m_qcaInitializer(),
 	m_defaultPrivateKey()
 {
+	const auto paths = QCA::pluginPaths();
+	fprintf(stderr, "QCA plugin search paths: %s\n", qPrintable(paths.join(QStringLiteral(";"))));
+	fprintf(stderr, "QCA plugin diagnostics: %s\n", qPrintable(QCA::pluginDiagnosticText()));
 	const auto features = QCA::supportedFeatures();
 
 	vDebug() << "CryptoCore instance created - features supported by QCA" << qcaVersionStr() << features;
@@ -77,6 +80,11 @@ QString CryptoCore::encryptPassword( const PlaintextPassword& password ) const
 CryptoCore::PlaintextPassword CryptoCore::decryptPassword( const QString& encryptedPassword ) const
 {
 	PlaintextPassword decryptedPassword;
+
+	if( encryptedPassword.isEmpty() )
+	{
+		return decryptedPassword;
+	}
 
 	if( PrivateKey( m_defaultPrivateKey ).decrypt( QByteArray::fromHex( encryptedPassword.toUtf8() ),
 												   &decryptedPassword, DefaultEncryptionAlgorithm ) )

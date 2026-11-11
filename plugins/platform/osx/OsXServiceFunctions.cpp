@@ -23,21 +23,13 @@
 #include <QCoreApplication>
 #include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QProcess>
 
 #include "Filesystem.h"
 #include "Logger.h"
 #include "OsXServiceFunctions.h"
 #include "VeyonCore.h"
-
-namespace {
-QString resolvedExecutable(const QString& executable)
-{
-	const QString path = QDir::toNativeSeparators( QCoreApplication::applicationDirPath()
-		+ QDir::separator() + executable + VeyonCore::executableSuffix() );
-	return QFile::exists( path ) ? path : executable;
-}
-}
 
 QString OsXServiceFunctions::veyonServiceName() const
 {
@@ -58,31 +50,68 @@ bool OsXServiceFunctions::isRegistered( const QString& name )
 namespace {
 bool hasMatchingProcess(const QString& executable)
 {
-	QProcess pgrepProcess;
-	pgrepProcess.start(QStringLiteral("/usr/bin/pgrep"),
-					   {QStringLiteral("-f"), executable});
-	if (pgrepProcess.waitForFinished() == false)
+	const QStringList patterns = {
+		executable,
+		QFileInfo(executable).fileName()
+	};
+
+	for (const auto& pattern : patterns)
 	{
-		return false;
+		if (pattern.isEmpty())
+		{
+			continue;
+		}
+
+		vDebug() << "OsXServiceFunctions: checking for process pattern" << pattern;
+		QProcess pgrepProcess;
+		pgrepProcess.start(QStringLiteral("/usr/bin/pgrep"),
+						   {QStringLiteral("-f"), pattern});
+		if (pgrepProcess.waitForFinished() &&
+			pgrepProcess.exitStatus() == QProcess::NormalExit &&
+			pgrepProcess.exitCode() == 0)
+		{
+			vDebug() << "OsXServiceFunctions: found matching process for" << pattern;
+			return true;
+		}
+		vDebug() << "OsXServiceFunctions: no match for" << pattern
+				 << "exitStatus" << pgrepProcess.exitStatus()
+				 << "exitCode" << pgrepProcess.exitCode();
 	}
 
-	return pgrepProcess.exitStatus() == QProcess::NormalExit &&
-			pgrepProcess.exitCode() == 0;
+	return false;
 }
 
 bool terminateMatchingProcesses(const QString& executable)
 {
-	QProcess pkillProcess;
-	pkillProcess.start(QStringLiteral("/usr/bin/pkill"),
-					   {QStringLiteral("-f"), executable});
-	if (pkillProcess.waitForFinished() == false)
+	const QStringList patterns = {
+		executable,
+		QFileInfo(executable).fileName()
+	};
+
+	for (const auto& pattern : patterns)
 	{
-		return false;
+		if (pattern.isEmpty())
+		{
+			continue;
+		}
+
+		vDebug() << "OsXServiceFunctions: terminating processes matching" << pattern;
+		QProcess pkillProcess;
+		pkillProcess.start(QStringLiteral("/usr/bin/pkill"),
+						   {QStringLiteral("-f"), pattern});
+		if (pkillProcess.waitForFinished() &&
+			pkillProcess.exitStatus() == QProcess::NormalExit)
+		{
+			// pkill returns 0 when at least one process was signalled and 1 if none matched.
+			if (pkillProcess.exitCode() == 0)
+			{
+				vDebug() << "OsXServiceFunctions: terminated processes matching" << pattern;
+				return true;
+			}
+		}
 	}
 
-	// pkill returns 0 when at least one process was signalled and 1 if none matched.
-	return pkillProcess.exitStatus() == QProcess::NormalExit &&
-			(pkillProcess.exitCode() == 0 || pkillProcess.exitCode() == 1);
+	return false;
 }
 }
 
@@ -205,5 +234,5 @@ void OsXServiceFunctions::manageServerInstances()
 
 QString OsXServiceFunctions::serviceExecutablePath()
 {
-	return resolvedExecutable( QStringLiteral("veyon-service") );
+	return VeyonCore::filesystem().resolveExecutable(QStringLiteral("veyon-service"));
 }

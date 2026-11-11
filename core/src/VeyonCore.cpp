@@ -28,6 +28,8 @@
 #include <QAction>
 #include <QApplication>
 #include <QDir>
+#include <QDebug>
+#include <QFileInfo>
 #include <QGroupBox>
 #include <QJsonDocument>
 #include <QLabel>
@@ -37,7 +39,13 @@
 #include <QStyleFactory>
 #include <QStyleHints>
 #include <QSysInfo>
+#include <QStringList>
 #include <QToolTip>
+
+#if defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+#include <QtCrypto>
+#include <cstdlib>
+#endif
 
 #include "BuiltinFeatures.h"
 #include "FeatureManager.h"
@@ -58,6 +66,52 @@
 
 VeyonCore* VeyonCore::s_instance = nullptr;
 
+namespace {
+#if defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+void configureMacPluginEnvironment()
+{
+	const QString appDir = QCoreApplication::applicationDirPath();
+	const QStringList candidates = {
+		QDir(appDir).absoluteFilePath(QStringLiteral("../PlugIns")),
+		QDir(appDir).absoluteFilePath(QStringLiteral("../lib/qca-qt5"))
+	};
+
+const QString pluginsRoot = QDir(appDir).absoluteFilePath(QStringLiteral("../PlugIns"));
+if( QFileInfo(pluginsRoot).isDir() )
+{
+	QCoreApplication::setLibraryPaths({ pluginsRoot });
+}
+
+	QStringList existing;
+	for( const auto& candidate : candidates )
+	{
+		const QFileInfo info(candidate);
+		if( info.exists() && info.isDir() )
+		{
+			existing.append( QDir(candidate).canonicalPath().isEmpty() ?
+							 QDir(candidate).absolutePath() :
+							 QDir(candidate).canonicalPath() );
+		}
+	}
+
+	if( existing.isEmpty() )
+	{
+		return;
+	}
+
+	const QByteArray newPath = existing.join(QLatin1Char(':')).toUtf8();
+	qputenv("QCA_PLUGIN_PATH", newPath);
+	const QString opensslModules = QDir(appDir).absoluteFilePath(QStringLiteral("../Frameworks/openssl/ossl-modules"));
+	const QString opensslCanonical = QDir(opensslModules).canonicalPath();
+	if( opensslCanonical.isEmpty() == false )
+	{
+		const QByteArray modulesBytes = opensslCanonical.toUtf8();
+		qputenv("OPENSSL_MODULES", modulesBytes);
+		::setenv("OPENSSL_MODULES", modulesBytes.constData(), 1);
+	}
+}
+#endif
+}
 
 VeyonCore::VeyonCore( QCoreApplication* application, Component component, const QString& appComponentName ) :
 	QObject( application ),
@@ -78,6 +132,10 @@ VeyonCore::VeyonCore( QCoreApplication* application, Component component, const 
 	Q_ASSERT( application != nullptr );
 
 	s_instance = this;
+
+#if defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+	configureMacPluginEnvironment();
+#endif
 
 	initPlatformPlugin();
 

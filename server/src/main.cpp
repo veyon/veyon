@@ -22,6 +22,8 @@
  *
  */
 
+#include <QDir>
+#include <QFileInfo>
 #include <QGuiApplication>
 
 #include "ComputerControlServer.h"
@@ -30,6 +32,16 @@
 int main( int argc, char **argv )
 {
 	VeyonCore::setupApplicationParameters();
+
+#if defined(Q_OS_MACOS) || defined(Q_OS_MAC)
+	const QFileInfo execInfo(QString::fromLocal8Bit(argv[0]));
+	const QString modulesBase = QDir(execInfo.absoluteDir()).absoluteFilePath(QStringLiteral("../Frameworks/openssl/ossl-modules"));
+	const QString modulesCanonical = QDir(modulesBase).canonicalPath();
+	if( modulesCanonical.isEmpty() == false )
+	{
+		qputenv("OPENSSL_MODULES", modulesCanonical.toUtf8());
+	}
+#endif
 
 	QGuiApplication app( argc, argv );
 	QGuiApplication::setDesktopFileName(QStringLiteral("io.veyon.veyon-server"));
