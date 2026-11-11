@@ -70,5 +70,5 @@ rm -rf "$DMG_TEMP" 2>/dev/null || true
 
 DMG_SIZE=$(du -sh "$DIST_OUTPUT/Veyon-macOS.dmg" | cut -f1)
 
-log_info "File created: ${DIST_OUTPUT}/Veyon-macOS.dmg (${DMG_SIZE})"
+log_info "File created (${DMG_SIZE}): ${DIST_OUTPUT}/Veyon-macOS.dmg"
 log_info ""

@@ -24,6 +24,7 @@
 
 #include <QCoreApplication>
 #include <QDir>
+#include <QProcessEnvironment>
 #include <QThread>
 #include <QTimer>
 
@@ -99,6 +100,29 @@ bool FeatureWorkerManager::startManagedSystemWorker( Feature::Uid featureUid )
 
 	worker.process = new QProcess;
 	worker.process->setProcessChannelMode( QProcess::ForwardedChannels );
+
+	// Ensure worker inherits critical environment variables for plugin discovery
+	QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+
+	// Preserve QCA and Qt plugin paths if already set
+	const QStringList criticalEnvVars = {
+		QStringLiteral("QCA_PLUGIN_PATH"),
+		QStringLiteral("QT_PLUGIN_PATH"),
+		QStringLiteral("OPENSSL_MODULES"),
+		QStringLiteral("DYLD_LIBRARY_PATH"),
+		QStringLiteral("DYLD_FRAMEWORK_PATH")
+	};
+
+	for (const auto& varName : criticalEnvVars)
+	{
+		if (qEnvironmentVariableIsSet(varName.toUtf8().constData()))
+		{
+			env.insert(varName, QString::fromUtf8(qgetenv(varName.toUtf8().constData())));
+			vDebug() << "Passing environment variable to worker:" << varName << "=" << env.value(varName);
+		}
+	}
+
+	worker.process->setProcessEnvironment(env);
 
 	// a worker that terminates before connecting should not remain registered;
 	// otherwise, `isWorkerRunning()` remains true and the feature appears active

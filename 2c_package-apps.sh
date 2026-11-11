@@ -533,6 +533,50 @@ package_app() {
 	fi
 
 	# ========================================================================
+	# PHASE 5.5: FIX FRAMEWORK PERMISSIONS (CRITICAL FOR NON-ADMIN USERS!)
+	# ========================================================================
+
+	log_info "  Setting execute permissions on frameworks and dylibs…"
+
+	# Fix Qt framework binaries
+	for fw in QtCore QtGui QtWidgets QtNetwork QtConcurrent QtDBus QtPrintSupport QtSvg QtQml QtQmlModels QtQuick QtPdf QtWebSockets; do
+		local fw_bin="$target_app/Contents/Frameworks/${fw}.framework/Versions/5/${fw}"
+		if [[ -f "$fw_bin" ]]; then
+			chmod +x "$fw_bin"
+		fi
+	done
+
+	# Fix QCA framework
+	if [[ -f "$target_app/Contents/Frameworks/qca-qt5.framework/Versions/2/qca-qt5" ]]; then
+		chmod +x "$target_app/Contents/Frameworks/qca-qt5.framework/Versions/2/qca-qt5"
+	fi
+
+	# Fix custom Qt frameworks (QtHttpServer/QtSslServer)
+	for fw in QtHttpServer QtSslServer; do
+		local fw_bin="$target_app/Contents/Frameworks/${fw}.framework/Versions/5/${fw}"
+		if [[ -f "$fw_bin" ]]; then
+			chmod +x "$fw_bin"
+		fi
+	done
+
+	# Fix all .dylib files in Frameworks/
+	find "$target_app/Contents/Frameworks" -maxdepth 1 -name "*.dylib" -type f -exec chmod +x {} \;
+
+	# Fix all .dylib files in Frameworks/openssl/
+	if [[ -d "$target_app/Contents/Frameworks/openssl" ]]; then
+		find "$target_app/Contents/Frameworks/openssl" -name "*.dylib" -type f -exec chmod +x {} \;
+		# Also fix any dylib or so files in ossl-modules/
+		if [[ -d "$target_app/Contents/Frameworks/openssl/ossl-modules" ]]; then
+			find "$target_app/Contents/Frameworks/openssl/ossl-modules" -type f -exec chmod +x {} \;
+		fi
+	fi
+
+	# Fix all Veyon plugins in lib/veyon/
+	if [[ -d "$target_app/Contents/lib/veyon" ]]; then
+		find "$target_app/Contents/lib/veyon" -name "*.dylib" -type f -exec chmod +x {} \;
+	fi
+
+	# ========================================================================
 	# PHASE 6: QCA CRYPTO PLUGINS (CRITICAL!)
 	# ========================================================================
 

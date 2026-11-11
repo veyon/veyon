@@ -20,9 +20,21 @@
   <!-- Interactive to allow GUI context -->
   <key>ProcessType</key><string>Interactive</string>
 
+  <!-- Working directory for proper resource location -->
+  <key>WorkingDirectory</key><string>/Applications/Veyon/veyon-server.app/Contents/MacOS</string>
+
+  <!-- Environment variables for plugin paths -->
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>QT_PLUGIN_PATH</key>
+    <string>/Applications/Veyon/veyon-server.app/Contents/PlugIns</string>
+    <key>QCA_PLUGIN_PATH</key>
+    <string>/Applications/Veyon/veyon-server.app/Contents/PlugIns/crypto</string>
+  </dict>
+
   <!-- Logging to writable temp directory -->
-  <key>StandardOutPath</key><string>/var/tmp/veyon-vnc.out.log</string>
-  <key>StandardErrorPath</key><string>/var/tmp/veyon-vnc.err.log</string>
+  <key>StandardOutPath</key><string>/tmp/veyon-vnc.out.log</string>
+  <key>StandardErrorPath</key><string>/tmp/veyon-vnc.err.log</string>
 
 </dict>
 </plist>

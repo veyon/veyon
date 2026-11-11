@@ -39,10 +39,21 @@ QString absoluteExecutablePath(const QString& program)
 	const QFileInfo info(program);
 	if( info.isAbsolute() )
 	{
+		vDebug() << "absoluteExecutablePath: program is already absolute:" << program;
 		return info.absoluteFilePath();
 	}
 
+	vDebug() << "absoluteExecutablePath: resolving relative program:" << program;
 	const auto resolved = QStandardPaths::findExecutable( program );
+	if( resolved.isEmpty() )
+	{
+		vWarning() << "absoluteExecutablePath: could not resolve" << program << "- PATH may be incomplete";
+		vWarning() << "absoluteExecutablePath: current PATH:" << QString::fromUtf8(qgetenv("PATH"));
+	}
+	else
+	{
+		vDebug() << "absoluteExecutablePath: resolved to:" << resolved;
+	}
 	return resolved.isEmpty() ? program : resolved;
 }
 }
@@ -223,6 +234,9 @@ bool OsXCoreFunctions::runProgramAsUser( const QString& program,
 {
 	Q_UNUSED(desktop)
 
+	vDebug() << "runProgramAsUser: attempting to run" << program << "as user" << username;
+	vDebug() << "runProgramAsUser: parameters:" << parameters;
+
 	const auto strippedUser = VeyonCore::stripDomain( username );
 	const auto pwEntry = getpwnam( strippedUser.toUtf8().constData() );
 	if( pwEntry == nullptr )
@@ -231,9 +245,19 @@ bool OsXCoreFunctions::runProgramAsUser( const QString& program,
 		return false;
 	}
 
-	QStringList args{ QStringLiteral("asuser"), QString::number( pwEntry->pw_uid ), absoluteExecutablePath( program ) };
+	const QString resolvedProgram = absoluteExecutablePath( program );
+	vDebug() << "runProgramAsUser: resolved program path:" << resolvedProgram;
+
+	QStringList args{ QStringLiteral("asuser"), QString::number( pwEntry->pw_uid ), resolvedProgram };
 	args += parameters;
-	return startDetached( QStringLiteral("/bin/launchctl"), args );
+
+	vDebug() << "runProgramAsUser: executing launchctl with args:" << args;
+	const bool result = startDetached( QStringLiteral("/bin/launchctl"), args );
+	if( !result )
+	{
+		vWarning() << "runProgramAsUser: startDetached failed for" << resolvedProgram;
+	}
+	return result;
 }
 
 

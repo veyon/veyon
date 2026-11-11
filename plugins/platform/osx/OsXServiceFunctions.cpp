@@ -29,6 +29,12 @@
 #include <QStringList>
 #include <QXmlStreamWriter>
 
+#include <unistd.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <string.h>
+
 #include "Filesystem.h"
 #include "Logger.h"
 #include "OsXServiceFunctions.h"
@@ -44,9 +50,22 @@ constexpr auto DefaultServerExecutable = "/Applications/Veyon/veyon-server.app/C
 // Paths for LaunchAgent installation (matching launchAgents.sh script)
 constexpr auto SourceScriptsDirectory = "/Applications/Veyon/veyon-configurator.app/Contents/Resources/Scripts";
 
+// Static cache for home path to avoid Qt string operations in thread pool
+static QString g_cachedHomePath;
+
+// Initialize home path cache (must be called from main thread before using threads)
+void initializePathCache()
+{
+	if (g_cachedHomePath.isEmpty())
+	{
+		g_cachedHomePath = QDir::homePath();
+	}
+}
+
 QString userLaunchAgentPath()
 {
-	return QDir::homePath() + QStringLiteral("/Library/LaunchAgents/") + QString::fromLatin1(LaunchAgentFileName);
+	initializePathCache();
+	return g_cachedHomePath + QStringLiteral("/Library/LaunchAgents/") + QString::fromLatin1(LaunchAgentFileName);
 }
 
 QString sourcePlistPath()
@@ -229,48 +248,94 @@ bool isLaunchAgentRunning()
 //   3. Unload any existing instance (bootout)
 //   4. Load the new agent (bootstrap)
 //   5. Enable and start the service (kickstart)
-bool installUserLaunchAgent()
+//
+// NOTE: This function is called from a thread pool, so we pass pre-computed
+// strings to avoid any QString operations inside the thread.
+bool installUserLaunchAgent(const std::string& sourcePlistStd,
+                             const std::string& userPlistStd,
+                             const std::string& launchAgentsDirStd,
+                             const std::string& uidStd,
+                             const std::string& guiDomainStd,
+                             const std::string& labelPathStd)
 {
 	vDebug() << "OsXServiceFunctions: installing LaunchAgent for current user";
 
-	// Ensure source plist exists
-	const auto sourcePlist = sourcePlistPath();
-	if (!QFile::exists(sourcePlist))
+	// Check if source plist exists using POSIX
+	if (access(sourcePlistStd.c_str(), R_OK) != 0)
 	{
-		vWarning() << "OsXServiceFunctions: source plist not found at" << sourcePlist;
+		vWarning() << "OsXServiceFunctions: source plist not found at" << sourcePlistStd.c_str();
 		return false;
 	}
 
-	// Create user's LaunchAgents directory if needed
-	const QString launchAgentsDir = QDir::homePath() + QStringLiteral("/Library/LaunchAgents");
-	QDir dir(launchAgentsDir);
-	if (!dir.exists())
+	// Create user's LaunchAgents directory if needed using POSIX
+	struct stat st;
+	if (stat(launchAgentsDirStd.c_str(), &st) != 0)
 	{
-		if (!dir.mkpath(QStringLiteral(".")))
+		// Directory doesn't exist, create it
+		if (mkdir(launchAgentsDirStd.c_str(), 0755) != 0)
 		{
-			vWarning() << "OsXServiceFunctions: failed to create" << launchAgentsDir;
+			vWarning() << "OsXServiceFunctions: failed to create" << launchAgentsDirStd.c_str() << "- error:" << strerror(errno);
 			return false;
 		}
 	}
 
-	// Copy plist to user's LaunchAgents directory
-	const auto userPlist = userLaunchAgentPath();
-	if (QFile::exists(userPlist))
-	{
-		QFile::remove(userPlist);
-	}
+	// Remove existing plist file if any (ignore errors)
+	unlink(userPlistStd.c_str());
 
-	if (!QFile::copy(sourcePlist, userPlist))
+	// Copy file using POSIX I/O (thread-safe)
+	int srcFd = open(sourcePlistStd.c_str(), O_RDONLY);
+	if (srcFd < 0)
 	{
-		vWarning() << "OsXServiceFunctions: failed to copy plist to" << userPlist;
+		vWarning() << "OsXServiceFunctions: failed to open source plist" << sourcePlistStd.c_str() << "- error:" << strerror(errno);
 		return false;
 	}
 
-	vInfo() << "OsXServiceFunctions: copied plist to" << userPlist;
+	int dstFd = open(userPlistStd.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (dstFd < 0)
+	{
+		vWarning() << "OsXServiceFunctions: failed to create destination plist" << userPlistStd.c_str() << "- error:" << strerror(errno);
+		close(srcFd);
+		return false;
+	}
 
-	// Get current user UID
-	const auto uid = QString::number(getuid());
-	const auto guiDomain = QStringLiteral("gui/") + uid;
+	// Copy data in chunks
+	char buffer[8192];
+	ssize_t bytesRead;
+	bool copySuccess = true;
+
+	while ((bytesRead = read(srcFd, buffer, sizeof(buffer))) > 0)
+	{
+		ssize_t bytesWritten = write(dstFd, buffer, bytesRead);
+		if (bytesWritten != bytesRead)
+		{
+			vWarning() << "OsXServiceFunctions: failed to write plist data - error:" << strerror(errno);
+			copySuccess = false;
+			break;
+		}
+	}
+
+	if (bytesRead < 0)
+	{
+		vWarning() << "OsXServiceFunctions: failed to read source plist - error:" << strerror(errno);
+		copySuccess = false;
+	}
+
+	close(srcFd);
+	close(dstFd);
+
+	if (!copySuccess)
+	{
+		unlink(userPlistStd.c_str());
+		return false;
+	}
+
+	vInfo() << "OsXServiceFunctions: copied plist to" << userPlistStd.c_str();
+
+	// Convert pre-computed strings back to QString for launchctl operations
+	// These were computed in the main thread to avoid QString initialization issues
+	const QString guiDomain = QString::fromStdString(guiDomainStd);
+	const QString userPlist = QString::fromStdString(userPlistStd);
+	const QString labelPath = QString::fromStdString(labelPathStd);
 
 	// Unload any existing instance (ignore errors)
 	vDebug() << "OsXServiceFunctions: bootout existing LaunchAgent (if any)";
@@ -285,7 +350,6 @@ bool installUserLaunchAgent()
 	}
 
 	// Enable the service
-	const auto labelPath = guiDomain + QLatin1Char('/') + QString::fromLatin1(LaunchAgentLabel);
 	vDebug() << "OsXServiceFunctions: enable service" << labelPath;
 	runLaunchctl({QStringLiteral("enable"), labelPath}, true);
 
@@ -293,7 +357,7 @@ bool installUserLaunchAgent()
 	vDebug() << "OsXServiceFunctions: kickstart service" << labelPath;
 	runLaunchctl({QStringLiteral("kickstart"), QStringLiteral("-k"), labelPath}, true);
 
-	vInfo() << "OsXServiceFunctions: LaunchAgent loaded for UID" << uid;
+	vInfo() << "OsXServiceFunctions: LaunchAgent loaded for UID" << uidStd.c_str();
 	return true;
 }
 
@@ -529,10 +593,30 @@ bool OsXServiceFunctions::start( const QString& name )
 		return true;
 	}
 
+	// Initialize path cache before any thread operations
+	// This must be done in the main thread to avoid Qt crashes
+	initializePathCache();
+
+	// Pre-compute ALL QString values in the main thread before the thread pool
+	// to avoid QString initialization issues in secondary threads
+	const std::string sourcePlistStd = sourcePlistPath().toStdString();
+	const std::string userPlistStd = userLaunchAgentPath().toStdString();
+	const QString launchAgentsDir = g_cachedHomePath + QStringLiteral("/Library/LaunchAgents");
+	const std::string launchAgentsDirStd = launchAgentsDir.toStdString();
+
+	// Pre-compute UID and launchctl domain strings
+	const QString uid = QString::number(getuid());
+	const std::string uidStd = uid.toStdString();
+	const QString guiDomain = QStringLiteral("gui/") + uid;
+	const std::string guiDomainStd = guiDomain.toStdString();
+	const QString labelPath = guiDomain + QLatin1Char('/') + QString::fromLatin1(LaunchAgentLabel);
+	const std::string labelPathStd = labelPath.toStdString();
+
 	// Install and start the LaunchAgent for the current user
 	// This follows the logic of option 2 in launchAgents.sh script
 	vInfo() << "OsXServiceFunctions: installing and starting user LaunchAgent";
-	return installUserLaunchAgent();
+	return installUserLaunchAgent(sourcePlistStd, userPlistStd, launchAgentsDirStd,
+	                               uidStd, guiDomainStd, labelPathStd);
 }
 
 
