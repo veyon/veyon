@@ -342,6 +342,20 @@ if(WITH_ADDONS)
 	add_subdirectory(addons)
 endif()
 
+# capability boundary (06-pki.md §1): certificate issuance (veyon-crypto-authority) must only be
+# reachable from the binaries listed here: veyon-service (hosts PkiAuthorityApi on the CA host in
+# 4.12), veyon-pki (standalone authority service, 5.0) and the VeyonCrypto PKI unit test. A future
+# authority plugin target (PkiPlugin, WP11c/d) has to be added explicitly.
+include(CheckCapabilityBoundary)
+set(VEYON_CRYPTO_AUTHORITY_CONSUMERS veyon-service veyon-pki VeyonCryptoPkiTest)
+set(VEYON_CAPABILITY_BOUNDARY_REQUIRED_TARGETS veyon-core)
+if(NOT WITH_CORE_ONLY)
+	list(APPEND VEYON_CAPABILITY_BOUNDARY_REQUIRED_TARGETS veyon-master veyon-server veyon-worker veyon-service)
+endif()
+veyon_check_capability_boundary(LIBRARY veyon-crypto-authority
+	ALLOWED ${VEYON_CRYPTO_AUTHORITY_CONSUMERS}
+	REQUIRED ${VEYON_CAPABILITY_BOUNDARY_REQUIRED_TARGETS})
+
 #
 # add Windows installer related targets
 #

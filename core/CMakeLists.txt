@@ -53,6 +53,9 @@ target_link_libraries(veyon-core PUBLIC OpenSSL::SSL)
 # VeyonCrypto (src/crypto) uses the OpenSSL API subset common to 1.1.1, 3.x and 4.x (06-pki.md §2)
 target_compile_definitions(veyon-core PRIVATE OPENSSL_API_COMPAT=10101)
 
+# CA primitives in a separate library outside veyon-core (capability boundary, 06-pki.md §1)
+add_subdirectory(src/crypto/authority)
+
 if(WITH_BUNDLED_LIBVNC)
 	target_link_libraries(veyon-core PUBLIC vncclient)
 else()

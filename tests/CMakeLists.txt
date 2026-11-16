@@ -3,3 +3,7 @@ if(WITH_FUZZERS)
 endif()
 
 add_subdirectory(unit)
+
+if(WITH_TESTS)
+	add_subdirectory(cmake)
+endif()
