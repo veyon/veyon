@@ -1,0 +1,7 @@
+# Mechanical commits, skipped by git blame
+# (git config blame.ignoreRevsFile .git-blame-ignore-revs)
+
+# Apply clang-format to the code base
+7948c978f48940133498f39586d4742b4753c9af
+# Use SPDX license headers
+602e91965e8b7e8c975ee4e160cc6bf28f10a2d3
