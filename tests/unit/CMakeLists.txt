@@ -108,3 +108,6 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	add_test(NAME FilesystemSafeJoinTest COMMAND FilesystemSafeJoinTest)
 
 endif()
+
+# platform-independent tests
+add_subdirectory(core)

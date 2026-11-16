@@ -9,6 +9,13 @@ macro(build_veyon_fuzzer FUZZER_NAME)
 	target_compile_options(${FUZZER_NAME} PRIVATE "-g;-fsanitize=fuzzer")
 	target_link_options(${FUZZER_NAME} PRIVATE "-g;-fsanitize=fuzzer")
 	target_link_libraries(${FUZZER_NAME} veyon-core)
-	add_test(NAME ${FUZZER_NAME} COMMAND ${FUZZER_NAME} -max_total_time=60)
+	if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/corpus)
+		# seed corpus: libFuzzer writes new inputs into the first directory, keep the seeds read-only
+		file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/corpus)
+		add_test(NAME ${FUZZER_NAME} COMMAND ${FUZZER_NAME} -max_total_time=60
+			${CMAKE_CURRENT_BINARY_DIR}/corpus ${CMAKE_CURRENT_SOURCE_DIR}/corpus)
+	else()
+		add_test(NAME ${FUZZER_NAME} COMMAND ${FUZZER_NAME} -max_total_time=60)
+	endif()
 endmacro()
 
