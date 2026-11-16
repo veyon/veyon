@@ -33,8 +33,8 @@ public:
 	using Pointer = typename Traits::Pointer;
 
 	UniqueResource() noexcept = default;
-	explicit UniqueResource(Pointer value) noexcept
-		: m_ptr(value)
+	explicit UniqueResource(Pointer value) noexcept :
+		m_ptr(value)
 	{
 	}
 
@@ -46,8 +46,8 @@ public:
 	UniqueResource(const UniqueResource&) = delete;
 	UniqueResource& operator=(const UniqueResource&) = delete;
 
-	UniqueResource(UniqueResource&& other) noexcept
-		: m_ptr(other.release())
+	UniqueResource(UniqueResource&& other) noexcept :
+		m_ptr(other.release())
 	{
 	}
 

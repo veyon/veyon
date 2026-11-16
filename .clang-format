@@ -1,0 +1,123 @@
+# Veyon coding style - requires clang-format >= 20
+#
+# Run .ci/common/run-clang-format.sh to format all first-party sources
+# or .ci/common/run-clang-format.sh --check to check them.
+
+# Language
+Language:        Cpp
+Standard:        c++20
+
+# Indentation
+TabWidth:        4
+UseTab:          Always
+IndentWidth:     4
+# No hard limit: manual line breaks are kept as written. Try to stay within
+# 120 columns (tab width 4) and wrap long parameter/argument lists manually.
+ColumnLimit:     0
+
+# Indentation detail
+AlignAfterOpenBracket: Align
+ContinuationIndentWidth: 4
+BreakConstructorInitializers: AfterColon
+ConstructorInitializerIndentWidth: 4
+PackConstructorInitializers: BinPack
+BinPackParameters: BinPack
+BinPackArguments: true
+AlignOperands:   DontAlign
+BreakBeforeBinaryOperators: None
+BreakBeforeTernaryOperators: false
+LambdaBodyIndentation: OuterScope
+IndentCaseLabels: false
+IndentPPDirectives: None
+NamespaceIndentation: None
+FixNamespaceComments: false
+
+# Alignment
+AlignEscapedNewlines: DontAlign
+AlignTrailingComments:
+  Kind:          Always
+  OverEmptyLines: 0
+AccessModifierOffset: -4
+EmptyLineBeforeAccessModifier: Leave
+EmptyLineAfterAccessModifier: Leave
+
+# Short constructs - with ColumnLimit 0 these only keep constructs on a single
+# line if they are already written that way, they never join lines
+AllowShortBlocksOnASingleLine: Never
+AllowShortIfStatementsOnASingleLine: Always
+AllowShortCaseLabelsOnASingleLine: true
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: InlineOnly
+AllowShortLambdasOnASingleLine: All
+AllowShortLoopsOnASingleLine: false
+BreakTemplateDeclarations: Leave
+
+# Includes
+IncludeBlocks:   Regroup
+# never treat "Foo.h" in Foo.cpp as main include, i.e. sort it like any other
+IncludeIsMainRegex: '$^'
+IncludeCategories:
+  # winsock2.h and windows.h must go before everything else
+  # otherwise, you will get errors
+  - Regex:           '^<winsock2\.h>$'
+    Priority:        -100
+  - Regex:           '^<windows\.h>$'
+    Priority:        -99
+  # Qt headers
+  - Regex:           '^<Q'
+    Priority:        1
+  # generated UI headers
+  - Regex:           '^"ui_'
+    Priority:        4
+  # own headers
+  - Regex:           '^"'
+    Priority:        2
+  # system and other third-party headers (e.g. X11, rfb)
+  - Regex:           '^<'
+    Priority:        3
+SortIncludes:    CaseSensitive
+SortUsingDeclarations: Never
+
+# Spaces
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeParens: ControlStatements
+SpaceAfterTemplateKeyword: false
+SpaceAfterCStyleCast: false
+SpacesInAngles:  Never
+SpacesInParens:  Never
+Cpp11BracedListStyle: true
+SpaceBeforeCpp11BracedList: false
+
+# Brace wrapping
+# Not directly mentioned in the coding conventions,
+# but required to avoid tons of auto reformatting
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterCaseLabel: true
+  AfterClass: true
+  AfterControlStatement: Always
+  AfterEnum: false
+  AfterFunction: true
+  AfterNamespace: false
+  AfterStruct: true
+  AfterUnion: true
+  AfterExternBlock: false
+  BeforeCatch: true
+  BeforeElse: true
+  BeforeLambdaBody: false
+  BeforeWhile: false
+  IndentBraces: false
+  SplitEmptyFunction: true
+  SplitEmptyRecord: true
+  SplitEmptyNamespace: true
+
+# Pointers
+# Use pointer close to type: `const char* const* function()`
+PointerAlignment: Left
+
+# Empty lines - Veyon separates function definitions by 3 empty lines
+SeparateDefinitionBlocks: Leave
+MaxEmptyLinesToKeep: 3
+InsertNewlineAtEOF: true
+
+ReflowComments:  false

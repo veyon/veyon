@@ -35,6 +35,7 @@ namespace Configuration
 class Object;
 class Proxy;
 
+// clang-format off
 template<typename T, typename = void> struct CheapestType          { using Type = const T &; };
 template<typename T> struct CheapestType<T, typename std::enable_if<std::is_enum<T>::value >::type> { using Type = T; };
 template<>           struct CheapestType<bool>    { using Type = bool; };
@@ -50,6 +51,7 @@ template<>           struct CheapestType<float>   { using Type = float; };
 template<>           struct CheapestType<double>  { using Type = double; };
 template<>           struct CheapestType<QUuid>   { using Type = QUuid; };
 template<typename T> struct CheapestType<T *>     { using Type = T *; };
+// clang-format on
 
 
 class VEYON_CORE_EXPORT Property : public QObject

@@ -216,6 +216,7 @@ void LinuxKeyboardInput::pressAndReleaseKeyUinputUtf8( const QByteArray& utf8Dat
 
 int LinuxKeyboardInput::keysymToLinuxKeycode( uint32_t keysym )
 {
+	// clang-format off
 	static constexpr struct { uint32_t keysym; int keycode; } table[] = {
 		{ XK_Escape,       KEY_ESC },
 		{ XK_1,            KEY_1 },
@@ -347,6 +348,7 @@ int LinuxKeyboardInput::keysymToLinuxKeycode( uint32_t keysym )
 		{ XK_Y,            KEY_Y },
 		{ XK_Z,            KEY_Z },
 	};
+	// clang-format on
 
 	for( const auto& entry : table )
 	{
@@ -375,21 +377,26 @@ int LinuxKeyboardInput::utf8ToLinuxKeycode( const QByteArray& utf8Data )
 	// Fast path for alphanumeric ASCII
 	if( c >= 'a' && c <= 'z' )
 	{
+		// clang-format off
 		static constexpr int letterKeycodes[] = {
 		// a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z
 			30,48,46,32,18,33,34,35,23,36,37,38,50,49,24,25,16,19,31,20,22,47,17,45,21,44
 		};
+		// clang-format on
 		return letterKeycodes[ c - 'a' ];
 	}
 	if( c >= 'A' && c <= 'Z' )
 	{
+		// clang-format off
 		static constexpr int letterKeycodes[] = {
 		// A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P  Q  R  S  T  U  V  W  X  Y  Z
 			30,48,46,32,18,33,34,35,23,36,37,38,50,49,24,25,16,19,31,20,22,47,17,45,21,44
 		};
+		// clang-format on
 		return letterKeycodes[ c - 'A' ];
 	}
 
+	// clang-format off
 	static constexpr struct { char ch; int keycode; } table[] = {
 		{ '0', KEY_0 },
 		{ '1', KEY_1 },
@@ -437,6 +444,7 @@ int LinuxKeyboardInput::utf8ToLinuxKeycode( const QByteArray& utf8Data )
 		{ '\n', KEY_ENTER },
 		{ '\t', KEY_TAB },
 	};
+	// clang-format on
 
 	for( const auto& entry : table )
 	{

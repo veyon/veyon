@@ -1,0 +1,5 @@
+# Windows sources: the order of Windows SDK/COM headers is significant
+# (e.g. initguid.h before devguid.h, winsock2.h before windows.h) and
+# cannot be verified by the Linux CI builds, so never reorder includes here.
+BasedOnStyle: InheritParentConfig
+SortIncludes: Never
