@@ -1,3 +1,4 @@
+add_subdirectory(textmessagesanitizer)
 add_subdirectory(variantarraymessage)
 add_subdirectory(variantstream)
 add_subdirectory(vncclientprotocol)
