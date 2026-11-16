@@ -1,13 +1,17 @@
 // SPDX-FileCopyrightText: 2017-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include <QDesktopServices>
+#include <QLabel>
 #include <QMessageBox>
+#include <QTextDocumentFragment>
 
 #include "ComputerControlInterface.h"
 #include "FeatureWorkerManager.h"
 #include "PlatformCoreFunctions.h"
 #include "TextMessageDialog.h"
 #include "TextMessageFeaturePlugin.h"
+#include "TextMessageSanitizer.h"
 #include "VeyonMasterInterface.h"
 #include "VeyonServerInterface.h"
 
@@ -117,17 +121,50 @@ bool TextMessageFeaturePlugin::handleFeatureMessage(VeyonWorkerInterface& worker
 
 	if (message.featureUid() == m_textMessageFeature.uid())
 	{
-		auto title = message.argument(Argument::Title).toString();
+		auto title = TextMessageSanitizer::sanitizeTitle(message.argument(Argument::Title).toString());
 		if (title.isEmpty())
 		{
 			title = tr("Message from teacher");
 		}
 
+		const auto text = message.argument(Argument::Text).toString();
+		if (text.size() > TextMessageSanitizer::MaxTextLength)
+		{
+			vWarning() << "text message exceeds length limit, truncating";
+		}
+
 		auto messageBox = new QMessageBox(static_cast<QMessageBox::Icon>(message.argument(Argument::Icon).toInt()),
 										  title,
-										  message.argument(Argument::Text).toString());
+										  TextMessageSanitizer::sanitizeHtml(text));
 		messageBox->setTextFormat(Qt::RichText);
 		messageBox->setTextInteractionFlags(Qt::TextBrowserInteraction | Qt::TextSelectableByKeyboard);
+
+		// QMessageBox opens links on its own and has no linkActivated signal, so take over
+		// link handling in its label and only open links which pass the scheme check again
+		auto label = messageBox->findChild<QLabel*>(QStringLiteral("qt_msgbox_label"));
+		if (label)
+		{
+			label->setOpenExternalLinks(false);
+			connect(label, &QLabel::linkActivated, label, [](const QString& link) {
+				const QUrl url(link.trimmed(), QUrl::StrictMode);
+				if (TextMessageSanitizer::isAllowedLink(url))
+				{
+					QDesktopServices::openUrl(url);
+				}
+				else
+				{
+					vWarning() << "refusing to open link with disallowed scheme" << url.scheme();
+				}
+			});
+		}
+		else
+		{
+			// fail closed: without control over link handling show plain text only
+			vWarning() << "message box label not found, disabling rich text";
+			messageBox->setTextFormat(Qt::PlainText);
+			messageBox->setText(QTextDocumentFragment::fromHtml(messageBox->text()).toPlainText());
+		}
+
 		messageBox->setAttribute(Qt::WA_DeleteOnClose);
 		messageBox->show();
 		VeyonCore::platform().coreFunctions().raiseWindow(messageBox, true);
