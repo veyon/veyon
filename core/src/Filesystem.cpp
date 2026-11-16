@@ -66,8 +66,10 @@ bool isPathWithinBase(const QString& path, const QString& base)
 
 bool Filesystem::isSafePathComponent(const QString& name)
 {
+	// Windows device names (incl. COM0/LPT0, superscript digits and CONIN$/CONOUT$) are reserved
+	// regardless of extension; trailing spaces before the extension are ignored by Windows
 	static const QRegularExpression reservedName(
-		QStringLiteral("^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(\\..*)?$"),
+		QStringLiteral("^(CON|PRN|AUX|NUL|CONIN\\$|CONOUT\\$|COM[0-9\\x{00B9}\\x{00B2}\\x{00B3}]|LPT[0-9\\x{00B9}\\x{00B2}\\x{00B3}]) *(\\..*)?$"),
 		QRegularExpression::CaseInsensitiveOption);
 
 	return name.isEmpty() == false &&

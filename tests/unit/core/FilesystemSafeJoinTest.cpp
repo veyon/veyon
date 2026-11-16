@@ -115,6 +115,14 @@ void FilesystemSafeJoinTest::safePathComponent_data()
 	QTest::newRow("current") << QStringLiteral(".") << false;
 	QTest::newRow("separator") << QStringLiteral("a/b") << false;
 	QTest::newRow("reserved") << QStringLiteral("con") << false;
+	QTest::newRow("reserved-extension") << QStringLiteral("NUL.txt") << false;
+	QTest::newRow("reserved-space-extension") << QStringLiteral("CON .txt") << false;
+	QTest::newRow("reserved-com0") << QStringLiteral("com0") << false;
+	QTest::newRow("reserved-superscript") << QString(QStringLiteral("COM") + QChar(0x00B9)) << false;
+	QTest::newRow("reserved-conin") << QStringLiteral("CONIN$") << false;
+	QTest::newRow("reserved-conout") << QStringLiteral("conout$.log") << false;
+	QTest::newRow("not-reserved-prefix") << QStringLiteral("console.txt") << true;
+	QTest::newRow("not-reserved-com10") << QStringLiteral("COM10") << true;
 	QTest::newRow("trailing-dot") << QStringLiteral("x.") << false;
 }
 
