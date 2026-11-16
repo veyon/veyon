@@ -16,6 +16,23 @@ if(WITH_TESTS)
 
 	add_test(NAME ConnectionLimiterTest COMMAND ConnectionLimiterTest)
 
+	#
+	# TextMessageSanitizerTest: HTML allowlist and link scheme checks (QtCore only)
+	#
+	add_executable(TextMessageSanitizerTest
+		core/TextMessageSanitizerTest.cpp
+		${CMAKE_SOURCE_DIR}/plugins/textmessage/TextMessageSanitizer.cpp
+	)
+
+	target_include_directories(TextMessageSanitizerTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/textmessage)
+
+	target_link_libraries(TextMessageSanitizerTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+	)
+
+	add_test(NAME TextMessageSanitizerTest COMMAND TextMessageSanitizerTest)
+
 endif()
 
 if(WITH_TESTS AND VEYON_BUILD_LINUX)
