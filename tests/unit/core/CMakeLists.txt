@@ -27,4 +27,18 @@ if(WITH_TESTS)
 	target_link_libraries(VeyonCryptoPkiTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core veyon-crypto-authority OpenSSL::Crypto)
 	add_test(NAME VeyonCryptoPkiTest COMMAND VeyonCryptoPkiTest)
 
+	# PkiPublicApi; test certificates are crafted with OpenSSL directly (PkiTestCertificates.h), so
+	# that the tests do not need veyon-crypto-authority (capability boundary, 06-pki.md §1)
+	add_executable(TlsPeerVerifierTest TlsPeerVerifierTest.cpp PkiTestCertificates.h)
+	set_default_target_properties(TlsPeerVerifierTest)
+	target_compile_definitions(TlsPeerVerifierTest PRIVATE OPENSSL_API_COMPAT=10101)
+	target_link_libraries(TlsPeerVerifierTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core OpenSSL::Crypto)
+	add_test(NAME TlsPeerVerifierTest COMMAND TlsPeerVerifierTest)
+
+	add_executable(TrustBundleTest TrustBundleTest.cpp PkiTestCertificates.h)
+	set_default_target_properties(TrustBundleTest)
+	target_compile_definitions(TrustBundleTest PRIVATE OPENSSL_API_COMPAT=10101)
+	target_link_libraries(TrustBundleTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core OpenSSL::Crypto)
+	add_test(NAME TrustBundleTest COMMAND TrustBundleTest)
+
 endif()
