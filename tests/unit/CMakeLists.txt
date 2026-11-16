@@ -1,3 +1,23 @@
+if(WITH_TESTS)
+
+	#
+	# Platform-independent unit tests (not guarded by VEYON_BUILD_LINUX)
+	#
+	add_executable(ConnectionLimiterTest
+		core/ConnectionLimiterTest.cpp
+	)
+
+	target_link_libraries(ConnectionLimiterTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+		Qt${QT_MAJOR_VERSION}::Network
+		veyon-core
+	)
+
+	add_test(NAME ConnectionLimiterTest COMMAND ConnectionLimiterTest)
+
+endif()
+
 if(WITH_TESTS AND VEYON_BUILD_LINUX)
 
 	find_package(X11 REQUIRED)
