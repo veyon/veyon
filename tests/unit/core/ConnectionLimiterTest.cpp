@@ -10,6 +10,7 @@
 #include "VeyonConfiguration.h"
 
 #include <memory>
+#include <utility>
 
 
 class ConnectionLimiterTest : public QObject

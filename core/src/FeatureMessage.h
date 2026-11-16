@@ -8,6 +8,8 @@
 #include "Feature.h"
 #include "MessageContext.h"
 
+#include <type_traits>
+
 class QIODevice;
 
 class VEYON_CORE_EXPORT FeatureMessage
