@@ -26,7 +26,6 @@
 #include <QMutex>
 
 #include "PipeWireFramebuffer.h"
-
 #include "VeyonCore.h"
 
 #include <cstring>
@@ -36,9 +35,8 @@ extern "C" {
 #include <spa/pod/builder.h>
 }
 
-PipeWireFramebuffer::PipeWireFramebuffer(QMutex* screenMutex, QObject* parent)
-	: QObject(parent)
-	, m_screenMutex(screenMutex)
+PipeWireFramebuffer::PipeWireFramebuffer(QMutex* screenMutex, QObject* parent) :
+	QObject(parent), m_screenMutex(screenMutex)
 {
 }
 
@@ -96,8 +94,7 @@ bool PipeWireFramebuffer::open(int fd, quint32 nodeId, rfbScreenInfoPtr screen)
 		PW_KEY_MEDIA_TYPE, "Video",
 		PW_KEY_MEDIA_CATEGORY, "Capture",
 		PW_KEY_MEDIA_ROLE, "Screen",
-		nullptr
-	);
+		nullptr);
 
 	m_stream = pw_stream_new(m_core, "veyon-screen-capture", props);
 	if (!m_stream)
@@ -134,16 +131,14 @@ bool PipeWireFramebuffer::open(int fd, quint32 nodeId, rfbScreenInfoPtr screen)
 	params[0] = spa_format_video_raw_build(&builder, SPA_PARAM_EnumFormat, &videoInfo);
 
 	const auto flags = static_cast<pw_stream_flags>(
-		PW_STREAM_FLAG_AUTOCONNECT | PW_STREAM_FLAG_MAP_BUFFERS
-	);
+		PW_STREAM_FLAG_AUTOCONNECT | PW_STREAM_FLAG_MAP_BUFFERS);
 
 	const int ret = pw_stream_connect(
 		m_stream,
 		PW_DIRECTION_INPUT,
 		nodeId,
 		flags,
-		params, 1
-	);
+		params, 1);
 
 	if (ret < 0)
 	{
@@ -221,7 +216,7 @@ void PipeWireFramebuffer::close()
 // ---------------------------------------------------------------------------
 
 void PipeWireFramebuffer::onCoreError(void* data, uint32_t /*id*/, int /*seq*/,
-									   int res, const char* message)
+									  int res, const char* message)
 {
 	auto* self = static_cast<PipeWireFramebuffer*>(data);
 	vCritical() << "PipeWire core error" << res << (message ? message : "");
@@ -234,9 +229,9 @@ void PipeWireFramebuffer::onCoreError(void* data, uint32_t /*id*/, int /*seq*/,
 }
 
 void PipeWireFramebuffer::onStreamStateChanged(void* data,
-												pw_stream_state oldState,
-												pw_stream_state state,
-												const char* error)
+											   pw_stream_state oldState,
+											   pw_stream_state state,
+											   const char* error)
 {
 	auto* self = static_cast<PipeWireFramebuffer*>(data);
 	vDebug() << "PipeWire stream state:" << pw_stream_state_as_string(state);
@@ -270,7 +265,7 @@ void PipeWireFramebuffer::onStreamStateChanged(void* data,
 }
 
 void PipeWireFramebuffer::onStreamParamChanged(void* data, uint32_t id,
-												const spa_pod* param)
+											   const spa_pod* param)
 {
 	auto* self = static_cast<PipeWireFramebuffer*>(data);
 
@@ -285,7 +280,7 @@ void PipeWireFramebuffer::onStreamParamChanged(void* data, uint32_t id,
 		return;
 	}
 
-	const int width  = static_cast<int>(videoInfo.size.width);
+	const int width = static_cast<int>(videoInfo.size.width);
 	const int height = static_cast<int>(videoInfo.size.height);
 
 	if (width <= 0 || height <= 0)
@@ -314,18 +309,16 @@ void PipeWireFramebuffer::onStreamParamChanged(void* data, uint32_t id,
 	params[0] = static_cast<const spa_pod*>(spa_pod_builder_add_object(
 		&builder,
 		SPA_TYPE_OBJECT_ParamBuffers, SPA_PARAM_Buffers,
-		SPA_PARAM_BUFFERS_buffers,  SPA_POD_CHOICE_RANGE_Int(2, 1, 32),
-		SPA_PARAM_BUFFERS_blocks,   SPA_POD_Int(1),
-		SPA_PARAM_BUFFERS_size,     SPA_POD_Int(width * height * 4),
-		SPA_PARAM_BUFFERS_stride,   SPA_POD_Int(width * 4),
-		SPA_PARAM_BUFFERS_dataType, SPA_POD_CHOICE_FLAGS_Int(1 << SPA_DATA_MemPtr)
-	));
+		SPA_PARAM_BUFFERS_buffers, SPA_POD_CHOICE_RANGE_Int(2, 1, 32),
+		SPA_PARAM_BUFFERS_blocks, SPA_POD_Int(1),
+		SPA_PARAM_BUFFERS_size, SPA_POD_Int(width * height * 4),
+		SPA_PARAM_BUFFERS_stride, SPA_POD_Int(width * 4),
+		SPA_PARAM_BUFFERS_dataType, SPA_POD_CHOICE_FLAGS_Int(1 << SPA_DATA_MemPtr)));
 	params[1] = static_cast<const spa_pod*>(spa_pod_builder_add_object(
 		&builder,
 		SPA_TYPE_OBJECT_ParamMeta, SPA_PARAM_Meta,
 		SPA_PARAM_META_type, SPA_POD_Id(SPA_META_VideoDamage),
-		SPA_PARAM_META_size, SPA_POD_Int(static_cast<int>(sizeof(spa_meta_region)) * MaxDamageRects)
-	));
+		SPA_PARAM_META_size, SPA_POD_Int(static_cast<int>(sizeof(spa_meta_region)) * MaxDamageRects)));
 
 	pw_stream_update_params(self->m_stream, params, 2);
 }
@@ -337,19 +330,18 @@ void PipeWireFramebuffer::onStreamProcess(void* data)
 
 
 void PipeWireFramebuffer::convertFrame(char* dst, const char* src, int srcStride, int dstStride,
-										int width, int height, const spa_meta_region* damage, bool forceFullFrame)
+									   int width, int height, const spa_meta_region* damage, bool forceFullFrame)
 {
 	const auto convertRect = [](char* dst, int dstStride,
-							 const char* src, int srcStride,
-							 int w, int h, uint32_t videoFormat)
-	{
+								const char* src, int srcStride,
+								int w, int h, uint32_t videoFormat) {
 		const size_t rowBytes = static_cast<size_t>(w) * 4;
 
 		if (videoFormat == SPA_VIDEO_FORMAT_BGRx)
 		{
 			const QImage srcImage(reinterpret_cast<const uchar*>(src), w, h,
 								  srcStride, QImage::Format_RGB32); // ARGB32 layout matches BGRx-in-memory as ARGB32 on little-endian
-			const auto swapped = srcImage.rgbSwapped(); // allocates its own buffer, SIMD-accelerated internally
+			const auto swapped = srcImage.rgbSwapped();				// allocates its own buffer, SIMD-accelerated internally
 
 			for (int y = 0; y < h; ++y)
 			{
@@ -438,7 +430,7 @@ void PipeWireFramebuffer::processFrame()
 		return;
 	}
 
-	const int width  = m_frameSize.width();
+	const int width = m_frameSize.width();
 	const int height = m_frameSize.height();
 
 	if (width <= 0 || height <= 0)

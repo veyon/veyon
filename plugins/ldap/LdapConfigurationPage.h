@@ -20,7 +20,7 @@ class LdapConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	explicit LdapConfigurationPage( LdapConfiguration& configuration, QWidget* parent = nullptr );
+	explicit LdapConfigurationPage(LdapConfiguration& configuration, QWidget* parent = nullptr);
 	~LdapConfigurationPage() override;
 
 	void resetWidgets() override;
@@ -29,8 +29,8 @@ public:
 
 private:
 	void browseBaseDn();
-	void browseObjectTree( QLineEdit* lineEdit );
-	void browseAttribute( QLineEdit* lineEdit, const QString& tree );
+	void browseObjectTree(QLineEdit* lineEdit);
+	void browseAttribute(QLineEdit* lineEdit, const QString& tree);
 
 	void testBindInteractively();
 	void testBaseDn();
@@ -63,20 +63,19 @@ private:
 
 	bool testBindQuietly()
 	{
-		return testBind( true );
+		return testBind(true);
 	}
 
-	bool testBind( bool quiet );
-	void reportLdapTreeQueryResult( const QString& name, int count, const QString& parameter,
-									const QString& errorDescription );
-	void reportLdapObjectQueryResults( const QString &objectsName, const QStringList& parameterNames,
-									   const QStringList &results, const LdapDirectory& directory );
-	void reportLdapFilterTestResult( const QString &filterObjects, int count, const QString &errorDescription );
+	bool testBind(bool quiet);
+	void reportLdapTreeQueryResult(const QString& name, int count, const QString& parameter,
+								   const QString& errorDescription);
+	void reportLdapObjectQueryResults(const QString& objectsName, const QStringList& parameterNames,
+									  const QStringList& results, const LdapDirectory& directory);
+	void reportLdapFilterTestResult(const QString& filterObjects, int count, const QString& errorDescription);
 
-	static QString formatResultsString( const QStringList& results );
+	static QString formatResultsString(const QStringList& results);
 
-	Ui::LdapConfigurationPage *ui;
+	Ui::LdapConfigurationPage* ui;
 
 	LdapConfiguration& m_configuration;
-
 };

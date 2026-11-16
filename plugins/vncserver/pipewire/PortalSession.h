@@ -160,5 +160,4 @@ private:
 	int m_lastButtonMask{0};
 	double m_lastPointerX{0.0};
 	double m_lastPointerY{0.0};
-
 };

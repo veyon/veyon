@@ -35,8 +35,7 @@ class VEYON_CORE_EXPORT Computer
 {
 	Q_GADGET
 public:
-	enum class NameSource
-	{
+	enum class NameSource {
 		Default,
 		HostAddress,
 		SessionClientAddress,
@@ -48,18 +47,18 @@ public:
 	};
 	Q_ENUM(NameSource)
 
-	explicit Computer( NetworkObject::Uid networkObjectUid = NetworkObject::Uid(),
-					   const QString& displayName = {},
-					   const QString& hostAddress = {},
-					   const QString& macAddress = {},
-					   const QString& location = {} );
+	explicit Computer(NetworkObject::Uid networkObjectUid = NetworkObject::Uid(),
+					  const QString& displayName = {},
+					  const QString& hostAddress = {},
+					  const QString& macAddress = {},
+					  const QString& location = {});
 
-	bool operator==( const Computer& other ) const
+	bool operator==(const Computer& other) const
 	{
 		return networkObjectUid() == other.networkObjectUid();
 	}
 
-	bool operator!=( const Computer& other ) const
+	bool operator!=(const Computer& other) const
 	{
 		return !(*this == other);
 	}
@@ -95,7 +94,7 @@ public:
 		return m_hostName;
 	}
 
-	void setMacAddress( const QString& macAddress )
+	void setMacAddress(const QString& macAddress)
 	{
 		m_macAddress = macAddress;
 	}
@@ -105,7 +104,7 @@ public:
 		return m_macAddress;
 	}
 
-	void setLocation( const QString& location )
+	void setLocation(const QString& location)
 	{
 		m_location = location;
 	}

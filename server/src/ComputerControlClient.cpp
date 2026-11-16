@@ -23,26 +23,27 @@
  */
 
 #include <QTcpSocket>
-#include <cstring>
 
-#include "VeyonCore.h"
 #include "ComputerControlClient.h"
 #include "ComputerControlServer.h"
+#include "VeyonCore.h"
+
+#include <cstring>
 
 
-ComputerControlClient::ComputerControlClient( ComputerControlServer* server,
-											  QTcpSocket* clientSocket,
-											  int vncServerPort,
-											  const Password& vncServerPassword,
-											  QObject* parent ) :
-	VncProxyConnection( clientSocket, vncServerPort, parent ),
-	m_server( server ),
+ComputerControlClient::ComputerControlClient(ComputerControlServer* server,
+											 QTcpSocket* clientSocket,
+											 int vncServerPort,
+											 const Password& vncServerPassword,
+											 QObject* parent) :
+	VncProxyConnection(clientSocket, vncServerPort, parent),
+	m_server(server),
 	m_serverClient(),
-	m_serverProtocol( clientSocket,
-					  &m_serverClient,
-					  server->authenticationManager(),
-					  server->accessControlManager() ),
-	m_clientProtocol( vncServerSocket(), vncServerPassword )
+	m_serverProtocol(clientSocket,
+					 &m_serverClient,
+					 server->authenticationManager(),
+					 server->accessControlManager()),
+	m_clientProtocol(vncServerSocket(), vncServerPassword)
 {
 	m_framebufferUpdateTimer.start();
 }
@@ -51,7 +52,7 @@ ComputerControlClient::ComputerControlClient( ComputerControlServer* server,
 
 ComputerControlClient::~ComputerControlClient()
 {
-	m_server->accessControlManager().removeClient( &m_serverClient );
+	m_server->accessControlManager().removeClient(&m_serverClient);
 }
 
 
@@ -61,12 +62,12 @@ bool ComputerControlClient::receiveClientMessage()
 	auto socket = proxyClientSocket();
 
 	char messageType = 0;
-	if( socket->peek( &messageType, sizeof(messageType) ) != sizeof(messageType) )
+	if (socket->peek(&messageType, sizeof(messageType)) != sizeof(messageType))
 	{
 		return false;
 	}
 
-	if( messageType == FeatureMessage::RfbMessageType )
+	if (messageType == FeatureMessage::RfbMessageType)
 	{
 		return m_server->handleFeatureMessage(this);
 	}
@@ -80,7 +81,7 @@ bool ComputerControlClient::receiveClientMessage()
 		}
 
 		const auto messageData = socket->read(sz_rfbFramebufferUpdateRequestMsg);
-		if( messageData.size() != sz_rfbFramebufferUpdateRequestMsg )
+		if (messageData.size() != sz_rfbFramebufferUpdateRequestMsg)
 		{
 			return false;
 		}

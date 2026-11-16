@@ -36,7 +36,7 @@ class FileTransferConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	explicit FileTransferConfigurationPage( FileTransferConfiguration& configuration, QWidget* parent = nullptr );
+	explicit FileTransferConfigurationPage(FileTransferConfiguration& configuration, QWidget* parent = nullptr);
 	~FileTransferConfigurationPage() override;
 
 	void resetWidgets() override;
@@ -49,8 +49,7 @@ private:
 	void browseFilesToCollectSourceDirectory();
 	void browseCollectedFilesDestinationDirectory();
 
-	Ui::FileTransferConfigurationPage *ui;
+	Ui::FileTransferConfigurationPage* ui;
 
 	FileTransferConfiguration& m_configuration;
-
 };

@@ -33,42 +33,42 @@
 #include "VncViewWidget.h"
 
 
-VncViewWidget::VncViewWidget( const ComputerControlInterface::Pointer& computerControlInterface,
-							  QRect viewport, QWidget* parent ) :
-	QWidget( parent ),
+VncViewWidget::VncViewWidget(const ComputerControlInterface::Pointer& computerControlInterface,
+							 QRect viewport, QWidget* parent) :
+	QWidget(parent),
 	VncView(computerControlInterface),
 	m_forceOpaqueFramebuffer(QGuiApplication::platformName().startsWith(QLatin1String("wayland")))
 {
-	setViewport( viewport );
+	setViewport(viewport);
 
-	connectUpdateFunctions( this );
+	connectUpdateFunctions(this);
 
-	connect( connection(), &VncConnection::stateChanged, this, &VncViewWidget::updateConnectionState );
-	connect( &m_busyIndicatorTimer, &QTimer::timeout, this, QOverload<>::of(&QWidget::repaint) );
+	connect(connection(), &VncConnection::stateChanged, this, &VncViewWidget::updateConnectionState);
+	connect(&m_busyIndicatorTimer, &QTimer::timeout, this, QOverload<>::of(&QWidget::repaint));
 
 	// set up mouse border signal timer
-	m_mouseBorderSignalTimer.setSingleShot( true );
-	m_mouseBorderSignalTimer.setInterval( MouseBorderSignalDelay );
-	connect( &m_mouseBorderSignalTimer, &QTimer::timeout, this, &VncViewWidget::mouseAtBorder );
+	m_mouseBorderSignalTimer.setSingleShot(true);
+	m_mouseBorderSignalTimer.setInterval(MouseBorderSignalDelay);
+	connect(&m_mouseBorderSignalTimer, &QTimer::timeout, this, &VncViewWidget::mouseAtBorder);
 
 	// set up background color
-	if( parent == nullptr )
+	if (parent == nullptr)
 	{
 		parent = this;
 	}
 	QPalette pal = parent->palette();
-	pal.setColor( parent->backgroundRole(), Qt::black );
-	parent->setPalette( pal );
+	pal.setColor(parent->backgroundRole(), Qt::black);
+	parent->setPalette(pal);
 
 	show();
 
-	setFocusPolicy( Qt::WheelFocus );
+	setFocusPolicy(Qt::WheelFocus);
 	setFocus();
 
-	setAttribute( Qt::WA_OpaquePaintEvent );
-	installEventFilter( this );
+	setAttribute(Qt::WA_OpaquePaintEvent);
+	installEventFilter(this);
 
-	setMouseTracking( true );
+	setMouseTracking(true);
 
 	updateConnectionState();
 }
@@ -78,7 +78,7 @@ VncViewWidget::VncViewWidget( const ComputerControlInterface::Pointer& computerC
 VncViewWidget::~VncViewWidget()
 {
 	// do not receive any signals during connection shutdown
-	connection()->disconnect( this );
+	connection()->disconnect(this);
 }
 
 
@@ -111,14 +111,14 @@ QSize VncViewWidget::sizeHint() const
 
 
 
-void VncViewWidget::setViewOnly( bool enabled )
+void VncViewWidget::setViewOnly(bool enabled)
 {
-	if( enabled == viewOnly() )
+	if (enabled == viewOnly())
 	{
 		return;
 	}
 
-	if( enabled )
+	if (enabled)
 	{
 		releaseKeyboard();
 	}
@@ -127,16 +127,16 @@ void VncViewWidget::setViewOnly( bool enabled )
 		grabKeyboard();
 	}
 
-	VncView::setViewOnly( enabled );
+	VncView::setViewOnly(enabled);
 }
 
 
 
-void VncViewWidget::updateView( int x, int y, int w, int h )
+void VncViewWidget::updateView(int x, int y, int w, int h)
 {
 	m_scaledImageOutdated = true;
 
-	update( x, y, w, h );
+	update(x, y, w, h);
 }
 
 
@@ -150,87 +150,87 @@ QSize VncViewWidget::viewSize() const
 
 void VncViewWidget::setViewCursor(const QCursor& cursor)
 {
-	setCursor( cursor );
+	setCursor(cursor);
 }
 
 
 
 void VncViewWidget::updateGeometry()
 {
-	resize( effectiveFramebufferSize() );
+	resize(effectiveFramebufferSize());
 
 	Q_EMIT sizeHintChanged();
 }
 
 
 
-bool VncViewWidget::event( QEvent* event )
+bool VncViewWidget::event(QEvent* event)
 {
-	return VncView::handleEvent( event ) || QWidget::event( event );
+	return VncView::handleEvent(event) || QWidget::event(event);
 }
 
 
 
-bool VncViewWidget::eventFilter( QObject* obj, QEvent* event )
+bool VncViewWidget::eventFilter(QObject* obj, QEvent* event)
 {
-	if( viewOnly() )
+	if (viewOnly())
 	{
-		if( event->type() == QEvent::KeyPress ||
+		if (event->type() == QEvent::KeyPress ||
 			event->type() == QEvent::KeyRelease ||
 			event->type() == QEvent::MouseButtonDblClick ||
 			event->type() == QEvent::MouseButtonPress ||
 			event->type() == QEvent::MouseButtonRelease ||
-			event->type() == QEvent::Wheel )
+			event->type() == QEvent::Wheel)
 		{
 			return true;
 		}
 	}
 
-	return QWidget::eventFilter( obj, event );
+	return QWidget::eventFilter(obj, event);
 }
 
 
 
-void VncViewWidget::focusInEvent( QFocusEvent* event )
+void VncViewWidget::focusInEvent(QFocusEvent* event)
 {
-	if( m_viewOnlyFocus == false )
+	if (m_viewOnlyFocus == false)
 	{
-		setViewOnly( false );
+		setViewOnly(false);
 	}
 
-	QWidget::focusInEvent( event );
+	QWidget::focusInEvent(event);
 }
 
 
 
-void VncViewWidget::focusOutEvent( QFocusEvent* event )
+void VncViewWidget::focusOutEvent(QFocusEvent* event)
 {
 	m_viewOnlyFocus = viewOnly();
 
-	if( viewOnly() == false )
+	if (viewOnly() == false)
 	{
-		setViewOnly( true );
+		setViewOnly(true);
 	}
 
-	QWidget::focusOutEvent( event );
+	QWidget::focusOutEvent(event);
 }
 
 
 
-void VncViewWidget::mouseEventHandler( QMouseEvent* event )
+void VncViewWidget::mouseEventHandler(QMouseEvent* event)
 {
-	if( event == nullptr )
+	if (event == nullptr)
 	{
 		return;
 	}
 
-	VncView::mouseEventHandler( event );
+	VncView::mouseEventHandler(event);
 
-	if( event->type() == QEvent::MouseMove )
+	if (event->type() == QEvent::MouseMove)
 	{
-		if( event->pos().y() == 0 )
+		if (event->pos().y() == 0)
 		{
-			if( m_mouseBorderSignalTimer.isActive() == false )
+			if (m_mouseBorderSignalTimer.isActive() == false)
 			{
 				m_mouseBorderSignalTimer.start();
 			}
@@ -244,44 +244,44 @@ void VncViewWidget::mouseEventHandler( QMouseEvent* event )
 
 
 
-void VncViewWidget::paintEvent( QPaintEvent* paintEvent )
+void VncViewWidget::paintEvent(QPaintEvent* paintEvent)
 {
-	QPainter p( this );
-	p.setRenderHint( QPainter::SmoothPixmapTransform );
+	QPainter p(this);
+	p.setRenderHint(QPainter::SmoothPixmapTransform);
 
 	const auto& image = connection()->image();
 
-	if( image.isNull() || image.format() == QImage::Format_Invalid )
+	if (image.isNull() || image.format() == QImage::Format_Invalid)
 	{
-		p.fillRect( paintEvent->rect(), Qt::black );
-		drawBusyIndicator( &p );
+		p.fillRect(paintEvent->rect(), Qt::black);
+		drawBusyIndicator(&p);
 		return;
 	}
 
 	auto source = viewport();
-	if( source.isNull() || source.isEmpty() )
+	if (source.isNull() || source.isEmpty())
 	{
-		source = { QPoint{ 0, 0 }, image.size() };
+		source = {QPoint{0, 0}, image.size()};
 	}
 
-	if( isScaledView() )
+	if (isScaledView())
 	{
 		// QPainter shrinks with bilinear sampling, which leaves text and thin lines uneven and
 		// makes them shimmer as they move; QImage::scaled() averages areas instead. The copy is
 		// made again only after an update, or when the scaled size or the viewport changed.
 		const auto targetSize = scaledSize();
-		if( m_scaledImageOutdated || m_scaledImage.size() != targetSize || m_scaledImageSource != source )
+		if (m_scaledImageOutdated || m_scaledImage.size() != targetSize || m_scaledImageSource != source)
 		{
-			m_scaledImage = ( source == image.rect() ? image : image.copy( source ) )
-								.scaled( targetSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation );
+			m_scaledImage = (source == image.rect() ? image : image.copy(source))
+								.scaled(targetSize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 			m_scaledImageSource = source;
 			m_scaledImageOutdated = false;
 		}
-		p.drawImage( 0, 0, m_scaledImage );
+		p.drawImage(0, 0, m_scaledImage);
 	}
 	else
 	{
-		p.drawImage( { 0, 0 }, image, source );
+		p.drawImage({0, 0}, image, source);
 	}
 
 	if (m_forceOpaqueFramebuffer)
@@ -295,48 +295,49 @@ void VncViewWidget::paintEvent( QPaintEvent* paintEvent )
 		p.setCompositionMode(QPainter::CompositionMode_SourceOver);
 	}
 
-	if( connection()->state() != VncConnection::State::Connected )
+	if (connection()->state() != VncConnection::State::Connected)
 	{
-		drawBusyIndicator( &p );
+		drawBusyIndicator(&p);
 	}
 
 	// draw black borders if neccessary
 	const int screenWidth = scaledSize().width();
-	if( screenWidth < width() )
+	if (screenWidth < width())
 	{
-		p.fillRect( screenWidth, 0, width() - screenWidth, height(), Qt::black );
+		p.fillRect(screenWidth, 0, width() - screenWidth, height(), Qt::black);
 	}
 
 	const int screenHeight = scaledSize().height();
-	if( screenHeight < height() )
+	if (screenHeight < height())
 	{
-		p.fillRect( 0, screenHeight, width(), height() - screenHeight, Qt::black );
+		p.fillRect(0, screenHeight, width(), height() - screenHeight, Qt::black);
 	}
 }
 
 
 
-void VncViewWidget::resizeEvent( QResizeEvent* event )
+void VncViewWidget::resizeEvent(QResizeEvent* event)
 {
 	update();
 
 	updateLocalCursor();
 
-	QWidget::resizeEvent( event );
+	QWidget::resizeEvent(event);
 }
 
 
 
-void VncViewWidget::drawBusyIndicator( QPainter* painter )
+void VncViewWidget::drawBusyIndicator(QPainter* painter)
 {
 	static constexpr int BusyIndicatorSize = 100;
 	static constexpr int BusyIndicatorSpeed = 5;
 
 	QRect drawingRect{
-		( width() - BusyIndicatorSize ) / 2,
-		( height() - BusyIndicatorSize ) / 2,
-		BusyIndicatorSize, BusyIndicatorSize,
-		};
+		(width() - BusyIndicatorSize) / 2,
+		(height() - BusyIndicatorSize) / 2,
+		BusyIndicatorSize,
+		BusyIndicatorSize,
+	};
 
 	QColor color(QStringLiteral("#00acdc"));
 	QConicalGradient gradient;
@@ -353,8 +354,8 @@ void VncViewWidget::drawBusyIndicator( QPainter* painter )
 	painter->setPen(pen);
 
 	painter->setRenderHint(QPainter::Antialiasing);
-	painter->drawArc( drawingRect,
-					  ( 360 - ( m_busyIndicatorState % 360 ) ) * 16, 270 * 16 );
+	painter->drawArc(drawingRect,
+					 (360 - (m_busyIndicatorState % 360)) * 16, 270 * 16);
 
 	m_busyIndicatorState += BusyIndicatorSpeed;
 }
@@ -363,14 +364,14 @@ void VncViewWidget::drawBusyIndicator( QPainter* painter )
 
 void VncViewWidget::updateConnectionState()
 {
-	if( connection()->state() != VncConnection::State::Connected )
+	if (connection()->state() != VncConnection::State::Connected)
 	{
-		m_busyIndicatorTimer.start( BusyIndicatorUpdateInterval );
+		m_busyIndicatorTimer.start(BusyIndicatorUpdateInterval);
 	}
 	else
 	{
 		m_busyIndicatorTimer.stop();
 
-		resize( effectiveFramebufferSize() );
+		resize(effectiveFramebufferSize());
 	}
 }

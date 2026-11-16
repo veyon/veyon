@@ -42,13 +42,14 @@
 class Powercfg : public ProcessHelper
 {
 public:
-	Powercfg(const QStringList& arguments) : ProcessHelper(QStringLiteral("powercfg"), arguments)
+	Powercfg(const QStringList& arguments) :
+		ProcessHelper(QStringLiteral("powercfg"), arguments)
 	{
 	}
 };
 
 
-static int interception_is_any( InterceptionDevice device )
+static int interception_is_any(InterceptionDevice device)
 {
 	Q_UNUSED(device)
 
@@ -84,7 +85,7 @@ static WindowsDeviceFunctions::DeviceList inputDevicesToDisable()
 
 WindowsInputDeviceFunctions::~WindowsInputDeviceFunctions()
 {
-	if( m_inputDevicesDisabled )
+	if (m_inputDevicesDisabled)
 	{
 		enableInputDevices();
 	}
@@ -107,7 +108,7 @@ void WindowsInputDeviceFunctions::enableInputDevices()
 
 void WindowsInputDeviceFunctions::disableInputDevices()
 {
-	if( m_inputDevicesDisabled == false )
+	if (m_inputDevicesDisabled == false)
 	{
 		enableInterception();
 		stopHIDService();
@@ -121,30 +122,30 @@ void WindowsInputDeviceFunctions::disableInputDevices()
 
 
 
-KeyboardShortcutTrapper* WindowsInputDeviceFunctions::createKeyboardShortcutTrapper( QObject* parent )
+KeyboardShortcutTrapper* WindowsInputDeviceFunctions::createKeyboardShortcutTrapper(QObject* parent)
 {
-	return new WindowsKeyboardShortcutTrapper( parent );
+	return new WindowsKeyboardShortcutTrapper(parent);
 }
 
 
 
 void WindowsInputDeviceFunctions::checkInterceptionInstallation()
 {
-	if( VeyonCore::config().multiSessionModeEnabled() )
+	if (VeyonCore::config().multiSessionModeEnabled())
 	{
 		uninstallInterception();
 	}
-	else if( WindowsPlatformConfiguration( &VeyonCore::config() ).useInterceptionDriver() )
+	else if (WindowsPlatformConfiguration(&VeyonCore::config()).useInterceptionDriver())
 	{
 		const auto context = interception_create_context();
-		if( context )
+		if (context)
 		{
 			// a valid context means the interception driver is installed properly
 			// so nothing to do here
-			interception_destroy_context( context );
+			interception_destroy_context(context);
 		}
 		// try to (re)install interception driver
-		else if( installInterception() == false )
+		else if (installInterception() == false)
 		{
 			// failed to uninstall it so we can try to install it again on next reboot
 			uninstallInterception();
@@ -156,8 +157,8 @@ void WindowsInputDeviceFunctions::checkInterceptionInstallation()
 
 void WindowsInputDeviceFunctions::stopOnScreenKeyboard()
 {
-	WindowsCoreFunctions::terminateProcess( WtsSessionManager::findProcessId( QStringLiteral("osk.exe") ) );
-	WindowsCoreFunctions::terminateProcess( WtsSessionManager::findProcessId( QStringLiteral("tabtip.exe") ) );
+	WindowsCoreFunctions::terminateProcess(WtsSessionManager::findProcessId(QStringLiteral("osk.exe")));
+	WindowsCoreFunctions::terminateProcess(WtsSessionManager::findProcessId(QStringLiteral("tabtip.exe")));
 }
 
 
@@ -166,7 +167,7 @@ static LRESULT CALLBACK swallowPhysicalKeyboardInput(int code, WPARAM wParam, LP
 {
 	if (code == HC_ACTION)
 	{
-		const auto* event = reinterpret_cast<const KBDLLHOOKSTRUCT *>(lParam);
+		const auto* event = reinterpret_cast<const KBDLLHOOKSTRUCT*>(lParam);
 		// let injected input pass so that remote control by the teacher keeps working, and let key
 		// releases pass so that a key held while locking (Alt, Win…) does not stay stuck afterwards
 		const auto isKeyRelease = wParam == WM_KEYUP || wParam == WM_SYSKEYUP;
@@ -183,11 +184,11 @@ static LRESULT CALLBACK swallowPhysicalKeyboardInput(int code, WPARAM wParam, LP
 
 void WindowsInputDeviceFunctions::enableInterception()
 {
-	if( WindowsPlatformConfiguration( &VeyonCore::config() ).useInterceptionDriver() )
+	if (WindowsPlatformConfiguration(&VeyonCore::config()).useInterceptionDriver())
 	{
 		m_interceptionContext = interception_create_context();
 
-		if( m_interceptionContext )
+		if (m_interceptionContext)
 		{
 			interception_set_filter(m_interceptionContext,
 									interception_is_any,
@@ -214,9 +215,9 @@ void WindowsInputDeviceFunctions::enableInterception()
 
 void WindowsInputDeviceFunctions::disableInterception()
 {
-	if( m_interceptionContext )
+	if (m_interceptionContext)
 	{
-		interception_destroy_context( m_interceptionContext );
+		interception_destroy_context(m_interceptionContext);
 
 		m_interceptionContext = nullptr;
 	}
@@ -232,9 +233,9 @@ void WindowsInputDeviceFunctions::disableInterception()
 
 void WindowsInputDeviceFunctions::initHIDServiceStatus()
 {
-	if( m_hidServiceStatusInitialized == false )
+	if (m_hidServiceStatusInitialized == false)
 	{
-		m_hidServiceActivated = VeyonCore::platform().serviceFunctions().isRunning( m_hidServiceName );
+		m_hidServiceActivated = VeyonCore::platform().serviceFunctions().isRunning(m_hidServiceName);
 		m_hidServiceStatusInitialized = true;
 	}
 }
@@ -243,9 +244,9 @@ void WindowsInputDeviceFunctions::initHIDServiceStatus()
 
 void WindowsInputDeviceFunctions::restoreHIDService()
 {
-	if( m_hidServiceActivated )
+	if (m_hidServiceActivated)
 	{
-		VeyonCore::platform().serviceFunctions().start( m_hidServiceName );
+		VeyonCore::platform().serviceFunctions().start(m_hidServiceName);
 	}
 }
 
@@ -269,13 +270,17 @@ void WindowsInputDeviceFunctions::setCustomPowerScheme()
 	Powercfg{{QStringLiteral("/delete"), CustomPowerSchemeIdString}}.run();
 	Powercfg{{QStringLiteral("/duplicatescheme"), m_originalPowerSchemeId, CustomPowerSchemeIdString}}.run();
 	Powercfg{{QStringLiteral("/setacvalueindex"), CustomPowerSchemeIdString,
-					QStringLiteral("4f971e89-eebd-4455-a8de-9e59040e7347"), QStringLiteral("7648efa3-dd9c-4e3e-b566-50f929386280"), QStringLiteral("0")}}.run();
+			  QStringLiteral("4f971e89-eebd-4455-a8de-9e59040e7347"), QStringLiteral("7648efa3-dd9c-4e3e-b566-50f929386280"), QStringLiteral("0")}}
+		.run();
 	Powercfg{{QStringLiteral("/setdcvalueindex"), CustomPowerSchemeIdString,
-					QStringLiteral("4f971e89-eebd-4455-a8de-9e59040e7347"), QStringLiteral("7648efa3-dd9c-4e3e-b566-50f929386280"), QStringLiteral("0")}}.run();
+			  QStringLiteral("4f971e89-eebd-4455-a8de-9e59040e7347"), QStringLiteral("7648efa3-dd9c-4e3e-b566-50f929386280"), QStringLiteral("0")}}
+		.run();
 	Powercfg{{QStringLiteral("/setacvalueindex"), CustomPowerSchemeIdString,
-					QStringLiteral("4f971e89-eebd-4455-a8de-9e59040e7347"), QStringLiteral("96996bc0-ad50-47ec-923b-6f41874dd9eb"), QStringLiteral("0")}}.run();
+			  QStringLiteral("4f971e89-eebd-4455-a8de-9e59040e7347"), QStringLiteral("96996bc0-ad50-47ec-923b-6f41874dd9eb"), QStringLiteral("0")}}
+		.run();
 	Powercfg{{QStringLiteral("/setdcvalueindex"), CustomPowerSchemeIdString,
-					QStringLiteral("4f971e89-eebd-4455-a8de-9e59040e7347"), QStringLiteral("96996bc0-ad50-47ec-923b-6f41874dd9eb"), QStringLiteral("0")}}.run();
+			  QStringLiteral("4f971e89-eebd-4455-a8de-9e59040e7347"), QStringLiteral("96996bc0-ad50-47ec-923b-6f41874dd9eb"), QStringLiteral("0")}}
+		.run();
 	Powercfg{{QStringLiteral("/setactive"), CustomPowerSchemeIdString}}.run();
 }
 
@@ -296,9 +301,9 @@ void WindowsInputDeviceFunctions::stopHIDService()
 {
 	initHIDServiceStatus();
 
-	if( m_hidServiceActivated )
+	if (m_hidServiceActivated)
 	{
-		VeyonCore::platform().serviceFunctions().stop( m_hidServiceName );
+		VeyonCore::platform().serviceFunctions().stop(m_hidServiceName);
 	}
 }
 
@@ -306,19 +311,19 @@ void WindowsInputDeviceFunctions::stopHIDService()
 
 bool WindowsInputDeviceFunctions::installInterception()
 {
-	return interceptionInstaller( QStringLiteral("/install") ) == 0;
+	return interceptionInstaller(QStringLiteral("/install")) == 0;
 }
 
 
 
 bool WindowsInputDeviceFunctions::uninstallInterception()
 {
-	return interceptionInstaller( QStringLiteral("/uninstall") ) == 0;
+	return interceptionInstaller(QStringLiteral("/uninstall")) == 0;
 }
 
 
 
-int WindowsInputDeviceFunctions::interceptionInstaller( const QString& argument )
+int WindowsInputDeviceFunctions::interceptionInstaller(const QString& argument)
 {
-	return QProcess::execute( QCoreApplication::applicationDirPath() + QStringLiteral("/interception/install-interception.exe"), { argument } );
+	return QProcess::execute(QCoreApplication::applicationDirPath() + QStringLiteral("/interception/install-interception.exe"), {argument});
 }

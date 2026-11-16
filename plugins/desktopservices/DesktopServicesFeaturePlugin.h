@@ -25,38 +25,35 @@
 #pragma once
 
 #include "ConfigurationPagePluginInterface.h"
-#include "DesktopServicesConfiguration.h"
 #include "DesktopServiceObject.h"
+#include "DesktopServicesConfiguration.h"
 #include "FeatureProviderInterface.h"
 
-class DesktopServicesFeaturePlugin : public QObject, PluginInterface,
-		FeatureProviderInterface,
-		ConfigurationPagePluginInterface
+class DesktopServicesFeaturePlugin : public QObject, PluginInterface, FeatureProviderInterface, ConfigurationPagePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.DesktopServices")
 	Q_INTERFACES(PluginInterface
-				 FeatureProviderInterface
-				 ConfigurationPagePluginInterface)
+					 FeatureProviderInterface
+						 ConfigurationPagePluginInterface)
 public:
-	enum class Argument
-	{
+	enum class Argument {
 		Applications,
 		WebsiteUrls
 	};
 	Q_ENUM(Argument)
 
-	explicit DesktopServicesFeaturePlugin( QObject* parent = nullptr );
+	explicit DesktopServicesFeaturePlugin(QObject* parent = nullptr);
 	~DesktopServicesFeaturePlugin() override = default;
 
 	Plugin::Uid uid() const override
 	{
-		return Plugin::Uid{ QStringLiteral("a54ee018-42bf-4569-90c7-0d8470125ccf") };
+		return Plugin::Uid{QStringLiteral("a54ee018-42bf-4569-90c7-0d8470125ccf")};
 	}
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 2, 0 );
+		return QVersionNumber(2, 0);
 	}
 
 	QString name() const override
@@ -66,7 +63,7 @@ public:
 
 	QString description() const override
 	{
-		return tr( "Start apps and open websites in user sessions" );
+		return tr("Start apps and open websites in user sessions");
 	}
 
 	QString vendor() const override
@@ -79,49 +76,49 @@ public:
 		return QStringLiteral("Tobias Junghans");
 	}
 
-	void upgrade( const QVersionNumber& oldVersion ) override;
+	void upgrade(const QVersionNumber& oldVersion) override;
 
 	const FeatureList& featureList() const override
 	{
 		return m_features;
 	}
 
-	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
-						const ComputerControlInterfaceList& computerControlInterfaces ) override;
+	bool controlFeature(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+						const ComputerControlInterfaceList& computerControlInterfaces) override;
 
-	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
-					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
+	bool startFeature(VeyonMasterInterface& master, const Feature& feature,
+					  const ComputerControlInterfaceList& computerControlInterfaces) override;
 
-	bool handleFeatureMessage( VeyonServerInterface& server,
-							   const MessageContext& messageContext,
-							   const FeatureMessage& message ) override;
+	bool handleFeatureMessage(VeyonServerInterface& server,
+							  const MessageContext& messageContext,
+							  const FeatureMessage& message) override;
 
-	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
+	bool handleFeatureMessage(VeyonWorkerInterface& worker, const FeatureMessage& message) override;
 
 	ConfigurationPage* createConfigurationPage() override;
 
 Q_SIGNALS:
-	Q_INVOKABLE void acceptStartAppDialog( const QString& app, const QString& saveItemName );
-	Q_INVOKABLE void acceptOpenWebsiteDialog( const QString& website, const QString& saveItemName );
+	Q_INVOKABLE void acceptStartAppDialog(const QString& app, const QString& saveItemName);
+	Q_INVOKABLE void acceptOpenWebsiteDialog(const QString& website, const QString& saveItemName);
 
 private:
-	bool eventFilter( QObject* object, QEvent* event ) override;
+	bool eventFilter(QObject* object, QEvent* event) override;
 
 	void updateFeatures();
-	void openMenu( const QString& objectName );
+	void openMenu(const QString& objectName);
 
-	void executeStartAppDialog( VeyonMasterInterface& master,
-							 const ComputerControlInterfaceList& computerControlInterfaces );
-	void startApp( const QString& app, const QString& saveItemName,
-				  VeyonMasterInterface& master, const ComputerControlInterfaceList& computerControlInterfaces );
+	void executeStartAppDialog(VeyonMasterInterface& master,
+							   const ComputerControlInterfaceList& computerControlInterfaces);
+	void startApp(const QString& app, const QString& saveItemName,
+				  VeyonMasterInterface& master, const ComputerControlInterfaceList& computerControlInterfaces);
 
-	void executeOpenWebsiteDialog( VeyonMasterInterface& master,
-								  const ComputerControlInterfaceList& computerControlInterfaces );
-	void openWebsite( const QString& website, const QString& saveItemName,
-					 VeyonMasterInterface& master, const ComputerControlInterfaceList& computerControlInterfaces );
+	void executeOpenWebsiteDialog(VeyonMasterInterface& master,
+								  const ComputerControlInterfaceList& computerControlInterfaces);
+	void openWebsite(const QString& website, const QString& saveItemName,
+					 VeyonMasterInterface& master, const ComputerControlInterfaceList& computerControlInterfaces);
 
-	void runApplicationAsUser( const QString& commandLine );
-	bool openWebsite( const QString& urlString );
+	void runApplicationAsUser(const QString& commandLine);
+	bool openWebsite(const QString& urlString);
 
 	void updatePredefinedApplications();
 	void updatePredefinedWebsites();
@@ -129,7 +126,7 @@ private:
 	void updatePredefinedApplicationFeatures();
 	void updatePredefinedWebsiteFeatures();
 
-	QString predefinedServicePath( Feature::Uid subFeatureUid ) const;
+	QString predefinedServicePath(Feature::Uid subFeatureUid) const;
 
 	DesktopServicesConfiguration m_configuration;
 
@@ -143,5 +140,4 @@ private:
 	FeatureList m_predefinedWebsitesFeatures{};
 
 	FeatureList m_features;
-
 };

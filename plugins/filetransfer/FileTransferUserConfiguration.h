@@ -26,20 +26,19 @@
 
 #include <QDir>
 
-#include "Configuration/Proxy.h"
 #include "Configuration/Property.h"
+#include "Configuration/Proxy.h"
 
 #define FOREACH_FILE_TRANSFER_USER_CONFIG_PROPERTIES(OP) \
-	OP( FileTransferUserConfiguration, config, QString, lastFileTransferSourceDirectory, setLastFileTransferSourceDirectory, "LastSourceDirectory", "FileTransfer", QDir::homePath(), Configuration::Property::Flag::Standard )
+	OP(FileTransferUserConfiguration, config, QString, lastFileTransferSourceDirectory, setLastFileTransferSourceDirectory, "LastSourceDirectory", "FileTransfer", QDir::homePath(), Configuration::Property::Flag::Standard)
 
 class FileTransferUserConfiguration : public Configuration::Proxy
 {
 public:
-	explicit FileTransferUserConfiguration( Configuration::Object* object ) :
-		Configuration::Proxy( object )
+	explicit FileTransferUserConfiguration(Configuration::Object* object) :
+		Configuration::Proxy(object)
 	{
 	}
 
 	FOREACH_FILE_TRANSFER_USER_CONFIG_PROPERTIES(DECLARE_CONFIG_PROPERTY)
-
 };

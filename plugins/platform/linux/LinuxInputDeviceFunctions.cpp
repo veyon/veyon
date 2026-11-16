@@ -22,16 +22,16 @@
  *
  */
 
-#include "PlatformServiceFunctions.h"
 #include "InputBlockHelper.h"
 #include "LinuxInputDeviceFunctions.h"
 #include "LinuxKeyboardShortcutTrapper.h"
+#include "PlatformServiceFunctions.h"
 
 
 LinuxInputDeviceFunctions::LinuxInputDeviceFunctions() :
 	m_isWaylandSession(qEnvironmentVariableIsSet("WAYLAND_DISPLAY"))
 {
-	if( m_isWaylandSession )
+	if (m_isWaylandSession)
 	{
 		m_inputBlockHelper = new InputBlockHelper;
 	}
@@ -47,7 +47,7 @@ LinuxInputDeviceFunctions::~LinuxInputDeviceFunctions()
 
 void LinuxInputDeviceFunctions::enableInputDevices()
 {
-	if( m_isWaylandSession )
+	if (m_isWaylandSession)
 	{
 		// Always send unblock — the daemon tracks state, unblock is idempotent
 		enableInputDevicesWayland();
@@ -55,7 +55,7 @@ void LinuxInputDeviceFunctions::enableInputDevices()
 		return;
 	}
 
-	if( m_inputDevicesDisabled == false )
+	if (m_inputDevicesDisabled == false)
 		return;
 
 	restoreKeyMapTable();
@@ -66,10 +66,10 @@ void LinuxInputDeviceFunctions::enableInputDevices()
 
 void LinuxInputDeviceFunctions::disableInputDevices()
 {
-	if( m_inputDevicesDisabled )
+	if (m_inputDevicesDisabled)
 		return;
 
-	if( m_isWaylandSession )
+	if (m_isWaylandSession)
 		disableInputDevicesWayland();
 	else
 		setEmptyKeyMapTable();
@@ -79,54 +79,54 @@ void LinuxInputDeviceFunctions::disableInputDevices()
 
 
 
-KeyboardShortcutTrapper* LinuxInputDeviceFunctions::createKeyboardShortcutTrapper( QObject* parent )
+KeyboardShortcutTrapper* LinuxInputDeviceFunctions::createKeyboardShortcutTrapper(QObject* parent)
 {
-	return new LinuxKeyboardShortcutTrapper( parent );
+	return new LinuxKeyboardShortcutTrapper(parent);
 }
 
 
 
 void LinuxInputDeviceFunctions::setEmptyKeyMapTable()
 {
-	if( m_origKeyTable )
-		XFree( m_origKeyTable );
+	if (m_origKeyTable)
+		XFree(m_origKeyTable);
 
-	auto display = XOpenDisplay( nullptr );
+	auto display = XOpenDisplay(nullptr);
 	if (display == nullptr)
 	{
 		vCritical() << "cannot open X display";
 		return;
 	}
 
-	XDisplayKeycodes( display, &m_keyCodeMin, &m_keyCodeMax );
+	XDisplayKeycodes(display, &m_keyCodeMin, &m_keyCodeMax);
 	m_keyCodeCount = m_keyCodeMax - m_keyCodeMin + 1;
 
-	m_origKeyTable = XGetKeyboardMapping( display, ::KeyCode( m_keyCodeMin ), m_keyCodeCount, &m_keySymsPerKeyCode );
+	m_origKeyTable = XGetKeyboardMapping(display, ::KeyCode(m_keyCodeMin), m_keyCodeCount, &m_keySymsPerKeyCode);
 
-	auto newKeyTable = XGetKeyboardMapping( display, ::KeyCode( m_keyCodeMin ), m_keyCodeCount, &m_keySymsPerKeyCode );
+	auto newKeyTable = XGetKeyboardMapping(display, ::KeyCode(m_keyCodeMin), m_keyCodeCount, &m_keySymsPerKeyCode);
 
-	for( int i = 0; i < m_keyCodeCount * m_keySymsPerKeyCode; i++ )
+	for (int i = 0; i < m_keyCodeCount * m_keySymsPerKeyCode; i++)
 		newKeyTable[i] = 0;
 
-	XChangeKeyboardMapping( display, m_keyCodeMin, m_keySymsPerKeyCode, newKeyTable, m_keyCodeCount );
-	XFlush( display );
-	XFree( newKeyTable );
-	XCloseDisplay( display );
+	XChangeKeyboardMapping(display, m_keyCodeMin, m_keySymsPerKeyCode, newKeyTable, m_keyCodeCount);
+	XFlush(display);
+	XFree(newKeyTable);
+	XCloseDisplay(display);
 }
 
 
 
 void LinuxInputDeviceFunctions::restoreKeyMapTable()
 {
-	Display* display = XOpenDisplay( nullptr );
+	Display* display = XOpenDisplay(nullptr);
 
-	XChangeKeyboardMapping( display, m_keyCodeMin, m_keySymsPerKeyCode,
-							static_cast<::KeySym *>( m_origKeyTable ), m_keyCodeCount );
+	XChangeKeyboardMapping(display, m_keyCodeMin, m_keySymsPerKeyCode,
+						   static_cast<::KeySym*>(m_origKeyTable), m_keyCodeCount);
 
-	XFlush( display );
-	XCloseDisplay( display );
+	XFlush(display);
+	XCloseDisplay(display);
 
-	XFree( m_origKeyTable );
+	XFree(m_origKeyTable);
 	m_origKeyTable = nullptr;
 }
 

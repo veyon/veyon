@@ -50,21 +50,18 @@ class VEYON_CORE_EXPORT VncConnection : public QThread
 public:
 	using KeyCode = unsigned int;
 
-	enum class FramebufferState
-	{
+	enum class FramebufferState {
 		Invalid,
 		Initialized,
 		Valid
-	} ;
+	};
 
-	enum class FramebufferUpdateType
-	{
+	enum class FramebufferUpdateType {
 		Full,
 		Incremental
 	};
 
-	enum class State
-	{
+	enum class State {
 		None,
 		Disconnected,
 		Connecting,
@@ -75,12 +72,12 @@ public:
 		AccessControlFailed,
 		ConnectionFailed,
 		Connected
-	} ;
+	};
 	Q_ENUM(State)
 
-	explicit VncConnection( QObject *parent = nullptr );
+	explicit VncConnection(QObject* parent = nullptr);
 
-	static void initLogging( bool debug );
+	static void initLogging(bool debug);
 
 	QImage image();
 
@@ -88,8 +85,8 @@ public:
 	void stop();
 	void stopAndDeleteLater();
 
-	void setHost( const QString& host );
-	void setPort( int port );
+	void setHost(const QString& host);
+	void setPort(int port);
 
 	State state() const
 	{
@@ -108,7 +105,7 @@ public:
 
 	void setQuality(VncConnectionConfiguration::Quality quality);
 
-	void setUseRemoteCursor( bool enabled );
+	void setUseRemoteCursor(bool enabled);
 
 	void setServerReachable();
 
@@ -121,20 +118,20 @@ public:
 		return m_framebufferState == FramebufferState::Valid;
 	}
 
-	void setScaledSize( QSize s );
+	void setScaledSize(QSize s);
 
 	QImage scaledFramebuffer();
 
-	void setFramebufferUpdateInterval( int interval );
+	void setFramebufferUpdateInterval(int interval);
 
 	void setSkipFramebufferUpdates(bool on)
 	{
 		setControlFlag(ControlFlag::SkipFramebufferUpdates, on);
 	}
 
-	void setSkipHostPing( bool on )
+	void setSkipHostPing(bool on)
 	{
-		setControlFlag( ControlFlag::SkipHostPing, on );
+		setControlFlag(ControlFlag::SkipHostPing, on);
 	}
 
 	void setRequiresManualUpdateRateControl(bool on)
@@ -156,24 +153,24 @@ public:
 
 	static constexpr int VncConnectionTag = 0x590123;
 
-	static void* clientData( rfbClient* client, int tag );
-	void setClientData( int tag, void* data );
+	static void* clientData(rfbClient* client, int tag);
+	void setClientData(int tag, void* data);
 
-	static qint64 libvncClientDispatcher( char * buffer, const qint64 bytes,
-										  SocketDevice::SocketOperation operation, void * user );
+	static qint64 libvncClientDispatcher(char* buffer, const qint64 bytes,
+										 SocketDevice::SocketOperation operation, void* user);
 
-	void mouseEvent( int x, int y, int buttonMask );
+	void mouseEvent(int x, int y, int buttonMask);
 	void keyEvent(KeyCode key, bool pressed);
-	void clientCut( const QString& text );
+	void clientCut(const QString& text);
 
 Q_SIGNALS:
 	void connectionPrepared();
-	void imageUpdated( int x, int y, int w, int h );
+	void imageUpdated(int x, int y, int w, int h);
 	void framebufferUpdateComplete();
-	void framebufferSizeChanged( int w, int h );
-	void cursorPosChanged( int x, int y );
-	void cursorShapeUpdated( const QImage& cursorShape, int xh, int yh );
-	void gotCut( const QString& text );
+	void framebufferSizeChanged(int w, int h);
+	void cursorPosChanged(int x, int y);
+	void cursorShapeUpdated(const QImage& cursorShape, int xh, int yh);
+	void gotCut(const QString& text);
 	void stateChanged();
 
 protected:
@@ -205,10 +202,10 @@ private:
 	void handleConnection();
 	void closeConnection();
 
-	void setState( State state );
+	void setState(State state);
 
-	void setControlFlag( ControlFlag flag, bool on );
-	bool isControlFlagSet( ControlFlag flag );
+	void setControlFlag(ControlFlag flag, bool on);
+	bool isControlFlagSet(ControlFlag flag);
 
 	bool initFrameBuffer();
 	void requestFrameufferUpdate(FramebufferUpdateType updateType);
@@ -227,15 +224,15 @@ private:
 	void deleteLaterInMainThread();
 
 	// hooks for LibVNCClient
-	static int8_t hookInitFrameBuffer( rfbClient* client );
-	static void hookUpdateFB( rfbClient* client, int x, int y, int w, int h );
-	static void hookFinishFrameBufferUpdate( rfbClient* client );
-	static int8_t hookHandleCursorPos( rfbClient* client, int x, int y );
-	static void hookCursorShape( rfbClient* client, int xh, int yh, int w, int h, int bpp );
-	static void hookCutText( rfbClient* client, const char *text, int textlen );
-	static void rfbClientLogDebug( const char* format, ... );
-	static void rfbClientLogNone( const char* format, ... );
-	static void framebufferCleanup( void* framebuffer );
+	static int8_t hookInitFrameBuffer(rfbClient* client);
+	static void hookUpdateFB(rfbClient* client, int x, int y, int w, int h);
+	static void hookFinishFrameBufferUpdate(rfbClient* client);
+	static int8_t hookHandleCursorPos(rfbClient* client, int x, int y);
+	static void hookCursorShape(rfbClient* client, int xh, int yh, int w, int h, int bpp);
+	static void hookCutText(rfbClient* client, const char* text, int textlen);
+	static void rfbClientLogDebug(const char* format, ...);
+	static void rfbClientLogNone(const char* format, ...);
+	static void framebufferCleanup(void* framebuffer);
 
 	// intervals and timeouts
 	int m_threadTerminationTimeout{VncConnectionConfiguration::DefaultThreadTerminationTimeout};
@@ -274,15 +271,14 @@ private:
 	QElapsedTimer m_incrementalFramebufferUpdateTimer{};
 
 	// queue for RFB and custom events
-	QQueue<VncEvent *> m_eventQueue;
+	QQueue<VncEvent*> m_eventQueue;
 
 	// framebuffer data and thread synchronization objects
-	QImage m_framebuffer{}; // LibVNCClient's buffer, written by the connection thread only
-	QList<QRect> m_updatedRects{}; // decoded since the last presented update, when presenting
+	QImage m_framebuffer{};					 // LibVNCClient's buffer, written by the connection thread only
+	QList<QRect> m_updatedRects{};			 // decoded since the last presented update, when presenting
 	bool m_presentingCompleteUpdates{false}; // connection thread only
-	QImage m_image{}; // m_framebuffer itself, or a copy that receives complete updates only
+	QImage m_image{};						 // m_framebuffer itself, or a copy that receives complete updates only
 	QImage m_scaledFramebuffer{};
 	QSize m_scaledSize{};
 	QReadWriteLock m_imgLock{};
-
-} ;
+};

@@ -30,8 +30,7 @@ class VEYON_CORE_EXPORT KeyboardShortcutTrapper : public QObject
 {
 	Q_OBJECT
 public:
-	enum Shortcut
-	{
+	enum Shortcut {
 		NoShortcut,
 		AltTab,
 		AltEsc,
@@ -40,17 +39,16 @@ public:
 		CtrlEsc,
 		SuperKeyDown,
 		SuperKeyUp
-	} ;
+	};
 	Q_ENUM(Shortcut)
 
-	explicit KeyboardShortcutTrapper( QObject* parent = nullptr ) :
-		QObject( parent )
+	explicit KeyboardShortcutTrapper(QObject* parent = nullptr) :
+		QObject(parent)
 	{
 	}
 
-	virtual void setEnabled( bool on ) = 0;
+	virtual void setEnabled(bool on) = 0;
 
 Q_SIGNALS:
-	void shortcutTrapped( KeyboardShortcutTrapper::Shortcut );
-
-} ;
+	void shortcutTrapped(KeyboardShortcutTrapper::Shortcut);
+};

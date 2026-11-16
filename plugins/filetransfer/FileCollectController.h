@@ -166,5 +166,4 @@ private:
 	SubfolderHandling m_subfolderHandling = SubfolderHandling::Default;
 
 	bool m_running = false;
-
 };

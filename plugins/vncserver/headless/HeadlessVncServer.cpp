@@ -26,13 +26,13 @@ extern "C" {
 #include "rfb/rfb.h"
 }
 
-#include <array>
-#include <cstdio>
-
 #include <QImage>
 
 #include "HeadlessVncServer.h"
 #include "VeyonConfiguration.h"
+
+#include <array>
+#include <cstdio>
 
 
 struct HeadlessVncScreen
@@ -43,15 +43,14 @@ struct HeadlessVncScreen
 	}
 
 	rfbScreenInfoPtr rfbScreen{nullptr};
-	std::array<char *, 2> passwords{};
+	std::array<char*, 2> passwords{};
 	QImage framebuffer;
-
 };
 
 
-HeadlessVncServer::HeadlessVncServer( QObject* parent ) :
-	QObject( parent ),
-	m_configuration( &VeyonCore::config() )
+HeadlessVncServer::HeadlessVncServer(QObject* parent) :
+	QObject(parent),
+	m_configuration(&VeyonCore::config())
 {
 }
 
@@ -63,7 +62,7 @@ void HeadlessVncServer::prepareServer()
 
 
 
-bool HeadlessVncServer::runServer( int serverPort, const Password& password )
+bool HeadlessVncServer::runServer(int serverPort, const Password& password)
 {
 	if (VeyonCore::isDebugging())
 	{
@@ -78,53 +77,53 @@ bool HeadlessVncServer::runServer( int serverPort, const Password& password )
 
 	HeadlessVncScreen screen;
 
-	if( initScreen( &screen ) == false ||
-		initVncServer( serverPort, password, &screen ) == false )
+	if (initScreen(&screen) == false ||
+		initVncServer(serverPort, password, &screen) == false)
 	{
 		return false;
 	}
 
-	while( true )
+	while (true)
 	{
-		QThread::msleep( DefaultSleepTime );
+		QThread::msleep(DefaultSleepTime);
 
-		rfbProcessEvents( screen.rfbScreen, 0 );
+		rfbProcessEvents(screen.rfbScreen, 0);
 	}
 
-	rfbShutdownServer( screen.rfbScreen, true );
-	rfbScreenCleanup( screen.rfbScreen );
+	rfbShutdownServer(screen.rfbScreen, true);
+	rfbScreenCleanup(screen.rfbScreen);
 
 	return true;
 }
 
 
 
-bool HeadlessVncServer::initScreen( HeadlessVncScreen* screen )
+bool HeadlessVncServer::initScreen(HeadlessVncScreen* screen)
 {
-	screen->framebuffer = QImage( DefaultFramebufferWidth, DefaultFramebufferHeight, QImage::Format_RGB32 );
-	screen->framebuffer.fill( m_configuration.backgroundColor() );
+	screen->framebuffer = QImage(DefaultFramebufferWidth, DefaultFramebufferHeight, QImage::Format_RGB32);
+	screen->framebuffer.fill(m_configuration.backgroundColor());
 
 	return true;
 }
 
 
 
-bool HeadlessVncServer::initVncServer( int serverPort, const VncServerPluginInterface::Password& password,
-									  HeadlessVncScreen* screen )
+bool HeadlessVncServer::initVncServer(int serverPort, const VncServerPluginInterface::Password& password,
+									  HeadlessVncScreen* screen)
 {
-	auto rfbScreen = rfbGetScreen( nullptr, nullptr,
-								   screen->framebuffer.width(), screen->framebuffer.height(),
-								   8, 3, 4 );
+	auto rfbScreen = rfbGetScreen(nullptr, nullptr,
+								  screen->framebuffer.width(), screen->framebuffer.height(),
+								  8, 3, 4);
 
-	if( rfbScreen == nullptr )
+	if (rfbScreen == nullptr)
 	{
 		return false;
 	}
 
-	screen->passwords[0] = qstrdup( password.toByteArray().constData() );
+	screen->passwords[0] = qstrdup(password.toByteArray().constData());
 
 	rfbScreen->desktopName = "VeyonVNC";
-	rfbScreen->frameBuffer = reinterpret_cast<char *>( screen->framebuffer.bits() );
+	rfbScreen->frameBuffer = reinterpret_cast<char*>(screen->framebuffer.bits());
 	rfbScreen->port = serverPort;
 	rfbScreen->ipv6port = serverPort;
 
@@ -153,9 +152,9 @@ bool HeadlessVncServer::initVncServer( int serverPort, const VncServerPluginInte
 
 	rfbScreen->cursor = nullptr;
 
-	rfbInitServer( rfbScreen );
+	rfbInitServer(rfbScreen);
 
-	rfbMarkRectAsModified( rfbScreen, 0, 0, rfbScreen->width, rfbScreen->height );
+	rfbMarkRectAsModified(rfbScreen, 0, 0, rfbScreen->width, rfbScreen->height);
 
 	screen->rfbScreen = rfbScreen;
 

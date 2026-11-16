@@ -31,51 +31,49 @@
 #include "VeyonCore.h"
 
 
-TranslationLoader::TranslationLoader( const QString& resourceName )
+TranslationLoader::TranslationLoader(const QString& resourceName)
 {
-	load( resourceName );
+	load(resourceName);
 }
 
 
 
-bool TranslationLoader::load( const QString& resourceName )
+bool TranslationLoader::load(const QString& resourceName)
 {
-	QLocale configuredLocale( QLocale::C );
+	QLocale configuredLocale(QLocale::C);
 
-	static const QRegularExpression configuredLocaleRX{QStringLiteral( "[^(]*\\(([^)]*)\\)")};
+	static const QRegularExpression configuredLocaleRX{QStringLiteral("[^(]*\\(([^)]*)\\)")};
 	const auto configuredLocaleMatch = configuredLocaleRX.match(VeyonCore::config().uiLanguage());
-	if( configuredLocaleMatch.hasMatch() )
+	if (configuredLocaleMatch.hasMatch())
 	{
-		configuredLocale = QLocale( configuredLocaleMatch.captured( 1 ) );
+		configuredLocale = QLocale(configuredLocaleMatch.captured(1));
 	}
 
-	if( configuredLocale.language() != QLocale::English &&
-		VeyonCore::instance()->findChild<QTranslator *>( resourceName ) == nullptr )
+	if (configuredLocale.language() != QLocale::English &&
+		VeyonCore::instance()->findChild<QTranslator*>(resourceName) == nullptr)
 	{
-		const auto translationsDirectory = resourceName.startsWith( QLatin1String("qt") )
-											  ? VeyonCore::qtTranslationsDirectory()
-											  : VeyonCore::translationsDirectory();
+		const auto translationsDirectory = resourceName.startsWith(QLatin1String("qt")) ? VeyonCore::qtTranslationsDirectory() : VeyonCore::translationsDirectory();
 
-		auto translator = new QTranslator( VeyonCore::instance() );
-		translator->setObjectName( resourceName );
+		auto translator = new QTranslator(VeyonCore::instance());
+		translator->setObjectName(resourceName);
 
-		if( configuredLocale == QLocale::C ||
-			translator->load( QStringLiteral( "%1_%2.qm" ).arg( resourceName, configuredLocale.name() ),
-							  translationsDirectory ) == false )
+		if (configuredLocale == QLocale::C ||
+			translator->load(QStringLiteral("%1_%2.qm").arg(resourceName, configuredLocale.name()),
+							 translationsDirectory) == false)
 		{
 			configuredLocale = QLocale::system(); // Flawfinder: ignore
 
-			if( translator->load( QStringLiteral( "%1_%2.qm" ).arg( resourceName, configuredLocale.name() ),
-								  translationsDirectory ) == false )
+			if (translator->load(QStringLiteral("%1_%2.qm").arg(resourceName, configuredLocale.name()),
+								 translationsDirectory) == false)
 			{
 				delete translator;
 				return false;
 			}
 		}
 
-		QLocale::setDefault( configuredLocale );
+		QLocale::setDefault(configuredLocale);
 
-		QCoreApplication::installTranslator( translator );
+		QCoreApplication::installTranslator(translator);
 	}
 
 	return true;

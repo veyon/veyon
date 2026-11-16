@@ -40,5 +40,4 @@ public:
 
 private:
 	QRecursiveMutex m_mutex{};
-
 };

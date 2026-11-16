@@ -28,8 +28,7 @@ public:
 	};
 	Q_ENUM(Scope)
 
-	enum ConnectionSecurity
-	{
+	enum ConnectionSecurity {
 		ConnectionSecurityNone,
 		ConnectionSecurityTLS,
 		ConnectionSecuritySSL,
@@ -37,8 +36,7 @@ public:
 	};
 	Q_ENUM(ConnectionSecurity)
 
-	enum TLSVerifyMode
-	{
+	enum TLSVerifyMode {
 		TLSVerifyDefault,
 		TLSVerifyNever,
 		TLSVerifyCustomCert,
@@ -46,9 +44,9 @@ public:
 	};
 	Q_ENUM(TLSVerifyMode)
 
-	using Objects = QMap<QString, QMap<QString, QStringList> >;
+	using Objects = QMap<QString, QMap<QString, QStringList>>;
 
-	explicit LdapClient( const LdapConfiguration& configuration, const QUrl& url = QUrl(), QObject* parent = nullptr );
+	explicit LdapClient(const LdapConfiguration& configuration, const QUrl& url = QUrl(), QObject* parent = nullptr);
 	~LdapClient() override;
 
 	const LdapConfiguration& configuration() const
@@ -69,37 +67,37 @@ public:
 	QString errorString() const;
 	QString errorDescription() const;
 
-	Objects queryObjects( const QString& dn, const QStringList& attributes, const QString& filter, Scope scope );
+	Objects queryObjects(const QString& dn, const QStringList& attributes, const QString& filter, Scope scope);
 
-	QStringList queryAttributeValues( const QString &dn, const QString &attribute,
-									  const QString& filter = QStringLiteral( "(objectclass=*)" ),
-									  Scope scope = Scope::Base );
+	QStringList queryAttributeValues(const QString& dn, const QString& attribute,
+									 const QString& filter = QStringLiteral("(objectclass=*)"),
+									 Scope scope = Scope::Base);
 
-	QStringList queryDistinguishedNames( const QString& dn, const QString& filter, Scope scope );
+	QStringList queryDistinguishedNames(const QString& dn, const QString& filter, Scope scope);
 
-	QStringList queryObjectAttributes( const QString& dn );
+	QStringList queryObjectAttributes(const QString& dn);
 
 	QStringList queryBaseDn();
 
-	QStringList queryNamingContexts( const QString& attribute = {} );
+	QStringList queryNamingContexts(const QString& attribute = {});
 
 	QString baseDn();
 
-	static QString parentDn( const QString& dn );
-	static QString stripBaseDn( const QString& dn, const QString& baseDn );
-	static QString addBaseDn( const QString& rdns, const QString& baseDn );
+	static QString parentDn(const QString& dn);
+	static QString stripBaseDn(const QString& dn, const QString& baseDn);
+	static QString addBaseDn(const QString& rdns, const QString& baseDn);
 
-	static QStringList stripBaseDn( const QStringList& dns, const QString& baseDn );
+	static QStringList stripBaseDn(const QStringList& dns, const QString& baseDn);
 
-	static QString constructSubDn( const QString& subtree, const QString& baseDn );
+	static QString constructSubDn(const QString& subtree, const QString& baseDn);
 
-	static QString constructQueryFilter( const QString& filterAttribute,
-										 const QString& filterValue,
-										 const QString& extraFilter = {} );
+	static QString constructQueryFilter(const QString& filterAttribute,
+										const QString& filterValue,
+										const QString& extraFilter = {});
 
-	static QString escapeFilterValue( const QString& filterValue );
+	static QString escapeFilterValue(const QString& filterValue);
 
-	static QStringList toRDNs( const QString& dn );
+	static QStringList toRDNs(const QString& dn);
 
 	static QString cn()
 	{
@@ -112,7 +110,7 @@ private:
 	static constexpr auto LdapLibraryDebugAny = -1;
 
 	bool reconnect();
-	bool connectAndBind( const QUrl& url );
+	bool connectAndBind(const QUrl& url);
 	void initTLS();
 
 	const LdapConfiguration& m_configuration;
@@ -120,13 +118,12 @@ private:
 	KLDAPCore::LdapConnection* m_connection;
 	KLDAPCore::LdapOperation* m_operation;
 
-	enum State
-	{
+	enum State {
 		Disconnected,
 		Connected,
 		Bound,
 		StateCount
-	} ;
+	};
 
 	State m_state = Disconnected;
 
@@ -136,5 +133,4 @@ private:
 	QString m_namingContextAttribute;
 
 	const int m_queryTimeout{DefaultQueryTimeout};
-
 };

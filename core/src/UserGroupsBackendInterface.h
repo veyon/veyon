@@ -35,10 +35,9 @@ public:
 
 	virtual void reloadConfiguration() = 0;
 
-	virtual QStringList userGroups( bool queryDomainGroups ) = 0;
-	virtual QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) = 0;
+	virtual QStringList userGroups(bool queryDomainGroups) = 0;
+	virtual QStringList groupsOfUser(const QString& username, bool queryDomainGroups) = 0;
 	virtual QString userGroupSecurityIdentifier(const QString& groupName) = 0;
-
 };
 
 using UserGroupsBackendInterfaceList = QList<UserGroupsBackendInterface>;

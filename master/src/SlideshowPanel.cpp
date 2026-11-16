@@ -31,21 +31,21 @@
 #include "ui_SlideshowPanel.h"
 
 
-SlideshowPanel::SlideshowPanel( UserConfig& config, ComputerMonitoringWidget* computerMonitoringWidget, QWidget *parent ) :
-	QWidget( parent ),
-	ui( new Ui::SlideshowPanel ),
-	m_config( config ),
-	m_model( new SlideshowModel( computerMonitoringWidget->dataModel(), this ) )
+SlideshowPanel::SlideshowPanel(UserConfig& config, ComputerMonitoringWidget* computerMonitoringWidget, QWidget* parent) :
+	QWidget(parent),
+	ui(new Ui::SlideshowPanel),
+	m_config(config),
+	m_model(new SlideshowModel(computerMonitoringWidget->dataModel(), this))
 {
-	ui->setupUi( this );
+	ui->setupUi(this);
 
-	ui->monitoringWidget->setAutoAdjustIconSize( false );
-	ui->monitoringWidget->setUseCustomComputerPositions( false );
-	ui->monitoringWidget->setAcceptDrops( false );
-	ui->monitoringWidget->setDragEnabled( false );
-	ui->monitoringWidget->setIgnoreWheelEvent( true );
-	ui->monitoringWidget->setSelectionMode( QListView::SingleSelection );
-	ui->monitoringWidget->setModel( m_model );
+	ui->monitoringWidget->setAutoAdjustIconSize(false);
+	ui->monitoringWidget->setUseCustomComputerPositions(false);
+	ui->monitoringWidget->setAcceptDrops(false);
+	ui->monitoringWidget->setDragEnabled(false);
+	ui->monitoringWidget->setIgnoreWheelEvent(true);
+	ui->monitoringWidget->setSelectionMode(QListView::SingleSelection);
+	ui->monitoringWidget->setModel(m_model);
 
 	if (VeyonCore::useDarkMode())
 	{
@@ -58,15 +58,15 @@ SlideshowPanel::SlideshowPanel( UserConfig& config, ComputerMonitoringWidget* co
 		ui->viewInSeparateWindowButton->setIcon(QIcon(QStringLiteral(":/core/view-fullscreen-dark.png")));
 	}
 
-	connect( ui->startStopButton, &QAbstractButton::toggled, this, &SlideshowPanel::updateDuration );
-	connect( ui->durationSlider, &QSlider::valueChanged, this, &SlideshowPanel::updateDuration );
+	connect(ui->startStopButton, &QAbstractButton::toggled, this, &SlideshowPanel::updateDuration);
+	connect(ui->durationSlider, &QSlider::valueChanged, this, &SlideshowPanel::updateDuration);
 
-	connect( ui->showPreviousButton, &QAbstractButton::clicked, m_model, &SlideshowModel::showPrevious );
-	connect( ui->showNextButton, &QAbstractButton::clicked, m_model, &SlideshowModel::showNext );
+	connect(ui->showPreviousButton, &QAbstractButton::clicked, m_model, &SlideshowModel::showPrevious);
+	connect(ui->showNextButton, &QAbstractButton::clicked, m_model, &SlideshowModel::showNext);
 
 	connect(ui->viewInSeparateWindowButton, &QToolButton::toggled, this, &SlideshowPanel::switchViewMode);
 
-	ui->durationSlider->setValue( m_config.slideshowDuration() );
+	ui->durationSlider->setValue(m_config.slideshowDuration());
 
 	updateDuration();
 }
@@ -80,19 +80,19 @@ SlideshowPanel::~SlideshowPanel()
 
 
 
-void SlideshowPanel::resizeEvent( QResizeEvent* event )
+void SlideshowPanel::resizeEvent(QResizeEvent* event)
 {
 	static constexpr auto ExtraMargin = 10;
 
 	const auto spacing = ui->monitoringWidget->spacing();
 	const auto labelHeight = ui->monitoringWidget->fontMetrics().height();
 
-	ui->monitoringWidget->setIconSize( { ui->monitoringWidget->width() - ExtraMargin - spacing * 2,
-										 ui->monitoringWidget->height() - ExtraMargin - labelHeight - spacing * 2 } );
+	ui->monitoringWidget->setIconSize({ui->monitoringWidget->width() - ExtraMargin - spacing * 2,
+									   ui->monitoringWidget->height() - ExtraMargin - labelHeight - spacing * 2});
 
-	m_model->setIconSize( ui->monitoringWidget->iconSize() );
+	m_model->setIconSize(ui->monitoringWidget->iconSize());
 
-	QWidget::resizeEvent( event );
+	QWidget::resizeEvent(event);
 }
 
 
@@ -101,10 +101,10 @@ void SlideshowPanel::updateDuration()
 {
 	const int duration = ui->durationSlider->value();
 
-	m_model->setRunning( ui->startStopButton->isChecked(), duration );
-	m_config.setSlideshowDuration( duration );
+	m_model->setRunning(ui->startStopButton->isChecked(), duration);
+	m_config.setSlideshowDuration(duration);
 
-	ui->durationLabel->setText( QStringLiteral("%1 s").arg( duration / 1000 ) );
+	ui->durationLabel->setText(QStringLiteral("%1 s").arg(duration / 1000));
 }
 
 

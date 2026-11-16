@@ -33,18 +33,17 @@ class WindowsServiceFunctions : public PlatformServiceFunctions
 public:
 	QString veyonServiceName() const override;
 
-	bool isRegistered( const QString& name ) override;
-	bool isRunning( const QString& name ) override;
-	bool start( const QString& name ) override;
-	bool stop( const QString& name ) override;
-	bool install( const QString& name, const QString& filePath,
-				  StartMode startMode, const QString& displayName ) override;
-	bool uninstall( const QString& name ) override;
-	bool setStartMode( const QString& name, StartMode startMode ) override;
-	bool runAsService( const QString& name, const ServiceEntryPoint& serviceEntryPoint ) override;
+	bool isRegistered(const QString& name) override;
+	bool isRunning(const QString& name) override;
+	bool start(const QString& name) override;
+	bool stop(const QString& name) override;
+	bool install(const QString& name, const QString& filePath,
+				 StartMode startMode, const QString& displayName) override;
+	bool uninstall(const QString& name) override;
+	bool setStartMode(const QString& name, StartMode startMode) override;
+	bool runAsService(const QString& name, const ServiceEntryPoint& serviceEntryPoint) override;
 	void manageServerInstances() override;
 
 private:
-	static int windowsServiceStartType( StartMode startMode );
-
+	static int windowsServiceStartType(StartMode startMode);
 };

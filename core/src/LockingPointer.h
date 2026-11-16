@@ -27,9 +27,10 @@ template<class T>
 class LockingPointer
 {
 public:
-	LockingPointer( T lockable ) : m_lockable( lockable )
+	LockingPointer(T lockable) :
+		m_lockable(lockable)
 	{
-		if( m_lockable )
+		if (m_lockable)
 		{
 			m_lockable->lock();
 		}
@@ -37,19 +38,20 @@ public:
 
 	~LockingPointer()
 	{
-		if( m_lockable )
+		if (m_lockable)
 		{
 			m_lockable->unlock();
 		}
 	}
 
-	LockingPointer( LockingPointer<T>&& lockingPointer ) : m_lockable( lockingPointer.m_lockable )
+	LockingPointer(LockingPointer<T>&& lockingPointer) :
+		m_lockable(lockingPointer.m_lockable)
 	{
 		lockingPointer.m_lockable = nullptr;
 	}
 
-	LockingPointer( LockingPointer<T> const& ) = delete;
-	LockingPointer& operator=( LockingPointer<T> const& ) = delete;
+	LockingPointer(LockingPointer<T> const&) = delete;
+	LockingPointer& operator=(LockingPointer<T> const&) = delete;
 
 	T operator->() const
 	{
@@ -58,10 +60,9 @@ public:
 
 	explicit operator bool() const
 	{
-		return static_cast<bool>( m_lockable );
+		return static_cast<bool>(m_lockable);
 	}
 
 private:
 	T m_lockable;
 };
-

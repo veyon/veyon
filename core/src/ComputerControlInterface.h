@@ -28,8 +28,8 @@
 #include "Feature.h"
 #include "Lockable.h"
 #include "PlatformSessionFunctions.h"
-#include "VeyonCore.h"
 #include "VeyonConnection.h"
+#include "VeyonCore.h"
 
 class VEYON_CORE_EXPORT ComputerControlInterface : public QObject, public Lockable
 {
@@ -47,20 +47,21 @@ public:
 
 	using State = VncConnection::State;
 
-	struct ScreenProperties {
+	struct ScreenProperties
+	{
 		int index;
 		QString name;
 		QRect geometry;
 		bool operator==(const ScreenProperties& other) const
 		{
 			return other.index == index &&
-				   other.name == name &&
-				   other.geometry == geometry;
+				other.name == name &&
+				other.geometry == geometry;
 		}
 	};
 	using ScreenList = QList<ScreenProperties>;
 
-	explicit ComputerControlInterface( const Computer& computer, int port = -1, QObject* parent = nullptr );
+	explicit ComputerControlInterface(const Computer& computer, int port = -1, QObject* parent = nullptr);
 	~ComputerControlInterface() override;
 
 	VeyonConnection* connection() const
@@ -73,7 +74,7 @@ public:
 		return m_connection ? m_connection->vncConnection() : nullptr;
 	}
 
-	void start( QSize scaledFramebufferSize = {}, UpdateMode updateMode = UpdateMode::Monitoring, AuthenticationProxy* authenticationProxy = nullptr );
+	void start(QSize scaledFramebufferSize = {}, UpdateMode updateMode = UpdateMode::Monitoring, AuthenticationProxy* authenticationProxy = nullptr);
 	void stop();
 
 	const Computer& computer() const
@@ -102,7 +103,7 @@ public:
 		return m_scaledFramebufferSize;
 	}
 
-	void setScaledFramebufferSize( QSize size );
+	void setScaledFramebufferSize(QSize size);
 
 	QImage scaledFramebuffer() const;
 
@@ -153,14 +154,14 @@ public:
 		return m_activeFeatures;
 	}
 
-	void setActiveFeatures( const FeatureUidList& activeFeatures );
+	void setActiveFeatures(const FeatureUidList& activeFeatures);
 
 	Feature::Uid designatedModeFeature() const
 	{
 		return m_designatedModeFeature;
 	}
 
-	void setDesignatedModeFeature( Feature::Uid designatedModeFeature )
+	void setDesignatedModeFeature(Feature::Uid designatedModeFeature)
 	{
 		m_designatedModeFeature = designatedModeFeature;
 	}
@@ -168,7 +169,7 @@ public:
 	void sendFeatureMessage(const FeatureMessage& featureMessage);
 	bool isMessageQueueEmpty();
 
-	void setUpdateMode( UpdateMode updateMode );
+	void setUpdateMode(UpdateMode updateMode);
 	UpdateMode updateMode() const
 	{
 		return m_updateMode;
@@ -205,10 +206,10 @@ private:
 	void updateSessionInfo();
 	void updateScreens();
 
-	void handleFeatureMessage( const FeatureMessage& message );
+	void handleFeatureMessage(const FeatureMessage& message);
 
 	static constexpr int ConnectionWatchdogPingDelay = 10000;
-	static constexpr int ConnectionWatchdogTimeout = ConnectionWatchdogPingDelay*2;
+	static constexpr int ConnectionWatchdogTimeout = ConnectionWatchdogPingDelay * 2;
 	static constexpr int ServerVersionQueryTimeout = 5000;
 	static constexpr int UpdateIntervalDisabled = 5000;
 
@@ -251,7 +252,6 @@ Q_SIGNALS:
 	void stateChanged();
 	void activeFeaturesChanged();
 	void propertyChanged(QUuid propertyId);
-
 };
 
 class VEYON_CORE_EXPORT ComputerControlInterfaceList : public QList<ComputerControlInterface::Pointer>

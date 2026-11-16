@@ -31,37 +31,36 @@ class QLineEdit;
 class VEYON_CORE_EXPORT FileSystemBrowser
 {
 public:
-	enum BrowseModes
-	{
+	enum BrowseModes {
 		ExistingDirectory,
 		ExistingFile,
 		SaveFile,
 		NumBrowseModes
-	} ;
+	};
 	using BrowseMode = BrowseModes;
 
 	explicit FileSystemBrowser(BrowseMode m, QWidget* parent) :
 		m_parent(parent),
-		m_browseMode( m ),
-		m_expandPath( true ),
-		m_shrinkPath( true )
+		m_browseMode(m),
+		m_expandPath(true),
+		m_shrinkPath(true)
 	{
 	}
 
-	void setExpandPath( bool enabled )
+	void setExpandPath(bool enabled)
 	{
 		m_expandPath = enabled;
 	}
 
-	void setShrinkPath( bool enabled )
+	void setShrinkPath(bool enabled)
 	{
 		m_shrinkPath = enabled;
 	}
 
-	QString exec( const QString &path, const QString &title = {},
-					const QString &filter = {} );
-	void exec( QLineEdit *lineEdit, const QString &title = {},
-					const QString &filter = {} );
+	QString exec(const QString& path, const QString& title = {},
+				 const QString& filter = {});
+	void exec(QLineEdit* lineEdit, const QString& title = {},
+			  const QString& filter = {});
 
 
 private:
@@ -69,5 +68,4 @@ private:
 	BrowseMode m_browseMode;
 	bool m_expandPath;
 	bool m_shrinkPath;
-
-} ;
+};

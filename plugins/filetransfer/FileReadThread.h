@@ -26,20 +26,20 @@
 
 #include <QFile>
 #include <QMutex>
-#include <QTimer>
 #include <QThread>
+#include <QTimer>
 
 class FileReadThread : public QObject
 {
 	Q_OBJECT
 public:
-	explicit FileReadThread( const QString& fileName, QObject* parent = nullptr );
+	explicit FileReadThread(const QString& fileName, QObject* parent = nullptr);
 	~FileReadThread() override;
 
 	bool start();
 
 	QByteArray currentChunk();
-	void readNextChunk( qint64 chunkSize );
+	void readNextChunk(qint64 chunkSize);
 	bool isChunkReady();
 
 	bool atEnd();
@@ -57,5 +57,4 @@ private:
 	bool m_chunkReady;
 	qint64 m_filePos;
 	qint64 m_fileSize;
-
 };

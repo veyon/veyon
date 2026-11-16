@@ -31,12 +31,12 @@
 
 
 WindowsPlatformConfigurationPage::WindowsPlatformConfigurationPage() :
-	ui( new Ui::WindowsPlatformConfigurationPage ),
-	m_configuration( &VeyonCore::config() )
+	ui(new Ui::WindowsPlatformConfigurationPage),
+	m_configuration(&VeyonCore::config())
 {
 	ui->setupUi(this);
 
-	Configuration::UiMapping::setFlags( this, Configuration::Property::Flag::Advanced );
+	Configuration::UiMapping::setFlags(this, Configuration::Property::Flag::Advanced);
 }
 
 

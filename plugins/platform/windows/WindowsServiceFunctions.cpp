@@ -34,60 +34,60 @@ QString WindowsServiceFunctions::veyonServiceName() const
 
 
 
-bool WindowsServiceFunctions::isRegistered( const QString& name )
+bool WindowsServiceFunctions::isRegistered(const QString& name)
 {
-	return WindowsServiceControl( name ).isRegistered();
+	return WindowsServiceControl(name).isRegistered();
 }
 
 
 
-bool WindowsServiceFunctions::isRunning( const QString& name )
+bool WindowsServiceFunctions::isRunning(const QString& name)
 {
-	return WindowsServiceControl( name ).isRunning();
+	return WindowsServiceControl(name).isRunning();
 }
 
 
 
-bool WindowsServiceFunctions::start( const QString& name )
+bool WindowsServiceFunctions::start(const QString& name)
 {
-	return WindowsServiceControl( name ).start();
+	return WindowsServiceControl(name).start();
 }
 
 
 
-bool WindowsServiceFunctions::stop( const QString& name )
+bool WindowsServiceFunctions::stop(const QString& name)
 {
-	return WindowsServiceControl( name ).stop();
+	return WindowsServiceControl(name).stop();
 }
 
 
 
-bool WindowsServiceFunctions::install( const QString& name, const QString& filePath,
-									   StartMode startMode, const QString& displayName )
+bool WindowsServiceFunctions::install(const QString& name, const QString& filePath,
+									  StartMode startMode, const QString& displayName)
 {
-	return WindowsServiceControl( name ).install( filePath, displayName ) &&
-			setStartMode( name, startMode );
+	return WindowsServiceControl(name).install(filePath, displayName) &&
+		setStartMode(name, startMode);
 }
 
 
 
-bool WindowsServiceFunctions::uninstall( const QString& name )
+bool WindowsServiceFunctions::uninstall(const QString& name)
 {
-	return WindowsServiceControl( name ).uninstall();
+	return WindowsServiceControl(name).uninstall();
 }
 
 
 
-bool WindowsServiceFunctions::setStartMode( const QString& name, PlatformServiceFunctions::StartMode startMode )
+bool WindowsServiceFunctions::setStartMode(const QString& name, PlatformServiceFunctions::StartMode startMode)
 {
-	return WindowsServiceControl( name ).setStartType( windowsServiceStartType( startMode ) );
+	return WindowsServiceControl(name).setStartType(windowsServiceStartType(startMode));
 }
 
 
 
-bool WindowsServiceFunctions::runAsService( const QString& name, const ServiceEntryPoint& serviceEntryPoint )
+bool WindowsServiceFunctions::runAsService(const QString& name, const ServiceEntryPoint& serviceEntryPoint)
 {
-	WindowsServiceCore windowsServiceCore( name, serviceEntryPoint );
+	WindowsServiceCore windowsServiceCore(name, serviceEntryPoint);
 	return windowsServiceCore.runAsService();
 }
 
@@ -100,9 +100,9 @@ void WindowsServiceFunctions::manageServerInstances()
 
 
 
-int WindowsServiceFunctions::windowsServiceStartType( PlatformServiceFunctions::StartMode startMode )
+int WindowsServiceFunctions::windowsServiceStartType(PlatformServiceFunctions::StartMode startMode)
 {
-	switch( startMode )
+	switch (startMode)
 	{
 	case StartMode::Auto: return SERVICE_AUTO_START;
 	case StartMode::Manual: return SERVICE_DEMAND_START;

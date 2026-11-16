@@ -25,34 +25,33 @@
 #include <QHostAddress>
 #include <QMessageBox>
 
-#include "VeyonMaster.h"
 #include "BuiltinFeatures.h"
 #include "ComputerControlListModel.h"
+#include "ComputerManager.h"
 #include "ComputerMonitoringModel.h"
 #include "FeatureManager.h"
-#include "VeyonConfiguration.h"
 #include "MainWindow.h"
-#include "ComputerManager.h"
 #include "MonitoringMode.h"
-#include "UserConfig.h"
 #include "PluginManager.h"
+#include "UserConfig.h"
+#include "VeyonConfiguration.h"
+#include "VeyonMaster.h"
 
 
-VeyonMaster::VeyonMaster( QObject* parent ) :
-	VeyonMasterInterface( parent ),
+VeyonMaster::VeyonMaster(QObject* parent) :
+	VeyonMasterInterface(parent),
 	m_userConfig(new UserConfig(QStringLiteral("VeyonMaster"))),
-	m_features( featureList() ),
-	m_computerManager( new ComputerManager( *m_userConfig, this ) ),
-	m_computerControlListModel( new ComputerControlListModel( this, this ) ),
-	m_computerMonitoringModel( new ComputerMonitoringModel( this ) ),
-	m_localSessionControlInterface( Computer( NetworkObject::Uid::createUuid(),
-											  QStringLiteral("localhost"),
-											  QStringLiteral("%1").
-											  arg( QHostAddress( QHostAddress::LocalHost ).toString() ) ),
-									VeyonCore::config().veyonServerPort() + VeyonCore::sessionId(),
-									this ),
-	m_mainWindow( nullptr ),
-	m_currentMode( VeyonCore::builtinFeatures().monitoringMode().feature().uid() )
+	m_features(featureList()),
+	m_computerManager(new ComputerManager(*m_userConfig, this)),
+	m_computerControlListModel(new ComputerControlListModel(this, this)),
+	m_computerMonitoringModel(new ComputerMonitoringModel(this)),
+	m_localSessionControlInterface(Computer(NetworkObject::Uid::createUuid(),
+											QStringLiteral("localhost"),
+											QStringLiteral("%1").arg(QHostAddress(QHostAddress::LocalHost).toString())),
+								   VeyonCore::config().veyonServerPort() + VeyonCore::sessionId(),
+								   this),
+	m_mainWindow(nullptr),
+	m_currentMode(VeyonCore::builtinFeatures().monitoringMode().feature().uid())
 {
 	if (m_userConfig->isStoreWritable() == false)
 	{
@@ -65,10 +64,10 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 	connect(m_computerControlListModel, &ComputerControlListModel::modelAboutToBeReset,
 			this, &VeyonMaster::computerControlListModelAboutToReset);
 
-	if( VeyonCore::config().enforceSelectedModeForClients() )
+	if (VeyonCore::config().enforceSelectedModeForClients())
 	{
-		connect( m_computerControlListModel, &ComputerControlListModel::activeFeaturesChanged,
-				 this, &VeyonMaster::enforceDesignatedMode );
+		connect(m_computerControlListModel, &ComputerControlListModel::activeFeaturesChanged,
+				this, &VeyonMaster::enforceDesignatedMode);
 		connect(m_computerControlListModel, &ComputerControlListModel::stateChanged,
 				this, &VeyonMaster::enforceDesignatedMode);
 	}
@@ -76,12 +75,12 @@ VeyonMaster::VeyonMaster( QObject* parent ) :
 	m_localSessionControlInterface.start({}, ComputerControlInterface::UpdateMode::Disabled);
 
 	// attach computer list model to proxy model
-	m_computerMonitoringModel->setSourceModel( m_computerControlListModel );
-	m_computerMonitoringModel->setSortRole( Qt::InitialSortOrderRole );
-	m_computerMonitoringModel->setStateRole( ComputerControlListModel::StateRole );
-	m_computerMonitoringModel->sort( 0 );
+	m_computerMonitoringModel->setSourceModel(m_computerControlListModel);
+	m_computerMonitoringModel->setSortRole(Qt::InitialSortOrderRole);
+	m_computerMonitoringModel->setStateRole(ComputerControlListModel::StateRole);
+	m_computerMonitoringModel->sort(0);
 
-	m_mainWindow = new MainWindow( *this );
+	m_mainWindow = new MainWindow(*this);
 }
 
 
@@ -100,24 +99,24 @@ VeyonMaster::~VeyonMaster()
 
 
 
-FeatureList VeyonMaster::subFeatures( Feature::Uid parentFeatureUid ) const
+FeatureList VeyonMaster::subFeatures(Feature::Uid parentFeatureUid) const
 {
 	const auto disabledFeatures = VeyonCore::config().disabledFeatures();
-	if( disabledFeatures.contains( parentFeatureUid.toString() ) )
+	if (disabledFeatures.contains(parentFeatureUid.toString()))
 	{
 		return {};
 	}
 
-	const auto& relatedFeatures = VeyonCore::featureManager().relatedFeatures( parentFeatureUid );
+	const auto& relatedFeatures = VeyonCore::featureManager().relatedFeatures(parentFeatureUid);
 
 	FeatureList subFeatures;
-	subFeatures.reserve( relatedFeatures.size() );
+	subFeatures.reserve(relatedFeatures.size());
 
-	for( const auto& relatedFeature : relatedFeatures )
+	for (const auto& relatedFeature : relatedFeatures)
 	{
-		if( relatedFeature.testFlag( Feature::Flag::Master ) &&
+		if (relatedFeature.testFlag(Feature::Flag::Master) &&
 			relatedFeature.parentUid() == parentFeatureUid &&
-			disabledFeatures.contains( relatedFeature.uid().toString() ) == false )
+			disabledFeatures.contains(relatedFeature.uid().toString()) == false)
 		{
 			subFeatures += relatedFeature;
 		}
@@ -132,13 +131,13 @@ FeatureList VeyonMaster::allFeatures() const
 {
 	FeatureList featureList;
 
-	for( const auto& feature : std::as_const( features() ) )
+	for (const auto& feature : std::as_const(features()))
 	{
 		featureList.append(feature); // clazy:exclude=reserve-candidates
-		const auto modeSubFeatures = subFeatures( feature.uid() );
-		for( const auto& subFeature : modeSubFeatures )
+		const auto modeSubFeatures = subFeatures(feature.uid());
+		for (const auto& subFeature : modeSubFeatures)
 		{
-			featureList.append( subFeature );
+			featureList.append(subFeature);
 		}
 	}
 
@@ -187,13 +186,13 @@ ComputerControlInterfaceList VeyonMaster::filteredComputerControlInterfaces() co
 	const auto rowCount = m_computerMonitoringModel->rowCount();
 
 	ComputerControlInterfaceList computerControlInterfaces;
-	computerControlInterfaces.reserve( rowCount );
+	computerControlInterfaces.reserve(rowCount);
 
-	for( int i = 0; i < rowCount; ++i )
+	for (int i = 0; i < rowCount; ++i)
 	{
-		const auto index = m_computerMonitoringModel->index( i, 0 );
-		const auto sourceIndex = m_computerMonitoringModel->mapToSource( index );
-		computerControlInterfaces.append( m_computerControlListModel->computerControlInterface( sourceIndex ) );
+		const auto index = m_computerMonitoringModel->index(i, 0);
+		const auto sourceIndex = m_computerMonitoringModel->mapToSource(index);
+		computerControlInterfaces.append(m_computerControlListModel->computerControlInterface(sourceIndex));
 	}
 
 	return computerControlInterfaces;
@@ -201,63 +200,63 @@ ComputerControlInterfaceList VeyonMaster::filteredComputerControlInterfaces() co
 
 
 
-void VeyonMaster::runFeature( const Feature& feature )
+void VeyonMaster::runFeature(const Feature& feature)
 {
 	const auto computerControlInterfaces = filteredComputerControlInterfaces();
 
-	if( feature.testFlag( Feature::Flag::Mode ) )
+	if (feature.testFlag(Feature::Flag::Mode))
 	{
-		stopAllFeatures( computerControlInterfaces );
+		stopAllFeatures(computerControlInterfaces);
 
-		if( m_currentMode == feature.uid() ||
-			subFeatures( feature.uid() ).contains( VeyonCore::featureManager().feature( m_currentMode ) ) )
+		if (m_currentMode == feature.uid() ||
+			subFeatures(feature.uid()).contains(VeyonCore::featureManager().feature(m_currentMode)))
 		{
 			const Feature& monitoringModeFeature = VeyonCore::builtinFeatures().monitoringMode().feature();
 
-			VeyonCore::featureManager().startFeature( *this, monitoringModeFeature, computerControlInterfaces );
+			VeyonCore::featureManager().startFeature(*this, monitoringModeFeature, computerControlInterfaces);
 			m_currentMode = monitoringModeFeature.uid();
 		}
 		else
 		{
-			VeyonCore::featureManager().startFeature( *this, feature, computerControlInterfaces );
+			VeyonCore::featureManager().startFeature(*this, feature, computerControlInterfaces);
 			m_currentMode = feature.uid();
 		}
 	}
 	else
 	{
-		VeyonCore::featureManager().startFeature( *this, feature, computerControlInterfaces );
+		VeyonCore::featureManager().startFeature(*this, feature, computerControlInterfaces);
 	}
 }
 
 
 
-void VeyonMaster::enforceDesignatedMode( const QModelIndex& index )
+void VeyonMaster::enforceDesignatedMode(const QModelIndex& index)
 {
-	auto controlInterface = m_computerControlListModel->computerControlInterface( index );
+	auto controlInterface = m_computerControlListModel->computerControlInterface(index);
 	if (controlInterface && controlInterface->state() == ComputerControlInterface::State::Connected)
 	{
 		const auto designatedModeFeature = controlInterface->designatedModeFeature();
 
-		if( designatedModeFeature.isNull() == false &&
+		if (designatedModeFeature.isNull() == false &&
 			designatedModeFeature != VeyonCore::builtinFeatures().monitoringMode().feature().uid() &&
-			controlInterface->activeFeatures().contains( designatedModeFeature ) == false &&
-			controlInterface->activeFeatures().contains( VeyonCore::featureManager().metaFeatureUid(designatedModeFeature) ) == false )
+			controlInterface->activeFeatures().contains(designatedModeFeature) == false &&
+			controlInterface->activeFeatures().contains(VeyonCore::featureManager().metaFeatureUid(designatedModeFeature)) == false)
 		{
-			VeyonCore::featureManager().startFeature( *this, VeyonCore::featureManager().feature(designatedModeFeature),
-													  { controlInterface } );
+			VeyonCore::featureManager().startFeature(*this, VeyonCore::featureManager().feature(designatedModeFeature),
+													 {controlInterface});
 		}
 	}
 }
 
 
 
-void VeyonMaster::stopAllFeatures( const ComputerControlInterfaceList& computerControlInterfaces )
+void VeyonMaster::stopAllFeatures(const ComputerControlInterfaceList& computerControlInterfaces)
 {
 	const auto features = allFeatures();
 
-	for( const auto& feature : features )
+	for (const auto& feature : features)
 	{
-		VeyonCore::featureManager().stopFeature( *this, feature, computerControlInterfaces );
+		VeyonCore::featureManager().stopFeature(*this, feature, computerControlInterfaces);
 	}
 }
 
@@ -265,12 +264,12 @@ void VeyonMaster::stopAllFeatures( const ComputerControlInterfaceList& computerC
 
 void VeyonMaster::shutdown()
 {
-	stopAllFeatures( m_computerControlListModel->computerControlInterfaces() );
+	stopAllFeatures(m_computerControlListModel->computerControlInterfaces());
 
 	const auto allMessageQueuesEmpty = [&]() {
-		for( const auto& computerControlInterface : m_computerControlListModel->computerControlInterfaces() )
+		for (const auto& computerControlInterface : m_computerControlListModel->computerControlInterfaces())
 		{
-			if( computerControlInterface->isMessageQueueEmpty() == false )
+			if (computerControlInterface->isMessageQueueEmpty() == false)
 			{
 				return false;
 			}
@@ -285,8 +284,8 @@ void VeyonMaster::shutdown()
 	QElapsedTimer messageQueueWaitTimer;
 	messageQueueWaitTimer.start();
 
-	while( allMessageQueuesEmpty() == false &&
-		   messageQueueWaitTimer.elapsed() < MessageQueueWaitTimeout )
+	while (allMessageQueuesEmpty() == false &&
+		   messageQueueWaitTimer.elapsed() < MessageQueueWaitTimeout)
 	{
 		QThread::msleep(MessageQueuePollInterval);
 	}
@@ -307,17 +306,16 @@ FeatureList VeyonMaster::featureList() const
 		return a.toString() < b.toString();
 	});
 
-	const auto addFeatures = [&]( const std::function<bool(const Feature&)>& extraFilter )
-	{
-		for(const auto& pluginUid : std::as_const(pluginUids))
+	const auto addFeatures = [&](const std::function<bool(const Feature&)>& extraFilter) {
+		for (const auto& pluginUid : std::as_const(pluginUids))
 		{
-			for( const auto& feature : VeyonCore::featureManager().features( pluginUid ) )
+			for (const auto& feature : VeyonCore::featureManager().features(pluginUid))
 			{
-				if( feature.testFlag( Feature::Flag::Master ) &&
-					feature.testFlag( Feature::Flag::Meta ) == false &&
+				if (feature.testFlag(Feature::Flag::Master) &&
+					feature.testFlag(Feature::Flag::Meta) == false &&
 					feature.parentUid().isNull() &&
-					disabledFeatures.contains( feature.uid().toString() ) == false &&
-					extraFilter( feature ) )
+					disabledFeatures.contains(feature.uid().toString()) == false &&
+					extraFilter(feature))
 				{
 					features += feature;
 				}
@@ -325,8 +323,8 @@ FeatureList VeyonMaster::featureList() const
 		}
 	};
 
-	addFeatures( []( const Feature& feature ) { return feature.testFlag( Feature::Flag::Mode ); } );
-	addFeatures( []( const Feature& feature ) { return feature.testFlag( Feature::Flag::Mode ) == false; } );
+	addFeatures([](const Feature& feature) { return feature.testFlag(Feature::Flag::Mode); });
+	addFeatures([](const Feature& feature) { return feature.testFlag(Feature::Flag::Mode) == false; });
 
 	return features;
 }

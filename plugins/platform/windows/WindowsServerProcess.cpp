@@ -82,9 +82,8 @@ void VeyonServerProcess::start()
 	const auto user = WtsSessionManager::querySessionInformation(m_wtsSessionId, WtsSessionManager::SessionInfo::UserName);
 
 	const QStringList extraEnv{
-		QStringLiteral("%1=%2").arg(QLatin1String( ServiceDataManager::serviceDataTokenEnvironmentVariable()),
-									QString::fromUtf8(m_token.toByteArray()))
-	};
+		QStringLiteral("%1=%2").arg(QLatin1String(ServiceDataManager::serviceDataTokenEnvironmentVariable()),
+									QString::fromUtf8(m_token.toByteArray()))};
 
 	vInfo() << "Starting server for WTS session" << m_wtsSessionId << "with user" << user;
 	m_processHandle = WindowsCoreFunctions::runProgramInSession(VeyonCore::filesystem().serverFilePath(), {},

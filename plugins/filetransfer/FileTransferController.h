@@ -45,13 +45,13 @@ public:
 	Q_DECLARE_FLAGS(Flags, Flag)
 	Q_FLAG(Flags)
 
-	explicit FileTransferController( FileTransferPlugin* plugin );
+	explicit FileTransferController(FileTransferPlugin* plugin);
 	~FileTransferController() override;
 
-	void setFiles( const QStringList& files );
-	void setInterfaces( const ComputerControlInterfaceList& interfaces );
-	void setFlags( Flags flags );
-	void setDestinationDirectory( const QString& destDir );
+	void setFiles(const QStringList& files);
+	void setInterfaces(const ComputerControlInterfaceList& interfaces);
+	void setFlags(Flags flags);
+	void setDestinationDirectory(const QString& destDir);
 
 	void start();
 	void stop();
@@ -63,9 +63,9 @@ public:
 	bool isRunning() const;
 
 Q_SIGNALS:
-	void errorOccurred( const QString& message );
+	void errorOccurred(const QString& message);
 	void filesChanged();
-	void progressChanged( int progress );
+	void progressChanged(int progress);
 	void started();
 	void finished();
 
@@ -87,7 +87,7 @@ private:
 	bool allQueuesEmpty();
 
 	static constexpr int ProcessInterval = 25;
-	static constexpr int ChunkSize = 256*1024;
+	static constexpr int ChunkSize = 256 * 1024;
 
 	FileTransferPlugin* m_plugin;
 
@@ -104,5 +104,4 @@ private:
 	QTimer m_processTimer;
 
 	QString m_destinationDirectory;
-
 };

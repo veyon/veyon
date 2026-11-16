@@ -66,5 +66,4 @@ private:
 
 	InterferingWindowHandling m_interferingWindowsHandling = InterferingWindowHandling::None;
 	QTimer m_desktopWindowsInspectionTimer;
-
 };

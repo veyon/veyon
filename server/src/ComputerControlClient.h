@@ -26,10 +26,10 @@
 
 #include <QElapsedTimer>
 
+#include "VeyonServerProtocol.h"
 #include "VncClientProtocol.h"
 #include "VncProxyConnection.h"
 #include "VncServerClient.h"
-#include "VeyonServerProtocol.h"
 
 class ComputerControlServer;
 
@@ -39,11 +39,11 @@ class ComputerControlClient : public VncProxyConnection
 public:
 	using Password = CryptoCore::SecureArray;
 
-	ComputerControlClient( ComputerControlServer* server,
-						   QTcpSocket* clientSocket,
-						   int vncServerPort,
-						   const Password& vncServerPassword,
-						   QObject* parent );
+	ComputerControlClient(ComputerControlServer* server,
+						  QTcpSocket* clientSocket,
+						  int vncServerPort,
+						  const Password& vncServerPassword,
+						  QObject* parent);
 	~ComputerControlClient() override;
 
 	bool receiveClientMessage() override;
@@ -76,5 +76,4 @@ private:
 
 	int m_minimumFramebufferUpdateInterval{-1};
 	QElapsedTimer m_framebufferUpdateTimer;
-
-} ;
+};

@@ -21,7 +21,7 @@ public:
 	void enableInputDevices() override;
 	void disableInputDevices() override;
 
-	KeyboardShortcutTrapper* createKeyboardShortcutTrapper( QObject* parent ) override;
+	KeyboardShortcutTrapper* createKeyboardShortcutTrapper(QObject* parent) override;
 
 private:
 	void setEmptyKeyMapTable();

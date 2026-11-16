@@ -29,24 +29,24 @@
 #include "VeyonWorker.h"
 
 
-int main( int argc, char **argv )
+int main(int argc, char** argv)
 {
 	VeyonCore::setupApplicationParameters();
 
-	QApplication app( argc, argv );
-	app.setWindowIcon( QIcon( QStringLiteral(":/core/icon64.png") ) );
+	QApplication app(argc, argv);
+	app.setWindowIcon(QIcon(QStringLiteral(":/core/icon64.png")));
 
 	const auto arguments = app.arguments();
 
-	if( arguments.count() < 2 )
+	if (arguments.count() < 2)
 	{
-		qFatal( "Not enough arguments (feature)" );
+		qFatal("Not enough arguments (feature)");
 	}
 
 	const auto featureUid = Feature::Uid{arguments[1]};
-	if( featureUid.isNull() )
+	if (featureUid.isNull())
 	{
-		qFatal( "Invalid feature UID given" );
+		qFatal("Invalid feature UID given");
 	}
 
 	VeyonWorker worker(featureUid);

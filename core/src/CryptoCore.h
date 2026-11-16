@@ -24,9 +24,9 @@
 
 #pragma once
 
-#include "VeyonCore.h"
-
 #include <QtCrypto>
+
+#include "VeyonCore.h"
 
 // clazy:excludeall=rule-of-three
 
@@ -52,11 +52,10 @@ public:
 
 	static QByteArray generateChallenge();
 
-	QString encryptPassword( const PlaintextPassword& password ) const;
-	PlaintextPassword decryptPassword( const QString& encryptedPassword ) const;
+	QString encryptPassword(const PlaintextPassword& password) const;
+	PlaintextPassword decryptPassword(const QString& encryptedPassword) const;
 
 private:
 	QCA::Initializer m_qcaInitializer;
 	PrivateKey m_defaultPrivateKey;
-
 };

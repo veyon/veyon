@@ -57,5 +57,4 @@ private:
 
 	SmartHandle m_processHandle{nullptr};
 	QElapsedTimer m_uptime;
-
 };

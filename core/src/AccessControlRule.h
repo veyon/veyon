@@ -24,8 +24,8 @@
 
 #pragma once
 
-#include <QObject>
 #include <QJsonObject>
+#include <QObject>
 #include <QVariant>
 
 #include "VeyonCore.h"
@@ -34,18 +34,16 @@ class VEYON_CORE_EXPORT AccessControlRule
 {
 	Q_GADGET
 public:
-	enum class Action
-	{
+	enum class Action {
 		None,
 		Allow,
 		Deny,
 		AskForPermission,
-	} ;
+	};
 
 	Q_ENUM(Action)
 
-	enum class Condition
-	{
+	enum class Condition {
 		None,
 		MemberOfUserGroup,
 		GroupsInCommon,
@@ -60,18 +58,17 @@ public:
 		UserSession,
 		AuthenticationMethod,
 		ComputerAlreadyBeingAccessed,
-	} ;
+	};
 
 	Q_ENUM(Condition)
 
-	enum class Subject
-	{
+	enum class Subject {
 		None,
 		AccessingUser,
 		AccessingComputer,
 		LocalUser,
 		LocalComputer,
-	} ;
+	};
 
 	Q_ENUM(Subject)
 
@@ -93,14 +90,14 @@ public:
 
 	~AccessControlRule() = default;
 
-	AccessControlRule& operator=( const AccessControlRule& other );
+	AccessControlRule& operator=(const AccessControlRule& other);
 
 	const QString& name() const
 	{
 		return m_name;
 	}
 
-	void setName( const QString& name )
+	void setName(const QString& name)
 	{
 		m_name = name;
 	}
@@ -110,7 +107,7 @@ public:
 		return m_description;
 	}
 
-	void setDescription( const QString& description )
+	void setDescription(const QString& description)
 	{
 		m_description = description;
 	}
@@ -120,7 +117,7 @@ public:
 		return m_action;
 	}
 
-	void setAction( Action action )
+	void setAction(Action action)
 	{
 		m_action = action;
 	}
@@ -130,12 +127,12 @@ public:
 		return m_parameters;
 	}
 
-	Subject subject( Condition condition ) const
+	Subject subject(Condition condition) const
 	{
-		return m_parameters.value( condition ).subject;
+		return m_parameters.value(condition).subject;
 	}
 
-	void setSubject( Condition condition, Subject subject )
+	void setSubject(Condition condition, Subject subject)
 	{
 		m_parameters[condition].subject = subject;
 	}
@@ -145,7 +142,7 @@ public:
 		return m_ignoreConditions;
 	}
 
-	void setConditionsIgnored( bool ignored )
+	void setConditionsIgnored(bool ignored)
 	{
 		m_ignoreConditions = ignored;
 	}
@@ -155,24 +152,24 @@ public:
 		return m_invertConditions;
 	}
 
-	void setConditionsInverted( bool inverted )
+	void setConditionsInverted(bool inverted)
 	{
 		m_invertConditions = inverted;
 	}
 
-	bool isConditionEnabled( Condition condition ) const
+	bool isConditionEnabled(Condition condition) const
 	{
-		return m_parameters.value( condition ).enabled;
+		return m_parameters.value(condition).enabled;
 	}
 
-	void setConditionEnabled( Condition condition, bool enabled )
+	void setConditionEnabled(Condition condition, bool enabled)
 	{
 		m_parameters[condition].enabled = enabled;
 	}
 
-	ConditionArgument argument( Condition condition ) const
+	ConditionArgument argument(Condition condition) const
 	{
-		return m_parameters.value( condition ).argument;
+		return m_parameters.value(condition).argument;
 	}
 
 	void clearParameters()
@@ -180,7 +177,7 @@ public:
 		m_parameters.clear();
 	}
 
-	void setArgument( Condition condition, const ConditionArgument& conditionArgument )
+	void setArgument(Condition condition, const ConditionArgument& conditionArgument)
 	{
 		m_parameters[condition].argument = conditionArgument;
 	}
@@ -195,5 +192,4 @@ private:
 	ConditionParameterMap m_parameters;
 	bool m_invertConditions;
 	bool m_ignoreConditions;
-
-} ;
+};

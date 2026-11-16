@@ -46,10 +46,9 @@ public:
 	virtual PlatformServiceFunctions& serviceFunctions() = 0;
 	virtual PlatformSessionFunctions& sessionFunctions() = 0;
 	virtual PlatformUserFunctions& userFunctions() = 0;
-
 };
 
-using PlatformPluginInterfaceList = QList<PlatformPluginInterface *>;
+using PlatformPluginInterfaceList = QList<PlatformPluginInterface*>;
 
 #define PlatformPluginInterface_iid "io.veyon.Veyon.Plugins.PlatformPluginInterface"
 

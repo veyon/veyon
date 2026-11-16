@@ -30,16 +30,15 @@ class LinuxKeyboardShortcutTrapper : public KeyboardShortcutTrapper
 {
 	Q_OBJECT
 public:
-	explicit LinuxKeyboardShortcutTrapper( QObject* parent = nullptr ) :
-	    KeyboardShortcutTrapper( parent )
+	explicit LinuxKeyboardShortcutTrapper(QObject* parent = nullptr) :
+		KeyboardShortcutTrapper(parent)
 	{
 	}
 
 	~LinuxKeyboardShortcutTrapper() override = default;
 
-	void setEnabled( bool on ) override
+	void setEnabled(bool on) override
 	{
 		Q_UNUSED(on);
 	}
-
-} ;
+};

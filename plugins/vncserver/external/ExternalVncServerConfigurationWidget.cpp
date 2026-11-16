@@ -28,13 +28,13 @@
 
 #include "ui_ExternalVncServerConfigurationWidget.h"
 
-ExternalVncServerConfigurationWidget::ExternalVncServerConfigurationWidget( ExternalVncServerConfiguration& configuration,
-																			QWidget* parent ) :
-	QWidget( parent),
-	ui( new Ui::ExternalVncServerConfigurationWidget ),
-	m_configuration( configuration )
+ExternalVncServerConfigurationWidget::ExternalVncServerConfigurationWidget(ExternalVncServerConfiguration& configuration,
+																		   QWidget* parent) :
+	QWidget(parent),
+	ui(new Ui::ExternalVncServerConfigurationWidget),
+	m_configuration(configuration)
 {
-	ui->setupUi( this );
+	ui->setupUi(this);
 
 	FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_EXTERNAL_VNC_SERVER_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);

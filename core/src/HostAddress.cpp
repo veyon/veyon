@@ -31,9 +31,9 @@
 
 QString HostAddress::s_cachedLocalFQDN;
 
-HostAddress::HostAddress( const QString& address ) :
-	m_type( determineType( address ) ),
-	m_address( address )
+HostAddress::HostAddress(const QString& address) :
+	m_type(determineType(address)),
+	m_address(address)
 {
 }
 
@@ -41,23 +41,23 @@ HostAddress::HostAddress( const QString& address ) :
 
 bool HostAddress::isLocalHost() const
 {
-	if( type() == Type::Invalid || m_address.isEmpty() )
+	if (type() == Type::Invalid || m_address.isEmpty())
 	{
 		return false;
 	}
 
 	const auto allLocalAddresses = QNetworkInterface::allAddresses();
 
-	if( type() == Type::IpAddress )
+	if (type() == Type::IpAddress)
 	{
-		QHostAddress hostAddress( m_address );
-		return hostAddress.isLoopback() || allLocalAddresses.contains( hostAddress );
+		QHostAddress hostAddress(m_address);
+		return hostAddress.isLoopback() || allLocalAddresses.contains(hostAddress);
 	}
 
-	const auto addresses = QHostInfo::fromName( m_address ).addresses();
-	for( const auto& address : addresses )
+	const auto addresses = QHostInfo::fromName(m_address).addresses();
+	for (const auto& address : addresses)
 	{
-		if( address.isLoopback() || allLocalAddresses.contains( address ) )
+		if (address.isLoopback() || allLocalAddresses.contains(address))
 		{
 			return true;
 		}
@@ -68,19 +68,19 @@ bool HostAddress::isLocalHost() const
 
 
 
-QString HostAddress::convert( HostAddress::Type targetType ) const
+QString HostAddress::convert(HostAddress::Type targetType) const
 {
-	if( m_type == targetType )
+	if (m_type == targetType)
 	{
 		return m_address;
 	}
 
-	switch( targetType )
+	switch (targetType)
 	{
 	case Type::Invalid: return {};
-	case Type::IpAddress: return toIpAddress( m_address );
-	case Type::HostName: return toHostName( m_type, m_address );
-	case Type::FullyQualifiedDomainName: return toFQDN( m_type, m_address );
+	case Type::IpAddress: return toIpAddress(m_address);
+	case Type::HostName: return toHostName(m_type, m_address);
+	case Type::FullyQualifiedDomainName: return toFQDN(m_type, m_address);
 	}
 
 	vWarning() << "invalid address type" << targetType;
@@ -89,10 +89,10 @@ QString HostAddress::convert( HostAddress::Type targetType ) const
 
 
 
-QString HostAddress::tryConvert( HostAddress::Type targetType ) const
+QString HostAddress::tryConvert(HostAddress::Type targetType) const
 {
-	const auto address = convert( targetType );
-	if( address.isEmpty() )
+	const auto address = convert(targetType);
+	if (address.isEmpty())
 	{
 		return m_address;
 	}
@@ -104,9 +104,9 @@ QString HostAddress::tryConvert( HostAddress::Type targetType ) const
 
 QStringList HostAddress::lookupIpAddresses() const
 {
-	const auto hostName = convert( Type::FullyQualifiedDomainName );
-	const auto hostInfo = QHostInfo::fromName( hostName );
-	if( hostInfo.error() != QHostInfo::NoError || hostInfo.addresses().isEmpty() )
+	const auto hostName = convert(Type::FullyQualifiedDomainName);
+	const auto hostInfo = QHostInfo::fromName(hostName);
+	if (hostInfo.error() != QHostInfo::NoError || hostInfo.addresses().isEmpty())
 	{
 		vWarning() << "could not lookup IP addresses of host" << hostName << "error:" << hostInfo.errorString();
 		return {};
@@ -115,49 +115,48 @@ QStringList HostAddress::lookupIpAddresses() const
 	QStringList ipAddresses;
 
 	const auto addresses = hostInfo.addresses();
-	ipAddresses.reserve( addresses.size() );
+	ipAddresses.reserve(addresses.size());
 
-	for( const auto& address : addresses )
+	for (const auto& address : addresses)
 	{
-		ipAddresses.append( address.toString() );
+		ipAddresses.append(address.toString());
 	}
 
 	return ipAddresses;
 }
 
 
-static QUrl parseAddressToUrl( const QString& address )
+static QUrl parseAddressToUrl(const QString& address)
 {
-	const auto colonCount = address.count( QLatin1Char(':') );
-	if( colonCount > 1 )
+	const auto colonCount = address.count(QLatin1Char(':'));
+	if (colonCount > 1)
 	{
-		const auto parts = address.split( QLatin1Char(':') );
-		return QUrl( QStringLiteral("scheme://[%1]:%2").arg( parts.mid( 0, colonCount ).join( QLatin1Char(':') ),
-															   parts.last() ) );
+		const auto parts = address.split(QLatin1Char(':'));
+		return QUrl(QStringLiteral("scheme://[%1]:%2").arg(parts.mid(0, colonCount).join(QLatin1Char(':')), parts.last()));
 	}
 
-	return QUrl( QStringLiteral("scheme://%1").arg( address ) );
+	return QUrl(QStringLiteral("scheme://%1").arg(address));
 }
 
 
 
-QString HostAddress::parseHost( const QString& address )
+QString HostAddress::parseHost(const QString& address)
 {
-	return parseAddressToUrl( address ).host();
+	return parseAddressToUrl(address).host();
 }
 
 
 
-int HostAddress::parsePortNumber( const QString& address )
+int HostAddress::parsePortNumber(const QString& address)
 {
-	return parseAddressToUrl( address ).port();
+	return parseAddressToUrl(address).port();
 }
 
 
 
 QString HostAddress::localFQDN()
 {
-	if( s_cachedLocalFQDN.isEmpty() )
+	if (s_cachedLocalFQDN.isEmpty())
 	{
 		s_cachedLocalFQDN = resolveLocalFQDN();
 	}
@@ -167,19 +166,19 @@ QString HostAddress::localFQDN()
 
 
 
-HostAddress::Type HostAddress::determineType( const QString& address )
+HostAddress::Type HostAddress::determineType(const QString& address)
 {
-	if( address.isEmpty() )
+	if (address.isEmpty())
 	{
 		return Type::Invalid;
 	}
 
-	QHostAddress hostAddress( address );
+	QHostAddress hostAddress(address);
 
-	if( hostAddress.isNull() ||
-		hostAddress.protocol() == QAbstractSocket::UnknownNetworkLayerProtocol )
+	if (hostAddress.isNull() ||
+		hostAddress.protocol() == QAbstractSocket::UnknownNetworkLayerProtocol)
 	{
-		if( address.contains( QLatin1Char( '.' ) ) )
+		if (address.contains(QLatin1Char('.')))
 		{
 			return Type::FullyQualifiedDomainName;
 		}
@@ -192,17 +191,17 @@ HostAddress::Type HostAddress::determineType( const QString& address )
 
 
 
-QString HostAddress::toIpAddress( const QString& hostName )
+QString HostAddress::toIpAddress(const QString& hostName)
 {
-	if( hostName.isEmpty() )
+	if (hostName.isEmpty())
 	{
 		vWarning() << "empty hostname";
 		return {};
 	}
 
 	// then try to resolve ist first
-	const auto hostInfo = QHostInfo::fromName( hostName );
-	if( hostInfo.error() != QHostInfo::NoError || hostInfo.addresses().isEmpty() )
+	const auto hostInfo = QHostInfo::fromName(hostName);
+	if (hostInfo.error() != QHostInfo::NoError || hostInfo.addresses().isEmpty())
 	{
 		vWarning() << "could not lookup IP address of host" << hostName << "error:" << hostInfo.errorString();
 		return {};
@@ -216,29 +215,29 @@ QString HostAddress::toIpAddress( const QString& hostName )
 
 
 
-QString HostAddress::toHostName( HostAddress::Type type, const QString& address )
+QString HostAddress::toHostName(HostAddress::Type type, const QString& address)
 {
-	if( address.isEmpty() )
+	if (address.isEmpty())
 	{
 		vWarning() << "empty address";
 		return {};
 	}
 
-	switch( type )
+	switch (type)
 	{
 	case Type::FullyQualifiedDomainName:
-		return fqdnToHostName( address );
+		return fqdnToHostName(address);
 
 	case Type::IpAddress:
 	{
-		const auto hostInfo = QHostInfo::fromName( address );
-		if( hostInfo.error() != QHostInfo::NoError )
+		const auto hostInfo = QHostInfo::fromName(address);
+		if (hostInfo.error() != QHostInfo::NoError)
 		{
 			vWarning() << "could not lookup hostname for IP address" << address << "error:" << hostInfo.errorString();
 			return {};
 		}
 
-		return fqdnToHostName( hostInfo.hostName() );
+		return fqdnToHostName(hostInfo.hostName());
 	}
 
 	case Type::HostName:
@@ -252,15 +251,15 @@ QString HostAddress::toHostName( HostAddress::Type type, const QString& address 
 }
 
 
-QString HostAddress::toFQDN( HostAddress::Type type, const QString& address )
+QString HostAddress::toFQDN(HostAddress::Type type, const QString& address)
 {
-	if( address.isEmpty() )
+	if (address.isEmpty())
 	{
 		vWarning() << "empty address";
 		return {};
 	}
 
-	switch( type )
+	switch (type)
 	{
 	case Type::HostName:
 	{
@@ -275,8 +274,8 @@ QString HostAddress::toFQDN( HostAddress::Type type, const QString& address )
 
 	case Type::IpAddress:
 	{
-		const auto hostInfo = QHostInfo::fromName( address );
-		if( hostInfo.error() != QHostInfo::NoError )
+		const auto hostInfo = QHostInfo::fromName(address);
+		if (hostInfo.error() != QHostInfo::NoError)
 		{
 			vWarning() << "could not lookup hostname for IP address" << address << "error:" << hostInfo.errorString();
 			return {};
@@ -297,9 +296,9 @@ QString HostAddress::toFQDN( HostAddress::Type type, const QString& address )
 
 
 
-QString HostAddress::fqdnToHostName( const QString& fqdn )
+QString HostAddress::fqdnToHostName(const QString& fqdn)
 {
-		return fqdn.split(QLatin1Char('.')).constFirst();
+	return fqdn.split(QLatin1Char('.')).constFirst();
 }
 
 
@@ -307,14 +306,14 @@ QString HostAddress::fqdnToHostName( const QString& fqdn )
 QString HostAddress::resolveLocalFQDN()
 {
 	const auto localHostName = QHostInfo::localHostName();
-	const auto type = determineType( localHostName );
+	const auto type = determineType(localHostName);
 
-	switch( type )
+	switch (type)
 	{
 	case Type::HostName:
-		if( QHostInfo::localDomainName().isEmpty() == false )
+		if (QHostInfo::localDomainName().isEmpty() == false)
 		{
-			return localHostName + QStringLiteral( "." ) + QHostInfo::localDomainName();
+			return localHostName + QStringLiteral(".") + QHostInfo::localDomainName();
 		}
 
 	case Type::FullyQualifiedDomainName:
@@ -325,5 +324,5 @@ QString HostAddress::resolveLocalFQDN()
 		break;
 	}
 
-	return HostAddress( localHostName ).tryConvert( Type::FullyQualifiedDomainName );
+	return HostAddress(localHostName).tryConvert(Type::FullyQualifiedDomainName);
 }

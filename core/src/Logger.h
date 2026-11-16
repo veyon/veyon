@@ -37,8 +37,7 @@ class VEYON_CORE_EXPORT Logger
 {
 	Q_GADGET
 public:
-	enum class LogLevel
-	{
+	enum class LogLevel {
 		Nothing,
 		Critical,
 		Error,
@@ -46,8 +45,8 @@ public:
 		Info,
 		Debug,
 		NumLogLevels,
-		Min = Nothing+1,
-		Max = NumLogLevels-1,
+		Min = Nothing + 1,
+		Max = NumLogLevels - 1,
 		Default = Warning
 	};
 	Q_ENUM(LogLevel)
@@ -57,7 +56,7 @@ public:
 	static constexpr int MaximumMessageSize = 16384;
 	static constexpr const char* DefaultLogFileDirectory = "%TEMP%";
 
-	explicit Logger( const QString &appName );
+	explicit Logger(const QString& appName);
 	~Logger();
 
 	static const char* logLevelEnvironmentVariable()
@@ -79,11 +78,11 @@ private:
 	void clearLogFile();
 	void rotateLogFile();
 
-	void log( LogLevel logLevel, const QString& message );
-	void outputMessage( const QString& message );
+	void log(LogLevel logLevel, const QString& message);
+	void outputMessage(const QString& message);
 
-	static QString formatMessage( LogLevel ll, const QString &msg );
-	static void qtMsgHandler( QtMsgType msgType, const QMessageLogContext &, const QString& msg );
+	static QString formatMessage(LogLevel ll, const QString& msg);
+	static void qtMsgHandler(QtMsgType msgType, const QMessageLogContext&, const QString& msg);
 
 	static QAtomicPointer<Logger> s_instance;
 	static QMutex s_instanceMutex;
@@ -99,8 +98,7 @@ private:
 
 	QString m_appName;
 
-	QFile *m_logFile;
+	QFile* m_logFile;
 	int m_logFileSizeLimit;
 	int m_logFileRotationCount;
-
-} ;
+};

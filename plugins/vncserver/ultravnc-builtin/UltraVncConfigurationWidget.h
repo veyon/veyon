@@ -37,11 +37,10 @@ class UltraVncConfigurationWidget : public QWidget
 	Q_OBJECT
 
 public:
-	UltraVncConfigurationWidget( UltraVncConfiguration& configuration );
+	UltraVncConfigurationWidget(UltraVncConfiguration& configuration);
 	~UltraVncConfigurationWidget() override;
 
 private:
-	Ui::UltraVncConfigurationWidget *ui;
+	Ui::UltraVncConfigurationWidget* ui;
 	UltraVncConfiguration& m_configuration;
-
 };

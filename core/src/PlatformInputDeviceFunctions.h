@@ -36,6 +36,5 @@ public:
 	virtual void enableInputDevices() = 0;
 	virtual void disableInputDevices() = 0;
 
-	virtual KeyboardShortcutTrapper* createKeyboardShortcutTrapper( QObject* parent ) = 0;
-
+	virtual KeyboardShortcutTrapper* createKeyboardShortcutTrapper(QObject* parent) = 0;
 };

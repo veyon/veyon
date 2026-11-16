@@ -32,38 +32,39 @@
 #include "FeatureMessage.h"
 #include "HostAddress.h"
 #include "PlatformPluginInterface.h"
-#include "VeyonConfiguration.h"
 #include "SystemTrayIcon.h"
+#include "VeyonConfiguration.h"
 
 
-ComputerControlServer::ComputerControlServer( QObject* parent ) :
+ComputerControlServer::ComputerControlServer(QObject* parent) :
 	VeyonServerInterface(parent),
 	m_allowedIPs(),
 	m_failedAuthHosts(),
-	m_featureWorkerManager( *this ),
-	m_serverAuthenticationManager( this ),
-	m_serverAccessControlManager( m_featureWorkerManager, VeyonCore::builtinFeatures().desktopAccessDialog(), this ),
+	m_featureWorkerManager(*this),
+	m_serverAuthenticationManager(this),
+	m_serverAccessControlManager(m_featureWorkerManager, VeyonCore::builtinFeatures().desktopAccessDialog(), this),
 	m_vncServer(),
-	m_vncProxyServer( VeyonCore::config().localConnectOnly() || VeyonCore::builtinFeatures().accessControlProvider().isAccessToLocalComputerDenied() ?
-						  QHostAddress::LocalHost : QHostAddress::Any,
-					  VeyonCore::config().veyonServerPort() + VeyonCore::sessionId(),
-					  this,
-					  this )
+	m_vncProxyServer(VeyonCore::config().localConnectOnly() || VeyonCore::builtinFeatures().accessControlProvider().isAccessToLocalComputerDenied() ?
+						 QHostAddress::LocalHost :
+						 QHostAddress::Any,
+					 VeyonCore::config().veyonServerPort() + VeyonCore::sessionId(),
+					 this,
+					 this)
 {
 	updateTrayIconToolTip();
 
 	// make app terminate once the VNC server thread has finished
-	connect( &m_vncServer, &VncServer::finished, QCoreApplication::instance(), &QCoreApplication::quit );
+	connect(&m_vncServer, &VncServer::finished, QCoreApplication::instance(), &QCoreApplication::quit);
 
-	connect( &m_serverAuthenticationManager, &ServerAuthenticationManager::finished,
-			 this, &ComputerControlServer::showAuthenticationMessage );
+	connect(&m_serverAuthenticationManager, &ServerAuthenticationManager::finished,
+			this, &ComputerControlServer::showAuthenticationMessage);
 
-	connect( &m_serverAccessControlManager, &ServerAccessControlManager::finished,
-			 this, &ComputerControlServer::showAccessControlMessage );
+	connect(&m_serverAccessControlManager, &ServerAccessControlManager::finished,
+			this, &ComputerControlServer::showAccessControlMessage);
 
 	connect(&m_vncProxyServer, &VncProxyServer::connectionSynchronized,
-			 this, &ComputerControlServer::sendAsyncFeatureMessages, Qt::DirectConnection);
-	connect( &m_vncProxyServer, &VncProxyServer::connectionClosed, this, &ComputerControlServer::updateTrayIconToolTip );
+			this, &ComputerControlServer::sendAsyncFeatureMessages, Qt::DirectConnection);
+	connect(&m_vncProxyServer, &VncProxyServer::connectionClosed, this, &ComputerControlServer::updateTrayIconToolTip);
 }
 
 
@@ -79,7 +80,7 @@ ComputerControlServer::~ComputerControlServer()
 
 bool ComputerControlServer::start()
 {
-	if( m_vncProxyServer.start( m_vncServer.serverPort(), m_vncServer.password() ) == false )
+	if (m_vncProxyServer.start(m_vncServer.serverPort(), m_vncServer.password()) == false)
 	{
 		return false;
 	}
@@ -92,16 +93,16 @@ bool ComputerControlServer::start()
 
 
 
-VncProxyConnection* ComputerControlServer::createVncProxyConnection( QTcpSocket* clientSocket,
-																	 int vncServerPort,
-																	 const Password& vncServerPassword,
-																	 QObject* parent )
+VncProxyConnection* ComputerControlServer::createVncProxyConnection(QTcpSocket* clientSocket,
+																	int vncServerPort,
+																	const Password& vncServerPassword,
+																	QObject* parent)
 {
-	auto client = new ComputerControlClient( this, clientSocket, vncServerPort, vncServerPassword, parent );
+	auto client = new ComputerControlClient(this, clientSocket, vncServerPort, vncServerPassword, parent);
 
-	connect( client, &ComputerControlClient::serverConnectionClosed, this,
-		[=, this]() { checkForIncompleteAuthentication(client->serverClient()); },
-		Qt::DirectConnection );
+	connect(client, &ComputerControlClient::serverConnectionClosed, this,
+			[=, this]() { checkForIncompleteAuthentication(client->serverClient()); },
+			Qt::DirectConnection);
 
 	return client;
 }
@@ -113,7 +114,7 @@ bool ComputerControlServer::handleFeatureMessage(ComputerControlClient* client)
 	auto socket = client->proxyClientSocket();
 
 	char messageType;
-	if( socket->getChar( &messageType ) == false )
+	if (socket->getChar(&messageType) == false)
 	{
 		vWarning() << "could not read feature message!";
 		return false;
@@ -121,9 +122,9 @@ bool ComputerControlServer::handleFeatureMessage(ComputerControlClient* client)
 
 	// receive message
 	FeatureMessage featureMessage;
-	if( featureMessage.isReadyForReceive( socket ) == false )
+	if (featureMessage.isReadyForReceive(socket) == false)
 	{
-		socket->ungetChar( messageType );
+		socket->ungetChar(messageType);
 		return false;
 	}
 
@@ -132,14 +133,14 @@ bool ComputerControlServer::handleFeatureMessage(ComputerControlClient* client)
 		return false;
 	}
 
-	VeyonCore::featureManager().handleFeatureMessage( *this, MessageContext{socket, client}, featureMessage );
+	VeyonCore::featureManager().handleFeatureMessage(*this, MessageContext{socket, client}, featureMessage);
 
 	return true;
 }
 
 
 
-bool ComputerControlServer::sendFeatureMessageReply( const MessageContext& context, const FeatureMessage& reply )
+bool ComputerControlServer::sendFeatureMessageReply(const MessageContext& context, const FeatureMessage& reply)
 {
 	vDebug() << reply;
 
@@ -155,7 +156,7 @@ bool ComputerControlServer::sendFeatureMessageReply( const MessageContext& conte
 
 void ComputerControlServer::setMinimumFramebufferUpdateInterval(const MessageContext& context, int interval)
 {
-	auto client = qobject_cast<ComputerControlClient *>(context.connection());
+	auto client = qobject_cast<ComputerControlClient*>(context.connection());
 	if (client)
 	{
 		client->setMinimumFramebufferUpdateInterval(interval);
@@ -164,47 +165,48 @@ void ComputerControlServer::setMinimumFramebufferUpdateInterval(const MessageCon
 
 
 
-void ComputerControlServer::checkForIncompleteAuthentication( VncServerClient* client )
+void ComputerControlServer::checkForIncompleteAuthentication(VncServerClient* client)
 {
 	// connection to client closed during authentication?
-	if( client->protocolState() == VncServerProtocol::State::AuthenticationTypes ||
-		client->protocolState() == VncServerProtocol::State::Authenticating )
+	if (client->protocolState() == VncServerProtocol::State::AuthenticationTypes ||
+		client->protocolState() == VncServerProtocol::State::Authenticating)
 	{
 		// then mark as failed authentication and report it
-		client->setAuthState( VncServerClient::AuthState::Failed );
+		client->setAuthState(VncServerClient::AuthState::Failed);
 
-		showAuthenticationMessage( client );
+		showAuthenticationMessage(client);
 	}
 }
 
 
 
-void ComputerControlServer::showAuthenticationMessage( VncServerClient* client )
+void ComputerControlServer::showAuthenticationMessage(VncServerClient* client)
 {
-	if( client->authState() == VncServerClient::AuthState::Failed )
+	if (client->authState() == VncServerClient::AuthState::Failed)
 	{
 		vWarning() << "Authentication failed for" << client->hostAddress() << client->username();
 
 		if (VeyonCore::config().failedAuthenticationNotificationsEnabled() &&
 			VeyonCore::platform().sessionFunctions().currentSessionHasUser())
 		{
-			QMutexLocker l( &m_dataMutex );
+			QMutexLocker l(&m_dataMutex);
 
-			if( m_failedAuthHosts.contains( client->hostAddress() ) == false )
+			if (m_failedAuthHosts.contains(client->hostAddress()) == false)
 			{
-				if( m_failedAuthHosts.size() >= MaximumResolvedHostNames )
+				if (m_failedAuthHosts.size() >= MaximumResolvedHostNames)
 				{
 					m_failedAuthHosts.removeFirst();
 				}
 				m_failedAuthHosts += client->hostAddress();
 
-				const auto fqdn = HostAddress( client->hostAddress() ).tryConvert( HostAddress::Type::FullyQualifiedDomainName );
+				const auto fqdn = HostAddress(client->hostAddress()).tryConvert(HostAddress::Type::FullyQualifiedDomainName);
 
 				VeyonCore::builtinFeatures().systemTrayIcon().showMessage(
-							tr( "Authentication error" ),
-							tr( "User \"%1\" at host \"%2\" attempted to access this computer "
-								"but could not authenticate successfully." ).arg( client->username(), fqdn ),
-							m_featureWorkerManager );
+					tr("Authentication error"),
+					tr("User \"%1\" at host \"%2\" attempted to access this computer "
+					   "but could not authenticate successfully.")
+						.arg(client->username(), fqdn),
+					m_featureWorkerManager);
 			}
 		}
 	}
@@ -212,51 +214,50 @@ void ComputerControlServer::showAuthenticationMessage( VncServerClient* client )
 
 
 
-void ComputerControlServer::showAccessControlMessage( VncServerClient* client )
+void ComputerControlServer::showAccessControlMessage(VncServerClient* client)
 {
-	if( client->accessControlState() == VncServerClient::AccessControlState::Successful &&
-		client->protocolState() == VncServerProtocol::State::AccessControl )
+	if (client->accessControlState() == VncServerClient::AccessControlState::Successful &&
+		client->protocolState() == VncServerProtocol::State::AccessControl)
 	{
 		vInfo() << "Access control successful for" << client->hostAddress() << client->username();
 
 		if (VeyonCore::config().remoteConnectionNotificationsEnabled() &&
 			VeyonCore::platform().sessionFunctions().currentSessionHasUser())
 		{
-			const auto fqdn = HostAddress( client->hostAddress() ).tryConvert( HostAddress::Type::FullyQualifiedDomainName );
+			const auto fqdn = HostAddress(client->hostAddress()).tryConvert(HostAddress::Type::FullyQualifiedDomainName);
 
 			VeyonCore::builtinFeatures().systemTrayIcon().showMessage(
-						tr( "Remote access" ),
-						tr( "User \"%1\" at host \"%2\" is now accessing this computer." ).
-						arg( client->username(), fqdn ),
-						m_featureWorkerManager );
+				tr("Remote access"),
+				tr("User \"%1\" at host \"%2\" is now accessing this computer.").arg(client->username(), fqdn),
+				m_featureWorkerManager);
 		}
 
 		updateTrayIconToolTip();
 	}
-	else if( client->accessControlState() == VncServerClient::AccessControlState::Failed )
+	else if (client->accessControlState() == VncServerClient::AccessControlState::Failed)
 	{
 		vWarning() << "Access control failed for" << client->hostAddress() << client->username();
 
-		if( VeyonCore::config().failedAuthenticationNotificationsEnabled() )
+		if (VeyonCore::config().failedAuthenticationNotificationsEnabled())
 		{
-			QMutexLocker l( &m_dataMutex );
+			QMutexLocker l(&m_dataMutex);
 
-			if( m_failedAccessControlHosts.contains( client->hostAddress() ) == false )
+			if (m_failedAccessControlHosts.contains(client->hostAddress()) == false)
 			{
-				if( m_failedAccessControlHosts.size() >= MaximumResolvedHostNames )
+				if (m_failedAccessControlHosts.size() >= MaximumResolvedHostNames)
 				{
 					m_failedAccessControlHosts.removeFirst();
 				}
 				m_failedAccessControlHosts += client->hostAddress();
 
-				const auto fqdn = HostAddress( client->hostAddress() ).tryConvert( HostAddress::Type::FullyQualifiedDomainName );
+				const auto fqdn = HostAddress(client->hostAddress()).tryConvert(HostAddress::Type::FullyQualifiedDomainName);
 
 				VeyonCore::builtinFeatures().systemTrayIcon().showMessage(
-							tr( "Access control error" ),
-							tr( "User \"%1\" at host \"%2\" attempted to access this computer "
-								"but has been blocked due to access control settings." ).
-							arg( client->username(), fqdn ),
-							m_featureWorkerManager );
+					tr("Access control error"),
+					tr("User \"%1\" at host \"%2\" attempted to access this computer "
+					   "but has been blocked due to access control settings.")
+						.arg(client->username(), fqdn),
+					m_featureWorkerManager);
 			}
 		}
 	}
@@ -264,37 +265,37 @@ void ComputerControlServer::showAccessControlMessage( VncServerClient* client )
 
 
 
-QFutureWatcher<QMap<QString, QString>>* ComputerControlServer::resolveFQDNs( const QStringList& hosts )
+QFutureWatcher<QMap<QString, QString>>* ComputerControlServer::resolveFQDNs(const QStringList& hosts)
 {
 	auto watcher = new QFutureWatcher<QMap<QString, QString>>(this);
 
-	watcher->setFuture( QtConcurrent::run( [hosts]() {
+	watcher->setFuture(QtConcurrent::run([hosts]() {
 		QMap<QString, QString> resolvedHostNames;
-		for( const auto& host : hosts )
+		for (const auto& host : hosts)
 		{
 			resolvedHostNames[host] = HostAddress(host).tryConvert(HostAddress::Type::FullyQualifiedDomainName);
 		}
 		return resolvedHostNames;
-	} ) );
+	}));
 
 	connect(watcher, &QFutureWatcher<QMap<QString, QString>>::finished, this, [this, watcher, hosts]() {
 		QMutexLocker locker(&m_dataMutex);
-		for( const auto& host : hosts )
+		for (const auto& host : hosts)
 		{
 			m_pendingHostResolutions.remove(host);
 		}
 		const auto resolvedHostNames = watcher->result();
-		for( auto it = resolvedHostNames.constBegin(); it != resolvedHostNames.constEnd(); ++it )
+		for (auto it = resolvedHostNames.constBegin(); it != resolvedHostNames.constEnd(); ++it)
 		{
-			while( m_resolvedHostNames.size() >= MaximumResolvedHostNames &&
-				m_resolvedHostNames.contains(it.key()) == false )
+			while (m_resolvedHostNames.size() >= MaximumResolvedHostNames &&
+				   m_resolvedHostNames.contains(it.key()) == false)
 			{
 				m_resolvedHostNames.erase(m_resolvedHostNames.begin());
 			}
 			m_resolvedHostNames[it.key()] = it.value();
 		}
 	});
-	connect( watcher, &QFutureWatcher<QMap<QString, QString>>::finished, watcher, &QObject::deleteLater );
+	connect(watcher, &QFutureWatcher<QMap<QString, QString>>::finished, watcher, &QObject::deleteLater);
 
 	return watcher;
 }
@@ -315,45 +316,44 @@ void ComputerControlServer::updateTrayIconToolTip()
 		return;
 	}
 
-	auto toolTip = tr("Veyon Service %1 at %2:%3").arg(VeyonCore::versionString(), HostAddress::localFQDN())
-				   .arg(VeyonCore::config().veyonServerPort() + VeyonCore::sessionId());
+	auto toolTip = tr("Veyon Service %1 at %2:%3").arg(VeyonCore::versionString(), HostAddress::localFQDN()).arg(VeyonCore::config().veyonServerPort() + VeyonCore::sessionId());
 
-	QMutexLocker locker( &m_dataMutex );
+	QMutexLocker locker(&m_dataMutex);
 
 	QStringList clients;
 	QStringList hostsToResolve;
-	clients.reserve( m_vncProxyServer.clients().size() );
-	hostsToResolve.reserve( m_vncProxyServer.clients().size() );
+	clients.reserve(m_vncProxyServer.clients().size());
+	hostsToResolve.reserve(m_vncProxyServer.clients().size());
 
-	for( const auto* client : m_vncProxyServer.clients() )
+	for (const auto* client : m_vncProxyServer.clients())
 	{
 		const auto clientIpAddress = client->proxyClientSocket()->peerAddress().toString();
-		if( m_resolvedHostNames.contains( clientIpAddress ) == false )
+		if (m_resolvedHostNames.contains(clientIpAddress) == false)
 		{
-			if( m_pendingHostResolutions.contains(clientIpAddress) == false )
+			if (m_pendingHostResolutions.contains(clientIpAddress) == false)
 			{
 				m_pendingHostResolutions.insert(clientIpAddress);
 				hostsToResolve.append(clientIpAddress);
 			}
-			clients.append( clientIpAddress );
+			clients.append(clientIpAddress);
 		}
 		else
 		{
-			clients.append( m_resolvedHostNames[clientIpAddress] );
+			clients.append(m_resolvedHostNames[clientIpAddress]);
 		}
 	}
 
-	if( hostsToResolve.isEmpty() == false )
+	if (hostsToResolve.isEmpty() == false)
 	{
-		auto watcher = resolveFQDNs( hostsToResolve );
-		connect( watcher, &QFutureWatcher<QMap<QString, QString>>::finished,
-				 this, &ComputerControlServer::updateTrayIconToolTip );
+		auto watcher = resolveFQDNs(hostsToResolve);
+		connect(watcher, &QFutureWatcher<QMap<QString, QString>>::finished,
+				this, &ComputerControlServer::updateTrayIconToolTip);
 	}
 
-	if( clients.isEmpty() == false )
+	if (clients.isEmpty() == false)
 	{
-		toolTip += QLatin1Char('\n') + tr( "Active connections:") + QLatin1Char('\n') + clients.join( QLatin1Char('\n') );
+		toolTip += QLatin1Char('\n') + tr("Active connections:") + QLatin1Char('\n') + clients.join(QLatin1Char('\n'));
 	}
 
-	VeyonCore::builtinFeatures().systemTrayIcon().setToolTip( toolTip, m_featureWorkerManager );
+	VeyonCore::builtinFeatures().systemTrayIcon().setToolTip(toolTip, m_featureWorkerManager);
 }

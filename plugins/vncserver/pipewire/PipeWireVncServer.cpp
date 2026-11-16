@@ -22,32 +22,30 @@
  *
  */
 
-#include "PipeWireVncServer.h"
-#include "PipeWireFramebuffer.h"
-#include "PipeWireVncConfigurationWidget.h"
-#include "PortalSession.h"
-
-#include "VeyonConfiguration.h"
-#include "VeyonCore.h"
-#include "PlatformCoreFunctions.h"
-#include "PlatformInputDeviceFunctions.h"
-
 #include <QCoreApplication>
 #include <QThread>
 #include <QTimer>
 
+#include "PipeWireFramebuffer.h"
+#include "PipeWireVncConfigurationWidget.h"
+#include "PipeWireVncServer.h"
+#include "PlatformCoreFunctions.h"
+#include "PlatformInputDeviceFunctions.h"
+#include "PortalSession.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCore.h"
+
 #include <cstring>
 
 // Initial framebuffer dimensions (used before the first PipeWire frame arrives)
-static constexpr int DefaultWidth  = 1920;
+static constexpr int DefaultWidth = 1920;
 static constexpr int DefaultHeight = 1080;
 // Qt event loop tick interval in milliseconds
 static constexpr int EventLoopTickMs = 25;
 
 
-PipeWireVncServer::PipeWireVncServer(QObject* parent)
-	: QObject(parent)
-	, m_configuration(&VeyonCore::config())
+PipeWireVncServer::PipeWireVncServer(QObject* parent) :
+	QObject(parent), m_configuration(&VeyonCore::config())
 {
 }
 
@@ -95,7 +93,7 @@ bool PipeWireVncServer::runServer(int serverPort, const Password& password)
 	m_portalSession = new PortalSession(m_configuration.persistRestoreToken(), nullptr);
 	connect(m_portalSession, &PortalSession::started, this, &PipeWireVncServer::onPortalStarted,
 			Qt::QueuedConnection);
-	connect(m_portalSession, &PortalSession::failed,  this, &PipeWireVncServer::onPortalFailed,
+	connect(m_portalSession, &PortalSession::failed, this, &PipeWireVncServer::onPortalFailed,
 			Qt::QueuedConnection);
 
 	// PipeWireFramebuffer consumes the PipeWire stream and feeds the rfbScreen.
@@ -141,7 +139,7 @@ void PipeWireVncServer::onPortalStarted()
 {
 	vInfo() << "XDG Portal RemoteDesktop session started; opening PipeWire stream";
 
-	const int  fd     = m_portalSession->pipewireFd();
+	const int fd = m_portalSession->pipewireFd();
 	const auto nodeId = m_portalSession->pipeWireNodeId();
 
 	if (!m_framebuffer->open(fd, nodeId, m_rfbScreen))
@@ -195,31 +193,31 @@ bool PipeWireVncServer::initVncServer(int serverPort, const Password& password)
 	m_vncPasswords[0] = m_vncPassword;
 	m_vncPasswords[1] = nullptr;
 
-	m_rfbScreen->desktopName     = "VeyonVNC";
-	m_rfbScreen->frameBuffer     = framebufferData;
-	m_rfbScreen->port            = serverPort;
-	m_rfbScreen->ipv6port        = serverPort;
+	m_rfbScreen->desktopName = "VeyonVNC";
+	m_rfbScreen->frameBuffer = framebufferData;
+	m_rfbScreen->port = serverPort;
+	m_rfbScreen->ipv6port = serverPort;
 	m_rfbScreen->listenInterface = htonl(INADDR_LOOPBACK);
 	m_rfbScreen->listen6Interface = const_cast<char*>("::1");
 
-	m_rfbScreen->authPasswdData  = m_vncPasswords;
-	m_rfbScreen->passwordCheck   = rfbCheckPasswordByList;
+	m_rfbScreen->authPasswdData = m_vncPasswords;
+	m_rfbScreen->passwordCheck = rfbCheckPasswordByList;
 
 	// PipeWireFramebuffer::convertFrame() writes R,G,B,x bytes (rgbSwapped() of the
 	// BGRx stream), and rfbNewFramebuffer() resets to exactly that (little-endian) on a resize
-	m_rfbScreen->serverFormat.redShift     = 0;
-	m_rfbScreen->serverFormat.greenShift   = 8;
-	m_rfbScreen->serverFormat.blueShift    = 16;
-	m_rfbScreen->serverFormat.redMax       = 255;
-	m_rfbScreen->serverFormat.greenMax     = 255;
-	m_rfbScreen->serverFormat.blueMax      = 255;
-	m_rfbScreen->serverFormat.trueColour   = true;
+	m_rfbScreen->serverFormat.redShift = 0;
+	m_rfbScreen->serverFormat.greenShift = 8;
+	m_rfbScreen->serverFormat.blueShift = 16;
+	m_rfbScreen->serverFormat.redMax = 255;
+	m_rfbScreen->serverFormat.greenMax = 255;
+	m_rfbScreen->serverFormat.blueMax = 255;
+	m_rfbScreen->serverFormat.trueColour = true;
 	m_rfbScreen->serverFormat.bitsPerPixel = 32;
 
-	m_rfbScreen->alwaysShared        = true;
+	m_rfbScreen->alwaysShared = true;
 	m_rfbScreen->handleEventsEagerly = true;
-	m_rfbScreen->deferUpdateTime     = 5;
-	m_rfbScreen->cursor              = nullptr;
+	m_rfbScreen->deferUpdateTime = 5;
+	m_rfbScreen->cursor = nullptr;
 
 	// Store a back-pointer so the static C callbacks can access this instance.
 	m_rfbScreen->screenData = this;

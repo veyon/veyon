@@ -33,22 +33,22 @@ class SlideshowModel : public QSortFilterProxyModel
 {
 	Q_OBJECT
 public:
-	SlideshowModel( QAbstractItemModel* sourceModel, QObject* parent = nullptr );
+	SlideshowModel(QAbstractItemModel* sourceModel, QObject* parent = nullptr);
 
-	void setIconSize( QSize size );
+	void setIconSize(QSize size);
 
-	QVariant data( const QModelIndex &index, int role = Qt::DisplayRole ) const override;
+	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 
 public:
-	void setRunning( bool running, int duration );
+	void setRunning(bool running, int duration);
 	void showPrevious();
 	void showNext();
 
 protected:
-	bool filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const override;
+	bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override;
 
 private:
-	void setCurrentRow( int row );
+	void setCurrentRow(int row);
 
 	QSize m_iconSize;
 
@@ -56,5 +56,4 @@ private:
 
 	int m_currentRow{0};
 	ComputerControlInterface::Pointer m_currentControlInterface;
-
 };

@@ -36,18 +36,17 @@ class ServerAccessControlManager;
 class VeyonServerProtocol : public VncServerProtocol
 {
 public:
-	VeyonServerProtocol( QTcpSocket* socket,
-						  VncServerClient* client,
-						  ServerAuthenticationManager& serverAuthenticationManager,
-						  ServerAccessControlManager& serverAccessControlManager );
+	VeyonServerProtocol(QTcpSocket* socket,
+						VncServerClient* client,
+						ServerAuthenticationManager& serverAuthenticationManager,
+						ServerAccessControlManager& serverAccessControlManager);
 
 protected:
 	QVector<RfbVeyonAuth::Type> supportedAuthTypes() const override;
-	void processAuthenticationMessage( VariantArrayMessage& message ) override;
+	void processAuthenticationMessage(VariantArrayMessage& message) override;
 	void performAccessControl() override;
 
 private:
 	ServerAuthenticationManager& m_serverAuthenticationManager;
 	ServerAccessControlManager& m_serverAccessControlManager;
-
-} ;
+};

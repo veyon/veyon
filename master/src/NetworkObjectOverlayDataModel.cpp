@@ -22,8 +22,8 @@
  *
  */
 
-#include "NetworkObjectOverlayDataModel.h"
 #include "NetworkObjectModel.h"
+#include "NetworkObjectOverlayDataModel.h"
 
 #if defined(QT_TESTLIB_LIB)
 #include <QAbstractItemModelTester>
@@ -31,14 +31,14 @@
 #endif
 
 
-NetworkObjectOverlayDataModel::NetworkObjectOverlayDataModel(const QStringList& overlayDataHeaders, QObject *parent) :
-	KExtraColumnsProxyModel( parent ),
-	m_overlayDataRole( Qt::DisplayRole )
+NetworkObjectOverlayDataModel::NetworkObjectOverlayDataModel(const QStringList& overlayDataHeaders, QObject* parent) :
+	KExtraColumnsProxyModel(parent),
+	m_overlayDataRole(Qt::DisplayRole)
 {
 #if defined(QT_TESTLIB_LIB)
 	// base class relies on source model being set when tested by QAbstractItemModelTester
-	setSourceModel( new QStandardItemModel( this ) );
-	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
+	setSourceModel(new QStandardItemModel(this));
+	new QAbstractItemModelTester(this, QAbstractItemModelTester::FailureReportingMode::Warning, this);
 #endif
 	for (const auto& header : overlayDataHeaders)
 	{
@@ -99,7 +99,7 @@ bool NetworkObjectOverlayDataModel::setData(const QModelIndex& index, const QVar
 
 
 
-QVariant NetworkObjectOverlayDataModel::extraColumnData(const QModelIndex &parent, int row, int extraColumn, int role) const
+QVariant NetworkObjectOverlayDataModel::extraColumnData(const QModelIndex& parent, int row, int extraColumn, int role) const
 {
 	if (role != m_overlayDataRole)
 	{
@@ -108,7 +108,7 @@ QVariant NetworkObjectOverlayDataModel::extraColumnData(const QModelIndex &paren
 
 	const auto networkObjectUid = lookupNetworkObjectId(parent, row);
 
-	if( networkObjectUid.isNull() == false && m_extraColumnsData.contains( networkObjectUid ) )
+	if (networkObjectUid.isNull() == false && m_extraColumnsData.contains(networkObjectUid))
 	{
 		return m_extraColumnsData[networkObjectUid].value(extraColumn);
 	}
@@ -118,7 +118,7 @@ QVariant NetworkObjectOverlayDataModel::extraColumnData(const QModelIndex &paren
 
 
 
-bool NetworkObjectOverlayDataModel::setExtraColumnData( const QModelIndex &parent, int row, int extraColumn, const QVariant &data, int role)
+bool NetworkObjectOverlayDataModel::setExtraColumnData(const QModelIndex& parent, int row, int extraColumn, const QVariant& data, int role)
 {
 	if (role != m_overlayDataRole)
 	{
@@ -134,14 +134,14 @@ bool NetworkObjectOverlayDataModel::setExtraColumnData( const QModelIndex &paren
 		if (extraColumn >= rowData.count())
 		{
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-			rowData.resize(extraColumn+1);
+			rowData.resize(extraColumn + 1);
 #else
 			std::fill_n(std::back_inserter(rowData), extraColumn + 1 - rowData.size(), QVariant{});
 #endif
 		}
 		rowData[extraColumn] = data;
 		m_extraColumnsData[networkObjectUid] = rowData;
-		extraColumnDataChanged( parent, row, extraColumn, { m_overlayDataRole } );
+		extraColumnDataChanged(parent, row, extraColumn, {m_overlayDataRole});
 	}
 
 	return true;

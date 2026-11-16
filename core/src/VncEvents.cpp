@@ -22,9 +22,9 @@
  *
  */
 
-#include <rfb/rfbclient.h>
-
 #include "VncEvents.h"
+
+#include <rfb/rfbclient.h>
 
 
 VncKeyEvent::VncKeyEvent(KeyCode key, bool pressed) :
@@ -34,51 +34,51 @@ VncKeyEvent::VncKeyEvent(KeyCode key, bool pressed) :
 }
 
 
-void VncKeyEvent::fire( rfbClient* client )
+void VncKeyEvent::fire(rfbClient* client)
 {
-	SendKeyEvent( client, m_key, m_pressed ? TRUE : FALSE );
+	SendKeyEvent(client, m_key, m_pressed ? TRUE : FALSE);
 }
 
 
 
 VncPointerEvent::VncPointerEvent(int x, int y, int buttonMask) :
-	m_x( x ),
-	m_y( y ),
-	m_buttonMask( buttonMask )
+	m_x(x),
+	m_y(y),
+	m_buttonMask(buttonMask)
 {
 }
 
 
 
-void VncPointerEvent::fire(rfbClient *client)
+void VncPointerEvent::fire(rfbClient* client)
 {
-	SendPointerEvent( client, m_x, m_y, m_buttonMask );
+	SendPointerEvent(client, m_x, m_y, m_buttonMask);
 }
 
 
 
-VncClientCutEvent::VncClientCutEvent( const QString& text ) :
-	m_text( text.toUtf8() )
+VncClientCutEvent::VncClientCutEvent(const QString& text) :
+	m_text(text.toUtf8())
 {
 }
 
 
 
-void VncClientCutEvent::fire( rfbClient* client )
+void VncClientCutEvent::fire(rfbClient* client)
 {
-	SendClientCutText( client, m_text.data(), m_text.size() ); // clazy:exclude=detaching-member
+	SendClientCutText(client, m_text.data(), m_text.size()); // clazy:exclude=detaching-member
 }
 
 
 
-void VncUpdateFormatAndEncodingsEvent::fire( rfbClient* client )
+void VncUpdateFormatAndEncodingsEvent::fire(rfbClient* client)
 {
 	SetFormatAndEncodings(client);
 }
 
 
 
-void VncFullFramebufferUpdateRequestEvent::fire( rfbClient* client )
+void VncFullFramebufferUpdateRequestEvent::fire(rfbClient* client)
 {
 	SendFramebufferUpdateRequest(client, 0, 0, client->width, client->height, FALSE);
 }

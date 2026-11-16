@@ -33,16 +33,16 @@
 #ifdef HAVE_LIBPROCPS
 #include <proc/readproc.h>
 #endif
-#include <sys/errno.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <unistd.h>
-
 #include "Filesystem.h"
 #include "LinuxCoreFunctions.h"
 #include "LinuxServerProcess.h"
 #include "LinuxUserFunctions.h"
 #include "VeyonConfiguration.h"
+
+#include <sys/errno.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h>
 
 
 LinuxServerProcess::LinuxServerProcess(const QProcessEnvironment& processEnvironment,
@@ -56,7 +56,7 @@ LinuxServerProcess::LinuxServerProcess(const QProcessEnvironment& processEnviron
 	m_sessionType(sessionType),
 	m_sessionUserId(sessionUserId)
 {
-	setProcessEnvironment( processEnvironment );
+	setProcessEnvironment(processEnvironment);
 }
 
 
@@ -70,22 +70,22 @@ LinuxServerProcess::~LinuxServerProcess()
 
 void LinuxServerProcess::start()
 {
-	if( VeyonCore::config().logToSystem() )
+	if (VeyonCore::config().logToSystem())
 	{
-		setProcessChannelMode( QProcess::ForwardedChannels );
+		setProcessChannelMode(QProcess::ForwardedChannels);
 	}
 
-	const auto catchsegv{ QStringLiteral("/usr/bin/catchsegv") };
-	if( qEnvironmentVariableIsSet("VEYON_VALGRIND_SERVERS") )
+	const auto catchsegv{QStringLiteral("/usr/bin/catchsegv")};
+	if (qEnvironmentVariableIsSet("VEYON_VALGRIND_SERVERS"))
 	{
-		QProcess::start( QStringLiteral("/usr/bin/valgrind"),
-			   { QStringLiteral("--error-limit=no"),
-				 QStringLiteral("--log-file=valgrind-veyon-server-%1.log").arg(m_sessionId),
-				 VeyonCore::filesystem().serverFilePath() } );
+		QProcess::start(QStringLiteral("/usr/bin/valgrind"),
+						{QStringLiteral("--error-limit=no"),
+						 QStringLiteral("--log-file=valgrind-veyon-server-%1.log").arg(m_sessionId),
+						 VeyonCore::filesystem().serverFilePath()});
 	}
-	else if( VeyonCore::isDebugging() && QFileInfo::exists( catchsegv ) )
+	else if (VeyonCore::isDebugging() && QFileInfo::exists(catchsegv))
 	{
-		QProcess::start( catchsegv, { VeyonCore::filesystem().serverFilePath() } );
+		QProcess::start(catchsegv, {VeyonCore::filesystem().serverFilePath()});
 	}
 	else if (m_sessionType == LinuxSessionFunctions::Type::Wayland)
 	{
@@ -98,8 +98,7 @@ void LinuxServerProcess::start()
 		setChildProcessModifier([this] { setProcessUserId(); });
 #endif
 
-		const auto desktopPortalHasRegistry = [this]()
-		{
+		const auto desktopPortalHasRegistry = [this]() {
 			const auto originalUserId = getuid();
 			if (seteuid(m_sessionUserId) != 0)
 			{
@@ -130,10 +129,10 @@ void LinuxServerProcess::start()
 			auto portalConnectionGuard = qScopeGuard([=]() { QDBusConnection::disconnectFromBus(portalBusName); });
 
 			QDBusInterface introspectIface(
-						QStringLiteral("org.freedesktop.portal.Desktop"),
-						QStringLiteral("/org/freedesktop/portal/desktop"),
-						QStringLiteral("org.freedesktop.DBus.Introspectable"),
-						portalBus);
+				QStringLiteral("org.freedesktop.portal.Desktop"),
+				QStringLiteral("/org/freedesktop/portal/desktop"),
+				QStringLiteral("org.freedesktop.DBus.Introspectable"),
+				portalBus);
 
 
 			if (!introspectIface.isValid())
@@ -160,8 +159,7 @@ void LinuxServerProcess::start()
 			vDebug() << "xdg-desktop-portal < 1.20, falling back to D-Bus activation";
 
 			const auto desktopEnvironment = LinuxSessionFunctions::getSessionDesktopEnvironment(m_sessionPath);
-			const auto desktopFile = VeyonCore::applicationsDirectory() + QDir::separator()
-									 + QStringLiteral("io.veyon.veyon-server.desktop");
+			const auto desktopFile = VeyonCore::applicationsDirectory() + QDir::separator() + QStringLiteral("io.veyon.veyon-server.desktop");
 			switch (desktopEnvironment)
 			{
 			case LinuxSessionFunctions::DesktopEnvironment::KDE:
@@ -179,7 +177,7 @@ void LinuxServerProcess::start()
 	}
 	else
 	{
-		QProcess::start( VeyonCore::filesystem().serverFilePath(), QStringList{} );
+		QProcess::start(VeyonCore::filesystem().serverFilePath(), QStringList{});
 	}
 }
 
@@ -187,40 +185,37 @@ void LinuxServerProcess::start()
 
 void LinuxServerProcess::stop()
 {
-	const auto sendSignalRecursively = []( pid_t pid, int sig ) {
-		if( pid > 0 )
+	const auto sendSignalRecursively = [](pid_t pid, int sig) {
+		if (pid > 0)
 		{
 #ifdef HAVE_LIBPROCPS
 			LinuxCoreFunctions::forEachChildProcess(
-				[=]( proc_t* procInfo ) {
-					if( procInfo->tid > 0 && ::kill( procInfo->tid, sig ) < 0 && errno != ESRCH )
-					{
-						vCritical() << "kill() failed with" << errno;
-					}
-					return true;
-				},
-				pid, 0, true );
+				[=](proc_t* procInfo) {
+				if (procInfo->tid > 0 && ::kill(procInfo->tid, sig) < 0 && errno != ESRCH)
+				{
+					vCritical() << "kill() failed with" << errno;
+				}
+				return true;
+			},
+				pid, 0, true);
 #elif defined(HAVE_LIBPROC2)
-			LinuxCoreFunctions::forEachChildProcess([=](const pids_stack* stack)
-			{
+			LinuxCoreFunctions::forEachChildProcess([=](const pids_stack* stack) {
 				const pid_t tid = PIDS_VAL(0, s_int, stack);
 				if (tid > 0 && ::kill(tid, sig) < 0 && errno != ESRCH)
 				{
 					vCritical() << "kill() failed with" << errno;
 				}
 				return true;
-			},
-			pid,
-			{}, true);
+			}, pid, {}, true);
 #endif
 
-			if( ::kill( pid, sig ) < 0 && errno != ESRCH )
+			if (::kill(pid, sig) < 0 && errno != ESRCH)
 			{
 				vCritical() << "kill() failed with" << errno;
 			}
 
 			// clean up process
-			waitpid( pid, nullptr, WNOHANG );
+			waitpid(pid, nullptr, WNOHANG);
 		}
 	};
 
@@ -232,11 +227,11 @@ void LinuxServerProcess::stop()
 	// tell x11vnc and child processes (in case spawned via catchsegv) to shutdown
 	sendSignalRecursively(pid, SIGINT);
 
-	if(LinuxCoreFunctions::waitForProcess(pid, ServerShutdownTimeout, ServerWaitSleepInterval) == false)
+	if (LinuxCoreFunctions::waitForProcess(pid, ServerShutdownTimeout, ServerWaitSleepInterval) == false)
 	{
 		sendSignalRecursively(pid, SIGTERM);
 
-		if( LinuxCoreFunctions::waitForProcess(pid, ServerTerminateTimeout, ServerWaitSleepInterval) == false)
+		if (LinuxCoreFunctions::waitForProcess(pid, ServerTerminateTimeout, ServerWaitSleepInterval) == false)
 		{
 			vWarning() << "server for session" << m_sessionPath << "still running - killing now";
 			sendSignalRecursively(pid, SIGKILL);
@@ -253,7 +248,7 @@ void LinuxServerProcess::setProcessUserId()
 	{
 		// Look up the user's full credential data before dropping privileges
 		const auto pw_entry = getpwuid(m_sessionUserId);
-		if(pw_entry != nullptr)
+		if (pw_entry != nullptr)
 		{
 			// Set supplementary groups first (needs EUID=root)
 			initgroups(pw_entry->pw_name, pw_entry->pw_gid);

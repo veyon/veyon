@@ -26,60 +26,58 @@
 #include "SlideshowModel.h"
 
 
-SlideshowModel::SlideshowModel( QAbstractItemModel* sourceModel, QObject* parent ) :
-	QSortFilterProxyModel( parent )
+SlideshowModel::SlideshowModel(QAbstractItemModel* sourceModel, QObject* parent) :
+	QSortFilterProxyModel(parent)
 {
-	setSourceModel( sourceModel );
+	setSourceModel(sourceModel);
 
-	connect( sourceModel, &QAbstractItemModel::rowsInserted, this,
-			 [this]( const QModelIndex &parent, int start, int end )
-			 {
-				 Q_UNUSED(parent)
-				 Q_UNUSED(end)
-				 if( start <= m_currentRow )
-				 {
-					 showNext();
-				 }
-			 } );
-	connect( sourceModel, &QAbstractItemModel::rowsRemoved, this,
-			 [this]( const QModelIndex &parent, int start, int end )
-			 {
-				 Q_UNUSED(parent)
-				 Q_UNUSED(end)
-				 if( start <= m_currentRow )
-				 {
-					 showPrevious();
-				 }
-			 } );
+	connect(sourceModel, &QAbstractItemModel::rowsInserted, this,
+			[this](const QModelIndex& parent, int start, int end) {
+		Q_UNUSED(parent)
+		Q_UNUSED(end)
+		if (start <= m_currentRow)
+		{
+			showNext();
+		}
+	});
+	connect(sourceModel, &QAbstractItemModel::rowsRemoved, this,
+			[this](const QModelIndex& parent, int start, int end) {
+		Q_UNUSED(parent)
+		Q_UNUSED(end)
+		if (start <= m_currentRow)
+		{
+			showPrevious();
+		}
+	});
 
-	connect( &m_timer, &QTimer::timeout, this, &SlideshowModel::showNext );
+	connect(&m_timer, &QTimer::timeout, this, &SlideshowModel::showNext);
 }
 
 
 
-void SlideshowModel::setIconSize( QSize size )
+void SlideshowModel::setIconSize(QSize size)
 {
 	m_iconSize = size;
 
-	Q_EMIT dataChanged( index( 0, 0 ), index( rowCount() - 1, 0 ), { Qt::DisplayRole, Qt::DecorationRole } );
+	Q_EMIT dataChanged(index(0, 0), index(rowCount() - 1, 0), {Qt::DisplayRole, Qt::DecorationRole});
 }
 
 
 
-QVariant SlideshowModel::data( const QModelIndex& index, int role ) const
+QVariant SlideshowModel::data(const QModelIndex& index, int role) const
 {
-	if( m_currentControlInterface.isNull() )
+	if (m_currentControlInterface.isNull())
 	{
 		return {};
 	}
 
-	const auto sourceIndex = mapToSource( index );
-	if( sourceIndex.isValid() == false )
+	const auto sourceIndex = mapToSource(index);
+	if (sourceIndex.isValid() == false)
 	{
 		return {};
 	}
 
-	if( role == Qt::DecorationRole )
+	if (role == Qt::DecorationRole)
 	{
 		auto framebuffer = sourceModel()->data(sourceIndex, ComputerListModel::FramebufferRole).value<QImage>();
 		if (framebuffer.isNull())
@@ -90,17 +88,17 @@ QVariant SlideshowModel::data( const QModelIndex& index, int role ) const
 		return framebuffer.scaled(m_iconSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 	}
 
-	return QSortFilterProxyModel::data( index, role );
+	return QSortFilterProxyModel::data(index, role);
 }
 
 
 
-void SlideshowModel::setRunning( bool running, int duration )
+void SlideshowModel::setRunning(bool running, int duration)
 {
 	m_timer.stop();
-	m_timer.setInterval( duration );
+	m_timer.setInterval(duration);
 
-	if( running )
+	if (running)
 	{
 		m_timer.start();
 	}
@@ -112,26 +110,26 @@ void SlideshowModel::showPrevious()
 {
 	auto valid = false;
 
-	for( int i = 0; i < sourceModel()->rowCount(); ++i )
+	for (int i = 0; i < sourceModel()->rowCount(); ++i)
 	{
-		setCurrentRow( m_currentRow - 1 );
+		setCurrentRow(m_currentRow - 1);
 
-		if( m_currentControlInterface &&
+		if (m_currentControlInterface &&
 			m_currentControlInterface->state() == ComputerControlInterface::State::Connected &&
-			m_currentControlInterface->hasValidFramebuffer() )
+			m_currentControlInterface->hasValidFramebuffer())
 		{
 			valid = true;
 			break;
 		}
 	}
 
-	if( valid == false )
+	if (valid == false)
 	{
 		m_currentRow = 0;
 		m_currentControlInterface.clear();
 	}
 
-	if( m_timer.isActive() )
+	if (m_timer.isActive())
 	{
 		m_timer.stop();
 		m_timer.start();
@@ -144,26 +142,26 @@ void SlideshowModel::showNext()
 {
 	auto valid = false;
 
-	for( int i = 0; i < sourceModel()->rowCount(); ++i )
+	for (int i = 0; i < sourceModel()->rowCount(); ++i)
 	{
-		setCurrentRow( m_currentRow + 1 );
+		setCurrentRow(m_currentRow + 1);
 
-		if( m_currentControlInterface &&
+		if (m_currentControlInterface &&
 			m_currentControlInterface->state() == ComputerControlInterface::State::Connected &&
-			m_currentControlInterface->hasValidFramebuffer() )
+			m_currentControlInterface->hasValidFramebuffer())
 		{
 			valid = true;
 			break;
 		}
 	}
 
-	if( valid == false )
+	if (valid == false)
 	{
 		m_currentRow = 0;
 		m_currentControlInterface.clear();
 	}
 
-	if( m_timer.isActive() )
+	if (m_timer.isActive())
 	{
 		m_timer.stop();
 		m_timer.start();
@@ -172,28 +170,26 @@ void SlideshowModel::showNext()
 
 
 
-bool SlideshowModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const
+bool SlideshowModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
 {
 	return sourceRow < sourceModel()->rowCount() &&
-		   m_currentControlInterface == sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ),
-															 ComputerListModel::ControlInterfaceRole )
-											.value<ComputerControlInterface::Pointer>();
+		m_currentControlInterface == sourceModel()->data(sourceModel()->index(sourceRow, 0, sourceParent), ComputerListModel::ControlInterfaceRole).value<ComputerControlInterface::Pointer>();
 }
 
 
 
-void SlideshowModel::setCurrentRow( int row )
+void SlideshowModel::setCurrentRow(int row)
 {
 #if QT_VERSION >= QT_VERSION_CHECK(6, 9, 0)
 	beginFilterChange();
 #endif
 
-	if( sourceModel()->rowCount() > 0 )
+	if (sourceModel()->rowCount() > 0)
 	{
-		m_currentRow = qMax( 0, row ) % qMax( 1, sourceModel()->rowCount() );
+		m_currentRow = qMax(0, row) % qMax(1, sourceModel()->rowCount());
 
-		m_currentControlInterface = sourceModel()->data( sourceModel()->index( m_currentRow, 0 ),
-														 ComputerListModel::ControlInterfaceRole )
+		m_currentControlInterface = sourceModel()->data(sourceModel()->index(m_currentRow, 0),
+														ComputerListModel::ControlInterfaceRole)
 										.value<ComputerControlInterface::Pointer>();
 	}
 	else

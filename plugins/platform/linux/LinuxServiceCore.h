@@ -41,14 +41,14 @@ class LinuxServiceCore : public QObject
 {
 	Q_OBJECT
 public:
-	explicit LinuxServiceCore( QObject* parent = nullptr );
+	explicit LinuxServiceCore(QObject* parent = nullptr);
 	~LinuxServiceCore() override;
 
 	void run();
 
 private Q_SLOTS:
-	void startServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath );
-	void stopServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath );
+	void startServer(const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath);
+	void stopServer(const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath);
 
 private:
 	static constexpr auto LoginManagerReconnectInterval = 3000;
@@ -59,17 +59,17 @@ private:
 
 	void connectToLoginManager();
 	void startServers();
-	void startServer( const QString& sessionPath );
-	void deferServerStart( const QString& sessionPath, int delay );
-	void stopServer( const QString& sessionPath );
+	void startServer(const QString& sessionPath);
+	void deferServerStart(const QString& sessionPath, int delay);
+	void stopServer(const QString& sessionPath);
 	void stopAllServers();
 
-	void checkSessionState( const QString& sessionPath );
+	void checkSessionState(const QString& sessionPath);
 
 	bool isActiveSessionUser(uid_t uid) const;
 
 	LinuxCoreFunctions::DBusInterfacePointer m_loginManager{LinuxCoreFunctions::systemdLoginManager()};
-	QMap<QString, LinuxServerProcess *> m_serverProcesses;
+	QMap<QString, LinuxServerProcess*> m_serverProcesses;
 	QStringList m_deferredServerSessions;
 	QSet<QString> m_sessionsWithUnknownState;
 	QSet<QString> m_sessionsWithPendingStateRecheck;
@@ -78,5 +78,4 @@ private:
 
 	ServiceDataManager m_dataManager{};
 	PlatformSessionManager m_sessionManager{};
-
 };

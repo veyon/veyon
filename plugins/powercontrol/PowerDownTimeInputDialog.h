@@ -26,16 +26,15 @@
 
 #include <QDialog>
 
-namespace Ui
-{
-	class PowerDownTimeInputDialog;
+namespace Ui {
+class PowerDownTimeInputDialog;
 }
 
 class PowerDownTimeInputDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	explicit PowerDownTimeInputDialog( QWidget *parent );
+	explicit PowerDownTimeInputDialog(QWidget* parent);
 	~PowerDownTimeInputDialog() override;
 
 	int seconds() const;
@@ -45,5 +44,4 @@ private:
 
 	Ui::PowerDownTimeInputDialog* ui;
 	int m_seconds;
-
-} ;
+};

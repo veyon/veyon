@@ -40,7 +40,7 @@ public:
 		Token,
 		Successful,
 		Failed,
-	} ;
+	};
 	Q_ENUM(AuthState)
 
 	enum class AccessControlState {
@@ -49,15 +49,15 @@ public:
 		Pending,
 		Waiting,
 		Failed
-	} ;
+	};
 	Q_ENUM(AccessControlState)
 
-	explicit VncServerClient( QObject* parent = nullptr ) :
-		QObject( parent ),
-		m_protocolState( VncServerProtocol::State::Disconnected ),
-		m_authState( AuthState::Init ),
-		m_authType( RfbVeyonAuth::Invalid ),
-		m_accessControlState( AccessControlState::Init ),
+	explicit VncServerClient(QObject* parent = nullptr) :
+		QObject(parent),
+		m_protocolState(VncServerProtocol::State::Disconnected),
+		m_authState(AuthState::Init),
+		m_authType(RfbVeyonAuth::Invalid),
+		m_accessControlState(AccessControlState::Init),
 		m_username(),
 		m_hostAddress(),
 		m_challenge()
@@ -69,7 +69,7 @@ public:
 		return m_protocolState;
 	}
 
-	void setProtocolState( VncServerProtocol::State protocolState )
+	void setProtocolState(VncServerProtocol::State protocolState)
 	{
 		m_protocolState = protocolState;
 	}
@@ -79,7 +79,7 @@ public:
 		return m_authState;
 	}
 
-	void setAuthState( AuthState authState )
+	void setAuthState(AuthState authState)
 	{
 		m_authState = authState;
 	}
@@ -89,7 +89,7 @@ public:
 		return m_authType;
 	}
 
-	void setAuthType( RfbVeyonAuth::Type authType )
+	void setAuthType(RfbVeyonAuth::Type authType)
 	{
 		m_authType = authType;
 	}
@@ -99,7 +99,7 @@ public:
 		return m_accessControlState;
 	}
 
-	void setAccessControlState( AccessControlState accessControlState )
+	void setAccessControlState(AccessControlState accessControlState)
 	{
 		m_accessControlState = accessControlState;
 	}
@@ -124,7 +124,7 @@ public:
 		return m_username;
 	}
 
-	void setUsername( const QString& username )
+	void setUsername(const QString& username)
 	{
 		m_username = username;
 	}
@@ -134,7 +134,7 @@ public:
 		return m_hostAddress;
 	}
 
-	void setHostAddress( const QString& hostAddress )
+	void setHostAddress(const QString& hostAddress)
 	{
 		m_hostAddress = hostAddress;
 	}
@@ -144,7 +144,7 @@ public:
 		return m_challenge;
 	}
 
-	void setChallenge( const QByteArray& challenge )
+	void setChallenge(const QByteArray& challenge)
 	{
 		m_challenge = challenge;
 	}
@@ -154,7 +154,7 @@ public:
 		return m_privateKey;
 	}
 
-	void setPrivateKey( const CryptoCore::PrivateKey& privateKey )
+	void setPrivateKey(const CryptoCore::PrivateKey& privateKey)
 	{
 		m_privateKey = privateKey;
 	}
@@ -162,11 +162,11 @@ public:
 public Q_SLOTS:
 	void finishAccessControl()
 	{
-		Q_EMIT accessControlFinished( this );
+		Q_EMIT accessControlFinished(this);
 	}
 
 Q_SIGNALS:
-	void accessControlFinished( VncServerClient* );
+	void accessControlFinished(VncServerClient*);
 
 private:
 	VncServerProtocol::State m_protocolState;
@@ -179,7 +179,6 @@ private:
 	QString m_hostAddress;
 	QByteArray m_challenge;
 	CryptoCore::PrivateKey m_privateKey;
+};
 
-} ;
-
-using VncServerClientList = QList<VncServerClient *>;
+using VncServerClientList = QList<VncServerClient*>;

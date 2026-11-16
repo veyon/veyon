@@ -30,15 +30,15 @@ class NetworkObjectFilterProxyModel : public QSortFilterProxyModel
 {
 	Q_OBJECT
 public:
-	explicit NetworkObjectFilterProxyModel( QObject* parent );
+	explicit NetworkObjectFilterProxyModel(QObject* parent);
 
-	void setGroupFilter( const QStringList& groupList );
-	void setComputerExcludeFilter( const QStringList& computerExcludeList );
+	void setGroupFilter(const QStringList& groupList);
+	void setComputerExcludeFilter(const QStringList& computerExcludeList);
 	void setEmptyGroupsExcluded(bool enabled);
 	void setComputersExcluded(bool enabled);
 
 protected:
-	bool filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const override;
+	bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override;
 
 private:
 	bool filterAcceptsRowRecursive(const QModelIndex& index) const;
@@ -48,5 +48,4 @@ private:
 	QStringList m_computerExcludeList;
 	bool m_excludeEmptyGroups = false;
 	bool m_excludeComputers = false;
-
 };

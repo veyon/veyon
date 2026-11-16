@@ -26,8 +26,7 @@
 
 #include "CryptoCore.h"
 
-namespace Configuration
-{
+namespace Configuration {
 
 class VEYON_CORE_EXPORT Password
 {
@@ -42,12 +41,11 @@ public:
 		return m_encrypted;
 	}
 
-	static Password fromPlainText( const CryptoCore::PlaintextPassword& plainText );
-	static Password fromEncrypted( const QString& encrypted );
+	static Password fromPlainText(const CryptoCore::PlaintextPassword& plainText);
+	static Password fromEncrypted(const QString& encrypted);
 
 private:
 	QString m_encrypted;
-
 };
 
 }

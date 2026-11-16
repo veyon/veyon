@@ -22,28 +22,28 @@
  *
  */
 
-#include "NetworkObjectModel.h"
 #include "NetworkObjectFilterProxyModel.h"
+#include "NetworkObjectModel.h"
 
 #if defined(QT_TESTLIB_LIB)
 #include <QAbstractItemModelTester>
 #endif
 
 
-NetworkObjectFilterProxyModel::NetworkObjectFilterProxyModel( QObject* parent ) :
-	QSortFilterProxyModel( parent ),
+NetworkObjectFilterProxyModel::NetworkObjectFilterProxyModel(QObject* parent) :
+	QSortFilterProxyModel(parent),
 	m_groupList(),
 	m_computerExcludeList(),
-	m_excludeEmptyGroups( false )
+	m_excludeEmptyGroups(false)
 {
 #if defined(QT_TESTLIB_LIB)
-	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
+	new QAbstractItemModelTester(this, QAbstractItemModelTester::FailureReportingMode::Warning, this);
 #endif
 }
 
 
 
-void NetworkObjectFilterProxyModel::setGroupFilter( const QStringList& groupList )
+void NetworkObjectFilterProxyModel::setGroupFilter(const QStringList& groupList)
 {
 	beginResetModel();
 	m_groupList = groupList;
@@ -52,7 +52,7 @@ void NetworkObjectFilterProxyModel::setGroupFilter( const QStringList& groupList
 
 
 
-void NetworkObjectFilterProxyModel::setComputerExcludeFilter( const QStringList& computerExcludeList )
+void NetworkObjectFilterProxyModel::setComputerExcludeFilter(const QStringList& computerExcludeList)
 {
 	beginResetModel();
 	m_computerExcludeList = computerExcludeList;
@@ -78,7 +78,7 @@ void NetworkObjectFilterProxyModel::setComputersExcluded(bool enabled)
 
 
 
-bool NetworkObjectFilterProxyModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const
+bool NetworkObjectFilterProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
 {
 	const auto index = sourceModel()->index(sourceRow, 0, sourceParent);
 	if (filterAcceptsRowRecursive(index))
@@ -109,20 +109,20 @@ bool NetworkObjectFilterProxyModel::filterAcceptsRowRecursive(const QModelIndex&
 		}
 
 		const auto parentAccepted = m_groupList.isEmpty() ||
-									parentContainerAccepted(index.parent());
+			parentContainerAccepted(index.parent());
 		if (parentAccepted == false)
 		{
 			return false;
 		}
 
-		if( m_computerExcludeList.isEmpty() )
+		if (m_computerExcludeList.isEmpty())
 		{
 			return true;
 		}
 
 		const auto hostAddress = sourceModel()->data(index, NetworkObjectModel::HostAddressRole).toString();
 
-		return m_computerExcludeList.contains( hostAddress, Qt::CaseInsensitive ) == false;
+		return m_computerExcludeList.contains(hostAddress, Qt::CaseInsensitive) == false;
 	}
 	else if (NetworkObject::isContainer(objectType))
 	{
@@ -165,6 +165,6 @@ bool NetworkObjectFilterProxyModel::filterAcceptsRowRecursive(const QModelIndex&
 bool NetworkObjectFilterProxyModel::parentContainerAccepted(const QModelIndex& index) const
 {
 	return index.isValid() &&
-			(m_groupList.contains(sourceModel()->data(index).toString()) ||
-			 parentContainerAccepted(index.parent()));
+		(m_groupList.contains(sourceModel()->data(index).toString()) ||
+		 parentContainerAccepted(index.parent()));
 }

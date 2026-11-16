@@ -41,7 +41,7 @@ public:
 	void enableInputDevices() override;
 	void disableInputDevices() override;
 
-	KeyboardShortcutTrapper* createKeyboardShortcutTrapper( QObject* parent ) override;
+	KeyboardShortcutTrapper* createKeyboardShortcutTrapper(QObject* parent) override;
 
 	static void checkInterceptionInstallation();
 
@@ -63,7 +63,7 @@ private:
 
 	static bool installInterception();
 	static bool uninstallInterception();
-	static int interceptionInstaller( const QString& argument );
+	static int interceptionInstaller(const QString& argument);
 
 	bool m_inputDevicesDisabled{false};
 	InterceptionContext m_interceptionContext{nullptr};
@@ -72,5 +72,4 @@ private:
 	bool m_hidServiceStatusInitialized{false};
 	bool m_hidServiceActivated{false};
 	QString m_originalPowerSchemeId{};
-
 };

@@ -26,25 +26,25 @@
 #include <QMessageBox>
 
 #include "AccessControlPage.h"
-#include "AccessControlRule.h"
-#include "VeyonCore.h"
-#include "VeyonConfiguration.h"
 #include "AccessControlProvider.h"
-#include "Configuration/UiMapping.h"
+#include "AccessControlRule.h"
 #include "AccessControlRuleEditDialog.h"
+#include "Configuration/UiMapping.h"
 #include "UserGroupsBackendManager.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCore.h"
 
 #include "ui_AccessControlPage.h"
 
 AccessControlPage::AccessControlPage() :
 	ConfigurationPage(),
 	ui(new Ui::AccessControlPage),
-	m_accessControlRulesModel( this ),
-	m_accessControlRulesTestDialog( this )
+	m_accessControlRulesModel(this),
+	m_accessControlRulesTestDialog(this)
 {
 	ui->setupUi(this);
 
-	ui->accessControlRulesView->setModel( &m_accessControlRulesModel );
+	ui->accessControlRulesView->setModel(&m_accessControlRulesModel);
 
 	updateAccessGroupsLists();
 	updateAccessControlRules();
@@ -72,8 +72,7 @@ void AccessControlPage::resetWidgets()
 	m_accessGroups = VeyonCore::config().authorizedUserGroups();
 	auto cleanedUpAccessGroups = m_accessGroups;
 
-	const auto availableGroups = VeyonCore::userGroupsBackendManager().configuredBackend()->
-								 userGroups(VeyonCore::config().useDomainUserGroups());
+	const auto availableGroups = VeyonCore::userGroupsBackendManager().configuredBackend()->userGroups(VeyonCore::config().useDomainUserGroups());
 
 	const auto accessGroupNotAvailable = [&availableGroups](const QString& group) {
 		return availableGroups.contains(group) == false;
@@ -113,13 +112,13 @@ void AccessControlPage::addAccessGroup()
 {
 	const auto items = ui->allGroupsList->selectedItems();
 
-	for( auto item : items )
+	for (auto item : items)
 	{
-		m_accessGroups.removeAll( item->text() );
+		m_accessGroups.removeAll(item->text());
 		m_accessGroups += item->text();
 	}
 
-	VeyonCore::config().setAuthorizedUserGroups( m_accessGroups );
+	VeyonCore::config().setAuthorizedUserGroups(m_accessGroups);
 
 	updateAccessGroupsLists();
 }
@@ -130,12 +129,12 @@ void AccessControlPage::removeAccessGroup()
 {
 	const auto items = ui->accessGroupsList->selectedItems();
 
-	for( auto item : items )
+	for (auto item : items)
 	{
-		m_accessGroups.removeAll( item->text() );
+		m_accessGroups.removeAll(item->text());
 	}
 
-	VeyonCore::config().setAuthorizedUserGroups( m_accessGroups );
+	VeyonCore::config().setAuthorizedUserGroups(m_accessGroups);
 
 	updateAccessGroupsLists();
 }
@@ -144,40 +143,39 @@ void AccessControlPage::removeAccessGroup()
 
 void AccessControlPage::updateAccessGroupsLists()
 {
-	ui->accessGroupsList->setUpdatesEnabled( false );
+	ui->accessGroupsList->setUpdatesEnabled(false);
 
 	ui->allGroupsList->clear();
 	ui->accessGroupsList->clear();
 
 	VeyonCore::userGroupsBackendManager().reloadConfiguration();
 
-	const auto groups = VeyonCore::userGroupsBackendManager().configuredBackend()->
-						userGroups(VeyonCore::config().useDomainUserGroups());
+	const auto groups = VeyonCore::userGroupsBackendManager().configuredBackend()->userGroups(VeyonCore::config().useDomainUserGroups());
 
-	for( const auto& group : groups )
+	for (const auto& group : groups)
 	{
-		if( m_accessGroups.contains( group ) )
+		if (m_accessGroups.contains(group))
 		{
-			ui->accessGroupsList->addItem( group );
+			ui->accessGroupsList->addItem(group);
 		}
 		else
 		{
-			ui->allGroupsList->addItem( group );
+			ui->allGroupsList->addItem(group);
 		}
 	}
 
-	ui->accessGroupsList->setUpdatesEnabled( true );
+	ui->accessGroupsList->setUpdatesEnabled(true);
 }
 
 
 void AccessControlPage::addAccessControlRule()
 {
 	AccessControlRule newRule;
-	newRule.setAction( AccessControlRule::Action::Allow );
+	newRule.setAction(AccessControlRule::Action::Allow);
 
-	if( AccessControlRuleEditDialog( newRule, this ).exec() )
+	if (AccessControlRuleEditDialog(newRule, this).exec())
 	{
-		VeyonCore::config().setAccessControlRules( VeyonCore::config().accessControlRules() << newRule.toJson() );
+		VeyonCore::config().setAccessControlRules(VeyonCore::config().accessControlRules() << newRule.toJson());
 
 		updateAccessControlRules();
 	}
@@ -197,7 +195,7 @@ void AccessControlPage::removeAccessControlRule()
 
 	accessControlRules.removeAt(row);
 
-	VeyonCore::config().setAccessControlRules( accessControlRules );
+	VeyonCore::config().setAccessControlRules(accessControlRules);
 
 	updateAccessControlRules();
 }
@@ -210,18 +208,18 @@ void AccessControlPage::editAccessControlRule()
 
 	int row = ui->accessControlRulesView->currentIndex().row();
 
-	if( row >= accessControlRules.count() )
+	if (row >= accessControlRules.count())
 	{
 		return;
 	}
 
-	AccessControlRule rule( accessControlRules[row] );
+	AccessControlRule rule(accessControlRules[row]);
 
-	if( AccessControlRuleEditDialog( rule, this ).exec() )
+	if (AccessControlRuleEditDialog(rule, this).exec())
 	{
-		accessControlRules.replace( row, rule.toJson() );
+		accessControlRules.replace(row, rule.toJson());
 
-		modifyAccessControlRules( accessControlRules, row );
+		modifyAccessControlRules(accessControlRules, row);
 	}
 }
 
@@ -242,7 +240,7 @@ void AccessControlPage::moveAccessControlRuleDown()
 			accessControlRules[row] = accessControlRules[newRow];
 			accessControlRules[newRow] = swapValue;
 
-			modifyAccessControlRules( accessControlRules, newRow );
+			modifyAccessControlRules(accessControlRules, newRow);
 		}
 	}
 }
@@ -262,7 +260,7 @@ void AccessControlPage::moveAccessControlRuleUp()
 		accessControlRules[row] = accessControlRules[newRow];
 		accessControlRules[newRow] = swapValue;
 
-		modifyAccessControlRules( accessControlRules, newRow );
+		modifyAccessControlRules(accessControlRules, newRow);
 	}
 }
 
@@ -270,23 +268,23 @@ void AccessControlPage::moveAccessControlRuleUp()
 
 void AccessControlPage::testUserGroupsAccessControl()
 {
-	const auto username = QInputDialog::getText( this, tr( "Enter username" ),
-												 tr( "Please enter a user login name whose access permissions to test:" ) );
+	const auto username = QInputDialog::getText(this, tr("Enter username"),
+												tr("Please enter a user login name whose access permissions to test:"));
 
 	if (username.isEmpty())
 	{
 		return;
 	}
 
-	if( AccessControlProvider().processAuthorizedGroups( username ) )
+	if (AccessControlProvider().processAuthorizedGroups(username))
 	{
-		QMessageBox::information( this, tr( "Access allowed" ),
-								  tr( "The specified user is allowed to access computers with this configuration." ) );
+		QMessageBox::information(this, tr("Access allowed"),
+								 tr("The specified user is allowed to access computers with this configuration."));
 	}
 	else
 	{
-		QMessageBox::warning( this, tr( "Access denied" ),
-								  tr( "The specified user is not allowed to access computers with this configuration." ) );
+		QMessageBox::warning(this, tr("Access denied"),
+							 tr("The specified user is not allowed to access computers with this configuration."));
 	}
 }
 
@@ -299,13 +297,13 @@ void AccessControlPage::testAccessControlRules()
 
 
 
-void AccessControlPage::modifyAccessControlRules(const QJsonArray &accessControlRules, int selectedRow)
+void AccessControlPage::modifyAccessControlRules(const QJsonArray& accessControlRules, int selectedRow)
 {
-	VeyonCore::config().setAccessControlRules( accessControlRules );
+	VeyonCore::config().setAccessControlRules(accessControlRules);
 
 	updateAccessControlRules();
 
-	ui->accessControlRulesView->setCurrentIndex( m_accessControlRulesModel.index( selectedRow ) );
+	ui->accessControlRulesView->setCurrentIndex(m_accessControlRulesModel.index(selectedRow));
 }
 
 

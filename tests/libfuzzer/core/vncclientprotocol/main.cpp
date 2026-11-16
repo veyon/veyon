@@ -14,11 +14,10 @@ public:
 	{
 		setState(State(state));
 	}
-
 };
 
 
-extern "C" int LLVMFuzzerTestOneInput(const char *data, size_t size)
+extern "C" int LLVMFuzzerTestOneInput(const char* data, size_t size)
 {
 	if (size < 3)
 	{
@@ -35,10 +34,10 @@ extern "C" int LLVMFuzzerTestOneInput(const char *data, size_t size)
 
 	protocol.init(state);
 
-	buffer.write(QByteArray::fromRawData(data+2, size-2));
+	buffer.write(QByteArray::fromRawData(data + 2, size - 2));
 	buffer.seek(0);
 
-	if(mode)
+	if (mode)
 	{
 		protocol.read();
 	}

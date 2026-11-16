@@ -23,16 +23,16 @@
  */
 
 #include "AuthenticationCredentials.h"
-#include "ServerAuthenticationManager.h"
 #include "CryptoCore.h"
 #include "Filesystem.h"
 #include "PlatformUserFunctions.h"
+#include "ServerAuthenticationManager.h"
 #include "VariantArrayMessage.h"
 #include "VeyonConfiguration.h"
 
 
-ServerAuthenticationManager::ServerAuthenticationManager( QObject* parent ) :
-	QObject( parent )
+ServerAuthenticationManager::ServerAuthenticationManager(QObject* parent) :
+	QObject(parent)
 {
 }
 
@@ -42,19 +42,19 @@ QVector<RfbVeyonAuth::Type> ServerAuthenticationManager::supportedAuthTypes() co
 {
 	QVector<RfbVeyonAuth::Type> authTypes;
 
-	if( VeyonCore::config().authenticationMethod() == VeyonCore::AuthenticationMethod::KeyFileAuthentication )
+	if (VeyonCore::config().authenticationMethod() == VeyonCore::AuthenticationMethod::KeyFileAuthentication)
 	{
-		authTypes.append( RfbVeyonAuth::KeyFile );
+		authTypes.append(RfbVeyonAuth::KeyFile);
 	}
 
-	if( VeyonCore::config().authenticationMethod() == VeyonCore::AuthenticationMethod::LogonAuthentication )
+	if (VeyonCore::config().authenticationMethod() == VeyonCore::AuthenticationMethod::LogonAuthentication)
 	{
-		authTypes.append( RfbVeyonAuth::Logon );
+		authTypes.append(RfbVeyonAuth::Logon);
 	}
 
-	if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Type::Token ) )
+	if (VeyonCore::authenticationCredentials().hasCredentials(AuthenticationCredentials::Type::Token))
 	{
-		authTypes.append( RfbVeyonAuth::Token );
+		authTypes.append(RfbVeyonAuth::Token);
 	}
 
 	return authTypes;
@@ -62,40 +62,40 @@ QVector<RfbVeyonAuth::Type> ServerAuthenticationManager::supportedAuthTypes() co
 
 
 
-void ServerAuthenticationManager::processAuthenticationMessage( VncServerClient* client,
-																VariantArrayMessage& message )
+void ServerAuthenticationManager::processAuthenticationMessage(VncServerClient* client,
+															   VariantArrayMessage& message)
 {
 	vDebug() << "state" << client->authState()
 			 << "type" << client->authType()
 			 << "host" << client->hostAddress()
 			 << "user" << client->username();
 
-	switch( client->authType() )
+	switch (client->authType())
 	{
 		// authentication via DSA-challenge/-response
 	case RfbVeyonAuth::KeyFile:
-		client->setAuthState( performKeyAuthentication( client, message ) );
+		client->setAuthState(performKeyAuthentication(client, message));
 		break;
 
 	case RfbVeyonAuth::Logon:
-		client->setAuthState( performLogonAuthentication( client, message ) );
+		client->setAuthState(performLogonAuthentication(client, message));
 		break;
 
 	case RfbVeyonAuth::Token:
-		client->setAuthState( performTokenAuthentication( client, message ) );
+		client->setAuthState(performTokenAuthentication(client, message));
 		break;
 
 	default:
 		// unknown or unsupported auth type
-		client->setAuthState( VncServerClient::AuthState::Failed );
+		client->setAuthState(VncServerClient::AuthState::Failed);
 		break;
 	}
 
-	switch( client->authState() )
+	switch (client->authState())
 	{
 	case VncServerClient::AuthState::Failed:
 	case VncServerClient::AuthState::Successful:
-		Q_EMIT finished( client );
+		Q_EMIT finished(client);
 		break;
 	default:
 		break;
@@ -104,14 +104,14 @@ void ServerAuthenticationManager::processAuthenticationMessage( VncServerClient*
 
 
 
-VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication( VncServerClient* client,
-																				  VariantArrayMessage& message )
+VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication(VncServerClient* client,
+																				 VariantArrayMessage& message)
 {
-	switch( client->authState() )
+	switch (client->authState())
 	{
 	case VncServerClient::AuthState::Init:
-		client->setChallenge( CryptoCore::generateChallenge() );
-		if( VariantArrayMessage( message.ioDevice() ).write( client->challenge() ).send() == false )
+		client->setChallenge(CryptoCore::generateChallenge());
+		if (VariantArrayMessage(message.ioDevice()).write(client->challenge()).send() == false)
 		{
 			vWarning() << "failed to send challenge";
 			return VncServerClient::AuthState::Failed;
@@ -123,7 +123,7 @@ VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication
 		// get authentication key name
 		const auto authKeyName = message.read().toString(); // Flawfinder: ignore
 
-		if( VeyonCore::isAuthenticationKeyNameValid( authKeyName ) == false )
+		if (VeyonCore::isAuthenticationKeyNameValid(authKeyName) == false)
 		{
 			vDebug() << "invalid auth key name!";
 			return VncServerClient::AuthState::Failed;
@@ -143,17 +143,17 @@ VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication
 			return VncServerClient::AuthState::Failed;
 		}
 
-		const auto publicKeyPath = VeyonCore::filesystem().publicKeyPath( authKeyName );
+		const auto publicKeyPath = VeyonCore::filesystem().publicKeyPath(authKeyName);
 
-		CryptoCore::PublicKey publicKey( publicKeyPath );
-		if( publicKey.isNull() || publicKey.isPublic() == false )
+		CryptoCore::PublicKey publicKey(publicKeyPath);
+		if (publicKey.isNull() || publicKey.isPublic() == false)
 		{
 			vWarning() << "failed to load public key from" << publicKeyPath;
 			return VncServerClient::AuthState::Failed;
 		}
 
 		vDebug() << "loaded public key from" << publicKeyPath;
-		if( publicKey.verifyMessage( client->challenge(), signature, CryptoCore::DefaultSignatureAlgorithm ) == false )
+		if (publicKey.verifyMessage(client->challenge(), signature, CryptoCore::DefaultSignatureAlgorithm) == false)
 		{
 			vWarning() << "FAIL";
 			return VncServerClient::AuthState::Failed;
@@ -172,15 +172,15 @@ VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication
 
 
 
-VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthentication( VncServerClient* client,
-																					VariantArrayMessage& message )
+VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthentication(VncServerClient* client,
+																				   VariantArrayMessage& message)
 {
-	switch( client->authState() )
+	switch (client->authState())
 	{
 	case VncServerClient::AuthState::Init:
-		client->setPrivateKey( CryptoCore::KeyGenerator().createRSA( CryptoCore::RsaKeySize ) );
+		client->setPrivateKey(CryptoCore::KeyGenerator().createRSA(CryptoCore::RsaKeySize));
 
-		if( VariantArrayMessage( message.ioDevice() ).write( client->privateKey().toPublicKey().toPEM() ).send() )
+		if (VariantArrayMessage(message.ioDevice()).write(client->privateKey().toPublicKey().toPEM()).send())
 		{
 			return VncServerClient::AuthState::Password;
 		}
@@ -192,9 +192,9 @@ VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthenticati
 	{
 		auto privateKey = client->privateKey();
 
-		CryptoCore::SecureArray encryptedPassword( message.read().toByteArray() ); // Flawfinder: ignore
+		CryptoCore::SecureArray encryptedPassword(message.read().toByteArray()); // Flawfinder: ignore
 		constexpr auto MaxEncryptedPasswordSize = 8192;
-		if( encryptedPassword.isEmpty() || encryptedPassword.size() > MaxEncryptedPasswordSize )
+		if (encryptedPassword.isEmpty() || encryptedPassword.size() > MaxEncryptedPasswordSize)
 		{
 			vWarning() << "invalid encrypted password size" << encryptedPassword.size();
 			return VncServerClient::AuthState::Failed;
@@ -202,9 +202,9 @@ VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthenticati
 
 		CryptoCore::SecureArray decryptedPassword;
 
-		if( privateKey.decrypt( encryptedPassword,
-								&decryptedPassword,
-								CryptoCore::DefaultEncryptionAlgorithm ) == false )
+		if (privateKey.decrypt(encryptedPassword,
+							   &decryptedPassword,
+							   CryptoCore::DefaultEncryptionAlgorithm) == false)
 		{
 			vWarning() << "failed to decrypt password";
 			return VncServerClient::AuthState::Failed;
@@ -212,7 +212,7 @@ VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthenticati
 
 		vInfo() << "authenticating user" << client->username();
 
-		if( VeyonCore::platform().userFunctions().authenticate( client->username(), decryptedPassword ) )
+		if (VeyonCore::platform().userFunctions().authenticate(client->username(), decryptedPassword))
 		{
 			vDebug() << "SUCCESS";
 			return VncServerClient::AuthState::Successful;
@@ -231,10 +231,10 @@ VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthenticati
 
 
 
-VncServerClient::AuthState ServerAuthenticationManager::performTokenAuthentication( VncServerClient* client,
-																					VariantArrayMessage& message )
+VncServerClient::AuthState ServerAuthenticationManager::performTokenAuthentication(VncServerClient* client,
+																				   VariantArrayMessage& message)
 {
-	switch( client->authState() )
+	switch (client->authState())
 	{
 	case VncServerClient::AuthState::Init:
 		return VncServerClient::AuthState::Token;
@@ -251,10 +251,10 @@ VncServerClient::AuthState ServerAuthenticationManager::performTokenAuthenticati
 			return VncServerClient::AuthState::Failed;
 		}
 
-		const auto token = AuthenticationCredentials::Token( tokenData );
+		const auto token = AuthenticationCredentials::Token(tokenData);
 
-		if( VeyonCore::authenticationCredentials().hasCredentials( AuthenticationCredentials::Type::Token ) &&
-				token == VeyonCore::authenticationCredentials().token() )
+		if (VeyonCore::authenticationCredentials().hasCredentials(AuthenticationCredentials::Type::Token) &&
+			token == VeyonCore::authenticationCredentials().token())
 		{
 			vDebug() << "SUCCESS";
 			return VncServerClient::AuthState::Successful;

@@ -27,8 +27,8 @@
 #include <QEvent>
 #include <QPixmap>
 
-#include "KeyboardShortcutTrapper.h"
 #include "ComputerControlInterface.h"
+#include "KeyboardShortcutTrapper.h"
 
 class QHoverEvent;
 class QKeyEvent;
@@ -43,8 +43,7 @@ class VEYON_CORE_EXPORT VncView
 public:
 	using KeyCode = VncConnection::KeyCode;
 
-	enum Shortcut
-	{
+	enum Shortcut {
 		ShortcutCtrlAltDel,
 		ShortcutCtrlEscape,
 		ShortcutAltTab,
@@ -54,9 +53,9 @@ public:
 		ShortcutMenu,
 		ShortcutAltCtrlF1,
 		ShortcutCount
-	} ;
+	};
 
-	VncView( const ComputerControlInterface::Pointer& computerControlInterface );
+	VncView(const ComputerControlInterface::Pointer& computerControlInterface);
 	virtual ~VncView();
 
 	ComputerControlInterface::Pointer computerControlInterface() const
@@ -83,44 +82,44 @@ public:
 		return m_viewport;
 	}
 
-	void setViewport( QRect viewport );
+	void setViewport(QRect viewport);
 
-	virtual void setViewOnly( bool viewOnly );
-	void sendShortcut( VncView::Shortcut shortcut );
+	virtual void setViewOnly(bool viewOnly);
+	void sendShortcut(VncView::Shortcut shortcut);
 
 protected:
 	template<class SubClass>
-	void connectUpdateFunctions( SubClass* object )
+	void connectUpdateFunctions(SubClass* object)
 	{
-		QObject::connect( connection(), &VncConnection::imageUpdated, object,
-						  [this](int x, int y, int w, int h) { updateImage( x, y, w, h ); } );
-		QObject::connect( connection(), &VncConnection::framebufferSizeChanged, object,
-						  [this]( int w, int h ) { updateFramebufferSize( w, h ); } );
+		QObject::connect(connection(), &VncConnection::imageUpdated, object,
+						 [this](int x, int y, int w, int h) { updateImage(x, y, w, h); });
+		QObject::connect(connection(), &VncConnection::framebufferSizeChanged, object,
+						 [this](int w, int h) { updateFramebufferSize(w, h); });
 
-		QObject::connect( connection(), &VncConnection::cursorShapeUpdated, object,
-						  [this]( const QImage& cursorShape, int xh, int yh ) { updateCursorShape( cursorShape, xh, yh ); } );
+		QObject::connect(connection(), &VncConnection::cursorShapeUpdated, object,
+						 [this](const QImage& cursorShape, int xh, int yh) { updateCursorShape(cursorShape, xh, yh); });
 	}
 
-	virtual void updateView( int x, int y, int w, int h ) = 0;
+	virtual void updateView(int x, int y, int w, int h) = 0;
 	virtual QSize viewSize() const = 0;
-	virtual void setViewCursor( const QCursor& cursor ) = 0;
+	virtual void setViewCursor(const QCursor& cursor) = 0;
 	virtual void updateGeometry() = 0;
 
-	void updateCursorShape( const QImage& cursorShape, int xh, int yh );
-	void updateFramebufferSize( int w, int h );
-	void updateImage( int x, int y, int w, int h );
+	void updateCursorShape(const QImage& cursorShape, int xh, int yh);
+	void updateFramebufferSize(int w, int h);
+	void updateImage(int x, int y, int w, int h);
 
 	void pressModifiers(const QList<KeyCode>& modifierKeyCodes);
 	void unpressModifiers(const QList<KeyCode>& modifierKeyCodes);
 	void unpressAllModifiers();
 
-	void handleShortcut( KeyboardShortcutTrapper::Shortcut shortcut );
-	bool handleEvent( QEvent* handleEvent );
+	void handleShortcut(KeyboardShortcutTrapper::Shortcut shortcut);
+	bool handleEvent(QEvent* handleEvent);
 
-	virtual void hoverEventHandler( QHoverEvent* event );
-	virtual void keyEventHandler( QKeyEvent* event );
-	virtual void mouseEventHandler( QMouseEvent* event );
-	virtual void wheelEventHandler( QWheelEvent* event );
+	virtual void hoverEventHandler(QHoverEvent* event);
+	virtual void keyEventHandler(QKeyEvent* event);
+	virtual void mouseEventHandler(QMouseEvent* event);
+	virtual void wheelEventHandler(QWheelEvent* event);
 
 	bool isScaledView() const;
 
@@ -130,8 +129,8 @@ protected:
 	}
 
 	qreal scaleFactor() const;
-	QPoint mapToFramebuffer( QPoint pos );
-	QRect mapFromFramebuffer( QRect rect );
+	QPoint mapToFramebuffer(QPoint pos);
+	QRect mapFromFramebuffer(QRect rect);
 
 	void updateLocalCursor();
 
@@ -154,5 +153,4 @@ private:
 	QMap<KeyCode, bool> m_modifierKeys;
 
 	KeyboardShortcutTrapper* m_keyboardShortcutTrapper{nullptr};
-
-} ;
+};

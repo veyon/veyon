@@ -32,6 +32,5 @@ class VeyonWorkerInterface
 public:
 	virtual ~VeyonWorkerInterface() = default;
 
-	virtual bool sendFeatureMessageReply( const FeatureMessage& reply ) = 0;
-
+	virtual bool sendFeatureMessageReply(const FeatureMessage& reply) = 0;
 };

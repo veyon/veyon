@@ -22,74 +22,74 @@
  *
  */
 
-#include "AccessControlRuleEditDialog.h"
 #include "AccessControlProvider.h"
+#include "AccessControlRuleEditDialog.h"
 
 #include "ui_AccessControlRuleEditDialog.h"
 
-AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule &rule, QWidget *parent) :
+AccessControlRuleEditDialog::AccessControlRuleEditDialog(AccessControlRule& rule, QWidget* parent) :
 	QDialog(parent),
 	ui(new Ui::AccessControlRuleEditDialog),
-	m_rule( rule ),
-	m_subjectNameMap( {
-{ AccessControlRule::Subject::AccessingUser, tr( "Accessing user" ) },
-{ AccessControlRule::Subject::AccessingComputer, tr( "Accessing computer" ) },
-{ AccessControlRule::Subject::LocalUser, tr( "Local (logged on) user" ) },
-{ AccessControlRule::Subject::LocalComputer, tr( "Local computer" ) },
-					  } )
+	m_rule(rule),
+	m_subjectNameMap({
+		{AccessControlRule::Subject::AccessingUser, tr("Accessing user")},
+		{AccessControlRule::Subject::AccessingComputer, tr("Accessing computer")},
+		{AccessControlRule::Subject::LocalUser, tr("Local (logged on) user")},
+		{AccessControlRule::Subject::LocalComputer, tr("Local computer")},
+	})
 {
 	ui->setupUi(this);
 
 	AccessControlProvider accessControlProvider;
 
 	// populate user subject combobox
-	ui->isMemberOfGroupSubjectComboBox->addItem( m_subjectNameMap[AccessControlRule::Subject::AccessingUser],
-			static_cast<int>( AccessControlRule::Subject::AccessingUser ) );
-	ui->isMemberOfGroupSubjectComboBox->addItem( m_subjectNameMap[AccessControlRule::Subject::LocalUser],
-			static_cast<int>( AccessControlRule::Subject::LocalUser ) );
+	ui->isMemberOfGroupSubjectComboBox->addItem(m_subjectNameMap[AccessControlRule::Subject::AccessingUser],
+												static_cast<int>(AccessControlRule::Subject::AccessingUser));
+	ui->isMemberOfGroupSubjectComboBox->addItem(m_subjectNameMap[AccessControlRule::Subject::LocalUser],
+												static_cast<int>(AccessControlRule::Subject::LocalUser));
 
 	// populate computer subject comboboxes
-	ui->isAtLocationSubjectComboBox->addItem( m_subjectNameMap[AccessControlRule::Subject::AccessingComputer],
-			static_cast<int>( AccessControlRule::Subject::AccessingComputer ) );
-	ui->isAtLocationSubjectComboBox->addItem( m_subjectNameMap[AccessControlRule::Subject::LocalComputer],
-			static_cast<int>( AccessControlRule::Subject::LocalComputer ) );
+	ui->isAtLocationSubjectComboBox->addItem(m_subjectNameMap[AccessControlRule::Subject::AccessingComputer],
+											 static_cast<int>(AccessControlRule::Subject::AccessingComputer));
+	ui->isAtLocationSubjectComboBox->addItem(m_subjectNameMap[AccessControlRule::Subject::LocalComputer],
+											 static_cast<int>(AccessControlRule::Subject::LocalComputer));
 
 	// populate groups and locations comboboxes
-	ui->groupsComboBox->addItems( accessControlProvider.userGroups() );
-	ui->locationsComboBox->addItems( accessControlProvider.locations() );
+	ui->groupsComboBox->addItems(accessControlProvider.userGroups());
+	ui->locationsComboBox->addItems(accessControlProvider.locations());
 
 	// load general settings
-	ui->ruleNameLineEdit->setText( rule.name() );
-	ui->ruleDescriptionLineEdit->setText( rule.description() );
+	ui->ruleNameLineEdit->setText(rule.name());
+	ui->ruleDescriptionLineEdit->setText(rule.description());
 
 	// load general condition processing settings
-	ui->ignoreConditionsCheckBox->setChecked( rule.areConditionsIgnored() );
-	ui->invertConditionsCheckBox->setChecked( rule.areConditionsInverted() );
+	ui->ignoreConditionsCheckBox->setChecked(rule.areConditionsIgnored());
+	ui->invertConditionsCheckBox->setChecked(rule.areConditionsInverted());
 
 	// load condition states
-	ui->isMemberOfGroupCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::Condition::MemberOfUserGroup ) );
-	ui->hasCommonGroupsCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::Condition::GroupsInCommon ) );
-	ui->isAtLocationCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::Condition::LocatedAt ) );
-	ui->hasCommonLocationsCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::Condition::SameLocation ) );
-	ui->isLocalHostAccessCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::Condition::AccessFromLocalHost ) );
-	ui->isLocalUserAccessCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::Condition::AccessFromLocalUser ) );
-	ui->isSameUserAccessCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::Condition::AccessFromAlreadyConnectedUser ) );
-	ui->noUserLoggedOnCheckBox->setChecked( rule.isConditionEnabled( AccessControlRule::Condition::NoUserLoggedOn ) );
-	ui->computerAlreadyBeingAccessed->setChecked( rule.isConditionEnabled( AccessControlRule::Condition::ComputerAlreadyBeingAccessed) );
+	ui->isMemberOfGroupCheckBox->setChecked(rule.isConditionEnabled(AccessControlRule::Condition::MemberOfUserGroup));
+	ui->hasCommonGroupsCheckBox->setChecked(rule.isConditionEnabled(AccessControlRule::Condition::GroupsInCommon));
+	ui->isAtLocationCheckBox->setChecked(rule.isConditionEnabled(AccessControlRule::Condition::LocatedAt));
+	ui->hasCommonLocationsCheckBox->setChecked(rule.isConditionEnabled(AccessControlRule::Condition::SameLocation));
+	ui->isLocalHostAccessCheckBox->setChecked(rule.isConditionEnabled(AccessControlRule::Condition::AccessFromLocalHost));
+	ui->isLocalUserAccessCheckBox->setChecked(rule.isConditionEnabled(AccessControlRule::Condition::AccessFromLocalUser));
+	ui->isSameUserAccessCheckBox->setChecked(rule.isConditionEnabled(AccessControlRule::Condition::AccessFromAlreadyConnectedUser));
+	ui->noUserLoggedOnCheckBox->setChecked(rule.isConditionEnabled(AccessControlRule::Condition::NoUserLoggedOn));
+	ui->computerAlreadyBeingAccessed->setChecked(rule.isConditionEnabled(AccessControlRule::Condition::ComputerAlreadyBeingAccessed));
 
 	// load selected condition subjects
-	ui->isMemberOfGroupSubjectComboBox->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::Condition::MemberOfUserGroup ) ) );
-	ui->isAtLocationSubjectComboBox->setCurrentText( m_subjectNameMap.value( rule.subject( AccessControlRule::Condition::LocatedAt ) ) );
+	ui->isMemberOfGroupSubjectComboBox->setCurrentText(m_subjectNameMap.value(rule.subject(AccessControlRule::Condition::MemberOfUserGroup)));
+	ui->isAtLocationSubjectComboBox->setCurrentText(m_subjectNameMap.value(rule.subject(AccessControlRule::Condition::LocatedAt)));
 
 	// load condition arguments
-	ui->groupsComboBox->setCurrentText( rule.argument( AccessControlRule::Condition::MemberOfUserGroup ) );
-	ui->locationsComboBox->setCurrentText( rule.argument( AccessControlRule::Condition::LocatedAt ) );
+	ui->groupsComboBox->setCurrentText(rule.argument(AccessControlRule::Condition::MemberOfUserGroup));
+	ui->locationsComboBox->setCurrentText(rule.argument(AccessControlRule::Condition::LocatedAt));
 
 	// load action
-	ui->actionNoneRadioButton->setChecked( rule.action() == AccessControlRule::Action::None );
-	ui->actionAllowRadioButton->setChecked( rule.action() == AccessControlRule::Action::Allow );
-	ui->actionDenyRadioButton->setChecked( rule.action() == AccessControlRule::Action::Deny );
-	ui->actionAskForPermissionRadioButton->setChecked( rule.action() == AccessControlRule::Action::AskForPermission );
+	ui->actionNoneRadioButton->setChecked(rule.action() == AccessControlRule::Action::None);
+	ui->actionAllowRadioButton->setChecked(rule.action() == AccessControlRule::Action::Allow);
+	ui->actionDenyRadioButton->setChecked(rule.action() == AccessControlRule::Action::Deny);
+	ui->actionAskForPermissionRadioButton->setChecked(rule.action() == AccessControlRule::Action::AskForPermission);
 }
 
 
@@ -104,70 +104,70 @@ AccessControlRuleEditDialog::~AccessControlRuleEditDialog()
 void AccessControlRuleEditDialog::accept()
 {
 	// save general settings
-	m_rule.setName( ui->ruleNameLineEdit->text() );
-	m_rule.setDescription( ui->ruleDescriptionLineEdit->text() );
+	m_rule.setName(ui->ruleNameLineEdit->text());
+	m_rule.setDescription(ui->ruleDescriptionLineEdit->text());
 
 	// save general condition processing settings
-	m_rule.setConditionsIgnored( ui->ignoreConditionsCheckBox->isChecked() );
-	m_rule.setConditionsInverted( ui->invertConditionsCheckBox->isChecked() );
+	m_rule.setConditionsIgnored(ui->ignoreConditionsCheckBox->isChecked());
+	m_rule.setConditionsInverted(ui->invertConditionsCheckBox->isChecked());
 
 	// save conditions
 	m_rule.clearParameters();
 
 	// member of user group
-	m_rule.setConditionEnabled( AccessControlRule::Condition::MemberOfUserGroup,
-								ui->isMemberOfGroupCheckBox->isChecked() );
-	m_rule.setSubject( AccessControlRule::Condition::MemberOfUserGroup,
-					   m_subjectNameMap.key( ui->isMemberOfGroupSubjectComboBox->currentText() ) );
-	m_rule.setArgument( AccessControlRule::Condition::MemberOfUserGroup,
-						ui->groupsComboBox->currentText() );
+	m_rule.setConditionEnabled(AccessControlRule::Condition::MemberOfUserGroup,
+							   ui->isMemberOfGroupCheckBox->isChecked());
+	m_rule.setSubject(AccessControlRule::Condition::MemberOfUserGroup,
+					  m_subjectNameMap.key(ui->isMemberOfGroupSubjectComboBox->currentText()));
+	m_rule.setArgument(AccessControlRule::Condition::MemberOfUserGroup,
+					   ui->groupsComboBox->currentText());
 
 	// common groups
-	m_rule.setConditionEnabled( AccessControlRule::Condition::GroupsInCommon,
-								ui->hasCommonGroupsCheckBox->isChecked() );
+	m_rule.setConditionEnabled(AccessControlRule::Condition::GroupsInCommon,
+							   ui->hasCommonGroupsCheckBox->isChecked());
 
 	// located at
-	m_rule.setConditionEnabled( AccessControlRule::Condition::LocatedAt,
-								ui->isAtLocationCheckBox->isChecked() );
-	m_rule.setSubject( AccessControlRule::Condition::LocatedAt,
-					   m_subjectNameMap.key( ui->isAtLocationSubjectComboBox->currentText() ) );
-	m_rule.setArgument( AccessControlRule::Condition::LocatedAt,
-						ui->locationsComboBox->currentText() );
+	m_rule.setConditionEnabled(AccessControlRule::Condition::LocatedAt,
+							   ui->isAtLocationCheckBox->isChecked());
+	m_rule.setSubject(AccessControlRule::Condition::LocatedAt,
+					  m_subjectNameMap.key(ui->isAtLocationSubjectComboBox->currentText()));
+	m_rule.setArgument(AccessControlRule::Condition::LocatedAt,
+					   ui->locationsComboBox->currentText());
 
 	// same location
-	m_rule.setConditionEnabled( AccessControlRule::Condition::SameLocation,
-								ui->hasCommonLocationsCheckBox->isChecked() );
+	m_rule.setConditionEnabled(AccessControlRule::Condition::SameLocation,
+							   ui->hasCommonLocationsCheckBox->isChecked());
 
-	m_rule.setConditionEnabled( AccessControlRule::Condition::AccessFromLocalHost,
-								ui->isLocalHostAccessCheckBox->isChecked() );
+	m_rule.setConditionEnabled(AccessControlRule::Condition::AccessFromLocalHost,
+							   ui->isLocalHostAccessCheckBox->isChecked());
 
-	m_rule.setConditionEnabled( AccessControlRule::Condition::AccessFromLocalUser,
-								ui->isLocalUserAccessCheckBox->isChecked() );
+	m_rule.setConditionEnabled(AccessControlRule::Condition::AccessFromLocalUser,
+							   ui->isLocalUserAccessCheckBox->isChecked());
 
-	m_rule.setConditionEnabled( AccessControlRule::Condition::AccessFromAlreadyConnectedUser,
-								ui->isSameUserAccessCheckBox->isChecked() );
+	m_rule.setConditionEnabled(AccessControlRule::Condition::AccessFromAlreadyConnectedUser,
+							   ui->isSameUserAccessCheckBox->isChecked());
 
-	m_rule.setConditionEnabled( AccessControlRule::Condition::NoUserLoggedOn,
-								ui->noUserLoggedOnCheckBox->isChecked() );
+	m_rule.setConditionEnabled(AccessControlRule::Condition::NoUserLoggedOn,
+							   ui->noUserLoggedOnCheckBox->isChecked());
 
 	m_rule.setConditionEnabled(AccessControlRule::Condition::ComputerAlreadyBeingAccessed, ui->computerAlreadyBeingAccessed->isChecked());
 
 	// save action
-	if( ui->actionAllowRadioButton->isChecked() )
+	if (ui->actionAllowRadioButton->isChecked())
 	{
-		m_rule.setAction( AccessControlRule::Action::Allow );
+		m_rule.setAction(AccessControlRule::Action::Allow);
 	}
-	else if( ui->actionDenyRadioButton->isChecked() )
+	else if (ui->actionDenyRadioButton->isChecked())
 	{
-		m_rule.setAction( AccessControlRule::Action::Deny );
+		m_rule.setAction(AccessControlRule::Action::Deny);
 	}
-	else if( ui->actionAskForPermissionRadioButton->isChecked() )
+	else if (ui->actionAskForPermissionRadioButton->isChecked())
 	{
-		m_rule.setAction( AccessControlRule::Action::AskForPermission );
+		m_rule.setAction(AccessControlRule::Action::AskForPermission);
 	}
 	else
 	{
-		m_rule.setAction( AccessControlRule::Action::None );
+		m_rule.setAction(AccessControlRule::Action::None);
 	}
 
 	QDialog::accept();

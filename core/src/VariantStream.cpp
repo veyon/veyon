@@ -28,10 +28,10 @@
 
 #include "VariantStream.h"
 
-VariantStream::VariantStream( QIODevice* ioDevice ) :
-	m_dataStream( ioDevice )
+VariantStream::VariantStream(QIODevice* ioDevice) :
+	m_dataStream(ioDevice)
 {
-	m_dataStream.setVersion( QDataStream::Qt_5_5 );
+	m_dataStream.setVersion(QDataStream::Qt_5_5);
 }
 
 
@@ -51,7 +51,7 @@ QVariant VariantStream::read() // Flawfinder: ignore
 
 	m_dataStream >> v;
 
-	if( v.isValid() == false || v.isNull() )
+	if (v.isValid() == false || v.isNull())
 	{
 		vWarning() << "none or invalid data read";
 	}
@@ -61,7 +61,7 @@ QVariant VariantStream::read() // Flawfinder: ignore
 
 
 
-void VariantStream::write( const QVariant& v )
+void VariantStream::write(const QVariant& v)
 {
 	m_dataStream << v;
 }
@@ -209,7 +209,7 @@ bool VariantStream::checkVariant(int depth)
 	quint8 isNull = false;
 	m_dataStream >> isNull;
 
-	switch(typeId)
+	switch (typeId)
 	{
 	case QMetaType::Bool: return checkBool();
 	case QMetaType::QByteArray: return checkByteArray();
@@ -244,7 +244,7 @@ bool VariantStream::checkVariantList(int depth)
 
 	for (quint32 i = 0; i < n; ++i)
 	{
-		if (checkVariant(depth+1) == false)
+		if (checkVariant(depth + 1) == false)
 		{
 			return false;
 		}
@@ -269,7 +269,7 @@ bool VariantStream::checkVariantMap(int depth)
 	for (quint32 i = 0; i < n; ++i)
 	{
 		if (checkString() == false ||
-			checkVariant(depth+1) == false)
+			checkVariant(depth + 1) == false)
 		{
 			return false;
 		}

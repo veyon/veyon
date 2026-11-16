@@ -22,29 +22,29 @@
  *
  */
 
+#include "Configuration/UiMapping.h"
 #include "FileSystemBrowser.h"
 #include "WebApiConfiguration.h"
 #include "WebApiConfigurationPage.h"
-#include "Configuration/UiMapping.h"
 
 #include "ui_WebApiConfigurationPage.h"
 
-WebApiConfigurationPage::WebApiConfigurationPage( WebApiConfiguration& configuration, QWidget* parent ) :
-	ConfigurationPage( parent ),
-	ui( new Ui::WebApiConfigurationPage ),
-	m_configuration( configuration )
+WebApiConfigurationPage::WebApiConfigurationPage(WebApiConfiguration& configuration, QWidget* parent) :
+	ConfigurationPage(parent),
+	ui(new Ui::WebApiConfigurationPage),
+	m_configuration(configuration)
 {
 	ui->setupUi(this);
 
-	connect( ui->browseTlsCertificateFile, &QAbstractButton::clicked, this, [this]() {
+	connect(ui->browseTlsCertificateFile, &QAbstractButton::clicked, this, [this]() {
 		FileSystemBrowser(FileSystemBrowser::ExistingFile, this).exec(ui->tlsCertificateFile);
-	} );
+	});
 
-	connect( ui->browseTlsPrivateKeyFile, &QAbstractButton::clicked, this, [this]() {
-		FileSystemBrowser(FileSystemBrowser::ExistingFile, this ).exec(ui->tlsPrivateKeyFile);
-	} );
+	connect(ui->browseTlsPrivateKeyFile, &QAbstractButton::clicked, this, [this]() {
+		FileSystemBrowser(FileSystemBrowser::ExistingFile, this).exec(ui->tlsPrivateKeyFile);
+	});
 
-	Configuration::UiMapping::setFlags( this, Configuration::Property::Flag::Advanced );
+	Configuration::UiMapping::setFlags(this, Configuration::Property::Flag::Advanced);
 }
 
 

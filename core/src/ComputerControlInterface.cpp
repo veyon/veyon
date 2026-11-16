@@ -24,8 +24,8 @@
 
 #include "AccessControlProvider.h"
 #include "BuiltinFeatures.h"
-#include "ComputerControlInterface.h"
 #include "Computer.h"
+#include "ComputerControlInterface.h"
 #include "FeatureManager.h"
 #include "HostAddress.h"
 #include "MonitoringMode.h"
@@ -34,9 +34,9 @@
 #include "VncConnection.h"
 
 
-ComputerControlInterface::ComputerControlInterface( const Computer& computer, int port, QObject* parent ) :
-	QObject( parent ),
-	m_computer( computer ),
+ComputerControlInterface::ComputerControlInterface(const Computer& computer, int port, QObject* parent) :
+	QObject(parent),
+	m_computer(computer),
 	m_port(port),
 	m_computerNameSource(VeyonCore::config().computerNameSource())
 {
@@ -44,13 +44,13 @@ ComputerControlInterface::ComputerControlInterface( const Computer& computer, in
 	m_pingTimer.setSingleShot(true);
 	connect(&m_pingTimer, &QTimer::timeout, this, &ComputerControlInterface::ping);
 
-	m_connectionWatchdogTimer.setInterval( ConnectionWatchdogTimeout );
-	m_connectionWatchdogTimer.setSingleShot( true );
-	connect( &m_connectionWatchdogTimer, &QTimer::timeout, this, &ComputerControlInterface::restartConnection );
+	m_connectionWatchdogTimer.setInterval(ConnectionWatchdogTimeout);
+	m_connectionWatchdogTimer.setSingleShot(true);
+	connect(&m_connectionWatchdogTimer, &QTimer::timeout, this, &ComputerControlInterface::restartConnection);
 
 	m_serverVersionQueryTimer.setInterval(ServerVersionQueryTimeout);
 	m_serverVersionQueryTimer.setSingleShot(true);
-	connect( &m_serverVersionQueryTimer, &QTimer::timeout, this, [this]() {
+	connect(&m_serverVersionQueryTimer, &QTimer::timeout, this, [this]() {
 		setServerVersion(VeyonCore::ApplicationVersion::Unknown);
 	});
 
@@ -70,7 +70,7 @@ ComputerControlInterface::~ComputerControlInterface()
 
 
 
-void ComputerControlInterface::start( QSize scaledFramebufferSize, UpdateMode updateMode, AuthenticationProxy* authenticationProxy )
+void ComputerControlInterface::start(QSize scaledFramebufferSize, UpdateMode updateMode, AuthenticationProxy* authenticationProxy)
 {
 	// make sure we do not leak
 	stop();
@@ -80,33 +80,33 @@ void ComputerControlInterface::start( QSize scaledFramebufferSize, UpdateMode up
 	if (m_computer.hostName().isEmpty() == false)
 	{
 		m_connection = new VeyonConnection;
-		m_connection->setAuthenticationProxy( authenticationProxy );
+		m_connection->setAuthenticationProxy(authenticationProxy);
 
 		auto vncConnection = m_connection->vncConnection();
 		vncConnection->setHost(m_computer.hostName());
-		if( m_port > 0 )
+		if (m_port > 0)
 		{
-			vncConnection->setPort( m_port );
+			vncConnection->setPort(m_port);
 		}
-		vncConnection->setScaledSize( m_scaledFramebufferSize );
-		connect( vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::resetWatchdog );
-		connect( vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::framebufferUpdated );
+		vncConnection->setScaledSize(m_scaledFramebufferSize);
+		connect(vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::resetWatchdog);
+		connect(vncConnection, &VncConnection::framebufferUpdateComplete, this, &ComputerControlInterface::framebufferUpdated);
 
-		connect( vncConnection, &VncConnection::framebufferSizeChanged, this, &ComputerControlInterface::framebufferSizeChanged );
+		connect(vncConnection, &VncConnection::framebufferSizeChanged, this, &ComputerControlInterface::framebufferSizeChanged);
 
-		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState );
+		connect(vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateState);
 		connect(vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::setMinimumFramebufferUpdateInterval);
 		connect(vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateServerVersion);
-		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateUser );
-		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateSessionInfo );
-		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateActiveFeatures );
-		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateScreens );
-		connect( vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::stateChanged );
+		connect(vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateUser);
+		connect(vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateSessionInfo);
+		connect(vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateActiveFeatures);
+		connect(vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::updateScreens);
+		connect(vncConnection, &VncConnection::stateChanged, this, &ComputerControlInterface::stateChanged);
 
-		connect( m_connection, &VeyonConnection::featureMessageReceived, this, &ComputerControlInterface::handleFeatureMessage );
-		connect( m_connection, &VeyonConnection::featureMessageReceived, this, &ComputerControlInterface::resetWatchdog );
+		connect(m_connection, &VeyonConnection::featureMessageReceived, this, &ComputerControlInterface::handleFeatureMessage);
+		connect(m_connection, &VeyonConnection::featureMessageReceived, this, &ComputerControlInterface::resetWatchdog);
 
-		setUpdateMode( updateMode );
+		setUpdateMode(updateMode);
 
 		vncConnection->start();
 	}
@@ -120,7 +120,7 @@ void ComputerControlInterface::start( QSize scaledFramebufferSize, UpdateMode up
 
 void ComputerControlInterface::stop()
 {
-	if( m_connection )
+	if (m_connection)
 	{
 		m_connection->stopAndDeleteLater();
 		m_connection = nullptr;
@@ -136,12 +136,10 @@ void ComputerControlInterface::stop()
 
 QString ComputerControlInterface::computerName() const
 {
-	const auto propertyOrFallback = [this](const QString& value)
-	{
+	const auto propertyOrFallback = [this](const QString& value) {
 		return value.isEmpty() ?
-					(computer().displayName().isEmpty() ? computer().hostName() : computer().displayName())
-				  :
-					value;
+			(computer().displayName().isEmpty() ? computer().hostName() : computer().displayName()) :
+			value;
 	};
 
 	switch (computerNameSource())
@@ -171,7 +169,7 @@ bool ComputerControlInterface::hasValidFramebuffer() const
 
 QSize ComputerControlInterface::screenSize() const
 {
-	if( vncConnection() )
+	if (vncConnection())
 	{
 		return vncConnection()->image().size();
 	}
@@ -181,13 +179,13 @@ QSize ComputerControlInterface::screenSize() const
 
 
 
-void ComputerControlInterface::setScaledFramebufferSize( QSize scaledFramebufferSize )
+void ComputerControlInterface::setScaledFramebufferSize(QSize scaledFramebufferSize)
 {
 	m_scaledFramebufferSize = scaledFramebufferSize;
 
-	if( vncConnection() )
+	if (vncConnection())
 	{
-		vncConnection()->setScaledSize( m_scaledFramebufferSize );
+		vncConnection()->setScaledSize(m_scaledFramebufferSize);
 	}
 }
 
@@ -195,7 +193,7 @@ void ComputerControlInterface::setScaledFramebufferSize( QSize scaledFramebuffer
 
 QImage ComputerControlInterface::scaledFramebuffer() const
 {
-	if( vncConnection() && vncConnection()->isConnected() )
+	if (vncConnection() && vncConnection()->isConnected())
 	{
 		return vncConnection()->scaledFramebuffer();
 	}
@@ -207,7 +205,7 @@ QImage ComputerControlInterface::scaledFramebuffer() const
 
 QImage ComputerControlInterface::framebuffer() const
 {
-	if( vncConnection() && vncConnection()->isConnected() )
+	if (vncConnection() && vncConnection()->isConnected())
 	{
 		return vncConnection()->image();
 	}
@@ -295,7 +293,7 @@ void ComputerControlInterface::setSessionInfo(const PlatformSessionFunctions::Se
 
 void ComputerControlInterface::setScreens(const ScreenList& screens)
 {
-	if(screens != m_screens)
+	if (screens != m_screens)
 	{
 		m_screens = screens;
 
@@ -305,9 +303,9 @@ void ComputerControlInterface::setScreens(const ScreenList& screens)
 
 
 
-void ComputerControlInterface::setActiveFeatures( const FeatureUidList& activeFeatures )
+void ComputerControlInterface::setActiveFeatures(const FeatureUidList& activeFeatures)
 {
-	if( activeFeatures != m_activeFeatures )
+	if (activeFeatures != m_activeFeatures)
 	{
 		m_activeFeatures = activeFeatures;
 
@@ -319,7 +317,7 @@ void ComputerControlInterface::setActiveFeatures( const FeatureUidList& activeFe
 
 void ComputerControlInterface::sendFeatureMessage(const FeatureMessage& featureMessage)
 {
-	if( m_connection && m_connection->isConnected() )
+	if (m_connection && m_connection->isConnected())
 	{
 		m_connection->sendFeatureMessage(featureMessage);
 	}
@@ -329,7 +327,7 @@ void ComputerControlInterface::sendFeatureMessage(const FeatureMessage& featureM
 
 bool ComputerControlInterface::isMessageQueueEmpty()
 {
-	if( vncConnection() && vncConnection()->isConnected() )
+	if (vncConnection() && vncConnection()->isConnected())
 	{
 		return vncConnection()->isEventQueueEmpty();
 	}
@@ -339,7 +337,7 @@ bool ComputerControlInterface::isMessageQueueEmpty()
 
 
 
-void ComputerControlInterface::setUpdateMode( UpdateMode updateMode )
+void ComputerControlInterface::setUpdateMode(UpdateMode updateMode)
 {
 	m_updateMode = updateMode;
 
@@ -384,7 +382,7 @@ QVariant ComputerControlInterface::queryProperty(QUuid propertyId)
 
 ComputerControlInterface::Pointer ComputerControlInterface::weakPointer()
 {
-	return Pointer( this, []( ComputerControlInterface* ) { } );
+	return Pointer(this, [](ComputerControlInterface*) {});
 }
 
 
@@ -483,7 +481,7 @@ void ComputerControlInterface::resetWatchdog()
 
 void ComputerControlInterface::restartConnection()
 {
-	if( vncConnection() )
+	if (vncConnection())
 	{
 		vDebug();
 		vncConnection()->restart();
@@ -552,11 +550,11 @@ void ComputerControlInterface::updateUser()
 {
 	lock();
 
-	if( vncConnection() && state() == State::Connected )
+	if (vncConnection() && state() == State::Connected)
 	{
-		if( userLoginName().isEmpty() )
+		if (userLoginName().isEmpty())
 		{
-			VeyonCore::builtinFeatures().monitoringMode().queryUserInfo( { weakPointer() } );
+			VeyonCore::builtinFeatures().monitoringMode().queryUserInfo({weakPointer()});
 		}
 	}
 	else
@@ -607,10 +605,10 @@ void ComputerControlInterface::updateScreens()
 
 
 
-void ComputerControlInterface::handleFeatureMessage( const FeatureMessage& message )
+void ComputerControlInterface::handleFeatureMessage(const FeatureMessage& message)
 {
 	lock();
-	VeyonCore::featureManager().handleFeatureMessage( weakPointer(), message );
+	VeyonCore::featureManager().handleFeatureMessage(weakPointer(), message);
 	unlock();
 }
 
@@ -631,7 +629,7 @@ QDebug operator<<(QDebug stream, const ComputerControlInterfaceList& computerCon
 {
 	QStringList hostAddresses;
 	hostAddresses.reserve(computerControlInterfaces.size());
-	for(const auto& computerControlInterface : computerControlInterfaces)
+	for (const auto& computerControlInterface : computerControlInterfaces)
 	{
 		if (computerControlInterface.isNull() == false)
 		{
@@ -648,7 +646,7 @@ QDebug operator<<(QDebug stream, const ComputerControlInterfaceList& computerCon
 
 void ComputerControlInterfaceList::removeLocalHostInterfaces()
 {
-	for (auto it = begin(); it != end(); )
+	for (auto it = begin(); it != end();)
 	{
 		if (HostAddress(HostAddress::parseHost((*it)->computer().hostName())).isLocalHost())
 		{

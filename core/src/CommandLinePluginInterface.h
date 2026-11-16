@@ -32,8 +32,7 @@ class VEYON_CORE_EXPORT CommandLinePluginInterface
 {
 	Q_GADGET
 public:
-	enum RunResult
-	{
+	enum RunResult {
 		Unknown,
 		Successful,
 		Failed,
@@ -44,18 +43,17 @@ public:
 		NotLicensed,
 		NoResult,
 		RunResultCount
-	} ;
+	};
 
 	Q_ENUM(RunResult)
 
 	virtual QString commandLineModuleName() const = 0;
 	virtual QString commandLineModuleHelp() const = 0;
 	virtual QStringList commands() const = 0;
-	virtual QString commandHelp( const QString& command ) const = 0;
-
+	virtual QString commandHelp(const QString& command) const = 0;
 };
 
-using CommandLinePluginInterfaceList = QList<CommandLinePluginInterface *>;
+using CommandLinePluginInterfaceList = QList<CommandLinePluginInterface*>;
 
 #define CommandLinePluginInterface_iid "io.veyon.Veyon.Plugins.CommandLinePluginInterface"
 

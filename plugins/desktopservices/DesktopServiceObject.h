@@ -36,21 +36,20 @@ public:
 	using Uid = QUuid;
 	using Name = QString;
 
-	enum class Type
-	{
+	enum class Type {
 		None,
 		Application,
 		Website,
-	} ;
+	};
 
-	DesktopServiceObject( const DesktopServiceObject& other );
-	explicit DesktopServiceObject( Type type = Type::None,
-						  const Name& name = {},
-						  const QString& path = {},
-						  Uid uid = Uid() );
-	explicit DesktopServiceObject( const QJsonObject& jsonObject );
+	DesktopServiceObject(const DesktopServiceObject& other);
+	explicit DesktopServiceObject(Type type = Type::None,
+								  const Name& name = {},
+								  const QString& path = {},
+								  Uid uid = Uid());
+	explicit DesktopServiceObject(const QJsonObject& jsonObject);
 
-	bool operator==( const DesktopServiceObject& other ) const;
+	bool operator==(const DesktopServiceObject& other) const;
 
 	const Uid& uid() const
 	{
@@ -84,7 +83,6 @@ private:
 	QString m_name;
 	QString m_path;
 	Uid m_uid;
-
 };
 
 Q_DECLARE_METATYPE(DesktopServiceObject::Type)

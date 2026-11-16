@@ -37,8 +37,7 @@ class PlatformSessionManager : public QThread
 {
 	Q_OBJECT
 public:
-	enum class Mode
-	{
+	enum class Mode {
 		Local,
 		Active,
 		Multi
@@ -48,13 +47,13 @@ public:
 	using SessionId = PlatformSessionFunctions::SessionId;
 	using PlatformSessionId = QString;
 
-	PlatformSessionManager( QObject* parent = nullptr );
+	PlatformSessionManager(QObject* parent = nullptr);
 	~PlatformSessionManager() override;
 
-	SessionId openSession( const PlatformSessionId& platformSessionId );
-	void closeSession( const PlatformSessionId& platformSessionId );
+	SessionId openSession(const PlatformSessionId& platformSessionId);
+	void closeSession(const PlatformSessionId& platformSessionId);
 
-	static SessionId resolveSessionId( const PlatformSessionId& platformSessionId );
+	static SessionId resolveSessionId(const PlatformSessionId& platformSessionId);
 
 	Mode mode() const
 	{
@@ -81,12 +80,11 @@ private:
 		return QStringLiteral("VeyonSessionManager");
 	}
 
-	static bool waitForMessage( QLocalSocket* socket );
+	static bool waitForMessage(QLocalSocket* socket);
 
 	const Mode m_mode;
 	const int m_maximumSessionCount;
 
 	QMutex m_mutex;
 	QVariantMap m_sessions;
-
 };

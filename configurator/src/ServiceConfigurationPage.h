@@ -58,9 +58,8 @@ private Q_SLOTS:
 private:
 	void populateVncServerPluginComboBox();
 
-	Ui::ServiceConfigurationPage *ui;
+	Ui::ServiceConfigurationPage* ui;
 
 	QMap<Plugin::Uid, VncServerPluginInterface*> m_vncServerPluginInterfaces;
 	QWidget* m_vncServerPluginConfigurationWidget;
-
 };

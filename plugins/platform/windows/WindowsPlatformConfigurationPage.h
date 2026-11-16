@@ -43,7 +43,6 @@ public:
 	void applyConfiguration() override;
 
 private:
-	Ui::WindowsPlatformConfigurationPage *ui;
+	Ui::WindowsPlatformConfigurationPage* ui;
 	WindowsPlatformConfiguration m_configuration;
-
 };

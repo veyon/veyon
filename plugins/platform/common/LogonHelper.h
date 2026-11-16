@@ -34,11 +34,10 @@ class LogonHelper : public QObject
 public:
 	using Password = CryptoCore::SecureArray;
 
-	LogonHelper( QObject* parent = nullptr );
+	LogonHelper(QObject* parent = nullptr);
 
-	bool prepare( const QString& username, const Password& password );
+	bool prepare(const QString& username, const Password& password);
 
 private:
 	void checkPendingLogonTasks();
-
 };

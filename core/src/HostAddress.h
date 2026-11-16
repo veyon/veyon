@@ -38,7 +38,7 @@ public:
 	};
 	Q_ENUM(Type)
 
-	explicit HostAddress( const QString& address );
+	explicit HostAddress(const QString& address);
 	~HostAddress() = default;
 
 	Type type() const
@@ -48,27 +48,26 @@ public:
 
 	bool isLocalHost() const;
 
-	QString convert( Type targetType ) const;
-	QString tryConvert( Type targetType ) const;
+	QString convert(Type targetType) const;
+	QString tryConvert(Type targetType) const;
 
 	QStringList lookupIpAddresses() const;
 
-	static QString parseHost( const QString& address );
-	static int parsePortNumber( const QString& address );
+	static QString parseHost(const QString& address);
+	static int parsePortNumber(const QString& address);
 
 	static QString localFQDN();
 
 private:
-	static Type determineType( const QString& address );
-	static QString toIpAddress( const QString& hostName );
-	static QString toHostName( Type type, const QString& address );
-	static QString toFQDN( Type type, const QString& address );
-	static QString fqdnToHostName( const QString& fqdn );
+	static Type determineType(const QString& address);
+	static QString toIpAddress(const QString& hostName);
+	static QString toHostName(Type type, const QString& address);
+	static QString toFQDN(Type type, const QString& address);
+	static QString fqdnToHostName(const QString& fqdn);
 	static QString resolveLocalFQDN();
 
 	static QString s_cachedLocalFQDN;
 
 	Type m_type;
 	QString m_address;
-
-} ;
+};

@@ -25,13 +25,13 @@
 #include <QJsonArray>
 #include <QJsonObject>
 
-#include "BuiltinDirectoryConfiguration.h"
 #include "BuiltinDirectory.h"
+#include "BuiltinDirectoryConfiguration.h"
 
 
-BuiltinDirectory::BuiltinDirectory( BuiltinDirectoryConfiguration& configuration, QObject* parent ) :
-	NetworkObjectDirectory( parent ),
-	m_configuration( configuration )
+BuiltinDirectory::BuiltinDirectory(BuiltinDirectoryConfiguration& configuration, QObject* parent) :
+	NetworkObjectDirectory(parent),
+	m_configuration(configuration)
 {
 }
 
@@ -45,17 +45,17 @@ void BuiltinDirectory::update()
 
 	NetworkObjectUidList groupUids;
 
-	for( const auto& networkObjectValue : networkObjects )
+	for (const auto& networkObjectValue : networkObjects)
 	{
-		const NetworkObject networkObject( networkObjectValue.toObject() );
+		const NetworkObject networkObject(networkObjectValue.toObject());
 
-		if( networkObject.type() == NetworkObject::Type::Location )
+		if (networkObject.type() == NetworkObject::Type::Location)
 		{
-			groupUids.append( networkObject.uid() ); // clazy:exclude=reserve-candidates
+			groupUids.append(networkObject.uid()); // clazy:exclude=reserve-candidates
 
 			addOrUpdateObject(networkObject, rootObject());
 
-			updateLocation( networkObject, networkObjects );
+			updateLocation(networkObject, networkObjects);
 		}
 	}
 
@@ -66,21 +66,20 @@ void BuiltinDirectory::update()
 
 
 
-void BuiltinDirectory::updateLocation( const NetworkObject& locationObject, const QJsonArray& networkObjects )
+void BuiltinDirectory::updateLocation(const NetworkObject& locationObject, const QJsonArray& networkObjects)
 {
 	NetworkObjectUidList computerUids;
 
-	for( const auto& networkObjectValue : networkObjects )
+	for (const auto& networkObjectValue : networkObjects)
 	{
-		NetworkObject networkObject( networkObjectValue.toObject() );
+		NetworkObject networkObject(networkObjectValue.toObject());
 
-		if( networkObject.parentUid() == locationObject.uid() )
+		if (networkObject.parentUid() == locationObject.uid())
 		{
-			computerUids.append( networkObject.uid() ); // clazy:exclude=reserve-candidates
-			addOrUpdateObject( networkObject, locationObject );
+			computerUids.append(networkObject.uid()); // clazy:exclude=reserve-candidates
+			addOrUpdateObject(networkObject, locationObject);
 		}
 	}
 
-	removeObjects( locationObject, [computerUids]( const NetworkObject& object ) {
-		return object.type() == NetworkObject::Type::Host && computerUids.contains( object.uid() ) == false; } );
+	removeObjects(locationObject, [computerUids](const NetworkObject& object) { return object.type() == NetworkObject::Type::Host && computerUids.contains(object.uid()) == false; });
 }

@@ -25,10 +25,10 @@
 
 #include <QDir>
 
-#include "VeyonConfiguration.h"
-#include "VeyonCore.h"
 #include "Logger.h"
 #include "NetworkObjectDirectory.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCore.h"
 
 
 VeyonConfiguration::VeyonConfiguration() :
@@ -39,8 +39,8 @@ VeyonConfiguration::VeyonConfiguration() :
 
 
 
-VeyonConfiguration::VeyonConfiguration( Configuration::Store* store ) :
-	Configuration::Object( store )
+VeyonConfiguration::VeyonConfiguration(Configuration::Store* store) :
+	Configuration::Object(store)
 {
 }
 
@@ -48,25 +48,25 @@ VeyonConfiguration::VeyonConfiguration( Configuration::Store* store ) :
 
 void VeyonConfiguration::upgrade()
 {
-	if( applicationVersion() < VeyonCore::ApplicationVersion::Version_4_2 )
+	if (applicationVersion() < VeyonCore::ApplicationVersion::Version_4_2)
 	{
-		setAutoSelectCurrentLocation( legacyAutoSwitchToCurrentRoom() );
-		setShowCurrentLocationOnly( legacyOnlyCurrentRoomVisible() );
-		setAllowAddingHiddenLocations( legacyManualRoomAdditionAllowed() );
-		setHideEmptyLocations( legacyEmptyRoomsHidden() );
-		setAutoOpenComputerSelectPanel( legacyOpenComputerManagementAtStart() );
-		setConfirmUnsafeActions( legacyConfirmDangerousActions() );
+		setAutoSelectCurrentLocation(legacyAutoSwitchToCurrentRoom());
+		setShowCurrentLocationOnly(legacyOnlyCurrentRoomVisible());
+		setAllowAddingHiddenLocations(legacyManualRoomAdditionAllowed());
+		setHideEmptyLocations(legacyEmptyRoomsHidden());
+		setAutoOpenComputerSelectPanel(legacyOpenComputerManagementAtStart());
+		setConfirmUnsafeActions(legacyConfirmDangerousActions());
 
-		setApplicationVersion( VeyonCore::ApplicationVersion::Version_4_2 );
+		setApplicationVersion(VeyonCore::ApplicationVersion::Version_4_2);
 	}
-	if( applicationVersion() < VeyonCore::ApplicationVersion::Version_4_5 )
+	if (applicationVersion() < VeyonCore::ApplicationVersion::Version_4_5)
 	{
-		setVeyonServerPort( legacyPrimaryServicePort() );
-		setHideLocalComputer( legacyLocalComputerHidden() );
-		setHideComputerFilter( legacyComputerFilterHidden() );
-		setAutoAdjustMonitoringIconSize( legacyAutoAdjustGridSize() );
+		setVeyonServerPort(legacyPrimaryServicePort());
+		setHideLocalComputer(legacyLocalComputerHidden());
+		setHideComputerFilter(legacyComputerFilterHidden());
+		setAutoAdjustMonitoringIconSize(legacyAutoAdjustGridSize());
 
-		setApplicationVersion( VeyonCore::ApplicationVersion::Version_4_5 );
+		setApplicationVersion(VeyonCore::ApplicationVersion::Version_4_5);
 	}
 	if (applicationVersion() < VeyonCore::ApplicationVersion::Version_4_7)
 	{

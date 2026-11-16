@@ -32,13 +32,12 @@ class VEYON_CORE_EXPORT NetworkObjectModel : public QAbstractItemModel
 {
 	Q_OBJECT
 public:
-	explicit NetworkObjectModel( QObject* parent = nullptr) :
-		QAbstractItemModel( parent )
+	explicit NetworkObjectModel(QObject* parent = nullptr) :
+		QAbstractItemModel(parent)
 	{
 	}
 
-	enum Role
-	{
+	enum Role {
 		CheckStateRole = Qt::CheckStateRole,
 		NameRole = Qt::DisplayRole,
 		UidRole = Qt::UserRole,
@@ -47,6 +46,5 @@ public:
 		MacAddressRole,
 		DirectoryAddressRole,
 		ParentUidRole
-	} ;
-
+	};
 };

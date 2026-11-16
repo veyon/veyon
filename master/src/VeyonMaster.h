@@ -24,9 +24,9 @@
 
 #pragma once
 
-#include "Feature.h"
 #include "Computer.h"
 #include "ComputerControlInterface.h"
+#include "Feature.h"
 #include "VeyonMasterInterface.h"
 
 class QModelIndex;
@@ -42,7 +42,7 @@ class VeyonMaster : public VeyonMasterInterface
 {
 	Q_OBJECT
 public:
-	explicit VeyonMaster( QObject* parent = nullptr );
+	explicit VeyonMaster(QObject* parent = nullptr);
 	~VeyonMaster() override;
 
 	UserConfig& userConfig()
@@ -70,7 +70,7 @@ public:
 		return m_features;
 	}
 
-	FeatureList subFeatures( Feature::Uid parentFeatureUid ) const;
+	FeatureList subFeatures(Feature::Uid parentFeatureUid) const;
 
 	FeatureList allFeatures() const;
 
@@ -95,9 +95,9 @@ public:
 	ComputerControlInterfaceList filteredComputerControlInterfaces() const override;
 
 public Q_SLOTS:
-	void runFeature( const Feature& feature );
-	void enforceDesignatedMode( const QModelIndex& index );
-	void stopAllFeatures( const ComputerControlInterfaceList& computerControlInterfaces );
+	void runFeature(const Feature& feature);
+	void enforceDesignatedMode(const QModelIndex& index);
+	void stopAllFeatures(const ComputerControlInterfaceList& computerControlInterfaces);
 
 private:
 	void shutdown();
@@ -115,5 +115,4 @@ private:
 	MainWindow* m_mainWindow;
 
 	Feature::Uid m_currentMode;
-
-} ;
+};

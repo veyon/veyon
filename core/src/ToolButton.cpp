@@ -33,17 +33,17 @@ bool ToolButton::s_toolTipsDisabled = false;
 bool ToolButton::s_iconOnlyMode = false;
 
 
-ToolButton::ToolButton( const QIcon& icon,
-						const QString& label,
-						const QString& altLabel,
-						const QString& description,
-						const QKeySequence& shortcut ) :
-	m_icon( icon ),
-	m_label( label ),
-	m_altLabel( altLabel ),
-	m_descr( description )
+ToolButton::ToolButton(const QIcon& icon,
+					   const QString& label,
+					   const QString& altLabel,
+					   const QString& description,
+					   const QKeySequence& shortcut) :
+	m_icon(icon),
+	m_label(label),
+	m_altLabel(altLabel),
+	m_descr(description)
 {
-	setShortcut( shortcut );
+	setShortcut(shortcut);
 
 	setIcon(icon);
 	setText(label);
@@ -52,7 +52,7 @@ ToolButton::ToolButton( const QIcon& icon,
 
 	if (m_altLabel.length() > 0)
 	{
-		connect (this, &ToolButton::toggled, this, [this](bool checked) {
+		connect(this, &ToolButton::toggled, this, [this](bool checked) {
 			setText(checked ? m_altLabel : m_label);
 		});
 	}
@@ -60,11 +60,11 @@ ToolButton::ToolButton( const QIcon& icon,
 
 
 
-void ToolButton::setIconOnlyMode( QWidget* mainWindow, bool enabled )
+void ToolButton::setIconOnlyMode(QWidget* mainWindow, bool enabled)
 {
 	s_iconOnlyMode = enabled;
-	const auto toolButtons = mainWindow->findChildren<ToolButton *>();
-	for( auto toolButton : toolButtons )
+	const auto toolButtons = mainWindow->findChildren<ToolButton*>();
+	for (auto toolButton : toolButtons)
 	{
 		toolButton->setToolButtonStyle(enabled ? Qt::ToolButtonIconOnly : Qt::ToolButtonTextUnderIcon);
 	}
@@ -72,18 +72,18 @@ void ToolButton::setIconOnlyMode( QWidget* mainWindow, bool enabled )
 
 
 
-void ToolButton::addTo( QToolBar* toolBar )
+void ToolButton::addTo(QToolBar* toolBar)
 {
-	auto action = toolBar->addWidget( this );
-	action->setText( m_label );
+	auto action = toolBar->addWidget(this);
+	action->setText(m_label);
 }
 
 
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-void ToolButton::enterEvent( QEnterEvent* event )
+void ToolButton::enterEvent(QEnterEvent* event)
 #else
-void ToolButton::enterEvent( QEvent* event )
+void ToolButton::enterEvent(QEvent* event)
 #endif
 {
 	if (!s_toolTipsDisabled)
@@ -99,25 +99,25 @@ void ToolButton::enterEvent( QEvent* event )
 		}
 	}
 
-	QToolButton::enterEvent( event );
+	QToolButton::enterEvent(event);
 }
 
 
 
-void ToolButton::leaveEvent( QEvent* event )
+void ToolButton::leaveEvent(QEvent* event)
 {
 	if (checkForLeaveEvent())
 	{
-		QToolButton::leaveEvent( event );
+		QToolButton::leaveEvent(event);
 	}
 }
 
 
 
-void ToolButton::mousePressEvent( QMouseEvent* event )
+void ToolButton::mousePressEvent(QMouseEvent* event)
 {
 	QToolTip::hideText();
-	QToolButton::mousePressEvent( event );
+	QToolButton::mousePressEvent(event);
 }
 
 
@@ -132,10 +132,9 @@ QSize ToolButton::sizeHint() const
 
 bool ToolButton::checkForLeaveEvent()
 {
-	if( QRect( mapToGlobal( QPoint( 0, 0 ) ), size() ).
-			contains( QCursor::pos() ) )
+	if (QRect(mapToGlobal(QPoint(0, 0)), size()).contains(QCursor::pos()))
 	{
-		QTimer::singleShot( 20, this, &ToolButton::checkForLeaveEvent );
+		QTimer::singleShot(20, this, &ToolButton::checkForLeaveEvent);
 	}
 	else
 	{

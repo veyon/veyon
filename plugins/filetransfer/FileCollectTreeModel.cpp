@@ -26,11 +26,11 @@
 #include <QAbstractItemModelTester>
 #endif
 
-#include "FileCollectTreeModel.h"
 #include "FileCollectController.h"
+#include "FileCollectTreeModel.h"
 
 
-FileCollectTreeModel::FileCollectTreeModel( FileCollectController* controller, QObject* parent ) :
+FileCollectTreeModel::FileCollectTreeModel(FileCollectController* controller, QObject* parent) :
 	QAbstractItemModel(parent),
 	m_controller(controller),
 	m_scheduledPixmap(QIcon(QStringLiteral(":/filetransfer/file-scheduled.png"))),
@@ -249,9 +249,8 @@ QVariant FileCollectTreeModel::collectionData(const FileCollection& collection, 
 
 	case Column::FileCount:
 		return role == Qt::DisplayRole && collection.state != FileCollection::State::Initializing ?
-																  collection.files.size()
-																:
-																  QVariant{};
+			collection.files.size() :
+			QVariant{};
 
 	case Column::Progress:
 		return role == Qt::DisplayRole ? collection.progress() : QVariant{};
@@ -273,7 +272,7 @@ QVariant FileCollectTreeModel::fileData(const FileCollection& collection, const 
 		switch (role)
 		{
 		case Qt::DecorationRole:
-			if (index.row() < collection.processedFilesCount )
+			if (index.row() < collection.processedFilesCount)
 			{
 				return m_finishedPixmap;
 			}
@@ -296,7 +295,7 @@ QVariant FileCollectTreeModel::fileData(const FileCollection& collection, const 
 	case Column::Progress:
 		if (role == Qt::DisplayRole)
 		{
-			if (index.row() < collection.processedFilesCount )
+			if (index.row() < collection.processedFilesCount)
 			{
 				return 100;
 			}

@@ -30,7 +30,7 @@ class ProgressItemDelegate : public QStyledItemDelegate
 {
 	Q_OBJECT
 public:
-	explicit ProgressItemDelegate(QObject *parent = nullptr);
+	explicit ProgressItemDelegate(QObject* parent = nullptr);
 
 	void paint(QPainter* painter,
 			   const QStyleOptionViewItem& option,

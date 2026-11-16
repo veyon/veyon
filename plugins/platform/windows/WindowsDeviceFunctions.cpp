@@ -135,37 +135,37 @@ static bool looksLikeTouchpad(const QString& name,
 	const QString allText = nameText + u'\n' + manufacturerText + u'\n' + idText;
 
 	const bool mentionsTouchpad =
-			nameText.contains(QStringLiteral("touchpad")) ||
-			nameText.contains(QStringLiteral("touch pad")) ||
-			nameText.contains(QStringLiteral("precision touchpad")) ||
-			nameText.contains(QStringLiteral("precision touch pad"));
+		nameText.contains(QStringLiteral("touchpad")) ||
+		nameText.contains(QStringLiteral("touch pad")) ||
+		nameText.contains(QStringLiteral("precision touchpad")) ||
+		nameText.contains(QStringLiteral("precision touch pad"));
 
 	const bool mentionsKnownTouchpadVendor =
-			manufacturerText.contains(QStringLiteral("synaptics")) ||
-			manufacturerText.contains(QStringLiteral("elan")) ||
-			manufacturerText.contains(QStringLiteral("alps")) ||
-			manufacturerText.contains(QStringLiteral("sentelic")) ||
-			manufacturerText.contains(QStringLiteral("cypress")) ||
-			nameText.contains(QStringLiteral("synaptics")) ||
-			nameText.contains(QStringLiteral("elan")) ||
-			nameText.contains(QStringLiteral("alps")) ||
-			nameText.contains(QStringLiteral("sentelic")) ||
-			nameText.contains(QStringLiteral("cypress"));
+		manufacturerText.contains(QStringLiteral("synaptics")) ||
+		manufacturerText.contains(QStringLiteral("elan")) ||
+		manufacturerText.contains(QStringLiteral("alps")) ||
+		manufacturerText.contains(QStringLiteral("sentelic")) ||
+		manufacturerText.contains(QStringLiteral("cypress")) ||
+		nameText.contains(QStringLiteral("synaptics")) ||
+		nameText.contains(QStringLiteral("elan")) ||
+		nameText.contains(QStringLiteral("alps")) ||
+		nameText.contains(QStringLiteral("sentelic")) ||
+		nameText.contains(QStringLiteral("cypress"));
 
 	const bool mentionsI2cHid =
-			allText.contains(QStringLiteral("i2c hid")) ||
-			allText.contains(QStringLiteral("hidi2c"));
+		allText.contains(QStringLiteral("i2c hid")) ||
+		allText.contains(QStringLiteral("hidi2c"));
 
 	const bool looksLikeTouchscreenOrPen =
-			allText.contains(QStringLiteral("touch screen")) ||
-			allText.contains(QStringLiteral("touchscreen")) ||
-			allText.contains(QStringLiteral("digitizer")) ||
-			allText.contains(QStringLiteral("pen")) ||
-			allText.contains(QStringLiteral("stylus"));
+		allText.contains(QStringLiteral("touch screen")) ||
+		allText.contains(QStringLiteral("touchscreen")) ||
+		allText.contains(QStringLiteral("digitizer")) ||
+		allText.contains(QStringLiteral("pen")) ||
+		allText.contains(QStringLiteral("stylus"));
 
 	const bool looksLikeMouseOnly =
-			nameText.contains(QStringLiteral("mouse")) &&
-			!mentionsTouchpad;
+		nameText.contains(QStringLiteral("mouse")) &&
+		!mentionsTouchpad;
 
 	if (looksLikeTouchscreenOrPen || looksLikeMouseOnly)
 	{
@@ -201,31 +201,31 @@ static bool looksLikeTouchscreen(const QString& name,
 	const QString allText = nameText + u'\n' + manufacturerText + u'\n' + idText;
 
 	const bool mentionsTouchscreen =
-			nameText.contains(QStringLiteral("touch screen")) ||
-			nameText.contains(QStringLiteral("touchscreen")) ||
-			nameText.contains(QStringLiteral("hid-compliant touch screen")) ||
-			nameText.contains(QStringLiteral("hid compliant touch screen"));
+		nameText.contains(QStringLiteral("touch screen")) ||
+		nameText.contains(QStringLiteral("touchscreen")) ||
+		nameText.contains(QStringLiteral("hid-compliant touch screen")) ||
+		nameText.contains(QStringLiteral("hid compliant touch screen"));
 
 	const bool mentionsTouchscreenInIds =
-			idText.contains(QStringLiteral("touch screen")) ||
-			idText.contains(QStringLiteral("touchscreen"));
+		idText.contains(QStringLiteral("touch screen")) ||
+		idText.contains(QStringLiteral("touchscreen"));
 
 	const bool mentionsDigitizer =
-			nameText.contains(QStringLiteral("digitizer")) ||
-			manufacturerText.contains(QStringLiteral("digitizer"));
+		nameText.contains(QStringLiteral("digitizer")) ||
+		manufacturerText.contains(QStringLiteral("digitizer"));
 
 	const bool looksLikeTouchpad =
-			allText.contains(QStringLiteral("touchpad")) ||
-			allText.contains(QStringLiteral("touch pad")) ||
-			allText.contains(QStringLiteral("precision touchpad")) ||
-			allText.contains(QStringLiteral("precision touch pad"));
+		allText.contains(QStringLiteral("touchpad")) ||
+		allText.contains(QStringLiteral("touch pad")) ||
+		allText.contains(QStringLiteral("precision touchpad")) ||
+		allText.contains(QStringLiteral("precision touch pad"));
 
 	const bool looksLikePenOnly =
-			allText.contains(QStringLiteral("pen")) ||
-			allText.contains(QStringLiteral("stylus"));
+		allText.contains(QStringLiteral("pen")) ||
+		allText.contains(QStringLiteral("stylus"));
 
 	const bool looksLikeMouse =
-			nameText.contains(QStringLiteral("mouse"));
+		nameText.contains(QStringLiteral("mouse"));
 
 	if (looksLikeTouchpad || looksLikeMouse)
 	{
@@ -256,7 +256,7 @@ bool WindowsDeviceFunctions::setDeviceState(const Device& device, State state)
 	}
 
 	const HDEVINFO deviceInfoSet =
-			SetupDiGetClassDevsW(nullptr, nullptr, nullptr, DIGCF_PRESENT | DIGCF_ALLCLASSES);
+		SetupDiGetClassDevsW(nullptr, nullptr, nullptr, DIGCF_PRESENT | DIGCF_ALLCLASSES);
 
 	if (deviceInfoSet == INVALID_HANDLE_VALUE)
 	{

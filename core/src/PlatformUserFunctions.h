@@ -33,8 +33,7 @@ class VEYON_CORE_EXPORT PlatformUserFunctions
 {
 	Q_GADGET
 public:
-	enum class UserProperty
-	{
+	enum class UserProperty {
 		None,
 		LoginName,
 		FullName,
@@ -47,16 +46,15 @@ public:
 
 	virtual QString queryCurrentUserProperty(UserProperty property) = 0;
 
-	virtual QStringList userGroups( bool queryDomainGroups ) = 0;
-	virtual QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) = 0;
+	virtual QStringList userGroups(bool queryDomainGroups) = 0;
+	virtual QStringList groupsOfUser(const QString& username, bool queryDomainGroups) = 0;
 	virtual QString userGroupSecurityIdentifier(const QString& groupName) = 0;
 
 	virtual bool isAnyUserLoggedOn() = 0;
 
-	virtual bool prepareLogon( const QString& username, const Password& password ) = 0;
-	virtual bool performLogon( const QString& username, const Password& password ) = 0;
+	virtual bool prepareLogon(const QString& username, const Password& password) = 0;
+	virtual bool performLogon(const QString& username, const Password& password) = 0;
 	virtual void logoff() = 0;
 
-	virtual bool authenticate( const QString& username, const Password& password ) = 0;
-
+	virtual bool authenticate(const QString& username, const Password& password) = 0;
 };

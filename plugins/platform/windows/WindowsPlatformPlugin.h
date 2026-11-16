@@ -43,37 +43,37 @@ class WindowsPlatformPlugin : public QObject, PlatformPluginInterface, PluginInt
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.WindowsPlatform")
 	Q_INTERFACES(PluginInterface PlatformPluginInterface ConfigurationPagePluginInterface)
 public:
-	WindowsPlatformPlugin( QObject* parent = nullptr );
+	WindowsPlatformPlugin(QObject* parent = nullptr);
 	~WindowsPlatformPlugin() override;
 
 	Plugin::Uid uid() const override
 	{
-		return Plugin::Uid{ QStringLiteral("1baa01e0-02d6-4494-a766-788f5b225991") };
+		return Plugin::Uid{QStringLiteral("1baa01e0-02d6-4494-a766-788f5b225991")};
 	}
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 1 );
+		return QVersionNumber(1, 1);
 	}
 
 	QString name() const override
 	{
-		return QStringLiteral( "WindowsPlatformPlugin" );
+		return QStringLiteral("WindowsPlatformPlugin");
 	}
 
 	QString description() const override
 	{
-		return tr( "Plugin implementing abstract functions for the Windows platform" );
+		return tr("Plugin implementing abstract functions for the Windows platform");
 	}
 
 	QString vendor() const override
 	{
-		return QStringLiteral( "Veyon Community" );
+		return QStringLiteral("Veyon Community");
 	}
 
 	QString copyright() const override
 	{
-		return QStringLiteral( "Tobias Junghans" );
+		return QStringLiteral("Tobias Junghans");
 	}
 
 	Plugin::Flags flags() const override
@@ -127,5 +127,4 @@ private:
 	WindowsSessionFunctions m_windowsSessionFunctions{};
 	WindowsUserFunctions m_windowsUserFunctions{};
 	QWindow* m_dummyWindow{nullptr};
-
 };

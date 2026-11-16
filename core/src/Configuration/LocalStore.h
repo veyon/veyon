@@ -29,23 +29,21 @@
 
 class QSettings;
 
-namespace Configuration
-{
+namespace Configuration {
 
 // clazy:excludeall=copyable-polymorphic
 
 class VEYON_CORE_EXPORT LocalStore : public Store
 {
 public:
-	explicit LocalStore( Scope scope );
+	explicit LocalStore(Scope scope);
 
-	void load( Object *obj ) override;
-	void flush( const Object *obj ) override;
+	void load(Object* obj) override;
+	void flush(const Object* obj) override;
 	bool isWritable() const override;
 	void clear() override;
 
-	QSettings *createSettingsObject() const;
-
-} ;
+	QSettings* createSettingsObject() const;
+};
 
 }

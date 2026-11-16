@@ -40,21 +40,21 @@ class ScreenshotManagementPanel : public QWidget
 {
 	Q_OBJECT
 public:
-	explicit ScreenshotManagementPanel( QWidget *parent = nullptr );
+	explicit ScreenshotManagementPanel(QWidget* parent = nullptr);
 	~ScreenshotManagementPanel() override;
 
-	void setPreview( const Screenshot& screenshot );
+	void setPreview(const Screenshot& screenshot);
 
 protected:
-	void resizeEvent( QResizeEvent* event ) override;
+	void resizeEvent(QResizeEvent* event) override;
 
 private:
 	void updateModel();
 
-	QString filePath( const QModelIndex& index ) const;
+	QString filePath(const QModelIndex& index) const;
 
-	void updateScreenshot( const QModelIndex& index );
-	void screenshotDoubleClicked( const QModelIndex& index );
+	void updateScreenshot(const QModelIndex& index);
+	void screenshotDoubleClicked(const QModelIndex& index);
 
 	void showScreenshot();
 	void deleteScreenshot();
@@ -67,5 +67,4 @@ private:
 	QTimer m_reloadTimer{this};
 
 	static constexpr auto FsModelResetDelay = 1000;
-
-} ;
+};

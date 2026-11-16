@@ -41,7 +41,7 @@ public:
 		ProtocolRetryTime = 250
 	};
 
-	VncProxyConnection( QTcpSocket* clientSocket, int vncServerPort, QObject* parent );
+	VncProxyConnection(QTcpSocket* clientSocket, int vncServerPort, QObject* parent);
 	~VncProxyConnection() override;
 
 	void start();
@@ -61,7 +61,7 @@ protected Q_SLOTS:
 	void readFromServer();
 
 protected:
-	bool forwardDataToServer( qint64 size );
+	bool forwardDataToServer(qint64 size);
 
 	void readFromServerLater();
 	void readFromClientLater();
@@ -100,5 +100,4 @@ Q_SIGNALS:
 	void clientConnectionClosed();
 	void serverConnectionClosed();
 	void clientStreamSynchronized();
-
-} ;
+};

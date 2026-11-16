@@ -26,7 +26,8 @@
 
 #include <QFile>
 
-struct FileCollection {
+struct FileCollection
+{
 	enum class State {
 		Invalid,
 		Initializing,
@@ -58,9 +59,8 @@ struct FileCollection {
 	int currentFileProgress() const
 	{
 		return currentOutputFile && currentFileSize > 0 ?
-					(currentOutputFile->size() * 100 / currentFileSize)
-				  :
-					0;
+			(currentOutputFile->size() * 100 / currentFileSize) :
+			0;
 	}
 
 	int progress() const
@@ -74,6 +74,6 @@ struct FileCollection {
 			return 100;
 		}
 		return processedFilesCount * 100 / files.size() +
-				currentFileProgress() / files.size();
+			currentFileProgress() / files.size();
 	}
 };

@@ -36,12 +36,12 @@ public:
 	static QString safeJoin(const QString& baseDir, const QString& relativePath);
 	static bool isSafePathComponent(const QString& name);
 
-	QString expandPath( QString path ) const;
-	QString shrinkPath( QString path ) const;
-	bool ensurePathExists( const QString &path ) const;
+	QString expandPath(QString path) const;
+	QString shrinkPath(QString path) const;
+	bool ensurePathExists(const QString& path) const;
 
-	QString privateKeyPath( const QString& name ) const;
-	QString publicKeyPath( const QString& name ) const;
+	QString privateKeyPath(const QString& name) const;
+	QString publicKeyPath(const QString& name) const;
 
 	QString screenshotDirectoryPath() const;
 
@@ -50,5 +50,4 @@ public:
 
 Q_SIGNALS:
 	void screenshotDirectoryModified();
-
 };

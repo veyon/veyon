@@ -39,23 +39,22 @@ public:
 	enum class AuthResult {
 		Successful,
 		Failed
-	} ;
+	};
 	Q_ENUM(AuthResult)
 
-	explicit ServerAuthenticationManager( QObject* parent );
+	explicit ServerAuthenticationManager(QObject* parent);
 
 	QVector<RfbVeyonAuth::Type> supportedAuthTypes() const;
 
-	void processAuthenticationMessage( VncServerClient* client,
-									   VariantArrayMessage& message );
+	void processAuthenticationMessage(VncServerClient* client,
+									  VariantArrayMessage& message);
 
 
 Q_SIGNALS:
-	void finished( VncServerClient* client );
+	void finished(VncServerClient* client);
 
 private:
-	VncServerClient::AuthState performKeyAuthentication( VncServerClient* client, VariantArrayMessage& message );
-	VncServerClient::AuthState performLogonAuthentication( VncServerClient* client, VariantArrayMessage& message );
-	VncServerClient::AuthState performTokenAuthentication( VncServerClient* client, VariantArrayMessage& message );
-
-} ;
+	VncServerClient::AuthState performKeyAuthentication(VncServerClient* client, VariantArrayMessage& message);
+	VncServerClient::AuthState performLogonAuthentication(VncServerClient* client, VariantArrayMessage& message);
+	VncServerClient::AuthState performTokenAuthentication(VncServerClient* client, VariantArrayMessage& message);
+};

@@ -24,13 +24,15 @@
 
 #include <QDialog>
 
-namespace Ui { class StartAppDialog; }
+namespace Ui {
+class StartAppDialog;
+}
 
 class StartAppDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	explicit StartAppDialog( QWidget *parent );
+	explicit StartAppDialog(QWidget* parent);
 	~StartAppDialog() override;
 
 	const QString& apps() const
@@ -56,5 +58,4 @@ private:
 	QString m_apps;
 	bool m_remember;
 	QString m_presetName;
-
-} ;
+};

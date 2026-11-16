@@ -28,15 +28,15 @@
 
 #include "ui_UltraVncConfigurationWidget.h"
 
-UltraVncConfigurationWidget::UltraVncConfigurationWidget( UltraVncConfiguration& configuration ) :
+UltraVncConfigurationWidget::UltraVncConfigurationWidget(UltraVncConfiguration& configuration) :
 	QWidget(),
-	ui( new Ui::UltraVncConfigurationWidget ),
-	m_configuration( configuration )
+	ui(new Ui::UltraVncConfigurationWidget),
+	m_configuration(configuration)
 {
-	ui->setupUi( this );
+	ui->setupUi(this);
 
-	Configuration::UiMapping::setFlags( ui->ultraVncMaxCpu, Configuration::Property::Flag::Advanced );
-	Configuration::UiMapping::setFlags( ui->ultraVncMaxCpuLabel, Configuration::Property::Flag::Advanced );
+	Configuration::UiMapping::setFlags(ui->ultraVncMaxCpu, Configuration::Property::Flag::Advanced);
+	Configuration::UiMapping::setFlags(ui->ultraVncMaxCpuLabel, Configuration::Property::Flag::Advanced);
 
 	FOREACH_ULTRAVNC_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_ULTRAVNC_CONFIG_PROPERTY(CONNECT_WIDGET_TO_PROPERTY);

@@ -22,9 +22,6 @@
  *
  */
 
-#include <sys/stat.h>
-#include <unistd.h>
-
 #include <QDBusReply>
 #include <QDir>
 #include <QEventLoop>
@@ -38,6 +35,9 @@
 #include "LinuxSessionFunctions.h"
 #include "LinuxUserFunctions.h"
 #include "VeyonConfiguration.h"
+
+#include <sys/stat.h>
+#include <unistd.h>
 
 
 static const QStringList safeSessionEnvironmentVariables = {
@@ -263,8 +263,8 @@ static bool isValidDBusSessionBusAddress(const QString& address, uint expectedUi
 
 
 
-LinuxServiceCore::LinuxServiceCore( QObject* parent ) :
-	QObject( parent )
+LinuxServiceCore::LinuxServiceCore(QObject* parent) :
+	QObject(parent)
 {
 	connectToLoginManager();
 }
@@ -280,14 +280,14 @@ LinuxServiceCore::~LinuxServiceCore()
 
 void LinuxServiceCore::run()
 {
-	if(m_busInterface == nullptr)
+	if (m_busInterface == nullptr)
 	{
 		m_busInterface = new LinuxServiceBusInterface(
 			[this](uid_t uid) { return isActiveSessionUser(uid); },
 			this);
 	}
 
-	if(m_busInterface->registerOnSystemBus() == false)
+	if (m_busInterface->registerOnSystemBus() == false)
 	{
 		vCritical() << "authentication requests via D-Bus will not be available";
 	}
@@ -312,7 +312,7 @@ void LinuxServiceCore::run()
 
 
 
-void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath )
+void LinuxServiceCore::startServer(const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath)
 {
 	Q_UNUSED(login1SessionId)
 
@@ -320,12 +320,12 @@ void LinuxServiceCore::startServer( const QString& login1SessionId, const QDBusO
 
 	vDebug() << "new session" << sessionPath;
 
-	startServer( sessionPath );
+	startServer(sessionPath);
 }
 
 
 
-void LinuxServiceCore::stopServer( const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath )
+void LinuxServiceCore::stopServer(const QString& login1SessionId, const QDBusObjectPath& sessionObjectPath)
 {
 	Q_UNUSED(login1SessionId)
 
@@ -333,12 +333,12 @@ void LinuxServiceCore::stopServer( const QString& login1SessionId, const QDBusOb
 
 	vDebug() << "session removed" << sessionPath;
 
-	if( m_serverProcesses.contains( sessionPath ) )
+	if (m_serverProcesses.contains(sessionPath))
 	{
-		stopServer( sessionPath );
+		stopServer(sessionPath);
 
 		// make sure to (re-)start server instances for preempted/suspended sessions such as the login manager session
-		if( m_sessionManager.mode() != PlatformSessionManager::Mode::Multi )
+		if (m_sessionManager.mode() != PlatformSessionManager::Mode::Multi)
 		{
 			startServers();
 		}
@@ -355,16 +355,16 @@ void LinuxServiceCore::connectToLoginManager()
 	const auto path = m_loginManager->path();
 	const auto interface = m_loginManager->interface();
 
-	success &= QDBusConnection::systemBus().connect( service, path, interface, QStringLiteral("SessionNew"),
-													 this, SLOT(startServer(QString,QDBusObjectPath)) );
+	success &= QDBusConnection::systemBus().connect(service, path, interface, QStringLiteral("SessionNew"),
+													this, SLOT(startServer(QString, QDBusObjectPath)));
 
-	success &= QDBusConnection::systemBus().connect( service, path, interface, QStringLiteral("SessionRemoved"),
-													 this, SLOT(stopServer(QString,QDBusObjectPath)) );
+	success &= QDBusConnection::systemBus().connect(service, path, interface, QStringLiteral("SessionRemoved"),
+													this, SLOT(stopServer(QString, QDBusObjectPath)));
 
-	if( success == false )
+	if (success == false)
 	{
 		vWarning() << "could not connect to login manager! retrying in" << LoginManagerReconnectInterval << "msecs";
-		QTimer::singleShot( LoginManagerReconnectInterval, this, &LinuxServiceCore::connectToLoginManager );
+		QTimer::singleShot(LoginManagerReconnectInterval, this, &LinuxServiceCore::connectToLoginManager);
 	}
 	else
 	{
@@ -380,29 +380,29 @@ void LinuxServiceCore::startServers()
 
 	const auto sessions = LinuxSessionFunctions::listSessions();
 
-	for( const auto& s : sessions )
+	for (const auto& s : sessions)
 	{
-		if( m_serverProcesses.contains( s ) == false &&
-			m_deferredServerSessions.contains( s ) == false &&
-			( m_sessionManager.mode() == PlatformSessionManager::Mode::Multi || m_serverProcesses.isEmpty() ) )
+		if (m_serverProcesses.contains(s) == false &&
+			m_deferredServerSessions.contains(s) == false &&
+			(m_sessionManager.mode() == PlatformSessionManager::Mode::Multi || m_serverProcesses.isEmpty()))
 		{
-			startServer( s );
+			startServer(s);
 		}
 	}
 }
 
 
 
-void LinuxServiceCore::startServer( const QString& sessionPath )
+void LinuxServiceCore::startServer(const QString& sessionPath)
 {
 	// a pending deferral (if any) is handled now - re-added below whenever the start is deferred
 	// again, so that a session given up on here is not skipped forever by startServers()
 	m_deferredServerSessions.removeAll(sessionPath);
 
-	const auto sessionType = LinuxSessionFunctions::getSessionType( sessionPath );
+	const auto sessionType = LinuxSessionFunctions::getSessionType(sessionPath);
 
 	// do not start server for non-graphical sessions
-	if( sessionType == LinuxSessionFunctions::Type::TTY )
+	if (sessionType == LinuxSessionFunctions::Type::TTY)
 	{
 		vDebug() << "Not starting Veyon Server in TTY session";
 		return;
@@ -415,24 +415,24 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 		return;
 	}
 
-	const auto sessionState = LinuxSessionFunctions::getSessionState( sessionPath );
-	if( sessionState == LinuxSessionFunctions::State::Opening )
+	const auto sessionState = LinuxSessionFunctions::getSessionState(sessionPath);
+	if (sessionState == LinuxSessionFunctions::State::Opening)
 	{
 		vDebug() << "Session" << sessionPath << "still is being opening - retrying in" << SessionStateProbingInterval << "msecs";
-		deferServerStart( sessionPath, SessionStateProbingInterval );
+		deferServerStart(sessionPath, SessionStateProbingInterval);
 		return;
 	}
 
 	// only start server for online or active sessions
-	if( sessionState != LinuxSessionFunctions::State::Online &&
-		sessionState != LinuxSessionFunctions::State::Active )
+	if (sessionState != LinuxSessionFunctions::State::Online &&
+		sessionState != LinuxSessionFunctions::State::Active)
 	{
 		vInfo() << "Not starting server for session" << sessionPath << "in state" << sessionState;
 		return;
 	}
 
-	const auto sessionLeader = LinuxSessionFunctions::getSessionLeaderPid( sessionPath );
-	if( sessionLeader < 0 )
+	const auto sessionLeader = LinuxSessionFunctions::getSessionLeaderPid(sessionPath);
+	if (sessionLeader < 0)
 	{
 		vCritical() << "No leader available for session" << sessionPath;
 		return;
@@ -443,21 +443,21 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 	{
 		vWarning() << "Environment for session" << sessionPath << "not yet available - retrying in"
 				   << SessionEnvironmentProbingInterval << "msecs";
-		deferServerStart( sessionPath, SessionEnvironmentProbingInterval );
+		deferServerStart(sessionPath, SessionEnvironmentProbingInterval);
 		return;
 	}
 
-	if( m_sessionManager.mode() != PlatformSessionManager::Mode::Multi )
+	if (m_sessionManager.mode() != PlatformSessionManager::Mode::Multi)
 	{
 		// make sure no other server is still running
 		stopAllServers();
 	}
 
-	const auto sessionUptime = LinuxSessionFunctions::getSessionUptimeSeconds( sessionPath );
+	const auto sessionUptime = LinuxSessionFunctions::getSessionUptimeSeconds(sessionPath);
 	const auto minimumSessionUptime = LinuxPlatformConfiguration(&VeyonCore::config()).minimumUserSessionLifetime();
 
-	if( sessionUptime >= 0 &&
-		sessionUptime < minimumSessionUptime )
+	if (sessionUptime >= 0 &&
+		sessionUptime < minimumSessionUptime)
 	{
 		vDebug() << "Session" << sessionPath << "too young - retrying in" << minimumSessionUptime - sessionUptime << "secs";
 		// MinimumUserSessionLifetime and the session uptime are in seconds
@@ -579,18 +579,18 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 		serverEnvironment.remove(QStringLiteral("DBUS_SESSION_BUS_ADDRESS"));
 	}
 
-	const auto sessionId = m_sessionManager.openSession( sessionPath );
+	const auto sessionId = m_sessionManager.openSession(sessionPath);
 
 	vInfo() << "Starting server for new session" << sessionPath
 			<< "with ID" << sessionId
-			<< "at seat" << LinuxSessionFunctions::getSessionSeat( sessionPath ).path;
+			<< "at seat" << LinuxSessionFunctions::getSessionSeat(sessionPath).path;
 
 	serverEnvironment.insert(QLatin1String(ServiceDataManager::serviceDataTokenEnvironmentVariable()),
 							 QString::fromUtf8(m_dataManager.token().toByteArray()));
 
 	const auto serverUserId = sessionUid > 0 ?
-				static_cast<LinuxUserFunctions::UserId>(sessionUid) :
-				LinuxUserFunctions::InvalidUserId;
+		static_cast<LinuxUserFunctions::UserId>(sessionUid) :
+		LinuxUserFunctions::InvalidUserId;
 
 	auto serverProcess = new LinuxServerProcess(serverEnvironment, sessionPath, sessionId,
 												serverUserId,
@@ -600,31 +600,31 @@ void LinuxServiceCore::startServer( const QString& sessionPath )
 	connect(serverProcess, &QProcess::stateChanged, this, [=, this]() { checkSessionState(sessionPath); });
 
 	m_serverProcesses[sessionPath] = serverProcess;
-	m_deferredServerSessions.removeAll( sessionPath );
+	m_deferredServerSessions.removeAll(sessionPath);
 }
 
 
 
-void LinuxServiceCore::deferServerStart( const QString& sessionPath, int delay )
+void LinuxServiceCore::deferServerStart(const QString& sessionPath, int delay)
 {
 	QTimer::singleShot(delay, this, [=, this]() { startServer(sessionPath); });
 
-	if( m_deferredServerSessions.contains( sessionPath ) == false )
+	if (m_deferredServerSessions.contains(sessionPath) == false)
 	{
-		m_deferredServerSessions.append( sessionPath );
+		m_deferredServerSessions.append(sessionPath);
 	}
 }
 
 
 
-void LinuxServiceCore::stopServer( const QString& sessionPath )
+void LinuxServiceCore::stopServer(const QString& sessionPath)
 {
-	m_sessionManager.closeSession( sessionPath );
+	m_sessionManager.closeSession(sessionPath);
 
 	m_sessionsWithUnknownState.remove(sessionPath);
 	m_sessionsWithPendingStateRecheck.remove(sessionPath);
 
-	if( m_serverProcesses.contains( sessionPath ) == false )
+	if (m_serverProcesses.contains(sessionPath) == false)
 	{
 		return;
 	}
@@ -636,22 +636,22 @@ void LinuxServiceCore::stopServer( const QString& sessionPath )
 	serverProcess->stop();
 	serverProcess->deleteLater();
 
-	m_serverProcesses.remove( sessionPath );
+	m_serverProcesses.remove(sessionPath);
 }
 
 
 
 void LinuxServiceCore::stopAllServers()
 {
-	while( m_serverProcesses.isEmpty() == false )
+	while (m_serverProcesses.isEmpty() == false)
 	{
-		stopServer( m_serverProcesses.firstKey() );
+		stopServer(m_serverProcesses.firstKey());
 	}
 }
 
 
 
-void LinuxServiceCore::checkSessionState( const QString& sessionPath )
+void LinuxServiceCore::checkSessionState(const QString& sessionPath)
 {
 	// a re-check after an unknown state is already scheduled: don't decide on another
 	// stateChanged() in the meantime
@@ -660,7 +660,7 @@ void LinuxServiceCore::checkSessionState( const QString& sessionPath )
 		return;
 	}
 
-	const auto sessionState = LinuxSessionFunctions::getSessionState( sessionPath );
+	const auto sessionState = LinuxSessionFunctions::getSessionState(sessionPath);
 
 	// an unknown state usually means a failed or timed out D-Bus query (e.g. while the system is
 	// still busy after login) rather than a vanished session - re-check once before giving up
@@ -670,7 +670,7 @@ void LinuxServiceCore::checkSessionState( const QString& sessionPath )
 		m_sessionsWithUnknownState.insert(sessionPath);
 		m_sessionsWithPendingStateRecheck.insert(sessionPath);
 		vDebug() << "State of session" << sessionPath << "unknown - checking again in" << SessionStateProbingInterval << "msecs";
-		QTimer::singleShot( SessionStateProbingInterval, this, [=, this]() {
+		QTimer::singleShot(SessionStateProbingInterval, this, [=, this]() {
 			m_sessionsWithPendingStateRecheck.remove(sessionPath);
 			if (m_serverProcesses.contains(sessionPath))
 			{
@@ -680,13 +680,13 @@ void LinuxServiceCore::checkSessionState( const QString& sessionPath )
 		return;
 	}
 
-	m_sessionsWithUnknownState.remove( sessionPath );
+	m_sessionsWithUnknownState.remove(sessionPath);
 
-	if( sessionState == LinuxSessionFunctions::State::Closing ||
-		sessionState == LinuxSessionFunctions::State::Unknown )
+	if (sessionState == LinuxSessionFunctions::State::Closing ||
+		sessionState == LinuxSessionFunctions::State::Unknown)
 	{
 		vDebug() << "Stopping server for currently closing session" << sessionPath;
-		stopServer( sessionPath );
+		stopServer(sessionPath);
 
 		// as when a session is removed: (re-)start servers for other sessions, e.g. the one
 		// preempted by the closing session
@@ -710,9 +710,9 @@ void LinuxServiceCore::checkSessionState( const QString& sessionPath )
 
 bool LinuxServiceCore::isActiveSessionUser(uid_t uid) const
 {
-	for(const auto& serverProcess : m_serverProcesses)
+	for (const auto& serverProcess : m_serverProcesses)
 	{
-		if(serverProcess->sessionUserId() == uid)
+		if (serverProcess->sessionUserId() == uid)
 		{
 			return true;
 		}

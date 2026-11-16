@@ -37,9 +37,9 @@ public:
 	LinuxKeyboardInput();
 	~LinuxKeyboardInput();
 
-	void pressAndReleaseKey( uint32_t keysym );
+	void pressAndReleaseKey(uint32_t keysym);
 
-	void pressAndReleaseKey( const QByteArray& utf8Data );
+	void pressAndReleaseKey(const QByteArray& utf8Data);
 
 	void sendString(const QString& string, int keyPressInterval);
 
@@ -60,5 +60,4 @@ private:
 
 	static int keysymToLinuxKeycode(uint32_t keysym);
 	static int utf8ToLinuxKeycode(const QByteArray& utf8Data);
-
 };

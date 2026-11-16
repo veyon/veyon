@@ -24,54 +24,54 @@
 
 #include "ComputerControlListModel.h"
 #include "ComputerManager.h"
-#include "ComputerMonitoringView.h"
 #include "ComputerMonitoringModel.h"
-#include "VeyonMaster.h"
+#include "ComputerMonitoringView.h"
 #include "FeatureManager.h"
-#include "VeyonConfiguration.h"
 #include "UserConfig.h"
+#include "VeyonConfiguration.h"
+#include "VeyonMaster.h"
 
 
 ComputerMonitoringView::ComputerMonitoringView() :
-	m_master( VeyonCore::instance()->findChild<VeyonMaster *>() )
+	m_master(VeyonCore::instance()->findChild<VeyonMaster*>())
 {
 	m_autoAdjustIconSize = VeyonCore::config().autoAdjustMonitoringIconSize() ||
-						   master()->userConfig().autoAdjustMonitoringIconSize();
+		master()->userConfig().autoAdjustMonitoringIconSize();
 
-	m_iconSizeAutoAdjustTimer.setInterval( IconSizeAdjustDelay );
-	m_iconSizeAutoAdjustTimer.setSingleShot( true );
+	m_iconSizeAutoAdjustTimer.setInterval(IconSizeAdjustDelay);
+	m_iconSizeAutoAdjustTimer.setSingleShot(true);
 }
 
 
 
-void ComputerMonitoringView::initializeView( QObject* self )
+void ComputerMonitoringView::initializeView(QObject* self)
 {
 	const auto autoAdjust = [this]() { initiateIconSizeAutoAdjust(); };
 
-	QObject::connect( &m_iconSizeAutoAdjustTimer, &QTimer::timeout, self, [this]() { performIconSizeAutoAdjust(); } );
-	QObject::connect( dataModel(), &ComputerMonitoringModel::rowsInserted, self, autoAdjust );
-	QObject::connect( dataModel(), &ComputerMonitoringModel::rowsRemoved, self, autoAdjust );
-	QObject::connect( &m_master->computerControlListModel(), &ComputerControlListModel::computerScreenSizeChanged, self,
-					  [this]() { updateIconSize(); } );
+	QObject::connect(&m_iconSizeAutoAdjustTimer, &QTimer::timeout, self, [this]() { performIconSizeAutoAdjust(); });
+	QObject::connect(dataModel(), &ComputerMonitoringModel::rowsInserted, self, autoAdjust);
+	QObject::connect(dataModel(), &ComputerMonitoringModel::rowsRemoved, self, autoAdjust);
+	QObject::connect(&m_master->computerControlListModel(), &ComputerControlListModel::computerScreenSizeChanged, self,
+					 [this]() { updateIconSize(); });
 
-	setColors( VeyonCore::config().computerMonitoringBackgroundColor(),
-			   VeyonCore::config().computerMonitoringTextColor() );
+	setColors(VeyonCore::config().computerMonitoringBackgroundColor(),
+			  VeyonCore::config().computerMonitoringTextColor());
 
-	setComputerScreenSize( m_master->userConfig().monitoringScreenSize() );
+	setComputerScreenSize(m_master->userConfig().monitoringScreenSize());
 	updateIconSize();
 
-	loadComputerPositions( m_master->userConfig().computerPositions() );
-	setUseCustomComputerPositions( m_master->userConfig().useCustomComputerPositions() );
+	loadComputerPositions(m_master->userConfig().computerPositions());
+	setUseCustomComputerPositions(m_master->userConfig().useCustomComputerPositions());
 }
 
 
 
 void ComputerMonitoringView::saveConfiguration()
 {
-	m_master->userConfig().setFilterPoweredOnComputers( dataModel()->stateFilter() != ComputerControlInterface::State::None );
-	m_master->userConfig().setFilterComputersWithLoggedOnUsers( dataModel()->filterNonEmptyUserLoginNames() );
-	m_master->userConfig().setComputerPositions( saveComputerPositions() );
-	m_master->userConfig().setUseCustomComputerPositions( useCustomComputerPositions() );
+	m_master->userConfig().setFilterPoweredOnComputers(dataModel()->stateFilter() != ComputerControlInterface::State::None);
+	m_master->userConfig().setFilterComputersWithLoggedOnUsers(dataModel()->filterNonEmptyUserLoginNames());
+	m_master->userConfig().setComputerPositions(saveComputerPositions());
+	m_master->userConfig().setUseCustomComputerPositions(useCustomComputerPositions());
 }
 
 
@@ -90,39 +90,39 @@ QString ComputerMonitoringView::searchFilter() const
 
 
 
-void ComputerMonitoringView::setSearchFilter( const QString& searchFilter )
+void ComputerMonitoringView::setSearchFilter(const QString& searchFilter)
 {
 	dataModel()->setFilterRegularExpression(searchFilter);
 }
 
 
 
-void ComputerMonitoringView::setFilterPoweredOnComputers( bool enabled )
+void ComputerMonitoringView::setFilterPoweredOnComputers(bool enabled)
 {
-	dataModel()->setStateFilter( enabled ? ComputerControlInterface::State::Connected :
-										   ComputerControlInterface::State::None );
+	dataModel()->setStateFilter(enabled ? ComputerControlInterface::State::Connected :
+										  ComputerControlInterface::State::None);
 }
 
 
 
-void ComputerMonitoringView::setFilterComputersWithLoggedOnUsers( bool enabled )
+void ComputerMonitoringView::setFilterComputersWithLoggedOnUsers(bool enabled)
 {
-	dataModel()->setFilterNonEmptyUserLoginNames( enabled );
+	dataModel()->setFilterNonEmptyUserLoginNames(enabled);
 }
 
 
 
-void ComputerMonitoringView::setComputerScreenSize( int size )
+void ComputerMonitoringView::setComputerScreenSize(int size)
 {
-	if( m_computerScreenSize != size )
+	if (m_computerScreenSize != size)
 	{
 		const auto minSize = MinimumComputerScreenSize;
 		const auto maxSize = MaximumComputerScreenSize;
-		size = qBound<int>( minSize, size, maxSize );
+		size = qBound<int>(minSize, size, maxSize);
 
 		m_computerScreenSize = size;
 
-		m_master->userConfig().setMonitoringScreenSize( size );
+		m_master->userConfig().setMonitoringScreenSize(size);
 
 		m_master->computerControlListModel().updateComputerScreenSize();
 	}
@@ -137,11 +137,11 @@ int ComputerMonitoringView::computerScreenSize() const
 
 
 
-void ComputerMonitoringView::setAutoAdjustIconSize( bool enabled )
+void ComputerMonitoringView::setAutoAdjustIconSize(bool enabled)
 {
 	m_autoAdjustIconSize = enabled;
 
-	if( m_autoAdjustIconSize )
+	if (m_autoAdjustIconSize)
 	{
 		performIconSizeAutoAdjust();
 	}
@@ -155,7 +155,6 @@ bool ComputerMonitoringView::performIconSizeAutoAdjust()
 
 	return m_autoAdjustIconSize && dataModel()->rowCount() > 0;
 }
-
 
 
 
@@ -173,56 +172,55 @@ void ComputerMonitoringView::updateIconSize()
 
 
 
-void ComputerMonitoringView::runFeature( const Feature& feature )
+void ComputerMonitoringView::runFeature(const Feature& feature)
 {
 	auto computerControlInterfaces = selectedComputerControlInterfaces();
-	if( computerControlInterfaces.isEmpty() )
+	if (computerControlInterfaces.isEmpty())
 	{
 		computerControlInterfaces = m_master->filteredComputerControlInterfaces();
 	}
 
-	const auto alreadyActive = feature.testFlag( Feature::Flag::Mode ) &&
-							   isFeatureOrRelatedFeatureActive( computerControlInterfaces, feature.uid() );
+	const auto alreadyActive = feature.testFlag(Feature::Flag::Mode) &&
+		isFeatureOrRelatedFeatureActive(computerControlInterfaces, feature.uid());
 
-	if( feature.testFlag( Feature::Flag::Mode ) )
+	if (feature.testFlag(Feature::Flag::Mode))
 	{
-		for( const auto& currentFeature : m_master->features() )
+		for (const auto& currentFeature : m_master->features())
 		{
 			// stop already active or all other active mode features
-			if( currentFeature.testFlag( Feature::Flag::Mode ) && ( alreadyActive || currentFeature != feature ) )
+			if (currentFeature.testFlag(Feature::Flag::Mode) && (alreadyActive || currentFeature != feature))
 			{
-				VeyonCore::featureManager().stopFeature( *m_master, currentFeature, computerControlInterfaces );
+				VeyonCore::featureManager().stopFeature(*m_master, currentFeature, computerControlInterfaces);
 
-				const auto subFeatures = m_master->subFeatures( currentFeature.uid() );
-				for( const auto& subFeature : subFeatures )
+				const auto subFeatures = m_master->subFeatures(currentFeature.uid());
+				for (const auto& subFeature : subFeatures)
 				{
-					VeyonCore::featureManager().stopFeature( *m_master, subFeature, computerControlInterfaces );
+					VeyonCore::featureManager().stopFeature(*m_master, subFeature, computerControlInterfaces);
 				}
 			}
 		}
 	}
 
-	if( alreadyActive == false )
+	if (alreadyActive == false)
 	{
-		VeyonCore::featureManager().startFeature( *m_master, feature, computerControlInterfaces );
+		VeyonCore::featureManager().startFeature(*m_master, feature, computerControlInterfaces);
 	}
 }
 
 
 
-bool ComputerMonitoringView::isFeatureOrRelatedFeatureActive( const ComputerControlInterfaceList& computerControlInterfaces,
-															 Feature::Uid featureUid ) const
+bool ComputerMonitoringView::isFeatureOrRelatedFeatureActive(const ComputerControlInterfaceList& computerControlInterfaces,
+															 Feature::Uid featureUid) const
 {
-	const auto& relatedFeatures = VeyonCore::featureManager().relatedFeatures( featureUid );
+	const auto& relatedFeatures = VeyonCore::featureManager().relatedFeatures(featureUid);
 
-	for( const auto& controlInterface : computerControlInterfaces )
+	for (const auto& controlInterface : computerControlInterfaces)
 	{
-		if( controlInterface->activeFeatures().contains( featureUid ) ||
-			std::find_if( relatedFeatures.begin(), relatedFeatures.end(),
-						  [&controlInterface](const auto& relatedFeature) {
-							  return controlInterface->activeFeatures().contains( relatedFeature.uid() );
-						  } )
-			!= relatedFeatures.end() )
+		if (controlInterface->activeFeatures().contains(featureUid) ||
+			std::find_if(relatedFeatures.begin(), relatedFeatures.end(),
+						 [&controlInterface](const auto& relatedFeature) {
+			return controlInterface->activeFeatures().contains(relatedFeature.uid());
+		}) != relatedFeatures.end())
 		{
 			return true;
 		}

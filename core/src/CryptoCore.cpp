@@ -34,13 +34,13 @@ CryptoCore::CryptoCore() :
 
 	vDebug() << "CryptoCore instance created - features supported by QCA" << qcaVersionStr() << features;
 
-	if( features.contains( QStringLiteral( "rsa" ) ) == false )
+	if (features.contains(QStringLiteral("rsa")) == false)
 	{
-		qFatal( "CryptoCore: RSA not supported! Please install a QCA plugin which provides RSA support "
-				"(e.g. packages such as libqca-qt5-2-plugins or qca-qt5-ossl)." );
+		qFatal("CryptoCore: RSA not supported! Please install a QCA plugin which provides RSA support "
+			   "(e.g. packages such as libqca-qt5-2-plugins or qca-qt5-ossl).");
 	}
 
-	m_defaultPrivateKey = PrivateKey::fromPEMFile( QStringLiteral(":/core/default-pkey.pem") );
+	m_defaultPrivateKey = PrivateKey::fromPEMFile(QStringLiteral(":/core/default-pkey.pem"));
 }
 
 
@@ -66,20 +66,18 @@ QByteArray CryptoCore::generateChallenge()
 
 
 
-QString CryptoCore::encryptPassword( const PlaintextPassword& password ) const
+QString CryptoCore::encryptPassword(const PlaintextPassword& password) const
 {
-	return QString::fromLatin1( m_defaultPrivateKey.toPublicKey().
-								encrypt( password, DefaultEncryptionAlgorithm ).toByteArray().toHex() );
+	return QString::fromLatin1(m_defaultPrivateKey.toPublicKey().encrypt(password, DefaultEncryptionAlgorithm).toByteArray().toHex());
 }
 
 
 
-CryptoCore::PlaintextPassword CryptoCore::decryptPassword( const QString& encryptedPassword ) const
+CryptoCore::PlaintextPassword CryptoCore::decryptPassword(const QString& encryptedPassword) const
 {
 	PlaintextPassword decryptedPassword;
 
-	if( PrivateKey( m_defaultPrivateKey ).decrypt( QByteArray::fromHex( encryptedPassword.toUtf8() ),
-												   &decryptedPassword, DefaultEncryptionAlgorithm ) )
+	if (PrivateKey(m_defaultPrivateKey).decrypt(QByteArray::fromHex(encryptedPassword.toUtf8()), &decryptedPassword, DefaultEncryptionAlgorithm))
 	{
 		return decryptedPassword;
 	}

@@ -4,9 +4,9 @@
 
 #include <QRegularExpression>
 
+#include "LdapBrowseModel.h"
 #include "LdapClient.h"
 #include "LdapConfiguration.h"
-#include "LdapBrowseModel.h"
 
 #if defined(QT_TESTLIB_LIB)
 #include <QAbstractItemModelTester>
@@ -14,7 +14,8 @@
 
 // clazy:excludeall=rule-of-three
 
-class LdapBrowseModelNode {
+class LdapBrowseModelNode
+{
 public:
 	enum Type {
 		Root,
@@ -22,13 +23,13 @@ public:
 		Attribute
 	};
 
-	explicit LdapBrowseModelNode( Type type, const QString& name, LdapBrowseModelNode *parent ) :
-		m_parent( parent ),
-		m_name( name ),
-		m_type( type ),
-		m_populated( false )
+	explicit LdapBrowseModelNode(Type type, const QString& name, LdapBrowseModelNode* parent) :
+		m_parent(parent),
+		m_name(name),
+		m_type(type),
+		m_populated(false)
 	{
-		if( type == Attribute )
+		if (type == Attribute)
 		{
 			m_populated = true;
 		}
@@ -58,15 +59,15 @@ public:
 
 	int row() const
 	{
-		if( m_parent )
+		if (m_parent)
 		{
-			return m_parent->children().indexOf( const_cast<LdapBrowseModelNode *>(this) );
+			return m_parent->children().indexOf(const_cast<LdapBrowseModelNode*>(this));
 		}
 
 		return 0;
 	}
 
-	void setPopulated( bool populated )
+	void setPopulated(bool populated)
 	{
 		m_populated = populated;
 	}
@@ -76,12 +77,12 @@ public:
 		return m_populated;
 	}
 
-	void appendChild( LdapBrowseModelNode* item )
+	void appendChild(LdapBrowseModelNode* item)
 	{
-		m_childItems.append( item );
+		m_childItems.append(item);
 	}
 
-	const QList<LdapBrowseModelNode *>& children() const
+	const QList<LdapBrowseModelNode*>& children() const
 	{
 		return m_childItems;
 	}
@@ -93,28 +94,27 @@ public:
 
 private:
 	LdapBrowseModelNode* m_parent;
-	QList<LdapBrowseModelNode *> m_childItems;
+	QList<LdapBrowseModelNode*> m_childItems;
 	QString m_name;
 	Type m_type;
 	bool m_populated;
-
 };
 
 
 
-LdapBrowseModel::LdapBrowseModel( Mode mode, const LdapConfiguration& configuration, QObject* parent ) :
-	QAbstractItemModel( parent ),
-	m_mode( mode ),
-	m_client( new LdapClient( configuration, QUrl(), this ) ),
-	m_root( new Node( Node::Root, {}, nullptr ) ),
-	m_objectIcon( QStringLiteral(":/core/document-open.png") ),
-	m_ouIcon( QStringLiteral( ":/ldap/folder-stash.png") ),
-	m_attributeIcon( QStringLiteral(":/ldap/attribute.png") )
+LdapBrowseModel::LdapBrowseModel(Mode mode, const LdapConfiguration& configuration, QObject* parent) :
+	QAbstractItemModel(parent),
+	m_mode(mode),
+	m_client(new LdapClient(configuration, QUrl(), this)),
+	m_root(new Node(Node::Root, {}, nullptr)),
+	m_objectIcon(QStringLiteral(":/core/document-open.png")),
+	m_ouIcon(QStringLiteral(":/ldap/folder-stash.png")),
+	m_attributeIcon(QStringLiteral(":/ldap/attribute.png"))
 {
 	populateRoot();
 
 #if defined(QT_TESTLIB_LIB)
-	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
+	new QAbstractItemModelTester(this, QAbstractItemModelTester::FailureReportingMode::Warning, this);
 #endif
 }
 
@@ -128,12 +128,12 @@ LdapBrowseModel::~LdapBrowseModel()
 
 
 
-QModelIndex LdapBrowseModel::index( int row, int col, const QModelIndex& parent ) const
+QModelIndex LdapBrowseModel::index(int row, int col, const QModelIndex& parent) const
 {
-	auto childNode = toNode( parent )->children().value( row );
-	if( childNode )
+	auto childNode = toNode(parent)->children().value(row);
+	if (childNode)
 	{
-		return createIndex( row, col, childNode );
+		return createIndex(row, col, childNode);
 	}
 
 	return {};
@@ -141,45 +141,45 @@ QModelIndex LdapBrowseModel::index( int row, int col, const QModelIndex& parent 
 
 
 
-QModelIndex LdapBrowseModel::parent( const QModelIndex& child ) const
+QModelIndex LdapBrowseModel::parent(const QModelIndex& child) const
 {
-	if( child.isValid() == false )
+	if (child.isValid() == false)
 	{
 		return {};
 	}
 
-	auto childItem = static_cast<Node *>( child.internalPointer() );
+	auto childItem = static_cast<Node*>(child.internalPointer());
 	auto parentItem = childItem->parent();
 
-	if( parentItem == m_root )
+	if (parentItem == m_root)
 	{
 		return {};
 	}
 
-	return createIndex( parentItem->row(), 0, parentItem );
+	return createIndex(parentItem->row(), 0, parentItem);
 }
 
 
 
-QVariant LdapBrowseModel::data( const QModelIndex& index, int role ) const
+QVariant LdapBrowseModel::data(const QModelIndex& index, int role) const
 {
-	if( index.isValid() == false )
+	if (index.isValid() == false)
 	{
 		return {};
 	}
 
-	const auto node = toNode( index );
+	const auto node = toNode(index);
 
-	switch( role )
+	switch (role)
 	{
 	case Qt::DisplayRole:
-		return LdapClient::toRDNs( node->name() ).value( 0 );
+		return LdapClient::toRDNs(node->name()).value(0);
 
 	case Qt::DecorationRole:
-		switch( node->type() )
+		switch (node->type())
 		{
 		case Node::Root: break;
-		case Node::DN: return node->name().startsWith( QLatin1String("ou="), Qt::CaseInsensitive ) ? m_ouIcon : m_objectIcon;
+		case Node::DN: return node->name().startsWith(QLatin1String("ou="), Qt::CaseInsensitive) ? m_ouIcon : m_objectIcon;
 		case Node::Attribute: return m_attributeIcon;
 		}
 		break;
@@ -196,9 +196,9 @@ QVariant LdapBrowseModel::data( const QModelIndex& index, int role ) const
 
 
 
-Qt::ItemFlags LdapBrowseModel::flags( const QModelIndex& index ) const
+Qt::ItemFlags LdapBrowseModel::flags(const QModelIndex& index) const
 {
-	if( index.isValid() == false )
+	if (index.isValid() == false)
 	{
 		return QAbstractItemModel::flags(index);
 	}
@@ -208,7 +208,7 @@ Qt::ItemFlags LdapBrowseModel::flags( const QModelIndex& index ) const
 
 
 
-int LdapBrowseModel::columnCount( const QModelIndex& parent ) const
+int LdapBrowseModel::columnCount(const QModelIndex& parent) const
 {
 	Q_UNUSED(parent);
 	return 1;
@@ -216,23 +216,23 @@ int LdapBrowseModel::columnCount( const QModelIndex& parent ) const
 
 
 
-int LdapBrowseModel::rowCount( const QModelIndex& parent ) const
+int LdapBrowseModel::rowCount(const QModelIndex& parent) const
 {
-	if( parent.column() >  0 )
+	if (parent.column() > 0)
 	{
 		return 0;
 	}
 
-	return toNode( parent )->children().count();
+	return toNode(parent)->children().count();
 }
 
 
 
-bool LdapBrowseModel::hasChildren( const QModelIndex& parent ) const
+bool LdapBrowseModel::hasChildren(const QModelIndex& parent) const
 {
-	auto parentNode = toNode( parent );
+	auto parentNode = toNode(parent);
 
-	if( parent.isValid() && parentNode && parentNode->isPopulated() )
+	if (parent.isValid() && parentNode && parentNode->isPopulated())
 	{
 		return parentNode->children().isEmpty() == false;
 	}
@@ -242,50 +242,50 @@ bool LdapBrowseModel::hasChildren( const QModelIndex& parent ) const
 
 
 
-bool LdapBrowseModel::canFetchMore( const QModelIndex& parent ) const
+bool LdapBrowseModel::canFetchMore(const QModelIndex& parent) const
 {
-	return toNode( parent )->isPopulated() == false;
+	return toNode(parent)->isPopulated() == false;
 }
 
 
 
-void LdapBrowseModel::fetchMore( const QModelIndex& parent )
+void LdapBrowseModel::fetchMore(const QModelIndex& parent)
 {
-	populateNode( parent );
+	populateNode(parent);
 }
 
 
 
-QModelIndex LdapBrowseModel::dnToIndex( const QString& dn )
+QModelIndex LdapBrowseModel::dnToIndex(const QString& dn)
 {
-	auto rdns = LdapClient::toRDNs( dn );
+	auto rdns = LdapClient::toRDNs(dn);
 
 	auto node = m_root;
 	QModelIndex index;
 	QStringList fullDn;
 
-	while( rdns.isEmpty() == false )
+	while (rdns.isEmpty() == false)
 	{
-		populateNode( index );
+		populateNode(index);
 
-		fullDn.prepend( rdns.takeLast() );
-		const auto currentDn = fullDn.join( QLatin1Char(',') ).toLower();
+		fullDn.prepend(rdns.takeLast());
+		const auto currentDn = fullDn.join(QLatin1Char(',')).toLower();
 
 		int row = 0;
 		const int count = node->children().count();
 
-		for( auto child : node->children() )
+		for (auto child : node->children())
 		{
-			if( child->name().toLower() == currentDn )
+			if (child->name().toLower() == currentDn)
 			{
 				node = child;
-				index = createIndex( row, 0, node );
+				index = createIndex(row, 0, node);
 				break;
 			}
 			++row;
 		}
 
-		if( row >= count )
+		if (row >= count)
 		{
 			return index;
 		}
@@ -308,79 +308,79 @@ void LdapBrowseModel::populateRoot() const
 	QStringList namingContexts;
 	const auto baseDn = m_client->configuration().baseDn();
 
-	if( baseDn.isEmpty() || m_mode == BrowseBaseDN )
+	if (baseDn.isEmpty() || m_mode == BrowseBaseDN)
 	{
-		namingContexts.append( m_client->queryNamingContexts() );
-		namingContexts.append( m_client->queryNamingContexts( QStringLiteral("namingContexts") ) );
-		namingContexts.append( m_client->queryNamingContexts( QStringLiteral("defaultNamingContext") ) );
+		namingContexts.append(m_client->queryNamingContexts());
+		namingContexts.append(m_client->queryNamingContexts(QStringLiteral("namingContexts")));
+		namingContexts.append(m_client->queryNamingContexts(QStringLiteral("defaultNamingContext")));
 		namingContexts.removeDuplicates();
 
 		// remove sub naming contexts
-		for( const auto& context : namingContexts )
+		for (const auto& context : namingContexts)
 		{
-			if( context.isEmpty() == false )
+			if (context.isEmpty() == false)
 			{
-				namingContexts.replaceInStrings( QRegularExpression( QStringLiteral(".*,%1").arg( context ) ), {} );
+				namingContexts.replaceInStrings(QRegularExpression(QStringLiteral(".*,%1").arg(context)), {});
 			}
 		}
-		namingContexts.removeAll( {} );
+		namingContexts.removeAll({});
 		namingContexts.sort();
 	}
 	else
 	{
-		namingContexts.append( baseDn );
+		namingContexts.append(baseDn);
 	}
 
-	for( const auto& namingContext : namingContexts )
+	for (const auto& namingContext : namingContexts)
 	{
 		auto parent = m_root;
 		QStringList fullDn;
-		const auto dns = namingContext.split( QLatin1Char(',') );
+		const auto dns = namingContext.split(QLatin1Char(','));
 		for (auto it = dns.crbegin(), end = dns.crend(); it != end; ++it)
 		{
-			fullDn.prepend( *it );
-			auto node = new Node( Node::DN, fullDn.join( QLatin1Char(',') ), parent );
-			parent->appendChild( node );
+			fullDn.prepend(*it);
+			auto node = new Node(Node::DN, fullDn.join(QLatin1Char(',')), parent);
+			parent->appendChild(node);
 			parent = node;
 		}
 	}
 
-	m_root->setPopulated( true );
+	m_root->setPopulated(true);
 }
 
 
 
-void LdapBrowseModel::populateNode( const QModelIndex& parent )
+void LdapBrowseModel::populateNode(const QModelIndex& parent)
 {
-	auto node = toNode( parent );
+	auto node = toNode(parent);
 
-	if( node->isPopulated() == false )
+	if (node->isPopulated() == false)
 	{
-		auto dns = m_client->queryDistinguishedNames( node->name(), {}, LdapClient::Scope::One );
+		auto dns = m_client->queryDistinguishedNames(node->name(), {}, LdapClient::Scope::One);
 		dns.sort();
 
 		QStringList attributes;
 
-		if( m_mode == BrowseAttributes )
+		if (m_mode == BrowseAttributes)
 		{
-			attributes = m_client->queryObjectAttributes( node->name() );
+			attributes = m_client->queryObjectAttributes(node->name());
 			attributes.sort();
 		}
 
-		const auto itemCount = ( dns + attributes ).size();
+		const auto itemCount = (dns + attributes).size();
 
-		if( itemCount > 0 )
+		if (itemCount > 0)
 		{
-			beginInsertRows( parent, 0, itemCount - 1 );
+			beginInsertRows(parent, 0, itemCount - 1);
 
-			for( const auto& dn : std::as_const(dns) )
+			for (const auto& dn : std::as_const(dns))
 			{
-				node->appendChild( new Node( Node::DN, dn, node ) );
+				node->appendChild(new Node(Node::DN, dn, node));
 			}
 
-			for( const auto& attribute : std::as_const(attributes) )
+			for (const auto& attribute : std::as_const(attributes))
 			{
-				node->appendChild( new Node( Node::Attribute, attribute, node ) );
+				node->appendChild(new Node(Node::Attribute, attribute, node));
 			}
 
 			endInsertRows();
@@ -388,13 +388,13 @@ void LdapBrowseModel::populateNode( const QModelIndex& parent )
 			Q_EMIT layoutChanged();
 		}
 
-		node->setPopulated( true );
+		node->setPopulated(true);
 	}
 }
 
 
 
-LdapBrowseModel::Node*LdapBrowseModel::toNode( const QModelIndex& index ) const
+LdapBrowseModel::Node* LdapBrowseModel::toNode(const QModelIndex& index) const
 {
-	return index.isValid() ? static_cast<Node *>( index.internalPointer() ) : m_root;
+	return index.isValid() ? static_cast<Node*>(index.internalPointer()) : m_root;
 }

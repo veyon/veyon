@@ -36,7 +36,8 @@ public:
 	using SessionUptime = int;
 	using EnvironmentVariables = QMap<QString, QString>;
 
-	struct SessionInfo {
+	struct SessionInfo
+	{
 		SessionId id = InvalidSessionId;
 		SessionUptime uptime = 0;
 		QString clientAddress;
@@ -46,11 +47,11 @@ public:
 		bool operator==(const SessionInfo& other) const
 		{
 			return other.id == id &&
-					other.uptime == uptime &&
-					other.clientAddress == clientAddress &&
-					other.clientName == clientName &&
-					other.hostName == hostName &&
-					other.metaData == metaData;
+				other.uptime == uptime &&
+				other.clientAddress == clientAddress &&
+				other.clientName == clientName &&
+				other.hostName == hostName &&
+				other.metaData == metaData;
 		}
 		bool operator!=(const SessionInfo& other) const
 		{
@@ -62,8 +63,7 @@ public:
 	static constexpr SessionId InvalidSessionId = -1;
 	static constexpr SessionUptime InvalidSessionUptime = -1;
 
-	enum class SessionMetaDataContent
-	{
+	enum class SessionMetaDataContent {
 		None,
 		EnvironmentVariable,
 		RegistryKey,
@@ -84,5 +84,4 @@ public:
 
 	virtual EnvironmentVariables currentSessionEnvironmentVariables() const = 0;
 	virtual QVariant querySettingsValueInCurrentSession(const QString& key) const = 0;
-
 };

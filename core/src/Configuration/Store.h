@@ -28,8 +28,7 @@
 #include <QtCore/QString>
 #include <QtCore/QVariant>
 
-namespace Configuration
-{
+namespace Configuration {
 
 class Object;
 
@@ -39,18 +38,16 @@ class Store
 {
 	Q_GADGET
 public:
-	enum class Backend
-	{
-		Local,	// registry or similar
+	enum class Backend {
+		Local, // registry or similar
 		JsonFile,
 		None
 	};
 	Q_ENUM(Backend)
 
-	enum class Scope
-	{
-		User,		// for current user
-		System,		// system-wide (service settings etc.)
+	enum class Scope {
+		User,	// for current user
+		System, // system-wide (service settings etc.)
 	};
 
 	Store(Backend backend, Scope scope) :
@@ -75,14 +72,14 @@ public:
 	{
 		switch (scope())
 		{
-			case Scope::User: return QStringLiteral("UserConfig");
-			case Scope::System: return QStringLiteral("SystemConfig");
+		case Scope::User: return QStringLiteral("UserConfig");
+		case Scope::System: return QStringLiteral("SystemConfig");
 		}
 
 		return {};
 	}
 
-	void setName( const QString& name )
+	void setName(const QString& name)
 	{
 		m_name = name;
 	}
@@ -92,8 +89,8 @@ public:
 		return m_name;
 	}
 
-	virtual void load( Object *obj ) = 0;
-	virtual void flush( const Object *obj ) = 0;
+	virtual void load(Object* obj) = 0;
+	virtual void flush(const Object* obj) = 0;
 	virtual bool isWritable() const = 0;
 	virtual void clear() = 0;
 
@@ -102,7 +99,6 @@ private:
 	const Backend m_backend;
 	const Scope m_scope;
 	QString m_name;
-
-} ;
+};
 
 }

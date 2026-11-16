@@ -24,17 +24,19 @@
 
 #pragma once
 
-#include "CryptoCore.h"
-
 #include <QDialog>
 
-namespace Ui { class UserLoginDialog; }
+#include "CryptoCore.h"
+
+namespace Ui {
+class UserLoginDialog;
+}
 
 class UserLoginDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	explicit UserLoginDialog( QWidget *parent );
+	explicit UserLoginDialog(QWidget* parent);
 	~UserLoginDialog() override;
 
 	QString username() const;
@@ -44,6 +46,5 @@ private Q_SLOTS:
 	void updateOkButton();
 
 private:
-	Ui::UserLoginDialog *ui;
-
-} ;
+	Ui::UserLoginDialog* ui;
+};

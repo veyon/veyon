@@ -22,10 +22,10 @@
  *
  */
 
-#include <QTcpSocket>
 #include <QBuffer>
 #include <QEventLoop>
 #include <QImageWriter>
+#include <QTcpSocket>
 
 #include "ComputerControlInterface.h"
 #include "FeatureManager.h"
@@ -35,10 +35,10 @@
 #include "WebApiController.h"
 
 
-WebApiController::WebApiController( const WebApiConfiguration& configuration, QObject* parent ) :
-	QObject( parent ),
-	m_configuration( configuration ),
-	m_connectionsLock( QReadWriteLock::Recursive )
+WebApiController::WebApiController(const WebApiConfiguration& configuration, QObject* parent) :
+	QObject(parent),
+	m_configuration(configuration),
+	m_connectionsLock(QReadWriteLock::Recursive)
 {
 	connect(&m_updateStatisticsTimer, &QTimer::timeout, this, &WebApiController::updateStatistics);
 	m_updateStatisticsTimer.start(StatisticsUpdateIntervalSeconds * MillisecondsPerSecond);
@@ -55,7 +55,7 @@ WebApiController::WebApiController( const WebApiConfiguration& configuration, QO
 
 WebApiController::~WebApiController()
 {
-	QWriteLocker connectionsWriteLocker{ &m_connectionsLock };
+	QWriteLocker connectionsWriteLocker{&m_connectionsLock};
 
 	m_connections.clear();
 }
@@ -85,24 +85,23 @@ WebApiController::Response WebApiController::getHostState(const Request& request
 
 
 
-
-WebApiController::Response WebApiController::getAuthenticationMethods( const Request& request, const QString& host )
+WebApiController::Response WebApiController::getAuthenticationMethods(const Request& request, const QString& host)
 {
 	m_apiTotalRequestsCounter++;
 
 	Q_UNUSED(request)
 
-	WebApiConnection connection( host.isEmpty() ? QStringLiteral("localhost") : host );
+	WebApiConnection connection(host.isEmpty() ? QStringLiteral("localhost") : host);
 
-	const auto proxy = new WebApiAuthenticationProxy( m_configuration );
-	proxy->populateCredentials( proxy->dummyAuthenticationMethod(), {} );
+	const auto proxy = new WebApiAuthenticationProxy(m_configuration);
+	proxy->populateCredentials(proxy->dummyAuthenticationMethod(), {});
 
-	connection.controlInterface()->start( {}, ComputerControlInterface::UpdateMode::Basic, proxy );
+	connection.controlInterface()->start({}, ComputerControlInterface::UpdateMode::Basic, proxy);
 
-	if( proxy->waitForAuthenticationMethods(
-			m_configuration.connectionAuthenticationTimeout() * MillisecondsPerSecond ) == false )
+	if (proxy->waitForAuthenticationMethods(
+			m_configuration.connectionAuthenticationTimeout() * MillisecondsPerSecond) == false)
 	{
-		if( proxy->protocolErrorOccurred() )
+		if (proxy->protocolErrorOccurred())
 		{
 			return Error::ProtocolMismatch;
 		}
@@ -114,44 +113,44 @@ WebApiController::Response WebApiController::getAuthenticationMethods( const Req
 	const auto authMethodUuids = proxy->authenticationMethods();
 
 	QVariantList methods; // clazy:exclude=inefficient-qlist
-	methods.reserve( authMethodUuids.size() );
+	methods.reserve(authMethodUuids.size());
 
-	for( const auto& authMethodUuid : authMethodUuids )
+	for (const auto& authMethodUuid : authMethodUuids)
 	{
 		methods.append(authMethodUuid.toString(QUuid::WithoutBraces));
 	}
 
-	return QVariantMap{ { k2s(Key::Methods), methods } };
+	return QVariantMap{{k2s(Key::Methods), methods}};
 }
 
 
 
-WebApiController::Response WebApiController::performAuthentication( const Request& request, const QString& host )
+WebApiController::Response WebApiController::performAuthentication(const Request& request, const QString& host)
 {
 	m_apiTotalRequestsCounter++;
 
 	QReadLocker connectionsReadLocker{&m_connectionsLock};
 
-	if( m_connections.size() >= m_configuration.connectionLimit() )
+	if (m_connections.size() >= m_configuration.connectionLimit())
 	{
 		return Error::ConnectionLimitReached;
 	}
 
-	const auto methodUuid = QUuid( request.data[k2s(Key::Method)].toString() );
-	if( methodUuid.isNull() )
+	const auto methodUuid = QUuid(request.data[k2s(Key::Method)].toString());
+	if (methodUuid.isNull())
 	{
 		return Error::InvalidData;
 	}
 
 	auto uuid = QUuid::createUuid();
-	while( m_connections.contains( uuid ) )
+	while (m_connections.contains(uuid))
 	{
 		uuid = QUuid::createUuid();
 	}
 
 	connectionsReadLocker.unlock();
 
-	auto proxy = new WebApiAuthenticationProxy( m_configuration );
+	auto proxy = new WebApiAuthenticationProxy(m_configuration);
 
 	// create connection (including timer resources) in main thread
 	auto connection = runInWorkerThread<WebApiConnectionPointer>([this, host, proxy]() {
@@ -165,27 +164,27 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 
 		// make shared pointer destroy the connection in management thread again
 		return WebApiConnectionPointer{connection,
-						  [this](WebApiConnection* c) { runInWorkerThreadNonBlocking([c] { delete c; }); } };
+									   [this](WebApiConnection* c) { runInWorkerThreadNonBlocking([c] { delete c; }); }};
 	});
 
 	const auto authTimeout = m_configuration.connectionAuthenticationTimeout() * MillisecondsPerSecond;
-	if( proxy->waitForAuthenticationMethods( authTimeout ) == false )
+	if (proxy->waitForAuthenticationMethods(authTimeout) == false)
 	{
 		vWarning() << "waiting for authentication methods timed out";
 		return Error::ConnectionTimedOut;
 	}
 
-	if( proxy->protocolErrorOccurred() )
+	if (proxy->protocolErrorOccurred())
 	{
 		return Error::ProtocolMismatch;
 	}
 
-	if( proxy->authenticationMethods().contains( methodUuid ) == false )
+	if (proxy->authenticationMethods().contains(methodUuid) == false)
 	{
 		return Error::AuthenticationMethodNotAvailable;
 	}
 
-	if( proxy->populateCredentials( methodUuid, request.data[k2s(Key::Credentials)].toMap() ) == false )
+	if (proxy->populateCredentials(methodUuid, request.data[k2s(Key::Credentials)].toMap()) == false)
 	{
 		return Error::InvalidCredentials;
 	}
@@ -197,27 +196,27 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 	static constexpr auto ResultAuthFailed = 1;
 	static constexpr auto ResultAuthTimedOut = 2;
 
-	connect( &authenticationTimeoutTimer, &QTimer::timeout, &eventLoop,
-			 [&eventLoop]() { eventLoop.exit(ResultAuthTimedOut); } );
-	connect( connection->controlInterface().data(), &ComputerControlInterface::stateChanged, &eventLoop,
-			 [&connection, &eventLoop]() { // clazy:exclude=lambda-in-connect
-				 switch( connection->controlInterface()->state() )
-				 {
-				 case ComputerControlInterface::State::AuthenticationFailed:
-					 eventLoop.exit( ResultAuthFailed );
-					 break;
-				 case ComputerControlInterface::State::Connected:
-					 eventLoop.exit( ResultAuthSucceeded );
-				 default:
-					 break;
-				 }
-			 } );
+	connect(&authenticationTimeoutTimer, &QTimer::timeout, &eventLoop,
+			[&eventLoop]() { eventLoop.exit(ResultAuthTimedOut); });
+	connect(connection->controlInterface().data(), &ComputerControlInterface::stateChanged, &eventLoop,
+			[&connection, &eventLoop]() { // clazy:exclude=lambda-in-connect
+		switch (connection->controlInterface()->state())
+		{
+		case ComputerControlInterface::State::AuthenticationFailed:
+			eventLoop.exit(ResultAuthFailed);
+			break;
+		case ComputerControlInterface::State::Connected:
+			eventLoop.exit(ResultAuthSucceeded);
+		default:
+			break;
+		}
+	});
 
-	authenticationTimeoutTimer.start( authTimeout );
+	authenticationTimeoutTimer.start(authTimeout);
 
 	const auto result = eventLoop.exec() == ResultAuthSucceeded;
 
-	if( result )
+	if (result)
 	{
 		connection->lock();
 
@@ -231,14 +230,14 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 		const auto idleTimer = connection->idleTimer();
 		const auto lifetimeTimer = connection->lifetimeTimer();
 
-		connect( idleTimer, &QTimer::timeout, this, [this, uuid]() {
+		connect(idleTimer, &QTimer::timeout, this, [this, uuid]() {
 			vInfo() << "idle time exceeded for connection" << uuid;
 			removeConnection(uuid);
-		} );
-		connect( lifetimeTimer, &QTimer::timeout, this, [this, uuid]() {
+		});
+		connect(lifetimeTimer, &QTimer::timeout, this, [this, uuid]() {
 			vInfo() << "lifetime exceeded for connection" << uuid;
 			removeConnection(uuid);
-		} );
+		});
 
 		const auto connectionIdleTimeout = m_configuration.connectionIdleTimeout() * MillisecondsPerSecond;
 		const auto connectionLifetime = m_configuration.connectionLifetime() * MillisecondsPerHour;
@@ -251,9 +250,8 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 		});
 
 		return QVariantMap{
-			{ QString::fromUtf8(connectionUidHeaderFieldName().toLower()), uuid.toString(QUuid::WithoutBraces) },
-			{ k2s(Key::ValidUntil), QDateTime::currentSecsSinceEpoch() + connectionLifetime / MillisecondsPerSecond }
-		};
+			{QString::fromUtf8(connectionUidHeaderFieldName().toLower()), uuid.toString(QUuid::WithoutBraces)},
+			{k2s(Key::ValidUntil), QDateTime::currentSecsSinceEpoch() + connectionLifetime / MillisecondsPerSecond}};
 	}
 
 	return Error::AuthenticationFailed;
@@ -261,14 +259,14 @@ WebApiController::Response WebApiController::performAuthentication( const Reques
 
 
 
-WebApiController::Response WebApiController::closeConnection( const Request& request, const QString& host )
+WebApiController::Response WebApiController::closeConnection(const Request& request, const QString& host)
 {
 	m_apiTotalRequestsCounter++;
 
 	Q_UNUSED(host)
 
 	Response checkResponse{};
-	if( ( checkResponse = checkConnection( request ) ).error != Error::NoError )
+	if ((checkResponse = checkConnection(request)).error != Error::NoError)
 	{
 		return checkResponse;
 	}
@@ -280,24 +278,24 @@ WebApiController::Response WebApiController::closeConnection( const Request& req
 
 
 
-WebApiController::Response WebApiController::getFramebuffer( const Request& request )
+WebApiController::Response WebApiController::getFramebuffer(const Request& request)
 {
 	m_apiTotalRequestsCounter++;
 
 	Response checkResponse{};
-	if( ( checkResponse = checkConnection( request ) ).error != Error::NoError )
+	if ((checkResponse = checkConnection(request)).error != Error::NoError)
 	{
 		return checkResponse;
 	}
 
-	const auto connection = lookupConnection( request );
+	const auto connection = lookupConnection(request);
 
-	if( !connection )
+	if (!connection)
 	{
 		return Error::InvalidConnection;
 	}
 
-	if( connection->controlInterface()->hasValidFramebuffer() == false )
+	if (connection->controlInterface()->hasValidFramebuffer() == false)
 	{
 		return Error::FramebufferNotAvailable;
 	}
@@ -306,27 +304,27 @@ WebApiController::Response WebApiController::getFramebuffer( const Request& requ
 
 	const auto width = request.data[k2s(Key::Width)].toInt();
 	const auto height = request.data[k2s(Key::Height)].toInt();
-	const auto size = connection->scaledFramebufferSize( width, height );
+	const auto size = connection->scaledFramebufferSize(width, height);
 
 	const auto compression = request.data[k2s(Key::Compression)].toString().toInt();
 	const auto quality = request.data[k2s(Key::Quality)].toString().toInt();
 
 	auto format = request.data[k2s(Key::Format)].toString().toUtf8();
-	if( format.isEmpty() )
+	if (format.isEmpty())
 	{
 		format = QByteArrayLiteral("png");
 	}
 
-	if( QImageWriter::supportedImageFormats().contains( format ) == false )
+	if (QImageWriter::supportedImageFormats().contains(format) == false)
 	{
 		return Error::UnsupportedImageFormat;
 	}
 
-	const auto imageData = connection->encodedFramebufferData( size, format, compression, quality );
+	const auto imageData = connection->encodedFramebufferData(size, format, compression, quality);
 
-	if( imageData.isNull() )
+	if (imageData.isNull())
 	{
-		return { Error::FramebufferEncodingError, connection->framebufferEncodingError() };
+		return {Error::FramebufferEncodingError, connection->framebufferEncodingError()};
 	}
 
 	return imageData;
@@ -334,20 +332,20 @@ WebApiController::Response WebApiController::getFramebuffer( const Request& requ
 
 
 
-WebApiController::Response WebApiController::listFeatures( const Request& request )
+WebApiController::Response WebApiController::listFeatures(const Request& request)
 {
 	m_apiTotalRequestsCounter++;
 
 	Response checkResponse{};
-	if( ( checkResponse = checkConnection( request ) ).error != Error::NoError )
+	if ((checkResponse = checkConnection(request)).error != Error::NoError)
 	{
 		return checkResponse;
 	}
 
 	const auto& features = VeyonCore::featureManager().features(); // clazy:exclude=inefficient-qlist
-	const auto connection = lookupConnection( request );
+	const auto connection = lookupConnection(request);
 
-	if( !connection )
+	if (!connection)
 	{
 		return Error::InvalidConnection;
 	}
@@ -355,15 +353,15 @@ WebApiController::Response WebApiController::listFeatures( const Request& reques
 	const auto activeFeatures = connection->controlInterface()->activeFeatures();
 
 	QVariantList featureList; // clazy:exclude=inefficient-qlist
-	featureList.reserve( features.size() );
+	featureList.reserve(features.size());
 
-	for( const auto& feature : features )
+	for (const auto& feature : features)
 	{
-		QVariantMap featureObject{ { k2s(Key::Name), feature.name() },
-								   { k2s(Key::Uid), feature.uid().toString(QUuid::WithoutBraces) },
-								   { k2s(Key::ParentUid), feature.parentUid().toString(QUuid::WithoutBraces) },
-								   { k2s(Key::Active), activeFeatures.contains(feature.uid()) } };
-		featureList.append( featureObject );
+		QVariantMap featureObject{{k2s(Key::Name), feature.name()},
+								  {k2s(Key::Uid), feature.uid().toString(QUuid::WithoutBraces)},
+								  {k2s(Key::ParentUid), feature.parentUid().toString(QUuid::WithoutBraces)},
+								  {k2s(Key::Active), activeFeatures.contains(feature.uid())}};
+		featureList.append(featureObject);
 	}
 
 	return featureList;
@@ -371,31 +369,30 @@ WebApiController::Response WebApiController::listFeatures( const Request& reques
 
 
 
-WebApiController::Response WebApiController::setFeatureStatus( const Request& request, const QString& feature )
+WebApiController::Response WebApiController::setFeatureStatus(const Request& request, const QString& feature)
 {
 	m_apiTotalRequestsCounter++;
 
 	Response checkResponse{};
-	if( ( checkResponse = checkConnection( request ) ).error != Error::NoError ||
-		( checkResponse = checkFeature( feature ) ).error != Error::NoError )
+	if ((checkResponse = checkConnection(request)).error != Error::NoError ||
+		(checkResponse = checkFeature(feature)).error != Error::NoError)
 	{
 		return checkResponse;
 	}
 
-	if( request.data.contains( k2s(Key::Active) ) == false )
+	if (request.data.contains(k2s(Key::Active)) == false)
 	{
 		return Error::InvalidData;
 	}
 
-	const auto connection = lookupConnection( request );
+	const auto connection = lookupConnection(request);
 
-	if( !connection )
+	if (!connection)
 	{
 		return Error::InvalidConnection;
 	}
 
-	const auto operation = request.data[k2s(Key::Active)].toBool() ? FeatureProviderInterface::Operation::Start
-																	 : FeatureProviderInterface::Operation::Stop;
+	const auto operation = request.data[k2s(Key::Active)].toBool() ? FeatureProviderInterface::Operation::Start : FeatureProviderInterface::Operation::Stop;
 	const auto arguments = request.data[k2s(Key::Arguments)].toMap();
 
 	runInWorkerThread([&] {
@@ -407,19 +404,19 @@ WebApiController::Response WebApiController::setFeatureStatus( const Request& re
 
 
 
-WebApiController::Response WebApiController::getFeatureStatus( const Request& request, const QString& feature )
+WebApiController::Response WebApiController::getFeatureStatus(const Request& request, const QString& feature)
 {
 	m_apiTotalRequestsCounter++;
 
 	Response checkResponse{};
-	if( ( checkResponse = checkConnection( request ) ).error != Error::NoError )
+	if ((checkResponse = checkConnection(request)).error != Error::NoError)
 	{
 		return checkResponse;
 	}
 
-	const auto connection = lookupConnection( request );
+	const auto connection = lookupConnection(request);
 
-	if( !connection )
+	if (!connection)
 	{
 		return Error::InvalidConnection;
 	}
@@ -427,24 +424,24 @@ WebApiController::Response WebApiController::getFeatureStatus( const Request& re
 
 	const auto result = controlInterface->activeFeatures().contains(Feature::Uid{feature});
 
-	return QVariantMap{ { k2s(Key::Active), result } };
+	return QVariantMap{{k2s(Key::Active), result}};
 }
 
 
 
-WebApiController::Response WebApiController::getUserInformation( const Request& request )
+WebApiController::Response WebApiController::getUserInformation(const Request& request)
 {
 	m_apiTotalRequestsCounter++;
 
 	Response checkResponse{};
-	if( ( checkResponse = checkConnection( request ) ).error != Error::NoError )
+	if ((checkResponse = checkConnection(request)).error != Error::NoError)
 	{
 		return checkResponse;
 	}
 
-	const auto connection = lookupConnection( request );
+	const auto connection = lookupConnection(request);
 
-	if( !connection )
+	if (!connection)
 	{
 		return Error::InvalidConnection;
 	}
@@ -458,11 +455,8 @@ WebApiController::Response WebApiController::getUserInformation( const Request& 
 	}
 
 	return QVariantMap{
-		{
-			{k2s(Key::Login), userLoginName},
-			{k2s(Key::FullName), userFullName}
-		}
-	};
+		{{k2s(Key::Login), userLoginName},
+		 {k2s(Key::FullName), userFullName}}};
 }
 
 
@@ -472,14 +466,14 @@ WebApiController::Response WebApiController::getSessionInformation(const Request
 	m_apiTotalRequestsCounter++;
 
 	Response checkResponse{};
-	if((checkResponse = checkConnection(request)).error != Error::NoError)
+	if ((checkResponse = checkConnection(request)).error != Error::NoError)
 	{
 		return checkResponse;
 	}
 
 	const auto connection = lookupConnection(request);
 
-	if( !connection )
+	if (!connection)
 	{
 		return Error::InvalidConnection;
 	}
@@ -493,8 +487,7 @@ WebApiController::Response WebApiController::getSessionInformation(const Request
 			{k2s(Key::SessionClientAddress), controlInterface->sessionInfo().clientAddress},
 			{k2s(Key::SessionClientName), controlInterface->sessionInfo().clientName},
 			{k2s(Key::SessionHostName), controlInterface->sessionInfo().hostName},
-		}
-	};
+		}};
 }
 
 
@@ -504,9 +497,9 @@ QString WebApiController::getStatistics()
 	QReadLocker connectionsLocker{&m_connectionsLock};
 
 	return QStringLiteral("Total API requests: %1 (%2/s in the past %3 s)\n<br/>").arg(int(m_apiTotalRequestsCounter)).arg(int(m_apiTotalRequestsPerSecond)).arg(int(StatisticsUpdateIntervalSeconds)) +
-			QStringLiteral("Framebuffer requests: %1 (%2/s in the past %3 s)\n<br/>").arg(int(m_framebufferRequestsCounter)).arg(int(m_framebufferRequestsPerSecond)).arg(int(StatisticsUpdateIntervalSeconds)) +
-			QStringLiteral("VNC framebuffer updates: %1 (%2/s in the past %3 s)\n<br/>").arg(int(m_vncFramebufferUpdatesCounter)).arg(int(m_vncFramebufferUpdatesPerSecond)).arg(int(StatisticsUpdateIntervalSeconds)) +
-			QStringLiteral("Number of client connections: %1<br/>\n").arg(m_connections.count());
+		QStringLiteral("Framebuffer requests: %1 (%2/s in the past %3 s)\n<br/>").arg(int(m_framebufferRequestsCounter)).arg(int(m_framebufferRequestsPerSecond)).arg(int(StatisticsUpdateIntervalSeconds)) +
+		QStringLiteral("VNC framebuffer updates: %1 (%2/s in the past %3 s)\n<br/>").arg(int(m_vncFramebufferUpdatesCounter)).arg(int(m_vncFramebufferUpdatesPerSecond)).arg(int(StatisticsUpdateIntervalSeconds)) +
+		QStringLiteral("Number of client connections: %1<br/>\n").arg(m_connections.count());
 }
 
 
@@ -515,24 +508,24 @@ QString WebApiController::getConnectionDetails()
 {
 	QReadLocker connectionsLocker{&m_connectionsLock};
 
-	QStringList columns {QStringLiteral("Connection UUID"),
-					   QStringLiteral("State"),
-					   QStringLiteral("Host"),
-					   QStringLiteral("User"),
-					   QStringLiteral("Server version")
-					  };
+	QStringList columns{QStringLiteral("Connection UUID"),
+						QStringLiteral("State"),
+						QStringLiteral("Host"),
+						QStringLiteral("User"),
+						QStringLiteral("Server version")};
 	QList<QStringList> rows;
 	rows.reserve(m_connections.count());
 	for (auto it = m_connections.constBegin(), end = m_connections.constEnd(); it != end; ++it)
 	{
 		const auto connection = it.value();
 
-		rows.append({it.key().toString(QUuid::WithoutBraces),
-					 EnumHelper::toString(connection->controlInterface()->state()),
-					 connection->controlInterface()->computer().hostName(),
-					 connection->controlInterface()->userLoginName(),
-					 EnumHelper::toString(connection->controlInterface()->serverVersion()),
-					});
+		rows.append({
+			it.key().toString(QUuid::WithoutBraces),
+			EnumHelper::toString(connection->controlInterface()->state()),
+			connection->controlInterface()->computer().hostName(),
+			connection->controlInterface()->userLoginName(),
+			EnumHelper::toString(connection->controlInterface()->serverVersion()),
+		});
 	}
 
 	const auto rowToString = [](const QStringList& row, const QString& tag) {
@@ -563,9 +556,9 @@ WebApiController::Response WebApiController::sleep(const Request& request, const
 }
 
 
-QString WebApiController::errorString( WebApiController::Error error )
+QString WebApiController::errorString(WebApiController::Error error)
 {
-	switch( error )
+	switch (error)
 	{
 	case Error::NoError: return {};
 	case Error::InvalidData: return QStringLiteral("Invalid data");
@@ -605,15 +598,15 @@ template<class T>
 T WebApiController::runInWorkerThread(const std::function<T()>& functor) const
 {
 	T retval{};
-	QMetaObject::invokeMethod(m_workerObject, functor, Qt::BlockingQueuedConnection, &retval );
+	QMetaObject::invokeMethod(m_workerObject, functor, Qt::BlockingQueuedConnection, &retval);
 	return retval;
 }
 
 
 
-void WebApiController::removeConnection( QUuid connectionUuid )
+void WebApiController::removeConnection(QUuid connectionUuid)
 {
-	QWriteLocker connectionsWriteLocker{ &m_connectionsLock };
+	QWriteLocker connectionsWriteLocker{&m_connectionsLock};
 
 	// deleter functor automatically performs actual deletion in worker thread
 	m_connections.remove(connectionUuid);
@@ -660,7 +653,7 @@ QByteArray WebApiController::lookupHeaderField(const Request& request, const QBy
 
 	for (auto it = request.headers.constBegin(), end = request.headers.constEnd(); it != end; ++it)
 	{
-		if (it.key().compare(fieldNameString, Qt::CaseInsensitive ) == 0)
+		if (it.key().compare(fieldNameString, Qt::CaseInsensitive) == 0)
 		{
 			return it.value().toByteArray();
 		}
@@ -672,7 +665,7 @@ QByteArray WebApiController::lookupHeaderField(const Request& request, const QBy
 
 
 
-WebApiController::LockingConnectionPointer WebApiController::lookupConnection( const Request& request )
+WebApiController::LockingConnectionPointer WebApiController::lookupConnection(const Request& request)
 {
 	QReadLocker connectionsReadLocker{&m_connectionsLock};
 
@@ -681,13 +674,13 @@ WebApiController::LockingConnectionPointer WebApiController::lookupConnection( c
 
 
 
-WebApiController::Response WebApiController::checkConnection( const Request& request )
+WebApiController::Response WebApiController::checkConnection(const Request& request)
 {
 	const QUuid connectionUuid{lookupHeaderField(request, connectionUidHeaderFieldName())};
 
 	return runInWorkerThread<WebApiController::Response>([=, this]() -> WebApiController::Response {
 		m_connectionsLock.lockForRead();
-		if( connectionUuid.isNull() || m_connections.contains( connectionUuid ) == false )
+		if (connectionUuid.isNull() || m_connections.contains(connectionUuid) == false)
 		{
 			m_connectionsLock.unlock();
 			return Error::InvalidConnection;
@@ -705,14 +698,14 @@ WebApiController::Response WebApiController::checkConnection( const Request& req
 		connection->unlock();
 
 		return {};
-	} );
+	});
 }
 
 
 
-WebApiController::Response WebApiController::checkFeature( const QString& featureUid )
+WebApiController::Response WebApiController::checkFeature(const QString& featureUid)
 {
-	if( VeyonCore::featureManager().feature(Feature::Uid{featureUid}).isValid() == false )
+	if (VeyonCore::featureManager().feature(Feature::Uid{featureUid}).isValid() == false)
 	{
 		return Error::InvalidFeature;
 	}

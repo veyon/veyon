@@ -19,17 +19,16 @@ class LdapBrowseDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	explicit LdapBrowseDialog( const LdapConfiguration& configuration, QWidget* parent = nullptr );
+	explicit LdapBrowseDialog(const LdapConfiguration& configuration, QWidget* parent = nullptr);
 	~LdapBrowseDialog() override;
 
-	QString browseBaseDn( const QString& dn );
-	QString browseDn( const QString& dn );
-	QString browseAttribute( const QString& dn );
+	QString browseBaseDn(const QString& dn);
+	QString browseDn(const QString& dn);
+	QString browseAttribute(const QString& dn);
 
 private:
-	QString browse( LdapBrowseModel* model, const QString& dn, bool expandSelected );
+	QString browse(LdapBrowseModel* model, const QString& dn, bool expandSelected);
 
 	Ui::LdapBrowseDialog* ui;
 	const LdapConfiguration& m_configuration;
-
 };

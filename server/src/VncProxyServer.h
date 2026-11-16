@@ -38,15 +38,15 @@ class VncProxyServer : public QObject
 	Q_OBJECT
 public:
 	using Password = CryptoCore::SecureArray;
-	using VncProxyConnectionList = QVector<VncProxyConnection *>;
+	using VncProxyConnectionList = QVector<VncProxyConnection*>;
 
-	VncProxyServer( const QHostAddress& listenAddress,
-					int listenPort,
-					VncProxyConnectionFactory* clientFactory,
-					QObject* parent = nullptr );
+	VncProxyServer(const QHostAddress& listenAddress,
+				   int listenPort,
+				   VncProxyConnectionFactory* clientFactory,
+				   QObject* parent = nullptr);
 	~VncProxyServer() override;
 
-	bool start( int vncServerPort, const Password& vncServerPassword );
+	bool start(int vncServerPort, const Password& vncServerPassword);
 	void stop();
 
 	const VncProxyConnectionList& clients() const
@@ -56,12 +56,12 @@ public:
 
 Q_SIGNALS:
 	void connectionSynchronized(VncProxyConnection* connection);
-	void connectionClosed( VncProxyConnection* connection );
+	void connectionClosed(VncProxyConnection* connection);
 
 private:
 	void acceptConnection();
-	void closeConnection( VncProxyConnection* );
-	void handleAcceptError( QAbstractSocket::SocketError socketError );
+	void closeConnection(VncProxyConnection*);
+	void handleAcceptError(QAbstractSocket::SocketError socketError);
 
 	int m_vncServerPort;
 	Password m_vncServerPassword;
@@ -71,5 +71,4 @@ private:
 	QTcpServer* m_server;
 	VncProxyConnectionFactory* m_connectionFactory;
 	VncProxyConnectionList m_connections;
-
-} ;
+};

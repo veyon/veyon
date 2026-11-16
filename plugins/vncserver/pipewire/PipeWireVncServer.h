@@ -24,13 +24,13 @@
 
 #pragma once
 
-#include <atomic>
-
 #include <QMutex>
 
 #include "PipeWireVncConfiguration.h"
 #include "PluginInterface.h"
 #include "VncServerPluginInterface.h"
+
+#include <atomic>
 
 class PortalSession;
 class PipeWireFramebuffer;
@@ -65,7 +65,7 @@ public:
 
 	Plugin::Uid uid() const override
 	{
-		return Plugin::Uid{ QStringLiteral("3b8e5c1a-9f72-4d3e-b6a0-2c7f1e8d4b95") };
+		return Plugin::Uid{QStringLiteral("3b8e5c1a-9f72-4d3e-b6a0-2c7f1e8d4b95")};
 	}
 
 	QVersionNumber version() const override
@@ -100,7 +100,7 @@ public:
 
 	QStringList supportedSessionTypes() const override
 	{
-		return { QStringLiteral("wayland") };
+		return {QStringLiteral("wayland")};
 	}
 
 	QWidget* configurationWidget() override;
@@ -137,11 +137,11 @@ private:
 
 	PipeWireVncConfiguration m_configuration;
 
-	PortalSession*       m_portalSession{nullptr};
+	PortalSession* m_portalSession{nullptr};
 	PipeWireFramebuffer* m_framebuffer{nullptr};
-	rfbScreenInfoPtr     m_rfbScreen{nullptr};
-	char*                m_vncPassword{nullptr};
-	char*                m_vncPasswords[2]{nullptr, nullptr};
+	rfbScreenInfoPtr m_rfbScreen{nullptr};
+	char* m_vncPassword{nullptr};
+	char* m_vncPasswords[2]{nullptr, nullptr};
 
 	QMutex m_screenMutex;
 

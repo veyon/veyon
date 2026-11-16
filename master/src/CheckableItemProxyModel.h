@@ -24,37 +24,36 @@
 
 #pragma once
 
-#include <QJsonArray>
 #include <QIdentityProxyModel>
+#include <QJsonArray>
 #include <QUuid>
 
 class CheckableItemProxyModel : public QIdentityProxyModel
 {
 	Q_OBJECT
 public:
-	explicit CheckableItemProxyModel( int uidRole, QObject *parent = nullptr );
+	explicit CheckableItemProxyModel(int uidRole, QObject* parent = nullptr);
 
-	void setException( int exceptionRole, const QVariant& exceptionFilterData );
+	void setException(int exceptionRole, const QVariant& exceptionFilterData);
 
-	Qt::ItemFlags flags(const QModelIndex &index) const override;
+	Qt::ItemFlags flags(const QModelIndex& index) const override;
 
-	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 
-	bool setData(const QModelIndex &index, const QVariant &value, int role) override;
+	bool setData(const QModelIndex& index, const QVariant& value, int role) override;
 
-	void updateNewRows(const QModelIndex &parent, int first, int last);
+	void updateNewRows(const QModelIndex& parent, int first, int last);
 
 	QJsonArray saveStates();
-	void loadStates( const QJsonArray& data );
+	void loadStates(const QJsonArray& data);
 
 private:
-	QUuid indexToUuid( const QModelIndex& index ) const;
-	bool setChildData( const QModelIndex &index, Qt::CheckState checkState );
-	void setParentData( const QModelIndex &index, Qt::CheckState checkState );
+	QUuid indexToUuid(const QModelIndex& index) const;
+	bool setChildData(const QModelIndex& index, Qt::CheckState checkState);
+	void setParentData(const QModelIndex& index, Qt::CheckState checkState);
 
 	int m_uidRole;
 	int m_exceptionRole;
 	QVariant m_exceptionData;
 	QHash<QUuid, Qt::CheckState> m_checkStates;
-
 };

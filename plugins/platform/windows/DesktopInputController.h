@@ -38,16 +38,16 @@ class DesktopInputController : public QObject
 public:
 	using KeyCode = uint32_t;
 
-	DesktopInputController( int keyEventInterval );
+	DesktopInputController(int keyEventInterval);
 	~DesktopInputController() override;
 
-	void pressKey( KeyCode key );
+	void pressKey(KeyCode key);
 
-	void releaseKey( KeyCode key );
+	void releaseKey(KeyCode key);
 
-	void pressAndReleaseKey( KeyCode key );
-	void pressAndReleaseKey( QChar character );
-	void pressAndReleaseKey( QLatin1Char character );
+	void pressAndReleaseKey(KeyCode key);
+	void pressAndReleaseKey(QChar character);
+	void pressAndReleaseKey(QLatin1Char character);
 
 private:
 	void run();
@@ -56,12 +56,11 @@ private:
 
 	HANDLE m_threadHandle = 0;
 	QMutex m_dataMutex;
-	QQueue<QPair<KeyCode, bool> > m_keys;
+	QQueue<QPair<KeyCode, bool>> m_keys;
 	QWaitCondition m_inputWaitCondition;
 	QAtomicInt m_requestStop;
 
 	unsigned long m_keyEventInterval;
 
-	std::thread m_thread = std::thread([this](){ run(); });
-
+	std::thread m_thread = std::thread([this]() { run(); });
 };

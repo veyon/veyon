@@ -26,9 +26,8 @@
 
 #include <QRect>
 
-#include "rfb/rfbproto.h"
-
 #include "CryptoCore.h"
+#include "rfb/rfbproto.h"
 
 class QBuffer;
 class QIODevice;
@@ -47,9 +46,9 @@ public:
 		FramebufferInit,
 		Running,
 		StateCount
-	} ;
+	};
 
-	VncClientProtocol( QIODevice* socket, const Password& vncPassword );
+	VncClientProtocol(QIODevice* socket, const Password& vncPassword);
 
 	State state() const
 	{
@@ -58,7 +57,7 @@ public:
 
 	void reset();
 	void start();
-	bool read();  // Flawfinder: ignore
+	bool read(); // Flawfinder: ignore
 
 	const QByteArray& serverInitMessage() const
 	{
@@ -81,7 +80,7 @@ public:
 	bool sendPixelFormat();
 	bool sendEncodings();
 
-	void requestFramebufferUpdate( bool incremental );
+	void requestFramebufferUpdate(bool incremental);
 
 	bool receiveMessage();
 
@@ -92,7 +91,7 @@ public:
 
 	uint8_t lastMessageType() const
 	{
-		return static_cast<uint8_t>( m_lastMessage.constData()[0] );
+		return static_cast<uint8_t>(m_lastMessage.constData()[0]);
 	}
 
 protected:
@@ -102,7 +101,7 @@ protected:
 	}
 
 private:
-	static constexpr auto MaxMessageSize = 64*1024*1024;
+	static constexpr auto MaxMessageSize = 64 * 1024 * 1024;
 	static constexpr auto MaximumFramebufferDimension = 16384;
 	static constexpr auto MaximumRectanglesPerUpdate = 16384;
 
@@ -119,23 +118,23 @@ private:
 	bool receiveResizeFramebufferMessage();
 	bool receiveXvpMessage();
 
-	bool readMessage( int size );
+	bool readMessage(int size);
 
-	bool handleRect( QBuffer& buffer, rfbFramebufferUpdateRectHeader rectHeader );
-	bool handleRectEncodingRRE( QBuffer& buffer, uint bytesPerPixel );
-	bool handleRectEncodingCoRRE( QBuffer& buffer, uint bytesPerPixel );
-	bool handleRectEncodingHextile( QBuffer& buffer,
-									const rfbFramebufferUpdateRectHeader rectHeader,
-									uint bytesPerPixel );
-	bool handleRectEncodingZlib( QBuffer& buffer );
-	bool handleRectEncodingZRLE( QBuffer& buffer );
+	bool handleRect(QBuffer& buffer, rfbFramebufferUpdateRectHeader rectHeader);
+	bool handleRectEncodingRRE(QBuffer& buffer, uint bytesPerPixel);
+	bool handleRectEncodingCoRRE(QBuffer& buffer, uint bytesPerPixel);
+	bool handleRectEncodingHextile(QBuffer& buffer,
+								   const rfbFramebufferUpdateRectHeader rectHeader,
+								   uint bytesPerPixel);
+	bool handleRectEncodingZlib(QBuffer& buffer);
+	bool handleRectEncodingZRLE(QBuffer& buffer);
 	bool handleRectEncodingTight(QBuffer& buffer,
 								 const rfbFramebufferUpdateRectHeader rectHeader);
 	bool handleRectEncodingExtDesktopSize(QBuffer& buffer);
 
-	static bool isPseudoEncoding( rfbFramebufferUpdateRectHeader header );
+	static bool isPseudoEncoding(rfbFramebufferUpdateRectHeader header);
 
-	static constexpr auto MaximumMessageSize = 4096*4096*4;
+	static constexpr auto MaximumMessageSize = 4096 * 4096 * 4;
 
 	QIODevice* m_socket;
 	State m_state;
@@ -151,5 +150,4 @@ private:
 	quint16 m_framebufferHeight;
 
 	QByteArray m_lastMessage;
-
-} ;
+};

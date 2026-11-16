@@ -30,9 +30,9 @@ class VEYON_CORE_EXPORT StandardInputReader : public QObject
 {
 	Q_OBJECT
 public:
-	StandardInputReader(QObject* parent) : QObject(parent) {}
+	StandardInputReader(QObject* parent) :
+		QObject(parent) {}
 
 Q_SIGNALS:
 	void lineRead(const QString& line);
-
 };

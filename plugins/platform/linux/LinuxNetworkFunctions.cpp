@@ -22,9 +22,6 @@
  *
  */
 
-#include <netinet/in.h>
-#include <netinet/tcp.h>
-
 #include <QFile>
 #include <QProcess>
 #include <QRegularExpression>
@@ -32,10 +29,13 @@
 #include "LinuxNetworkFunctions.h"
 #include "ProcessHelper.h"
 
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+
 LinuxNetworkFunctions::PingResult LinuxNetworkFunctions::ping(const QString& hostAddress)
 {
 	QProcess pingProcess;
-	pingProcess.start( QStringLiteral("ping"), { QStringLiteral("-c"), QStringLiteral("1"), QStringLiteral("-w"), QString::number( PingTimeout / 1000 ), hostAddress } );
+	pingProcess.start(QStringLiteral("ping"), {QStringLiteral("-c"), QStringLiteral("1"), QStringLiteral("-w"), QString::number(PingTimeout / 1000), hostAddress});
 	if (pingProcess.waitForFinished(PingProcessTimeout))
 	{
 		switch (pingProcess.exitCode())
@@ -53,7 +53,7 @@ LinuxNetworkFunctions::PingResult LinuxNetworkFunctions::ping(const QString& hos
 
 
 
-bool LinuxNetworkFunctions::configureFirewallException( const QString& applicationPath, const QString& description, bool enabled )
+bool LinuxNetworkFunctions::configureFirewallException(const QString& applicationPath, const QString& description, bool enabled)
 {
 	Q_UNUSED(applicationPath)
 	Q_UNUSED(description)
@@ -64,36 +64,36 @@ bool LinuxNetworkFunctions::configureFirewallException( const QString& applicati
 
 
 
-bool LinuxNetworkFunctions::configureSocketKeepalive( Socket socket, bool enabled, int idleTime, int interval, int probes )
+bool LinuxNetworkFunctions::configureSocketKeepalive(Socket socket, bool enabled, int idleTime, int interval, int probes)
 {
 	int optval;
 	socklen_t optlen = sizeof(optval);
-	auto fd = static_cast<int>( socket );
+	auto fd = static_cast<int>(socket);
 
 	// Try to set the option active
 	optval = enabled ? 1 : 0;
-	if( setsockopt( fd, SOL_SOCKET, SO_KEEPALIVE, &optval, optlen ) < 0 )
+	if (setsockopt(fd, SOL_SOCKET, SO_KEEPALIVE, &optval, optlen) < 0)
 	{
 		vWarning() << "could not set SO_KEEPALIVE";
 		return false;
 	}
 
-	optval = std::max<int>( 1, idleTime / 1000 );
-	if( setsockopt( fd, IPPROTO_TCP, TCP_KEEPIDLE, &optval, optlen ) < 0 )
+	optval = std::max<int>(1, idleTime / 1000);
+	if (setsockopt(fd, IPPROTO_TCP, TCP_KEEPIDLE, &optval, optlen) < 0)
 	{
 		vWarning() << "could not set TCP_KEEPIDLE";
 		return false;
 	}
 
-	optval = std::max<int>( 1, interval / 1000 );
-	if( setsockopt( fd, IPPROTO_TCP, TCP_KEEPINTVL, &optval, optlen ) < 0 )
+	optval = std::max<int>(1, interval / 1000);
+	if (setsockopt(fd, IPPROTO_TCP, TCP_KEEPINTVL, &optval, optlen) < 0)
 	{
 		vWarning() << "could not set TCP_KEEPINTVL";
 		return false;
 	}
 
 	optval = probes;
-	if( setsockopt( fd, IPPROTO_TCP, TCP_KEEPCNT, &optval, optlen ) < 0 )
+	if (setsockopt(fd, IPPROTO_TCP, TCP_KEEPCNT, &optval, optlen) < 0)
 	{
 		vWarning() << "could not set TCP_KEEPCNT";
 		return false;
@@ -107,7 +107,7 @@ bool LinuxNetworkFunctions::configureSocketKeepalive( Socket socket, bool enable
 QNetworkInterface LinuxNetworkFunctions::defaultRouteNetworkInterface()
 {
 	const auto routes = ProcessHelper(QStringLiteral("ip"), {QStringLiteral("route")}).runAndReadAll().split('\n') +
-						ProcessHelper(QStringLiteral("ip"), {QStringLiteral("-6"), QStringLiteral("route")} ).runAndReadAll().split('\n');
+		ProcessHelper(QStringLiteral("ip"), {QStringLiteral("-6"), QStringLiteral("route")}).runAndReadAll().split('\n');
 
 	QNetworkInterface defaultNetworkInterface;
 
@@ -120,11 +120,11 @@ QNetworkInterface LinuxNetworkFunctions::defaultRouteNetworkInterface()
 			routeDestination == QByteArrayLiteral("0.0.0.0") ||
 			routeDestination == QByteArrayLiteral("::/0"))
 		{
-			for (int i = 1; i < routeArgs.size()-1; ++i )
+			for (int i = 1; i < routeArgs.size() - 1; ++i)
 			{
 				if (routeArgs[i] == QByteArrayLiteral("dev"))
 				{
-					return QNetworkInterface::interfaceFromName(QString::fromLatin1(routeArgs[i+1]));
+					return QNetworkInterface::interfaceFromName(QString::fromLatin1(routeArgs[i + 1]));
 				}
 			}
 		}
@@ -137,12 +137,8 @@ QNetworkInterface LinuxNetworkFunctions::defaultRouteNetworkInterface()
 
 static int getInterfaceSpeedFromNetworkManager(const QString& interfaceName)
 {
-	const auto speedInfo = ProcessHelper(QStringLiteral("nmcli"), {QStringLiteral("-f"),
-																   QStringLiteral("CAPABILITIES.SPEED"),
-																   QStringLiteral("dev"),
-																   QStringLiteral("show"),
-																   interfaceName})
-						   .runAndReadAll();
+	const auto speedInfo = ProcessHelper(QStringLiteral("nmcli"), {QStringLiteral("-f"), QStringLiteral("CAPABILITIES.SPEED"), QStringLiteral("dev"), QStringLiteral("show"), interfaceName})
+							   .runAndReadAll();
 	static const QRegularExpression capSpeedRX(QStringLiteral("CAPABILITIES.SPEED:[^\\d]*([\\d]+) Mb/s"));
 	const auto capSpeedMatch = capSpeedRX.match(QString::fromUtf8(speedInfo));
 	if (capSpeedMatch.hasMatch())
@@ -157,7 +153,7 @@ static int getInterfaceSpeedFromNetworkManager(const QString& interfaceName)
 static int getInterfaceSpeedFromSystemd(const QString& interfaceName)
 {
 	const auto interfaceStatus = ProcessHelper(QStringLiteral("networkctl"), {QStringLiteral("status"), interfaceName})
-						   .runAndReadAll();
+									 .runAndReadAll();
 	static const QRegularExpression speedRX(QStringLiteral("Speed: ([\\d.]+)([MG])bps"));
 	const auto speedMatch = speedRX.match(QString::fromUtf8(interfaceStatus));
 	if (speedMatch.hasMatch())
@@ -177,7 +173,7 @@ static int getWirelessInterfaceSpeed(const QString& interfaceName)
 {
 	const auto wifiLinkInfo = ProcessHelper(QStringLiteral("iw"),
 											{QStringLiteral("dev"), interfaceName, QStringLiteral("link")})
-							  .runAndReadAll();
+								  .runAndReadAll();
 	static const QRegularExpression txBitrateRX(QStringLiteral("tx bitrate: ([\\d.]+) MBit/s"));
 	const auto txBitrateMatch = txBitrateRX.match(QString::fromUtf8(wifiLinkInfo));
 	if (txBitrateMatch.hasMatch())

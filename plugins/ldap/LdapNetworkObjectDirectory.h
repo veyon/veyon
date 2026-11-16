@@ -32,5 +32,4 @@ private:
 	void updateComputers(const NetworkObject& parent);
 
 	LdapDirectory m_ldapDirectory;
-
 };

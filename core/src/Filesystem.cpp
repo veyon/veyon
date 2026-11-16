@@ -29,14 +29,13 @@
 #include <QRegularExpression>
 #include <QStandardPaths>
 
-#include "VeyonConfiguration.h"
 #include "Filesystem.h"
 #include "PlatformFilesystemFunctions.h"
 #include "PlatformUserFunctions.h"
+#include "VeyonConfiguration.h"
 
 
-namespace
-{
+namespace {
 
 bool hasUnsafeCharacters(const QString& value)
 {
@@ -73,16 +72,16 @@ bool Filesystem::isSafePathComponent(const QString& name)
 		QRegularExpression::CaseInsensitiveOption);
 
 	return name.isEmpty() == false &&
-			name.toUtf8().size() <= 255 &&
-			hasUnsafeCharacters(name) == false &&
-			name.contains(QLatin1Char('/')) == false &&
-			name.contains(QLatin1Char('\\')) == false &&
-			name.contains(QLatin1Char(':')) == false &&
-			name != QStringLiteral(".") &&
-			name != QStringLiteral("..") &&
-			name.endsWith(QLatin1Char('.')) == false &&
-			name.endsWith(QLatin1Char(' ')) == false &&
-			reservedName.match(name).hasMatch() == false;
+		name.toUtf8().size() <= 255 &&
+		hasUnsafeCharacters(name) == false &&
+		name.contains(QLatin1Char('/')) == false &&
+		name.contains(QLatin1Char('\\')) == false &&
+		name.contains(QLatin1Char(':')) == false &&
+		name != QStringLiteral(".") &&
+		name != QStringLiteral("..") &&
+		name.endsWith(QLatin1Char('.')) == false &&
+		name.endsWith(QLatin1Char(' ')) == false &&
+		reservedName.match(name).hasMatch() == false;
 }
 
 
@@ -163,8 +162,7 @@ QString Filesystem::safeJoin(const QString& baseDir, const QString& relativePath
 	}
 
 	const auto canonicalExistingPath = QDir(existingPath).canonicalPath();
-	if (canonicalExistingPath.isEmpty() || (canonicalExistingPath != canonicalBase &&
-											isPathWithinBase(canonicalExistingPath, canonicalBase) == false))
+	if (canonicalExistingPath.isEmpty() || (canonicalExistingPath != canonicalBase && isPathWithinBase(canonicalExistingPath, canonicalBase) == false))
 	{
 		vWarning() << "safe path join resolved outside base directory";
 		return {};
@@ -175,36 +173,15 @@ QString Filesystem::safeJoin(const QString& baseDir, const QString& relativePath
 
 
 
-QString Filesystem::expandPath( QString path ) const
+QString Filesystem::expandPath(QString path) const
 {
-	const auto p = QDir::toNativeSeparators( path.replace( QStringLiteral( "%HOME%" ), QDir::homePath() ).
-											 replace( QStringLiteral( "$HOME" ), QDir::homePath() ).
-											 replace( QStringLiteral( "%HOSTNAME%" ), QHostInfo::localHostName() ).
-											 replace( QStringLiteral( "$HOSTNAME" ), QHostInfo::localHostName() ).
-											 replace( QStringLiteral( "%PROFILE%" ), QDir::homePath() ).
-											 replace( QStringLiteral( "$PROFILE" ), QDir::homePath() ).
-											 replace(QStringLiteral("%USER%"), VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName)).
-											 replace(QStringLiteral("%DESKTOP%"), QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)).
-											 replace(QStringLiteral("%DOCUMENTS%"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)).
-											 replace(QStringLiteral("%DOWNLOADS%"), QStandardPaths::writableLocation(QStandardPaths::DownloadLocation)).
-											 replace(QStringLiteral("%PICTURES%"), QStandardPaths::writableLocation(QStandardPaths::PicturesLocation)).
-											 replace(QStringLiteral("%VIDEOS%"), QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)).
-											 replace( QStringLiteral( "%APPDATA%" ), VeyonCore::platform().filesystemFunctions().personalAppDataPath() ).
-											 replace( QStringLiteral( "$APPDATA" ), VeyonCore::platform().filesystemFunctions().personalAppDataPath() ).
-											 replace( QStringLiteral( "%GLOBALAPPDATA%" ), VeyonCore::platform().filesystemFunctions().globalAppDataPath() ).
-											 replace( QStringLiteral( "$GLOBALAPPDATA" ), VeyonCore::platform().filesystemFunctions().globalAppDataPath() ).
-											 replace( QStringLiteral( "%TMP%" ), QDir::tempPath() ).
-											 replace( QStringLiteral( "$TMP" ), QDir::tempPath() ).
-											 replace( QStringLiteral( "%TEMP%" ), QDir::tempPath() ).
-											 replace( QStringLiteral( "$TEMP" ), QDir::tempPath() ) );
+	const auto p = QDir::toNativeSeparators(path.replace(QStringLiteral("%HOME%"), QDir::homePath()).replace(QStringLiteral("$HOME"), QDir::homePath()).replace(QStringLiteral("%HOSTNAME%"), QHostInfo::localHostName()).replace(QStringLiteral("$HOSTNAME"), QHostInfo::localHostName()).replace(QStringLiteral("%PROFILE%"), QDir::homePath()).replace(QStringLiteral("$PROFILE"), QDir::homePath()).replace(QStringLiteral("%USER%"), VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName)).replace(QStringLiteral("%DESKTOP%"), QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)).replace(QStringLiteral("%DOCUMENTS%"), QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation)).replace(QStringLiteral("%DOWNLOADS%"), QStandardPaths::writableLocation(QStandardPaths::DownloadLocation)).replace(QStringLiteral("%PICTURES%"), QStandardPaths::writableLocation(QStandardPaths::PicturesLocation)).replace(QStringLiteral("%VIDEOS%"), QStandardPaths::writableLocation(QStandardPaths::MoviesLocation)).replace(QStringLiteral("%APPDATA%"), VeyonCore::platform().filesystemFunctions().personalAppDataPath()).replace(QStringLiteral("$APPDATA"), VeyonCore::platform().filesystemFunctions().personalAppDataPath()).replace(QStringLiteral("%GLOBALAPPDATA%"), VeyonCore::platform().filesystemFunctions().globalAppDataPath()).replace(QStringLiteral("$GLOBALAPPDATA"), VeyonCore::platform().filesystemFunctions().globalAppDataPath()).replace(QStringLiteral("%TMP%"), QDir::tempPath()).replace(QStringLiteral("$TMP"), QDir::tempPath()).replace(QStringLiteral("%TEMP%"), QDir::tempPath()).replace(QStringLiteral("$TEMP"), QDir::tempPath()));
 
 	// remove duplicate directory separators - however skip the first two chars
 	// as they might specify an UNC path on Windows
-	if( p.length() > 3 )
+	if (p.length() > 3)
 	{
-		return p.left( 2 ) + p.mid( 2 ).replace(
-					QString( QStringLiteral( "%1%1" ) ).arg( QDir::separator() ),
-					QDir::separator() );
+		return p.left(2) + p.mid(2).replace(QString(QStringLiteral("%1%1")).arg(QDir::separator()), QDir::separator());
 	}
 
 	return p;
@@ -212,9 +189,9 @@ QString Filesystem::expandPath( QString path ) const
 
 
 
-QString Filesystem::shrinkPath( QString path ) const
+QString Filesystem::shrinkPath(QString path) const
 {
-	path = QDir::toNativeSeparators( path );
+	path = QDir::toNativeSeparators(path);
 
 	const auto tempPath = QDir::toNativeSeparators(QDir::tempPath());
 	const auto personalAppDataPath = VeyonCore::platform().filesystemFunctions().personalAppDataPath();
@@ -236,7 +213,7 @@ QString Filesystem::shrinkPath( QString path ) const
 			 qMakePair(picturesPath, QStringLiteral("PICTURES")),
 			 qMakePair(videosPath, QStringLiteral("VIDEOS")),
 			 qMakePair(homePath, QStringLiteral("HOME")),
-			 })
+		 })
 	{
 		if (path.startsWith(mapping.first))
 		{
@@ -247,23 +224,21 @@ QString Filesystem::shrinkPath( QString path ) const
 
 	// remove duplicate directory separators - however skip the first two chars
 	// as they might specify an UNC path on Windows
-	if( path.length() > 3 )
+	if (path.length() > 3)
 	{
-		return QDir::toNativeSeparators( path.left( 2 ) + path.mid( 2 ).replace(
-											 QString( QStringLiteral( "%1%1" ) ).arg( QDir::separator() ), QDir::separator() ) );
+		return QDir::toNativeSeparators(path.left(2) + path.mid(2).replace(QString(QStringLiteral("%1%1")).arg(QDir::separator()), QDir::separator()));
 	}
 
-	return QDir::toNativeSeparators( path );
+	return QDir::toNativeSeparators(path);
 }
 
 
 
-
-bool Filesystem::ensurePathExists( const QString &path ) const
+bool Filesystem::ensurePathExists(const QString& path) const
 {
-	const QString expandedPath = VeyonCore::filesystem().expandPath( path );
+	const QString expandedPath = VeyonCore::filesystem().expandPath(path);
 
-	if( path.isEmpty() || QDir( expandedPath ).exists() )
+	if (path.isEmpty() || QDir(expandedPath).exists())
 	{
 		return true;
 	}
@@ -273,15 +248,15 @@ bool Filesystem::ensurePathExists( const QString &path ) const
 	QString p = expandedPath;
 
 	QStringList dirs;
-	while( !QDir( p ).exists() && !p.isEmpty() )
+	while (!QDir(p).exists() && !p.isEmpty())
 	{
-		dirs.push_front( QDir( p ).dirName() );
-		p.chop( dirs.front().size() + 1 );
+		dirs.push_front(QDir(p).dirName());
+		p.chop(dirs.front().size() + 1);
 	}
 
-	if( !p.isEmpty() )
+	if (!p.isEmpty())
 	{
-		return QDir( p ).mkpath( dirs.join( QDir::separator() ) );
+		return QDir(p).mkpath(dirs.join(QDir::separator()));
 	}
 
 	return false;
@@ -289,43 +264,43 @@ bool Filesystem::ensurePathExists( const QString &path ) const
 
 
 
-QString Filesystem::privateKeyPath( const QString& name ) const
+QString Filesystem::privateKeyPath(const QString& name) const
 {
-	const QString d = VeyonCore::filesystem().expandPath( VeyonCore::config().privateKeyBaseDir() ) +
-			QDir::separator() + name + QDir::separator() + QStringLiteral( "key" );
+	const QString d = VeyonCore::filesystem().expandPath(VeyonCore::config().privateKeyBaseDir()) +
+		QDir::separator() + name + QDir::separator() + QStringLiteral("key");
 
-	return QDir::toNativeSeparators( d );
+	return QDir::toNativeSeparators(d);
 }
 
 
 
-QString Filesystem::publicKeyPath( const QString& name ) const
+QString Filesystem::publicKeyPath(const QString& name) const
 {
-	const QString d = VeyonCore::filesystem().expandPath( VeyonCore::config().publicKeyBaseDir() ) +
-			QDir::separator() + name + QDir::separator() + QStringLiteral( "key" );
+	const QString d = VeyonCore::filesystem().expandPath(VeyonCore::config().publicKeyBaseDir()) +
+		QDir::separator() + name + QDir::separator() + QStringLiteral("key");
 
-	return QDir::toNativeSeparators( d );
+	return QDir::toNativeSeparators(d);
 }
 
 
 
 QString Filesystem::screenshotDirectoryPath() const
 {
-	return expandPath( VeyonCore::config().screenshotDirectory() );
+	return expandPath(VeyonCore::config().screenshotDirectory());
 }
 
 
 
 QString Filesystem::serverFilePath() const
 {
-	return QDir::toNativeSeparators( QCoreApplication::applicationDirPath() + QDir::separator() +
-									 QStringLiteral("veyon-server" ) + VeyonCore::executableSuffix() );
+	return QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() +
+									QStringLiteral("veyon-server") + VeyonCore::executableSuffix());
 }
 
 
 
 QString Filesystem::workerFilePath() const
 {
-	return QDir::toNativeSeparators( QCoreApplication::applicationDirPath() + QDir::separator() +
-									 QStringLiteral("veyon-worker" ) + VeyonCore::executableSuffix() );
+	return QDir::toNativeSeparators(QCoreApplication::applicationDirPath() + QDir::separator() +
+									QStringLiteral("veyon-worker") + VeyonCore::executableSuffix());
 }

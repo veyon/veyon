@@ -31,16 +31,16 @@
 class VEYON_CORE_EXPORT VariantStream
 {
 public:
-	static constexpr auto MaxByteArraySize = 16*1024*1024;
-	static constexpr auto MaxStringSize = 64*1024;
+	static constexpr auto MaxByteArraySize = 16 * 1024 * 1024;
+	static constexpr auto MaxStringSize = 64 * 1024;
 	static constexpr auto MaxContainerSize = 1024;
 	static constexpr auto MaxCheckRecursionDepth = 3;
 
-	explicit VariantStream( QIODevice* ioDevice );
+	explicit VariantStream(QIODevice* ioDevice);
 
 	QVariant read(); // Flawfinder: ignore
 
-	void write( const QVariant& v );
+	void write(const QVariant& v);
 
 private:
 	bool checkBool();
@@ -56,5 +56,4 @@ private:
 	bool checkVariantMap(int depth);
 
 	QDataStream m_dataStream;
-
-} ;
+};

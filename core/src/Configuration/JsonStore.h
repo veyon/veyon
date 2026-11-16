@@ -27,18 +27,17 @@
 #include "Configuration/Store.h"
 #include "VeyonCore.h"
 
-namespace Configuration
-{
+namespace Configuration {
 
 // clazy:excludeall=copyable-polymorphic
 
 class VEYON_CORE_EXPORT JsonStore : public Store
 {
 public:
-	explicit JsonStore(Scope scope, const QString & file = {});
+	explicit JsonStore(Scope scope, const QString& file = {});
 
-	void load( Object *obj ) override;
-	void flush( const Object *obj ) override;
+	void load(Object* obj) override;
+	void flush(const Object* obj) override;
 	bool isWritable() const override;
 	void clear() override;
 
@@ -46,7 +45,6 @@ private:
 	QString configurationFilePath() const;
 
 	QString m_file;
-
-} ;
+};
 
 }

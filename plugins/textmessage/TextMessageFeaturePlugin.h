@@ -40,17 +40,17 @@ public:
 	};
 	Q_ENUM(Argument)
 
-	explicit TextMessageFeaturePlugin( QObject* parent = nullptr );
+	explicit TextMessageFeaturePlugin(QObject* parent = nullptr);
 	~TextMessageFeaturePlugin() override = default;
 
 	Plugin::Uid uid() const override
 	{
-		return Plugin::Uid{ QStringLiteral("8ae6668b-9c12-4b29-9bfc-ff89f6604164") };
+		return Plugin::Uid{QStringLiteral("8ae6668b-9c12-4b29-9bfc-ff89f6604164")};
 	}
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 1 );
+		return QVersionNumber(1, 1);
 	}
 
 	QString name() const override
@@ -60,7 +60,7 @@ public:
 
 	QString description() const override
 	{
-		return tr( "Send a message to a user" );
+		return tr("Send a message to a user");
 	}
 
 	QString vendor() const override
@@ -75,17 +75,17 @@ public:
 
 	const FeatureList& featureList() const override;
 
-	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
-						const ComputerControlInterfaceList& computerControlInterfaces ) override;
+	bool controlFeature(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+						const ComputerControlInterfaceList& computerControlInterfaces) override;
 
-	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
-					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
+	bool startFeature(VeyonMasterInterface& master, const Feature& feature,
+					  const ComputerControlInterfaceList& computerControlInterfaces) override;
 
-	bool handleFeatureMessage( VeyonServerInterface& server,
-							   const MessageContext& messageContext,
-							   const FeatureMessage& message ) override;
+	bool handleFeatureMessage(VeyonServerInterface& server,
+							  const MessageContext& messageContext,
+							  const FeatureMessage& message) override;
 
-	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
+	bool handleFeatureMessage(VeyonWorkerInterface& worker, const FeatureMessage& message) override;
 
 private:
 	enum class FeatureCommand {
@@ -94,5 +94,4 @@ private:
 
 	const Feature m_textMessageFeature;
 	const FeatureList m_features;
-
 };

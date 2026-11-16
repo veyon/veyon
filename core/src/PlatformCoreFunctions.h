@@ -47,25 +47,25 @@ public:
 
 	virtual bool prepareSessionBusAccess() = 0;
 
-	virtual void initNativeLoggingSystem( const QString& appName ) = 0;
-	virtual void writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel ) = 0;
+	virtual void initNativeLoggingSystem(const QString& appName) = 0;
+	virtual void writeToNativeLoggingSystem(const QString& message, Logger::LogLevel loglevel) = 0;
 
 	virtual StandardInputReader* createStandardInputReader(QObject* parent) = 0;
 
 	virtual void reboot() = 0;
-	virtual void powerDown( bool installUpdates ) = 0;
+	virtual void powerDown(bool installUpdates) = 0;
 
-	virtual void raiseWindow( QWidget* widget, bool stayOnTop ) = 0;
+	virtual void raiseWindow(QWidget* widget, bool stayOnTop) = 0;
 
 	virtual void disableScreenSaver() = 0;
 	virtual void restoreScreenSaverSettings() = 0;
 
-	virtual void setSystemUiState( bool enabled ) = 0;
+	virtual void setSystemUiState(bool enabled) = 0;
 
 	virtual QString activeDesktopName() = 0;
 
 	virtual bool isRunningAsAdmin() const = 0;
-	virtual bool runProgramAsAdmin( const QString& program, const QStringList& parameters ) = 0;
+	virtual bool runProgramAsAdmin(const QString& program, const QStringList& parameters) = 0;
 
 	virtual bool runProgramAsUser(const QString& program,
 								  const QStringList& parameters,
@@ -78,5 +78,4 @@ public:
 	virtual QString queryDisplayDeviceName(const QScreen& screen) const = 0;
 
 	virtual QString getApplicationName(ProcessId processId) const = 0;
-
 };

@@ -23,12 +23,12 @@
  */
 
 #include <QCoreApplication>
-#include <QElapsedTimer>
-#include <QFileInfo>
 #include <QDBusConnection>
 #include <QDBusMessage>
 #include <QDBusObjectPath>
 #include <QDBusPendingCall>
+#include <QElapsedTimer>
+#include <QFileInfo>
 #include <QProcess>
 #include <QProcessEnvironment>
 #include <QScreen>
@@ -36,8 +36,8 @@
 #include <QStandardPaths>
 #include <QWidget>
 
-#include <unistd.h>
 #include <grp.h>
+#include <unistd.h>
 #ifdef HAVE_LIBPROCPS
 #include <proc/readproc.h>
 #endif
@@ -109,14 +109,14 @@ bool LinuxCoreFunctions::applyConfiguration()
 
 
 
-void LinuxCoreFunctions::initNativeLoggingSystem( const QString& appName )
+void LinuxCoreFunctions::initNativeLoggingSystem(const QString& appName)
 {
 	Q_UNUSED(appName)
 }
 
 
 
-void LinuxCoreFunctions::writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel )
+void LinuxCoreFunctions::writeToNativeLoggingSystem(const QString& message, Logger::LogLevel loglevel)
 {
 	Q_UNUSED(message)
 	Q_UNUSED(loglevel)
@@ -141,45 +141,45 @@ StandardInputReader* LinuxCoreFunctions::createStandardInputReader(QObject* pare
 
 void LinuxCoreFunctions::reboot()
 {
-	if( systemdLoginManager()->call( QStringLiteral("Reboot"), false ).type() != QDBusMessage::ReplyMessage &&
-		consoleKitManager()->call( QStringLiteral("Restart") ).type() != QDBusMessage::ReplyMessage )
+	if (systemdLoginManager()->call(QStringLiteral("Reboot"), false).type() != QDBusMessage::ReplyMessage &&
+		consoleKitManager()->call(QStringLiteral("Restart")).type() != QDBusMessage::ReplyMessage)
 	{
 		prepareSessionBusAccess();
 
-		kdeSessionManager()->asyncCall( QStringLiteral("logout"),
-										LinuxDesktopIntegration::KDE::ShutdownConfirmNo,
-										LinuxDesktopIntegration::KDE::ShutdownTypeReboot,
-										LinuxDesktopIntegration::KDE::ShutdownModeForceNow );
-		gnomeSessionManager()->asyncCall( QStringLiteral("RequestReboot") );
-		mateSessionManager()->asyncCall( QStringLiteral("RequestReboot") );
-		xfcePowerManager()->asyncCall( QStringLiteral("Reboot") );
+		kdeSessionManager()->asyncCall(QStringLiteral("logout"),
+									   LinuxDesktopIntegration::KDE::ShutdownConfirmNo,
+									   LinuxDesktopIntegration::KDE::ShutdownTypeReboot,
+									   LinuxDesktopIntegration::KDE::ShutdownModeForceNow);
+		gnomeSessionManager()->asyncCall(QStringLiteral("RequestReboot"));
+		mateSessionManager()->asyncCall(QStringLiteral("RequestReboot"));
+		xfcePowerManager()->asyncCall(QStringLiteral("Reboot"));
 	}
 }
 
 
 
-void LinuxCoreFunctions::powerDown( bool installUpdates )
+void LinuxCoreFunctions::powerDown(bool installUpdates)
 {
 	Q_UNUSED(installUpdates)
 
-	if( systemdLoginManager()->call( QStringLiteral("PowerOff"), false ).type() != QDBusMessage::ReplyMessage &&
-		consoleKitManager()->call( QStringLiteral("Stop") ).type() != QDBusMessage::ReplyMessage )
+	if (systemdLoginManager()->call(QStringLiteral("PowerOff"), false).type() != QDBusMessage::ReplyMessage &&
+		consoleKitManager()->call(QStringLiteral("Stop")).type() != QDBusMessage::ReplyMessage)
 	{
 		prepareSessionBusAccess();
 
-		kdeSessionManager()->asyncCall( QStringLiteral("logout"),
-										LinuxDesktopIntegration::KDE::ShutdownConfirmNo,
-										LinuxDesktopIntegration::KDE::ShutdownTypeHalt,
-										LinuxDesktopIntegration::KDE::ShutdownModeForceNow );
-		gnomeSessionManager()->asyncCall( QStringLiteral("RequestShutdown") );
-		mateSessionManager()->asyncCall( QStringLiteral("RequestShutdown") );
-		xfcePowerManager()->asyncCall( QStringLiteral("Shutdown") );
+		kdeSessionManager()->asyncCall(QStringLiteral("logout"),
+									   LinuxDesktopIntegration::KDE::ShutdownConfirmNo,
+									   LinuxDesktopIntegration::KDE::ShutdownTypeHalt,
+									   LinuxDesktopIntegration::KDE::ShutdownModeForceNow);
+		gnomeSessionManager()->asyncCall(QStringLiteral("RequestShutdown"));
+		mateSessionManager()->asyncCall(QStringLiteral("RequestShutdown"));
+		xfcePowerManager()->asyncCall(QStringLiteral("Shutdown"));
 	}
 }
 
 
 
-void LinuxCoreFunctions::raiseWindow( QWidget* widget, bool stayOnTop )
+void LinuxCoreFunctions::raiseWindow(QWidget* widget, bool stayOnTop)
 {
 	if (stayOnTop)
 	{
@@ -212,40 +212,40 @@ void LinuxCoreFunctions::disableScreenSaver()
 		return;
 	}
 
-	auto display = XOpenDisplay( nullptr );
+	auto display = XOpenDisplay(nullptr);
 
 	// query and disable screen saver
 	int interval;
 	int allowExposures;
-	XGetScreenSaver( display, &m_screenSaverTimeout, &interval, &m_screenSaverPreferBlanking, &allowExposures );
-	XSetScreenSaver( display, 0, interval, 0, allowExposures );
+	XGetScreenSaver(display, &m_screenSaverTimeout, &interval, &m_screenSaverPreferBlanking, &allowExposures);
+	XSetScreenSaver(display, 0, interval, 0, allowExposures);
 
 	// query and disable DPMS
 	int dummy;
-	if( DPMSQueryExtension( display, &dummy, &dummy ) )
+	if (DPMSQueryExtension(display, &dummy, &dummy))
 	{
 		CARD16 powerLevel;
 		BOOL state;
-		if( DPMSInfo( display, &powerLevel, &state ) && state )
+		if (DPMSInfo(display, &powerLevel, &state) && state)
 		{
 			m_dpmsEnabled = true;
-			DPMSDisable( display );
+			DPMSDisable(display);
 		}
 		else
 		{
 			m_dpmsEnabled = false;
 		}
 
-		DPMSGetTimeouts( display, &m_dpmsStandbyTimeout, &m_dpmsSuspendTimeout, &m_dpmsOffTimeout );
-		DPMSSetTimeouts( display, 0, 0, 0 );
+		DPMSGetTimeouts(display, &m_dpmsStandbyTimeout, &m_dpmsSuspendTimeout, &m_dpmsOffTimeout);
+		DPMSSetTimeouts(display, 0, 0, 0);
 	}
-	else if( qEnvironmentVariableIsSet("XRDP_SESSION") == false )
+	else if (qEnvironmentVariableIsSet("XRDP_SESSION") == false)
 	{
 		vWarning() << "DPMS extension not supported!";
 	}
 
-	XFlush( display );
-	XCloseDisplay( display );
+	XFlush(display);
+	XCloseDisplay(display);
 }
 
 
@@ -259,30 +259,30 @@ void LinuxCoreFunctions::restoreScreenSaverSettings()
 		return;
 	}
 
-	auto display = XOpenDisplay( nullptr );
+	auto display = XOpenDisplay(nullptr);
 
 	// restore screensaver settings
 	int timeout;
 	int interval;
 	int preferBlanking;
 	int allowExposures;
-	XGetScreenSaver( display, &timeout, &interval, &preferBlanking, &allowExposures );
-	XSetScreenSaver( display, m_screenSaverTimeout, interval, m_screenSaverPreferBlanking, allowExposures );
+	XGetScreenSaver(display, &timeout, &interval, &preferBlanking, &allowExposures);
+	XSetScreenSaver(display, m_screenSaverTimeout, interval, m_screenSaverPreferBlanking, allowExposures);
 
 	// restore DPMS settings
 	int dummy;
-	if( DPMSQueryExtension( display, &dummy, &dummy ) )
+	if (DPMSQueryExtension(display, &dummy, &dummy))
 	{
-		if( m_dpmsEnabled )
+		if (m_dpmsEnabled)
 		{
-			DPMSEnable( display );
+			DPMSEnable(display);
 		}
 
-		DPMSSetTimeouts( display, m_dpmsStandbyTimeout, m_dpmsSuspendTimeout, m_dpmsOffTimeout );
+		DPMSSetTimeouts(display, m_dpmsStandbyTimeout, m_dpmsSuspendTimeout, m_dpmsOffTimeout);
 	}
 
-	XFlush( display );
-	XCloseDisplay( display );
+	XFlush(display);
+	XCloseDisplay(display);
 }
 
 
@@ -297,12 +297,10 @@ void LinuxCoreFunctions::disableScreenSaverWayland()
 		QStringLiteral("/org/freedesktop/portal/desktop"),
 		QStringLiteral("org.freedesktop.portal.Inhibit"),
 		QStringLiteral("Inhibit"));
-	inhibitPortal.setArguments({
-		QVariant::fromValue(QDBusObjectPath(QStringLiteral("/"))),
-		QVariant::fromValue(appName),
-		QVariant::fromValue(QStringLiteral("remote-desktop")),
-		QVariant::fromValue(QVariantMap{})
-	});
+	inhibitPortal.setArguments({QVariant::fromValue(QDBusObjectPath(QStringLiteral("/"))),
+								QVariant::fromValue(appName),
+								QVariant::fromValue(QStringLiteral("remote-desktop")),
+								QVariant::fromValue(QVariantMap{})});
 	QDBusMessage reply = QDBusConnection::sessionBus().call(inhibitPortal, QDBus::BlockWithGui, 2000);
 
 	if (reply.type() == QDBusMessage::ReplyMessage)
@@ -320,10 +318,8 @@ void LinuxCoreFunctions::disableScreenSaverWayland()
 		QStringLiteral("/ScreenSaver"),
 		QStringLiteral("org.freedesktop.ScreenSaver"),
 		QStringLiteral("Inhibit"));
-	inhibitFreeDesktop.setArguments({
-		QVariant::fromValue(appName),
-		QVariant::fromValue(QStringLiteral("Veyon remote desktop session"))
-	});
+	inhibitFreeDesktop.setArguments({QVariant::fromValue(appName),
+									 QVariant::fromValue(QStringLiteral("Veyon remote desktop session"))});
 	QDBusMessage reply2 = QDBusConnection::sessionBus().call(inhibitFreeDesktop, QDBus::BlockWithGui, 2000);
 
 	if (reply2.type() == QDBusMessage::ReplyMessage)
@@ -351,9 +347,7 @@ void LinuxCoreFunctions::restoreScreenSaverSettingsWayland()
 		QStringLiteral("/org/freedesktop/portal/desktop"),
 		QStringLiteral("org.freedesktop.portal.Inhibit"),
 		QStringLiteral("UnInhibit"));
-	unInhibitPortal.setArguments({
-		QVariant::fromValue(m_waylandInhibitCookie)
-	});
+	unInhibitPortal.setArguments({QVariant::fromValue(m_waylandInhibitCookie)});
 	QDBusMessage reply = QDBusConnection::sessionBus().call(unInhibitPortal, QDBus::BlockWithGui, 2000);
 
 	if (reply.type() == QDBusMessage::ReplyMessage || reply.type() == QDBusMessage::ErrorMessage)
@@ -369,9 +363,7 @@ void LinuxCoreFunctions::restoreScreenSaverSettingsWayland()
 		QStringLiteral("/ScreenSaver"),
 		QStringLiteral("org.freedesktop.ScreenSaver"),
 		QStringLiteral("UnInhibit"));
-	unInhibitFreeDesktop.setArguments({
-		QVariant::fromValue(m_waylandInhibitCookie)
-	});
+	unInhibitFreeDesktop.setArguments({QVariant::fromValue(m_waylandInhibitCookie)});
 	QDBusConnection::sessionBus().call(unInhibitFreeDesktop, QDBus::BlockWithGui, 2000);
 
 	m_waylandInhibitCookie = 0;
@@ -380,7 +372,7 @@ void LinuxCoreFunctions::restoreScreenSaverSettingsWayland()
 
 
 
-void LinuxCoreFunctions::setSystemUiState( bool enabled )
+void LinuxCoreFunctions::setSystemUiState(bool enabled)
 {
 	Q_UNUSED(enabled)
 }
@@ -401,11 +393,11 @@ bool LinuxCoreFunctions::isRunningAsAdmin() const
 
 
 
-bool LinuxCoreFunctions::runProgramAsAdmin( const QString& program, const QStringList& parameters )
+bool LinuxCoreFunctions::runProgramAsAdmin(const QString& program, const QStringList& parameters)
 {
-	const auto commandLine = QStringList( program ) + parameters;
+	const auto commandLine = QStringList(program) + parameters;
 
-	return QProcess::execute( QStringLiteral("pkexec"), commandLine ) == 0;
+	return QProcess::execute(QStringLiteral("pkexec"), commandLine) == 0;
 }
 
 
@@ -416,34 +408,33 @@ bool LinuxCoreFunctions::runProgramAsUser(const QString& program, const QStringL
 {
 	Q_UNUSED(desktop);
 
-	const auto uid = LinuxUserFunctions::userIdFromName( username );
+	const auto uid = LinuxUserFunctions::userIdFromName(username);
 	if (uid == LinuxUserFunctions::InvalidUserId)
 	{
 		vCritical() << "failed to resolve uid from username" << username;
 		return false;
 	}
 
-	const auto gid = LinuxUserFunctions::userGroupIdFromName( username );
+	const auto gid = LinuxUserFunctions::userGroupIdFromName(username);
 	if (gid == LinuxUserFunctions::InvalidGroupId)
 	{
 		vCritical() << "failed to resolve gid from username" << username;
 		return false;
 	}
 
-	const auto adjustChildProcessPrivileges = [uid, gid]()
-	{
+	const auto adjustChildProcessPrivileges = [uid, gid]() {
 		const auto isRoot = getuid() == 0 || geteuid() == 0;
 		if (setgroups(0, nullptr) != 0 && isRoot)
 		{
-			qFatal( "Could not drop all supplementary groups for child process!" );
+			qFatal("Could not drop all supplementary groups for child process!");
 		}
 		if (setgid(gid) != 0 && isRoot)
 		{
-			qFatal( "Could not set GID for child process!" );
+			qFatal("Could not set GID for child process!");
 		}
 		if (setuid(uid) != 0 && isRoot)
 		{
-			qFatal( "Could not set UID for child process!" );
+			qFatal("Could not set UID for child process!");
 		}
 	};
 
@@ -455,7 +446,7 @@ bool LinuxCoreFunctions::runProgramAsUser(const QString& program, const QStringL
 	{
 	public:
 		explicit UserProcess(const std::function<void()>& modifier, QObject* parent = nullptr) :
-			QProcess( parent ),
+			QProcess(parent),
 			m_modifier(modifier)
 		{
 		}
@@ -466,7 +457,7 @@ bool LinuxCoreFunctions::runProgramAsUser(const QString& program, const QStringL
 		}
 
 	private:
-		const std::function<void ()>& m_modifier;
+		const std::function<void()>& m_modifier;
 	};
 
 	auto process = new UserProcess(adjustChildProcessPrivileges);
@@ -480,8 +471,8 @@ bool LinuxCoreFunctions::runProgramAsUser(const QString& program, const QStringL
 		});
 	}
 
-	QObject::connect( process, QOverload<int, QProcess::ExitStatus>::of( &QProcess::finished ), &QProcess::deleteLater );
-	process->start( program, parameters );
+	QObject::connect(process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), &QProcess::deleteLater);
+	process->start(program, parameters);
 
 	return true;
 }
@@ -490,7 +481,7 @@ bool LinuxCoreFunctions::runProgramAsUser(const QString& program, const QStringL
 
 QString LinuxCoreFunctions::genericUrlHandler() const
 {
-	return QStringLiteral( "xdg-open" );
+	return QStringLiteral("xdg-open");
 }
 
 
@@ -501,7 +492,7 @@ QString LinuxCoreFunctions::queryDisplayDeviceName(const QScreen& screen) const
 	nameParts.append(screen.manufacturer());
 	nameParts.append(screen.model());
 	nameParts.removeAll({});
-	if(nameParts.isEmpty())
+	if (nameParts.isEmpty())
 	{
 		return screen.name();
 	}
@@ -527,10 +518,10 @@ QString LinuxCoreFunctions::getApplicationName(ProcessId processId) const
 /*! Returns DBus interface for session manager of KDE desktop */
 LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::kdeSessionManager()
 {
-	return DBusInterfacePointer::create( QStringLiteral("org.kde.ksmserver"),
-										 QStringLiteral("/KSMServer"),
-										 QStringLiteral("org.kde.KSMServerInterface"),
-										 QDBusConnection::sessionBus() );
+	return DBusInterfacePointer::create(QStringLiteral("org.kde.ksmserver"),
+										QStringLiteral("/KSMServer"),
+										QStringLiteral("org.kde.KSMServerInterface"),
+										QDBusConnection::sessionBus());
 }
 
 
@@ -538,10 +529,10 @@ LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::kdeSessionManager()
 /*! Returns DBus interface for session manager of Gnome desktop */
 LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::gnomeSessionManager()
 {
-	return DBusInterfacePointer::create( QStringLiteral("org.gnome.SessionManager"),
-										 QStringLiteral("/org/gnome/SessionManager"),
-										 QStringLiteral("org.gnome.SessionManager"),
-										 QDBusConnection::sessionBus() );
+	return DBusInterfacePointer::create(QStringLiteral("org.gnome.SessionManager"),
+										QStringLiteral("/org/gnome/SessionManager"),
+										QStringLiteral("org.gnome.SessionManager"),
+										QDBusConnection::sessionBus());
 }
 
 
@@ -549,10 +540,10 @@ LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::gnomeSessionManager
 /*! Returns DBus interface for session manager of Mate desktop */
 LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::mateSessionManager()
 {
-	return DBusInterfacePointer::create( QStringLiteral("org.mate.SessionManager"),
-										 QStringLiteral("/org/mate/SessionManager"),
-										 QStringLiteral("org.mate.SessionManager"),
-										 QDBusConnection::sessionBus() );
+	return DBusInterfacePointer::create(QStringLiteral("org.mate.SessionManager"),
+										QStringLiteral("/org/mate/SessionManager"),
+										QStringLiteral("org.mate.SessionManager"),
+										QDBusConnection::sessionBus());
 }
 
 
@@ -560,10 +551,10 @@ LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::mateSessionManager(
 /*! Returns DBus interface for Xfce/LXDE power manager */
 LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::xfcePowerManager()
 {
-	return DBusInterfacePointer::create( QStringLiteral("org.freedesktop.PowerManagement"),
-										 QStringLiteral("/org/freedesktop/PowerManagement"),
-										 QStringLiteral("org.freedesktop.PowerManagement"),
-										 QDBusConnection::sessionBus() );
+	return DBusInterfacePointer::create(QStringLiteral("org.freedesktop.PowerManagement"),
+										QStringLiteral("/org/freedesktop/PowerManagement"),
+										QStringLiteral("org.freedesktop.PowerManagement"),
+										QDBusConnection::sessionBus());
 }
 
 
@@ -571,10 +562,10 @@ LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::xfcePowerManager()
 /*! Returns DBus interface for systemd login manager */
 LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::systemdLoginManager()
 {
-	return DBusInterfacePointer::create( QStringLiteral("org.freedesktop.login1"),
-										 QStringLiteral("/org/freedesktop/login1"),
-										 QStringLiteral("org.freedesktop.login1.Manager"),
-										 QDBusConnection::systemBus() );
+	return DBusInterfacePointer::create(QStringLiteral("org.freedesktop.login1"),
+										QStringLiteral("/org/freedesktop/login1"),
+										QStringLiteral("org.freedesktop.login1.Manager"),
+										QDBusConnection::systemBus());
 }
 
 
@@ -582,10 +573,10 @@ LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::systemdLoginManager
 /*! Returns DBus interface for ConsoleKit manager */
 LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::consoleKitManager()
 {
-	return DBusInterfacePointer::create( QStringLiteral("org.freedesktop.ConsoleKit"),
-										 QStringLiteral("/org/freedesktop/ConsoleKit/Manager"),
-										 QStringLiteral("org.freedesktop.ConsoleKit.Manager"),
-										 QDBusConnection::systemBus() );
+	return DBusInterfacePointer::create(QStringLiteral("org.freedesktop.ConsoleKit"),
+										QStringLiteral("/org/freedesktop/ConsoleKit/Manager"),
+										QStringLiteral("org.freedesktop.ConsoleKit.Manager"),
+										QDBusConnection::systemBus());
 }
 
 
@@ -605,13 +596,13 @@ bool LinuxCoreFunctions::isSystemdManaged()
 
 
 
-int LinuxCoreFunctions::systemctl( const QStringList& arguments )
+int LinuxCoreFunctions::systemctl(const QStringList& arguments)
 {
 	QProcess process;
 	process.start(::systemctlPath(),
 				  QStringList({QStringLiteral("--no-pager"), QStringLiteral("-q")}) + arguments);
 
-	if( process.waitForFinished() && process.exitStatus() == QProcess::NormalExit )
+	if (process.waitForFinished() && process.exitStatus() == QProcess::NormalExit)
 	{
 		return process.exitCode();
 	}
@@ -623,33 +614,33 @@ int LinuxCoreFunctions::systemctl( const QStringList& arguments )
 
 void LinuxCoreFunctions::restartDisplayManagers()
 {
-	for( const auto& displayManager : {
-		 QStringLiteral("gdm"),
-		 QStringLiteral("lightdm"),
-		 QStringLiteral("lxdm"),
-		 QStringLiteral("nodm"),
-		 QStringLiteral("sddm"),
-		 QStringLiteral("wdm"),
-		 QStringLiteral("xdm") } )
+	for (const auto& displayManager : {
+			 QStringLiteral("gdm"),
+			 QStringLiteral("lightdm"),
+			 QStringLiteral("lxdm"),
+			 QStringLiteral("nodm"),
+			 QStringLiteral("sddm"),
+			 QStringLiteral("wdm"),
+			 QStringLiteral("xdm")})
 	{
-		systemctl( { QStringLiteral("restart"), displayManager } );
+		systemctl({QStringLiteral("restart"), displayManager});
 	}
 }
 
 
 
 #ifdef HAVE_LIBPROCPS
-void LinuxCoreFunctions::forEachChildProcess( const std::function<bool(proc_t*)>& visitor,
-											 int parentPid, int flags, bool visitParent )
+void LinuxCoreFunctions::forEachChildProcess(const std::function<bool(proc_t*)>& visitor,
+											 int parentPid, int flags, bool visitParent)
 {
 	QProcessEnvironment sessionEnv;
 
-	const auto proc = openproc( flags | PROC_FILLSTAT /* required for proc_t::ppid */ );
+	const auto proc = openproc(flags | PROC_FILLSTAT /* required for proc_t::ppid */);
 	proc_t* procInfo = nullptr;
 
 	QList<int> ppids;
 
-	while( ( procInfo = readproc( proc, nullptr ) ) )
+	while ((procInfo = readproc(proc, nullptr)))
 	{
 		if (procInfo->tgid == parentPid)
 		{
@@ -658,15 +649,15 @@ void LinuxCoreFunctions::forEachChildProcess( const std::function<bool(proc_t*)>
 				ppids.append(procInfo->tgid);
 			}
 		}
-		else if( ppids.contains( procInfo->ppid ) && visitor( procInfo ) )
+		else if (ppids.contains(procInfo->ppid) && visitor(procInfo))
 		{
 			ppids.append(procInfo->tgid);
 		}
 
-		freeproc( procInfo );
+		freeproc(procInfo);
 	}
 
-	closeproc( proc );
+	closeproc(proc);
 }
 #elif defined(HAVE_LIBPROC2)
 void LinuxCoreFunctions::forEachChildProcess(const std::function<bool(const pids_stack*)>& visitor,
@@ -712,19 +703,19 @@ void LinuxCoreFunctions::forEachChildProcess(const std::function<bool(const pids
 #endif
 
 
-bool LinuxCoreFunctions::waitForProcess( qint64 pid, int timeout, int sleepInterval )
+bool LinuxCoreFunctions::waitForProcess(qint64 pid, int timeout, int sleepInterval)
 {
 	QElapsedTimer timeoutTimer;
 	timeoutTimer.start();
 
-	while( QFileInfo::exists( QStringLiteral("/proc/%1").arg( pid ) ) )
+	while (QFileInfo::exists(QStringLiteral("/proc/%1").arg(pid)))
 	{
-		if( timeoutTimer.elapsed() >= timeout )
+		if (timeoutTimer.elapsed() >= timeout)
 		{
 			return false;
 		}
 
-		QThread::msleep( static_cast<uint64_t>( sleepInterval ) );
+		QThread::msleep(static_cast<uint64_t>(sleepInterval));
 	}
 
 	return true;

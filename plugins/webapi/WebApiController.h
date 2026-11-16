@@ -31,7 +31,11 @@
 #include "LockingPointer.h"
 #include "WebApiConnection.h"
 
-#define waDebug() if (VeyonCore::isDebugging()==false); else qDebug() << "[WebAPI]"
+#define waDebug() \
+	if (VeyonCore::isDebugging() == false) \
+		; \
+	else \
+		qDebug() << "[WebAPI]"
 
 class WebApiConfiguration;
 
@@ -39,8 +43,7 @@ class WebApiController : public QObject
 {
 	Q_OBJECT
 public:
-	enum class Key
-	{
+	enum class Key {
 		State,
 		Method,
 		Methods,
@@ -67,8 +70,7 @@ public:
 	};
 	Q_ENUM(Key)
 
-	enum class Error
-	{
+	enum class Error {
 		NoError,
 		InvalidData,
 		InvalidConnection,
@@ -91,7 +93,8 @@ public:
 #else
 		using Headers = QVariantMap;
 #endif
-		Request(const QString& p = {}, const Headers& h = {}, const QVariantMap& d = {}) : path(p), headers(h), data(d) { }
+		Request(const QString& p = {}, const Headers& h = {}, const QVariantMap& d = {}) :
+			path(p), headers(h), data(d) {}
 		QString path{};
 		Headers headers{};
 		QVariantMap data{};
@@ -99,10 +102,14 @@ public:
 
 	struct Response
 	{
-		Response( const QVariantMap& md = {} ) : mapData(md) { }
-		Response( const QVariantList& ad ) : arrayData(ad) { }
-		Response( const QByteArray& bd ) : binaryData(bd) { }
-		Response( Error e, const QString& ed = {} ) : error(e), errorDetails(ed) { }
+		Response(const QVariantMap& md = {}) :
+			mapData(md) {}
+		Response(const QVariantList& ad) :
+			arrayData(ad) {}
+		Response(const QByteArray& bd) :
+			binaryData(bd) {}
+		Response(Error e, const QString& ed = {}) :
+			error(e), errorDetails(ed) {}
 		QVariantList arrayData{};
 		QVariantMap mapData{};
 		QByteArray binaryData{};
@@ -110,29 +117,29 @@ public:
 		QString errorDetails{};
 	};
 
-	explicit WebApiController( const WebApiConfiguration& configuration, QObject* parent = nullptr );
+	explicit WebApiController(const WebApiConfiguration& configuration, QObject* parent = nullptr);
 	~WebApiController() override;
 
 	Response getHostState(const Request& request, const QString& host);
 
-	Response getAuthenticationMethods( const Request& request, const QString& host );
-	Response performAuthentication( const Request& request, const QString& host );
-	Response closeConnection( const Request& request, const QString& host );
+	Response getAuthenticationMethods(const Request& request, const QString& host);
+	Response performAuthentication(const Request& request, const QString& host);
+	Response closeConnection(const Request& request, const QString& host);
 
-	Response getFramebuffer( const Request& request );
+	Response getFramebuffer(const Request& request);
 
-	Response listFeatures( const Request& request );
-	Response setFeatureStatus( const Request& request, const QString& feature );
-	Response getFeatureStatus( const Request& request, const QString& feature );
+	Response listFeatures(const Request& request);
+	Response setFeatureStatus(const Request& request, const QString& feature);
+	Response getFeatureStatus(const Request& request, const QString& feature);
 
-	Response getUserInformation( const Request& request );
+	Response getUserInformation(const Request& request);
 	Response getSessionInformation(const Request& request);
 
 	QString getStatistics();
 	QString getConnectionDetails();
 	Response sleep(const Request& request, const int& seconds);
 
-	static QString errorString( Error error );
+	static QString errorString(Error error);
 
 private:
 	void runInWorkerThread(const std::function<void()>& functor) const;
@@ -141,7 +148,7 @@ private:
 	template<class T>
 	T runInWorkerThread(const std::function<T()>& functor) const;
 
-	void removeConnection( QUuid connectionUuid );
+	void removeConnection(QUuid connectionUuid);
 
 	void incrementVncFramebufferUpdatesCounter();
 	void updateStatistics();
@@ -150,9 +157,9 @@ private:
 	static constexpr auto MillisecondsPerHour = MillisecondsPerSecond * 60 * 60;
 	static constexpr auto StatisticsUpdateIntervalSeconds = 10;
 
-	static QString k2s( Key key )
+	static QString k2s(Key key)
 	{
-		return EnumHelper::toCamelCaseString( key );
+		return EnumHelper::toCamelCaseString(key);
 	}
 
 	static QByteArray connectionUidHeaderFieldName()
@@ -165,12 +172,12 @@ private:
 	using WebApiConnectionPointer = QSharedPointer<WebApiConnection>;
 	using LockingConnectionPointer = LockingPointer<WebApiConnectionPointer>;
 
-	LockingConnectionPointer lookupConnection( const Request& request );
+	LockingConnectionPointer lookupConnection(const Request& request);
 
-	using CheckFunction = std::function<Response(const WebApiController*, const QVariantMap &)>;
+	using CheckFunction = std::function<Response(const WebApiController*, const QVariantMap&)>;
 
-	Response checkConnection( const Request& request );
-	Response checkFeature( const QString& featureUid );
+	Response checkConnection(const Request& request);
+	Response checkFeature(const QString& featureUid);
 
 	const WebApiConfiguration& m_configuration;
 	QMap<QUuid, WebApiConnectionPointer> m_connections{};
@@ -189,5 +196,4 @@ private:
 	QAtomicInt m_apiTotalRequestsPerSecond = 0;
 	QAtomicInt m_framebufferRequestsPerSecond = 0;
 	QAtomicInt m_vncFramebufferUpdatesPerSecond = 0;
-
 };

@@ -26,7 +26,9 @@
 
 #include "ConfigurationPage.h"
 
-namespace Ui { class GeneralConfigurationPage; }
+namespace Ui {
+class GeneralConfigurationPage;
+}
 
 class GeneralConfigurationPage : public ConfigurationPage
 {
@@ -51,9 +53,8 @@ private:
 
 	static QString authenticationTestTitle()
 	{
-		return tr( "Authentication test");
+		return tr("Authentication test");
 	}
 
 	Ui::GeneralConfigurationPage* ui;
-
-} ;
+};

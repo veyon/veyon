@@ -25,67 +25,67 @@
 #include <QFileDialog>
 #include <QLineEdit>
 
-#include "Filesystem.h"
 #include "FileSystemBrowser.h"
+#include "Filesystem.h"
 
 
-QString FileSystemBrowser::exec( const QString &path,
-									const QString &title,
-									const QString &filter )
+QString FileSystemBrowser::exec(const QString& path,
+								const QString& title,
+								const QString& filter)
 {
 	QString browsePath = path;
-	if( m_expandPath )
+	if (m_expandPath)
 	{
-		browsePath = VeyonCore::filesystem().expandPath( browsePath );
+		browsePath = VeyonCore::filesystem().expandPath(browsePath);
 	}
 
-	switch( m_browseMode )
+	switch (m_browseMode)
 	{
-		case ExistingDirectory:
-			if( !QFileInfo( browsePath ).isDir() )
-			{
-				browsePath = QDir::homePath();
-			}
-			break;
-		case ExistingFile:
-		case SaveFile:
-			if( QFileInfo( browsePath ).isFile() )
-			{
-				browsePath = QFileInfo( browsePath ).absolutePath();
-			}
-			else
-			{
-				browsePath = QDir::homePath();
-			}
-			break;
+	case ExistingDirectory:
+		if (!QFileInfo(browsePath).isDir())
+		{
+			browsePath = QDir::homePath();
+		}
+		break;
+	case ExistingFile:
+	case SaveFile:
+		if (QFileInfo(browsePath).isFile())
+		{
+			browsePath = QFileInfo(browsePath).absolutePath();
+		}
+		else
+		{
+			browsePath = QDir::homePath();
+		}
+		break;
 
-		default: break;
+	default: break;
 	}
 
 	QString chosenPath;
-	switch( m_browseMode )
+	switch (m_browseMode)
 	{
-		case ExistingDirectory:
-			chosenPath = QFileDialog::getExistingDirectory(m_parent, title,
-								browsePath,
-								QFileDialog::ShowDirsOnly |
-									QFileDialog::DontResolveSymlinks );
-			break;
-		case ExistingFile:
-			chosenPath = QFileDialog::getOpenFileName(m_parent, title, browsePath, filter);
-			break;
-		case SaveFile:
-			chosenPath = QFileDialog::getSaveFileName(m_parent, title, browsePath, filter);
-			break;
+	case ExistingDirectory:
+		chosenPath = QFileDialog::getExistingDirectory(m_parent, title,
+													   browsePath,
+													   QFileDialog::ShowDirsOnly |
+														   QFileDialog::DontResolveSymlinks);
+		break;
+	case ExistingFile:
+		chosenPath = QFileDialog::getOpenFileName(m_parent, title, browsePath, filter);
+		break;
+	case SaveFile:
+		chosenPath = QFileDialog::getSaveFileName(m_parent, title, browsePath, filter);
+		break;
 
-		default: break;
+	default: break;
 	}
 
-	if( !chosenPath.isEmpty() )
+	if (!chosenPath.isEmpty())
 	{
-		if( m_shrinkPath )
+		if (m_shrinkPath)
 		{
-			return VeyonCore::filesystem().shrinkPath( chosenPath );
+			return VeyonCore::filesystem().shrinkPath(chosenPath);
 		}
 		return chosenPath;
 	}
@@ -95,9 +95,8 @@ QString FileSystemBrowser::exec( const QString &path,
 
 
 
-void FileSystemBrowser::exec( QLineEdit *lineEdit, const QString &title,
-								const QString & filter )
+void FileSystemBrowser::exec(QLineEdit* lineEdit, const QString& title,
+							 const QString& filter)
 {
-	lineEdit->setText( exec( lineEdit->text(), title, filter ) );
+	lineEdit->setText(exec(lineEdit->text(), title, filter));
 }
-

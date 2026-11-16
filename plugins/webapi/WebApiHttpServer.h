@@ -37,7 +37,7 @@ class WebApiHttpServer : public QObject
 {
 	Q_OBJECT
 public:
-	explicit WebApiHttpServer( const WebApiConfiguration& configuration, QObject* parent = nullptr );
+	explicit WebApiHttpServer(const WebApiConfiguration& configuration, QObject* parent = nullptr);
 	~WebApiHttpServer() override;
 
 	bool start();
@@ -53,12 +53,12 @@ private:
 	bool setupTls();
 
 	template<Method M>
-	static QVariantMap dataFromRequest( const QHttpServerRequest& request );
+	static QVariantMap dataFromRequest(const QHttpServerRequest& request);
 
-	template<Method M, typename ... Args>
-	bool addRoute( const QString& path,
-				  WebApiController::Response(WebApiController::* controllerMethod)( const WebApiController::Request& request,
-																					  Args... args ) );
+	template<Method M, typename... Args>
+	bool addRoute(const QString& path,
+				  WebApiController::Response (WebApiController::*controllerMethod)(const WebApiController::Request& request,
+																				   Args... args));
 
 	QString getDebugInformation();
 
@@ -70,5 +70,4 @@ private:
 	QHttpServer* m_server{nullptr};
 	QTcpServer* m_tcpServer = nullptr;
 	bool m_debug = qEnvironmentVariableIsSet("VEYON_WEBAPI_DEBUG");
-
 };

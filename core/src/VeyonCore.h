@@ -24,18 +24,18 @@
 
 #pragma once
 
+#include <QDebug>
 #include <QObject>
 #include <QtEndian>
-#include <QDebug>
 
 #include <atomic>
 #include <functional>
 #include <type_traits>
 
 #if defined(veyon_core_EXPORTS)
-#  define VEYON_CORE_EXPORT Q_DECL_EXPORT
+#define VEYON_CORE_EXPORT Q_DECL_EXPORT
 #else
-#  define VEYON_CORE_EXPORT Q_DECL_IMPORT
+#define VEYON_CORE_EXPORT Q_DECL_IMPORT
 #endif
 
 class QCoreApplication;
@@ -102,7 +102,7 @@ public:
 	};
 	Q_ENUM(UiColorScheme)
 
-	VeyonCore( QCoreApplication* application, Component component, const QString& appComponentName );
+	VeyonCore(QCoreApplication* application, Component component, const QString& appComponentName);
 	~VeyonCore() override;
 
 	static VeyonCore* instance();
@@ -124,52 +124,52 @@ public:
 
 	static VeyonConfiguration& config()
 	{
-		return *( instance()->m_config );
+		return *(instance()->m_config);
 	}
 
 	static AuthenticationCredentials& authenticationCredentials()
 	{
-		return *( instance()->m_authenticationCredentials );
+		return *(instance()->m_authenticationCredentials);
 	}
 
 	static CryptoCore& cryptoCore()
 	{
-		return *( instance()->m_cryptoCore );
+		return *(instance()->m_cryptoCore);
 	}
 
 	static PluginManager& pluginManager()
 	{
-		return *( instance()->m_pluginManager );
+		return *(instance()->m_pluginManager);
 	}
 
 	static PlatformPluginInterface& platform()
 	{
-		return *( instance()->m_platformPlugin );
+		return *(instance()->m_platformPlugin);
 	}
 
 	static BuiltinFeatures& builtinFeatures()
 	{
-		return *( instance()->m_builtinFeatures );
+		return *(instance()->m_builtinFeatures);
 	}
 
 	static FeatureManager& featureManager()
 	{
-		return *( instance()->m_featureManager );
+		return *(instance()->m_featureManager);
 	}
 
 	static UserGroupsBackendManager& userGroupsBackendManager()
 	{
-		return *( instance()->m_userGroupsBackendManager );
+		return *(instance()->m_userGroupsBackendManager);
 	}
 
 	static NetworkObjectDirectoryManager& networkObjectDirectoryManager()
 	{
-		return *( instance()->m_networkObjectDirectoryManager );
+		return *(instance()->m_networkObjectDirectoryManager);
 	}
 
 	static Filesystem& filesystem()
 	{
-		return *( instance()->m_filesystem );
+		return *(instance()->m_filesystem);
 	}
 
 	static void setupApplicationParameters();
@@ -184,18 +184,17 @@ public:
 
 	static bool isDebugging();
 
-	static QByteArray shortenFuncinfo( const QByteArray& info );
-	static QByteArray cleanupFuncinfo( QByteArray info );
+	static QByteArray shortenFuncinfo(const QByteArray& info);
+	static QByteArray cleanupFuncinfo(QByteArray info);
 
-	static QString stripDomain( const QString& username );
-	static QString stringify( const QVariantMap& map );
+	static QString stripDomain(const QString& username);
+	static QString stringify(const QVariantMap& map);
 
-	static QString screenName( const QScreen& screen, int index );
+	static QString screenName(const QScreen& screen, int index);
 
-	static bool isAuthenticationKeyNameValid( const QString& authKeyName );
+	static bool isAuthenticationKeyNameValid(const QString& authKeyName);
 
-	enum class AuthenticationMethod
-	{
+	enum class AuthenticationMethod {
 		LogonAuthentication,
 		KeyFileAuthentication,
 	};
@@ -207,7 +206,7 @@ private:
 	void initPlatformPlugin();
 	void initSession();
 	void initConfiguration();
-	void initLogging( const QString& appComponentName );
+	void initLogging(const QString& appComponentName);
 	void initLocaleAndTranslation();
 	void initUi();
 	void initCryptoCore();
@@ -244,12 +243,15 @@ Q_SIGNALS:
 	void initialized();
 	void applicationLoaded();
 	void exited();
-
 };
 
 #define V_FUNC_INFO VeyonCore::shortenFuncinfo(Q_FUNC_INFO).constData()
 
-#define vDebug() if( VeyonCore::isDebugging()==false ); else qDebug() << V_FUNC_INFO
+#define vDebug() \
+	if (VeyonCore::isDebugging() == false) \
+		; \
+	else \
+		qDebug() << V_FUNC_INFO
 #define vInfo() qInfo() << V_FUNC_INFO
 #define vWarning() qWarning() << V_FUNC_INFO
 #define vCritical() qCritical() << V_FUNC_INFO

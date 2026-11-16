@@ -24,9 +24,9 @@
 
 #pragma once
 
+#include "ExternalVncServerConfiguration.h"
 #include "PluginInterface.h"
 #include "VncServerPluginInterface.h"
-#include "ExternalVncServerConfiguration.h"
 
 class ExternalVncServer : public QObject, VncServerPluginInterface, PluginInterface
 {
@@ -34,36 +34,36 @@ class ExternalVncServer : public QObject, VncServerPluginInterface, PluginInterf
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.ExternalVncServer")
 	Q_INTERFACES(PluginInterface VncServerPluginInterface)
 public:
-	explicit ExternalVncServer( QObject* parent = nullptr );
+	explicit ExternalVncServer(QObject* parent = nullptr);
 
 	Plugin::Uid uid() const override
 	{
-		return Plugin::Uid{ QStringLiteral("67dfc1c1-8f37-4539-a298-16e74e34fd8b") };
+		return Plugin::Uid{QStringLiteral("67dfc1c1-8f37-4539-a298-16e74e34fd8b")};
 	}
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 1 );
+		return QVersionNumber(1, 1);
 	}
 
 	QString name() const override
 	{
-		return QStringLiteral( "ExternalVncServer" );
+		return QStringLiteral("ExternalVncServer");
 	}
 
 	QString description() const override
 	{
-		return tr( "External VNC server" );
+		return tr("External VNC server");
 	}
 
 	QString vendor() const override
 	{
-		return QStringLiteral( "Veyon Community" );
+		return QStringLiteral("Veyon Community");
 	}
 
 	QString copyright() const override
 	{
-		return QStringLiteral( "Tobias Junghans" );
+		return QStringLiteral("Tobias Junghans");
 	}
 
 	Plugin::Flags flags() const override
@@ -76,13 +76,13 @@ public:
 		return {};
 	}
 
-	void upgrade( const QVersionNumber& oldVersion ) override;
+	void upgrade(const QVersionNumber& oldVersion) override;
 
 	QWidget* configurationWidget() override;
 
 	void prepareServer() override;
 
-	bool runServer( int serverPort, const Password& password ) override;
+	bool runServer(int serverPort, const Password& password) override;
 
 	int configuredServerPort() override;
 
@@ -94,5 +94,4 @@ private:
 	};
 
 	ExternalVncServerConfiguration m_configuration;
-
 };

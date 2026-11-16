@@ -41,8 +41,8 @@ WindowsSessionFunctions::WindowsSessionFunctions()
 {
 	if (VeyonCore::component() == VeyonCore::Component::Server)
 	{
-		QObject::connect (VeyonCore::instance(), &VeyonCore::initialized,
-						  VeyonCore::instance(), [this]() { initInterferingWindowHandling(); });
+		QObject::connect(VeyonCore::instance(), &VeyonCore::initialized,
+						 VeyonCore::instance(), [this]() { initInterferingWindowHandling(); });
 	}
 }
 
@@ -52,12 +52,12 @@ WindowsSessionFunctions::SessionId WindowsSessionFunctions::currentSessionId()
 {
 	const auto currentSession = WtsSessionManager::currentSession();
 
-	if( currentSession == WtsSessionManager::activeConsoleSession() )
+	if (currentSession == WtsSessionManager::activeConsoleSession())
 	{
 		return DefaultSessionId;
 	}
 
-	return PlatformSessionManager::resolveSessionId( QString::number(currentSession) );
+	return PlatformSessionManager::resolveSessionId(QString::number(currentSession));
 }
 
 
@@ -65,7 +65,8 @@ WindowsSessionFunctions::SessionId WindowsSessionFunctions::currentSessionId()
 WindowsSessionFunctions::SessionUptime WindowsSessionFunctions::currentSessionUptime() const
 {
 	return WtsSessionManager::querySessionInformation(WtsSessionManager::currentSession(),
-													  WtsSessionManager::SessionInfo::SessionUptime).toInt();
+													  WtsSessionManager::SessionInfo::SessionUptime)
+		.toInt();
 }
 
 
@@ -95,7 +96,7 @@ QString WindowsSessionFunctions::currentSessionHostName() const
 
 QString WindowsSessionFunctions::currentSessionType() const
 {
-	if(WtsSessionManager::currentSession() == WtsSessionManager::activeConsoleSession() )
+	if (WtsSessionManager::currentSession() == WtsSessionManager::activeConsoleSession())
 	{
 		return QStringLiteral("console");
 	}
@@ -107,8 +108,9 @@ QString WindowsSessionFunctions::currentSessionType() const
 
 bool WindowsSessionFunctions::currentSessionHasUser() const
 {
-	return WtsSessionManager::querySessionInformation( WtsSessionManager::currentSession(),
-													   WtsSessionManager::SessionInfo::UserName ).isEmpty() == false;
+	return WtsSessionManager::querySessionInformation(WtsSessionManager::currentSession(),
+													  WtsSessionManager::SessionInfo::UserName)
+			   .isEmpty() == false;
 }
 
 
@@ -158,8 +160,8 @@ QVariant WindowsSessionFunctions::querySettingsValueInCurrentSession(const QStri
 			return {};
 		}
 
-		const auto value = QSettings(keyParts.mid(0, keyParts.length()-1).join(QLatin1Char('\\')), QSettings::NativeFormat)
-						   .value(keyParts.constLast());
+		const auto value = QSettings(keyParts.mid(0, keyParts.length() - 1).join(QLatin1Char('\\')), QSettings::NativeFormat)
+							   .value(keyParts.constLast());
 
 		RevertToSelf();
 
@@ -178,7 +180,7 @@ void WindowsSessionFunctions::initInterferingWindowHandling()
 
 	if (m_interferingWindowsHandling != InterferingWindowHandling::None)
 	{
-		QObject::connect (&m_desktopWindowsInspectionTimer, &QTimer::timeout, &m_desktopWindowsInspectionTimer, [this]() {
+		QObject::connect(&m_desktopWindowsInspectionTimer, &QTimer::timeout, &m_desktopWindowsInspectionTimer, [this]() {
 			inspectDesktopWindows();
 		});
 		m_desktopWindowsInspectionTimer.start(DesktopWindowsInspectionInterval);
@@ -190,7 +192,7 @@ void WindowsSessionFunctions::initInterferingWindowHandling()
 void WindowsSessionFunctions::inspectDesktopWindows()
 {
 	EnumWindows([](HWND window, LPARAM instance) -> WINBOOL CALLBACK {
-		const auto _this = reinterpret_cast<WindowsSessionFunctions *>(instance);
+		const auto _this = reinterpret_cast<WindowsSessionFunctions*>(instance);
 		return _this->inspectDesktopWindow(window);
 	}, LPARAM(this));
 }
@@ -200,7 +202,8 @@ void WindowsSessionFunctions::inspectDesktopWindows()
 WINBOOL WindowsSessionFunctions::inspectDesktopWindow(HWND window)
 {
 	const auto windowStyle = GetWindowLong(window, GWL_EXSTYLE);
-	if (windowStyle & (WS_EX_TOPMOST | WS_EX_TRANSPARENT | WS_EX_LAYERED)) {
+	if (windowStyle & (WS_EX_TOPMOST | WS_EX_TRANSPARENT | WS_EX_LAYERED))
+	{
 		COLORREF crKey;
 		BYTE alpha;
 		DWORD flags;

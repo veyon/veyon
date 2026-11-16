@@ -79,7 +79,7 @@ QSize ComputerItemDelegate::sizeHint(const QStyleOptionViewItem& option, const Q
 
 void ComputerItemDelegate::initFeaturePixmaps()
 {
-	for (const auto& feature : VeyonCore::featureManager().features() )
+	for (const auto& feature : VeyonCore::featureManager().features())
 	{
 		if (feature.testFlag(Feature::Flag::Master) && !feature.iconUrl().isEmpty())
 		{

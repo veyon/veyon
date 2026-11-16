@@ -29,13 +29,13 @@
 #include "ui_UserLoginDialog.h"
 
 
-UserLoginDialog::UserLoginDialog( QWidget *parent ) :
-	QDialog( parent ),
-	ui( new Ui::UserLoginDialog )
+UserLoginDialog::UserLoginDialog(QWidget* parent) :
+	QDialog(parent),
+	ui(new Ui::UserLoginDialog)
 {
-	ui->setupUi( this );
+	ui->setupUi(this);
 
-	if( ui->username->text().isEmpty() == false )
+	if (ui->username->text().isEmpty() == false)
 	{
 		ui->password->setFocus();
 	}

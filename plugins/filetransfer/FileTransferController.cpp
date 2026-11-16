@@ -29,28 +29,28 @@
 #include "FileTransferPlugin.h"
 
 
-FileTransferController::FileTransferController( FileTransferPlugin* plugin ) :
-	QObject( plugin ),
-	m_plugin( plugin ),
-	m_currentFileIndex( -1 ),
+FileTransferController::FileTransferController(FileTransferPlugin* plugin) :
+	QObject(plugin),
+	m_plugin(plugin),
+	m_currentFileIndex(-1),
 	m_currentTransferId(),
 	m_files(),
-	m_flags( Transfer ),
+	m_flags(Transfer),
 	m_interfaces(),
-	m_fileReadThread( nullptr ),
-	m_fileState( FileStateFinished ),
-	m_processTimer( this ),
+	m_fileReadThread(nullptr),
+	m_fileState(FileStateFinished),
+	m_processTimer(this),
 	m_destinationDirectory()
 {
-	m_processTimer.setInterval( ProcessInterval );
-	connect( &m_processTimer, &QTimer::timeout, this, &FileTransferController::process );
+	m_processTimer.setInterval(ProcessInterval);
+	connect(&m_processTimer, &QTimer::timeout, this, &FileTransferController::process);
 }
 
 
 
 FileTransferController::~FileTransferController()
 {
-	if( m_fileReadThread )
+	if (m_fileReadThread)
 	{
 		delete m_fileReadThread;
 	}
@@ -58,7 +58,7 @@ FileTransferController::~FileTransferController()
 
 
 
-void FileTransferController::setFiles( const QStringList& files )
+void FileTransferController::setFiles(const QStringList& files)
 {
 	m_files = files;
 	m_currentFileIndex = 0;
@@ -67,21 +67,21 @@ void FileTransferController::setFiles( const QStringList& files )
 
 
 
-void FileTransferController::setInterfaces( const ComputerControlInterfaceList& interfaces )
+void FileTransferController::setInterfaces(const ComputerControlInterfaceList& interfaces)
 {
 	m_interfaces = interfaces;
 }
 
 
 
-void FileTransferController::setFlags( Flags flags )
+void FileTransferController::setFlags(Flags flags)
 {
 	m_flags = flags;
 }
 
 
 
-void FileTransferController::setDestinationDirectory( const QString& destDir )
+void FileTransferController::setDestinationDirectory(const QString& destDir)
 {
 	m_destinationDirectory = destDir;
 }
@@ -90,7 +90,7 @@ void FileTransferController::setDestinationDirectory( const QString& destDir )
 
 void FileTransferController::start()
 {
-	if( isRunning() == false && m_files.isEmpty() == false )
+	if (isRunning() == false && m_files.isEmpty() == false)
 	{
 		m_currentFileIndex = 0;
 		m_fileState = FileStateOpen;
@@ -104,17 +104,17 @@ void FileTransferController::start()
 
 void FileTransferController::stop()
 {
-	if( isRunning() )
+	if (isRunning())
 	{
 		m_processTimer.stop();
 
-		if( m_fileReadThread )
+		if (m_fileReadThread)
 		{
 			delete m_fileReadThread;
 			m_fileReadThread = nullptr;
 		}
 
-		m_plugin->sendCancelMessage( m_currentTransferId, m_interfaces );
+		m_plugin->sendCancelMessage(m_currentTransferId, m_interfaces);
 	}
 
 	Q_EMIT finished();
@@ -145,10 +145,10 @@ bool FileTransferController::isRunning() const
 
 void FileTransferController::process()
 {
-	switch( m_fileState )
+	switch (m_fileState)
 	{
 	case FileStateOpen:
-		if( openFile() )
+		if (openFile())
 		{
 			m_fileState = FileStateTransferring;
 		}
@@ -159,7 +159,7 @@ void FileTransferController::process()
 		break;
 
 	case FileStateTransferring:
-		if( transferFile() )
+		if (transferFile())
 		{
 			m_fileState = FileStateFinished;
 		}
@@ -168,11 +168,11 @@ void FileTransferController::process()
 	case FileStateFinished:
 		finishFile();
 
-		if( ++m_currentFileIndex >= m_files.count() )
+		if (++m_currentFileIndex >= m_files.count())
 		{
-			if( m_flags.testFlag( OpenTransferFolder ) )
+			if (m_flags.testFlag(OpenTransferFolder))
 			{
-				m_plugin->sendOpenTransferFolderMessage( m_interfaces );
+				m_plugin->sendOpenTransferFolderMessage(m_interfaces);
 			}
 
 			m_plugin->sendStopWorkerMessage(m_interfaces);
@@ -194,32 +194,32 @@ void FileTransferController::process()
 
 bool FileTransferController::openFile()
 {
-	if( m_currentFileIndex >= m_files.count() )
+	if (m_currentFileIndex >= m_files.count())
 	{
 		return false;
 	}
 
 	m_fileReadThread = new FileReadThread(m_files.value(m_currentFileIndex), this);
 
-	if( m_fileReadThread->start() == false )
+	if (m_fileReadThread->start() == false)
 	{
 		delete m_fileReadThread;
 		m_fileReadThread = nullptr;
 		Q_EMIT errorOccurred(tr("Could not open file %1 for reading. "
 								"Please check your permissions. "
 								"The file will be skipped, remaining files will still be transferred.")
-							 .arg(m_files.value(m_currentFileIndex)));
+								 .arg(m_files.value(m_currentFileIndex)));
 		return false;
 	}
 
 	// start reading initial chunk in background
-	m_fileReadThread->readNextChunk( ChunkSize );
+	m_fileReadThread->readNextChunk(ChunkSize);
 
 	m_currentTransferId = QUuid::createUuid();
 
-	m_plugin->sendStartMessage( m_currentTransferId, QFileInfo(m_files.value(m_currentFileIndex)).fileName(),
-								m_flags.testFlag( OverwriteExistingFiles ), m_interfaces,
-								m_destinationDirectory );
+	m_plugin->sendStartMessage(m_currentTransferId, QFileInfo(m_files.value(m_currentFileIndex)).fileName(),
+							   m_flags.testFlag(OverwriteExistingFiles), m_interfaces,
+							   m_destinationDirectory);
 
 	return true;
 }
@@ -228,21 +228,21 @@ bool FileTransferController::openFile()
 
 bool FileTransferController::transferFile()
 {
-	if( m_fileReadThread == nullptr )
+	if (m_fileReadThread == nullptr)
 	{
 		// something went wrong so finish this file
 		return true;
 	}
 
 	// wait for all clients to catch up and current data chunk to be read completely
-	if( allQueuesEmpty() == false || m_fileReadThread->isChunkReady() == false )
+	if (allQueuesEmpty() == false || m_fileReadThread->isChunkReady() == false)
 	{
 		return false;
 	}
 
-	m_plugin->sendDataMessage( m_currentTransferId, m_fileReadThread->currentChunk(), m_interfaces );
+	m_plugin->sendDataMessage(m_currentTransferId, m_fileReadThread->currentChunk(), m_interfaces);
 
-	m_fileReadThread->readNextChunk( ChunkSize );
+	m_fileReadThread->readNextChunk(ChunkSize);
 
 	return m_fileReadThread->atEnd();
 }
@@ -251,13 +251,13 @@ bool FileTransferController::transferFile()
 
 void FileTransferController::finishFile()
 {
-	if( m_fileReadThread )
+	if (m_fileReadThread)
 	{
 		delete m_fileReadThread;
 		m_fileReadThread = nullptr;
 
-		m_plugin->sendFinishMessage( m_currentTransferId, QFileInfo(m_files.value(m_currentFileIndex)).fileName(),
-									 m_flags.testFlag( OpenFilesInApplication ), m_interfaces );
+		m_plugin->sendFinishMessage(m_currentTransferId, QFileInfo(m_files.value(m_currentFileIndex)).fileName(),
+									m_flags.testFlag(OpenFilesInApplication), m_interfaces);
 
 		m_currentTransferId = QUuid();
 	}
@@ -267,14 +267,14 @@ void FileTransferController::finishFile()
 
 void FileTransferController::updateProgress()
 {
-	if( m_files.isEmpty() == false && m_fileReadThread )
+	if (m_files.isEmpty() == false && m_fileReadThread)
 	{
-		Q_EMIT progressChanged( m_currentFileIndex * 100 / m_files.count() +
-							  m_fileReadThread->progress() / m_files.count() );
+		Q_EMIT progressChanged(m_currentFileIndex * 100 / m_files.count() +
+							   m_fileReadThread->progress() / m_files.count());
 	}
-	else if( m_files.count() > 0 && m_currentFileIndex >= m_files.count() )
+	else if (m_files.count() > 0 && m_currentFileIndex >= m_files.count())
 	{
-		Q_EMIT progressChanged( 100 );
+		Q_EMIT progressChanged(100);
 	}
 }
 
@@ -282,9 +282,9 @@ void FileTransferController::updateProgress()
 
 bool FileTransferController::allQueuesEmpty()
 {
-	for( const auto& controlInterface : std::as_const(m_interfaces) )
+	for (const auto& controlInterface : std::as_const(m_interfaces))
 	{
-		if( controlInterface->isMessageQueueEmpty() == false )
+		if (controlInterface->isMessageQueueEmpty() == false)
 		{
 			return false;
 		}

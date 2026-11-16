@@ -35,8 +35,7 @@ class NetworkObjectDirectoryPluginInterface
 {
 public:
 	virtual QString directoryName() const = 0;
-	virtual NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent ) = 0;
-
+	virtual NetworkObjectDirectory* createNetworkObjectDirectory(QObject* parent) = 0;
 };
 
 using NetworkObjectDirectoryPluginInterfaceList = QList<NetworkObjectDirectoryPluginInterface>;

@@ -30,37 +30,37 @@
 #include "FeatureManager.h"
 #include "FeatureWorkerManager.h"
 #include "Filesystem.h"
-#include "VeyonConfiguration.h"
-#include "VeyonCore.h"
 #include "PlatformCoreFunctions.h"
 #include "PlatformUserFunctions.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCore.h"
 
 // clazy:excludeall=detaching-member
 
-FeatureWorkerManager::FeatureWorkerManager( VeyonServerInterface& server, QObject* parent ) :
-	QObject( parent ),
-	m_server( server ),
-	m_tcpServer( this )
+FeatureWorkerManager::FeatureWorkerManager(VeyonServerInterface& server, QObject* parent) :
+	QObject(parent),
+	m_server(server),
+	m_tcpServer(this)
 {
-	connect( &m_tcpServer, &QTcpServer::newConnection,
-			 this, &FeatureWorkerManager::acceptConnection );
+	connect(&m_tcpServer, &QTcpServer::newConnection,
+			this, &FeatureWorkerManager::acceptConnection);
 
 	const auto port = VeyonCore::config().featureWorkerManagerPort() + VeyonCore::sessionId();
 
-	if (!m_tcpServer.listen( QHostAddress::LocalHost, static_cast<quint16>(port)))
+	if (!m_tcpServer.listen(QHostAddress::LocalHost, static_cast<quint16>(port)))
 	{
 		vCritical() << "can't listen at port" << port;
 		qFatal("listen error");
 	}
 
-	auto pendingMessagesTimer = new QTimer( this );
-	connect( pendingMessagesTimer, &QTimer::timeout, this, &FeatureWorkerManager::sendPendingMessages );
+	auto pendingMessagesTimer = new QTimer(this);
+	connect(pendingMessagesTimer, &QTimer::timeout, this, &FeatureWorkerManager::sendPendingMessages);
 
-	pendingMessagesTimer->start( 100 );
+	pendingMessagesTimer->start(100);
 
 	m_sessionWorkerRetryTimer.setInterval(UnmanagedSessionProcessRetryInterval);
-	connect (&m_sessionWorkerRetryTimer, &QTimer::timeout,
-			 this, &FeatureWorkerManager::retryPendingSessionWorkerMessages);
+	connect(&m_sessionWorkerRetryTimer, &QTimer::timeout,
+			this, &FeatureWorkerManager::retryPendingSessionWorkerMessages);
 }
 
 
@@ -70,53 +70,53 @@ FeatureWorkerManager::~FeatureWorkerManager()
 	m_tcpServer.close();
 
 	// properly shutdown all worker processes
-	while( m_workers.isEmpty() == false )
+	while (m_workers.isEmpty() == false)
 	{
-		stopWorker( m_workers.firstKey() );
+		stopWorker(m_workers.firstKey());
 	}
 }
 
 
 
-bool FeatureWorkerManager::startManagedSystemWorker( Feature::Uid featureUid )
+bool FeatureWorkerManager::startManagedSystemWorker(Feature::Uid featureUid)
 {
-	if( thread() != QThread::currentThread() )
+	if (thread() != QThread::currentThread())
 	{
 		vCritical() << "thread mismatch for feature" << featureUid;
 		return false;
 	}
 
-	stopWorker( featureUid );
+	stopWorker(featureUid);
 
 	Worker worker;
 
 	worker.process = new QProcess;
-	worker.process->setProcessChannelMode( QProcess::ForwardedChannels );
+	worker.process->setProcessChannelMode(QProcess::ForwardedChannels);
 
 	// a worker that terminates before connecting should not remain registered;
 	// otherwise, `isWorkerRunning()` remains true and the feature appears active
 	// until the server is restarted
 	const auto token = worker.token;
 
-	connect (worker.process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-			 this, [=, this]() { removeStaleWorker(featureUid, token); });
+	connect(worker.process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+			this, [=, this]() { removeStaleWorker(featureUid, token); });
 
-	connect (worker.process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-			 worker.process, &QProcess::deleteLater);
+	connect(worker.process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
+			worker.process, &QProcess::deleteLater);
 
 	vDebug() << "Starting managed system worker for feature" << VeyonCore::featureManager().feature(featureUid).name();
-	if( qEnvironmentVariableIsSet("VEYON_VALGRIND_WORKERS") )
+	if (qEnvironmentVariableIsSet("VEYON_VALGRIND_WORKERS"))
 	{
-		worker.process->start( QStringLiteral("valgrind"),
-							   { QStringLiteral("--error-limit=no"),
-								 QStringLiteral("--leak-check=full"),
-								 QStringLiteral("--show-leak-kinds=all"),
-								 QStringLiteral("--log-file=valgrind-%1.log").arg(featureUid.toString(QUuid::WithoutBraces)),
-								 VeyonCore::filesystem().workerFilePath(), featureUid.toString() } );
+		worker.process->start(QStringLiteral("valgrind"),
+							  {QStringLiteral("--error-limit=no"),
+							   QStringLiteral("--leak-check=full"),
+							   QStringLiteral("--show-leak-kinds=all"),
+							   QStringLiteral("--log-file=valgrind-%1.log").arg(featureUid.toString(QUuid::WithoutBraces)),
+							   VeyonCore::filesystem().workerFilePath(), featureUid.toString()});
 	}
 	else
 	{
-		worker.process->start( VeyonCore::filesystem().workerFilePath(), { featureUid.toString() } );
+		worker.process->start(VeyonCore::filesystem().workerFilePath(), {featureUid.toString()});
 	}
 
 	worker.process->write(worker.token + '\n');
@@ -132,33 +132,32 @@ bool FeatureWorkerManager::startManagedSystemWorker( Feature::Uid featureUid )
 
 
 
-bool FeatureWorkerManager::startUnmanagedSessionWorker( Feature::Uid featureUid )
+bool FeatureWorkerManager::startUnmanagedSessionWorker(Feature::Uid featureUid)
 {
-	if( thread() != QThread::currentThread() )
+	if (thread() != QThread::currentThread())
 	{
 		vCritical() << "thread mismatch for feature" << featureUid;
 		return false;
 	}
 
-	stopWorker( featureUid );
+	stopWorker(featureUid);
 
 	Worker worker{};
 
 	vDebug() << "Starting worker (unmanaged session process) for feature" << featureUid;
 
 	const auto currentUser = VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName);
-	if( currentUser.isEmpty() )
+	if (currentUser.isEmpty())
 	{
 		vDebug() << "could not determine current user - probably a console session with logon screen";
 		return false;
 	}
 
-	const auto ret = VeyonCore::platform().coreFunctions().
-					 runProgramAsUser(VeyonCore::filesystem().workerFilePath(), { featureUid.toString() },
-									  currentUser,
-									  VeyonCore::platform().coreFunctions().activeDesktopName(),
-									  worker.token + '\n');
-	if( ret == false )
+	const auto ret = VeyonCore::platform().coreFunctions().runProgramAsUser(VeyonCore::filesystem().workerFilePath(), {featureUid.toString()},
+																			currentUser,
+																			VeyonCore::platform().coreFunctions().activeDesktopName(),
+																			worker.token + '\n');
+	if (ret == false)
 	{
 		vWarning() << "failed to start worker for feature" << featureUid;
 		return false;
@@ -175,41 +174,41 @@ bool FeatureWorkerManager::startUnmanagedSessionWorker( Feature::Uid featureUid 
 
 
 
-bool FeatureWorkerManager::stopWorker( Feature::Uid featureUid )
+bool FeatureWorkerManager::stopWorker(Feature::Uid featureUid)
 {
-	if( thread() != QThread::currentThread() )
+	if (thread() != QThread::currentThread())
 	{
 		vCritical() << "thread mismatch for feature" << featureUid;
 		return false;
 	}
 
-	QMutexLocker locker( &m_workersMutex );
+	QMutexLocker locker(&m_workersMutex);
 
-	if( m_workers.contains( featureUid ) )
+	if (m_workers.contains(featureUid))
 	{
 		vDebug() << "Stopping worker for feature" << featureUid;
 
 		auto& worker = m_workers[featureUid];
 
-		if( worker.socket )
+		if (worker.socket)
 		{
-			worker.socket->disconnect( this );
-			disconnect( worker.socket );
+			worker.socket->disconnect(this);
+			disconnect(worker.socket);
 
 			worker.socket->close();
 			worker.socket->deleteLater();
 		}
 
-		if( worker.process )
+		if (worker.process)
 		{
 			auto killTimer = new QTimer;
-			connect( killTimer, &QTimer::timeout, worker.process, &QProcess::terminate );
-			connect( killTimer, &QTimer::timeout, worker.process, &QProcess::kill );
-			connect( killTimer, &QTimer::timeout, killTimer, &QTimer::deleteLater );
-			killTimer->start( 5000 );
+			connect(killTimer, &QTimer::timeout, worker.process, &QProcess::terminate);
+			connect(killTimer, &QTimer::timeout, worker.process, &QProcess::kill);
+			connect(killTimer, &QTimer::timeout, killTimer, &QTimer::deleteLater);
+			killTimer->start(5000);
 		}
 
-		m_workers.remove( featureUid );
+		m_workers.remove(featureUid);
 	}
 
 	return false;
@@ -217,33 +216,32 @@ bool FeatureWorkerManager::stopWorker( Feature::Uid featureUid )
 
 
 
-void FeatureWorkerManager::sendMessageToManagedSystemWorker( const FeatureMessage& message )
+void FeatureWorkerManager::sendMessageToManagedSystemWorker(const FeatureMessage& message)
 {
-	if( isWorkerRunning( message.featureUid() ) == false &&
-		startManagedSystemWorker( message.featureUid() ) == false )
+	if (isWorkerRunning(message.featureUid()) == false &&
+		startManagedSystemWorker(message.featureUid()) == false)
 	{
 		vCritical() << "could not start managed system worker";
 		return;
 	}
 
-	sendMessage( message );
-
+	sendMessage(message);
 }
 
 
 
-void FeatureWorkerManager::sendMessageToUnmanagedSessionWorker( const FeatureMessage& message )
+void FeatureWorkerManager::sendMessageToUnmanagedSessionWorker(const FeatureMessage& message)
 {
 	// maintain the order: as long as there are older messages waiting, add them to the list
 	if (m_pendingSessionWorkerMessages.contains(message.featureUid()) ||
 		(isWorkerRunning(message.featureUid()) == false &&
-		  startUnmanagedSessionWorker(message.featureUid()) == false))
+		 startUnmanagedSessionWorker(message.featureUid()) == false))
 	{
 		enqueueSessionWorkerMessage(message);
 		return;
 	}
 
-	sendMessage( message );
+	sendMessage(message);
 }
 
 
@@ -338,10 +336,10 @@ void FeatureWorkerManager::removeStaleWorker(Feature::Uid featureUid, const QByt
 
 
 
-bool FeatureWorkerManager::isWorkerRunning( Feature::Uid featureUid )
+bool FeatureWorkerManager::isWorkerRunning(Feature::Uid featureUid)
 {
-	QMutexLocker locker( &m_workersMutex );
-	return m_workers.contains( featureUid );
+	QMutexLocker locker(&m_workersMutex);
+	return m_workers.contains(featureUid);
 }
 
 
@@ -353,10 +351,10 @@ void FeatureWorkerManager::acceptConnection()
 
 	// connect to readyRead() signal of new connection
 	connect(socket, &QTcpSocket::readyRead,
-			this, [=, this] () { processConnection(socket); });
+			this, [=, this]() { processConnection(socket); });
 
 	connect(socket, &QTcpSocket::disconnected,
-			this, [=, this] () { closeConnection(socket); });
+			this, [=, this]() { closeConnection(socket); });
 
 	// a connection which is not associated with an authenticated worker in time is closed: the
 	// worker process then quits on its own (it can't be killed when not started by us, e.g.
@@ -378,7 +376,7 @@ void FeatureWorkerManager::acceptConnection()
 
 
 
-void FeatureWorkerManager::processConnection( QTcpSocket* socket )
+void FeatureWorkerManager::processConnection(QTcpSocket* socket)
 {
 	FeatureMessage message;
 	while (message.isReadyForReceive(socket))
@@ -446,16 +444,16 @@ void FeatureWorkerManager::processConnection( QTcpSocket* socket )
 
 
 
-void FeatureWorkerManager::closeConnection( QTcpSocket* socket )
+void FeatureWorkerManager::closeConnection(QTcpSocket* socket)
 {
 	m_workersMutex.lock();
 
-	for( auto it = m_workers.begin(); it != m_workers.end(); )
+	for (auto it = m_workers.begin(); it != m_workers.end();)
 	{
-		if( it.value().socket == socket )
+		if (it.value().socket == socket)
 		{
 			vDebug() << "removing worker after socket has been closed";
-			it = m_workers.erase( it );
+			it = m_workers.erase(it);
 		}
 		else
 		{
@@ -470,13 +468,13 @@ void FeatureWorkerManager::closeConnection( QTcpSocket* socket )
 
 
 
-void FeatureWorkerManager::sendMessage( const FeatureMessage& message )
+void FeatureWorkerManager::sendMessage(const FeatureMessage& message)
 {
 	m_workersMutex.lock();
 
-	if( m_workers.contains( message.featureUid() ) )
+	if (m_workers.contains(message.featureUid()))
 	{
-		m_workers[message.featureUid()].pendingMessages.append( message );
+		m_workers[message.featureUid()].pendingMessages.append(message);
 	}
 	else
 	{
@@ -492,11 +490,11 @@ void FeatureWorkerManager::sendPendingMessages()
 {
 	m_workersMutex.lock();
 
-	for( auto it = m_workers.begin(); it != m_workers.end(); ++it )
+	for (auto it = m_workers.begin(); it != m_workers.end(); ++it)
 	{
 		auto& worker = it.value();
 
-		while( worker.socket && worker.pendingMessages.isEmpty() == false )
+		while (worker.socket && worker.pendingMessages.isEmpty() == false)
 		{
 			worker.pendingMessages.first().sendPlain(worker.socket);
 			worker.pendingMessages.removeFirst();

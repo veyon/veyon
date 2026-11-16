@@ -34,25 +34,24 @@ public:
 	using Token = CryptoCore::SecureArray;
 	using Password = CryptoCore::SecureArray;
 
-	enum class Type
-	{
+	enum class Type {
 		None = 0x00,
 		PrivateKey = 0x01,
 		UserLogon = 0x02,
 		Token = 0x04,
 		AllTypes = PrivateKey | UserLogon | Token
-	} ;
+	};
 
 	Q_DECLARE_FLAGS(TypeFlags, Type)
 
 	AuthenticationCredentials();
-	AuthenticationCredentials( const AuthenticationCredentials &other );
+	AuthenticationCredentials(const AuthenticationCredentials& other);
 
-	bool hasCredentials( Type credentialType ) const;
+	bool hasCredentials(Type credentialType) const;
 
 	// private key auth
-	bool loadPrivateKey( const QString& privateKeyFile );
-	bool setPrivateKey( const CryptoCore::PrivateKey& privateKey );
+	bool loadPrivateKey(const QString& privateKeyFile);
+	bool setPrivateKey(const CryptoCore::PrivateKey& privateKey);
 	const CryptoCore::PrivateKey& privateKey() const
 	{
 		return m_privateKey;
@@ -63,18 +62,18 @@ public:
 		return m_authenticationKeyName;
 	}
 
-	void setAuthenticationKeyName( const QString& authenticationKeyName )
+	void setAuthenticationKeyName(const QString& authenticationKeyName)
 	{
 		m_authenticationKeyName = authenticationKeyName;
 	}
 
 	// user logon auth
-	void setLogonUsername( const QString& username )
+	void setLogonUsername(const QString& username)
 	{
 		m_logonUsername = username;
 	}
 
-	void setLogonPassword( const Password& password )
+	void setLogonPassword(const Password& password)
 	{
 		m_logonPassword = password;
 	}
@@ -89,7 +88,7 @@ public:
 		return m_logonPassword;
 	}
 
-	void setToken( const Token& token )
+	void setToken(const Token& token)
 	{
 		m_token = token;
 	}
@@ -99,7 +98,7 @@ public:
 		return m_token;
 	}
 
-	void setInternalVncServerPassword( const Password& password )
+	void setInternalVncServerPassword(const Password& password)
 	{
 		m_internalVncServerPassword = password;
 	}
@@ -119,5 +118,4 @@ private:
 	Token m_token;
 
 	Password m_internalVncServerPassword;
-
-} ;
+};

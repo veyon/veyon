@@ -36,7 +36,7 @@ class WebApiConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	explicit WebApiConfigurationPage( WebApiConfiguration& configuration, QWidget* parent = nullptr );
+	explicit WebApiConfigurationPage(WebApiConfiguration& configuration, QWidget* parent = nullptr);
 	~WebApiConfigurationPage() override;
 
 	void resetWidgets() override;
@@ -44,8 +44,7 @@ public:
 	void applyConfiguration() override;
 
 private:
-	Ui::WebApiConfigurationPage *ui;
+	Ui::WebApiConfigurationPage* ui;
 
 	WebApiConfiguration& m_configuration;
-
 };

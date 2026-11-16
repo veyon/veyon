@@ -45,8 +45,8 @@ public:
 	FileCollectTreeModel(FileCollectController* controller, QObject* parent);
 	~FileCollectTreeModel() override = default;
 
-	QModelIndex index(int row, int column = 0, const QModelIndex &parent = QModelIndex()) const override;
-	QModelIndex parent(const QModelIndex &index) const override;
+	QModelIndex index(int row, int column = 0, const QModelIndex& parent = QModelIndex()) const override;
+	QModelIndex parent(const QModelIndex& index) const override;
 
 	int rowCount(const QModelIndex& parent = QModelIndex()) const override;
 	int columnCount(const QModelIndex& parent = QModelIndex()) const override;
@@ -59,7 +59,7 @@ public:
 
 private:
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-	QModelIndex createIndex(int row, int column, const void *data) const
+	QModelIndex createIndex(int row, int column, const void* data) const
 	{
 		return QAbstractItemModel::createIndex(row, column, quintptr(data));
 	}
@@ -69,7 +69,7 @@ private:
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 		return index.constInternalPointer();
 #else
-		return reinterpret_cast<const void *>(index.internalId());
+		return reinterpret_cast<const void*>(index.internalId());
 #endif
 	}
 
@@ -92,5 +92,4 @@ private:
 	QIcon m_transferringPixmap;
 	QIcon m_waitingPixmap;
 	QIcon m_finishedPixmap;
-
 };

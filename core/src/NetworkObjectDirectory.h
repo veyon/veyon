@@ -41,17 +41,17 @@ public:
 		MaximumUpdateInterval = 3600
 	};
 
-	explicit NetworkObjectDirectory( QObject* parent );
+	explicit NetworkObjectDirectory(QObject* parent);
 
-	void setUpdateInterval( int interval );
+	void setUpdateInterval(int interval);
 
-	const NetworkObjectList& objects( const NetworkObject& parent ) const;
+	const NetworkObjectList& objects(const NetworkObject& parent) const;
 
-	const NetworkObject& object( NetworkObject::ModelId parent, NetworkObject::ModelId object ) const;
-	int index( NetworkObject::ModelId parent, NetworkObject::ModelId child ) const;
-	int childCount( NetworkObject::ModelId parent ) const;
-	NetworkObject::ModelId childId( NetworkObject::ModelId parent, int index ) const;
-	NetworkObject::ModelId parentId( NetworkObject::ModelId child ) const;
+	const NetworkObject& object(NetworkObject::ModelId parent, NetworkObject::ModelId object) const;
+	int index(NetworkObject::ModelId parent, NetworkObject::ModelId child) const;
+	int childCount(NetworkObject::ModelId parent) const;
+	NetworkObject::ModelId childId(NetworkObject::ModelId parent, int index) const;
+	NetworkObject::ModelId parentId(NetworkObject::ModelId child) const;
 
 	NetworkObject::ModelId rootId() const;
 
@@ -61,21 +61,21 @@ public:
 	}
 
 	virtual QVariant queryObjectAttribute(NetworkObject::Uid objectUid, NetworkObject::Attribute attribute);
-	virtual NetworkObjectList queryObjects( NetworkObject::Type type,
-											NetworkObject::Attribute attribute, const QVariant& value );
-	virtual NetworkObjectList queryParents( const NetworkObject& child );
+	virtual NetworkObjectList queryObjects(NetworkObject::Type type,
+										   NetworkObject::Attribute attribute, const QVariant& value);
+	virtual NetworkObjectList queryParents(const NetworkObject& child);
 
 	virtual void update() = 0;
-	virtual void fetchObjects( const NetworkObject& object );
+	virtual void fetchObjects(const NetworkObject& object);
 
 protected:
-	using NetworkObjectFilter = std::function<bool (const NetworkObject &)>;
+	using NetworkObjectFilter = std::function<bool(const NetworkObject&)>;
 
 	bool hasObjects() const;
-	void addOrUpdateObject( const NetworkObject& networkObject, const NetworkObject& parent );
-	void removeObjects( const NetworkObject& parent, const NetworkObjectFilter& removeObjectFilter );
-	void replaceObjects( const NetworkObjectList& objects, const NetworkObject& parent );
-	void setObjectPopulated( const NetworkObject& networkObject );
+	void addOrUpdateObject(const NetworkObject& networkObject, const NetworkObject& parent);
+	void removeObjects(const NetworkObject& parent, const NetworkObjectFilter& removeObjectFilter);
+	void replaceObjects(const NetworkObjectList& objects, const NetworkObject& parent);
+	void setObjectPopulated(const NetworkObject& networkObject);
 	void propagateChildObjectChange(NetworkObject::ModelId objectId, int depth = 0);
 	void propagateChildObjectChanges();
 
@@ -96,5 +96,4 @@ Q_SIGNALS:
 	void objectsAboutToBeRemoved(NetworkObject::ModelId parentId, int index, int count);
 	void objectsRemoved();
 	void objectChanged(NetworkObject::ModelId parentId, int index);
-
 };

@@ -35,21 +35,22 @@ class LinuxSessionFunctions : public PlatformSessionFunctions
 {
 	Q_GADGET
 public:
-	using LoginDBusSession = struct LoginDBusSession {
+	using LoginDBusSession = struct LoginDBusSession
+	{
 		QString id;
 		quint32 uid{0};
 		QString name;
 		QString seatId;
 		QDBusObjectPath path;
-	} ;
+	};
 
-	using LoginDBusSessionSeat = struct {
+	using LoginDBusSessionSeat = struct
+	{
 		QString id;
 		QString path;
-	} ;
+	};
 
-	enum class State
-	{
+	enum class State {
 		Unknown,
 		Offline,
 		Lingering,
@@ -60,8 +61,7 @@ public:
 	};
 	Q_ENUM(State)
 
-	enum class Class
-	{
+	enum class Class {
 		Unknown,
 		User,
 		Greeter,
@@ -69,8 +69,7 @@ public:
 	};
 	Q_ENUM(Class)
 
-	enum class Type
-	{
+	enum class Type {
 		Unspecified,
 		TTY,
 		X11,
@@ -79,8 +78,7 @@ public:
 	};
 	Q_ENUM(Type)
 
-	enum class DesktopEnvironment
-	{
+	enum class DesktopEnvironment {
 		Generic,
 		KDE,
 		GNOME,
@@ -108,17 +106,17 @@ public:
 
 	static QVariant getSessionProperty(const QString& session, const QString& property, bool logErrors = true);
 
-	static int getSessionLeaderPid( const QString& session );
-	static SessionUptime getSessionUptimeSeconds( const QString& session );
-	static Class getSessionClass( const QString& session );
-	static Type getSessionType( const QString& session );
+	static int getSessionLeaderPid(const QString& session);
+	static SessionUptime getSessionUptimeSeconds(const QString& session);
+	static Class getSessionClass(const QString& session);
+	static Type getSessionType(const QString& session);
 	static DesktopEnvironment getSessionDesktopEnvironment(const QString& session);
 	static QString getSessionId(const QString& session, bool logErrors = true);
-	static QString getSessionUser( const QString& session );
-	static State getSessionState( const QString& session );
-	static LoginDBusSessionSeat getSessionSeat( const QString& session );
+	static QString getSessionUser(const QString& session);
+	static State getSessionState(const QString& session);
+	static LoginDBusSessionSeat getSessionSeat(const QString& session);
 
-	static QProcessEnvironment getSessionEnvironment( int sessionLeaderPid );
+	static QProcessEnvironment getSessionEnvironment(int sessionLeaderPid);
 
 	static QString currentSessionPath(bool ignoreErrors = false);
 
@@ -147,7 +145,6 @@ public:
 		return QStringLiteral("VEYON_SESSION_PATH");
 	}
 
-	static bool isOpen( const QString& session );
-	static bool isGraphical( const QString& session );
-
+	static bool isOpen(const QString& session);
+	static bool isGraphical(const QString& session);
 };

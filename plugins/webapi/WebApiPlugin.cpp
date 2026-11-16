@@ -28,19 +28,17 @@
 #include "WebApiPlugin.h"
 
 
-WebApiPlugin::WebApiPlugin( QObject* parent ) :
-	QObject( parent ),
-	m_configuration( &VeyonCore::config() ),
-	m_httpServerThread( this ),
-	m_commands( {
-		{ QStringLiteral("runserver"), tr( "Run WebAPI server" ) }
-	} )
+WebApiPlugin::WebApiPlugin(QObject* parent) :
+	QObject(parent),
+	m_configuration(&VeyonCore::config()),
+	m_httpServerThread(this),
+	m_commands({{QStringLiteral("runserver"), tr("Run WebAPI server")}})
 {
-	if( VeyonCore::component() == VeyonCore::Component::Service &&
-		m_configuration.httpServerEnabled() )
+	if (VeyonCore::component() == VeyonCore::Component::Service &&
+		m_configuration.httpServerEnabled())
 	{
-		connect( VeyonCore::instance(), &VeyonCore::initialized,
-				 this, &WebApiPlugin::startHttpServerThread );
+		connect(VeyonCore::instance(), &VeyonCore::initialized,
+				this, &WebApiPlugin::startHttpServerThread);
 	}
 }
 
@@ -48,10 +46,10 @@ WebApiPlugin::WebApiPlugin( QObject* parent ) :
 
 WebApiPlugin::~WebApiPlugin()
 {
-	if( m_httpServerThread.isRunning() )
+	if (m_httpServerThread.isRunning())
 	{
 		m_httpServerThread.quit();
-		m_httpServerThread.wait( ServerThreadTerminationTimeout );
+		m_httpServerThread.wait(ServerThreadTerminationTimeout);
 	}
 }
 
@@ -59,25 +57,25 @@ WebApiPlugin::~WebApiPlugin()
 
 ConfigurationPage* WebApiPlugin::createConfigurationPage()
 {
-	return new WebApiConfigurationPage( m_configuration );
+	return new WebApiConfigurationPage(m_configuration);
 }
 
 
 
-CommandLinePluginInterface::RunResult WebApiPlugin::handle_runserver( const QStringList& arguments )
+CommandLinePluginInterface::RunResult WebApiPlugin::handle_runserver(const QStringList& arguments)
 {
 	Q_UNUSED(arguments)
 
-	m_httpServer = new WebApiHttpServer{ m_configuration };
+	m_httpServer = new WebApiHttpServer{m_configuration};
 
-	if( m_httpServer->start() == false )
+	if (m_httpServer->start() == false)
 	{
-		CommandLineIO::error( tr( "Failed to start WebAPI server at port %1" ).arg( m_configuration.httpServerPort() ) );
+		CommandLineIO::error(tr("Failed to start WebAPI server at port %1").arg(m_configuration.httpServerPort()));
 
 		return Failed;
 	}
 
-	CommandLineIO::info( tr("WebAPI server running at port %1").arg( m_configuration.httpServerPort() ) );
+	CommandLineIO::info(tr("WebAPI server running at port %1").arg(m_configuration.httpServerPort()));
 
 	return VeyonCore::instance()->exec() == 0 ? Successful : Failed;
 }
@@ -86,10 +84,10 @@ CommandLinePluginInterface::RunResult WebApiPlugin::handle_runserver( const QStr
 
 void WebApiPlugin::startHttpServerThread()
 {
-	m_httpServer = new WebApiHttpServer{ m_configuration };
-	m_httpServer->moveToThread( &m_httpServerThread );
+	m_httpServer = new WebApiHttpServer{m_configuration};
+	m_httpServer->moveToThread(&m_httpServerThread);
 
-	connect( &m_httpServerThread, &QThread::started, m_httpServer, &WebApiHttpServer::start );
+	connect(&m_httpServerThread, &QThread::started, m_httpServer, &WebApiHttpServer::start);
 
 	m_httpServerThread.start();
 }

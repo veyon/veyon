@@ -42,32 +42,32 @@
 #include "XEventLog.h"
 
 
-static bool configureSoftwareSAS( bool enabled )
+static bool configureSoftwareSAS(bool enabled)
 {
 	HKEY hkLocal;
 	HKEY hkLocalKey;
 	DWORD dw;
-	if( RegCreateKeyEx( HKEY_LOCAL_MACHINE,
-						L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies",
-						0, REG_NONE, REG_OPTION_NON_VOLATILE,
-						KEY_READ, nullptr, &hkLocal, &dw ) != ERROR_SUCCESS)
+	if (RegCreateKeyEx(HKEY_LOCAL_MACHINE,
+					   L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies",
+					   0, REG_NONE, REG_OPTION_NON_VOLATILE,
+					   KEY_READ, nullptr, &hkLocal, &dw) != ERROR_SUCCESS)
 	{
 		return false;
 	}
 
-	if( RegOpenKeyEx( hkLocal,
-					  L"System",
-					  0, KEY_WRITE | KEY_READ,
-					  &hkLocalKey ) != ERROR_SUCCESS )
+	if (RegOpenKeyEx(hkLocal,
+					 L"System",
+					 0, KEY_WRITE | KEY_READ,
+					 &hkLocalKey) != ERROR_SUCCESS)
 	{
-		RegCloseKey( hkLocal );
+		RegCloseKey(hkLocal);
 		return false;
 	}
 
 	LONG pref = enabled ? 1 : 0;
-	RegSetValueEx( hkLocalKey, L"SoftwareSASGeneration", 0, REG_DWORD, reinterpret_cast<LPBYTE>( &pref ), sizeof(pref) );
-	RegCloseKey( hkLocalKey );
-	RegCloseKey( hkLocal );
+	RegSetValueEx(hkLocalKey, L"SoftwareSASGeneration", 0, REG_DWORD, reinterpret_cast<LPBYTE>(&pref), sizeof(pref));
+	RegCloseKey(hkLocalKey);
+	RegCloseKey(hkLocal);
 
 	return true;
 }
@@ -116,12 +116,12 @@ WindowsCoreFunctions::~WindowsCoreFunctions()
 
 bool WindowsCoreFunctions::applyConfiguration()
 {
-	WindowsPlatformConfiguration config( &VeyonCore::config() );
+	WindowsPlatformConfiguration config(&VeyonCore::config());
 
-	if( configureSoftwareSAS( config.isSoftwareSASEnabled() ) == false )
+	if (configureSoftwareSAS(config.isSoftwareSASEnabled()) == false)
 	{
-		vCritical() << WindowsPlatformConfiguration::tr( "Could not change the setting for SAS generation by software. "
-														 "Sending Ctrl+Alt+Del via remote control will not work!" );
+		vCritical() << WindowsPlatformConfiguration::tr("Could not change the setting for SAS generation by software. "
+														"Sending Ctrl+Alt+Del via remote control will not work!");
 		return false;
 	}
 
@@ -130,22 +130,22 @@ bool WindowsCoreFunctions::applyConfiguration()
 
 
 
-void WindowsCoreFunctions::initNativeLoggingSystem( const QString& appName )
+void WindowsCoreFunctions::initNativeLoggingSystem(const QString& appName)
 {
-	SetConsoleOutputCP( CP_UTF8 );
-	setvbuf( stdout, nullptr, _IOFBF, ConsoleOutputBufferSize );
-	setvbuf( stderr, nullptr, _IOFBF, ConsoleOutputBufferSize );
+	SetConsoleOutputCP(CP_UTF8);
+	setvbuf(stdout, nullptr, _IOFBF, ConsoleOutputBufferSize);
+	setvbuf(stderr, nullptr, _IOFBF, ConsoleOutputBufferSize);
 
-	m_eventLog = new CXEventLog( toConstWCharArray( appName ) );
+	m_eventLog = new CXEventLog(toConstWCharArray(appName));
 }
 
 
 
-void WindowsCoreFunctions::writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel )
+void WindowsCoreFunctions::writeToNativeLoggingSystem(const QString& message, Logger::LogLevel loglevel)
 {
 	int messageType = -1;
 
-	switch( loglevel )
+	switch (loglevel)
 	{
 	case Logger::LogLevel::Critical:
 	case Logger::LogLevel::Error: messageType = EVENTLOG_ERROR_TYPE; break;
@@ -154,9 +154,9 @@ void WindowsCoreFunctions::writeToNativeLoggingSystem( const QString& message, L
 		break;
 	}
 
-	if( messageType > 0 && m_eventLog )
+	if (messageType > 0 && m_eventLog)
 	{
-		m_eventLog->Write( static_cast<WORD>( messageType ), toConstWCharArray( message ) );
+		m_eventLog->Write(static_cast<WORD>(messageType), toConstWCharArray(message));
 	}
 }
 
@@ -179,32 +179,32 @@ StandardInputReader* WindowsCoreFunctions::createStandardInputReader(QObject* pa
 
 void WindowsCoreFunctions::reboot()
 {
-	enablePrivilege( SE_SHUTDOWN_NAME, true );
-	InitiateShutdown( nullptr, nullptr, 0, ShutdownFlags | SHUTDOWN_RESTART, ShutdownReason );
+	enablePrivilege(SE_SHUTDOWN_NAME, true);
+	InitiateShutdown(nullptr, nullptr, 0, ShutdownFlags | SHUTDOWN_RESTART, ShutdownReason);
 }
 
 
 
-void WindowsCoreFunctions::powerDown( bool installUpdates )
+void WindowsCoreFunctions::powerDown(bool installUpdates)
 {
-	enablePrivilege( SE_SHUTDOWN_NAME, true );
-	InitiateShutdown( nullptr, nullptr, 0,
-					  ShutdownFlags | SHUTDOWN_POWEROFF | ( installUpdates ? SHUTDOWN_INSTALL_UPDATES : 0 ),
-					  ShutdownReason );
+	enablePrivilege(SE_SHUTDOWN_NAME, true);
+	InitiateShutdown(nullptr, nullptr, 0,
+					 ShutdownFlags | SHUTDOWN_POWEROFF | (installUpdates ? SHUTDOWN_INSTALL_UPDATES : 0),
+					 ShutdownReason);
 }
 
 
 
-static QWindow* windowForWidget( const QWidget* widget )
+static QWindow* windowForWidget(const QWidget* widget)
 {
 	QWindow* window = widget->windowHandle();
-	if( window )
+	if (window)
 	{
 		return window;
 	}
 
 	const QWidget* nativeParent = widget->nativeParentWidget();
-	if( nativeParent )
+	if (nativeParent)
 	{
 		return nativeParent->windowHandle();
 	}
@@ -214,18 +214,17 @@ static QWindow* windowForWidget( const QWidget* widget )
 
 
 
-void WindowsCoreFunctions::raiseWindow( QWidget* widget, bool stayOnTop )
+void WindowsCoreFunctions::raiseWindow(QWidget* widget, bool stayOnTop)
 {
 	widget->activateWindow();
 	widget->raise();
 
-	auto window = windowForWidget( widget );
-	if( window )
+	auto window = windowForWidget(widget);
+	if (window)
 	{
-		auto windowHandle = HWND( QGuiApplication::platformNativeInterface()->
-								  nativeResourceForWindow( QByteArrayLiteral( "handle" ), window ) );
+		auto windowHandle = HWND(QGuiApplication::platformNativeInterface()->nativeResourceForWindow(QByteArrayLiteral("handle"), window));
 
-		SetWindowPos( windowHandle, stayOnTop ? HWND_TOPMOST : HWND_TOP, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE );
+		SetWindowPos(windowHandle, stayOnTop ? HWND_TOPMOST : HWND_TOP, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
 	}
 }
 
@@ -233,46 +232,46 @@ void WindowsCoreFunctions::raiseWindow( QWidget* widget, bool stayOnTop )
 
 void WindowsCoreFunctions::disableScreenSaver()
 {
-	for( size_t i = 0; i < ScreenSaverSettingsCount; ++i )
+	for (size_t i = 0; i < ScreenSaverSettingsCount; ++i)
 	{
-		SystemParametersInfo( ScreenSaverSettingsGetList.at(i), 0, &m_screenSaverSettings.at(i), 0 );
-		SystemParametersInfo( ScreenSaverSettingsSetList.at(i), 0, nullptr, 0 );
+		SystemParametersInfo(ScreenSaverSettingsGetList.at(i), 0, &m_screenSaverSettings.at(i), 0);
+		SystemParametersInfo(ScreenSaverSettingsSetList.at(i), 0, nullptr, 0);
 	}
 
-	SetThreadExecutionState( ES_CONTINUOUS | ES_DISPLAY_REQUIRED );
+	SetThreadExecutionState(ES_CONTINUOUS | ES_DISPLAY_REQUIRED);
 }
 
 
 
 void WindowsCoreFunctions::restoreScreenSaverSettings()
 {
-	for( size_t i = 0; i < ScreenSaverSettingsCount; ++i )
+	for (size_t i = 0; i < ScreenSaverSettingsCount; ++i)
 	{
-		SystemParametersInfo( ScreenSaverSettingsSetList.at(i), m_screenSaverSettings.at(i), nullptr, 0 );
+		SystemParametersInfo(ScreenSaverSettingsSetList.at(i), m_screenSaverSettings.at(i), nullptr, 0);
 	}
 
-	SetThreadExecutionState( ES_CONTINUOUS );
+	SetThreadExecutionState(ES_CONTINUOUS);
 }
 
 
 
-void WindowsCoreFunctions::setSystemUiState( bool enabled )
+void WindowsCoreFunctions::setSystemUiState(bool enabled)
 {
-	WindowsPlatformConfiguration config( &VeyonCore::config() );
+	WindowsPlatformConfiguration config(&VeyonCore::config());
 
-	if( config.hideTaskbarForScreenLock() )
+	if (config.hideTaskbarForScreenLock())
 	{
-		setTaskbarState( enabled );
+		setTaskbarState(enabled);
 	}
 
-	if( config.hideStartMenuForScreenLock() )
+	if (config.hideStartMenuForScreenLock())
 	{
-		setStartMenuState( enabled );
+		setStartMenuState(enabled);
 	}
 
-	if( config.hideDesktopForScreenLock() )
+	if (config.hideDesktopForScreenLock())
 	{
-		setDesktopState( enabled );
+		setDesktopState(enabled);
 	}
 }
 
@@ -282,12 +281,12 @@ QString WindowsCoreFunctions::activeDesktopName()
 {
 	QString desktopName;
 
-	auto desktopHandle = GetThreadDesktop( GetCurrentThreadId() );
+	auto desktopHandle = GetThreadDesktop(GetCurrentThreadId());
 
 	std::array<wchar_t, MAX_PATH> inputDesktopName{};
 	if (GetUserObjectInformation(desktopHandle, UOI_NAME, inputDesktopName.data(), inputDesktopName.size() * sizeof(wchar_t), nullptr))
 	{
-		desktopName = QString( QStringLiteral( "winsta0\\%1" ) ).arg( QString::fromWCharArray( inputDesktopName.data() ) );
+		desktopName = QString(QStringLiteral("winsta0\\%1")).arg(QString::fromWCharArray(inputDesktopName.data()));
 	}
 
 	return desktopName;
@@ -301,7 +300,7 @@ bool WindowsCoreFunctions::isRunningAsAdmin() const
 	SmartSID adminGroupSid;
 
 	// allocate and initialize a SID of the administrators group.
-	SID_IDENTIFIER_AUTHORITY NtAuthority = { SECURITY_NT_AUTHORITY };
+	SID_IDENTIFIER_AUTHORITY NtAuthority = {SECURITY_NT_AUTHORITY};
 	if (AllocateAndInitializeSid(
 			&NtAuthority,
 			2,
@@ -320,19 +319,19 @@ bool WindowsCoreFunctions::isRunningAsAdmin() const
 
 
 
-bool WindowsCoreFunctions::runProgramAsAdmin( const QString& program, const QStringList& parameters )
+bool WindowsCoreFunctions::runProgramAsAdmin(const QString& program, const QStringList& parameters)
 {
-	const auto parametersJoined = parameters.join( QLatin1Char(' ') );
+	const auto parametersJoined = parameters.join(QLatin1Char(' '));
 
 	SHELLEXECUTEINFO sei{};
 	sei.cbSize = sizeof(sei);
 	sei.lpVerb = L"runas";
-	sei.lpFile = toConstWCharArray( program );
+	sei.lpFile = toConstWCharArray(program);
 	sei.hwnd = GetForegroundWindow();
-	sei.lpParameters = toConstWCharArray( parametersJoined );
+	sei.lpParameters = toConstWCharArray(parametersJoined);
 	sei.nShow = SW_NORMAL;
 
-	if( ShellExecuteEx( &sei ) == false )
+	if (ShellExecuteEx(&sei) == false)
 	{
 		return false;
 	}
@@ -350,8 +349,8 @@ bool WindowsCoreFunctions::runProgramAsUser(const QString& program,
 {
 	vDebug() << program << parameters << username << desktop;
 
-	const auto baseProcessId = WtsSessionManager::findUserProcessId( username );
-	if( baseProcessId == WtsSessionManager::InvalidProcess )
+	const auto baseProcessId = WtsSessionManager::findUserProcessId(username);
+	if (baseProcessId == WtsSessionManager::InvalidProcess)
 	{
 		vCritical() << "could not determine base process ID for user" << username;
 		return false;
@@ -364,14 +363,14 @@ bool WindowsCoreFunctions::runProgramAsUser(const QString& program,
 
 QString WindowsCoreFunctions::genericUrlHandler() const
 {
-	return QStringLiteral( "explorer" );
+	return QStringLiteral("explorer");
 }
 
 
 
 QString WindowsCoreFunctions::queryDisplayDeviceName(const QScreen& screen) const
 {
-	if(screen.name().isEmpty())
+	if (screen.name().isEmpty())
 	{
 		return {};
 	}
@@ -431,7 +430,7 @@ QString WindowsCoreFunctions::queryDisplayDeviceName(const QScreen& screen) cons
 
 			const auto monitorFriendlyDeviceName = QString::fromWCharArray(name.monitorFriendlyDeviceName);
 			const auto outputName = [&]() -> QString {
-				switch(name.outputTechnology)
+				switch (name.outputTechnology)
 				{
 				case DISPLAYCONFIG_OUTPUT_TECHNOLOGY_HDMI:
 					return QStringLiteral("HDMI-%1").arg(name.connectorInstance);
@@ -449,16 +448,17 @@ QString WindowsCoreFunctions::queryDisplayDeviceName(const QScreen& screen) cons
 					return QStringLiteral("S-Video-%1").arg(name.connectorInstance);
 				case DISPLAYCONFIG_OUTPUT_TECHNOLOGY_INTERNAL:
 					return WindowsPlatformPlugin::tr("Internal display") +
-							( name.connectorInstance > 1 ?
-								  QStringLiteral(" %2").arg(name.connectorInstance) : QString{} );
+						(name.connectorInstance > 1 ?
+							 QStringLiteral(" %2").arg(name.connectorInstance) :
+							 QString{});
 				default:
 					break;
 				}
 				return {};
 			}();
-			if(monitorFriendlyDeviceName.isEmpty())
+			if (monitorFriendlyDeviceName.isEmpty())
 			{
-				if(outputName.isEmpty() == false)
+				if (outputName.isEmpty() == false)
 				{
 					return outputName;
 				}
@@ -467,7 +467,7 @@ QString WindowsCoreFunctions::queryDisplayDeviceName(const QScreen& screen) cons
 			else
 			{
 				return monitorFriendlyDeviceName +
-						( outputName.isEmpty() ? QString {} : QStringLiteral(" [%1]").arg(outputName) );
+					(outputName.isEmpty() ? QString{} : QStringLiteral(" [%1]").arg(outputName));
 			}
 		}
 	}
@@ -484,7 +484,8 @@ QString WindowsCoreFunctions::getApplicationName(ProcessId processId) const
 		return {};
 	}
 
-	struct WindowSearchData {
+	struct WindowSearchData
+	{
 		DWORD pid;
 		QString title;
 	};
@@ -522,7 +523,8 @@ QString WindowsCoreFunctions::getApplicationName(ProcessId processId) const
 
 		if (Process32FirstW(hSnapshot, &pe))
 		{
-			do {
+			do
+			{
 				if (pe.th32ProcessID == data.pid)
 				{
 					data.title = QString::fromWCharArray(pe.szExeFile);
@@ -538,7 +540,7 @@ QString WindowsCoreFunctions::getApplicationName(ProcessId processId) const
 
 
 
-bool WindowsCoreFunctions::enablePrivilege( LPCWSTR privilegeName, bool enable )
+bool WindowsCoreFunctions::enablePrivilege(LPCWSTR privilegeName, bool enable)
 {
 	SmartToken processToken;
 	if (!OpenProcessToken(GetCurrentProcess(),
@@ -560,7 +562,7 @@ bool WindowsCoreFunctions::enablePrivilege( LPCWSTR privilegeName, bool enable )
 	tokenPrivileges.Privileges[0].Luid = luid;
 	tokenPrivileges.Privileges[0].Attributes = enable ? SE_PRIVILEGE_ENABLED : 0;
 
-	const auto ret = AdjustTokenPrivileges(processToken.get(), false, &tokenPrivileges, 0, nullptr, nullptr );
+	const auto ret = AdjustTokenPrivileges(processToken.get(), false, &tokenPrivileges, 0, nullptr, nullptr);
 	if (ret == false || GetLastError() != ERROR_SUCCESS)
 	{
 		vCritical() << "could not enable or disable privilege" << privilegeName;
@@ -574,8 +576,8 @@ bool WindowsCoreFunctions::enablePrivilege( LPCWSTR privilegeName, bool enable )
 
 SmartWCharPtr WindowsCoreFunctions::toWCharArray(const QString& qstring)
 {
-	auto wcharArray = new wchar_t[qstring.size()+1];
-	qstring.toWCharArray( wcharArray );
+	auto wcharArray = new wchar_t[qstring.size() + 1];
+	qstring.toWCharArray(wcharArray);
 	wcharArray[qstring.size()] = 0;
 
 	return SmartWCharPtr{wcharArray};
@@ -583,9 +585,9 @@ SmartWCharPtr WindowsCoreFunctions::toWCharArray(const QString& qstring)
 
 
 
-const wchar_t* WindowsCoreFunctions::toConstWCharArray( const QString& qstring )
+const wchar_t* WindowsCoreFunctions::toConstWCharArray(const QString& qstring)
 {
-	return reinterpret_cast<const wchar_t*>( qstring.utf16() );
+	return reinterpret_cast<const wchar_t*>(qstring.utf16());
 }
 
 
@@ -593,7 +595,7 @@ const wchar_t* WindowsCoreFunctions::toConstWCharArray( const QString& qstring )
 QString WindowsCoreFunctions::securityIdentifierToString(const SecurityIdentifierBuffer& sidBuffer)
 {
 	SmartStringSID stringSid;
-	if (ConvertSidToStringSidW(reinterpret_cast<PSID>(const_cast<std::byte *>(sidBuffer.data())), stringSid.put()))
+	if (ConvertSidToStringSidW(reinterpret_cast<PSID>(const_cast<std::byte*>(sidBuffer.data())), stringSid.put()))
 	{
 		const auto sidString = QString::fromWCharArray(stringSid.get());
 		return sidString;
@@ -637,9 +639,9 @@ SmartHandle WindowsCoreFunctions::runProgramInSession(const QString& program,
 {
 	vDebug() << program << parameters << extraEnvironment << baseProcessId;
 
-	enablePrivilege( SE_ASSIGNPRIMARYTOKEN_NAME, true );
-	enablePrivilege( SE_INCREASE_QUOTA_NAME, true );
-	enablePrivilege( SE_TCB_NAME, true );
+	enablePrivilege(SE_ASSIGNPRIMARYTOKEN_NAME, true);
+	enablePrivilege(SE_INCREASE_QUOTA_NAME, true);
+	enablePrivilege(SE_TCB_NAME, true);
 
 	SmartHandle userProcessHandle{OpenProcess(PROCESS_ALL_ACCESS, false, baseProcessId)};
 	if (userProcessHandle.isInvalid())
@@ -681,17 +683,17 @@ SmartHandle WindowsCoreFunctions::runProgramInSession(const QString& program,
 
 	if (desktop.isEmpty())
 	{
-		desktopWide = toWCharArray( QStringLiteral("Winsta0\\Default") );
+		desktopWide = toWCharArray(QStringLiteral("Winsta0\\Default"));
 	}
 
 	STARTUPINFO si{};
 	si.cb = sizeof(STARTUPINFO);
 	si.lpDesktop = desktopWide.get();
 
-	const SmartWCharPtr fullEnvironment{appendToEnvironmentBlock(reinterpret_cast<const wchar_t *>(userEnvironment.get()), extraEnvironment)};
+	const SmartWCharPtr fullEnvironment{appendToEnvironmentBlock(reinterpret_cast<const wchar_t*>(userEnvironment.get()), extraEnvironment)};
 
 	SmartToken newToken;
-	if (DuplicateTokenEx(userProcessToken.get(), TOKEN_ASSIGN_PRIMARY|TOKEN_ALL_ACCESS, nullptr,
+	if (DuplicateTokenEx(userProcessToken.get(), TOKEN_ASSIGN_PRIMARY | TOKEN_ALL_ACCESS, nullptr,
 						 SecurityImpersonation, TokenPrimary, newToken.put()) == false ||
 		newToken.isInvalid())
 	{
@@ -730,17 +732,17 @@ SmartHandle WindowsCoreFunctions::runProgramInSession(const QString& program,
 
 	PROCESS_INFORMATION pi{};
 	if (CreateProcessAsUser(
-			newToken.get(),			// client's access token
-			nullptr,			  // file to execute
-			commandLine.get(),	 // command line
-			nullptr,			  // pointer to process SECURITY_ATTRIBUTES
-			nullptr,			  // pointer to thread SECURITY_ATTRIBUTES
-			stdInData.isEmpty() == false, // handles are inheritable when we need to pass data via stdin
-			CREATE_UNICODE_ENVIRONMENT | NORMAL_PRIORITY_CLASS,   // creation flags
-			fullEnvironment ? fullEnvironment.get() : userEnvironment.get(),			  // pointer to new environment block
-			profileDir.get(),			  // name of current directory
-			&si,			   // pointer to STARTUPINFO structure
-			&pi				// receives information about new process
+			newToken.get(),													 // client's access token
+			nullptr,														 // file to execute
+			commandLine.get(),												 // command line
+			nullptr,														 // pointer to process SECURITY_ATTRIBUTES
+			nullptr,														 // pointer to thread SECURITY_ATTRIBUTES
+			stdInData.isEmpty() == false,									 // handles are inheritable when we need to pass data via stdin
+			CREATE_UNICODE_ENVIRONMENT | NORMAL_PRIORITY_CLASS,				 // creation flags
+			fullEnvironment ? fullEnvironment.get() : userEnvironment.get(), // pointer to new environment block
+			profileDir.get(),												 // name of current directory
+			&si,															 // pointer to STARTUPINFO structure
+			&pi																 // receives information about new process
 			) == false)
 	{
 		vCritical() << "CreateProcessAsUser()" << GetLastError();
@@ -790,17 +792,17 @@ QStringList WindowsCoreFunctions::queryProcessEnvironmentVariables(DWORD process
 		return {};
 	}
 
-	const auto env = reinterpret_cast<const wchar_t *>(envBlock.get());
+	const auto env = reinterpret_cast<const wchar_t*>(envBlock.get());
 	size_t envPos = 0;
 	size_t envCurVarStart = 0;
 
 	QStringList envVars;
-	while (envPos < MaximumEnvironmentBlockSize-1 && !(env[envPos] == 0 && env[envPos+1] == 0))
+	while (envPos < MaximumEnvironmentBlockSize - 1 && !(env[envPos] == 0 && env[envPos + 1] == 0))
 	{
 		if (env[envPos] == 0)
 		{
 			envVars.append(QString::fromWCharArray(env + envCurVarStart));
-			envCurVarStart = envPos+1;
+			envCurVarStart = envPos + 1;
 		}
 		++envPos;
 	}
@@ -810,12 +812,12 @@ QStringList WindowsCoreFunctions::queryProcessEnvironmentVariables(DWORD process
 
 
 
-bool WindowsCoreFunctions::terminateProcess( ProcessId processId, DWORD timeout )
+bool WindowsCoreFunctions::terminateProcess(ProcessId processId, DWORD timeout)
 {
-	if( processId != WtsSessionManager::InvalidProcess )
+	if (processId != WtsSessionManager::InvalidProcess)
 	{
 		SmartHandle processHandle{OpenProcess(PROCESS_TERMINATE, false, processId)};
-		if( processHandle )
+		if (processHandle)
 		{
 			const auto result = TerminateProcess(processHandle.get(), 0);
 			WaitForSingleObject(processHandle.get(), timeout);
@@ -831,41 +833,41 @@ bool WindowsCoreFunctions::terminateProcess( ProcessId processId, DWORD timeout 
 
 
 
-wchar_t* WindowsCoreFunctions::appendToEnvironmentBlock( const wchar_t* env, const QStringList& strings )
+wchar_t* WindowsCoreFunctions::appendToEnvironmentBlock(const wchar_t* env, const QStringList& strings)
 {
 	if (env == nullptr)
 	{
 		return nullptr;
 	}
 
-	static constexpr auto MaximumExtraStringsLength = 1024*1024;
+	static constexpr auto MaximumExtraStringsLength = 1024 * 1024;
 
 	size_t envPos = 0;
-	while (envPos < MaximumEnvironmentBlockSize-1 && !(env[envPos] == 0 && env[envPos+1] == 0))
+	while (envPos < MaximumEnvironmentBlockSize - 1 && !(env[envPos] == 0 && env[envPos + 1] == 0))
 	{
 		++envPos;
 	}
 
 	++envPos;
 
-	if (envPos >= MaximumEnvironmentBlockSize-1)
+	if (envPos >= MaximumEnvironmentBlockSize - 1)
 	{
 		return nullptr;
 	}
 
-	const auto stringsTotalLength = size_t( strings.join( QLatin1Char(' ') ).size() );
-	if( stringsTotalLength >= MaximumExtraStringsLength )
+	const auto stringsTotalLength = size_t(strings.join(QLatin1Char(' ')).size());
+	if (stringsTotalLength >= MaximumExtraStringsLength)
 	{
 		return nullptr;
 	}
 
 	auto newEnv = new wchar_t[envPos + stringsTotalLength + 2];
-	memcpy( newEnv, env, envPos*2 ); // Flawfinder: ignore
+	memcpy(newEnv, env, envPos * 2); // Flawfinder: ignore
 
-	for( const auto& string : strings )
+	for (const auto& string : strings)
 	{
 		const auto stringLength = size_t(string.size());
-		memcpy( &newEnv[envPos], toConstWCharArray( string ), stringLength * sizeof(wchar_t) ); // Flawfinder: ignore
+		memcpy(&newEnv[envPos], toConstWCharArray(string), stringLength * sizeof(wchar_t)); // Flawfinder: ignore
 		envPos += stringLength;
 		newEnv[envPos] = 0;
 		++envPos;
@@ -878,46 +880,46 @@ wchar_t* WindowsCoreFunctions::appendToEnvironmentBlock( const wchar_t* env, con
 
 
 
-void WindowsCoreFunctions::setTaskbarState( bool enabled )
+void WindowsCoreFunctions::setTaskbarState(bool enabled)
 {
-	auto taskbar = FindWindow( L"Shell_TrayWnd", nullptr );
-	auto startButton = FindWindow( L"Start", L"Start" );
-	if( startButton == nullptr )
+	auto taskbar = FindWindow(L"Shell_TrayWnd", nullptr);
+	auto startButton = FindWindow(L"Start", L"Start");
+	if (startButton == nullptr)
 	{
 		// Win 7
-		startButton = FindWindow( L"Button", L"Start" );
+		startButton = FindWindow(L"Button", L"Start");
 	}
 
-	ShowWindow( taskbar, enabled ? SW_SHOW : SW_HIDE );
-	ShowWindow( startButton, enabled ? SW_SHOW : SW_HIDE );
+	ShowWindow(taskbar, enabled ? SW_SHOW : SW_HIDE);
+	ShowWindow(startButton, enabled ? SW_SHOW : SW_HIDE);
 
-	EnableWindow( taskbar, enabled );
-	EnableWindow( startButton, enabled );
+	EnableWindow(taskbar, enabled);
+	EnableWindow(startButton, enabled);
 }
 
 
 
-void WindowsCoreFunctions::setStartMenuState( bool enabled )
+void WindowsCoreFunctions::setStartMenuState(bool enabled)
 {
-	auto startMenu = FindWindow( L"Windows.UI.Core.CoreWindow", L"Start" );
-	if( startMenu )
+	auto startMenu = FindWindow(L"Windows.UI.Core.CoreWindow", L"Start");
+	if (startMenu)
 	{
-		ShowWindow( startMenu, enabled ? SW_SHOWDEFAULT : SW_HIDE );
+		ShowWindow(startMenu, enabled ? SW_SHOWDEFAULT : SW_HIDE);
 	}
 	else
 	{
-		startMenu = FindWindow( L"DV2ControlHost", nullptr );
-		if( enabled == false )
+		startMenu = FindWindow(L"DV2ControlHost", nullptr);
+		if (enabled == false)
 		{
-			ShowWindow( startMenu, SW_HIDE );
+			ShowWindow(startMenu, SW_HIDE);
 		}
-		EnableWindow( startMenu, enabled );
+		EnableWindow(startMenu, enabled);
 	}
 }
 
 
 
-void WindowsCoreFunctions::setDesktopState( bool enabled )
+void WindowsCoreFunctions::setDesktopState(bool enabled)
 {
-	ShowWindow( FindWindow( L"Progman", nullptr ), enabled ? SW_SHOW : SW_HIDE );
+	ShowWindow(FindWindow(L"Progman", nullptr), enabled ? SW_SHOW : SW_HIDE);
 }

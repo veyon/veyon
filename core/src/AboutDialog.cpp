@@ -31,23 +31,23 @@
 #include "ui_AboutDialog.h"
 
 
-AboutDialog::AboutDialog( QWidget *parent ) :
-	QDialog( parent ),
-	ui( new Ui::AboutDialog )
+AboutDialog::AboutDialog(QWidget* parent) :
+	QDialog(parent),
+	ui(new Ui::AboutDialog)
 {
-	ui->setupUi( this );
+	ui->setupUi(this);
 
 	setWindowTitle(tr("About Veyon %1").arg(VeyonCore::versionString()));
 
-	ui->versionLabel->setText( VeyonCore::versionString() );
+	ui->versionLabel->setText(VeyonCore::versionString());
 
-	QFile authors( QStringLiteral( ":/CONTRIBUTORS" ) );
+	QFile authors(QStringLiteral(":/CONTRIBUTORS"));
 	if (authors.open(QFile::ReadOnly))
 	{
 		ui->authors->setPlainText(QString::fromUtf8(authors.readAll()));
 	}
 
-	QFile license( QStringLiteral( ":/core/COPYING" ) );
+	QFile license(QStringLiteral(":/core/COPYING"));
 	if (license.open(QFile::ReadOnly))
 	{
 		ui->license->setPlainText(QString::fromUtf8(license.readAll()));
@@ -65,5 +65,5 @@ AboutDialog::~AboutDialog()
 
 void AboutDialog::openDonationWebsite()
 {
-	  QDesktopServices::openUrl( QUrl( QStringLiteral( "https://www.paypal.com/cgi-bin/webscr?item_name=Donation+to+Veyon+-+OpenSource+classroom+management&cmd=_donations&business=donate%40veyon.io" ) ) );
+	QDesktopServices::openUrl(QUrl(QStringLiteral("https://www.paypal.com/cgi-bin/webscr?item_name=Donation+to+Veyon+-+OpenSource+classroom+management&cmd=_donations&business=donate%40veyon.io")));
 }

@@ -22,14 +22,13 @@
  *
  */
 
-#include "InputBlockHelper.h"
-
 #include <QCoreApplication>
 #include <QElapsedTimer>
 #include <QLocalSocket>
 #include <QProcess>
 #include <QThread>
 
+#include "InputBlockHelper.h"
 #include "VeyonCore.h"
 
 static const auto SocketPath = QStringLiteral("/run/veyon/input-block.sock");
@@ -54,7 +53,7 @@ bool InputBlockHelper::start()
 
 	m_process = new QProcess(this);
 	m_process->start(QStringLiteral("veyon-input-helper"),
-					QStringList{QString::number(QCoreApplication::applicationPid())});
+					 QStringList{QString::number(QCoreApplication::applicationPid())});
 
 	if (m_process->waitForStarted(5000) == false)
 	{

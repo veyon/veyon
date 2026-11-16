@@ -52,5 +52,4 @@ public:
 	static DeviceList findKeyboardDevices();
 	static DeviceList findMouseDevices();
 	static DeviceList findTouchDevices();
-
 };

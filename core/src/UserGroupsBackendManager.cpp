@@ -22,31 +22,31 @@
  *
  */
 
-#include "VeyonConfiguration.h"
 #include "PluginManager.h"
 #include "UserGroupsBackendManager.h"
+#include "VeyonConfiguration.h"
 
 
-UserGroupsBackendManager::UserGroupsBackendManager( QObject* parent ) :
-	QObject( parent )
+UserGroupsBackendManager::UserGroupsBackendManager(QObject* parent) :
+	QObject(parent)
 {
-	for( auto pluginObject : std::as_const( VeyonCore::pluginManager().pluginObjects() ) )
+	for (auto pluginObject : std::as_const(VeyonCore::pluginManager().pluginObjects()))
 	{
-		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
-		auto userGroupsBackendInterface = qobject_cast<UserGroupsBackendInterface *>( pluginObject );
+		auto pluginInterface = qobject_cast<PluginInterface*>(pluginObject);
+		auto userGroupsBackendInterface = qobject_cast<UserGroupsBackendInterface*>(pluginObject);
 
-		if( pluginInterface && userGroupsBackendInterface )
+		if (pluginInterface && userGroupsBackendInterface)
 		{
 			m_backends[pluginInterface->uid()] = userGroupsBackendInterface;
 
-			if( pluginInterface->flags().testFlag( Plugin::ProvidesDefaultImplementation ) )
+			if (pluginInterface->flags().testFlag(Plugin::ProvidesDefaultImplementation))
 			{
 				m_defaultBackend = userGroupsBackendInterface;
 			}
 		}
 	}
 
-	if( m_defaultBackend == nullptr )
+	if (m_defaultBackend == nullptr)
 	{
 		vCritical() << "no default plugin available!";
 	}
@@ -60,7 +60,7 @@ QMap<Plugin::Uid, QString> UserGroupsBackendManager::availableBackends()
 {
 	QMap<Plugin::Uid, QString> items;
 
-	for( auto it = m_backends.constBegin(), end = m_backends.constEnd(); it != end; ++it )
+	for (auto it = m_backends.constBegin(), end = m_backends.constEnd(); it != end; ++it)
 	{
 		items[it.key()] = it.value()->userGroupsBackendName();
 	}
@@ -86,7 +86,7 @@ void UserGroupsBackendManager::reloadConfiguration()
 {
 	m_configuredBackend = m_backends.value(VeyonCore::config().userGroupsBackend());
 
-	if( m_configuredBackend == nullptr )
+	if (m_configuredBackend == nullptr)
 	{
 		m_configuredBackend = m_defaultBackend;
 	}

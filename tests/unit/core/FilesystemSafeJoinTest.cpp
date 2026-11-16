@@ -11,8 +11,8 @@
  * version 2 of the License, or (at your option) any later version.
  */
 
-#include <QFile>
 #include <QDir>
+#include <QFile>
 #include <QTemporaryDir>
 #include <QtTest>
 

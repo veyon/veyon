@@ -46,8 +46,8 @@ public:
 	using MessageList = QList<QPair<qint64, QByteArray>>;
 	static constexpr auto DefaultBandwidthLimit = 100;
 
-	DemoServer( int vncServerPort, const Password& vncServerPassword, const Password& demoAccessToken,
-				const DemoConfiguration& configuration, int demoServerPort, QObject *parent );
+	DemoServer(int vncServerPort, const Password& vncServerPassword, const Password& demoAccessToken,
+			   const DemoConfiguration& configuration, int demoServerPort, QObject* parent);
 	~DemoServer() override;
 
 	void terminate();
@@ -82,14 +82,14 @@ public:
 	}
 
 private:
-	void incomingConnection( qintptr socketDescriptor ) override;
+	void incomingConnection(qintptr socketDescriptor) override;
 	void acceptPendingConnections();
 	void reconnectToVncServer();
 	void readFromVncServer();
 	void requestFramebufferUpdate();
 
 	bool receiveVncServerMessage();
-	void enqueueFramebufferUpdateMessage( const QByteArray& message );
+	void enqueueFramebufferUpdateMessage(const QByteArray& message);
 
 	void discardUnusedFramebufferUpdateMessages();
 	qint64 framebufferUpdateMessageQueueSize() const;
@@ -134,5 +134,4 @@ private:
 	int m_quality = DefaultQuality;
 	qint64 m_bytesSinceLastQualityAdjust = 0;
 	int m_maxKBytesPerSecond = 0;
-
-} ;
+};

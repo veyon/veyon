@@ -27,16 +27,16 @@
 #include "NetworkObjectDirectory.h"
 
 
-NetworkObjectDirectory::NetworkObjectDirectory( QObject* parent ) :
-	QObject( parent ),
-	m_updateTimer( new QTimer( this ) ),
+NetworkObjectDirectory::NetworkObjectDirectory(QObject* parent) :
+	QObject(parent),
+	m_updateTimer(new QTimer(this)),
 	m_propagateChangedObjectsTimer(new QTimer(this)),
 	m_objects(),
-	m_invalidObject( NetworkObject::Type::None ),
-	m_rootObject( NetworkObject::Type::Root ),
+	m_invalidObject(NetworkObject::Type::None),
+	m_rootObject(NetworkObject::Type::Root),
 	m_defaultObjectList()
 {
-	connect( m_updateTimer, &QTimer::timeout, this, &NetworkObjectDirectory::update );
+	connect(m_updateTimer, &QTimer::timeout, this, &NetworkObjectDirectory::update);
 
 	connect(m_propagateChangedObjectsTimer, &QTimer::timeout,
 			this, &NetworkObjectDirectory::propagateChildObjectChanges);
@@ -49,11 +49,11 @@ NetworkObjectDirectory::NetworkObjectDirectory( QObject* parent ) :
 
 
 
-void NetworkObjectDirectory::setUpdateInterval( int interval )
+void NetworkObjectDirectory::setUpdateInterval(int interval)
 {
-	if( interval >= MinimumUpdateInterval )
+	if (interval >= MinimumUpdateInterval)
 	{
-		m_updateTimer->start( interval*1000 );
+		m_updateTimer->start(interval * 1000);
 	}
 	else
 	{
@@ -63,13 +63,12 @@ void NetworkObjectDirectory::setUpdateInterval( int interval )
 
 
 
-
-const NetworkObjectList& NetworkObjectDirectory::objects( const NetworkObject& parent ) const
+const NetworkObjectList& NetworkObjectDirectory::objects(const NetworkObject& parent) const
 {
-	if( parent.type() == NetworkObject::Type::Root || parent.isContainer() )
+	if (parent.type() == NetworkObject::Type::Root || parent.isContainer())
 	{
-		const auto it = m_objects.constFind( parent.modelId() );
-		if( it != m_objects.end() )
+		const auto it = m_objects.constFind(parent.modelId());
+		if (it != m_objects.end())
 		{
 			return it.value();
 		}
@@ -80,19 +79,19 @@ const NetworkObjectList& NetworkObjectDirectory::objects( const NetworkObject& p
 
 
 
-const NetworkObject& NetworkObjectDirectory::object( NetworkObject::ModelId parent, NetworkObject::ModelId object ) const
+const NetworkObject& NetworkObjectDirectory::object(NetworkObject::ModelId parent, NetworkObject::ModelId object) const
 {
-	if( object == rootId() )
+	if (object == rootId())
 	{
 		return m_rootObject;
 	}
 
-	const auto it = m_objects.constFind( parent );
-	if( it != m_objects.end() )
+	const auto it = m_objects.constFind(parent);
+	if (it != m_objects.end())
 	{
-		for( const auto& entry : *it )
+		for (const auto& entry : *it)
 		{
-			if( entry.modelId() == object )
+			if (entry.modelId() == object)
 			{
 				return entry;
 			}
@@ -104,15 +103,15 @@ const NetworkObject& NetworkObjectDirectory::object( NetworkObject::ModelId pare
 
 
 
-int NetworkObjectDirectory::index( NetworkObject::ModelId parent, NetworkObject::ModelId child ) const
+int NetworkObjectDirectory::index(NetworkObject::ModelId parent, NetworkObject::ModelId child) const
 {
-	const auto it = m_objects.constFind( parent );
-	if( it != m_objects.end() )
+	const auto it = m_objects.constFind(parent);
+	if (it != m_objects.end())
 	{
 		int index = 0;
-		for( const auto& entry : *it )
+		for (const auto& entry : *it)
 		{
-			if( entry.modelId() == child )
+			if (entry.modelId() == child)
 			{
 				return index;
 			}
@@ -125,10 +124,10 @@ int NetworkObjectDirectory::index( NetworkObject::ModelId parent, NetworkObject:
 
 
 
-int NetworkObjectDirectory::childCount( NetworkObject::ModelId parent ) const
+int NetworkObjectDirectory::childCount(NetworkObject::ModelId parent) const
 {
-	const auto it = m_objects.constFind( parent );
-	if( it != m_objects.end() )
+	const auto it = m_objects.constFind(parent);
+	if (it != m_objects.end())
 	{
 		return it->count();
 	}
@@ -138,14 +137,14 @@ int NetworkObjectDirectory::childCount( NetworkObject::ModelId parent ) const
 
 
 
-NetworkObject::ModelId NetworkObjectDirectory::childId( NetworkObject::ModelId parent, int index ) const
+NetworkObject::ModelId NetworkObjectDirectory::childId(NetworkObject::ModelId parent, int index) const
 {
-	const auto it = m_objects.constFind( parent );
-	if( it != m_objects.end() )
+	const auto it = m_objects.constFind(parent);
+	if (it != m_objects.end())
 	{
-		if( index < it->count() )
+		if (index < it->count())
 		{
-			return it->at( index ).modelId();
+			return it->at(index).modelId();
 		}
 	}
 
@@ -154,20 +153,20 @@ NetworkObject::ModelId NetworkObjectDirectory::childId( NetworkObject::ModelId p
 
 
 
-NetworkObject::ModelId NetworkObjectDirectory::parentId( NetworkObject::ModelId child ) const
+NetworkObject::ModelId NetworkObjectDirectory::parentId(NetworkObject::ModelId child) const
 {
-	if( child == rootId() )
+	if (child == rootId())
 	{
 		return 0;
 	}
 
-	for( auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it )
+	for (auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it)
 	{
 		const auto& objectList = it.value();
 
-		for( const auto& object : objectList )
+		for (const auto& object : objectList)
 		{
-			if( object.modelId() == child )
+			if (object.modelId() == child)
 			{
 				return it.key();
 			}
@@ -188,11 +187,11 @@ NetworkObject::ModelId NetworkObjectDirectory::rootId() const
 
 QVariant NetworkObjectDirectory::queryObjectAttribute(NetworkObject::Uid objectUid, NetworkObject::Attribute attribute)
 {
-	for( auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it )
+	for (auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it)
 	{
 		const auto& objectList = it.value();
 
-		for( const auto& object : objectList )
+		for (const auto& object : objectList)
 		{
 			if (object.uid() == objectUid)
 			{
@@ -206,28 +205,28 @@ QVariant NetworkObjectDirectory::queryObjectAttribute(NetworkObject::Uid objectU
 
 
 
-NetworkObjectList NetworkObjectDirectory::queryObjects( NetworkObject::Type type,
-														NetworkObject::Attribute attribute,
-														const QVariant& value )
+NetworkObjectList NetworkObjectDirectory::queryObjects(NetworkObject::Type type,
+													   NetworkObject::Attribute attribute,
+													   const QVariant& value)
 {
-	if( hasObjects() == false )
+	if (hasObjects() == false)
 	{
 		update();
 	}
 
 	NetworkObjectList objects;
 
-	for( auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it )
+	for (auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it)
 	{
 		const auto& objectList = it.value();
 
-		for( const auto& object : objectList )
+		for (const auto& object : objectList)
 		{
-			if( ( type == NetworkObject::Type::None || object.type() == type ) &&
-				( attribute == NetworkObject::Attribute::None ||
-				  object.isAttributeValueEqual( attribute, value, Qt::CaseInsensitive ) ) )
+			if ((type == NetworkObject::Type::None || object.type() == type) &&
+				(attribute == NetworkObject::Attribute::None ||
+				 object.isAttributeValueEqual(attribute, value, Qt::CaseInsensitive)))
 			{
-				objects.append( object );
+				objects.append(object);
 			}
 		}
 	}
@@ -237,9 +236,9 @@ NetworkObjectList NetworkObjectDirectory::queryObjects( NetworkObject::Type type
 
 
 
-NetworkObjectList NetworkObjectDirectory::queryParents( const NetworkObject& child )
+NetworkObjectList NetworkObjectDirectory::queryParents(const NetworkObject& child)
 {
-	if( hasObjects() == false )
+	if (hasObjects() == false)
 	{
 		update();
 	}
@@ -274,14 +273,14 @@ NetworkObjectList NetworkObjectDirectory::queryParents( const NetworkObject& chi
 
 
 
-void NetworkObjectDirectory::fetchObjects( const NetworkObject& object )
+void NetworkObjectDirectory::fetchObjects(const NetworkObject& object)
 {
-	if( object.type() == NetworkObject::Type::Root )
+	if (object.type() == NetworkObject::Type::Root)
 	{
 		update();
 	}
 
-	setObjectPopulated( object );
+	setObjectPopulated(object);
 }
 
 
@@ -293,29 +292,29 @@ bool NetworkObjectDirectory::hasObjects() const
 
 
 
-void NetworkObjectDirectory::addOrUpdateObject( const NetworkObject& networkObject, const NetworkObject& parent )
+void NetworkObjectDirectory::addOrUpdateObject(const NetworkObject& networkObject, const NetworkObject& parent)
 {
-	if( m_objects.contains( parent.modelId() ) == false )
+	if (m_objects.contains(parent.modelId()) == false)
 	{
 		vCritical() << "parent" << parent.toJson() << "does not exist for object" << networkObject.toJson();
 		return;
 	}
 
 	auto completeNetworkObject = networkObject;
-	if( completeNetworkObject.parentUid().isNull() )
+	if (completeNetworkObject.parentUid().isNull())
 	{
-		completeNetworkObject.setParentUid( parent.uid() );
+		completeNetworkObject.setParentUid(parent.uid());
 	}
 
 	auto& objectList = m_objects[parent.modelId()]; // clazy:exclude=detaching-member
-	const auto index = objectList.indexOf( completeNetworkObject );
+	const auto index = objectList.indexOf(completeNetworkObject);
 
-	if( index < 0 )
+	if (index < 0)
 	{
 		Q_EMIT objectsAboutToBeInserted(parent.modelId(), objectList.count(), 1);
 
-		objectList.append( completeNetworkObject );
-		if( completeNetworkObject.isContainer() )
+		objectList.append(completeNetworkObject);
+		if (completeNetworkObject.isContainer())
 		{
 			m_objects[completeNetworkObject.modelId()] = {};
 		}
@@ -324,18 +323,18 @@ void NetworkObjectDirectory::addOrUpdateObject( const NetworkObject& networkObje
 
 		propagateChildObjectChange(parent.modelId());
 	}
-	else if( objectList[index].exactMatch( completeNetworkObject ) == false )
+	else if (objectList[index].exactMatch(completeNetworkObject) == false)
 	{
-		objectList.replace( index, completeNetworkObject );
+		objectList.replace(index, completeNetworkObject);
 		propagateChildObjectChange(parent.modelId());
 	}
 }
 
 
 
-void NetworkObjectDirectory::removeObjects( const NetworkObject& parent, const NetworkObjectFilter& removeObjectFilter )
+void NetworkObjectDirectory::removeObjects(const NetworkObject& parent, const NetworkObjectFilter& removeObjectFilter)
 {
-	if( m_objects.contains( parent.modelId() ) == false )
+	if (m_objects.contains(parent.modelId()) == false)
 	{
 		return;
 	}
@@ -344,17 +343,17 @@ void NetworkObjectDirectory::removeObjects( const NetworkObject& parent, const N
 	int index = 0;
 	QList<NetworkObject::ModelId> groupsToRemove;
 
-	for( auto it = objectList.begin(); it != objectList.end(); )
+	for (auto it = objectList.begin(); it != objectList.end();)
 	{
-		if( removeObjectFilter( *it ) )
+		if (removeObjectFilter(*it))
 		{
-			if( it->isContainer() )
+			if (it->isContainer())
 			{
-				groupsToRemove.append( it->modelId() );
+				groupsToRemove.append(it->modelId());
 			}
 
 			Q_EMIT objectsAboutToBeRemoved(parent.modelId(), index, 1);
-			it = objectList.erase( it );
+			it = objectList.erase(it);
 			Q_EMIT objectsRemoved();
 			propagateChildObjectChange(parent.modelId());
 		}
@@ -365,36 +364,36 @@ void NetworkObjectDirectory::removeObjects( const NetworkObject& parent, const N
 		}
 	}
 
-	for( const auto& groupId : groupsToRemove )
+	for (const auto& groupId : groupsToRemove)
 	{
-		m_objects.remove( groupId );
+		m_objects.remove(groupId);
 	}
 }
 
 
 
-void NetworkObjectDirectory::replaceObjects( const NetworkObjectList& objects, const NetworkObject& parent )
+void NetworkObjectDirectory::replaceObjects(const NetworkObjectList& objects, const NetworkObject& parent)
 {
-	for( const auto& object : objects )
+	for (const auto& object : objects)
 	{
-		addOrUpdateObject( object, parent );
+		addOrUpdateObject(object, parent);
 	}
 
-	removeObjects( parent, [&objects]( const NetworkObject& object ) { return objects.contains( object ) == false; } );
+	removeObjects(parent, [&objects](const NetworkObject& object) { return objects.contains(object) == false; });
 }
 
 
 
-void NetworkObjectDirectory::setObjectPopulated( const NetworkObject& networkObject )
+void NetworkObjectDirectory::setObjectPopulated(const NetworkObject& networkObject)
 {
 	const auto objectModelId = networkObject.modelId();
 
-	auto it = m_objects.find( parentId( objectModelId ) ); // clazy:exclude=detaching-member
-	if( it != m_objects.end() )
+	auto it = m_objects.find(parentId(objectModelId)); // clazy:exclude=detaching-member
+	if (it != m_objects.end())
 	{
-		for( auto& entry : *it )
+		for (auto& entry : *it)
 		{
-			if( entry.modelId() == objectModelId )
+			if (entry.modelId() == objectModelId)
 			{
 				entry.setPopulated();
 				break;
@@ -416,7 +415,7 @@ void NetworkObjectDirectory::propagateChildObjectChange(NetworkObject::ModelId o
 
 		m_changedObjectIds.append(objectId);
 
-		propagateChildObjectChange(parentId(objectId), depth+1);
+		propagateChildObjectChange(parentId(objectId), depth + 1);
 
 		if (depth == 0)
 		{

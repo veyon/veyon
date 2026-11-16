@@ -33,9 +33,9 @@ bool FeatureMessage::sendPlain(QIODevice* ioDevice) const
 	{
 		VariantArrayMessage message(ioDevice);
 
-		message.write( m_featureUid );
+		message.write(m_featureUid);
 		message.write(CommandType(m_command));
-		message.write( m_arguments );
+		message.write(m_arguments);
 
 		return message.send();
 	}
@@ -64,25 +64,25 @@ bool FeatureMessage::sendAsRfbMessage(QIODevice* ioDevice) const
 
 
 
-bool FeatureMessage::isReadyForReceive( QIODevice* ioDevice )
+bool FeatureMessage::isReadyForReceive(QIODevice* ioDevice)
 {
 	return ioDevice != nullptr &&
-			VariantArrayMessage( ioDevice ).isReadyForReceive();
+		VariantArrayMessage(ioDevice).isReadyForReceive();
 }
 
 
 
-bool FeatureMessage::receive( QIODevice* ioDevice )
+bool FeatureMessage::receive(QIODevice* ioDevice)
 {
-	if( ioDevice != nullptr )
+	if (ioDevice != nullptr)
 	{
-		VariantArrayMessage message( ioDevice );
+		VariantArrayMessage message(ioDevice);
 
-		if( message.receive() )
+		if (message.receive())
 		{
-			m_featureUid = message.read().toUuid(); // Flawfinder: ignore
+			m_featureUid = message.read().toUuid();					  // Flawfinder: ignore
 			m_command = Command(message.read().value<CommandType>()); // Flawfinder: ignore
-			m_arguments = message.read().toMap(); // Flawfinder: ignore
+			m_arguments = message.read().toMap();					  // Flawfinder: ignore
 			return true;
 		}
 
@@ -103,6 +103,8 @@ QDebug operator<<(QDebug stream, const FeatureMessage& message)
 	stream << QStringLiteral("FeatureMessage(%1,%2,%3)")
 				  .arg(VeyonCore::featureManager().feature(message.featureUid()).name())
 				  .arg(FeatureMessage::CommandType(message.command()))
-				  .arg(VeyonCore::stringify(message.arguments())).toUtf8().constData();
+				  .arg(VeyonCore::stringify(message.arguments()))
+				  .toUtf8()
+				  .constData();
 	return stream;
 }

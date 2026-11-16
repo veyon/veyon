@@ -29,29 +29,29 @@
 #include <QSystemTrayIcon>
 #include <QTimer>
 
-#include "SystemTrayIcon.h"
 #include "FeatureWorkerManager.h"
 #include "PlatformCoreFunctions.h"
-#include "VeyonCore.h"
+#include "SystemTrayIcon.h"
 #include "VeyonConfiguration.h"
+#include "VeyonCore.h"
 #include "VeyonServerInterface.h"
 
 
-SystemTrayIcon::SystemTrayIcon( QObject* parent ) :
-	QObject( parent ),
-	m_systemTrayIconFeature( Feature( QLatin1String( staticMetaObject.className() ),
-									  Feature::Flag::Session | Feature::Flag::Service | Feature::Flag::Worker | Feature::Flag::Builtin,
-									  Feature::Uid( "8e997d84-ebb9-430f-8f72-d45d9821963d" ),
-									  Feature::Uid(),
-									  tr( "System tray icon"), {}, {} ) ),
+SystemTrayIcon::SystemTrayIcon(QObject* parent) :
+	QObject(parent),
+	m_systemTrayIconFeature(Feature(QLatin1String(staticMetaObject.className()),
+									Feature::Flag::Session | Feature::Flag::Service | Feature::Flag::Worker | Feature::Flag::Builtin,
+									Feature::Uid("8e997d84-ebb9-430f-8f72-d45d9821963d"),
+									Feature::Uid(),
+									tr("System tray icon"), {}, {})),
 	m_hidden(VeyonCore::config().isTrayIconHidden())
 {
 }
 
 
 
-void SystemTrayIcon::setToolTip( const QString& toolTipText,
-								FeatureWorkerManager& featureWorkerManager )
+void SystemTrayIcon::setToolTip(const QString& toolTipText,
+								FeatureWorkerManager& featureWorkerManager)
 {
 	if (m_hidden == false)
 	{
@@ -64,53 +64,53 @@ void SystemTrayIcon::setToolTip( const QString& toolTipText,
 
 
 
-void SystemTrayIcon::showMessage( const QString& messageTitle,
+void SystemTrayIcon::showMessage(const QString& messageTitle,
 								 const QString& messageText,
-								 FeatureWorkerManager& featureWorkerManager  )
+								 FeatureWorkerManager& featureWorkerManager)
 {
-	FeatureMessage featureMessage( m_systemTrayIconFeature.uid(), FeatureCommand::ShowMessage);
-	featureMessage.addArgument( Argument::MessageTitle, messageTitle );
-	featureMessage.addArgument( Argument::MessageText, messageText );
+	FeatureMessage featureMessage(m_systemTrayIconFeature.uid(), FeatureCommand::ShowMessage);
+	featureMessage.addArgument(Argument::MessageTitle, messageTitle);
+	featureMessage.addArgument(Argument::MessageText, messageText);
 
-	featureWorkerManager.sendMessageToUnmanagedSessionWorker( featureMessage );
+	featureWorkerManager.sendMessageToUnmanagedSessionWorker(featureMessage);
 }
 
 
 
-void SystemTrayIcon::showMessage(const ComputerControlInterfaceList &computerControlInterfaces,
+void SystemTrayIcon::showMessage(const ComputerControlInterfaceList& computerControlInterfaces,
 								 const QString& messageTitle, const QString& messageText)
 {
 	sendFeatureMessage(FeatureMessage{m_systemTrayIconFeature.uid(), FeatureCommand::ShowMessage}
-							.addArgument(Argument::MessageTitle, messageTitle)
-							.addArgument(Argument::MessageText, messageText),
-						computerControlInterfaces);
+						   .addArgument(Argument::MessageTitle, messageTitle)
+						   .addArgument(Argument::MessageText, messageText),
+					   computerControlInterfaces);
 }
 
 
 
 void SystemTrayIcon::setOverlay(const ComputerControlInterfaceList& computerControlInterfaces,
-								const QString &iconUrl)
+								const QString& iconUrl)
 {
 	if (m_hidden == false)
 	{
 		sendFeatureMessage(FeatureMessage{m_systemTrayIconFeature.uid(), FeatureCommand::SetOverlayIcon}
-						   .addArgument(Argument::OverlayIconUrl, iconUrl),
+							   .addArgument(Argument::OverlayIconUrl, iconUrl),
 						   computerControlInterfaces);
 	}
 }
 
 
 
-bool SystemTrayIcon::handleFeatureMessage( VeyonServerInterface& server,
+bool SystemTrayIcon::handleFeatureMessage(VeyonServerInterface& server,
 										  const MessageContext& messageContext,
-										  const FeatureMessage& message )
+										  const FeatureMessage& message)
 {
 	Q_UNUSED(messageContext)
 
-	if( m_systemTrayIconFeature.uid() == message.featureUid() )
+	if (m_systemTrayIconFeature.uid() == message.featureUid())
 	{
 		// forward message to worker
-		server.featureWorkerManager().sendMessageToUnmanagedSessionWorker( message );
+		server.featureWorkerManager().sendMessageToUnmanagedSessionWorker(message);
 		return true;
 	}
 
@@ -119,44 +119,44 @@ bool SystemTrayIcon::handleFeatureMessage( VeyonServerInterface& server,
 
 
 
-bool SystemTrayIcon::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
+bool SystemTrayIcon::handleFeatureMessage(VeyonWorkerInterface& worker, const FeatureMessage& message)
 {
 	Q_UNUSED(worker)
 
-	if( message.featureUid() != m_systemTrayIconFeature.uid() )
+	if (message.featureUid() != m_systemTrayIconFeature.uid())
 	{
 		return false;
 	}
 
 	if (m_systemTrayIcon == nullptr && m_hidden == false)
 	{
-		m_systemTrayIcon = new QSystemTrayIcon( this );
+		m_systemTrayIcon = new QSystemTrayIcon(this);
 
 		updateIcon();
 
 		m_systemTrayIcon->show();
 	}
 
-	switch(message.command<FeatureCommand>())
+	switch (message.command<FeatureCommand>())
 	{
 	case FeatureCommand::SetToolTip:
-		if( m_systemTrayIcon )
+		if (m_systemTrayIcon)
 		{
-			m_systemTrayIcon->setToolTip( message.argument( Argument::ToolTipText ).toString() );
+			m_systemTrayIcon->setToolTip(message.argument(Argument::ToolTipText).toString());
 		}
 		return true;
 
 	case FeatureCommand::ShowMessage:
-		if( m_systemTrayIcon )
+		if (m_systemTrayIcon)
 		{
-			m_systemTrayIcon->showMessage( message.argument( Argument::MessageTitle ).toString(),
-										   message.argument( Argument::MessageText ).toString() );
+			m_systemTrayIcon->showMessage(message.argument(Argument::MessageTitle).toString(),
+										  message.argument(Argument::MessageText).toString());
 		}
 		else
 		{
 			auto messageBox = new QMessageBox(QMessageBox::Information,
-											   message.argument(Argument::MessageTitle).toString(),
-											   message.argument(Argument::MessageText).toString());
+											  message.argument(Argument::MessageTitle).toString(),
+											  message.argument(Argument::MessageText).toString());
 			messageBox->setAttribute(Qt::WA_DeleteOnClose);
 			connect(messageBox, &QObject::destroyed,
 					QCoreApplication::instance(), &QCoreApplication::quit);
@@ -191,7 +191,7 @@ void SystemTrayIcon::updateIcon(const QString& overlayIconUrl)
 
 		QIcon icon;
 
-		for(auto size : {16, 22, 32, 64})
+		for (auto size : {16, 22, 32, 64})
 		{
 			QPixmap pixmap(QStringLiteral(":/core/icon%1.png").arg(size));
 			if (overlayIcon.isNull() == false)

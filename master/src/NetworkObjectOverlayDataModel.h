@@ -32,9 +32,9 @@ class NetworkObjectOverlayDataModel : public KExtraColumnsProxyModel
 	Q_OBJECT
 public:
 	explicit NetworkObjectOverlayDataModel(const QStringList& overlayDataHeaders,
-										   QObject *parent = nullptr);
+										   QObject* parent = nullptr);
 
-	QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 
 	bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::DisplayRole) override;
 
@@ -50,5 +50,4 @@ private:
 	int m_overlayDataRole;
 	QHash<NetworkObject::Uid, QMap<int, QVariant>> m_overlayData;
 	QHash<NetworkObject::Uid, QList<QVariant>> m_extraColumnsData;
-
 };

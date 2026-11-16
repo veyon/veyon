@@ -58,17 +58,17 @@ public:
 	};
 	Q_ENUM(Argument)
 
-	explicit DemoFeaturePlugin( QObject* parent = nullptr );
+	explicit DemoFeaturePlugin(QObject* parent = nullptr);
 	~DemoFeaturePlugin() override = default;
 
 	Plugin::Uid uid() const override
 	{
-		return Plugin::Uid{ QStringLiteral("1b08265b-348f-4978-acaa-45d4f6b90bd9") };
+		return Plugin::Uid{QStringLiteral("1b08265b-348f-4978-acaa-45d4f6b90bd9")};
 	}
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 1 );
+		return QVersionNumber(1, 1);
 	}
 
 	QString name() const override
@@ -78,7 +78,7 @@ public:
 
 	QString description() const override
 	{
-		return tr( "Give a demonstration by screen broadcasting" );
+		return tr("Give a demonstration by screen broadcasting");
 	}
 
 	QString vendor() const override
@@ -96,22 +96,22 @@ public:
 		return m_features;
 	}
 
-	Feature::Uid metaFeature( Feature::Uid featureUid ) const override;
+	Feature::Uid metaFeature(Feature::Uid featureUid) const override;
 
-	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
-						const ComputerControlInterfaceList& computerControlInterfaces ) override;
+	bool controlFeature(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+						const ComputerControlInterfaceList& computerControlInterfaces) override;
 
-	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
-					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
+	bool startFeature(VeyonMasterInterface& master, const Feature& feature,
+					  const ComputerControlInterfaceList& computerControlInterfaces) override;
 
-	bool stopFeature( VeyonMasterInterface& master, const Feature& feature,
-					  const ComputerControlInterfaceList& computerControlInterfaces ) override;
+	bool stopFeature(VeyonMasterInterface& master, const Feature& feature,
+					 const ComputerControlInterfaceList& computerControlInterfaces) override;
 
-	bool handleFeatureMessage( VeyonServerInterface& server,
-							   const MessageContext& messageContext,
-							   const FeatureMessage& message ) override;
+	bool handleFeatureMessage(VeyonServerInterface& server,
+							  const MessageContext& messageContext,
+							  const FeatureMessage& message) override;
 
-	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
+	bool handleFeatureMessage(VeyonWorkerInterface& worker, const FeatureMessage& message) override;
 
 	bool isFeatureActive(VeyonServerInterface& server, Feature::Uid featureUid) const override;
 
@@ -121,16 +121,16 @@ private:
 	static constexpr auto ScreenSelectionNone = 0;
 	static constexpr auto DemoServerControlInterval = 1000;
 
-	void addScreen( QScreen* screen );
-	void removeScreen( QScreen* screen );
+	void addScreen(QScreen* screen);
+	void removeScreen(QScreen* screen);
 
 	void updateFeatures();
 
 	QRect viewportFromScreenSelection() const;
 
 	void controlDemoServer();
-	bool controlDemoClient( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
-						   const ComputerControlInterfaceList& computerControlInterfaces );
+	bool controlDemoClient(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+						   const ComputerControlInterfaceList& computerControlInterfaces);
 
 	enum class FeatureCommand {
 		StartDemoServer,
@@ -152,7 +152,7 @@ private:
 
 	FeatureList m_screenSelectionFeatures{};
 	int m_screenSelection{ScreenSelectionNone};
-	QList<QScreen *> m_screens{QGuiApplication::screens()};
+	QList<QScreen*> m_screens{QGuiApplication::screens()};
 
 	Token m_demoAccessToken;
 
@@ -165,5 +165,4 @@ private:
 	ComputerControlInterfaceList m_demoServerClients{};
 	QVariantMap m_demoServerArguments{};
 	QTimer m_demoServerControlTimer{this};
-
 };

@@ -25,12 +25,12 @@
 #include <QMessageBox>
 #include <QTimer>
 
-#include "VeyonConfiguration.h"
+#include "Configuration/UiMapping.h"
 #include "PluginManager.h"
 #include "ServiceConfigurationPage.h"
+#include "VeyonConfiguration.h"
 #include "VeyonServiceControl.h"
 #include "VncServerPluginInterface.h"
-#include "Configuration/UiMapping.h"
 
 #include "ui_ServiceConfigurationPage.h"
 
@@ -38,7 +38,7 @@
 ServiceConfigurationPage::ServiceConfigurationPage() :
 	ConfigurationPage(),
 	ui(new Ui::ServiceConfigurationPage),
-	m_vncServerPluginConfigurationWidget( nullptr )
+	m_vncServerPluginConfigurationWidget(nullptr)
 {
 	ui->setupUi(this);
 
@@ -50,10 +50,10 @@ ServiceConfigurationPage::ServiceConfigurationPage() :
 	updateServiceControl();
 	populateVncServerPluginComboBox();
 
-	auto serviceUpdateTimer = new QTimer( this );
-	serviceUpdateTimer->start( 2000 );
+	auto serviceUpdateTimer = new QTimer(this);
+	serviceUpdateTimer->start(2000);
 
-	connect( serviceUpdateTimer, &QTimer::timeout, this, &ServiceConfigurationPage::updateServiceControl );
+	connect(serviceUpdateTimer, &QTimer::timeout, this, &ServiceConfigurationPage::updateServiceControl);
 }
 
 
@@ -88,10 +88,10 @@ void ServiceConfigurationPage::applyConfiguration()
 
 	if (serviceControl.isServiceRunning() &&
 		QMessageBox::question(this, tr("Restart Veyon Service"),
-			tr("All settings were saved successfully. In order to take "
-			   "effect the Veyon service needs to be restarted. "
-			   "Restart it now?"),
-			QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
+							  tr("All settings were saved successfully. In order to take "
+								 "effect the Veyon service needs to be restarted. "
+								 "Restart it now?"),
+							  QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
 	{
 		serviceControl.restartService();
 	}
@@ -119,11 +119,11 @@ void ServiceConfigurationPage::stopService()
 
 void ServiceConfigurationPage::updateServiceControl()
 {
-	bool running = VeyonServiceControl( this ).isServiceRunning();
+	bool running = VeyonServiceControl(this).isServiceRunning();
 
-	ui->startService->setEnabled( !running );
-	ui->stopService->setEnabled( running );
-	ui->serviceState->setText( running ? tr( "Running" ) : tr( "Stopped" ) );
+	ui->startService->setEnabled(!running);
+	ui->stopService->setEnabled(running);
+	ui->serviceState->setText(running ? tr("Running") : tr("Stopped"));
 }
 
 
@@ -135,15 +135,15 @@ void ServiceConfigurationPage::updateVncServerPluginConfigurationWidget()
 
 	auto pluginUid = ui->vncServerPlugin->currentData().toUuid();
 
-	auto vncServerPluginInterface = m_vncServerPluginInterfaces.value( pluginUid );
+	auto vncServerPluginInterface = m_vncServerPluginInterfaces.value(pluginUid);
 
-	if( vncServerPluginInterface )
+	if (vncServerPluginInterface)
 	{
 		m_vncServerPluginConfigurationWidget = vncServerPluginInterface->configurationWidget();
 
-		if( m_vncServerPluginConfigurationWidget )
+		if (m_vncServerPluginConfigurationWidget)
 		{
-			ui->vncServerGroupBoxLayout->addWidget( m_vncServerPluginConfigurationWidget );
+			ui->vncServerGroupBoxLayout->addWidget(m_vncServerPluginConfigurationWidget);
 		}
 	}
 
@@ -154,15 +154,15 @@ void ServiceConfigurationPage::updateVncServerPluginConfigurationWidget()
 
 void ServiceConfigurationPage::populateVncServerPluginComboBox()
 {
-	for( auto pluginObject : std::as_const( VeyonCore::pluginManager().pluginObjects() ) )
+	for (auto pluginObject : std::as_const(VeyonCore::pluginManager().pluginObjects()))
 	{
-		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
-		auto vncServerPluginInterface = qobject_cast<VncServerPluginInterface *>( pluginObject );
+		auto pluginInterface = qobject_cast<PluginInterface*>(pluginObject);
+		auto vncServerPluginInterface = qobject_cast<VncServerPluginInterface*>(pluginObject);
 
-		if( pluginInterface && vncServerPluginInterface )
+		if (pluginInterface && vncServerPluginInterface)
 		{
 			m_vncServerPluginInterfaces[pluginInterface->uid()] = vncServerPluginInterface;
-			ui->vncServerPlugin->addItem( pluginInterface->description(), pluginInterface->uid() );
+			ui->vncServerPlugin->addItem(pluginInterface->description(), pluginInterface->uid());
 		}
 	}
 }

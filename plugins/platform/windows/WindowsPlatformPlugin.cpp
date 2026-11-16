@@ -28,10 +28,10 @@
 #include "WindowsPlatformPlugin.h"
 #include "WindowsPlatformConfigurationPage.h"
 
-WindowsPlatformPlugin::WindowsPlatformPlugin( QObject* parent ) :
-	QObject( parent )
+WindowsPlatformPlugin::WindowsPlatformPlugin(QObject* parent) :
+	QObject(parent)
 {
-	if( qobject_cast<QGuiApplication *>(QCoreApplication::instance()) )
+	if (qobject_cast<QGuiApplication*>(QCoreApplication::instance()))
 	{
 		// create invisible dummy window to make the Qt Windows platform plugin receive
 		// WM_DISPLAYCHANGE events and update the screens returned by QGuiApplication::screens()

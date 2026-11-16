@@ -37,45 +37,45 @@
 #include "VncView.h"
 
 
-RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin( QObject* parent ) :
-	QObject( parent ),
-	m_remoteViewFeature( QStringLiteral( "RemoteView" ),
-						 Feature::Flag::Session | Feature::Flag::Master,
-						 Feature::Uid( "a18e545b-1321-4d4e-ac34-adc421c6e9c8" ),
-						 Feature::Uid(),
-						 tr( "Remote view" ), {},
-						 tr( "Open a remote view for a computer without interaction." ),
-						 QStringLiteral(":/remoteaccess/kmag.png") ),
-	m_remoteControlFeature( QStringLiteral( "RemoteControl" ),
-							Feature::Flag::Session | Feature::Flag::Master,
-							Feature::Uid( "ca00ad68-1709-4abe-85e2-48dff6ccf8a2" ),
-							Feature::Uid(),
-							tr( "Remote control" ), {},
-							tr( "Open a remote control window for a computer." ),
-							QStringLiteral(":/remoteaccess/krdc.png") ),
+RemoteAccessFeaturePlugin::RemoteAccessFeaturePlugin(QObject* parent) :
+	QObject(parent),
+	m_remoteViewFeature(QStringLiteral("RemoteView"),
+						Feature::Flag::Session | Feature::Flag::Master,
+						Feature::Uid("a18e545b-1321-4d4e-ac34-adc421c6e9c8"),
+						Feature::Uid(),
+						tr("Remote view"), {},
+						tr("Open a remote view for a computer without interaction."),
+						QStringLiteral(":/remoteaccess/kmag.png")),
+	m_remoteControlFeature(QStringLiteral("RemoteControl"),
+						   Feature::Flag::Session | Feature::Flag::Master,
+						   Feature::Uid("ca00ad68-1709-4abe-85e2-48dff6ccf8a2"),
+						   Feature::Uid(),
+						   tr("Remote control"), {},
+						   tr("Open a remote control window for a computer."),
+						   QStringLiteral(":/remoteaccess/krdc.png")),
 	m_clipboardExchangeFeature(QStringLiteral("ClipboardExchange"),
-								Feature::Flag::Meta,
-								Feature::Uid("8fa73e19-3d66-4d59-9783-c2a1bb07e20e"),
-								Feature::Uid(),
-								tr("Exchange clipboard contents"), {}, {}),
+							   Feature::Flag::Meta,
+							   Feature::Uid("8fa73e19-3d66-4d59-9783-c2a1bb07e20e"),
+							   Feature::Uid(),
+							   tr("Exchange clipboard contents"), {}, {}),
 	m_features({m_remoteViewFeature, m_remoteControlFeature, m_clipboardExchangeFeature}),
-	m_commands( {
-{ QStringLiteral("view"), m_remoteViewFeature.displayName() },
-{ QStringLiteral("control"), m_remoteControlFeature.displayName() },
-{ QStringLiteral("help"), tr( "Show help about command" ) },
-				} ),
+	m_commands({
+		{QStringLiteral("view"), m_remoteViewFeature.displayName()},
+		{QStringLiteral("control"), m_remoteControlFeature.displayName()},
+		{QStringLiteral("help"), tr("Show help about command")},
+	}),
 	m_clipboardSynchronizationDisabled(VeyonCore::config().clipboardSynchronizationDisabled())
 {
 	if (VeyonCore::component() == VeyonCore::Component::Server && m_clipboardSynchronizationDisabled == false)
 	{
-		connect (QGuiApplication::clipboard(), &QClipboard::dataChanged,
-				 this, &RemoteAccessFeaturePlugin::updateClipboardData);
+		connect(QGuiApplication::clipboard(), &QClipboard::dataChanged,
+				this, &RemoteAccessFeaturePlugin::updateClipboardData);
 	}
 }
 
 
 
-const FeatureList &RemoteAccessFeaturePlugin::featureList() const
+const FeatureList& RemoteAccessFeaturePlugin::featureList() const
 {
 	return m_features;
 }
@@ -89,8 +89,8 @@ bool RemoteAccessFeaturePlugin::controlFeature(Feature::Uid featureUid, Operatio
 		operation == Operation::Start)
 	{
 		sendFeatureMessage(FeatureMessage{featureUid}
-								.addArgument(Argument::HostName, arguments.value(argToString(Argument::HostName))),
-							computerControlInterfaces);
+							   .addArgument(Argument::HostName, arguments.value(argToString(Argument::HostName))),
+						   computerControlInterfaces);
 		return true;
 	}
 
@@ -99,18 +99,18 @@ bool RemoteAccessFeaturePlugin::controlFeature(Feature::Uid featureUid, Operatio
 
 
 
-bool RemoteAccessFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
-											  const ComputerControlInterfaceList& computerControlInterfaces )
+bool RemoteAccessFeaturePlugin::startFeature(VeyonMasterInterface& master, const Feature& feature,
+											 const ComputerControlInterfaceList& computerControlInterfaces)
 {
 	Q_UNUSED(computerControlInterfaces)
 
-	if( hasFeature( feature.uid() ) == false )
+	if (hasFeature(feature.uid()) == false)
 	{
 		return false;
 	}
 
 	const auto viewOnly = feature.uid() == m_remoteViewFeature.uid() ||
-						  remoteControlEnabled() == false;
+		remoteControlEnabled() == false;
 
 	const auto selectedComputerControlInterfaces = master.selectedComputerControlInterfaces();
 
@@ -167,9 +167,9 @@ bool RemoteAccessFeaturePlugin::handleFeatureMessage(ComputerControlInterface::P
 
 
 
-bool RemoteAccessFeaturePlugin::handleFeatureMessage(VeyonServerInterface &server,
-													 const MessageContext &messageContext,
-													 const FeatureMessage &message)
+bool RemoteAccessFeaturePlugin::handleFeatureMessage(VeyonServerInterface& server,
+													 const MessageContext& messageContext,
+													 const FeatureMessage& message)
 {
 	Q_UNUSED(messageContext)
 
@@ -191,7 +191,7 @@ bool RemoteAccessFeaturePlugin::handleFeatureMessage(VeyonServerInterface &serve
 
 
 
-bool RemoteAccessFeaturePlugin::handleFeatureMessage(VeyonWorkerInterface &worker, const FeatureMessage &message)
+bool RemoteAccessFeaturePlugin::handleFeatureMessage(VeyonWorkerInterface& worker, const FeatureMessage& message)
 {
 	Q_UNUSED(worker)
 
@@ -199,7 +199,7 @@ bool RemoteAccessFeaturePlugin::handleFeatureMessage(VeyonWorkerInterface &worke
 		message.featureUid() == m_remoteControlFeature.uid())
 	{
 		const auto viewOnly = message.featureUid() == m_remoteViewFeature.uid() ||
-							  remoteControlEnabled() == false;
+			remoteControlEnabled() == false;
 
 		remoteAccess(message.argument(Argument::HostName).toString(), viewOnly);
 
@@ -214,7 +214,7 @@ bool RemoteAccessFeaturePlugin::handleFeatureMessage(VeyonWorkerInterface &worke
 void RemoteAccessFeaturePlugin::sendAsyncFeatureMessages(VeyonServerInterface& server,
 														 const MessageContext& messageContext)
 {
-	if( messageContext.ioDevice() == nullptr )
+	if (messageContext.ioDevice() == nullptr)
 	{
 		return;
 	}
@@ -243,21 +243,21 @@ QStringList RemoteAccessFeaturePlugin::commands() const
 
 
 
-QString RemoteAccessFeaturePlugin::commandHelp( const QString& command ) const
+QString RemoteAccessFeaturePlugin::commandHelp(const QString& command) const
 {
-	return m_commands.value( command );
+	return m_commands.value(command);
 }
 
 
 
-CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_view( const QStringList& arguments )
+CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_view(const QStringList& arguments)
 {
-	if( arguments.count() < 1 )
+	if (arguments.count() < 1)
 	{
 		return NotEnoughArguments;
 	}
 
-	if( remoteViewEnabled() == false )
+	if (remoteViewEnabled() == false)
 	{
 		return InvalidCommand;
 	}
@@ -273,14 +273,14 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_view( co
 
 
 
-CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_control( const QStringList& arguments )
+CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_control(const QStringList& arguments)
 {
-	if( arguments.count() < 1 )
+	if (arguments.count() < 1)
 	{
 		return NotEnoughArguments;
 	}
 
-	if( remoteControlEnabled() == false )
+	if (remoteControlEnabled() == false)
 	{
 		return InvalidCommand;
 	}
@@ -296,16 +296,16 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_control(
 
 
 
-CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_help( const QStringList& arguments )
+CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_help(const QStringList& arguments)
 {
-	if( arguments.value( 0 ) == QLatin1String("view") )
+	if (arguments.value(0) == QLatin1String("view"))
 	{
-		printf( "\nremoteaccess view <host>\n\n" );
+		printf("\nremoteaccess view <host>\n\n");
 		return NoResult;
 	}
-	else if( arguments.value( 0 ) == QLatin1String("control") )
+	else if (arguments.value(0) == QLatin1String("control"))
 	{
-		printf( "\nremoteaccess control <host>\n}n" );
+		printf("\nremoteaccess control <host>\n}n");
 		return NoResult;
 	}
 
@@ -316,22 +316,21 @@ CommandLinePluginInterface::RunResult RemoteAccessFeaturePlugin::handle_help( co
 
 bool RemoteAccessFeaturePlugin::remoteViewEnabled() const
 {
-	return VeyonCore::config().disabledFeatures().contains( m_remoteViewFeature.uid().toString() ) == false;
-
+	return VeyonCore::config().disabledFeatures().contains(m_remoteViewFeature.uid().toString()) == false;
 }
 
 
 
 bool RemoteAccessFeaturePlugin::remoteControlEnabled() const
 {
-	return VeyonCore::config().disabledFeatures().contains( m_remoteControlFeature.uid().toString() ) == false;
+	return VeyonCore::config().disabledFeatures().contains(m_remoteControlFeature.uid().toString()) == false;
 }
 
 
 
 bool RemoteAccessFeaturePlugin::initAuthentication()
 {
-	if( VeyonCore::instance()->initAuthentication() == false )
+	if (VeyonCore::instance()->initAuthentication() == false)
 	{
 		vWarning() << "Could not initialize authentication";
 		return false;
@@ -342,9 +341,9 @@ bool RemoteAccessFeaturePlugin::initAuthentication()
 
 
 
-bool RemoteAccessFeaturePlugin::remoteAccess( const QString& hostAddress, bool viewOnly )
+bool RemoteAccessFeaturePlugin::remoteAccess(const QString& hostAddress, bool viewOnly)
 {
-	if( initAuthentication() == false )
+	if (initAuthentication() == false)
 	{
 		return false;
 	}
@@ -353,7 +352,7 @@ bool RemoteAccessFeaturePlugin::remoteAccess( const QString& hostAddress, bool v
 	remoteComputer.setDisplayName(hostAddress);
 	remoteComputer.setHostAddress(hostAddress);
 
-	if( remoteControlEnabled() == false )
+	if (remoteControlEnabled() == false)
 	{
 		viewOnly = true;
 	}
@@ -369,13 +368,12 @@ void RemoteAccessFeaturePlugin::createRemoteAccessWindow(const ComputerControlIn
 														 bool viewOnly)
 {
 	auto widget = new RemoteAccessWidget(computerControlInterface, viewOnly,
-										  remoteViewEnabled() && remoteControlEnabled());
+										 remoteViewEnabled() && remoteControlEnabled());
 
 	// forward clipboard changes as long as the widget exists
-	connect(QGuiApplication::clipboard(), &QClipboard::dataChanged, widget, [=, this]()
-			 {
-				 sendClipboardData(widget->computerControlInterface());
-			 });
+	connect(QGuiApplication::clipboard(), &QClipboard::dataChanged, widget, [=, this]() {
+		sendClipboardData(widget->computerControlInterface());
+	});
 
 	connect(widget, &QObject::destroyed, this, [this](QObject* view) {
 		for (auto it = m_vncViews.begin(); it != m_vncViews.end();) // clazy:exclude=detaching-member
@@ -396,7 +394,7 @@ void RemoteAccessFeaturePlugin::createRemoteAccessWindow(const ComputerControlIn
 
 
 
-void RemoteAccessFeaturePlugin::storeClipboardData(FeatureMessage *message, const QString& text, const QImage& image)
+void RemoteAccessFeaturePlugin::storeClipboardData(FeatureMessage* message, const QString& text, const QImage& image)
 {
 	QBuffer buffer;
 	buffer.open(QIODevice::WriteOnly);
@@ -409,7 +407,7 @@ void RemoteAccessFeaturePlugin::storeClipboardData(FeatureMessage *message, cons
 
 
 
-void RemoteAccessFeaturePlugin::loadClipboardData(const FeatureMessage &message)
+void RemoteAccessFeaturePlugin::loadClipboardData(const FeatureMessage& message)
 {
 	if (m_clipboardSynchronizationDisabled)
 	{
@@ -427,7 +425,7 @@ void RemoteAccessFeaturePlugin::loadClipboardData(const FeatureMessage &message)
 	// TODO: better support for image I/O on Windows via QWindowsMime
 
 	const auto image = QImage::fromData(message.argument(Argument::ClipboardImage).toByteArray(),
-										 clipboardImageFormat());
+										clipboardImageFormat());
 	if (image.isNull() == false && clipboard->image() != image)
 	{
 		clipboard->setImage(image);

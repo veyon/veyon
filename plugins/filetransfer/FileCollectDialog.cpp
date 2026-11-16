@@ -60,7 +60,7 @@ FileCollectDialog::FileCollectDialog(FileCollectController* controller, QWidget*
 	// Initialize destination directory
 	ui->destinationDirectoryEdit->setText(m_controller->destinationDirectory());
 
-	connect (ui->browseDestinationDirectoryButton, &QAbstractButton::clicked, this, [this]() {
+	connect(ui->browseDestinationDirectoryButton, &QAbstractButton::clicked, this, [this]() {
 		const auto dir = QFileDialog::getExistingDirectory(this, tr("Select destination directory"),
 														   ui->destinationDirectoryEdit->text());
 		if (dir.isEmpty() == false)
@@ -70,18 +70,18 @@ FileCollectDialog::FileCollectDialog(FileCollectController* controller, QWidget*
 		}
 	});
 
-	connect (m_controller, &FileCollectController::overallProgressChanged, this, [this]() {
+	connect(m_controller, &FileCollectController::overallProgressChanged, this, [this]() {
 		ui->progressBar->setValue(m_controller->overallProgress());
 	});
 
-	connect (m_controller, &FileCollectController::started, this, [this]() {
+	connect(m_controller, &FileCollectController::started, this, [this]() {
 		// disable settings during transfer
 		ui->settingsGroupBox->setEnabled(false);
 
 		ui->buttonBox->setStandardButtons(QDialogButtonBox::Cancel);
 	});
 
-	connect (m_controller, &FileCollectController::finished, this, [this]() {
+	connect(m_controller, &FileCollectController::finished, this, [this]() {
 		ui->buttonBox->setStandardButtons(QDialogButtonBox::Open | QDialogButtonBox::Close);
 
 		const auto darkSuffix = VeyonCore::useDarkMode() ? QStringLiteral("-dark") : QString();
@@ -109,7 +109,7 @@ void FileCollectDialog::start()
 	{
 	case FileCollectController::CollectionDirectory::PromptUserForName:
 	{
-		const auto collectionName = QInputDialog::getText(this, tr("Enter collection name" ),
+		const auto collectionName = QInputDialog::getText(this, tr("Enter collection name"),
 														  tr("Please enter a name for this file collection:"));
 		if (collectionName.isEmpty())
 		{
@@ -144,7 +144,7 @@ void FileCollectDialog::start()
 		QMessageBox::critical(this, tr("Output directory creation failed"),
 							  tr("The output directory \"%1\" does not exist and could not be created. "
 								 "Please check the configuration and the file permissions for the configured destination directory.")
-							  .arg(m_controller->outputDirectory()));
+								  .arg(m_controller->outputDirectory()));
 		return;
 	}
 
@@ -156,7 +156,6 @@ void FileCollectDialog::start()
 void FileCollectDialog::openOutputDirectory()
 {
 	QDesktopServices::openUrl(QUrl::fromLocalFile(m_controller->outputDirectory() + QDir::separator()));
-
 }
 
 

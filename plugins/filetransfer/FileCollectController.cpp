@@ -30,8 +30,7 @@
 #include "Filesystem.h"
 #include "PlatformFilesystemFunctions.h"
 
-namespace
-{
+namespace {
 
 bool isPathWithinBase(const QString& path, const QString& base)
 {
@@ -64,12 +63,12 @@ FileCollectController::FileCollectController(FileTransferPlugin* plugin) :
 	m_collectionDirectory(configuration().collectionDirectory()),
 	m_collectedFilesGroupingMode(configuration().collectedFilesGroupingMode()),
 	m_collectedFilesGroupingAttributes({configuration().collectedFilesGroupingAttribute1(),
-									   configuration().collectedFilesGroupingAttribute2(),
-									   configuration().collectedFilesGroupingAttribute3()}),
+										configuration().collectedFilesGroupingAttribute2(),
+										configuration().collectedFilesGroupingAttribute3()}),
 	m_collectSourceDirectory(),
 	m_filePattern()
 {
-	connect (this, &FileCollectController::collectionChanged, this, &FileCollectController::overallProgressChanged);
+	connect(this, &FileCollectController::collectionChanged, this, &FileCollectController::overallProgressChanged);
 }
 
 
@@ -131,9 +130,8 @@ void FileCollectController::setInterfaces(const ComputerControlInterfaceList& co
 				FileCollection collection{};
 				collection.state = FileCollection::State::Initializing;
 				collection.name = computerControlInterface->userFullName().isEmpty() ?
-									  computerControlInterface->userLoginName()
-									:
-									  computerControlInterface->userFullName();
+					computerControlInterface->userLoginName() :
+					computerControlInterface->userFullName();
 				m_collections[computerControlInterface] = collection;
 			}
 		}
@@ -268,13 +266,12 @@ void FileCollectController::stop()
 int FileCollectController::overallProgress() const
 {
 	return m_collections.isEmpty() ?
-				0
-			  :
-				std::accumulate(
-					m_collections.constBegin(),
-					m_collections.constEnd(),
-					0,
-					[](int sum, const FileCollection& collection) -> int {
+		0 :
+		std::accumulate(
+			m_collections.constBegin(),
+			m_collections.constEnd(),
+			0,
+			[](int sum, const FileCollection& collection) -> int {
 		return sum + collection.progress();
 	}) / m_collections.size();
 }

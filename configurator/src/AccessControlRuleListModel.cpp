@@ -29,7 +29,7 @@
 #include "VeyonCore.h"
 
 
-AccessControlRuleListModel::AccessControlRuleListModel(QObject *parent) :
+AccessControlRuleListModel::AccessControlRuleListModel(QObject* parent) :
 	QAbstractListModel(parent)
 {
 	reload();
@@ -45,9 +45,9 @@ void AccessControlRuleListModel::reload()
 
 	const auto accessControlRules = VeyonCore::config().accessControlRules();
 
-	for( const auto& accessControlRule : accessControlRules )
+	for (const auto& accessControlRule : accessControlRules)
 	{
-		m_accessControlRules.append( AccessControlRule( accessControlRule ) );
+		m_accessControlRules.append(AccessControlRule(accessControlRule));
 	}
 
 	endResetModel();
@@ -55,11 +55,11 @@ void AccessControlRuleListModel::reload()
 
 
 
-int AccessControlRuleListModel::rowCount(const QModelIndex &parent) const
+int AccessControlRuleListModel::rowCount(const QModelIndex& parent) const
 {
 	// For list models only the root node (an invalid parent) should return the list's size. For all
 	// other (valid) parents, rowCount() should return 0 so that it does not become a tree model.
-	if( parent.isValid() )
+	if (parent.isValid())
 	{
 		return 0;
 	}
@@ -69,7 +69,7 @@ int AccessControlRuleListModel::rowCount(const QModelIndex &parent) const
 
 
 
-QVariant AccessControlRuleListModel::data(const QModelIndex &index, int role) const
+QVariant AccessControlRuleListModel::data(const QModelIndex& index, int role) const
 {
 	if (!index.isValid() || index.row() >= rowCount())
 	{
@@ -78,21 +78,21 @@ QVariant AccessControlRuleListModel::data(const QModelIndex &index, int role) co
 
 	const AccessControlRule& rule = m_accessControlRules[index.row()];
 
-	if( role == Qt::DecorationRole )
+	if (role == Qt::DecorationRole)
 	{
-		switch( rule.action() )
+		switch (rule.action())
 		{
-		case AccessControlRule::Action::Allow: return QIcon( QStringLiteral(":/configurator/vcs-normal.png") );
-		case AccessControlRule::Action::Deny: return QIcon( QStringLiteral(":/configurator/vcs-conflicting.png") );
-		case AccessControlRule::Action::AskForPermission: return QIcon( QStringLiteral(":/configurator/access-rule-ask.png") );
-		default: return QIcon( QStringLiteral(":/configurator/vcs-removed.png") );
+		case AccessControlRule::Action::Allow: return QIcon(QStringLiteral(":/configurator/vcs-normal.png"));
+		case AccessControlRule::Action::Deny: return QIcon(QStringLiteral(":/configurator/vcs-conflicting.png"));
+		case AccessControlRule::Action::AskForPermission: return QIcon(QStringLiteral(":/configurator/access-rule-ask.png"));
+		default: return QIcon(QStringLiteral(":/configurator/vcs-removed.png"));
 		}
 	}
-	else if( role == Qt::DisplayRole )
+	else if (role == Qt::DisplayRole)
 	{
 		return rule.name();
 	}
-	else if( role == Qt::ToolTipRole )
+	else if (role == Qt::ToolTipRole)
 	{
 		return rule.description();
 	}

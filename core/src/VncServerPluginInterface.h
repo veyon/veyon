@@ -50,15 +50,14 @@ public:
 	 * \param serverPort the port the VNC server should listen at
 	 * \param password the password to be used for VNC authentication
 	 */
-	virtual bool runServer( int serverPort, const Password& password ) = 0;
+	virtual bool runServer(int serverPort, const Password& password) = 0;
 
 	virtual int configuredServerPort() = 0;
 
 	virtual Password configuredPassword() = 0;
+};
 
-} ;
-
-using VncServerPluginInterfaceList = QList<VncServerPluginInterface *>;
+using VncServerPluginInterfaceList = QList<VncServerPluginInterface*>;
 
 #define VncServerPluginInterface_iid "io.veyon.Veyon.Plugins.VncServerPluginInterface"
 

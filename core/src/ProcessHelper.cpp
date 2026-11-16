@@ -25,17 +25,17 @@
 #include "ProcessHelper.h"
 
 
-ProcessHelper::ProcessHelper( const QString& program, const QStringList& arguments ) :
+ProcessHelper::ProcessHelper(const QString& program, const QStringList& arguments) :
 	m_process()
 {
-	m_process.start( program, arguments );
+	m_process.start(program, arguments);
 }
 
 
 
 int ProcessHelper::run()
 {
-	if( m_process.waitForStarted() )
+	if (m_process.waitForStarted())
 	{
 		m_process.waitForFinished();
 		return m_process.exitCode();
@@ -48,7 +48,7 @@ int ProcessHelper::run()
 
 QByteArray ProcessHelper::runAndReadAll()
 {
-	if( m_process.waitForStarted() )
+	if (m_process.waitForStarted())
 	{
 		m_process.waitForFinished();
 		return m_process.readAll();

@@ -24,8 +24,8 @@
 
 #pragma once
 
-#include "Configuration/Object.h"
 #include "ComputerControlInterface.h"
+#include "Configuration/Object.h"
 
 class BuiltinFeatures;
 class ComputerControlInterface;
@@ -35,8 +35,8 @@ class VEYON_CORE_EXPORT VeyonMasterInterface : public QObject
 {
 	Q_OBJECT
 public:
-	explicit VeyonMasterInterface( QObject* parent ) :
-		QObject( parent )
+	explicit VeyonMasterInterface(QObject* parent) :
+		QObject(parent)
 	{
 	}
 
@@ -54,5 +54,4 @@ public:
 
 Q_SIGNALS:
 	void computerControlListModelAboutToReset();
-
 };

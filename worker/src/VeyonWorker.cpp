@@ -40,28 +40,28 @@ VeyonWorker::VeyonWorker(QUuid featureUid, QObject* parent) :
 {
 	const Feature* workerFeature = nullptr;
 
-	for( const auto& feature : VeyonCore::featureManager().features() )
+	for (const auto& feature : VeyonCore::featureManager().features())
 	{
-		if( feature.uid() == featureUid )
+		if (feature.uid() == featureUid)
 		{
 			workerFeature = &feature;
 		}
 	}
 
-	if( workerFeature == nullptr )
+	if (workerFeature == nullptr)
 	{
-		qFatal( "Could not find specified feature" );
+		qFatal("Could not find specified feature");
 	}
 
-	if( m_core.config().disabledFeatures().contains( featureUid.toString() ) )
+	if (m_core.config().disabledFeatures().contains(featureUid.toString()))
 	{
-		qFatal( "Specified feature is disabled by configuration!" );
+		qFatal("Specified feature is disabled by configuration!");
 	}
 
 	m_workerManagerConnection = new FeatureWorkerManagerConnection(*this, featureUid);
 
 	auto stdInReader = VeyonCore::platform().coreFunctions().createStandardInputReader(this);
-	connect (stdInReader, &StandardInputReader::lineRead, this, [this, stdInReader](const QString& line) {
+	connect(stdInReader, &StandardInputReader::lineRead, this, [this, stdInReader](const QString& line) {
 		const auto authToken = line.toUtf8();
 		if (authToken.isEmpty() == false)
 		{
@@ -91,8 +91,8 @@ VeyonWorker::~VeyonWorker()
 
 
 
-bool VeyonWorker::sendFeatureMessageReply( const FeatureMessage& reply )
+bool VeyonWorker::sendFeatureMessageReply(const FeatureMessage& reply)
 {
 	return m_workerManagerConnection &&
-			m_workerManagerConnection->sendMessage( reply );
+		m_workerManagerConnection->sendMessage(reply);
 }

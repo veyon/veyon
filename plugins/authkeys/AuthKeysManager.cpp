@@ -34,88 +34,88 @@
 #include "VeyonConfiguration.h"
 
 
-AuthKeysManager::AuthKeysManager( QObject* parent ) :
-	QObject( parent ),
-	m_keyTypePrivate( QStringLiteral("private") ),
-	m_keyTypePublic( QStringLiteral("public") ),
-	m_checkPermissions( tr( "Please check your permissions." ) ),
-	m_invalidKeyName( tr( "Key name contains invalid characters!" ) ),
-	m_invalidKeyType( tr( "Invalid key type specified! Please specify \"%1\" or \"%2\"." ).arg( m_keyTypePrivate, m_keyTypePublic ) ),
-	m_keyDoesNotExist( tr( "Specified key does not exist! Please use the \"list\" command to list all installed keys." ) ),
-	m_keysAlreadyExists( tr( "One or more key files already exist! Please delete them using the \"delete\" command." ) ),
+AuthKeysManager::AuthKeysManager(QObject* parent) :
+	QObject(parent),
+	m_keyTypePrivate(QStringLiteral("private")),
+	m_keyTypePublic(QStringLiteral("public")),
+	m_checkPermissions(tr("Please check your permissions.")),
+	m_invalidKeyName(tr("Key name contains invalid characters!")),
+	m_invalidKeyType(tr("Invalid key type specified! Please specify \"%1\" or \"%2\".").arg(m_keyTypePrivate, m_keyTypePublic)),
+	m_keyDoesNotExist(tr("Specified key does not exist! Please use the \"list\" command to list all installed keys.")),
+	m_keysAlreadyExists(tr("One or more key files already exist! Please delete them using the \"delete\" command.")),
 	m_resultMessage()
 {
 }
 
 
 
-bool AuthKeysManager::createKeyPair( const QString& name )
+bool AuthKeysManager::createKeyPair(const QString& name)
 {
-	if( VeyonCore::isAuthenticationKeyNameValid( name ) == false)
+	if (VeyonCore::isAuthenticationKeyNameValid(name) == false)
 	{
 		m_resultMessage = m_invalidKeyName;
 		return false;
 	}
 
-	const auto privateKeyFileName = VeyonCore::filesystem().privateKeyPath( name );
-	const auto publicKeyFileName = VeyonCore::filesystem().publicKeyPath( name );
+	const auto privateKeyFileName = VeyonCore::filesystem().privateKeyPath(name);
+	const auto publicKeyFileName = VeyonCore::filesystem().publicKeyPath(name);
 
-	if( QFileInfo::exists( privateKeyFileName ) || QFileInfo::exists( publicKeyFileName ) )
+	if (QFileInfo::exists(privateKeyFileName) || QFileInfo::exists(publicKeyFileName))
 	{
 		m_resultMessage = m_keysAlreadyExists;
 		return false;
 	}
 
-	CommandLineIO::print( tr( "Creating new key pair for \"%1\"" ).arg( name ) );
+	CommandLineIO::print(tr("Creating new key pair for \"%1\"").arg(name));
 
-	const auto privateKey = CryptoCore::KeyGenerator().createRSA( CryptoCore::RsaKeySize );
+	const auto privateKey = CryptoCore::KeyGenerator().createRSA(CryptoCore::RsaKeySize);
 	const auto publicKey = privateKey.toPublicKey();
 
-	if( privateKey.isNull() || publicKey.isNull() )
+	if (privateKey.isNull() || publicKey.isNull())
 	{
-		m_resultMessage = tr( "Failed to create public or private key!" );
+		m_resultMessage = tr("Failed to create public or private key!");
 		return false;
 	}
 
-	if( writePrivateKeyFile( privateKey, privateKeyFileName ) == false ||
-			writePublicKeyFile( publicKey, publicKeyFileName ) == false )
+	if (writePrivateKeyFile(privateKey, privateKeyFileName) == false ||
+		writePublicKeyFile(publicKey, publicKeyFileName) == false)
 	{
 		// m_resultMessage already set by write functions
 		return false;
 	}
 
-	m_resultMessage = tr( "Newly created key pair has been saved to \"%1\" and \"%2\"." ).arg( privateKeyFileName, publicKeyFileName );
+	m_resultMessage = tr("Newly created key pair has been saved to \"%1\" and \"%2\".").arg(privateKeyFileName, publicKeyFileName);
 
 	return true;
 }
 
 
 
-bool AuthKeysManager::deleteKey( const QString& name, const QString& type )
+bool AuthKeysManager::deleteKey(const QString& name, const QString& type)
 {
-	if( checkKey( name, type ) == false )
+	if (checkKey(name, type) == false)
 	{
 		return false;
 	}
 
-	const auto keyFileName = keyFilePathFromType( name, type );
+	const auto keyFileName = keyFilePathFromType(name, type);
 
-	QFile keyFile( keyFileName );
-	keyFile.setPermissions( QFile::WriteOwner | QFile::WriteGroup | QFile::WriteOther );
+	QFile keyFile(keyFileName);
+	keyFile.setPermissions(QFile::WriteOwner | QFile::WriteGroup | QFile::WriteOther);
 
-	if( keyFile.remove() == false )
+	if (keyFile.remove() == false)
 	{
-		m_resultMessage = tr( "Could not remove key file \"%1\"!" ).arg( keyFileName ) + QLatin1Char(' ') + m_checkPermissions;
+		m_resultMessage = tr("Could not remove key file \"%1\"!").arg(keyFileName) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
-	auto keyFileDirectory = QFileInfo( keyFileName ).absoluteDir();
+	auto keyFileDirectory = QFileInfo(keyFileName).absoluteDir();
 	auto keyFileBaseDirectory = keyFileDirectory;
 	keyFileBaseDirectory.cdUp();
 
-	if( keyFileBaseDirectory.rmdir( keyFileDirectory.dirName() ) == false )
+	if (keyFileBaseDirectory.rmdir(keyFileDirectory.dirName()) == false)
 	{
-		m_resultMessage = tr( "Could not remove key file directory \"%1\"!" ).arg( keyFileDirectory.path() ) + QLatin1Char(' ') + m_checkPermissions;
+		m_resultMessage = tr("Could not remove key file directory \"%1\"!").arg(keyFileDirectory.path()) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
@@ -124,77 +124,77 @@ bool AuthKeysManager::deleteKey( const QString& name, const QString& type )
 
 
 
-bool AuthKeysManager::exportKey( const QString& name, const QString& type, const QString& outputFile, bool overwriteExisting )
+bool AuthKeysManager::exportKey(const QString& name, const QString& type, const QString& outputFile, bool overwriteExisting)
 {
-	if( checkKey( name, type ) == false )
+	if (checkKey(name, type) == false)
 	{
 		return false;
 	}
 
-	const auto keyFileName = keyFilePathFromType( name, type );
+	const auto keyFileName = keyFilePathFromType(name, type);
 
-	if( VeyonCore::filesystem().ensurePathExists( QFileInfo( outputFile ).path() ) == false )
+	if (VeyonCore::filesystem().ensurePathExists(QFileInfo(outputFile).path()) == false)
 	{
-		m_resultMessage = tr( "Failed to create directory for output file." );
+		m_resultMessage = tr("Failed to create directory for output file.");
 		return false;
 	}
 
-	if( overwriteExisting == false && QFileInfo::exists( outputFile ) )
+	if (overwriteExisting == false && QFileInfo::exists(outputFile))
 	{
-		m_resultMessage = tr( "File \"%1\" already exists." ).arg( outputFile );
+		m_resultMessage = tr("File \"%1\" already exists.").arg(outputFile);
 		return false;
 	}
 
-	if( QFile::copy( keyFileName, outputFile ) == false )
+	if (QFile::copy(keyFileName, outputFile) == false)
 	{
-		m_resultMessage = tr( "Failed to write output file." ) + QLatin1Char(' ') + m_checkPermissions;
+		m_resultMessage = tr("Failed to write output file.") + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
-	m_resultMessage = tr( "Key \"%1/%2\" has been exported to \"%3\" successfully." ).arg( name, type, outputFile );
+	m_resultMessage = tr("Key \"%1/%2\" has been exported to \"%3\" successfully.").arg(name, type, outputFile);
 
 	return true;
 }
 
 
 
-bool AuthKeysManager::importKey( const QString& name, const QString& type, const QString& inputFile )
+bool AuthKeysManager::importKey(const QString& name, const QString& type, const QString& inputFile)
 {
-	if( VeyonCore::isAuthenticationKeyNameValid( name ) == false)
+	if (VeyonCore::isAuthenticationKeyNameValid(name) == false)
 	{
 		m_resultMessage = m_invalidKeyName;
 		return false;
 	}
 
-	if( QFileInfo( inputFile ).isReadable() == false )
+	if (QFileInfo(inputFile).isReadable() == false)
 	{
-		m_resultMessage = tr( "Failed read input file." ) + QLatin1Char(' ') + m_checkPermissions;
+		m_resultMessage = tr("Failed read input file.") + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
 	QString keyFileName;
 
-	if( type == m_keyTypePrivate )
+	if (type == m_keyTypePrivate)
 	{
-		const auto privateKey = CryptoCore::PrivateKey( inputFile );
-		if( privateKey.isNull() || privateKey.isPrivate() == false )
+		const auto privateKey = CryptoCore::PrivateKey(inputFile);
+		if (privateKey.isNull() || privateKey.isPrivate() == false)
 		{
-			m_resultMessage = tr( "File \"%1\" does not contain a valid private key!" ).arg( inputFile );
+			m_resultMessage = tr("File \"%1\" does not contain a valid private key!").arg(inputFile);
 			return false;
 		}
 
-		keyFileName = VeyonCore::filesystem().privateKeyPath( name );
+		keyFileName = VeyonCore::filesystem().privateKeyPath(name);
 	}
-	else if( type == m_keyTypePublic )
+	else if (type == m_keyTypePublic)
 	{
-		const auto publicKey = CryptoCore::PublicKey( inputFile );
-		if( publicKey.isNull() || publicKey.isPublic() == false )
+		const auto publicKey = CryptoCore::PublicKey(inputFile);
+		if (publicKey.isNull() || publicKey.isPublic() == false)
 		{
-			m_resultMessage = tr( "File \"%1\" does not contain a valid public key!" ).arg( inputFile );
+			m_resultMessage = tr("File \"%1\" does not contain a valid public key!").arg(inputFile);
 			return false;
 		}
 
-		keyFileName = VeyonCore::filesystem().publicKeyPath( name );
+		keyFileName = VeyonCore::filesystem().publicKeyPath(name);
 	}
 	else
 	{
@@ -202,32 +202,33 @@ bool AuthKeysManager::importKey( const QString& name, const QString& type, const
 		return false;
 	}
 
-	if( QFileInfo::exists( keyFileName ) )
+	if (QFileInfo::exists(keyFileName))
 	{
 		m_resultMessage = m_keysAlreadyExists;
 		return false;
 	}
 
-	if( VeyonCore::filesystem().ensurePathExists( QFileInfo( keyFileName ).path() ) == false )
+	if (VeyonCore::filesystem().ensurePathExists(QFileInfo(keyFileName).path()) == false)
 	{
-		m_resultMessage = tr( "Failed to create directory for key file." ) + QLatin1Char(' ') + m_checkPermissions;
+		m_resultMessage = tr("Failed to create directory for key file.") + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
-	if( QFile::copy( inputFile, keyFileName ) == false )
+	if (QFile::copy(inputFile, keyFileName) == false)
 	{
-		m_resultMessage = tr( "Failed to write key file \"%1\"." ).arg( keyFileName ) + QLatin1Char(' ') + m_checkPermissions;
+		m_resultMessage = tr("Failed to write key file \"%1\".").arg(keyFileName) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
-	if( setKeyFilePermissions( name, type ) == false )
+	if (setKeyFilePermissions(name, type) == false)
 	{
-		m_resultMessage = tr( "Failed to set permissions for key file \"%1\"!" ).arg( keyFileName ) + QLatin1Char(' ') + m_checkPermissions;
+		m_resultMessage = tr("Failed to set permissions for key file \"%1\"!").arg(keyFileName) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
-	m_resultMessage = tr( "Key \"%1/%2\" has been imported successfully. Please check file permissions of \"%3\" "
-						  "in order to prevent unauthorized accesses." ).arg( name, type, keyFileName );
+	m_resultMessage = tr("Key \"%1/%2\" has been imported successfully. Please check file permissions of \"%3\" "
+						 "in order to prevent unauthorized accesses.")
+						  .arg(name, type, keyFileName);
 
 	return true;
 }
@@ -236,90 +237,90 @@ bool AuthKeysManager::importKey( const QString& name, const QString& type, const
 
 QStringList AuthKeysManager::listKeys()
 {
-	const auto privateKeyBaseDir = VeyonCore::filesystem().expandPath( VeyonCore::config().privateKeyBaseDir() );
-	const auto privateKeyDirs = QDir( privateKeyBaseDir ).entryList( QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name );
+	const auto privateKeyBaseDir = VeyonCore::filesystem().expandPath(VeyonCore::config().privateKeyBaseDir());
+	const auto privateKeyDirs = QDir(privateKeyBaseDir).entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name);
 
-	const auto publicKeyBaseDir = VeyonCore::filesystem().expandPath( VeyonCore::config().publicKeyBaseDir() );
-	const auto publicKeyDirs = QDir( publicKeyBaseDir ).entryList( QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name );
+	const auto publicKeyBaseDir = VeyonCore::filesystem().expandPath(VeyonCore::config().publicKeyBaseDir());
+	const auto publicKeyDirs = QDir(publicKeyBaseDir).entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name);
 
 	QStringList keys;
-	keys.reserve( privateKeyDirs.size() + publicKeyDirs.size() );
+	keys.reserve(privateKeyDirs.size() + publicKeyDirs.size());
 
-	for( const auto& privateKeyDir : privateKeyDirs )
+	for (const auto& privateKeyDir : privateKeyDirs)
 	{
-		if( QFileInfo( keyFilePathFromType( privateKeyDir, m_keyTypePrivate) ).isFile() )
+		if (QFileInfo(keyFilePathFromType(privateKeyDir, m_keyTypePrivate)).isFile())
 		{
-			keys.append( QStringLiteral("%1/%2").arg( privateKeyDir, m_keyTypePrivate ) );
+			keys.append(QStringLiteral("%1/%2").arg(privateKeyDir, m_keyTypePrivate));
 		}
 	}
 
-	for( const auto& publicKeyDir : publicKeyDirs )
+	for (const auto& publicKeyDir : publicKeyDirs)
 	{
-		if( QFileInfo( keyFilePathFromType( publicKeyDir, m_keyTypePublic ) ).isFile() )
+		if (QFileInfo(keyFilePathFromType(publicKeyDir, m_keyTypePublic)).isFile())
 		{
-			keys.append( QStringLiteral("%1/%2").arg( publicKeyDir, m_keyTypePublic ) );
+			keys.append(QStringLiteral("%1/%2").arg(publicKeyDir, m_keyTypePublic));
 		}
 	}
 
-	std::sort( keys.begin(), keys.end() );
+	std::sort(keys.begin(), keys.end());
 
 	return keys;
 }
 
 
 
-bool AuthKeysManager::extractPublicFromPrivateKey( const QString& name )
+bool AuthKeysManager::extractPublicFromPrivateKey(const QString& name)
 {
-	if( VeyonCore::isAuthenticationKeyNameValid( name ) == false)
+	if (VeyonCore::isAuthenticationKeyNameValid(name) == false)
 	{
 		m_resultMessage = m_invalidKeyName;
 		return false;
 	}
 
-	const auto privateKeyFileName = VeyonCore::filesystem().privateKeyPath( name );
-	const auto publicKeyFileName = VeyonCore::filesystem().publicKeyPath( name );
+	const auto privateKeyFileName = VeyonCore::filesystem().privateKeyPath(name);
+	const auto publicKeyFileName = VeyonCore::filesystem().publicKeyPath(name);
 
-	if( QFileInfo::exists( privateKeyFileName ) == false )
+	if (QFileInfo::exists(privateKeyFileName) == false)
 	{
 		m_resultMessage = m_keyDoesNotExist;
 		return false;
 	}
 
-	if( QFileInfo::exists( publicKeyFileName ) )
+	if (QFileInfo::exists(publicKeyFileName))
 	{
 		m_resultMessage = m_keysAlreadyExists;
 		return false;
 	}
 
-	const auto publicKey = CryptoCore::PrivateKey( privateKeyFileName ).toPublicKey();
-	if( publicKey.isNull() || publicKey.isPublic() == false )
+	const auto publicKey = CryptoCore::PrivateKey(privateKeyFileName).toPublicKey();
+	if (publicKey.isNull() || publicKey.isPublic() == false)
 	{
-		m_resultMessage = tr( "Failed to convert private key to public key" );
+		m_resultMessage = tr("Failed to convert private key to public key");
 		return false;
 	}
 
-	return writePublicKeyFile( publicKey, publicKeyFileName );
+	return writePublicKeyFile(publicKey, publicKeyFileName);
 }
 
 
 
-bool AuthKeysManager::writePrivateKeyFile( const CryptoCore::PrivateKey& privateKey, const QString& privateKeyFileName )
+bool AuthKeysManager::writePrivateKeyFile(const CryptoCore::PrivateKey& privateKey, const QString& privateKeyFileName)
 {
-	if( VeyonCore::filesystem().ensurePathExists( QFileInfo( privateKeyFileName ).path() ) == false )
+	if (VeyonCore::filesystem().ensurePathExists(QFileInfo(privateKeyFileName).path()) == false)
 	{
-		m_resultMessage = tr( "Failed to create directory for private key file \"%1\"." ).arg( privateKeyFileName) + QLatin1Char(' ') + m_checkPermissions;
+		m_resultMessage = tr("Failed to create directory for private key file \"%1\".").arg(privateKeyFileName) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
-	if( privateKey.toPEMFile( privateKeyFileName ) == false )
+	if (privateKey.toPEMFile(privateKeyFileName) == false)
 	{
-		m_resultMessage = tr( "Failed to save private key in file \"%1\"!" ).arg( privateKeyFileName ) + QLatin1Char(' ') + m_checkPermissions;
+		m_resultMessage = tr("Failed to save private key in file \"%1\"!").arg(privateKeyFileName) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
-	if( setPrivateKeyFilePermissions( privateKeyFileName ) == false )
+	if (setPrivateKeyFilePermissions(privateKeyFileName) == false)
 	{
-		m_resultMessage = tr( "Failed to set permissions for private key file \"%1\"!" ).arg( privateKeyFileName ) + QLatin1Char(' ') + m_checkPermissions;
+		m_resultMessage = tr("Failed to set permissions for private key file \"%1\"!").arg(privateKeyFileName) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
@@ -328,23 +329,23 @@ bool AuthKeysManager::writePrivateKeyFile( const CryptoCore::PrivateKey& private
 
 
 
-bool AuthKeysManager::writePublicKeyFile( const CryptoCore::PublicKey& publicKey, const QString& publicKeyFileName )
+bool AuthKeysManager::writePublicKeyFile(const CryptoCore::PublicKey& publicKey, const QString& publicKeyFileName)
 {
-	if(	VeyonCore::filesystem().ensurePathExists( QFileInfo( publicKeyFileName ).path() ) == false )
+	if (VeyonCore::filesystem().ensurePathExists(QFileInfo(publicKeyFileName).path()) == false)
 	{
-		m_resultMessage = tr( "Failed to create directory for public key file \"%1\"." ).arg( publicKeyFileName ) + QLatin1Char(' ') + m_checkPermissions;
+		m_resultMessage = tr("Failed to create directory for public key file \"%1\".").arg(publicKeyFileName) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
-	if( publicKey.toPEMFile( publicKeyFileName ) == false )
+	if (publicKey.toPEMFile(publicKeyFileName) == false)
 	{
-		m_resultMessage = tr( "Failed to save public key in file \"%1\"!" ).arg( publicKeyFileName ) + QLatin1Char(' ') + m_checkPermissions;
+		m_resultMessage = tr("Failed to save public key in file \"%1\"!").arg(publicKeyFileName) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
-	if( setPublicKeyFilePermissions( publicKeyFileName ) == false )
+	if (setPublicKeyFilePermissions(publicKeyFileName) == false)
 	{
-		m_resultMessage = tr( "Failed to set permissions for public key file \"%1\"!" ).arg( publicKeyFileName ) + QLatin1Char(' ') + m_checkPermissions;
+		m_resultMessage = tr("Failed to set permissions for public key file \"%1\"!").arg(publicKeyFileName) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
@@ -353,16 +354,16 @@ bool AuthKeysManager::writePublicKeyFile( const CryptoCore::PublicKey& publicKey
 
 
 
-QString AuthKeysManager::detectKeyType( const QString& keyFile )
+QString AuthKeysManager::detectKeyType(const QString& keyFile)
 {
-	const auto privateKey = CryptoCore::PrivateKey( keyFile );
-	if( privateKey.isNull() == false && privateKey.isPrivate()  )
+	const auto privateKey = CryptoCore::PrivateKey(keyFile);
+	if (privateKey.isNull() == false && privateKey.isPrivate())
 	{
 		return m_keyTypePrivate;
 	}
 
-	const auto publicKey = CryptoCore::PublicKey( keyFile );
-	if( publicKey.isNull() == false && publicKey.isPublic()  )
+	const auto publicKey = CryptoCore::PublicKey(keyFile);
+	if (publicKey.isNull() == false && publicKey.isPublic())
 	{
 		return m_keyTypePublic;
 	}
@@ -372,79 +373,77 @@ QString AuthKeysManager::detectKeyType( const QString& keyFile )
 
 
 
-bool AuthKeysManager::setAccessGroup( const QString& key, const QString& group )
+bool AuthKeysManager::setAccessGroup(const QString& key, const QString& group)
 {
-	const auto nameAndType = key.split( QLatin1Char('/') );
-	const auto name = nameAndType.value( 0 );
-	const auto type = nameAndType.value( 1 );
+	const auto nameAndType = key.split(QLatin1Char('/'));
+	const auto name = nameAndType.value(0);
+	const auto type = nameAndType.value(1);
 
-	if( checkKey( name, type ) == false )
+	if (checkKey(name, type) == false)
 	{
 		return false;
 	}
 
-	const auto keyFileName = keyFilePathFromType( name, type );
+	const auto keyFileName = keyFilePathFromType(name, type);
 
-	if( VeyonCore::platform().filesystemFunctions().setFileOwnerGroup( keyFileName, group ) == false )
+	if (VeyonCore::platform().filesystemFunctions().setFileOwnerGroup(keyFileName, group) == false)
 	{
-		m_resultMessage = tr( "Failed to set owner of key file \"%1\" to \"%2\"." ).
-				arg( keyFileName, group ) + QLatin1Char(' ') + m_checkPermissions;
+		m_resultMessage = tr("Failed to set owner of key file \"%1\" to \"%2\".").arg(keyFileName, group) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
-	if( VeyonCore::platform().filesystemFunctions().
-			setFileOwnerGroupPermissions( keyFileName, QFile::ReadOwner | QFile::ReadGroup ) == false )
+	if (VeyonCore::platform().filesystemFunctions().setFileOwnerGroupPermissions(keyFileName, QFile::ReadOwner | QFile::ReadGroup) == false)
 	{
-		m_resultMessage = tr( "Failed to set permissions for key file \"%1\"." ).arg( keyFileName ) + QLatin1Char(' ') + m_checkPermissions;
+		m_resultMessage = tr("Failed to set permissions for key file \"%1\".").arg(keyFileName) + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
-	m_resultMessage = tr( "Key \"%1\" is now accessible by user group \"%2\"." ).arg( key, group );
+	m_resultMessage = tr("Key \"%1\" is now accessible by user group \"%2\".").arg(key, group);
 
 	return true;
 }
 
 
 
-QString AuthKeysManager::accessGroup( const QString& key )
+QString AuthKeysManager::accessGroup(const QString& key)
 {
-	const auto nameAndType = key.split( QLatin1Char('/') );
-	const auto name = nameAndType.value( 0 );
-	const auto type = nameAndType.value( 1 );
+	const auto nameAndType = key.split(QLatin1Char('/'));
+	const auto name = nameAndType.value(0);
+	const auto type = nameAndType.value(1);
 
-	if( checkKey( name, type, false ) == false )
+	if (checkKey(name, type, false) == false)
 	{
 		return {};
 	}
 
-	return VeyonCore::platform().filesystemFunctions().fileOwnerGroup( keyFilePathFromType( name, type ) );
+	return VeyonCore::platform().filesystemFunctions().fileOwnerGroup(keyFilePathFromType(name, type));
 }
 
 
 
 QString AuthKeysManager::keyPairId(const QString& key) // clazy:exclude=qt6-qhash-signature
 {
-	const auto nameAndType = key.split( QLatin1Char('/') );
-	const auto name = nameAndType.value( 0 );
-	const auto type = nameAndType.value( 1 );
+	const auto nameAndType = key.split(QLatin1Char('/'));
+	const auto name = nameAndType.value(0);
+	const auto type = nameAndType.value(1);
 
-	if( checkKey( name, type ) == false )
+	if (checkKey(name, type) == false)
 	{
 		return tr("<N/A>");
 	}
 
-	const auto keyFileName = keyFilePathFromType( name, type );
+	const auto keyFileName = keyFilePathFromType(name, type);
 
-	const auto privateKey = CryptoCore::PrivateKey( keyFileName );
-	if( privateKey.isNull() == false && privateKey.isPrivate()  )
+	const auto privateKey = CryptoCore::PrivateKey(keyFileName);
+	if (privateKey.isNull() == false && privateKey.isPrivate())
 	{
-		return QStringLiteral("%1").arg( qHash( privateKey.toPublicKey().toDER() ), 8, 16, QLatin1Char('0') );
+		return QStringLiteral("%1").arg(qHash(privateKey.toPublicKey().toDER()), 8, 16, QLatin1Char('0'));
 	}
 
-	const auto publicKey = CryptoCore::PublicKey( keyFileName );
-	if( publicKey.isNull() == false && publicKey.isPublic()  )
+	const auto publicKey = CryptoCore::PublicKey(keyFileName);
+	if (publicKey.isNull() == false && publicKey.isPublic())
 	{
-		return QStringLiteral("%1").arg( qHash( publicKey.toDER() ), 8, 16, QLatin1Char('0') );
+		return QStringLiteral("%1").arg(qHash(publicKey.toDER()), 8, 16, QLatin1Char('0'));
 	}
 
 	return QStringLiteral("???");
@@ -452,21 +451,21 @@ QString AuthKeysManager::keyPairId(const QString& key) // clazy:exclude=qt6-qhas
 
 
 
-QString AuthKeysManager::exportedKeyFileName( const QString& name, const QString& type )
+QString AuthKeysManager::exportedKeyFileName(const QString& name, const QString& type)
 {
-	return QStringLiteral("%1_%2_key.pem").arg( name, type );
+	return QStringLiteral("%1_%2_key.pem").arg(name, type);
 }
 
 
 
-QString AuthKeysManager::keyNameFromExportedKeyFile( const QString& keyFile )
+QString AuthKeysManager::keyNameFromExportedKeyFile(const QString& keyFile)
 {
 	static const QRegularExpression keyNameRX{QStringLiteral("^(.*)_(.*)_key.pem$")};
 	const auto keyNameMatch = keyNameRX.match(QFileInfo(keyFile).fileName());
 
-	if( keyNameMatch.hasMatch() )
+	if (keyNameMatch.hasMatch())
 	{
-		return keyNameMatch.captured( 1 );
+		return keyNameMatch.captured(1);
 	}
 
 	return {};
@@ -474,33 +473,33 @@ QString AuthKeysManager::keyNameFromExportedKeyFile( const QString& keyFile )
 
 
 
-bool AuthKeysManager::checkKey( const QString& name, const QString& type, bool checkIsReadable )
+bool AuthKeysManager::checkKey(const QString& name, const QString& type, bool checkIsReadable)
 {
-	if( VeyonCore::isAuthenticationKeyNameValid( name ) == false )
+	if (VeyonCore::isAuthenticationKeyNameValid(name) == false)
 	{
 		m_resultMessage = m_invalidKeyName;
 		return false;
 	}
 
-	const auto keyFileName = keyFilePathFromType( name, type );
+	const auto keyFileName = keyFilePathFromType(name, type);
 
-	if( keyFileName.isEmpty() )
+	if (keyFileName.isEmpty())
 	{
 		m_resultMessage = m_invalidKeyType;
 		return false;
 	}
 
-	QFileInfo keyFileInfo( keyFileName );
+	QFileInfo keyFileInfo(keyFileName);
 
-	if( keyFileInfo.exists() == false )
+	if (keyFileInfo.exists() == false)
 	{
 		m_resultMessage = m_keyDoesNotExist;
 		return false;
 	}
 
-	if( checkIsReadable && keyFileInfo.isReadable() == false )
+	if (checkIsReadable && keyFileInfo.isReadable() == false)
 	{
-		m_resultMessage = tr( "Failed to read key file." ) + QLatin1Char(' ') + m_checkPermissions;
+		m_resultMessage = tr("Failed to read key file.") + QLatin1Char(' ') + m_checkPermissions;
 		return false;
 	}
 
@@ -509,15 +508,15 @@ bool AuthKeysManager::checkKey( const QString& name, const QString& type, bool c
 
 
 
-QString AuthKeysManager::keyFilePathFromType( const QString& name, const QString& type ) const
+QString AuthKeysManager::keyFilePathFromType(const QString& name, const QString& type) const
 {
-	if( type == m_keyTypePrivate )
+	if (type == m_keyTypePrivate)
 	{
-		return VeyonCore::filesystem().privateKeyPath( name );
+		return VeyonCore::filesystem().privateKeyPath(name);
 	}
-	else if( type == m_keyTypePublic )
+	else if (type == m_keyTypePublic)
 	{
-		return VeyonCore::filesystem().publicKeyPath( name );
+		return VeyonCore::filesystem().publicKeyPath(name);
 	}
 
 	return {};
@@ -525,17 +524,17 @@ QString AuthKeysManager::keyFilePathFromType( const QString& name, const QString
 
 
 
-bool AuthKeysManager::setKeyFilePermissions( const QString& name, const QString& type ) const
+bool AuthKeysManager::setKeyFilePermissions(const QString& name, const QString& type) const
 {
-	const auto keyFilePath = keyFilePathFromType( name, type );
+	const auto keyFilePath = keyFilePathFromType(name, type);
 
-	if( type == m_keyTypePrivate )
+	if (type == m_keyTypePrivate)
 	{
-		return setPrivateKeyFilePermissions( keyFilePath );
+		return setPrivateKeyFilePermissions(keyFilePath);
 	}
-	else if( type == m_keyTypePublic )
+	else if (type == m_keyTypePublic)
 	{
-		return setPublicKeyFilePermissions( keyFilePath );
+		return setPublicKeyFilePermissions(keyFilePath);
 	}
 
 	return false;
@@ -543,14 +542,14 @@ bool AuthKeysManager::setKeyFilePermissions( const QString& name, const QString&
 
 
 
-bool AuthKeysManager::setPrivateKeyFilePermissions( const QString& fileName ) const
+bool AuthKeysManager::setPrivateKeyFilePermissions(const QString& fileName) const
 {
-	return QFile::setPermissions( fileName, QFile::ReadOwner | QFile::ReadUser | QFile::ReadGroup );
+	return QFile::setPermissions(fileName, QFile::ReadOwner | QFile::ReadUser | QFile::ReadGroup);
 }
 
 
 
-bool AuthKeysManager::setPublicKeyFilePermissions( const QString& fileName ) const
+bool AuthKeysManager::setPublicKeyFilePermissions(const QString& fileName) const
 {
-	return QFile::setPermissions( fileName, QFile::ReadOwner | QFile::ReadUser | QFile::ReadGroup | QFile::ReadOther );
+	return QFile::setPermissions(fileName, QFile::ReadOwner | QFile::ReadUser | QFile::ReadGroup | QFile::ReadOther);
 }

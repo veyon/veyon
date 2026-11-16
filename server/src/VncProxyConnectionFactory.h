@@ -38,9 +38,8 @@ public:
 
 	virtual ~VncProxyConnectionFactory() = default;
 
-	virtual VncProxyConnection* createVncProxyConnection( QTcpSocket* clientSocket,
-														  int vncServerPort,
-														  const Password& vncServerPassword,
-														  QObject* parent ) = 0;
-
-} ;
+	virtual VncProxyConnection* createVncProxyConnection(QTcpSocket* clientSocket,
+														 int vncServerPort,
+														 const Password& vncServerPassword,
+														 QObject* parent) = 0;
+};

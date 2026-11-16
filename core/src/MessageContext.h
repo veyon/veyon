@@ -37,7 +37,7 @@ public:
 	using Connection = QPointer<QObject>;
 
 	explicit MessageContext(QIODevice* ioDevice = nullptr, QObject* connection = nullptr) :
-		m_ioDevice( ioDevice ),
+		m_ioDevice(ioDevice),
 		m_connection(connection)
 	{
 	}
@@ -57,5 +57,4 @@ public:
 private:
 	IODevice m_ioDevice;
 	Connection m_connection;
-
-} ;
+};

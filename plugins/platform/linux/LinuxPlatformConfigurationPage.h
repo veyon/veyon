@@ -44,7 +44,6 @@ public:
 	void applyConfiguration() override;
 
 private:
-	Ui::LinuxPlatformConfigurationPage *ui;
+	Ui::LinuxPlatformConfigurationPage* ui;
 	LinuxPlatformConfiguration m_configuration;
-
 };

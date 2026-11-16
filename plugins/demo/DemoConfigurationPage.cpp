@@ -22,20 +22,20 @@
  *
  */
 
+#include "Configuration/UiMapping.h"
 #include "DemoConfiguration.h"
 #include "DemoConfigurationPage.h"
-#include "Configuration/UiMapping.h"
 
 #include "ui_DemoConfigurationPage.h"
 
-DemoConfigurationPage::DemoConfigurationPage( DemoConfiguration& configuration, QWidget* parent ) :
-	ConfigurationPage( parent ),
-	ui( new Ui::DemoConfigurationPage ),
-	m_configuration( configuration )
+DemoConfigurationPage::DemoConfigurationPage(DemoConfiguration& configuration, QWidget* parent) :
+	ConfigurationPage(parent),
+	ui(new Ui::DemoConfigurationPage),
+	m_configuration(configuration)
 {
 	ui->setupUi(this);
 
-	Configuration::UiMapping::setFlags( this, Configuration::Property::Flag::Advanced );
+	Configuration::UiMapping::setFlags(this, Configuration::Property::Flag::Advanced);
 }
 
 

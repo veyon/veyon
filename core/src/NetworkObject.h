@@ -25,8 +25,8 @@
 #pragma once
 
 #include <QJsonObject>
-#include <QUuid>
 #include <QString>
+#include <QUuid>
 
 #include "HashList.h"
 #include "VeyonCore.h"
@@ -39,19 +39,17 @@ public:
 	using Name = QString;
 	using ModelId = quintptr;
 
-	enum class Type
-	{
+	enum class Type {
 		None,
 		Root,
 		Location,
 		Host,
 		Label,
 		DesktopGroup
-	} ;
+	};
 	Q_ENUM(Type)
 
-	enum class Attribute
-	{
+	enum class Attribute {
 		None,
 		Type,
 		Name,
@@ -63,21 +61,21 @@ public:
 	};
 	Q_ENUM(Attribute)
 
-	NetworkObject( const NetworkObject& other );
-	explicit NetworkObject( Type type = Type::None,
-							const Name& name = {},
-							const QString& hostAddress = {},
-							const QString& macAddress = {},
-							const QString& directoryAddress = {},
-							Uid uid = {},
-							Uid parentUid = {} );
-	explicit NetworkObject( const QJsonObject& jsonObject );
+	NetworkObject(const NetworkObject& other);
+	explicit NetworkObject(Type type = Type::None,
+						   const Name& name = {},
+						   const QString& hostAddress = {},
+						   const QString& macAddress = {},
+						   const QString& directoryAddress = {},
+						   Uid uid = {},
+						   Uid parentUid = {});
+	explicit NetworkObject(const QJsonObject& jsonObject);
 	~NetworkObject() = default;
 
-	NetworkObject& operator=( const NetworkObject& other );
+	NetworkObject& operator=(const NetworkObject& other);
 
-	bool operator==( const NetworkObject& other ) const;
-	bool exactMatch( const NetworkObject& other ) const;
+	bool operator==(const NetworkObject& other) const;
+	bool exactMatch(const NetworkObject& other) const;
 
 	bool isValid() const
 	{
@@ -104,7 +102,7 @@ public:
 		return m_parentUid;
 	}
 
-	void setParentUid( Uid parentUid )
+	void setParentUid(Uid parentUid)
 	{
 		m_parentUid = parentUid;
 	}
@@ -118,13 +116,13 @@ public:
 
 	bool isContainer() const
 	{
-		return isContainer( type() );
+		return isContainer(type());
 	}
 
-	static bool isContainer( Type type )
+	static bool isContainer(Type type)
 	{
 		return type == Type::Location ||
-			   type == Type::DesktopGroup;
+			type == Type::DesktopGroup;
 	}
 
 	const Name& name() const
@@ -149,9 +147,9 @@ public:
 
 	QJsonObject toJson() const;
 
-	QVariant attributeValue( Attribute attribute ) const;
+	QVariant attributeValue(Attribute attribute) const;
 
-	bool isAttributeValueEqual( Attribute attribute, const QVariant& value, Qt::CaseSensitivity cs ) const;
+	bool isAttributeValueEqual(Attribute attribute, const QVariant& value, Qt::CaseSensitivity cs) const;
 
 private:
 	Uid calculateUid() const;
@@ -166,7 +164,6 @@ private:
 	bool m_populated;
 
 	static const QUuid networkObjectNamespace;
-
 };
 
 Q_DECLARE_METATYPE(NetworkObject::Type)

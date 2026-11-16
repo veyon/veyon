@@ -28,12 +28,12 @@
 
 #include "ui_X11VncConfigurationWidget.h"
 
-X11VncConfigurationWidget::X11VncConfigurationWidget( X11VncConfiguration& configuration, QWidget* parent  ) :
-	QWidget( parent ),
-	ui( new Ui::X11VncConfigurationWidget ),
-	m_configuration( configuration )
+X11VncConfigurationWidget::X11VncConfigurationWidget(X11VncConfiguration& configuration, QWidget* parent) :
+	QWidget(parent),
+	ui(new Ui::X11VncConfigurationWidget),
+	m_configuration(configuration)
 {
-	ui->setupUi( this );
+	ui->setupUi(this);
 
 	// all properties of this widget are advanced - mark the whole widget as
 	// advanced so its static labels are hidden together with the input fields

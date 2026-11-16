@@ -36,18 +36,18 @@ class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 public:
-	explicit MainWindow( QWidget* parent = nullptr );
+	explicit MainWindow(QWidget* parent = nullptr);
 	~MainWindow() override;
 
-	void reset( bool onlyUI = false );
+	void reset(bool onlyUI = false);
 	void apply();
 
 protected:
-	void resizeEvent( QResizeEvent* event ) override;
+	void resizeEvent(QResizeEvent* event) override;
 
 private Q_SLOTS:
 	void configurationChanged();
-	void resetOrApply( QAbstractButton *btn );
+	void resetOrApply(QAbstractButton* btn);
 	void loadSettingsFromFile();
 	void saveSettingsToFile();
 	void resetConfiguration();
@@ -62,9 +62,8 @@ private:
 
 	void loadConfigurationPagePlugins();
 
-	void closeEvent( QCloseEvent *closeEvent ) override;
+	void closeEvent(QCloseEvent* closeEvent) override;
 
-	Ui::MainWindow *ui;
+	Ui::MainWindow* ui;
 	bool m_configChanged;
-
-} ;
+};

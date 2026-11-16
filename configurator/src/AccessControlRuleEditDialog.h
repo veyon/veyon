@@ -36,15 +36,14 @@ class AccessControlRuleEditDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	explicit AccessControlRuleEditDialog(AccessControlRule& rule, QWidget *parent = nullptr);
+	explicit AccessControlRuleEditDialog(AccessControlRule& rule, QWidget* parent = nullptr);
 	~AccessControlRuleEditDialog() override;
 
 	void accept() override;
 
 
 private:
-	Ui::AccessControlRuleEditDialog *ui;
+	Ui::AccessControlRuleEditDialog* ui;
 	AccessControlRule& m_rule;
 	QMap<AccessControlRule::Subject, QString> m_subjectNameMap;
-
 };

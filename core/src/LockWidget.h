@@ -23,8 +23,8 @@
 
 #pragma once
 
-#include <QWidget>
 #include <QPixmap>
+#include <QWidget>
 
 #include "VeyonCore.h"
 
@@ -33,21 +33,19 @@ class VEYON_CORE_EXPORT LockWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	enum Mode
-	{
+	enum Mode {
 		DesktopVisible,
 		BackgroundPixmap,
 		NoBackground
-	} ;
+	};
 
-	explicit LockWidget( Mode mode, const QPixmap& background = QPixmap(), QWidget* parent = nullptr );
+	explicit LockWidget(Mode mode, const QPixmap& background = QPixmap(), QWidget* parent = nullptr);
 	~LockWidget() override;
 
 
 private:
-	void paintEvent( QPaintEvent * ) override;
+	void paintEvent(QPaintEvent*) override;
 
 	QPixmap m_background;
 	Mode m_mode;
-
-} ;
+};

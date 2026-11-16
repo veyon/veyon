@@ -24,21 +24,21 @@
 
 #include <QMessageBox>
 
-#include "TextMessageDialog.h"
-#include "VeyonCore.h"
 #include "PlatformPluginInterface.h"
 #include "PlatformUserFunctions.h"
+#include "TextMessageDialog.h"
+#include "VeyonCore.h"
 
 #include "ui_TextMessageDialog.h"
 
 
-TextMessageDialog::TextMessageDialog( QString &msgStr, QString &titleStr, QWidget *parent ) :
-	QDialog( parent ),
-	ui( new Ui::TextMessageDialog ),
-	m_msgStr( msgStr ),
-	m_titleStr( titleStr )
+TextMessageDialog::TextMessageDialog(QString& msgStr, QString& titleStr, QWidget* parent) :
+	QDialog(parent),
+	ui(new Ui::TextMessageDialog),
+	m_msgStr(msgStr),
+	m_titleStr(titleStr)
 {
-	ui->setupUi( this );
+	ui->setupUi(this);
 
 	auto username = VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::FullName);
 	if (username.isEmpty())

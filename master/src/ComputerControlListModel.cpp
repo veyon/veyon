@@ -28,8 +28,8 @@
 #include "ComputerManager.h"
 #include "FeatureManager.h"
 #include "PlatformSessionFunctions.h"
-#include "VeyonMaster.h"
 #include "UserConfig.h"
+#include "VeyonMaster.h"
 
 void qt_blurImage(QImage& blurImage, qreal radius, bool quality, int transposed);
 
@@ -38,9 +38,9 @@ void qt_blurImage(QImage& blurImage, qreal radius, bool quality, int transposed)
 #endif
 
 
-ComputerControlListModel::ComputerControlListModel( VeyonMaster* masterCore, QObject* parent ) :
-	ComputerListModel( parent ),
-	m_master( masterCore ),
+ComputerControlListModel::ComputerControlListModel(VeyonMaster* masterCore, QObject* parent) :
+	ComputerListModel(parent),
+	m_master(masterCore),
 	m_iconHostOffline(QStringLiteral(":/master/host-offline.png")),
 	m_iconHostOnline(QStringLiteral(":/master/host-online.png")),
 	m_iconHostNameResolutionFailed(QStringLiteral(":/master/host-dns-error.png")),
@@ -48,13 +48,13 @@ ComputerControlListModel::ComputerControlListModel( VeyonMaster* masterCore, QOb
 	m_iconHostServiceError(QStringLiteral(":/master/host-service-error.png"))
 {
 #if defined(QT_TESTLIB_LIB)
-	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
+	new QAbstractItemModelTester(this, QAbstractItemModelTester::FailureReportingMode::Warning, this);
 #endif
 
-	connect( &m_master->computerManager(), &ComputerManager::computerSelectionReset,
-			 this, &ComputerControlListModel::reload );
-	connect( &m_master->computerManager(), &ComputerManager::computerSelectionChanged,
-			 this, &ComputerControlListModel::update );
+	connect(&m_master->computerManager(), &ComputerManager::computerSelectionReset,
+			this, &ComputerControlListModel::reload);
+	connect(&m_master->computerManager(), &ComputerManager::computerSelectionChanged,
+			this, &ComputerControlListModel::update);
 
 	updateComputerScreenSize();
 
@@ -63,9 +63,9 @@ ComputerControlListModel::ComputerControlListModel( VeyonMaster* masterCore, QOb
 
 
 
-int ComputerControlListModel::rowCount( const QModelIndex& parent ) const
+int ComputerControlListModel::rowCount(const QModelIndex& parent) const
 {
-	if( parent.isValid() )
+	if (parent.isValid())
 	{
 		return 0;
 	}
@@ -75,14 +75,14 @@ int ComputerControlListModel::rowCount( const QModelIndex& parent ) const
 
 
 
-QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) const
+QVariant ComputerControlListModel::data(const QModelIndex& index, int role) const
 {
-	if( index.isValid() == false )
+	if (index.isValid() == false)
 	{
 		return {};
 	}
 
-	if( index.row() >= m_computerControlInterfaces.count() )
+	if (index.row() >= m_computerControlInterfaces.count())
 	{
 		vCritical() << "index out of range!";
 		return {};
@@ -90,25 +90,25 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 
 	const auto computerControl = m_computerControlInterfaces[index.row()];
 
-	switch( role )
+	switch (role)
 	{
 	case Qt::DecorationRole:
-		return computerDecorationRole( computerControl );
+		return computerDecorationRole(computerControl);
 
 	case Qt::ToolTipRole:
-		return computerToolTipRole( computerControl );
+		return computerToolTipRole(computerControl);
 
 	case Qt::DisplayRole:
-		return computerDisplayRole( computerControl );
+		return computerDisplayRole(computerControl);
 
 	case Qt::InitialSortOrderRole:
-		return computerSortRole( computerControl );
+		return computerSortRole(computerControl);
 
 	case UidRole:
 		return uidRoleData(computerControl);
 
 	case StateRole:
-		return QVariant::fromValue( computerControl->state() );
+		return QVariant::fromValue(computerControl->state());
 
 	case UserLoginNameRole:
 		return computerControl->userLoginName();
@@ -117,7 +117,7 @@ QVariant ComputerControlListModel::data( const QModelIndex& index, int role ) co
 		return computerControl->framebuffer();
 
 	case ControlInterfaceRole:
-		return QVariant::fromValue( computerControl );
+		return QVariant::fromValue(computerControl);
 
 	default:
 		break;
@@ -132,29 +132,28 @@ void ComputerControlListModel::updateComputerScreenSize()
 {
 	auto ratio = 16.0 / 9.0;
 
-	switch( aspectRatio() )
+	switch (aspectRatio())
 	{
 	case AspectRatio::Auto: ratio = averageAspectRatio(); break;
 	case AspectRatio::AR16_9: ratio = 16.0 / 9.0; break;
 	case AspectRatio::AR16_10: ratio = 16.0 / 10.0; break;
 	case AspectRatio::AR3_2: ratio = 3.0 / 2.0; break;
 	case AspectRatio::AR4_3: ratio = 4.0 / 3.0; break;
-
 	}
 
-	const QSize newSize{ m_master->userConfig().monitoringScreenSize(),
-						 int(m_master->userConfig().monitoringScreenSize() / ratio) };
+	const QSize newSize{m_master->userConfig().monitoringScreenSize(),
+						int(m_master->userConfig().monitoringScreenSize() / ratio)};
 
-	for( auto& controlInterface : m_computerControlInterfaces )
+	for (auto& controlInterface : m_computerControlInterfaces)
 	{
-		controlInterface->setScaledFramebufferSize( newSize );
+		controlInterface->setScaledFramebufferSize(newSize);
 	}
 
-	if( m_computerScreenSize != newSize )
+	if (m_computerScreenSize != newSize)
 	{
 		m_computerScreenSize = newSize;
 
-		for( int i = 0; i < rowCount(); ++i )
+		for (int i = 0; i < rowCount(); ++i)
 		{
 			const auto rowIndex = index(i);
 			updateScreen(rowIndex);
@@ -163,14 +162,13 @@ void ComputerControlListModel::updateComputerScreenSize()
 
 		Q_EMIT computerScreenSizeChanged();
 	}
-
 }
 
 
 
-ComputerControlInterface::Pointer ComputerControlListModel::computerControlInterface( const QModelIndex& index ) const
+ComputerControlInterface::Pointer ComputerControlListModel::computerControlInterface(const QModelIndex& index) const
 {
-	if( index.isValid() == false || index.row() >= m_computerControlInterfaces.count() )
+	if (index.isValid() == false || index.row() >= m_computerControlInterfaces.count())
 	{
 		vCritical() << "invalid ComputerControlInterface requested!";
 		return ComputerControlInterface::Pointer();
@@ -185,16 +183,16 @@ void ComputerControlListModel::reload()
 {
 	beginResetModel();
 
-	const auto computerList = m_master->computerManager().selectedComputers( QModelIndex() );
+	const auto computerList = m_master->computerManager().selectedComputers(QModelIndex());
 
 	m_computerControlInterfaces.clear();
-	m_computerControlInterfaces.reserve( computerList.size() );
+	m_computerControlInterfaces.reserve(computerList.size());
 
-	for( const auto& computer : computerList )
+	for (const auto& computer : computerList)
 	{
-		const auto controlInterface = ComputerControlInterface::Pointer::create( computer );
-		m_computerControlInterfaces.append( controlInterface );
-		startComputerControlInterface( controlInterface.data() );
+		const auto controlInterface = ComputerControlInterface::Pointer::create(computer);
+		m_computerControlInterfaces.append(controlInterface);
+		startComputerControlInterface(controlInterface.data());
 	}
 
 	endResetModel();
@@ -204,18 +202,18 @@ void ComputerControlListModel::reload()
 
 void ComputerControlListModel::update()
 {
-	const auto newComputerList = m_master->computerManager().selectedComputers( QModelIndex() );
+	const auto newComputerList = m_master->computerManager().selectedComputers(QModelIndex());
 
 	int row = 0;
 
-	for( auto it = m_computerControlInterfaces.begin(); it != m_computerControlInterfaces.end(); ) // clazy:exclude=detaching-member
+	for (auto it = m_computerControlInterfaces.begin(); it != m_computerControlInterfaces.end();) // clazy:exclude=detaching-member
 	{
-		if( newComputerList.contains( (*it)->computer() ) == false )
+		if (newComputerList.contains((*it)->computer()) == false)
 		{
-			stopComputerControlInterface( *it );
+			stopComputerControlInterface(*it);
 
-			beginRemoveRows( QModelIndex(), row, row );
-			it = m_computerControlInterfaces.erase( it );
+			beginRemoveRows(QModelIndex(), row, row);
+			it = m_computerControlInterfaces.erase(it);
 			endRemoveRows();
 		}
 		else
@@ -227,22 +225,22 @@ void ComputerControlListModel::update()
 
 	row = 0;
 
-	for( const auto& computer : newComputerList )
+	for (const auto& computer : newComputerList)
 	{
-		if( row < m_computerControlInterfaces.count() && m_computerControlInterfaces[row]->computer() != computer )
+		if (row < m_computerControlInterfaces.count() && m_computerControlInterfaces[row]->computer() != computer)
 		{
-			beginInsertRows( QModelIndex(), row, row );
-			const auto controlInterface = ComputerControlInterface::Pointer::create( computer );
-			m_computerControlInterfaces.insert( row, controlInterface );
-			startComputerControlInterface( controlInterface.data() );
+			beginInsertRows(QModelIndex(), row, row);
+			const auto controlInterface = ComputerControlInterface::Pointer::create(computer);
+			m_computerControlInterfaces.insert(row, controlInterface);
+			startComputerControlInterface(controlInterface.data());
 			endInsertRows();
 		}
-		else if( row >= m_computerControlInterfaces.count() )
+		else if (row >= m_computerControlInterfaces.count())
 		{
-			beginInsertRows( QModelIndex(), row, row );
-			const auto controlInterface = ComputerControlInterface::Pointer::create( computer );
-			m_computerControlInterfaces.append( controlInterface );
-			startComputerControlInterface( controlInterface.data() );
+			beginInsertRows(QModelIndex(), row, row);
+			const auto controlInterface = ComputerControlInterface::Pointer::create(computer);
+			m_computerControlInterfaces.append(controlInterface);
+			startComputerControlInterface(controlInterface.data());
 			endInsertRows();
 		}
 
@@ -254,9 +252,9 @@ void ComputerControlListModel::update()
 
 
 
-QModelIndex ComputerControlListModel::interfaceIndex( ComputerControlInterface* controlInterface ) const
+QModelIndex ComputerControlListModel::interfaceIndex(ComputerControlInterface* controlInterface) const
 {
-	return ComputerListModel::index( m_computerControlInterfaces.indexOf( controlInterface->weakPointer() ), 0 );
+	return ComputerListModel::index(m_computerControlInterfaces.indexOf(controlInterface->weakPointer()), 0);
 }
 
 
@@ -282,7 +280,7 @@ QVariant ComputerControlListModel::uidRoleData(const ComputerControlInterface::P
 
 
 
-void ComputerControlListModel::updateState( const QModelIndex& index )
+void ComputerControlListModel::updateState(const QModelIndex& index)
 {
 	Q_EMIT stateChanged(index);
 	Q_EMIT dataChanged(index, index, {Qt::DisplayRole, Qt::DecorationRole, Qt::SizeHintRole, Qt::ToolTipRole, FramebufferRole});
@@ -292,34 +290,34 @@ void ComputerControlListModel::updateState( const QModelIndex& index )
 
 void ComputerControlListModel::updateAccessControlDetails(const QModelIndex& index)
 {
-	Q_EMIT dataChanged(index, index, { Qt::ToolTipRole });
+	Q_EMIT dataChanged(index, index, {Qt::ToolTipRole});
 }
 
 
 
-void ComputerControlListModel::updateScreen( const QModelIndex& index )
+void ComputerControlListModel::updateScreen(const QModelIndex& index)
 {
-	Q_EMIT dataChanged( index, index, { Qt::DecorationRole, FramebufferRole } );
+	Q_EMIT dataChanged(index, index, {Qt::DecorationRole, FramebufferRole});
 }
 
 
 
-void ComputerControlListModel::updateActiveFeatures( const QModelIndex& index )
+void ComputerControlListModel::updateActiveFeatures(const QModelIndex& index)
 {
-	Q_EMIT dataChanged( index, index, { Qt::ToolTipRole } );
-	Q_EMIT activeFeaturesChanged( index );
+	Q_EMIT dataChanged(index, index, {Qt::ToolTipRole});
+	Q_EMIT activeFeaturesChanged(index);
 }
 
 
 
-void ComputerControlListModel::updateUser( const QModelIndex& index )
+void ComputerControlListModel::updateUser(const QModelIndex& index)
 {
 	Q_EMIT dataChanged(index, index, {Qt::DisplayRole, Qt::ToolTipRole, Qt::SizeHintRole});
 
-	auto controlInterface = computerControlInterface( index );
-	if( controlInterface.isNull() == false )
+	auto controlInterface = computerControlInterface(index);
+	if (controlInterface.isNull() == false)
 	{
-		m_master->computerManager().updateUser( controlInterface );
+		m_master->computerManager().updateUser(controlInterface);
 	}
 }
 
@@ -334,10 +332,9 @@ void ComputerControlListModel::updateSessionInfo(const QModelIndex& index)
 	else
 	{
 		Q_EMIT dataChanged(index, index, {Qt::ToolTipRole});
-
 	}
 
-	auto controlInterface = computerControlInterface( index );
+	auto controlInterface = computerControlInterface(index);
 	if (controlInterface.isNull() == false)
 	{
 		m_master->computerManager().updateSessionInfo(controlInterface);
@@ -346,21 +343,21 @@ void ComputerControlListModel::updateSessionInfo(const QModelIndex& index)
 
 
 
-void ComputerControlListModel::startComputerControlInterface( ComputerControlInterface* controlInterface )
+void ComputerControlListModel::startComputerControlInterface(ComputerControlInterface* controlInterface)
 {
-	controlInterface->start( computerScreenSize(), ComputerControlInterface::UpdateMode::Monitoring );
+	controlInterface->start(computerScreenSize(), ComputerControlInterface::UpdateMode::Monitoring);
 
 	connect(controlInterface, &ComputerControlInterface::framebufferSizeChanged,
 			this, &ComputerControlListModel::updateComputerScreenSize);
 
 	connect(controlInterface, &ComputerControlInterface::framebufferUpdated,
-			this, [=, this] () { updateScreen(interfaceIndex(controlInterface)); });
+			this, [=, this]() { updateScreen(interfaceIndex(controlInterface)); });
 
 	connect(controlInterface, &ComputerControlInterface::activeFeaturesChanged,
-			this, [=, this] () { updateActiveFeatures(interfaceIndex(controlInterface)); });
+			this, [=, this]() { updateActiveFeatures(interfaceIndex(controlInterface)); });
 
 	connect(controlInterface, &ComputerControlInterface::stateChanged,
-			this, [=, this] () { updateState(interfaceIndex(controlInterface)); });
+			this, [=, this]() { updateState(interfaceIndex(controlInterface)); });
 
 	connect(controlInterface, &ComputerControlInterface::userChanged,
 			this, [=, this]() { updateUser(interfaceIndex(controlInterface)); });
@@ -369,17 +366,17 @@ void ComputerControlListModel::startComputerControlInterface( ComputerControlInt
 			this, [=, this]() { updateSessionInfo(interfaceIndex(controlInterface)); });
 
 	connect(controlInterface, &ComputerControlInterface::accessControlDetailsChanged,
-			this, [=, this] () { updateAccessControlDetails(interfaceIndex(controlInterface)); });
+			this, [=, this]() { updateAccessControlDetails(interfaceIndex(controlInterface)); });
 }
 
 
 
-void ComputerControlListModel::stopComputerControlInterface( const ComputerControlInterface::Pointer& controlInterface )
+void ComputerControlListModel::stopComputerControlInterface(const ComputerControlInterface::Pointer& controlInterface)
 {
-	m_master->stopAllFeatures( { controlInterface } );
+	m_master->stopAllFeatures({controlInterface});
 
 	controlInterface->disconnect(this);
-	controlInterface->disconnect( &m_master->computerManager() );
+	controlInterface->disconnect(&m_master->computerManager());
 
 	m_master->computerManager().clearOverlayModelData(controlInterface);
 }
@@ -388,12 +385,12 @@ void ComputerControlListModel::stopComputerControlInterface( const ComputerContr
 
 double ComputerControlListModel::averageAspectRatio() const
 {
-	QSize size{ 16, 9 };
+	QSize size{16, 9};
 
-	for( const auto& controlInterface : m_computerControlInterfaces )
+	for (const auto& controlInterface : m_computerControlInterfaces)
 	{
 		const auto currentSize = controlInterface->screenSize();
-		if( currentSize.isValid() )
+		if (currentSize.isValid())
 		{
 			size += currentSize;
 		}
@@ -404,26 +401,26 @@ double ComputerControlListModel::averageAspectRatio() const
 
 
 
-QImage ComputerControlListModel::scaleAndAlignIcon( const QImage& icon, QSize size ) const
+QImage ComputerControlListModel::scaleAndAlignIcon(const QImage& icon, QSize size) const
 {
 	const auto scaledIcon = icon.scaled(size.width(), size.height(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
-	QImage scaledAndAlignedIcon( size, QImage::Format_ARGB32 );
-	scaledAndAlignedIcon.fill( Qt::transparent );
+	QImage scaledAndAlignedIcon(size, QImage::Format_ARGB32);
+	scaledAndAlignedIcon.fill(Qt::transparent);
 
-	QPainter painter( &scaledAndAlignedIcon );
-	painter.drawImage( ( scaledAndAlignedIcon.width() - scaledIcon.width() ) / 2,
-					   ( scaledAndAlignedIcon.height() - scaledIcon.height() ) / 2,
-					   scaledIcon );
+	QPainter painter(&scaledAndAlignedIcon);
+	painter.drawImage((scaledAndAlignedIcon.width() - scaledIcon.width()) / 2,
+					  (scaledAndAlignedIcon.height() - scaledIcon.height()) / 2,
+					  scaledIcon);
 
 	return scaledAndAlignedIcon;
 }
 
 
 
-QImage ComputerControlListModel::computerDecorationRole( const ComputerControlInterface::Pointer& controlInterface ) const
+QImage ComputerControlListModel::computerDecorationRole(const ComputerControlInterface::Pointer& controlInterface) const
 {
-	switch( controlInterface->state() )
+	switch (controlInterface->state())
 	{
 	case ComputerControlInterface::State::Connected:
 	{
@@ -466,19 +463,15 @@ QImage ComputerControlListModel::computerDecorationRole( const ComputerControlIn
 
 
 
-QString ComputerControlListModel::computerToolTipRole( const ComputerControlInterface::Pointer& controlInterface ) const
+QString ComputerControlListModel::computerToolTipRole(const ComputerControlInterface::Pointer& controlInterface) const
 {
-	const QString state( computerStateDescription( controlInterface ) );
+	const QString state(computerStateDescription(controlInterface));
 	const QString name(tr("Name: %1").arg(controlInterface->computerName()));
-	const QString location( tr( "Location: %1" ).arg( controlInterface->computer().location() ) );
+	const QString location(tr("Location: %1").arg(controlInterface->computer().location()));
 	const QString host =
-			controlInterface->computer().hostAddress().isNull() ?
-				tr("Hostname: %1").arg(controlInterface->computer().hostName().isEmpty() ?
-										   QStringLiteral("&lt;%1&gt;").arg(tr("unknown"))
-										 :
-										   controlInterface->computer().hostName())
-			  :
-				tr("IP address: %1").arg(controlInterface->computer().hostAddress().toString());
+		controlInterface->computer().hostAddress().isNull() ?
+		tr("Hostname: %1").arg(controlInterface->computer().hostName().isEmpty() ? QStringLiteral("&lt;%1&gt;").arg(tr("unknown")) : controlInterface->computer().hostName()) :
+		tr("IP address: %1").arg(controlInterface->computer().hostAddress().toString());
 	const QString user(userInformation(controlInterface));
 	const QString features = activeFeaturesInformation(controlInterface);
 
@@ -492,19 +485,19 @@ QString ComputerControlListModel::computerToolTipRole( const ComputerControlInte
 
 
 
-QString ComputerControlListModel::computerDisplayRole( const ComputerControlInterface::Pointer& controlInterface ) const
+QString ComputerControlListModel::computerDisplayRole(const ComputerControlInterface::Pointer& controlInterface) const
 {
-	if( displayRoleContent() != DisplayRoleContent::ComputerName &&
+	if (displayRoleContent() != DisplayRoleContent::ComputerName &&
 		controlInterface->state() == ComputerControlInterface::State::Connected &&
-		controlInterface->userLoginName().isEmpty() == false )
+		controlInterface->userLoginName().isEmpty() == false)
 	{
 		auto user = controlInterface->userFullName();
-		if( user.isEmpty() )
+		if (user.isEmpty())
 		{
 			user = VeyonCore::stripDomain(controlInterface->userLoginName());
 		}
 
-		if( displayRoleContent() == DisplayRoleContent::UserName )
+		if (displayRoleContent() == DisplayRoleContent::UserName)
 		{
 			return user;
 		}
@@ -512,7 +505,7 @@ QString ComputerControlListModel::computerDisplayRole( const ComputerControlInte
 		return QStringLiteral("%1 - %2").arg(user, controlInterface->computerName());
 	}
 
-	if( displayRoleContent() != DisplayRoleContent::UserName )
+	if (displayRoleContent() != DisplayRoleContent::UserName)
 	{
 		return controlInterface->computerName();
 	}
@@ -522,20 +515,20 @@ QString ComputerControlListModel::computerDisplayRole( const ComputerControlInte
 
 
 
-QString ComputerControlListModel::computerSortRole( const ComputerControlInterface::Pointer& controlInterface ) const
+QString ComputerControlListModel::computerSortRole(const ComputerControlInterface::Pointer& controlInterface) const
 {
-	switch( sortOrder() )
+	switch (sortOrder())
 	{
 	case SortOrder::ComputerAndUserName:
 		return controlInterface->computer().location() + controlInterface->computerName() +
-				controlInterface->computer().hostName() + controlInterface->userLoginName();
+			controlInterface->computer().hostName() + controlInterface->userLoginName();
 
 	case SortOrder::ComputerName:
 		return controlInterface->computer().location() + controlInterface->computerName() +
-				controlInterface->computer().hostName();
+			controlInterface->computer().hostName();
 
 	case SortOrder::UserName:
-		if( controlInterface->userFullName().isEmpty() == false )
+		if (controlInterface->userFullName().isEmpty() == false)
 		{
 			return controlInterface->userFullName();
 		}
@@ -544,7 +537,7 @@ QString ComputerControlListModel::computerSortRole( const ComputerControlInterfa
 
 	case SortOrder::LastPartOfUserName:
 		const QStringList parts = controlInterface->userFullName().split(QLatin1Char(' '), Qt::SkipEmptyParts);
-		if( parts.isEmpty() == false )
+		if (parts.isEmpty() == false)
 		{
 			return parts.constLast();
 		}
@@ -557,9 +550,9 @@ QString ComputerControlListModel::computerSortRole( const ComputerControlInterfa
 
 
 
-QString ComputerControlListModel::computerStateDescription( const ComputerControlInterface::Pointer& controlInterface )
+QString ComputerControlListModel::computerStateDescription(const ComputerControlInterface::Pointer& controlInterface)
 {
-	switch( controlInterface->state() )
+	switch (controlInterface->state())
 	{
 	case ComputerControlInterface::State::Connected:
 		if (controlInterface->hasValidFramebuffer())
@@ -569,19 +562,19 @@ QString ComputerControlListModel::computerStateDescription( const ComputerContro
 		[[fallthrough]];
 
 	case ComputerControlInterface::State::Connecting:
-		return tr( "Establishing connection" );
+		return tr("Establishing connection");
 
 	case ComputerControlInterface::State::HostOffline:
-		return tr( "Computer offline or switched off" );
+		return tr("Computer offline or switched off");
 
 	case ComputerControlInterface::State::HostNameResolutionFailed:
 		return tr("Hostname could not be resolved");
 
 	case ComputerControlInterface::State::ServerNotRunning:
-		return tr( "Veyon Server unreachable or not running" );
+		return tr("Veyon Server unreachable or not running");
 
 	case ComputerControlInterface::State::AuthenticationFailed:
-		return tr( "Authentication failed or access denied" );
+		return tr("Authentication failed or access denied");
 
 	case ComputerControlInterface::State::AccessControlFailed:
 		return controlInterface->accessControlDetails();
@@ -590,7 +583,7 @@ QString ComputerControlListModel::computerStateDescription( const ComputerContro
 		break;
 	}
 
-	return tr( "Disconnected" );
+	return tr("Disconnected");
 }
 
 

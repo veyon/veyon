@@ -40,114 +40,114 @@ extern DWORD mainthreadId;
 extern HINSTANCE hInstResDLL;
 
 
-void ultravnc_veyon_load_password( char* out, int size )
+void ultravnc_veyon_load_password(char* out, int size)
 {
 	const auto password = vncServerInstance->password().toByteArray();
 
-	if( password.size() == size )
+	if (password.size() == size)
 	{
-		memcpy( out, password.constData(), static_cast<size_t>( size ) ); // Flawfinder: ignore
+		memcpy(out, password.constData(), static_cast<size_t>(size)); // Flawfinder: ignore
 	}
 	else
 	{
-		qFatal( "Requested password too short!");
+		qFatal("Requested password too short!");
 	}
 }
 
 
 
-BOOL ultravnc_veyon_load_int( LPCSTR valname, int *out )
+BOOL ultravnc_veyon_load_int(LPCSTR valname, int* out)
 {
-	if( strcmp( valname, "LoopbackOnly" ) == 0 )
+	if (strcmp(valname, "LoopbackOnly") == 0)
 	{
 		*out = 1;
 		return true;
 	}
-	if( strcmp( valname, "DisableTrayIcon" ) == 0 )
+	if (strcmp(valname, "DisableTrayIcon") == 0)
 	{
 		*out = 1;
 		return true;
 	}
-	if( strcmp( valname, "AuthRequired" ) == 0 )
+	if (strcmp(valname, "AuthRequired") == 0)
 	{
 		*out = 1;
 		return true;
 	}
-	if( strcmp( valname, "CaptureAlphaBlending" ) == 0 )
+	if (strcmp(valname, "CaptureAlphaBlending") == 0)
 	{
 		*out = vncServerInstance->configuration().ultraVncCaptureLayeredWindows() ? 1 : 0;
 		return true;
 	}
-	if( strcmp( valname, "PollFullScreen" ) == 0 )
+	if (strcmp(valname, "PollFullScreen") == 0)
 	{
 		*out = vncServerInstance->configuration().ultraVncPollFullScreen() ? 1 : 0;
 		return true;
 	}
-	if( strcmp( valname, "TurboMode" ) == 0 )
+	if (strcmp(valname, "TurboMode") == 0)
 	{
 		*out = vncServerInstance->configuration().ultraVncLowAccuracy() ? 1 : 0;
 		return true;
 	}
-	if( strcmp( valname, "DeskDupEngine" ) == 0 )
+	if (strcmp(valname, "DeskDupEngine") == 0)
 	{
 		*out = vncServerInstance->configuration().ultraVncDeskDupEngineEnabled() ? 1 : 0;
 		return true;
 	}
-	if( strcmp( valname, "MaxCpu2" ) == 0 )
+	if (strcmp(valname, "MaxCpu2") == 0)
 	{
 		*out = vncServerInstance->configuration().ultraVncMaxCpu();
 		return true;
 	}
-	if( strcmp( valname, "NewMSLogon" ) == 0 )
+	if (strcmp(valname, "NewMSLogon") == 0)
 	{
 		*out = 0;
 		return true;
 	}
-	if( strcmp( valname, "MSLogonRequired" ) == 0 )
+	if (strcmp(valname, "MSLogonRequired") == 0)
 	{
 		*out = 0;
 		return true;
 	}
-	if( strcmp( valname, "RemoveWallpaper" ) == 0 )
+	if (strcmp(valname, "RemoveWallpaper") == 0)
 	{
 		*out = 0;
 		return true;
 	}
-	if( strcmp( valname, "FileTransferEnabled" ) == 0 )
+	if (strcmp(valname, "FileTransferEnabled") == 0)
 	{
 		*out = 0;
 		return true;
 	}
-	if( strcmp( valname, "AllowLoopback" ) == 0 )
+	if (strcmp(valname, "AllowLoopback") == 0)
 	{
 		*out = 1;
 		return true;
 	}
-	if( strcmp( valname, "AutoPortSelect" ) == 0 )
+	if (strcmp(valname, "AutoPortSelect") == 0)
 	{
 		*out = 0;
 		return true;
 	}
 
-	if( strcmp( valname, "HTTPConnect" ) == 0 )
+	if (strcmp(valname, "HTTPConnect") == 0)
 	{
 		*out = 0;
 		return true;
 	}
 
-	if( strcmp( valname, "PortNumber" ) == 0 )
+	if (strcmp(valname, "PortNumber") == 0)
 	{
 		*out = vncServerInstance->serverPort();
 		return true;
 	}
 
-	if( strcmp( valname, "secondary" ) == 0 )
+	if (strcmp(valname, "secondary") == 0)
 	{
 		*out = vncServerInstance->configuration().ultraVncMultiMonitorSupportEnabled();
 		return true;
 	}
 
-	if( strcmp( valname, "autocapt" ) == 0 )
+	if (strcmp(valname, "autocapt") == 0)
 	{
 		*out = 0;
 		return true;
@@ -159,9 +159,9 @@ BOOL ultravnc_veyon_load_int( LPCSTR valname, int *out )
 
 
 BuiltinUltraVncServer::BuiltinUltraVncServer() :
-	m_configuration( &VeyonCore::config() ),
-	m_serverPort( DefaultServerPort ),
-	m_logoffEventFilter( nullptr )
+	m_configuration(&VeyonCore::config()),
+	m_serverPort(DefaultServerPort),
+	m_logoffEventFilter(nullptr)
 {
 	vncServerInstance = this;
 }
@@ -170,7 +170,7 @@ BuiltinUltraVncServer::BuiltinUltraVncServer() :
 
 BuiltinUltraVncServer::~BuiltinUltraVncServer()
 {
-	if( m_logoffEventFilter )
+	if (m_logoffEventFilter)
 	{
 		delete m_logoffEventFilter;
 	}
@@ -182,7 +182,7 @@ BuiltinUltraVncServer::~BuiltinUltraVncServer()
 
 QWidget* BuiltinUltraVncServer::configurationWidget()
 {
-	return new UltraVncConfigurationWidget( m_configuration );
+	return new UltraVncConfigurationWidget(m_configuration);
 }
 
 
@@ -190,7 +190,7 @@ QWidget* BuiltinUltraVncServer::configurationWidget()
 void BuiltinUltraVncServer::prepareServer()
 {
 	// initialize global instance handler and main thread ID
-	hAppInstance = GetModuleHandle( nullptr );
+	hAppInstance = GetModuleHandle(nullptr);
 	mainthreadId = GetCurrentThreadId();
 
 	hInstResDLL = hAppInstance;
@@ -200,14 +200,14 @@ void BuiltinUltraVncServer::prepareServer()
 
 
 
-bool BuiltinUltraVncServer::runServer( int serverPort, const Password& password )
+bool BuiltinUltraVncServer::runServer(int serverPort, const Password& password)
 {
 	m_serverPort = serverPort;
 	m_password = password;
 
 	initUltraVncSettingsManager();
 
-	typedef BOOL (WINAPI *pSetProcessMitigationPolicy_t)(PROCESS_MITIGATION_POLICY, PVOID, SIZE_T);
+	typedef BOOL(WINAPI * pSetProcessMitigationPolicy_t)(PROCESS_MITIGATION_POLICY, PVOID, SIZE_T);
 	HMODULE hKernel32 = GetModuleHandle("kernel32.dll");
 	if (hKernel32)
 	{
@@ -224,33 +224,33 @@ bool BuiltinUltraVncServer::runServer( int serverPort, const Password& password 
 	auto hUser32 = LoadLibraryExW(L"user32.dll", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32);
 	auto hSHCore = LoadLibraryExW(L"SHCore.dll", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32);
 
-	using SetProcessDpiAwarenessFunc = HRESULT (WINAPI *)( DWORD );
+	using SetProcessDpiAwarenessFunc = HRESULT(WINAPI*)(DWORD);
 	const auto setProcessDpiAwareness =
-		hSHCore ? SetProcessDpiAwarenessFunc( GetProcAddress( hSHCore, "SetProcessDpiAwareness" ) ) : nullptr;
+		hSHCore ? SetProcessDpiAwarenessFunc(GetProcAddress(hSHCore, "SetProcessDpiAwareness")) : nullptr;
 
-	if( setProcessDpiAwareness )
+	if (setProcessDpiAwareness)
 	{
 		static constexpr DWORD PROCESS_PER_MONITOR_DPI_AWARE = 2;
-		setProcessDpiAwareness( PROCESS_PER_MONITOR_DPI_AWARE );
+		setProcessDpiAwareness(PROCESS_PER_MONITOR_DPI_AWARE);
 	}
-	else if( hUser32 )
+	else if (hUser32)
 	{
 		using SetProcessDPIAwareFunc = BOOL (*)();
-		const auto setDPIAware = SetProcessDPIAwareFunc( GetProcAddress( hUser32, "SetProcessDPIAware" ) );
-		if( setDPIAware )
+		const auto setDPIAware = SetProcessDPIAwareFunc(GetProcAddress(hUser32, "SetProcessDPIAware"));
+		if (setDPIAware)
 		{
 			setDPIAware();
 		}
 	}
 
-	if( hUser32 )
+	if (hUser32)
 	{
-		FreeLibrary( hUser32 );
+		FreeLibrary(hUser32);
 	}
 
-	if( hSHCore )
+	if (hSHCore)
 	{
-		FreeLibrary( hSHCore );
+		FreeLibrary(hSHCore);
 	}
 
 	return WinVNCAppMain() == 1;
@@ -259,4 +259,3 @@ bool BuiltinUltraVncServer::runServer( int serverPort, const Password& password 
 
 
 IMPLEMENT_CONFIG_PROXY(UltraVncConfiguration)
-

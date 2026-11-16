@@ -34,21 +34,21 @@
 #include "ui_SpotlightPanel.h"
 
 
-SpotlightPanel::SpotlightPanel( UserConfig& config, ComputerMonitoringWidget* computerMonitoringWidget, QWidget* parent ) :
-	QWidget( parent ),
-	ui( new Ui::SpotlightPanel ),
-	m_config( config ),
-	m_globalComputerMonitoringWidget( computerMonitoringWidget ),
-	m_model( new SpotlightModel( m_globalComputerMonitoringWidget->dataModel(), this ) )
+SpotlightPanel::SpotlightPanel(UserConfig& config, ComputerMonitoringWidget* computerMonitoringWidget, QWidget* parent) :
+	QWidget(parent),
+	ui(new Ui::SpotlightPanel),
+	m_config(config),
+	m_globalComputerMonitoringWidget(computerMonitoringWidget),
+	m_model(new SpotlightModel(m_globalComputerMonitoringWidget->dataModel(), this))
 {
-	ui->setupUi( this );
+	ui->setupUi(this);
 
-	ui->monitoringWidget->setAutoAdjustIconSize( false );
-	ui->monitoringWidget->setUseCustomComputerPositions( false );
-	ui->monitoringWidget->setAcceptDrops( false );
-	ui->monitoringWidget->setDragEnabled( false );
-	ui->monitoringWidget->setIgnoreWheelEvent( true );
-	ui->monitoringWidget->setModel( m_model );
+	ui->monitoringWidget->setAutoAdjustIconSize(false);
+	ui->monitoringWidget->setUseCustomComputerPositions(false);
+	ui->monitoringWidget->setAcceptDrops(false);
+	ui->monitoringWidget->setDragEnabled(false);
+	ui->monitoringWidget->setIgnoreWheelEvent(true);
+	ui->monitoringWidget->setModel(m_model);
 
 	if (VeyonCore::useDarkMode())
 	{
@@ -60,21 +60,21 @@ SpotlightPanel::SpotlightPanel( UserConfig& config, ComputerMonitoringWidget* co
 		ui->removeButton->setIcon(QIcon(QStringLiteral(":/core/go-down-dark.png")));
 	}
 
-	connect( ui->addButton, &QAbstractButton::clicked, this, &SpotlightPanel::add );
-	connect( ui->removeButton, &QAbstractButton::clicked, this, &SpotlightPanel::remove );
-	connect( ui->realtimeViewButton, &QAbstractButton::toggled, this, &SpotlightPanel::setRealtimeView );
+	connect(ui->addButton, &QAbstractButton::clicked, this, &SpotlightPanel::add);
+	connect(ui->removeButton, &QAbstractButton::clicked, this, &SpotlightPanel::remove);
+	connect(ui->realtimeViewButton, &QAbstractButton::toggled, this, &SpotlightPanel::setRealtimeView);
 
-	connect( m_globalComputerMonitoringWidget, &QAbstractItemView::pressed, this, &SpotlightPanel::addPressedItem );
-	connect( ui->monitoringWidget, &QAbstractItemView::pressed, this, &SpotlightPanel::removePressedItem );
+	connect(m_globalComputerMonitoringWidget, &QAbstractItemView::pressed, this, &SpotlightPanel::addPressedItem);
+	connect(ui->monitoringWidget, &QAbstractItemView::pressed, this, &SpotlightPanel::removePressedItem);
 
 	connect(m_model, &QAbstractItemModel::rowsRemoved, this, [=, this]() {
-		if( m_model->rowCount() <= 0 )
+		if (m_model->rowCount() <= 0)
 		{
-			ui->stackedWidget->setCurrentWidget( ui->helpPage );
+			ui->stackedWidget->setCurrentWidget(ui->helpPage);
 		}
-	} );
+	});
 
-	setRealtimeView( m_config.spotlightRealtime() );
+	setRealtimeView(m_config.spotlightRealtime());
 }
 
 
@@ -86,11 +86,11 @@ SpotlightPanel::~SpotlightPanel()
 
 
 
-void SpotlightPanel::resizeEvent( QResizeEvent* event )
+void SpotlightPanel::resizeEvent(QResizeEvent* event)
 {
 	updateIconSize();
 
-	QWidget::resizeEvent( event );
+	QWidget::resizeEvent(event);
 }
 
 
@@ -99,21 +99,21 @@ void SpotlightPanel::add()
 {
 	const auto selectedComputerControlInterfaces = m_globalComputerMonitoringWidget->selectedComputerControlInterfaces();
 
-	if( selectedComputerControlInterfaces.isEmpty() )
+	if (selectedComputerControlInterfaces.isEmpty())
 	{
-		QMessageBox::information( this, tr("Spotlight"),
-								  tr( "Please select at least one computer to add.") );
+		QMessageBox::information(this, tr("Spotlight"),
+								 tr("Please select at least one computer to add."));
 		return;
 	}
 
-	for( const auto& controlInterface : selectedComputerControlInterfaces )
+	for (const auto& controlInterface : selectedComputerControlInterfaces)
 	{
-		m_model->add( controlInterface );
+		m_model->add(controlInterface);
 	}
 
-	if( ui->stackedWidget->currentWidget() != ui->viewPage )
+	if (ui->stackedWidget->currentWidget() != ui->viewPage)
 	{
-		ui->stackedWidget->setCurrentWidget( ui->viewPage );
+		ui->stackedWidget->setCurrentWidget(ui->viewPage);
 
 		// due to a bug in QListView force relayout of all items to show decorations (thumbnails) properly
 		updateIconSize();
@@ -125,10 +125,10 @@ void SpotlightPanel::add()
 void SpotlightPanel::remove()
 {
 	const auto selection = ui->monitoringWidget->selectionModel()->selectedIndexes();
-	if( selection.isEmpty() )
+	if (selection.isEmpty())
 	{
-		QMessageBox::information( this, tr("Spotlight"),
-								  tr( "Please select at least one computer to remove.") );
+		QMessageBox::information(this, tr("Spotlight"),
+								 tr("Please select at least one computer to remove."));
 		return;
 	}
 
@@ -138,8 +138,8 @@ void SpotlightPanel::remove()
 
 	for (const auto& index : selection)
 	{
-		interfacesToRemove.append(m_model->data(index, SpotlightModel::ControlInterfaceRole )
-								  .value<ComputerControlInterface::Pointer>());
+		interfacesToRemove.append(m_model->data(index, SpotlightModel::ControlInterfaceRole)
+									  .value<ComputerControlInterface::Pointer>());
 	}
 
 	// now remove by stable pointer identity, independent of row/index shifts
@@ -151,13 +151,13 @@ void SpotlightPanel::remove()
 
 
 
-void SpotlightPanel::setRealtimeView( bool enabled )
+void SpotlightPanel::setRealtimeView(bool enabled)
 {
-	m_model->setUpdateInRealtime( enabled );
+	m_model->setUpdateInRealtime(enabled);
 
-	m_config.setSpotlightRealtime( enabled );
+	m_config.setSpotlightRealtime(enabled);
 
-	ui->realtimeViewButton->setChecked( enabled );
+	ui->realtimeViewButton->setChecked(enabled);
 }
 
 
@@ -169,18 +169,18 @@ void SpotlightPanel::updateIconSize()
 	const auto spacing = ui->monitoringWidget->spacing();
 	const auto labelHeight = ui->monitoringWidget->fontMetrics().height();
 
-	ui->monitoringWidget->setIconSize( { ui->monitoringWidget->width() - ExtraMargin - spacing * 2,
-										 ui->monitoringWidget->height() - ExtraMargin - labelHeight - spacing * 2 } );
-	m_model->setIconSize( ui->monitoringWidget->iconSize() );
+	ui->monitoringWidget->setIconSize({ui->monitoringWidget->width() - ExtraMargin - spacing * 2,
+									   ui->monitoringWidget->height() - ExtraMargin - labelHeight - spacing * 2});
+	m_model->setIconSize(ui->monitoringWidget->iconSize());
 }
 
 
 
-void SpotlightPanel::addPressedItem( const QModelIndex& index )
+void SpotlightPanel::addPressedItem(const QModelIndex& index)
 {
-	if( QGuiApplication::mouseButtons().testFlag( Qt::MiddleButton ) )
+	if (QGuiApplication::mouseButtons().testFlag(Qt::MiddleButton))
 	{
-		m_globalComputerMonitoringWidget->selectionModel()->select( index, QItemSelectionModel::SelectCurrent );
+		m_globalComputerMonitoringWidget->selectionModel()->select(index, QItemSelectionModel::SelectCurrent);
 
 		add();
 	}
@@ -188,11 +188,11 @@ void SpotlightPanel::addPressedItem( const QModelIndex& index )
 
 
 
-void SpotlightPanel::removePressedItem( const QModelIndex& index )
+void SpotlightPanel::removePressedItem(const QModelIndex& index)
 {
-	if( QGuiApplication::mouseButtons().testFlag( Qt::MiddleButton ) )
+	if (QGuiApplication::mouseButtons().testFlag(Qt::MiddleButton))
 	{
-		ui->monitoringWidget->selectionModel()->select( index, QItemSelectionModel::SelectCurrent );
+		ui->monitoringWidget->selectionModel()->select(index, QItemSelectionModel::SelectCurrent);
 
 		remove();
 	}

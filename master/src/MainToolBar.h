@@ -31,7 +31,7 @@ class MainToolBar : public QToolBar
 {
 	Q_OBJECT
 public:
-	explicit MainToolBar( QWidget* parent );
+	explicit MainToolBar(QWidget* parent);
 	~MainToolBar() override = default;
 
 protected:
@@ -43,9 +43,8 @@ private:
 	void toggleToolTips();
 	void toggleIconMode();
 
-	void contextMenuEvent( QContextMenuEvent* event ) override;
+	void contextMenuEvent(QContextMenuEvent* event) override;
 
 	MainWindow* m_mainWindow;
 	QLayout* m_layout;
-
-} ;
+};

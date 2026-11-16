@@ -24,22 +24,22 @@
 
 #include <QMessageBox>
 
-#include "AccessControlRulesTestDialog.h"
 #include "AccessControlProvider.h"
+#include "AccessControlRulesTestDialog.h"
 #include "HostAddress.h"
 #include "PlatformUserFunctions.h"
 
 #include "ui_AccessControlRulesTestDialog.h"
 
 
-AccessControlRulesTestDialog::AccessControlRulesTestDialog(QWidget *parent) :
+AccessControlRulesTestDialog::AccessControlRulesTestDialog(QWidget* parent) :
 	QDialog(parent),
 	ui(new Ui::AccessControlRulesTestDialog)
 {
 	ui->setupUi(this);
 
 	ui->localUserLineEdit->setText(VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName));
-	ui->localComputerLineEdit->setText( HostAddress::localFQDN() );
+	ui->localComputerLineEdit->setText(HostAddress::localFQDN());
 }
 
 
@@ -63,31 +63,30 @@ int AccessControlRulesTestDialog::exec()
 void AccessControlRulesTestDialog::accept()
 {
 	const auto result =
-			AccessControlProvider().processAccessControlRules( ui->accessingUserLineEdit->text(),
-															   ui->accessingComputerLineEdit->text(),
-															   ui->localUserLineEdit->text(),
-															   ui->localComputerLineEdit->text(),
-															   ui->connectedUsersLineEdit->text().isEmpty() ?
-																   QStringList()
-																 :
-																   ui->connectedUsersLineEdit->text().split(QLatin1Char(',')));
+		AccessControlProvider().processAccessControlRules(ui->accessingUserLineEdit->text(),
+														  ui->accessingComputerLineEdit->text(),
+														  ui->localUserLineEdit->text(),
+														  ui->localComputerLineEdit->text(),
+														  ui->connectedUsersLineEdit->text().isEmpty() ?
+															  QStringList() :
+															  ui->connectedUsersLineEdit->text().split(QLatin1Char(',')));
 	QString resultText;
 
 	switch (result ? result->action() : AccessControlRule::Action::None)
 	{
 	case AccessControlRule::Action::Allow:
-		resultText = tr( "The access in the given scenario is allowed." );
+		resultText = tr("The access in the given scenario is allowed.");
 		break;
 	case AccessControlRule::Action::Deny:
-		resultText = tr( "The access in the given scenario is denied." );
+		resultText = tr("The access in the given scenario is denied.");
 		break;
 	case AccessControlRule::Action::AskForPermission:
-		resultText = tr( "The access in the given scenario needs permission of the logged on user." );
+		resultText = tr("The access in the given scenario needs permission of the logged on user.");
 		break;
 	default:
 		resultText = tr("There is no matching rule with a valid action. The access is therefore denied.");
 		break;
 	}
 
-	QMessageBox::information( this, tr( "Test result" ), resultText );
+	QMessageBox::information(this, tr("Test result"), resultText);
 }

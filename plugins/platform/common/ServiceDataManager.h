@@ -46,7 +46,7 @@ public:
 	using Data = CryptoCore::PlaintextPassword;
 	using Token = CryptoCore::PlaintextPassword;
 
-	ServiceDataManager( QObject* parent = nullptr );
+	ServiceDataManager(QObject* parent = nullptr);
 	~ServiceDataManager() override;
 
 	const Token& token() const
@@ -54,8 +54,8 @@ public:
 		return m_token;
 	}
 
-	static QByteArray read( const Token& token );
-	static bool write( const Token& token, const Data& data );
+	static QByteArray read(const Token& token);
+	static bool write(const Token& token, const Data& data);
 
 	static const char* serviceDataTokenEnvironmentVariable()
 	{
@@ -71,11 +71,11 @@ private:
 	static constexpr auto SocketWaitTimeout = 1000;
 	static constexpr auto MessageReadTimeout = 10000;
 
-	static bool waitForMessage( QLocalSocket* socket );
-	static void sendMessage( QLocalSocket* socket, VariantArrayMessage& message );
+	static bool waitForMessage(QLocalSocket* socket);
+	static void sendMessage(QLocalSocket* socket, VariantArrayMessage& message);
 
 	void acceptConnection();
-	void handleConnection( QLocalSocket* socket );
+	void handleConnection(QLocalSocket* socket);
 
 	static QString serverName()
 	{
@@ -86,5 +86,4 @@ private:
 
 	Token m_token;
 	Data m_data;
-
 };

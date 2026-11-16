@@ -34,9 +34,8 @@ class VncEvent
 {
 public:
 	virtual ~VncEvent() = default;
-	virtual void fire( rfbClient* client ) = 0;
-
-} ;
+	virtual void fire(rfbClient* client) = 0;
+};
 
 
 class VncKeyEvent : public VncEvent
@@ -46,47 +45,47 @@ public:
 
 	VncKeyEvent(KeyCode key, bool pressed);
 
-	void fire( rfbClient* client ) override;
+	void fire(rfbClient* client) override;
 
 private:
 	KeyCode m_key;
 	bool m_pressed;
-} ;
+};
 
 
 class VncPointerEvent : public VncEvent
 {
 public:
-	VncPointerEvent( int x, int y, int buttonMask );
+	VncPointerEvent(int x, int y, int buttonMask);
 
-	void fire( rfbClient* client ) override;
+	void fire(rfbClient* client) override;
 
 private:
 	int m_x;
 	int m_y;
 	int m_buttonMask;
-} ;
+};
 
 
 class VncClientCutEvent : public VncEvent
 {
 public:
-	explicit VncClientCutEvent( const QString& text );
+	explicit VncClientCutEvent(const QString& text);
 
-	void fire( rfbClient* client ) override;
+	void fire(rfbClient* client) override;
 
 private:
 	QByteArray m_text;
-} ;
+};
 
 class VncUpdateFormatAndEncodingsEvent : public VncEvent
 {
 public:
-	void fire( rfbClient* client ) override;
+	void fire(rfbClient* client) override;
 };
 
 class VncFullFramebufferUpdateRequestEvent : public VncEvent
 {
 public:
-	void fire( rfbClient* client ) override;
+	void fire(rfbClient* client) override;
 };

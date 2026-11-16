@@ -48,11 +48,10 @@ public:
 	virtual ~PlatformNetworkFunctions() = default;
 
 	virtual PingResult ping(const QString& hostAddress) = 0;
-	virtual bool configureFirewallException( const QString& applicationPath, const QString& description, bool enabled ) = 0;
+	virtual bool configureFirewallException(const QString& applicationPath, const QString& description, bool enabled) = 0;
 
-	virtual bool configureSocketKeepalive( Socket socket, bool enabled, int idleTime, int interval, int probes ) = 0;
+	virtual bool configureSocketKeepalive(Socket socket, bool enabled, int idleTime, int interval, int probes) = 0;
 
 	virtual QNetworkInterface defaultRouteNetworkInterface() = 0;
 	virtual int networkInterfaceSpeedInMBitPerSecond(const QNetworkInterface& networkInterface) = 0;
-
 };

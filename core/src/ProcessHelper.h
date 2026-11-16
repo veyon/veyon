@@ -28,14 +28,14 @@
 
 #include "VeyonCore.h"
 
-class VEYON_CORE_EXPORT ProcessHelper {
+class VEYON_CORE_EXPORT ProcessHelper
+{
 public:
-	ProcessHelper( const QString& program, const QStringList& arguments );
+	ProcessHelper(const QString& program, const QStringList& arguments);
 
 	int run();
 	QByteArray runAndReadAll();
 
 private:
 	QProcess m_process;
-
 };

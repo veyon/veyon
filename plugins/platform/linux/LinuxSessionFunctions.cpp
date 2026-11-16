@@ -23,8 +23,8 @@
  */
 
 #include <QCoreApplication>
-#include <QDateTime>
 #include <QDBusReply>
+#include <QDateTime>
 #include <QHostInfo>
 #include <QProcessEnvironment>
 #include <QSettings>
@@ -40,7 +40,7 @@
 
 LinuxSessionFunctions::SessionId LinuxSessionFunctions::currentSessionId()
 {
-	return PlatformSessionManager::resolveSessionId( currentSessionPath() );
+	return PlatformSessionManager::resolveSessionId(currentSessionPath());
 }
 
 
@@ -77,23 +77,23 @@ QString LinuxSessionFunctions::currentSessionType() const
 {
 	const auto env = QProcessEnvironment::systemEnvironment();
 
-	if( env.contains( QStringLiteral("WAYLAND_DISPLAY") ) )
+	if (env.contains(QStringLiteral("WAYLAND_DISPLAY")))
 	{
 		return QStringLiteral("wayland");
 	}
-	else if( env.contains( QStringLiteral("DISPLAY") ) )
+	else if (env.contains(QStringLiteral("DISPLAY")))
 	{
 		return QStringLiteral("x11");
 	}
 
-	return getSessionProperty( currentSessionPath(), QStringLiteral("Type") ).toString();
+	return getSessionProperty(currentSessionPath(), QStringLiteral("Type")).toString();
 }
 
 
 
 bool LinuxSessionFunctions::currentSessionHasUser() const
 {
-	return getSessionClass( currentSessionPath() ) == Class::User;
+	return getSessionClass(currentSessionPath()) == Class::User;
 }
 
 
@@ -130,14 +130,14 @@ QStringList LinuxSessionFunctions::listSessions()
 {
 	QStringList sessions;
 
-	const QDBusReply<QDBusArgument> reply = LinuxCoreFunctions::systemdLoginManager()->call( QStringLiteral("ListSessions") );
+	const QDBusReply<QDBusArgument> reply = LinuxCoreFunctions::systemdLoginManager()->call(QStringLiteral("ListSessions"));
 
-	if( reply.isValid() )
+	if (reply.isValid())
 	{
 		const auto data = reply.value();
 
 		data.beginArray();
-		while( data.atEnd() == false )
+		while (data.atEnd() == false)
 		{
 			LoginDBusSession session;
 
@@ -145,7 +145,7 @@ QStringList LinuxSessionFunctions::listSessions()
 			data >> session.id >> session.uid >> session.name >> session.seatId >> session.path;
 			data.endStructure();
 
-			sessions.append( session.path.path() );
+			sessions.append(session.path.path());
 		}
 		return sessions;
 	}
@@ -159,10 +159,10 @@ QStringList LinuxSessionFunctions::listSessions()
 
 QVariant LinuxSessionFunctions::getSessionProperty(const QString& session, const QString& property, bool logErrors)
 {
-	QDBusInterface loginManager( QStringLiteral("org.freedesktop.login1"),
-								 session,
-								 QStringLiteral("org.freedesktop.DBus.Properties"),
-								 QDBusConnection::systemBus() );
+	QDBusInterface loginManager(QStringLiteral("org.freedesktop.login1"),
+								session,
+								QStringLiteral("org.freedesktop.DBus.Properties"),
+								QDBusConnection::systemBus());
 
 	if (loginManager.connection().isConnected() == false)
 	{
@@ -170,11 +170,11 @@ QVariant LinuxSessionFunctions::getSessionProperty(const QString& session, const
 		return {};
 	}
 
-	const QDBusReply<QDBusVariant> reply = loginManager.call( QStringLiteral("Get"),
-															  QStringLiteral("org.freedesktop.login1.Session"),
-															  property );
+	const QDBusReply<QDBusVariant> reply = loginManager.call(QStringLiteral("Get"),
+															 QStringLiteral("org.freedesktop.login1.Session"),
+															 property);
 
-	if( reply.isValid() == false )
+	if (reply.isValid() == false)
 	{
 		if (logErrors)
 		{
@@ -190,11 +190,11 @@ QVariant LinuxSessionFunctions::getSessionProperty(const QString& session, const
 
 
 
-int LinuxSessionFunctions::getSessionLeaderPid( const QString& session )
+int LinuxSessionFunctions::getSessionLeaderPid(const QString& session)
 {
-	const auto leader = getSessionProperty( session, QStringLiteral("Leader") );
+	const auto leader = getSessionProperty(session, QStringLiteral("Leader"));
 
-	if( leader.isNull() )
+	if (leader.isNull())
 	{
 		return -1;
 	}
@@ -204,11 +204,11 @@ int LinuxSessionFunctions::getSessionLeaderPid( const QString& session )
 
 
 
-LinuxSessionFunctions::SessionUptime LinuxSessionFunctions::getSessionUptimeSeconds( const QString& session )
+LinuxSessionFunctions::SessionUptime LinuxSessionFunctions::getSessionUptimeSeconds(const QString& session)
 {
-	const auto sessionUptimeUsec = getSessionProperty( session, QStringLiteral("Timestamp") );
+	const auto sessionUptimeUsec = getSessionProperty(session, QStringLiteral("Timestamp"));
 
-	if( sessionUptimeUsec.isNull() )
+	if (sessionUptimeUsec.isNull())
 	{
 		return -1;
 	}
@@ -220,7 +220,7 @@ LinuxSessionFunctions::SessionUptime LinuxSessionFunctions::getSessionUptimeSeco
 
 
 
-LinuxSessionFunctions::Class LinuxSessionFunctions::getSessionClass( const QString& session )
+LinuxSessionFunctions::Class LinuxSessionFunctions::getSessionClass(const QString& session)
 {
 	auto sessionClass = getSessionProperty(session, QStringLiteral("Class")).toString();
 	if (sessionClass.isEmpty() && session == currentSessionPath())
@@ -228,15 +228,15 @@ LinuxSessionFunctions::Class LinuxSessionFunctions::getSessionClass( const QStri
 		sessionClass = QProcessEnvironment::systemEnvironment().value(LinuxSessionFunctions::xdgSessionClassEnvVarName());
 	}
 
-	if( sessionClass == QLatin1String("user") )
+	if (sessionClass == QLatin1String("user"))
 	{
 		return Class::User;
 	}
-	else if( sessionClass == QLatin1String("greeter") )
+	else if (sessionClass == QLatin1String("greeter"))
 	{
 		return Class::Greeter;
 	}
-	else if( sessionClass == QLatin1String("lock-screen") )
+	else if (sessionClass == QLatin1String("lock-screen"))
 	{
 		return Class::LockScreen;
 	}
@@ -246,22 +246,22 @@ LinuxSessionFunctions::Class LinuxSessionFunctions::getSessionClass( const QStri
 
 
 
-LinuxSessionFunctions::Type LinuxSessionFunctions::getSessionType( const QString& session )
+LinuxSessionFunctions::Type LinuxSessionFunctions::getSessionType(const QString& session)
 {
-	const auto type = getSessionProperty( session, QStringLiteral("Type") ).toString();
-	if( type == QLatin1String("tty") )
+	const auto type = getSessionProperty(session, QStringLiteral("Type")).toString();
+	if (type == QLatin1String("tty"))
 	{
 		return Type::TTY;
 	}
-	else if( type == QLatin1String("x11") )
+	else if (type == QLatin1String("x11"))
 	{
 		return Type::X11;
 	}
-	else if( type == QLatin1String("mir") )
+	else if (type == QLatin1String("mir"))
 	{
 		return Type::Mir;
 	}
-	else if( type == QLatin1String("wayland") )
+	else if (type == QLatin1String("wayland"))
 	{
 		return Type::Wayland;
 	}
@@ -270,7 +270,7 @@ LinuxSessionFunctions::Type LinuxSessionFunctions::getSessionType( const QString
 		return Type::Unspecified;
 	}
 
-	if( type.isEmpty() == false )
+	if (type.isEmpty() == false)
 	{
 		vWarning() << "unknown session type" << type;
 	}
@@ -347,20 +347,19 @@ QString LinuxSessionFunctions::getSessionUser(const QString& session)
 
 
 
-LinuxSessionFunctions::State LinuxSessionFunctions::getSessionState( const QString& session )
+LinuxSessionFunctions::State LinuxSessionFunctions::getSessionState(const QString& session)
 {
 	static const QMap<QString, State> stateMap{
-		{ QStringLiteral("offline"), State::Offline },
-		{ QStringLiteral("lingering"), State::Lingering },
-		{ QStringLiteral("online"), State::Online },
-		{ QStringLiteral("active"), State::Active },
-		{ QStringLiteral("opening"), State::Opening },
-		{ QStringLiteral("closing"), State::Closing }
-	};
+		{QStringLiteral("offline"), State::Offline},
+		{QStringLiteral("lingering"), State::Lingering},
+		{QStringLiteral("online"), State::Online},
+		{QStringLiteral("active"), State::Active},
+		{QStringLiteral("opening"), State::Opening},
+		{QStringLiteral("closing"), State::Closing}};
 
-	const auto stateString = getSessionProperty( session, QStringLiteral("State") ).toString();
-	const auto state = stateMap.value( stateString, State::Unknown );
-	if( state == State::Unknown && stateString.isEmpty() == false )
+	const auto stateString = getSessionProperty(session, QStringLiteral("State")).toString();
+	const auto state = stateMap.value(stateString, State::Unknown);
+	if (state == State::Unknown && stateString.isEmpty() == false)
 	{
 		vDebug() << stateString;
 	}
@@ -370,9 +369,9 @@ LinuxSessionFunctions::State LinuxSessionFunctions::getSessionState( const QStri
 
 
 
-LinuxSessionFunctions::LoginDBusSessionSeat LinuxSessionFunctions::getSessionSeat( const QString& session )
+LinuxSessionFunctions::LoginDBusSessionSeat LinuxSessionFunctions::getSessionSeat(const QString& session)
 {
-	const auto seatArgument = getSessionProperty( session, QStringLiteral("Seat") ).value<QDBusArgument>();
+	const auto seatArgument = getSessionProperty(session, QStringLiteral("Seat")).value<QDBusArgument>();
 
 	LoginDBusSessionSeat seat;
 	seatArgument.beginStructure();
@@ -385,32 +384,31 @@ LinuxSessionFunctions::LoginDBusSessionSeat LinuxSessionFunctions::getSessionSea
 
 
 
-QProcessEnvironment LinuxSessionFunctions::getSessionEnvironment( int sessionLeaderPid )
+QProcessEnvironment LinuxSessionFunctions::getSessionEnvironment(int sessionLeaderPid)
 {
 	QProcessEnvironment sessionEnv;
 
 #ifdef HAVE_LIBPROCPS
 	LinuxCoreFunctions::forEachChildProcess(
-		[&sessionEnv]( proc_t* procInfo ) {
-			if( procInfo->environ != nullptr )
+		[&sessionEnv](proc_t* procInfo) {
+		if (procInfo->environ != nullptr)
+		{
+			for (int i = 0; procInfo->environ[i]; ++i)
 			{
-				for( int i = 0; procInfo->environ[i]; ++i )
+				const auto env = QString::fromUtf8(procInfo->environ[i]);
+				const auto separatorPos = env.indexOf(QLatin1Char('='));
+				if (separatorPos > 0)
 				{
-					const auto env = QString::fromUtf8( procInfo->environ[i] );
-					const auto separatorPos = env.indexOf( QLatin1Char('=') );
-					if( separatorPos > 0 )
-					{
-						sessionEnv.insert( env.left( separatorPos ), env.mid( separatorPos+1 ) );
-					}
+					sessionEnv.insert(env.left(separatorPos), env.mid(separatorPos + 1));
 				}
 			}
+		}
 
-			return true;
-		},
-		sessionLeaderPid, PROC_FILLENV, true );
+		return true;
+	},
+		sessionLeaderPid, PROC_FILLENV, true);
 #elif defined(HAVE_LIBPROC2)
-	LinuxCoreFunctions::forEachChildProcess([&sessionEnv](const pids_stack* stack)
-	{
+	LinuxCoreFunctions::forEachChildProcess([&sessionEnv](const pids_stack* stack) {
 		static constexpr auto EnvironItemIndex = 2;
 		const auto environ = PIDS_VAL(EnvironItemIndex, strv, stack);
 
@@ -422,14 +420,13 @@ QProcessEnvironment LinuxSessionFunctions::getSessionEnvironment( int sessionLea
 				const auto separatorPos = env.indexOf(QLatin1Char('='));
 				if (separatorPos > 0)
 				{
-					sessionEnv.insert(env.left(separatorPos), env.mid(separatorPos+1));
+					sessionEnv.insert(env.left(separatorPos), env.mid(separatorPos + 1));
 				}
 			}
 		}
 
 		return true;
-	},
-	sessionLeaderPid, {PIDS_ENVIRON_V}, true);
+	}, sessionLeaderPid, {PIDS_ENVIRON_V}, true);
 #else
 #error Neither libproc2 nor libprocps available
 #endif
@@ -441,7 +438,7 @@ QProcessEnvironment LinuxSessionFunctions::getSessionEnvironment( int sessionLea
 
 QString LinuxSessionFunctions::currentSessionPath(bool ignoreErrors)
 {
-	const auto xdgSessionPath = QProcessEnvironment::systemEnvironment().value( sessionPathEnvVarName() );
+	const auto xdgSessionPath = QProcessEnvironment::systemEnvironment().value(sessionPathEnvVarName());
 	if (xdgSessionPath.isEmpty() == false)
 	{
 		return xdgSessionPath;
@@ -497,7 +494,8 @@ QString LinuxSessionFunctions::currentSessionPath(bool ignoreErrors)
 	if (ignoreErrors == false)
 	{
 		vWarning() << "could not determine dbus object path of current session – please make sure systemd is "
-					  "up to date and/or the environment variable" << xdgSessionIdEnvVarName() << "is set";
+					  "up to date and/or the environment variable"
+				   << xdgSessionIdEnvVarName() << "is set";
 	}
 
 	return {};
@@ -505,21 +503,21 @@ QString LinuxSessionFunctions::currentSessionPath(bool ignoreErrors)
 
 
 
-bool LinuxSessionFunctions::isOpen( const QString& session )
+bool LinuxSessionFunctions::isOpen(const QString& session)
 {
-	const auto state = getSessionState( session );
+	const auto state = getSessionState(session);
 
 	return state == State::Active ||
-		   state == State::Online ||
-		   state == State::Opening;
+		state == State::Online ||
+		state == State::Opening;
 }
 
 
-bool LinuxSessionFunctions::isGraphical( const QString& session )
+bool LinuxSessionFunctions::isGraphical(const QString& session)
 {
-	const auto type = getSessionType( session );
+	const auto type = getSessionType(session);
 
 	return type == Type::X11 ||
-		   type == Type::Wayland ||
-		   type == Type::Mir;
+		type == Type::Wayland ||
+		type == Type::Mir;
 }

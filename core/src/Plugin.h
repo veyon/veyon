@@ -24,8 +24,8 @@
 
 #pragma once
 
-#include <QObject>
 #include <QList>
+#include <QObject>
 #include <QUuid>
 
 class Plugin
@@ -34,16 +34,14 @@ class Plugin
 public:
 	using Uid = QUuid;
 
-	enum PluginFlags
-	{
+	enum PluginFlags {
 		NoFlags,
 		ProvidesDefaultImplementation = 0x0001,
 		RequiresLicensing = 0x002,
-	} ;
+	};
 
 	Q_DECLARE_FLAGS(Flags, PluginFlags)
 	Q_FLAG(Flags)
-
 };
 
 using PluginUidList = QVector<Plugin::Uid>;

@@ -32,8 +32,8 @@
 
 extern "C" {
 #include <pipewire/pipewire.h>
-#include <spa/param/video/format-utils.h>
 #include <rfb/rfb.h>
+#include <spa/param/video/format-utils.h>
 }
 
 class QMutex;
@@ -86,20 +86,20 @@ private:
 	void convertFrame(char* dst, const char* src, int srcStride, int dstStride,
 					  int width, int height, const spa_meta_region* damage, bool forceFullFrame);
 
-	pw_main_loop*    m_loop{nullptr};
-	pw_context*      m_context{nullptr};
-	pw_core*         m_core{nullptr};
-	pw_stream*       m_stream{nullptr};
+	pw_main_loop* m_loop{nullptr};
+	pw_context* m_context{nullptr};
+	pw_core* m_core{nullptr};
+	pw_stream* m_stream{nullptr};
 
 	spa_hook m_coreListener{};
 	spa_hook m_streamListener{};
 
 	QMutex* m_screenMutex;
 	rfbScreenInfoPtr m_rfbScreen{nullptr};
-	QSize            m_frameSize;
-	uint32_t         m_videoFormat{SPA_VIDEO_FORMAT_UNKNOWN};
-	bool             m_running{false};
-	bool             m_forceFullFrame{true};
+	QSize m_frameSize;
+	uint32_t m_videoFormat{SPA_VIDEO_FORMAT_UNKNOWN};
+	bool m_running{false};
+	bool m_forceFullFrame{true};
 
 	std::unique_ptr<QThread> m_loopThread;
 };

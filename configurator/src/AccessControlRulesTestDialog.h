@@ -35,12 +35,12 @@ class AccessControlRulesTestDialog : public QDialog
 	Q_OBJECT
 
 public:
-	explicit AccessControlRulesTestDialog(QWidget *parent = nullptr);
+	explicit AccessControlRulesTestDialog(QWidget* parent = nullptr);
 	~AccessControlRulesTestDialog() override;
 
 	int exec() override;
 	void accept() override;
 
 private:
-	Ui::AccessControlRulesTestDialog *ui;
+	Ui::AccessControlRulesTestDialog* ui;
 };

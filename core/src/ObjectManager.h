@@ -33,8 +33,8 @@ template<class T>
 class ObjectManager
 {
 public:
-	explicit ObjectManager( const QJsonArray& objects ) :
-		m_objects( objects )
+	explicit ObjectManager(const QJsonArray& objects) :
+		m_objects(objects)
 	{
 	}
 
@@ -43,21 +43,21 @@ public:
 		return m_objects;
 	}
 
-	const QJsonArray& add( const T& object )
+	const QJsonArray& add(const T& object)
 	{
-		m_objects.append( object.toJson() );
+		m_objects.append(object.toJson());
 
 		return m_objects;
 	}
 
-	const QJsonArray& update( const T& object, bool addIfNotFound = false )
+	const QJsonArray& update(const T& object, bool addIfNotFound = false)
 	{
 		bool found = false;
 
-		for( auto it = m_objects.begin(); it != m_objects.end(); ++it )
+		for (auto it = m_objects.begin(); it != m_objects.end(); ++it)
 		{
-			T currentObject( it->toObject() );
-			if( currentObject.uid() == object.uid() )
+			T currentObject(it->toObject());
+			if (currentObject.uid() == object.uid())
 			{
 				*it = object.toJson();
 				found = true;
@@ -65,27 +65,27 @@ public:
 			}
 		}
 
-		if( !found )
+		if (!found)
 		{
-			add( object );
+			add(object);
 		}
 
 		return m_objects;
 	}
 
-	const QJsonArray& remove( typename T::Uid objectUid, bool recursive = false )
+	const QJsonArray& remove(typename T::Uid objectUid, bool recursive = false)
 	{
-		if( recursive )
+		if (recursive)
 		{
-			removeChildren( objectUid );
+			removeChildren(objectUid);
 		}
 
-		for( auto it = m_objects.begin(); it != m_objects.end(); )
+		for (auto it = m_objects.begin(); it != m_objects.end();)
 		{
-			T currentObject( it->toObject() );
-			if( currentObject.uid() == objectUid )
+			T currentObject(it->toObject());
+			if (currentObject.uid() == objectUid)
 			{
-				it = m_objects.erase( it );
+				it = m_objects.erase(it);
 			}
 			else
 			{
@@ -96,15 +96,15 @@ public:
 		return m_objects;
 	}
 
-	const QJsonArray& moveUp( typename T::Uid objectUid )
+	const QJsonArray& moveUp(typename T::Uid objectUid)
 	{
 		int currentIndex = -1;
 		T targetObject;
 
-		for( int i = 0; i < m_objects.size(); ++i )
+		for (int i = 0; i < m_objects.size(); ++i)
 		{
-			T currentObject( m_objects[i].toObject() );
-			if( currentObject.uid() == objectUid )
+			T currentObject(m_objects[i].toObject());
+			if (currentObject.uid() == objectUid)
 			{
 				currentIndex = i;
 				targetObject = currentObject;
@@ -112,28 +112,28 @@ public:
 			}
 		}
 
-		if( currentIndex < 0 )
+		if (currentIndex < 0)
 		{
 			return m_objects;
 		}
 
 		QVector<int> matchingIndices;
-		matchingIndices.reserve( m_objects.size() );
+		matchingIndices.reserve(m_objects.size());
 
-		for( int i = 0; i < m_objects.size(); ++i )
+		for (int i = 0; i < m_objects.size(); ++i)
 		{
-			T currentObject( m_objects[i].toObject() );
-			if( currentObject.type() == targetObject.type() && currentObject.parentUid() == targetObject.parentUid() )
+			T currentObject(m_objects[i].toObject());
+			if (currentObject.type() == targetObject.type() && currentObject.parentUid() == targetObject.parentUid())
 			{
-				matchingIndices.append( i );
+				matchingIndices.append(i);
 			}
 		}
 
-		const int position = matchingIndices.indexOf( currentIndex );
-		if( position > 0 )
+		const int position = matchingIndices.indexOf(currentIndex);
+		if (position > 0)
 		{
 			const int previousIndex = matchingIndices[position - 1];
-			const auto swapValue = m_objects.at( currentIndex );
+			const auto swapValue = m_objects.at(currentIndex);
 			m_objects[currentIndex] = m_objects[previousIndex];
 			m_objects[previousIndex] = swapValue;
 		}
@@ -141,15 +141,15 @@ public:
 		return m_objects;
 	}
 
-	const QJsonArray& moveDown( typename T::Uid objectUid )
+	const QJsonArray& moveDown(typename T::Uid objectUid)
 	{
 		int currentIndex = -1;
 		T targetObject;
 
-		for( int i = 0; i < m_objects.size(); ++i )
+		for (int i = 0; i < m_objects.size(); ++i)
 		{
-			T currentObject( m_objects[i].toObject() );
-			if( currentObject.uid() == objectUid )
+			T currentObject(m_objects[i].toObject());
+			if (currentObject.uid() == objectUid)
 			{
 				currentIndex = i;
 				targetObject = currentObject;
@@ -157,28 +157,28 @@ public:
 			}
 		}
 
-		if( currentIndex < 0 )
+		if (currentIndex < 0)
 		{
 			return m_objects;
 		}
 
 		QVector<int> matchingIndices;
-		matchingIndices.reserve( m_objects.size() );
+		matchingIndices.reserve(m_objects.size());
 
-		for( int i = 0; i < m_objects.size(); ++i )
+		for (int i = 0; i < m_objects.size(); ++i)
 		{
-			T currentObject( m_objects[i].toObject() );
-			if( currentObject.type() == targetObject.type() && currentObject.parentUid() == targetObject.parentUid() )
+			T currentObject(m_objects[i].toObject());
+			if (currentObject.type() == targetObject.type() && currentObject.parentUid() == targetObject.parentUid())
 			{
-				matchingIndices.append( i );
+				matchingIndices.append(i);
 			}
 		}
 
-		const int position = matchingIndices.indexOf( currentIndex );
-		if( position >= 0 && position < matchingIndices.size() - 1 )
+		const int position = matchingIndices.indexOf(currentIndex);
+		if (position >= 0 && position < matchingIndices.size() - 1)
 		{
 			const int nextIndex = matchingIndices[position + 1];
-			const auto swapValue = m_objects.at( currentIndex );
+			const auto swapValue = m_objects.at(currentIndex);
 			m_objects[currentIndex] = m_objects[nextIndex];
 			m_objects[nextIndex] = swapValue;
 		}
@@ -186,15 +186,15 @@ public:
 		return m_objects;
 	}
 
-	void removeChildren( typename T::Uid objectUid )
+	void removeChildren(typename T::Uid objectUid)
 	{
-		for( auto it = m_objects.begin(); it != m_objects.end(); )
+		for (auto it = m_objects.begin(); it != m_objects.end();)
 		{
-			T currentObject( it->toObject() );
-			if( currentObject.parentUid() == objectUid )
+			T currentObject(it->toObject());
+			if (currentObject.parentUid() == objectUid)
 			{
-				removeChildren( currentObject.uid() );
-				it = m_objects.erase( it );
+				removeChildren(currentObject.uid());
+				it = m_objects.erase(it);
 			}
 			else
 			{
@@ -203,12 +203,12 @@ public:
 		}
 	}
 
-	T findByUid( typename T::Uid uid ) const
+	T findByUid(typename T::Uid uid) const
 	{
-		for( auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it )
+		for (auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it)
 		{
-			T currentObject( it->toObject() );
-			if( currentObject.uid() == uid )
+			T currentObject(it->toObject());
+			if (currentObject.uid() == uid)
 			{
 				return currentObject;
 			}
@@ -217,12 +217,12 @@ public:
 		return T();
 	}
 
-	T findByName( const typename T::Name& name ) const
+	T findByName(const typename T::Name& name) const
 	{
-		for( auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it )
+		for (auto it = m_objects.constBegin(); it != m_objects.constEnd(); ++it)
 		{
-			T currentObject( it->toObject() );
-			if( T( it->toObject() ).name() == name )
+			T currentObject(it->toObject());
+			if (T(it->toObject()).name() == name)
 			{
 				return currentObject;
 			}
@@ -251,7 +251,7 @@ public:
 			return baseName;
 		}
 
-		for (int suffix = 2; ; ++suffix)
+		for (int suffix = 2;; ++suffix)
 		{
 			const auto candidate = QStringLiteral("%1 %2").arg(baseName).arg(suffix);
 			if (hasName(candidate) == false)
@@ -263,5 +263,4 @@ public:
 
 private:
 	QJsonArray m_objects;
-
 };

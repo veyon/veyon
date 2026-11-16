@@ -37,10 +37,10 @@ class WebApiPlugin : public QObject, PluginInterface, CommandLinePluginInterface
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.WebApi")
 	Q_INTERFACES(PluginInterface
-					  CommandLinePluginInterface
-						  ConfigurationPagePluginInterface)
+					 CommandLinePluginInterface
+						 ConfigurationPagePluginInterface)
 public:
-	explicit WebApiPlugin( QObject* parent = nullptr );
+	explicit WebApiPlugin(QObject* parent = nullptr);
 	~WebApiPlugin() override;
 
 	Plugin::Uid uid() const override
@@ -50,7 +50,7 @@ public:
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 0 );
+		return QVersionNumber(1, 0);
 	}
 
 	QString name() const override
@@ -60,7 +60,7 @@ public:
 
 	QString description() const override
 	{
-		return tr( "Provide access to a computer via HTTP" );
+		return tr("Provide access to a computer via HTTP");
 	}
 
 	QString vendor() const override
@@ -75,12 +75,12 @@ public:
 
 	QString commandLineModuleName() const override
 	{
-		return QStringLiteral( "webapi" );
+		return QStringLiteral("webapi");
 	}
 
 	QString commandLineModuleHelp() const override
 	{
-		return tr( "Commands for running the WebAPI server" );
+		return tr("Commands for running the WebAPI server");
 	}
 
 	QStringList commands() const override
@@ -88,15 +88,15 @@ public:
 		return m_commands.keys();
 	}
 
-	QString commandHelp( const QString& command ) const override
+	QString commandHelp(const QString& command) const override
 	{
-		return m_commands.value( command );
+		return m_commands.value(command);
 	}
 
 	ConfigurationPage* createConfigurationPage() override;
 
 public Q_SLOTS:
-	CommandLinePluginInterface::RunResult handle_runserver( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_runserver(const QStringList& arguments);
 
 private:
 	void startHttpServerThread();
@@ -109,5 +109,4 @@ private:
 	WebApiHttpServer* m_httpServer{nullptr};
 
 	const QMap<QString, QString> m_commands;
-
 };

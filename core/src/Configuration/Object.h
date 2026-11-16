@@ -24,11 +24,10 @@
 
 #pragma once
 
-#include "VeyonCore.h"
 #include "Configuration/Store.h"
+#include "VeyonCore.h"
 
-namespace Configuration
-{
+namespace Configuration {
 
 // clazy:excludeall=ctor-missing-parent-argument,copyable-polymorphic
 
@@ -39,37 +38,37 @@ public:
 	using DataMap = QMap<QString, QVariant>;
 
 	Object() = default;
-	Object( Store::Backend backend, Store::Scope scope, const QString& storeName = {} );
-	explicit Object( Store* store );
-	Object( const Object& );
+	Object(Store::Backend backend, Store::Scope scope, const QString& storeName = {});
+	explicit Object(Store* store);
+	Object(const Object&);
 	~Object() override;
 
-	Object& operator=( const Object& ref );
-	Object& operator+=( const Object& ref );
+	Object& operator=(const Object& ref);
+	Object& operator+=(const Object& ref);
 
-	bool hasValue( const QString& key, const QString& parentKey ) const;
+	bool hasValue(const QString& key, const QString& parentKey) const;
 
-	QVariant value( const QString& key, const QString& parentKey, const QVariant& defaultValue ) const;
+	QVariant value(const QString& key, const QString& parentKey, const QVariant& defaultValue) const;
 
-	void setValue( const QString& key, const QVariant& value, const QString& parentKey );
+	void setValue(const QString& key, const QVariant& value, const QString& parentKey);
 
-	void removeValue( const QString& key, const QString& parentKey );
+	void removeValue(const QString& key, const QString& parentKey);
 
-	void addSubObject( Object* obj, const QString& parentKey );
+	void addSubObject(Object* obj, const QString& parentKey);
 
 	void reloadFromStore()
 	{
-		if( m_store )
+		if (m_store)
 		{
-			m_store->load( this );
+			m_store->load(this);
 		}
 	}
 
 	void flushStore()
 	{
-		if( m_store )
+		if (m_store)
 		{
-			m_store->flush( this );
+			m_store->flush(this);
 		}
 	}
 
@@ -83,7 +82,7 @@ public:
 		m_data.clear();
 	}
 
-	const DataMap & data() const
+	const DataMap& data() const
 	{
 		return m_data;
 	}
@@ -94,12 +93,11 @@ Q_SIGNALS:
 
 
 private:
-	static Store* createStore( Store::Backend backend, Store::Scope scope );
+	static Store* createStore(Store::Backend backend, Store::Scope scope);
 
-	Configuration::Store *m_store{nullptr};
+	Configuration::Store* m_store{nullptr};
 	bool m_customStore{false};
 	DataMap m_data{};
-
-} ;
+};
 
 }

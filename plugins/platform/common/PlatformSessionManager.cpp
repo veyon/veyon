@@ -32,14 +32,13 @@
 #include "VeyonConfiguration.h"
 
 
-PlatformSessionManager::PlatformSessionManager( QObject* parent ) :
-	QThread( parent ),
-	m_mode( VeyonCore::config().multiSessionModeEnabled() ? Mode::Multi :
-					   VeyonCore::config().activeSessionModeEnabled() ?
-					   Mode::Active :
-					   Mode::Local
-				   ),
-	m_maximumSessionCount( VeyonCore::config().maximumSessionCount() )
+PlatformSessionManager::PlatformSessionManager(QObject* parent) :
+	QThread(parent),
+	m_mode(VeyonCore::config().multiSessionModeEnabled() ? Mode::Multi :
+			   VeyonCore::config().activeSessionModeEnabled() ?
+														   Mode::Active :
+														   Mode::Local),
+	m_maximumSessionCount(VeyonCore::config().maximumSessionCount())
 {
 	vDebug();
 
@@ -60,37 +59,37 @@ PlatformSessionManager::~PlatformSessionManager()
 
 void PlatformSessionManager::run()
 {
-	if( mode() == Mode::Multi )
+	if (mode() == Mode::Multi)
 	{
 		auto server = new QLocalServer;
-		server->setSocketOptions( QLocalServer::WorldAccessOption );
-		server->listen( serverName() );
+		server->setSocketOptions(QLocalServer::WorldAccessOption);
+		server->listen(serverName());
 
-		connect( server, &QLocalServer::newConnection, server, [this, server]() {
+		connect(server, &QLocalServer::newConnection, server, [this, server]() {
 			auto connection = server->nextPendingConnection();
-			connect( connection, &QLocalSocket::disconnected, connection, &QLocalSocket::deleteLater );
+			connect(connection, &QLocalSocket::disconnected, connection, &QLocalSocket::deleteLater);
 
 			m_mutex.lock();
-			VariantArrayMessage(connection).write( m_sessions ).send();
+			VariantArrayMessage(connection).write(m_sessions).send();
 			m_mutex.unlock();
 
 			connection->flush();
 			connection->disconnectFromServer();
-		} );
+		});
 	}
 
 	QThread::run();
 }
 
-PlatformSessionManager::SessionId PlatformSessionManager::openSession( const PlatformSessionId& platformSessionId )
+PlatformSessionManager::SessionId PlatformSessionManager::openSession(const PlatformSessionId& platformSessionId)
 {
-	QMutexLocker l( &m_mutex );
+	QMutexLocker l(&m_mutex);
 
 	const auto sessionIds = m_sessions.values();
 
-	for( SessionId i = 0; i < m_maximumSessionCount; ++i )
+	for (SessionId i = 0; i < m_maximumSessionCount; ++i)
 	{
-		if( sessionIds.contains( i ) == false )
+		if (sessionIds.contains(i) == false)
 		{
 			vDebug() << "Opening session" << i << "for platform session" << platformSessionId;
 			m_sessions[platformSessionId] = i;
@@ -106,30 +105,30 @@ PlatformSessionManager::SessionId PlatformSessionManager::openSession( const Pla
 
 
 
-void PlatformSessionManager::closeSession( const PlatformSessionId& platformSessionId )
+void PlatformSessionManager::closeSession(const PlatformSessionId& platformSessionId)
 {
-	QMutexLocker l( &m_mutex );
+	QMutexLocker l(&m_mutex);
 
-	const auto closedSessionId = m_sessions.take( platformSessionId ).toInt();
+	const auto closedSessionId = m_sessions.take(platformSessionId).toInt();
 
 	vDebug() << "Closing session" << closedSessionId << "for platform session" << platformSessionId;
 }
 
 
 
-PlatformSessionManager::SessionId PlatformSessionManager::resolveSessionId( const PlatformSessionId& platformSessionId )
+PlatformSessionManager::SessionId PlatformSessionManager::resolveSessionId(const PlatformSessionId& platformSessionId)
 {
-	if( VeyonCore::component() == VeyonCore::Component::Service )
+	if (VeyonCore::component() == VeyonCore::Component::Service)
 	{
 		return PlatformSessionFunctions::DefaultSessionId;
 	}
 
 	QLocalSocket socket;
-	socket.connectToServer( serverName(), QLocalSocket::ReadOnly );
-	if( socket.waitForConnected( ServerConnectTimeout ) == false )
+	socket.connectToServer(serverName(), QLocalSocket::ReadOnly);
+	if (socket.waitForConnected(ServerConnectTimeout) == false)
 	{
-		if( VeyonCore::component() != VeyonCore::Component::CLI &&
-			VeyonCore::component() != VeyonCore::Component::Configurator )
+		if (VeyonCore::component() != VeyonCore::Component::CLI &&
+			VeyonCore::component() != VeyonCore::Component::Configurator)
 		{
 			vCritical() << "could not read session map";
 		}
@@ -137,11 +136,11 @@ PlatformSessionManager::SessionId PlatformSessionManager::resolveSessionId( cons
 		return PlatformSessionFunctions::InvalidSessionId;
 	}
 
-	if( waitForMessage( &socket ) )
+	if (waitForMessage(&socket))
 	{
-		VariantArrayMessage message( &socket );
+		VariantArrayMessage message(&socket);
 		message.receive();
-		return message.read().toMap().value( platformSessionId, PlatformSessionFunctions::InvalidSessionId ).toInt();
+		return message.read().toMap().value(platformSessionId, PlatformSessionFunctions::InvalidSessionId).toInt();
 	}
 
 	vCritical() << "could not receive session map";
@@ -157,11 +156,11 @@ bool PlatformSessionManager::waitForMessage(QLocalSocket* socket)
 	QElapsedTimer messageTimeoutTimer;
 	messageTimeoutTimer.start();
 
-	VariantArrayMessage inMessage( socket );
-	while( messageTimeoutTimer.elapsed() < MessageReadTimeout &&
-		   inMessage.isReadyForReceive() == false )
+	VariantArrayMessage inMessage(socket);
+	while (messageTimeoutTimer.elapsed() < MessageReadTimeout &&
+		   inMessage.isReadyForReceive() == false)
 	{
-		socket->waitForReadyRead( SocketWaitTimeout );
+		socket->waitForReadyRead(SocketWaitTimeout);
 	}
 
 	return inMessage.isReadyForReceive();

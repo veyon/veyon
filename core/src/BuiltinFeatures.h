@@ -64,5 +64,4 @@ private:
 	MonitoringMode* m_monitoringMode;
 	DesktopAccessDialog* m_desktopAccessDialog;
 	AccessControlProvider* m_accessControlProvider;
-
 };

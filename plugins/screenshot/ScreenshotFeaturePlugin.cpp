@@ -24,43 +24,43 @@
 
 #include <QMessageBox>
 
-#include "ScreenshotFeaturePlugin.h"
 #include "ComputerControlInterface.h"
-#include "VeyonMasterInterface.h"
 #include "Screenshot.h"
+#include "ScreenshotFeaturePlugin.h"
+#include "VeyonMasterInterface.h"
 
 
-ScreenshotFeaturePlugin::ScreenshotFeaturePlugin( QObject* parent ) :
-	QObject( parent ),
-	m_screenshotFeature( Feature( QStringLiteral( "Screenshot" ),
-								  Feature::Flag::Action | Feature::Flag::Master,
-								  Feature::Uid( "d5ee3aac-2a87-4d05-b827-0c20344490bd" ),
-								  Feature::Uid(),
-								  tr( "Screenshot" ), {},
-								  tr( "Use this function to take a screenshot of selected computers." ),
-								  QStringLiteral(":/screenshot/camera-photo.png") ) ),
-	m_features( { m_screenshotFeature } )
+ScreenshotFeaturePlugin::ScreenshotFeaturePlugin(QObject* parent) :
+	QObject(parent),
+	m_screenshotFeature(Feature(QStringLiteral("Screenshot"),
+								Feature::Flag::Action | Feature::Flag::Master,
+								Feature::Uid("d5ee3aac-2a87-4d05-b827-0c20344490bd"),
+								Feature::Uid(),
+								tr("Screenshot"), {},
+								tr("Use this function to take a screenshot of selected computers."),
+								QStringLiteral(":/screenshot/camera-photo.png"))),
+	m_features({m_screenshotFeature})
 {
 }
 
 
 
-const FeatureList &ScreenshotFeaturePlugin::featureList() const
+const FeatureList& ScreenshotFeaturePlugin::featureList() const
 {
 	return m_features;
 }
 
 
 
-bool ScreenshotFeaturePlugin::controlFeature( Feature::Uid featureUid,
+bool ScreenshotFeaturePlugin::controlFeature(Feature::Uid featureUid,
 											 Operation operation, const QVariantMap& arguments,
-											 const ComputerControlInterfaceList& computerControlInterfaces )
+											 const ComputerControlInterfaceList& computerControlInterfaces)
 {
 	Q_UNUSED(arguments)
 
-	if( hasFeature( featureUid ) && operation == Operation::Start )
+	if (hasFeature(featureUid) && operation == Operation::Start)
 	{
-		for( const auto& controlInterface : computerControlInterfaces )
+		for (const auto& controlInterface : computerControlInterfaces)
 		{
 			if (VeyonCore::component() == VeyonCore::Component::CLI &&
 				controlInterface->hasValidFramebuffer() == false)
@@ -82,7 +82,7 @@ bool ScreenshotFeaturePlugin::controlFeature( Feature::Uid featureUid,
 				}
 			}
 
-			Screenshot().take( controlInterface );
+			Screenshot().take(controlInterface);
 		}
 
 		return true;
@@ -93,15 +93,14 @@ bool ScreenshotFeaturePlugin::controlFeature( Feature::Uid featureUid,
 
 
 
-bool ScreenshotFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
-											const ComputerControlInterfaceList& computerControlInterfaces )
+bool ScreenshotFeaturePlugin::startFeature(VeyonMasterInterface& master, const Feature& feature,
+										   const ComputerControlInterfaceList& computerControlInterfaces)
 {
-	if( controlFeature( feature.uid(), Operation::Start, {}, computerControlInterfaces ) )
+	if (controlFeature(feature.uid(), Operation::Start, {}, computerControlInterfaces))
 	{
-		QMessageBox::information( master.mainWindow(),
-								  tr( "Screenshots taken" ),
-								  tr( "Screenshot of %1 computer have been taken successfully." ).
-								  arg( computerControlInterfaces.count() ) );
+		QMessageBox::information(master.mainWindow(),
+								 tr("Screenshots taken"),
+								 tr("Screenshot of %1 computer have been taken successfully.").arg(computerControlInterfaces.count()));
 
 		return true;
 	}

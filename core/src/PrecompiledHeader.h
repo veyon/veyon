@@ -11,7 +11,6 @@
 #include <QMainWindow>
 #include <QMessageBox>
 #endif
-#include <QtConcurrent>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -22,6 +21,7 @@
 #include <QProcess>
 #include <QRegularExpression>
 #include <QThread>
+#include <QtConcurrent>
 #ifdef QT_NETWORK_LIB
 #include <QTcpSocket>
 #endif

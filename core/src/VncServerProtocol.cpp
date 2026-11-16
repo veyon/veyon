@@ -22,10 +22,6 @@
  *
  */
 
-#include "rfb/rfbproto.h"
-
-#include <cstdio>
-
 #include <QHostAddress>
 #include <QRegularExpression>
 #include <QTcpSocket>
@@ -35,16 +31,19 @@
 #include "VariantArrayMessage.h"
 #include "VncServerClient.h"
 #include "VncServerProtocol.h"
+#include "rfb/rfbproto.h"
+
+#include <cstdio>
 
 
 
 VncServerProtocol::VncServerProtocol(QTcpSocket* socket, VncServerClient* client) :
-	m_socket( socket ),
-	m_client( client ),
+	m_socket(socket),
+	m_client(client),
 	m_serverInitMessage()
 {
 	m_client->setHostAddress(m_socket->peerAddress().toString());
-	m_client->setAccessControlState( VncServerClient::AccessControlState::Init );
+	m_client->setAccessControlState(VncServerClient::AccessControlState::Init);
 }
 
 
@@ -58,7 +57,7 @@ VncServerProtocol::State VncServerProtocol::state() const
 
 void VncServerProtocol::start()
 {
-	if( state() == State::Disconnected )
+	if (state() == State::Disconnected)
 	{
 		// One extra byte for snprintf's terminator, otherwise it replaces the trailing newline
 		std::array<char, sz_rfbProtocolVersionMsg + 1> protocol{};
@@ -67,7 +66,7 @@ void VncServerProtocol::start()
 
 		m_socket->write(protocol.data(), sz_rfbProtocolVersionMsg);
 
-		setState( State::Protocol );
+		setState(State::Protocol);
 	}
 }
 
@@ -75,7 +74,7 @@ void VncServerProtocol::start()
 
 bool VncServerProtocol::read()
 {
-	switch( state() )
+	switch (state())
 	{
 	case State::Protocol:
 		return readProtocol();
@@ -120,9 +119,9 @@ bool VncServerProtocol::read()
 
 
 
-void VncServerProtocol::setState( VncServerProtocol::State state )
+void VncServerProtocol::setState(VncServerProtocol::State state)
 {
-	m_client->setProtocolState( state );
+	m_client->setProtocolState(state);
 }
 
 
@@ -130,11 +129,11 @@ void VncServerProtocol::setState( VncServerProtocol::State state )
 bool VncServerProtocol::readProtocol()
 {
 	// More protocol data may already be queued when TCP combines packets.
-	if( m_socket->bytesAvailable() >= sz_rfbProtocolVersionMsg )
+	if (m_socket->bytesAvailable() >= sz_rfbProtocolVersionMsg)
 	{
-		const auto protocol = m_socket->read( sz_rfbProtocolVersionMsg );
+		const auto protocol = m_socket->read(sz_rfbProtocolVersionMsg);
 
-		if( protocol.size() != sz_rfbProtocolVersionMsg )
+		if (protocol.size() != sz_rfbProtocolVersionMsg)
 		{
 			vCritical() << "protocol initialization failed";
 			m_socket->close();
@@ -143,15 +142,15 @@ bool VncServerProtocol::readProtocol()
 
 		static const QRegularExpression rfbRX{QStringLiteral("RFB (\\d\\d\\d)\\.(\\d\\d\\d)\n")};
 		const auto match = rfbRX.match(QString::fromUtf8(protocol));
-		if( match.hasMatch() == false || match.captured(1).toInt() != 3 ||
-			match.captured(2).toInt() < 7 || match.captured(2).toInt() > 8 )
+		if (match.hasMatch() == false || match.captured(1).toInt() != 3 ||
+			match.captured(2).toInt() < 7 || match.captured(2).toInt() > 8)
 		{
 			vCritical() << "invalid protocol version";
 			m_socket->close();
 			return false;
 		}
 
-		setState( State::SecurityInit );
+		setState(State::SecurityInit);
 
 		return sendSecurityTypes();
 	}
@@ -164,8 +163,8 @@ bool VncServerProtocol::readProtocol()
 bool VncServerProtocol::sendSecurityTypes()
 {
 	// send list of supported security types
-	const char securityTypeList[2] = { 1, rfbSecTypeVeyon }; // Flawfinder: ignore
-	m_socket->write( securityTypeList, sizeof( securityTypeList ) );
+	const char securityTypeList[2] = {1, rfbSecTypeVeyon}; // Flawfinder: ignore
+	m_socket->write(securityTypeList, sizeof(securityTypeList));
 
 	return true;
 }
@@ -174,12 +173,12 @@ bool VncServerProtocol::sendSecurityTypes()
 
 bool VncServerProtocol::receiveSecurityTypeResponse()
 {
-	if( m_socket->bytesAvailable() >= 1 )
+	if (m_socket->bytesAvailable() >= 1)
 	{
 		char chosenSecurityType = 0;
 
-		if( m_socket->read( &chosenSecurityType, sizeof(chosenSecurityType) ) != sizeof(chosenSecurityType) ||
-				chosenSecurityType != rfbSecTypeVeyon )
+		if (m_socket->read(&chosenSecurityType, sizeof(chosenSecurityType)) != sizeof(chosenSecurityType) ||
+			chosenSecurityType != rfbSecTypeVeyon)
 		{
 			vCritical() << "protocol initialization failed";
 			m_socket->close();
@@ -201,12 +200,12 @@ bool VncServerProtocol::sendAuthenticationTypes()
 {
 	const auto authTypes = supportedAuthTypes();
 
-	VariantArrayMessage message( m_socket );
+	VariantArrayMessage message(m_socket);
 	message.write(int(authTypes.count()));
 
-	for( auto authType : authTypes )
+	for (auto authType : authTypes)
 	{
-		message.write( authType );
+		message.write(authType);
 	}
 
 	return message.send();
@@ -216,13 +215,13 @@ bool VncServerProtocol::sendAuthenticationTypes()
 
 bool VncServerProtocol::receiveAuthenticationTypeResponse()
 {
-	VariantArrayMessage message( m_socket );
+	VariantArrayMessage message(m_socket);
 
-	if( message.isReadyForReceive() && message.receive() )
+	if (message.isReadyForReceive() && message.receive())
 	{
 		const auto chosenAuthType = message.read().value<RfbVeyonAuth::Type>();
 
-		if( supportedAuthTypes().contains( chosenAuthType ) == false )
+		if (supportedAuthTypes().contains(chosenAuthType) == false)
 		{
 			vCritical() << "unsupported authentication type chosen by client!";
 			m_socket->close();
@@ -239,17 +238,17 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 			return false;
 		}
 
-		m_client->setAuthType( chosenAuthType );
-		m_client->setUsername( username );
+		m_client->setAuthType(chosenAuthType);
+		m_client->setUsername(username);
 
-		setState( State::Authenticating );
+		setState(State::Authenticating);
 
 		// send auth ack message
-		VariantArrayMessage( m_socket ).send();
+		VariantArrayMessage(m_socket).send();
 
 		// init authentication
-		VariantArrayMessage dummyMessage( m_socket );
-		processAuthentication( dummyMessage );
+		VariantArrayMessage dummyMessage(m_socket);
+		processAuthentication(dummyMessage);
 	}
 
 	return false;
@@ -259,11 +258,11 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 
 bool VncServerProtocol::receiveAuthenticationMessage()
 {
-	VariantArrayMessage message( m_socket );
+	VariantArrayMessage message(m_socket);
 
-	if( message.isReadyForReceive() && message.receive() )
+	if (message.isReadyForReceive() && message.receive())
 	{
-		return processAuthentication( message );
+		return processAuthentication(message);
 	}
 
 	return false;
@@ -271,18 +270,18 @@ bool VncServerProtocol::receiveAuthenticationMessage()
 
 
 
-bool VncServerProtocol::processAuthentication( VariantArrayMessage& message )
+bool VncServerProtocol::processAuthentication(VariantArrayMessage& message)
 {
-	processAuthenticationMessage( message );
+	processAuthenticationMessage(message);
 
-	switch( m_client->authState() )
+	switch (m_client->authState())
 	{
 	case VncServerClient::AuthState::Successful:
 	{
 		const auto authResult = qToBigEndian<uint32_t>(rfbVncAuthOK);
-		m_socket->write( reinterpret_cast<const char *>( &authResult ), sizeof(authResult) );
+		m_socket->write(reinterpret_cast<const char*>(&authResult), sizeof(authResult));
 
-		setState( State::AccessControl );
+		setState(State::AccessControl);
 		return true;
 	}
 
@@ -305,10 +304,10 @@ bool VncServerProtocol::processAccessControl()
 {
 	performAccessControl();
 
-	switch( m_client->accessControlState() )
+	switch (m_client->accessControlState())
 	{
 	case VncServerClient::AccessControlState::Successful:
-		setState( State::FramebufferInit );
+		setState(State::FramebufferInit);
 		return true;
 
 	case VncServerClient::AccessControlState::Pending:
@@ -332,7 +331,7 @@ void VncServerProtocol::sendFailedAccessControlDetails()
 {
 	VeyonCore::builtinFeatures().accessControlProvider().sendDetails(m_socket, client()->accessControlDetails());
 
-	QObject::connect (&m_accessControlDetailsSendTimer, &QTimer::timeout, m_socket, [this]() {
+	QObject::connect(&m_accessControlDetailsSendTimer, &QTimer::timeout, m_socket, [this]() {
 		VeyonCore::builtinFeatures().accessControlProvider().sendDetails(m_socket, client()->accessControlDetails());
 	});
 	QTimer::singleShot(AccessControlCloseDelay, m_socket, &QAbstractSocket::close);
@@ -346,22 +345,22 @@ void VncServerProtocol::sendFailedAccessControlDetails()
 void VncServerProtocol::sendEmptyServerInitMessage()
 {
 	rfbServerInitMsg message{};
-	m_socket->write(reinterpret_cast<const char *>(&message), sizeof(message));
+	m_socket->write(reinterpret_cast<const char*>(&message), sizeof(message));
 }
 
 
 
 bool VncServerProtocol::processFramebufferInit()
 {
-	if( m_socket->bytesAvailable() >= sz_rfbClientInitMsg &&
-			m_serverInitMessage.isEmpty() == false )
+	if (m_socket->bytesAvailable() >= sz_rfbClientInitMsg &&
+		m_serverInitMessage.isEmpty() == false)
 	{
 		// just read client init message without further evaluation
-		m_socket->read( sz_rfbClientInitMsg );
+		m_socket->read(sz_rfbClientInitMsg);
 
-		m_socket->write( m_serverInitMessage );
+		m_socket->write(m_serverInitMessage);
 
-		setState( State::Running );
+		setState(State::Running);
 
 		return true;
 	}

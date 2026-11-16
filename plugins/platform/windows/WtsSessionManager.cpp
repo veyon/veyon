@@ -33,7 +33,7 @@
 WtsSessionManager::SessionId WtsSessionManager::currentSession()
 {
 	auto sessionId = InvalidSession;
-	if( ProcessIdToSessionId( GetCurrentProcessId(), &sessionId ) == 0 )
+	if (ProcessIdToSessionId(GetCurrentProcessId(), &sessionId) == 0)
 	{
 		vWarning() << GetLastError();
 		return InvalidSession;
@@ -56,27 +56,27 @@ WtsSessionManager::SessionList WtsSessionManager::activeSessions()
 	PWTS_SESSION_INFO sessions;
 	DWORD sessionCount = 0;
 
-	const auto result = WTSEnumerateSessions( WTS_CURRENT_SERVER_HANDLE, 0, 1, &sessions, &sessionCount );
-	if( result == false )
+	const auto result = WTSEnumerateSessions(WTS_CURRENT_SERVER_HANDLE, 0, 1, &sessions, &sessionCount);
+	if (result == false)
 	{
 		return {};
 	}
 
 	SessionList sessionList;
-	sessionList.reserve( sessionCount );
+	sessionList.reserve(sessionCount);
 
-	for( DWORD sessionIndex = 0; sessionIndex < sessionCount; ++sessionIndex )
+	for (DWORD sessionIndex = 0; sessionIndex < sessionCount; ++sessionIndex)
 	{
 		const auto session = &sessions[sessionIndex];
-		if( session->State == WTSActive ||
+		if (session->State == WTSActive ||
 			QString::fromWCharArray(session->pWinStationName)
-			.compare( QLatin1String("multiseat"), Qt::CaseInsensitive ) == 0 )
+					.compare(QLatin1String("multiseat"), Qt::CaseInsensitive) == 0)
 		{
-			sessionList.append( session->SessionId );
+			sessionList.append(session->SessionId);
 		}
 	}
 
-	WTSFreeMemory( sessions );
+	WTSFreeMemory(sessions);
 
 	return sessionList;
 }
@@ -119,14 +119,14 @@ QString WtsSessionManager::querySessionInformation(SessionId sessionId, SessionI
 			switch (clientAddress->AddressFamily)
 			{
 			case AF_UNSPEC:
-				result = QString::fromLatin1(reinterpret_cast<const char *>(clientAddress->Address));
+				result = QString::fromLatin1(reinterpret_cast<const char*>(clientAddress->Address));
 				break;
 			case AF_INET:
 				result = QStringLiteral("%1.%2.%3.%4")
-						 .arg(int(clientAddress->Address[2]))
-						.arg(int(clientAddress->Address[3]))
-						.arg(int(clientAddress->Address[4]))
-						.arg(int(clientAddress->Address[5]));
+							 .arg(int(clientAddress->Address[2]))
+							 .arg(int(clientAddress->Address[3]))
+							 .arg(int(clientAddress->Address[4]))
+							 .arg(int(clientAddress->Address[5]));
 				break;
 			case AF_INET6:
 				for (int i = 2; i < 18; i++)
@@ -135,7 +135,7 @@ QString WtsSessionManager::querySessionInformation(SessionId sessionId, SessionI
 					{
 						result.append(QLatin1Char(':'));
 					}
-					result.append(QStringLiteral("%1").arg( int(clientAddress->Address[i]), 16, 2, QLatin1Char('0')));
+					result.append(QStringLiteral("%1").arg(int(clientAddress->Address[i]), 16, 2, QLatin1Char('0')));
 				}
 				break;
 			}
@@ -148,8 +148,8 @@ QString WtsSessionManager::querySessionInformation(SessionId sessionId, SessionI
 			{
 			case SessionInfo::SessionUptime:
 				result = QString::number((sessionInfoData->CurrentTime.QuadPart -
-										  qMax(sessionInfoData->ConnectTime.QuadPart, sessionInfoData->LogonTime.QuadPart))
-										 / (1000*1000*10));
+										  qMax(sessionInfoData->ConnectTime.QuadPart, sessionInfoData->LogonTime.QuadPart)) /
+										 (1000 * 1000 * 10));
 				break;
 			default:
 				vCritical() << "unhandled session info" << sessionInfo;
@@ -217,7 +217,7 @@ QString WtsSessionManager::queryUserSid(SessionId sessionId)
 
 
 
-WtsSessionManager::ProcessId WtsSessionManager::findUserProcessId( const QString& userName )
+WtsSessionManager::ProcessId WtsSessionManager::findUserProcessId(const QString& userName)
 {
 	WindowsCoreFunctions::SecurityIdentifierBuffer userSIDBuffer{};
 	const auto userSID = reinterpret_cast<PSID>(userSIDBuffer.data());
@@ -226,13 +226,13 @@ WtsSessionManager::ProcessId WtsSessionManager::findUserProcessId( const QString
 	DWORD domainLen = domainName.size();
 	SID_NAME_USE sidNameUse;
 
-	if( LookupAccountName( nullptr,		// system name
-						   WindowsCoreFunctions::toConstWCharArray( userName ),
-						   userSID,
-						   &sidLen,
-						   domainName.data(),
-						   &domainLen,
-						   &sidNameUse ) == false )
+	if (LookupAccountName(nullptr, // system name
+						  WindowsCoreFunctions::toConstWCharArray(userName),
+						  userSID,
+						  &sidLen,
+						  domainName.data(),
+						  &domainLen,
+						  &sidNameUse) == false)
 	{
 		const auto error = GetLastError();
 		vCritical() << "could not look up SID structure:" << error;
@@ -242,7 +242,7 @@ WtsSessionManager::ProcessId WtsSessionManager::findUserProcessId( const QString
 	PWTS_PROCESS_INFO processInfo;
 	DWORD processCount = 0;
 
-	if( WTSEnumerateProcesses( WTS_CURRENT_SERVER_HANDLE, 0, 1, &processInfo, &processCount ) == false )
+	if (WTSEnumerateProcesses(WTS_CURRENT_SERVER_HANDLE, 0, 1, &processInfo, &processCount) == false)
 	{
 		const auto error = GetLastError();
 		vWarning() << "WTSEnumerateProcesses() failed:" << error;
@@ -297,7 +297,7 @@ WtsSessionManager::ProcessId WtsSessionManager::findUserProcessId( const QString
 		}
 	}
 
-	WTSFreeMemory( processInfo );
+	WTSFreeMemory(processInfo);
 
 	return pid;
 }
@@ -309,16 +309,16 @@ WtsSessionManager::ProcessId WtsSessionManager::findProcessId(const QString& pro
 	PWTS_PROCESS_INFO processInfo = nullptr;
 	DWORD processCount = 0;
 
-	if( WTSEnumerateProcesses( WTS_CURRENT_SERVER_HANDLE, 0, 1, &processInfo, &processCount ) == false )
+	if (WTSEnumerateProcesses(WTS_CURRENT_SERVER_HANDLE, 0, 1, &processInfo, &processCount) == false)
 	{
 		return InvalidProcess;
 	}
 
 	auto pid = InvalidProcess;
 
-	for( DWORD proc = 0; proc < processCount; ++proc )
+	for (DWORD proc = 0; proc < processCount; ++proc)
 	{
-		if( processInfo[proc].ProcessId == 0 )
+		if (processInfo[proc].ProcessId == 0)
 		{
 			continue;
 		}
@@ -328,14 +328,14 @@ WtsSessionManager::ProcessId WtsSessionManager::findProcessId(const QString& pro
 			continue;
 		}
 
-		if( processName.compare( QString::fromWCharArray( processInfo[proc].pProcessName ), Qt::CaseInsensitive ) == 0 )
+		if (processName.compare(QString::fromWCharArray(processInfo[proc].pProcessName), Qt::CaseInsensitive) == 0)
 		{
 			pid = processInfo[proc].ProcessId;
 			break;
 		}
 	}
 
-	WTSFreeMemory( processInfo );
+	WTSFreeMemory(processInfo);
 
 	return pid;
 }

@@ -35,7 +35,7 @@ class QTimer;
 class WebApiConnection
 {
 public:
-	WebApiConnection( const QString& hostAddress );
+	WebApiConnection(const QString& hostAddress);
 	~WebApiConnection();
 
 	ComputerControlInterface::Pointer controlInterface() const
@@ -63,9 +63,9 @@ public:
 		return m_lifetimeTimer;
 	}
 
-	QSize scaledFramebufferSize( int width, int height ) const;
+	QSize scaledFramebufferSize(int width, int height) const;
 
-	QByteArray encodedFramebufferData( QSize size, const QByteArray& format, int compression, int quality );
+	QByteArray encodedFramebufferData(QSize size, const QByteArray& format, int compression, int quality);
 
 	const QString& framebufferEncodingError() const
 	{
@@ -84,7 +84,8 @@ private:
 	int m_imageCompression{0};
 	QSize m_imageSize{};
 
-	struct EncodingResult {
+	struct EncodingResult
+	{
 		QByteArray imageData{};
 		QString errorString{};
 		qint64 timestamp{QDateTime::currentMSecsSinceEpoch()};
@@ -105,5 +106,4 @@ private:
 	QElapsedTimer m_lastFramebufferRequestTimer;
 	qint64 m_lastFramebufferRequestInterval{0};
 	QAtomicInteger<qint64> m_framebufferEncodingTime{0};
-
 };

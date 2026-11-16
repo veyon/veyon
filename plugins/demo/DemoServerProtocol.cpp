@@ -29,9 +29,9 @@
 #include "VncServerClient.h"
 
 
-DemoServerProtocol::DemoServerProtocol( const Token& demoAccessToken, QTcpSocket* socket, VncServerClient* client ) :
-	VncServerProtocol( socket, client ),
-	m_demoAccessToken( demoAccessToken )
+DemoServerProtocol::DemoServerProtocol(const Token& demoAccessToken, QTcpSocket* socket, VncServerClient* client) :
+	VncServerProtocol(socket, client),
+	m_demoAccessToken(demoAccessToken)
 {
 }
 
@@ -39,20 +39,20 @@ DemoServerProtocol::DemoServerProtocol( const Token& demoAccessToken, QTcpSocket
 
 QVector<RfbVeyonAuth::Type> DemoServerProtocol::supportedAuthTypes() const
 {
-	return { RfbVeyonAuth::Token };
+	return {RfbVeyonAuth::Token};
 }
 
 
 
-void DemoServerProtocol::processAuthenticationMessage( VariantArrayMessage& message )
+void DemoServerProtocol::processAuthenticationMessage(VariantArrayMessage& message)
 {
-	if( client()->authType() == RfbVeyonAuth::Token )
+	if (client()->authType() == RfbVeyonAuth::Token)
 	{
-		client()->setAuthState( performTokenAuthentication( message ) );
+		client()->setAuthState(performTokenAuthentication(message));
 	}
 	else
 	{
-		client()->setAuthState( VncServerClient::AuthState::Failed );
+		client()->setAuthState(VncServerClient::AuthState::Failed);
 	}
 }
 
@@ -60,14 +60,14 @@ void DemoServerProtocol::processAuthenticationMessage( VariantArrayMessage& mess
 
 void DemoServerProtocol::performAccessControl()
 {
-	client()->setAccessControlState( VncServerClient::AccessControlState::Successful );
+	client()->setAccessControlState(VncServerClient::AccessControlState::Successful);
 }
 
 
 
-VncServerClient::AuthState DemoServerProtocol::performTokenAuthentication( VariantArrayMessage& message )
+VncServerClient::AuthState DemoServerProtocol::performTokenAuthentication(VariantArrayMessage& message)
 {
-	switch( client()->authState() )
+	switch (client()->authState())
 	{
 	case VncServerClient::AuthState::Init:
 		return VncServerClient::AuthState::Token;

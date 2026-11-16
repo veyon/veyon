@@ -35,32 +35,30 @@ class VEYON_CORE_EXPORT DesktopAccessDialog : public QObject, public FeatureProv
 	Q_OBJECT
 	Q_INTERFACES(FeatureProviderInterface PluginInterface)
 public:
-	enum class Argument
-	{
+	enum class Argument {
 		User,
 		Host,
 		Choice
 	};
 	Q_ENUM(Argument)
 
-	enum Choice
-	{
+	enum Choice {
 		ChoiceNone,
 		ChoiceYes,
 		ChoiceNo,
 		ChoiceAlways,
 		ChoiceNever,
 		ChoiceCount
-	} ;
+	};
 	Q_ENUM(Choice)
 
-	explicit DesktopAccessDialog( QObject* parent = nullptr );
+	explicit DesktopAccessDialog(QObject* parent = nullptr);
 	~DesktopAccessDialog() override = default;
 
-	bool isBusy( FeatureWorkerManager* featureWorkerManager ) const;
+	bool isBusy(FeatureWorkerManager* featureWorkerManager) const;
 
-	void exec( FeatureWorkerManager* featureWorkerManager, const QString& user, const QString& host );
-	void abort( FeatureWorkerManager* featureWorkerManager );
+	void exec(FeatureWorkerManager* featureWorkerManager, const QString& user, const QString& host);
+	void abort(FeatureWorkerManager* featureWorkerManager);
 
 	Choice choice() const
 	{
@@ -69,32 +67,32 @@ public:
 
 	Plugin::Uid uid() const override
 	{
-		return Plugin::Uid{ QStringLiteral("13fb9ce8-afbc-4397-93e3-e01c4d8288c9") };
+		return Plugin::Uid{QStringLiteral("13fb9ce8-afbc-4397-93e3-e01c4d8288c9")};
 	}
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 1 );
+		return QVersionNumber(1, 1);
 	}
 
 	QString name() const override
 	{
-		return QStringLiteral( "DesktopAccessDialog" );
+		return QStringLiteral("DesktopAccessDialog");
 	}
 
 	QString description() const override
 	{
-		return tr( "Desktop access dialog" );
+		return tr("Desktop access dialog");
 	}
 
 	QString vendor() const override
 	{
-		return QStringLiteral( "Veyon Community" );
+		return QStringLiteral("Veyon Community");
 	}
 
 	QString copyright() const override
 	{
-		return QStringLiteral( "Tobias Junghans" );
+		return QStringLiteral("Tobias Junghans");
 	}
 
 	const FeatureList& featureList() const override
@@ -102,8 +100,8 @@ public:
 		return m_features;
 	}
 
-	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
-						const ComputerControlInterfaceList& computerControlInterfaces ) override
+	bool controlFeature(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+						const ComputerControlInterfaceList& computerControlInterfaces) override
 	{
 		Q_UNUSED(featureUid)
 		Q_UNUSED(operation)
@@ -116,19 +114,17 @@ public:
 	bool handleFeatureMessageFromWorker(VeyonServerInterface& server,
 										const FeatureMessage& message) override;
 
-	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
+	bool handleFeatureMessage(VeyonWorkerInterface& worker, const FeatureMessage& message) override;
 
 private:
-	static Choice requestDesktopAccess( const QString& user, const QString& host );
+	static Choice requestDesktopAccess(const QString& user, const QString& host);
 
-	enum
-	{
+	enum {
 		DialogTimeout = 30000,
 		SleepTime = 100
 	};
 
-	enum class FeatureCommand
-	{
+	enum class FeatureCommand {
 		RequestDesktopAccess,
 		ReportDesktopAccessChoice
 	};
@@ -142,5 +138,4 @@ private:
 
 Q_SIGNALS:
 	void finished();
-
 };

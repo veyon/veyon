@@ -38,7 +38,7 @@ class DesktopServicesConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	explicit DesktopServicesConfigurationPage( DesktopServicesConfiguration& configuration, QWidget* parent = nullptr );
+	explicit DesktopServicesConfigurationPage(DesktopServicesConfiguration& configuration, QWidget* parent = nullptr);
 	~DesktopServicesConfigurationPage() override;
 
 	void resetWidgets() override;
@@ -54,16 +54,15 @@ private Q_SLOTS:
 	void removeWebsite();
 
 private:
-	static void addServiceObject( QTableWidget* tableWidget, DesktopServiceObject::Type type, const QString& name, QJsonArray& objects );
-	static void updateServiceObject( QTableWidget* tableWidget, DesktopServiceObject::Type type, QJsonArray& objects );
-	static void removeServiceObject( QTableWidget* tableWidget, DesktopServiceObject::Type type, QJsonArray& objects );
+	static void addServiceObject(QTableWidget* tableWidget, DesktopServiceObject::Type type, const QString& name, QJsonArray& objects);
+	static void updateServiceObject(QTableWidget* tableWidget, DesktopServiceObject::Type type, QJsonArray& objects);
+	static void removeServiceObject(QTableWidget* tableWidget, DesktopServiceObject::Type type, QJsonArray& objects);
 
-	static DesktopServiceObject currentServiceObject( QTableWidget* tableWidget, DesktopServiceObject::Type type );
+	static DesktopServiceObject currentServiceObject(QTableWidget* tableWidget, DesktopServiceObject::Type type);
 
-	static void loadObjects( const QJsonArray& objects, QTableWidget* tableWidget );
+	static void loadObjects(const QJsonArray& objects, QTableWidget* tableWidget);
 
-	Ui::DesktopServicesConfigurationPage *ui;
+	Ui::DesktopServicesConfigurationPage* ui;
 
 	DesktopServicesConfiguration& m_configuration;
-
 };

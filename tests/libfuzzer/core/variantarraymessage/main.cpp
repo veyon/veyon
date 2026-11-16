@@ -2,7 +2,7 @@
 
 #include "VariantArrayMessage.h"
 
-extern "C" int LLVMFuzzerTestOneInput(const char *data, size_t size)
+extern "C" int LLVMFuzzerTestOneInput(const char* data, size_t size)
 {
 	QBuffer buffer;
 	buffer.open(QIODevice::ReadWrite);

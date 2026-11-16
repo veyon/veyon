@@ -26,11 +26,10 @@
 
 #include <QUuid>
 
-#include "VeyonCore.h"
 #include "Configuration/Password.h"
+#include "VeyonCore.h"
 
-namespace Configuration
-{
+namespace Configuration {
 
 class Object;
 class Proxy;
@@ -58,8 +57,7 @@ class VEYON_CORE_EXPORT Property : public QObject
 {
 	Q_OBJECT
 public:
-	enum class Flag
-	{
+	enum class Flag {
 		Standard = 0x01,
 		Advanced = 0x02,
 		Hidden = 0x04,
@@ -68,19 +66,19 @@ public:
 	Q_DECLARE_FLAGS(Flags, Flag)
 	Q_FLAG(Flags)
 
-	Property( Object* object, const QString& key, const QString& parentKey,
-			  const QVariant& defaultValue, Flags flags );
+	Property(Object* object, const QString& key, const QString& parentKey,
+			 const QVariant& defaultValue, Flags flags);
 
-	Property( Proxy* proxy, const QString& key, const QString& parentKey,
-			  const QVariant& defaultValue, Flags flags );
+	Property(Proxy* proxy, const QString& key, const QString& parentKey,
+			 const QVariant& defaultValue, Flags flags);
 
 	QObject* lambdaContext() const;
 
 	QVariant variantValue() const;
 
-	void setVariantValue( const QVariant& value ) const;
+	void setVariantValue(const QVariant& value) const;
 
-	static Property* find( QObject* parent, const QString& key, const QString& parentKey );
+	static Property* find(QObject* parent, const QString& key, const QString& parentKey);
 
 	const QString& key() const
 	{
@@ -94,7 +92,7 @@ public:
 
 	QString absoluteKey() const
 	{
-		if( m_parentKey.isEmpty() )
+		if (m_parentKey.isEmpty())
 		{
 			return m_key;
 		}
@@ -119,7 +117,6 @@ private:
 	const QString m_parentKey;
 	const QVariant m_defaultValue;
 	const Flags m_flags;
-
 };
 
 
@@ -129,15 +126,15 @@ class TypedProperty : public Property
 public:
 	using Type = typename CheapestType<T>::Type;
 
-	TypedProperty( Object* object, const QString& key, const QString& parentKey,
-				   const QVariant& defaultValue, Flags flags ) :
-		Property( object, key, parentKey, defaultValue, flags )
+	TypedProperty(Object* object, const QString& key, const QString& parentKey,
+				  const QVariant& defaultValue, Flags flags) :
+		Property(object, key, parentKey, defaultValue, flags)
 	{
 	}
 
-	TypedProperty( Proxy* proxy, const QString& key, const QString& parentKey,
-				   const QVariant& defaultValue, Flags flags ) :
-		Property( proxy, key, parentKey, defaultValue, flags )
+	TypedProperty(Proxy* proxy, const QString& key, const QString& parentKey,
+				  const QVariant& defaultValue, Flags flags) :
+		Property(proxy, key, parentKey, defaultValue, flags)
 	{
 	}
 
@@ -146,9 +143,9 @@ public:
 		return variantValue().template value<T>();
 	}
 
-	void setValue( Type value ) const
+	void setValue(Type value) const
 	{
-		setVariantValue( QVariant::fromValue( value ) );
+		setVariantValue(QVariant::fromValue(value));
 	}
 };
 
@@ -156,24 +153,24 @@ template<>
 VEYON_CORE_EXPORT Password TypedProperty<Password>::value() const;
 
 template<>
-VEYON_CORE_EXPORT void TypedProperty<Password>::setValue( const Password& value ) const;
+VEYON_CORE_EXPORT void TypedProperty<Password>::setValue(const Password& value) const;
 
 
-#define DECLARE_CONFIG_PROPERTY(className,config,type, name, setter, key, parentKey, defaultValue, flags) \
-	private: \
-		const Configuration::TypedProperty<type>* m_##name{ new Configuration::TypedProperty<type>( this, QStringLiteral(key), QStringLiteral(parentKey), defaultValue, flags ) }; \
-	public: \
-		type name() const \
-		{											\
-			return m_##name->value();			\
-		} \
-		const Configuration::TypedProperty<type>& name##Property() const \
-		{ \
-			return *m_##name; \
-		} \
-		void setter( Configuration::TypedProperty<type>::Type value ) const \
-		{ \
-			m_##name->setValue( value ); \
-		}
+#define DECLARE_CONFIG_PROPERTY(className, config, type, name, setter, key, parentKey, defaultValue, flags) \
+private: \
+	const Configuration::TypedProperty<type>* m_##name{new Configuration::TypedProperty<type>(this, QStringLiteral(key), QStringLiteral(parentKey), defaultValue, flags)}; \
+public: \
+	type name() const \
+	{ \
+		return m_##name->value(); \
+	} \
+	const Configuration::TypedProperty<type>& name##Property() const \
+	{ \
+		return *m_##name; \
+	} \
+	void setter(Configuration::TypedProperty<type>::Type value) const \
+	{ \
+		m_##name->setValue(value); \
+	}
 
 }

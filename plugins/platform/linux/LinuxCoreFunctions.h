@@ -53,25 +53,25 @@ public:
 
 	bool prepareSessionBusAccess() override;
 
-	void initNativeLoggingSystem( const QString& appName ) override;
-	void writeToNativeLoggingSystem( const QString& message, Logger::LogLevel loglevel ) override;
+	void initNativeLoggingSystem(const QString& appName) override;
+	void writeToNativeLoggingSystem(const QString& message, Logger::LogLevel loglevel) override;
 
 	StandardInputReader* createStandardInputReader(QObject* parent) override;
 
 	void reboot() override;
-	void powerDown( bool installUpdates ) override;
+	void powerDown(bool installUpdates) override;
 
-	void raiseWindow( QWidget* widget, bool stayOnTop ) override;
+	void raiseWindow(QWidget* widget, bool stayOnTop) override;
 
 	void disableScreenSaver() override;
 	void restoreScreenSaverSettings() override;
 
-	void setSystemUiState( bool enabled ) override;
+	void setSystemUiState(bool enabled) override;
 
 	QString activeDesktopName() override;
 
 	bool isRunningAsAdmin() const override;
-	bool runProgramAsAdmin( const QString& program, const QStringList& parameters ) override;
+	bool runProgramAsAdmin(const QString& program, const QStringList& parameters) override;
 
 	bool runProgramAsUser(const QString& program, const QStringList& parameters,
 						  const QString& username,
@@ -94,7 +94,7 @@ public:
 	static DBusInterfacePointer consoleKitManager();
 
 	static bool isSystemdManaged();
-	static int systemctl( const QStringList& arguments );
+	static int systemctl(const QStringList& arguments);
 
 	static void restartDisplayManagers();
 
@@ -102,11 +102,11 @@ public:
 	static void forEachChildProcess(const std::function<bool(const pids_stack*)>& visitor,
 									int parentPid, const std::vector<pids_item>& items, bool visitParent);
 #else
-	static void forEachChildProcess( const std::function<bool(proc_t *)>& visitor,
-							 int parentPid, int flags, bool visitParent );
+	static void forEachChildProcess(const std::function<bool(proc_t*)>& visitor,
+									int parentPid, int flags, bool visitParent);
 #endif
 
-	static bool waitForProcess( qint64 pid, int timeout, int sleepInterval );
+	static bool waitForProcess(qint64 pid, int timeout, int sleepInterval);
 
 private:
 	int m_screenSaverTimeout{0};
@@ -123,5 +123,4 @@ private:
 
 	void disableScreenSaverWayland();
 	void restoreScreenSaverSettingsWayland();
-
 };

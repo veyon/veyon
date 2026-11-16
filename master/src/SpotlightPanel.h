@@ -38,21 +38,21 @@ class SpotlightPanel : public QWidget
 {
 	Q_OBJECT
 public:
-	explicit SpotlightPanel( UserConfig& config, ComputerMonitoringWidget* computerMonitoringWidget,
-							 QWidget* parent = nullptr );
+	explicit SpotlightPanel(UserConfig& config, ComputerMonitoringWidget* computerMonitoringWidget,
+							QWidget* parent = nullptr);
 	~SpotlightPanel() override;
 
 protected:
-	void resizeEvent( QResizeEvent* event ) override;
+	void resizeEvent(QResizeEvent* event) override;
 
 private:
 	void add();
 	void remove();
-	void setRealtimeView( bool enabled );
+	void setRealtimeView(bool enabled);
 	void updateIconSize();
 
-	void addPressedItem( const QModelIndex& index );
-	void removePressedItem( const QModelIndex& index );
+	void addPressedItem(const QModelIndex& index);
+	void removePressedItem(const QModelIndex& index);
 
 	Ui::SpotlightPanel* ui;
 
@@ -60,5 +60,4 @@ private:
 
 	ComputerMonitoringWidget* m_globalComputerMonitoringWidget;
 	SpotlightModel* m_model;
-
-} ;
+};

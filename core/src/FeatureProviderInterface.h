@@ -26,8 +26,8 @@
 
 #include "ComputerControlInterface.h"
 #include "EnumHelper.h"
-#include "FeatureMessage.h"
 #include "Feature.h"
+#include "FeatureMessage.h"
 #include "MessageContext.h"
 #include "PluginInterface.h"
 
@@ -41,8 +41,7 @@ class VEYON_CORE_EXPORT FeatureProviderInterface
 {
 	Q_GADGET
 public:
-	enum class Operation
-	{
+	enum class Operation {
 		Initialize,
 		Start,
 		Stop
@@ -56,11 +55,11 @@ public:
 	 */
 	virtual const FeatureList& featureList() const = 0;
 
-	virtual bool hasFeature( Feature::Uid featureUid ) const
+	virtual bool hasFeature(Feature::Uid featureUid) const
 	{
-		for( const auto& feature : featureList() )
+		for (const auto& feature : featureList())
 		{
-			if( feature.uid() == featureUid )
+			if (feature.uid() == featureUid)
 			{
 				return true;
 			}
@@ -69,15 +68,15 @@ public:
 		return false;
 	}
 
-	virtual Feature::Uid metaFeature( Feature::Uid ) const
+	virtual Feature::Uid metaFeature(Feature::Uid) const
 	{
 		return {};
 	}
 
 	template<class T>
-	static QString argToString( T item )
+	static QString argToString(T item)
 	{
-		return EnumHelper::toCamelCaseString( item );
+		return EnumHelper::toCamelCaseString(item);
 	}
 
 	/*!
@@ -87,9 +86,9 @@ public:
 	 * \param arguments the arguments specifying what and how to control
 	 * \param computerControlInterfaces a list of ComputerControlInterfaces to operate on
 	 */
-	virtual bool controlFeature( Feature::Uid featureUid,
-						Operation operation, const QVariantMap& arguments,
-						const ComputerControlInterfaceList& computerControlInterfaces ) = 0;
+	virtual bool controlFeature(Feature::Uid featureUid,
+								Operation operation, const QVariantMap& arguments,
+								const ComputerControlInterfaceList& computerControlInterfaces) = 0;
 
 	/*!
 	 * \brief Start a feature on master side for given computer control interfaces
@@ -97,13 +96,13 @@ public:
 	 * \param feature the feature to start
 	 * \param computerControlInterfaces a list of ComputerControlInterfaces to operate on
 	 */
-	virtual bool startFeature( VeyonMasterInterface& master,
-							   const Feature& feature,
-							   const ComputerControlInterfaceList& computerControlInterfaces )
+	virtual bool startFeature(VeyonMasterInterface& master,
+							  const Feature& feature,
+							  const ComputerControlInterfaceList& computerControlInterfaces)
 	{
 		Q_UNUSED(master)
 
-		return controlFeature( feature.uid(), Operation::Start, {}, computerControlInterfaces );
+		return controlFeature(feature.uid(), Operation::Start, {}, computerControlInterfaces);
 	}
 
 	/*!
@@ -112,13 +111,13 @@ public:
 	 * \param feature the feature to stop
 	 * \param computerControlInterfaces a list of ComputerControlInterfaces to operate on
 	 */
-	virtual bool stopFeature( VeyonMasterInterface& master,
-							  const Feature& feature,
-							  const ComputerControlInterfaceList& computerControlInterfaces )
+	virtual bool stopFeature(VeyonMasterInterface& master,
+							 const Feature& feature,
+							 const ComputerControlInterfaceList& computerControlInterfaces)
 	{
 		Q_UNUSED(master)
 
-		return controlFeature( feature.uid(), Operation::Stop, {}, computerControlInterfaces );
+		return controlFeature(feature.uid(), Operation::Stop, {}, computerControlInterfaces);
 	}
 
 	/*!
@@ -126,8 +125,8 @@ public:
 	 * \param message the message which has been received and needs to be handled
 	 * \param computerControlInterfaces the interface over which the message has been received
 	 */
-	virtual bool handleFeatureMessage( ComputerControlInterface::Pointer computerControlInterface ,
-							  const FeatureMessage& message )
+	virtual bool handleFeatureMessage(ComputerControlInterface::Pointer computerControlInterface,
+									  const FeatureMessage& message)
 	{
 		Q_UNUSED(computerControlInterface)
 		Q_UNUSED(message)
@@ -140,9 +139,9 @@ public:
 	 * \param server a reference to a server instance implementing the VeyonServerInterface
 	 * \param message the message which has been received and needs to be handled
 	 */
-	virtual bool handleFeatureMessage( VeyonServerInterface& server,
-									   const MessageContext& messageContext,
-									   const FeatureMessage& message )
+	virtual bool handleFeatureMessage(VeyonServerInterface& server,
+									  const MessageContext& messageContext,
+									  const FeatureMessage& message)
 	{
 		Q_UNUSED(server)
 		Q_UNUSED(messageContext)
@@ -174,7 +173,7 @@ public:
 	 * \param worker a reference to a worker instance implementing the VeyonWorkerInterface
 	 * \param message the message which has been received and needs to be handled
 	 */
-	virtual bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
+	virtual bool handleFeatureMessage(VeyonWorkerInterface& worker, const FeatureMessage& message)
 	{
 		Q_UNUSED(worker)
 		Q_UNUSED(message)
@@ -182,7 +181,7 @@ public:
 		return false;
 	}
 
-	virtual bool isFeatureActive( VeyonServerInterface& server, Feature::Uid featureUid ) const
+	virtual bool isFeatureActive(VeyonServerInterface& server, Feature::Uid featureUid) const
 	{
 		Q_UNUSED(featureUid)
 		Q_UNUSED(server)
@@ -198,10 +197,9 @@ protected:
 			controlInterface->sendFeatureMessage(message);
 		}
 	}
-
 };
 
-using FeatureProviderInterfaceList = QList<FeatureProviderInterface *>;
+using FeatureProviderInterfaceList = QList<FeatureProviderInterface*>;
 
 #define FeatureProviderInterface_iid "io.veyon.Veyon.FeatureProviderInterface"
 

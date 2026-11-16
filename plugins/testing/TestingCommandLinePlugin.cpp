@@ -22,20 +22,20 @@
  *
  */
 
-#include "CommandLineIO.h"
 #include "AccessControlProvider.h"
+#include "CommandLineIO.h"
 #include "PlatformNetworkFunctions.h"
 #include "TestingCommandLinePlugin.h"
 
 
-TestingCommandLinePlugin::TestingCommandLinePlugin( QObject* parent ) :
-	QObject( parent ),
-	m_commands( {
-{ QStringLiteral("checkaccess"), QStringLiteral( "check access with arguments [ACCESSING USER] [ACCESSING COMPUTER] [CONNECTED USER]" ) },
-{ QStringLiteral("authorizedgroups"), QStringLiteral( "check if specified user is in authorized groups [ACCESSING USER]" ) },
-{ QStringLiteral("accesscontrolrules"), QStringLiteral( "process access control rules with arguments [ACCESSING USER] [ACCESSING COMPUTER] [LOCAL USER] [LOCAL COMPUTER] [CONNECTED USER]" ) },
-{ QStringLiteral("isaccessdeniedbylocalstate"), QStringLiteral( "check if access would be denied by local state") },
-				} )
+TestingCommandLinePlugin::TestingCommandLinePlugin(QObject* parent) :
+	QObject(parent),
+	m_commands({
+		{QStringLiteral("checkaccess"), QStringLiteral("check access with arguments [ACCESSING USER] [ACCESSING COMPUTER] [CONNECTED USER]")},
+		{QStringLiteral("authorizedgroups"), QStringLiteral("check if specified user is in authorized groups [ACCESSING USER]")},
+		{QStringLiteral("accesscontrolrules"), QStringLiteral("process access control rules with arguments [ACCESSING USER] [ACCESSING COMPUTER] [LOCAL USER] [LOCAL COMPUTER] [CONNECTED USER]")},
+		{QStringLiteral("isaccessdeniedbylocalstate"), QStringLiteral("check if access would be denied by local state")},
+	})
 {
 }
 
@@ -48,75 +48,75 @@ QStringList TestingCommandLinePlugin::commands() const
 
 
 
-QString TestingCommandLinePlugin::commandHelp( const QString& command ) const
+QString TestingCommandLinePlugin::commandHelp(const QString& command) const
 {
-	return m_commands.value( command );
+	return m_commands.value(command);
 }
 
 
 
-CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_checkaccess( const QStringList& arguments )
+CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_checkaccess(const QStringList& arguments)
 {
 
 	switch (AccessControlProvider().checkAccess(arguments.value(0), arguments.value(1), {arguments.value(2)}).access) // Flawfinder: ignore
 	{
-	case AccessControlProvider::Access::Allow: printf( "[TEST]: CheckAccess: ALLOW\n" ); return Successful;
-	case AccessControlProvider::Access::Deny: printf( "[TEST]: CheckAccess: DENY\n" ); return Successful;
-	case AccessControlProvider::Access::ToBeConfirmed: printf( "[TEST]: CheckAccess: TO BE CONFIRMED\n" ); return Successful;
+	case AccessControlProvider::Access::Allow: printf("[TEST]: CheckAccess: ALLOW\n"); return Successful;
+	case AccessControlProvider::Access::Deny: printf("[TEST]: CheckAccess: DENY\n"); return Successful;
+	case AccessControlProvider::Access::ToBeConfirmed: printf("[TEST]: CheckAccess: TO BE CONFIRMED\n"); return Successful;
 	}
 
-	printf( "[TEST]: CheckAccess: FAIL\n" );
+	printf("[TEST]: CheckAccess: FAIL\n");
 	return Failed;
 }
 
 
 
-CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_authorizedgroups( const QStringList& arguments )
+CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_authorizedgroups(const QStringList& arguments)
 {
-	if( AccessControlProvider().processAuthorizedGroups( arguments.value( 0 ) ) )
+	if (AccessControlProvider().processAuthorizedGroups(arguments.value(0)))
 	{
-		printf( "[TEST]: AuthorizedGroups: ALLOW\n" );
+		printf("[TEST]: AuthorizedGroups: ALLOW\n");
 	}
 	else
 	{
-		printf( "[TEST]: AuthorizedGroups: DENY\n" );
+		printf("[TEST]: AuthorizedGroups: DENY\n");
 	}
 	return Successful;
 }
 
 
 
-CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_accesscontrolrules( const QStringList& arguments )
+CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_accesscontrolrules(const QStringList& arguments)
 {
 	AccessControlProvider provider;
 	const auto rule = provider.processAccessControlRules(arguments.value(0), arguments.value(1),
 														 arguments.value(2), arguments.value(3),
 														 QStringList(arguments.value(4)));
-	switch(rule ? rule->action() : AccessControlRule::Action::None)
+	switch (rule ? rule->action() : AccessControlRule::Action::None)
 	{
-	case AccessControlRule::Action::Allow: printf( "[TEST]: AccessControlRules: ALLOW\n" ); return Successful;
-	case AccessControlRule::Action::Deny: printf( "[TEST]: AccessControlRules: DENY\n" ); return Successful;
-	case AccessControlRule::Action::None: printf( "[TEST]: AccessControlRules: NONE\n" ); return Successful;
-	case AccessControlRule::Action::AskForPermission: printf( "[TEST]: AccessControlRules: ASK FOR PERMISSION\n" ); return Successful;
+	case AccessControlRule::Action::Allow: printf("[TEST]: AccessControlRules: ALLOW\n"); return Successful;
+	case AccessControlRule::Action::Deny: printf("[TEST]: AccessControlRules: DENY\n"); return Successful;
+	case AccessControlRule::Action::None: printf("[TEST]: AccessControlRules: NONE\n"); return Successful;
+	case AccessControlRule::Action::AskForPermission: printf("[TEST]: AccessControlRules: ASK FOR PERMISSION\n"); return Successful;
 	}
 
-	printf( "[TEST]: AccessControlRules: FAIL\n" );
+	printf("[TEST]: AccessControlRules: FAIL\n");
 	return Failed;
 }
 
 
 
-CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_isaccessdeniedbylocalstate( const QStringList& arguments )
+CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_isaccessdeniedbylocalstate(const QStringList& arguments)
 {
 	Q_UNUSED(arguments)
 
-	if( AccessControlProvider().isAccessToLocalComputerDenied() )
+	if (AccessControlProvider().isAccessToLocalComputerDenied())
 	{
-		printf( "[TEST]: IsAccessDeniedByLocalState: YES (server will listen on localhost only)\n" );
+		printf("[TEST]: IsAccessDeniedByLocalState: YES (server will listen on localhost only)\n");
 	}
 	else
 	{
-		printf( "[TEST]: IsAccessDeniedByLocalState: NO (server will listen normally on all interfaces)\n" );
+		printf("[TEST]: IsAccessDeniedByLocalState: NO (server will listen normally on all interfaces)\n");
 	}
 
 	return Successful;
@@ -124,12 +124,12 @@ CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_isaccessd
 
 
 
-CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_ping( const QStringList& arguments )
+CommandLinePluginInterface::RunResult TestingCommandLinePlugin::handle_ping(const QStringList& arguments)
 {
-	if( arguments.count() < 1 )
+	if (arguments.count() < 1)
 	{
 		return NotEnoughArguments;
 	}
 
-	return VeyonCore::platform().networkFunctions().ping( arguments.first() ) == PlatformNetworkFunctions::PingResult::ReplyReceived ? Successful : Failed;
+	return VeyonCore::platform().networkFunctions().ping(arguments.first()) == PlatformNetworkFunctions::PingResult::ReplyReceived ? Successful : Failed;
 }

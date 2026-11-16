@@ -28,24 +28,24 @@
 #include <QJsonDocument>
 
 #include "CommandLineIO.h"
-#include "Configuration/JsonStore.h"
 #include "ConfigCommands.h"
+#include "Configuration/JsonStore.h"
 #include "ConfigurationManager.h"
 #include "CryptoCore.h"
 
 
-ConfigCommands::ConfigCommands( QObject* parent ) :
-	QObject( parent ),
-	m_commands( {
-{ QStringLiteral("clear"), tr( "Clear system-wide Veyon configuration" ) },
-{ QStringLiteral("list"), tr( "List all configuration keys and values" ) },
-{ QStringLiteral("import"), tr( "Import configuration from given file" ) },
-{ QStringLiteral("export"), tr( "Export configuration to given file" ) },
-{ QStringLiteral("get"), tr( "Read and output configuration value for given key" ) },
-{ QStringLiteral("set"), tr( "Write given value to given configuration key" ) },
-{ QStringLiteral("unset"), tr( "Unset (remove) given configuration key" ) },
-{ QStringLiteral("upgrade"), tr( "Upgrade and save configuration of program and plugins" ) },
-				} )
+ConfigCommands::ConfigCommands(QObject* parent) :
+	QObject(parent),
+	m_commands({
+		{QStringLiteral("clear"), tr("Clear system-wide Veyon configuration")},
+		{QStringLiteral("list"), tr("List all configuration keys and values")},
+		{QStringLiteral("import"), tr("Import configuration from given file")},
+		{QStringLiteral("export"), tr("Export configuration to given file")},
+		{QStringLiteral("get"), tr("Read and output configuration value for given key")},
+		{QStringLiteral("set"), tr("Write given value to given configuration key")},
+		{QStringLiteral("unset"), tr("Unset (remove) given configuration key")},
+		{QStringLiteral("upgrade"), tr("Upgrade and save configuration of program and plugins")},
+	})
 {
 }
 
@@ -58,18 +58,18 @@ QStringList ConfigCommands::commands() const
 
 
 
-QString ConfigCommands::commandHelp( const QString& command ) const
+QString ConfigCommands::commandHelp(const QString& command) const
 {
-	return m_commands.value( command );
+	return m_commands.value(command);
 }
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommands::handle_clear( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ConfigCommands::handle_clear(const QStringList& arguments)
 {
 	Q_UNUSED(arguments);
 
-	if( ConfigurationManager().clearConfiguration() )
+	if (ConfigurationManager().clearConfiguration())
 	{
 		return Successful;
 	}
@@ -79,192 +79,192 @@ CommandLinePluginInterface::RunResult ConfigCommands::handle_clear( const QStrin
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommands::handle_list( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ConfigCommands::handle_list(const QStringList& arguments)
 {
 	auto listMode = ListMode::Values;
 
-	if( arguments.value( 0 ) == QLatin1String("defaults") )
+	if (arguments.value(0) == QLatin1String("defaults"))
 	{
 		listMode = ListMode::Defaults;
 	}
-	else if( arguments.value( 0 ) == QLatin1String("types") )
+	else if (arguments.value(0) == QLatin1String("types"))
 	{
 		listMode = ListMode::Types;
 	}
 
-	listConfiguration( listMode );
+	listConfiguration(listMode);
 
 	return NoResult;
 }
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommands::handle_import( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ConfigCommands::handle_import(const QStringList& arguments)
 {
-	QString fileName = arguments.value( 0 );
+	QString fileName = arguments.value(0);
 
-	if( fileName.isEmpty() || QFile( fileName ).exists() == false )
+	if (fileName.isEmpty() || QFile(fileName).exists() == false)
 	{
-		return operationError( tr( "Please specify an existing configuration file to import." ) );
+		return operationError(tr("Please specify an existing configuration file to import."));
 	}
 
-	if( QFileInfo( fileName ).isReadable() == false )
+	if (QFileInfo(fileName).isReadable() == false)
 	{
-		return operationError( tr( "Configuration file is not readable!" ) );
+		return operationError(tr("Configuration file is not readable!"));
 	}
 
 	Configuration::JsonStore xs(Configuration::Store::Scope::System, fileName);
 
 	// merge configuration
-	VeyonCore::config() += VeyonConfiguration( &xs );
+	VeyonCore::config() += VeyonConfiguration(&xs);
 
 	return applyConfiguration();
 }
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommands::handle_export( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ConfigCommands::handle_export(const QStringList& arguments)
 {
-	QString fileName = arguments.value( 0 );
+	QString fileName = arguments.value(0);
 
-	if( fileName.isEmpty() )
+	if (fileName.isEmpty())
 	{
-		return operationError( tr( "Please specify a valid filename for the configuration export." ) );
+		return operationError(tr("Please specify a valid filename for the configuration export."));
 	}
 
-	QFileInfo fileInfo( fileName );
-	if( fileInfo.exists() && fileInfo.isWritable() == false )
+	QFileInfo fileInfo(fileName);
+	if (fileInfo.exists() && fileInfo.isWritable() == false)
 	{
-		return operationError( tr( "Output file is not writable!" ) );
+		return operationError(tr("Output file is not writable!"));
 	}
 
-	if( fileInfo.exists() == false && QFileInfo( fileInfo.dir().path() ).isWritable() == false )
+	if (fileInfo.exists() == false && QFileInfo(fileInfo.dir().path()).isWritable() == false)
 	{
-		return operationError( tr( "Output directory is not writable!" ) );
+		return operationError(tr("Output directory is not writable!"));
 	}
 
 	// write current configuration to output file
-	Configuration::JsonStore(Configuration::Store::Scope::System, fileName).flush( &VeyonCore::config() );
+	Configuration::JsonStore(Configuration::Store::Scope::System, fileName).flush(&VeyonCore::config());
 
 	return Successful;
 }
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommands::handle_get( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ConfigCommands::handle_get(const QStringList& arguments)
 {
-	QString key = arguments.value( 0 );
+	QString key = arguments.value(0);
 
-	if( key.isEmpty() )
+	if (key.isEmpty())
 	{
-		return operationError( tr( "Please specify a valid key." ) );
+		return operationError(tr("Please specify a valid key."));
 	}
 
-	QStringList keyParts = key.split( QLatin1Char('/') );
+	QStringList keyParts = key.split(QLatin1Char('/'));
 	key = keyParts.last();
 	QString parentKey;
 
-	if( keyParts.size() > 1 )
+	if (keyParts.size() > 1)
 	{
-		parentKey = keyParts.mid( 0, keyParts.size()-1).join( QLatin1Char('/') );
+		parentKey = keyParts.mid(0, keyParts.size() - 1).join(QLatin1Char('/'));
 	}
 
-	if( VeyonCore::config().hasValue( key, parentKey ) == false )
+	if (VeyonCore::config().hasValue(key, parentKey) == false)
 	{
-		return operationError( tr( "Specified key does not exist in current configuration!" ) );
+		return operationError(tr("Specified key does not exist in current configuration!"));
 	}
 
-	CommandLineIO::print( printableConfigurationValue( VeyonCore::config().value( key, parentKey, QVariant() ) ) );
+	CommandLineIO::print(printableConfigurationValue(VeyonCore::config().value(key, parentKey, QVariant())));
 
 	return NoResult;
 }
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommands::handle_set( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ConfigCommands::handle_set(const QStringList& arguments)
 {
-	auto key = arguments.value( 0 );
-	auto value = arguments.value( 1 );
-	auto type = arguments.value( 2 );
+	auto key = arguments.value(0);
+	auto value = arguments.value(1);
+	auto type = arguments.value(2);
 
-	if( key.isEmpty() )
+	if (key.isEmpty())
 	{
-		return operationError( tr( "Please specify a valid key." ) );
+		return operationError(tr("Please specify a valid key."));
 	}
 
-	if( value.isEmpty() )
+	if (value.isEmpty())
 	{
-		return operationError( tr( "Please specify a valid value." ) );
+		return operationError(tr("Please specify a valid value."));
 	}
 
-	const auto keyParts = key.split( QLatin1Char('/') );
+	const auto keyParts = key.split(QLatin1Char('/'));
 	key = keyParts.last();
 	QString parentKey;
 
-	if( keyParts.size() > 1 )
+	if (keyParts.size() > 1)
 	{
-		parentKey = keyParts.mid( 0, keyParts.size()-1).join( QLatin1Char('/') );
+		parentKey = keyParts.mid(0, keyParts.size() - 1).join(QLatin1Char('/'));
 	}
 
 	auto valueType = QMetaType::UnknownType;
-	const auto property = Configuration::Property::find( &VeyonCore::config(), key, parentKey );
+	const auto property = Configuration::Property::find(&VeyonCore::config(), key, parentKey);
 
-	if( property )
+	if (property)
 	{
-		valueType = static_cast<QMetaType::Type>( property->variantValue().userType() );
+		valueType = static_cast<QMetaType::Type>(property->variantValue().userType());
 	}
 
 	QVariant configValue = value;
 
-	if( type == QLatin1String("json") ||
-		valueType == QMetaType::QJsonArray )
+	if (type == QLatin1String("json") ||
+		valueType == QMetaType::QJsonArray)
 	{
-		configValue = QJsonDocument::fromJson( value.toUtf8() ).array();
+		configValue = QJsonDocument::fromJson(value.toUtf8()).array();
 	}
-	else if( key.contains( QStringLiteral("password"), Qt::CaseInsensitive ) ||
-			 type == QLatin1String("password") )
+	else if (key.contains(QStringLiteral("password"), Qt::CaseInsensitive) ||
+			 type == QLatin1String("password"))
 	{
-		configValue = VeyonCore::cryptoCore().encryptPassword( value.toUtf8() );
+		configValue = VeyonCore::cryptoCore().encryptPassword(value.toUtf8());
 	}
-	else if( type == QLatin1String("list") ||
-			 valueType == QMetaType::QStringList )
+	else if (type == QLatin1String("list") ||
+			 valueType == QMetaType::QStringList)
 	{
-		configValue = value.split( QLatin1Char( ';' ) );
+		configValue = value.split(QLatin1Char(';'));
 	}
 
-	VeyonCore::config().setValue( key, configValue, parentKey );
+	VeyonCore::config().setValue(key, configValue, parentKey);
 
 	return applyConfiguration();
 }
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommands::handle_unset( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ConfigCommands::handle_unset(const QStringList& arguments)
 {
-	QString key = arguments.value( 0 );
+	QString key = arguments.value(0);
 
-	if( key.isEmpty() )
+	if (key.isEmpty())
 	{
-		return operationError( tr( "Please specify a valid key." ) );
+		return operationError(tr("Please specify a valid key."));
 	}
 
-	QStringList keyParts = key.split( QLatin1Char('/') );
+	QStringList keyParts = key.split(QLatin1Char('/'));
 	key = keyParts.last();
 	QString parentKey;
 
-	if( keyParts.size() > 1 )
+	if (keyParts.size() > 1)
 	{
-		parentKey = keyParts.mid( 0, keyParts.size()-1).join( QLatin1Char('/') );
+		parentKey = keyParts.mid(0, keyParts.size() - 1).join(QLatin1Char('/'));
 	}
 
-	VeyonCore::config().removeValue( key, parentKey );
+	VeyonCore::config().removeValue(key, parentKey);
 
 	return applyConfiguration();
 }
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommands::handle_upgrade( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ConfigCommands::handle_upgrade(const QStringList& arguments)
 {
 	Q_UNUSED(arguments);
 
@@ -274,32 +274,33 @@ CommandLinePluginInterface::RunResult ConfigCommands::handle_upgrade( const QStr
 
 
 
-void ConfigCommands::listConfiguration( ListMode listMode ) const
+void ConfigCommands::listConfiguration(ListMode listMode) const
 {
-	QTextStream stdoutStream( stdout );
+	QTextStream stdoutStream(stdout);
 
-	const auto properties = VeyonCore::config().findChildren<Configuration::Property *>();
+	const auto properties = VeyonCore::config().findChildren<Configuration::Property*>();
 
-	for( auto property : properties )
+	for (auto property : properties)
 	{
-		if( property->flags().testFlag( Configuration::Property::Flag::Legacy ) )
+		if (property->flags().testFlag(Configuration::Property::Flag::Legacy))
 		{
 			continue;
 		}
 
 		stdoutStream << property->absoluteKey() << "=";
-		switch( listMode )
+		switch (listMode)
 		{
 		case ListMode::Values:
-			stdoutStream << printableConfigurationValue( property->variantValue() );
+			stdoutStream << printableConfigurationValue(property->variantValue());
 			break;
 		case ListMode::Defaults:
-			stdoutStream << printableConfigurationValue( property->defaultValue() );
+			stdoutStream << printableConfigurationValue(property->defaultValue());
 			break;
 		case ListMode::Types:
-			stdoutStream << QStringLiteral("[%1]").arg( QString::fromLatin1(
-															property->defaultValue().typeName() ).
-														replace( QLatin1Char('Q'), QString() ).toLower() );
+			stdoutStream << QStringLiteral("[%1]").arg(QString::fromLatin1(
+														   property->defaultValue().typeName())
+														   .replace(QLatin1Char('Q'), QString())
+														   .toLower());
 			break;
 		}
 		stdoutStream << Qt::endl;
@@ -312,10 +313,10 @@ CommandLinePluginInterface::RunResult ConfigCommands::applyConfiguration()
 {
 	ConfigurationManager configurationManager;
 
-	if( configurationManager.saveConfiguration() == false ||
-		configurationManager.applyConfiguration() == false )
+	if (configurationManager.saveConfiguration() == false ||
+		configurationManager.applyConfiguration() == false)
 	{
-		return operationError( configurationManager.errorString() );
+		return operationError(configurationManager.errorString());
 	}
 
 	return Successful;
@@ -323,7 +324,7 @@ CommandLinePluginInterface::RunResult ConfigCommands::applyConfiguration()
 
 
 
-QString ConfigCommands::printableConfigurationValue( const QVariant& value )
+QString ConfigCommands::printableConfigurationValue(const QVariant& value)
 {
 	if (value.userType() == QMetaType::QString ||
 		value.userType() == QMetaType::QUuid ||
@@ -336,22 +337,22 @@ QString ConfigCommands::printableConfigurationValue( const QVariant& value )
 
 	if (value.userType() == QMetaType::QStringList)
 	{
-		return value.toStringList().join( QLatin1Char(';') );
+		return value.toStringList().join(QLatin1Char(';'));
 	}
 
-	if( value.userType() == QMetaType::QJsonArray )
+	if (value.userType() == QMetaType::QJsonArray)
 	{
-		return QString::fromUtf8( QJsonDocument( value.toJsonArray() ).toJson( QJsonDocument::Compact ) );
+		return QString::fromUtf8(QJsonDocument(value.toJsonArray()).toJson(QJsonDocument::Compact));
 	}
 
-	if( value.userType() == QMetaType::QJsonObject )
+	if (value.userType() == QMetaType::QJsonObject)
 	{
-		return QString::fromUtf8( QJsonDocument( value.toJsonObject() ).toJson( QJsonDocument::Compact ) );
+		return QString::fromUtf8(QJsonDocument(value.toJsonObject()).toJson(QJsonDocument::Compact));
 	}
 
-	if( QMetaType( value.userType() ).flags().testFlag( QMetaType::IsEnumeration ) )
+	if (QMetaType(value.userType()).flags().testFlag(QMetaType::IsEnumeration))
 	{
-		return QString::number( value.toInt() );
+		return QString::number(value.toInt());
 	}
 
 	return {};
@@ -359,9 +360,9 @@ QString ConfigCommands::printableConfigurationValue( const QVariant& value )
 
 
 
-CommandLinePluginInterface::RunResult ConfigCommands::operationError( const QString& message )
+CommandLinePluginInterface::RunResult ConfigCommands::operationError(const QString& message)
 {
-	CommandLineIO::error( message );
+	CommandLineIO::error(message);
 
 	return Failed;
 }

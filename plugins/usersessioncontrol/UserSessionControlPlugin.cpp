@@ -32,54 +32,54 @@
 #include "VeyonMasterInterface.h"
 
 
-UserSessionControlPlugin::UserSessionControlPlugin( QObject* parent ) :
-	QObject( parent ),
-	m_userLoginFeature( QStringLiteral( "UserLogin" ),
+UserSessionControlPlugin::UserSessionControlPlugin(QObject* parent) :
+	QObject(parent),
+	m_userLoginFeature(QStringLiteral("UserLogin"),
+					   Feature::Flag::Action | Feature::Flag::Master | Feature::Flag::Service,
+					   Feature::Uid("7310707d-3918-460d-a949-65bd152cb958"),
+					   Feature::Uid(),
+					   tr("Log in"), {},
+					   tr("Click this button to log in a specific user on all computers."),
+					   QStringLiteral(":/usersessioncontrol/login-user.png")),
+	m_userLogoffFeature(QStringLiteral("UserLogoff"),
 						Feature::Flag::Action | Feature::Flag::Master | Feature::Flag::Service,
-						Feature::Uid( "7310707d-3918-460d-a949-65bd152cb958" ),
+						Feature::Uid("7311d43d-ab53-439e-a03a-8cb25f7ed526"),
 						Feature::Uid(),
-						tr( "Log in" ), {},
-						tr( "Click this button to log in a specific user on all computers." ),
-						QStringLiteral( ":/usersessioncontrol/login-user.png" ) ),
-	m_userLogoffFeature( QStringLiteral( "UserLogoff" ),
-						 Feature::Flag::Action | Feature::Flag::Master | Feature::Flag::Service,
-						 Feature::Uid( "7311d43d-ab53-439e-a03a-8cb25f7ed526" ),
-						 Feature::Uid(),
-						 tr( "Log off" ), {},
-						 tr( "Click this button to log off users from all computers." ),
-						 QStringLiteral( ":/usersessioncontrol/logout-user.png" ) ),
-	m_features( { m_userLoginFeature, m_userLogoffFeature } )
+						tr("Log off"), {},
+						tr("Click this button to log off users from all computers."),
+						QStringLiteral(":/usersessioncontrol/logout-user.png")),
+	m_features({m_userLoginFeature, m_userLogoffFeature})
 {
 }
 
 
 
-bool UserSessionControlPlugin::controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
-											  const ComputerControlInterfaceList& computerControlInterfaces )
+bool UserSessionControlPlugin::controlFeature(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+											  const ComputerControlInterfaceList& computerControlInterfaces)
 {
-	if( operation != Operation::Start )
+	if (operation != Operation::Start)
 	{
 		return false;
 	}
 
-	if( featureUid == m_userLoginFeature.uid() )
+	if (featureUid == m_userLoginFeature.uid())
 	{
-		const auto username = arguments.value( argToString(Argument::Username) ).toString();
-		const auto password = arguments.value( argToString(Argument::Password) ).toByteArray();
-		if( username.isEmpty() )
+		const auto username = arguments.value(argToString(Argument::Username)).toString();
+		const auto password = arguments.value(argToString(Argument::Password)).toByteArray();
+		if (username.isEmpty())
 		{
 			return false;
 		}
 
 		sendFeatureMessage(FeatureMessage{featureUid, FeatureMessage::Command::Default}
-						   .addArgument(Argument::Username, username)
-						   .addArgument(Argument::Password, VeyonCore::cryptoCore().encryptPassword(password)),
+							   .addArgument(Argument::Username, username)
+							   .addArgument(Argument::Password, VeyonCore::cryptoCore().encryptPassword(password)),
 						   computerControlInterfaces);
 
 		return true;
 	}
 
-	if( featureUid == m_userLogoffFeature.uid() )
+	if (featureUid == m_userLogoffFeature.uid())
 	{
 		sendFeatureMessage(FeatureMessage{featureUid, FeatureMessage::Command::Default}, computerControlInterfaces);
 
@@ -91,25 +91,23 @@ bool UserSessionControlPlugin::controlFeature( Feature::Uid featureUid, Operatio
 
 
 
-bool UserSessionControlPlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
-											 const ComputerControlInterfaceList& computerControlInterfaces )
+bool UserSessionControlPlugin::startFeature(VeyonMasterInterface& master, const Feature& feature,
+											const ComputerControlInterfaceList& computerControlInterfaces)
 {
 	Q_UNUSED(master)
 
-	if( feature == m_userLoginFeature )
+	if (feature == m_userLoginFeature)
 	{
-		UserLoginDialog loginDialog( master.mainWindow() );
-		if( loginDialog.exec() )
+		UserLoginDialog loginDialog(master.mainWindow());
+		if (loginDialog.exec())
 		{
-			return controlFeature( feature.uid(), Operation::Start,
-								   {
-									   { argToString(Argument::Username), loginDialog.username() },
-									   { argToString(Argument::Password), loginDialog.password().toByteArray() }
-								   },
-								   computerControlInterfaces );
+			return controlFeature(feature.uid(), Operation::Start,
+								  {{argToString(Argument::Username), loginDialog.username()},
+								   {argToString(Argument::Password), loginDialog.password().toByteArray()}},
+								  computerControlInterfaces);
 		}
 	}
-	else if( feature == m_userLogoffFeature )
+	else if (feature == m_userLogoffFeature)
 	{
 		const auto executeOnAllComputers =
 			computerControlInterfaces.size() >= master.filteredComputerControlInterfaces().size();
@@ -119,7 +117,7 @@ bool UserSessionControlPlugin::startFeature( VeyonMasterInterface& master, const
 			return true;
 		}
 
-		return controlFeature( feature.uid(), Operation::Start, {}, computerControlInterfaces );
+		return controlFeature(feature.uid(), Operation::Start, {}, computerControlInterfaces);
 	}
 
 	return false;
@@ -127,23 +125,23 @@ bool UserSessionControlPlugin::startFeature( VeyonMasterInterface& master, const
 
 
 
-bool UserSessionControlPlugin::handleFeatureMessage( VeyonServerInterface& server,
-													 const MessageContext& messageContext,
-													 const FeatureMessage& message )
+bool UserSessionControlPlugin::handleFeatureMessage(VeyonServerInterface& server,
+													const MessageContext& messageContext,
+													const FeatureMessage& message)
 {
 	Q_UNUSED(server)
 	Q_UNUSED(messageContext)
 
-	if( message.featureUid() == m_userLoginFeature.uid() )
+	if (message.featureUid() == m_userLoginFeature.uid())
 	{
-		VeyonCore::platform().userFunctions().prepareLogon( message.argument( Argument::Username ).toString(),
-															VeyonCore::cryptoCore().decryptPassword(
-																message.argument( Argument::Password ).toString() ) );
+		VeyonCore::platform().userFunctions().prepareLogon(message.argument(Argument::Username).toString(),
+														   VeyonCore::cryptoCore().decryptPassword(
+															   message.argument(Argument::Password).toString()));
 		return true;
 	}
-	else if( message.featureUid() == m_userLogoffFeature.uid() )
+	else if (message.featureUid() == m_userLogoffFeature.uid())
 	{
-		if( VeyonCore::platform().sessionFunctions().currentSessionHasUser() )
+		if (VeyonCore::platform().sessionFunctions().currentSessionHasUser())
 		{
 			VeyonCore::platform().userFunctions().logoff();
 		}
@@ -159,19 +157,18 @@ bool UserSessionControlPlugin::handleFeatureMessage( VeyonServerInterface& serve
 
 
 
-bool UserSessionControlPlugin::confirmFeatureExecution( const Feature& feature, bool all, QWidget* parent )
+bool UserSessionControlPlugin::confirmFeatureExecution(const Feature& feature, bool all, QWidget* parent)
 {
-	if( VeyonCore::config().confirmUnsafeActions() == false )
+	if (VeyonCore::config().confirmUnsafeActions() == false)
 	{
 		return true;
 	}
 
-	if( feature == m_userLogoffFeature )
+	if (feature == m_userLogoffFeature)
 	{
-		return QMessageBox::question( parent, tr( "Confirm user logoff" ),
-									  all ? tr( "Do you really want to log off <b>ALL</b> users?" )
-										  : tr( "Do you really want to log off the selected users?" ) ) ==
-				QMessageBox::Yes;
+		return QMessageBox::question(parent, tr("Confirm user logoff"),
+									 all ? tr("Do you really want to log off <b>ALL</b> users?") : tr("Do you really want to log off the selected users?")) ==
+			QMessageBox::Yes;
 	}
 
 	return true;

@@ -34,8 +34,7 @@ class VEYON_CORE_EXPORT SystemTrayIcon : public QObject, public FeatureProviderI
 	Q_OBJECT
 	Q_INTERFACES(FeatureProviderInterface PluginInterface)
 public:
-	enum class Argument
-	{
+	enum class Argument {
 		ToolTipText,
 		MessageTitle,
 		MessageText,
@@ -43,15 +42,15 @@ public:
 	};
 	Q_ENUM(Argument)
 
-	explicit SystemTrayIcon( QObject* parent = nullptr );
+	explicit SystemTrayIcon(QObject* parent = nullptr);
 	~SystemTrayIcon() override = default;
 
-	void setToolTip( const QString& toolTipText,
-					 FeatureWorkerManager& featureWorkerManager );
+	void setToolTip(const QString& toolTipText,
+					FeatureWorkerManager& featureWorkerManager);
 
-	void showMessage( const QString& messageTitle,
-					  const QString& messageText,
-					  FeatureWorkerManager& featureWorkerManager );
+	void showMessage(const QString& messageTitle,
+					 const QString& messageText,
+					 FeatureWorkerManager& featureWorkerManager);
 
 	void showMessage(const ComputerControlInterfaceList& computerControlInterfaces,
 					 const QString& messageTitle, const QString& messageText);
@@ -64,32 +63,32 @@ public:
 
 	Plugin::Uid uid() const override
 	{
-		return Plugin::Uid { QStringLiteral("3cb1adb1-6b4d-4934-a641-db767df83eea") };
+		return Plugin::Uid{QStringLiteral("3cb1adb1-6b4d-4934-a641-db767df83eea")};
 	}
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 1 );
+		return QVersionNumber(1, 1);
 	}
 
 	QString name() const override
 	{
-		return QStringLiteral( "SystemTrayIcon" );
+		return QStringLiteral("SystemTrayIcon");
 	}
 
 	QString description() const override
 	{
-		return tr( "System tray icon" );
+		return tr("System tray icon");
 	}
 
 	QString vendor() const override
 	{
-		return QStringLiteral( "Veyon Community" );
+		return QStringLiteral("Veyon Community");
 	}
 
 	QString copyright() const override
 	{
-		return QStringLiteral( "Tobias Junghans" );
+		return QStringLiteral("Tobias Junghans");
 	}
 
 	const FeatureList& featureList() const override
@@ -97,8 +96,8 @@ public:
 		return m_features;
 	}
 
-	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
-						const ComputerControlInterfaceList& computerControlInterfaces ) override
+	bool controlFeature(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+						const ComputerControlInterfaceList& computerControlInterfaces) override
 	{
 		Q_UNUSED(featureUid)
 		Q_UNUSED(operation)
@@ -108,19 +107,18 @@ public:
 		return false;
 	}
 
-	bool handleFeatureMessage( VeyonServerInterface& server,
-							   const MessageContext& messageContext,
-							   const FeatureMessage& message ) override;
+	bool handleFeatureMessage(VeyonServerInterface& server,
+							  const MessageContext& messageContext,
+							  const FeatureMessage& message) override;
 
-	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
+	bool handleFeatureMessage(VeyonWorkerInterface& worker, const FeatureMessage& message) override;
 
 private:
 	void updateIcon(const QString& overlayIconUrl = {});
 
 	static constexpr int MessageBoxAutoCloseInterval = 10000;
 
-	enum class FeatureCommand
-	{
+	enum class FeatureCommand {
 		SetToolTip,
 		ShowMessage,
 		SetOverlayIcon
@@ -131,5 +129,4 @@ private:
 
 	QSystemTrayIcon* m_systemTrayIcon = nullptr;
 	bool m_hidden = false;
-
 };

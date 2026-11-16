@@ -33,23 +33,23 @@ class ServerAccessControlManager : public QObject
 {
 	Q_OBJECT
 public:
-	ServerAccessControlManager( FeatureWorkerManager& featureWorkerManager,
-								DesktopAccessDialog& desktopAccessDialog,
-								QObject* parent );
+	ServerAccessControlManager(FeatureWorkerManager& featureWorkerManager,
+							   DesktopAccessDialog& desktopAccessDialog,
+							   QObject* parent);
 
-	void addClient( VncServerClient* client );
-	void removeClient( VncServerClient* client );
+	void addClient(VncServerClient* client);
+	void removeClient(VncServerClient* client);
 
 
 Q_SIGNALS:
-	void finished( VncServerClient* client );
+	void finished(VncServerClient* client);
 
 private:
 	static constexpr int ClientWaitInterval = 1000;
 
-	void performAccessControl( VncServerClient* client );
-	VncServerClient::AccessControlState confirmDesktopAccess( VncServerClient* client );
-	void finishDesktopAccessConfirmation( VncServerClient* client );
+	void performAccessControl(VncServerClient* client);
+	VncServerClient::AccessControlState confirmDesktopAccess(VncServerClient* client);
+	void finishDesktopAccessConfirmation(VncServerClient* client);
 
 	QStringList connectedUsers() const;
 
@@ -62,5 +62,4 @@ private:
 	using DesktopAccessChoiceMap = QMap<HostUserPair, DesktopAccessDialog::Choice>;
 
 	DesktopAccessChoiceMap m_desktopAccessChoices;
-
-} ;
+};

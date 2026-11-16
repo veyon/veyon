@@ -84,17 +84,17 @@ void SasEventListener::run()
 
 	std::array<HANDLE, 2> eventObjects{m_sasEvent.get(), m_stopEvent.get()};
 
-	while( isInterruptionRequested() == false )
+	while (isInterruptionRequested() == false)
 	{
-		const auto event = WaitForMultipleObjects( eventObjects.size(), eventObjects.data(), FALSE, WaitPeriod );
+		const auto event = WaitForMultipleObjects(eventObjects.size(), eventObjects.data(), FALSE, WaitPeriod);
 
-		switch( event )
+		switch (event)
 		{
 		case WAIT_OBJECT_0 + 0:
 			ResetEvent(m_sasEvent.get());
-			if( m_sendSas )
+			if (m_sendSas)
 			{
-				m_sendSas( false );
+				m_sendSas(false);
 			}
 			break;
 

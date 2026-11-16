@@ -21,20 +21,20 @@
  *  USA.
  */
 
-#include "LockWidget.h"
-#include "PlatformCoreFunctions.h"
-#include "PlatformInputDeviceFunctions.h"
-
 #include <QApplication>
 #include <QPainter>
 #include <QScreen>
 #include <QWindow>
 
+#include "LockWidget.h"
+#include "PlatformCoreFunctions.h"
+#include "PlatformInputDeviceFunctions.h"
 
-LockWidget::LockWidget( Mode mode, const QPixmap& background, QWidget* parent ) :
-	QWidget( parent, Qt::X11BypassWindowManagerHint ),
-	m_background( background ),
-	m_mode( mode )
+
+LockWidget::LockWidget(Mode mode, const QPixmap& background, QWidget* parent) :
+	QWidget(parent, Qt::X11BypassWindowManagerHint),
+	m_background(background),
+	m_mode(mode)
 {
 	auto leftMostScreen = QGuiApplication::primaryScreen();
 	int minimumX = 0;
@@ -53,10 +53,10 @@ LockWidget::LockWidget( Mode mode, const QPixmap& background, QWidget* parent ) 
 		m_background = leftMostScreen->grabWindow(0);
 	}
 
-	VeyonCore::platform().coreFunctions().setSystemUiState( false );
+	VeyonCore::platform().coreFunctions().setSystemUiState(false);
 	VeyonCore::platform().inputDeviceFunctions().disableInputDevices();
 
-	setWindowTitle( {} );
+	setWindowTitle({});
 
 #ifdef Q_OS_LINUX
 	show();
@@ -73,14 +73,14 @@ LockWidget::LockWidget( Mode mode, const QPixmap& background, QWidget* parent ) 
 	showFullScreen();
 #endif
 
-	setFocusPolicy( Qt::StrongFocus );
+	setFocusPolicy(Qt::StrongFocus);
 	setFocus();
 	grabMouse();
 	grabKeyboard();
-	setCursor( Qt::BlankCursor );
-	QGuiApplication::setOverrideCursor( Qt::BlankCursor );
+	setCursor(Qt::BlankCursor);
+	QGuiApplication::setOverrideCursor(Qt::BlankCursor);
 
-	QCursor::setPos( mapToGlobal( QPoint( 0, 0 ) ) );
+	QCursor::setPos(mapToGlobal(QPoint(0, 0)));
 }
 
 
@@ -88,29 +88,29 @@ LockWidget::LockWidget( Mode mode, const QPixmap& background, QWidget* parent ) 
 LockWidget::~LockWidget()
 {
 	VeyonCore::platform().inputDeviceFunctions().enableInputDevices();
-	VeyonCore::platform().coreFunctions().setSystemUiState( true );
+	VeyonCore::platform().coreFunctions().setSystemUiState(true);
 
 	QGuiApplication::restoreOverrideCursor();
 }
 
 
 
-void LockWidget::paintEvent( QPaintEvent* event )
+void LockWidget::paintEvent(QPaintEvent* event)
 {
 	Q_UNUSED(event);
 
-	QPainter p( this );
-	switch( m_mode )
+	QPainter p(this);
+	switch (m_mode)
 	{
 	case DesktopVisible:
-		p.drawPixmap( 0, 0, m_background );
+		p.drawPixmap(0, 0, m_background);
 		break;
 
 	case BackgroundPixmap:
-		p.fillRect( rect(), QColor( 64, 64, 64 ) );
-		p.drawPixmap( ( width() - m_background.width() ) / 2,
-					  ( height() - m_background.height() ) / 2,
-					  m_background );
+		p.fillRect(rect(), QColor(64, 64, 64));
+		p.drawPixmap((width() - m_background.width()) / 2,
+					 (height() - m_background.height()) / 2,
+					 m_background);
 		break;
 
 	default:

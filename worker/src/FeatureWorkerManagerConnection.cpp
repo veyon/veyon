@@ -34,16 +34,16 @@
 FeatureWorkerManagerConnection::FeatureWorkerManagerConnection(VeyonWorkerInterface& worker,
 															   Feature::Uid featureUid,
 															   QObject* parent) :
-	QObject( parent ),
-	m_worker( worker ),
+	QObject(parent),
+	m_worker(worker),
 	m_port(VeyonCore::config().featureWorkerManagerPort() + VeyonCore::sessionId()),
-	m_socket( this ),
+	m_socket(this),
 	m_featureUid(featureUid)
 {
-	connect( &m_connectTimer, &QTimer::timeout, this, &FeatureWorkerManagerConnection::tryConnection );
+	connect(&m_connectTimer, &QTimer::timeout, this, &FeatureWorkerManagerConnection::tryConnection);
 
-	connect( &m_socket, &QTcpSocket::connected,
-			 this, &FeatureWorkerManagerConnection::sendInitMessage );
+	connect(&m_socket, &QTcpSocket::connected,
+			this, &FeatureWorkerManagerConnection::sendInitMessage);
 
 	connect(&m_socket, &QTcpSocket::disconnected, this,
 			[=]() {
@@ -51,8 +51,8 @@ FeatureWorkerManagerConnection::FeatureWorkerManagerConnection(VeyonWorkerInterf
 		QCoreApplication::instance()->exit(0);
 	}, Qt::QueuedConnection);
 
-	connect( &m_socket, &QTcpSocket::readyRead,
-			 this, &FeatureWorkerManagerConnection::receiveMessage );
+	connect(&m_socket, &QTcpSocket::readyRead,
+			this, &FeatureWorkerManagerConnection::receiveMessage);
 
 	tryConnection();
 }
@@ -78,7 +78,7 @@ void FeatureWorkerManagerConnection::setAuthToken(const QByteArray& authToken)
 
 
 
-bool FeatureWorkerManagerConnection::sendMessage( const FeatureMessage& message )
+bool FeatureWorkerManagerConnection::sendMessage(const FeatureMessage& message)
 {
 	vDebug() << message;
 
@@ -89,7 +89,7 @@ bool FeatureWorkerManagerConnection::sendMessage( const FeatureMessage& message 
 
 void FeatureWorkerManagerConnection::tryConnection()
 {
-	if( m_socket.state() != QTcpSocket::ConnectedState )
+	if (m_socket.state() != QTcpSocket::ConnectedState)
 	{
 		vDebug() << "connecting to FeatureWorkerManager at port" << m_port;
 
@@ -109,8 +109,8 @@ void FeatureWorkerManagerConnection::sendInitMessage()
 		vDebug() << m_featureUid;
 
 		FeatureMessage(m_featureUid, FeatureMessage::Command::Init)
-				.addArgument(FeatureWorkerManager::MessageArgument::AuthToken, m_authToken)
-				.sendPlain(&m_socket);
+			.addArgument(FeatureWorkerManager::MessageArgument::AuthToken, m_authToken)
+			.sendPlain(&m_socket);
 	}
 }
 
@@ -120,11 +120,11 @@ void FeatureWorkerManagerConnection::receiveMessage()
 {
 	FeatureMessage featureMessage;
 
-	while( featureMessage.isReadyForReceive( &m_socket ) )
+	while (featureMessage.isReadyForReceive(&m_socket))
 	{
-		if( featureMessage.receive( &m_socket ) )
+		if (featureMessage.receive(&m_socket))
 		{
-			VeyonCore::featureManager().handleFeatureMessage( m_worker, featureMessage );
+			VeyonCore::featureManager().handleFeatureMessage(m_worker, featureMessage);
 		}
 	}
 }

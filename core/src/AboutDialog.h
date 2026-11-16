@@ -28,21 +28,20 @@
 
 #include "VeyonCore.h"
 
-namespace Ui
-{
-	class AboutDialog;
+namespace Ui {
+class AboutDialog;
 }
 
 class VEYON_CORE_EXPORT AboutDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	explicit AboutDialog( QWidget *parent );
+	explicit AboutDialog(QWidget* parent);
 	~AboutDialog() override;
 
 private Q_SLOTS:
 	void openDonationWebsite();
 
 private:
-	Ui::AboutDialog *ui;
-} ;
+	Ui::AboutDialog* ui;
+};

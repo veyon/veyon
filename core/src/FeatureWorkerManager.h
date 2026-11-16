@@ -26,11 +26,10 @@
 
 #include <QPointer>
 #include <QProcess>
+#include <QRecursiveMutex>
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QTimer>
-
-#include <QRecursiveMutex>
 
 #include "CryptoCore.h"
 #include "FeatureMessage.h"
@@ -42,31 +41,30 @@ class VEYON_CORE_EXPORT FeatureWorkerManager : public QObject
 {
 	Q_OBJECT
 public:
-	enum class MessageArgument
-	{
+	enum class MessageArgument {
 		AuthToken
 	};
 	Q_ENUM(MessageArgument)
 
-	FeatureWorkerManager( VeyonServerInterface& server, QObject* parent = nullptr );
+	FeatureWorkerManager(VeyonServerInterface& server, QObject* parent = nullptr);
 	~FeatureWorkerManager() override;
 
-	bool startManagedSystemWorker( Feature::Uid featureUid );
-	bool startUnmanagedSessionWorker( Feature::Uid featureUid );
+	bool startManagedSystemWorker(Feature::Uid featureUid);
+	bool startUnmanagedSessionWorker(Feature::Uid featureUid);
 
-	bool stopWorker( Feature::Uid featureUid );
+	bool stopWorker(Feature::Uid featureUid);
 
-	void sendMessageToManagedSystemWorker( const FeatureMessage& message );
-	void sendMessageToUnmanagedSessionWorker( const FeatureMessage& message );
+	void sendMessageToManagedSystemWorker(const FeatureMessage& message);
+	void sendMessageToUnmanagedSessionWorker(const FeatureMessage& message);
 
-	bool isWorkerRunning( Feature::Uid featureUid );
+	bool isWorkerRunning(Feature::Uid featureUid);
 
 private:
 	void acceptConnection();
-	void processConnection( QTcpSocket* socket );
-	void closeConnection( QTcpSocket* socket );
+	void processConnection(QTcpSocket* socket);
+	void closeConnection(QTcpSocket* socket);
 
-	void sendMessage( const FeatureMessage& message );
+	void sendMessage(const FeatureMessage& message);
 
 	void sendPendingMessages();
 
@@ -98,5 +96,4 @@ private:
 
 	QMap<Feature::Uid, QList<FeatureMessage>> m_pendingSessionWorkerMessages;
 	QTimer m_sessionWorkerRetryTimer;
-
-} ;
+};

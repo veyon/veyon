@@ -30,15 +30,15 @@
 #include "Toast.h"
 
 
-ServiceControl::ServiceControl( const QString& name,
-								const QString& filePath,
-								const QString& displayName,
-								QWidget* parent ) :
-	QObject( parent ),
-	m_name( name ),
-	m_filePath( filePath ),
-	m_displayName( displayName ),
-	m_parent( parent )
+ServiceControl::ServiceControl(const QString& name,
+							   const QString& filePath,
+							   const QString& displayName,
+							   QWidget* parent) :
+	QObject(parent),
+	m_name(name),
+	m_filePath(filePath),
+	m_displayName(displayName),
+	m_parent(parent)
 {
 }
 
@@ -46,14 +46,14 @@ ServiceControl::ServiceControl( const QString& name,
 
 bool ServiceControl::isServiceRegistered()
 {
-	return VeyonCore::platform().serviceFunctions().isRegistered( m_name );
+	return VeyonCore::platform().serviceFunctions().isRegistered(m_name);
 }
 
 
 
 bool ServiceControl::isServiceRunning()
 {
-	return VeyonCore::platform().serviceFunctions().isRunning( m_name );
+	return VeyonCore::platform().serviceFunctions().isRunning(m_name);
 }
 
 
@@ -63,7 +63,6 @@ void ServiceControl::startService()
 	serviceControl(tr("Starting %1").arg(m_displayName),
 				   QtConcurrent::run([this]() { VeyonCore::platform().serviceFunctions().start(m_name); }));
 }
-
 
 
 
@@ -101,7 +100,6 @@ void ServiceControl::unregisterService()
 {
 	serviceControl(tr("Unregistering %1").arg(m_displayName),
 				   QtConcurrent::run([this]() { VeyonCore::platform().serviceFunctions().uninstall(m_name); }));
-
 }
 
 
@@ -142,12 +140,12 @@ void ServiceControl::graphicalFeedback(const QString& title, const Operation& op
 
 void ServiceControl::textFeedback(const QString& title, const Operation& operation)
 {
-	printf( "%s", qUtf8Printable( title ) );
+	printf("%s", qUtf8Printable(title));
 
-	while( operation.isFinished() == false )
+	while (operation.isFinished() == false)
 	{
 		QCoreApplication::processEvents();
-		QThread::msleep( 200 );
-		printf( "." );
+		QThread::msleep(200);
+		printf(".");
 	}
 }

@@ -22,13 +22,13 @@
  *
  */
 
-#include "SystemUserGroupsPlugin.h"
 #include "PlatformPluginInterface.h"
 #include "PlatformUserFunctions.h"
+#include "SystemUserGroupsPlugin.h"
 
 
-SystemUserGroupsPlugin::SystemUserGroupsPlugin( QObject* parent ) :
-	QObject( parent )
+SystemUserGroupsPlugin::SystemUserGroupsPlugin(QObject* parent) :
+	QObject(parent)
 {
 }
 
@@ -40,16 +40,16 @@ void SystemUserGroupsPlugin::reloadConfiguration()
 
 
 
-QStringList SystemUserGroupsPlugin::userGroups( bool queryDomainGroups )
+QStringList SystemUserGroupsPlugin::userGroups(bool queryDomainGroups)
 {
-	return VeyonCore::platform().userFunctions().userGroups( queryDomainGroups );
+	return VeyonCore::platform().userFunctions().userGroups(queryDomainGroups);
 }
 
 
 
-QStringList SystemUserGroupsPlugin::groupsOfUser( const QString& username, bool queryDomainGroups )
+QStringList SystemUserGroupsPlugin::groupsOfUser(const QString& username, bool queryDomainGroups)
 {
-	return VeyonCore::platform().userFunctions().groupsOfUser( username, queryDomainGroups );
+	return VeyonCore::platform().userFunctions().groupsOfUser(username, queryDomainGroups);
 }
 
 

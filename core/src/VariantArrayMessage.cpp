@@ -22,34 +22,33 @@
  *
  */
 
-#include "VeyonCore.h"
-
 #include "VariantArrayMessage.h"
 #include "VariantStream.h"
+#include "VeyonCore.h"
 
 
-VariantArrayMessage::VariantArrayMessage( QIODevice* ioDevice ) :
+VariantArrayMessage::VariantArrayMessage(QIODevice* ioDevice) :
 	m_buffer(),
-	m_stream( &m_buffer ),
-	m_ioDevice( ioDevice )
+	m_stream(&m_buffer),
+	m_ioDevice(ioDevice)
 {
-	Q_ASSERT( m_ioDevice != nullptr );
+	Q_ASSERT(m_ioDevice != nullptr);
 
-	m_buffer.open( QBuffer::ReadWrite ); // Flawfinder: ignore
+	m_buffer.open(QBuffer::ReadWrite); // Flawfinder: ignore
 }
 
 
 
 bool VariantArrayMessage::send()
 {
-	if( m_buffer.size() > MaxMessageSize )
+	if (m_buffer.size() > MaxMessageSize)
 	{
 		vCritical() << "refusing to send oversized variant message" << m_buffer.size();
 		return false;
 	}
 
-	const auto messageSize = qToBigEndian<MessageSize>( static_cast<MessageSize>( m_buffer.size() ) );
-	return m_ioDevice->write(reinterpret_cast<const char *>(&messageSize), sizeof(messageSize)) == sizeof(messageSize) &&
+	const auto messageSize = qToBigEndian<MessageSize>(static_cast<MessageSize>(m_buffer.size()));
+	return m_ioDevice->write(reinterpret_cast<const char*>(&messageSize), sizeof(messageSize)) == sizeof(messageSize) &&
 		m_ioDevice->write(m_buffer.data()) == m_buffer.size();
 }
 
@@ -59,10 +58,10 @@ bool VariantArrayMessage::isReadyForReceive()
 {
 	MessageSize messageSize;
 
-	if( m_ioDevice->peek( reinterpret_cast<char *>( &messageSize ), sizeof(messageSize) ) == sizeof(messageSize) )
+	if (m_ioDevice->peek(reinterpret_cast<char*>(&messageSize), sizeof(messageSize)) == sizeof(messageSize))
 	{
 		messageSize = qFromBigEndian(messageSize);
-		if( messageSize > MaxMessageSize )
+		if (messageSize > MaxMessageSize)
 		{
 			vWarning() << "invalid variant message size" << messageSize;
 			m_ioDevice->close();
@@ -81,30 +80,30 @@ bool VariantArrayMessage::receive()
 {
 	MessageSize messageSize;
 
-	if( m_ioDevice->read( reinterpret_cast<char *>( &messageSize ), sizeof(messageSize) ) != sizeof(messageSize) ) // Flawfinder: ignore
+	if (m_ioDevice->read(reinterpret_cast<char*>(&messageSize), sizeof(messageSize)) != sizeof(messageSize)) // Flawfinder: ignore
 	{
 		vDebug() << "could not read message size!";
 		return false;
 	}
 
 	messageSize = qFromBigEndian(messageSize);
-	if( messageSize > MaxMessageSize )
+	if (messageSize > MaxMessageSize)
 	{
 		vDebug() << "invalid message size" << messageSize;
 		m_ioDevice->close();
 		return false;
 	}
 
-	const auto data = m_ioDevice->read( messageSize ); // Flawfinder: ignore
-	if( data.size() != static_cast<qint64>( messageSize ) )
+	const auto data = m_ioDevice->read(messageSize); // Flawfinder: ignore
+	if (data.size() != static_cast<qint64>(messageSize))
 	{
 		vDebug() << "could not read message data!";
 		return false;
 	}
 
 	m_buffer.close();
-	m_buffer.setData( data );
-	m_buffer.open( QBuffer::ReadOnly ); // Flawfinder: ignore
+	m_buffer.setData(data);
+	m_buffer.open(QBuffer::ReadOnly); // Flawfinder: ignore
 
 	return true;
 }
@@ -118,9 +117,9 @@ QVariant VariantArrayMessage::read() // Flawfinder: ignore
 
 
 
-VariantArrayMessage& VariantArrayMessage::write( const QVariant& v )
+VariantArrayMessage& VariantArrayMessage::write(const QVariant& v)
 {
-	m_stream.write( v );
+	m_stream.write(v);
 
 	return *this;
 }

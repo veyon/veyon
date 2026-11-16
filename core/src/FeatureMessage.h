@@ -41,8 +41,7 @@ public:
 
 	static constexpr unsigned char RfbMessageType = 41;
 
-	enum class Command
-	{
+	enum class Command {
 		Default = 0,
 		Invalid = -1,
 		Init = -2,
@@ -50,9 +49,9 @@ public:
 
 	FeatureMessage() = default;
 
-	explicit FeatureMessage( FeatureUid featureUid, Command command = Command::Default) :
-		m_featureUid( featureUid ),
-		m_command( command ),
+	explicit FeatureMessage(FeatureUid featureUid, Command command = Command::Default) :
+		m_featureUid(featureUid),
+		m_command(command),
 		m_arguments()
 	{
 	}
@@ -65,16 +64,16 @@ public:
 	{
 	}
 
-	explicit FeatureMessage( const FeatureMessage& other ) :
-		m_featureUid( other.featureUid() ),
-		m_command( other.command() ),
-		m_arguments( other.arguments() )
+	explicit FeatureMessage(const FeatureMessage& other) :
+		m_featureUid(other.featureUid()),
+		m_command(other.command()),
+		m_arguments(other.arguments())
 	{
 	}
 
 	~FeatureMessage() = default;
 
-	FeatureMessage& operator=( const FeatureMessage& other )
+	FeatureMessage& operator=(const FeatureMessage& other)
 	{
 		m_featureUid = other.featureUid();
 		m_command = other.command();
@@ -113,36 +112,35 @@ public:
 	}
 
 	template<typename T = int>
-	FeatureMessage& addArgument( T index, const QVariant& value )
+	FeatureMessage& addArgument(T index, const QVariant& value)
 	{
-		m_arguments[QString::number( static_cast<int>( index ) )] = value;
+		m_arguments[QString::number(static_cast<int>(index))] = value;
 		return *this;
 	}
 
 	template<typename T = int>
-	QVariant argument( T index ) const
+	QVariant argument(T index) const
 	{
-		return m_arguments[QString::number( static_cast<int>( index ) )];
+		return m_arguments[QString::number(static_cast<int>(index))];
 	}
 
 	template<typename T = int>
-	bool hasArgument( T index ) const
+	bool hasArgument(T index) const
 	{
-		return m_arguments.contains( QString::number( static_cast<int>( index ) ) );
+		return m_arguments.contains(QString::number(static_cast<int>(index)));
 	}
 
 	bool sendPlain(QIODevice* ioDevice) const;
 	bool sendAsRfbMessage(QIODevice* ioDevice) const;
 
-	bool isReadyForReceive( QIODevice* ioDevice );
+	bool isReadyForReceive(QIODevice* ioDevice);
 
-	bool receive( QIODevice* ioDevice );
+	bool receive(QIODevice* ioDevice);
 
 private:
 	FeatureUid m_featureUid{};
 	Command m_command = Command::Invalid;
 	Arguments m_arguments{};
-
-} ;
+};
 
 VEYON_CORE_EXPORT QDebug operator<<(QDebug stream, const FeatureMessage& message);

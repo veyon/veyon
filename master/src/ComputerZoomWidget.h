@@ -24,9 +24,9 @@
 
 #pragma once
 
-#include "ComputerControlInterface.h"
-
 #include <QWidget>
+
+#include "ComputerControlInterface.h"
 
 class VncViewWidget;
 
@@ -35,14 +35,14 @@ class ComputerZoomWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	ComputerZoomWidget( const ComputerControlInterface::Pointer& computerControlInterface );
+	ComputerZoomWidget(const ComputerControlInterface::Pointer& computerControlInterface);
 	~ComputerZoomWidget() override;
 
 protected:
-	bool eventFilter( QObject* object, QEvent* event ) override;
+	bool eventFilter(QObject* object, QEvent* event) override;
 
-	void resizeEvent( QResizeEvent* event ) override;
-	void closeEvent( QCloseEvent* event ) override;
+	void resizeEvent(QResizeEvent* event) override;
+	void closeEvent(QCloseEvent* event) override;
 
 private:
 	void updateSize();
@@ -53,6 +53,5 @@ private:
 	VncViewWidget* m_vncView;
 
 Q_SIGNALS:
-	void keypressInComputerZoomWidget( );
-
-} ;
+	void keypressInComputerZoomWidget();
+};

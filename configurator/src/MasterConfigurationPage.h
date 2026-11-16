@@ -52,8 +52,7 @@ private:
 	void populateFeatureComboBox();
 	void updateFeatureLists();
 
-	Ui::MasterConfigurationPage *ui;
+	Ui::MasterConfigurationPage* ui;
 
 	QStringList m_disabledFeatures;
-
 };

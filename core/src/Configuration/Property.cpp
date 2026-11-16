@@ -27,34 +27,33 @@
 #include "Configuration/Proxy.h"
 
 
-namespace Configuration
-{
+namespace Configuration {
 
-Configuration::Property::Property( Object* object, const QString& key, const QString& parentKey,
-								   const QVariant& defaultValue, Flags flags ) :
-	QObject( object ),
-	m_object( object ),
-	m_proxy( nullptr ),
-	m_key( key ),
-	m_parentKey( parentKey ),
-	m_defaultValue( defaultValue ),
-	m_flags( flags )
+Configuration::Property::Property(Object* object, const QString& key, const QString& parentKey,
+								  const QVariant& defaultValue, Flags flags) :
+	QObject(object),
+	m_object(object),
+	m_proxy(nullptr),
+	m_key(key),
+	m_parentKey(parentKey),
+	m_defaultValue(defaultValue),
+	m_flags(flags)
 {
 }
 
 
 
-Configuration::Property::Property( Proxy* proxy, const QString& key, const QString& parentKey,
-								   const QVariant& defaultValue, Flags flags ) :
-	QObject( proxy->object() ),
-	m_object( nullptr ),
-	m_proxy( proxy ),
-	m_key( key ),
-	m_parentKey( parentKey ),
-	m_defaultValue( defaultValue ),
-	m_flags( flags )
+Configuration::Property::Property(Proxy* proxy, const QString& key, const QString& parentKey,
+								  const QVariant& defaultValue, Flags flags) :
+	QObject(proxy->object()),
+	m_object(nullptr),
+	m_proxy(proxy),
+	m_key(key),
+	m_parentKey(parentKey),
+	m_defaultValue(defaultValue),
+	m_flags(flags)
 {
-	connect (proxy, &QObject::destroyed, this, [this]() {
+	connect(proxy, &QObject::destroyed, this, [this]() {
 		setParent(nullptr);
 		deleteLater();
 	});
@@ -64,7 +63,7 @@ Configuration::Property::Property( Proxy* proxy, const QString& key, const QStri
 
 QObject* Property::lambdaContext() const
 {
-	if( m_object )
+	if (m_object)
 	{
 		return m_object;
 	}
@@ -76,13 +75,13 @@ QObject* Property::lambdaContext() const
 
 QVariant Property::variantValue() const
 {
-	if( m_object )
+	if (m_object)
 	{
-		return m_object->value( m_key, m_parentKey, m_defaultValue );
+		return m_object->value(m_key, m_parentKey, m_defaultValue);
 	}
-	else if( m_proxy )
+	else if (m_proxy)
 	{
-		return m_proxy->value( m_key, m_parentKey, m_defaultValue );
+		return m_proxy->value(m_key, m_parentKey, m_defaultValue);
 	}
 
 	return m_defaultValue;
@@ -90,15 +89,15 @@ QVariant Property::variantValue() const
 
 
 
-void Property::setVariantValue( const QVariant& value ) const
+void Property::setVariantValue(const QVariant& value) const
 {
-	if( m_object )
+	if (m_object)
 	{
-		m_object->setValue( m_key, value, m_parentKey );
+		m_object->setValue(m_key, value, m_parentKey);
 	}
-	else if( m_proxy )
+	else if (m_proxy)
 	{
-		m_proxy->setValue( m_key, value, m_parentKey );
+		m_proxy->setValue(m_key, value, m_parentKey);
 	}
 	else
 	{
@@ -108,12 +107,12 @@ void Property::setVariantValue( const QVariant& value ) const
 
 
 
-Property* Property::find( QObject* parent, const QString& key, const QString& parentKey )
+Property* Property::find(QObject* parent, const QString& key, const QString& parentKey)
 {
-	const auto properties = parent->findChildren<Property *>();
-	for( auto property : properties )
+	const auto properties = parent->findChildren<Property*>();
+	for (auto property : properties)
 	{
-		if( property->m_key == key && property->m_parentKey == parentKey )
+		if (property->m_key == key && property->m_parentKey == parentKey)
 		{
 			return property;
 		}
@@ -127,15 +126,15 @@ Property* Property::find( QObject* parent, const QString& key, const QString& pa
 template<>
 Password Configuration::TypedProperty<Password>::value() const
 {
-	return Password::fromEncrypted( variantValue().toString() );
+	return Password::fromEncrypted(variantValue().toString());
 }
 
 
 
 template<>
-void Configuration::TypedProperty<Password>::setValue( const Password& value ) const
+void Configuration::TypedProperty<Password>::setValue(const Password& value) const
 {
-	setVariantValue( value.encrypted() );
+	setVariantValue(value.encrypted());
 }
 
 

@@ -32,11 +32,10 @@
 class VncFeatureMessageEvent : public VncEvent
 {
 public:
-	explicit VncFeatureMessageEvent( const FeatureMessage& featureMessage );
+	explicit VncFeatureMessageEvent(const FeatureMessage& featureMessage);
 
-	void fire( rfbClient* client ) override;
+	void fire(rfbClient* client) override;
 
 private:
 	FeatureMessage m_featureMessage;
-
-} ;
+};

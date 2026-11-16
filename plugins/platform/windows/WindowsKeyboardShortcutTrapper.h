@@ -33,10 +33,10 @@ class WindowsKeyboardShortcutTrapper : public KeyboardShortcutTrapper
 {
 	Q_OBJECT
 public:
-	WindowsKeyboardShortcutTrapper( QObject* parent = nullptr );
+	WindowsKeyboardShortcutTrapper(QObject* parent = nullptr);
 	~WindowsKeyboardShortcutTrapper() override;
 
-	void setEnabled( bool on ) override;
+	void setEnabled(bool on) override;
 
 private:
 	void forwardTrappedShortcuts();
@@ -48,5 +48,4 @@ private:
 
 	bool m_enabled{false};
 	QTimer m_pollTimer;
-
-} ;
+};

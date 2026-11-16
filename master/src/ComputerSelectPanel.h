@@ -39,10 +39,10 @@ class ComputerSelectPanel : public QWidget
 {
 	Q_OBJECT
 public:
-	explicit ComputerSelectPanel( ComputerManager& computerManager, QWidget *parent = nullptr );
+	explicit ComputerSelectPanel(ComputerManager& computerManager, QWidget* parent = nullptr);
 	~ComputerSelectPanel() override;
 
-	bool eventFilter(QObject *watched, QEvent *event) override;
+	bool eventFilter(QObject* watched, QEvent* event) override;
 
 private Q_SLOTS:
 	void addLocation();
@@ -54,10 +54,9 @@ private:
 	void fetchAndExpandAll();
 	void fetchAll(const QModelIndex& index);
 
-	Ui::ComputerSelectPanel *ui;
+	Ui::ComputerSelectPanel* ui;
 	ComputerManager& m_computerManager;
 	QSortFilterProxyModel* m_filterProxyModel;
 	QString m_previousFilter;
 	QModelIndexList m_expandedGroups;
-
 };

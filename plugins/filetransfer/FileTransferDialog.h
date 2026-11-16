@@ -24,7 +24,9 @@
 
 #include <QDialog>
 
-namespace Ui { class FileTransferDialog; }
+namespace Ui {
+class FileTransferDialog;
+}
 
 class FileTransferController;
 class FileTransferListModel;
@@ -33,7 +35,7 @@ class FileTransferDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	FileTransferDialog( FileTransferController* controller, QWidget* parent );
+	FileTransferDialog(FileTransferController* controller, QWidget* parent);
 	~FileTransferDialog() override;
 
 private:
@@ -41,12 +43,11 @@ private:
 	void reject() override;
 	void finish();
 
-	void updateProgress( int progress );
+	void updateProgress(int progress);
 	void reportError(const QString& message);
 
 	Ui::FileTransferDialog* ui;
 
 	FileTransferController* m_controller;
 	FileTransferListModel* m_listModel;
-
-} ;
+};

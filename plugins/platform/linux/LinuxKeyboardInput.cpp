@@ -22,18 +22,15 @@
  *
  */
 
-#include <QThread>
 #include <QProcessEnvironment>
+#include <QThread>
 
-#include "VeyonCore.h"
 #include "LinuxKeyboardInput.h"
-
-#include <cstring>
+#include "VeyonCore.h"
 
 #include <X11/Xlib.h>
-
+#include <cstring>
 #include <fakekey/fakekey.h>
-
 #include <fcntl.h>
 #include <linux/input.h>
 #include <linux/uinput.h>
@@ -50,8 +47,8 @@ LinuxKeyboardInput::LinuxKeyboardInput() :
 	}
 	else
 	{
-		m_display = XOpenDisplay( nullptr );
-		m_fakeKeyHandle = fakekey_init( m_display );
+		m_display = XOpenDisplay(nullptr);
+		m_fakeKeyHandle = fakekey_init(m_display);
 	}
 }
 
@@ -59,13 +56,13 @@ LinuxKeyboardInput::LinuxKeyboardInput() :
 
 LinuxKeyboardInput::~LinuxKeyboardInput()
 {
-	if( m_uinputAvailable )
+	if (m_uinputAvailable)
 	{
 		cleanupUinput();
 	}
 	else
 	{
-		free( m_fakeKeyHandle );
+		free(m_fakeKeyHandle);
 		if (m_display)
 		{
 			XCloseDisplay(m_display);
@@ -75,43 +72,43 @@ LinuxKeyboardInput::~LinuxKeyboardInput()
 
 
 
-void LinuxKeyboardInput::pressAndReleaseKey( uint32_t keysym )
+void LinuxKeyboardInput::pressAndReleaseKey(uint32_t keysym)
 {
-	if( m_uinputAvailable )
+	if (m_uinputAvailable)
 	{
-		const auto linuxKeycode = keysymToLinuxKeycode( keysym );
-		if( linuxKeycode >= 0 )
+		const auto linuxKeycode = keysymToLinuxKeycode(keysym);
+		if (linuxKeycode >= 0)
 		{
-			pressAndReleaseKeyUinput( static_cast<uint32_t>( linuxKeycode ) );
+			pressAndReleaseKeyUinput(static_cast<uint32_t>(linuxKeycode));
 		}
 		return;
 	}
 
-	fakekey_press_keysym( m_fakeKeyHandle, keysym, 0 );
-	fakekey_release( m_fakeKeyHandle );
+	fakekey_press_keysym(m_fakeKeyHandle, keysym, 0);
+	fakekey_release(m_fakeKeyHandle);
 }
 
 
 
-void LinuxKeyboardInput::pressAndReleaseKey( const QByteArray& utf8Data )
+void LinuxKeyboardInput::pressAndReleaseKey(const QByteArray& utf8Data)
 {
-	if( m_uinputAvailable )
+	if (m_uinputAvailable)
 	{
-		pressAndReleaseKeyUinputUtf8( utf8Data );
+		pressAndReleaseKeyUinputUtf8(utf8Data);
 		return;
 	}
 
-	fakekey_press( m_fakeKeyHandle, reinterpret_cast<const unsigned char *>( utf8Data.constData() ), utf8Data.size(), 0 );
-	fakekey_release( m_fakeKeyHandle );
+	fakekey_press(m_fakeKeyHandle, reinterpret_cast<const unsigned char*>(utf8Data.constData()), utf8Data.size(), 0);
+	fakekey_release(m_fakeKeyHandle);
 }
 
 
 
 void LinuxKeyboardInput::sendString(const QString& string, int keyPressInterval)
 {
-	for( int i = 0; i < string.size(); ++i )
+	for (int i = 0; i < string.size(); ++i)
 	{
-		pressAndReleaseKey( string.mid( i, 1 ).toUtf8() );
+		pressAndReleaseKey(string.mid(i, 1).toUtf8());
 		QThread::msleep(keyPressInterval);
 	}
 }
@@ -120,38 +117,38 @@ void LinuxKeyboardInput::sendString(const QString& string, int keyPressInterval)
 
 void LinuxKeyboardInput::initUinput()
 {
-	m_uinputFd = ::open( "/dev/uinput", O_WRONLY | O_NONBLOCK );
-	if( m_uinputFd < 0 )
+	m_uinputFd = ::open("/dev/uinput", O_WRONLY | O_NONBLOCK);
+	if (m_uinputFd < 0)
 	{
-		m_uinputFd = ::open( "/dev/input/uinput", O_WRONLY | O_NONBLOCK );
+		m_uinputFd = ::open("/dev/input/uinput", O_WRONLY | O_NONBLOCK);
 	}
 
-	if( m_uinputFd < 0 )
+	if (m_uinputFd < 0)
 	{
 		vWarning() << "uinput not available";
 		m_uinputAvailable = false;
 		return;
 	}
 
-	::ioctl( m_uinputFd, UI_SET_EVBIT, EV_KEY );
-	::ioctl( m_uinputFd, UI_SET_EVBIT, EV_SYN );
-	for( int key = 0; key < KEY_MAX; ++key )
+	::ioctl(m_uinputFd, UI_SET_EVBIT, EV_KEY);
+	::ioctl(m_uinputFd, UI_SET_EVBIT, EV_SYN);
+	for (int key = 0; key < KEY_MAX; ++key)
 	{
-		::ioctl( m_uinputFd, UI_SET_KEYBIT, key );
+		::ioctl(m_uinputFd, UI_SET_KEYBIT, key);
 	}
 
 	struct uinput_setup usetup;
-	std::memset( &usetup, 0, sizeof( usetup ) );
+	std::memset(&usetup, 0, sizeof(usetup));
 	usetup.id.bustype = BUS_USB;
-	usetup.id.vendor  = 0x1d6b;
+	usetup.id.vendor = 0x1d6b;
 	usetup.id.product = 0x0001;
-	std::strncpy( usetup.name, "Veyon Virtual Keyboard", sizeof( usetup.name ) - 1 );
+	std::strncpy(usetup.name, "Veyon Virtual Keyboard", sizeof(usetup.name) - 1);
 
-	if( ::ioctl( m_uinputFd, UI_DEV_SETUP, &usetup ) < 0 ||
-		::ioctl( m_uinputFd, UI_DEV_CREATE ) < 0 )
+	if (::ioctl(m_uinputFd, UI_DEV_SETUP, &usetup) < 0 ||
+		::ioctl(m_uinputFd, UI_DEV_CREATE) < 0)
 	{
 		vWarning() << "uinput create failed";
-		::close( m_uinputFd );
+		::close(m_uinputFd);
 		m_uinputFd = -1;
 		m_uinputAvailable = false;
 		return;
@@ -164,10 +161,10 @@ void LinuxKeyboardInput::initUinput()
 
 void LinuxKeyboardInput::cleanupUinput()
 {
-	if( m_uinputFd >= 0 )
+	if (m_uinputFd >= 0)
 	{
-		::ioctl( m_uinputFd, UI_DEV_DESTROY );
-		::close( m_uinputFd );
+		::ioctl(m_uinputFd, UI_DEV_DESTROY);
+		::close(m_uinputFd);
 		m_uinputFd = -1;
 	}
 	m_uinputAvailable = false;
@@ -175,35 +172,43 @@ void LinuxKeyboardInput::cleanupUinput()
 
 
 
-void LinuxKeyboardInput::pressAndReleaseKeyUinput( uint32_t linuxKeycode )
+void LinuxKeyboardInput::pressAndReleaseKeyUinput(uint32_t linuxKeycode)
 {
-	if( m_uinputFd < 0 )
+	if (m_uinputFd < 0)
 	{
 		return;
 	}
 
 	struct input_event ev;
-	std::memset( &ev, 0, sizeof( ev ) );
+	std::memset(&ev, 0, sizeof(ev));
 
-	ev.type = EV_KEY; ev.code = linuxKeycode; ev.value = 1;
-	(void)!::write( m_uinputFd, &ev, sizeof( ev ) );
-	ev.type = EV_SYN; ev.code = SYN_REPORT; ev.value = 0;
-	(void)!::write( m_uinputFd, &ev, sizeof( ev ) );
+	ev.type = EV_KEY;
+	ev.code = linuxKeycode;
+	ev.value = 1;
+	(void)!::write(m_uinputFd, &ev, sizeof(ev));
+	ev.type = EV_SYN;
+	ev.code = SYN_REPORT;
+	ev.value = 0;
+	(void)!::write(m_uinputFd, &ev, sizeof(ev));
 
-	ev.type = EV_KEY; ev.code = linuxKeycode; ev.value = 0;
-	(void)!::write( m_uinputFd, &ev, sizeof( ev ) );
-	ev.type = EV_SYN; ev.code = SYN_REPORT; ev.value = 0;
-	(void)!::write( m_uinputFd, &ev, sizeof( ev ) );
+	ev.type = EV_KEY;
+	ev.code = linuxKeycode;
+	ev.value = 0;
+	(void)!::write(m_uinputFd, &ev, sizeof(ev));
+	ev.type = EV_SYN;
+	ev.code = SYN_REPORT;
+	ev.value = 0;
+	(void)!::write(m_uinputFd, &ev, sizeof(ev));
 }
 
 
 
-void LinuxKeyboardInput::pressAndReleaseKeyUinputUtf8( const QByteArray& utf8Data )
+void LinuxKeyboardInput::pressAndReleaseKeyUinputUtf8(const QByteArray& utf8Data)
 {
-	const auto linuxKeycode = utf8ToLinuxKeycode( utf8Data );
-	if( linuxKeycode >= 0 )
+	const auto linuxKeycode = utf8ToLinuxKeycode(utf8Data);
+	if (linuxKeycode >= 0)
 	{
-		pressAndReleaseKeyUinput( static_cast<uint32_t>( linuxKeycode ) );
+		pressAndReleaseKeyUinput(static_cast<uint32_t>(linuxKeycode));
 	}
 }
 
@@ -214,7 +219,7 @@ void LinuxKeyboardInput::pressAndReleaseKeyUinputUtf8( const QByteArray& utf8Dat
 #include <X11/keysymdef.h>
 
 
-int LinuxKeyboardInput::keysymToLinuxKeycode( uint32_t keysym )
+int LinuxKeyboardInput::keysymToLinuxKeycode(uint32_t keysym)
 {
 	// clang-format off
 	static constexpr struct { uint32_t keysym; int keycode; } table[] = {
@@ -350,9 +355,9 @@ int LinuxKeyboardInput::keysymToLinuxKeycode( uint32_t keysym )
 	};
 	// clang-format on
 
-	for( const auto& entry : table )
+	for (const auto& entry : table)
 	{
-		if( entry.keysym == keysym )
+		if (entry.keysym == keysym)
 		{
 			return entry.keycode;
 		}
@@ -363,19 +368,17 @@ int LinuxKeyboardInput::keysymToLinuxKeycode( uint32_t keysym )
 
 
 
-
-
-int LinuxKeyboardInput::utf8ToLinuxKeycode( const QByteArray& utf8Data )
+int LinuxKeyboardInput::utf8ToLinuxKeycode(const QByteArray& utf8Data)
 {
-	if( utf8Data.size() != 1 )
+	if (utf8Data.size() != 1)
 	{
 		return -1;
 	}
 
-	const auto c = utf8Data.at( 0 );
+	const auto c = utf8Data.at(0);
 
 	// Fast path for alphanumeric ASCII
-	if( c >= 'a' && c <= 'z' )
+	if (c >= 'a' && c <= 'z')
 	{
 		// clang-format off
 		static constexpr int letterKeycodes[] = {
@@ -383,9 +386,9 @@ int LinuxKeyboardInput::utf8ToLinuxKeycode( const QByteArray& utf8Data )
 			30,48,46,32,18,33,34,35,23,36,37,38,50,49,24,25,16,19,31,20,22,47,17,45,21,44
 		};
 		// clang-format on
-		return letterKeycodes[ c - 'a' ];
+		return letterKeycodes[c - 'a'];
 	}
-	if( c >= 'A' && c <= 'Z' )
+	if (c >= 'A' && c <= 'Z')
 	{
 		// clang-format off
 		static constexpr int letterKeycodes[] = {
@@ -393,7 +396,7 @@ int LinuxKeyboardInput::utf8ToLinuxKeycode( const QByteArray& utf8Data )
 			30,48,46,32,18,33,34,35,23,36,37,38,50,49,24,25,16,19,31,20,22,47,17,45,21,44
 		};
 		// clang-format on
-		return letterKeycodes[ c - 'A' ];
+		return letterKeycodes[c - 'A'];
 	}
 
 	// clang-format off
@@ -446,9 +449,9 @@ int LinuxKeyboardInput::utf8ToLinuxKeycode( const QByteArray& utf8Data )
 	};
 	// clang-format on
 
-	for( const auto& entry : table )
+	for (const auto& entry : table)
 	{
-		if( entry.ch == c )
+		if (entry.ch == c)
 		{
 			return entry.keycode;
 		}

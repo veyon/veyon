@@ -38,5 +38,4 @@ public:
 
 private:
 	HANDLE m_shutdownEventHandle;
-
 };

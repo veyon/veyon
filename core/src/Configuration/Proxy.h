@@ -27,23 +27,22 @@
 #include "Configuration/Object.h"
 #include "Configuration/Property.h"
 
-namespace Configuration
-{
+namespace Configuration {
 
 class VEYON_CORE_EXPORT Proxy : public QObject
 {
 	Q_OBJECT
 public:
-	explicit Proxy( Object* object );
+	explicit Proxy(Object* object);
 	~Proxy() override = default;
 
-	bool hasValue( const QString& key, const QString& parentKey ) const;
+	bool hasValue(const QString& key, const QString& parentKey) const;
 
-	QVariant value( const QString& key, const QString& parentKey, const QVariant& defaultValue ) const;
+	QVariant value(const QString& key, const QString& parentKey, const QVariant& defaultValue) const;
 
-	void setValue( const QString& key, const QVariant& value, const QString& parentKey );
+	void setValue(const QString& key, const QVariant& value, const QString& parentKey);
 
-	void removeValue( const QString &key, const QString &parentKey );
+	void removeValue(const QString& key, const QString& parentKey);
 
 	void reloadFromStore();
 	void flushStore();
@@ -58,29 +57,31 @@ public:
 		return m_instanceId;
 	}
 
-	void setInstanceId( const QString& instanceId )
+	void setInstanceId(const QString& instanceId)
 	{
 		m_instanceId = instanceId;
 	}
 
-	void removeInstance( const QString& parentKey );
+	void removeInstance(const QString& parentKey);
 
 private:
-	QString instanceParentKey( const QString& parentKey ) const;
+	QString instanceParentKey(const QString& parentKey) const;
 
 	Object* m_object;
 	QString m_instanceId;
-
-} ;
+};
 
 #define DECLARE_CONFIG_PROXY(name, ops) \
-	class name : public Configuration::Proxy { \
+	class name : public Configuration::Proxy \
+	{ \
 	public: \
-		explicit name( Configuration::Object* object ); \
+		explicit name(Configuration::Object* object); \
 		ops(DECLARE_CONFIG_PROPERTY) \
 	};
 
 #define IMPLEMENT_CONFIG_PROXY(name) \
-	name::name( Configuration::Object* object ) : Configuration::Proxy( object ) { }
+	name::name(Configuration::Object* object) : Configuration::Proxy(object) \
+	{ \
+	}
 
 }

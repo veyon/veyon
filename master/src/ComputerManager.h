@@ -39,7 +39,7 @@ class ComputerManager : public QObject
 {
 	Q_OBJECT
 public:
-	ComputerManager( UserConfig& config, QObject* parent );
+	ComputerManager(UserConfig& config, QObject* parent);
 	~ComputerManager() override;
 
 	QAbstractItemModel* networkObjectModel() const
@@ -54,10 +54,10 @@ public:
 
 	ComputerList selectedComputers(const QModelIndex& parent) const;
 
-	void addLocation( const QString& location );
-	void removeLocation( const QString& location );
+	void addLocation(const QString& location);
+	void removeLocation(const QString& location);
 
-	bool saveComputerAndUsersList( const QString& fileName );
+	bool saveComputerAndUsersList(const QString& fileName);
 
 	void updateUser(const ComputerControlInterface::Pointer& controlInterface) const;
 	void updateSessionInfo(const ComputerControlInterface::Pointer& controlInterface) const;
@@ -68,7 +68,7 @@ Q_SIGNALS:
 	void computerSelectionChanged();
 
 private:
-	void checkChangedData( const QModelIndex& topLeft, const QModelIndex& bottomRight, const QVector<int>& roles );
+	void checkChangedData(const QModelIndex& topLeft, const QModelIndex& bottomRight, const QVector<int>& roles);
 
 	void initLocations();
 	void initNetworkObjectLayer();
@@ -105,5 +105,4 @@ private:
 
 	const PlatformUserFunctions::UserProperty m_guestUserProperty;
 	const QString m_guestUserValue;
-
 };

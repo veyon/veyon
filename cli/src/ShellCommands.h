@@ -31,59 +31,58 @@ class ShellCommands : public QObject, CommandLinePluginInterface, PluginInterfac
 	Q_OBJECT
 	Q_INTERFACES(PluginInterface CommandLinePluginInterface)
 public:
-	explicit ShellCommands( QObject* parent = nullptr );
+	explicit ShellCommands(QObject* parent = nullptr);
 	~ShellCommands() override = default;
 
 	Plugin::Uid uid() const override
 	{
-		return Plugin::Uid{ QStringLiteral("85f6c631-e75a-4c78-8cb2-a7f3f502015a") };
+		return Plugin::Uid{QStringLiteral("85f6c631-e75a-4c78-8cb2-a7f3f502015a")};
 	}
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 1 );
+		return QVersionNumber(1, 1);
 	}
 
 	QString name() const override
 	{
-		return QStringLiteral( "Shell" );
+		return QStringLiteral("Shell");
 	}
 
 	QString description() const override
 	{
-		return tr( "Interactive shell and script execution for Veyon CLI" );
+		return tr("Interactive shell and script execution for Veyon CLI");
 	}
 
 	QString vendor() const override
 	{
-		return QStringLiteral( "Veyon Community" );
+		return QStringLiteral("Veyon Community");
 	}
 
 	QString copyright() const override
 	{
-		return QStringLiteral( "Tobias Junghans" );
+		return QStringLiteral("Tobias Junghans");
 	}
 
 	QString commandLineModuleName() const override
 	{
-		return QStringLiteral( "shell" );
+		return QStringLiteral("shell");
 	}
 
 	QString commandLineModuleHelp() const override
 	{
-		return tr( "Commands for shell functionalities" );
+		return tr("Commands for shell functionalities");
 	}
 
 	QStringList commands() const override;
-	QString commandHelp( const QString& command ) const override;
+	QString commandHelp(const QString& command) const override;
 
 public Q_SLOTS:
 	CommandLinePluginInterface::RunResult handle_main();
-	CommandLinePluginInterface::RunResult handle_run( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_run(const QStringList& arguments);
 
 private:
-	void runCommand( const QString& command );
+	void runCommand(const QString& command);
 
 	QMap<QString, QString> m_commands;
-
 };

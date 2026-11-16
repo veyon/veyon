@@ -36,7 +36,7 @@ class DemoConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	explicit DemoConfigurationPage( DemoConfiguration& configuration, QWidget* parent = nullptr );
+	explicit DemoConfigurationPage(DemoConfiguration& configuration, QWidget* parent = nullptr);
 	~DemoConfigurationPage() override;
 
 	void resetWidgets() override;
@@ -45,8 +45,7 @@ public:
 
 
 private:
-	Ui::DemoConfigurationPage *ui;
+	Ui::DemoConfigurationPage* ui;
 
 	DemoConfiguration& m_configuration;
-
 };

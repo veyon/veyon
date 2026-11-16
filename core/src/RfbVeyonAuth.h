@@ -33,8 +33,7 @@ class VEYON_CORE_EXPORT RfbVeyonAuth
 {
 	Q_GADGET
 public:
-	enum Type
-	{
+	enum Type {
 		// invalid/null authentication type
 		Invalid,
 
@@ -46,8 +45,7 @@ public:
 
 		// client has to prove its authenticity by knowing common token
 		Token,
-	} ;
+	};
 
 	Q_ENUM(Type)
-
 };

@@ -12,31 +12,27 @@
 
 class LdapDirectory;
 
-class LdapPlugin : public QObject, PluginInterface,
-		CommandLinePluginInterface,
-		NetworkObjectDirectoryPluginInterface,
-		UserGroupsBackendInterface,
-		ConfigurationPagePluginInterface
+class LdapPlugin : public QObject, PluginInterface, CommandLinePluginInterface, NetworkObjectDirectoryPluginInterface, UserGroupsBackendInterface, ConfigurationPagePluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.Ldap")
 	Q_INTERFACES(PluginInterface
-				 CommandLinePluginInterface
-				 NetworkObjectDirectoryPluginInterface
-				 UserGroupsBackendInterface
-				 ConfigurationPagePluginInterface)
+					 CommandLinePluginInterface
+						 NetworkObjectDirectoryPluginInterface
+							 UserGroupsBackendInterface
+								 ConfigurationPagePluginInterface)
 public:
-	explicit LdapPlugin( QObject* parent = nullptr );
+	explicit LdapPlugin(QObject* parent = nullptr);
 	~LdapPlugin() override;
 
 	Plugin::Uid uid() const override
 	{
-		return Plugin::Uid{ QStringLiteral("6f0a491e-c1c6-4338-8244-f823b0bf8670") };
+		return Plugin::Uid{QStringLiteral("6f0a491e-c1c6-4338-8244-f823b0bf8670")};
 	}
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 2 );
+		return QVersionNumber(1, 2);
 	}
 
 	QString name() const override
@@ -51,54 +47,54 @@ public:
 
 	QString vendor() const override
 	{
-		return QStringLiteral( "Veyon Community" );
+		return QStringLiteral("Veyon Community");
 	}
 
 	QString copyright() const override
 	{
-		return QStringLiteral( "Tobias Junghans" );
+		return QStringLiteral("Tobias Junghans");
 	}
 
-	void upgrade( const QVersionNumber& oldVersion ) override;
+	void upgrade(const QVersionNumber& oldVersion) override;
 
 	QString commandLineModuleName() const override
 	{
-		return QStringLiteral( "ldap" );
+		return QStringLiteral("ldap");
 	}
 
 	QString commandLineModuleHelp() const override
 	{
-		return tr( "Commands for configuring and testing LDAP/AD integration" );
+		return tr("Commands for configuring and testing LDAP/AD integration");
 	}
 
 	QStringList commands() const override;
-	QString commandHelp( const QString& command ) const override;
+	QString commandHelp(const QString& command) const override;
 
 	QString directoryName() const override
 	{
-		return tr( "%1 (load computers and locations from LDAP/AD)" ).arg( name() );
+		return tr("%1 (load computers and locations from LDAP/AD)").arg(name());
 	}
 
-	NetworkObjectDirectory* createNetworkObjectDirectory( QObject* parent ) override;
+	NetworkObjectDirectory* createNetworkObjectDirectory(QObject* parent) override;
 
 	QString userGroupsBackendName() const override
 	{
-		return tr( "%1 (load users and groups from LDAP/AD)" ).arg( name() );
+		return tr("%1 (load users and groups from LDAP/AD)").arg(name());
 	}
 
 	void reloadConfiguration() override;
 
-	QStringList userGroups( bool queryDomainGroups ) override;
-	QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) override;
+	QStringList userGroups(bool queryDomainGroups) override;
+	QStringList groupsOfUser(const QString& username, bool queryDomainGroups) override;
 	QString userGroupSecurityIdentifier(const QString& groupName) override;
 
 	ConfigurationPage* createConfigurationPage() override;
 
 
 public Q_SLOTS:
-	CommandLinePluginInterface::RunResult handle_autoconfigurebasedn( const QStringList& arguments );
-	CommandLinePluginInterface::RunResult handle_query( const QStringList& arguments );
-	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_autoconfigurebasedn(const QStringList& arguments);
+	CommandLinePluginInterface::RunResult handle_query(const QStringList& arguments);
+	CommandLinePluginInterface::RunResult handle_help(const QStringList& arguments);
 
 private:
 	enum {
@@ -112,5 +108,4 @@ private:
 	LdapClient* m_ldapClient;
 	LdapDirectory* m_ldapDirectory;
 	QMap<QString, QString> m_commands;
-
 };

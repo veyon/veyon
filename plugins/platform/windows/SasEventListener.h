@@ -34,7 +34,7 @@ class SasEventListener : public QThread
 {
 	Q_OBJECT
 public:
-	using SendSas = void (WINAPI *)(BOOL asUser);
+	using SendSas = void(WINAPI*)(BOOL asUser);
 
 	static constexpr DWORD WaitPeriod = 1000;
 
@@ -50,5 +50,4 @@ private:
 	SendSas m_sendSas;
 	SmartHandle m_sasEvent;
 	SmartHandle m_stopEvent;
-
 };

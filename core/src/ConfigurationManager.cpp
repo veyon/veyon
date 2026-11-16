@@ -32,9 +32,9 @@
 
 
 
-ConfigurationManager::ConfigurationManager( QObject* parent ) :
-	QObject( parent ),
-	m_configuration( VeyonCore::config() )
+ConfigurationManager::ConfigurationManager(QObject* parent) :
+	QObject(parent),
+	m_configuration(VeyonCore::config())
 {
 }
 
@@ -52,7 +52,7 @@ bool ConfigurationManager::clearConfiguration()
 bool ConfigurationManager::applyConfiguration()
 {
 	// update Veyon Service configuration
-	if( VeyonServiceControl().setAutostart( m_configuration.autostartService() ) == false )
+	if (VeyonServiceControl().setAutostart(m_configuration.autostartService()) == false)
 	{
 		m_errorString = tr("Could not modify the autostart property for the Veyon Service.");
 		return false;
@@ -60,25 +60,25 @@ bool ConfigurationManager::applyConfiguration()
 
 	auto& network = VeyonCore::platform().networkFunctions();
 
-	if( network.configureFirewallException( VeyonCore::filesystem().serverFilePath(),
-											QStringLiteral("Veyon Server"),
-											m_configuration.isFirewallExceptionEnabled() ) == false )
+	if (network.configureFirewallException(VeyonCore::filesystem().serverFilePath(),
+										   QStringLiteral("Veyon Server"),
+										   m_configuration.isFirewallExceptionEnabled()) == false)
 	{
 		m_errorString = tr("Could not configure the firewall configuration for the Veyon Server.");
 		return false;
 	}
 
-	if( network.configureFirewallException( VeyonCore::filesystem().workerFilePath(),
-											QStringLiteral("Veyon Worker"),
-											m_configuration.isFirewallExceptionEnabled() ) == false )
+	if (network.configureFirewallException(VeyonCore::filesystem().workerFilePath(),
+										   QStringLiteral("Veyon Worker"),
+										   m_configuration.isFirewallExceptionEnabled()) == false)
 	{
 		m_errorString = tr("Could not configure the firewall configuration for the Veyon Worker.");
 		return false;
 	}
 
-	if( VeyonCore::platform().coreFunctions().applyConfiguration() == false )
+	if (VeyonCore::platform().coreFunctions().applyConfiguration() == false)
 	{
-		m_errorString =  tr("Could not apply platform-specific configuration settings.");
+		m_errorString = tr("Could not apply platform-specific configuration settings.");
 		return false;
 	}
 
@@ -91,12 +91,12 @@ bool ConfigurationManager::saveConfiguration()
 {
 	// write global configuration
 	Configuration::LocalStore localStore(Configuration::LocalStore::Scope::System);
-	if( localStore.isWritable() == false )
+	if (localStore.isWritable() == false)
 	{
-		m_errorString = tr( "Configuration is not writable. Please check your permissions!" );
+		m_errorString = tr("Configuration is not writable. Please check your permissions!");
 		return false;
 	}
 
-	localStore.flush( &m_configuration );
+	localStore.flush(&m_configuration);
 	return true;
 }

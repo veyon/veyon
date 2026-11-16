@@ -37,8 +37,7 @@ class VEYON_CORE_EXPORT Feature
 public:
 	using Uid = QUuid;
 
-	enum class Flag
-	{
+	enum class Flag {
 		None = 0x0000,
 		Mode = 0x0001,
 		Action = 0x0002,
@@ -51,37 +50,37 @@ public:
 		Worker = 0x0400,
 		Builtin = 0x1000,
 		AllComponents = Master | Service | Worker
-	} ;
+	};
 
 	Q_DECLARE_FLAGS(Flags, Flag)
 	Q_FLAG(Flags)
 
-	explicit Feature( const QString& name,
-					  Flags flags,
-					  Uid uid,
-					  Uid parentUid,
-					  const QString& displayName,
-					  const QString& displayNameActive,
-					  const QString& description,
-					  const QString& iconUrl = {},
-					  const QKeySequence& shortcut = {} ) :
-		m_name( name ),
-		m_flags( flags ),
-		m_uid( uid ),
-		m_parentUid( parentUid ),
-		m_displayName( displayName ),
-		m_displayNameActive( displayNameActive ),
-		m_description( description ),
-		m_iconUrl( iconUrl ),
-		m_shortcut( shortcut )
+	explicit Feature(const QString& name,
+					 Flags flags,
+					 Uid uid,
+					 Uid parentUid,
+					 const QString& displayName,
+					 const QString& displayNameActive,
+					 const QString& description,
+					 const QString& iconUrl = {},
+					 const QKeySequence& shortcut = {}) :
+		m_name(name),
+		m_flags(flags),
+		m_uid(uid),
+		m_parentUid(parentUid),
+		m_displayName(displayName),
+		m_displayNameActive(displayNameActive),
+		m_description(description),
+		m_iconUrl(iconUrl),
+		m_shortcut(shortcut)
 	{
 	}
 
-	explicit Feature( Uid uid = Uid() ) :
+	explicit Feature(Uid uid = Uid()) :
 		m_name(),
-		m_flags( Flag::None ),
-		m_uid( uid ),
-		m_parentUid( QUuid() ),
+		m_flags(Flag::None),
+		m_uid(uid),
+		m_parentUid(QUuid()),
 		m_displayName(),
 		m_displayNameActive(),
 		m_description(),
@@ -90,22 +89,22 @@ public:
 	{
 	}
 
-	Feature( const Feature& other ) :
-		m_name( other.name() ),
-		m_flags( other.flags() ),
-		m_uid( other.uid() ),
-		m_parentUid( other.parentUid() ),
-		m_displayName( other.displayName() ),
-		m_displayNameActive( other.displayNameActive() ),
-		m_description( other.description() ),
-		m_iconUrl( other.iconUrl() ),
-		m_shortcut( other.shortcut() )
+	Feature(const Feature& other) :
+		m_name(other.name()),
+		m_flags(other.flags()),
+		m_uid(other.uid()),
+		m_parentUid(other.parentUid()),
+		m_displayName(other.displayName()),
+		m_displayNameActive(other.displayNameActive()),
+		m_description(other.description()),
+		m_iconUrl(other.iconUrl()),
+		m_shortcut(other.shortcut())
 	{
 	}
 
 	~Feature() = default;
 
-	Feature& operator=( const Feature& other )
+	Feature& operator=(const Feature& other)
 	{
 		m_name = other.name();
 		m_flags = other.flags();
@@ -120,12 +119,12 @@ public:
 		return *this;
 	}
 
-	bool operator==( const Feature& other ) const
+	bool operator==(const Feature& other) const
 	{
 		return other.uid() == uid();
 	}
 
-	bool operator!=( const Feature& other ) const
+	bool operator!=(const Feature& other) const
 	{
 		return other.uid() != uid();
 	}
@@ -135,9 +134,9 @@ public:
 		return m_flags != QFlags<Flag>::Int(Flag::None);
 	}
 
-	bool testFlag( Flag flag ) const
+	bool testFlag(Flag flag) const
 	{
-		return m_flags.testFlag( flag );
+		return m_flags.testFlag(flag);
 	}
 
 	const QString& name() const
@@ -155,7 +154,7 @@ public:
 		return m_parentUid;
 	}
 
-	void setParentUid( Uid uid )
+	void setParentUid(Uid uid)
 	{
 		m_parentUid = uid;
 	}
@@ -165,7 +164,7 @@ public:
 		return m_displayName;
 	}
 
-	void setDisplayName( const QString& displayName )
+	void setDisplayName(const QString& displayName)
 	{
 		m_displayName = displayName;
 	}
@@ -185,7 +184,7 @@ public:
 		return m_iconUrl;
 	}
 
-	void setIconUrl( const QString& iconUrl )
+	void setIconUrl(const QString& iconUrl)
 	{
 		m_iconUrl = iconUrl;
 	}
@@ -210,7 +209,6 @@ private:
 	QString m_description;
 	QString m_iconUrl;
 	QKeySequence m_shortcut;
-
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(Feature::Flags)

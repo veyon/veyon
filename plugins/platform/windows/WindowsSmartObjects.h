@@ -107,7 +107,7 @@ private:
 };
 
 
-template <typename P>
+template<typename P>
 struct NullableResourceTraits
 {
 	using Pointer = P;
@@ -144,7 +144,7 @@ struct EnvBlockTraits : NullableResourceTraits<LPVOID>
 using SmartEnvBlockPtr = UniqueResource<EnvBlockTraits>;
 
 
-template <typename T>
+template<typename T>
 struct CoTaskMemTraits : NullableResourceTraits<T*>
 {
 	static void close(T* p) noexcept { CoTaskMemFree(p); }
@@ -186,9 +186,9 @@ struct StringSIDTraits : NullableResourceTraits<LPWSTR>
 using SmartStringSID = UniqueResource<StringSIDTraits>;
 
 
-struct WCharArrayTraits : NullableResourceTraits<wchar_t *>
+struct WCharArrayTraits : NullableResourceTraits<wchar_t*>
 {
-	static void close(Pointer p) noexcept { delete [] p; }
+	static void close(Pointer p) noexcept { delete[] p; }
 };
 
 using SmartWCharPtr = UniqueResource<WCharArrayTraits>;

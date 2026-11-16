@@ -32,183 +32,181 @@
 
 #include "Configuration/UiMapping.h"
 
-namespace Configuration
-{
+namespace Configuration {
 
 static constexpr auto WidgetConfigPropertyFlags = "ConfigPropertyFlags";
 
 
-void UiMapping::initWidgetFromProperty( const Configuration::TypedProperty<bool>& property, QCheckBox* widget )
+void UiMapping::initWidgetFromProperty(const Configuration::TypedProperty<bool>& property, QCheckBox* widget)
 {
-	widget->setChecked( property.value() );
+	widget->setChecked(property.value());
 }
 
 
 
-void UiMapping::initWidgetFromProperty( const Configuration::TypedProperty<bool>& property, QGroupBox* widget )
+void UiMapping::initWidgetFromProperty(const Configuration::TypedProperty<bool>& property, QGroupBox* widget)
 {
-	widget->setChecked( property.value() );
+	widget->setChecked(property.value());
 }
 
 
 
-void UiMapping::initWidgetFromProperty( const Configuration::TypedProperty<bool>& property, QRadioButton* widget )
+void UiMapping::initWidgetFromProperty(const Configuration::TypedProperty<bool>& property, QRadioButton* widget)
 {
-	widget->setChecked( property.value() );
+	widget->setChecked(property.value());
 }
 
 
 
-void UiMapping::initWidgetFromProperty( const Configuration::TypedProperty<QString>& property, QComboBox* widget )
+void UiMapping::initWidgetFromProperty(const Configuration::TypedProperty<QString>& property, QComboBox* widget)
 {
-	widget->setCurrentText( property.value() );
+	widget->setCurrentText(property.value());
 }
 
 
 
-void UiMapping::initWidgetFromProperty( const Configuration::TypedProperty<QString>& property, QLineEdit* widget )
+void UiMapping::initWidgetFromProperty(const Configuration::TypedProperty<QString>& property, QLineEdit* widget)
 {
-	widget->setText( property.value() );
+	widget->setText(property.value());
 }
 
 
 
-void UiMapping::initWidgetFromProperty( const Configuration::TypedProperty<Password>& property, QLineEdit* widget )
+void UiMapping::initWidgetFromProperty(const Configuration::TypedProperty<Password>& property, QLineEdit* widget)
 {
-	widget->setText( QString::fromUtf8( property.value().plainText().toByteArray() ) );
+	widget->setText(QString::fromUtf8(property.value().plainText().toByteArray()));
 }
 
 
 
-void UiMapping::initWidgetFromProperty( const Configuration::TypedProperty<QColor>& property, QPushButton* widget )
+void UiMapping::initWidgetFromProperty(const Configuration::TypedProperty<QColor>& property, QPushButton* widget)
 {
 	auto palette = widget->palette();
-	palette.setColor( QPalette::Button, property.value() );
-	widget->setPalette( palette );
+	palette.setColor(QPalette::Button, property.value());
+	widget->setPalette(palette);
 }
 
 
 
-void UiMapping::initWidgetFromProperty( const Configuration::TypedProperty<int>& property, QComboBox* widget )
+void UiMapping::initWidgetFromProperty(const Configuration::TypedProperty<int>& property, QComboBox* widget)
 {
-	widget->setCurrentIndex( property.value() );
+	widget->setCurrentIndex(property.value());
 }
 
 
 
-void UiMapping::initWidgetFromProperty( const Configuration::TypedProperty<int>& property, QSpinBox* widget )
+void UiMapping::initWidgetFromProperty(const Configuration::TypedProperty<int>& property, QSpinBox* widget)
 {
-	widget->setValue( property.value() );
+	widget->setValue(property.value());
 }
 
 
 
-void UiMapping::initWidgetFromProperty( const Configuration::TypedProperty<QUuid>& property, QComboBox* widget )
+void UiMapping::initWidgetFromProperty(const Configuration::TypedProperty<QUuid>& property, QComboBox* widget)
 {
-	widget->setCurrentIndex( widget->findData( property.value() ) );
+	widget->setCurrentIndex(widget->findData(property.value()));
 }
 
 
 
-void UiMapping::setFlags( QObject* object, Property::Flags flags )
+void UiMapping::setFlags(QObject* object, Property::Flags flags)
 {
 	object->setProperty(WidgetConfigPropertyFlags, QVariant::fromValue(flags));
 }
 
 
 
-Property::Flags UiMapping::flags( QObject* object )
+Property::Flags UiMapping::flags(QObject* object)
 {
 	return object->property(WidgetConfigPropertyFlags).value<Property::Flags>();
 }
 
 
 
-void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<bool>& property, QCheckBox* widget )
+void UiMapping::connectWidgetToProperty(const Configuration::TypedProperty<bool>& property, QCheckBox* widget)
 {
-	QObject::connect( widget, &QCheckBox::toggled, property.lambdaContext(),
-					  [&property]( bool value ) { property.setValue( value ); } );
+	QObject::connect(widget, &QCheckBox::toggled, property.lambdaContext(),
+					 [&property](bool value) { property.setValue(value); });
 }
 
 
 
-void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<bool>& property, QGroupBox* widget )
+void UiMapping::connectWidgetToProperty(const Configuration::TypedProperty<bool>& property, QGroupBox* widget)
 {
-	QObject::connect( widget, &QGroupBox::toggled, property.lambdaContext(),
-					  [&property]( bool value ) { property.setValue( value ); } );
+	QObject::connect(widget, &QGroupBox::toggled, property.lambdaContext(),
+					 [&property](bool value) { property.setValue(value); });
 }
 
 
 
-void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<bool>& property, QRadioButton* widget )
+void UiMapping::connectWidgetToProperty(const Configuration::TypedProperty<bool>& property, QRadioButton* widget)
 {
-	QObject::connect( widget, &QCheckBox::toggled, property.lambdaContext(),
-					  [&property]( bool value ) { property.setValue( value ); } );
+	QObject::connect(widget, &QCheckBox::toggled, property.lambdaContext(),
+					 [&property](bool value) { property.setValue(value); });
 }
 
 
 
-void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<QString>& property, QComboBox* widget )
+void UiMapping::connectWidgetToProperty(const Configuration::TypedProperty<QString>& property, QComboBox* widget)
 {
-	QObject::connect( widget, &QComboBox::currentTextChanged, property.lambdaContext(),
-					  [&property]( const QString& value ) { property.setValue( value ); } );
+	QObject::connect(widget, &QComboBox::currentTextChanged, property.lambdaContext(),
+					 [&property](const QString& value) { property.setValue(value); });
 }
 
 
 
-void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<QString>& property, QLineEdit* widget )
+void UiMapping::connectWidgetToProperty(const Configuration::TypedProperty<QString>& property, QLineEdit* widget)
 {
-	QObject::connect( widget, &QLineEdit::textChanged, property.lambdaContext(),
-					  [&property]( const QString& value ) { property.setValue( value ); } );
+	QObject::connect(widget, &QLineEdit::textChanged, property.lambdaContext(),
+					 [&property](const QString& value) { property.setValue(value); });
 }
 
 
 
-void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<Password>& property, QLineEdit* widget )
+void UiMapping::connectWidgetToProperty(const Configuration::TypedProperty<Password>& property, QLineEdit* widget)
 {
-	QObject::connect( widget, &QLineEdit::textChanged, property.lambdaContext(),
-					  [&property]( const QString& plainText ) { property.setValue( Password::fromPlainText( plainText.toUtf8() ) ); } );
+	QObject::connect(widget, &QLineEdit::textChanged, property.lambdaContext(),
+					 [&property](const QString& plainText) { property.setValue(Password::fromPlainText(plainText.toUtf8())); });
 }
 
 
 
-void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<QColor>& property, QPushButton* widget )
+void UiMapping::connectWidgetToProperty(const Configuration::TypedProperty<QColor>& property, QPushButton* widget)
 {
-	QObject::connect( widget, &QAbstractButton::clicked, property.lambdaContext(), [&property, widget]() {
+	QObject::connect(widget, &QAbstractButton::clicked, property.lambdaContext(), [&property, widget]() {
 		auto palette = widget->palette();
-		QColorDialog d( widget->palette().color( QPalette::Button ), widget );
-		if( d.exec() )
+		QColorDialog d(widget->palette().color(QPalette::Button), widget);
+		if (d.exec())
 		{
-			property.setValue( d.selectedColor() );
-			palette.setColor( QPalette::Button, d.selectedColor() );
-			widget->setPalette( palette );
+			property.setValue(d.selectedColor());
+			palette.setColor(QPalette::Button, d.selectedColor());
+			widget->setPalette(palette);
 		}
-	} );
+	});
 }
 
 
 
-void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<int>& property, QComboBox* widget )
+void UiMapping::connectWidgetToProperty(const Configuration::TypedProperty<int>& property, QComboBox* widget)
 {
-	QObject::connect( widget, QOverload<int>::of(&QComboBox::currentIndexChanged), property.lambdaContext(),
-					  [&property]( int index ) { property.setValue( index ); } );
+	QObject::connect(widget, QOverload<int>::of(&QComboBox::currentIndexChanged), property.lambdaContext(),
+					 [&property](int index) { property.setValue(index); });
 }
 
 
 
-void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<int>& property, QSpinBox* widget )
+void UiMapping::connectWidgetToProperty(const Configuration::TypedProperty<int>& property, QSpinBox* widget)
 {
-	QObject::connect( widget, QOverload<int>::of(&QSpinBox::valueChanged), property.lambdaContext(),
-					  [&property]( int index ) { property.setValue( index ); } );
+	QObject::connect(widget, QOverload<int>::of(&QSpinBox::valueChanged), property.lambdaContext(),
+					 [&property](int index) { property.setValue(index); });
 }
 
 
 
-void UiMapping::connectWidgetToProperty( const Configuration::TypedProperty<QUuid>& property, QComboBox* widget )
+void UiMapping::connectWidgetToProperty(const Configuration::TypedProperty<QUuid>& property, QComboBox* widget)
 {
-	QObject::connect( widget, QOverload<int>::of(&QComboBox::currentIndexChanged), property.lambdaContext(),
-					  [widget, &property]( int index ) { property.setValue( widget->itemData( index ).toUuid() ); } );
-
+	QObject::connect(widget, QOverload<int>::of(&QComboBox::currentIndexChanged), property.lambdaContext(),
+					 [widget, &property](int index) { property.setValue(widget->itemData(index).toUuid()); });
 }
 
 

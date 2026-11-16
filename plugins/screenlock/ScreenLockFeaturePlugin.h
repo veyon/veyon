@@ -34,17 +34,17 @@ class ScreenLockFeaturePlugin : public QObject, FeatureProviderInterface, Plugin
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.ScreenLock")
 	Q_INTERFACES(PluginInterface FeatureProviderInterface)
 public:
-	explicit ScreenLockFeaturePlugin( QObject* parent = nullptr );
+	explicit ScreenLockFeaturePlugin(QObject* parent = nullptr);
 	~ScreenLockFeaturePlugin() override;
 
 	Plugin::Uid uid() const override
 	{
-		return Plugin::Uid{ QStringLiteral("2ad98ccb-e9a5-43ef-8c4c-876ac5efbcb1") };
+		return Plugin::Uid{QStringLiteral("2ad98ccb-e9a5-43ef-8c4c-876ac5efbcb1")};
 	}
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 1 );
+		return QVersionNumber(1, 1);
 	}
 
 	QString name() const override
@@ -54,7 +54,7 @@ public:
 
 	QString description() const override
 	{
-		return tr( "Lock screen and input devices of a computer" );
+		return tr("Lock screen and input devices of a computer");
 	}
 
 	QString vendor() const override
@@ -72,18 +72,17 @@ public:
 		return m_features;
 	}
 
-	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
-						const ComputerControlInterfaceList& computerControlInterfaces ) override;
+	bool controlFeature(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+						const ComputerControlInterfaceList& computerControlInterfaces) override;
 
-	bool handleFeatureMessage( VeyonServerInterface& server,
-							   const MessageContext& messageContext,
-							   const FeatureMessage& message ) override;
+	bool handleFeatureMessage(VeyonServerInterface& server,
+							  const MessageContext& messageContext,
+							  const FeatureMessage& message) override;
 
-	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
+	bool handleFeatureMessage(VeyonWorkerInterface& worker, const FeatureMessage& message) override;
 
 private:
-	enum class FeatureCommand
-	{
+	enum class FeatureCommand {
 		StartLock,
 		StopLock
 	};
@@ -93,5 +92,4 @@ private:
 	const FeatureList m_features;
 
 	LockWidget* m_lockWidget;
-
 };

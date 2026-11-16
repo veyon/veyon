@@ -23,58 +23,57 @@
  *
  */
 
-#include "rfb/rfbproto.h"
-
 #include "AuthenticationCredentials.h"
 #include "CryptoCore.h"
-#include "VeyonConfiguration.h"
 #include "PlatformPluginInterface.h"
 #include "PlatformSessionFunctions.h"
 #include "PluginManager.h"
+#include "VeyonConfiguration.h"
 #include "VncServer.h"
 #include "VncServerPluginInterface.h"
+#include "rfb/rfbproto.h"
 
 
-VncServer::VncServer( QObject* parent ) :
-	QThread( parent ),
-	m_pluginInterface( nullptr )
+VncServer::VncServer(QObject* parent) :
+	QThread(parent),
+	m_pluginInterface(nullptr)
 {
 	const auto currentSessionType = VeyonCore::platform().sessionFunctions().currentSessionType();
 
 	VeyonCore::authenticationCredentials().setInternalVncServerPassword(
-				CryptoCore::generateChallenge().toBase64().left( MAXPWLEN ) );
+		CryptoCore::generateChallenge().toBase64().left(MAXPWLEN));
 
 	VncServerPluginInterfaceList defaultVncServerPlugins;
 
-	for( auto pluginObject : std::as_const( VeyonCore::pluginManager().pluginObjects() ) )
+	for (auto pluginObject : std::as_const(VeyonCore::pluginManager().pluginObjects()))
 	{
-		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
-		auto vncServerPluginInterface = qobject_cast<VncServerPluginInterface *>( pluginObject );
+		auto pluginInterface = qobject_cast<PluginInterface*>(pluginObject);
+		auto vncServerPluginInterface = qobject_cast<VncServerPluginInterface*>(pluginObject);
 
-		if( pluginInterface && vncServerPluginInterface )
+		if (pluginInterface && vncServerPluginInterface)
 		{
 			// skip VNC server plugins which support certain session types only and do not support
 			// the current session type
-			if( vncServerPluginInterface->supportedSessionTypes().isEmpty() == false &&
-				vncServerPluginInterface->supportedSessionTypes().contains( currentSessionType, Qt::CaseInsensitive ) == false )
+			if (vncServerPluginInterface->supportedSessionTypes().isEmpty() == false &&
+				vncServerPluginInterface->supportedSessionTypes().contains(currentSessionType, Qt::CaseInsensitive) == false)
 			{
 				continue;
 			}
 
-			if( pluginInterface->uid() == VeyonCore::config().vncServerPlugin() )
+			if (pluginInterface->uid() == VeyonCore::config().vncServerPlugin())
 			{
 				m_pluginInterface = vncServerPluginInterface;
 			}
-			else if( pluginInterface->flags().testFlag( Plugin::ProvidesDefaultImplementation ) )
+			else if (pluginInterface->flags().testFlag(Plugin::ProvidesDefaultImplementation))
 			{
-				defaultVncServerPlugins.append( vncServerPluginInterface ); // clazy:exclude=reserve-candidates
+				defaultVncServerPlugins.append(vncServerPluginInterface); // clazy:exclude=reserve-candidates
 			}
 		}
 	}
 
-	if( m_pluginInterface == nullptr )
+	if (m_pluginInterface == nullptr)
 	{
-		if( defaultVncServerPlugins.isEmpty() )
+		if (defaultVncServerPlugins.isEmpty())
 		{
 			vCritical() << "no VNC server plugins found!";
 		}
@@ -98,7 +97,7 @@ void VncServer::prepare()
 {
 	vDebug();
 
-	if( m_pluginInterface )
+	if (m_pluginInterface)
 	{
 		m_pluginInterface->prepareServer();
 	}
@@ -109,7 +108,7 @@ void VncServer::prepare()
 int VncServer::serverBasePort() const
 {
 
-	if( m_pluginInterface && m_pluginInterface->configuredServerPort() > 0 )
+	if (m_pluginInterface && m_pluginInterface->configuredServerPort() > 0)
 	{
 		return m_pluginInterface->configuredServerPort();
 	}
@@ -128,7 +127,7 @@ int VncServer::serverPort() const
 
 VncServer::Password VncServer::password() const
 {
-	if( m_pluginInterface && m_pluginInterface->configuredPassword().isEmpty() == false )
+	if (m_pluginInterface && m_pluginInterface->configuredPassword().isEmpty() == false)
 	{
 		return m_pluginInterface->configuredPassword();
 	}
@@ -140,21 +139,21 @@ VncServer::Password VncServer::password() const
 
 void VncServer::run()
 {
-	if( m_pluginInterface )
+	if (m_pluginInterface)
 	{
 		vDebug() << "running";
 
-		if( m_pluginInterface->configuredServerPort() > 0 )
+		if (m_pluginInterface->configuredServerPort() > 0)
 		{
-			VeyonCore::config().setVncServerPort( m_pluginInterface->configuredServerPort() );
+			VeyonCore::config().setVncServerPort(m_pluginInterface->configuredServerPort());
 		}
 
-		if( m_pluginInterface->configuredPassword().isEmpty() == false )
+		if (m_pluginInterface->configuredPassword().isEmpty() == false)
 		{
-			VeyonCore::authenticationCredentials().setInternalVncServerPassword( m_pluginInterface->configuredPassword() );
+			VeyonCore::authenticationCredentials().setInternalVncServerPassword(m_pluginInterface->configuredPassword());
 		}
 
-		if( m_pluginInterface->runServer( serverPort(), password() ) == false )
+		if (m_pluginInterface->runServer(serverPort(), password()) == false)
 		{
 			vCritical() << "An error occurred while running the VNC server plugin";
 		}

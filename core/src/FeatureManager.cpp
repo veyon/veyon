@@ -35,8 +35,8 @@ Q_DECLARE_METATYPE(FeatureMessage)
 
 // clazy:excludeall=reserve-candidates
 
-FeatureManager::FeatureManager( QObject* parent ) :
-	QObject( parent ),
+FeatureManager::FeatureManager(QObject* parent) :
+	QObject(parent),
 	m_features(),
 	m_emptyFeatureList(),
 	m_pluginObjects(),
@@ -45,11 +45,11 @@ FeatureManager::FeatureManager( QObject* parent ) :
 	qRegisterMetaType<Feature>();
 	qRegisterMetaType<FeatureMessage>();
 
-	for( const auto& pluginObject : std::as_const( VeyonCore::pluginManager().pluginObjects() ) )
+	for (const auto& pluginObject : std::as_const(VeyonCore::pluginManager().pluginObjects()))
 	{
-		auto featurePluginInterface = qobject_cast<FeatureProviderInterface *>( pluginObject );
+		auto featurePluginInterface = qobject_cast<FeatureProviderInterface*>(pluginObject);
 
-		if( featurePluginInterface )
+		if (featurePluginInterface)
 		{
 			m_pluginObjects += pluginObject;
 			m_featurePluginInterfaces += featurePluginInterface;
@@ -68,14 +68,14 @@ FeatureManager::FeatureManager( QObject* parent ) :
 
 
 
-const FeatureList& FeatureManager::features( Plugin::Uid pluginUid ) const
+const FeatureList& FeatureManager::features(Plugin::Uid pluginUid) const
 {
-	for( auto pluginObject : m_pluginObjects )
+	for (auto pluginObject : m_pluginObjects)
 	{
-		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
-		auto featurePluginInterface = qobject_cast<FeatureProviderInterface *>( pluginObject );
+		auto pluginInterface = qobject_cast<PluginInterface*>(pluginObject);
+		auto featurePluginInterface = qobject_cast<FeatureProviderInterface*>(pluginObject);
 
-		if( pluginInterface && featurePluginInterface && pluginInterface->uid() == pluginUid )
+		if (pluginInterface && featurePluginInterface && pluginInterface->uid() == pluginUid)
 		{
 			return featurePluginInterface->featureList();
 		}
@@ -86,13 +86,13 @@ const FeatureList& FeatureManager::features( Plugin::Uid pluginUid ) const
 
 
 
-const Feature& FeatureManager::feature( Feature::Uid featureUid ) const
+const Feature& FeatureManager::feature(Feature::Uid featureUid) const
 {
-	for( const auto& featureInterface : m_featurePluginInterfaces )
+	for (const auto& featureInterface : m_featurePluginInterfaces)
 	{
-		for( const auto& feature : featureInterface->featureList() )
+		for (const auto& feature : featureInterface->featureList())
 		{
-			if( feature.uid() == featureUid )
+			if (feature.uid() == featureUid)
 			{
 				return feature;
 			}
@@ -104,22 +104,22 @@ const Feature& FeatureManager::feature( Feature::Uid featureUid ) const
 
 
 
-const FeatureList& FeatureManager::relatedFeatures( Feature::Uid featureUid ) const
+const FeatureList& FeatureManager::relatedFeatures(Feature::Uid featureUid) const
 {
-	return features( pluginUid( featureUid ) );
+	return features(pluginUid(featureUid));
 }
 
 
 
-Feature::Uid FeatureManager::metaFeatureUid( Feature::Uid featureUid ) const
+Feature::Uid FeatureManager::metaFeatureUid(Feature::Uid featureUid) const
 {
-	for( const auto& featureInterface : m_featurePluginInterfaces )
+	for (const auto& featureInterface : m_featurePluginInterfaces)
 	{
-		for( const auto& feature : featureInterface->featureList() )
+		for (const auto& feature : featureInterface->featureList())
 		{
-			if( feature.uid() == featureUid )
+			if (feature.uid() == featureUid)
 			{
-				return featureInterface->metaFeature( featureUid );
+				return featureInterface->metaFeature(featureUid);
 			}
 		}
 	}
@@ -129,18 +129,17 @@ Feature::Uid FeatureManager::metaFeatureUid( Feature::Uid featureUid ) const
 
 
 
-Plugin::Uid FeatureManager::pluginUid( Feature::Uid featureUid ) const
+Plugin::Uid FeatureManager::pluginUid(Feature::Uid featureUid) const
 {
-	for( auto pluginObject : m_pluginObjects )
+	for (auto pluginObject : m_pluginObjects)
 	{
-		auto pluginInterface = qobject_cast<PluginInterface *>( pluginObject );
-		auto featurePluginInterface = qobject_cast<FeatureProviderInterface *>( pluginObject );
+		auto pluginInterface = qobject_cast<PluginInterface*>(pluginObject);
+		auto featurePluginInterface = qobject_cast<FeatureProviderInterface*>(pluginObject);
 
-		if( pluginInterface && featurePluginInterface &&
-			std::find_if( featurePluginInterface->featureList().begin(),
-						  featurePluginInterface->featureList().end(),
-						  [&featureUid]( const Feature& feature ) { return feature.uid() == featureUid; } )
-				!= featurePluginInterface->featureList().end() )
+		if (pluginInterface && featurePluginInterface &&
+			std::find_if(featurePluginInterface->featureList().begin(),
+						 featurePluginInterface->featureList().end(),
+						 [&featureUid](const Feature& feature) { return feature.uid() == featureUid; }) != featurePluginInterface->featureList().end())
 		{
 			return pluginInterface->uid();
 		}
@@ -151,57 +150,57 @@ Plugin::Uid FeatureManager::pluginUid( Feature::Uid featureUid ) const
 
 
 
-void FeatureManager::controlFeature( Feature::Uid featureUid,
+void FeatureManager::controlFeature(Feature::Uid featureUid,
 									FeatureProviderInterface::Operation operation,
 									const QVariantMap& arguments,
-									const ComputerControlInterfaceList& computerControlInterfaces ) const
+									const ComputerControlInterfaceList& computerControlInterfaces) const
 {
-	for( auto featureInterface : std::as_const( m_featurePluginInterfaces ) )
+	for (auto featureInterface : std::as_const(m_featurePluginInterfaces))
 	{
-		featureInterface->controlFeature( featureUid, operation, arguments, computerControlInterfaces );
+		featureInterface->controlFeature(featureUid, operation, arguments, computerControlInterfaces);
 	}
 }
 
 
 
-void FeatureManager::startFeature( VeyonMasterInterface& master,
-								   const Feature& feature,
-								   const ComputerControlInterfaceList& computerControlInterfaces ) const
+void FeatureManager::startFeature(VeyonMasterInterface& master,
+								  const Feature& feature,
+								  const ComputerControlInterfaceList& computerControlInterfaces) const
 {
 	vDebug() << computerControlInterfaces << feature.name();
 
-	for( auto featureInterface : std::as_const( m_featurePluginInterfaces ) )
+	for (auto featureInterface : std::as_const(m_featurePluginInterfaces))
 	{
-		featureInterface->startFeature( master, feature, computerControlInterfaces );
+		featureInterface->startFeature(master, feature, computerControlInterfaces);
 	}
 
-	if( feature.testFlag( Feature::Flag::Mode ) )
+	if (feature.testFlag(Feature::Flag::Mode))
 	{
-		for( const auto& controlInterface : computerControlInterfaces )
+		for (const auto& controlInterface : computerControlInterfaces)
 		{
-			controlInterface->setDesignatedModeFeature( feature.uid() );
+			controlInterface->setDesignatedModeFeature(feature.uid());
 		}
 	}
 }
 
 
 
-void FeatureManager::stopFeature( VeyonMasterInterface& master,
-								  const Feature& feature,
-								  const ComputerControlInterfaceList& computerControlInterfaces ) const
+void FeatureManager::stopFeature(VeyonMasterInterface& master,
+								 const Feature& feature,
+								 const ComputerControlInterfaceList& computerControlInterfaces) const
 {
 	vDebug() << computerControlInterfaces << feature.name();
 
-	for( const auto& featureInterface : std::as_const( m_featurePluginInterfaces ) )
+	for (const auto& featureInterface : std::as_const(m_featurePluginInterfaces))
 	{
-		featureInterface->stopFeature( master, feature, computerControlInterfaces );
+		featureInterface->stopFeature(master, feature, computerControlInterfaces);
 	}
 
-	for( const auto& controlInterface : computerControlInterfaces )
+	for (const auto& controlInterface : computerControlInterfaces)
 	{
-		if( controlInterface->designatedModeFeature() == feature.uid() )
+		if (controlInterface->designatedModeFeature() == feature.uid())
 		{
-			controlInterface->setDesignatedModeFeature( Feature::Uid() );
+			controlInterface->setDesignatedModeFeature(Feature::Uid());
 		}
 	}
 }
@@ -213,7 +212,7 @@ void FeatureManager::handleFeatureMessage(ComputerControlInterface::Pointer comp
 {
 	vDebug() << computerControlInterface << message;
 
-	for( const auto& featureInterface : std::as_const( m_featurePluginInterfaces ) )
+	for (const auto& featureInterface : std::as_const(m_featurePluginInterfaces))
 	{
 		featureInterface->handleFeatureMessage(computerControlInterface, message);
 	}
@@ -233,7 +232,7 @@ void FeatureManager::handleFeatureMessage(VeyonServerInterface& server,
 		return;
 	}
 
-	for( const auto& featureInterface : std::as_const( m_featurePluginInterfaces ) )
+	for (const auto& featureInterface : std::as_const(m_featurePluginInterfaces))
 	{
 		featureInterface->handleFeatureMessage(server, messageContext, message);
 	}
@@ -260,12 +259,11 @@ void FeatureManager::handleFeatureMessageFromWorker(VeyonServerInterface& server
 
 
 
-
 void FeatureManager::handleFeatureMessage(VeyonWorkerInterface& worker, const FeatureMessage& message) const
 {
 	vDebug() << "[WORKER]" << message;
 
-	for( const auto& featureInterface : std::as_const( m_featurePluginInterfaces ) )
+	for (const auto& featureInterface : std::as_const(m_featurePluginInterfaces))
 	{
 		featureInterface->handleFeatureMessage(worker, message);
 	}
@@ -274,7 +272,7 @@ void FeatureManager::handleFeatureMessage(VeyonWorkerInterface& worker, const Fe
 
 
 void FeatureManager::sendAsyncFeatureMessages(VeyonServerInterface& server,
-												  const MessageContext& messageContext) const
+											  const MessageContext& messageContext) const
 {
 
 	for (const auto& featureInterface : std::as_const(m_featurePluginInterfaces))
@@ -285,18 +283,18 @@ void FeatureManager::sendAsyncFeatureMessages(VeyonServerInterface& server,
 
 
 
-FeatureUidList FeatureManager::activeFeatures( VeyonServerInterface& server ) const
+FeatureUidList FeatureManager::activeFeatures(VeyonServerInterface& server) const
 {
 	FeatureUidList features;
 
-	for( const auto& featureInterface : std::as_const( m_featurePluginInterfaces ) )
+	for (const auto& featureInterface : std::as_const(m_featurePluginInterfaces))
 	{
-		for( const auto& feature : featureInterface->featureList() )
+		for (const auto& feature : featureInterface->featureList())
 		{
-			if( featureInterface->isFeatureActive( server, feature.uid() ) ||
-				server.featureWorkerManager().isWorkerRunning( feature.uid() ) )
+			if (featureInterface->isFeatureActive(server, feature.uid()) ||
+				server.featureWorkerManager().isWorkerRunning(feature.uid()))
 			{
-				features.append( feature.uid() );
+				features.append(feature.uid());
 			}
 		}
 	}

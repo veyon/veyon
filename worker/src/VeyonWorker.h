@@ -36,7 +36,7 @@ public:
 	explicit VeyonWorker(QUuid featureUid, QObject* parent = nullptr);
 	~VeyonWorker() override;
 
-	bool sendFeatureMessageReply( const FeatureMessage& reply ) override;
+	bool sendFeatureMessageReply(const FeatureMessage& reply) override;
 
 	VeyonCore& core()
 	{
@@ -46,5 +46,4 @@ public:
 private:
 	VeyonCore m_core;
 	FeatureWorkerManagerConnection* m_workerManagerConnection = nullptr;
-
-} ;
+};

@@ -40,32 +40,32 @@ public:
 
 	Plugin::Uid uid() const override
 	{
-		return Plugin::Uid{ QStringLiteral("39d7a07f-94db-4912-aa1a-c4df8aee3879") };
+		return Plugin::Uid{QStringLiteral("39d7a07f-94db-4912-aa1a-c4df8aee3879")};
 	}
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 1 );
+		return QVersionNumber(1, 1);
 	}
 
 	QString name() const override
 	{
-		return QStringLiteral( "BuiltinUltraVncServer" );
+		return QStringLiteral("BuiltinUltraVncServer");
 	}
 
 	QString description() const override
 	{
-		return tr( "Builtin VNC server (UltraVNC)" );
+		return tr("Builtin VNC server (UltraVNC)");
 	}
 
 	QString vendor() const override
 	{
-		return QStringLiteral( "Veyon Community" );
+		return QStringLiteral("Veyon Community");
 	}
 
 	QString copyright() const override
 	{
-		return QStringLiteral( "Tobias Junghans" );
+		return QStringLiteral("Tobias Junghans");
 	}
 
 	Plugin::Flags flags() const override
@@ -75,14 +75,14 @@ public:
 
 	QStringList supportedSessionTypes() const override
 	{
-		return { QStringLiteral("console"), QStringLiteral("rdp") };
+		return {QStringLiteral("console"), QStringLiteral("rdp")};
 	}
 
 	QWidget* configurationWidget() override;
 
 	void prepareServer() override;
 
-	bool runServer( int serverPort, const Password& password ) override;
+	bool runServer(int serverPort, const Password& password) override;
 
 	int configuredServerPort() override
 	{
@@ -118,5 +118,4 @@ private:
 	Password m_password;
 
 	LogoffEventFilter* m_logoffEventFilter;
-
 };

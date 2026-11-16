@@ -87,12 +87,10 @@ FileCollectWorker::FileCollectWorker(FileTransferPlugin* plugin,
 	QObject(plugin),
 	m_configuration(plugin->configuration()),
 	m_sourceDirectory(sourceDirectory.isEmpty() ?
-						  VeyonCore::filesystem().expandPath(m_configuration.filesToCollectSourceDirectory())
-						:
+						  VeyonCore::filesystem().expandPath(m_configuration.filesToCollectSourceDirectory()) :
 						  (QDir::isAbsolutePath(sourceDirectory) ?
-						   sourceDirectory
-						 :
-						   QDir::toNativeSeparators(QDir::homePath() + QLatin1Char('/') + sourceDirectory))),
+							   sourceDirectory :
+							   QDir::toNativeSeparators(QDir::homePath() + QLatin1Char('/') + sourceDirectory))),
 	m_filePattern(filePattern),
 	m_collectRecursively(collectRecursively || m_configuration.collectFilesRecursively())
 {
@@ -171,7 +169,7 @@ void FileCollectWorker::initFiles()
 
 	m_files = filterFilesByPattern(m_files, m_filePattern);
 
-	for (auto it = m_files.begin(); it != m_files.end(); ) // clazy:exclude=detaching-member
+	for (auto it = m_files.begin(); it != m_files.end();) // clazy:exclude=detaching-member
 	{
 #ifdef Q_OS_WIN
 		const auto caseSensitivity = Qt::CaseInsensitive;
@@ -200,15 +198,14 @@ void FileCollectWorker::initFiles()
 
 QList<QRegularExpression> FileCollectWorker::excludeRegExes() const
 {
-	const auto excludePatterns = m_configuration.filesToExcludeFromCollecting().replace(u';', u' ')
-								 .replace(u',', u' ').split(u' ', Qt::SkipEmptyParts);
+	const auto excludePatterns = m_configuration.filesToExcludeFromCollecting().replace(u';', u' ').replace(u',', u' ').split(u' ', Qt::SkipEmptyParts);
 
 	QList<QRegularExpression> regExes;
 	std::transform(excludePatterns.begin(), excludePatterns.end(),
 				   std::back_inserter(regExes),
 				   [](const QString& pattern) {
-			return QRegularExpression(QString(pattern).replace(u'*', QStringLiteral(".*")),
-									  QRegularExpression::CaseInsensitiveOption);
+		return QRegularExpression(QString(pattern).replace(u'*', QStringLiteral(".*")),
+								  QRegularExpression::CaseInsensitiveOption);
 	});
 
 	return regExes;
@@ -225,7 +222,8 @@ QStringList FileCollectWorker::filterFilesByPattern(const QStringList& files, co
 
 	auto patternStr = pattern;
 	const auto globPatterns = patternStr.replace(u';', u' ')
-								       .replace(u',', u' ').split(u' ', Qt::SkipEmptyParts);
+								  .replace(u',', u' ')
+								  .split(u' ', Qt::SkipEmptyParts);
 	if (globPatterns.isEmpty())
 	{
 		return files;

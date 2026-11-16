@@ -24,7 +24,7 @@
 
 #include "ConfigurationPage.h"
 
-ConfigurationPage::ConfigurationPage( QWidget* parent ) :
-	QWidget( parent )
+ConfigurationPage::ConfigurationPage(QWidget* parent) :
+	QWidget(parent)
 {
 }

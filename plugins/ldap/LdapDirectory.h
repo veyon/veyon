@@ -15,7 +15,7 @@ class LdapDirectory : public QObject
 {
 	Q_OBJECT
 public:
-	explicit LdapDirectory( const LdapConfiguration& configuration, QObject* parent = nullptr );
+	explicit LdapDirectory(const LdapConfiguration& configuration, QObject* parent = nullptr);
 	~LdapDirectory() override = default;
 
 	const QString& configInstanceId() const;
@@ -38,30 +38,30 @@ public:
 	void disableAttributes();
 	void disableFilters();
 
-	QStringList users( const QString& filterValue = {} );
-	QStringList groups( const QString& filterValue = {} );
-	QStringList userGroups( const QString& filterValue = {} );
-	QStringList computersByDisplayName( const QString& filterValue = {} );
-	QStringList computersByHostName( const QString& filterValue = {} );
-	QStringList computerGroups( const QString& filterValue = {} );
-	QStringList computerLocations( const QString& filterValue = {} );
+	QStringList users(const QString& filterValue = {});
+	QStringList groups(const QString& filterValue = {});
+	QStringList userGroups(const QString& filterValue = {});
+	QStringList computersByDisplayName(const QString& filterValue = {});
+	QStringList computersByHostName(const QString& filterValue = {});
+	QStringList computerGroups(const QString& filterValue = {});
+	QStringList computerLocations(const QString& filterValue = {});
 
-	QStringList groupMembers( const QString& groupDn );
-	QStringList groupsOfUser( const QString& userDn );
-	QStringList groupsOfComputer( const QString& computerDn );
-	QStringList locationsOfComputer( const QString& computerDn );
+	QStringList groupMembers(const QString& groupDn);
+	QStringList groupsOfUser(const QString& userDn);
+	QStringList groupsOfComputer(const QString& computerDn);
+	QStringList locationsOfComputer(const QString& computerDn);
 
-	QString userLoginName( const QString& userDn );
-	QString computerDisplayName( const QString& computerDn );
-	QString computerHostName( const QString& computerDn );
-	QString computerMacAddress( const QString& computerDn );
-	QString groupMemberUserIdentification( const QString& userDn );
-	QString groupMemberComputerIdentification( const QString& computerDn );
+	QString userLoginName(const QString& userDn);
+	QString computerDisplayName(const QString& computerDn);
+	QString computerHostName(const QString& computerDn);
+	QString computerMacAddress(const QString& computerDn);
+	QString groupMemberUserIdentification(const QString& userDn);
+	QString groupMemberComputerIdentification(const QString& computerDn);
 
-	QStringList computerLocationEntries( const QString& locationName );
+	QStringList computerLocationEntries(const QString& locationName);
 
-	QString hostToLdapFormat( const QString& host );
-	QString computerObjectFromHost( const QString& host );
+	QString hostToLdapFormat(const QString& host);
+	QString computerObjectFromHost(const QString& host);
 
 	const QString& computersFilter() const
 	{
@@ -141,5 +141,4 @@ private:
 	QString m_userGroupsAttribute;
 
 	bool m_mapContainerStructureToLocations = false;
-
 };

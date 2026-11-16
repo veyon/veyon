@@ -24,44 +24,44 @@
 
 #include <QJsonObject>
 
-#include "NetworkObject.h"
 #include "HostAddress.h"
+#include "NetworkObject.h"
 
 
-const QUuid NetworkObject::networkObjectNamespace( QStringLiteral( "8a6c479e-243e-4ccb-8e5a-0ddf5cf3c7d0" ) );
+const QUuid NetworkObject::networkObjectNamespace(QStringLiteral("8a6c479e-243e-4ccb-8e5a-0ddf5cf3c7d0"));
 
 
-NetworkObject::NetworkObject( const NetworkObject& other ) :
-	m_type( other.type() ),
-	m_name( other.name() ),
-	m_hostAddress( other.hostAddress() ),
-	m_macAddress( other.macAddress() ),
-	m_directoryAddress( other.directoryAddress() ),
-	m_uid( other.uid() ),
-	m_parentUid( other.parentUid() ),
-	m_populated( other.isPopulated() )
+NetworkObject::NetworkObject(const NetworkObject& other) :
+	m_type(other.type()),
+	m_name(other.name()),
+	m_hostAddress(other.hostAddress()),
+	m_macAddress(other.macAddress()),
+	m_directoryAddress(other.directoryAddress()),
+	m_uid(other.uid()),
+	m_parentUid(other.parentUid()),
+	m_populated(other.isPopulated())
 {
 }
 
 
 
-NetworkObject::NetworkObject( NetworkObject::Type type,
-							  const Name& name,
-							  const QString& hostAddress,
-							  const QString& macAddress,
-							  const QString& directoryAddress,
-							  Uid uid,
-							  Uid parentUid ) :
-	m_type( type ),
-	m_name( name ),
-	m_hostAddress( hostAddress ),
-	m_macAddress( macAddress ),
-	m_directoryAddress( directoryAddress ),
-	m_uid( uid ),
-	m_parentUid( parentUid ),
-	m_populated( false )
+NetworkObject::NetworkObject(NetworkObject::Type type,
+							 const Name& name,
+							 const QString& hostAddress,
+							 const QString& macAddress,
+							 const QString& directoryAddress,
+							 Uid uid,
+							 Uid parentUid) :
+	m_type(type),
+	m_name(name),
+	m_hostAddress(hostAddress),
+	m_macAddress(macAddress),
+	m_directoryAddress(directoryAddress),
+	m_uid(uid),
+	m_parentUid(parentUid),
+	m_populated(false)
 {
-	if( m_uid.isNull() )
+	if (m_uid.isNull())
 	{
 		m_uid = calculateUid();
 	}
@@ -69,23 +69,23 @@ NetworkObject::NetworkObject( NetworkObject::Type type,
 
 
 
-NetworkObject::NetworkObject( const QJsonObject& jsonObject ) :
-	m_type( static_cast<Type>( jsonObject.value( QStringLiteral( "Type" ) ).toInt() ) ),
-	m_name( jsonObject.value( QStringLiteral( "Name" ) ).toString() ),
-	m_hostAddress( jsonObject.value( QStringLiteral( "HostAddress" ) ).toString() ),
-	m_macAddress( jsonObject.value( QStringLiteral( "MacAddress" ) ).toString() ),
-	m_directoryAddress( jsonObject.value( QStringLiteral( "DirectoryAddress" ) ).toString() ),
-	m_uid( jsonObject.value( QStringLiteral( "Uid" ) ).toString() ),
-	m_parentUid( jsonObject.value( QStringLiteral( "ParentUid" ) ).toString() ),
-	m_populated( false )
+NetworkObject::NetworkObject(const QJsonObject& jsonObject) :
+	m_type(static_cast<Type>(jsonObject.value(QStringLiteral("Type")).toInt())),
+	m_name(jsonObject.value(QStringLiteral("Name")).toString()),
+	m_hostAddress(jsonObject.value(QStringLiteral("HostAddress")).toString()),
+	m_macAddress(jsonObject.value(QStringLiteral("MacAddress")).toString()),
+	m_directoryAddress(jsonObject.value(QStringLiteral("DirectoryAddress")).toString()),
+	m_uid(jsonObject.value(QStringLiteral("Uid")).toString()),
+	m_parentUid(jsonObject.value(QStringLiteral("ParentUid")).toString()),
+	m_populated(false)
 {
 }
 
 
 
-NetworkObject& NetworkObject::operator=( const NetworkObject& other )
+NetworkObject& NetworkObject::operator=(const NetworkObject& other)
 {
-	if( this == &other )
+	if (this == &other)
 	{
 		return *this;
 	}
@@ -103,47 +103,47 @@ NetworkObject& NetworkObject::operator=( const NetworkObject& other )
 
 
 
-bool NetworkObject::operator==( const NetworkObject& other ) const
+bool NetworkObject::operator==(const NetworkObject& other) const
 {
 	return uid() == other.uid();
 }
 
 
 
-bool NetworkObject::exactMatch( const NetworkObject& other ) const
+bool NetworkObject::exactMatch(const NetworkObject& other) const
 {
 	return uid() == other.uid() &&
-			type() == other.type() &&
-			name() == other.name() &&
-			hostAddress() == other.hostAddress() &&
-			macAddress() == other.macAddress() &&
-			directoryAddress() == other.directoryAddress() &&
-			parentUid() == other.parentUid();
+		type() == other.type() &&
+		name() == other.name() &&
+		hostAddress() == other.hostAddress() &&
+		macAddress() == other.macAddress() &&
+		directoryAddress() == other.directoryAddress() &&
+		parentUid() == other.parentUid();
 }
 
 
 
 NetworkObject::ModelId NetworkObject::modelId() const
 {
-	if( type() == Type::Root )
+	if (type() == Type::Root)
 	{
 		return 0;
 	}
 
 	auto id =
-			( static_cast<quint64>( uid().data1 ) << 0u ) +
-			( static_cast<quint64>( uid().data2 ) << 32u ) +
-			( static_cast<quint64>( uid().data3 ) << 48u ) +
-			( static_cast<quint64>( uid().data4[0] ) << 0u ) +
-			( static_cast<quint64>( uid().data4[1] ) << 8u ) +
-			( static_cast<quint64>( uid().data4[2] ) << 16u ) +
-			( static_cast<quint64>( uid().data4[3] ) << 24u ) +
-			( static_cast<quint64>( uid().data4[4] ) << 32u ) +
-			( static_cast<quint64>( uid().data4[5] ) << 40u ) +
-			( static_cast<quint64>( uid().data4[6] ) << 48u ) +
-			( static_cast<quint64>( uid().data4[7] ) << 56u );
+		(static_cast<quint64>(uid().data1) << 0u) +
+		(static_cast<quint64>(uid().data2) << 32u) +
+		(static_cast<quint64>(uid().data3) << 48u) +
+		(static_cast<quint64>(uid().data4[0]) << 0u) +
+		(static_cast<quint64>(uid().data4[1]) << 8u) +
+		(static_cast<quint64>(uid().data4[2]) << 16u) +
+		(static_cast<quint64>(uid().data4[3]) << 24u) +
+		(static_cast<quint64>(uid().data4[4]) << 32u) +
+		(static_cast<quint64>(uid().data4[5]) << 40u) +
+		(static_cast<quint64>(uid().data4[6]) << 48u) +
+		(static_cast<quint64>(uid().data4[7]) << 56u);
 
-	return static_cast<ModelId>( id );
+	return static_cast<ModelId>(id);
 }
 
 
@@ -151,26 +151,26 @@ NetworkObject::ModelId NetworkObject::modelId() const
 QJsonObject NetworkObject::toJson() const
 {
 	QJsonObject json;
-	json[QStringLiteral("Type")] = static_cast<int>( type() );
+	json[QStringLiteral("Type")] = static_cast<int>(type());
 	json[QStringLiteral("Uid")] = uid().toString();
 	json[QStringLiteral("Name")] = name();
 
-	if( hostAddress().isEmpty() == false )
+	if (hostAddress().isEmpty() == false)
 	{
 		json[QStringLiteral("HostAddress")] = hostAddress();
 	}
 
-	if( macAddress().isEmpty() == false )
+	if (macAddress().isEmpty() == false)
 	{
 		json[QStringLiteral("MacAddress")] = macAddress();
 	}
 
-	if( directoryAddress().isEmpty() == false )
+	if (directoryAddress().isEmpty() == false)
 	{
 		json[QStringLiteral("DirectoryAddress")] = directoryAddress();
 	}
 
-	if( parentUid().isNull() == false )
+	if (parentUid().isNull() == false)
 	{
 		json[QStringLiteral("ParentUid")] = parentUid().toString();
 	}
@@ -180,12 +180,12 @@ QJsonObject NetworkObject::toJson() const
 
 
 
-QVariant NetworkObject::attributeValue( NetworkObject::Attribute attribute ) const
+QVariant NetworkObject::attributeValue(NetworkObject::Attribute attribute) const
 {
-	switch( attribute )
+	switch (attribute)
 	{
 	case Attribute::None: return {};
-	case Attribute::Type: return QVariant::fromValue( type() );
+	case Attribute::Type: return QVariant::fromValue(type());
 	case Attribute::Name: return name();
 	case Attribute::HostAddress: return hostAddress();
 	case Attribute::MacAddress: return macAddress();
@@ -199,25 +199,25 @@ QVariant NetworkObject::attributeValue( NetworkObject::Attribute attribute ) con
 
 
 
-bool NetworkObject::isAttributeValueEqual( NetworkObject::Attribute attribute,
-										   const QVariant& value, Qt::CaseSensitivity cs ) const
+bool NetworkObject::isAttributeValueEqual(NetworkObject::Attribute attribute,
+										  const QVariant& value, Qt::CaseSensitivity cs) const
 {
-	const auto myValue = attributeValue( attribute );
+	const auto myValue = attributeValue(attribute);
 	const auto myValueType = myValue.userType();
 
-	if( myValueType == value.userType() &&
-		myValueType == QMetaType::QString )
+	if (myValueType == value.userType() &&
+		myValueType == QMetaType::QString)
 	{
 		// make sure to compare host addresses in the same format
-		if( attribute == NetworkObject::Attribute::HostAddress )
+		if (attribute == NetworkObject::Attribute::HostAddress)
 		{
-			const HostAddress myHostAddress( myValue.toString() );
-			const auto otherHost = HostAddress( value.toString() ).convert( myHostAddress.type() );
+			const HostAddress myHostAddress(myValue.toString());
+			const auto otherHost = HostAddress(value.toString()).convert(myHostAddress.type());
 
-			return myValue.toString().compare( otherHost, cs ) == 0;
+			return myValue.toString().compare(otherHost, cs) == 0;
 		}
 
-		return myValue.toString().compare( value.toString(), cs ) == 0;
+		return myValue.toString().compare(value.toString(), cs) == 0;
 	}
 
 	return myValue == value;
@@ -229,14 +229,14 @@ NetworkObject::Uid NetworkObject::calculateUid() const
 {
 	// if a directory address is set (e.g. full DN in LDAP) it should be unique and can be
 	// used for hashing
-	if( directoryAddress().isEmpty() == false )
+	if (directoryAddress().isEmpty() == false)
 	{
-		return QUuid::createUuidV5( networkObjectNamespace, directoryAddress() );
+		return QUuid::createUuidV5(networkObjectNamespace, directoryAddress());
 	}
-	else if( type() == Type::Root )
+	else if (type() == Type::Root)
 	{
-		return QUuid::createUuidV5( networkObjectNamespace, QByteArrayLiteral("Root") );
+		return QUuid::createUuidV5(networkObjectNamespace, QByteArrayLiteral("Root"));
 	}
 
-	return QUuid::createUuidV5( networkObjectNamespace, name() + hostAddress() + macAddress() + parentUid().toString() );
+	return QUuid::createUuidV5(networkObjectNamespace, name() + hostAddress() + macAddress() + parentUid().toString());
 }

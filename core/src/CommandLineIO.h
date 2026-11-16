@@ -40,21 +40,20 @@ public:
 	using ArgumentValue = QString;
 	using ArgumentSpecifier = QString;
 	using Arguments = QList<QPair<ArgumentValue, ArgumentSpecifier>>;
-	using Examples = QList<QPair<QString, QStringList> >;
+	using Examples = QList<QPair<QString, QStringList>>;
 
-	static void print( const QString& message );
+	static void print(const QString& message);
 	static void newline();
-	static void info( const QString& message );
-	static void warning( const QString& message );
-	static void error( const QString& message );
-	static void printTable( const Table& table, char horizontal = '-', char vertical = '|', char corner = '+' );
-	static void printUsage( const QString& module, const QString& command,
-							const Arguments& mandatoryArguments, const Arguments& optionalArguments = {} );
-	static void printDescription( const QString& description );
-	static void printExamples( const QString& module, const QString& command, const Examples& examples );
+	static void info(const QString& message);
+	static void warning(const QString& message);
+	static void error(const QString& message);
+	static void printTable(const Table& table, char horizontal = '-', char vertical = '|', char corner = '+');
+	static void printUsage(const QString& module, const QString& command,
+						   const Arguments& mandatoryArguments, const Arguments& optionalArguments = {});
+	static void printDescription(const QString& description);
+	static void printExamples(const QString& module, const QString& command, const Examples& examples);
 
 private:
-	static void printTableRuler( const TableColumnWidths& columnWidths, char horizontal, char corner );
-	static void printTableRow( const TableColumnWidths& columnWidths, char vertical, const TableRow& row );
-
-} ;
+	static void printTableRuler(const TableColumnWidths& columnWidths, char horizontal, char corner);
+	static void printTableRow(const TableColumnWidths& columnWidths, char vertical, const TableRow& row);
+};

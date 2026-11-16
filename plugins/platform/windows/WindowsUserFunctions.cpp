@@ -119,34 +119,34 @@ QString WindowsUserFunctions::queryCurrentUserProperty(UserProperty property)
 
 
 
-QStringList WindowsUserFunctions::userGroups( bool queryDomainGroups )
+QStringList WindowsUserFunctions::userGroups(bool queryDomainGroups)
 {
 	auto groupList = localUserGroups();
 
-	if( queryDomainGroups )
+	if (queryDomainGroups)
 	{
-		groupList.append( domainUserGroups() );
+		groupList.append(domainUserGroups());
 	}
 
 	groupList.removeDuplicates();
-	groupList.removeAll( {} );
+	groupList.removeAll({});
 
 	return groupList;
 }
 
 
 
-QStringList WindowsUserFunctions::groupsOfUser( const QString& username, bool queryDomainGroups )
+QStringList WindowsUserFunctions::groupsOfUser(const QString& username, bool queryDomainGroups)
 {
-	auto groupList = localGroupsOfUser( username );
+	auto groupList = localGroupsOfUser(username);
 
-	if( queryDomainGroups )
+	if (queryDomainGroups)
 	{
-		groupList.append( domainGroupsOfUser( username ) );
+		groupList.append(domainGroupsOfUser(username));
 	}
 
 	groupList.removeDuplicates();
-	groupList.removeAll( {} );
+	groupList.removeAll({});
 
 	return groupList;
 }
@@ -179,9 +179,9 @@ QString WindowsUserFunctions::userGroupSecurityIdentifier(const QString& groupNa
 bool WindowsUserFunctions::isAnyUserLoggedOn()
 {
 	const auto sessions = WtsSessionManager::activeSessions();
-	for( const auto session : sessions )
+	for (const auto session : sessions)
 	{
-		if( WtsSessionManager::querySessionInformation( session, WtsSessionManager::SessionInfo::UserName ).isEmpty() == false )
+		if (WtsSessionManager::querySessionInformation(session, WtsSessionManager::SessionInfo::UserName).isEmpty() == false)
 		{
 			return true;
 		}
@@ -192,9 +192,9 @@ bool WindowsUserFunctions::isAnyUserLoggedOn()
 
 
 
-bool WindowsUserFunctions::prepareLogon( const QString& username, const Password& password )
+bool WindowsUserFunctions::prepareLogon(const QString& username, const Password& password)
 {
-	if( m_logonHelper.prepare( username, password ) )
+	if (m_logonHelper.prepare(username, password))
 	{
 		logoff();
 		return true;
@@ -205,24 +205,24 @@ bool WindowsUserFunctions::prepareLogon( const QString& username, const Password
 
 
 
-bool WindowsUserFunctions::performLogon( const QString& username, const Password& password )
+bool WindowsUserFunctions::performLogon(const QString& username, const Password& password)
 {
-	WindowsPlatformConfiguration config( &VeyonCore::config() );
+	WindowsPlatformConfiguration config(&VeyonCore::config());
 
-	DesktopInputController input( config.logonKeyPressInterval() );
+	DesktopInputController input(config.logonKeyPressInterval());
 
 	const auto ctrlAltDel = []() {
-		SmartHandle sasEvent{OpenEvent(EVENT_MODIFY_STATE, false, L"Global\\VeyonServiceSasEvent" )};
+		SmartHandle sasEvent{OpenEvent(EVENT_MODIFY_STATE, false, L"Global\\VeyonServiceSasEvent")};
 		if (sasEvent.isValid())
 		{
 			SetEvent(sasEvent.get());
 		}
 	};
 
-	const auto sendString = [&input]( const QString& string ) {
-		for( const auto& character : string )
+	const auto sendString = [&input](const QString& string) {
+		for (const auto& character : string)
 		{
-			input.pressAndReleaseKey( character );
+			input.pressAndReleaseKey(character);
 		}
 	};
 
@@ -230,23 +230,23 @@ bool WindowsUserFunctions::performLogon( const QString& username, const Password
 
 	ctrlAltDel();
 
-	QThread::msleep( static_cast<unsigned long>( config.logonInputStartDelay() ) );
+	QThread::msleep(static_cast<unsigned long>(config.logonInputStartDelay()));
 
-	if( config.logonConfirmLegalNotice() )
+	if (config.logonConfirmLegalNotice())
 	{
-		input.pressAndReleaseKey( XK_Return );
-		QThread::msleep( static_cast<unsigned long>( config.logonInputStartDelay() ) );
+		input.pressAndReleaseKey(XK_Return);
+		QThread::msleep(static_cast<unsigned long>(config.logonInputStartDelay()));
 	}
 
-	input.pressAndReleaseKey( XK_Delete );
+	input.pressAndReleaseKey(XK_Delete);
 
-	sendString( username );
+	sendString(username);
 
-	input.pressAndReleaseKey( XK_Tab );
+	input.pressAndReleaseKey(XK_Tab);
 
-	sendString( QString::fromUtf8( password.toByteArray() ) );
+	sendString(QString::fromUtf8(password.toByteArray()));
 
-	input.pressAndReleaseKey( XK_Return );
+	input.pressAndReleaseKey(XK_Return);
 
 	return true;
 }
@@ -255,18 +255,18 @@ bool WindowsUserFunctions::performLogon( const QString& username, const Password
 
 void WindowsUserFunctions::logoff()
 {
-	ExitWindowsEx( EWX_LOGOFF | (EWX_FORCE | EWX_FORCEIFHUNG), SHTDN_REASON_MAJOR_OTHER );
+	ExitWindowsEx(EWX_LOGOFF | (EWX_FORCE | EWX_FORCEIFHUNG), SHTDN_REASON_MAJOR_OTHER);
 }
 
 
 
-bool WindowsUserFunctions::authenticate( const QString& username, const Password& password )
+bool WindowsUserFunctions::authenticate(const QString& username, const Password& password)
 {
 	QString domain;
 	QString user;
 
-	const auto userNameParts = username.split( QLatin1Char('\\') );
-	if( userNameParts.count() == 2 )
+	const auto userNameParts = username.split(QLatin1Char('\\'));
+	if (userNameParts.count() == 2)
 	{
 		domain = userNameParts[0];
 		user = userNameParts[1];
@@ -276,15 +276,15 @@ bool WindowsUserFunctions::authenticate( const QString& username, const Password
 		user = username;
 	}
 
-	auto domainWide = WindowsCoreFunctions::toWCharArray( domain );
-	auto userWide = WindowsCoreFunctions::toWCharArray( user );
-	auto passwordWide = WindowsCoreFunctions::toWCharArray( QString::fromUtf8( password.toByteArray() ) );
+	auto domainWide = WindowsCoreFunctions::toWCharArray(domain);
+	auto userWide = WindowsCoreFunctions::toWCharArray(user);
+	auto passwordWide = WindowsCoreFunctions::toWCharArray(QString::fromUtf8(password.toByteArray()));
 
 	bool result = false;
 
-	if( WindowsPlatformConfiguration( &VeyonCore::config() ).disableSSPIBasedUserAuthentication() )
+	if (WindowsPlatformConfiguration(&VeyonCore::config()).disableSSPIBasedUserAuthentication())
 	{
-		for (auto logonProvider: {LOGON32_PROVIDER_DEFAULT, LOGON32_PROVIDER_WINNT50, LOGON32_PROVIDER_WINNT40})
+		for (auto logonProvider : {LOGON32_PROVIDER_DEFAULT, LOGON32_PROVIDER_WINNT50, LOGON32_PROVIDER_WINNT40})
 		{
 			SmartHandle token;
 			result = LogonUserW(userWide.get(), domain.isEmpty() ? nullptr : domainWide.get(), passwordWide.get(),
@@ -313,24 +313,24 @@ QString WindowsUserFunctions::currentUserLoginName()
 {
 	const auto sessionId = WtsSessionManager::currentSession();
 
-	auto username = WtsSessionManager::querySessionInformation( sessionId, WtsSessionManager::SessionInfo::UserName );
-	auto domainName = WtsSessionManager::querySessionInformation( sessionId, WtsSessionManager::SessionInfo::DomainName );
+	auto username = WtsSessionManager::querySessionInformation(sessionId, WtsSessionManager::SessionInfo::UserName);
+	auto domainName = WtsSessionManager::querySessionInformation(sessionId, WtsSessionManager::SessionInfo::DomainName);
 
 	// check whether we just got the name of the local computer
-	if( !domainName.isEmpty() )
+	if (!domainName.isEmpty())
 	{
-		std::array<wchar_t, MAX_COMPUTERNAME_LENGTH+1> computerName{}; // Flawfinder: ignore
+		std::array<wchar_t, MAX_COMPUTERNAME_LENGTH + 1> computerName{}; // Flawfinder: ignore
 		DWORD size = computerName.size();
-		GetComputerName( computerName.data(), &size );
+		GetComputerName(computerName.data(), &size);
 
-		if( domainName == QString::fromWCharArray( computerName.data() ) )
+		if (domainName == QString::fromWCharArray(computerName.data()))
 		{
 			// reset domain name as we do not need to store local computer name
 			domainName.clear();
 		}
 	}
 
-	if( domainName.isEmpty() )
+	if (domainName.isEmpty())
 	{
 		return username;
 	}
@@ -392,10 +392,10 @@ QString WindowsUserFunctions::currentUserFullName()
 
 
 
-QString WindowsUserFunctions::domainFromUsername( const QString& username )
+QString WindowsUserFunctions::domainFromUsername(const QString& username)
 {
-	const auto nameParts = username.split( QLatin1Char('\\') );
-	if( nameParts.size() > 1 )
+	const auto nameParts = username.split(QLatin1Char('\\'));
+	if (nameParts.size() > 1)
 	{
 		return nameParts[0];
 	}
@@ -405,20 +405,18 @@ QString WindowsUserFunctions::domainFromUsername( const QString& username )
 
 
 
-QString WindowsUserFunctions::domainController( const QString& domainName )
+QString WindowsUserFunctions::domainController(const QString& domainName)
 {
-	const auto domainNamePointer = domainName.isEmpty() ? nullptr
-														: WindowsCoreFunctions::toConstWCharArray(domainName);
+	const auto domainNamePointer = domainName.isEmpty() ? nullptr : WindowsCoreFunctions::toConstWCharArray(domainName);
 
 	PDOMAIN_CONTROLLER_INFO dcInfo;
 
-	const auto dsResult = DsGetDcName( nullptr, domainNamePointer, nullptr, nullptr, DS_DIRECTORY_SERVICE_REQUIRED, &dcInfo );
-	if( dsResult == ERROR_SUCCESS )
+	const auto dsResult = DsGetDcName(nullptr, domainNamePointer, nullptr, nullptr, DS_DIRECTORY_SERVICE_REQUIRED, &dcInfo);
+	if (dsResult == ERROR_SUCCESS)
 	{
-		const auto dcName = QString::fromUtf16(reinterpret_cast<const char16_t *>(dcInfo->DomainControllerName)).
-							replace( QLatin1Char('\\'), QString() );
+		const auto dcName = QString::fromUtf16(reinterpret_cast<const char16_t*>(dcInfo->DomainControllerName)).replace(QLatin1Char('\\'), QString());
 
-		NetApiBufferFree( dcInfo );
+		NetApiBufferFree(dcInfo);
 
 		return dcName;
 	}
@@ -426,12 +424,12 @@ QString WindowsUserFunctions::domainController( const QString& domainName )
 	vWarning() << "DsGetDcName() failed with" << dsResult << "falling back to NetGetDCName()";
 
 	LPBYTE outBuffer = nullptr;
-	const auto netResult = NetGetDCName( nullptr, domainNamePointer, &outBuffer );
-	if( netResult == NERR_Success )
+	const auto netResult = NetGetDCName(nullptr, domainNamePointer, &outBuffer);
+	if (netResult == NERR_Success)
 	{
-		const auto dcName = QString::fromUtf16(reinterpret_cast<const char16_t *>(outBuffer));
+		const auto dcName = QString::fromUtf16(reinterpret_cast<const char16_t*>(outBuffer));
 
-		NetApiBufferFree( outBuffer );
+		NetApiBufferFree(outBuffer);
 
 		return dcName;
 	}
@@ -451,26 +449,26 @@ QStringList WindowsUserFunctions::domainUserGroups()
 	DWORD entriesRead = 0;
 	DWORD totalEntries = 0;
 
-	const auto status = NetGroupEnum( WindowsCoreFunctions::toConstWCharArray(dc), 0, &outBuffer, MAX_PREFERRED_LENGTH,
-									  &entriesRead, &totalEntries, nullptr );
-	if( status == NERR_Success )
+	const auto status = NetGroupEnum(WindowsCoreFunctions::toConstWCharArray(dc), 0, &outBuffer, MAX_PREFERRED_LENGTH,
+									 &entriesRead, &totalEntries, nullptr);
+	if (status == NERR_Success)
 	{
-		const auto* groupInfos = reinterpret_cast<GROUP_INFO_0 *>( outBuffer );
+		const auto* groupInfos = reinterpret_cast<GROUP_INFO_0*>(outBuffer);
 
 		QStringList groupList;
-		groupList.reserve( static_cast<int>( entriesRead ) );
+		groupList.reserve(static_cast<int>(entriesRead));
 
-		for( DWORD i = 0; i < entriesRead; ++i )
+		for (DWORD i = 0; i < entriesRead; ++i)
 		{
-			groupList += QString::fromUtf16(reinterpret_cast<const char16_t *>(groupInfos[i].grpi0_name));
+			groupList += QString::fromUtf16(reinterpret_cast<const char16_t*>(groupInfos[i].grpi0_name));
 		}
 
-		if( entriesRead < totalEntries )
+		if (entriesRead < totalEntries)
 		{
 			vWarning() << "not all domain groups fetched from DC" << dc << entriesRead << totalEntries;
 		}
 
-		NetApiBufferFree( outBuffer );
+		NetApiBufferFree(outBuffer);
 
 		return groupList;
 	}
@@ -484,38 +482,38 @@ QStringList WindowsUserFunctions::domainUserGroups()
 
 
 
-QStringList WindowsUserFunctions::domainGroupsOfUser( const QString& username )
+QStringList WindowsUserFunctions::domainGroupsOfUser(const QString& username)
 {
-	const auto dc = domainController( domainFromUsername(username) );
+	const auto dc = domainController(domainFromUsername(username));
 	const auto usernameWithoutDomain = VeyonCore::stripDomain(username);
 
 	LPBYTE outBuffer = nullptr;
 	DWORD entriesRead = 0;
 	DWORD totalEntries = 0;
 
-	const auto status = NetUserGetGroups( WindowsCoreFunctions::toConstWCharArray(dc),
-										  WindowsCoreFunctions::toConstWCharArray(usernameWithoutDomain),
-										  0, &outBuffer, MAX_PREFERRED_LENGTH,
-										  &entriesRead, &totalEntries );
-	if( status == NERR_Success )
+	const auto status = NetUserGetGroups(WindowsCoreFunctions::toConstWCharArray(dc),
+										 WindowsCoreFunctions::toConstWCharArray(usernameWithoutDomain),
+										 0, &outBuffer, MAX_PREFERRED_LENGTH,
+										 &entriesRead, &totalEntries);
+	if (status == NERR_Success)
 	{
-		const auto* groupUsersInfo = reinterpret_cast<GROUP_USERS_INFO_0 *>( outBuffer );
+		const auto* groupUsersInfo = reinterpret_cast<GROUP_USERS_INFO_0*>(outBuffer);
 
 		QStringList groupList;
-		groupList.reserve( static_cast<int>( entriesRead ) );
+		groupList.reserve(static_cast<int>(entriesRead));
 
-		for( DWORD i = 0; i < entriesRead; ++i )
+		for (DWORD i = 0; i < entriesRead; ++i)
 		{
-			groupList += QString::fromUtf16(reinterpret_cast<const char16_t *>(groupUsersInfo[i].grui0_name));
+			groupList += QString::fromUtf16(reinterpret_cast<const char16_t*>(groupUsersInfo[i].grui0_name));
 		}
 
-		if( entriesRead < totalEntries )
+		if (entriesRead < totalEntries)
 		{
 			vWarning() << "not all domain groups fetched for user" << username << "from DC" << dc
 					   << entriesRead << totalEntries;
 		}
 
-		NetApiBufferFree( outBuffer );
+		NetApiBufferFree(outBuffer);
 
 		return groupList;
 	}
@@ -535,26 +533,26 @@ QStringList WindowsUserFunctions::localUserGroups()
 	DWORD entriesRead = 0;
 	DWORD totalEntries = 0;
 
-	const auto result = NetLocalGroupEnum( nullptr, 0, &outBuffer, MAX_PREFERRED_LENGTH,
-										   &entriesRead, &totalEntries, nullptr );
-	if( result == NERR_Success )
+	const auto result = NetLocalGroupEnum(nullptr, 0, &outBuffer, MAX_PREFERRED_LENGTH,
+										  &entriesRead, &totalEntries, nullptr);
+	if (result == NERR_Success)
 	{
-		const auto* groupInfos = reinterpret_cast<LOCALGROUP_INFO_0 *>( outBuffer );
+		const auto* groupInfos = reinterpret_cast<LOCALGROUP_INFO_0*>(outBuffer);
 
 		QStringList groupList;
-		groupList.reserve( static_cast<int>( entriesRead ) );
+		groupList.reserve(static_cast<int>(entriesRead));
 
-		for( DWORD i = 0; i < entriesRead; ++i )
+		for (DWORD i = 0; i < entriesRead; ++i)
 		{
-			groupList += QString::fromUtf16(reinterpret_cast<const char16_t *>(groupInfos[i].lgrpi0_name));
+			groupList += QString::fromUtf16(reinterpret_cast<const char16_t*>(groupInfos[i].lgrpi0_name));
 		}
 
-		if( entriesRead < totalEntries )
+		if (entriesRead < totalEntries)
 		{
 			vWarning() << "not all local groups fetched" << entriesRead << totalEntries;
 		}
 
-		NetApiBufferFree( outBuffer );
+		NetApiBufferFree(outBuffer);
 
 		return groupList;
 	}
@@ -568,33 +566,33 @@ QStringList WindowsUserFunctions::localUserGroups()
 
 
 
-QStringList WindowsUserFunctions::localGroupsOfUser( const QString& username )
+QStringList WindowsUserFunctions::localGroupsOfUser(const QString& username)
 {
 	LPBYTE outBuffer = nullptr;
 	DWORD entriesRead = 0;
 	DWORD totalEntries = 0;
 
-	const auto result = NetUserGetLocalGroups( nullptr, WindowsCoreFunctions::toConstWCharArray(username),
-											   0, 0, &outBuffer, MAX_PREFERRED_LENGTH,
-											   &entriesRead, &totalEntries );
-	if( result == NERR_Success )
+	const auto result = NetUserGetLocalGroups(nullptr, WindowsCoreFunctions::toConstWCharArray(username),
+											  0, 0, &outBuffer, MAX_PREFERRED_LENGTH,
+											  &entriesRead, &totalEntries);
+	if (result == NERR_Success)
 	{
-		const auto* localGroupUsersInfo = reinterpret_cast<LOCALGROUP_USERS_INFO_0 *>( outBuffer );
+		const auto* localGroupUsersInfo = reinterpret_cast<LOCALGROUP_USERS_INFO_0*>(outBuffer);
 
 		QStringList groupList;
-		groupList.reserve( static_cast<int>( entriesRead ) );
+		groupList.reserve(static_cast<int>(entriesRead));
 
-		for( DWORD i = 0; i < entriesRead; ++i )
+		for (DWORD i = 0; i < entriesRead; ++i)
 		{
-			groupList += QString::fromUtf16(reinterpret_cast<const char16_t *>(localGroupUsersInfo[i].lgrui0_name));
+			groupList += QString::fromUtf16(reinterpret_cast<const char16_t*>(localGroupUsersInfo[i].lgrui0_name));
 		}
 
-		if( entriesRead < totalEntries )
+		if (entriesRead < totalEntries)
 		{
 			vWarning() << "not all local groups fetched for user" << username << entriesRead << totalEntries;
 		}
 
-		NetApiBufferFree( outBuffer );
+		NetApiBufferFree(outBuffer);
 
 		return groupList;
 	}

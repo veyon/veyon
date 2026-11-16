@@ -42,7 +42,7 @@ class MainWindow : public QMainWindow
 {
 	Q_OBJECT
 public:
-	explicit MainWindow( VeyonMaster& masterCore, QWidget* parent = nullptr );
+	explicit MainWindow(VeyonMaster& masterCore, QWidget* parent = nullptr);
 	~MainWindow() override;
 
 	static bool initAuthentication();
@@ -58,9 +58,9 @@ public:
 	ComputerControlInterfaceList selectedComputerControlInterfaces() const;
 
 protected:
-	void closeEvent( QCloseEvent* event ) override;
-	bool eventFilter( QObject* object, QEvent* event ) override;
-	void keyPressEvent( QKeyEvent *e ) override;
+	void closeEvent(QCloseEvent* event) override;
+	bool eventFilter(QObject* object, QEvent* event) override;
+	void keyPressEvent(QKeyEvent* e) override;
 
 
 private Q_SLOTS:
@@ -78,7 +78,7 @@ private:
 	}
 
 	void addFeaturesToToolBar();
-	void addSubFeaturesToToolButton( QToolButton* button, const Feature& parentFeature );
+	void addSubFeaturesToToolButton(QToolButton* button, const Feature& parentFeature);
 
 	void updateModeButtonGroup();
 
@@ -90,5 +90,4 @@ private:
 	VeyonMaster& m_master;
 
 	QButtonGroup* m_modeGroup;
-
-} ;
+};

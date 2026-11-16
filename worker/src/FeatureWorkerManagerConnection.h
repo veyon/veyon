@@ -43,7 +43,7 @@ public:
 
 	void setAuthToken(const QByteArray& authToken);
 
-	bool sendMessage( const FeatureMessage& message );
+	bool sendMessage(const FeatureMessage& message);
 
 private:
 	static constexpr auto ConnectTimeout = 3000;
@@ -58,5 +58,4 @@ private:
 	Feature::Uid m_featureUid;
 	QByteArray m_authToken;
 	QTimer m_connectTimer{this};
-
-} ;
+};

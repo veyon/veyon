@@ -30,77 +30,76 @@
 #include "Configuration/JsonStore.h"
 #include "Configuration/Object.h"
 #include "Filesystem.h"
-#include "VeyonConfiguration.h"
 #include "PlatformFilesystemFunctions.h"
+#include "VeyonConfiguration.h"
 
 
-namespace Configuration
-{
+namespace Configuration {
 
-JsonStore::JsonStore(Scope scope, const QString &file) :
+JsonStore::JsonStore(Scope scope, const QString& file) :
 	Store(Store::Backend::JsonFile, scope),
-	m_file( file )
+	m_file(file)
 {
 }
 
 
 
-static void loadJsonTree( Object* obj, const QJsonObject& jsonParent, const QString& parentKey )
+static void loadJsonTree(Object* obj, const QJsonObject& jsonParent, const QString& parentKey)
 {
-	for( auto it = jsonParent.begin(); it != jsonParent.end(); ++it )
+	for (auto it = jsonParent.begin(); it != jsonParent.end(); ++it)
 	{
-		if( it.value().isObject() )
+		if (it.value().isObject())
 		{
 			QJsonObject jsonObject = it.value().toObject();
 
-			if( jsonObject.contains( QStringLiteral( "JsonStoreArray" ) ) )
+			if (jsonObject.contains(QStringLiteral("JsonStoreArray")))
 			{
-				obj->setValue( it.key(), jsonObject[QStringLiteral("JsonStoreArray")].toArray(), parentKey );
+				obj->setValue(it.key(), jsonObject[QStringLiteral("JsonStoreArray")].toArray(), parentKey);
 			}
-			else if( jsonObject.contains( QStringLiteral( "JsonStoreObject" ) ) )
+			else if (jsonObject.contains(QStringLiteral("JsonStoreObject")))
 			{
-				obj->setValue( it.key(), jsonObject[QStringLiteral("JsonStoreObject")].toObject(), parentKey );
+				obj->setValue(it.key(), jsonObject[QStringLiteral("JsonStoreObject")].toObject(), parentKey);
 			}
 			else
 			{
-				const QString subParentKey = parentKey + ( parentKey.isEmpty() ? QString() : QStringLiteral("/") ) + it.key();
-				loadJsonTree( obj, it.value().toObject(), subParentKey );
+				const QString subParentKey = parentKey + (parentKey.isEmpty() ? QString() : QStringLiteral("/")) + it.key();
+				loadJsonTree(obj, it.value().toObject(), subParentKey);
 			}
 		}
 		else
 		{
-			obj->setValue( it.key(), it.value().toVariant(), parentKey );
+			obj->setValue(it.key(), it.value().toVariant(), parentKey);
 		}
 	}
 }
 
 
 
-void JsonStore::load( Object* obj )
+void JsonStore::load(Object* obj)
 {
-	QFile jsonFile( configurationFilePath() );
-	if( !jsonFile.open( QFile::ReadOnly ) )
+	QFile jsonFile(configurationFilePath());
+	if (!jsonFile.open(QFile::ReadOnly))
 	{
 		vWarning() << "could not open" << jsonFile.fileName();
 		return;
 	}
 
-	QJsonDocument jsonDoc = QJsonDocument::fromJson( jsonFile.readAll() );
+	QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonFile.readAll());
 
-	loadJsonTree( obj, jsonDoc.object(), {} );
+	loadJsonTree(obj, jsonDoc.object(), {});
 }
 
 
 
-static QJsonObject saveJsonTree( const Object::DataMap& dataMap )
+static QJsonObject saveJsonTree(const Object::DataMap& dataMap)
 {
 	QJsonObject jsonData;
 
-	for( auto it = dataMap.begin(); it != dataMap.end(); ++it )
+	for (auto it = dataMap.begin(); it != dataMap.end(); ++it)
 	{
 		if (it.value().userType() == QMetaType::QVariantMap)
 		{
-			jsonData[it.key()] = saveJsonTree( it.value().toMap() );
+			jsonData[it.key()] = saveJsonTree(it.value().toMap());
 		}
 		else if (it.value().userType() == QMetaType::QJsonArray)
 		{
@@ -108,23 +107,23 @@ static QJsonObject saveJsonTree( const Object::DataMap& dataMap )
 			jsonObj[QStringLiteral("JsonStoreArray")] = it.value().toJsonArray();
 			jsonData[it.key()] = jsonObj;
 		}
-		else if (it.value().userType() == QMetaType::QJsonObject )
+		else if (it.value().userType() == QMetaType::QJsonObject)
 		{
 			QJsonObject jsonObj;
 			jsonObj[QStringLiteral("JsonStoreObject")] = it.value().toJsonObject();
 			jsonData[it.key()] = jsonObj;
 		}
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-		else if (it.value().metaType().flags().testFlag(QMetaType::IsEnumeration) )
+		else if (it.value().metaType().flags().testFlag(QMetaType::IsEnumeration))
 #else
-		else if (QMetaType(it.value().userType()).flags().testFlag(QMetaType::IsEnumeration) )
+		else if (QMetaType(it.value().userType()).flags().testFlag(QMetaType::IsEnumeration))
 #endif
 		{
-			jsonData[it.key()] = QJsonValue( it.value().toInt() );
+			jsonData[it.key()] = QJsonValue(it.value().toInt());
 		}
 		else
 		{
-			jsonData[it.key()] = QJsonValue::fromVariant( it.value() );
+			jsonData[it.key()] = QJsonValue::fromVariant(it.value());
 		}
 	}
 
@@ -133,16 +132,16 @@ static QJsonObject saveJsonTree( const Object::DataMap& dataMap )
 
 
 
-void JsonStore::flush( const Object* obj )
+void JsonStore::flush(const Object* obj)
 {
-	QFile outfile( configurationFilePath() );
-	if( !outfile.open( QIODevice::WriteOnly | QIODevice::Truncate ) )
+	QFile outfile(configurationFilePath());
+	if (!outfile.open(QIODevice::WriteOnly | QIODevice::Truncate))
 	{
 		vCritical() << "could not write to configuration file" << configurationFilePath();
 		return;
 	}
 
-	outfile.write( QJsonDocument( saveJsonTree( obj->data() ) ).toJson() );
+	outfile.write(QJsonDocument(saveJsonTree(obj->data())).toJson());
 }
 
 
@@ -157,7 +156,6 @@ bool JsonStore::isWritable() const
 	outfile.close();
 
 	return QFileInfo(configurationFilePath()).isWritable();
-
 }
 
 
@@ -165,7 +163,7 @@ bool JsonStore::isWritable() const
 void JsonStore::clear()
 {
 	// truncate configuration file
-	QFile outfile( configurationFilePath() );
+	QFile outfile(configurationFilePath());
 	if (!outfile.open(QIODevice::WriteOnly | QIODevice::Truncate))
 	{
 		vCritical() << "could not write to configuration file" << configurationFilePath();
@@ -192,17 +190,17 @@ QString JsonStore::configurationFilePath() const
 		break;
 	}
 
-	base = VeyonCore::filesystem().expandPath( base );
+	base = VeyonCore::filesystem().expandPath(base);
 
-	VeyonCore::filesystem().ensurePathExists( base );
+	VeyonCore::filesystem().ensurePathExists(base);
 
 	auto fileNameBase = name();
-	if( fileNameBase.isEmpty() )
+	if (fileNameBase.isEmpty())
 	{
 		fileNameBase = configurationNameFromScope();
 	}
 
-	return QDir::toNativeSeparators( base + QDir::separator() + fileNameBase + QLatin1String(".json") ); // clazy:exclude=qstring-allocations
+	return QDir::toNativeSeparators(base + QDir::separator() + fileNameBase + QLatin1String(".json")); // clazy:exclude=qstring-allocations
 }
 
 }

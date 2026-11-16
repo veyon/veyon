@@ -37,7 +37,7 @@ class BuiltinDirectoryConfigurationPage : public ConfigurationPage
 {
 	Q_OBJECT
 public:
-	explicit BuiltinDirectoryConfigurationPage( BuiltinDirectoryConfiguration& configuration, QWidget* parent = nullptr );
+	explicit BuiltinDirectoryConfigurationPage(BuiltinDirectoryConfiguration& configuration, QWidget* parent = nullptr);
 	~BuiltinDirectoryConfigurationPage() override;
 
 	void resetWidgets() override;
@@ -63,8 +63,7 @@ private:
 	NetworkObject currentLocationObject() const;
 	NetworkObject currentComputerObject() const;
 
-	Ui::BuiltinDirectoryConfigurationPage *ui;
+	Ui::BuiltinDirectoryConfigurationPage* ui;
 
 	BuiltinDirectoryConfiguration& m_configuration;
-
 };

@@ -22,21 +22,21 @@
  *
  */
 
-#include "VeyonConfiguration.h"
+#include "Configuration/UiMapping.h"
 #include "LinuxPlatformConfiguration.h"
 #include "LinuxPlatformConfigurationPage.h"
-#include "Configuration/UiMapping.h"
+#include "VeyonConfiguration.h"
 
 #include "ui_LinuxPlatformConfigurationPage.h"
 
 
 LinuxPlatformConfigurationPage::LinuxPlatformConfigurationPage() :
-	ui( new Ui::LinuxPlatformConfigurationPage ),
-	m_configuration( &VeyonCore::config() )
+	ui(new Ui::LinuxPlatformConfigurationPage),
+	m_configuration(&VeyonCore::config())
 {
 	ui->setupUi(this);
 
-	Configuration::UiMapping::setFlags( this, Configuration::Property::Flag::Advanced );
+	Configuration::UiMapping::setFlags(this, Configuration::Property::Flag::Advanced);
 }
 
 

@@ -55,10 +55,9 @@ private Q_SLOTS:
 
 private:
 	QString selectedKey() const;
-	void showResultMessage( bool success, const QString& title, const QString& message );
+	void showResultMessage(bool success, const QString& title, const QString& message);
 
-	Ui::AuthKeysConfigurationPage *ui;
+	Ui::AuthKeysConfigurationPage* ui;
 	AuthKeysTableModel m_authKeyTableModel;
 	const QString m_keyFilesFilter;
-
 };

@@ -35,17 +35,17 @@ class WebApiConfiguration;
 class WebApiAuthenticationProxy : public AuthenticationProxy
 {
 public:
-	WebApiAuthenticationProxy( const WebApiConfiguration& configuration );
+	WebApiAuthenticationProxy(const WebApiConfiguration& configuration);
 
 #if VEYON_VERSION_MAJOR < 5
 	QVector<QUuid> authenticationMethods();
 #endif
 
-	void setSelectedAuthenticationMethod( QUuid authMethod );
+	void setSelectedAuthenticationMethod(QUuid authMethod);
 
 	AuthenticationMethod initCredentials() override;
 
-	bool populateCredentials( QUuid authMethod, const QVariantMap& data );
+	bool populateCredentials(QUuid authMethod, const QVariantMap& data);
 
 	QUuid dummyAuthenticationMethod() const
 	{

@@ -26,25 +26,25 @@
 #include <QDBusConnection>
 #include <QDBusError>
 
-#include "VeyonConfiguration.h"
 #include "../LinuxDBusInterfaces.h"
 #include "../LinuxPlatformConfiguration.h"
+#include "VeyonConfiguration.h"
 
 #include <cstdlib>
 #include <cstring>
 #include <security/pam_appl.h>
-#include <sys/resource.h>
 #include <sys/prctl.h>
+#include <sys/resource.h>
 #include <sys/stat.h>
 #include <syslog.h>
 
 static QByteArray pam_username; // clazy:exclude=non-pod-global-static
 static QByteArray pam_password; // clazy:exclude=non-pod-global-static
-static QByteArray pam_service; // clazy:exclude=non-pod-global-static
+static QByteArray pam_service;	// clazy:exclude=non-pod-global-static
 
-static int pam_conv(int num_msg, const struct pam_message** msg, struct pam_response** resp, void *)
+static int pam_conv(int num_msg, const struct pam_message** msg, struct pam_response** resp, void*)
 {
-	auto reply = reinterpret_cast<pam_response *>(malloc(sizeof(struct pam_response) * size_t(num_msg)));
+	auto reply = reinterpret_cast<pam_response*>(malloc(sizeof(struct pam_response) * size_t(num_msg)));
 	if (reply == nullptr)
 	{
 		return PAM_CONV_ERR;
@@ -110,7 +110,7 @@ public Q_SLOTS:
 			pam_service = QByteArrayLiteral("login");
 		}
 
-		struct pam_conv pconv = { &pam_conv, nullptr };
+		struct pam_conv pconv = {&pam_conv, nullptr};
 		pam_handle_t* pamh = nullptr;
 		auto err = pam_start(pam_service.constData(), nullptr, &pconv, &pamh);
 		if (err == PAM_SUCCESS)
@@ -146,7 +146,6 @@ public Q_SLOTS:
 
 		return err == PAM_SUCCESS;
 	}
-
 };
 
 
@@ -156,7 +155,7 @@ int main(int argc, char** argv)
 	// a plaintext password in memory while running as root.
 	prctl(PR_SET_DUMPABLE, 0);
 
-	struct rlimit noCore {0, 0};
+	struct rlimit noCore{0, 0};
 	setrlimit(RLIMIT_CORE, &noCore);
 
 	// Sanitize the environment before touching PAM or D-Bus: PAM modules

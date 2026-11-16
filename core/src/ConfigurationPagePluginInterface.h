@@ -34,7 +34,6 @@ class ConfigurationPagePluginInterface
 {
 public:
 	virtual ConfigurationPage* createConfigurationPage() = 0;
-
 };
 
 using ConfigurationPagePluginInterfaceList = QList<ConfigurationPagePluginInterface>;

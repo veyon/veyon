@@ -32,16 +32,15 @@ class EnumHelper
 {
 public:
 	template<class T>
-	static QString toString( T item )
+	static QString toString(T item)
 	{
 		return QLatin1String(QMetaEnum::fromType<T>().valueToKey(int(item)));
 	}
 
 	template<class T>
-	static QString toCamelCaseString( T item )
+	static QString toCamelCaseString(T item)
 	{
-		const auto name = toString( item );
-		return name.mid( 0, 1 ).toLower() + name.mid( 1 );
+		const auto name = toString(item);
+		return name.mid(0, 1).toLower() + name.mid(1);
 	}
-
-} ;
+};

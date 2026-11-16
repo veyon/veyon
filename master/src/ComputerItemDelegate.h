@@ -50,5 +50,4 @@ private:
 
 	QMap<QUuid, QPixmap> m_featurePixmaps;
 	bool m_fullLengthLabels;
-
 };

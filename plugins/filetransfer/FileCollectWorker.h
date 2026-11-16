@@ -80,7 +80,7 @@ private:
 	QList<QRegularExpression> excludeRegExes() const;
 	QStringList filterFilesByPattern(const QStringList& files, const QString& pattern) const;
 
-	static constexpr int ChunkSize = 256*1024;
+	static constexpr int ChunkSize = 256 * 1024;
 
 	const FileTransferConfiguration& m_configuration;
 	QString m_sourceDirectory;
@@ -91,5 +91,4 @@ private:
 	int m_currentFileIndex = -1;
 	FileCollection::TransferId m_currentTransferId;
 	QFile m_currentFile;
-
 };

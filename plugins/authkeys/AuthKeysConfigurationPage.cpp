@@ -28,10 +28,10 @@
 
 #include "AuthKeysConfigurationPage.h"
 #include "AuthKeysManager.h"
+#include "Configuration/UiMapping.h"
 #include "FileSystemBrowser.h"
 #include "UserGroupsBackendManager.h"
 #include "VeyonConfiguration.h"
-#include "Configuration/UiMapping.h"
 
 #include "ui_AuthKeysConfigurationPage.h"
 
@@ -39,27 +39,27 @@
 AuthKeysConfigurationPage::AuthKeysConfigurationPage() :
 	ConfigurationPage(),
 	ui(new Ui::AuthKeysConfigurationPage),
-	m_authKeyTableModel( this ),
-	m_keyFilesFilter( tr( "Key files (*.pem)" ) )
+	m_authKeyTableModel(this),
+	m_keyFilesFilter(tr("Key files (*.pem)"))
 {
 	ui->setupUi(this);
 
-	Configuration::UiMapping::setFlags( ui->keyFileDirectories, Configuration::Property::Flag::Advanced );
+	Configuration::UiMapping::setFlags(ui->keyFileDirectories, Configuration::Property::Flag::Advanced);
 
 #define CONNECT_BUTTON_SLOT(name) \
-			connect( ui->name, &QAbstractButton::clicked, this, &AuthKeysConfigurationPage::name );
+	connect(ui->name, &QAbstractButton::clicked, this, &AuthKeysConfigurationPage::name);
 
-	CONNECT_BUTTON_SLOT( openPublicKeyBaseDir );
-	CONNECT_BUTTON_SLOT( openPrivateKeyBaseDir );
-	CONNECT_BUTTON_SLOT( createKeyPair );
-	CONNECT_BUTTON_SLOT( deleteKey );
-	CONNECT_BUTTON_SLOT( importKey );
-	CONNECT_BUTTON_SLOT( exportKey );
-	CONNECT_BUTTON_SLOT( setAccessGroup );
+	CONNECT_BUTTON_SLOT(openPublicKeyBaseDir);
+	CONNECT_BUTTON_SLOT(openPrivateKeyBaseDir);
+	CONNECT_BUTTON_SLOT(createKeyPair);
+	CONNECT_BUTTON_SLOT(deleteKey);
+	CONNECT_BUTTON_SLOT(importKey);
+	CONNECT_BUTTON_SLOT(exportKey);
+	CONNECT_BUTTON_SLOT(setAccessGroup);
 
 	reloadKeyTable();
 
-	ui->keyTable->setModel( &m_authKeyTableModel );
+	ui->keyTable->setModel(&m_authKeyTableModel);
 }
 
 
@@ -108,14 +108,14 @@ void AuthKeysConfigurationPage::openPrivateKeyBaseDir()
 
 void AuthKeysConfigurationPage::createKeyPair()
 {
-	const auto keyName = QInputDialog::getText( this, tr( "Authentication key name" ),
-												tr( "Please enter the name of the user group or role for which to create an authentication key pair:") );
-	if( keyName.isEmpty() == false )
+	const auto keyName = QInputDialog::getText(this, tr("Authentication key name"),
+											   tr("Please enter the name of the user group or role for which to create an authentication key pair:"));
+	if (keyName.isEmpty() == false)
 	{
 		AuthKeysManager authKeysManager;
-		const auto success = authKeysManager.createKeyPair( keyName );
+		const auto success = authKeysManager.createKeyPair(keyName);
 
-		showResultMessage( success, tr( "Create key pair" ), authKeysManager.resultMessage() );
+		showResultMessage(success, tr("Create key pair"), authKeysManager.resultMessage());
 
 		reloadKeyTable();
 	}
@@ -129,25 +129,25 @@ void AuthKeysConfigurationPage::deleteKey()
 
 	const auto nameAndType = selectedKey().split(QLatin1Char('/'));
 
-	if( nameAndType.size() > 1 )
+	if (nameAndType.size() > 1)
 	{
 		const auto name = nameAndType[0];
 		const auto type = nameAndType[1];
 
-		if( QMessageBox::question( this, title, tr( "Do you really want to delete authentication key \"%1/%2\"?" ).arg( name, type ) ) ==
-				QMessageBox::Yes )
+		if (QMessageBox::question(this, title, tr("Do you really want to delete authentication key \"%1/%2\"?").arg(name, type)) ==
+			QMessageBox::Yes)
 		{
 			AuthKeysManager authKeysManager;
-			const auto success = authKeysManager.deleteKey( name, type );
+			const auto success = authKeysManager.deleteKey(name, type);
 
-			showResultMessage( success, title, authKeysManager.resultMessage() );
+			showResultMessage(success, title, authKeysManager.resultMessage());
 
 			reloadKeyTable();
 		}
 	}
 	else
 	{
-		showResultMessage( false, title, tr( "Please select a key to delete!" ) );
+		showResultMessage(false, title, tr("Please select a key to delete!"));
 	}
 }
 
@@ -157,8 +157,8 @@ void AuthKeysConfigurationPage::importKey()
 {
 	const auto title = ui->importKey->text();
 
-	const auto inputFile = QFileDialog::getOpenFileName( this, title, {}, m_keyFilesFilter );
-	if( inputFile.isEmpty() )
+	const auto inputFile = QFileDialog::getOpenFileName(this, title, {}, m_keyFilesFilter);
+	if (inputFile.isEmpty())
 	{
 		return;
 	}
@@ -167,20 +167,20 @@ void AuthKeysConfigurationPage::importKey()
 	if (keyName.isEmpty())
 	{
 		keyName = QInputDialog::getText(this, tr("Authentication key name"),
-										 tr("Please enter the name of the user group or role for which to import the authentication key.\n\nMake sure that the names of the keys belonging to each other are identical on all computers."),
+										tr("Please enter the name of the user group or role for which to import the authentication key.\n\nMake sure that the names of the keys belonging to each other are identical on all computers."),
 										QLineEdit::Normal);
 	}
 
-	if( keyName.isEmpty() )
+	if (keyName.isEmpty())
 	{
 		return;
 	}
 
 	AuthKeysManager authKeysManager;
-	const auto keyType = authKeysManager.detectKeyType( inputFile );
-	const auto success = authKeysManager.importKey( keyName, keyType, inputFile );
+	const auto keyType = authKeysManager.detectKeyType(inputFile);
+	const auto success = authKeysManager.importKey(keyName, keyType, inputFile);
 
-	showResultMessage( success, title, authKeysManager.resultMessage() );
+	showResultMessage(success, title, authKeysManager.resultMessage());
 
 	reloadKeyTable();
 }
@@ -193,25 +193,24 @@ void AuthKeysConfigurationPage::exportKey()
 
 	const auto nameAndType = selectedKey().split(QLatin1Char('/'));
 
-	if( nameAndType.size() > 1 )
+	if (nameAndType.size() > 1)
 	{
 		const auto name = nameAndType[0];
 		const auto type = nameAndType[1];
 
-		const auto outputFile = QFileDialog::getSaveFileName( this, title, QDir::homePath() + QDir::separator() +
-															  AuthKeysManager::exportedKeyFileName( name, type ),
-															  m_keyFilesFilter );
-		if( outputFile.isEmpty() == false )
+		const auto outputFile = QFileDialog::getSaveFileName(this, title, QDir::homePath() + QDir::separator() + AuthKeysManager::exportedKeyFileName(name, type),
+															 m_keyFilesFilter);
+		if (outputFile.isEmpty() == false)
 		{
 			AuthKeysManager authKeysManager;
-			const auto success = authKeysManager.exportKey( name, type, outputFile, true );
+			const auto success = authKeysManager.exportKey(name, type, outputFile, true);
 
-			showResultMessage( success, title, authKeysManager.resultMessage() );
+			showResultMessage(success, title, authKeysManager.resultMessage());
 		}
 	}
 	else
 	{
-		showResultMessage( false, title, tr( "Please select a key to export!" ) );
+		showResultMessage(false, title, tr("Please select a key to export!"));
 	}
 }
 
@@ -223,29 +222,29 @@ void AuthKeysConfigurationPage::setAccessGroup()
 
 	const auto key = selectedKey();
 
-	if( key.isEmpty() == false )
+	if (key.isEmpty() == false)
 	{
 		const auto userGroups = VeyonCore::userGroupsBackendManager().configuredBackend()->userGroups(VeyonCore::config().useDomainUserGroups());
-		const auto currentGroup = AuthKeysManager().accessGroup( key );
+		const auto currentGroup = AuthKeysManager().accessGroup(key);
 
 		bool ok = false;
-		const auto selectedGroup = QInputDialog::getItem( this, title,
-														  tr( "Please select a user group which to grant access to key \"%1\":" ).arg( key ),
-														  userGroups, userGroups.indexOf( currentGroup ), true, &ok );
+		const auto selectedGroup = QInputDialog::getItem(this, title,
+														 tr("Please select a user group which to grant access to key \"%1\":").arg(key),
+														 userGroups, userGroups.indexOf(currentGroup), true, &ok);
 
-		if( ok && selectedGroup.isEmpty() == false )
+		if (ok && selectedGroup.isEmpty() == false)
 		{
 			AuthKeysManager manager;
-			const auto success = manager.setAccessGroup( key, selectedGroup );
+			const auto success = manager.setAccessGroup(key, selectedGroup);
 
-			showResultMessage( success, title, manager.resultMessage() );
+			showResultMessage(success, title, manager.resultMessage());
 
 			reloadKeyTable();
 		}
 	}
 	else
 	{
-		showResultMessage( false, title, tr( "Please select a key which to set the access group for!" ) );
+		showResultMessage(false, title, tr("Please select a key which to set the access group for!"));
 	}
 }
 
@@ -262,9 +261,9 @@ void AuthKeysConfigurationPage::reloadKeyTable()
 QString AuthKeysConfigurationPage::selectedKey() const
 {
 	const auto row = ui->keyTable->currentIndex().row();
-	if( row >= 0 && row < m_authKeyTableModel.rowCount() )
+	if (row >= 0 && row < m_authKeyTableModel.rowCount())
 	{
-		return m_authKeyTableModel.key( row );
+		return m_authKeyTableModel.key(row);
 	}
 
 	return {};
@@ -272,19 +271,19 @@ QString AuthKeysConfigurationPage::selectedKey() const
 
 
 
-void AuthKeysConfigurationPage::showResultMessage( bool success, const QString& title, const QString& message )
+void AuthKeysConfigurationPage::showResultMessage(bool success, const QString& title, const QString& message)
 {
-	if( message.isEmpty() )
+	if (message.isEmpty())
 	{
 		return;
 	}
 
-	if( success )
+	if (success)
 	{
-		QMessageBox::information( this, title, message );
+		QMessageBox::information(this, title, message);
 	}
 	else
 	{
-		QMessageBox::critical( this, title, message );
+		QMessageBox::critical(this, title, message);
 	}
 }

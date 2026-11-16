@@ -32,13 +32,12 @@ class BuiltinDirectory : public NetworkObjectDirectory
 {
 	Q_OBJECT
 public:
-	BuiltinDirectory( BuiltinDirectoryConfiguration& configuration, QObject* parent );
+	BuiltinDirectory(BuiltinDirectoryConfiguration& configuration, QObject* parent);
 
 	void update() override;
 
 private:
-	void updateLocation( const NetworkObject& locationObject, const QJsonArray& networkObjects );
+	void updateLocation(const NetworkObject& locationObject, const QJsonArray& networkObjects);
 
 	BuiltinDirectoryConfiguration& m_configuration;
-
 };

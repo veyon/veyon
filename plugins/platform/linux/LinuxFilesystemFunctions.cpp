@@ -24,13 +24,13 @@
 
 #include <QDir>
 
+#include "LinuxFilesystemFunctions.h"
+
 #include <fcntl.h>
 #include <grp.h>
-#include <unistd.h>
 #include <sys/stat.h>
 #include <sys/types.h>
-
-#include "LinuxFilesystemFunctions.h"
+#include <unistd.h>
 
 
 QString LinuxFilesystemFunctions::personalAppDataPath() const
@@ -42,37 +42,36 @@ QString LinuxFilesystemFunctions::personalAppDataPath() const
 
 QString LinuxFilesystemFunctions::globalAppDataPath() const
 {
-	return QStringLiteral( "/etc/veyon" );
+	return QStringLiteral("/etc/veyon");
 }
 
 
 
 QString LinuxFilesystemFunctions::globalTempPath() const
 {
-	return QStringLiteral( "/tmp" );
-
+	return QStringLiteral("/tmp");
 }
 
 
 
-QString LinuxFilesystemFunctions::fileOwnerGroup( const QString& filePath )
+QString LinuxFilesystemFunctions::fileOwnerGroup(const QString& filePath)
 {
-	return QFileInfo( filePath ).group();
+	return QFileInfo(filePath).group();
 }
 
 
 
-bool LinuxFilesystemFunctions::setFileOwnerGroup( const QString& filePath, const QString& ownerGroup )
+bool LinuxFilesystemFunctions::setFileOwnerGroup(const QString& filePath, const QString& ownerGroup)
 {
 	struct stat statBuffer{};
-	if( stat( filePath.toUtf8().constData(), &statBuffer ) != 0 )
+	if (stat(filePath.toUtf8().constData(), &statBuffer) != 0)
 	{
 		vCritical() << "failed to stat file" << filePath;
 		return false;
 	}
 
-	const auto grp = getgrnam( ownerGroup.toUtf8().constData() );
-	if( grp == nullptr )
+	const auto grp = getgrnam(ownerGroup.toUtf8().constData());
+	if (grp == nullptr)
 	{
 		vCritical() << "failed to get gid for" << ownerGroup;
 		return false;
@@ -80,7 +79,7 @@ bool LinuxFilesystemFunctions::setFileOwnerGroup( const QString& filePath, const
 
 	const auto gid = grp->gr_gid;
 
-	if( chown( filePath.toUtf8().constData(), statBuffer.st_uid, gid ) != 0 ) // Flawfinder:ignore
+	if (chown(filePath.toUtf8().constData(), statBuffer.st_uid, gid) != 0) // Flawfinder:ignore
 	{
 		vCritical() << "failed to change owner group of file" << filePath;
 		return false;
@@ -91,15 +90,15 @@ bool LinuxFilesystemFunctions::setFileOwnerGroup( const QString& filePath, const
 
 
 
-bool LinuxFilesystemFunctions::setFileOwnerGroupPermissions( const QString& filePath, QFile::Permissions permissions )
+bool LinuxFilesystemFunctions::setFileOwnerGroupPermissions(const QString& filePath, QFile::Permissions permissions)
 {
-	QFile file( filePath );
+	QFile file(filePath);
 
 	auto currentPermissions = file.permissions();
 
-	for( auto permissionFlag : { QFile::ReadGroup, QFile::WriteGroup, QFile::ExeGroup } )
+	for (auto permissionFlag : {QFile::ReadGroup, QFile::WriteGroup, QFile::ExeGroup})
 	{
-		if( permissions & permissionFlag )
+		if (permissions & permissionFlag)
 		{
 			currentPermissions |= permissionFlag;
 		}
@@ -109,57 +108,57 @@ bool LinuxFilesystemFunctions::setFileOwnerGroupPermissions( const QString& file
 		}
 	}
 
-	return QFile( filePath ).setPermissions( permissions );
+	return QFile(filePath).setPermissions(permissions);
 }
 
 
 
-bool LinuxFilesystemFunctions::openFileSafely( QFile* file, QIODevice::OpenMode openMode, QFile::Permissions permissions )
+bool LinuxFilesystemFunctions::openFileSafely(QFile* file, QIODevice::OpenMode openMode, QFile::Permissions permissions)
 {
-	if( file == nullptr )
+	if (file == nullptr)
 	{
 		return false;
 	}
 
 	int flags = O_NOFOLLOW | O_CLOEXEC;
-	if( openMode & QFile::ReadOnly )
+	if (openMode & QFile::ReadOnly)
 	{
 		flags |= O_RDONLY;
 	}
 
-	if( openMode & QFile::WriteOnly )
+	if (openMode & QFile::WriteOnly)
 	{
 		flags |= O_WRONLY;
 
-		if( permissions )
+		if (permissions)
 		{
 			flags |= O_CREAT;
 		}
 	}
 
-	if( openMode & QFile::Append )
+	if (openMode & QFile::Append)
 	{
 		flags |= O_APPEND;
 	}
 	int fileMode =
-		( permissions.testFlag( QFile::ReadOwner ) || permissions.testFlag( QFile::ReadUser ) ? S_IRUSR : 0 ) |
-		( permissions.testFlag( QFile::WriteOwner ) || permissions.testFlag( QFile::WriteUser ) ? S_IWUSR : 0 ) |
-		( permissions.testFlag( QFile::ExeOwner ) || permissions.testFlag( QFile::ExeUser ) ? S_IXUSR : 0 ) |
-		( permissions.testFlag( QFile::ReadGroup ) ? S_IRGRP : 0 ) |
-		( permissions.testFlag( QFile::WriteGroup ) ? S_IWGRP : 0 ) |
-		( permissions.testFlag( QFile::ExeGroup ) ? S_IXGRP : 0 ) |
-		( permissions.testFlag( QFile::ReadOther ) ? S_IROTH : 0 ) |
-		( permissions.testFlag( QFile::WriteOther ) ? S_IWOTH : 0 ) |
-		( permissions.testFlag( QFile::ExeOther ) ? S_IXOTH : 0 );
+		(permissions.testFlag(QFile::ReadOwner) || permissions.testFlag(QFile::ReadUser) ? S_IRUSR : 0) |
+		(permissions.testFlag(QFile::WriteOwner) || permissions.testFlag(QFile::WriteUser) ? S_IWUSR : 0) |
+		(permissions.testFlag(QFile::ExeOwner) || permissions.testFlag(QFile::ExeUser) ? S_IXUSR : 0) |
+		(permissions.testFlag(QFile::ReadGroup) ? S_IRGRP : 0) |
+		(permissions.testFlag(QFile::WriteGroup) ? S_IWGRP : 0) |
+		(permissions.testFlag(QFile::ExeGroup) ? S_IXGRP : 0) |
+		(permissions.testFlag(QFile::ReadOther) ? S_IROTH : 0) |
+		(permissions.testFlag(QFile::WriteOther) ? S_IWOTH : 0) |
+		(permissions.testFlag(QFile::ExeOther) ? S_IXOTH : 0);
 
-	int fd = open( file->fileName().toUtf8().constData(), flags, fileMode );
-	if( fd == -1 )
+	int fd = open(file->fileName().toUtf8().constData(), flags, fileMode);
+	if (fd == -1)
 	{
 		return false;
 	}
 
 	struct stat s{};
-	if( fstat(fd, &s) != 0 )
+	if (fstat(fd, &s) != 0)
 	{
 		close(fd);
 		return false;
@@ -180,12 +179,12 @@ bool LinuxFilesystemFunctions::openFileSafely( QFile* file, QIODevice::OpenMode 
 		}
 	}
 
-	if( fileMode )
+	if (fileMode)
 	{
-		(void) fchmod( fd, fileMode );
+		(void)fchmod(fd, fileMode);
 	}
 
-	return file->open( fd, openMode, QFileDevice::AutoCloseHandle );
+	return file->open(fd, openMode, QFileDevice::AutoCloseHandle);
 }
 
 

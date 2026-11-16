@@ -58,14 +58,13 @@ private Q_SLOTS:
 	void testAccessControlRules();
 
 private:
-	void modifyAccessControlRules( const QJsonArray& accessControlRules, int selectedRow );
+	void modifyAccessControlRules(const QJsonArray& accessControlRules, int selectedRow);
 	void updateAccessControlRules();
 
-	Ui::AccessControlPage *ui;
+	Ui::AccessControlPage* ui;
 
 	QStringList m_accessGroups;
 	AccessControlRuleListModel m_accessControlRulesModel;
 
 	AccessControlRulesTestDialog m_accessControlRulesTestDialog;
-
 };

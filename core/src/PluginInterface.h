@@ -27,8 +27,8 @@
 #include <QObject>
 #include <QVersionNumber>
 
-#include "VeyonCore.h"
 #include "Plugin.h"
+#include "VeyonCore.h"
 
 // clazy:excludeall=copyable-polymorphic
 
@@ -45,14 +45,13 @@ public:
 	{
 		return Plugin::NoFlags;
 	}
-	virtual void upgrade( const QVersionNumber& oldVersion )
+	virtual void upgrade(const QVersionNumber& oldVersion)
 	{
 		Q_UNUSED(oldVersion)
 	}
-
 };
 
-using PluginInterfaceList = QList<PluginInterface *>;
+using PluginInterfaceList = QList<PluginInterface*>;
 
 #define PluginInterface_iid "io.veyon.Veyon.Plugins.PluginInterface"
 

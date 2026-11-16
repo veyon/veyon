@@ -43,7 +43,7 @@ public:
 		ProtocolRetryTime = 250,
 	};
 
-	DemoServerConnection( DemoServer* demoServer, const Password& demoAccessToken, quintptr socketDescriptor );
+	DemoServerConnection(DemoServer* demoServer, const Password& demoAccessToken, quintptr socketDescriptor);
 	~DemoServerConnection() = default;
 
 	qsizetype fbuSequenceNumber() const
@@ -77,5 +77,4 @@ private:
 	int m_epochId;
 
 	const int m_framebufferUpdateInterval;
-
-} ;
+};

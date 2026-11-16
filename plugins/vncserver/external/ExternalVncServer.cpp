@@ -30,24 +30,24 @@
 #include "VeyonConfiguration.h"
 
 
-ExternalVncServer::ExternalVncServer( QObject* parent ) :
-	QObject( parent ),
-	m_configuration( &VeyonCore::config() )
+ExternalVncServer::ExternalVncServer(QObject* parent) :
+	QObject(parent),
+	m_configuration(&VeyonCore::config())
 {
 }
 
 
 
-void ExternalVncServer::upgrade( const QVersionNumber& oldVersion )
+void ExternalVncServer::upgrade(const QVersionNumber& oldVersion)
 {
-	if( oldVersion < QVersionNumber( 1, 1 ) )
+	if (oldVersion < QVersionNumber(1, 1))
 	{
 		// external VNC server password not encrypted yet?
 		const auto rawPassword = m_configuration.passwordProperty().variantValue().toString();
-		if( rawPassword.size() < MaximumPlaintextPasswordLength )
+		if (rawPassword.size() < MaximumPlaintextPasswordLength)
 		{
 			// setting it again will encrypt it
-			m_configuration.setPassword( Configuration::Password::fromPlainText( rawPassword.toUtf8() ) );
+			m_configuration.setPassword(Configuration::Password::fromPlainText(rawPassword.toUtf8()));
 		}
 	}
 }
@@ -56,7 +56,7 @@ void ExternalVncServer::upgrade( const QVersionNumber& oldVersion )
 
 QWidget* ExternalVncServer::configurationWidget()
 {
-	return new ExternalVncServerConfigurationWidget( m_configuration );
+	return new ExternalVncServerConfigurationWidget(m_configuration);
 }
 
 
@@ -67,7 +67,7 @@ void ExternalVncServer::prepareServer()
 
 
 
-bool ExternalVncServer::runServer( int serverPort, const Password& password )
+bool ExternalVncServer::runServer(int serverPort, const Password& password)
 {
 	Q_UNUSED(serverPort);
 	Q_UNUSED(password);

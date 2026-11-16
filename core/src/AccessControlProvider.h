@@ -40,7 +40,7 @@ public:
 		Deny,
 		Allow,
 		ToBeConfirmed,
-	} ;
+	};
 
 	enum class Reason {
 		Unknown,
@@ -52,12 +52,12 @@ public:
 		UserInAuthorizedUserGroups,
 	};
 
-	enum class Argument
-	{
+	enum class Argument {
 		Details,
 	};
 
-	struct CheckResult {
+	struct CheckResult
+	{
 		Access access = Access::Deny;
 		Reason reason = Reason::Unknown;
 		AccessControlRule::Pointer matchedRule = nullptr;
@@ -67,12 +67,12 @@ public:
 
 	QStringList userGroups() const;
 	QStringList locations() const;
-	QStringList locationsOfComputer( const QString& computer ) const;
+	QStringList locationsOfComputer(const QString& computer) const;
 
 	CheckResult checkAccess(const QString& accessingUser, const QString& accessingComputer,
 							const QStringList& connectedUsers);
 
-	bool processAuthorizedGroups( const QString& accessingUser );
+	bool processAuthorizedGroups(const QString& accessingUser);
 
 	AccessControlRule::Pointer processAccessControlRules(const QString& accessingUser,
 														 const QString& accessingComputer,
@@ -99,7 +99,7 @@ public:
 
 	QString description() const override
 	{
-		return tr( "Provider for access control features" );
+		return tr("Provider for access control features");
 	}
 
 	QString vendor() const override
@@ -139,24 +139,24 @@ public:
 	void sendDetails(QIODevice* ioDevice, const QString& details);
 
 private:
-	bool isMemberOfUserGroup( const QString& user, const QString& groupName ) const;
-	bool isLocatedAt( const QString& computer, const QString& locationName ) const;
-	bool haveGroupsInCommon( const QString& userOne, const QString& userTwo ) const;
-	bool haveSameLocations( const QString& computerOne, const QString& computerTwo ) const;
-	bool isLocalHost( const QString& accessingComputer ) const;
-	bool isLocalUser( const QString& accessingUser, const QString& localUser ) const;
+	bool isMemberOfUserGroup(const QString& user, const QString& groupName) const;
+	bool isLocatedAt(const QString& computer, const QString& locationName) const;
+	bool haveGroupsInCommon(const QString& userOne, const QString& userTwo) const;
+	bool haveSameLocations(const QString& computerOne, const QString& computerTwo) const;
+	bool isLocalHost(const QString& accessingComputer) const;
+	bool isLocalUser(const QString& accessingUser, const QString& localUser) const;
 	bool isNoUserLoggedOn() const;
 
-	QString lookupSubject( AccessControlRule::Subject subject,
-						   const QString& accessingUser, const QString& accessingComputer,
-						   const QString& localUser, const QString& localComputer ) const;
-
-	bool matchConditions( const AccessControlRule& rule,
+	QString lookupSubject(AccessControlRule::Subject subject,
 						  const QString& accessingUser, const QString& accessingComputer,
-						  const QString& localUser, const QString& localComputer,
-						  const QStringList& connectedUsers ) const;
+						  const QString& localUser, const QString& localComputer) const;
 
-	static QStringList objectNames( const NetworkObjectList& objects );
+	bool matchConditions(const AccessControlRule& rule,
+						 const QString& accessingUser, const QString& accessingComputer,
+						 const QString& localUser, const QString& localComputer,
+						 const QStringList& connectedUsers) const;
+
+	static QStringList objectNames(const NetworkObjectList& objects);
 	static bool matchList(const QStringList& list, const QString& pattern);
 
 	QList<AccessControlRule::Pointer> m_accessControlRules{};
@@ -168,5 +168,4 @@ private:
 	FeatureList m_features{m_accessControlFeature};
 
 	QStringList m_authorizedUserGroups;
-
-} ;
+};

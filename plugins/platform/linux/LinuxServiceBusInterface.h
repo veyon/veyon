@@ -28,7 +28,6 @@
 #include <QObject>
 
 #include <functional>
-
 #include <sys/types.h>
 
 // clazy:excludeall=copyable-polymorphic
@@ -53,5 +52,4 @@ private:
 	static constexpr auto AuthenticateTimeout = 10000;
 
 	SessionUserCheck m_sessionUserCheck;
-
 };

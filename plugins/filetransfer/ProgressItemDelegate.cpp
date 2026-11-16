@@ -24,14 +24,14 @@
 
 #include <QApplication>
 #include <QPainter>
-#include <QStyleOptionProgressBar>
 #include <QStyle>
+#include <QStyleOptionProgressBar>
 
 #include "ProgressItemDelegate.h"
 
 
-ProgressItemDelegate::ProgressItemDelegate(QObject *parent)
-	: QStyledItemDelegate(parent)
+ProgressItemDelegate::ProgressItemDelegate(QObject* parent) :
+	QStyledItemDelegate(parent)
 {
 }
 
@@ -48,8 +48,8 @@ void ProgressItemDelegate::paint(QPainter* painter,
 	QStyleOptionViewItem opt = option;
 	initStyleOption(&opt, index);
 
-	const QWidget *widget = option.widget;
-	QStyle *style = widget ? widget->style() : QApplication::style();
+	const QWidget* widget = option.widget;
+	QStyle* style = widget ? widget->style() : QApplication::style();
 	style->drawPrimitive(QStyle::PE_PanelItemViewItem, &opt, painter, widget);
 
 	QStyleOptionProgressBar progressOpt;

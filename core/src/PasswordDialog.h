@@ -24,17 +24,19 @@
 
 #pragma once
 
-#include "AuthenticationCredentials.h"
-
 #include <QDialog>
 
-namespace Ui { class PasswordDialog; }
+#include "AuthenticationCredentials.h"
+
+namespace Ui {
+class PasswordDialog;
+}
 
 class VEYON_CORE_EXPORT PasswordDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	explicit PasswordDialog( QWidget *parent );
+	explicit PasswordDialog(QWidget* parent);
 	~PasswordDialog() override;
 
 	QString username() const;
@@ -49,6 +51,5 @@ private Q_SLOTS:
 
 
 private:
-	Ui::PasswordDialog *ui;
-
-} ;
+	Ui::PasswordDialog* ui;
+};

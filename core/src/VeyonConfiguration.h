@@ -27,7 +27,6 @@
 
 #include "Configuration/Object.h"
 #include "Configuration/Property.h"
-
 #include "VeyonConfigurationProperties.h"
 
 // clazy:excludeall=ctor-missing-parent-argument,copyable-polymorphic
@@ -37,14 +36,11 @@ class VEYON_CORE_EXPORT VeyonConfiguration : public Configuration::Object
 	Q_OBJECT
 public:
 	VeyonConfiguration();
-	explicit VeyonConfiguration( Configuration::Store* store );
+	explicit VeyonConfiguration(Configuration::Store* store);
 
 	void upgrade();
 
-	static QString expandPath( QString path );
+	static QString expandPath(QString path);
 
 	FOREACH_VEYON_CONFIG_PROPERTY(DECLARE_CONFIG_PROPERTY)
-
-
-} ;
-
+};

@@ -28,8 +28,8 @@
 
 #include "ConfigurationPagePluginInterface.h"
 #include "FeatureProviderInterface.h"
-#include "FileTransferConfiguration.h"
 #include "FileCollection.h"
+#include "FileTransferConfiguration.h"
 
 class FileCollectWorker;
 class FileTransferController;
@@ -39,11 +39,10 @@ class FileTransferPlugin : public QObject, FeatureProviderInterface, PluginInter
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.FileTransfer")
 	Q_INTERFACES(PluginInterface
-					  FeatureProviderInterface
-						  ConfigurationPagePluginInterface)
+					 FeatureProviderInterface
+						 ConfigurationPagePluginInterface)
 public:
-	enum class FeatureCommand
-	{
+	enum class FeatureCommand {
 		StartFileTransfer,
 		ContinueFileTransfer,
 		CancelFileTransfer,
@@ -57,8 +56,7 @@ public:
 	};
 	Q_ENUM(FeatureCommand)
 
-	enum class Argument
-	{
+	enum class Argument {
 		TransferId,
 		FileName,
 		DataChunk,
@@ -74,12 +72,12 @@ public:
 	};
 	Q_ENUM(Argument)
 
-	explicit FileTransferPlugin( QObject* parent = nullptr );
+	explicit FileTransferPlugin(QObject* parent = nullptr);
 	~FileTransferPlugin() override;
 
 	Plugin::Uid uid() const override
 	{
-		return Plugin::Uid{ QStringLiteral("d4bb9c42-9eef-4ecb-8dd5-dfd84b355481") };
+		return Plugin::Uid{QStringLiteral("d4bb9c42-9eef-4ecb-8dd5-dfd84b355481")};
 	}
 
 	QVersionNumber version() const override
@@ -94,7 +92,7 @@ public:
 
 	QString description() const override
 	{
-		return tr( "Transfer files between computers" );
+		return tr("Transfer files between computers");
 	}
 
 	QString vendor() const override
@@ -117,31 +115,31 @@ public:
 		return m_configuration;
 	}
 
-	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
-						const ComputerControlInterfaceList& computerControlInterfaces ) override;
+	bool controlFeature(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+						const ComputerControlInterfaceList& computerControlInterfaces) override;
 
-	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
-					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
+	bool startFeature(VeyonMasterInterface& master, const Feature& feature,
+					  const ComputerControlInterfaceList& computerControlInterfaces) override;
 
 	bool handleFeatureMessage(ComputerControlInterface::Pointer computerControlInterface,
 							  const FeatureMessage& message) override;
 
-	bool handleFeatureMessage( VeyonServerInterface& server,
-							   const MessageContext& messageContext,
-							   const FeatureMessage& message ) override;
+	bool handleFeatureMessage(VeyonServerInterface& server,
+							  const MessageContext& messageContext,
+							  const FeatureMessage& message) override;
 
 	bool handleFeatureMessageFromWorker(VeyonServerInterface& server, const FeatureMessage& message) override;
 
-	bool handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message ) override;
+	bool handleFeatureMessage(VeyonWorkerInterface& worker, const FeatureMessage& message) override;
 
-	void sendStartMessage( QUuid transferId, const QString& fileName,
-						   bool overwriteExistingFile, const ComputerControlInterfaceList& interfaces,
-						   const QString& destinationDirectory = {} );
-	void sendDataMessage( QUuid transferId, const QByteArray& data, const ComputerControlInterfaceList& interfaces );
-	void sendCancelMessage( QUuid transferId, const ComputerControlInterfaceList& interfaces );
-	void sendFinishMessage( QUuid transferId, const QString& fileName,
-							bool openFileInApplication, const ComputerControlInterfaceList& interfaces );
-	void sendOpenTransferFolderMessage( const ComputerControlInterfaceList& interfaces );
+	void sendStartMessage(QUuid transferId, const QString& fileName,
+						  bool overwriteExistingFile, const ComputerControlInterfaceList& interfaces,
+						  const QString& destinationDirectory = {});
+	void sendDataMessage(QUuid transferId, const QByteArray& data, const ComputerControlInterfaceList& interfaces);
+	void sendCancelMessage(QUuid transferId, const ComputerControlInterfaceList& interfaces);
+	void sendFinishMessage(QUuid transferId, const QString& fileName,
+						   bool openFileInApplication, const ComputerControlInterfaceList& interfaces);
+	void sendOpenTransferFolderMessage(const ComputerControlInterfaceList& interfaces);
 	void sendStopWorkerMessage(const ComputerControlInterfaceList& interfaces);
 
 	void sendInitFileCollectionMessage(const FileCollection& collection,
@@ -199,5 +197,4 @@ private:
 
 	QMap<FileCollection::Id, FileCollectWorker*> m_fileCollectWorkers;
 	QMap<FileCollection::Id, MessageContext> m_fileCollectionContexts;
-
 };

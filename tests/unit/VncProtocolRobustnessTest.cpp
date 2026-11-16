@@ -8,13 +8,12 @@
 
 #include <QtTest>
 
-#include <cstring>
-#include <limits>
-
-#include "rfb/rfbproto.h"
-
 #include "VariantArrayMessage.h"
 #include "VncClientProtocol.h"
+#include "rfb/rfbproto.h"
+
+#include <cstring>
+#include <limits>
 
 class DuplexDevice : public QIODevice
 {
@@ -48,7 +47,7 @@ protected:
 	qint64 readData(char* data, qint64 maxSize) override
 	{
 		const auto size = qMin(maxSize, qint64(m_input.size()));
-		if( size <= 0 )
+		if (size <= 0)
 		{
 			return 0;
 		}
@@ -89,7 +88,7 @@ void VncProtocolRobustnessTest::completeHandshake(DuplexDevice& device, VncClien
 	device.appendInput(QByteArrayLiteral("RFB 003.008\n"));
 	QVERIFY(protocol.read());
 
-	const char securityTypes[] = { 1, rfbSecTypeNone };
+	const char securityTypes[] = {1, rfbSecTypeNone};
 	device.appendInput(QByteArray(securityTypes, sizeof(securityTypes)));
 	QVERIFY(protocol.read());
 
@@ -117,7 +116,7 @@ void VncProtocolRobustnessTest::handlesPipelinedAndFragmentedHandshake()
 	VncClientProtocol protocol(&device, {});
 	protocol.start();
 
-	const char firstFragment[] = { 2, rfbSecTypeVncAuth };
+	const char firstFragment[] = {2, rfbSecTypeVncAuth};
 	device.appendInput(QByteArrayLiteral("RFB 003.008\n") + QByteArray(firstFragment, sizeof(firstFragment)));
 	QVERIFY(protocol.read());
 	QCOMPARE(protocol.state(), VncClientProtocol::SecurityInit);

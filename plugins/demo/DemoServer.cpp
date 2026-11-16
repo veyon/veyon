@@ -23,29 +23,28 @@
  *
  */
 
-#include "rfb/rfbproto.h"
-
 #include <QTcpSocket>
 
 #include "DemoConfiguration.h"
 #include "DemoServer.h"
 #include "DemoServerConnection.h"
-#include "PlatformPluginInterface.h"
 #include "PlatformNetworkFunctions.h"
+#include "PlatformPluginInterface.h"
 #include "VncClientProtocol.h"
+#include "rfb/rfbproto.h"
 
 
-DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, const Password& demoAccessToken,
-						const DemoConfiguration& configuration, int demoServerPort, QObject *parent ) :
-	QTcpServer( parent ),
-	m_configuration( configuration ),
+DemoServer::DemoServer(int vncServerPort, const Password& vncServerPassword, const Password& demoAccessToken,
+					   const DemoConfiguration& configuration, int demoServerPort, QObject* parent) :
+	QTcpServer(parent),
+	m_configuration(configuration),
 	m_memoryLimit(m_configuration.memoryLimit() * BytesPerMB),
-	m_keyFrameInterval( m_configuration.keyFrameInterval() * 1000 ),
-	m_vncServerPort( vncServerPort ),
-	m_demoAccessToken( demoAccessToken ),
-	m_vncServerSocket( new QTcpSocket( this ) ),
-	m_vncClientProtocol( new VncClientProtocol( m_vncServerSocket, vncServerPassword ) ),
-	m_framebufferUpdateTimer( this ),
+	m_keyFrameInterval(m_configuration.keyFrameInterval() * 1000),
+	m_vncServerPort(vncServerPort),
+	m_demoAccessToken(demoAccessToken),
+	m_vncServerSocket(new QTcpSocket(this)),
+	m_vncClientProtocol(new VncClientProtocol(m_vncServerSocket, vncServerPassword)),
+	m_framebufferUpdateTimer(this),
 	m_lastFullFramebufferUpdate(),
 	m_requestFullFramebufferUpdate(false)
 {
@@ -53,7 +52,7 @@ DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, co
 	if (bandwidthLimit == DefaultBandwidthLimit)
 	{
 		const auto networkSpeed = VeyonCore::platform().networkFunctions().networkInterfaceSpeedInMBitPerSecond(
-									  VeyonCore::platform().networkFunctions().defaultRouteNetworkInterface());
+			VeyonCore::platform().networkFunctions().defaultRouteNetworkInterface());
 		if (networkSpeed > 10)
 		{
 			// standard Ethernet speeds?
@@ -72,17 +71,17 @@ DemoServer::DemoServer( int vncServerPort, const Password& vncServerPassword, co
 
 	m_maxKBytesPerSecond = std::max(1, bandwidthLimit) * BytesPerMB / BytesPerKB;
 
-	connect( m_vncServerSocket, &QTcpSocket::readyRead, this, &DemoServer::readFromVncServer );
+	connect(m_vncServerSocket, &QTcpSocket::readyRead, this, &DemoServer::readFromVncServer);
 
-	connect( &m_framebufferUpdateTimer, &QTimer::timeout, this, &DemoServer::requestFramebufferUpdate );
+	connect(&m_framebufferUpdateTimer, &QTimer::timeout, this, &DemoServer::requestFramebufferUpdate);
 
-	if( listen( QHostAddress::Any, demoServerPort ) == false )
+	if (listen(QHostAddress::Any, demoServerPort) == false)
 	{
 		vCritical() << "could not listen to demo server port";
 		return;
 	}
 
-	m_framebufferUpdateTimer.start( m_configuration.framebufferUpdateInterval() );
+	m_framebufferUpdateTimer.start(m_configuration.framebufferUpdateInterval());
 
 	reconnectToVncServer();
 }
@@ -99,26 +98,26 @@ DemoServer::~DemoServer()
 
 void DemoServer::terminate()
 {
-	m_vncServerSocket->disconnect( this );
+	m_vncServerSocket->disconnect(this);
 
-	const auto connections = findChildren<DemoServerConnection *>();
-	if( connections.isEmpty() )
+	const auto connections = findChildren<DemoServerConnection*>();
+	if (connections.isEmpty())
 	{
 		deleteLater();
 	}
 	else
 	{
-		for( auto connection : connections )
+		for (auto connection : connections)
 		{
 			connection->quit();
 		}
 
-		for( auto connection : connections )
+		for (auto connection : connections)
 		{
-			connection->wait( ConnectionThreadWaitTime );
+			connection->wait(ConnectionThreadWaitTime);
 		}
 
-		QTimer::singleShot( TerminateRetryInterval, this, &DemoServer::terminate );
+		QTimer::singleShot(TerminateRetryInterval, this, &DemoServer::terminate);
 	}
 }
 
@@ -138,7 +137,7 @@ void DemoServer::lockDataForRead()
 
 	m_dataLock.lockForRead();
 
-	if( readLockTimer.elapsed() > 100 )
+	if (readLockTimer.elapsed() > 100)
 	{
 		vDebug() << "locking for read took" << readLockTimer.elapsed() << "ms in thread"
 				 << QThread::currentThreadId();
@@ -147,13 +146,13 @@ void DemoServer::lockDataForRead()
 
 
 
-void DemoServer::incomingConnection( qintptr socketDescriptor )
+void DemoServer::incomingConnection(qintptr socketDescriptor)
 {
 	vDebug() << socketDescriptor;
 
-	m_pendingConnectionSockets.append( socketDescriptor );
+	m_pendingConnectionSockets.append(socketDescriptor);
 
-	if( m_vncClientProtocol->state() == VncClientProtocol::State::Running )
+	if (m_vncClientProtocol->state() == VncClientProtocol::State::Running)
 	{
 		acceptPendingConnections();
 	}
@@ -163,17 +162,16 @@ void DemoServer::incomingConnection( qintptr socketDescriptor )
 
 void DemoServer::acceptPendingConnections()
 {
-	while( m_pendingConnectionSockets.isEmpty() == false )
+	while (m_pendingConnectionSockets.isEmpty() == false)
 	{
 		auto connection = new DemoServerConnection(this, m_demoAccessToken, m_pendingConnectionSockets.takeFirst());
-		connect (connection, &DemoServerConnection::synchronizationLost, this, [this](int epochId)
-		{
+		connect(connection, &DemoServerConnection::synchronizationLost, this, [this](int epochId) {
 			if (epochId == m_epochId)
 			{
 				reconnectToVncServer();
 			}
 		});
-		connect (connection, &QObject::destroyed, this, [this, connection]() {
+		connect(connection, &QObject::destroyed, this, [this, connection]() {
 			m_connections.removeAll(connection);
 		});
 		m_connections.append(connection);
@@ -210,7 +208,7 @@ void DemoServer::reconnectToVncServer()
 
 	m_vncClientProtocol->start();
 
-	m_vncServerSocket->connectToHost( QHostAddress::LocalHost, static_cast<quint16>( m_vncServerPort ) );
+	m_vncServerSocket->connectToHost(QHostAddress::LocalHost, static_cast<quint16>(m_vncServerPort));
 
 	connect(m_vncServerSocket, &QTcpSocket::disconnected, this, &DemoServer::reconnectToVncServer);
 }
@@ -219,20 +217,20 @@ void DemoServer::reconnectToVncServer()
 
 void DemoServer::readFromVncServer()
 {
-	if( m_vncClientProtocol->state() != VncClientProtocol::Running )
+	if (m_vncClientProtocol->state() != VncClientProtocol::Running)
 	{
-		while( m_vncClientProtocol->read() )
+		while (m_vncClientProtocol->read())
 		{
 		}
 
-		if( m_vncClientProtocol->state() == VncClientProtocol::Running )
+		if (m_vncClientProtocol->state() == VncClientProtocol::Running)
 		{
 			start();
 		}
 	}
 	else
 	{
-		while( receiveVncServerMessage() )
+		while (receiveVncServerMessage())
 		{
 		}
 	}
@@ -242,23 +240,23 @@ void DemoServer::readFromVncServer()
 
 void DemoServer::requestFramebufferUpdate()
 {
-	if( m_vncClientProtocol->state() != VncClientProtocol::Running )
+	if (m_vncClientProtocol->state() != VncClientProtocol::Running)
 	{
 		vDebug() << "VNC client protocol not yet running";
 		return;
 	}
 
-	if( m_requestFullFramebufferUpdate ||
-		m_lastFullFramebufferUpdate.elapsed() >= m_keyFrameInterval )
+	if (m_requestFullFramebufferUpdate ||
+		m_lastFullFramebufferUpdate.elapsed() >= m_keyFrameInterval)
 	{
 		vDebug() << "Requesting full framebuffer update";
-		m_vncClientProtocol->requestFramebufferUpdate( false );
+		m_vncClientProtocol->requestFramebufferUpdate(false);
 		m_lastFullFramebufferUpdate.restart();
 		m_requestFullFramebufferUpdate = false;
 	}
 	else
 	{
-		m_vncClientProtocol->requestFramebufferUpdate( true );
+		m_vncClientProtocol->requestFramebufferUpdate(true);
 	}
 }
 
@@ -266,15 +264,15 @@ void DemoServer::requestFramebufferUpdate()
 
 bool DemoServer::receiveVncServerMessage()
 {
-	if( m_vncClientProtocol->receiveMessage() )
+	if (m_vncClientProtocol->receiveMessage())
 	{
-		if( m_vncClientProtocol->lastMessageType() == rfbFramebufferUpdate )
+		if (m_vncClientProtocol->lastMessageType() == rfbFramebufferUpdate)
 		{
-			enqueueFramebufferUpdateMessage( m_vncClientProtocol->lastMessage() );
+			enqueueFramebufferUpdateMessage(m_vncClientProtocol->lastMessage());
 		}
 		else
 		{
-			vWarning() << "skipping server message of type" << static_cast<int>( m_vncClientProtocol->lastMessageType() );
+			vWarning() << "skipping server message of type" << static_cast<int>(m_vncClientProtocol->lastMessageType());
 		}
 
 		return true;
@@ -285,14 +283,14 @@ bool DemoServer::receiveVncServerMessage()
 
 
 
-void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
+void DemoServer::enqueueFramebufferUpdateMessage(const QByteArray& message)
 {
 	QElapsedTimer writeLockTime;
 	writeLockTime.start();
 
 	m_dataLock.lockForWrite();
 
-	if( writeLockTime.elapsed() > 10 )
+	if (writeLockTime.elapsed() > 10)
 	{
 		vDebug() << "locking for write took" << writeLockTime.elapsed() << "ms";
 	}
@@ -337,7 +335,7 @@ void DemoServer::enqueueFramebufferUpdateMessage( const QByteArray& message )
 	// one or more clients lagging so much behind that the message queue cannot be shrinked enough?
 	const auto timestamp = QDateTime::currentMSecsSinceEpoch();
 	const auto needReconnect = m_framebufferUpdateMessages.isEmpty() == false &&
-							   timestamp - m_framebufferUpdateMessages.constFirst().first > FramebufferUpdateMessageMaxAge;
+		timestamp - m_framebufferUpdateMessages.constFirst().first > FramebufferUpdateMessageMaxAge;
 	if (!needReconnect)
 	{
 		m_framebufferUpdateMessages.append({timestamp, message});
@@ -394,7 +392,7 @@ qint64 DemoServer::framebufferUpdateMessageQueueSize() const
 {
 	qint64 size = 0;
 
-	for( const auto& message : std::as_const( m_framebufferUpdateMessages ) )
+	for (const auto& message : std::as_const(m_framebufferUpdateMessages))
 	{
 		size += message.second.size();
 	}
@@ -416,7 +414,7 @@ void DemoServer::start()
 
 	requestFramebufferUpdate();
 
-	while( receiveVncServerMessage() )
+	while (receiveVncServerMessage())
 	{
 	}
 
@@ -431,7 +429,7 @@ bool DemoServer::setVncServerPixelFormat()
 
 	format.bitsPerPixel = 32;
 	format.depth = 24;
-	format.bigEndian = qFromBigEndian<uint16_t>( 1 ) == 1 ? true : false;
+	format.bigEndian = qFromBigEndian<uint16_t>(1) == 1 ? true : false;
 	format.trueColour = 1;
 	format.redShift = 16;
 	format.greenShift = 8;
@@ -453,21 +451,19 @@ bool DemoServer::setVncServerEncodings(int quality)
 {
 	m_quality = quality;
 
-	m_vncClientProtocol->setEncodings({
-										  rfbEncodingTight,
-										  rfbEncodingZYWRLE,
-										  rfbEncodingZRLE,
-										  rfbEncodingUltra,
-										  rfbEncodingCopyRect,
-										  rfbEncodingHextile,
-										  rfbEncodingCoRRE,
-										  rfbEncodingRRE,
-										  rfbEncodingRaw,
-										  rfbEncodingCompressLevel9,
-										  rfbEncodingQualityLevel0 + quality,
-										  rfbEncodingNewFBSize,
-										  rfbEncodingLastRect
-									  });
+	m_vncClientProtocol->setEncodings({rfbEncodingTight,
+									   rfbEncodingZYWRLE,
+									   rfbEncodingZRLE,
+									   rfbEncodingUltra,
+									   rfbEncodingCopyRect,
+									   rfbEncodingHextile,
+									   rfbEncodingCoRRE,
+									   rfbEncodingRRE,
+									   rfbEncodingRaw,
+									   rfbEncodingCompressLevel9,
+									   rfbEncodingQualityLevel0 + quality,
+									   rfbEncodingNewFBSize,
+									   rfbEncodingLastRect});
 
 	return m_vncClientProtocol->sendEncodings();
 }

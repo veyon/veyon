@@ -52,7 +52,7 @@ public:
 		return m_protocolErrorOccurred;
 	}
 
-	void setAuthenticationTypes( const AuthenticationMethods& authenticationTypes )
+	void setAuthenticationTypes(const AuthenticationMethods& authenticationTypes)
 	{
 		lock();
 		m_authenticationTypes = authenticationTypes;
@@ -63,30 +63,30 @@ public:
 
 	AuthenticationMethods authenticationTypes()
 	{
-		QMutexLocker l( &m_mutex );
+		QMutexLocker l(&m_mutex);
 		return m_authenticationTypes;
 	}
 
-	bool waitForAuthenticationMethods( int timeout )
+	bool waitForAuthenticationMethods(int timeout)
 	{
 		QMutex m;
-		QMutexLocker l( &m );
-		if( authenticationTypes().isEmpty() == false )
+		QMutexLocker l(&m);
+		if (authenticationTypes().isEmpty() == false)
 		{
 			return true;
 		}
-		return m_authenticationMethodsAvailable.wait( &m, timeout );
+		return m_authenticationMethodsAvailable.wait(&m, timeout);
 	}
 
 	AuthenticationCredentials credentials()
 	{
-		QMutexLocker l( &m_mutex );
+		QMutexLocker l(&m_mutex);
 		return m_credentials;
 	}
 
-	void setCredentials( const AuthenticationCredentials& credentials )
+	void setCredentials(const AuthenticationCredentials& credentials)
 	{
-		QMutexLocker l( &m_mutex );
+		QMutexLocker l(&m_mutex);
 		m_credentials = credentials;
 	}
 
@@ -114,5 +114,4 @@ private:
 	AuthenticationCredentials m_credentials;
 	AuthenticationMethods m_authenticationTypes;
 	QWaitCondition m_authenticationMethodsAvailable;
-
 };

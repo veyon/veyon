@@ -38,8 +38,7 @@ class VncServerClient;
 class VEYON_CORE_EXPORT VncServerProtocol
 {
 public:
-	enum class State
-	{
+	enum class State {
 		Disconnected,
 		Protocol,
 		SecurityInit,
@@ -51,7 +50,7 @@ public:
 		Close,
 		Closing,
 		StateCount
-	} ;
+	};
 
 	VncServerProtocol(QTcpSocket* socket, VncServerClient* client);
 	virtual ~VncServerProtocol() = default;
@@ -61,14 +60,14 @@ public:
 	void start();
 	bool read(); // Flawfinder: ignore
 
-	void setServerInitMessage( const QByteArray& serverInitMessage )
+	void setServerInitMessage(const QByteArray& serverInitMessage)
 	{
 		m_serverInitMessage = serverInitMessage;
 	}
 
 protected:
 	virtual QVector<RfbVeyonAuth::Type> supportedAuthTypes() const = 0;
-	virtual void processAuthenticationMessage( VariantArrayMessage& message ) = 0;
+	virtual void processAuthenticationMessage(VariantArrayMessage& message) = 0;
 	virtual void performAccessControl() = 0;
 
 	QTcpSocket* socket()
@@ -82,7 +81,7 @@ protected:
 	}
 
 private:
-	void setState( State state );
+	void setState(State state);
 
 	bool readProtocol();
 	bool sendSecurityTypes();
@@ -91,7 +90,7 @@ private:
 	bool receiveAuthenticationTypeResponse();
 	bool receiveAuthenticationMessage();
 
-	bool processAuthentication( VariantArrayMessage& message );
+	bool processAuthentication(VariantArrayMessage& message);
 	bool processAccessControl();
 
 	void sendFailedAccessControlDetails();
@@ -110,5 +109,4 @@ private:
 	QByteArray m_serverInitMessage;
 
 	QTimer m_accessControlDetailsSendTimer;
-
-} ;
+};

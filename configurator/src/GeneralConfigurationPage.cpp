@@ -27,17 +27,17 @@
 
 #include "AuthenticationCredentials.h"
 #include "Configuration/UiMapping.h"
-#include "GeneralConfigurationPage.h"
-#include "Filesystem.h"
 #include "FileSystemBrowser.h"
+#include "Filesystem.h"
+#include "GeneralConfigurationPage.h"
 #include "NetworkObjectDirectoryManager.h"
 #include "PlatformFilesystemFunctions.h"
 #include "PlatformUserFunctions.h"
 #include "PluginManager.h"
-#include "VeyonServiceControl.h"
-#include "VeyonCore.h"
-#include "VeyonConfiguration.h"
 #include "UserGroupsBackendManager.h"
+#include "VeyonConfiguration.h"
+#include "VeyonCore.h"
+#include "VeyonServiceControl.h"
 
 #include "ui_GeneralConfigurationPage.h"
 
@@ -50,25 +50,23 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 
 	// retrieve list of builtin translations and populate language combobox
 	QStringList languages;
-	const auto qmFiles = QDir( VeyonCore::translationsDirectory() ).entryList( { QStringLiteral("veyon*.qm") } );
+	const auto qmFiles = QDir(VeyonCore::translationsDirectory()).entryList({QStringLiteral("veyon*.qm")});
 
-	languages.reserve( qmFiles.count() );
+	languages.reserve(qmFiles.count());
 
-	for( const auto& qmFile : qmFiles )
+	for (const auto& qmFile : qmFiles)
 	{
-		QLocale loc( qmFile.split( QLatin1Char('_') ).mid( 1 ).join( QLatin1Char('_') ) );
-		if( loc.language() == QLocale::C )
+		QLocale loc(qmFile.split(QLatin1Char('_')).mid(1).join(QLatin1Char('_')));
+		if (loc.language() == QLocale::C)
 		{
-			loc = QLocale( QLocale::English );
+			loc = QLocale(QLocale::English);
 		}
-		languages += QStringLiteral( "%1 - %2 (%3)" ).arg( QLocale::languageToString( loc.language() ),
-														   loc.nativeLanguageName(),
-														   loc.name() );
+		languages += QStringLiteral("%1 - %2 (%3)").arg(QLocale::languageToString(loc.language()), loc.nativeLanguageName(), loc.name());
 	}
 
-	std::sort( languages.begin(), languages.end() );
+	std::sort(languages.begin(), languages.end());
 
-	ui->uiLanguage->addItems( languages );
+	ui->uiLanguage->addItems(languages);
 
 	const auto backends = VeyonCore::userGroupsBackendManager().availableBackends();
 	if (backends.count() <= 0)
@@ -84,10 +82,10 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 		ui->userGroupsBackend->addItem(it.value(), it.key());
 	}
 
-	connect( ui->testAuthenticationButton, &QPushButton::clicked, this, &GeneralConfigurationPage::testAuthentication );
-	connect( ui->openLogFileDirectory, &QPushButton::clicked, this, &GeneralConfigurationPage::openLogFileDirectory );
-	connect( ui->clearLogFiles, &QPushButton::clicked, this, &GeneralConfigurationPage::clearLogFiles );
-	connect( ui->userGroupsBackend, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this]() {
+	connect(ui->testAuthenticationButton, &QPushButton::clicked, this, &GeneralConfigurationPage::testAuthentication);
+	connect(ui->openLogFileDirectory, &QPushButton::clicked, this, &GeneralConfigurationPage::openLogFileDirectory);
+	connect(ui->clearLogFiles, &QPushButton::clicked, this, &GeneralConfigurationPage::clearLogFiles);
+	connect(ui->userGroupsBackend, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this]() {
 		const auto plugin = VeyonCore::pluginManager().pluginInterface(ui->userGroupsBackend->currentData().toUuid());
 		ui->useDomainUserGroups->setEnabled(plugin && plugin->flags().testFlag(Plugin::ProvidesDefaultImplementation));
 	});
@@ -135,24 +133,24 @@ void GeneralConfigurationPage::applyConfiguration()
 
 void GeneralConfigurationPage::testAuthentication()
 {
-	switch( VeyonCore::config().authenticationMethod() )
+	switch (VeyonCore::config().authenticationMethod())
 	{
 	case VeyonCore::AuthenticationMethod::LogonAuthentication:
-		if( testLogonAuthentication() == false )
+		if (testLogonAuthentication() == false)
 		{
 			return;
 		}
 		break;
 	case VeyonCore::AuthenticationMethod::KeyFileAuthentication:
-		if( testKeyFileAuthentication() == false )
+		if (testKeyFileAuthentication() == false)
 		{
 			return;
 		}
 		break;
 	}
 
-	QMessageBox::information( this, authenticationTestTitle(),
-							  tr( "Authentication is set up properly on this computer." ) );
+	QMessageBox::information(this, authenticationTestTitle(),
+							 tr("Authentication is set up properly on this computer."));
 }
 
 
@@ -160,24 +158,23 @@ void GeneralConfigurationPage::testAuthentication()
 bool GeneralConfigurationPage::testLogonAuthentication()
 {
 	return VeyonCore::instance()->initAuthentication() &&
-			VeyonCore::platform().userFunctions().authenticate( VeyonCore::authenticationCredentials().logonUsername(),
-																VeyonCore::authenticationCredentials().logonPassword() );
+		VeyonCore::platform().userFunctions().authenticate(VeyonCore::authenticationCredentials().logonUsername(),
+														   VeyonCore::authenticationCredentials().logonPassword());
 }
 
 
 
 bool GeneralConfigurationPage::testKeyFileAuthentication()
 {
-	if( VeyonCore::instance()->initAuthentication() == false )
+	if (VeyonCore::instance()->initAuthentication() == false)
 	{
-		QMessageBox::critical( this, authenticationTestTitle(),
-							   tr( "Authentication keys are not set up properly on this computer." ) );
+		QMessageBox::critical(this, authenticationTestTitle(),
+							  tr("Authentication keys are not set up properly on this computer."));
 		return false;
 	}
 
 	return true;
 }
-
 
 
 
@@ -188,18 +185,17 @@ void GeneralConfigurationPage::openLogFileDirectory()
 
 
 
-
 void GeneralConfigurationPage::clearLogFiles()
 {
 	bool serviceStopped = false;
 
-	VeyonServiceControl serviceControl( this );
+	VeyonServiceControl serviceControl(this);
 
-	if( serviceControl.isServiceRunning() )
+	if (serviceControl.isServiceRunning())
 	{
 		if (QMessageBox::question(this, tr("Veyon service"),
-								   tr("The Veyon service needs to be stopped temporarily "
-									  "in order to remove the log files. Continue?"),
+								  tr("The Veyon service needs to be stopped temporarily "
+									 "in order to remove the log files. Continue?"),
 								  QMessageBox::Yes | QMessageBox::No,
 								  QMessageBox::Yes) == QMessageBox::Yes)
 		{
@@ -213,47 +209,47 @@ void GeneralConfigurationPage::clearLogFiles()
 	}
 
 	bool success = true;
-	const QStringList logFilesFilter( { QStringLiteral("Veyon*.log") } );
+	const QStringList logFilesFilter({QStringLiteral("Veyon*.log")});
 
-	QDir d( VeyonCore::filesystem().expandPath( VeyonCore::config().logFileDirectory() ) );
-	const auto localLogFiles = d.entryList( logFilesFilter );
+	QDir d(VeyonCore::filesystem().expandPath(VeyonCore::config().logFileDirectory()));
+	const auto localLogFiles = d.entryList(logFilesFilter);
 
-	for( const auto& f : localLogFiles )
+	for (const auto& f : localLogFiles)
 	{
-		if( f.startsWith( QLatin1String("VeyonConfigurator") ) )
+		if (f.startsWith(QLatin1String("VeyonConfigurator")))
 		{
-			d.remove( f );
+			d.remove(f);
 		}
 		else
 		{
-			success &= d.remove( f );
+			success &= d.remove(f);
 		}
 	}
 
-	d = QDir( VeyonCore::platform().filesystemFunctions().globalTempPath() );
-	const auto globalLogFiles = d.entryList( logFilesFilter );
-	for( const auto& f : globalLogFiles )
+	d = QDir(VeyonCore::platform().filesystemFunctions().globalTempPath());
+	const auto globalLogFiles = d.entryList(logFilesFilter);
+	for (const auto& f : globalLogFiles)
 	{
-		if( f != QLatin1String("VeyonConfigurator.log") )
+		if (f != QLatin1String("VeyonConfigurator.log"))
 		{
-			success &= d.remove( f );
+			success &= d.remove(f);
 		}
 	}
 
-	if( serviceStopped )
+	if (serviceStopped)
 	{
 		serviceControl.startService();
 	}
 
-	if( success )
+	if (success)
 	{
-		QMessageBox::information( this, tr( "Log files cleared" ),
-								  tr( "All log files were cleared successfully." ) );
+		QMessageBox::information(this, tr("Log files cleared"),
+								 tr("All log files were cleared successfully."));
 	}
 	else
 	{
-		QMessageBox::critical( this, tr( "Error" ),
-							   tr( "Could not remove all log files." ) );
+		QMessageBox::critical(this, tr("Error"),
+							  tr("Could not remove all log files."));
 	}
 }
 
@@ -263,8 +259,8 @@ void GeneralConfigurationPage::populateNetworkObjectDirectories()
 {
 	const auto directories = VeyonCore::networkObjectDirectoryManager().availableDirectories();
 
-	for( auto it = directories.constBegin(), end = directories.constEnd(); it != end; ++it )
+	for (auto it = directories.constBegin(), end = directories.constEnd(); it != end; ++it)
 	{
-		ui->networkObjectDirectoryPlugin->addItem( it.value(), it.key() );
+		ui->networkObjectDirectoryPlugin->addItem(it.value(), it.key());
 	}
 }

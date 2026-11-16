@@ -22,12 +22,12 @@
  *
  */
 
-#include "AuthKeysTableModel.h"
 #include "AuthKeysManager.h"
+#include "AuthKeysTableModel.h"
 
-AuthKeysTableModel::AuthKeysTableModel( QObject* parent ) :
-	QAbstractTableModel( parent ),
-	m_manager( new AuthKeysManager( this ) ),
+AuthKeysTableModel::AuthKeysTableModel(QObject* parent) :
+	QAbstractTableModel(parent),
+	m_manager(new AuthKeysManager(this)),
 	m_keys()
 {
 }
@@ -52,7 +52,7 @@ void AuthKeysTableModel::reload()
 
 
 
-int AuthKeysTableModel::columnCount( const QModelIndex& parent ) const
+int AuthKeysTableModel::columnCount(const QModelIndex& parent) const
 {
 	Q_UNUSED(parent)
 
@@ -61,7 +61,7 @@ int AuthKeysTableModel::columnCount( const QModelIndex& parent ) const
 
 
 
-int AuthKeysTableModel::rowCount( const QModelIndex& parent ) const
+int AuthKeysTableModel::rowCount(const QModelIndex& parent) const
 {
 	Q_UNUSED(parent)
 
@@ -70,21 +70,21 @@ int AuthKeysTableModel::rowCount( const QModelIndex& parent ) const
 
 
 
-QVariant AuthKeysTableModel::data( const QModelIndex& index, int role ) const
+QVariant AuthKeysTableModel::data(const QModelIndex& index, int role) const
 {
-	if( index.isValid() == false || role != Qt::DisplayRole )
+	if (index.isValid() == false || role != Qt::DisplayRole)
 	{
 		return {};
 	}
 
 	const auto& key = m_keys[index.row()];
 
-	switch( index.column() )
+	switch (index.column())
 	{
-	case ColumnKeyName: return key.split( QLatin1Char('/') ).value( 0 );
-	case ColumnKeyType: return key.split( QLatin1Char('/') ).value( 1 );
-	case ColumnAccessGroup: return m_manager->accessGroup( key );
-	case ColumnKeyPairID: return m_manager->keyPairId( key );
+	case ColumnKeyName: return key.split(QLatin1Char('/')).value(0);
+	case ColumnKeyType: return key.split(QLatin1Char('/')).value(1);
+	case ColumnAccessGroup: return m_manager->accessGroup(key);
+	case ColumnKeyPairID: return m_manager->keyPairId(key);
 	default: break;
 	}
 
@@ -93,19 +93,19 @@ QVariant AuthKeysTableModel::data( const QModelIndex& index, int role ) const
 
 
 
-QVariant AuthKeysTableModel::headerData( int section, Qt::Orientation orientation, int role ) const
+QVariant AuthKeysTableModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-	if( orientation != Qt::Horizontal || role != Qt::DisplayRole )
+	if (orientation != Qt::Horizontal || role != Qt::DisplayRole)
 	{
 		return {};
 	}
 
-	switch( section )
+	switch (section)
 	{
-	case ColumnKeyName: return tr( "Name" );
-	case ColumnKeyType: return tr( "Type" );
-	case ColumnAccessGroup: return tr( "Access group");
-	case ColumnKeyPairID: return tr( "Pair ID");
+	case ColumnKeyName: return tr("Name");
+	case ColumnKeyType: return tr("Type");
+	case ColumnAccessGroup: return tr("Access group");
+	case ColumnKeyPairID: return tr("Pair ID");
 	default:
 		break;
 	}

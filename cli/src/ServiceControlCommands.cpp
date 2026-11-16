@@ -26,22 +26,22 @@
 #include "ServiceControlCommands.h"
 #include "VeyonServiceControl.h"
 
-ServiceControlCommands::ServiceControlCommands( QObject* parent ) :
-	QObject( parent ),
-	m_commands( {
-{ QStringLiteral("register"), tr( "Register Veyon Service" ) },
-{ QStringLiteral("unregister"), tr( "Unregister Veyon Service" ) },
-{ QStringLiteral("start"), tr( "Start Veyon Service" ) },
-{ QStringLiteral("stop"), tr( "Stop Veyon Service" ) },
-{ QStringLiteral("restart"), tr( "Restart Veyon Service" ) },
-{ QStringLiteral("status"), tr( "Query status of Veyon Service" ) },
-				} )
+ServiceControlCommands::ServiceControlCommands(QObject* parent) :
+	QObject(parent),
+	m_commands({
+		{QStringLiteral("register"), tr("Register Veyon Service")},
+		{QStringLiteral("unregister"), tr("Unregister Veyon Service")},
+		{QStringLiteral("start"), tr("Start Veyon Service")},
+		{QStringLiteral("stop"), tr("Stop Veyon Service")},
+		{QStringLiteral("restart"), tr("Restart Veyon Service")},
+		{QStringLiteral("status"), tr("Query status of Veyon Service")},
+	})
 {
 }
 
 
 
-CommandLinePluginInterface::RunResult ServiceControlCommands::handle_register( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ServiceControlCommands::handle_register(const QStringList& arguments)
 {
 	Q_UNUSED(arguments)
 
@@ -53,7 +53,7 @@ CommandLinePluginInterface::RunResult ServiceControlCommands::handle_register( c
 
 
 
-CommandLinePluginInterface::RunResult ServiceControlCommands::handle_unregister( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ServiceControlCommands::handle_unregister(const QStringList& arguments)
 {
 	Q_UNUSED(arguments)
 	VeyonServiceControl serviceControl;
@@ -64,7 +64,7 @@ CommandLinePluginInterface::RunResult ServiceControlCommands::handle_unregister(
 
 
 
-CommandLinePluginInterface::RunResult ServiceControlCommands::handle_start( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ServiceControlCommands::handle_start(const QStringList& arguments)
 {
 	Q_UNUSED(arguments)
 
@@ -76,7 +76,7 @@ CommandLinePluginInterface::RunResult ServiceControlCommands::handle_start( cons
 
 
 
-CommandLinePluginInterface::RunResult ServiceControlCommands::handle_stop( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ServiceControlCommands::handle_stop(const QStringList& arguments)
 {
 	Q_UNUSED(arguments)
 
@@ -88,25 +88,25 @@ CommandLinePluginInterface::RunResult ServiceControlCommands::handle_stop( const
 
 
 
-CommandLinePluginInterface::RunResult ServiceControlCommands::handle_restart( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ServiceControlCommands::handle_restart(const QStringList& arguments)
 {
-	handle_stop( arguments );
-	return handle_start( arguments );
+	handle_stop(arguments);
+	return handle_start(arguments);
 }
 
 
 
-CommandLinePluginInterface::RunResult ServiceControlCommands::handle_status( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ServiceControlCommands::handle_status(const QStringList& arguments)
 {
 	Q_UNUSED(arguments)
 
-	if( VeyonServiceControl().isServiceRunning() )
+	if (VeyonServiceControl().isServiceRunning())
 	{
-		CommandLineIO::print( tr( "Service is running" ) );
+		CommandLineIO::print(tr("Service is running"));
 	}
 	else
 	{
-		CommandLineIO::print( tr( "Service is not running" ) );
+		CommandLineIO::print(tr("Service is not running"));
 	}
 
 	return NoResult;

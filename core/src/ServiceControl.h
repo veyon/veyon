@@ -36,10 +36,10 @@ class VEYON_CORE_EXPORT ServiceControl : public QObject
 {
 	Q_OBJECT
 public:
-	ServiceControl( const QString& name,
-					const QString& filePath,
-					const QString& displayName,
-					QWidget* parent );
+	ServiceControl(const QString& name,
+				   const QString& filePath,
+				   const QString& displayName,
+				   QWidget* parent);
 
 	bool isServiceRegistered();
 	void registerService();
@@ -54,13 +54,12 @@ public:
 private:
 	using Operation = QFuture<void>;
 	void serviceControl(const QString& title, const Operation& operation);
-	void graphicalFeedback(const QString &title, const Operation& operation);
-	void textFeedback(const QString &title, const Operation& operation);
+	void graphicalFeedback(const QString& title, const Operation& operation);
+	void textFeedback(const QString& title, const Operation& operation);
 
 	const QString m_name;
 	const QString m_filePath;
 	const QString m_displayName;
 
 	QWidget* m_parent;
-
 };

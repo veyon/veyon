@@ -33,15 +33,14 @@ class FileTransferListModel : public QStringListModel
 {
 	Q_OBJECT
 public:
-	FileTransferListModel( FileTransferController* controller, QObject* parent );
+	FileTransferListModel(FileTransferController* controller, QObject* parent);
 	~FileTransferListModel() override = default;
 
-	QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
+	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 
 private:
 	FileTransferController* m_controller;
 	QIcon m_scheduledPixmap;
 	QIcon m_transferringPixmap;
 	QIcon m_finishedPixmap;
-
 };

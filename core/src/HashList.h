@@ -30,10 +30,8 @@ template<typename Key>
 class HashList : public QHash<Key, bool>
 {
 public:
-	void append( const Key& key )
+	void append(const Key& key)
 	{
-		this->insert( key, true );
+		this->insert(key, true);
 	}
-
 };
-

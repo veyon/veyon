@@ -41,14 +41,14 @@
 #include "WindowsNetworkFunctions.h"
 
 
-static HRESULT WindowsFirewallInitialize2( INetFwPolicy2** fwPolicy2 )
+static HRESULT WindowsFirewallInitialize2(INetFwPolicy2** fwPolicy2)
 {
 	HRESULT hr = S_OK;
 
 	// Create an instance of the firewall settings manager.
-	hr = CoCreateInstance( CLSID_NetFwPolicy2, nullptr, CLSCTX_INPROC_SERVER,
-							IID_INetFwPolicy2, reinterpret_cast<void**>( fwPolicy2 ) );
-	if( FAILED( hr ) )
+	hr = CoCreateInstance(CLSID_NetFwPolicy2, nullptr, CLSCTX_INPROC_SERVER,
+						  IID_INetFwPolicy2, reinterpret_cast<void**>(fwPolicy2));
+	if (FAILED(hr))
 	{
 		vCritical() << "CoCreateInstance() returned" << hr;
 	}
@@ -57,9 +57,9 @@ static HRESULT WindowsFirewallInitialize2( INetFwPolicy2** fwPolicy2 )
 }
 
 
-static void WindowsFirewallCleanup2( INetFwPolicy2* fwPolicy2 )
+static void WindowsFirewallCleanup2(INetFwPolicy2* fwPolicy2)
 {
-	if( fwPolicy2 != nullptr )
+	if (fwPolicy2 != nullptr)
 	{
 		fwPolicy2->Release();
 	}
@@ -67,9 +67,9 @@ static void WindowsFirewallCleanup2( INetFwPolicy2* fwPolicy2 )
 
 
 
-static HRESULT WindowsFirewallAddApp2( INetFwPolicy2* fwPolicy2,
-									   const wchar_t* fwApplicationPath,
-									   const wchar_t* fwName )
+static HRESULT WindowsFirewallAddApp2(INetFwPolicy2* fwPolicy2,
+									  const wchar_t* fwApplicationPath,
+									  const wchar_t* fwName)
 {
 	HRESULT hr = S_OK;
 	BSTR fwBstrRuleName = nullptr;
@@ -77,47 +77,47 @@ static HRESULT WindowsFirewallAddApp2( INetFwPolicy2* fwPolicy2,
 	BSTR fwBstrRuleDescription = nullptr;
 	BSTR fwBstrRuleGrouping = nullptr;
 
-	INetFwRules *pFwRules = nullptr;
-	INetFwRule *pFwRule = nullptr;
+	INetFwRules* pFwRules = nullptr;
+	INetFwRule* pFwRule = nullptr;
 
 	// Retrieve INetFwRules
-	hr = fwPolicy2->get_Rules( &pFwRules );
-	if( FAILED( hr ) )
+	hr = fwPolicy2->get_Rules(&pFwRules);
+	if (FAILED(hr))
 	{
 		vCritical() << "get_Rules() returned" << hr;
 		goto cleanup;
 	}
 
 	// Create an instance of an authorized application.
-	hr = CoCreateInstance( CLSID_NetFwRule, nullptr,
-							CLSCTX_INPROC_SERVER,
-							IID_INetFwRule, reinterpret_cast<void**>( &pFwRule ) );
-	if( FAILED( hr ) )
+	hr = CoCreateInstance(CLSID_NetFwRule, nullptr,
+						  CLSCTX_INPROC_SERVER,
+						  IID_INetFwRule, reinterpret_cast<void**>(&pFwRule));
+	if (FAILED(hr))
 	{
 		vCritical() << "CoCreateInstance() returned" << hr;
 		goto cleanup;
 	}
 
-	fwBstrRuleName = SysAllocString( fwName );
-	fwBstrApplicationPath = SysAllocString( fwApplicationPath );
-	fwBstrRuleDescription = SysAllocString( fwName );
-	fwBstrRuleGrouping = SysAllocString( fwName );
+	fwBstrRuleName = SysAllocString(fwName);
+	fwBstrApplicationPath = SysAllocString(fwApplicationPath);
+	fwBstrRuleDescription = SysAllocString(fwName);
+	fwBstrRuleGrouping = SysAllocString(fwName);
 
 	// Set the rule
-	pFwRule->put_Name( fwBstrRuleName );
-	pFwRule->put_ApplicationName( fwBstrApplicationPath );
-	pFwRule->put_Description( fwBstrRuleDescription );
-	pFwRule->put_Grouping( fwBstrRuleGrouping );
+	pFwRule->put_Name(fwBstrRuleName);
+	pFwRule->put_ApplicationName(fwBstrApplicationPath);
+	pFwRule->put_Description(fwBstrRuleDescription);
+	pFwRule->put_Grouping(fwBstrRuleGrouping);
 
-	pFwRule->put_Action( NET_FW_ACTION_ALLOW );
-	pFwRule->put_Enabled( VARIANT_TRUE );
-	pFwRule->put_Protocol( NET_FW_IP_PROTOCOL_TCP );
-	pFwRule->put_Profiles( NET_FW_PROFILE2_ALL );
+	pFwRule->put_Action(NET_FW_ACTION_ALLOW);
+	pFwRule->put_Enabled(VARIANT_TRUE);
+	pFwRule->put_Protocol(NET_FW_IP_PROTOCOL_TCP);
+	pFwRule->put_Profiles(NET_FW_PROFILE2_ALL);
 
 
 	// Add the application to the collection.
-	hr = pFwRules->Add( pFwRule );
-	if( FAILED( hr ) )
+	hr = pFwRules->Add(pFwRule);
+	if (FAILED(hr))
 	{
 		vCritical() << "Add() returned" << hr;
 		goto cleanup;
@@ -125,17 +125,17 @@ static HRESULT WindowsFirewallAddApp2( INetFwPolicy2* fwPolicy2,
 
 cleanup:
 	// Free the BSTRs.
-	SysFreeString( fwBstrRuleName );
-	SysFreeString( fwBstrApplicationPath );
-	SysFreeString( fwBstrRuleDescription );
-	SysFreeString( fwBstrRuleGrouping );
+	SysFreeString(fwBstrRuleName);
+	SysFreeString(fwBstrApplicationPath);
+	SysFreeString(fwBstrRuleDescription);
+	SysFreeString(fwBstrRuleGrouping);
 
-	if( pFwRule != nullptr )
+	if (pFwRule != nullptr)
 	{
 		pFwRule->Release();
 	}
 
-	if( pFwRules != nullptr )
+	if (pFwRules != nullptr)
 	{
 		pFwRules->Release();
 	}
@@ -145,25 +145,25 @@ cleanup:
 
 
 
-static HRESULT WindowsFirewallRemoveApp2( INetFwPolicy2 * fwPolicy2,
-										  const wchar_t* fwName )
+static HRESULT WindowsFirewallRemoveApp2(INetFwPolicy2* fwPolicy2,
+										 const wchar_t* fwName)
 {
 	HRESULT hr = S_OK;
-	BSTR fwBstrRuleName = SysAllocString( fwName );
+	BSTR fwBstrRuleName = SysAllocString(fwName);
 
-	INetFwRules *pFwRules = nullptr;
+	INetFwRules* pFwRules = nullptr;
 
 	// Retrieve INetFwRules
-	hr = fwPolicy2->get_Rules( &pFwRules );
-	if( FAILED( hr ) )
+	hr = fwPolicy2->get_Rules(&pFwRules);
+	if (FAILED(hr))
 	{
 		vCritical() << "get_Rules() returned" << hr;
 		goto cleanup;
 	}
 
 	// Remove rule
-	hr = pFwRules->Remove( fwBstrRuleName );
-	if( FAILED( hr ) )
+	hr = pFwRules->Remove(fwBstrRuleName);
+	if (FAILED(hr))
 	{
 		vCritical() << "Remove() returned" << hr;
 		goto cleanup;
@@ -171,9 +171,9 @@ static HRESULT WindowsFirewallRemoveApp2( INetFwPolicy2 * fwPolicy2,
 
 cleanup:
 	// Free the BSTRs.
-	SysFreeString( fwBstrRuleName );
+	SysFreeString(fwBstrRuleName);
 
-	if( pFwRules != nullptr )
+	if (pFwRules != nullptr)
 	{
 		pFwRules->Release();
 	}
@@ -183,19 +183,19 @@ cleanup:
 
 
 
-static bool configureFirewallException( INetFwPolicy2* fwPolicy2, const wchar_t* fwApplicationPath, const wchar_t* fwName, bool enabled )
+static bool configureFirewallException(INetFwPolicy2* fwPolicy2, const wchar_t* fwApplicationPath, const wchar_t* fwName, bool enabled)
 {
 	// always remove firewall exception first
-	WindowsFirewallRemoveApp2( fwPolicy2, fwName );
+	WindowsFirewallRemoveApp2(fwPolicy2, fwName);
 
-	if( enabled )
+	if (enabled)
 	{
 		// add service to the list of authorized applications
-		const auto hr = WindowsFirewallAddApp2( fwPolicy2, fwApplicationPath, fwName );
-		if( hr != S_OK )
+		const auto hr = WindowsFirewallAddApp2(fwPolicy2, fwApplicationPath, fwName);
+		if (hr != S_OK)
 		{
 			// failed because firewall service not running / disabled?
-			if( hr == WindowsNetworkFunctions::WindowsFirewallServiceError )
+			if (hr == WindowsNetworkFunctions::WindowsFirewallServiceError)
 			{
 				// then assume this is intended, log a warning and
 				// pretend everything went well
@@ -213,11 +213,12 @@ static bool configureFirewallException( INetFwPolicy2* fwPolicy2, const wchar_t*
 
 
 
-WindowsNetworkFunctions::WindowsNetworkFunctions() : PlatformNetworkFunctions()
+WindowsNetworkFunctions::WindowsNetworkFunctions() :
+	PlatformNetworkFunctions()
 {
 	WSADATA wsadata;
-	const auto error = WSAStartup( MAKEWORD(2,0), &wsadata );
-	if( error != S_OK )
+	const auto error = WSAStartup(MAKEWORD(2, 0), &wsadata);
+	if (error != S_OK)
 	{
 		vCritical() << "failed to initialize WinSock:" << error;
 	}
@@ -255,20 +256,20 @@ WindowsNetworkFunctions::PingResult WindowsNetworkFunctions::ping(const QString&
 
 
 
-bool WindowsNetworkFunctions::configureFirewallException( const QString& applicationPath, const QString& description, bool enabled )
+bool WindowsNetworkFunctions::configureFirewallException(const QString& applicationPath, const QString& description, bool enabled)
 {
 	HRESULT hr = S_OK;
 
 	// initialize COM
-	HRESULT comInit = CoInitializeEx( nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE );
+	HRESULT comInit = CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE);
 
 	// Ignore RPC_E_CHANGED_MODE; this just means that COM has already been
 	// initialized with a different mode. Since we don't care what the mode is,
 	// we'll just use the existing mode.
-	if( comInit != RPC_E_CHANGED_MODE )
+	if (comInit != RPC_E_CHANGED_MODE)
 	{
 		hr = comInit;
-		if( FAILED( hr ) )
+		if (FAILED(hr))
 		{
 			vCritical() << "CoInitializeEx() returned" << hr;
 			return false;
@@ -276,23 +277,23 @@ bool WindowsNetworkFunctions::configureFirewallException( const QString& applica
 	}
 
 	// retrieve current firewall profile
-	INetFwPolicy2 *fwPolicy2 = nullptr;
-	hr = WindowsFirewallInitialize2( &fwPolicy2 );
-	if( FAILED( hr ) )
+	INetFwPolicy2* fwPolicy2 = nullptr;
+	hr = WindowsFirewallInitialize2(&fwPolicy2);
+	if (FAILED(hr))
 	{
 		vCritical() << "WindowsFirewallInitialize2() returned" << hr;
 		return false;
 	}
 
-	bool result = ::configureFirewallException( fwPolicy2,
-												WindowsCoreFunctions::toConstWCharArray( applicationPath ),
-												WindowsCoreFunctions::toConstWCharArray( description ),
-												enabled );
+	bool result = ::configureFirewallException(fwPolicy2,
+											   WindowsCoreFunctions::toConstWCharArray(applicationPath),
+											   WindowsCoreFunctions::toConstWCharArray(description),
+											   enabled);
 
-	WindowsFirewallCleanup2( fwPolicy2 );
+	WindowsFirewallCleanup2(fwPolicy2);
 
 	// Uninitialize COM.
-	if( SUCCEEDED( comInit ) )
+	if (SUCCEEDED(comInit))
 	{
 		CoUninitialize();
 	}
@@ -302,7 +303,7 @@ bool WindowsNetworkFunctions::configureFirewallException( const QString& applica
 
 
 
-bool WindowsNetworkFunctions::configureSocketKeepalive( Socket socket, bool enabled, int idleTime, int interval, int probes )
+bool WindowsNetworkFunctions::configureSocketKeepalive(Socket socket, bool enabled, int idleTime, int interval, int probes)
 {
 	Q_UNUSED(probes)
 
@@ -310,7 +311,7 @@ bool WindowsNetworkFunctions::configureSocketKeepalive( Socket socket, bool enab
 	int optlen = sizeof(optval);
 
 	optval = enabled ? 1 : 0;
-	if( setsockopt( socket, SOL_SOCKET, SO_KEEPALIVE, reinterpret_cast<const char *>( &optval ), optlen ) != 0 )
+	if (setsockopt(socket, SOL_SOCKET, SO_KEEPALIVE, reinterpret_cast<const char*>(&optval), optlen) != 0)
 	{
 		int error = WSAGetLastError();
 		vWarning() << "could not set SO_KEEPALIVE" << error;
@@ -319,13 +320,13 @@ bool WindowsNetworkFunctions::configureSocketKeepalive( Socket socket, bool enab
 
 	tcp_keepalive keepalive{};
 	keepalive.onoff = enabled ? 1 : 0;
-	keepalive.keepalivetime = static_cast<u_long>( idleTime );
-	keepalive.keepaliveinterval = static_cast<u_long>( interval );
+	keepalive.keepalivetime = static_cast<u_long>(idleTime);
+	keepalive.keepaliveinterval = static_cast<u_long>(interval);
 
 	DWORD bytesReturned = 0;
 
-	if( WSAIoctl( socket, SIO_KEEPALIVE_VALS, &keepalive, sizeof(keepalive), nullptr, 0,
-				  &bytesReturned, nullptr, nullptr ) != 0 )
+	if (WSAIoctl(socket, SIO_KEEPALIVE_VALS, &keepalive, sizeof(keepalive), nullptr, 0,
+				 &bytesReturned, nullptr, nullptr) != 0)
 	{
 		int error = WSAGetLastError();
 		vWarning() << "could not set keepalive parameters" << error;
@@ -357,9 +358,9 @@ QNetworkInterface WindowsNetworkFunctions::defaultRouteNetworkInterface()
 			if (addressFamily == AF_INET)
 			{
 				isDefault =
-						row.DestinationPrefix.Prefix.si_family == AF_INET &&
-						row.DestinationPrefix.Prefix.Ipv4.sin_addr.S_un.S_addr == 0 &&
-						row.DestinationPrefix.PrefixLength == 0;
+					row.DestinationPrefix.Prefix.si_family == AF_INET &&
+					row.DestinationPrefix.Prefix.Ipv4.sin_addr.S_un.S_addr == 0 &&
+					row.DestinationPrefix.PrefixLength == 0;
 			}
 			else
 			{
@@ -374,9 +375,9 @@ QNetworkInterface WindowsNetworkFunctions::defaultRouteNetworkInterface()
 					}
 				}
 				isDefault =
-						row.DestinationPrefix.Prefix.si_family == AF_INET6 &&
-						allZero &&
-						row.DestinationPrefix.PrefixLength == 0;
+					row.DestinationPrefix.Prefix.si_family == AF_INET6 &&
+					allZero &&
+					row.DestinationPrefix.PrefixLength == 0;
 			}
 
 			if (isDefault)
@@ -403,13 +404,13 @@ int WindowsNetworkFunctions::networkInterfaceSpeedInMBitPerSecond(const QNetwork
 {
 
 	MIB_IF_ROW2 ifRow;
-	SecureZeroMemory((PVOID) &ifRow, sizeof(MIB_IF_ROW2));
+	SecureZeroMemory((PVOID)&ifRow, sizeof(MIB_IF_ROW2));
 
 	ifRow.InterfaceIndex = networkInterface.index();
 
 	if (GetIfEntry2(&ifRow) == NO_ERROR)
 	{
-		return ifRow.TransmitLinkSpeed / (1000*1000);
+		return ifRow.TransmitLinkSpeed / (1000 * 1000);
 	}
 
 	return 0;
@@ -419,7 +420,7 @@ int WindowsNetworkFunctions::networkInterfaceSpeedInMBitPerSecond(const QNetwork
 
 bool WindowsNetworkFunctions::pingIPv4Address(const QString& hostAddress, PingResult* result)
 {
-	if( result == nullptr )
+	if (result == nullptr)
 	{
 		return false;
 	}
@@ -427,7 +428,7 @@ bool WindowsNetworkFunctions::pingIPv4Address(const QString& hostAddress, PingRe
 	*result = PingResult::Unknown;
 
 	const IPAddr ipAddress = inet_addr(hostAddress.toLatin1().constData());
-	if( ipAddress == INADDR_NONE )
+	if (ipAddress == INADDR_NONE)
 	{
 		return false;
 	}
@@ -451,11 +452,11 @@ bool WindowsNetworkFunctions::pingIPv4Address(const QString& hostAddress, PingRe
 
 	const auto success = IcmpSendEcho(icmpHandle.get(), ipAddress, sendData.data(), sendData.size(),
 									  nullptr, replyBuffer.data(), replyBuffer.size(), PingTimeout) > 0 &&
-						 reinterpret_cast<ICMP_ECHO_REPLY *>(replyBuffer.data())->Status == IP_SUCCESS;
+		reinterpret_cast<ICMP_ECHO_REPLY*>(replyBuffer.data())->Status == IP_SUCCESS;
 
 	const auto error = GetLastError();
 
-	if( success )
+	if (success)
 	{
 		*result = PingResult::ReplyReceived;
 		return true;
@@ -474,7 +475,7 @@ bool WindowsNetworkFunctions::pingIPv4Address(const QString& hostAddress, PingRe
 
 bool WindowsNetworkFunctions::pingIPv6Address(const QString& hostAddress, PingResult* result)
 {
-	if( result == nullptr )
+	if (result == nullptr)
 	{
 		return false;
 	}
@@ -487,23 +488,23 @@ bool WindowsNetworkFunctions::pingIPv6Address(const QString& hostAddress, PingRe
 
 	SOCKADDR_IN6 icmp6RemoteAddr{};
 	struct addrinfo hints{};
-	struct addrinfo *res = nullptr;
+	struct addrinfo* res = nullptr;
 
 	hints.ai_family = AF_INET6;
 	hints.ai_socktype = SOCK_STREAM;
 
-	if( getaddrinfo(hostAddress.toLatin1().constData(), nullptr, &hints, &res) != 0 )
+	if (getaddrinfo(hostAddress.toLatin1().constData(), nullptr, &hints, &res) != 0)
 	{
 		return false;
 	}
 
 	auto resalloc = res;
 
-	while( res != nullptr )
+	while (res != nullptr)
 	{
-		if( res->ai_family == AF_INET6 )
+		if (res->ai_family == AF_INET6)
 		{
-			memcpy( &icmp6RemoteAddr, res->ai_addr, res->ai_addrlen );
+			memcpy(&icmp6RemoteAddr, res->ai_addr, res->ai_addrlen);
 			icmp6RemoteAddr.sin6_family = AF_INET6;
 			break;
 		}
@@ -513,18 +514,19 @@ bool WindowsNetworkFunctions::pingIPv6Address(const QString& hostAddress, PingRe
 
 	freeaddrinfo(resalloc);
 
-	if( icmp6RemoteAddr.sin6_family != AF_INET6 )
+	if (icmp6RemoteAddr.sin6_family != AF_INET6)
 	{
 		return false;
 	}
 
 	const auto icmpFile = Icmp6CreateFile();
-	if( icmpFile == INVALID_HANDLE_VALUE )
+	if (icmpFile == INVALID_HANDLE_VALUE)
 	{
 		return false;
 	}
 
-	using ICMPV6_ECHO_REPLY = struct {
+	using ICMPV6_ECHO_REPLY = struct
+	{
 		IPV6_ADDRESS_EX Address;
 		ULONG Status;
 		unsigned int RoundTripTime;
@@ -534,17 +536,17 @@ bool WindowsNetworkFunctions::pingIPv6Address(const QString& hostAddress, PingRe
 	std::array<char, sizeof(ICMPV6_ECHO_REPLY) + sendData.size()> replyBuffer;
 
 	const auto success = Icmp6SendEcho2(icmpFile, nullptr, nullptr, nullptr,
-										 &icmp6LocalAddr,
-										 &icmp6RemoteAddr,
-										 sendData.data(), sendData.size(),
-										 nullptr, replyBuffer.data(), replyBuffer.size(), PingTimeout) > 0 &&
-						 reinterpret_cast<ICMPV6_ECHO_REPLY *>(replyBuffer.data())->Status == IP_SUCCESS;
+										&icmp6LocalAddr,
+										&icmp6RemoteAddr,
+										sendData.data(), sendData.size(),
+										nullptr, replyBuffer.data(), replyBuffer.size(), PingTimeout) > 0 &&
+		reinterpret_cast<ICMPV6_ECHO_REPLY*>(replyBuffer.data())->Status == IP_SUCCESS;
 
 	const auto error = GetLastError();
 
 	IcmpCloseHandle(icmpFile);
 
-	if( success )
+	if (success)
 	{
 		*result = PingResult::ReplyReceived;
 		return true;
@@ -573,8 +575,7 @@ bool WindowsNetworkFunctions::pingViaUtility(const QString& hostAddress, PingRes
 	const QStringList pingArguments = {
 		QStringLiteral("-n"), QStringLiteral("1"),
 		QStringLiteral("-w"), QString::number(PingTimeout),
-		hostAddress
-	};
+		hostAddress};
 
 	QProcess pingProcess;
 	pingProcess.start(QStringLiteral("ping"), pingArguments);

@@ -31,15 +31,15 @@
 #include "ui_PasswordDialog.h"
 
 
-PasswordDialog::PasswordDialog( QWidget *parent ) :
-	QDialog( parent ),
-	ui( new Ui::PasswordDialog )
+PasswordDialog::PasswordDialog(QWidget* parent) :
+	QDialog(parent),
+	ui(new Ui::PasswordDialog)
 {
-	ui->setupUi( this );
+	ui->setupUi(this);
 
 	ui->username->setText(VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName));
 
-	if( ui->username->text().isEmpty() == false )
+	if (ui->username->text().isEmpty() == false)
 	{
 		ui->password->setFocus();
 	}
@@ -70,12 +70,11 @@ CryptoCore::PlaintextPassword PasswordDialog::password() const
 
 
 
-
 AuthenticationCredentials PasswordDialog::credentials() const
 {
 	AuthenticationCredentials cred;
-	cred.setLogonUsername( username() );
-	cred.setLogonPassword( password() );
+	cred.setLogonUsername(username());
+	cred.setLogonPassword(password());
 
 	return cred;
 }
@@ -84,11 +83,11 @@ AuthenticationCredentials PasswordDialog::credentials() const
 
 void PasswordDialog::accept()
 {
-	if( VeyonCore::platform().userFunctions().authenticate( username(), password() ) == false )
+	if (VeyonCore::platform().userFunctions().authenticate(username(), password()) == false)
 	{
-		QMessageBox::critical( window(),
-							   tr( "Authentication error" ),
-							   tr( "Logon failed with given username and password. Please try again!" ) );
+		QMessageBox::critical(window(),
+							  tr("Authentication error"),
+							  tr("Logon failed with given username and password. Please try again!"));
 	}
 	else
 	{
@@ -100,7 +99,5 @@ void PasswordDialog::accept()
 
 void PasswordDialog::updateOkButton()
 {
-	ui->buttonBox->button( QDialogButtonBox::Ok )->
-					setEnabled( !username().isEmpty() && !password().isEmpty() );
+	ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(!username().isEmpty() && !password().isEmpty());
 }
-

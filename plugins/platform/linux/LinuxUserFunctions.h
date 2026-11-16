@@ -44,20 +44,20 @@ public:
 
 	QString queryCurrentUserProperty(UserProperty property) override;
 
-	QStringList userGroups( bool queryDomainGroups ) override;
-	QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) override;
+	QStringList userGroups(bool queryDomainGroups) override;
+	QStringList groupsOfUser(const QString& username, bool queryDomainGroups) override;
 	QString userGroupSecurityIdentifier(const QString& groupName) override;
 
 	bool isAnyUserLoggedOn() override;
 
-	bool prepareLogon( const QString& username, const Password& password ) override;
-	bool performLogon( const QString& username, const Password& password ) override;
+	bool prepareLogon(const QString& username, const Password& password) override;
+	bool performLogon(const QString& username, const Password& password) override;
 	void logoff() override;
 
-	bool authenticate( const QString& username, const Password& password ) override;
+	bool authenticate(const QString& username, const Password& password) override;
 
-	static UserId userIdFromName( const QString& username );
-	static GroupId userGroupIdFromName( const QString& username );
+	static UserId userIdFromName(const QString& username);
+	static GroupId userGroupIdFromName(const QString& username);
 
 	static QVariant getUserProperty(const QString& userPath, const QString& property, bool logErrors = true);
 
@@ -71,5 +71,4 @@ private:
 	static constexpr auto AuthHelperTimeout = 15000;
 
 	LogonHelper m_logonHelper{};
-
 };

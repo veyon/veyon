@@ -28,18 +28,18 @@
 
 #include "ui_StartAppDialog.h"
 
-StartAppDialog::StartAppDialog( QWidget* parent ) :
-	QDialog( parent ),
-	ui( new Ui::StartAppDialog ),
+StartAppDialog::StartAppDialog(QWidget* parent) :
+	QDialog(parent),
+	ui(new Ui::StartAppDialog),
 	m_apps(),
-	m_remember( false ),
+	m_remember(false),
 	m_presetName()
 {
-	ui->setupUi( this );
+	ui->setupUi(this);
 
-	connect( ui->appInputTextEdit, &QTextEdit::textChanged, this, &StartAppDialog::validate );
-	connect( ui->rememberCheckBox, &QCheckBox::toggled, this, &StartAppDialog::validate );
-	connect( ui->presetNameEdit, &QLineEdit::textChanged, this, &StartAppDialog::validate );
+	connect(ui->appInputTextEdit, &QTextEdit::textChanged, this, &StartAppDialog::validate);
+	connect(ui->rememberCheckBox, &QCheckBox::toggled, this, &StartAppDialog::validate);
+	connect(ui->presetNameEdit, &QLineEdit::textChanged, this, &StartAppDialog::validate);
 
 	validate();
 
@@ -57,9 +57,7 @@ StartAppDialog::~StartAppDialog()
 
 void StartAppDialog::validate()
 {
-	ui->buttonBox->button( QDialogButtonBox::Ok )->setEnabled(
-				ui->appInputTextEdit->toPlainText().isEmpty() == false &&
-				( ui->rememberCheckBox->isChecked() == false || ui->presetNameEdit->text().isEmpty() == false ) );
+	ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(ui->appInputTextEdit->toPlainText().isEmpty() == false && (ui->rememberCheckBox->isChecked() == false || ui->presetNameEdit->text().isEmpty() == false));
 }
 
 

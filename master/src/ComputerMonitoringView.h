@@ -47,7 +47,7 @@ public:
 	ComputerMonitoringView();
 	virtual ~ComputerMonitoringView() = default;
 
-	void initializeView( QObject* self );
+	void initializeView(QObject* self);
 
 	void saveConfiguration();
 
@@ -57,12 +57,12 @@ public:
 	ComputerControlInterfaceList filteredComputerControlInterfaces() const;
 
 	QString searchFilter() const;
-	void setSearchFilter( const QString& searchFilter );
+	void setSearchFilter(const QString& searchFilter);
 
-	void setFilterPoweredOnComputers( bool enabled );
-	void setFilterComputersWithLoggedOnUsers( bool enabled );
+	void setFilterPoweredOnComputers(bool enabled);
+	void setFilterComputersWithLoggedOnUsers(bool enabled);
 
-	void setComputerScreenSize( int size );
+	void setComputerScreenSize(int size);
 	int computerScreenSize() const;
 
 	virtual void alignComputers() = 0;
@@ -71,15 +71,15 @@ public:
 	{
 		return m_autoAdjustIconSize;
 	}
-	void setAutoAdjustIconSize( bool enabled );
+	void setAutoAdjustIconSize(bool enabled);
 
 protected:
-	virtual void setColors( const QColor& backgroundColor, const QColor& textColor ) = 0;
+	virtual void setColors(const QColor& backgroundColor, const QColor& textColor) = 0;
 	virtual QJsonArray saveComputerPositions() = 0;
 	virtual bool useCustomComputerPositions() = 0;
-	virtual void loadComputerPositions( const QJsonArray& positions ) = 0;
-	virtual void setUseCustomComputerPositions( bool enabled ) = 0;
-	virtual void setIconSize( const QSize& size ) = 0;
+	virtual void loadComputerPositions(const QJsonArray& positions) = 0;
+	virtual void setUseCustomComputerPositions(bool enabled) = 0;
+	virtual void setIconSize(const QSize& size) = 0;
 
 	virtual bool performIconSizeAutoAdjust();
 
@@ -91,10 +91,10 @@ protected:
 		return m_master;
 	}
 
-	void runFeature( const Feature& feature );
+	void runFeature(const Feature& feature);
 
-	bool isFeatureOrRelatedFeatureActive( const ComputerControlInterfaceList& computerControlInterfaces,
-										 Feature::Uid featureUid ) const;
+	bool isFeatureOrRelatedFeatureActive(const ComputerControlInterfaceList& computerControlInterfaces,
+										 Feature::Uid featureUid) const;
 
 private:
 	VeyonMaster* m_master{nullptr};
@@ -102,5 +102,4 @@ private:
 
 	bool m_autoAdjustIconSize{false};
 	QTimer m_iconSizeAutoAdjustTimer{};
-
 };

@@ -33,25 +33,25 @@
 
 #include "ui_FileTransferDialog.h"
 
-FileTransferDialog::FileTransferDialog( FileTransferController* controller, QWidget* parent ) :
-	QDialog( parent ),
-	ui( new Ui::FileTransferDialog ),
-	m_controller( controller ),
-	m_listModel( new FileTransferListModel( m_controller, this ) )
+FileTransferDialog::FileTransferDialog(FileTransferController* controller, QWidget* parent) :
+	QDialog(parent),
+	ui(new Ui::FileTransferDialog),
+	m_controller(controller),
+	m_listModel(new FileTransferListModel(m_controller, this))
 {
-	ui->setupUi( this );
-	ui->buttonBox->button( QDialogButtonBox::Ok )->setText( tr( "Start" ) );
+	ui->setupUi(this);
+	ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Start"));
 
-	ui->fileListView->setModel( m_listModel );
+	ui->fileListView->setModel(m_listModel);
 
-	connect( m_controller, &FileTransferController::progressChanged,
-			 this, &FileTransferDialog::updateProgress );
+	connect(m_controller, &FileTransferController::progressChanged,
+			this, &FileTransferDialog::updateProgress);
 
-	connect( m_controller, &FileTransferController::finished,
-			 this, &FileTransferDialog::finish );
+	connect(m_controller, &FileTransferController::finished,
+			this, &FileTransferDialog::finish);
 
 	connect(m_controller, &FileTransferController::errorOccurred,
-			 this, &FileTransferDialog::reportError);
+			this, &FileTransferDialog::reportError);
 
 	const auto availableSize = screen()->availableSize();
 	move(availableSize.width() / 8, availableSize.height() / 8);
@@ -71,34 +71,34 @@ FileTransferDialog::~FileTransferDialog()
 
 void FileTransferDialog::accept()
 {
-	ui->optionsGroupBox->setDisabled( true );
-	ui->buttonBox->setStandardButtons( QDialogButtonBox::Cancel );
+	ui->optionsGroupBox->setDisabled(true);
+	ui->buttonBox->setStandardButtons(QDialogButtonBox::Cancel);
 
-	FileTransferController::Flags flags( FileTransferController::Transfer );
+	FileTransferController::Flags flags(FileTransferController::Transfer);
 
-	if( ui->transferAndOpenFolder->isChecked() )
+	if (ui->transferAndOpenFolder->isChecked())
 	{
 		flags |= FileTransferController::OpenTransferFolder;
 	}
 
-	if( ui->transferAndOpenProgram->isChecked() )
+	if (ui->transferAndOpenProgram->isChecked())
 	{
 		flags |= FileTransferController::OpenFilesInApplication;
 	}
 
-	if( ui->overwriteExistingFiles->isChecked() )
+	if (ui->overwriteExistingFiles->isChecked())
 	{
 		flags |= FileTransferController::OverwriteExistingFiles;
 	}
 
 	// Set custom destination directory if provided
 	const auto destDir = ui->destinationDirectoryEdit->text().trimmed();
-	if( destDir.isEmpty() == false )
+	if (destDir.isEmpty() == false)
 	{
-		m_controller->setDestinationDirectory( destDir );
+		m_controller->setDestinationDirectory(destDir);
 	}
 
-	m_controller->setFlags( flags );
+	m_controller->setFlags(flags);
 	m_controller->start();
 }
 
@@ -106,7 +106,7 @@ void FileTransferDialog::accept()
 
 void FileTransferDialog::reject()
 {
-	if( m_controller->isRunning() )
+	if (m_controller->isRunning())
 	{
 		m_controller->stop();
 	}
@@ -118,16 +118,16 @@ void FileTransferDialog::reject()
 
 void FileTransferDialog::finish()
 {
-	ui->buttonBox->setStandardButtons( QDialogButtonBox::Close );
-	connect( ui->buttonBox->button( QDialogButtonBox::Close ), &QPushButton::clicked,
-			 this, &FileTransferDialog::close );
+	ui->buttonBox->setStandardButtons(QDialogButtonBox::Close);
+	connect(ui->buttonBox->button(QDialogButtonBox::Close), &QPushButton::clicked,
+			this, &FileTransferDialog::close);
 }
 
 
 
-void FileTransferDialog::updateProgress( int progress )
+void FileTransferDialog::updateProgress(int progress)
 {
-	ui->progressBar->setValue( progress );
+	ui->progressBar->setValue(progress);
 }
 
 

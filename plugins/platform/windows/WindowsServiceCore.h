@@ -34,7 +34,7 @@
 class WindowsServiceCore
 {
 public:
-	WindowsServiceCore( const QString& name, const PlatformServiceFunctions::ServiceEntryPoint& serviceEntryPoint );
+	WindowsServiceCore(const QString& name, const PlatformServiceFunctions::ServiceEntryPoint& serviceEntryPoint);
 	~WindowsServiceCore() = default;
 
 	static WindowsServiceCore* instance();
@@ -47,12 +47,12 @@ private:
 	void manageServersForAllSessions();
 	void manageServerForConsoleSession();
 
-	static void WINAPI serviceMainStatic( DWORD argc, LPWSTR* argv );
-	static DWORD WINAPI serviceCtrlStatic( DWORD ctrlCode, DWORD eventType, LPVOID eventData, LPVOID context );
+	static void WINAPI serviceMainStatic(DWORD argc, LPWSTR* argv);
+	static DWORD WINAPI serviceCtrlStatic(DWORD ctrlCode, DWORD eventType, LPVOID eventData, LPVOID context);
 
 	void serviceMain();
-	DWORD serviceCtrl( DWORD ctrlCode, DWORD eventType, LPVOID eventData, LPVOID context );
-	bool reportStatus( DWORD state, DWORD exitCode, DWORD waitHint );
+	DWORD serviceCtrl(DWORD ctrlCode, DWORD eventType, LPVOID eventData, LPVOID context);
+	bool reportStatus(DWORD state, DWORD exitCode, DWORD waitHint);
 
 	SmartWCharPtr m_name;
 	const PlatformServiceFunctions::ServiceEntryPoint& m_serviceEntryPoint;
@@ -72,5 +72,4 @@ private:
 	static constexpr auto SessionPollingInterval = 5000;
 	static constexpr auto MinimumServerUptimeTime = 10000;
 	static constexpr auto ServiceStartTimeout = 15000;
-
-} ;
+};

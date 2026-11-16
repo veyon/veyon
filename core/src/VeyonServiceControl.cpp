@@ -29,18 +29,16 @@
 #include "VeyonServiceControl.h"
 
 
-VeyonServiceControl::VeyonServiceControl( QWidget* parent ) :
-	ServiceControl( name(), filePath(), displayName(), parent )
+VeyonServiceControl::VeyonServiceControl(QWidget* parent) :
+	ServiceControl(name(), filePath(), displayName(), parent)
 {
 }
 
 
 
-bool VeyonServiceControl::setAutostart( bool enabled )
+bool VeyonServiceControl::setAutostart(bool enabled)
 {
-	return VeyonCore::platform().serviceFunctions().
-			setStartMode( name(), enabled ? PlatformServiceFunctions::StartMode::Auto :
-											PlatformServiceFunctions::StartMode::Manual );
+	return VeyonCore::platform().serviceFunctions().setStartMode(name(), enabled ? PlatformServiceFunctions::StartMode::Auto : PlatformServiceFunctions::StartMode::Manual);
 }
 
 
@@ -55,14 +53,14 @@ QString VeyonServiceControl::name()
 QString VeyonServiceControl::filePath()
 {
 	return QDir::toNativeSeparators(
-				QCoreApplication::applicationDirPath() +
-				QDir::separator() +
-				QStringLiteral("veyon-service") + VeyonCore::executableSuffix() );
+		QCoreApplication::applicationDirPath() +
+		QDir::separator() +
+		QStringLiteral("veyon-service") + VeyonCore::executableSuffix());
 }
 
 
 
 QString VeyonServiceControl::displayName()
 {
-	return tr( "Veyon Service" );
+	return tr("Veyon Service");
 }

@@ -31,11 +31,11 @@
 
 #include "FeatureWorkerManager.h"
 #include "RfbVeyonAuth.h"
-#include "ServerAuthenticationManager.h"
 #include "ServerAccessControlManager.h"
+#include "ServerAuthenticationManager.h"
 #include "VeyonServerInterface.h"
-#include "VncProxyServer.h"
 #include "VncProxyConnectionFactory.h"
+#include "VncProxyServer.h"
 #include "VncServer.h"
 
 class ComputerControlClient;
@@ -44,15 +44,15 @@ class ComputerControlServer : public VeyonServerInterface, VncProxyConnectionFac
 {
 	Q_OBJECT
 public:
-	explicit ComputerControlServer( QObject* parent = nullptr );
+	explicit ComputerControlServer(QObject* parent = nullptr);
 	~ComputerControlServer() override;
 
 	bool start();
 
-	VncProxyConnection* createVncProxyConnection( QTcpSocket* clientSocket,
-												  int vncServerPort,
-												  const Password& vncServerPassword,
-												  QObject* parent ) override;
+	VncProxyConnection* createVncProxyConnection(QTcpSocket* clientSocket,
+												 int vncServerPort,
+												 const Password& vncServerPassword,
+												 QObject* parent) override;
 
 	ServerAuthenticationManager& authenticationManager()
 	{
@@ -66,7 +66,7 @@ public:
 
 	bool handleFeatureMessage(ComputerControlClient* client);
 
-	bool sendFeatureMessageReply( const MessageContext& context, const FeatureMessage& reply ) override;
+	bool sendFeatureMessageReply(const MessageContext& context, const FeatureMessage& reply) override;
 
 	FeatureWorkerManager& featureWorkerManager() override
 	{
@@ -81,10 +81,10 @@ public:
 	void setMinimumFramebufferUpdateInterval(const MessageContext& context, int interval) override;
 
 private:
-	void checkForIncompleteAuthentication( VncServerClient* client );
-	void showAuthenticationMessage( VncServerClient* client );
-	void showAccessControlMessage( VncServerClient* client );
-	QFutureWatcher<QMap<QString, QString>>* resolveFQDNs( const QStringList& hosts );
+	void checkForIncompleteAuthentication(VncServerClient* client);
+	void showAuthenticationMessage(VncServerClient* client);
+	void showAccessControlMessage(VncServerClient* client);
+	QFutureWatcher<QMap<QString, QString>>* resolveFQDNs(const QStringList& hosts);
 
 	void sendAsyncFeatureMessages(VncProxyConnection* connection);
 	void updateTrayIconToolTip();
@@ -106,5 +106,4 @@ private:
 
 	VncServer m_vncServer;
 	VncProxyServer m_vncProxyServer;
-
-} ;
+};

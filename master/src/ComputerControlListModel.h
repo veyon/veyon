@@ -27,8 +27,8 @@
 #include <QAbstractListModel>
 #include <QImage>
 
-#include "ComputerListModel.h"
 #include "ComputerControlInterface.h"
+#include "ComputerListModel.h"
 
 class VeyonMaster;
 
@@ -36,11 +36,11 @@ class ComputerControlListModel : public ComputerListModel
 {
 	Q_OBJECT
 public:
-	explicit ComputerControlListModel( VeyonMaster* masterCore, QObject* parent = nullptr );
+	explicit ComputerControlListModel(VeyonMaster* masterCore, QObject* parent = nullptr);
 
-	int rowCount( const QModelIndex& parent = QModelIndex() ) const override;
+	int rowCount(const QModelIndex& parent = QModelIndex()) const override;
 
-	QVariant data( const QModelIndex& index, int role = Qt::DisplayRole ) const override;
+	QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 
 	void updateComputerScreenSize();
 
@@ -54,39 +54,39 @@ public:
 		return m_computerControlInterfaces;
 	}
 
-	ComputerControlInterface::Pointer computerControlInterface( const QModelIndex& index ) const;
+	ComputerControlInterface::Pointer computerControlInterface(const QModelIndex& index) const;
 
 	void reload();
 
 Q_SIGNALS:
 	void stateChanged(QModelIndex);
-	void activeFeaturesChanged( QModelIndex );
+	void activeFeaturesChanged(QModelIndex);
 	void computerScreenSizeChanged();
 
 private:
 	void update();
 
-	QModelIndex interfaceIndex( ComputerControlInterface* controlInterface ) const;
+	QModelIndex interfaceIndex(ComputerControlInterface* controlInterface) const;
 	QVariant uidRoleData(const ComputerControlInterface::Pointer& controlInterface) const;
 
-	void updateState( const QModelIndex& index );
+	void updateState(const QModelIndex& index);
 	void updateAccessControlDetails(const QModelIndex& index);
-	void updateScreen( const QModelIndex& index );
-	void updateActiveFeatures( const QModelIndex& index );
-	void updateUser( const QModelIndex& index );
+	void updateScreen(const QModelIndex& index);
+	void updateActiveFeatures(const QModelIndex& index);
+	void updateUser(const QModelIndex& index);
 	void updateSessionInfo(const QModelIndex& index);
 
-	void startComputerControlInterface( ComputerControlInterface* controlInterface );
-	void stopComputerControlInterface( const ComputerControlInterface::Pointer& controlInterface );
+	void startComputerControlInterface(ComputerControlInterface* controlInterface);
+	void stopComputerControlInterface(const ComputerControlInterface::Pointer& controlInterface);
 
 	double averageAspectRatio() const;
 
-	QImage scaleAndAlignIcon( const QImage& icon, QSize size ) const;
-	QImage computerDecorationRole( const ComputerControlInterface::Pointer& controlInterface ) const;
-	QString computerToolTipRole( const ComputerControlInterface::Pointer& controlInterface ) const;
-	QString computerDisplayRole( const ComputerControlInterface::Pointer& controlInterface ) const;
-	QString computerSortRole( const ComputerControlInterface::Pointer& controlInterface ) const;
-	static QString computerStateDescription( const ComputerControlInterface::Pointer& controlInterface );
+	QImage scaleAndAlignIcon(const QImage& icon, QSize size) const;
+	QImage computerDecorationRole(const ComputerControlInterface::Pointer& controlInterface) const;
+	QString computerToolTipRole(const ComputerControlInterface::Pointer& controlInterface) const;
+	QString computerDisplayRole(const ComputerControlInterface::Pointer& controlInterface) const;
+	QString computerSortRole(const ComputerControlInterface::Pointer& controlInterface) const;
+	static QString computerStateDescription(const ComputerControlInterface::Pointer& controlInterface);
 	static QString userInformation(const ComputerControlInterface::Pointer& controlInterface);
 	static QString activeFeaturesInformation(const ComputerControlInterface::Pointer& controlInterface);
 
@@ -101,5 +101,4 @@ private:
 	QSize m_computerScreenSize{};
 
 	ComputerControlInterfaceList m_computerControlInterfaces{};
-
 };

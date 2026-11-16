@@ -46,8 +46,8 @@ public:
 
 	Q_ENUM(SessionInfo)
 
-	static constexpr SessionId InvalidSession = static_cast<SessionId>( -1 );
-	static constexpr ProcessId InvalidProcess = static_cast<ProcessId>( -1 );
+	static constexpr SessionId InvalidSession = static_cast<SessionId>(-1);
+	static constexpr ProcessId InvalidProcess = static_cast<ProcessId>(-1);
 
 	static SessionId currentSession();
 
@@ -55,10 +55,9 @@ public:
 
 	static SessionList activeSessions();
 
-	static QString querySessionInformation( SessionId sessionId, SessionInfo sessionInfo );
+	static QString querySessionInformation(SessionId sessionId, SessionInfo sessionInfo);
 	static QString queryUserSid(SessionId sessionId);
 
-	static ProcessId findUserProcessId( const QString& userName );
+	static ProcessId findUserProcessId(const QString& userName);
 	static ProcessId findProcessId(const QString& processName, SessionId sessionId = InvalidSession);
-
-} ;
+};

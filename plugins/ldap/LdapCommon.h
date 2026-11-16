@@ -9,4 +9,3 @@
 #else
 #define LDAP_COMMON_EXPORT Q_DECL_IMPORT
 #endif
-

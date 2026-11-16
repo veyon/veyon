@@ -31,19 +31,19 @@
 #include "VncProxyConnection.h"
 #include "VncServerProtocol.h"
 
-VncProxyConnection::VncProxyConnection( QTcpSocket* clientSocket,
-										int vncServerPort,
-										QObject* parent ) :
-	QObject( parent ),
-	m_vncServerPort( vncServerPort ),
-	m_proxyClientSocket( clientSocket ),
-	m_vncServerSocket( new QTcpSocket( this ) ),
-	m_rfbClientToServerMessageSizes( {
-		{ rfbFramebufferUpdateRequest, sz_rfbFramebufferUpdateRequestMsg },
-		{ rfbKeyEvent, sz_rfbKeyEventMsg },
-		{ rfbPointerEvent, sz_rfbPointerEventMsg },
-		{ rfbXvp, sz_rfbXvpMsg },
-		} )
+VncProxyConnection::VncProxyConnection(QTcpSocket* clientSocket,
+									   int vncServerPort,
+									   QObject* parent) :
+	QObject(parent),
+	m_vncServerPort(vncServerPort),
+	m_proxyClientSocket(clientSocket),
+	m_vncServerSocket(new QTcpSocket(this)),
+	m_rfbClientToServerMessageSizes({
+		{rfbFramebufferUpdateRequest, sz_rfbFramebufferUpdateRequestMsg},
+		{rfbKeyEvent, sz_rfbKeyEventMsg},
+		{rfbPointerEvent, sz_rfbPointerEventMsg},
+		{rfbXvp, sz_rfbXvpMsg},
+	})
 {
 	m_proxyClientSocket->setReadBufferSize(MaximumReadBufferSize);
 	m_vncServerSocket->setReadBufferSize(MaximumReadBufferSize);
@@ -52,22 +52,22 @@ VncProxyConnection::VncProxyConnection( QTcpSocket* clientSocket,
 	m_serverRetryTimer.setSingleShot(true);
 	m_handshakeTimer.setSingleShot(true);
 
-	connect( m_proxyClientSocket, &QTcpSocket::readyRead, this, &VncProxyConnection::readFromClient );
-	connect( m_vncServerSocket, &QTcpSocket::readyRead, this, &VncProxyConnection::readFromServer );
+	connect(m_proxyClientSocket, &QTcpSocket::readyRead, this, &VncProxyConnection::readFromClient);
+	connect(m_vncServerSocket, &QTcpSocket::readyRead, this, &VncProxyConnection::readFromServer);
 	connect(&m_clientSyncTimer, &QTimer::timeout, this, &VncProxyConnection::synchronizeClientStream);
-	connect( &m_clientRetryTimer, &QTimer::timeout, this, &VncProxyConnection::readFromClient );
-	connect( &m_serverRetryTimer, &QTimer::timeout, this, &VncProxyConnection::readFromServer );
-	connect( &m_handshakeTimer, &QTimer::timeout, this, [this]() {
+	connect(&m_clientRetryTimer, &QTimer::timeout, this, &VncProxyConnection::readFromClient);
+	connect(&m_serverRetryTimer, &QTimer::timeout, this, &VncProxyConnection::readFromServer);
+	connect(&m_handshakeTimer, &QTimer::timeout, this, [this]() {
 		vWarning() << "closing connection after RFB handshake timeout from"
 				   << m_proxyClientSocket->peerAddress().toString();
 		m_proxyClientSocket->close();
 		m_vncServerSocket->close();
-	} );
-	connect( m_vncServerSocket, &QTcpSocket::bytesWritten, this, [this] { readFromClientLater(); } );
-	connect( m_proxyClientSocket, &QTcpSocket::bytesWritten, this, [this] { readFromServerLater(); } );
+	});
+	connect(m_vncServerSocket, &QTcpSocket::bytesWritten, this, [this] { readFromClientLater(); });
+	connect(m_proxyClientSocket, &QTcpSocket::bytesWritten, this, [this] { readFromServerLater(); });
 
-	connect( m_vncServerSocket, &QTcpSocket::disconnected, this, &VncProxyConnection::clientConnectionClosed );
-	connect( m_proxyClientSocket, &QTcpSocket::disconnected, this, &VncProxyConnection::serverConnectionClosed );
+	connect(m_vncServerSocket, &QTcpSocket::disconnected, this, &VncProxyConnection::clientConnectionClosed);
+	connect(m_proxyClientSocket, &QTcpSocket::disconnected, this, &VncProxyConnection::serverConnectionClosed);
 }
 
 
@@ -75,8 +75,8 @@ VncProxyConnection::VncProxyConnection( QTcpSocket* clientSocket,
 VncProxyConnection::~VncProxyConnection()
 {
 	// do not get notified about disconnects any longer
-	disconnect( m_vncServerSocket );
-	disconnect( m_proxyClientSocket );
+	disconnect(m_vncServerSocket);
+	disconnect(m_proxyClientSocket);
 
 	delete m_vncServerSocket;
 	delete m_proxyClientSocket;
@@ -94,9 +94,9 @@ void VncProxyConnection::start()
 
 void VncProxyConnection::readFromClient()
 {
-	if( serverProtocol().state() != VncServerProtocol::State::Running )
+	if (serverProtocol().state() != VncServerProtocol::State::Running)
 	{
-		while( serverProtocol().read() ) // Flawfinder: ignore
+		while (serverProtocol().read()) // Flawfinder: ignore
 		{
 		}
 
@@ -105,9 +105,9 @@ void VncProxyConnection::readFromClient()
 		// and already have RFB messages in receive queue
 		readFromClientLater();
 	}
-	else if( clientProtocol().state() == VncClientProtocol::Running )
+	else if (clientProtocol().state() == VncClientProtocol::Running)
 	{
-		while( receiveClientMessage() )
+		while (receiveClientMessage())
 		{
 		}
 	}
@@ -117,10 +117,10 @@ void VncProxyConnection::readFromClient()
 		readFromClientLater();
 	}
 
-	if( serverProtocol().state() == VncServerProtocol::State::FramebufferInit &&
-		clientProtocol().state() == VncClientProtocol::Disconnected )
+	if (serverProtocol().state() == VncServerProtocol::State::FramebufferInit &&
+		clientProtocol().state() == VncClientProtocol::Disconnected)
 	{
-		m_vncServerSocket->connectToHost( QHostAddress::LocalHost, quint16(m_vncServerPort) );
+		m_vncServerSocket->connectToHost(QHostAddress::LocalHost, quint16(m_vncServerPort));
 
 		clientProtocol().start();
 	}
@@ -132,25 +132,25 @@ void VncProxyConnection::readFromClient()
 
 void VncProxyConnection::readFromServer()
 {
-	if( clientProtocol().state() != VncClientProtocol::Running )
+	if (clientProtocol().state() != VncClientProtocol::Running)
 	{
-		while( clientProtocol().read() ) // Flawfinder: ignore
+		while (clientProtocol().read()) // Flawfinder: ignore
 		{
 		}
 
 		// did we finish client protocol initialization? then we must not miss this
 		// read signaĺ from server but process it as the server is still waiting
 		// for our response
-		if( clientProtocol().state() == VncClientProtocol::Running )
+		if (clientProtocol().state() == VncClientProtocol::Running)
 		{
 			// if client protocol is running we have the server init message which
 			// we can forward to the real client
-			serverProtocol().setServerInitMessage( clientProtocol().serverInitMessage() );
+			serverProtocol().setServerInitMessage(clientProtocol().serverInitMessage());
 
 			readFromServerLater();
 		}
 	}
-	else if( serverProtocol().state() == VncServerProtocol::State::Running )
+	else if (serverProtocol().state() == VncServerProtocol::State::Running)
 	{
 		while (synchronizeClientStream() && receiveServerMessage())
 		{
@@ -217,7 +217,7 @@ bool VncProxyConnection::synchronizeClientStream()
 
 
 
-bool VncProxyConnection::forwardDataToServer( qint64 size )
+bool VncProxyConnection::forwardDataToServer(qint64 size)
 {
 	if (!flushPendingToSocket(m_vncServerSocket, m_pendingServerData))
 	{
@@ -235,7 +235,7 @@ bool VncProxyConnection::forwardDataToServer( qint64 size )
 		return false;
 	}
 
-	const auto written = m_vncServerSocket->write( data );
+	const auto written = m_vncServerSocket->write(data);
 	if (written < 0)
 	{
 		m_vncServerSocket->close();
@@ -261,7 +261,7 @@ bool VncProxyConnection::forwardDataToServer( qint64 size )
 
 void VncProxyConnection::readFromServerLater()
 {
-	if( m_serverRetryTimer.isActive() == false )
+	if (m_serverRetryTimer.isActive() == false)
 	{
 		m_serverRetryTimer.start(ProtocolRetryTime);
 	}
@@ -271,7 +271,7 @@ void VncProxyConnection::readFromServerLater()
 
 void VncProxyConnection::readFromClientLater()
 {
-	if( m_clientRetryTimer.isActive() == false )
+	if (m_clientRetryTimer.isActive() == false)
 	{
 		m_clientRetryTimer.start(ProtocolRetryTime);
 	}
@@ -284,27 +284,27 @@ bool VncProxyConnection::receiveClientMessage()
 	auto socket = proxyClientSocket();
 
 	uint8_t messageType = 0;
-	if( socket->peek( reinterpret_cast<char *>( &messageType ), sizeof(messageType) ) != sizeof(messageType) )
+	if (socket->peek(reinterpret_cast<char*>(&messageType), sizeof(messageType)) != sizeof(messageType))
 	{
 		return false;
 	}
 
-	switch( messageType )
+	switch (messageType)
 	{
 	case rfbSetEncodings:
-		if( socket->bytesAvailable() >= sz_rfbSetEncodingsMsg )
+		if (socket->bytesAvailable() >= sz_rfbSetEncodingsMsg)
 		{
 			rfbSetEncodingsMsg setEncodingsMessage;
-			if( socket->peek( reinterpret_cast<char *>( &setEncodingsMessage ), sz_rfbSetEncodingsMsg ) == sz_rfbSetEncodingsMsg )
+			if (socket->peek(reinterpret_cast<char*>(&setEncodingsMessage), sz_rfbSetEncodingsMsg) == sz_rfbSetEncodingsMsg)
 			{
 				const auto nEncodings = qFromBigEndian(setEncodingsMessage.nEncodings);
-				if( nEncodings > MAX_ENCODINGS )
+				if (nEncodings > MAX_ENCODINGS)
 				{
 					vCritical() << "received too many encodings from client";
 					socket->close();
 					return false;
 				}
-				return forwardDataToServer( sz_rfbSetEncodingsMsg + nEncodings * sizeof(uint32_t) );
+				return forwardDataToServer(sz_rfbSetEncodingsMsg + nEncodings * sizeof(uint32_t));
 			}
 		}
 		break;
@@ -313,11 +313,11 @@ bool VncProxyConnection::receiveClientMessage()
 		if (socket->bytesAvailable() >= sz_rfbSetPixelFormatMsg)
 		{
 			rfbSetPixelFormatMsg setPixelFormatMessage;
-			if (socket->peek(reinterpret_cast<char *>(&setPixelFormatMessage), sz_rfbSetPixelFormatMsg) == sz_rfbSetPixelFormatMsg)
+			if (socket->peek(reinterpret_cast<char*>(&setPixelFormatMessage), sz_rfbSetPixelFormatMsg) == sz_rfbSetPixelFormatMsg)
 			{
 				auto format = setPixelFormatMessage.format;
-				if( ( format.bitsPerPixel != 8 && format.bitsPerPixel != 16 && format.bitsPerPixel != 32 ) ||
-					format.depth > format.bitsPerPixel )
+				if ((format.bitsPerPixel != 8 && format.bitsPerPixel != 16 && format.bitsPerPixel != 32) ||
+					format.depth > format.bitsPerPixel)
 				{
 					vCritical() << "rejecting invalid pixel format" << format.bitsPerPixel << format.depth;
 					return false;
@@ -333,14 +333,14 @@ bool VncProxyConnection::receiveClientMessage()
 		break;
 
 	default:
-		if( m_rfbClientToServerMessageSizes.contains( messageType ) == false )
+		if (m_rfbClientToServerMessageSizes.contains(messageType) == false)
 		{
-			vCritical() << "received unknown message type:" << static_cast<int>( messageType );
+			vCritical() << "received unknown message type:" << static_cast<int>(messageType);
 			socket->close();
 			return false;
 		}
 
-		return forwardDataToServer( m_rfbClientToServerMessageSizes[messageType] );
+		return forwardDataToServer(m_rfbClientToServerMessageSizes[messageType]);
 	}
 
 	return false;
@@ -350,7 +350,7 @@ bool VncProxyConnection::receiveClientMessage()
 
 bool VncProxyConnection::receiveServerMessage()
 {
-	if( clientProtocol().receiveMessage() )
+	if (clientProtocol().receiveMessage())
 	{
 		const auto& message = clientProtocol().lastMessage();
 		const auto written = m_proxyClientSocket->write(message);
@@ -379,8 +379,8 @@ bool VncProxyConnection::receiveServerMessage()
 
 void VncProxyConnection::updateHandshakeState()
 {
-	if( serverProtocol().state() == VncServerProtocol::State::Running &&
-		clientProtocol().state() == VncClientProtocol::Running )
+	if (serverProtocol().state() == VncServerProtocol::State::Running &&
+		clientProtocol().state() == VncClientProtocol::Running)
 	{
 		m_handshakeTimer.stop();
 

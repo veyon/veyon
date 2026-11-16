@@ -22,8 +22,6 @@
  *
  */
 
-#include <veyonconfig.h>
-
 #include <QAbstractButton>
 #include <QAction>
 #include <QApplication>
@@ -46,8 +44,8 @@
 #include "Logger.h"
 #include "NetworkObjectDirectoryManager.h"
 #include "PasswordDialog.h"
-#include "PlatformPluginManager.h"
 #include "PlatformCoreFunctions.h"
+#include "PlatformPluginManager.h"
 #include "PlatformSessionFunctions.h"
 #include "PluginManager.h"
 #include "TranslationLoader.h"
@@ -55,27 +53,29 @@
 #include "VeyonConfiguration.h"
 #include "VncConnection.h"
 
+#include <veyonconfig.h>
+
 
 VeyonCore* VeyonCore::s_instance = nullptr;
 
 
-VeyonCore::VeyonCore( QCoreApplication* application, Component component, const QString& appComponentName ) :
-	QObject( application ),
-	m_filesystem( new Filesystem ),
-	m_config( nullptr ),
-	m_logger( nullptr ),
-	m_authenticationCredentials( nullptr ),
-	m_cryptoCore( nullptr ),
-	m_pluginManager( nullptr ),
-	m_platformPluginManager( nullptr ),
-	m_platformPlugin( nullptr ),
-	m_builtinFeatures( nullptr ),
-	m_userGroupsBackendManager( nullptr ),
-	m_networkObjectDirectoryManager( nullptr ),
-	m_component( component ),
-	m_debugging( false )
+VeyonCore::VeyonCore(QCoreApplication* application, Component component, const QString& appComponentName) :
+	QObject(application),
+	m_filesystem(new Filesystem),
+	m_config(nullptr),
+	m_logger(nullptr),
+	m_authenticationCredentials(nullptr),
+	m_cryptoCore(nullptr),
+	m_pluginManager(nullptr),
+	m_platformPluginManager(nullptr),
+	m_platformPlugin(nullptr),
+	m_builtinFeatures(nullptr),
+	m_userGroupsBackendManager(nullptr),
+	m_networkObjectDirectoryManager(nullptr),
+	m_component(component),
+	m_debugging(false)
 {
-	Q_ASSERT( application != nullptr );
+	Q_ASSERT(application != nullptr);
 
 	s_instance = this;
 
@@ -85,7 +85,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, Component component, const 
 
 	initSession();
 
-	initLogging( appComponentName );
+	initLogging(appComponentName);
 
 	initLocaleAndTranslation();
 
@@ -156,14 +156,14 @@ VeyonCore* VeyonCore::instance()
 
 QString VeyonCore::versionString()
 {
-	return QStringLiteral( VEYON_VERSION );
+	return QStringLiteral(VEYON_VERSION);
 }
 
 
 
 QString VeyonCore::pluginDir()
 {
-	return QStringLiteral( VEYON_PLUGIN_DIR );
+	return QStringLiteral(VEYON_PLUGIN_DIR);
 }
 
 
@@ -182,7 +182,7 @@ QString VeyonCore::qtTranslationsDirectory()
 #else
 	const auto path = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
 #endif
-	if( QDir{path}.exists() )
+	if (QDir{path}.exists())
 	{
 		return path;
 	}
@@ -194,14 +194,14 @@ QString VeyonCore::qtTranslationsDirectory()
 
 QString VeyonCore::executableSuffix()
 {
-	return QStringLiteral( VEYON_EXECUTABLE_SUFFIX ); // clazy:exclude=empty-qstringliteral
+	return QStringLiteral(VEYON_EXECUTABLE_SUFFIX); // clazy:exclude=empty-qstringliteral
 }
 
 
 
 QString VeyonCore::sharedLibrarySuffix()
 {
-	return QStringLiteral( VEYON_SHARED_LIBRARY_SUFFIX );
+	return QStringLiteral(VEYON_SHARED_LIBRARY_SUFFIX);
 }
 
 
@@ -209,7 +209,6 @@ QString VeyonCore::sharedLibrarySuffix()
 QString VeyonCore::applicationsDirectory()
 {
 	return QStringLiteral(CMAKE_INSTALL_PREFIX "/share/applications");
-
 }
 
 
@@ -223,14 +222,14 @@ QString VeyonCore::sessionIdEnvironmentVariable()
 
 void VeyonCore::setupApplicationParameters()
 {
-	QCoreApplication::setOrganizationName( QStringLiteral( "Veyon Solutions" ) );
-	QCoreApplication::setOrganizationDomain( QStringLiteral( "veyon.io" ) );
-	QCoreApplication::setApplicationName( QStringLiteral( "Veyon" ) );
+	QCoreApplication::setOrganizationName(QStringLiteral("Veyon Solutions"));
+	QCoreApplication::setOrganizationDomain(QStringLiteral("veyon.io"));
+	QCoreApplication::setApplicationName(QStringLiteral("Veyon"));
 
-	QCoreApplication::setAttribute( Qt::AA_ShareOpenGLContexts );
+	QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
 
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-	QApplication::setAttribute( Qt::AA_UseHighDpiPixmaps );
+	QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
 #endif
 }
 
@@ -238,7 +237,7 @@ void VeyonCore::setupApplicationParameters()
 
 bool VeyonCore::initAuthentication()
 {
-	switch( config().authenticationMethod() )
+	switch (config().authenticationMethod())
 	{
 	case AuthenticationMethod::LogonAuthentication: return initLogonAuthentication();
 	case AuthenticationMethod::KeyFileAuthentication: return initKeyFileAuthentication();
@@ -279,23 +278,23 @@ bool VeyonCore::isDebugging()
 
 
 
-QByteArray VeyonCore::shortenFuncinfo( const QByteArray& info )
+QByteArray VeyonCore::shortenFuncinfo(const QByteArray& info)
 {
-	const auto funcinfo = cleanupFuncinfo( info );
+	const auto funcinfo = cleanupFuncinfo(info);
 
-	if( isDebugging() )
+	if (isDebugging())
 	{
-		return funcinfo + QByteArrayLiteral( "():" );
+		return funcinfo + QByteArrayLiteral("():");
 	}
 
-	return funcinfo.split( ':' ).first() + QByteArrayLiteral(":");
+	return funcinfo.split(':').first() + QByteArrayLiteral(":");
 }
 
 
 
 // taken from qtbase/src/corelib/global/qlogging.cpp
 
-QByteArray VeyonCore::cleanupFuncinfo( QByteArray info )
+QByteArray VeyonCore::cleanupFuncinfo(QByteArray info)
 {
 	// Strip the function info down to the base function name
 	// note that this throws away the template definitions,
@@ -309,8 +308,10 @@ QByteArray VeyonCore::cleanupFuncinfo( QByteArray info )
 	// Skip trailing [with XXX] for templates (gcc), but make
 	// sure to not affect Objective-C message names.
 	pos = info.size() - 1;
-	if (info.endsWith(']') && !(info.startsWith('+') || info.startsWith('-'))) {
-		while (--pos) {
+	if (info.endsWith(']') && !(info.startsWith('+') || info.startsWith('-')))
+	{
+		while (--pos)
+		{
 			if (info.at(pos) == '[')
 				info.truncate(pos);
 		}
@@ -327,10 +328,12 @@ QByteArray VeyonCore::cleanupFuncinfo( QByteArray info )
 	info.replace("operator ", "operator");
 
 	// remove argument list
-	Q_FOREVER {
+	Q_FOREVER
+	{
 		int parencount = 0;
 		pos = info.lastIndexOf(')');
-		if (pos == -1) {
+		if (pos == -1)
+		{
 			// Don't know how to parse this function name
 			return info;
 		}
@@ -338,7 +341,8 @@ QByteArray VeyonCore::cleanupFuncinfo( QByteArray info )
 		// find the beginning of the argument list
 		--pos;
 		++parencount;
-		while (pos && parencount) {
+		while (pos && parencount)
+		{
 			if (info.at(pos) == ')')
 				++parencount;
 			else if (info.at(pos) == '(')
@@ -350,7 +354,8 @@ QByteArray VeyonCore::cleanupFuncinfo( QByteArray info )
 
 		info.truncate(++pos);
 
-		if (info.at(pos - 1) == ')') {
+		if (info.at(pos - 1) == ')')
+		{
 			if (info.indexOf(operator_call) == pos - (int)strlen(operator_call))
 				break;
 
@@ -360,7 +365,9 @@ QByteArray VeyonCore::cleanupFuncinfo( QByteArray info )
 			info.remove(0, info.indexOf('('));
 			info.chop(1);
 			continue;
-		} else {
+		}
+		else
+		{
 			break;
 		}
 	}
@@ -371,8 +378,10 @@ QByteArray VeyonCore::cleanupFuncinfo( QByteArray info )
 	--pos;
 
 	// make sure special characters in operator names are kept
-	if (pos > -1) {
-		switch (info.at(pos)) {
+	if (pos > -1)
+	{
+		switch (info.at(pos))
+		{
 		case ')':
 			if (info.indexOf(operator_call) == pos - (int)strlen(operator_call) + 1)
 				pos -= 2;
@@ -385,7 +394,8 @@ QByteArray VeyonCore::cleanupFuncinfo( QByteArray info )
 			if (info.indexOf(operator_greaterThan) == pos - (int)strlen(operator_greaterThan) + 1)
 				--pos;
 			break;
-		case '=': {
+		case '=':
+		{
 			int operatorLength = (int)strlen(operator_lessThanEqual);
 			if (info.indexOf(operator_lessThanEqual) == pos - operatorLength + 1)
 				pos -= 2;
@@ -398,7 +408,8 @@ QByteArray VeyonCore::cleanupFuncinfo( QByteArray info )
 		}
 	}
 
-	while (pos > -1) {
+	while (pos > -1)
+	{
 		if (parencount < 0 || templatecount < 0)
 			return info;
 
@@ -419,13 +430,13 @@ QByteArray VeyonCore::cleanupFuncinfo( QByteArray info )
 	info = info.mid(pos + 1);
 
 	// remove trailing '*', '&' that are part of the return argument
-	while ((info.at(0) == '*')
-		   || (info.at(0) == '&'))
+	while ((info.at(0) == '*') || (info.at(0) == '&'))
 		info = info.mid(1);
 
 	// we have the full function name now.
 	// clean up the templates
-	while ((pos = info.lastIndexOf('>')) != -1) {
+	while ((pos = info.lastIndexOf('>')) != -1)
+	{
 		if (!info.contains('<'))
 			break;
 
@@ -433,7 +444,8 @@ QByteArray VeyonCore::cleanupFuncinfo( QByteArray info )
 		int end = pos;
 		templatecount = 1;
 		--pos;
-		while (pos && templatecount) {
+		while (pos && templatecount)
+		{
 			char c = info.at(pos);
 			if (c == '>')
 				++templatecount;
@@ -450,13 +462,13 @@ QByteArray VeyonCore::cleanupFuncinfo( QByteArray info )
 
 
 
-QString VeyonCore::stripDomain( const QString& username )
+QString VeyonCore::stripDomain(const QString& username)
 {
 	// remove the domain part of username (e.g. "EXAMPLE.COM\Teacher" -> "Teacher")
-	int domainSeparator = username.indexOf( QLatin1Char('\\') );
-	if( domainSeparator >= 0 )
+	int domainSeparator = username.indexOf(QLatin1Char('\\'));
+	if (domainSeparator >= 0)
 	{
-		return username.mid( domainSeparator + 1 );
+		return username.mid(domainSeparator + 1);
 	}
 
 	return username;
@@ -464,9 +476,9 @@ QString VeyonCore::stripDomain( const QString& username )
 
 
 
-QString VeyonCore::stringify( const QVariantMap& map )
+QString VeyonCore::stringify(const QVariantMap& map)
 {
-	return QString::fromUtf8( QJsonDocument(QJsonObject::fromVariantMap(map)).toJson(QJsonDocument::Compact) );
+	return QString::fromUtf8(QJsonDocument(QJsonObject::fromVariantMap(map)).toJson(QJsonDocument::Compact));
 }
 
 
@@ -476,7 +488,7 @@ QString VeyonCore::screenName(const QScreen& screen, int index)
 	auto screenName = tr("Screen %1").arg(index);
 
 	const auto displayDeviceName = platform().coreFunctions().queryDisplayDeviceName(screen);
-	if(displayDeviceName.isEmpty() == false)
+	if (displayDeviceName.isEmpty() == false)
 	{
 		screenName.append(QStringLiteral(" – %1").arg(displayDeviceName));
 	}
@@ -486,10 +498,10 @@ QString VeyonCore::screenName(const QScreen& screen, int index)
 
 
 
-bool VeyonCore::isAuthenticationKeyNameValid( const QString& authKeyName )
+bool VeyonCore::isAuthenticationKeyNameValid(const QString& authKeyName)
 {
 	static const QRegularExpression keyNameRX{QStringLiteral("^[\\w-]+$")};
-	return keyNameRX.match( authKeyName ).hasMatch();
+	return keyNameRX.match(authKeyName).hasMatch();
 }
 
 
@@ -514,11 +526,11 @@ int VeyonCore::exec()
 void VeyonCore::initPlatformPlugin()
 {
 	// initialize plugin manager and load platform plugins first
-	m_pluginManager = new PluginManager( this );
+	m_pluginManager = new PluginManager(this);
 	m_pluginManager->loadPlatformPlugins();
 
 	// initialize platform plugin manager and initialize used platform plugin
-	m_platformPluginManager = new PlatformPluginManager( *m_pluginManager );
+	m_platformPluginManager = new PlatformPluginManager(*m_pluginManager);
 	m_platformPlugin = m_platformPluginManager->platformPlugin();
 }
 
@@ -526,17 +538,17 @@ void VeyonCore::initPlatformPlugin()
 
 void VeyonCore::initSession()
 {
-	if( component() != Component::Service && config().multiSessionModeEnabled() )
+	if (component() != Component::Service && config().multiSessionModeEnabled())
 	{
 		const auto systemEnv = QProcessEnvironment::systemEnvironment();
-		if( systemEnv.contains( sessionIdEnvironmentVariable() ) )
+		if (systemEnv.contains(sessionIdEnvironmentVariable()))
 		{
-			m_sessionId = systemEnv.value( sessionIdEnvironmentVariable() ).toInt();
+			m_sessionId = systemEnv.value(sessionIdEnvironmentVariable()).toInt();
 		}
 		else
 		{
 			const auto sessionId = platform().sessionFunctions().currentSessionId();
-			if( sessionId != PlatformSessionFunctions::InvalidSessionId )
+			if (sessionId != PlatformSessionFunctions::InvalidSessionId)
 			{
 				m_sessionId = sessionId;
 			}
@@ -554,7 +566,7 @@ void VeyonCore::initConfiguration()
 	m_config = new VeyonConfiguration();
 	m_config->upgrade();
 
-	if( QUuid( config().installationID() ).isNull() )
+	if (QUuid(config().installationID()).isNull())
 	{
 		config().setInstallationID(QUuid::createUuid().toString(QUuid::WithoutBraces));
 	}
@@ -562,39 +574,39 @@ void VeyonCore::initConfiguration()
 
 
 
-void VeyonCore::initLogging( const QString& appComponentName )
+void VeyonCore::initLogging(const QString& appComponentName)
 {
 	const auto currentSessionId = sessionId();
 
-	if( currentSessionId != PlatformSessionFunctions::DefaultSessionId )
+	if (currentSessionId != PlatformSessionFunctions::DefaultSessionId)
 	{
-		m_logger = new Logger( QStringLiteral("%1-%2").arg( appComponentName ).arg( currentSessionId ) );
+		m_logger = new Logger(QStringLiteral("%1-%2").arg(appComponentName).arg(currentSessionId));
 	}
 	else
 	{
-		m_logger = new Logger( appComponentName );
+		m_logger = new Logger(appComponentName);
 	}
 
-	m_debugging = ( m_logger->logLevel() >= Logger::LogLevel::Debug );
+	m_debugging = (m_logger->logLevel() >= Logger::LogLevel::Debug);
 
-	VncConnection::initLogging( isDebugging() );
+	VncConnection::initLogging(isDebugging());
 }
 
 
 
 void VeyonCore::initLocaleAndTranslation()
 {
-	if( TranslationLoader::load( QStringLiteral("qtbase") ) == false )
+	if (TranslationLoader::load(QStringLiteral("qtbase")) == false)
 	{
-		TranslationLoader::load( QStringLiteral("qt") );
+		TranslationLoader::load(QStringLiteral("qt"));
 	}
 
-	TranslationLoader::load( QStringLiteral("veyon") );
+	TranslationLoader::load(QStringLiteral("veyon"));
 
-	const auto app = qobject_cast<QGuiApplication *>( QCoreApplication::instance() );
-	if( app )
+	const auto app = qobject_cast<QGuiApplication*>(QCoreApplication::instance());
+	if (app)
 	{
-		QGuiApplication::setLayoutDirection( QLocale{}.textDirection() );
+		QGuiApplication::setLayoutDirection(QLocale{}.textDirection());
 	}
 }
 
@@ -602,7 +614,7 @@ void VeyonCore::initLocaleAndTranslation()
 
 void VeyonCore::initUi()
 {
-	auto app = qobject_cast<QApplication *>(QCoreApplication::instance());
+	auto app = qobject_cast<QApplication*>(QCoreApplication::instance());
 	if (app)
 	{
 		if (m_config->uiStyle() == UiStyle::Fusion)
@@ -611,9 +623,8 @@ void VeyonCore::initUi()
 		}
 
 		app->setStyleSheet(QStringLiteral(
-							   "QToolButton:checked {background-color:#88ddff;}"
-							   "QToolTip {padding:5px; border:0px;}"
-							   ));
+			"QToolButton:checked {background-color:#88ddff;}"
+			"QToolTip {padding:5px; border:0px;}"));
 
 		auto toolTipPalette = QToolTip::palette();
 		static const char* toolTipBackgroundColor = "#198cb3";
@@ -649,7 +660,7 @@ void VeyonCore::initCryptoCore()
 
 void VeyonCore::initAuthenticationCredentials()
 {
-	if( m_authenticationCredentials )
+	if (m_authenticationCredentials)
 	{
 		delete m_authenticationCredentials;
 		m_authenticationCredentials = nullptr;
@@ -671,8 +682,8 @@ void VeyonCore::initPlugins()
 
 void VeyonCore::initManagers()
 {
-	m_userGroupsBackendManager = new UserGroupsBackendManager( this );
-	m_networkObjectDirectoryManager = new NetworkObjectDirectoryManager( this );
+	m_userGroupsBackendManager = new UserGroupsBackendManager(this);
+	m_networkObjectDirectoryManager = new NetworkObjectDirectoryManager(this);
 }
 
 
@@ -687,14 +698,14 @@ void VeyonCore::initFeatures()
 
 bool VeyonCore::initLogonAuthentication()
 {
-	if( qobject_cast<QApplication *>( QCoreApplication::instance() ) )
+	if (qobject_cast<QApplication*>(QCoreApplication::instance()))
 	{
-		PasswordDialog dlg( QApplication::activeWindow() );
-		if( dlg.exec() &&
-			dlg.credentials().hasCredentials( AuthenticationCredentials::Type::UserLogon ) )
+		PasswordDialog dlg(QApplication::activeWindow());
+		if (dlg.exec() &&
+			dlg.credentials().hasCredentials(AuthenticationCredentials::Type::UserLogon))
 		{
-			m_authenticationCredentials->setLogonUsername( dlg.username() );
-			m_authenticationCredentials->setLogonPassword( dlg.password() );
+			m_authenticationCredentials->setLogonUsername(dlg.username());
+			m_authenticationCredentials->setLogonPassword(dlg.password());
 
 			return true;
 		}
@@ -707,28 +718,28 @@ bool VeyonCore::initLogonAuthentication()
 
 bool VeyonCore::initKeyFileAuthentication()
 {
-	auto authKeyName = QProcessEnvironment::systemEnvironment().value( QStringLiteral("VEYON_AUTH_KEY_NAME") );
+	auto authKeyName = QProcessEnvironment::systemEnvironment().value(QStringLiteral("VEYON_AUTH_KEY_NAME"));
 
-	if( authKeyName.isEmpty() == false )
+	if (authKeyName.isEmpty() == false)
 	{
-		if( isAuthenticationKeyNameValid( authKeyName ) &&
-				m_authenticationCredentials->loadPrivateKey( VeyonCore::filesystem().privateKeyPath( authKeyName ) ) )
+		if (isAuthenticationKeyNameValid(authKeyName) &&
+			m_authenticationCredentials->loadPrivateKey(VeyonCore::filesystem().privateKeyPath(authKeyName)))
 		{
-			m_authenticationCredentials->setAuthenticationKeyName( authKeyName );
+			m_authenticationCredentials->setAuthenticationKeyName(authKeyName);
 			return true;
 		}
 	}
 	else
 	{
 		// try to auto-detect private key file by searching for readable file
-		const auto privateKeyBaseDir = VeyonCore::filesystem().expandPath( VeyonCore::config().privateKeyBaseDir() );
-		const auto privateKeyDirs = QDir( privateKeyBaseDir ).entryList( QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name );
+		const auto privateKeyBaseDir = VeyonCore::filesystem().expandPath(VeyonCore::config().privateKeyBaseDir());
+		const auto privateKeyDirs = QDir(privateKeyBaseDir).entryList(QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name);
 
-		for( const auto& privateKeyDir : privateKeyDirs )
+		for (const auto& privateKeyDir : privateKeyDirs)
 		{
-			if( m_authenticationCredentials->loadPrivateKey( VeyonCore::filesystem().privateKeyPath( privateKeyDir ) ) )
+			if (m_authenticationCredentials->loadPrivateKey(VeyonCore::filesystem().privateKeyPath(privateKeyDir)))
 			{
-				m_authenticationCredentials->setAuthenticationKeyName( privateKeyDir );
+				m_authenticationCredentials->setAuthenticationKeyName(privateKeyDir);
 				return true;
 			}
 		}

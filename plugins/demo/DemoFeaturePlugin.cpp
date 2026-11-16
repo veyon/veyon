@@ -43,117 +43,115 @@
 #include "VeyonServerInterface.h"
 
 
-DemoFeaturePlugin::DemoFeaturePlugin( QObject* parent ) :
-	QObject( parent ),
-	m_demoFeature( QStringLiteral( "Demo" ),
-				   Feature::Flag::Mode | Feature::Flag::AllComponents,
-				   Feature::Uid( "6f4cd922-b63e-40bf-9451-536065c7cdf9" ),
-				   Feature::Uid(),
-				   tr( "Demo" ), tr( "Stop demo" ),
-				   tr( "Share your screen or allow a user to share his screen with other users." ),
-				   QStringLiteral(":/demo/demo.png") ),
-	m_demoClientFullScreenFeature( QStringLiteral( "FullScreenDemo" ),
-								   Feature::Flag::Meta | Feature::Flag::AllComponents,
-								   Feature::Uid( "7b6231bd-eb89-45d3-af32-f70663b2f878" ),
-								   {}, tr("Full screen demo"), {}, {} ),
-	m_demoClientWindowFeature( QStringLiteral( "WindowDemo" ),
-							   Feature::Flag::Meta | Feature::Flag::AllComponents,
-							   Feature::Uid( "ae45c3db-dc2e-4204-ae8b-374cdab8c62c" ),
-							   {}, tr("Window demo"), {}, {} ),
-	m_shareOwnScreenFullScreenFeature( QStringLiteral( "ShareOwnScreenFullScreen" ),
+DemoFeaturePlugin::DemoFeaturePlugin(QObject* parent) :
+	QObject(parent),
+	m_demoFeature(QStringLiteral("Demo"),
+				  Feature::Flag::Mode | Feature::Flag::AllComponents,
+				  Feature::Uid("6f4cd922-b63e-40bf-9451-536065c7cdf9"),
+				  Feature::Uid(),
+				  tr("Demo"), tr("Stop demo"),
+				  tr("Share your screen or allow a user to share his screen with other users."),
+				  QStringLiteral(":/demo/demo.png")),
+	m_demoClientFullScreenFeature(QStringLiteral("FullScreenDemo"),
+								  Feature::Flag::Meta | Feature::Flag::AllComponents,
+								  Feature::Uid("7b6231bd-eb89-45d3-af32-f70663b2f878"),
+								  {}, tr("Full screen demo"), {}, {}),
+	m_demoClientWindowFeature(QStringLiteral("WindowDemo"),
+							  Feature::Flag::Meta | Feature::Flag::AllComponents,
+							  Feature::Uid("ae45c3db-dc2e-4204-ae8b-374cdab8c62c"),
+							  {}, tr("Window demo"), {}, {}),
+	m_shareOwnScreenFullScreenFeature(QStringLiteral("ShareOwnScreenFullScreen"),
+									  Feature::Flag::Mode | Feature::Flag::AllComponents,
+									  Feature::Uid("07b375e1-8ab6-4b48-bcb7-75fb3d56035b"),
+									  m_demoFeature.uid(),
+									  tr("Share your own screen in fullscreen mode"), {},
+									  tr("In this mode your screen is being displayed in "
+										 "full screen mode on all computers while the input "
+										 "devices of the users are locked."),
+									  QStringLiteral(":/demo/presentation-fullscreen.png")),
+	m_shareOwnScreenWindowFeature(QStringLiteral("ShareOwnScreenWindow"),
+								  Feature::Flag::Mode | Feature::Flag::AllComponents,
+								  Feature::Uid("68c55fb9-127e-4c9f-9c90-28b998bf1a47"),
+								  m_demoFeature.uid(),
+								  tr("Share your own screen in a window"), {},
+								  tr("In this mode your screen being displayed in a "
+									 "window on all computers. The users are "
+									 "able to switch to other windows as needed."),
+								  QStringLiteral(":/demo/presentation-window.png")),
+	m_shareUserScreenFullScreenFeature(QStringLiteral("ShareUserScreenFullScreen"),
 									   Feature::Flag::Mode | Feature::Flag::AllComponents,
-									   Feature::Uid( "07b375e1-8ab6-4b48-bcb7-75fb3d56035b" ),
+									   Feature::Uid("b4e542e2-1deb-48ac-910a-bbf8ac9a0bde"),
 									   m_demoFeature.uid(),
-									   tr( "Share your own screen in fullscreen mode" ), {},
-									   tr( "In this mode your screen is being displayed in "
-										   "full screen mode on all computers while the input "
-										   "devices of the users are locked." ),
-									   QStringLiteral(":/demo/presentation-fullscreen.png") ),
-	m_shareOwnScreenWindowFeature( QStringLiteral( "ShareOwnScreenWindow" ),
+									   tr("Share selected user's screen in fullscreen mode"), {},
+									   tr("In this mode the screen of the selected user is being displayed "
+										  "in full screen mode on all computers while the input "
+										  "devices of the users are locked."),
+									   QStringLiteral(":/demo/presentation-fullscreen.png")),
+	m_shareUserScreenWindowFeature(QStringLiteral("ShareUserScreenWindow"),
 								   Feature::Flag::Mode | Feature::Flag::AllComponents,
-								   Feature::Uid( "68c55fb9-127e-4c9f-9c90-28b998bf1a47" ),
+								   Feature::Uid("ebfc5ec4-f725-4bfc-a93a-c6d4864c6806"),
 								   m_demoFeature.uid(),
-								   tr( "Share your own screen in a window" ), {},
-								   tr( "In this mode your screen being displayed in a "
-									   "window on all computers. The users are "
-									   "able to switch to other windows as needed." ),
-								   QStringLiteral(":/demo/presentation-window.png") ),
-	m_shareUserScreenFullScreenFeature( QStringLiteral( "ShareUserScreenFullScreen" ),
-										Feature::Flag::Mode | Feature::Flag::AllComponents,
-										Feature::Uid( "b4e542e2-1deb-48ac-910a-bbf8ac9a0bde" ),
-										m_demoFeature.uid(),
-										tr( "Share selected user's screen in fullscreen mode" ), {},
-										tr( "In this mode the screen of the selected user is being displayed "
-											"in full screen mode on all computers while the input "
-											"devices of the users are locked." ),
-										QStringLiteral(":/demo/presentation-fullscreen.png") ),
-	m_shareUserScreenWindowFeature( QStringLiteral( "ShareUserScreenWindow" ),
-									Feature::Flag::Mode | Feature::Flag::AllComponents,
-									Feature::Uid( "ebfc5ec4-f725-4bfc-a93a-c6d4864c6806" ),
-									m_demoFeature.uid(),
-									tr( "Share selected user's screen in a window" ), {},
-									tr( "In this mode the screen of the selected user being displayed "
-										"in a window on all computers. The users are "
-										"able to switch to other windows as needed." ),
-									QStringLiteral(":/demo/presentation-window.png") ),
-	m_demoServerFeature( QStringLiteral( "DemoServer" ),
-						 Feature::Flag::Session | Feature::Flag::Service | Feature::Flag::Worker,
-						 Feature::Uid( "e4b6e743-1f5b-491d-9364-e091086200f4" ),
-						 m_demoFeature.uid(),
-						 {}, {}, {} ),
-	m_staticFeatures( {
-		m_demoFeature, m_demoServerFeature,
-		m_demoClientFullScreenFeature, m_demoClientWindowFeature,
-		m_shareOwnScreenFullScreenFeature, m_shareOwnScreenWindowFeature,
-		m_shareUserScreenFullScreenFeature, m_shareUserScreenWindowFeature
-	} ),
-	m_demoAccessToken( CryptoCore::generateChallenge() ),
-	m_configuration( &VeyonCore::config() ),
-	m_demoServer( nullptr ),
-	m_demoClient( nullptr )
+								   tr("Share selected user's screen in a window"), {},
+								   tr("In this mode the screen of the selected user being displayed "
+									  "in a window on all computers. The users are "
+									  "able to switch to other windows as needed."),
+								   QStringLiteral(":/demo/presentation-window.png")),
+	m_demoServerFeature(QStringLiteral("DemoServer"),
+						Feature::Flag::Session | Feature::Flag::Service | Feature::Flag::Worker,
+						Feature::Uid("e4b6e743-1f5b-491d-9364-e091086200f4"),
+						m_demoFeature.uid(),
+						{}, {}, {}),
+	m_staticFeatures({m_demoFeature, m_demoServerFeature,
+					  m_demoClientFullScreenFeature, m_demoClientWindowFeature,
+					  m_shareOwnScreenFullScreenFeature, m_shareOwnScreenWindowFeature,
+					  m_shareUserScreenFullScreenFeature, m_shareUserScreenWindowFeature}),
+	m_demoAccessToken(CryptoCore::generateChallenge()),
+	m_configuration(&VeyonCore::config()),
+	m_demoServer(nullptr),
+	m_demoClient(nullptr)
 {
-	connect( qGuiApp, &QGuiApplication::screenAdded, this, &DemoFeaturePlugin::addScreen );
-	connect( qGuiApp, &QGuiApplication::screenRemoved, this, &DemoFeaturePlugin::removeScreen );
-	connect( &m_demoServerControlTimer, &QTimer::timeout, this, &DemoFeaturePlugin::controlDemoServer );
+	connect(qGuiApp, &QGuiApplication::screenAdded, this, &DemoFeaturePlugin::addScreen);
+	connect(qGuiApp, &QGuiApplication::screenRemoved, this, &DemoFeaturePlugin::removeScreen);
+	connect(&m_demoServerControlTimer, &QTimer::timeout, this, &DemoFeaturePlugin::controlDemoServer);
 
 	updateFeatures();
 }
 
 
 
-Feature::Uid DemoFeaturePlugin::metaFeature( Feature::Uid featureUid ) const
+Feature::Uid DemoFeaturePlugin::metaFeature(Feature::Uid featureUid) const
 {
-	if( featureUid == m_shareOwnScreenFullScreenFeature.uid() ||
-		featureUid == m_shareUserScreenFullScreenFeature.uid() )
+	if (featureUid == m_shareOwnScreenFullScreenFeature.uid() ||
+		featureUid == m_shareUserScreenFullScreenFeature.uid())
 	{
 		return m_demoClientFullScreenFeature.uid();
 	}
-	else if( featureUid == m_shareOwnScreenWindowFeature.uid() ||
-			 featureUid == m_shareUserScreenWindowFeature.uid() )
+	else if (featureUid == m_shareOwnScreenWindowFeature.uid() ||
+			 featureUid == m_shareUserScreenWindowFeature.uid())
 	{
 		return m_demoClientWindowFeature.uid();
 	}
 
-	return FeatureProviderInterface::metaFeature( featureUid );
+	return FeatureProviderInterface::metaFeature(featureUid);
 }
 
 
 
-bool DemoFeaturePlugin::controlFeature( Feature::Uid featureUid,
+bool DemoFeaturePlugin::controlFeature(Feature::Uid featureUid,
 									   Operation operation,
 									   const QVariantMap& arguments,
-									   const ComputerControlInterfaceList& computerControlInterfaces )
+									   const ComputerControlInterfaceList& computerControlInterfaces)
 {
-	if( featureUid == m_demoServerFeature.uid() )
+	if (featureUid == m_demoServerFeature.uid())
 	{
-		if( operation == Operation::Start )
+		if (operation == Operation::Start)
 		{
 			m_demoServerArguments = arguments;
 			m_demoServerControlInterfaces = computerControlInterfaces;
-			m_demoServerControlTimer.start( DemoServerControlInterval );
+			m_demoServerControlTimer.start(DemoServerControlInterval);
 			controlDemoServer();
 		}
-		else if( operation == Operation::Stop )
+		else if (operation == Operation::Stop)
 		{
 			m_demoServerControlTimer.stop();
 			m_demoServerControlInterfaces = computerControlInterfaces;
@@ -168,9 +166,9 @@ bool DemoFeaturePlugin::controlFeature( Feature::Uid featureUid,
 		return true;
 	}
 
-	if( featureUid == m_demoClientFullScreenFeature.uid() || featureUid == m_demoClientWindowFeature.uid() )
+	if (featureUid == m_demoClientFullScreenFeature.uid() || featureUid == m_demoClientWindowFeature.uid())
 	{
-		return controlDemoClient( featureUid, operation, arguments, computerControlInterfaces );
+		return controlDemoClient(featureUid, operation, arguments, computerControlInterfaces);
 	}
 
 	return false;
@@ -178,37 +176,36 @@ bool DemoFeaturePlugin::controlFeature( Feature::Uid featureUid,
 
 
 
-bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Feature& feature,
-									 const ComputerControlInterfaceList& computerControlInterfaces )
+bool DemoFeaturePlugin::startFeature(VeyonMasterInterface& master, const Feature& feature,
+									 const ComputerControlInterfaceList& computerControlInterfaces)
 {
-	if( feature == m_shareOwnScreenWindowFeature || feature == m_shareOwnScreenFullScreenFeature )
+	if (feature == m_shareOwnScreenWindowFeature || feature == m_shareOwnScreenFullScreenFeature)
 	{
 		// start demo clients
-		controlFeature( feature == m_shareOwnScreenFullScreenFeature ? m_demoClientFullScreenFeature.uid()
-																	 : m_demoClientWindowFeature.uid(),
-						Operation::Start, {}, computerControlInterfaces );
+		controlFeature(feature == m_shareOwnScreenFullScreenFeature ? m_demoClientFullScreenFeature.uid() : m_demoClientWindowFeature.uid(),
+					   Operation::Start, {}, computerControlInterfaces);
 
 		// start demo server
-		controlFeature( m_demoServerFeature.uid(), Operation::Start, {},
-						{ master.localSessionControlInterface().weakPointer() } );
+		controlFeature(m_demoServerFeature.uid(), Operation::Start, {},
+					   {master.localSessionControlInterface().weakPointer()});
 
 		return true;
 	}
 
-	if( feature == m_shareUserScreenWindowFeature || feature == m_shareUserScreenFullScreenFeature )
+	if (feature == m_shareUserScreenWindowFeature || feature == m_shareUserScreenFullScreenFeature)
 	{
 		const auto selectedComputerControlInterfaces = master.selectedComputerControlInterfaces();
-		if( selectedComputerControlInterfaces.size() < 1 )
+		if (selectedComputerControlInterfaces.size() < 1)
 		{
-			QMessageBox::critical( master.mainWindow(), feature.name(),
-								   tr( "Please select a user screen to share.") );
+			QMessageBox::critical(master.mainWindow(), feature.name(),
+								  tr("Please select a user screen to share."));
 			return true;
 		}
 
-		if( selectedComputerControlInterfaces.size() > 1 )
+		if (selectedComputerControlInterfaces.size() > 1)
 		{
-			QMessageBox::critical( master.mainWindow(), feature.name(),
-								   tr( "Please select only one user screen to share.") );
+			QMessageBox::critical(master.mainWindow(), feature.name(),
+								  tr("Please select only one user screen to share."));
 			return true;
 		}
 
@@ -217,9 +214,9 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 
 		const auto& demoServerInterface = selectedComputerControlInterfaces.constFirst();
 		const auto demoServerHost = demoServerInterface->computer().hostName();
-		const auto primaryServerPort = HostAddress::parsePortNumber( demoServerHost );
+		const auto primaryServerPort = HostAddress::parsePortNumber(demoServerHost);
 
-		if( primaryServerPort > 0 )
+		if (primaryServerPort > 0)
 		{
 			const auto sessionId = primaryServerPort - VeyonCore::config().veyonServerPort();
 			vncServerPortOffset = sessionId;
@@ -228,7 +225,7 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 
 		// start demo clients
 		auto userDemoControlInterfaces = computerControlInterfaces;
-		userDemoControlInterfaces.removeAll( demoServerInterface );
+		userDemoControlInterfaces.removeAll(demoServerInterface);
 
 		// never send a (potentially fullscreen) demo client to the master
 		// computer itself: it is listed as a regular room computer but has to
@@ -237,30 +234,29 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 		userDemoControlInterfaces.removeLocalHostInterfaces();
 
 		const QVariantMap demoClientArgs{
-			{ argToString(Argument::DemoServerHost), HostAddress::parseHost(demoServerHost) },
-			{ argToString(Argument::DemoServerPort), demoServerPort },
+			{argToString(Argument::DemoServerHost), HostAddress::parseHost(demoServerHost)},
+			{argToString(Argument::DemoServerPort), demoServerPort},
 		};
 
-		controlFeature( feature == m_shareUserScreenFullScreenFeature ? m_demoClientFullScreenFeature.uid()
-																	  : m_demoClientWindowFeature.uid(),
-						Operation::Start, demoClientArgs, userDemoControlInterfaces );
+		controlFeature(feature == m_shareUserScreenFullScreenFeature ? m_demoClientFullScreenFeature.uid() : m_demoClientWindowFeature.uid(),
+					   Operation::Start, demoClientArgs, userDemoControlInterfaces);
 
-		controlFeature( m_demoClientWindowFeature.uid(), Operation::Start, demoClientArgs,
-						{ master.localSessionControlInterface().weakPointer() } );
+		controlFeature(m_demoClientWindowFeature.uid(), Operation::Start, demoClientArgs,
+					   {master.localSessionControlInterface().weakPointer()});
 
 		// start demo server
-		controlFeature( m_demoServerFeature.uid(), Operation::Start,
-						{
-							{ argToString(Argument::VncServerPortOffset), vncServerPortOffset },
-							{ argToString(Argument::DemoServerPort), demoServerPort },
-							},
-						selectedComputerControlInterfaces );
+		controlFeature(m_demoServerFeature.uid(), Operation::Start,
+					   {
+						   {argToString(Argument::VncServerPortOffset), vncServerPortOffset},
+						   {argToString(Argument::DemoServerPort), demoServerPort},
+					   },
+					   selectedComputerControlInterfaces);
 
 		return true;
 	}
 
-	const auto screenIndex = m_screenSelectionFeatures.indexOf( feature );
-	if( screenIndex >= 0 )
+	const auto screenIndex = m_screenSelectionFeatures.indexOf(feature);
+	if (screenIndex >= 0)
 	{
 		m_screenSelection = screenIndex;
 
@@ -272,21 +268,21 @@ bool DemoFeaturePlugin::startFeature( VeyonMasterInterface& master, const Featur
 
 
 
-bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature& feature,
-									const ComputerControlInterfaceList& computerControlInterfaces )
+bool DemoFeaturePlugin::stopFeature(VeyonMasterInterface& master, const Feature& feature,
+									const ComputerControlInterfaceList& computerControlInterfaces)
 {
-	if( feature == m_demoFeature ||
+	if (feature == m_demoFeature ||
 		feature == m_shareOwnScreenWindowFeature || feature == m_shareOwnScreenFullScreenFeature ||
-		feature == m_shareUserScreenWindowFeature || feature == m_shareUserScreenFullScreenFeature )
+		feature == m_shareUserScreenWindowFeature || feature == m_shareUserScreenFullScreenFeature)
 	{
-		controlFeature( m_demoClientFullScreenFeature.uid(), Operation::Stop, {}, computerControlInterfaces );
-		controlFeature( m_demoClientWindowFeature.uid(), Operation::Stop, {}, computerControlInterfaces );
+		controlFeature(m_demoClientFullScreenFeature.uid(), Operation::Stop, {}, computerControlInterfaces);
+		controlFeature(m_demoClientWindowFeature.uid(), Operation::Stop, {}, computerControlInterfaces);
 
-		controlFeature( m_demoClientWindowFeature.uid(), Operation::Stop, {},
-						{ master.localSessionControlInterface().weakPointer() } );
+		controlFeature(m_demoClientWindowFeature.uid(), Operation::Stop, {},
+					   {master.localSessionControlInterface().weakPointer()});
 
 		// no demo clients left?
-		if( m_demoServerClients.isEmpty() )
+		if (m_demoServerClients.isEmpty())
 		{
 			// then we can stop the server
 			m_demoServerControlTimer.stop();
@@ -305,75 +301,74 @@ bool DemoFeaturePlugin::stopFeature( VeyonMasterInterface& master, const Feature
 
 
 
-bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
+bool DemoFeaturePlugin::handleFeatureMessage(VeyonServerInterface& server,
 											 const MessageContext& messageContext,
-											 const FeatureMessage& message )
+											 const FeatureMessage& message)
 {
-	if( message.featureUid() == m_demoServerFeature.uid() )
+	if (message.featureUid() == m_demoServerFeature.uid())
 	{
 		if (message.command<FeatureCommand>() == FeatureCommand::StartDemoServer)
 		{
 			// add VNC server password to message
-			server.featureWorkerManager().
-				sendMessageToManagedSystemWorker(
-					FeatureMessage{ message }
-						.addArgument( Argument::VncServerPassword, VeyonCore::authenticationCredentials().internalVncServerPassword().toByteArray() )
-						.addArgument( Argument::VncServerPort, server.vncServerBasePort() + message.argument(Argument::VncServerPortOffset).toInt() ) );
+			server.featureWorkerManager().sendMessageToManagedSystemWorker(
+				FeatureMessage{message}
+					.addArgument(Argument::VncServerPassword, VeyonCore::authenticationCredentials().internalVncServerPassword().toByteArray())
+					.addArgument(Argument::VncServerPort, server.vncServerBasePort() + message.argument(Argument::VncServerPortOffset).toInt()));
 		}
 		else if (message.command<FeatureCommand>() != FeatureCommand::StopDemoServer ||
-				 server.featureWorkerManager().isWorkerRunning( m_demoServerFeature.uid() ) )
+				 server.featureWorkerManager().isWorkerRunning(m_demoServerFeature.uid()))
 		{
 			// forward message to worker
-			server.featureWorkerManager().sendMessageToManagedSystemWorker( message );
+			server.featureWorkerManager().sendMessageToManagedSystemWorker(message);
 		}
 
 		return true;
 	}
 
-	if( message.featureUid() == m_demoClientFullScreenFeature.uid() ||
-		message.featureUid() == m_demoClientWindowFeature.uid() )
+	if (message.featureUid() == m_demoClientFullScreenFeature.uid() ||
+		message.featureUid() == m_demoClientWindowFeature.uid())
 	{
 		// if a demo server is started, it's likely that the demo accidentally was
 		// started on master computer as well therefore we deny starting a demo on
 		// hosts on which a demo server is running - exception: debug mode
-		if( message.featureUid() == m_demoClientFullScreenFeature.uid() &&
-			server.featureWorkerManager().isWorkerRunning( m_demoServerFeature.uid() ) &&
-			VeyonCore::config().logLevel() < Logger::LogLevel::Debug )
+		if (message.featureUid() == m_demoClientFullScreenFeature.uid() &&
+			server.featureWorkerManager().isWorkerRunning(m_demoServerFeature.uid()) &&
+			VeyonCore::config().logLevel() < Logger::LogLevel::Debug)
 		{
 			return false;
 		}
 
 		if (message.command<FeatureCommand>() == FeatureCommand::StopDemoClient &&
-			server.featureWorkerManager().isWorkerRunning( message.featureUid() ) == false )
+			server.featureWorkerManager().isWorkerRunning(message.featureUid()) == false)
 		{
 			return true;
 		}
 
-		if( VeyonCore::platform().sessionFunctions().currentSessionHasUser() == false )
+		if (VeyonCore::platform().sessionFunctions().currentSessionHasUser() == false)
 		{
 			vDebug() << "not starting demo client since not running in a user session";
 			return true;
 		}
 
-		auto socket = qobject_cast<QTcpSocket *>( messageContext.ioDevice() );
-		if( socket == nullptr )
+		auto socket = qobject_cast<QTcpSocket*>(messageContext.ioDevice());
+		if (socket == nullptr)
 		{
 			vCritical() << "invalid socket";
 			return false;
 		}
 
 		if (message.command<FeatureCommand>() == FeatureCommand::StartDemoClient &&
-			message.argument( Argument::DemoServerHost ).toString().isEmpty() )
+			message.argument(Argument::DemoServerHost).toString().isEmpty())
 		{
 			// set the peer address as demo server host
 			server.featureWorkerManager().sendMessageToManagedSystemWorker(
-				FeatureMessage{ message }
-					.addArgument( Argument::DemoServerHost, socket->peerAddress().toString() ) );
+				FeatureMessage{message}
+					.addArgument(Argument::DemoServerHost, socket->peerAddress().toString()));
 		}
 		else
 		{
 			// forward message to worker
-			server.featureWorkerManager().sendMessageToManagedSystemWorker( message );
+			server.featureWorkerManager().sendMessageToManagedSystemWorker(message);
 		}
 
 		return true;
@@ -384,28 +379,28 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonServerInterface& server,
 
 
 
-bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, const FeatureMessage& message )
+bool DemoFeaturePlugin::handleFeatureMessage(VeyonWorkerInterface& worker, const FeatureMessage& message)
 {
 	Q_UNUSED(worker)
 
-	if( message.featureUid() == m_demoServerFeature.uid() )
+	if (message.featureUid() == m_demoServerFeature.uid())
 	{
 		switch (message.command<FeatureCommand>())
 		{
 		case FeatureCommand::StartDemoServer:
-			if( m_demoServer == nullptr )
+			if (m_demoServer == nullptr)
 			{
-				m_demoServer = new DemoServer( message.argument( Argument::VncServerPort ).toInt(),
-											   message.argument( Argument::VncServerPassword ).toByteArray(),
-											   message.argument( Argument::DemoAccessToken ).toByteArray(),
-											   m_configuration,
-											   message.argument( Argument::DemoServerPort ).toInt(),
-											   this );
+				m_demoServer = new DemoServer(message.argument(Argument::VncServerPort).toInt(),
+											  message.argument(Argument::VncServerPassword).toByteArray(),
+											  message.argument(Argument::DemoAccessToken).toByteArray(),
+											  m_configuration,
+											  message.argument(Argument::DemoServerPort).toInt(),
+											  this);
 			}
 			return true;
 
 		case FeatureCommand::StopDemoServer:
-			if( m_demoServer )
+			if (m_demoServer)
 			{
 				m_demoServer->terminate();
 			}
@@ -419,23 +414,23 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 			break;
 		}
 	}
-	else if( message.featureUid() == m_demoClientFullScreenFeature.uid() ||
-			 message.featureUid() == m_demoClientWindowFeature.uid() )
+	else if (message.featureUid() == m_demoClientFullScreenFeature.uid() ||
+			 message.featureUid() == m_demoClientWindowFeature.uid())
 	{
 		switch (message.command<FeatureCommand>())
 		{
 		case FeatureCommand::StartDemoClient:
-			VeyonCore::authenticationCredentials().setToken( message.argument( Argument::DemoAccessToken ).toByteArray() );
+			VeyonCore::authenticationCredentials().setToken(message.argument(Argument::DemoAccessToken).toByteArray());
 
-			if( m_demoClient == nullptr )
+			if (m_demoClient == nullptr)
 			{
-				const auto demoServerHost = message.argument( Argument::DemoServerHost ).toString();
-				const auto demoServerPort = message.argument( Argument::DemoServerPort ).toInt();
+				const auto demoServerHost = message.argument(Argument::DemoServerHost).toString();
+				const auto demoServerPort = message.argument(Argument::DemoServerPort).toInt();
 				const auto isFullscreenDemo = message.featureUid() == m_demoClientFullScreenFeature.uid();
-				const auto viewport = message.argument( Argument::Viewport ).toRect();
+				const auto viewport = message.argument(Argument::Viewport).toRect();
 
 				vDebug() << "connecting with master" << demoServerHost;
-				m_demoClient = new DemoClient( demoServerHost, demoServerPort, isFullscreenDemo, viewport );
+				m_demoClient = new DemoClient(demoServerHost, demoServerPort, isFullscreenDemo, viewport);
 			}
 			return true;
 
@@ -460,26 +455,26 @@ bool DemoFeaturePlugin::handleFeatureMessage( VeyonWorkerInterface& worker, cons
 bool DemoFeaturePlugin::isFeatureActive(VeyonServerInterface& server, Feature::Uid featureUid) const
 {
 	return featureUid == m_demoFeature.uid() &&
-			(server.featureWorkerManager().isWorkerRunning(m_demoClientFullScreenFeature.uid()) ||
-			 server.featureWorkerManager().isWorkerRunning(m_demoClientWindowFeature.uid()));
+		(server.featureWorkerManager().isWorkerRunning(m_demoClientFullScreenFeature.uid()) ||
+		 server.featureWorkerManager().isWorkerRunning(m_demoClientWindowFeature.uid()));
 }
 
 
 
 ConfigurationPage* DemoFeaturePlugin::createConfigurationPage()
 {
-	return new DemoConfigurationPage( m_configuration );
+	return new DemoConfigurationPage(m_configuration);
 }
 
 
 
-void DemoFeaturePlugin::addScreen( QScreen* screen )
+void DemoFeaturePlugin::addScreen(QScreen* screen)
 {
 	m_screens = QGuiApplication::screens();
 
-	const auto screenIndex = m_screens.indexOf( screen ) + 1;
-	if( m_screenSelection > ScreenSelectionNone &&
-		screenIndex <= m_screenSelection )
+	const auto screenIndex = m_screens.indexOf(screen) + 1;
+	if (m_screenSelection > ScreenSelectionNone &&
+		screenIndex <= m_screenSelection)
 	{
 		m_screenSelection++;
 	}
@@ -489,17 +484,17 @@ void DemoFeaturePlugin::addScreen( QScreen* screen )
 
 
 
-void DemoFeaturePlugin::removeScreen( QScreen* screen )
+void DemoFeaturePlugin::removeScreen(QScreen* screen)
 {
-	const auto screenIndex = m_screens.indexOf( screen ) + 1;
-	if( screenIndex == m_screenSelection )
+	const auto screenIndex = m_screens.indexOf(screen) + 1;
+	if (screenIndex == m_screenSelection)
 	{
 		m_screenSelection = ScreenSelectionNone;
 	}
 
 	m_screens = QGuiApplication::screens();
 
-	m_screenSelection = qMin( m_screenSelection, m_screens.size() );
+	m_screenSelection = qMin(m_screenSelection, m_screens.size());
 
 	updateFeatures();
 }
@@ -510,44 +505,46 @@ void DemoFeaturePlugin::updateFeatures()
 {
 	m_screenSelectionFeatures.clear();
 
-	if( m_screens.size() > 1 )
+	if (m_screens.size() > 1)
 	{
-		m_screenSelectionFeatures.reserve( m_screens.size() + 1 );
+		m_screenSelectionFeatures.reserve(m_screens.size() + 1);
 
 		auto allScreensFlags = Feature::Flag::Option | Feature::Flag::Master;
-		if( m_screenSelection <= ScreenSelectionNone )
+		if (m_screenSelection <= ScreenSelectionNone)
 		{
 			allScreensFlags |= Feature::Flag::Checked;
 		}
 
-		m_screenSelectionFeatures.append( Feature{ QStringLiteral("DemoAllScreens"),
-												   allScreensFlags,
-												   Feature::Uid("2aca1e9f-25f9-4d0f-9729-01b03c80ab28"),
-												   m_demoFeature.uid(), tr("All screens"), {}, {}, {} } );
+		m_screenSelectionFeatures.append(Feature{QStringLiteral("DemoAllScreens"),
+												 allScreensFlags,
+												 Feature::Uid("2aca1e9f-25f9-4d0f-9729-01b03c80ab28"),
+												 m_demoFeature.uid(),
+												 tr("All screens"),
+												 {},
+												 {},
+												 {}});
 
 		int index = 1;
-		for( auto screen : std::as_const(m_screens) )
+		for (auto screen : std::as_const(m_screens))
 		{
-			const auto name = QStringLiteral( "DemoScreen%1" ).arg( index );
+			const auto name = QStringLiteral("DemoScreen%1").arg(index);
 			const auto screenName = VeyonCore::screenName(*screen, index);
 
 			auto flags = Feature::Flag::Option | Feature::Flag::Master;
-			if( index == m_screenSelection )
+			if (index == m_screenSelection)
 			{
 				flags |= Feature::Flag::Checked;
 			}
 
-			m_screenSelectionFeatures.append( Feature{ name, flags,
-													   Feature::Uid::createUuidV5( m_demoFeature.uid(), name ),
-													   m_demoFeature.uid(), screenName, {}, {}, {} } );
+			m_screenSelectionFeatures.append(Feature{name, flags, Feature::Uid::createUuidV5(m_demoFeature.uid(), name), m_demoFeature.uid(), screenName, {}, {}, {}});
 			++index;
 		}
 	}
 
 	m_features = m_staticFeatures + m_screenSelectionFeatures;
 
-	const auto master = VeyonCore::instance()->findChild<VeyonMasterInterface *>();
-	if( master )
+	const auto master = VeyonCore::instance()->findChild<VeyonMasterInterface*>();
+	if (master)
 	{
 		master->reloadSubFeatures();
 	}
@@ -555,25 +552,24 @@ void DemoFeaturePlugin::updateFeatures()
 
 
 
-
 QRect DemoFeaturePlugin::viewportFromScreenSelection() const
 {
-	if( m_screenSelection <= ScreenSelectionNone )
+	if (m_screenSelection <= ScreenSelectionNone)
 	{
 		return {};
 	}
 
 	QPoint minimumScreenPosition{};
-	for( const auto* screen : m_screens )
+	for (const auto* screen : m_screens)
 	{
-		minimumScreenPosition.setX( qMin( minimumScreenPosition.x(), screen->geometry().x() ) );
-		minimumScreenPosition.setY( qMin( minimumScreenPosition.y(), screen->geometry().y() ) );
+		minimumScreenPosition.setX(qMin(minimumScreenPosition.x(), screen->geometry().x()));
+		minimumScreenPosition.setY(qMin(minimumScreenPosition.y(), screen->geometry().y()));
 	}
 
-	const auto screen = m_screens.value( m_screenSelection - 1 );
-	if( screen )
+	const auto screen = m_screens.value(m_screenSelection - 1);
+	if (screen)
 	{
-		return screen->geometry().translated( -minimumScreenPosition );
+		return screen->geometry().translated(-minimumScreenPosition);
 	}
 
 	return {};
@@ -583,87 +579,91 @@ QRect DemoFeaturePlugin::viewportFromScreenSelection() const
 
 void DemoFeaturePlugin::controlDemoServer()
 {
-	if( m_demoServerControlTimer.isActive() )
+	if (m_demoServerControlTimer.isActive())
 	{
-		const auto demoServerPort = m_demoServerArguments.value( argToString(Argument::DemoServerPort),
-																 VeyonCore::config().demoServerPort() + VeyonCore::sessionId() ).toInt();
-		const auto vncServerPortOffset = m_demoServerArguments.value( argToString(Argument::VncServerPortOffset),
-																	  VeyonCore::sessionId() ).toInt();
-		const auto demoAccessToken = m_demoServerArguments.value( argToString(Argument::DemoAccessToken),
-																  m_demoAccessToken.toByteArray() ).toByteArray();
+		const auto demoServerPort = m_demoServerArguments.value(argToString(Argument::DemoServerPort),
+																VeyonCore::config().demoServerPort() + VeyonCore::sessionId())
+										.toInt();
+		const auto vncServerPortOffset = m_demoServerArguments.value(argToString(Argument::VncServerPortOffset),
+																	 VeyonCore::sessionId())
+											 .toInt();
+		const auto demoAccessToken = m_demoServerArguments.value(argToString(Argument::DemoAccessToken),
+																 m_demoAccessToken.toByteArray())
+										 .toByteArray();
 
 		sendFeatureMessage(FeatureMessage{m_demoServerFeature.uid(), FeatureCommand::StartDemoServer}
-						   .addArgument( Argument::DemoAccessToken, demoAccessToken )
-						   .addArgument( Argument::VncServerPortOffset, vncServerPortOffset )
-						   .addArgument( Argument::DemoServerPort, demoServerPort ),
-						   m_demoServerControlInterfaces );
+							   .addArgument(Argument::DemoAccessToken, demoAccessToken)
+							   .addArgument(Argument::VncServerPortOffset, vncServerPortOffset)
+							   .addArgument(Argument::DemoServerPort, demoServerPort),
+						   m_demoServerControlInterfaces);
 	}
 	else
 	{
 		sendFeatureMessage(FeatureMessage{m_demoServerFeature.uid(), FeatureCommand::StopDemoServer},
-						   m_demoServerControlInterfaces );
+						   m_demoServerControlInterfaces);
 	}
 }
 
 
 
-bool DemoFeaturePlugin::controlDemoClient( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
-										  const ComputerControlInterfaceList& computerControlInterfaces )
+bool DemoFeaturePlugin::controlDemoClient(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+										  const ComputerControlInterfaceList& computerControlInterfaces)
 {
-	if( operation == Operation::Start )
+	if (operation == Operation::Start)
 	{
-		const auto demoAccessToken = arguments.value( argToString(Argument::DemoAccessToken),
-													  m_demoAccessToken.toByteArray() ).toByteArray();
-		const auto demoServerHost = arguments.value( argToString(Argument::DemoServerHost) ).toString();
-		const auto demoServerPort = arguments.value( argToString(Argument::DemoServerPort),
-													 VeyonCore::config().demoServerPort() + VeyonCore::sessionId() ).toInt();
+		const auto demoAccessToken = arguments.value(argToString(Argument::DemoAccessToken),
+													 m_demoAccessToken.toByteArray())
+										 .toByteArray();
+		const auto demoServerHost = arguments.value(argToString(Argument::DemoServerHost)).toString();
+		const auto demoServerPort = arguments.value(argToString(Argument::DemoServerPort),
+													VeyonCore::config().demoServerPort() + VeyonCore::sessionId())
+										.toInt();
 
 		QRect viewport{
-			arguments.value( argToString(Argument::ViewportX) ).toInt(),
-			arguments.value( argToString(Argument::ViewportY) ).toInt(),
-			arguments.value( argToString(Argument::ViewportWidth) ).toInt(),
-			arguments.value( argToString(Argument::ViewportHeight) ).toInt()
-		};
+			arguments.value(argToString(Argument::ViewportX)).toInt(),
+			arguments.value(argToString(Argument::ViewportY)).toInt(),
+			arguments.value(argToString(Argument::ViewportWidth)).toInt(),
+			arguments.value(argToString(Argument::ViewportHeight)).toInt()};
 
-		if( viewport.isNull() || viewport.isEmpty() )
+		if (viewport.isNull() || viewport.isEmpty())
 		{
 			viewport = viewportFromScreenSelection();
 		}
 
 		const auto disableUpdates = m_configuration.slowDownThumbnailUpdates();
 
-		for( const auto& computerControlInterface : computerControlInterfaces )
+		for (const auto& computerControlInterface : computerControlInterfaces)
 		{
 			m_demoServerClients += computerControlInterface;
 
-			if( disableUpdates )
+			if (disableUpdates)
 			{
-				computerControlInterface->setUpdateMode( ComputerControlInterface::UpdateMode::Disabled );
+				computerControlInterface->setUpdateMode(ComputerControlInterface::UpdateMode::Disabled);
 			}
 		}
 
 		sendFeatureMessage(FeatureMessage{featureUid, FeatureCommand::StartDemoClient}
-								.addArgument( Argument::DemoAccessToken, demoAccessToken )
-								.addArgument( Argument::DemoServerHost, demoServerHost )
-								.addArgument( Argument::DemoServerPort, demoServerPort )
-								.addArgument( Argument::Viewport, viewport ),
-							computerControlInterfaces );
+							   .addArgument(Argument::DemoAccessToken, demoAccessToken)
+							   .addArgument(Argument::DemoServerHost, demoServerHost)
+							   .addArgument(Argument::DemoServerPort, demoServerPort)
+							   .addArgument(Argument::Viewport, viewport),
+						   computerControlInterfaces);
 
 		return true;
 	}
 
-	if( operation == Operation::Stop )
+	if (operation == Operation::Stop)
 	{
 		const auto enableUpdates = m_configuration.slowDownThumbnailUpdates();
 
-		for( const auto& computerControlInterface : computerControlInterfaces )
+		for (const auto& computerControlInterface : computerControlInterfaces)
 		{
-			m_demoServerClients.removeAll( computerControlInterface );
+			m_demoServerClients.removeAll(computerControlInterface);
 
 			if (enableUpdates &&
 				computerControlInterface->updateMode() == ComputerControlInterface::UpdateMode::Disabled)
 			{
-				computerControlInterface->setUpdateMode( ComputerControlInterface::UpdateMode::Monitoring );
+				computerControlInterface->setUpdateMode(ComputerControlInterface::UpdateMode::Monitoring);
 			}
 		}
 

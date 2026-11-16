@@ -34,7 +34,7 @@ QString LinuxServiceFunctions::veyonServiceName() const
 
 
 
-bool LinuxServiceFunctions::isRegistered( const QString& name )
+bool LinuxServiceFunctions::isRegistered(const QString& name)
 {
 	Q_UNUSED(name);
 
@@ -45,29 +45,29 @@ bool LinuxServiceFunctions::isRegistered( const QString& name )
 
 
 
-bool LinuxServiceFunctions::isRunning( const QString& name )
+bool LinuxServiceFunctions::isRunning(const QString& name)
 {
-	return LinuxCoreFunctions::systemctl( { QStringLiteral("status"), name } ) == 0;
+	return LinuxCoreFunctions::systemctl({QStringLiteral("status"), name}) == 0;
 }
 
 
 
-bool LinuxServiceFunctions::start( const QString& name )
+bool LinuxServiceFunctions::start(const QString& name)
 {
-	return LinuxCoreFunctions::systemctl( { QStringLiteral("start"), name } ) == 0;
+	return LinuxCoreFunctions::systemctl({QStringLiteral("start"), name}) == 0;
 }
 
 
 
-bool LinuxServiceFunctions::stop( const QString& name )
+bool LinuxServiceFunctions::stop(const QString& name)
 {
-	return LinuxCoreFunctions::systemctl( { QStringLiteral("stop"), name } ) == 0;
+	return LinuxCoreFunctions::systemctl({QStringLiteral("stop"), name}) == 0;
 }
 
 
 
-bool LinuxServiceFunctions::install( const QString& name, const QString& filePath,
-									 StartMode startMode, const QString& displayName )
+bool LinuxServiceFunctions::install(const QString& name, const QString& filePath,
+									StartMode startMode, const QString& displayName)
 {
 	Q_UNUSED(name)
 	Q_UNUSED(filePath)
@@ -81,7 +81,7 @@ bool LinuxServiceFunctions::install( const QString& name, const QString& filePat
 
 
 
-bool LinuxServiceFunctions::uninstall( const QString& name )
+bool LinuxServiceFunctions::uninstall(const QString& name)
 {
 	Q_UNUSED(name)
 
@@ -92,7 +92,7 @@ bool LinuxServiceFunctions::uninstall( const QString& name )
 
 
 
-bool LinuxServiceFunctions::setStartMode( const QString& name, PlatformServiceFunctions::StartMode startMode )
+bool LinuxServiceFunctions::setStartMode(const QString& name, PlatformServiceFunctions::StartMode startMode)
 {
 	if (LinuxCoreFunctions::isSystemdManaged() == false)
 	{
@@ -100,17 +100,17 @@ bool LinuxServiceFunctions::setStartMode( const QString& name, PlatformServiceFu
 		return true;
 	}
 
-	if( startMode == StartMode::Auto )
+	if (startMode == StartMode::Auto)
 	{
-		return LinuxCoreFunctions::systemctl( { QStringLiteral("enable"), name } ) == 0;
+		return LinuxCoreFunctions::systemctl({QStringLiteral("enable"), name}) == 0;
 	}
 
-	return LinuxCoreFunctions::systemctl( { QStringLiteral("disable"), name } ) == 0;
+	return LinuxCoreFunctions::systemctl({QStringLiteral("disable"), name}) == 0;
 }
 
 
 
-bool LinuxServiceFunctions::runAsService( const QString& name, const ServiceEntryPoint& serviceEntryPoint )
+bool LinuxServiceFunctions::runAsService(const QString& name, const ServiceEntryPoint& serviceEntryPoint)
 {
 	Q_UNUSED(name);
 

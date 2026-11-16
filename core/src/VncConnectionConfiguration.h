@@ -30,8 +30,7 @@ class VEYON_CORE_EXPORT VncConnectionConfiguration
 {
 	Q_GADGET
 public:
-	enum class Quality
-	{
+	enum class Quality {
 		Highest,
 		High,
 		Medium,
@@ -52,5 +51,4 @@ public:
 	static constexpr int DefaultSocketKeepaliveIdleTime = 1000;
 	static constexpr int DefaultSocketKeepaliveInterval = 500;
 	static constexpr int DefaultSocketKeepaliveCount = 5;
-
-} ;
+};

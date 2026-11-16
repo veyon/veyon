@@ -85,9 +85,9 @@ public:
 	};
 	Q_ENUM(AspectRatio)
 
-	explicit ComputerListModel( QObject* parent = nullptr );
+	explicit ComputerListModel(QObject* parent = nullptr);
 
-	Qt::ItemFlags flags( const QModelIndex& index ) const override;
+	Qt::ItemFlags flags(const QModelIndex& index) const override;
 
 	Qt::DropActions supportedDragActions() const override;
 	Qt::DropActions supportedDropActions() const override;
@@ -129,5 +129,4 @@ private:
 	VisibilityMode m_visibilityMode;
 	SortOrder m_sortOrder;
 	AspectRatio m_aspectRatio;
-
 };

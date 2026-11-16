@@ -31,8 +31,7 @@
 class VEYON_CORE_EXPORT TranslationLoader
 {
 public:
-	TranslationLoader( const QString& resourceName );
+	TranslationLoader(const QString& resourceName);
 
-	static bool load( const QString& resourceName );
-
+	static bool load(const QString& resourceName);
 };

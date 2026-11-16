@@ -22,17 +22,17 @@
  *
  */
 
+#include "Configuration/UiMapping.h"
 #include "FileSystemBrowser.h"
 #include "FileTransferConfiguration.h"
 #include "FileTransferConfigurationPage.h"
-#include "Configuration/UiMapping.h"
 
 #include "ui_FileTransferConfigurationPage.h"
 
-FileTransferConfigurationPage::FileTransferConfigurationPage( FileTransferConfiguration& configuration, QWidget* parent ) :
-	ConfigurationPage( parent ),
-	ui( new Ui::FileTransferConfigurationPage ),
-	m_configuration( configuration )
+FileTransferConfigurationPage::FileTransferConfigurationPage(FileTransferConfiguration& configuration, QWidget* parent) :
+	ConfigurationPage(parent),
+	ui(new Ui::FileTransferConfigurationPage),
+	m_configuration(configuration)
 {
 	ui->setupUi(this);
 

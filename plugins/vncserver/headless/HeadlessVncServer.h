@@ -24,9 +24,9 @@
 
 #pragma once
 
+#include "HeadlessVncConfiguration.h"
 #include "PluginInterface.h"
 #include "VncServerPluginInterface.h"
-#include "HeadlessVncConfiguration.h"
 
 struct HeadlessVncScreen;
 
@@ -36,36 +36,36 @@ class HeadlessVncServer : public QObject, VncServerPluginInterface, PluginInterf
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.HeadlessVncServer")
 	Q_INTERFACES(PluginInterface VncServerPluginInterface)
 public:
-	explicit HeadlessVncServer( QObject* parent = nullptr );
+	explicit HeadlessVncServer(QObject* parent = nullptr);
 
 	Plugin::Uid uid() const override
 	{
-		return Plugin::Uid{ QStringLiteral("f626f759-7691-45c0-bd4a-37171d98d219") };
+		return Plugin::Uid{QStringLiteral("f626f759-7691-45c0-bd4a-37171d98d219")};
 	}
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 0 );
+		return QVersionNumber(1, 0);
 	}
 
 	QString name() const override
 	{
-		return QStringLiteral( "HeadlessVncServer" );
+		return QStringLiteral("HeadlessVncServer");
 	}
 
 	QString description() const override
 	{
-		return tr( "Headless VNC server" );
+		return tr("Headless VNC server");
 	}
 
 	QString vendor() const override
 	{
-		return QStringLiteral( "Veyon Community" );
+		return QStringLiteral("Veyon Community");
 	}
 
 	QString copyright() const override
 	{
-		return QStringLiteral( "Tobias Junghans" );
+		return QStringLiteral("Tobias Junghans");
 	}
 
 	Plugin::Flags flags() const override
@@ -85,7 +85,7 @@ public:
 
 	void prepareServer() override;
 
-	bool runServer( int serverPort, const Password& password ) override;
+	bool runServer(int serverPort, const Password& password) override;
 
 	int configuredServerPort() override
 	{
@@ -102,15 +102,14 @@ private:
 	static constexpr auto DefaultFramebufferHeight = 480;
 	static constexpr auto DefaultSleepTime = 25;
 
-	bool initScreen( HeadlessVncScreen* screen );
-	bool initVncServer( int serverPort, const VncServerPluginInterface::Password& password,
-						HeadlessVncScreen* screen );
+	bool initScreen(HeadlessVncScreen* screen);
+	bool initVncServer(int serverPort, const VncServerPluginInterface::Password& password,
+					   HeadlessVncScreen* screen);
 
-	bool handleScreenChanges( HeadlessVncScreen* screen );
+	bool handleScreenChanges(HeadlessVncScreen* screen);
 
 	static void rfbLogDebug(const char* format, ...);
 	static void rfbLogNone(const char* format, ...);
 
 	HeadlessVncConfiguration m_configuration;
-
 };

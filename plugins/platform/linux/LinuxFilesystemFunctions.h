@@ -35,12 +35,11 @@ public:
 	QString globalAppDataPath() const override;
 	QString globalTempPath() const override;
 
-	QString fileOwnerGroup( const QString& filePath ) override;
-	bool setFileOwnerGroup( const QString& filePath, const QString& ownerGroup ) override;
-	bool setFileOwnerGroupPermissions( const QString& filePath, QFile::Permissions permissions ) override;
+	QString fileOwnerGroup(const QString& filePath) override;
+	bool setFileOwnerGroup(const QString& filePath, const QString& ownerGroup) override;
+	bool setFileOwnerGroupPermissions(const QString& filePath, QFile::Permissions permissions) override;
 
-	bool openFileSafely( QFile* file, QFile::OpenMode openMode, QFile::Permissions permissions ) override;
+	bool openFileSafely(QFile* file, QFile::OpenMode openMode, QFile::Permissions permissions) override;
 
 	PlatformCoreFunctions::ProcessId findFileLockingProcess(const QString& filePath) const override;
-
 };

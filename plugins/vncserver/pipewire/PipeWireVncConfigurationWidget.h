@@ -42,7 +42,6 @@ public:
 	~PipeWireVncConfigurationWidget() override;
 
 private:
-	Ui::PipeWireVncConfigurationWidget *ui;
+	Ui::PipeWireVncConfigurationWidget* ui;
 	PipeWireVncConfiguration& m_configuration;
-
 };

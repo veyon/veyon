@@ -47,9 +47,8 @@ private:
 	void accept() override;
 	void reject() override;
 
-	Ui::FileCollectDialog *ui;
+	Ui::FileCollectDialog* ui;
 
 	FileCollectController* m_controller;
 	FileCollectTreeModel* m_model;
-
 };

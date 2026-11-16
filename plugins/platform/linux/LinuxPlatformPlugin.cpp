@@ -22,18 +22,18 @@
  *
  */
 
+#include "LinuxPlatformConfiguration.h"
+#include "LinuxPlatformConfigurationPage.h"
+#include "LinuxPlatformPlugin.h"
+
 #include <csignal>
 #include <execinfo.h>
 
-#include "LinuxPlatformPlugin.h"
-#include "LinuxPlatformConfiguration.h"
-#include "LinuxPlatformConfigurationPage.h"
-
-LinuxPlatformPlugin::LinuxPlatformPlugin( QObject* parent ) :
-	QObject( parent )
+LinuxPlatformPlugin::LinuxPlatformPlugin(QObject* parent) :
+	QObject(parent)
 {
 	// make sure to load global config from default config dirs independent of environment variables
-	qunsetenv( "XDG_CONFIG_DIRS" );
+	qunsetenv("XDG_CONFIG_DIRS");
 
 	// don't abort with SIGPIPE when writing to closed sockets e.g. while shutting down VncConnection
 	::signal(SIGPIPE, SIG_IGN);
@@ -83,7 +83,7 @@ QString LinuxPlatformPlugin::formattedBacktraceString()
 	list.reserve(frameCount);
 	for (int i = 1; i < frameCount; i++)
 	{
-		list.append(QStringLiteral("\t %1").arg( QLatin1String(humanReadableFrames[i])));
+		list.append(QStringLiteral("\t %1").arg(QLatin1String(humanReadableFrames[i])));
 	}
 
 	free(humanReadableFrames);

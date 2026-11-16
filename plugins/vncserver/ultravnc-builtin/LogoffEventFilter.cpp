@@ -28,18 +28,18 @@
 #include "LogoffEventFilter.h"
 
 LogoffEventFilter::LogoffEventFilter() :
-	m_shutdownEventHandle( OpenEvent( EVENT_ALL_ACCESS, false, "Global\\SessionEventVeyon" ) )
+	m_shutdownEventHandle(OpenEvent(EVENT_ALL_ACCESS, false, "Global\\SessionEventVeyon"))
 {
-	if( m_shutdownEventHandle == nullptr )
+	if (m_shutdownEventHandle == nullptr)
 	{
 		// no global event available already as we're not running under the
 		// control of the veyon service supervisor?
-		if( GetLastError() == ERROR_FILE_NOT_FOUND )
+		if (GetLastError() == ERROR_FILE_NOT_FOUND)
 		{
 			vWarning() << "Creating session event";
 			// then create our own event as otherwise the VNC server main loop
 			// will eat 100% CPU due to failing WaitForSingleObject() calls
-			m_shutdownEventHandle = CreateEvent( nullptr, false, false, "Global\\SessionEventVeyon" );
+			m_shutdownEventHandle = CreateEvent(nullptr, false, false, "Global\\SessionEventVeyon");
 		}
 		else
 		{
@@ -47,7 +47,7 @@ LogoffEventFilter::LogoffEventFilter() :
 		}
 	}
 
-	QCoreApplication::instance()->installNativeEventFilter( this );
+	QCoreApplication::instance()->installNativeEventFilter(this);
 }
 
 
@@ -62,14 +62,14 @@ bool LogoffEventFilter::nativeEventFilter(const QByteArray& eventType, void* mes
 		return false;
 	}
 
-	const auto winMsg = reinterpret_cast<MSG *>( message )->message;
+	const auto winMsg = reinterpret_cast<MSG*>(message)->message;
 
 	if (winMsg == WM_ENDSESSION)
 	{
 		vInfo() << "Got WM_ENDSESSION - initiating server shutdown";
 
 		// tell UltraVNC server to quit
-		SetEvent( m_shutdownEventHandle );
+		SetEvent(m_shutdownEventHandle);
 	}
 
 	return false;

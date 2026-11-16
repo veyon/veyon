@@ -30,11 +30,11 @@
 #include "ShellCommands.h"
 
 
-ShellCommands::ShellCommands( QObject* parent ) :
-	QObject( parent ),
-	m_commands( {
-		{ QStringLiteral("run"), tr( "Run command file" ) },
-		} )
+ShellCommands::ShellCommands(QObject* parent) :
+	QObject(parent),
+	m_commands({
+		{QStringLiteral("run"), tr("Run command file")},
+	})
 {
 }
 
@@ -47,25 +47,25 @@ QStringList ShellCommands::commands() const
 
 
 
-QString ShellCommands::commandHelp( const QString& command ) const
+QString ShellCommands::commandHelp(const QString& command) const
 {
-	return m_commands.value( command );
+	return m_commands.value(command);
 }
 
 
 
 CommandLinePluginInterface::RunResult ShellCommands::handle_main()
 {
-	QTextStream stream( stdin );
+	QTextStream stream(stdin);
 
-	while( true )
+	while (true)
 	{
 		printf("VEYON> ");
 
 		QString line;
-		if( stream.readLineInto( &line ) && line != QLatin1String("exit") )
+		if (stream.readLineInto(&line) && line != QLatin1String("exit"))
 		{
-			runCommand( line );
+			runCommand(line);
 		}
 		else
 		{
@@ -78,19 +78,19 @@ CommandLinePluginInterface::RunResult ShellCommands::handle_main()
 
 
 
-CommandLinePluginInterface::RunResult ShellCommands::handle_run( const QStringList& arguments )
+CommandLinePluginInterface::RunResult ShellCommands::handle_run(const QStringList& arguments)
 {
-	QFile scriptFile( arguments.value( 0 ) );
+	QFile scriptFile(arguments.value(0));
 	if (scriptFile.exists() == false ||
 		scriptFile.open(QFile::ReadOnly | QFile::Text) == false)
 	{
-		CommandLineIO::error( tr( "File \"%1\" does not exist!" ).arg( scriptFile.fileName() ) );
+		CommandLineIO::error(tr("File \"%1\" does not exist!").arg(scriptFile.fileName()));
 		return Failed;
 	}
 
-	while( scriptFile.canReadLine() )
+	while (scriptFile.canReadLine())
 	{
-		runCommand( QString::fromUtf8( scriptFile.readLine() ) );
+		runCommand(QString::fromUtf8(scriptFile.readLine()));
 	}
 
 	return Successful;
@@ -98,9 +98,9 @@ CommandLinePluginInterface::RunResult ShellCommands::handle_run( const QStringLi
 
 
 
-void ShellCommands::runCommand( const QString& command )
+void ShellCommands::runCommand(const QString& command)
 {
 	// ADDED: splitting arguments containing spaces
-	QProcess::execute( QCoreApplication::applicationFilePath(), 
-	QProcess::splitCommand(command));
+	QProcess::execute(QCoreApplication::applicationFilePath(),
+					  QProcess::splitCommand(command));
 }

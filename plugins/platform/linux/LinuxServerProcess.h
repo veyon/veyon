@@ -72,5 +72,4 @@ private:
 	int m_sessionId;
 	const LinuxSessionFunctions::Type m_sessionType;
 	LinuxUserFunctions::UserId m_sessionUserId{LinuxUserFunctions::InvalidUserId};
-
 };

@@ -36,9 +36,10 @@ class VEYON_CORE_EXPORT VeyonConnection : public QObject
 {
 	Q_OBJECT
 public:
-	using Instances = struct {
+	using Instances = struct
+	{
 		QMutex mutex;
-		QHash<QThread *, VeyonConnection *> connections;
+		QHash<QThread*, VeyonConnection*> connections;
 	};
 
 	VeyonConnection();
@@ -60,7 +61,7 @@ public:
 		return m_vncConnection && m_vncConnection->isConnected();
 	}
 
-	void setVeyonAuthType( RfbVeyonAuth::Type authType )
+	void setVeyonAuthType(RfbVeyonAuth::Type authType)
 	{
 		m_veyonAuthType = authType;
 	}
@@ -70,20 +71,20 @@ public:
 		return m_veyonAuthType;
 	}
 
-	void setAuthenticationProxy( AuthenticationProxy* authenticationProxy )
+	void setAuthenticationProxy(AuthenticationProxy* authenticationProxy)
 	{
 		m_authenticationProxy = authenticationProxy;
 	}
 
 	void sendFeatureMessage(const FeatureMessage& featureMessage);
 
-	bool handleServerMessage( rfbClient* client, uint8_t msg );
+	bool handleServerMessage(rfbClient* client, uint8_t msg);
 
 	static constexpr auto VeyonConnectionTag = 0xFE14A11;
 
 
 Q_SIGNALS:
-	void featureMessageReceived( const FeatureMessage& );
+	void featureMessageReceived(const FeatureMessage&);
 
 private:
 	~VeyonConnection() override;
@@ -92,8 +93,8 @@ private:
 	void unregisterConnection();
 
 	// authentication
-	static int8_t handleSecTypeVeyon( rfbClient* client, uint32_t authScheme );
-	static void hookPrepareAuthentication( rfbClient* client );
+	static int8_t handleSecTypeVeyon(rfbClient* client, uint32_t authScheme);
+	static void hookPrepareAuthentication(rfbClient* client);
 
 	AuthenticationCredentials authenticationCredentials() const;
 
@@ -103,5 +104,4 @@ private:
 
 	AuthenticationProxy* m_authenticationProxy{nullptr};
 	QString m_accessControlMessage;
-
-} ;
+};

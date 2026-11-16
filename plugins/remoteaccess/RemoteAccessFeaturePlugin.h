@@ -24,9 +24,9 @@
 
 #pragma once
 
+#include "CommandLinePluginInterface.h"
 #include "Computer.h"
 #include "FeatureProviderInterface.h"
-#include "CommandLinePluginInterface.h"
 
 class VncView;
 
@@ -36,25 +36,24 @@ class RemoteAccessFeaturePlugin : public QObject, CommandLinePluginInterface, Fe
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.RemoteAccess")
 	Q_INTERFACES(PluginInterface FeatureProviderInterface CommandLinePluginInterface)
 public:
-	enum class Argument
-	{
+	enum class Argument {
 		HostName,
 		ClipboardText,
 		ClipboardImage
 	};
 	Q_ENUM(Argument)
 
-	explicit RemoteAccessFeaturePlugin( QObject* parent = nullptr );
+	explicit RemoteAccessFeaturePlugin(QObject* parent = nullptr);
 	~RemoteAccessFeaturePlugin() override = default;
 
 	Plugin::Uid uid() const override
 	{
-		return Plugin::Uid{ QStringLiteral("387a0c43-1355-4ff6-9e1f-d098e9ce5127") };
+		return Plugin::Uid{QStringLiteral("387a0c43-1355-4ff6-9e1f-d098e9ce5127")};
 	}
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 1 );
+		return QVersionNumber(1, 1);
 	}
 
 	QString name() const override
@@ -64,7 +63,7 @@ public:
 
 	QString description() const override
 	{
-		return tr( "Remote view or control a computer" );
+		return tr("Remote view or control a computer");
 	}
 
 	QString vendor() const override
@@ -79,11 +78,11 @@ public:
 
 	const FeatureList& featureList() const override;
 
-	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
-						const ComputerControlInterfaceList& computerControlInterfaces ) override;
+	bool controlFeature(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+						const ComputerControlInterfaceList& computerControlInterfaces) override;
 
-	bool startFeature( VeyonMasterInterface& master, const Feature& feature,
-					   const ComputerControlInterfaceList& computerControlInterfaces ) override;
+	bool startFeature(VeyonMasterInterface& master, const Feature& feature,
+					  const ComputerControlInterfaceList& computerControlInterfaces) override;
 
 	bool handleFeatureMessage(ComputerControlInterface::Pointer computerControlInterface,
 							  const FeatureMessage& message) override;
@@ -98,7 +97,7 @@ public:
 
 	QString commandLineModuleName() const override
 	{
-		return QStringLiteral( "remoteaccess" );
+		return QStringLiteral("remoteaccess");
 	}
 
 	QString commandLineModuleHelp() const override
@@ -108,12 +107,12 @@ public:
 
 	QStringList commands() const override;
 
-	QString commandHelp( const QString& command ) const override;
+	QString commandHelp(const QString& command) const override;
 
 private Q_SLOTS:
-	CommandLinePluginInterface::RunResult handle_view( const QStringList& arguments );
-	CommandLinePluginInterface::RunResult handle_control( const QStringList& arguments );
-	CommandLinePluginInterface::RunResult handle_help( const QStringList& arguments );
+	CommandLinePluginInterface::RunResult handle_view(const QStringList& arguments);
+	CommandLinePluginInterface::RunResult handle_control(const QStringList& arguments);
+	CommandLinePluginInterface::RunResult handle_help(const QStringList& arguments);
 
 private:
 	static const char* clipboardDataVersionProperty()
@@ -129,7 +128,7 @@ private:
 	bool remoteViewEnabled() const;
 	bool remoteControlEnabled() const;
 	bool initAuthentication();
-	bool remoteAccess( const QString& hostAddress, bool viewOnly );
+	bool remoteAccess(const QString& hostAddress, bool viewOnly);
 	void createRemoteAccessWindow(const ComputerControlInterface::Pointer& computerControlInterface, bool viewOnly);
 
 	void storeClipboardData(FeatureMessage* message, const QString& text, const QImage& image);
@@ -151,6 +150,5 @@ private:
 	QString m_clipboardText;
 	QImage m_clipboardImage;
 
-	QList<QPair<QPointer<QObject>, VncView *> > m_vncViews{};
-
+	QList<QPair<QPointer<QObject>, VncView*>> m_vncViews{};
 };

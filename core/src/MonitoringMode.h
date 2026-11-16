@@ -34,8 +34,7 @@ class VEYON_CORE_EXPORT MonitoringMode : public QObject, FeatureProviderInterfac
 	Q_OBJECT
 	Q_INTERFACES(FeatureProviderInterface PluginInterface)
 public:
-	enum class Argument
-	{
+	enum class Argument {
 		UserLoginName,
 		UserFullName,
 		SessionId,
@@ -53,15 +52,14 @@ public:
 	};
 	Q_ENUM(Argument)
 
-	enum class GuestUserIdentityExtensionType
-	{
+	enum class GuestUserIdentityExtensionType {
 		None,
 		Prefix,
 		Suffix,
 	};
 	Q_ENUM(GuestUserIdentityExtensionType)
 
-	explicit MonitoringMode( QObject* parent = nullptr );
+	explicit MonitoringMode(QObject* parent = nullptr);
 
 	const Feature& feature() const
 	{
@@ -70,32 +68,32 @@ public:
 
 	Plugin::Uid uid() const override
 	{
-		return Plugin::Uid{ QStringLiteral("1a6a59b1-c7a1-43cc-bcab-c136a4d91be8") };
+		return Plugin::Uid{QStringLiteral("1a6a59b1-c7a1-43cc-bcab-c136a4d91be8")};
 	}
 
 	QVersionNumber version() const override
 	{
-		return QVersionNumber( 1, 2 );
+		return QVersionNumber(1, 2);
 	}
 
 	QString name() const override
 	{
-		return QStringLiteral( "MonitoringMode" );
+		return QStringLiteral("MonitoringMode");
 	}
 
 	QString description() const override
 	{
-		return tr( "Builtin monitoring mode" );
+		return tr("Builtin monitoring mode");
 	}
 
 	QString vendor() const override
 	{
-		return QStringLiteral( "Veyon Community" );
+		return QStringLiteral("Veyon Community");
 	}
 
 	QString copyright() const override
 	{
-		return QStringLiteral( "Tobias Junghans" );
+		return QStringLiteral("Tobias Junghans");
 	}
 
 	const FeatureList& featureList() const override
@@ -116,12 +114,12 @@ public:
 
 	void querySessionInfo(const ComputerControlInterfaceList& computerControlInterfaces);
 
-	void queryScreens( const ComputerControlInterfaceList& computerControlInterfaces );
+	void queryScreens(const ComputerControlInterfaceList& computerControlInterfaces);
 
 	void identifyUser(const ComputerControlInterfaceList& computerControlInterfaces);
 
-	bool controlFeature( Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
-						const ComputerControlInterfaceList& computerControlInterfaces ) override
+	bool controlFeature(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+						const ComputerControlInterfaceList& computerControlInterfaces) override
 	{
 		Q_UNUSED(featureUid)
 		Q_UNUSED(operation)
@@ -131,12 +129,12 @@ public:
 		return false;
 	}
 
-	bool handleFeatureMessage( ComputerControlInterface::Pointer computerControlInterface,
-							  const FeatureMessage& message ) override;
+	bool handleFeatureMessage(ComputerControlInterface::Pointer computerControlInterface,
+							  const FeatureMessage& message) override;
 
-	bool handleFeatureMessage( VeyonServerInterface& server,
-							   const MessageContext& messageContext,
-							   const FeatureMessage& message ) override;
+	bool handleFeatureMessage(VeyonServerInterface& server,
+							  const MessageContext& messageContext,
+							  const FeatureMessage& message) override;
 
 	void sendAsyncFeatureMessages(VeyonServerInterface& server, const MessageContext& messageContext) override;
 
@@ -178,8 +176,7 @@ private:
 
 	QString queryUserIdentity();
 
-	enum class FeatureCommand
-	{
+	enum class FeatureCommand {
 		Ping,
 		SetMinimumFramebufferUpdateInterval
 	};
@@ -198,8 +195,7 @@ private:
 	const FeatureList m_features = {
 		m_monitoringModeFeature, m_queryApplicationVersionFeature, m_queryActiveFeatures,
 		m_queryUserInfoFeature, m_querySessionInfoFeature, m_queryScreensFeature,
-		m_identifyUserFeature
-	};
+		m_identifyUserFeature};
 
 	int m_activeFeaturesVersion{0};
 	QStringList m_activeFeatures;
@@ -225,5 +221,4 @@ private:
 	QMap<QUuid, MessageContext> m_userIdentificationContexts;
 	GuestUserIdentityExtensionType m_guestUserIdentityExtensionType;
 	QString m_guestUserIdentityExtensionValue;
-
 };

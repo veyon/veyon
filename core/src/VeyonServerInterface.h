@@ -44,10 +44,9 @@ public:
 	virtual ~VeyonServerInterface() = default;
 
 	virtual FeatureWorkerManager& featureWorkerManager() = 0;
-	virtual bool sendFeatureMessageReply( const MessageContext& context, const FeatureMessage& reply ) = 0;
+	virtual bool sendFeatureMessageReply(const MessageContext& context, const FeatureMessage& reply) = 0;
 
 	virtual int vncServerBasePort() const = 0;
 
 	virtual void setMinimumFramebufferUpdateInterval(const MessageContext& context, int interval) = 0;
-
 };

@@ -29,42 +29,42 @@
 #include "ServiceDataManager.h"
 
 
-LogonHelper::LogonHelper( QObject* parent ) :
-	QObject( parent )
+LogonHelper::LogonHelper(QObject* parent) :
+	QObject(parent)
 {
-	connect( VeyonCore::instance(), &VeyonCore::applicationLoaded,
-			 this, &LogonHelper::checkPendingLogonTasks );
+	connect(VeyonCore::instance(), &VeyonCore::applicationLoaded,
+			this, &LogonHelper::checkPendingLogonTasks);
 }
 
 
 
-bool LogonHelper::prepare( const QString& username, const Password& password )
+bool LogonHelper::prepare(const QString& username, const Password& password)
 {
-	if( VeyonCore::platform().userFunctions().isAnyUserLoggedOn() )
+	if (VeyonCore::platform().userFunctions().isAnyUserLoggedOn())
 	{
 		vInfo() << "Skipping user logon as a user is already logged on";
 		return false;
 	}
 
-	return PersistentLogonCredentials::write( username, password );
+	return PersistentLogonCredentials::write(username, password);
 }
 
 
 
 void LogonHelper::checkPendingLogonTasks()
 {
-	if( VeyonCore::component() == VeyonCore::Component::Server &&
+	if (VeyonCore::component() == VeyonCore::Component::Server &&
 		ServiceDataManager::serviceDataTokenFromEnvironment().isEmpty() == false &&
-		VeyonCore::platform().userFunctions().isAnyUserLoggedOn() == false )
+		VeyonCore::platform().userFunctions().isAnyUserLoggedOn() == false)
 	{
 		vDebug() << "Reading logon credentials";
 		QString username;
 		Password password;
-		if( PersistentLogonCredentials::read( &username, &password ) )
+		if (PersistentLogonCredentials::read(&username, &password))
 		{
 			PersistentLogonCredentials::clear();
 
-			VeyonCore::platform().userFunctions().performLogon( username, password );
+			VeyonCore::platform().userFunctions().performLogon(username, password);
 		}
 	}
 }

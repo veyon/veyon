@@ -35,21 +35,21 @@ AuthenticationCredentials::AuthenticationCredentials() :
 
 
 
-AuthenticationCredentials::AuthenticationCredentials( const AuthenticationCredentials &other ) :
-	m_privateKey( other.privateKey() ),
-	m_authenticationKeyName( other.authenticationKeyName() ),
-	m_logonUsername( other.logonUsername() ),
-	m_logonPassword( other.logonPassword() ),
-	m_token( other.token() ),
-	m_internalVncServerPassword( other.internalVncServerPassword() )
+AuthenticationCredentials::AuthenticationCredentials(const AuthenticationCredentials& other) :
+	m_privateKey(other.privateKey()),
+	m_authenticationKeyName(other.authenticationKeyName()),
+	m_logonUsername(other.logonUsername()),
+	m_logonPassword(other.logonPassword()),
+	m_token(other.token()),
+	m_internalVncServerPassword(other.internalVncServerPassword())
 {
 }
 
 
 
-bool AuthenticationCredentials::hasCredentials( Type type ) const
+bool AuthenticationCredentials::hasCredentials(Type type) const
 {
-	switch( type )
+	switch (type)
 	{
 	case Type::PrivateKey:
 		return m_privateKey.isNull() == false;
@@ -64,30 +64,30 @@ bool AuthenticationCredentials::hasCredentials( Type type ) const
 		break;
 	}
 
-	vCritical() << "no valid credential type given:" << TypeFlags( type );
+	vCritical() << "no valid credential type given:" << TypeFlags(type);
 
 	return false;
 }
 
 
 
-bool AuthenticationCredentials::loadPrivateKey( const QString& privateKeyFile )
+bool AuthenticationCredentials::loadPrivateKey(const QString& privateKeyFile)
 {
 	vDebug() << privateKeyFile;
 
-	if( privateKeyFile.isEmpty() )
+	if (privateKeyFile.isEmpty())
 	{
 		return false;
 	}
 
-	return setPrivateKey( CryptoCore::PrivateKey( privateKeyFile ) );
+	return setPrivateKey(CryptoCore::PrivateKey(privateKeyFile));
 }
 
 
 
-bool AuthenticationCredentials::setPrivateKey( const CryptoCore::PrivateKey& privateKey )
+bool AuthenticationCredentials::setPrivateKey(const CryptoCore::PrivateKey& privateKey)
 {
-	if( privateKey.isNull() == false && privateKey.isPrivate() )
+	if (privateKey.isNull() == false && privateKey.isPrivate())
 	{
 		m_privateKey = privateKey;
 

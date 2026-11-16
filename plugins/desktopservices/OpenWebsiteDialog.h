@@ -24,13 +24,15 @@
 
 #include <QDialog>
 
-namespace Ui { class OpenWebsiteDialog; }
+namespace Ui {
+class OpenWebsiteDialog;
+}
 
 class OpenWebsiteDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	explicit OpenWebsiteDialog( QWidget *parent );
+	explicit OpenWebsiteDialog(QWidget* parent);
 	~OpenWebsiteDialog() override;
 
 	const QString& website() const
@@ -56,5 +58,4 @@ private:
 	QString m_website;
 	bool m_remember;
 	QString m_presetName;
-
-} ;
+};

@@ -31,13 +31,13 @@
 #include "VncViewWidget.h"
 
 
-DemoClient::DemoClient( const QString& host, int port, bool fullscreen, QRect viewport, QObject* parent ) :
-	QObject( parent ),
-	m_computerControlInterface( ComputerControlInterface::Pointer::create( Computer( {}, host, host ), port, this ) )
+DemoClient::DemoClient(const QString& host, int port, bool fullscreen, QRect viewport, QObject* parent) :
+	QObject(parent),
+	m_computerControlInterface(ComputerControlInterface::Pointer::create(Computer({}, host, host), port, this))
 {
-	if( fullscreen )
+	if (fullscreen)
 	{
-		m_toplevel = new LockWidget( LockWidget::NoBackground );
+		m_toplevel = new LockWidget(LockWidget::NoBackground);
 	}
 	else
 	{
@@ -47,14 +47,14 @@ DemoClient::DemoClient( const QString& host, int port, bool fullscreen, QRect vi
 	}
 
 	m_toplevel->setWindowTitle(tr("Veyon Demo"));
-	m_toplevel->setWindowIcon( QPixmap( QStringLiteral(":/core/icon64.png") ) );
-	m_toplevel->setAttribute( Qt::WA_DeleteOnClose, false );
+	m_toplevel->setWindowIcon(QPixmap(QStringLiteral(":/core/icon64.png")));
+	m_toplevel->setAttribute(Qt::WA_DeleteOnClose, false);
 	m_toplevel->installEventFilter(this);
 
-	m_vncView = new VncViewWidget( m_computerControlInterface, viewport, m_toplevel );
+	m_vncView = new VncViewWidget(m_computerControlInterface, viewport, m_toplevel);
 
-	connect( m_toplevel, &QObject::destroyed, this, &DemoClient::viewDestroyed );
-	connect( m_vncView, &VncViewWidget::sizeHintChanged, this, &DemoClient::resizeToplevelWidget );
+	connect(m_toplevel, &QObject::destroyed, this, &DemoClient::viewDestroyed);
+	connect(m_vncView, &VncViewWidget::sizeHintChanged, this, &DemoClient::resizeToplevelWidget);
 
 	if (fullscreen == false)
 	{
@@ -63,7 +63,7 @@ DemoClient::DemoClient( const QString& host, int port, bool fullscreen, QRect vi
 
 	resizeToplevelWidget();
 
-	VeyonCore::platform().coreFunctions().raiseWindow( m_toplevel, fullscreen );
+	VeyonCore::platform().coreFunctions().raiseWindow(m_toplevel, fullscreen);
 
 	VeyonCore::platform().coreFunctions().disableScreenSaver();
 }
@@ -92,10 +92,10 @@ bool DemoClient::eventFilter(QObject* watched, QEvent* event)
 
 
 
-void DemoClient::viewDestroyed( QObject* obj )
+void DemoClient::viewDestroyed(QObject* obj)
 {
 	// prevent double deletion of toplevel widget
-	if( m_toplevel == obj )
+	if (m_toplevel == obj)
 	{
 		m_toplevel = nullptr;
 	}
@@ -107,7 +107,7 @@ void DemoClient::viewDestroyed( QObject* obj )
 
 void DemoClient::resizeToplevelWidget()
 {
-	if( m_toplevel->windowState() & Qt::WindowFullScreen )
+	if (m_toplevel->windowState() & Qt::WindowFullScreen)
 	{
 		m_vncView->setFixedSize(m_toplevel->size());
 	}

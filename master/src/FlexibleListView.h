@@ -30,34 +30,34 @@ class FlexibleListView : public QListView
 {
 	Q_OBJECT
 public:
-	explicit FlexibleListView( QWidget *parent = nullptr );
+	explicit FlexibleListView(QWidget* parent = nullptr);
 	~FlexibleListView() override = default;
 
-	void setUidRole( int role );
+	void setUidRole(int role);
 
-	void setFlexible( bool enabled );
+	void setFlexible(bool enabled);
 	bool flexible() const;
 
 	void alignToGrid();
 
 	QJsonArray savePositions();
-	void loadPositions( const QJsonArray& data );
+	void loadPositions(const QJsonArray& data);
 
 public:
 	void doItemsLayout() override;
 
 protected:
-	bool viewportEvent( QEvent* event ) override;
-	void dataChanged( const QModelIndex& topLeft, const QModelIndex& bottomRight,
-					  const QVector<int>& roles ) override;
+	bool viewportEvent(QEvent* event) override;
+	void dataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight,
+					 const QVector<int>& roles) override;
 
 private:
 	void restorePositions();
 	void updatePositions();
 
 	QSizeF effectiveGridSize() const;
-	QPointF toGridPoint( QPoint pos ) const;
-	QPoint toItemPosition( QPointF gridPoint ) const;
+	QPointF toGridPoint(QPoint pos) const;
+	QPoint toItemPosition(QPointF gridPoint) const;
 
 	int m_uidRole;
 	QHash<QUuid, QPointF> m_positions;

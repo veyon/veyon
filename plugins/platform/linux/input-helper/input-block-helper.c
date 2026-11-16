@@ -32,7 +32,7 @@
 
 static volatile sig_atomic_t g_running = 1;
 static int g_blocked = 0;
-static int *g_fds = NULL;
+static int* g_fds = NULL;
 static int g_fd_count = 0;
 static pid_t g_allowed_pid = 0;
 
@@ -47,12 +47,12 @@ static void grab_devices(void)
 	if (g_blocked)
 		return;
 
-	DIR *dir = opendir("/dev/input");
+	DIR* dir = opendir("/dev/input");
 	if (dir == NULL)
 		return;
 
 	/* First pass: count event* entries */
-	struct dirent *entry;
+	struct dirent* entry;
 	int max_devices = 0;
 	while ((entry = readdir(dir)) != NULL)
 	{
@@ -66,7 +66,7 @@ static void grab_devices(void)
 		return;
 	}
 
-	g_fds = (int *)calloc((size_t)max_devices, sizeof(int));
+	g_fds = (int*)calloc((size_t)max_devices, sizeof(int));
 	if (g_fds == NULL)
 	{
 		closedir(dir);
@@ -87,7 +87,7 @@ static void grab_devices(void)
 		if (fd < 0)
 			continue;
 
-		if (ioctl(fd, EVIOCGRAB, (void *)1L) < 0)
+		if (ioctl(fd, EVIOCGRAB, (void*)1L) < 0)
 		{
 			close(fd);
 			continue;
@@ -108,7 +108,7 @@ static void release_devices(void)
 
 	for (int i = 0; i < g_fd_count; i++)
 	{
-		ioctl(g_fds[i], EVIOCGRAB, (void *)0L);
+		ioctl(g_fds[i], EVIOCGRAB, (void*)0L);
 		close(g_fds[i]);
 	}
 	free(g_fds);
@@ -133,7 +133,7 @@ static int create_socket(void)
 	addr.sun_family = AF_UNIX;
 	strncpy(addr.sun_path, SOCKET_PATH, sizeof(addr.sun_path) - 1);
 
-	if (bind(fd, (struct sockaddr *)&addr, sizeof(addr)) < 0)
+	if (bind(fd, (struct sockaddr*)&addr, sizeof(addr)) < 0)
 	{
 		perror("bind");
 		close(fd);
@@ -191,20 +191,20 @@ static void handle_client(int client_fd)
 	}
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
 	/* Must be invoked with effective UID root (setuid) */
 	if (geteuid() != 0)
 	{
 		fprintf(stderr, "input-block-helper: not running as root (euid=%d)\n",
-			geteuid());
+				geteuid());
 		return 1;
 	}
 
 	/* Parse the allowed client PID from command line */
 	if (argc >= 2)
 	{
-		char *endptr = NULL;
+		char* endptr = NULL;
 		const long pid = strtol(argv[1], &endptr, 10);
 		if (endptr != argv[1] && *endptr == '\0' && pid > 0)
 			g_allowed_pid = (pid_t)pid;
@@ -241,7 +241,7 @@ int main(int argc, char *argv[])
 		FD_ZERO(&fds);
 		FD_SET(server_fd, &fds);
 
-		struct timeval tv = { .tv_sec = 1, .tv_usec = 0 };
+		struct timeval tv = {.tv_sec = 1, .tv_usec = 0};
 		const int ret = select(server_fd + 1, &fds, NULL, NULL, &tv);
 		if (ret < 0)
 		{

@@ -28,11 +28,10 @@ public:
 
 private:
 	const RfbVeyonAuth::Type m_authMethod;
-
 };
 
 
-extern "C" int LLVMFuzzerTestOneInput(const char *data, size_t size)
+extern "C" int LLVMFuzzerTestOneInput(const char* data, size_t size)
 {
 	if (size < 5)
 	{
@@ -49,7 +48,7 @@ extern "C" int LLVMFuzzerTestOneInput(const char *data, size_t size)
 	client.setAuthState(VncServerClient::AuthState(data[2]));
 	client.setAccessControlState(VncServerClient::AccessControlState(data[3]));
 
-	buffer.write(QByteArray::fromRawData(data+4, size-4));
+	buffer.write(QByteArray::fromRawData(data + 4, size - 4));
 	buffer.seek(0);
 
 	protocol.read();

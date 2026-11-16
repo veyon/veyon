@@ -35,32 +35,31 @@ class WindowsUserFunctions : public PlatformUserFunctions
 public:
 	QString queryCurrentUserProperty(UserProperty property) override;
 
-	QStringList userGroups( bool queryDomainGroups ) override;
-	QStringList groupsOfUser( const QString& username, bool queryDomainGroups ) override;
+	QStringList userGroups(bool queryDomainGroups) override;
+	QStringList groupsOfUser(const QString& username, bool queryDomainGroups) override;
 	QString userGroupSecurityIdentifier(const QString& groupName) override;
 
 	bool isAnyUserLoggedOn() override;
 
-	bool prepareLogon( const QString& username, const Password& password ) override;
-	bool performLogon( const QString& username, const Password& password ) override;
+	bool prepareLogon(const QString& username, const Password& password) override;
+	bool performLogon(const QString& username, const Password& password) override;
 
 	void logoff() override;
 
-	bool authenticate( const QString& username, const Password& password ) override;
+	bool authenticate(const QString& username, const Password& password) override;
 
 
 private:
 	static QString currentUserLoginName();
 	static QString currentUserFullName();
 
-	static QString domainFromUsername( const QString& username );
-	static QString domainController( const QString& domainName = {} );
+	static QString domainFromUsername(const QString& username);
+	static QString domainController(const QString& domainName = {});
 	static QStringList domainUserGroups();
-	static QStringList domainGroupsOfUser( const QString& username );
+	static QStringList domainGroupsOfUser(const QString& username);
 
 	static QStringList localUserGroups();
-	static QStringList localGroupsOfUser( const QString& username );
+	static QStringList localGroupsOfUser(const QString& username);
 
 	LogonHelper m_logonHelper{};
-
 };

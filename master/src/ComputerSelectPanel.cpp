@@ -26,44 +26,44 @@
 #include <QKeyEvent>
 #include <QMessageBox>
 
-#include "ComputerSelectPanel.h"
 #include "ComputerManager.h"
-#include "NetworkObjectModel.h"
+#include "ComputerSelectPanel.h"
 #include "LocationDialog.h"
+#include "NetworkObjectModel.h"
 #include "VeyonConfiguration.h"
 
 #include "ui_ComputerSelectPanel.h"
 
 
-ComputerSelectPanel::ComputerSelectPanel( ComputerManager& computerManager, QWidget *parent ) :
+ComputerSelectPanel::ComputerSelectPanel(ComputerManager& computerManager, QWidget* parent) :
 	QWidget(parent),
 	ui(new Ui::ComputerSelectPanel),
-	m_computerManager( computerManager ),
+	m_computerManager(computerManager),
 	m_filterProxyModel(new QSortFilterProxyModel(this))
 {
-	m_filterProxyModel->setSourceModel( computerManager.computerTreeModel() );
-	m_filterProxyModel->setFilterCaseSensitivity( Qt::CaseInsensitive );
-	m_filterProxyModel->setFilterKeyColumn( -1 ); // filter all columns instead of first one only
+	m_filterProxyModel->setSourceModel(computerManager.computerTreeModel());
+	m_filterProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+	m_filterProxyModel->setFilterKeyColumn(-1); // filter all columns instead of first one only
 	m_filterProxyModel->setRecursiveFilteringEnabled(true);
 
 	ui->setupUi(this);
 
 	// capture keyboard events for tree view
-	ui->treeView->installEventFilter( this );
+	ui->treeView->installEventFilter(this);
 
 	// set computer tree model as data model
-	ui->treeView->setModel( m_filterProxyModel );
+	ui->treeView->setModel(m_filterProxyModel);
 
 	// set default sort order
-	ui->treeView->sortByColumn( 0, Qt::AscendingOrder );
+	ui->treeView->sortByColumn(0, Qt::AscendingOrder);
 
-	ui->addLocationButton->setVisible( VeyonCore::config().showCurrentLocationOnly() &&
-									   VeyonCore::config().allowAddingHiddenLocations() );
+	ui->addLocationButton->setVisible(VeyonCore::config().showCurrentLocationOnly() &&
+									  VeyonCore::config().allowAddingHiddenLocations());
 
-	ui->filterLineEdit->setHidden( VeyonCore::config().hideComputerFilter() );
+	ui->filterLineEdit->setHidden(VeyonCore::config().hideComputerFilter());
 
-	connect( ui->filterLineEdit, &QLineEdit::textChanged,
-			 this, &ComputerSelectPanel::updateFilter );
+	connect(ui->filterLineEdit, &QLineEdit::textChanged,
+			this, &ComputerSelectPanel::updateFilter);
 
 	if (VeyonCore::config().expandLocations())
 	{
@@ -82,28 +82,28 @@ ComputerSelectPanel::~ComputerSelectPanel()
 
 
 
-bool ComputerSelectPanel::eventFilter( QObject *watched, QEvent *event )
+bool ComputerSelectPanel::eventFilter(QObject* watched, QEvent* event)
 {
-	if( watched == ui->treeView &&
+	if (watched == ui->treeView &&
 		event->type() == QEvent::KeyPress &&
 		dynamic_cast<QKeyEvent*>(event) != nullptr &&
-		dynamic_cast<QKeyEvent*>(event)->key() == Qt::Key_Delete )
+		dynamic_cast<QKeyEvent*>(event)->key() == Qt::Key_Delete)
 	{
 		removeLocation();
 		return true;
 	}
 
-	return QWidget::eventFilter( watched, event );
+	return QWidget::eventFilter(watched, event);
 }
 
 
 
 void ComputerSelectPanel::addLocation()
 {
-	LocationDialog dialog( m_computerManager.networkObjectModel(), this );
-	if( dialog.exec() && dialog.selectedLocation().isEmpty() == false )
+	LocationDialog dialog(m_computerManager.networkObjectModel(), this);
+	if (dialog.exec() && dialog.selectedLocation().isEmpty() == false)
 	{
-		m_computerManager.addLocation( dialog.selectedLocation() );
+		m_computerManager.addLocation(dialog.selectedLocation());
 	}
 }
 
@@ -114,10 +114,10 @@ void ComputerSelectPanel::removeLocation()
 	auto model = m_computerManager.computerTreeModel();
 	const auto index = ui->treeView->selectionModel()->currentIndex();
 
-	if( index.isValid() &&
-		model->data( index, NetworkObjectModel::TypeRole ).value<NetworkObject::Type>() == NetworkObject::Type::Location )
+	if (index.isValid() &&
+		model->data(index, NetworkObjectModel::TypeRole).value<NetworkObject::Type>() == NetworkObject::Type::Location)
 	{
-		m_computerManager.removeLocation( model->data( index, NetworkObjectModel::NameRole ).toString() );
+		m_computerManager.removeLocation(model->data(index, NetworkObjectModel::NameRole).toString());
 	}
 }
 
@@ -125,15 +125,16 @@ void ComputerSelectPanel::removeLocation()
 
 void ComputerSelectPanel::saveList()
 {
-	QString fileName = QFileDialog::getSaveFileName( this, tr( "Select output filename" ),
-													 QDir::homePath(), tr( "CSV files (*.csv)" ) );
-	if( fileName.isEmpty() == false )
+	QString fileName = QFileDialog::getSaveFileName(this, tr("Select output filename"),
+													QDir::homePath(), tr("CSV files (*.csv)"));
+	if (fileName.isEmpty() == false)
 	{
-		if( m_computerManager.saveComputerAndUsersList( fileName ) == false )
+		if (m_computerManager.saveComputerAndUsersList(fileName) == false)
 		{
-			QMessageBox::critical( this, tr( "File error"),
-								   tr( "Could not write the computer and users list to %1! "
-									   "Please check the file access permissions." ).arg( fileName ) );
+			QMessageBox::critical(this, tr("File error"),
+								  tr("Could not write the computer and users list to %1! "
+									 "Please check the file access permissions.")
+									  .arg(fileName));
 		}
 	}
 }
@@ -145,37 +146,37 @@ void ComputerSelectPanel::updateFilter()
 	const auto filter = ui->filterLineEdit->text();
 	auto model = ui->treeView->model();
 
-	if( filter.isEmpty() )
+	if (filter.isEmpty())
 	{
-		m_filterProxyModel->setFilterWildcard( filter );
+		m_filterProxyModel->setFilterWildcard(filter);
 
-		for( int i = 0; i < model->rowCount(); ++i )
+		for (int i = 0; i < model->rowCount(); ++i)
 		{
-			const auto index = model->index( i, 0 );
-			ui->treeView->setExpanded( index, m_expandedGroups.contains( index ) );
+			const auto index = model->index(i, 0);
+			ui->treeView->setExpanded(index, m_expandedGroups.contains(index));
 		}
 
 		m_previousFilter.clear();
 	}
 	else
 	{
-		if( m_previousFilter.isEmpty() )
+		if (m_previousFilter.isEmpty())
 		{
 			m_expandedGroups.clear();
 
-			for( int i = 0; i < model->rowCount(); ++i )
+			for (int i = 0; i < model->rowCount(); ++i)
 			{
-				const auto index = model->index( i, 0 );
-				if( ui->treeView->isExpanded( index ) )
+				const auto index = model->index(i, 0);
+				if (ui->treeView->isExpanded(index))
 				{
-					m_expandedGroups.append( index );
+					m_expandedGroups.append(index);
 				}
 			}
 		}
 
 		m_previousFilter = filter;
 
-		m_filterProxyModel->setFilterWildcard( filter );
+		m_filterProxyModel->setFilterWildcard(filter);
 		ui->treeView->expandAll();
 	}
 }
@@ -185,7 +186,7 @@ void ComputerSelectPanel::updateFilter()
 void ComputerSelectPanel::fetchAndExpandAll()
 {
 	fetchAll(m_filterProxyModel->index(0, 0));
-	QTimer::singleShot(0, this, [this]{ui->treeView->expandAll();});
+	QTimer::singleShot(0, this, [this] { ui->treeView->expandAll(); });
 }
 
 

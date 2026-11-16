@@ -23,11 +23,11 @@
 
 #pragma once
 
-#include "ComputerControlInterface.h"
-#include "VeyonCore.h"
-
 #include <QDate>
 #include <QImage>
+
+#include "ComputerControlInterface.h"
+#include "VeyonCore.h"
 
 class ComputerControlInterface;
 
@@ -35,8 +35,7 @@ class VEYON_CORE_EXPORT Screenshot : public QObject
 {
 	Q_OBJECT
 public:
-	enum class MetaData
-	{
+	enum class MetaData {
 		User,
 		Host,
 		Date,
@@ -44,9 +43,9 @@ public:
 	};
 	Q_ENUM(MetaData)
 
-	explicit Screenshot( const QString &fileName = {}, QObject* parent = nullptr );
+	explicit Screenshot(const QString& fileName = {}, QObject* parent = nullptr);
 
-	void take( const ComputerControlInterface::Pointer& computerControlInterface );
+	void take(const ComputerControlInterface::Pointer& computerControlInterface);
 
 	bool isValid() const
 	{
@@ -58,7 +57,7 @@ public:
 		return m_fileName;
 	}
 
-	void setImage( const QImage& image )
+	void setImage(const QImage& image)
 	{
 		m_image = image;
 	}
@@ -68,23 +67,21 @@ public:
 		return m_image;
 	}
 
-	static QString constructFileName( const QString& user, const QString& hostAddress,
-									  QDate date = QDate::currentDate(),
-									  QTime time = QTime::currentTime() );
+	static QString constructFileName(const QString& user, const QString& hostAddress,
+									 QDate date = QDate::currentDate(),
+									 QTime time = QTime::currentTime());
 
 	QString user() const;
 	QString host() const;
 	QString date() const;
 	QString time() const;
 
-	static QString metaDataKey( MetaData key );
+	static QString metaDataKey(MetaData key);
 
 private:
-	QString property( const QString& key, int section ) const;
-	QString fileNameSection( int n ) const;
+	QString property(const QString& key, int section) const;
+	QString fileNameSection(int n) const;
 
 	QString m_fileName;
 	QImage m_image;
-
-} ;
-
+};

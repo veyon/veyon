@@ -36,21 +36,21 @@ class VEYON_CORE_EXPORT ToolButton : public QToolButton
 {
 	Q_OBJECT
 public:
-	ToolButton( const QIcon& icon,
-				const QString& label,
-				const QString& altLabel = {},
-				const QString& description = {},
-				const QKeySequence& shortcut = QKeySequence() );
+	ToolButton(const QIcon& icon,
+			   const QString& label,
+			   const QString& altLabel = {},
+			   const QString& description = {},
+			   const QKeySequence& shortcut = QKeySequence());
 	~ToolButton() override = default;
 
-	static void setIconOnlyMode( QWidget* mainWindow, bool enabled );
+	static void setIconOnlyMode(QWidget* mainWindow, bool enabled);
 
 	static bool iconOnlyMode()
 	{
 		return s_iconOnlyMode;
 	}
 
-	static void setToolTipsDisabled( bool disabled )
+	static void setToolTipsDisabled(bool disabled)
 	{
 		s_toolTipsDisabled = disabled;
 	}
@@ -64,12 +64,12 @@ public:
 
 protected:
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-	void enterEvent( QEnterEvent* event ) override;
+	void enterEvent(QEnterEvent* event) override;
 #else
-	void enterEvent( QEvent* event ) override;
+	void enterEvent(QEvent* event) override;
 #endif
-	void leaveEvent( QEvent * _e ) override;
-	void mousePressEvent( QMouseEvent * _me ) override;
+	void leaveEvent(QEvent* _e) override;
+	void mousePressEvent(QMouseEvent* _me) override;
 	QSize sizeHint() const override;
 
 private:
@@ -83,5 +83,4 @@ private:
 	QString m_label;
 	QString m_altLabel;
 	QString m_descr;
-
-} ;
+};

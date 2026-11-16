@@ -30,20 +30,20 @@
 #endif
 
 
-ComputerMonitoringModel::ComputerMonitoringModel( QObject* parent ) :
-	QSortFilterProxyModel( parent )
+ComputerMonitoringModel::ComputerMonitoringModel(QObject* parent) :
+	QSortFilterProxyModel(parent)
 {
 #if defined(QT_TESTLIB_LIB)
-	new QAbstractItemModelTester( this, QAbstractItemModelTester::FailureReportingMode::Warning, this );
+	new QAbstractItemModelTester(this, QAbstractItemModelTester::FailureReportingMode::Warning, this);
 #endif
 
-	setFilterCaseSensitivity( Qt::CaseInsensitive );
-	setUserLoginNameRole( ComputerControlListModel::UserLoginNameRole );
+	setFilterCaseSensitivity(Qt::CaseInsensitive);
+	setUserLoginNameRole(ComputerControlListModel::UserLoginNameRole);
 }
 
 
 
-void ComputerMonitoringModel::setStateRole( int role )
+void ComputerMonitoringModel::setStateRole(int role)
 {
 	beginResetModel();
 	m_stateRole = role;
@@ -52,7 +52,7 @@ void ComputerMonitoringModel::setStateRole( int role )
 
 
 
-void ComputerMonitoringModel::setUserLoginNameRole( int role )
+void ComputerMonitoringModel::setUserLoginNameRole(int role)
 {
 	beginResetModel();
 	m_userLoginNameRole = role;
@@ -61,7 +61,7 @@ void ComputerMonitoringModel::setUserLoginNameRole( int role )
 
 
 
-void ComputerMonitoringModel::setStateFilter( ComputerControlInterface::State state )
+void ComputerMonitoringModel::setStateFilter(ComputerControlInterface::State state)
 {
 	beginResetModel();
 	m_stateFilter = state;
@@ -70,9 +70,9 @@ void ComputerMonitoringModel::setStateFilter( ComputerControlInterface::State st
 
 
 
-void ComputerMonitoringModel::setFilterNonEmptyUserLoginNames( bool enabled )
+void ComputerMonitoringModel::setFilterNonEmptyUserLoginNames(bool enabled)
 {
-	if( enabled != m_filterNonEmptyUserLoginNames )
+	if (enabled != m_filterNonEmptyUserLoginNames)
 	{
 		beginResetModel();
 		m_filterNonEmptyUserLoginNames = enabled;
@@ -82,23 +82,26 @@ void ComputerMonitoringModel::setFilterNonEmptyUserLoginNames( bool enabled )
 
 
 
-bool ComputerMonitoringModel::filterAcceptsRow( int sourceRow, const QModelIndex& sourceParent ) const
+bool ComputerMonitoringModel::filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const
 {
-	if( m_stateFilter != ComputerControlInterface::State::None &&
+	if (m_stateFilter != ComputerControlInterface::State::None &&
 		m_stateRole >= 0 &&
-		sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ),
-							 m_stateRole ).value<ComputerControlInterface::State>() != m_stateFilter )
+		sourceModel()->data(sourceModel()->index(sourceRow, 0, sourceParent),
+							m_stateRole)
+				.value<ComputerControlInterface::State>() != m_stateFilter)
 	{
 		return false;
 	}
 
-	if( m_filterNonEmptyUserLoginNames &&
+	if (m_filterNonEmptyUserLoginNames &&
 		userLoginNameRole() >= 0 &&
-		sourceModel()->data( sourceModel()->index( sourceRow, 0, sourceParent ),
-							 m_userLoginNameRole ).toString().isEmpty() )
+		sourceModel()->data(sourceModel()->index(sourceRow, 0, sourceParent),
+							m_userLoginNameRole)
+			.toString()
+			.isEmpty())
 	{
 		return false;
 	}
 
-	return QSortFilterProxyModel::filterAcceptsRow( sourceRow, sourceParent );
+	return QSortFilterProxyModel::filterAcceptsRow(sourceRow, sourceParent);
 }

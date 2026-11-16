@@ -22,9 +22,6 @@
  *
  */
 
-#include <linux/input.h>
-#include <unistd.h>
-
 #include <QDBusArgument>
 #include <QDBusObjectPath>
 #include <QDBusPendingCallWatcher>
@@ -43,13 +40,14 @@
 #include "PortalSession.h"
 #include "VeyonCore.h"
 
+#include <linux/input.h>
+#include <unistd.h>
+
 // XDG Desktop Portal service and interface names
 static const auto PortalService = QStringLiteral("org.freedesktop.portal.Desktop");
 static const auto PortalObjectPath = QStringLiteral("/org/freedesktop/portal/desktop");
-PortalSession::PortalSession(bool persistRestoreToken, QObject* parent)
-	: QObject(parent)
-	, m_sessionBus(QDBusConnection::sessionBus())
-	, m_persistRestoreToken(persistRestoreToken)
+PortalSession::PortalSession(bool persistRestoreToken, QObject* parent) :
+	QObject(parent), m_sessionBus(QDBusConnection::sessionBus()), m_persistRestoreToken(persistRestoreToken)
 {
 	const auto appId = QGuiApplication::desktopFileName();
 
@@ -208,8 +206,8 @@ void PortalSession::selectSources()
 
 	QVariantMap options;
 	options[QStringLiteral("handle_token")] = token;
-	options[QStringLiteral("types")]        = QVariant::fromValue<uint>(1u); // 1=monitor
-	options[QStringLiteral("multiple")]     = false;
+	options[QStringLiteral("types")] = QVariant::fromValue<uint>(1u); // 1=monitor
+	options[QStringLiteral("multiple")] = false;
 	// ScreenCast interface only supports persist_mode=0; persist_mode=2 is
 	// only valid on the RemoteDesktop interface (used in selectDevices()).
 	options[QStringLiteral("persist_mode")] = QVariant::fromValue<uint>(0u);
@@ -247,8 +245,7 @@ void PortalSession::startSession()
 	auto call = m_remoteDesktop->Start(
 		QDBusObjectPath(m_sessionHandle),
 		QStringLiteral(""), // parent_window handle (empty for daemon/unattended use)
-		options
-	);
+		options);
 	auto* watcher = new QDBusPendingCallWatcher(call, this);
 	connect(watcher, &QDBusPendingCallWatcher::finished, this, [this](QDBusPendingCallWatcher* w) {
 		w->deleteLater();
@@ -348,9 +345,7 @@ void PortalSession::onPortalResponse(uint response, const QVariantMap& results)
 	{
 		// session_handle can arrive as QDBusObjectPath or as a plain string
 		QDBusObjectPath sessionPath = results.value(QStringLiteral("session_handle")).value<QDBusObjectPath>();
-		m_sessionHandle = sessionPath.path().isEmpty()
-						  ? results.value(QStringLiteral("session_handle")).toString()
-						  : sessionPath.path();
+		m_sessionHandle = sessionPath.path().isEmpty() ? results.value(QStringLiteral("session_handle")).toString() : sessionPath.path();
 
 		if (m_sessionHandle.isEmpty())
 		{
@@ -517,21 +512,21 @@ void PortalSession::notifyPointer(int buttonMask, int x, int y)
 		// Linux evdev button codes matching VNC button mask bits 0–8
 		// Bits 3-6 are scroll directions (no evdev button code — use axis)
 		static const int evdevButtons[] = {
-			BTN_LEFT,   // bit 0
+			BTN_LEFT,	// bit 0
 			BTN_MIDDLE, // bit 1
-			BTN_RIGHT,  // bit 2
-			0,          // bit 3 – scroll up   (axis event)
-			0,          // bit 4 – scroll down (axis event)
-			0,          // bit 5 – scroll left (axis event)
-			0,          // bit 6 – scroll right (axis event)
-			BTN_SIDE,   // bit 7
-			BTN_EXTRA,  // bit 8
+			BTN_RIGHT,	// bit 2
+			0,			// bit 3 – scroll up   (axis event)
+			0,			// bit 4 – scroll down (axis event)
+			0,			// bit 5 – scroll left (axis event)
+			0,			// bit 6 – scroll right (axis event)
+			BTN_SIDE,	// bit 7
+			BTN_EXTRA,	// bit 8
 		};
 		static constexpr int numButtons = static_cast<int>(sizeof(evdevButtons) / sizeof(evdevButtons[0]));
 
 		for (int i = 0; i < numButtons; ++i)
 		{
-			const int prev    = (m_lastButtonMask >> i) & 1;
+			const int prev = (m_lastButtonMask >> i) & 1;
 			const int current = (buttonMask >> i) & 1;
 			if (prev == current)
 			{
@@ -547,14 +542,26 @@ void PortalSession::notifyPointer(int buttonMask, int x, int y)
 			else if (current != 0)
 			{
 				// Scroll axis: only fire on press (the release has no discrete step)
-				int axis  = 0; // 0 = vertical
+				int axis = 0; // 0 = vertical
 				int steps = 0;
 				switch (i)
 				{
-				case 3: axis = 0; steps = -1; break; // scroll up
-				case 4: axis = 0; steps =  1; break; // scroll down
-				case 5: axis = 1; steps = -1; break; // scroll left
-				case 6: axis = 1; steps =  1; break; // scroll right
+				case 3:
+					axis = 0;
+					steps = -1;
+					break; // scroll up
+				case 4:
+					axis = 0;
+					steps = 1;
+					break; // scroll down
+				case 5:
+					axis = 1;
+					steps = -1;
+					break; // scroll left
+				case 6:
+					axis = 1;
+					steps = 1;
+					break; // scroll right
 				default: break;
 				}
 				if (steps != 0)
@@ -568,4 +575,3 @@ void PortalSession::notifyPointer(int buttonMask, int x, int y)
 		m_lastButtonMask = buttonMask;
 	}
 }
-

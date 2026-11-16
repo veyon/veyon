@@ -38,14 +38,12 @@
 
 #define XK_MISCELLANY
 
-#include <X11/keysymdef.h>
 #include <X11/Xlib.h>
-
+#include <X11/keysymdef.h>
+#include <algorithm>
 #include <grp.h>
 #include <pwd.h>
 #include <unistd.h>
-
-#include <algorithm>
 #include <vector>
 
 #ifdef None
@@ -66,7 +64,7 @@ QString LinuxUserFunctions::queryCurrentUserProperty(UserProperty property)
 
 
 
-QStringList LinuxUserFunctions::userGroups( bool queryDomainGroups )
+QStringList LinuxUserFunctions::userGroups(bool queryDomainGroups)
 {
 	Q_UNUSED(queryDomainGroups)
 
@@ -76,104 +74,103 @@ QStringList LinuxUserFunctions::userGroups( bool queryDomainGroups )
 	getentProcess.start(QStringLiteral("/usr/bin/getent"), {QStringLiteral("group")});
 	getentProcess.waitForFinished();
 
-	const auto groups = QString::fromUtf8( getentProcess.readAll() ).split( QLatin1Char('\n') );
+	const auto groups = QString::fromUtf8(getentProcess.readAll()).split(QLatin1Char('\n'));
 
-	groupList.reserve( groups.size() );
+	groupList.reserve(groups.size());
 
-	for( const auto& group : groups )
+	for (const auto& group : groups)
 	{
-		groupList += group.split( QLatin1Char(':') ).first();
+		groupList += group.split(QLatin1Char(':')).first();
 	}
 
-	const QStringList ignoredGroups
-			({
-				 QStringLiteral("daemon"),
-				 QStringLiteral("bin"),
-				 QStringLiteral("tty"),
-				 QStringLiteral("disk"),
-				 QStringLiteral("lp"),
-				 QStringLiteral("mail"),
-				 QStringLiteral("news"),
-				 QStringLiteral("uucp"),
-				 QStringLiteral("man"),
-				 QStringLiteral("proxy"),
-				 QStringLiteral("kmem"),
-				 QStringLiteral("dialout"),
-				 QStringLiteral("fax"),
-				 QStringLiteral("voice"),
-				 QStringLiteral("cdrom"),
-				 QStringLiteral("tape"),
-				 QStringLiteral("audio"),
-				 QStringLiteral("dip"),
-				 QStringLiteral("www-data"),
-				 QStringLiteral("backup"),
-				 QStringLiteral("list"),
-				 QStringLiteral("irc"),
-				 QStringLiteral("src"),
-				 QStringLiteral("gnats"),
-				 QStringLiteral("shadow"),
-				 QStringLiteral("utmp"),
-				 QStringLiteral("video"),
-				 QStringLiteral("sasl"),
-				 QStringLiteral("plugdev"),
-				 QStringLiteral("games"),
-				 QStringLiteral("nogroup"),
-				 QStringLiteral("libuuid"),
-				 QStringLiteral("syslog"),
-				 QStringLiteral("fuse"),
-				 QStringLiteral("lpadmin"),
-				 QStringLiteral("ssl-cert"),
-				 QStringLiteral("messagebus"),
-				 QStringLiteral("crontab"),
-				 QStringLiteral("mlocate"),
-				 QStringLiteral("avahi-autoipd"),
-				 QStringLiteral("netdev"),
-				 QStringLiteral("saned"),
-				 QStringLiteral("sambashare"),
-				 QStringLiteral("haldaemon"),
-				 QStringLiteral("polkituser"),
-				 QStringLiteral("mysql"),
-				 QStringLiteral("avahi"),
-				 QStringLiteral("klog"),
-				 QStringLiteral("floppy"),
-				 QStringLiteral("oprofile"),
-				 QStringLiteral("netdev"),
-				 QStringLiteral("dirmngr"),
-				 QStringLiteral("vboxusers"),
-				 QStringLiteral("bluetooth"),
-				 QStringLiteral("colord"),
-				 QStringLiteral("libvirtd"),
-				 QStringLiteral("nm-openvpn"),
-				 QStringLiteral("input"),
-				 QStringLiteral("kvm"),
-				 QStringLiteral("pulse"),
-				 QStringLiteral("pulse-access"),
-				 QStringLiteral("rtkit"),
-				 QStringLiteral("scanner"),
-				 QStringLiteral("sddm"),
-				 QStringLiteral("systemd-bus-proxy"),
-				 QStringLiteral("systemd-journal"),
-				 QStringLiteral("systemd-network"),
-				 QStringLiteral("systemd-resolve"),
-				 QStringLiteral("systemd-timesync"),
-				 QStringLiteral("utempter"),
-				 QStringLiteral("uuidd"),
-			 });
+	const QStringList ignoredGroups({
+		QStringLiteral("daemon"),
+		QStringLiteral("bin"),
+		QStringLiteral("tty"),
+		QStringLiteral("disk"),
+		QStringLiteral("lp"),
+		QStringLiteral("mail"),
+		QStringLiteral("news"),
+		QStringLiteral("uucp"),
+		QStringLiteral("man"),
+		QStringLiteral("proxy"),
+		QStringLiteral("kmem"),
+		QStringLiteral("dialout"),
+		QStringLiteral("fax"),
+		QStringLiteral("voice"),
+		QStringLiteral("cdrom"),
+		QStringLiteral("tape"),
+		QStringLiteral("audio"),
+		QStringLiteral("dip"),
+		QStringLiteral("www-data"),
+		QStringLiteral("backup"),
+		QStringLiteral("list"),
+		QStringLiteral("irc"),
+		QStringLiteral("src"),
+		QStringLiteral("gnats"),
+		QStringLiteral("shadow"),
+		QStringLiteral("utmp"),
+		QStringLiteral("video"),
+		QStringLiteral("sasl"),
+		QStringLiteral("plugdev"),
+		QStringLiteral("games"),
+		QStringLiteral("nogroup"),
+		QStringLiteral("libuuid"),
+		QStringLiteral("syslog"),
+		QStringLiteral("fuse"),
+		QStringLiteral("lpadmin"),
+		QStringLiteral("ssl-cert"),
+		QStringLiteral("messagebus"),
+		QStringLiteral("crontab"),
+		QStringLiteral("mlocate"),
+		QStringLiteral("avahi-autoipd"),
+		QStringLiteral("netdev"),
+		QStringLiteral("saned"),
+		QStringLiteral("sambashare"),
+		QStringLiteral("haldaemon"),
+		QStringLiteral("polkituser"),
+		QStringLiteral("mysql"),
+		QStringLiteral("avahi"),
+		QStringLiteral("klog"),
+		QStringLiteral("floppy"),
+		QStringLiteral("oprofile"),
+		QStringLiteral("netdev"),
+		QStringLiteral("dirmngr"),
+		QStringLiteral("vboxusers"),
+		QStringLiteral("bluetooth"),
+		QStringLiteral("colord"),
+		QStringLiteral("libvirtd"),
+		QStringLiteral("nm-openvpn"),
+		QStringLiteral("input"),
+		QStringLiteral("kvm"),
+		QStringLiteral("pulse"),
+		QStringLiteral("pulse-access"),
+		QStringLiteral("rtkit"),
+		QStringLiteral("scanner"),
+		QStringLiteral("sddm"),
+		QStringLiteral("systemd-bus-proxy"),
+		QStringLiteral("systemd-journal"),
+		QStringLiteral("systemd-network"),
+		QStringLiteral("systemd-resolve"),
+		QStringLiteral("systemd-timesync"),
+		QStringLiteral("utempter"),
+		QStringLiteral("uuidd"),
+	});
 
-	for( const auto& ignoredGroup : ignoredGroups )
+	for (const auto& ignoredGroup : ignoredGroups)
 	{
-		groupList.removeAll( ignoredGroup );
+		groupList.removeAll(ignoredGroup);
 	}
 
 	// remove all empty entries
-	groupList.removeAll( QString() );
+	groupList.removeAll(QString());
 
 	return groupList;
 }
 
 
 
-QStringList LinuxUserFunctions::groupsOfUser( const QString& username, bool queryDomainGroups )
+QStringList LinuxUserFunctions::groupsOfUser(const QString& username, bool queryDomainGroups)
 {
 	Q_UNUSED(queryDomainGroups)
 
@@ -224,18 +221,18 @@ QStringList LinuxUserFunctions::groupsOfUser( const QString& username, bool quer
 	getentProcess.start(QStringLiteral("/usr/bin/getent"), {QStringLiteral("group")});
 	getentProcess.waitForFinished();
 
-	const auto groups = QString::fromUtf8( getentProcess.readAll() ).split( QLatin1Char('\n') );
-	for( const auto& group : groups )
+	const auto groups = QString::fromUtf8(getentProcess.readAll()).split(QLatin1Char('\n'));
+	for (const auto& group : groups)
 	{
-		const auto groupComponents = group.split( QLatin1Char(':') );
-		if( groupComponents.size() == 4 &&
-			groupComponents.last().split( QLatin1Char(',') ).contains(username))
+		const auto groupComponents = group.split(QLatin1Char(':'));
+		if (groupComponents.size() == 4 &&
+			groupComponents.last().split(QLatin1Char(',')).contains(username))
 		{
 			groupList += groupComponents.first(); // clazy:exclude=reserve-candidates
 		}
 	}
 
-	groupList.removeAll( QString() );
+	groupList.removeAll(QString());
 
 	return groupList;
 }
@@ -258,11 +255,11 @@ QString LinuxUserFunctions::userGroupSecurityIdentifier(const QString& groupName
 bool LinuxUserFunctions::isAnyUserLoggedOn()
 {
 	const auto sessions = LinuxSessionFunctions::listSessions();
-	for( const auto& session : sessions )
+	for (const auto& session : sessions)
 	{
-		if( LinuxSessionFunctions::isOpen( session ) &&
-			LinuxSessionFunctions::isGraphical( session ) &&
-			LinuxSessionFunctions::getSessionClass( session ) == LinuxSessionFunctions::Class::User )
+		if (LinuxSessionFunctions::isOpen(session) &&
+			LinuxSessionFunctions::isGraphical(session) &&
+			LinuxSessionFunctions::getSessionClass(session) == LinuxSessionFunctions::Class::User)
 		{
 			return true;
 		}
@@ -273,9 +270,9 @@ bool LinuxUserFunctions::isAnyUserLoggedOn()
 
 
 
-bool LinuxUserFunctions::prepareLogon( const QString& username, const Password& password )
+bool LinuxUserFunctions::prepareLogon(const QString& username, const Password& password)
 {
-	if( m_logonHelper.prepare( username, password ) )
+	if (m_logonHelper.prepare(username, password))
 	{
 		LinuxCoreFunctions::restartDisplayManagers();
 		return true;
@@ -286,7 +283,7 @@ bool LinuxUserFunctions::prepareLogon( const QString& username, const Password& 
 
 
 
-bool LinuxUserFunctions::performLogon( const QString& username, const Password& password )
+bool LinuxUserFunctions::performLogon(const QString& username, const Password& password)
 {
 	LinuxKeyboardInput input;
 
@@ -296,14 +293,14 @@ bool LinuxUserFunctions::performLogon( const QString& username, const Password& 
 
 	auto sequence = config.userLoginKeySequence();
 
-	if( sequence.isEmpty() == true )
+	if (sequence.isEmpty() == true)
 	{
 		sequence = QStringLiteral("%username%<Tab>%password%<Return>");
 	}
 
 	static const QRegularExpression keySequenceRX(QStringLiteral("(<[\\w\\d_]+>|%username%|%password%|[\\w\\d]+)"));
 	auto matchIterator = keySequenceRX.globalMatch(sequence);
-	if( matchIterator.hasNext() == false )
+	if (matchIterator.hasNext() == false)
 	{
 		vCritical() << "invalid user login key sequence";
 		return false;
@@ -311,24 +308,24 @@ bool LinuxUserFunctions::performLogon( const QString& username, const Password& 
 
 	QThread::msleep(config.userLoginInputStartDelay());
 
-	while( matchIterator.hasNext() )
+	while (matchIterator.hasNext())
 	{
 		const auto token = matchIterator.next().captured(0);
-		if( token == QStringLiteral("%username%") )
+		if (token == QStringLiteral("%username%"))
 		{
 			input.sendString(username, textInputKeyPressInterval);
 		}
-		else if( token == QStringLiteral("%password%") )
+		else if (token == QStringLiteral("%password%"))
 		{
 			input.sendString(QString::fromUtf8(password.toByteArray()), textInputKeyPressInterval);
 		}
-		else if( token.startsWith( QLatin1Char('<') ) && token.endsWith( QLatin1Char('>') ) )
+		else if (token.startsWith(QLatin1Char('<')) && token.endsWith(QLatin1Char('>')))
 		{
-			const auto keysymString = token.mid( 1, token.length() - 2 );
-			const auto keysym = XStringToKeysym( keysymString.toLatin1().constData() );
-			if( keysym != NoSymbol )
+			const auto keysymString = token.mid(1, token.length() - 2);
+			const auto keysym = XStringToKeysym(keysymString.toLatin1().constData());
+			if (keysym != NoSymbol)
 			{
-				input.pressAndReleaseKey( keysym );
+				input.pressAndReleaseKey(keysym);
 				QThread::msleep(controlKeyPressInterval);
 			}
 			else
@@ -337,7 +334,7 @@ bool LinuxUserFunctions::performLogon( const QString& username, const Password& 
 				return false;
 			}
 		}
-		else if( token.isEmpty() == false )
+		else if (token.isEmpty() == false)
 		{
 			input.sendString(token, textInputKeyPressInterval);
 		}
@@ -354,53 +351,50 @@ void LinuxUserFunctions::logoff()
 
 	// logout via common session managers
 	// logout via common session managers
-	for( const auto& call : std::initializer_list<std::function<QDBusMessage()>>
-	{
-		 []() {
-		 return LinuxCoreFunctions::kdeSessionManager()
-		 ->call( QStringLiteral("logout"),
-				 LinuxDesktopIntegration::KDE::ShutdownConfirmNo,
-				 LinuxDesktopIntegration::KDE::ShutdownTypeLogout,
-				 LinuxDesktopIntegration::KDE::ShutdownModeForceNow );
-},
-		 []() {
-		 return LinuxCoreFunctions::gnomeSessionManager()
-		 ->call( QStringLiteral("Logout"),
-				 LinuxDesktopIntegration::Gnome::GSM_MANAGER_LOGOUT_MODE_FORCE );
-},
-		 []() {
-		 return LinuxCoreFunctions::mateSessionManager()
-		 ->call( QStringLiteral("Logout"),
-				 LinuxDesktopIntegration::Mate::GSM_LOGOUT_MODE_FORCE );
-}
-} )
+	for (const auto& call : std::initializer_list<std::function<QDBusMessage()>>{
+			 []() {
+		return LinuxCoreFunctions::kdeSessionManager()
+			->call(QStringLiteral("logout"),
+				   LinuxDesktopIntegration::KDE::ShutdownConfirmNo,
+				   LinuxDesktopIntegration::KDE::ShutdownTypeLogout,
+				   LinuxDesktopIntegration::KDE::ShutdownModeForceNow);
+	},
+			 []() {
+		return LinuxCoreFunctions::gnomeSessionManager()
+			->call(QStringLiteral("Logout"),
+				   LinuxDesktopIntegration::Gnome::GSM_MANAGER_LOGOUT_MODE_FORCE);
+	},
+			 []() {
+		return LinuxCoreFunctions::mateSessionManager()
+			->call(QStringLiteral("Logout"),
+				   LinuxDesktopIntegration::Mate::GSM_LOGOUT_MODE_FORCE);
+	}})
 	{
 		// call successful?
-		if( call().type() == QDBusMessage::ReplyMessage )
+		if (call().type() == QDBusMessage::ReplyMessage)
 		{
 			return;
 		}
 	}
 
 	// Xfce logout
-	QProcess::startDetached( QStringLiteral("xfce4-session-logout --logout"), {} );
+	QProcess::startDetached(QStringLiteral("xfce4-session-logout --logout"), {});
 
 	// LXDE logout
-	QProcess::startDetached( QStringLiteral("kill -TERM %1").
-							 arg( QProcessEnvironment::systemEnvironment().value( QStringLiteral("_LXSESSION_PID") ).toInt() ), {} );
+	QProcess::startDetached(QStringLiteral("kill -TERM %1").arg(QProcessEnvironment::systemEnvironment().value(QStringLiteral("_LXSESSION_PID")).toInt()), {});
 
 	// terminate session via systemd
-	LinuxCoreFunctions::systemdLoginManager()->asyncCall( QStringLiteral("TerminateSession"),
-														  QProcessEnvironment::systemEnvironment().value( LinuxSessionFunctions::xdgSessionIdEnvVarName() ) );
+	LinuxCoreFunctions::systemdLoginManager()->asyncCall(QStringLiteral("TerminateSession"),
+														 QProcessEnvironment::systemEnvironment().value(LinuxSessionFunctions::xdgSessionIdEnvVarName()));
 
 	// close session via ConsoleKit as a last resort
-	LinuxCoreFunctions::consoleKitManager()->asyncCall( QStringLiteral("CloseSession"),
-														QProcessEnvironment::systemEnvironment().value( QStringLiteral("XDG_SESSION_COOKIE") ) );
+	LinuxCoreFunctions::consoleKitManager()->asyncCall(QStringLiteral("CloseSession"),
+													   QProcessEnvironment::systemEnvironment().value(QStringLiteral("XDG_SESSION_COOKIE")));
 }
 
 
 
-bool LinuxUserFunctions::authenticate( const QString& username, const Password& password )
+bool LinuxUserFunctions::authenticate(const QString& username, const Password& password)
 {
 	QDBusInterface service(VeyonServiceInterface::ServiceName,
 						   VeyonServiceInterface::ObjectPath,
@@ -409,14 +403,14 @@ bool LinuxUserFunctions::authenticate( const QString& username, const Password& 
 	service.setTimeout(AuthHelperTimeout);
 
 	const QDBusReply<bool> reply = service.call(VeyonServiceInterface::AuthenticateMethod,
-												 username, password.toByteArray());
-	if(reply.isValid() == false)
+												username, password.toByteArray());
+	if (reply.isValid() == false)
 	{
 		vCritical() << "authentication request failed:" << reply.error().message();
 		return false;
 	}
 
-	if(reply.value() == false)
+	if (reply.value() == false)
 	{
 		vDebug() << "User authentication failed";
 		return false;
@@ -430,9 +424,9 @@ bool LinuxUserFunctions::authenticate( const QString& username, const Password& 
 
 LinuxUserFunctions::UserId LinuxUserFunctions::userIdFromName(const QString& username)
 {
-	const auto pw_entry = getpwnam( username.toUtf8().constData() );
+	const auto pw_entry = getpwnam(username.toUtf8().constData());
 
-	if( pw_entry )
+	if (pw_entry)
 	{
 		return pw_entry->pw_uid;
 	}
@@ -444,9 +438,9 @@ LinuxUserFunctions::UserId LinuxUserFunctions::userIdFromName(const QString& use
 
 LinuxUserFunctions::GroupId LinuxUserFunctions::userGroupIdFromName(const QString& username)
 {
-	const auto pw_entry = getpwnam( username.toUtf8().constData() );
+	const auto pw_entry = getpwnam(username.toUtf8().constData());
 
-	if( pw_entry )
+	if (pw_entry)
 	{
 		return pw_entry->pw_gid;
 	}
@@ -473,7 +467,7 @@ QVariant LinuxUserFunctions::getUserProperty(const QString& userPath, const QStr
 															 QStringLiteral("org.freedesktop.login1.User"),
 															 property);
 
-	if( reply.isValid() == false )
+	if (reply.isValid() == false)
 	{
 		if (logErrors)
 		{
@@ -537,7 +531,7 @@ QString LinuxUserFunctions::currentUserLoginName() const
 		}
 	}
 
-	if( username.isEmpty() )
+	if (username.isEmpty())
 	{
 		return QString::fromUtf8(envUser);
 	}

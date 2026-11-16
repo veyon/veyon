@@ -33,7 +33,7 @@ UserConfig::UserConfig(const QString& storeName) :
 	Configuration::Object(Configuration::Store::Backend::JsonFile, Configuration::Store::Scope::User, storeName)
 {
 	const QString templateFileName = VeyonCore::filesystem().expandPath(VeyonCore::config().configurationTemplatesDirectory()) +
-									 QDir::separator() + storeName + QStringLiteral(".json");
+		QDir::separator() + storeName + QStringLiteral(".json");
 	if (QFileInfo(templateFileName).isReadable())
 	{
 		Configuration::JsonStore jsonStore(Configuration::Store::Scope::System, templateFileName);
