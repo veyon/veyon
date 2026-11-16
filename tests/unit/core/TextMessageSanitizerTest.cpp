@@ -319,12 +319,12 @@ void TextMessageSanitizerTest::oversizeInputIsTruncated()
 	QCOMPARE(output.size(), TextMessageSanitizer::MaxTextLength);
 
 	// truncation in the middle of markup leaves balanced output
-	const auto markup = QString(TextMessageSanitizer::MaxTextLength - 2, QLatin1Char('a')) + QStringLiteral("<b>bold</b>");
+	const QString markup = QString(TextMessageSanitizer::MaxTextLength - 2, QLatin1Char('a')) + QStringLiteral("<b>bold</b>");
 	const auto markupOutput = TextMessageSanitizer::sanitizeHtml(markup);
 	QVERIFY(markupOutput.endsWith(QStringLiteral("aa")));
 	QVERIFY(markupOutput.contains(QStringLiteral("<b")) == false);
 
-	const auto markupTail = QString(TextMessageSanitizer::MaxTextLength - 8, QLatin1Char('a')) + QStringLiteral("<b>bold</b>");
+	const QString markupTail = QString(TextMessageSanitizer::MaxTextLength - 8, QLatin1Char('a')) + QStringLiteral("<b>bold</b>");
 	QVERIFY(TextMessageSanitizer::sanitizeHtml(markupTail).endsWith(QStringLiteral("</b>")));
 }
 

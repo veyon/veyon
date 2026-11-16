@@ -6,6 +6,7 @@ if(WITH_TESTS)
 	add_executable(ConnectionLimiterTest
 		core/ConnectionLimiterTest.cpp
 	)
+	set_default_target_properties(ConnectionLimiterTest)
 
 	target_link_libraries(ConnectionLimiterTest PRIVATE
 		Qt${QT_MAJOR_VERSION}::Test
@@ -23,6 +24,7 @@ if(WITH_TESTS)
 		core/TextMessageSanitizerTest.cpp
 		${CMAKE_SOURCE_DIR}/plugins/textmessage/TextMessageSanitizer.cpp
 	)
+	set_default_target_properties(TextMessageSanitizerTest)
 
 	target_include_directories(TextMessageSanitizerTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/textmessage)
 
