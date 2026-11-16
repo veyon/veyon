@@ -186,6 +186,8 @@ if(WITH_BUNDLED_LIBVNC)
 	find_package(Threads REQUIRED)
 
 	message("Configuring bundled LibVNCServer/LibVNCClient at ${libvncserver_SOURCE_DIR}")
+	# the options below are meant for the libvncserver subproject only; keep Veyon's own WITH_TESTS
+	set(VEYON_WITH_TESTS ${WITH_TESTS})
 	set(WITH_EXAMPLES OFF)
 	set(WITH_FFMPEG OFF)
 	set(WITH_GCRYPT OFF)
@@ -202,6 +204,7 @@ if(WITH_BUNDLED_LIBVNC)
 	set(LIBVNCSERVER_INSTALL OFF)
 
 	add_subdirectory(${libvncserver_SOURCE_DIR})
+	set(WITH_TESTS ${VEYON_WITH_TESTS})
 
 	set_default_target_properties(vncclient)
 	set_default_target_properties(vncserver)
