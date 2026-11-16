@@ -1,6 +1,7 @@
 add_subdirectory(certificate)
 add_subdirectory(certificaterequest)
 add_subdirectory(textmessagesanitizer)
+add_subdirectory(trustbundle)
 add_subdirectory(variantarraymessage)
 add_subdirectory(variantstream)
 add_subdirectory(vncclientprotocol)
