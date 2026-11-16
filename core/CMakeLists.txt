@@ -9,6 +9,8 @@ file(GLOB veyoncore_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.h
 	${CMAKE_CURRENT_SOURCE_DIR}/src/crypto/*.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/crypto/*.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/pki/*.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/pki/*.h
 	)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/builddata.qrc.in ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)

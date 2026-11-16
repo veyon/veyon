@@ -179,6 +179,29 @@ public:
 	};
 	Q_ENUM(AuthenticationMethod)
 
+	// TLS/ServerMode, TLS/ClientMode, TLS/IpTargetPolicy (03-secretstore-config.md §5, 05-tls.md);
+	// the enumerator names are the configuration and trust bundle values
+	enum class TlsServerMode {
+		Disabled,
+		Optional,
+		Required,
+	};
+	Q_ENUM(TlsServerMode)
+
+	enum class TlsClientMode {
+		Disabled,
+		Prefer,
+		Required,
+	};
+	Q_ENUM(TlsClientMode)
+
+	enum class TlsIpTargetPolicy {
+		RequireIpSan,
+		AcceptCaSignedWithHostname,
+		AcceptCaSignedWithReverseDnsHostname,
+	};
+	Q_ENUM(TlsIpTargetPolicy)
+
 	int exec();
 
 private:

@@ -96,6 +96,18 @@
 	OP(VeyonConfiguration, VeyonCore::config(), int, connectionLimitAuthFailureBackoffMaxSeconds, setConnectionLimitAuthFailureBackoffMaxSeconds, "AuthFailureBackoffMaxSeconds", "Network/ConnectionLimit", 300, Configuration::Property::Flag::Hidden) \
 	OP(VeyonConfiguration, VeyonCore::config(), int, connectionLimitPreAuthTimeoutSeconds, setConnectionLimitPreAuthTimeoutSeconds, "PreAuthTimeoutSeconds", "Network/ConnectionLimit", 10, Configuration::Property::Flag::Hidden)
 
+// TLS modes, peer verification and trust anchors (03-secretstore-config.md §5); for TLS decisions
+// read the modes and the IP target policy through TlsConfiguration (fail closed for invalid values,
+// the generic accessors return the first enumerator, i.e. Disabled) and the client side through
+// TlsClientPolicy::fromConfiguration() (core/src/pki)
+#define FOREACH_VEYON_TLS_CONFIG_PROPERTY(OP) \
+	OP(VeyonConfiguration, VeyonCore::config(), VeyonCore::TlsServerMode, tlsServerMode, setTlsServerMode, "ServerMode", "TLS", QVariant::fromValue(VeyonCore::TlsServerMode::Optional), Configuration::Property::Flag::Standard) \
+	OP(VeyonConfiguration, VeyonCore::config(), VeyonCore::TlsClientMode, tlsClientMode, setTlsClientMode, "ClientMode", "TLS", QVariant::fromValue(VeyonCore::TlsClientMode::Prefer), Configuration::Property::Flag::Standard) \
+	OP(VeyonConfiguration, VeyonCore::config(), QString, tlsCaCertificate, setTlsCaCertificate, "CaCertificate", "TLS", QString(), Configuration::Property::Flag::Advanced) \
+	OP(VeyonConfiguration, VeyonCore::config(), QStringList, tlsPinnedFingerprints, setTlsPinnedFingerprints, "PinnedFingerprints", "TLS", QStringList(), Configuration::Property::Flag::Advanced) \
+	OP(VeyonConfiguration, VeyonCore::config(), QStringList, tlsRevokedSerials, setTlsRevokedSerials, "RevokedSerials", "TLS", QStringList(), Configuration::Property::Flag::Advanced) \
+	OP(VeyonConfiguration, VeyonCore::config(), VeyonCore::TlsIpTargetPolicy, tlsIpTargetPolicy, setTlsIpTargetPolicy, "IpTargetPolicy", "TLS", QVariant::fromValue(VeyonCore::TlsIpTargetPolicy::AcceptCaSignedWithHostname), Configuration::Property::Flag::Advanced)
+
 #define FOREACH_VEYON_DIRECTORIES_CONFIG_PROPERTY(OP) \
 	OP(VeyonConfiguration, VeyonCore::config(), QString, configurationTemplatesDirectory, setConfigurationTemplatesDirectory, "ConfigurationTemplates", "Directories", QDir::toNativeSeparators(QStringLiteral("%GLOBALAPPDATA%/Config/Templates")), Configuration::Property::Flag::Standard) \
 	OP(VeyonConfiguration, VeyonCore::config(), QString, userConfigurationDirectory, setUserConfigurationDirectory, "UserConfiguration", "Directories", QDir::toNativeSeparators(QStringLiteral("%APPDATA%/Config")), Configuration::Property::Flag::Standard) \
@@ -175,6 +187,7 @@
 	FOREACH_VEYON_VNC_SERVER_CONFIG_PROPERTY(OP) \
 	FOREACH_VEYON_NETWORK_CONFIG_PROPERTY(OP) \
 	FOREACH_VEYON_CONNECTION_LIMIT_CONFIG_PROPERTY(OP) \
+	FOREACH_VEYON_TLS_CONFIG_PROPERTY(OP) \
 	FOREACH_VEYON_DIRECTORIES_CONFIG_PROPERTY(OP) \
 	FOREACH_VEYON_MASTER_CONFIG_PROPERTY(OP) \
 	FOREACH_VEYON_AUTHENTICATION_CONFIG_PROPERTY(OP) \
