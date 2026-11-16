@@ -88,6 +88,14 @@
 	OP(VeyonConfiguration, VeyonCore::config(), bool, isFirewallExceptionEnabled, setFirewallExceptionEnabled, "FirewallExceptionEnabled", "Network", true, Configuration::Property::Flag::Advanced) \
 	OP(VeyonConfiguration, VeyonCore::config(), bool, localConnectOnly, setLocalConnectOnly, "LocalConnectOnly", "Network", false, Configuration::Property::Flag::Advanced)
 
+// not bound to any configurator widget (hidden keys)
+#define FOREACH_VEYON_CONNECTION_LIMIT_CONFIG_PROPERTY(OP) \
+	OP(VeyonConfiguration, VeyonCore::config(), int, connectionLimitPreAuthMax, setConnectionLimitPreAuthMax, "PreAuthMax", "Network/ConnectionLimit", 32, Configuration::Property::Flag::Hidden) \
+	OP(VeyonConfiguration, VeyonCore::config(), int, connectionLimitPerIpBurst, setConnectionLimitPerIpBurst, "PerIpBurst", "Network/ConnectionLimit", 10, Configuration::Property::Flag::Hidden) \
+	OP(VeyonConfiguration, VeyonCore::config(), int, connectionLimitPerIpRefillSeconds, setConnectionLimitPerIpRefillSeconds, "PerIpRefillSeconds", "Network/ConnectionLimit", 6, Configuration::Property::Flag::Hidden) \
+	OP(VeyonConfiguration, VeyonCore::config(), int, connectionLimitAuthFailureBackoffMaxSeconds, setConnectionLimitAuthFailureBackoffMaxSeconds, "AuthFailureBackoffMaxSeconds", "Network/ConnectionLimit", 300, Configuration::Property::Flag::Hidden) \
+	OP(VeyonConfiguration, VeyonCore::config(), int, connectionLimitPreAuthTimeoutSeconds, setConnectionLimitPreAuthTimeoutSeconds, "PreAuthTimeoutSeconds", "Network/ConnectionLimit", 10, Configuration::Property::Flag::Hidden)
+
 #define FOREACH_VEYON_DIRECTORIES_CONFIG_PROPERTY(OP) \
 	OP(VeyonConfiguration, VeyonCore::config(), QString, configurationTemplatesDirectory, setConfigurationTemplatesDirectory, "ConfigurationTemplates", "Directories", QDir::toNativeSeparators(QStringLiteral("%GLOBALAPPDATA%/Config/Templates")), Configuration::Property::Flag::Standard) \
 	OP(VeyonConfiguration, VeyonCore::config(), QString, userConfigurationDirectory, setUserConfigurationDirectory, "UserConfiguration", "Directories", QDir::toNativeSeparators(QStringLiteral("%APPDATA%/Config")), Configuration::Property::Flag::Standard) \
@@ -166,6 +174,7 @@
 	FOREACH_VEYON_FEATURES_CONFIG_PROPERTY(OP) \
 	FOREACH_VEYON_VNC_SERVER_CONFIG_PROPERTY(OP) \
 	FOREACH_VEYON_NETWORK_CONFIG_PROPERTY(OP) \
+	FOREACH_VEYON_CONNECTION_LIMIT_CONFIG_PROPERTY(OP) \
 	FOREACH_VEYON_DIRECTORIES_CONFIG_PROPERTY(OP) \
 	FOREACH_VEYON_MASTER_CONFIG_PROPERTY(OP) \
 	FOREACH_VEYON_AUTHENTICATION_CONFIG_PROPERTY(OP) \
