@@ -23,10 +23,39 @@
  */
 
 #include <QFileInfo>
+#include <QRegularExpression>
 
 #include "FileCollectController.h"
 #include "FileTransferPlugin.h"
 #include "Filesystem.h"
+#include "PlatformFilesystemFunctions.h"
+
+namespace
+{
+
+bool isPathWithinBase(const QString& path, const QString& base)
+{
+#ifdef Q_OS_WIN
+	return path.startsWith(base.endsWith(QLatin1Char('/')) ? base : base + QLatin1Char('/'), Qt::CaseInsensitive);
+#else
+	return path.startsWith(base.endsWith(QLatin1Char('/')) ? base : base + QLatin1Char('/'));
+#endif
+}
+
+QString safeGroupingValue(QString value)
+{
+	static const QRegularExpression invalidFileNameCharacters(QStringLiteral("[\x00-\x1F<>:\"/\\|?*\x7F]"));
+	value.replace(invalidFileNameCharacters, QStringLiteral("_"));
+
+	while (value.endsWith(QLatin1Char('.')) || value.endsWith(QLatin1Char(' ')))
+	{
+		value.chop(1);
+	}
+
+	return Filesystem::isSafePathComponent(value) ? value : QStringLiteral("_");
+}
+
+}
 
 FileCollectController::FileCollectController(FileTransferPlugin* plugin) :
 	QObject(plugin),
@@ -137,10 +166,10 @@ QString FileCollectController::outputDirectory() const
 QString FileCollectController::outputFilePath(ComputerControlInterface::Pointer computerControlInterface,
 											  const QString& fileName) const
 {
-	const QString defaultFilePath = outputDirectory() + QDir::separator() + fileName;
+	const auto baseDirectory = outputDirectory();
 	if (m_collectedFilesGroupingMode == CollectedFilesGroupingMode::None)
 	{
-		return defaultFilePath;
+		return Filesystem::safeJoin(baseDirectory, fileName);
 	}
 
 	const auto groupingValues = std::accumulate(m_collectedFilesGroupingAttributes.cbegin(),
@@ -178,24 +207,24 @@ QString FileCollectController::outputFilePath(ComputerControlInterface::Pointer 
 		return attributes;
 	});
 
-	static const QRegularExpression invalidFileNameCharacters(QStringLiteral("[\x00-\x1F<>:\"/\\|?*\x7F]"));
-	const auto groupingValue = groupingValues.join(QLatin1Char('_')).replace(invalidFileNameCharacters, QString{});
-	if (groupingValue.isEmpty())
+	const auto rawGroupingValue = groupingValues.join(QLatin1Char('_'));
+	if (rawGroupingValue.isEmpty())
 	{
-		return defaultFilePath;
+		return Filesystem::safeJoin(baseDirectory, fileName);
 	}
+	const auto groupingValue = safeGroupingValue(rawGroupingValue);
 
 	switch (m_collectedFilesGroupingMode)
 	{
 	case CollectedFilesGroupingMode::CreateSubdirectories:
-		return outputDirectory() + QDir::separator() + groupingValue + QDir::separator() + fileName;
+		return Filesystem::safeJoin(baseDirectory, groupingValue + QLatin1Char('/') + fileName);
 	case CollectedFilesGroupingMode::PrefixFilenames:
-		return outputDirectory() + QDir::separator() + groupingValue + QStringLiteral("_") + fileName;
+		return Filesystem::safeJoin(baseDirectory, groupingValue + QStringLiteral("_") + fileName);
 	case CollectedFilesGroupingMode::None:
 		break;
 	}
 
-	return defaultFilePath;
+	return {};
 }
 
 
@@ -320,7 +349,24 @@ void FileCollectController::startFileTransfer(ComputerControlInterface::Pointer 
 			collection.currentOutputFile = nullptr;
 		}
 
-		collection.currentOutputFile = new QFile(outputFilePath(computerControlInterface, fileName));
+		if (fileSize < 0)
+		{
+			vCritical() << "rejecting file transfer with invalid file size";
+			collection.processedFilesCount += 1;
+			initiateNextFileTransfer(computerControlInterface, collection);
+			return;
+		}
+
+		const auto outputFilePath = this->outputFilePath(computerControlInterface, fileName);
+		if (outputFilePath.isEmpty())
+		{
+			vCritical() << "rejecting file transfer with unsafe output path";
+			collection.processedFilesCount += 1;
+			initiateNextFileTransfer(computerControlInterface, collection);
+			return;
+		}
+
+		collection.currentOutputFile = new QFile(outputFilePath);
 		const auto effectiveOutputPath = QFileInfo(collection.currentOutputFile->fileName()).absolutePath();
 		if (VeyonCore::filesystem().ensurePathExists(effectiveOutputPath) == false)
 		{
@@ -330,7 +376,26 @@ void FileCollectController::startFileTransfer(ComputerControlInterface::Pointer 
 			return;
 		}
 
-		if (collection.currentOutputFile->open(QFile::WriteOnly | QFile::Truncate) == false)
+		const auto canonicalBase = QDir(outputDirectory()).canonicalPath();
+		const auto canonicalOutputDirectory = QDir(effectiveOutputPath).canonicalPath();
+		if (canonicalBase.isEmpty() || canonicalOutputDirectory.isEmpty() ||
+			(canonicalOutputDirectory != canonicalBase &&
+			 isPathWithinBase(canonicalOutputDirectory, canonicalBase) == false))
+		{
+			vCritical() << "output path resolved outside collection directory";
+			delete collection.currentOutputFile;
+			collection.currentOutputFile = nullptr;
+			collection.processedFilesCount += 1;
+			initiateNextFileTransfer(computerControlInterface, collection);
+			return;
+		}
+
+		// openFileSafely() rejects a symlink target. Replacing a checked parent directory
+		// afterwards still requires local write access to the collection tree.
+		if (VeyonCore::platform().filesystemFunctions().openFileSafely(
+				collection.currentOutputFile,
+				QFile::WriteOnly | QFile::Truncate,
+				QFile::ReadOwner | QFile::WriteOwner) == false)
 		{
 			vCritical() << "failed to open" << collection.currentOutputFile->fileName() << "for writing";
 			delete collection.currentOutputFile;
@@ -374,11 +439,40 @@ void FileCollectController::continueFileTransfer(ComputerControlInterface::Point
 
 		if (collection.currentOutputFile)
 		{
-			collection.currentOutputFile->write(dataChunk);
+			if (dataChunk.size() > collection.currentFileSize - collection.currentOutputFile->size())
+			{
+				vCritical() << "file transfer exceeds announced file size";
+				const auto outputFilePath = collection.currentOutputFile->fileName();
+				collection.currentOutputFile->close();
+				delete collection.currentOutputFile;
+				collection.currentOutputFile = nullptr;
+				QFile::remove(outputFilePath);
+				collection.currentFileSize = 0;
+				collection.currentTransferId = FileCollection::TransferId{};
+				collection.processedFilesCount += 1;
+				initiateNextFileTransfer(computerControlInterface, collection);
+				return;
+			}
+
+			if (collection.currentOutputFile->write(dataChunk) != dataChunk.size())
+			{
+				vCritical() << "failed to write file transfer data";
+				const auto outputFilePath = collection.currentOutputFile->fileName();
+				collection.currentOutputFile->close();
+				delete collection.currentOutputFile;
+				collection.currentOutputFile = nullptr;
+				QFile::remove(outputFilePath);
+				collection.currentFileSize = 0;
+				collection.currentTransferId = FileCollection::TransferId{};
+				collection.processedFilesCount += 1;
+				initiateNextFileTransfer(computerControlInterface, collection);
+				return;
+			}
 		}
 		else
 		{
 			vCritical() << "transfer not started / output file not available" << transferId;
+			return;
 		}
 
 		Q_EMIT collectionChanged(collectionId);

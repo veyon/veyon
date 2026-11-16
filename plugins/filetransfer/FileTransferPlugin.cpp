@@ -59,6 +59,19 @@ static QString resolvePathToHome(const QString& path)
 	return QDir::toNativeSeparators(QDir::homePath() + QLatin1Char('/') + path);
 }
 
+static bool hasControlCharacters(const QString& value)
+{
+	for (const auto character : value)
+	{
+		if (character.unicode() < 0x20 || character.unicode() == 0x7f)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 
 FileTransferPlugin::FileTransferPlugin( QObject* parent ) :
 	QObject( parent ),
@@ -498,25 +511,52 @@ bool FileTransferPlugin::handleDistributeFilesMessage(const FeatureMessage& mess
 	{
 	case FeatureCommand::StartFileTransfer:
 		m_currentFile.close();
+		m_currentFile.setFileName({});
+		m_currentFileName.clear();
+		m_currentTransferId = {};
 
 		{
-			// Use custom destination directory if provided, otherwise fall back to config
 			QString destDir;
 			if (message.hasArgument(Argument::DestinationDirectory))
 			{
-				destDir = resolvePathToHome(
-								  message.argument(Argument::DestinationDirectory).toString());
+				const auto customDestinationDirectory = message.argument(Argument::DestinationDirectory).toString();
+				if (m_configuration.allowCustomDestinationDirectory())
+				{
+					if (hasControlCharacters(customDestinationDirectory))
+					{
+						vWarning() << "rejecting custom file transfer destination directory with control characters";
+						QMessageBox::critical(nullptr, tr("File transfer"),
+											  tr("Could not receive the file because the destination directory is invalid."));
+						return true;
+					}
+
+					destDir = resolvePathToHome(customDestinationDirectory);
+					vInfo() << "using custom file transfer destination directory from master" << destDir;
+				}
+				else
+				{
+					vInfo() << "ignoring custom file transfer destination directory due to configuration";
+				}
 			}
 			if (destDir.isEmpty())
 			{
 				destDir = destinationDirectory();
 			}
-			if (QDir(destDir).exists() == false)
+			if (QDir(destDir).exists() == false &&
+				VeyonCore::filesystem().ensurePathExists(destDir) == false)
 			{
-				VeyonCore::filesystem().ensurePathExists(destDir);
+				QMessageBox::critical(nullptr, tr("File transfer"),
+									  tr("Could not receive the file because the destination directory could not be created."));
+				return true;
 			}
 
-			m_currentFileName = destDir + QDir::separator() + message.argument(Argument::FileName).toString();
+			m_currentFileName = Filesystem::safeJoin(destDir, message.argument(Argument::FileName).toString());
+			if (m_currentFileName.isEmpty())
+			{
+				QMessageBox::critical(nullptr, tr("File transfer"),
+									  tr("Could not receive the file because its name is invalid."));
+				return true;
+			}
 		}
 		m_currentFile.setFileName(m_currentFileName);
 		if( m_currentFile.exists() && message.argument(Argument::OverwriteExistingFile).toBool() == false )
@@ -543,7 +583,7 @@ bool FileTransferPlugin::handleDistributeFilesMessage(const FeatureMessage& mess
 		return true;
 
 	case FeatureCommand::ContinueFileTransfer:
-		if (message.argument(Argument::TransferId).toUuid() == m_currentTransferId)
+		if (m_currentFile.isOpen() && message.argument(Argument::TransferId).toUuid() == m_currentTransferId)
 		{
 			m_currentFile.write(message.argument(Argument::DataChunk).toByteArray());
 		}
@@ -554,9 +594,11 @@ bool FileTransferPlugin::handleDistributeFilesMessage(const FeatureMessage& mess
 		return true;
 
 	case FeatureCommand::CancelFileTransfer:
-		if (message.argument(Argument::TransferId).toUuid() == m_currentTransferId)
+		if (m_currentFile.isOpen() && message.argument(Argument::TransferId).toUuid() == m_currentTransferId)
 		{
 			m_currentFile.remove();
+			m_currentFileName.clear();
+			m_currentTransferId = {};
 		}
 		else
 		{
@@ -565,12 +607,20 @@ bool FileTransferPlugin::handleDistributeFilesMessage(const FeatureMessage& mess
 		return true;
 
 	case FeatureCommand::FinishFileTransfer:
+		if (m_currentFile.isOpen() == false ||
+			message.argument(Argument::TransferId).toUuid() != m_currentTransferId)
+		{
+			vWarning() << "received finish message for unknown transfer ID";
+			return true;
+		}
+
 		m_currentFile.close();
 		if (message.argument(Argument::OpenFileInApplication).toBool())
 		{
 			QDesktopServices::openUrl( QUrl::fromLocalFile( m_currentFileName ) );
 		}
 		m_currentFile.setFileName({});
+		m_currentTransferId = {};
 		return true;
 
 	case FeatureCommand::OpenTransferFolder:

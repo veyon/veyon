@@ -24,13 +24,153 @@
 
 #include <QCoreApplication>
 #include <QDir>
+#include <QFileInfo>
 #include <QHostInfo>
+#include <QRegularExpression>
 #include <QStandardPaths>
 
 #include "VeyonConfiguration.h"
 #include "Filesystem.h"
 #include "PlatformFilesystemFunctions.h"
 #include "PlatformUserFunctions.h"
+
+
+namespace
+{
+
+bool hasUnsafeCharacters(const QString& value)
+{
+	for (const auto character : value)
+	{
+		if (character.unicode() < 0x20 || character.unicode() == 0x7f)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool isPathWithinBase(const QString& path, const QString& base)
+{
+#ifdef Q_OS_WIN
+	return path.startsWith(base.endsWith(QLatin1Char('/')) ? base : base + QLatin1Char('/'), Qt::CaseInsensitive);
+#else
+	return path.startsWith(base.endsWith(QLatin1Char('/')) ? base : base + QLatin1Char('/'));
+#endif
+}
+
+}
+
+
+
+bool Filesystem::isSafePathComponent(const QString& name)
+{
+	static const QRegularExpression reservedName(
+		QStringLiteral("^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(\\..*)?$"),
+		QRegularExpression::CaseInsensitiveOption);
+
+	return name.isEmpty() == false &&
+			name.toUtf8().size() <= 255 &&
+			hasUnsafeCharacters(name) == false &&
+			name.contains(QLatin1Char('/')) == false &&
+			name.contains(QLatin1Char('\\')) == false &&
+			name.contains(QLatin1Char(':')) == false &&
+			name != QStringLiteral(".") &&
+			name != QStringLiteral("..") &&
+			name.endsWith(QLatin1Char('.')) == false &&
+			name.endsWith(QLatin1Char(' ')) == false &&
+			reservedName.match(name).hasMatch() == false;
+}
+
+
+
+QString Filesystem::safeJoin(const QString& baseDir, const QString& relativePath)
+{
+	if (baseDir.isEmpty() || relativePath.isEmpty() || relativePath.size() > 4096 || hasUnsafeCharacters(relativePath))
+	{
+		vWarning() << "rejecting unsafe relative path";
+		return {};
+	}
+
+	auto normalizedPath = relativePath;
+	normalizedPath.replace(QLatin1Char('\\'), QLatin1Char('/'));
+	if (normalizedPath.startsWith(QLatin1Char('/')) ||
+		normalizedPath.endsWith(QLatin1Char('/')) ||
+		normalizedPath.contains(QLatin1Char(':')))
+	{
+		vWarning() << "rejecting unsafe relative path";
+		return {};
+	}
+
+	const auto basePath = QDir(baseDir).absolutePath();
+	if (QDir().mkpath(basePath) == false)
+	{
+		vWarning() << "failed to create base directory for safe path join";
+		return {};
+	}
+
+	const auto canonicalBase = QDir(basePath).canonicalPath();
+	if (canonicalBase.isEmpty())
+	{
+		vWarning() << "failed to canonicalize base directory for safe path join";
+		return {};
+	}
+
+	QStringList components;
+	for (const auto& component : normalizedPath.split(QLatin1Char('/'), Qt::SkipEmptyParts))
+	{
+		if (component == QStringLiteral("."))
+		{
+			continue;
+		}
+
+		if (isSafePathComponent(component) == false)
+		{
+			vWarning() << "rejecting unsafe relative path component";
+			return {};
+		}
+
+		components.append(component);
+	}
+
+	if (components.isEmpty())
+	{
+		vWarning() << "rejecting unsafe relative path";
+		return {};
+	}
+
+	const auto result = QDir::cleanPath(canonicalBase + QLatin1Char('/') + components.join(QLatin1Char('/')));
+	if (isPathWithinBase(result, canonicalBase) == false)
+	{
+		vWarning() << "safe path join escaped base directory";
+		return {};
+	}
+
+	auto existingPath = result;
+	while (existingPath.isEmpty() == false && QFileInfo::exists(existingPath) == false)
+	{
+		const auto parentPath = QFileInfo(existingPath).dir().absolutePath();
+		if (parentPath == existingPath)
+		{
+			vWarning() << "failed to find an existing parent directory for safe path join";
+			return {};
+		}
+
+		existingPath = parentPath;
+	}
+
+	const auto canonicalExistingPath = QDir(existingPath).canonicalPath();
+	if (canonicalExistingPath.isEmpty() || (canonicalExistingPath != canonicalBase &&
+											isPathWithinBase(canonicalExistingPath, canonicalBase) == false))
+	{
+		vWarning() << "safe path join resolved outside base directory";
+		return {};
+	}
+
+	return result;
+}
+
 
 
 QString Filesystem::expandPath( QString path ) const

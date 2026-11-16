@@ -56,4 +56,16 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 
 	add_test(NAME VncProtocolRobustnessTest COMMAND VncProtocolRobustnessTest)
 
+	add_executable(FilesystemSafeJoinTest
+		core/FilesystemSafeJoinTest.cpp
+	)
+
+	target_link_libraries(FilesystemSafeJoinTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+		veyon-core
+	)
+
+	add_test(NAME FilesystemSafeJoinTest COMMAND FilesystemSafeJoinTest)
+
 endif()

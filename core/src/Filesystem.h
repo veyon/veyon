@@ -33,6 +33,9 @@ class VEYON_CORE_EXPORT Filesystem : public QObject
 {
 	Q_OBJECT
 public:
+	static QString safeJoin(const QString& baseDir, const QString& relativePath);
+	static bool isSafePathComponent(const QString& name);
+
 	QString expandPath( QString path ) const;
 	QString shrinkPath( QString path ) const;
 	bool ensurePathExists( const QString &path ) const;
