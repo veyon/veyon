@@ -141,11 +141,6 @@ bool LinuxFilesystemFunctions::openFileSafely( QFile* file, QIODevice::OpenMode 
 	{
 		flags |= O_APPEND;
 	}
-	else if( openMode & QFile::Truncate )
-	{
-		flags |= O_TRUNC;
-	}
-
 	int fileMode =
 		( permissions.testFlag( QFile::ReadOwner ) || permissions.testFlag( QFile::ReadUser ) ? S_IRUSR : 0 ) |
 		( permissions.testFlag( QFile::WriteOwner ) || permissions.testFlag( QFile::WriteUser ) ? S_IWUSR : 0 ) |
@@ -170,10 +165,19 @@ bool LinuxFilesystemFunctions::openFileSafely( QFile* file, QIODevice::OpenMode 
 		return false;
 	}
 
-	if( s.st_uid != getuid() )
+	if (s.st_uid != getuid() || S_ISREG(s.st_mode) == 0)
 	{
 		close(fd);
 		return false;
+	}
+
+	if (openMode & QFile::Truncate)
+	{
+		if (ftruncate(fd, 0) != 0)
+		{
+			close(fd);
+			return false;
+		}
 	}
 
 	if( fileMode )
