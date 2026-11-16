@@ -1,13 +1,5 @@
-/*
- * input-block-helper.c - setuid daemon for EVIOCGRAB-based input blocking
- *
- * Copyright (c) 2026 Tobias Junghans <tobydox@veyon.io>
- *
- * This file is part of Veyon - https://veyon.io
- *
- * Runs as root (setuid), listens on a Unix domain socket, and processes
- * "block" / "unblock" commands from the Veyon Server.
- */
+// SPDX-FileCopyrightText: 2026 Tobias Junghans <tobydox@veyon.io>
+// SPDX-License-Identifier: GPL-2.0-or-later
 
 #define _GNU_SOURCE
 

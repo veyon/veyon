@@ -1,10 +1,5 @@
-/*
- * VncProtocolRobustnessTest.cpp - protocol fragmentation and size-limit tests
- *
- * Copyright (c) 2026 Tobias Junghans <tobydox@veyon.io>
- *
- * This file is part of Veyon - https://veyon.io
- */
+// SPDX-FileCopyrightText: 2026 Tobias Junghans <tobydox@veyon.io>
+// SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <QtTest>
 

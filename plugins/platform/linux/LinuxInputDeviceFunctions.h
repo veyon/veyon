@@ -1,10 +1,5 @@
-/*
- * LinuxInputDeviceFunctions.h - declaration of LinuxInputDeviceFunctions class
- *
- * Copyright (c) 2017-2026 Tobias Junghans <tobydox@veyon.io>
- *
- * This file is part of Veyon - https://veyon.io
- */
+// SPDX-FileCopyrightText: 2017-2026 Tobias Junghans <tobydox@veyon.io>
+// SPDX-License-Identifier: GPL-2.0-or-later
 
 #pragma once
 

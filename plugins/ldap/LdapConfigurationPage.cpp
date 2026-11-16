@@ -1,5 +1,4 @@
-// Copyright (c) 2019-2026 Tobias Junghans <tobydox@veyon.io>
-// This file is part of Veyon - https://veyon.io
+// SPDX-FileCopyrightText: 2019-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: LGPL-2.0-or-later
 
 #include <QFileDialog>
