@@ -23,7 +23,10 @@
  */
 
 #include <QDir>
+#include <QFile>
 
+#include <fcntl.h>
+#include <io.h>
 #include <shlobj.h>
 #include <accctrl.h>
 #include <aclapi.h>
@@ -237,14 +240,83 @@ bool WindowsFilesystemFunctions::setFileOwnerGroupPermissions( const QString& fi
 
 bool WindowsFilesystemFunctions::openFileSafely( QFile* file, QIODevice::OpenMode openMode, QFileDevice::Permissions permissions )
 {
-	if( file == nullptr )
+	if (file == nullptr)
 	{
 		return false;
 	}
 
-	if( file->open( openMode ) &&
-		file->symLinkTarget().isEmpty() &&
-		file->setPermissions( permissions ) )
+	DWORD desiredAccess = 0;
+	if (openMode & QFile::ReadOnly)
+	{
+		desiredAccess |= GENERIC_READ;
+	}
+	if (openMode & QFile::WriteOnly)
+	{
+		desiredAccess |= GENERIC_WRITE;
+	}
+
+	DWORD creationDisposition = OPEN_EXISTING;
+	if (openMode & QFile::WriteOnly)
+	{
+		if (openMode & QFile::NewOnly)
+		{
+			creationDisposition = CREATE_NEW;
+		}
+		else if ((openMode & QFile::ExistingOnly) == false)
+		{
+			creationDisposition = OPEN_ALWAYS;
+		}
+	}
+
+	const auto path = WindowsCoreFunctions::toWCharArray(file->fileName());
+	const auto handle = CreateFileW(path.get(), desiredAccess, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr,
+									creationDisposition, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_OPEN_REPARSE_POINT, nullptr);
+	if (handle == INVALID_HANDLE_VALUE)
+	{
+		return false;
+	}
+
+	BY_HANDLE_FILE_INFORMATION fileInformation{};
+	if (GetFileInformationByHandle(handle, &fileInformation) == false ||
+		(fileInformation.dwFileAttributes & (FILE_ATTRIBUTE_REPARSE_POINT | FILE_ATTRIBUTE_DIRECTORY)) != 0 )
+	{
+		CloseHandle(handle);
+		return false;
+	}
+
+	if (openMode & QFile::Truncate)
+	{
+		LARGE_INTEGER offset{};
+		if (SetFilePointerEx(handle, offset, nullptr, FILE_BEGIN) == false || SetEndOfFile(handle) == false)
+		{
+			CloseHandle(handle);
+			return false;
+		}
+	}
+	else if (openMode & QFile::Append)
+	{
+		LARGE_INTEGER offset{};
+		if (SetFilePointerEx(handle, offset, nullptr, FILE_END) == false)
+		{
+			CloseHandle(handle);
+			return false;
+		}
+	}
+
+	const auto descriptor = _open_osfhandle(reinterpret_cast<intptr_t>(handle), _O_BINARY);
+	if (descriptor == -1)
+	{
+		CloseHandle(handle);
+		return false;
+	}
+
+	if (file->open(descriptor, openMode & ~QFile::Truncate, QFileDevice::AutoCloseHandle) == false)
+	{
+		_close(descriptor);
+		return false;
+	}
+
+	if (file->setPermissions(permissions))
 	{
 		return true;
 	}
