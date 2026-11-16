@@ -1,0 +1,60 @@
+name: Windows (MSYS2)
+
+on:
+  push:
+    branches: [ "4.12", "wp*", "fix/*" ]
+  pull_request:
+    branches: [ "4.12" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2022
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: >-
+            mingw-w64-ucrt-x86_64-cmake
+            mingw-w64-ucrt-x86_64-ninja
+            mingw-w64-ucrt-x86_64-toolchain
+            mingw-w64-ucrt-x86_64-pkgconf
+            mingw-w64-ucrt-x86_64-qt6-base
+            mingw-w64-ucrt-x86_64-qt6-tools
+            mingw-w64-ucrt-x86_64-qt6-httpserver
+            mingw-w64-ucrt-x86_64-qca-qt6
+            mingw-w64-ucrt-x86_64-openssl
+            mingw-w64-ucrt-x86_64-lzo2
+            mingw-w64-ucrt-x86_64-libjpeg-turbo
+            mingw-w64-ucrt-x86_64-libpng
+            mingw-w64-ucrt-x86_64-zlib
+            mingw-w64-ucrt-x86_64-openldap
+            mingw-w64-ucrt-x86_64-cyrus-sasl
+      - name: Interception header (not packaged in MSYS2)
+        run: curl -fsSL -o /ucrt64/include/interception.h https://raw.githubusercontent.com/oblitum/Interception/v1.0.1/library/interception.h
+      - name: Configure
+        run: cmake -S . -B build -G Ninja -DWITH_QT6=ON -DCMAKE_BUILD_TYPE=Debug -DWITH_UNITY_BUILD=OFF -DWITH_TESTS=ON -DWITH_BUNDLED_LIBVNC=ON -DWITH_TRANSLATIONS=OFF
+      # Bundled third-party code (UltraVNC, libvncserver) does not build with MSYS2's current GCC;
+      # the official packages use a different toolchain. Only first-party failures fail this job.
+      - name: Build
+        run: |
+          ninja -C build -k 0 > build.log 2>&1 || true
+          grep -E "^FAILED:" build.log | sed 's/^FAILED: \(\[code=[0-9]*\] \)\?//' | sort -u > failed.txt || true
+          grep -v -E "3rdparty/|translations/" failed.txt > failed-first-party.txt || true
+          echo "failed objects: $(wc -l < failed.txt), first-party: $(wc -l < failed-first-party.txt)"
+          if [ -s failed-first-party.txt ]; then
+            cat failed-first-party.txt
+            grep -E " error: " build.log | grep -v "3rdparty/" | sort -u | head -50
+            exit 1
+          fi
+      - name: Unit tests
+        run: |
+          export PATH="$PWD/build/core:$PATH"
+          QT_QPA_PLATFORM=offscreen ctest --test-dir build --output-on-failure --no-tests=error
