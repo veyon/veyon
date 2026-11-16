@@ -7,6 +7,8 @@ file(GLOB veyoncore_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/src/*.ui
 	${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/src/Configuration/*.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/crypto/*.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/crypto/*.h
 	)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/builddata.qrc.in ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
@@ -47,6 +49,9 @@ if(WITH_TESTS)
 endif()
 
 target_link_libraries(veyon-core PUBLIC OpenSSL::SSL)
+
+# VeyonCrypto (src/crypto) uses the OpenSSL API subset common to 1.1.1, 3.x and 4.x (06-pki.md §2)
+target_compile_definitions(veyon-core PRIVATE OPENSSL_API_COMPAT=10101)
 
 if(WITH_BUNDLED_LIBVNC)
 	target_link_libraries(veyon-core PUBLIC vncclient)
