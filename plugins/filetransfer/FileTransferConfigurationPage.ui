@@ -72,6 +72,13 @@
         </property>
        </widget>
       </item>
+      <item row="4" column="0" colspan="3">
+       <widget class="QCheckBox" name="allowCustomDestinationDirectory">
+        <property name="text">
+         <string>Allow master to choose the destination directory</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -382,6 +389,7 @@
   <tabstop>browseDestinationDirectory</tabstop>
   <tabstop>rememberLastFileTransferSourceDirectory</tabstop>
   <tabstop>fileTransferCreateDestinationDirectory</tabstop>
+  <tabstop>allowCustomDestinationDirectory</tabstop>
   <tabstop>filesToCollectSourceDirectory</tabstop>
   <tabstop>browseFilesToCollectSourceDirectory</tabstop>
   <tabstop>collectingMode</tabstop>
