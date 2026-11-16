@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         dist:
-          - debian.11
+          - rhel.8
           - fedora.44
     runs-on: ubuntu-latest
     container: veyon/ci.linux.${{matrix.dist}}
