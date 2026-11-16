@@ -57,4 +57,4 @@ jobs:
       - name: Unit tests
         run: |
           export PATH="$PWD/build/core:$PATH"
-          QT_QPA_PLATFORM=offscreen ctest --test-dir build --output-on-failure --no-tests=ignore
+          QT_QPA_PLATFORM=offscreen ctest --test-dir build --output-on-failure --no-tests=error
