@@ -31,6 +31,7 @@
 #define FOREACH_FILE_TRANSFER_CONFIG_PROPERTY(OP) \
 	OP(FileTransferConfiguration, m_configuration, bool, rememberLastFileTransferSourceDirectory, setRememberLastFileTransferSourceDirectory, "RememberLastSourceDirectory", "FileTransfer", true, Configuration::Property::Flag::Standard)	\
 	OP(FileTransferConfiguration, m_configuration, bool, fileTransferCreateDestinationDirectory, setFileTransferCreateDestinationDirectory, "CreateDestinationDirectory", "FileTransfer", true, Configuration::Property::Flag::Standard)	\
+	OP(FileTransferConfiguration, m_configuration, bool, allowCustomDestinationDirectory, setAllowCustomDestinationDirectory, "AllowCustomDestinationDirectory", "FileTransfer", true, Configuration::Property::Flag::Standard)	\
 	OP(FileTransferConfiguration, m_configuration, QString, fileTransferDefaultSourceDirectory, setFileTransferDefaultSourceDirectory, "DefaultSourceDirectory", "FileTransfer", QStringLiteral("%HOME%"), Configuration::Property::Flag::Standard)	\
 	OP(FileTransferConfiguration, m_configuration, QString, fileTransferDestinationDirectory, setFileTransferDestinationDirectory, "DestinationDirectory", "FileTransfer", QStringLiteral("%HOME%"), Configuration::Property::Flag::Standard)	\
 	OP(FileTransferConfiguration, m_configuration, QString, filesToCollectSourceDirectory, setFilesToCollectSourceDirectory, "FilesToCollectSourceDirectory", "FileTransfer", QStringLiteral("%DOCUMENTS%"), Configuration::Property::Flag::Standard)	\
