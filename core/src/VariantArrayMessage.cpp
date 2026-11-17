@@ -6,10 +6,11 @@
 #include "VeyonCore.h"
 
 
-VariantArrayMessage::VariantArrayMessage(QIODevice* ioDevice) :
+VariantArrayMessage::VariantArrayMessage(QIODevice* ioDevice, MessageSize maximumMessageSize) :
 	m_buffer(),
 	m_stream(&m_buffer),
-	m_ioDevice(ioDevice)
+	m_ioDevice(ioDevice),
+	m_maximumMessageSize(maximumMessageSize < MaxMessageSize ? maximumMessageSize : MaxMessageSize)
 {
 	Q_ASSERT(m_ioDevice != nullptr);
 
@@ -20,7 +21,7 @@ VariantArrayMessage::VariantArrayMessage(QIODevice* ioDevice) :
 
 bool VariantArrayMessage::send()
 {
-	if (m_buffer.size() > MaxMessageSize)
+	if (m_buffer.size() > m_maximumMessageSize)
 	{
 		vCritical() << "refusing to send oversized variant message" << m_buffer.size();
 		return false;
@@ -40,7 +41,7 @@ bool VariantArrayMessage::isReadyForReceive()
 	if (m_ioDevice->peek(reinterpret_cast<char*>(&messageSize), sizeof(messageSize)) == sizeof(messageSize))
 	{
 		messageSize = qFromBigEndian(messageSize);
-		if (messageSize > MaxMessageSize)
+		if (messageSize > m_maximumMessageSize)
 		{
 			vWarning() << "invalid variant message size" << messageSize;
 			m_ioDevice->close();
@@ -66,7 +67,7 @@ bool VariantArrayMessage::receive()
 	}
 
 	messageSize = qFromBigEndian(messageSize);
-	if (messageSize > MaxMessageSize)
+	if (messageSize > m_maximumMessageSize)
 	{
 		vDebug() << "invalid message size" << messageSize;
 		m_ioDevice->close();
