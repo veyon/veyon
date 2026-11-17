@@ -107,7 +107,9 @@
 	OP(VeyonConfiguration, VeyonCore::config(), QString, tlsCaCertificate, setTlsCaCertificate, "CaCertificate", "TLS", QString(), Configuration::Property::Flag::Advanced) \
 	OP(VeyonConfiguration, VeyonCore::config(), QStringList, tlsPinnedFingerprints, setTlsPinnedFingerprints, "PinnedFingerprints", "TLS", QStringList(), Configuration::Property::Flag::Advanced) \
 	OP(VeyonConfiguration, VeyonCore::config(), QStringList, tlsRevokedSerials, setTlsRevokedSerials, "RevokedSerials", "TLS", QStringList(), Configuration::Property::Flag::Advanced) \
-	OP(VeyonConfiguration, VeyonCore::config(), VeyonCore::TlsIpTargetPolicy, tlsIpTargetPolicy, setTlsIpTargetPolicy, "IpTargetPolicy", "TLS", QVariant::fromValue(VeyonCore::TlsIpTargetPolicy::AcceptCaSignedWithHostname), Configuration::Property::Flag::Advanced)
+	OP(VeyonConfiguration, VeyonCore::config(), VeyonCore::TlsIpTargetPolicy, tlsIpTargetPolicy, setTlsIpTargetPolicy, "IpTargetPolicy", "TLS", QVariant::fromValue(VeyonCore::TlsIpTargetPolicy::AcceptCaSignedWithHostname), Configuration::Property::Flag::Advanced) \
+	OP(VeyonConfiguration, VeyonCore::config(), QString, tlsHostCertificateFile, setTlsHostCertificateFile, "HostCertificateFile", "TLS", QString(), Configuration::Property::Flag::Advanced) \
+	OP(VeyonConfiguration, VeyonCore::config(), int, tlsSniffTimeoutMs, setTlsSniffTimeoutMs, "SniffTimeoutMs", "TLS", 200, Configuration::Property::Flag::Hidden)
 
 // directory and user-groups broker (04-directory-broker.md §2, §3); read the mode through
 // DirectoryBrokerClient::configuredMode() (fail closed for invalid values)
