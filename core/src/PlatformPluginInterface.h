@@ -9,6 +9,7 @@ class PlatformCoreFunctions;
 class PlatformFilesystemFunctions;
 class PlatformInputDeviceFunctions;
 class PlatformNetworkFunctions;
+class PlatformSecretFunctions;
 class PlatformServiceFunctions;
 class PlatformSessionFunctions;
 class PlatformUserFunctions;
@@ -22,6 +23,7 @@ public:
 	virtual PlatformFilesystemFunctions& filesystemFunctions() = 0;
 	virtual PlatformInputDeviceFunctions& inputDeviceFunctions() = 0;
 	virtual PlatformNetworkFunctions& networkFunctions() = 0;
+	virtual PlatformSecretFunctions& secretFunctions() = 0;
 	virtual PlatformServiceFunctions& serviceFunctions() = 0;
 	virtual PlatformSessionFunctions& sessionFunctions() = 0;
 	virtual PlatformUserFunctions& userFunctions() = 0;

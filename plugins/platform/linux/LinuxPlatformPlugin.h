@@ -8,6 +8,7 @@
 #include "LinuxFilesystemFunctions.h"
 #include "LinuxInputDeviceFunctions.h"
 #include "LinuxNetworkFunctions.h"
+#include "LinuxSecretFunctions.h"
 #include "LinuxServiceFunctions.h"
 #include "LinuxSessionFunctions.h"
 #include "LinuxUserFunctions.h"
@@ -78,6 +79,11 @@ public:
 		return m_linuxNetworkFunctions;
 	}
 
+	PlatformSecretFunctions& secretFunctions() override
+	{
+		return m_linuxSecretFunctions;
+	}
+
 	PlatformServiceFunctions& serviceFunctions() override
 	{
 		return m_linuxServiceFunctions;
@@ -103,6 +109,7 @@ private:
 	LinuxFilesystemFunctions m_linuxFilesystemFunctions{};
 	LinuxInputDeviceFunctions m_linuxInputDeviceFunctions{};
 	LinuxNetworkFunctions m_linuxNetworkFunctions{};
+	LinuxSecretFunctions m_linuxSecretFunctions{};
 	LinuxServiceFunctions m_linuxServiceFunctions{};
 	LinuxSessionFunctions m_linuxSessionFunctions{};
 	LinuxUserFunctions m_linuxUserFunctions{};

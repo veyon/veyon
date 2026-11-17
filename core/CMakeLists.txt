@@ -96,6 +96,7 @@ set(veyoncore_SOURCES
 	src/PlatformPluginInterface.h
 	src/PlatformPluginManager.cpp
 	src/PlatformPluginManager.h
+	src/PlatformSecretFunctions.h
 	src/PlatformServiceFunctions.h
 	src/PlatformSessionFunctions.h
 	src/PlatformUserFunctions.h
@@ -110,6 +111,8 @@ set(veyoncore_SOURCES
 	src/RfbVeyonAuth.h
 	src/Screenshot.cpp
 	src/Screenshot.h
+	src/SecretStore.cpp
+	src/SecretStore.h
 	src/ServiceControl.cpp
 	src/ServiceControl.h
 	src/SocketDevice.h

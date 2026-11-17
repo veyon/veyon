@@ -194,6 +194,9 @@ System::Call 'wer::WerAddExcludedApplication(w "veyon-service.exe", i 1) i.r0'
 System::Call 'wer::WerAddExcludedApplication(w "veyon-server.exe", i 1) i.r0'
 System::Call 'wer::WerAddExcludedApplication(w "veyon-worker.exe", i 1) i.r0'
 System::Call 'wer::WerAddExcludedApplication(w "veyon-configurator.exe", i 1) i.r0'
+# The SecretStore directories (%ProgramData%\Veyon\secrets) are created and, if a user pre-created
+# them, taken over by Veyon itself, by handle and without following junctions (no takeown/icacls
+# here: both follow reparse points)
 # configuration
 ExecWait '"$INSTDIR\veyon-wcli.exe" service register'
 ExecWait '"$INSTDIR\veyon-wcli.exe" config set Network/FirewallExceptionEnabled 1'

@@ -10,6 +10,7 @@
 #include "WindowsFilesystemFunctions.h"
 #include "WindowsInputDeviceFunctions.h"
 #include "WindowsNetworkFunctions.h"
+#include "WindowsSecretFunctions.h"
 #include "WindowsServiceFunctions.h"
 #include "WindowsSessionFunctions.h"
 #include "WindowsUserFunctions.h"
@@ -80,6 +81,11 @@ public:
 		return m_windowsNetworkFunctions;
 	}
 
+	PlatformSecretFunctions& secretFunctions() override
+	{
+		return m_windowsSecretFunctions;
+	}
+
 	PlatformServiceFunctions& serviceFunctions() override
 	{
 		return m_windowsServiceFunctions;
@@ -102,6 +108,7 @@ private:
 	WindowsFilesystemFunctions m_windowsFilesystemFunctions{};
 	WindowsInputDeviceFunctions m_windowsInputDeviceFunctions{};
 	WindowsNetworkFunctions m_windowsNetworkFunctions{};
+	WindowsSecretFunctions m_windowsSecretFunctions{};
 	WindowsServiceFunctions m_windowsServiceFunctions{};
 	WindowsSessionFunctions m_windowsSessionFunctions{};
 	WindowsUserFunctions m_windowsUserFunctions{};
