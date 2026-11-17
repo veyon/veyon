@@ -189,7 +189,10 @@ void Logger::openLogFile()
 			QFile::WriteOnly | QFile::Append | QFile::Unbuffered | QFile::Text,
 			QFile::ReadOwner | QFile::WriteOwner) == false)
 	{
-		vCritical() << m_logFilePath << "is a symlink and will not be written to for security reasons";
+		// openFileSafely() refuses symlinks, files of other users and non-regular files
+		vCritical() << m_logFilePath
+					<< "could not be opened safely (symlink, owned by another user, not a regular file "
+					   "or not accessible) and will not be written to";
 		m_logFile->close();
 		delete m_logFile;
 		m_logFile = nullptr;
