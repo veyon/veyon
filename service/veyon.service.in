@@ -14,6 +14,9 @@ StartLimitBurst=10
 # endpoint directory of the local IPC (the service verifies owner and mode itself)
 RuntimeDirectory=veyon
 RuntimeDirectoryMode=0711
+# log directory of the service and its privileged processes (also created and verified at runtime)
+LogsDirectory=veyon
+LogsDirectoryMode=0750
 # never write core dumps of the service and its servers/workers (they hold secrets)
 LimitCORE=0
 

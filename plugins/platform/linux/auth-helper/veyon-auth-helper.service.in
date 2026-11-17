@@ -7,6 +7,9 @@ After=dbus.service
 Type=dbus
 BusName=io.veyon.AuthHelper
 ExecStart=@CMAKE_INSTALL_PREFIX@/bin/veyon-auth-helper
+# log directory of privileged Veyon processes (also created and verified at runtime)
+LogsDirectory=veyon
+LogsDirectoryMode=0750
 NoNewPrivileges=yes
 PrivateTmp=yes
 ProtectKernelTunables=yes
