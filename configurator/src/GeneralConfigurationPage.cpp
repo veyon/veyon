@@ -64,6 +64,7 @@ GeneralConfigurationPage::GeneralConfigurationPage() :
 	connect(ui->testAuthenticationButton, &QPushButton::clicked, this, &GeneralConfigurationPage::testAuthentication);
 	connect(ui->openLogFileDirectory, &QPushButton::clicked, this, &GeneralConfigurationPage::openLogFileDirectory);
 	connect(ui->clearLogFiles, &QPushButton::clicked, this, &GeneralConfigurationPage::clearLogFiles);
+	connect(ui->logFileDirectory, &QLineEdit::textChanged, this, &GeneralConfigurationPage::updateLogFileLocations);
 	connect(ui->userGroupsBackend, QOverload<int>::of(&QComboBox::currentIndexChanged), this, [this]() {
 		const auto plugin = VeyonCore::pluginManager().pluginInterface(ui->userGroupsBackend->currentData().toUuid());
 		ui->useDomainUserGroups->setEnabled(plugin && plugin->flags().testFlag(Plugin::ProvidesDefaultImplementation));
@@ -88,6 +89,8 @@ void GeneralConfigurationPage::resetWidgets()
 	FOREACH_VEYON_NETWORK_OBJECT_DIRECTORY_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_VEYON_USER_GROUPS_BACKEND_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
 	FOREACH_VEYON_AUTHENTICATION_CONFIG_PROPERTY(INIT_WIDGET_FROM_PROPERTY);
+
+	updateLogFileLocations();
 }
 
 
@@ -164,6 +167,20 @@ void GeneralConfigurationPage::openLogFileDirectory()
 
 
 
+void GeneralConfigurationPage::updateLogFileLocations()
+{
+	const auto& filesystemFunctions = VeyonCore::platform().filesystemFunctions();
+	const auto baseDirectory = VeyonCore::filesystem().expandPath(ui->logFileDirectory->text());
+
+	ui->logFileLocations->setText(
+		tr("Log files of the Veyon Service and other privileged processes are written to %1, log files of "
+		   "processes of logged on users to %2.")
+			.arg(QDir::toNativeSeparators(filesystemFunctions.systemLogFileDirectory()),
+				 QDir::toNativeSeparators(filesystemFunctions.userLogFileDirectory(baseDirectory, AllUsersPattern))));
+}
+
+
+
 void GeneralConfigurationPage::clearLogFiles()
 {
 	bool serviceStopped = false;
@@ -188,30 +205,24 @@ void GeneralConfigurationPage::clearLogFiles()
 	}
 
 	bool success = true;
-	const QStringList logFilesFilter({QStringLiteral("Veyon*.log")});
+	const QStringList logFilesFilter({QStringLiteral("Veyon*.log"), QStringLiteral("Veyon*.log.*")});
 
-	QDir d(VeyonCore::filesystem().expandPath(VeyonCore::config().logFileDirectory()));
-	const auto localLogFiles = d.entryList(logFilesFilter);
-
-	for (const auto& f : localLogFiles)
+	for (const auto& directory : logFileDirectories())
 	{
-		if (f.startsWith(QLatin1String("VeyonConfigurator")))
-		{
-			d.remove(f);
-		}
-		else
-		{
-			success &= d.remove(f);
-		}
-	}
+		QDir logFileDirectory(directory);
+		const auto logFileNames = logFileDirectory.entryList(logFilesFilter, QDir::Files | QDir::System);
 
-	d = QDir(VeyonCore::platform().filesystemFunctions().globalTempPath());
-	const auto globalLogFiles = d.entryList(logFilesFilter);
-	for (const auto& f : globalLogFiles)
-	{
-		if (f != QLatin1String("VeyonConfigurator.log"))
+		for (const auto& logFileName : logFileNames)
 		{
-			success &= d.remove(f);
+			// the log file of this process is still open
+			if (logFileName.startsWith(QLatin1String("VeyonConfigurator")))
+			{
+				logFileDirectory.remove(logFileName);
+			}
+			else
+			{
+				success &= logFileDirectory.remove(logFileName);
+			}
 		}
 	}
 
@@ -230,6 +241,41 @@ void GeneralConfigurationPage::clearLogFiles()
 		QMessageBox::critical(this, tr("Error"),
 							  tr("Could not remove all log files."));
 	}
+}
+
+
+
+QStringList GeneralConfigurationPage::logFileDirectories()
+{
+	const auto& filesystemFunctions = VeyonCore::platform().filesystemFunctions();
+	const auto baseDirectory = VeyonCore::filesystem().expandPath(VeyonCore::config().logFileDirectory());
+
+	QStringList directories{filesystemFunctions.systemLogFileDirectory()};
+
+	// a pattern if there's one directory per user (Linux), otherwise the directory itself
+	const QFileInfo userDirectories(filesystemFunctions.userLogFileDirectory(baseDirectory, AllUsersPattern));
+	if (userDirectories.fileName().contains(AllUsersPattern))
+	{
+		const auto parentDirectory = userDirectories.dir();
+		const auto names = parentDirectory.entryList({userDirectories.fileName()},
+													 QDir::Dirs | QDir::NoDotAndDotDot | QDir::NoSymLinks);
+		for (const auto& name : names)
+		{
+			directories.append(parentDirectory.filePath(name));
+		}
+	}
+	else
+	{
+		directories.append(userDirectories.filePath());
+	}
+
+	// shared locations used by earlier versions
+	directories.append(baseDirectory);
+	directories.append(filesystemFunctions.globalTempPath());
+
+	directories.removeDuplicates();
+
+	return directories;
 }
 
 

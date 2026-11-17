@@ -26,9 +26,14 @@ private:
 	bool testKeyFileAuthentication();
 
 	void openLogFileDirectory();
+	void updateLogFileLocations();
 	void clearLogFiles();
+	static QStringList logFileDirectories();
 
 	void populateNetworkObjectDirectories();
+
+	// login name for PlatformFilesystemFunctions::userLogFileDirectory() matching all users
+	static constexpr auto AllUsersPattern = QLatin1String("*");
 
 	static QString authenticationTestTitle()
 	{
