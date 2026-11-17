@@ -50,6 +50,10 @@ public:
 
 	static LogLevel logLevelFromString(const QString& logLevelString);
 
+	// writes a line to stderr and the system log (Unix: syslog/journal, Windows: debugger output)
+	// without any Qt logging, for failures before any Logger instance or QCoreApplication exists
+	static void logEarlyCritical(const char* message);
+
 private:
 	void initLogFile();
 	void openLogFile();

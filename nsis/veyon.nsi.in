@@ -189,6 +189,11 @@ File "styles/*.dll"
 # Qt TLS backend
 SetOutPath "$INSTDIR\tls"
 File "tls/qopensslbackend.dll"
+# never write full memory dumps of processes holding secrets (02-ipc.md §1a.6)
+System::Call 'wer::WerAddExcludedApplication(w "veyon-service.exe", i 1) i.r0'
+System::Call 'wer::WerAddExcludedApplication(w "veyon-server.exe", i 1) i.r0'
+System::Call 'wer::WerAddExcludedApplication(w "veyon-worker.exe", i 1) i.r0'
+System::Call 'wer::WerAddExcludedApplication(w "veyon-configurator.exe", i 1) i.r0'
 # configuration
 ExecWait '"$INSTDIR\veyon-wcli.exe" service register'
 ExecWait '"$INSTDIR\veyon-wcli.exe" config set Network/FirewallExceptionEnabled 1'
@@ -287,6 +292,10 @@ ExecWait '"$INSTDIR\veyon-wcli.exe" config set Service/SoftwareSASEnabled 0'
 ExecWait '"$INSTDIR\veyon-wcli.exe" config set Network/FirewallExceptionEnabled 0'
 ExecWait '"$INSTDIR\veyon-wcli.exe" service unregister'
 ExecWait '"$INSTDIR\interception\install-interception.exe" /uninstall'
+System::Call 'wer::WerRemoveExcludedApplication(w "veyon-service.exe", i 1) i.r0'
+System::Call 'wer::WerRemoveExcludedApplication(w "veyon-server.exe", i 1) i.r0'
+System::Call 'wer::WerRemoveExcludedApplication(w "veyon-worker.exe", i 1) i.r0'
+System::Call 'wer::WerRemoveExcludedApplication(w "veyon-configurator.exe", i 1) i.r0'
 # make sure the service is stopped and all file handles are released
 Sleep 2000
 

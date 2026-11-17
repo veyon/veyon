@@ -102,6 +102,7 @@ set(veyoncore_SOURCES
 	src/PluginManager.cpp
 	src/PluginManager.h
 	src/PrecompiledHeader.h
+	src/ProcessHardening.h
 	src/ProcessHelper.cpp
 	src/ProcessHelper.h
 	src/RfbVeyonAuth.h
@@ -221,12 +222,16 @@ if(VEYON_BUILD_WINDOWS)
 	list(APPEND veyoncore_SOURCES
 		src/IpcConnectionWindows.cpp
 		src/IpcServerWindows.cpp
+		src/LoggerWindows.cpp
+		src/ProcessHardeningWindows.cpp
 		src/StandardInputReaderWindows.cpp
 		)
 else()
 	list(APPEND veyoncore_SOURCES
 		src/IpcConnectionUnix.cpp
 		src/IpcServerUnix.cpp
+		src/LoggerUnix.cpp
+		src/ProcessHardeningUnix.cpp
 		src/StandardInputReaderUnix.cpp
 		)
 endif()
