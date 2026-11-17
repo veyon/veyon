@@ -203,6 +203,20 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	)
 	add_test(NAME LinuxLogFileDirectoryTest COMMAND LinuxLogFileDirectoryTest)
 
+	# LoggerTest: Logger with the Linux platform plugin in child processes (unprivileged user, root
+	# in a private mount namespace with a tmpfs on /var/log; WP23)
+	add_executable(LoggerTest
+		LoggerTest.cpp
+	)
+	set_default_target_properties(LoggerTest)
+	add_dependencies(LoggerTest linux-platform)
+	target_link_libraries(LoggerTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+		veyon-core
+	)
+	add_test(NAME LoggerTest COMMAND LoggerTest)
+
 	# veyon-capture-helper (02-ipc.md §1a.5): stdin credentials line and supervision, and the real
 	# helper started from a non-dumpable process (loopback only, VNC password, dumpable helper)
 	if(TARGET veyon-capture-helper)
@@ -229,7 +243,9 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 			Qt${QT_MAJOR_VERSION}::Core
 			veyon-core
 		)
-		add_test(NAME CaptureHelperCoreTest COMMAND CaptureHelperCoreTest)
+		add_test(NAME CaptureHelperCoreTest
+			COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/run-with-private-log-directory.sh $<TARGET_FILE:CaptureHelperCoreTest>)
+		set_tests_properties(CaptureHelperCoreTest PROPERTIES SKIP_RETURN_CODE 77)
 
 		add_executable(CaptureHelperProcessTest
 			CaptureHelperProcessTest.cpp

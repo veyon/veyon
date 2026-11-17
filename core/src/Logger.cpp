@@ -42,14 +42,15 @@ Logger::Logger(const QString& appName) :
 
 	m_logLevel = qBound(LogLevel::Min, configuredLogLevel, LogLevel::Max);
 
+	// before the log file so that a reason for not using it reaches the system log
+	VeyonCore::platform().coreFunctions().initNativeLoggingSystem(appName);
+
 	if (m_logLevel > LogLevel::Nothing)
 	{
 		initLogFile();
 	}
 
 	qInstallMessageHandler(qtMsgHandler);
-
-	VeyonCore::platform().coreFunctions().initNativeLoggingSystem(appName);
 
 	if (QCoreApplication::instance())
 	{
@@ -114,50 +115,18 @@ Logger::LogLevel Logger::logLevelFromString(const QString& logLevelString)
 
 void Logger::initLogFile()
 {
-	QString logPath = VeyonCore::filesystem().expandPath(VeyonCore::config().logFileDirectory());
+	// the platform decides by the privileges of the process: protected system directory or a
+	// per-user directory below the configured one
+	const auto logFileDirectory = VeyonCore::platform().filesystemFunctions().prepareLogFileDirectory(
+		VeyonCore::filesystem().expandPath(VeyonCore::config().logFileDirectory()));
 
-	QFileInfo logDirInfo(logPath);
-
-	if (logDirInfo.isSymLink())
+	if (logFileDirectory.path.isEmpty())
 	{
-		vWarning() << logPath << "is a symlink/junction. Replacing with real directory";
-
-		if (!QFile::remove(logPath))
-		{
-			vCritical() << "Failed to remove symlink" << logPath << "- aborting log initialization";
-			return;
-		}
-		logDirInfo = QFileInfo(logPath);
-	}
-
-	const QString canonical = logDirInfo.canonicalFilePath();
-	const QString absolute = logDirInfo.absoluteFilePath();
-
-	if (canonical != absolute)
-	{
-		vCritical() << "Log path or one of its parent directories is a symlink/junction:" << logPath;
+		reportLogFileError(logFileDirectory.error);
 		return;
 	}
 
-	if (!QDir(logPath).exists())
-	{
-		if (QDir(QDir::rootPath()).mkdir(logPath))
-		{
-			QFile::setPermissions(logPath,
-								  QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner |
-									  QFile::ReadUser | QFile::WriteUser | QFile::ExeUser |
-									  QFile::ReadGroup | QFile::WriteGroup | QFile::ExeGroup |
-									  QFile::ReadOther | QFile::WriteOther | QFile::ExeOther);
-		}
-		else
-		{
-			vCritical() << "Could not create log directory" << logPath;
-			return;
-		}
-	}
-
-	logPath += QDir::separator();
-	m_logFilePath = logPath + QStringLiteral("%1.log").arg(m_appName);
+	m_logFilePath = logFileDirectory.path + QDir::separator() + QStringLiteral("%1.log").arg(m_appName);
 	m_logFile = new QFile(m_logFilePath);
 
 	openLogFile();
@@ -190,12 +159,33 @@ void Logger::openLogFile()
 			QFile::ReadOwner | QFile::WriteOwner) == false)
 	{
 		// openFileSafely() refuses symlinks, files of other users and non-regular files
-		vCritical() << m_logFilePath
-					<< "could not be opened safely (symlink, owned by another user, not a regular file "
-					   "or not accessible) and will not be written to";
+		reportLogFileError(QStringLiteral("%1 could not be opened safely (symlink, owned by another user, "
+										  "not a regular file or not accessible)")
+							   .arg(m_logFilePath));
 		m_logFile->close();
 		delete m_logFile;
 		m_logFile = nullptr;
+	}
+}
+
+
+
+void Logger::reportLogFileError(const QString& error)
+{
+	if (m_logFileErrorReported)
+	{
+		return;
+	}
+
+	m_logFileErrorReported = true;
+
+	// written directly (stderr and Unix: syslog) as this may happen while a message is being logged
+	const auto message = QStringLiteral("%1: file logging disabled: %2").arg(m_appName, error);
+	logEarlyCritical(message.toUtf8().constData());
+
+	if (m_logToSystem)
+	{
+		VeyonCore::platform().coreFunctions().writeToNativeLoggingSystem(message, LogLevel::Critical);
 	}
 }
 
