@@ -1,32 +1,26 @@
 // SPDX-FileCopyrightText: 2024-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include <QCoreApplication>
-#include <QThread>
-#include <QTimer>
+#include <QEventLoop>
 
-#include "PipeWireFramebuffer.h"
+#include "CaptureHelperProcess.h"
 #include "PipeWireVncConfigurationWidget.h"
 #include "PipeWireVncServer.h"
-#include "PlatformCoreFunctions.h"
-#include "PlatformInputDeviceFunctions.h"
-#include "PortalSession.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
 
 #include <cstring>
 
-// Initial framebuffer dimensions (used before the first PipeWire frame arrives)
-static constexpr int DefaultWidth = 1920;
-static constexpr int DefaultHeight = 1080;
-// Qt event loop tick interval in milliseconds
-static constexpr int EventLoopTickMs = 25;
-
 
 PipeWireVncServer::PipeWireVncServer(QObject* parent) :
-	QObject(parent), m_configuration(&VeyonCore::config())
+	QObject(parent),
+	m_configuration(&VeyonCore::config())
 {
 }
+
+
+
+PipeWireVncServer::~PipeWireVncServer() = default;
 
 
 
@@ -35,255 +29,103 @@ QWidget* PipeWireVncServer::configurationWidget()
 	return new PipeWireVncConfigurationWidget(m_configuration);
 }
 
-PipeWireVncServer::~PipeWireVncServer()
-{
-	cleanupVncServer();
-}
+
 
 void PipeWireVncServer::prepareServer()
 {
-	VeyonCore::platform().coreFunctions().prepareSessionBusAccess();
+	// nothing to do: veyon-capture-helper accesses the session bus and the portal
 }
+
+
 
 bool PipeWireVncServer::runServer(int serverPort, const Password& password)
 {
-	if (VeyonCore::isDebugging())
+	// the helper listens on localSocketPath() only
+	Q_UNUSED(serverPort)
+
+	initializeHelperCredentials();
+
+	auto credentials = CaptureHelperCredentials::create(
+		VeyonCrypto::SecureBuffer(password.constData(), password.size()), m_socketName);
+	if (credentials.has_value() == false)
 	{
-		rfbLog = rfbLogDebug;
-		rfbErr = rfbLogDebug;
+		// fail closed instead of running the helper with a weaker password
+		vCritical() << "no valid VNC password for the capture helper";
+		return false;
+	}
+
+	// runs in the VncServer thread for the lifetime of the server
+	CaptureHelperProcess helperProcess(CaptureHelperProcess::defaultHelperFilePath(), std::move(*credentials));
+	// like LinuxServerProcess: nobody reads the helper's output pipes
+	if (VeyonCore::config().logToSystem())
+	{
+		helperProcess.setProcessChannelMode(QProcess::ForwardedChannels);
 	}
 	else
 	{
-		rfbLog = rfbLogNone;
-		rfbErr = rfbLogNone;
+		helperProcess.setStandardOutputFile(QProcess::nullDevice());
+		helperProcess.setStandardErrorFile(QProcess::nullDevice());
 	}
 
-	if (!initVncServer(serverPort, password))
+	// the server knows the process which must listen on the socket (VncServerSocket)
+	connect(&helperProcess, &QProcess::started, &helperProcess,
+			[this, &helperProcess]() { m_helperProcessId = helperProcess.processId(); });
+	connect(&helperProcess, &QProcess::stateChanged, &helperProcess, [this](QProcess::ProcessState state) {
+		if (state == QProcess::NotRunning)
+		{
+			m_helperProcessId = -1;
+		}
+	});
+
+	if (helperProcess.startSupervised() == false)
 	{
 		return false;
 	}
 
-	m_serverRunning = true;
-
-	// Portal session manages the XDG Desktop Portal RemoteDesktop DBus interaction.
-	// Created with nullptr parent to avoid the cross-thread QObject parent warning:
-	// runServer() is called from the VncServer thread while PipeWireVncServer itself
-	// lives on a different thread. Ownership is transferred to cleanupVncServer().
-	m_portalSession = new PortalSession(m_configuration.persistRestoreToken(), nullptr);
-	connect(m_portalSession, &PortalSession::started, this, &PipeWireVncServer::onPortalStarted,
-			Qt::QueuedConnection);
-	connect(m_portalSession, &PortalSession::failed, this, &PipeWireVncServer::onPortalFailed,
-			Qt::QueuedConnection);
-
-	// PipeWireFramebuffer consumes the PipeWire stream and feeds the rfbScreen.
-	// Created with nullptr parent for the same cross-thread reason as m_portalSession.
-	m_framebuffer = new PipeWireFramebuffer(&m_screenMutex);
-	connect(m_framebuffer, &PipeWireFramebuffer::streamEnded,
-			this, &PipeWireVncServer::onStreamEnded, Qt::QueuedConnection);
-
-	// Start the portal flow asynchronously
-	m_portalSession->start();
-
-	// Drive the Qt event loop (portal DBus responses) and rfb clients
-	while (m_serverRunning)
-	{
-		QCoreApplication::processEvents(QEventLoop::AllEvents, EventLoopTickMs);
-
-		m_screenMutex.lock();
-		if (m_rfbScreen)
-		{
-			rfbProcessEvents(m_rfbScreen, 0);
-		}
-		m_screenMutex.unlock();
-
-		if (m_shouldRestart)
-		{
-			m_shouldRestart = false;
-			vInfo() << "Restarting XDG Portal session";
-			m_portalSession->start();
-		}
-
-		QThread::msleep(10);
-	}
-
-	cleanupVncServer();
-	return true;
-}
-
-// ---------------------------------------------------------------------------
-// Portal / stream callbacks
-// ---------------------------------------------------------------------------
-
-void PipeWireVncServer::onPortalStarted()
-{
-	vInfo() << "XDG Portal RemoteDesktop session started; opening PipeWire stream";
-
-	const int fd = m_portalSession->pipewireFd();
-	const auto nodeId = m_portalSession->pipeWireNodeId();
-
-	if (!m_framebuffer->open(fd, nodeId, m_rfbScreen))
-	{
-		vCritical() << "Failed to open PipeWire framebuffer – will retry";
-		QTimer::singleShot(5000, this, [this]() { m_shouldRestart = true; });
-	}
-}
-
-void PipeWireVncServer::onPortalFailed()
-{
-	vWarning() << "XDG Portal session failed – will retry in 5 s";
-	QTimer::singleShot(5000, this, [this]() { m_shouldRestart = true; });
-}
-
-void PipeWireVncServer::onStreamEnded()
-{
-	vInfo() << "PipeWire stream ended – closing session and reconnecting in 2 s";
-
-	if (m_framebuffer)
-	{
-		m_framebuffer->close();
-	}
-	if (m_portalSession)
-	{
-		m_portalSession->close();
-	}
-
-	QTimer::singleShot(2000, this, [this]() { m_shouldRestart = true; });
-}
-
-// ---------------------------------------------------------------------------
-// LibVNCServer setup / teardown
-// ---------------------------------------------------------------------------
-
-bool PipeWireVncServer::initVncServer(int serverPort, const Password& password)
-{
-	const int fbSize = DefaultWidth * DefaultHeight * 4;
-	auto framebufferData = new char[fbSize];
-	std::memset(framebufferData, 0, static_cast<size_t>(fbSize));
-
-	m_rfbScreen = rfbGetScreen(nullptr, nullptr, DefaultWidth, DefaultHeight, 8, 3, 4);
-	if (!m_rfbScreen)
-	{
-		vCritical() << "rfbGetScreen failed";
-		delete[] framebufferData;
-		return false;
-	}
-
-	m_vncPassword = qstrdup(password.toByteArray().constData());
-	m_vncPasswords[0] = m_vncPassword;
-	m_vncPasswords[1] = nullptr;
-
-	m_rfbScreen->desktopName = "VeyonVNC";
-	m_rfbScreen->frameBuffer = framebufferData;
-	m_rfbScreen->port = serverPort;
-	m_rfbScreen->ipv6port = serverPort;
-	m_rfbScreen->listenInterface = htonl(INADDR_LOOPBACK);
-	m_rfbScreen->listen6Interface = const_cast<char*>("::1");
-
-	m_rfbScreen->authPasswdData = m_vncPasswords;
-	m_rfbScreen->passwordCheck = rfbCheckPasswordByList;
-
-	// PipeWireFramebuffer::convertFrame() writes R,G,B,x bytes (rgbSwapped() of the
-	// BGRx stream), and rfbNewFramebuffer() resets to exactly that (little-endian) on a resize
-	m_rfbScreen->serverFormat.redShift = 0;
-	m_rfbScreen->serverFormat.greenShift = 8;
-	m_rfbScreen->serverFormat.blueShift = 16;
-	m_rfbScreen->serverFormat.redMax = 255;
-	m_rfbScreen->serverFormat.greenMax = 255;
-	m_rfbScreen->serverFormat.blueMax = 255;
-	m_rfbScreen->serverFormat.trueColour = true;
-	m_rfbScreen->serverFormat.bitsPerPixel = 32;
-
-	m_rfbScreen->alwaysShared = true;
-	m_rfbScreen->handleEventsEagerly = true;
-	m_rfbScreen->deferUpdateTime = 5;
-	m_rfbScreen->cursor = nullptr;
-
-	// Store a back-pointer so the static C callbacks can access this instance.
-	m_rfbScreen->screenData = this;
-
-	rfbInitServer(m_rfbScreen);
-
-	// Install hooks AFTER rfbInitServer (resets them to defaults)
-	m_rfbScreen->kbdAddEvent = &PipeWireVncServer::onKbdAddEvent;
-	m_rfbScreen->ptrAddEvent = &PipeWireVncServer::onPtrAddEvent;
-
-	rfbMarkRectAsModified(m_rfbScreen, 0, 0, DefaultWidth, DefaultHeight);
+	QEventLoop eventLoop;
+	eventLoop.exec();
 
 	return true;
 }
 
-void PipeWireVncServer::cleanupVncServer()
+
+
+PipeWireVncServer::Password PipeWireVncServer::configuredPassword()
 {
-	m_serverRunning = false;
+	initializeHelperCredentials();
 
-	if (m_framebuffer)
-	{
-		m_framebuffer->close();
-		delete m_framebuffer;
-		m_framebuffer = nullptr;
-	}
-
-	if (m_portalSession)
-	{
-		m_portalSession->close();
-		delete m_portalSession;
-		m_portalSession = nullptr;
-	}
-
-	if (m_rfbScreen)
-	{
-		rfbShutdownServer(m_rfbScreen, true);
-		delete[] m_rfbScreen->frameBuffer;
-		m_rfbScreen->frameBuffer = nullptr;
-		rfbScreenCleanup(m_rfbScreen);
-		m_rfbScreen = nullptr;
-	}
-
-	delete[] m_vncPassword;
-	m_vncPassword = nullptr;
-}
-
-// ---------------------------------------------------------------------------
-// LibVNCServer logging
-// ---------------------------------------------------------------------------
-
-void PipeWireVncServer::rfbLogDebug(const char* format, ...)
-{
-	va_list args;
-	va_start(args, format);
-	static constexpr int MaxLen = 256;
-	char msg[MaxLen];
-	vsnprintf(msg, sizeof(msg), format, args);
-	msg[MaxLen - 1] = 0;
-	va_end(args);
-	vDebug() << msg;
-}
-
-void PipeWireVncServer::rfbLogNone(const char* /*format*/, ...)
-{
-}
-
-// ---------------------------------------------------------------------------
-// LibVNCServer input event callbacks
-// ---------------------------------------------------------------------------
-
-void PipeWireVncServer::onKbdAddEvent(rfbBool down, rfbKeySym keySym, rfbClientRec* cl)
-{
-	auto* self = static_cast<PipeWireVncServer*>(cl->screen->screenData);
-	if (self->m_portalSession)
-	{
-		self->m_portalSession->notifyKeyboardKeysym(static_cast<quint32>(keySym), down != 0);
-	}
-}
-
-void PipeWireVncServer::onPtrAddEvent(int buttonMask, int x, int y, rfbClientRec* cl)
-{
-	auto* self = static_cast<PipeWireVncServer*>(cl->screen->screenData);
-	if (self->m_portalSession)
-	{
-		self->m_portalSession->notifyPointer(buttonMask, x, y);
-	}
+	return m_vncPassword;
 }
 
 
-IMPLEMENT_CONFIG_PROXY(PipeWireVncConfiguration)
+
+QString PipeWireVncServer::localSocketPath()
+{
+	initializeHelperCredentials();
+
+	const auto socketPath = CaptureHelperProcess::socketPath(m_socketName);
+
+	// never empty, so that VncServer never falls back to a loopback TCP port anybody could listen
+	// on; runServer() fails in this case
+	return socketPath.isEmpty() ? QStringLiteral("/nonexistent/veyon-capture-helper.sock") : socketPath;
+}
+
+
+
+void PipeWireVncServer::initializeHelperCredentials()
+{
+	if (m_vncPassword.isEmpty())
+	{
+		const auto randomPassword = CaptureHelperCredentials::generatePassword();
+		if (randomPassword.has_value())
+		{
+			m_vncPassword = Password(int(randomPassword->size()));
+			std::memcpy(m_vncPassword.data(), randomPassword->constData(), size_t(randomPassword->size()));
+		}
+	}
+
+	if (m_socketName.isEmpty())
+	{
+		m_socketName = CaptureHelperCredentials::generateSocketName(VeyonCore::sessionId()).value_or(QString{});
+	}
+}

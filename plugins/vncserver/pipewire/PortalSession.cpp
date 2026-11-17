@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <QDBusArgument>
+#include <QDBusMessage>
 #include <QDBusObjectPath>
 #include <QDBusPendingCallWatcher>
 #include <QDBusPendingReply>
@@ -25,16 +26,51 @@
 // XDG Desktop Portal service and interface names
 static const auto PortalService = QStringLiteral("org.freedesktop.portal.Desktop");
 static const auto PortalObjectPath = QStringLiteral("/org/freedesktop/portal/desktop");
+void PortalSession::registerHostAppId(const QString& appId)
+{
+	auto call = QDBusMessage::createMethodCall(QStringLiteral("org.freedesktop.portal.Desktop"),
+											   QStringLiteral("/org/freedesktop/host/portal/Registry"),
+											   QStringLiteral("org.freedesktop.host.portal.Registry"),
+											   QStringLiteral("Register"));
+	call << appId << QVariantMap{};
+
+	const auto reply = m_sessionBus.call(call, QDBus::Block, RegistryCallTimeout);
+	if (reply.type() == QDBusMessage::ErrorMessage)
+	{
+		if (reply.errorName() == QLatin1String("org.freedesktop.DBus.Error.UnknownMethod") ||
+			reply.errorName() == QLatin1String("org.freedesktop.DBus.Error.UnknownObject") ||
+			reply.errorName() == QLatin1String("org.freedesktop.DBus.Error.UnknownInterface"))
+		{
+			vDebug() << "xdg-desktop-portal without host app registry, app ID derived from the systemd scope";
+		}
+		else
+		{
+			// Qt >= 6.10 registers QGuiApplication::desktopFileName() itself, so a repeated
+			// registration fails harmlessly
+			vDebug() << "could not register app ID" << appId << "with xdg-desktop-portal:" << reply.errorMessage();
+		}
+		return;
+	}
+
+	vDebug() << "registered app ID" << appId << "with xdg-desktop-portal";
+}
+
+
+
 PortalSession::PortalSession(bool persistRestoreToken, QObject* parent) :
 	QObject(parent), m_sessionBus(QDBusConnection::sessionBus()), m_persistRestoreToken(persistRestoreToken)
 {
 	const auto appId = QGuiApplication::desktopFileName();
 
-	// Use the default session bus connection so the portal can properly
-	// identify this application by its well-known bus name and match
-	// pre-authorized permissions. Creating a separate connection would
-	// cause the portal to see a numeric :1.xx ID instead of the app ID,
-	// which breaks pre-authorization via flatpak permission-set.
+	// xdg-desktop-portal derives the app ID from the process behind the unique name of the
+	// calling connection: from its systemd unit/scope (sd_pid_get_user_unit(), "app-<id>-*.scope")
+	// or, with portal >= 1.20, from org.freedesktop.host.portal.Registry.Register() on that
+	// connection. Well-known bus names are not consulted, so no name is registered. With portal
+	// >= 1.20 the server is started without a scope, so the app ID has to be registered here,
+	// before any other portal call on this connection; otherwise the app ID is empty and e.g.
+	// KDE's kde-authorized pre-authorization doesn't apply. Portals < 1.20 don't provide the
+	// registry and keep using the scope.
+	registerHostAppId(appId);
 
 	// Apply KDE pre-authorization so the consent dialog can be suppressed
 	// in unattended/kiosk scenarios. These calls are best-effort and may
@@ -45,15 +81,6 @@ PortalSession::PortalSession(bool persistRestoreToken, QObject* parent) :
 	QProcess::execute(QStringLiteral("flatpak"),
 					  {QStringLiteral("permission-set"), QStringLiteral("kde-authorized"),
 					   QStringLiteral("remote-desktop"), appId, QStringLiteral("yes")});
-
-	// Register the well-known name so the portal can resolve our app ID.
-	// This is not strictly required when using the default session bus,
-	// but helps consistency for logging and debugging.
-	if (!m_sessionBus.registerService(appId))
-	{
-		vDebug() << "Could not register D-Bus service name" << appId
-				 << ":" << m_sessionBus.lastError().message();
-	}
 
 	m_remoteDesktop = new OrgFreedesktopPortalRemoteDesktopInterface(PortalService, PortalObjectPath, m_sessionBus, this);
 	m_screenCast = new OrgFreedesktopPortalScreenCastInterface(PortalService, PortalObjectPath, m_sessionBus, this);
@@ -75,7 +102,6 @@ PortalSession::PortalSession(bool persistRestoreToken, QObject* parent) :
 PortalSession::~PortalSession()
 {
 	close();
-	m_sessionBus.unregisterService(QGuiApplication::desktopFileName());
 }
 
 
@@ -383,7 +409,7 @@ QString PortalSession::restoreTokenFilePath()
 #if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
 	const auto genericStateDir = QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation);
 #else
-	const auto genericStateDir = QDir::homePath() + QStringLiteral("/.local/share");
+	const QString genericStateDir = QDir::homePath() + QStringLiteral("/.local/share");
 #endif
 
 	return genericStateDir + QStringLiteral("/veyon/portal-restore-token");

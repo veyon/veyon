@@ -31,8 +31,9 @@ int main(int argc, char** argv)
 
 	VeyonCore::setupApplicationParameters();
 
-	QGuiApplication app(argc, argv);
+	// before constructing QGuiApplication, see VeyonCaptureHelper
 	QGuiApplication::setDesktopFileName(QStringLiteral("io.veyon.veyon-server"));
+	QGuiApplication app(argc, argv);
 
 	VeyonCore core(&app, VeyonCore::Component::Server, QStringLiteral("Server"),
 				   VeyonCore::defaultInitialization() | VeyonCore::InitializationFlag::ServiceIpc);

@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=io.veyon.veyon-server
-Exec=@CMAKE_INSTALL_PREFIX@/bin/veyon-server

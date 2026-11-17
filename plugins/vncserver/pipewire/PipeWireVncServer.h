@@ -3,27 +3,20 @@
 
 #pragma once
 
-#include <QMutex>
-
 #include "PipeWireVncConfiguration.h"
 #include "PluginInterface.h"
 #include "VncServerPluginInterface.h"
 
 #include <atomic>
 
-class PortalSession;
-class PipeWireFramebuffer;
-
-extern "C" {
-#include <rfb/rfb.h>
-}
-
 /**
  * @brief Wayland VNC server plugin using XDG Desktop Portal RemoteDesktop + PipeWire.
  *
- * Acquires a screen capture via the org.freedesktop.portal.RemoteDesktop D-Bus API
- * and feeds the resulting PipeWire stream into a LibVNCServer rfbScreen so that VNC
- * clients can connect and receive screen updates.
+ * Screen capture and input run in the separate process veyon-capture-helper
+ * (PipeWireCaptureServer, 02-ipc.md §1a.5) since xdg-desktop-portal rejects the non-dumpable
+ * veyon-server. In veyon-server this plugin only starts and supervises the helper, which serves
+ * RFB on a private Unix domain socket (no TCP port) with a per-start random VNC password;
+ * veyon-server only talks to it after checking that the listener is the helper process.
  *
  * The plugin uses the stable application identifier "io.veyon.veyon-server".
  * KDE Plasma 6.3+ administrators can pre-authorize unattended access with:
@@ -88,43 +81,30 @@ public:
 
 	bool runServer(int serverPort, const Password& password) override;
 
+	// the helper listens on a Unix domain socket only (localSocketPath()), never on a TCP port
 	int configuredServerPort() override
 	{
 		return -1;
 	}
 
-	Password configuredPassword() override
+	// random per server start, so VncServer uses it for all connections to the helper
+	Password configuredPassword() override;
+
+	QString localSocketPath() override;
+
+	qint64 localSocketProcessId() override
 	{
-		return {};
+		return m_helperProcessId;
 	}
 
-private Q_SLOTS:
-	void onPortalStarted();
-	void onPortalFailed();
-	void onStreamEnded();
-
 private:
-	bool initVncServer(int serverPort, const Password& password);
-	void cleanupVncServer();
-
-	static void rfbLogDebug(const char* format, ...);
-	static void rfbLogNone(const char* format, ...);
-
-	// LibVNCServer input event callbacks (C linkage function pointers)
-	static void onKbdAddEvent(rfbBool down, rfbKeySym keySym, rfbClientRec* cl);
-	static void onPtrAddEvent(int buttonMask, int x, int y, rfbClientRec* cl);
+	// password and socket name are generated once per server start, first from the main thread
+	// before the VncServer thread starts (VncServer::password()/endpoint())
+	void initializeHelperCredentials();
 
 	PipeWireVncConfiguration m_configuration;
 
-	PortalSession* m_portalSession{nullptr};
-	PipeWireFramebuffer* m_framebuffer{nullptr};
-	rfbScreenInfoPtr m_rfbScreen{nullptr};
-	char* m_vncPassword{nullptr};
-	char* m_vncPasswords[2]{nullptr, nullptr};
-
-	QMutex m_screenMutex;
-
-	bool m_serverRunning{false};
-	bool m_shouldRestart{false};
-	std::atomic<int> m_connectedClients{0};
+	Password m_vncPassword;
+	QString m_socketName;
+	std::atomic<qint64> m_helperProcessId{-1};
 };

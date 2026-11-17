@@ -68,6 +68,9 @@ public:
 		CLI,
 		Configurator,
 		AuthHelper,
+		// veyon-capture-helper (02-ipc.md §1a.5): dumpable, so it initializes with
+		// minimalInitialization() only (no ServiceIpc, no SecretStore)
+		CaptureHelper,
 	};
 	Q_ENUM(Component)
 

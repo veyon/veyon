@@ -22,6 +22,40 @@ All steps are asynchronous via the portal `Response` signal.
 If the stream ends (e.g., compositor restart) the session is automatically
 restarted after a short delay.
 
+### Process layout: `veyon-capture-helper`
+
+`veyon-server` makes itself non-dumpable (`PR_SET_DUMPABLE 0`) so that other
+processes of the session user cannot read its memory (IPC keys, host key).
+xdg-desktop-portal rejects such callers (`Unable to open /proc/<pid>/root`), so
+every portal call and the PipeWire stream run in the separate executable
+`veyon-capture-helper` (`PipeWireCaptureServer`, `PortalSession`,
+`PipeWireFramebuffer`):
+
+* `veyon-server` (this plugin, `CaptureHelperProcess`) starts the helper as its
+  direct child, i.e. as the session user in the same systemd scope/cgroup, so
+  the portal derives the same app ID as for the server.
+* The only data passed is one stdin line `VEYONCAP1 <hex64> <socketName>`: a
+  random 32-byte VNC password generated per server start and the name of the
+  helper's socket `capture-<sessionId>-<random>.sock`. The helper never
+  receives the IPC token, the host key, logon credentials or session data.
+* The helper listens on no TCP/UDP port at all (so other local users can't
+  reach it, and there are no WebSockets): it serves RFB on a Unix domain socket
+  in the private directory `$XDG_RUNTIME_DIR/veyon` (mode 0700, socket 0600)
+  and hands only connections of its own uid (`SO_PEERCRED`) to LibVNCServer, at
+  most 16 at a time, each blocking it for at most 2 s.
+* `veyon-server` connects only if `SO_PEERCRED` of the listener is its current
+  helper process (the demo server worker: a child of the server) and never
+  without VNC authentication. VNC authentication uses only the first 8 password
+  bytes (56 bits) and is defence in depth.
+* The helper refuses to run as root, stays dumpable (only `RLIMIT_CORE` 0),
+  loads no plugins besides the platform plugin, has no service IPC and dies
+  with the server (`PR_SET_PDEATHSIG`); when it exits, the server restarts it
+  with an increasing delay (1 s … 30 s).
+* Residual risk: the session user can kill, trace or replace the helper (or
+  take its socket path while it restarts, which the server rejects) and thus
+  show fake screen content or drop input of their own session; they cannot read
+  the server's memory.
+
 ## Dependencies
 
 | Dependency | Debian package |
@@ -44,21 +78,17 @@ This identifier is used by the XDG Desktop Portal permission store.
 A consistent, non-Flatpak identifier is needed so that permissions granted by
 an administrator survive service restarts.
 
-The identifier is registered in three complementary ways:
+xdg-desktop-portal derives the app ID of a host application from the process
+behind the calling D-Bus connection: from its systemd unit or scope
+(`app-io.veyon.veyon\x2dserver-<random>.scope`, see `LinuxServerProcess`) or,
+with xdg-desktop-portal ≥ 1.20, from a registration via
+`org.freedesktop.host.portal.Registry`. Well-known bus names are not used, so
+`veyon-capture-helper` does not register one, and there is no D-Bus activation
+file (`veyon-server` must only be started by `veyon-service`).
 
-1. **D-Bus well-known name** — `PortalSession` calls
-   `QDBusConnection::sessionBus().registerService("io.veyon.veyon-server")`
-   at start-up so the portal sees the correct app_id for every method call.
-
-2. **XDG `.desktop` file** — `io.veyon.veyon-server.desktop` is installed to
-   `/usr/share/applications/`.  The portal reads `Name=Veyon Server` from it
-   to display "Veyon Server" (instead of the terminal emulator or process name)
-   in the KDE permission dialog.
-
-3. **D-Bus session service file** — `io.veyon.veyon-server.service` is
-   installed to `/usr/share/dbus-1/services/`.  It maps the well-known bus name
-   to the `veyon-server` executable so dbus-daemon and xdg-desktop-portal can
-   follow the full `bus_name → desktop_file → display_name` chain.
+The **XDG `.desktop` file** `io.veyon.veyon-server.desktop` is installed to
+`/usr/share/applications/`. The portal reads `Name=Veyon Server` from it to
+display "Veyon Server" in the permission dialog.
 
 ## Pre-authorization for KDE Plasma 6.3+
 

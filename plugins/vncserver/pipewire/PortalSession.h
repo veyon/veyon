@@ -104,6 +104,10 @@ private Q_SLOTS:
 	void onPortalResponse(uint response, const QVariantMap& results);
 
 private:
+	static constexpr int RegistryCallTimeout = 5000;
+
+	// portal >= 1.20: app ID of this connection (org.freedesktop.host.portal.Registry)
+	void registerHostAppId(const QString& appId);
 	void createSession();
 	void selectDevices();
 	void selectSources();
