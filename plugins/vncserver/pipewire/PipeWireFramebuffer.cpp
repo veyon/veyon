@@ -1,13 +1,15 @@
 // SPDX-FileCopyrightText: 2024-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include <QImage>
 #include <QMutex>
+#include <QScopeGuard>
 
+#include "PipeWireFrame.h"
 #include "PipeWireFramebuffer.h"
 #include "VeyonCore.h"
 
 #include <cstring>
+#include <limits>
 
 extern "C" {
 #include <spa/buffer/meta.h>
@@ -259,13 +261,19 @@ void PipeWireFramebuffer::onStreamParamChanged(void* data, uint32_t id,
 		return;
 	}
 
-	const int width = static_cast<int>(videoInfo.size.width);
-	const int height = static_cast<int>(videoInfo.size.height);
+	// a rejected format leaves no frame size, so processFrame() drops every buffer of the stream
+	self->m_frameSize = {};
+	self->m_videoFormat = SPA_VIDEO_FORMAT_UNKNOWN;
 
-	if (width <= 0 || height <= 0)
+	if (PipeWireFrame::isValidSize(videoInfo.size.width, videoInfo.size.height) == false ||
+		PipeWireFrame::isSupportedFormat(videoInfo.format) == false)
 	{
+		self->logRejectedFormat(videoInfo.size.width, videoInfo.size.height, videoInfo.format);
 		return;
 	}
+
+	const int width = static_cast<int>(videoInfo.size.width);
+	const int height = static_cast<int>(videoInfo.size.height);
 
 	vDebug() << "PipeWire stream format:" << width << "x" << height
 			 << "format=" << videoInfo.format;
@@ -281,8 +289,8 @@ void PipeWireFramebuffer::onStreamParamChanged(void* data, uint32_t id,
 	spa_pod_builder builder;
 	spa_pod_builder_init(&builder, paramBuffer, sizeof(paramBuffer));
 
-	// Allow up to MaxDamageRects damage rectangles per frame.
-	static constexpr int MaxDamageRects = 16;
+	static_assert(PipeWireFrame::MaximumPixelCount * PipeWireFrame::BytesPerPixel <= std::numeric_limits<int>::max());
+	const int rowBytes = width * PipeWireFrame::BytesPerPixel;
 
 	const spa_pod* params[2];
 	params[0] = static_cast<const spa_pod*>(spa_pod_builder_add_object(
@@ -290,14 +298,14 @@ void PipeWireFramebuffer::onStreamParamChanged(void* data, uint32_t id,
 		SPA_TYPE_OBJECT_ParamBuffers, SPA_PARAM_Buffers,
 		SPA_PARAM_BUFFERS_buffers, SPA_POD_CHOICE_RANGE_Int(2, 1, 32),
 		SPA_PARAM_BUFFERS_blocks, SPA_POD_Int(1),
-		SPA_PARAM_BUFFERS_size, SPA_POD_Int(width * height * 4),
-		SPA_PARAM_BUFFERS_stride, SPA_POD_Int(width * 4),
+		SPA_PARAM_BUFFERS_size, SPA_POD_Int(rowBytes * height),
+		SPA_PARAM_BUFFERS_stride, SPA_POD_Int(rowBytes),
 		SPA_PARAM_BUFFERS_dataType, SPA_POD_CHOICE_FLAGS_Int(1 << SPA_DATA_MemPtr)));
 	params[1] = static_cast<const spa_pod*>(spa_pod_builder_add_object(
 		&builder,
 		SPA_TYPE_OBJECT_ParamMeta, SPA_PARAM_Meta,
 		SPA_PARAM_META_type, SPA_POD_Id(SPA_META_VideoDamage),
-		SPA_PARAM_META_size, SPA_POD_Int(static_cast<int>(sizeof(spa_meta_region)) * MaxDamageRects)));
+		SPA_PARAM_META_size, SPA_POD_Int(static_cast<int>(sizeof(spa_meta_region)) * PipeWireFrame::MaximumDamageRegions)));
 
 	pw_stream_update_params(self->m_stream, params, 2);
 }
@@ -307,80 +315,6 @@ void PipeWireFramebuffer::onStreamProcess(void* data)
 	static_cast<PipeWireFramebuffer*>(data)->processFrame();
 }
 
-
-void PipeWireFramebuffer::convertFrame(char* dst, const char* src, int srcStride, int dstStride,
-									   int width, int height, const spa_meta_region* damage, bool forceFullFrame)
-{
-	const auto convertRect = [](char* dst, int dstStride,
-								const char* src, int srcStride,
-								int w, int h, uint32_t videoFormat) {
-		const size_t rowBytes = static_cast<size_t>(w) * 4;
-
-		if (videoFormat == SPA_VIDEO_FORMAT_BGRx)
-		{
-			const QImage srcImage(reinterpret_cast<const uchar*>(src), w, h,
-								  srcStride, QImage::Format_RGB32); // ARGB32 layout matches BGRx-in-memory as ARGB32 on little-endian
-			const auto swapped = srcImage.rgbSwapped();				// allocates its own buffer, SIMD-accelerated internally
-
-			for (int y = 0; y < h; ++y)
-			{
-				std::memcpy(dst + y * dstStride, swapped.constScanLine(y), rowBytes);
-			}
-		}
-		else
-		{
-			for (int y = 0; y < h; ++y)
-			{
-				std::memcpy(dst + y * dstStride, src + y * srcStride, rowBytes);
-			}
-		}
-	};
-
-	// Fall back to a single full-frame conversion when there's no usable damage
-	// info, or when the caller forces it (e.g. framebuffer was just resized).
-	if (forceFullFrame || !damage || !spa_meta_region_is_valid(damage))
-	{
-		convertRect(dst, dstStride, src, srcStride, width, height, m_videoFormat);
-		return;
-	}
-
-	// Sum up the damaged area first so we can bail out to a full-frame
-	// conversion if damage covers most of the screen anyway - iterating many
-	// rects individually only pays off when a meaningful portion of the frame
-	// is actually unchanged.
-	static constexpr double FullFrameFallbackThreshold = 0.6;
-
-	int64_t damagedArea = 0;
-	int rectCount = 0;
-	for (const spa_meta_region* r = damage; spa_meta_region_is_valid(r); ++r)
-	{
-		damagedArea += static_cast<int64_t>(r->region.size.width) * r->region.size.height;
-		++rectCount;
-	}
-
-	if (rectCount == 0 ||
-		damagedArea > static_cast<int64_t>(FullFrameFallbackThreshold * width * height))
-	{
-		convertRect(dst, dstStride, src, srcStride, width, height, m_videoFormat);
-		return;
-	}
-
-	for (const spa_meta_region* r = damage; spa_meta_region_is_valid(r); ++r)
-	{
-		// Clamp to framebuffer bounds
-		const int x1 = qBound(0, static_cast<int>(r->region.position.x), width);
-		const int y1 = qBound(0, static_cast<int>(r->region.position.y), height);
-		const int x2 = qBound(0, x1 + static_cast<int>(r->region.size.width), width);
-		const int y2 = qBound(0, y1 + static_cast<int>(r->region.size.height), height);
-
-		if (x2 > x1 && y2 > y1)
-		{
-			convertRect(dst + y1 * dstStride + x1 * 4, dstStride,
-						src + y1 * srcStride + x1 * 4, srcStride,
-						x2 - x1, y2 - y1, m_videoFormat);
-		}
-	}
-}
 
 
 // ---------------------------------------------------------------------------
@@ -402,83 +336,131 @@ void PipeWireFramebuffer::processFrame()
 		return;
 	}
 
-	spa_buffer* buf = pwBuf->buffer;
-	if (!buf || buf->n_datas == 0 || !buf->datas[0].data)
-	{
+	const auto queueBuffer = qScopeGuard([this, pwBuf]() {
 		pw_stream_queue_buffer(m_stream, pwBuf);
-		return;
+	});
+
+	const spa_buffer* buf = pwBuf->buffer;
+
+	PipeWireFrame::BufferData bufferData;
+	if (buf && buf->n_datas > 0 && buf->datas)
+	{
+		const spa_data& data = buf->datas[0];
+		bufferData.type = data.type;
+		bufferData.data = data.data;
+		bufferData.maxSize = data.maxsize;
+		if (data.chunk)
+		{
+			bufferData.chunk = PipeWireFrame::Chunk{data.chunk->offset, data.chunk->size,
+													data.chunk->stride, data.chunk->flags};
+		}
 	}
 
 	const int width = m_frameSize.width();
 	const int height = m_frameSize.height();
 
-	if (width <= 0 || height <= 0)
+	const auto source = PipeWireFrame::validate(width, height, m_videoFormat, bufferData);
+	if (source.status == PipeWireFrame::Status::NoContent)
 	{
-		pw_stream_queue_buffer(m_stream, pwBuf);
+		// nothing is lost: producers report the damage with the next frame
+		return;
+	}
+	if (source.status != PipeWireFrame::Status::Valid)
+	{
+		// its damage is lost, so the next frame has to be copied and sent in full
+		m_forceFullFrame = true;
+		logDroppedFrame(PipeWireFrame::statusName(source.status));
 		return;
 	}
 
-	// Resize rfbScreen framebuffer if the stream dimensions differ
+	// Resize rfbScreen framebuffer if the stream dimensions differ (bounded by PipeWireFrame::isValidSize())
 	const bool sizeChanged = (m_rfbScreen->width != width || m_rfbScreen->height != height);
 	if (sizeChanged)
 	{
-		const int newSize = width * height * 4;
-		char* newBuf = new char[newSize];
-		std::memset(newBuf, 0, static_cast<size_t>(newSize));
+		auto* newBuf = new char[size_t(width) * size_t(height) * PipeWireFrame::BytesPerPixel]{};
 		char* oldBuf = m_rfbScreen->frameBuffer;
 		rfbNewFramebuffer(m_rfbScreen, newBuf, width, height, 8, 3, 4);
 		delete[] oldBuf;
 	}
 
-	spa_data& d = buf->datas[0];
-	const int srcStride = d.chunk->stride > 0 ? d.chunk->stride : width * 4;
-	const int dstStride = m_rfbScreen->paddedWidthInBytes;
-	const char* src = static_cast<const char*>(d.data) + d.chunk->offset;
-	char* dst = m_rfbScreen->frameBuffer;
-
-	if (static_cast<size_t>(srcStride) * height > d.chunk->size)
-	{
-		pw_stream_queue_buffer(m_stream, pwBuf);
-		// short/partial frame - skip rather than read OOB; its damage is lost,
-		// so the next frame has to be converted and sent in full
-		m_forceFullFrame = true;
-		return;
-	}
-
 	// Damage metadata drives both which regions we mark modified for VNC
 	// clients AND (as an optimization) which regions we actually need to
-	// convert/copy - falling back to a full-frame conversion when unavailable,
-	// when the framebuffer was just resized, or when damage covers most of
-	// the frame anyway.
-	const auto* damage = static_cast<const spa_meta_region*>(
-		spa_buffer_find_meta_data(buf, SPA_META_VideoDamage, sizeof(spa_meta_region)));
+	// copy - falling back to a full-frame copy when unavailable, when the
+	// framebuffer was just resized, or when damage covers most of the frame anyway.
+	const auto* damageMeta = spa_buffer_find_meta(buf, SPA_META_VideoDamage);
+	const auto damage = damageMeta ? PipeWireFrame::parseDamage(damageMeta->data, damageMeta->size, width, height) :
+									 PipeWireFrame::Damage{};
 
 	// the first frame after (re)opening the stream or after a skipped frame must be complete:
 	// otherwise areas never reported as damaged keep stale/blank content
 	const bool fullFrame = sizeChanged || m_forceFullFrame;
+
+	const PipeWireFrame::Target target{reinterpret_cast<uchar*>(m_rfbScreen->frameBuffer),
+									   m_rfbScreen->paddedWidthInBytes,
+									   qint64(m_rfbScreen->paddedWidthInBytes) * m_rfbScreen->height};
+	if (PipeWireFrame::copy(source, width, height, target, damage, fullFrame) == false)
+	{
+		m_forceFullFrame = true;
+		logDroppedFrame("framebuffer does not match the stream");
+		return;
+	}
+
 	m_forceFullFrame = false;
 
-	convertFrame(dst, src, srcStride, dstStride, width, height, damage, fullFrame);
-
-	if (damage && spa_meta_region_is_valid(damage) && !fullFrame)
-	{
-		for (const spa_meta_region* r = damage; spa_meta_region_is_valid(r); ++r)
-		{
-			// Clamp to framebuffer bounds
-			const int x1 = qBound(0, static_cast<int>(r->region.position.x), width);
-			const int y1 = qBound(0, static_cast<int>(r->region.position.y), height);
-			const int x2 = qBound(0, x1 + static_cast<int>(r->region.size.width), width);
-			const int y2 = qBound(0, y1 + static_cast<int>(r->region.size.height), height);
-			if (x2 > x1 && y2 > y1)
-			{
-				rfbMarkRectAsModified(m_rfbScreen, x1, y1, x2, y2);
-			}
-		}
-	}
-	else
+	if (fullFrame || damage.isFullFrame)
 	{
 		rfbMarkRectAsModified(m_rfbScreen, 0, 0, width, height);
 	}
+	else
+	{
+		for (int i = 0; i < damage.count; ++i)
+		{
+			const auto& rect = damage.rects[size_t(i)];
+			rfbMarkRectAsModified(m_rfbScreen, rect.x1, rect.y1, rect.x2, rect.y2);
+		}
+	}
+}
 
-	pw_stream_queue_buffer(m_stream, pwBuf);
+
+
+// Frames are untrusted input, a producer may send invalid ones at frame rate: log the first one and
+// each change of the reason immediately, repeats at most once per interval with the number of frames
+// dropped meanwhile
+void PipeWireFramebuffer::logDroppedFrame(const char* reason)
+{
+	++m_droppedFrameCount;
+
+	const auto reasonChanged = m_lastDroppedFrameReason == nullptr ||
+		std::strcmp(m_lastDroppedFrameReason, reason) != 0;
+	if (reasonChanged == false && m_droppedFrameLogTimer.isValid() &&
+		m_droppedFrameLogTimer.hasExpired(DroppedFrameLogInterval) == false)
+	{
+		return;
+	}
+
+	vWarning() << "dropping PipeWire frame:" << reason << "-" << m_droppedFrameCount << "dropped since last report";
+
+	m_lastDroppedFrameReason = reason;
+	m_droppedFrameCount = 0;
+	m_droppedFrameLogTimer.start();
+}
+
+
+
+// the producer decides how often param_changed fires, so rejections are rate-limited like frames
+void PipeWireFramebuffer::logRejectedFormat(uint32_t width, uint32_t height, uint32_t videoFormat)
+{
+	++m_rejectedFormatCount;
+
+	if (m_rejectedFormatLogTimer.isValid() &&
+		m_rejectedFormatLogTimer.hasExpired(DroppedFrameLogInterval) == false)
+	{
+		return;
+	}
+
+	vWarning() << "rejecting PipeWire stream format" << width << "x" << height << "format=" << videoFormat
+			   << "-" << m_rejectedFormatCount << "rejected since last report";
+
+	m_rejectedFormatCount = 0;
+	m_rejectedFormatLogTimer.start();
 }

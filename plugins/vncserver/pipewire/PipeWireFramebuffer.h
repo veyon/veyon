@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <QElapsedTimer>
 #include <QObject>
 #include <QSize>
 #include <QThread>
@@ -62,8 +63,10 @@ private:
 	static void onStreamProcess(void* data);
 
 	void processFrame();
-	void convertFrame(char* dst, const char* src, int srcStride, int dstStride,
-					  int width, int height, const spa_meta_region* damage, bool forceFullFrame);
+	void logDroppedFrame(const char* reason);
+	void logRejectedFormat(uint32_t width, uint32_t height, uint32_t videoFormat);
+
+	static constexpr qint64 DroppedFrameLogInterval = 10000;
 
 	pw_main_loop* m_loop{nullptr};
 	pw_context* m_context{nullptr};
@@ -79,6 +82,11 @@ private:
 	uint32_t m_videoFormat{SPA_VIDEO_FORMAT_UNKNOWN};
 	bool m_running{false};
 	bool m_forceFullFrame{true};
+	qint64 m_droppedFrameCount{0};
+	const char* m_lastDroppedFrameReason{nullptr};
+	QElapsedTimer m_droppedFrameLogTimer;
+	qint64 m_rejectedFormatCount{0};
+	QElapsedTimer m_rejectedFormatLogTimer;
 
 	std::unique_ptr<QThread> m_loopThread;
 };

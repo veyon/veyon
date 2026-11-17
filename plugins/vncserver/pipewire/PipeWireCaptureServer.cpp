@@ -183,8 +183,8 @@ bool PipeWireCaptureServer::initVncServer(const VeyonCrypto::SecureBuffer& vncPa
 	m_rfbScreen->authPasswdData = this;
 	m_rfbScreen->passwordCheck = &PipeWireCaptureServer::checkVncPassword;
 
-	// PipeWireFramebuffer::convertFrame() writes R,G,B,x bytes (rgbSwapped() of the
-	// BGRx stream), and rfbNewFramebuffer() resets to exactly that (little-endian) on a resize
+	// PipeWireFrame::copy() writes R,G,B,x bytes (red and blue of the
+	// BGRx stream swapped), and rfbNewFramebuffer() resets to exactly that (little-endian) on a resize
 	m_rfbScreen->serverFormat.redShift = 0;
 	m_rfbScreen->serverFormat.greenShift = 8;
 	m_rfbScreen->serverFormat.blueShift = 16;
