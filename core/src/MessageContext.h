@@ -33,6 +33,12 @@ public:
 		return m_connection;
 	}
 
+	// the message arrived through TLS (see VeyonCore::isSecureTransport())
+	bool isSecureTransport() const
+	{
+		return VeyonCore::isSecureTransport(m_ioDevice);
+	}
+
 private:
 	IODevice m_ioDevice;
 	Connection m_connection;

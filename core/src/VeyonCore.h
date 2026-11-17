@@ -19,6 +19,7 @@
 #endif
 
 class QCoreApplication;
+class QIODevice;
 class QScreen;
 class QWidget;
 
@@ -231,6 +232,14 @@ public:
 
 	static bool isAuthenticationKeyNameValid(const QString& authKeyName);
 
+	// whether data on the device is protected by TLS (05-tls.md §1.5): an encrypted QSslSocket, e.g.
+	// a connection that TlsSniffingServer handed over after a successful TLS handshake
+	[[nodiscard]] static bool isSecureTransport(const QIODevice* device);
+
+	// all TLS code requires Qt's OpenSSL backend (05-tls.md, spike S8): false without it, e.g. with
+	// the Schannel backend only or without loadable OpenSSL libraries
+	[[nodiscard]] static bool isTlsAvailable();
+
 	enum class AuthenticationMethod {
 		LogonAuthentication,
 		KeyFileAuthentication,
@@ -275,6 +284,7 @@ private:
 	void initSession();
 	void initConfiguration();
 	void initLogging(const QString& appComponentName);
+	void initTlsBackend();
 	void initLocaleAndTranslation();
 	void initUi();
 	void initCryptoCore();

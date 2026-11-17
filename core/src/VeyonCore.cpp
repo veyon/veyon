@@ -11,6 +11,7 @@
 #include <QLibraryInfo>
 #include <QProcessEnvironment>
 #include <QRegularExpression>
+#include <QSslSocket>
 #include <QStyleFactory>
 #include <QStyleHints>
 #include <QSysInfo>
@@ -40,6 +41,9 @@
 
 
 VeyonCore* VeyonCore::s_instance = nullptr;
+
+// the only supported TLS backend of Qt 6 (05-tls.md, spike S8)
+static constexpr auto TlsBackendName = QLatin1String("openssl");
 
 
 VeyonCore::VeyonCore(QCoreApplication* application, Component component, const QString& appComponentName,
@@ -71,6 +75,8 @@ VeyonCore::VeyonCore(QCoreApplication* application, Component component, const Q
 	initSession();
 
 	initLogging(appComponentName);
+
+	initTlsBackend();
 
 	initLocaleAndTranslation();
 
@@ -836,6 +842,53 @@ bool VeyonCore::initKeyFileAuthentication()
 	}
 
 	return false;
+}
+
+
+
+bool VeyonCore::isSecureTransport(const QIODevice* device)
+{
+	const auto sslSocket = qobject_cast<const QSslSocket*>(device);
+	return sslSocket && sslSocket->isEncrypted();
+}
+
+
+
+bool VeyonCore::isTlsAvailable()
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 1, 0)
+	if (QSslSocket::activeBackend() != TlsBackendName)
+	{
+		return false;
+	}
+#endif
+	return QSslSocket::supportsSsl();
+}
+
+
+
+void VeyonCore::initTlsBackend()
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 1, 0)
+	// Schannel is not supported (05-tls.md, spike S8)
+	if (QSslSocket::activeBackend() != TlsBackendName &&
+		QSslSocket::setActiveBackend(TlsBackendName) == false)
+	{
+		vWarning() << "tls: OpenSSL backend not available - TLS disabled; available backends:"
+				   << QSslSocket::availableBackends();
+		return;
+	}
+#endif
+
+	if (isTlsAvailable())
+	{
+		vInfo() << "tls: backend" << TlsBackendName << "with" << QSslSocket::sslLibraryVersionString();
+	}
+	else
+	{
+		vWarning() << "tls: OpenSSL libraries not available - TLS disabled; built against"
+				   << QSslSocket::sslLibraryBuildVersionString();
+	}
 }
 
 
