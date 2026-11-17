@@ -188,6 +188,23 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 
 	add_test(NAME ProcessHardeningTest COMMAND ProcessHardeningTest)
 
+	# LinuxSecretFunctionsTest: SecretStore backend of the Linux platform plugin (03-secretstore-config.md §2, §6)
+	add_executable(LinuxSecretFunctionsTest
+		LinuxSecretFunctionsTest.cpp
+		${CMAKE_SOURCE_DIR}/plugins/platform/linux/LinuxSecretFunctions.cpp
+	)
+	set_default_target_properties(LinuxSecretFunctionsTest)
+
+	target_include_directories(LinuxSecretFunctionsTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/platform/linux)
+
+	target_link_libraries(LinuxSecretFunctionsTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+		veyon-core
+	)
+
+	add_test(NAME LinuxSecretFunctionsTest COMMAND LinuxSecretFunctionsTest)
+
 	set(PLATFORM_LINUX_SOURCE_DIR ${CMAKE_SOURCE_DIR}/plugins/platform/linux)
 	set(PLATFORM_COMMON_SOURCE_DIR ${CMAKE_SOURCE_DIR}/plugins/platform/common)
 

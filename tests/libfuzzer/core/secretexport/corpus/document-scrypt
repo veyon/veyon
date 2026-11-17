@@ -1,0 +1,1 @@
+{"v":1,"kind":"veyon-secrets","kdf":"scrypt","kdfParams":{"N":1024,"r":8,"p":1},"salt":"c2FsdHNhbHRzYWx0c2FsdA==","nonce":"bm9uY2Vub25jZW5v","ct":"Y2lwaGVydGV4dGNpcGhlcnRleHRjaXBoZXJ0ZXh0"}

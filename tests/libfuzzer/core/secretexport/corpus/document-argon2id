@@ -1,0 +1,1 @@
+{"v":1,"kind":"veyon-secrets","kdf":"argon2id","kdfParams":{"t":3,"m":65536,"p":1},"salt":"c2FsdHNhbHRzYWx0c2FsdA==","nonce":"bm9uY2Vub25jZW5v","ct":"Y2lwaGVydGV4dGNpcGhlcnRleHRjaXBoZXJ0ZXh0"}

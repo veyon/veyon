@@ -83,6 +83,43 @@ if(WITH_TESTS)
 	target_link_libraries(ServiceIpcCommandHandlerTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
 	add_test(NAME ServiceIpcCommandHandlerTest COMMAND ServiceIpcCommandHandlerTest)
 
+	# SecretStore, SecretReference, legacy secret migration and encrypted secret exports
+	# (03-secretstore-config.md §6); the platform backends are tested separately
+	add_executable(SecretStoreTest SecretStoreTest.cpp)
+	set_default_target_properties(SecretStoreTest)
+	target_compile_definitions(SecretStoreTest PRIVATE VEYON_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
+	target_link_libraries(SecretStoreTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
+	add_test(NAME SecretStoreTest COMMAND SecretStoreTest)
+
+	# veyon-cli reading of secrets and writing of exports
+	add_executable(SecretInputOutputTest
+		SecretInputOutputTest.cpp
+		${CMAKE_SOURCE_DIR}/cli/src/SecretInputOutput.cpp
+		)
+	set_default_target_properties(SecretInputOutputTest)
+	target_include_directories(SecretInputOutputTest PRIVATE ${CMAKE_SOURCE_DIR}/cli/src)
+	target_link_libraries(SecretInputOutputTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
+	add_test(NAME SecretInputOutputTest COMMAND SecretInputOutputTest)
+
+	# LdapClient never binds without its bind password (no unauthenticated/anonymous fallback)
+	if(TARGET kldap-light)
+		add_executable(LdapClientBindTest
+			LdapClientBindTest.cpp
+			${CMAKE_SOURCE_DIR}/plugins/ldap/LdapClient.cpp
+			${CMAKE_SOURCE_DIR}/plugins/ldap/LdapConfiguration.cpp
+			)
+		set_default_target_properties(LdapClientBindTest)
+		target_include_directories(LdapClientBindTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/ldap
+			${CMAKE_SOURCE_DIR}/plugins/vncserver/external ${Ldap_INCLUDE_DIRS})
+		target_link_libraries(LdapClientBindTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core kldap-light)
+		add_test(NAME LdapClientBindTest COMMAND LdapClientBindTest)
+		if(VEYON_BUILD_WINDOWS)
+			# kldap-light.dll is not next to the test executable
+			set_tests_properties(LdapClientBindTest PROPERTIES
+				ENVIRONMENT_MODIFICATION "PATH=path_list_prepend:$<TARGET_FILE_DIR:kldap-light>")
+		endif()
+	endif()
+
 	if(VEYON_BUILD_WINDOWS)
 		# DACLs of the IPC endpoint pipes (02-ipc.md §1, §6a)
 		add_executable(IpcPipeSecurityTest IpcPipeSecurityTest.cpp)
