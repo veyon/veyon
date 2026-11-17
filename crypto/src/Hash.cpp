@@ -4,7 +4,7 @@
 #include "Hash.h"
 #include "OpenSslUtils.h"
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 static const EVP_MD* messageDigest(Hash::Algorithm algorithm)
 {
@@ -40,4 +40,4 @@ std::optional<QByteArray> Hash::digest(Algorithm algorithm, ByteView data)
 	return result;
 }
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

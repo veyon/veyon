@@ -13,7 +13,7 @@
 
 struct evp_pkey_st;
 
-namespace VeyonCrypto::OpenSslCompat {
+namespace Veyon::Crypto::OpenSslCompat {
 
 // semantic comparison of the public components (EVP_PKEY_eq, OpenSSL 1.1.1: EVP_PKEY_cmp)
 [[nodiscard]] VEYON_CRYPTO_EXPORT bool isSamePublicKey(const evp_pkey_st* first, const evp_pkey_st* second);
@@ -30,4 +30,4 @@ namespace VeyonCrypto::OpenSslCompat {
 												uint32_t iterations, uint32_t memoryKiB, uint32_t lanes,
 												unsigned char* output, size_t outputSize);
 
-} // namespace VeyonCrypto::OpenSslCompat
+} // namespace Veyon::Crypto::OpenSslCompat

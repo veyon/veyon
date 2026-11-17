@@ -5,7 +5,7 @@
 
 #include "ServiceIpcCommandHandler.h"
 
-using VeyonCrypto::SecureBuffer;
+using Veyon::Crypto::SecureBuffer;
 
 // Service side of the IPC commands (docs/specs/02-ipc.md §6, §8.14)
 class ServiceIpcCommandHandlerTest : public QObject

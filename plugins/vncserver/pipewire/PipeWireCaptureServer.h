@@ -49,7 +49,7 @@ public:
 	static constexpr int MaximumClientWait = 2000;
 
 	// blocks; returns false if the RFB server can't be set up, e.g. because the socket exists
-	bool run(const QString& socketPath, const VeyonCrypto::SecureBuffer& vncPassword);
+	bool run(const QString& socketPath, const Veyon::Crypto::SecureBuffer& vncPassword);
 
 private Q_SLOTS:
 	void onPortalStarted();
@@ -57,7 +57,7 @@ private Q_SLOTS:
 	void onStreamEnded();
 
 private:
-	bool initVncServer(const VeyonCrypto::SecureBuffer& vncPassword);
+	bool initVncServer(const Veyon::Crypto::SecureBuffer& vncPassword);
 	bool listenOnSocket(const QString& socketPath);
 	void acceptConnections();
 	void cleanupVncServer();
@@ -81,7 +81,7 @@ private:
 	PortalSession* m_portalSession{nullptr};
 	PipeWireFramebuffer* m_framebuffer{nullptr};
 	rfbScreenInfoPtr m_rfbScreen{nullptr};
-	VeyonCrypto::SecureBuffer m_vncPassword;
+	Veyon::Crypto::SecureBuffer m_vncPassword;
 	QString m_socketPath;
 	int m_listenSocket{-1};
 	QSocketNotifier* m_listenNotifier{nullptr};

@@ -9,7 +9,7 @@
 #include <openssl/crypto.h>
 #include <openssl/err.h>
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 static thread_local QString threadLastError;
 
@@ -68,4 +68,4 @@ void setOpenSslError(const char* operation)
 
 } // namespace Internal
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

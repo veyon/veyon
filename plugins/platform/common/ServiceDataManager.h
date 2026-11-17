@@ -24,7 +24,7 @@ public:
 	{
 		QString name;
 		// "VEYONIPC1 <name> <hex64>\n", to be written to the server's stdin only
-		VeyonCrypto::SecureBuffer credentialsLine;
+		Veyon::Crypto::SecureBuffer credentialsLine;
 	};
 
 	explicit ServiceDataManager(QObject* parent = nullptr);
@@ -60,7 +60,7 @@ private:
 
 	void handleRequest(const QString& endpointName, IpcConnection* connection, const QByteArray& message);
 
-	static std::optional<VeyonCrypto::SecureBuffer> externalVncServerPassword();
+	static std::optional<Veyon::Crypto::SecureBuffer> externalVncServerPassword();
 
 	QObject* m_context = nullptr;
 	QSemaphore m_contextReady;

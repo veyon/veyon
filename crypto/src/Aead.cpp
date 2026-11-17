@@ -4,7 +4,7 @@
 #include "Aead.h"
 #include "OpenSslUtils.h"
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 static const EVP_CIPHER* aeadCipher(Aead::Algorithm algorithm)
 {
@@ -138,4 +138,4 @@ std::optional<SecureBuffer> Aead::open(Algorithm algorithm, ByteView key, ByteVi
 	return plaintext;
 }
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

@@ -10,7 +10,7 @@
 #include "PkiTestCertificates.h"
 #include "pki/PkiPublicApi.h"
 
-using namespace VeyonCrypto;
+using namespace Veyon::Crypto;
 
 
 // collects all log messages to check that the enrollment token never appears in them

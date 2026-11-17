@@ -91,7 +91,7 @@ void trackingFree(void* memory, const char* file, int line)
 
 
 
-void watch(const VeyonCrypto::SecureBuffer& buffer)
+void watch(const Veyon::Crypto::SecureBuffer& buffer)
 {
 	std::lock_guard<std::mutex> lock(allocationMutex);
 	watchedAllocations.insert(buffer.constData());
@@ -138,31 +138,31 @@ void VeyonCryptoSecureBufferTest::zeroisedBeforeRelease()
 	{
 		QSKIP("OpenSSL memory functions could not be replaced");
 	}
-	QVERIFY(VeyonCrypto::SecureBuffer::isSecureHeapInitialized() == false);
+	QVERIFY(Veyon::Crypto::SecureBuffer::isSecureHeapInitialized() == false);
 
 	const QByteArray secret(100, char(0xa5));
 
 	// destructor
 	{
-		auto buffer = VeyonCrypto::SecureBuffer::fromByteArray(secret);
+		auto buffer = Veyon::Crypto::SecureBuffer::fromByteArray(secret);
 		QVERIFY(buffer.isInSecureHeap() == false);
 		watch(buffer);
 	}
 
 	// clear()
-	auto buffer = VeyonCrypto::SecureBuffer::fromByteArray(secret);
+	auto buffer = Veyon::Crypto::SecureBuffer::fromByteArray(secret);
 	watch(buffer);
 	buffer.clear();
 
 	// resize() releases the old memory
-	buffer = VeyonCrypto::SecureBuffer::fromByteArray(secret);
+	buffer = Veyon::Crypto::SecureBuffer::fromByteArray(secret);
 	watch(buffer);
 	QVERIFY(buffer.resize(200));
 	QCOMPARE(buffer.toUnprotectedByteArray(), QByteArray(secret + QByteArray(100, 0)));
 
 	// move assignment releases the previous contents of the target
 	watch(buffer);
-	buffer = VeyonCrypto::SecureBuffer::fromByteArray(QByteArray("other"));
+	buffer = Veyon::Crypto::SecureBuffer::fromByteArray(QByteArray("other"));
 	buffer.clear();
 
 	std::lock_guard<std::mutex> lock(allocationMutex);
@@ -187,7 +187,7 @@ static void countSecureHeapWarnings(QtMsgType type, const QMessageLogContext& co
 
 void VeyonCryptoSecureBufferTest::secureHeapUsageAndFallback()
 {
-	using VeyonCrypto::SecureBuffer;
+	using Veyon::Crypto::SecureBuffer;
 
 	const auto state = SecureBuffer::initializeSecureHeap(64 * 1024);
 	if (state == SecureBuffer::SecureHeapState::Unavailable)

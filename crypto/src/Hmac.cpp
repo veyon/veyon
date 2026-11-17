@@ -5,7 +5,7 @@
 #include "Hmac.h"
 #include "OpenSslUtils.h"
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 std::optional<QByteArray> Hmac::sha256(ByteView key, ByteView message)
 {
@@ -45,4 +45,4 @@ bool Hmac::verifySha256(ByteView key, ByteView message, ByteView expectedMac)
 	return mac.has_value() && constantTimeEquals(*mac, expectedMac);
 }
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

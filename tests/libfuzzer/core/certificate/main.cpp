@@ -12,14 +12,14 @@ extern "C" int LLVMFuzzerTestOneInput(const char* data, size_t size)
 		return 0;
 	}
 
-	const VeyonCrypto::ByteView input(data + 1, qsizetype(size - 1));
+	const Veyon::Crypto::ByteView input(data + 1, qsizetype(size - 1));
 
-	QList<VeyonCrypto::Certificate> certificates;
+	QList<Veyon::Crypto::Certificate> certificates;
 	if (data[0] & 1)
 	{
-		certificates = VeyonCrypto::Certificate::chainFromPem(input).value_or(QList<VeyonCrypto::Certificate>{});
+		certificates = Veyon::Crypto::Certificate::chainFromPem(input).value_or(QList<Veyon::Crypto::Certificate>{});
 	}
-	else if (const auto certificate = VeyonCrypto::Certificate::fromDer(input))
+	else if (const auto certificate = Veyon::Crypto::Certificate::fromDer(input))
 	{
 		certificates.append(*certificate);
 	}
@@ -37,8 +37,8 @@ extern "C" int LLVMFuzzerTestOneInput(const char* data, size_t size)
 		(void)certificate.isValidAt(certificate.notBefore());
 		(void)certificate.dnsNames();
 		(void)certificate.ipAddresses();
-		(void)certificate.hasExtendedKeyUsage(VeyonCrypto::Certificate::ExtendedKeyUsage::ServerAuth);
-		(void)certificate.hasKeyUsage(VeyonCrypto::Certificate::KeyUsage::KeyCertSign);
+		(void)certificate.hasExtendedKeyUsage(Veyon::Crypto::Certificate::ExtendedKeyUsage::ServerAuth);
+		(void)certificate.hasKeyUsage(Veyon::Crypto::Certificate::KeyUsage::KeyCertSign);
 		(void)certificate.isCa();
 		(void)certificate.criticalExtensions();
 		(void)certificate.hasUnsupportedCriticalExtension();
@@ -46,7 +46,7 @@ extern "C" int LLVMFuzzerTestOneInput(const char* data, size_t size)
 		(void)certificate.pathLengthConstraint();
 		(void)certificate.spkiFingerprint();
 		(void)certificate.isSignedBy(certificate.publicKey());
-		(void)VeyonCrypto::Certificate::fromDer(certificate.toDer());
+		(void)Veyon::Crypto::Certificate::fromDer(certificate.toDer());
 	}
 
 	return 0;

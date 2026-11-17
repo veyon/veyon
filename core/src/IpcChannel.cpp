@@ -14,8 +14,8 @@
 #include <cstring>
 #include <limits>
 
-using VeyonCrypto::ByteView;
-using VeyonCrypto::SecureBuffer;
+using Veyon::Crypto::ByteView;
+using Veyon::Crypto::SecureBuffer;
 
 
 void IpcChannel::NonceHistory::add(const QByteArray& nonce)
@@ -82,7 +82,7 @@ IpcChannel::Outputs IpcChannel::start()
 		return outputs;
 	}
 
-	const auto clientNonce = VeyonCrypto::Random::bytes(IpcProtocol::NonceSize);
+	const auto clientNonce = Veyon::Crypto::Random::bytes(IpcProtocol::NonceSize);
 	if (clientNonce.has_value() == false)
 	{
 		fail(outputs, "no random data for nonce");
@@ -99,7 +99,7 @@ IpcChannel::Outputs IpcChannel::start()
 	hello.append(sessionIdBytes, sizeof(sessionIdBytes));
 	hello.append(clientNonce->constData(), clientNonce->size());
 
-	const auto helloHash = VeyonCrypto::Hash::sha256(hello);
+	const auto helloHash = Veyon::Crypto::Hash::sha256(hello);
 	if (helloHash.has_value() == false)
 	{
 		fail(outputs, "hashing failed");
@@ -215,9 +215,9 @@ std::optional<QByteArray> IpcChannel::encrypt(ByteView plaintext)
 	char header[IpcProtocol::FrameHeaderSize];
 	qToBigEndian(quint32(plaintext.size() + IpcProtocol::RecordTagSize), header);
 
-	const auto record = VeyonCrypto::Aead::seal(VeyonCrypto::Aead::Algorithm::ChaCha20Poly1305,
-												m_sendKey, recordNonce(m_sendSequenceNumber), plaintext,
-												ByteView(header, sizeof(header)));
+	const auto record = Veyon::Crypto::Aead::seal(Veyon::Crypto::Aead::Algorithm::ChaCha20Poly1305,
+												  m_sendKey, recordNonce(m_sendSequenceNumber), plaintext,
+												  ByteView(header, sizeof(header)));
 	if (record.has_value() == false)
 	{
 		return {};
@@ -307,8 +307,8 @@ void IpcChannel::processHello(Outputs& outputs)
 		m_nonceHistory->add(clientNonce);
 	}
 
-	const auto helloHash = VeyonCrypto::Hash::sha256(hello);
-	const auto serverNonce = VeyonCrypto::Random::bytes(IpcProtocol::NonceSize);
+	const auto helloHash = Veyon::Crypto::Hash::sha256(hello);
+	const auto serverNonce = Veyon::Crypto::Random::bytes(IpcProtocol::NonceSize);
 	if (helloHash.has_value() == false || serverNonce.has_value() == false)
 	{
 		fail(outputs, "crypto failure");
@@ -337,7 +337,7 @@ void IpcChannel::processClientProof(Outputs& outputs)
 {
 	const QByteArray message = QByteArray(IpcProtocol::ClientProofLabel) + m_transcript;
 	if (m_payload.size() != IpcProtocol::ProofSize ||
-		VeyonCrypto::Hmac::verifySha256(m_token, message, m_payload) == false)
+		Veyon::Crypto::Hmac::verifySha256(m_token, message, m_payload) == false)
 	{
 		fail(outputs, "client proof invalid");
 		return;
@@ -372,7 +372,7 @@ void IpcChannel::processServerChallenge(Outputs& outputs)
 	// verify the server before proving anything ourselves: a process squatting the endpoint must
 	// not be able to harvest a client proof
 	const QByteArray message = QByteArray(IpcProtocol::ServerProofLabel) + m_transcript;
-	if (VeyonCrypto::Hmac::verifySha256(m_token, message, serverProof) == false)
+	if (Veyon::Crypto::Hmac::verifySha256(m_token, message, serverProof) == false)
 	{
 		fail(outputs, "server proof invalid");
 		return;
@@ -422,9 +422,9 @@ void IpcChannel::processRecord(Outputs& outputs)
 
 	// the nonce is derived from the expected sequence number, so reordered, duplicated and
 	// dropped records fail authentication just like modified ones
-	const auto plaintext = VeyonCrypto::Aead::open(VeyonCrypto::Aead::Algorithm::ChaCha20Poly1305,
-												   m_receiveKey, recordNonce(m_receiveSequenceNumber),
-												   m_payload, m_header);
+	const auto plaintext = Veyon::Crypto::Aead::open(Veyon::Crypto::Aead::Algorithm::ChaCha20Poly1305,
+													 m_receiveKey, recordNonce(m_receiveSequenceNumber),
+													 m_payload, m_header);
 	if (plaintext.has_value() == false)
 	{
 		fail(outputs, "record authentication failed");
@@ -462,7 +462,7 @@ QByteArray IpcChannel::transcript(const QByteArray& serverNonce) const
 std::optional<QByteArray> IpcChannel::proof(const char* label, const QByteArray& transcript) const
 {
 	const QByteArray message = QByteArray(label) + transcript;
-	return VeyonCrypto::Hmac::sha256(m_token, message);
+	return Veyon::Crypto::Hmac::sha256(m_token, message);
 }
 
 
@@ -471,8 +471,8 @@ bool IpcChannel::deriveKeys(const QByteArray& transcript)
 {
 	const QByteArray clientToServerInfo = QByteArray(IpcProtocol::KeyLabel) + IpcProtocol::ClientToServerKeyInfo;
 	const QByteArray serverToClientInfo = QByteArray(IpcProtocol::KeyLabel) + IpcProtocol::ServerToClientKeyInfo;
-	auto clientToServerKey = VeyonCrypto::Hkdf::sha256(m_token, transcript, clientToServerInfo, IpcProtocol::KeySize);
-	auto serverToClientKey = VeyonCrypto::Hkdf::sha256(m_token, transcript, serverToClientInfo, IpcProtocol::KeySize);
+	auto clientToServerKey = Veyon::Crypto::Hkdf::sha256(m_token, transcript, clientToServerInfo, IpcProtocol::KeySize);
+	auto serverToClientKey = Veyon::Crypto::Hkdf::sha256(m_token, transcript, serverToClientInfo, IpcProtocol::KeySize);
 
 	// the token is not needed anymore: the connection only uses the derived keys
 	m_token.clear();

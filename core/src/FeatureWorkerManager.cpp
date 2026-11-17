@@ -81,7 +81,7 @@ bool FeatureWorkerManager::startManagedSystemWorker(Feature::Uid featureUid)
 			worker.process, &QProcess::deleteLater);
 
 	// register the PID before the worker can read the credentials (the endpoint only accepts it)
-	auto credentialsLine = std::make_shared<VeyonCrypto::SecureBuffer>(endpoint->credentialsLine());
+	auto credentialsLine = std::make_shared<Veyon::Crypto::SecureBuffer>(endpoint->credentialsLine());
 	const QPointer<IpcServer> endpointPointer(endpoint);
 	const QPointer<QProcess> process(worker.process);
 	connect(worker.process, &QProcess::started, this, [endpointPointer, process, credentialsLine]() {

@@ -5,7 +5,7 @@
 #include "OpenSslUtils.h"
 #include "PasswordKdf.h"
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 static bool checkCommonParameters(const char* operation, ByteView password, ByteView salt, qsizetype outputSize)
 {
@@ -118,4 +118,4 @@ std::optional<SecureBuffer> PasswordKdf::scrypt(ByteView password, ByteView salt
 	return output;
 }
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

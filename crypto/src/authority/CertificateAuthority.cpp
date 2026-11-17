@@ -10,7 +10,7 @@
 
 #include <algorithm>
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 using namespace Internal;
 
@@ -312,4 +312,4 @@ std::optional<Certificate> CertificateAuthority::issue(const Certificate& caCert
 	return signCertificate(Operation, std::move(certificate), caKey);
 }
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

@@ -192,7 +192,7 @@ void ServiceDataManager::handleRequest(const QString& endpointName, IpcConnectio
 
 
 
-std::optional<VeyonCrypto::SecureBuffer> ServiceDataManager::externalVncServerPassword()
+std::optional<Veyon::Crypto::SecureBuffer> ServiceDataManager::externalVncServerPassword()
 {
 	// plugin UID of ExternalVncServer (plugins/vncserver/external)
 	static const QUuid externalVncServerPluginUid(QStringLiteral("67dfc1c1-8f37-4539-a298-16e74e34fd8b"));
@@ -210,5 +210,5 @@ std::optional<VeyonCrypto::SecureBuffer> ServiceDataManager::externalVncServerPa
 		return {};
 	}
 
-	return VeyonCrypto::SecureBuffer(password.constData(), password.size());
+	return Veyon::Crypto::SecureBuffer(password.constData(), password.size());
 }

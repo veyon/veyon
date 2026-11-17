@@ -105,9 +105,9 @@ TlsClientPolicy TlsClientPolicy::fromConfiguration()
 
 
 
-std::optional<QList<VeyonCrypto::Certificate>> TlsClientPolicy::parseCaCertificates(const QByteArray& pem)
+std::optional<QList<Veyon::Crypto::Certificate>> TlsClientPolicy::parseCaCertificates(const QByteArray& pem)
 {
-	const auto certificates = VeyonCrypto::Certificate::chainFromPem(pem);
+	const auto certificates = Veyon::Crypto::Certificate::chainFromPem(pem);
 	if (certificates.has_value() == false || certificates->isEmpty())
 	{
 		return std::nullopt;
@@ -126,13 +126,13 @@ std::optional<QList<VeyonCrypto::Certificate>> TlsClientPolicy::parseCaCertifica
 
 
 
-bool TlsClientPolicy::isAcceptableCaCertificate(const VeyonCrypto::Certificate& certificate)
+bool TlsClientPolicy::isAcceptableCaCertificate(const Veyon::Crypto::Certificate& certificate)
 {
 	return certificate.isNull() == false &&
 		certificate.publicKey().isNull() == false &&
 		certificate.isCa() &&
 		(certificate.hasKeyUsageExtension() == false ||
-		 certificate.hasKeyUsage(VeyonCrypto::Certificate::KeyUsage::KeyCertSign)) &&
+		 certificate.hasKeyUsage(Veyon::Crypto::Certificate::KeyUsage::KeyCertSign)) &&
 		certificate.hasUnsupportedCriticalExtension() == false;
 }
 
@@ -161,7 +161,7 @@ std::optional<TlsPin> TlsClientPolicy::parsePinEntry(const QString& entry)
 std::optional<QByteArray> TlsClientPolicy::parseFingerprint(const QString& fingerprint)
 {
 	static const auto prefix = QStringLiteral("sha256:");
-	const auto hashHexSize = VeyonCrypto::Hash::size(VeyonCrypto::Hash::Algorithm::Sha256) * 2;
+	const auto hashHexSize = Veyon::Crypto::Hash::size(Veyon::Crypto::Hash::Algorithm::Sha256) * 2;
 
 	if (fingerprint.size() != prefix.size() + hashHexSize ||
 		fingerprint.startsWith(prefix) == false)

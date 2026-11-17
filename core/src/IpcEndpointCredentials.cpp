@@ -11,13 +11,13 @@
 
 #include <cstring>
 
-using VeyonCrypto::SecureBuffer;
+using Veyon::Crypto::SecureBuffer;
 
 
 std::optional<IpcEndpointCredentials> IpcEndpointCredentials::generate(QLatin1String endpointPrefix, int sessionId)
 {
-	const auto randomSuffix = VeyonCrypto::Random::hex(IpcProtocol::EndpointRandomSize);
-	auto token = VeyonCrypto::Random::bytes(IpcProtocol::TokenSize);
+	const auto randomSuffix = Veyon::Crypto::Random::hex(IpcProtocol::EndpointRandomSize);
+	auto token = Veyon::Crypto::Random::bytes(IpcProtocol::TokenSize);
 	if (sessionId < 0 || randomSuffix.has_value() == false || token.has_value() == false)
 	{
 		return {};

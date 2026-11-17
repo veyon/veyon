@@ -23,7 +23,7 @@ public:
 
 	// parses a line read by StandardInputReader::readSecretLine() (without the newline) and
 	// wipes it in any case
-	[[nodiscard]] static std::optional<IpcEndpointCredentials> parse(VeyonCrypto::SecureBuffer& line);
+	[[nodiscard]] static std::optional<IpcEndpointCredentials> parse(Veyon::Crypto::SecureBuffer& line);
 
 	// reads and parses the credentials line from stdin within timeoutMs
 	[[nodiscard]] static IpcStandardInputCredentials readFromStandardInput(int timeoutMs);
@@ -33,32 +33,32 @@ public:
 	[[nodiscard]] IpcEndpointCredentials clone() const;
 
 	// the stdin line including the trailing newline
-	[[nodiscard]] VeyonCrypto::SecureBuffer toLine() const;
+	[[nodiscard]] Veyon::Crypto::SecureBuffer toLine() const;
 
 	const QString& endpointName() const
 	{
 		return m_endpointName;
 	}
 
-	const VeyonCrypto::SecureBuffer& token() const
+	const Veyon::Crypto::SecureBuffer& token() const
 	{
 		return m_token;
 	}
 
-	VeyonCrypto::SecureBuffer takeToken()
+	Veyon::Crypto::SecureBuffer takeToken()
 	{
 		return std::move(m_token);
 	}
 
 private:
-	IpcEndpointCredentials(const QString& endpointName, VeyonCrypto::SecureBuffer&& token) :
+	IpcEndpointCredentials(const QString& endpointName, Veyon::Crypto::SecureBuffer&& token) :
 		m_endpointName(endpointName),
 		m_token(std::move(token))
 	{
 	}
 
 	QString m_endpointName;
-	VeyonCrypto::SecureBuffer m_token;
+	Veyon::Crypto::SecureBuffer m_token;
 };
 
 

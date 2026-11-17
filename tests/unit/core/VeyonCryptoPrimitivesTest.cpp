@@ -17,7 +17,7 @@
 
 #include <vector>
 
-using namespace VeyonCrypto;
+using namespace Veyon::Crypto;
 
 static QByteArray hex(const char* data)
 {
@@ -205,7 +205,7 @@ void VeyonCryptoPrimitivesTest::random()
 	const auto second = Random::bytes(32);
 	QVERIFY(first.has_value() && second.has_value());
 	QCOMPARE(first->size(), 32);
-	QVERIFY(VeyonCrypto::constantTimeEquals(*first, *second) == false);
+	QVERIFY(Veyon::Crypto::constantTimeEquals(*first, *second) == false);
 
 	QVERIFY(Random::bytes(0).has_value() == false);
 	QVERIFY(Random::bytes(-1).has_value() == false);
@@ -221,11 +221,11 @@ void VeyonCryptoPrimitivesTest::random()
 
 void VeyonCryptoPrimitivesTest::constantTimeEquals()
 {
-	QVERIFY(VeyonCrypto::constantTimeEquals(QByteArray("abc"), QByteArray("abc")));
-	QVERIFY(VeyonCrypto::constantTimeEquals(QByteArray("abc"), QByteArray("abd")) == false);
-	QVERIFY(VeyonCrypto::constantTimeEquals(QByteArray("abc"), QByteArray("abcd")) == false);
-	QVERIFY(VeyonCrypto::constantTimeEquals(QByteArray(), QByteArray()) == false);
-	QVERIFY(VeyonCrypto::constantTimeEquals(SecureBuffer::fromByteArray("abc"), QByteArray("abc")));
+	QVERIFY(Veyon::Crypto::constantTimeEquals(QByteArray("abc"), QByteArray("abc")));
+	QVERIFY(Veyon::Crypto::constantTimeEquals(QByteArray("abc"), QByteArray("abd")) == false);
+	QVERIFY(Veyon::Crypto::constantTimeEquals(QByteArray("abc"), QByteArray("abcd")) == false);
+	QVERIFY(Veyon::Crypto::constantTimeEquals(QByteArray(), QByteArray()) == false);
+	QVERIFY(Veyon::Crypto::constantTimeEquals(SecureBuffer::fromByteArray("abc"), QByteArray("abc")));
 }
 
 
@@ -393,7 +393,7 @@ void VeyonCryptoPrimitivesTest::hkdfInvalidInput()
 	const auto c2s = Hkdf::sha256(ikm, QByteArray("salt"), QByteArray("veyon-ipc-v1 keyc2s"), 32);
 	const auto s2c = Hkdf::sha256(ikm, QByteArray("salt"), QByteArray("veyon-ipc-v1 keys2c"), 32);
 	QVERIFY(c2s.has_value() && s2c.has_value());
-	QVERIFY(VeyonCrypto::constantTimeEquals(*c2s, *s2c) == false);
+	QVERIFY(Veyon::Crypto::constantTimeEquals(*c2s, *s2c) == false);
 }
 
 
@@ -521,7 +521,7 @@ void VeyonCryptoPrimitivesTest::aeadRejectsTampering()
 	tamperedCiphertext[0] = char(tamperedCiphertext[0] ^ 0x01);
 
 	QVERIFY(Aead::open(aead, key, nonce, tamperedTag, associatedData).has_value() == false);
-	QCOMPARE(VeyonCrypto::lastError(), QStringLiteral("Aead::open: authentication failed"));
+	QCOMPARE(Veyon::Crypto::lastError(), QStringLiteral("Aead::open: authentication failed"));
 	QVERIFY(Aead::open(aead, key, nonce, tamperedCiphertext, associatedData).has_value() == false);
 	QVERIFY(Aead::open(aead, key, nonce, *sealed, QByteArray("other aad")).has_value() == false);
 	QVERIFY(Aead::open(aead, key, nonce, *sealed, {}).has_value() == false);
@@ -611,8 +611,8 @@ void VeyonCryptoPrimitivesTest::scryptRejectsInvalidParameters()
 	const auto first = PasswordKdf::scrypt(password, salt, defaults, 32);
 	const auto second = PasswordKdf::scrypt(password, salt, defaults, 32);
 	QVERIFY(first.has_value() && second.has_value());
-	QVERIFY(VeyonCrypto::constantTimeEquals(*first, *second));
-	QVERIFY(VeyonCrypto::constantTimeEquals(*first, toByteArray(PasswordKdf::scrypt(password, QByteArray(16, 0x02), defaults, 32))) == false);
+	QVERIFY(Veyon::Crypto::constantTimeEquals(*first, *second));
+	QVERIFY(Veyon::Crypto::constantTimeEquals(*first, toByteArray(PasswordKdf::scrypt(password, QByteArray(16, 0x02), defaults, 32))) == false);
 
 	auto parameters = defaults;
 	parameters.cost = 1000;
@@ -708,7 +708,7 @@ void VeyonCryptoPrimitivesTest::argon2idParameters()
 	const auto first = PasswordKdf::argon2id(password, salt, defaults, 32);
 	const auto second = PasswordKdf::argon2id(password, salt, defaults, 32);
 	QVERIFY(first.has_value() && second.has_value());
-	QVERIFY(VeyonCrypto::constantTimeEquals(*first, *second));
+	QVERIFY(Veyon::Crypto::constantTimeEquals(*first, *second));
 }
 
 

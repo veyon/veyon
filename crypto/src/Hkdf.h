@@ -7,7 +7,7 @@
 
 #include <optional>
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 // HKDF-SHA256 (RFC 5869). The input key material must not be empty; an empty salt means the
 // RFC default (HashLen zero bytes).
@@ -32,4 +32,4 @@ public:
 																  qsizetype outputSize);
 };
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

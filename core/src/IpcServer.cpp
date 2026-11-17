@@ -65,7 +65,7 @@ bool IpcServer::listen(const QString& directory, const PeerPolicy& peerPolicy)
 
 
 
-VeyonCrypto::SecureBuffer IpcServer::credentialsLine() const
+Veyon::Crypto::SecureBuffer IpcServer::credentialsLine() const
 {
 	if (m_credentials.has_value() == false)
 	{

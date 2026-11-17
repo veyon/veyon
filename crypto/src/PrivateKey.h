@@ -5,7 +5,7 @@
 
 #include "PublicKey.h"
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 // Private key (EC P-256, Ed25519 or RSA 3072..8192 bits, see KeyAlgorithm for the bound signature
 // schemes). Move-only so that ownership of key material stays explicit; safe to use from several
@@ -58,4 +58,4 @@ private:
 	std::unique_ptr<Private> d;
 };
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

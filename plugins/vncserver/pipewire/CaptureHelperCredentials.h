@@ -34,7 +34,7 @@ public:
 	// PasswordSize random bytes with the most significant bit set in each byte: VNC authentication
 	// ignores that bit, and the DES key bytes never are NUL, which libvncserver's rfbEncryptBytes()
 	// would take as the end of the password
-	[[nodiscard]] static std::optional<VeyonCrypto::SecureBuffer> generatePassword();
+	[[nodiscard]] static std::optional<Veyon::Crypto::SecureBuffer> generatePassword();
 
 	// new random socket name for the given session
 	[[nodiscard]] static std::optional<QString> generateSocketName(int sessionId);
@@ -43,21 +43,21 @@ public:
 
 	// the password must have exactly PasswordSize bytes and no NUL byte within the DES key, the
 	// socket name must be valid
-	[[nodiscard]] static std::optional<CaptureHelperCredentials> create(VeyonCrypto::SecureBuffer&& password,
+	[[nodiscard]] static std::optional<CaptureHelperCredentials> create(Veyon::Crypto::SecureBuffer&& password,
 																		const QString& socketName);
 
 	// parses a line read by StandardInputReader::readSecretLine() (without the newline) and
 	// wipes it in any case
-	[[nodiscard]] static std::optional<CaptureHelperCredentials> parse(VeyonCrypto::SecureBuffer& line);
+	[[nodiscard]] static std::optional<CaptureHelperCredentials> parse(Veyon::Crypto::SecureBuffer& line);
 
 	// reads and parses the line from stdin within timeoutMs; unlike veyon-server the helper never
 	// runs standalone, so missing input (terminal, EOF) is a failure as well
 	[[nodiscard]] static std::optional<CaptureHelperCredentials> readFromStandardInput(int timeoutMs);
 
 	// the stdin line including the trailing newline
-	[[nodiscard]] VeyonCrypto::SecureBuffer toLine() const;
+	[[nodiscard]] Veyon::Crypto::SecureBuffer toLine() const;
 
-	const VeyonCrypto::SecureBuffer& password() const
+	const Veyon::Crypto::SecureBuffer& password() const
 	{
 		return m_password;
 	}
@@ -68,12 +68,12 @@ public:
 	}
 
 private:
-	CaptureHelperCredentials(VeyonCrypto::SecureBuffer&& password, const QString& socketName) :
+	CaptureHelperCredentials(Veyon::Crypto::SecureBuffer&& password, const QString& socketName) :
 		m_password(std::move(password)),
 		m_socketName(socketName)
 	{
 	}
 
-	VeyonCrypto::SecureBuffer m_password;
+	Veyon::Crypto::SecureBuffer m_password;
 	QString m_socketName;
 };

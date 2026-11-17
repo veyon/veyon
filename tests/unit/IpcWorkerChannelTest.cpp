@@ -79,7 +79,7 @@ private:
 	static void startWorker(QProcess& process, IpcServer& endpoint, const QString& directory, bool sendCredentials = true)
 	{
 		process.setProcessChannelMode(QProcess::ForwardedChannels);
-		auto line = std::make_shared<VeyonCrypto::SecureBuffer>(endpoint.credentialsLine());
+		auto line = std::make_shared<Veyon::Crypto::SecureBuffer>(endpoint.credentialsLine());
 		QObject::connect(&process, &QProcess::started, &process, [&process, &endpoint, line, sendCredentials]() {
 			endpoint.setExpectedProcessId(process.processId());
 			if (sendCredentials)

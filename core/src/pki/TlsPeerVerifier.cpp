@@ -138,15 +138,15 @@ TlsPeerVerifier::Result TlsPeerVerifier::verify(const QList<QSslCertificate>& pe
 
 	// only parsed certificates take part in the decision; additional certificates sent by the peer
 	// that cannot be parsed are never trusted and therefore skipped
-	QList<VeyonCrypto::Certificate> chain;
-	const auto leaf = VeyonCrypto::Certificate::fromDer(peerCertificateChain.first().toDer());
+	QList<Veyon::Crypto::Certificate> chain;
+	const auto leaf = Veyon::Crypto::Certificate::fromDer(peerCertificateChain.first().toDer());
 	if (leaf.has_value())
 	{
 		chain.append(*leaf);
-		const auto chainLength = std::min<qsizetype>(peerCertificateChain.size(), qsizetype(VeyonCrypto::Certificate::MaximumChainLength));
+		const auto chainLength = std::min<qsizetype>(peerCertificateChain.size(), qsizetype(Veyon::Crypto::Certificate::MaximumChainLength));
 		for (qsizetype index = 1; index < chainLength; ++index)
 		{
-			const auto certificate = VeyonCrypto::Certificate::fromDer(peerCertificateChain.at(index).toDer());
+			const auto certificate = Veyon::Crypto::Certificate::fromDer(peerCertificateChain.at(index).toDer());
 			if (certificate.has_value())
 			{
 				chain.append(*certificate);
@@ -325,7 +325,7 @@ bool TlsPeerVerifier::dnsNameMatches(const QString& subjectAltName, const QStrin
 
 
 
-TlsPeerVerifier::Result TlsPeerVerifier::verifyCaPath(const QList<VeyonCrypto::Certificate>& chain,
+TlsPeerVerifier::Result TlsPeerVerifier::verifyCaPath(const QList<Veyon::Crypto::Certificate>& chain,
 													  const QList<QSslError>& sslErrors,
 													  const Target& target, const QString& normalizedTarget,
 													  const QDateTime& currentTime) const
@@ -393,7 +393,7 @@ TlsPeerVerifier::Result TlsPeerVerifier::verifyCaPath(const QList<VeyonCrypto::C
 		}
 	}
 
-	if (leaf.hasExtendedKeyUsage(VeyonCrypto::Certificate::ExtendedKeyUsage::ServerAuth) == false)
+	if (leaf.hasExtendedKeyUsage(Veyon::Crypto::Certificate::ExtendedKeyUsage::ServerAuth) == false)
 	{
 		const auto reason = QStringLiteral("certificate %1 has no extendedKeyUsage serverAuth");
 		return rejected(TlsError::UntrustedCa, reason.arg(leaf.serialNumberHex()));
@@ -411,21 +411,21 @@ TlsPeerVerifier::Result TlsPeerVerifier::verifyCaPath(const QList<VeyonCrypto::C
 
 
 
-QList<VeyonCrypto::Certificate> TlsPeerVerifier::buildPath(const QList<VeyonCrypto::Certificate>& chain,
-														   const QDateTime& currentTime) const
+QList<Veyon::Crypto::Certificate> TlsPeerVerifier::buildPath(const QList<Veyon::Crypto::Certificate>& chain,
+															 const QDateTime& currentTime) const
 {
-	const auto isIssuer = [](const VeyonCrypto::Certificate& issuer, const VeyonCrypto::Certificate& subject, int intermediateCount) {
+	const auto isIssuer = [](const Veyon::Crypto::Certificate& issuer, const Veyon::Crypto::Certificate& subject, int intermediateCount) {
 		return TlsClientPolicy::isAcceptableCaCertificate(issuer) &&
 			(issuer.pathLengthConstraint() < 0 || intermediateCount <= issuer.pathLengthConstraint()) &&
 			issuer.subject() == subject.issuer() &&
 			subject.isSignedBy(issuer.publicKey());
 	};
 
-	QList<VeyonCrypto::Certificate> path{chain.first()};
+	QList<Veyon::Crypto::Certificate> path{chain.first()};
 	QVector<bool> used(chain.size(), false);
 	used[0] = true;
 
-	while (path.size() <= VeyonCrypto::Certificate::MaximumChainLength)
+	while (path.size() <= Veyon::Crypto::Certificate::MaximumChainLength)
 	{
 		const auto& current = path.last();
 		if (current.hasUnsupportedCriticalExtension())
@@ -439,7 +439,7 @@ QList<VeyonCrypto::Certificate> TlsPeerVerifier::buildPath(const QList<VeyonCryp
 		bool foundIntermediate = false;
 		for (const auto requireValidity : {true, false})
 		{
-			const auto isUsable = [&](const VeyonCrypto::Certificate& issuer) {
+			const auto isUsable = [&](const Veyon::Crypto::Certificate& issuer) {
 				return (requireValidity == false || checkValidity(issuer, currentTime).error == TlsError::None) &&
 					isIssuer(issuer, current, intermediateCount);
 			};
@@ -481,7 +481,7 @@ QList<VeyonCrypto::Certificate> TlsPeerVerifier::buildPath(const QList<VeyonCryp
 
 
 
-bool TlsPeerVerifier::matchesName(const VeyonCrypto::Certificate& certificate, const Target& target,
+bool TlsPeerVerifier::matchesName(const Veyon::Crypto::Certificate& certificate, const Target& target,
 								  const QString& normalizedTarget) const
 {
 	if (normalizedTarget.isEmpty())
@@ -543,7 +543,7 @@ bool TlsPeerVerifier::matchesName(const VeyonCrypto::Certificate& certificate, c
 
 
 
-TlsPeerVerifier::Result TlsPeerVerifier::checkValidity(const VeyonCrypto::Certificate& certificate,
+TlsPeerVerifier::Result TlsPeerVerifier::checkValidity(const Veyon::Crypto::Certificate& certificate,
 													   const QDateTime& currentTime)
 {
 	const auto notBefore = certificate.notBefore();

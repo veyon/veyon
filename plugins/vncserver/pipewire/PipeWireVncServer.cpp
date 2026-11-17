@@ -46,7 +46,7 @@ bool PipeWireVncServer::runServer(int serverPort, const Password& password)
 	initializeHelperCredentials();
 
 	auto credentials = CaptureHelperCredentials::create(
-		VeyonCrypto::SecureBuffer(password.constData(), password.size()), m_socketName);
+		Veyon::Crypto::SecureBuffer(password.constData(), password.size()), m_socketName);
 	if (credentials.has_value() == false)
 	{
 		// fail closed instead of running the helper with a weaker password

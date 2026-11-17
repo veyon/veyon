@@ -9,7 +9,7 @@
 
 #include <optional>
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 // Owning byte buffer for secrets (keys, tokens, passphrases, plaintexts).
 //
@@ -21,7 +21,7 @@ namespace VeyonCrypto {
 // - It is move-only. Copies must be made explicitly with clone(), and there is no implicit
 //   conversion to QByteArray; toUnprotectedByteArray() is the single, greppable escape hatch for
 //   APIs that require a QByteArray (e.g. QSslKey) and documents that the copy is not zeroised.
-// - There is no operator==; compare secrets with VeyonCrypto::constantTimeEquals().
+// - There is no operator==; compare secrets with Veyon::Crypto::constantTimeEquals().
 // - Sizes outside 0..MaximumSize are never clamped: such a buffer stays empty (size() 0,
 //   data() nullptr), resize() fails. Allocation failures abort like QByteArray does (Qt is built
 //   without exceptions).
@@ -189,4 +189,4 @@ private:
 	qsizetype m_size = 0;
 };
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

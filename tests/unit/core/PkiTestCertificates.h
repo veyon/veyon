@@ -41,17 +41,17 @@ inline bool addExtension(X509* certificate, int nid, const QString& value)
 	X509V3_set_ctx_nodb(&context);
 	X509V3_set_ctx(&context, nullptr, certificate, nullptr, nullptr, 0);
 	const auto valueData = value.toLatin1();
-	VeyonCrypto::Internal::X509ExtensionPtr extension(X509V3_EXT_conf_nid(nullptr, &context, nid, valueData.constData()));
+	Veyon::Crypto::Internal::X509ExtensionPtr extension(X509V3_EXT_conf_nid(nullptr, &context, nid, valueData.constData()));
 	return extension && X509_add_ext(certificate, extension.get(), -1) == 1;
 }
 
 // subject key signed by issuerKey (OpenSSL keys, also outside the VeyonCrypto key policy);
 // issuerCommonName empty: self-issued
-inline VeyonCrypto::Certificate createWithNativeKeys(EVP_PKEY* subjectPublicKey, const Specification& specification,
-													 EVP_PKEY* signingKey, const QString& issuerCommonName,
-													 const QDateTime& currentTime)
+inline Veyon::Crypto::Certificate createWithNativeKeys(EVP_PKEY* subjectPublicKey, const Specification& specification,
+													   EVP_PKEY* signingKey, const QString& issuerCommonName,
+													   const QDateTime& currentTime)
 {
-	using namespace VeyonCrypto::Internal;
+	using namespace Veyon::Crypto::Internal;
 
 	const auto base = time_t(currentTime.toSecsSinceEpoch());
 	const auto subjectName = createName(specification.commonName);
@@ -124,22 +124,22 @@ inline VeyonCrypto::Certificate createWithNativeKeys(EVP_PKEY* subjectPublicKey,
 	const QByteArray encoded(reinterpret_cast<const char*>(der), size);
 	OPENSSL_free(der);
 
-	return VeyonCrypto::Certificate::fromDer(encoded).value_or(VeyonCrypto::Certificate{});
+	return Veyon::Crypto::Certificate::fromDer(encoded).value_or(Veyon::Crypto::Certificate{});
 }
 
-inline VeyonCrypto::Certificate create(const VeyonCrypto::PrivateKey& subjectKey, const Specification& specification,
-									   const VeyonCrypto::PrivateKey& issuerKey, const QString& issuerCommonName,
-									   const QDateTime& currentTime)
+inline Veyon::Crypto::Certificate create(const Veyon::Crypto::PrivateKey& subjectKey, const Specification& specification,
+										 const Veyon::Crypto::PrivateKey& issuerKey, const QString& issuerCommonName,
+										 const QDateTime& currentTime)
 {
-	using VeyonCrypto::Internal::Access;
+	using Veyon::Crypto::Internal::Access;
 	return createWithNativeKeys(Access::nativeHandle(subjectKey), specification, Access::nativeHandle(issuerKey),
 								issuerCommonName, currentTime);
 }
 
 // RSA key below the VeyonCrypto minimum of 3072 bits
-inline VeyonCrypto::Internal::EvpPkeyPtr generateWeakRsaKey()
+inline Veyon::Crypto::Internal::EvpPkeyPtr generateWeakRsaKey()
 {
-	using namespace VeyonCrypto::Internal;
+	using namespace Veyon::Crypto::Internal;
 	EvpPkeyContextPtr context(EVP_PKEY_CTX_new_id(EVP_PKEY_RSA, nullptr));
 	EVP_PKEY* key = nullptr;
 	if (context == nullptr || EVP_PKEY_keygen_init(context.get()) <= 0 ||
@@ -151,14 +151,14 @@ inline VeyonCrypto::Internal::EvpPkeyPtr generateWeakRsaKey()
 	return EvpPkeyPtr(key);
 }
 
-inline VeyonCrypto::PrivateKey generateKey()
+inline Veyon::Crypto::PrivateKey generateKey()
 {
-	return VeyonCrypto::PrivateKey::generate(VeyonCrypto::KeyAlgorithm::EcP256).value_or(VeyonCrypto::PrivateKey{});
+	return Veyon::Crypto::PrivateKey::generate(Veyon::Crypto::KeyAlgorithm::EcP256).value_or(Veyon::Crypto::PrivateKey{});
 }
 
 // self-signed CA certificate
-inline VeyonCrypto::Certificate createCa(const VeyonCrypto::PrivateKey& caKey, const QString& commonName,
-										 const QDateTime& currentTime, int pathLength = 0)
+inline Veyon::Crypto::Certificate createCa(const Veyon::Crypto::PrivateKey& caKey, const QString& commonName,
+										   const QDateTime& currentTime, int pathLength = 0)
 {
 	Specification specification;
 	specification.commonName = commonName;

@@ -45,7 +45,7 @@ PipeWireCaptureServer::~PipeWireCaptureServer()
 
 
 
-bool PipeWireCaptureServer::run(const QString& socketPath, const VeyonCrypto::SecureBuffer& vncPassword)
+bool PipeWireCaptureServer::run(const QString& socketPath, const Veyon::Crypto::SecureBuffer& vncPassword)
 {
 	if (VeyonCore::isDebugging())
 	{
@@ -151,7 +151,7 @@ void PipeWireCaptureServer::onStreamEnded()
 // LibVNCServer setup / teardown
 // ---------------------------------------------------------------------------
 
-bool PipeWireCaptureServer::initVncServer(const VeyonCrypto::SecureBuffer& vncPassword)
+bool PipeWireCaptureServer::initVncServer(const Veyon::Crypto::SecureBuffer& vncPassword)
 {
 	const int fbSize = DefaultWidth * DefaultHeight * 4;
 	auto framebufferData = new char[fbSize];
@@ -418,7 +418,7 @@ rfbBool PipeWireCaptureServer::checkVncPassword(rfbClientPtr client, const char*
 	rfbEncryptBytes(expectedResponse, key);
 	OPENSSL_cleanse(key, sizeof(key));
 
-	const auto valid = VeyonCrypto::constantTimeEquals(
+	const auto valid = Veyon::Crypto::constantTimeEquals(
 		{reinterpret_cast<const char*>(expectedResponse), CHALLENGESIZE}, {response, length});
 	OPENSSL_cleanse(expectedResponse, sizeof(expectedResponse));
 

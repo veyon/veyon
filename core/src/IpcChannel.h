@@ -70,7 +70,7 @@ public:
 	// the token is consumed and wiped as soon as the handshake has completed or failed;
 	// nonceHistory (server side, optional for tests) must outlive the channel
 	IpcChannel(Side side, IpcProtocol::Role role, quint32 sessionId, const QString& endpointName,
-			   VeyonCrypto::SecureBuffer&& token,
+			   Veyon::Crypto::SecureBuffer&& token,
 			   NonceHistory* nonceHistory = nullptr,
 			   const Clock& clock = steadyNow);
 	~IpcChannel();
@@ -80,7 +80,7 @@ public:
 	// starts the handshake deadline; on the client side additionally returns message 1
 	[[nodiscard]] Outputs start();
 
-	[[nodiscard]] Outputs feed(VeyonCrypto::ByteView data);
+	[[nodiscard]] Outputs feed(Veyon::Crypto::ByteView data);
 
 	// to be called periodically (and by feed()): fails the channel when the handshake deadline
 	// (§3: 3 s total) or the deadline of a partially received post-auth frame (10 s) is exceeded
@@ -88,7 +88,7 @@ public:
 
 	// returns the complete frame for the encrypted record, or nothing if the channel is not
 	// established or the message exceeds maximumRecordPlaintextSize() of the role
-	[[nodiscard]] std::optional<QByteArray> encrypt(VeyonCrypto::ByteView plaintext);
+	[[nodiscard]] std::optional<QByteArray> encrypt(Veyon::Crypto::ByteView plaintext);
 
 	State state() const
 	{
@@ -137,7 +137,7 @@ private:
 	const IpcProtocol::Role m_role;
 	const quint32 m_sessionId;
 	const QByteArray m_endpointName;
-	VeyonCrypto::SecureBuffer m_token;
+	Veyon::Crypto::SecureBuffer m_token;
 	NonceHistory* const m_nonceHistory;
 	const Clock m_clock;
 
@@ -154,8 +154,8 @@ private:
 	QByteArray m_helloHash;
 	QByteArray m_transcript;
 
-	VeyonCrypto::SecureBuffer m_sendKey;
-	VeyonCrypto::SecureBuffer m_receiveKey;
+	Veyon::Crypto::SecureBuffer m_sendKey;
+	Veyon::Crypto::SecureBuffer m_receiveKey;
 	quint64 m_sendSequenceNumber = 0;
 	quint64 m_receiveSequenceNumber = 0;
 };

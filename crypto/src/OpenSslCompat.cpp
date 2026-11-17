@@ -13,7 +13,7 @@
 #include <openssl/params.h>
 #endif
 
-namespace VeyonCrypto::OpenSslCompat {
+namespace Veyon::Crypto::OpenSslCompat {
 
 bool isSamePublicKey(const evp_pkey_st* first, const evp_pkey_st* second)
 {
@@ -114,4 +114,4 @@ bool argon2id(const unsigned char*, size_t, const unsigned char*, size_t, const 
 
 #endif
 
-} // namespace VeyonCrypto::OpenSslCompat
+} // namespace Veyon::Crypto::OpenSslCompat

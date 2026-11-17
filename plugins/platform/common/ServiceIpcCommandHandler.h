@@ -21,12 +21,12 @@ public:
 
 	struct TlsHostKey
 	{
-		VeyonCrypto::SecureBuffer privateKeyDer;
+		Veyon::Crypto::SecureBuffer privateKeyDer;
 		QByteArray certificateChainPem;
 	};
 
 	using TlsHostKeyProvider = std::function<std::optional<TlsHostKey>()>;
-	using SecretProvider = std::function<std::optional<VeyonCrypto::SecureBuffer>()>;
+	using SecretProvider = std::function<std::optional<Veyon::Crypto::SecureBuffer>()>;
 
 	// state of one connected session server
 	struct Client
@@ -64,7 +64,7 @@ public:
 private:
 	struct SessionData
 	{
-		VeyonCrypto::SecureBuffer data;
+		Veyon::Crypto::SecureBuffer data;
 		qint64 expiryTime = 0;
 	};
 

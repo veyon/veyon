@@ -5,7 +5,7 @@
 
 #include "CaptureHelperCredentials.h"
 
-using VeyonCrypto::SecureBuffer;
+using Veyon::Crypto::SecureBuffer;
 
 // stdin line of veyon-capture-helper: "VEYONCAP1 <hex64> <socketName>\n" with a 32-byte VNC
 // password, the name of its Unix domain socket and nothing else (02-ipc.md §1a.5)

@@ -11,12 +11,12 @@
 #include <cstring>
 #include <unistd.h>
 
-using VeyonCrypto::SecureBuffer;
+using Veyon::Crypto::SecureBuffer;
 
 
 std::optional<SecureBuffer> CaptureHelperCredentials::generatePassword()
 {
-	auto password = VeyonCrypto::Random::bytes(PasswordSize);
+	auto password = Veyon::Crypto::Random::bytes(PasswordSize);
 	if (password.has_value())
 	{
 		auto* bytes = password->bytes();
@@ -33,7 +33,7 @@ std::optional<SecureBuffer> CaptureHelperCredentials::generatePassword()
 
 std::optional<QString> CaptureHelperCredentials::generateSocketName(int sessionId)
 {
-	const auto randomSuffix = VeyonCrypto::Random::hex(4);
+	const auto randomSuffix = Veyon::Crypto::Random::hex(4);
 	if (sessionId < 0 || randomSuffix.has_value() == false)
 	{
 		return {};

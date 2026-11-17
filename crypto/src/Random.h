@@ -9,7 +9,7 @@
 
 #include <optional>
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 // Cryptographically secure random numbers from the OpenSSL CSPRNG (RAND_bytes). Never use
 // QRandomGenerator for tokens, nonces, salts, keys or serial numbers.
@@ -27,4 +27,4 @@ public:
 	[[nodiscard]] static std::optional<QString> hex(qsizetype byteCount);
 };
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

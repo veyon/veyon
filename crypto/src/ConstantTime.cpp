@@ -5,7 +5,7 @@
 
 #include <openssl/crypto.h>
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 bool constantTimeEquals(ByteView first, ByteView second)
 {
@@ -17,4 +17,4 @@ bool constantTimeEquals(ByteView first, ByteView second)
 	return CRYPTO_memcmp(first.data(), second.data(), size_t(first.size())) == 0;
 }
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

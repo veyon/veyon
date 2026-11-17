@@ -71,5 +71,5 @@ private:
 	ServiceDataManager& m_dataManager;
 
 	QString m_ipcEndpointName;
-	VeyonCrypto::SecureBuffer m_ipcCredentialsLine;
+	Veyon::Crypto::SecureBuffer m_ipcCredentialsLine;
 };

@@ -9,7 +9,7 @@
 
 #include "PublicKey.h"
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 // X.509 certificate (read-only model).
 //
@@ -145,4 +145,4 @@ private:
 	std::shared_ptr<const Private> d;
 };
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

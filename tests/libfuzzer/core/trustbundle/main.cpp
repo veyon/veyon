@@ -19,7 +19,7 @@ extern "C" int LLVMFuzzerTestOneInput(const char* data, size_t size)
 	static const auto previousMessageHandler = qInstallMessageHandler(discardLogMessage);
 	Q_UNUSED(previousMessageHandler)
 
-	const auto bundle = TrustBundle::fromJson(VeyonCrypto::ByteView(data, qsizetype(size)));
+	const auto bundle = TrustBundle::fromJson(Veyon::Crypto::ByteView(data, qsizetype(size)));
 	if (bundle.has_value() == false)
 	{
 		return 0;

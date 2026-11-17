@@ -22,7 +22,7 @@
 // are never modified (OpenSSL 4.x returns them const) and getter results are passed on directly or
 // via auto so that the code compiles against the 1.1.1 (non-const) and 3.x/4.x (const) signatures.
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 namespace Internal {
 
@@ -55,7 +55,7 @@ using X509Ptr = std::unique_ptr<X509, OpenSslDeleter<X509_free>>;
 using X509PubkeyPtr = std::unique_ptr<X509_PUBKEY, OpenSslDeleter<X509_PUBKEY_free>>;
 using X509RequestPtr = std::unique_ptr<X509_REQ, OpenSslDeleter<X509_REQ_free>>;
 
-// error reporting into VeyonCrypto::lastError(); operation/reason must be static strings without
+// error reporting into Veyon::Crypto::lastError(); operation/reason must be static strings without
 // any data; setOpenSslError() appends the OpenSSL reason codes and empties the thread's OpenSSL
 // error queue so that no stale errors leak into later operations (e.g. QSslSocket)
 VEYON_CRYPTO_EXPORT void setError(const char* operation, const char* reason);
@@ -121,4 +121,4 @@ enum class PemReadResult {
 
 } // namespace Internal
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

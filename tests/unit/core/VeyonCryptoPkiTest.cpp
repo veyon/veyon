@@ -18,9 +18,9 @@
 #include <openssl/pem.h>
 #include <openssl/rsa.h>
 
-using namespace VeyonCrypto;
+using namespace Veyon::Crypto;
 
-Q_DECLARE_METATYPE(VeyonCrypto::KeyAlgorithm)
+Q_DECLARE_METATYPE(Veyon::Crypto::KeyAlgorithm)
 
 static QByteArray hex(const char* data)
 {

@@ -10,7 +10,7 @@
 #include <memory>
 #include <optional>
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 namespace Internal {
 struct Access;
@@ -88,4 +88,4 @@ private:
 	std::shared_ptr<const Private> d;
 };
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

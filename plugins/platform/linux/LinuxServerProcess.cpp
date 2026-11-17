@@ -343,7 +343,7 @@ void LinuxServerProcess::startInSystemdScope()
 	// token, otherwise the portal derives a wrong app ID.
 	const auto systemdRun = QStandardPaths::findExecutable(QStringLiteral("systemd-run"),
 														   {QStringLiteral("/usr/bin"), QStringLiteral("/bin")});
-	const auto unitSuffix = VeyonCrypto::Random::hex(IpcProtocol::EndpointRandomSize);
+	const auto unitSuffix = Veyon::Crypto::Random::hex(IpcProtocol::EndpointRandomSize);
 
 	if (systemdRun.isEmpty() || unitSuffix.has_value() == false)
 	{

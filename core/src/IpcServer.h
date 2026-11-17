@@ -77,7 +77,7 @@ public:
 	}
 
 	// "VEYONIPC1 <name> <hex64>\n" for the child's stdin; empty once a connection is established
-	[[nodiscard]] VeyonCrypto::SecureBuffer credentialsLine() const;
+	[[nodiscard]] Veyon::Crypto::SecureBuffer credentialsLine() const;
 
 	IpcConnection* connection() const
 	{

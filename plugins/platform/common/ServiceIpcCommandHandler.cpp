@@ -103,7 +103,7 @@ IpcMessage::Response ServiceIpcCommandHandler::setSessionData(const Client& clie
 	}
 	else
 	{
-		m_sessionData[sessionKey(client)] = {VeyonCrypto::SecureBuffer::fromByteArray(decodedData.decoded),
+		m_sessionData[sessionKey(client)] = {Veyon::Crypto::SecureBuffer::fromByteArray(decodedData.decoded),
 											 m_clock() + IpcProtocol::SessionDataLifetime};
 	}
 

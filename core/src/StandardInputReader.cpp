@@ -9,7 +9,7 @@
 #include <chrono>
 
 
-StandardInputReader::SecretLineResult StandardInputReader::readSecretLine(int fd, VeyonCrypto::SecureBuffer& out,
+StandardInputReader::SecretLineResult StandardInputReader::readSecretLine(int fd, Veyon::Crypto::SecureBuffer& out,
 																		  int maxLength, int timeoutMs)
 {
 	out.clear();
@@ -19,7 +19,7 @@ StandardInputReader::SecretLineResult StandardInputReader::readSecretLine(int fd
 		return SecretLineResult::Invalid;
 	}
 
-	VeyonCrypto::SecureBuffer line(maxLength);
+	Veyon::Crypto::SecureBuffer line(maxLength);
 	qsizetype lineSize = 0;
 
 	const auto hasDeadline = timeoutMs >= 0;

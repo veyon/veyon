@@ -12,15 +12,15 @@ extern "C" int LLVMFuzzerTestOneInput(const char* data, size_t size)
 		return 0;
 	}
 
-	const VeyonCrypto::ByteView input(data + 1, qsizetype(size - 1));
-	const auto request = (data[0] & 1) ? VeyonCrypto::CertificateRequest::fromPem(input) : VeyonCrypto::CertificateRequest::fromDer(input);
+	const Veyon::Crypto::ByteView input(data + 1, qsizetype(size - 1));
+	const auto request = (data[0] & 1) ? Veyon::Crypto::CertificateRequest::fromPem(input) : Veyon::Crypto::CertificateRequest::fromDer(input);
 	if (request.has_value())
 	{
 		(void)request->toPem();
 		(void)request->subject();
 		(void)request->subjectCommonName();
 		(void)request->publicKey().spkiFingerprint();
-		(void)VeyonCrypto::CertificateRequest::fromDer(request->toDer());
+		(void)Veyon::Crypto::CertificateRequest::fromDer(request->toDer());
 	}
 
 	return 0;

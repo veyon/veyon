@@ -9,7 +9,7 @@
 #include <openssl/crypto.h>
 #include <utility>
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 static std::atomic<SecureBuffer::SecureHeapState> secureHeapState{SecureBuffer::SecureHeapState::Unavailable};
 static std::atomic<qsizetype> secureHeapSize{0};
@@ -309,4 +309,4 @@ bool SecureBuffer::isSecureHeapInitialized()
 	return CRYPTO_secure_malloc_initialized() != 0;
 }
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

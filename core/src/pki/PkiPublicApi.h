@@ -4,7 +4,7 @@
 #pragma once
 
 // PkiPublicApi (06-pki.md §1): the capability layer of the Veyon PKI that every component may use.
-// It parses certificates (VeyonCrypto::Certificate, SPKI pins via spkiSha256()/spkiFingerprint()),
+// It parses certificates (Veyon::Crypto::Certificate, SPKI pins via spkiSha256()/spkiFingerprint()),
 // verifies TLS peers (TlsPeerVerifier, 05-tls.md §5) and parses/creates trust bundles
 // (TrustBundle, 06-pki.md §4). It never touches private keys and has no CA authority: it lives in
 // veyon-core, which must not link veyon-crypto-authority (configure-time capability boundary check,

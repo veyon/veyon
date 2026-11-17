@@ -7,7 +7,7 @@
 
 #include <optional>
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 // Authenticated encryption with associated data: ChaCha20-Poly1305 (RFC 8439) and AES-256-GCM.
 //
@@ -37,4 +37,4 @@ public:
 														  ByteView ciphertextWithTag, ByteView associatedData);
 };
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

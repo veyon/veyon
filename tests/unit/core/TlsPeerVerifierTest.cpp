@@ -18,7 +18,7 @@
 #include <algorithm>
 #include <memory>
 
-using namespace VeyonCrypto;
+using namespace Veyon::Crypto;
 using PkiTestCertificates::Specification;
 
 Q_DECLARE_METATYPE(TlsError)

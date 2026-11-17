@@ -11,7 +11,7 @@
 #include <iterator>
 #include <openssl/pem.h>
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 Certificate::Certificate() = default;
 Certificate::~Certificate() = default;
@@ -717,4 +717,4 @@ std::optional<Certificate> Internal::Access::toCertificate(const char* operation
 	return Certificate(std::move(d));
 }
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

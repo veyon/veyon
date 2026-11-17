@@ -354,7 +354,7 @@ private Q_SLOTS:
 	}
 
 private:
-	using SecureBuffer = VeyonCrypto::SecureBuffer;
+	using SecureBuffer = Veyon::Crypto::SecureBuffer;
 };
 
 

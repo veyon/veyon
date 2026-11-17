@@ -7,7 +7,7 @@
 
 #include <optional>
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 // Password-based key derivation for encrypted exports (03 §4.6) and the CA key backup (06 §11.1).
 //
@@ -61,4 +61,4 @@ public:
 															const ScryptParameters& parameters, qsizetype outputSize);
 };
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

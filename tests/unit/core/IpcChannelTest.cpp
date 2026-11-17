@@ -21,7 +21,7 @@
 #include <unistd.h>
 #endif
 
-using VeyonCrypto::SecureBuffer;
+using Veyon::Crypto::SecureBuffer;
 using Role = IpcProtocol::Role;
 using Type = IpcChannel::Output::Type;
 
@@ -249,7 +249,7 @@ private Q_SLOTS:
 		Pair other(tokenA(), tokenB());
 		(void)other.server->start();
 		(void)other.server->feed(sent(other.client->start()));
-		const auto forgedProof = frame(VeyonCrypto::Random::bytes(IpcProtocol::ProofSize)->toUnprotectedByteArray());
+		const auto forgedProof = frame(Veyon::Crypto::Random::bytes(IpcProtocol::ProofSize)->toUnprotectedByteArray());
 		const auto serverOutputs = other.server->feed(forgedProof);
 		QVERIFY(other.server->hasFailed());
 		QVERIFY(sent(serverOutputs).isEmpty());
@@ -737,7 +737,7 @@ private Q_SLOTS:
 		QVERIFY(readBack.isEmpty());
 		QVERIFY(parsed.has_value());
 		QCOMPARE(parsed->endpointName(), credentials->endpointName());
-		QVERIFY(VeyonCrypto::constantTimeEquals(parsed->token(), credentials->token()));
+		QVERIFY(Veyon::Crypto::constantTimeEquals(parsed->token(), credentials->token()));
 
 		const auto worker = IpcEndpointCredentials::generate(IpcProtocol::WorkerEndpointPrefix, 0);
 		QVERIFY(worker->endpointName().startsWith(QStringLiteral("veyon-worker-0-")));

@@ -6,7 +6,7 @@
 
 #include <openssl/rand.h>
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 std::optional<SecureBuffer> Random::bytes(qsizetype count)
 {
@@ -39,4 +39,4 @@ std::optional<QString> Random::hex(qsizetype byteCount)
 	return QString::fromLatin1(QByteArray::fromRawData(randomBytes->constData(), int(randomBytes->size())).toHex());
 }
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

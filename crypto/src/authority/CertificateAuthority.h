@@ -7,7 +7,7 @@
 #include "CertificateRequest.h"
 #include "PrivateKey.h"
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 // Certificate issuance primitives of the CA host (06-pki.md §11.1 CA certificate, §11.2 issuance
 // profile).
@@ -62,4 +62,4 @@ public:
 														  const CertificateRequest& request, const IssuanceProfile& profile);
 };
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

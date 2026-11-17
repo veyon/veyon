@@ -5,7 +5,7 @@
 
 #include "PrivateKey.h"
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 // PKCS#10 certificate signing request.
 //
@@ -59,4 +59,4 @@ private:
 	std::shared_ptr<const Private> d;
 };
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

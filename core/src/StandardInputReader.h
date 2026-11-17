@@ -5,7 +5,7 @@
 
 #include "VeyonCore.h"
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 class SecureBuffer;
 }
 
@@ -31,7 +31,7 @@ public:
 	// from fd directly into out, without intermediate copies; out stays empty unless Read is
 	// returned. timeoutMs (negative = none) limits the time for the whole line, on Windows for
 	// pipes only. Reads byte by byte so that nothing after the line is consumed.
-	[[nodiscard]] static SecretLineResult readSecretLine(int fd, VeyonCrypto::SecureBuffer& out,
+	[[nodiscard]] static SecretLineResult readSecretLine(int fd, Veyon::Crypto::SecureBuffer& out,
 														 int maxLength = 128, int timeoutMs = -1);
 
 Q_SIGNALS:

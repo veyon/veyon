@@ -1,4 +1,4 @@
-# veyon-crypto-authority: certificate issuance primitives (VeyonCrypto::CertificateAuthority).
+# veyon-crypto-authority: certificate issuance primitives (Veyon::Crypto::CertificateAuthority).
 #
 # Capability boundary (06-pki.md §1): a separate static library that only the CA-host authority
 # code may link. It must never be linked into veyon-crypto, veyon-core or

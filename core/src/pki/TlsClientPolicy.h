@@ -9,7 +9,7 @@
 class VeyonConfiguration;
 
 // SPKI pin (05-tls.md §5.1): SHA-256 over the DER SubjectPublicKeyInfo as contained in the peer
-// certificate (VeyonCrypto::Certificate::spkiSha256()).
+// certificate (Veyon::Crypto::Certificate::spkiSha256()).
 struct TlsPin
 {
 	// normalised connect target (TlsPeerVerifier::normalizedHost()) the pin authenticates; empty for
@@ -26,7 +26,7 @@ struct TlsPin
 struct VEYON_CORE_EXPORT TlsClientPolicy
 {
 	VeyonCore::TlsClientMode mode = VeyonCore::TlsClientMode::Prefer;
-	QList<VeyonCrypto::Certificate> caCertificates;
+	QList<Veyon::Crypto::Certificate> caCertificates;
 	QList<TlsPin> pins;
 	VeyonCore::TlsIpTargetPolicy ipTargetPolicy = VeyonCore::TlsIpTargetPolicy::AcceptCaSignedWithHostname;
 	// hex serial numbers, compared in normalised form (normalizedSerialNumber())
@@ -55,8 +55,8 @@ struct VEYON_CORE_EXPORT TlsClientPolicy
 	// Limitation: CA certificates of an organisation PKI with critical extensions VeyonCrypto does
 	// not model (e.g. nameConstraints, policyConstraints) are not supported and rejected.
 	// Other PEM blocks are skipped.
-	[[nodiscard]] static std::optional<QList<VeyonCrypto::Certificate>> parseCaCertificates(const QByteArray& pem);
-	[[nodiscard]] static bool isAcceptableCaCertificate(const VeyonCrypto::Certificate& certificate);
+	[[nodiscard]] static std::optional<QList<Veyon::Crypto::Certificate>> parseCaCertificates(const QByteArray& pem);
+	[[nodiscard]] static bool isAcceptableCaCertificate(const Veyon::Crypto::Certificate& certificate);
 
 	// "<host>=sha256:<64 hex>" (host = DNS name or IP literal); fails for bare or malformed entries
 	[[nodiscard]] static std::optional<TlsPin> parsePinEntry(const QString& entry);

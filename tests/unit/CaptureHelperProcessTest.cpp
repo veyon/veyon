@@ -29,7 +29,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-using VeyonCrypto::SecureBuffer;
+using Veyon::Crypto::SecureBuffer;
 
 // veyon-capture-helper and its supervision in veyon-server (02-ipc.md §1a.5): the helper gets the
 // stdin line "VEYONCAP1 <hex64> <socketName>" and nothing else, is restarted when it exits,

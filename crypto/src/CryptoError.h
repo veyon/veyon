@@ -7,7 +7,7 @@
 
 #include "VeyonCryptoExport.h"
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 // Description of the most recent failed VeyonCrypto operation in the calling thread (errno
 // semantics: only meaningful directly after a function reported failure, successful calls do not
@@ -20,4 +20,4 @@ VEYON_CRYPTO_EXPORT void clearLastError();
 // version of the OpenSSL library loaded at runtime (diagnostics), e.g. "OpenSSL 3.0.13 30 Jan 2024"
 [[nodiscard]] VEYON_CRYPTO_EXPORT QString openSslVersion();
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

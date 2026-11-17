@@ -11,7 +11,7 @@
 #include <openssl/rsa.h>
 #include <utility>
 
-namespace VeyonCrypto::Internal {
+namespace Veyon::Crypto::Internal {
 
 static constexpr int RsaPssSaltLength = 32;
 static constexpr int MaximumNameAttributeSize = 64;
@@ -515,4 +515,4 @@ X509NamePtr createName(const QString& commonName, const QString& organization)
 	return name;
 }
 
-} // namespace VeyonCrypto::Internal
+} // namespace Veyon::Crypto::Internal

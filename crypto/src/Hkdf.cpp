@@ -6,7 +6,7 @@
 
 #include <openssl/kdf.h>
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 static std::optional<SecureBuffer> deriveHkdf(int mode, ByteView key, ByteView salt, ByteView info, qsizetype outputSize)
 {
@@ -75,4 +75,4 @@ std::optional<SecureBuffer> Hkdf::expandSha256(ByteView pseudoRandomKey, ByteVie
 	return deriveHkdf(EVP_PKEY_HKDEF_MODE_EXPAND_ONLY, pseudoRandomKey, {}, info, outputSize);
 }
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

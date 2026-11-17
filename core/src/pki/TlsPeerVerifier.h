@@ -127,14 +127,14 @@ public:
 	[[nodiscard]] static bool dnsNameMatches(const QString& subjectAltName, const QString& normalizedDnsName);
 
 private:
-	Result verifyCaPath(const QList<VeyonCrypto::Certificate>& chain, const QList<QSslError>& sslErrors,
+	Result verifyCaPath(const QList<Veyon::Crypto::Certificate>& chain, const QList<QSslError>& sslErrors,
 						const Target& target, const QString& normalizedTarget, const QDateTime& currentTime) const;
 	// leaf first, configured CA last; empty if there is no acceptable path; issuers valid at
 	// currentTime are preferred
-	QList<VeyonCrypto::Certificate> buildPath(const QList<VeyonCrypto::Certificate>& chain, const QDateTime& currentTime) const;
-	bool matchesName(const VeyonCrypto::Certificate& certificate, const Target& target,
+	QList<Veyon::Crypto::Certificate> buildPath(const QList<Veyon::Crypto::Certificate>& chain, const QDateTime& currentTime) const;
+	bool matchesName(const Veyon::Crypto::Certificate& certificate, const Target& target,
 					 const QString& normalizedTarget) const;
-	static Result checkValidity(const VeyonCrypto::Certificate& certificate, const QDateTime& currentTime);
+	static Result checkValidity(const Veyon::Crypto::Certificate& certificate, const QDateTime& currentTime);
 	static Result rejected(TlsError error, const QString& reason);
 
 	TlsClientPolicy m_policy;

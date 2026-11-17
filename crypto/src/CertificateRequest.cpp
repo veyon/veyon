@@ -6,7 +6,7 @@
 #include <cstring>
 #include <openssl/pem.h>
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 CertificateRequest::CertificateRequest() = default;
 CertificateRequest::~CertificateRequest() = default;
@@ -231,4 +231,4 @@ std::optional<CertificateRequest> Internal::Access::toCertificateRequest(const c
 	return CertificateRequest(std::move(d));
 }
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

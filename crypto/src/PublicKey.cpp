@@ -8,7 +8,7 @@
 #include <cstring>
 #include <openssl/pem.h>
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 PublicKey::PublicKey() = default;
 PublicKey::~PublicKey() = default;
@@ -272,4 +272,4 @@ std::optional<PublicKey> Internal::Access::toPublicKey(const char* operation, Ev
 	return PublicKey(std::move(d));
 }
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

@@ -7,7 +7,7 @@
 
 #include <optional>
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 // SHA-2 message digests
 class VEYON_CRYPTO_EXPORT Hash
@@ -38,4 +38,4 @@ public:
 	}
 };
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

@@ -21,8 +21,8 @@ extern "C" int LLVMFuzzerTestOneInput(const char* data, size_t size)
 	qint64 now = 0;
 	IpcChannel::NonceHistory history;
 	IpcChannel channel(side, role, 1, QStringLiteral("veyon-ipc-1-0123abcd"),
-					   VeyonCrypto::SecureBuffer(QByteArray(IpcProtocol::TokenSize, 't').constData(),
-												 IpcProtocol::TokenSize),
+					   Veyon::Crypto::SecureBuffer(QByteArray(IpcProtocol::TokenSize, 't').constData(),
+												   IpcProtocol::TokenSize),
 					   &history, [&now]() { return now; });
 	(void)channel.start();
 
@@ -31,7 +31,7 @@ extern "C" int LLVMFuzzerTestOneInput(const char* data, size_t size)
 	while (remaining > 0 && channel.hasFailed() == false)
 	{
 		const auto count = qMin(chunkSize, remaining);
-		(void)channel.feed(VeyonCrypto::ByteView(input, count));
+		(void)channel.feed(Veyon::Crypto::ByteView(input, count));
 		input += count;
 		remaining -= count;
 		now += 10;

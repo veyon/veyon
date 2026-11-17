@@ -41,12 +41,12 @@ public:
 	static constexpr int MaximumRenewBeforeDays = 365;
 
 	// 1..Certificate::MaximumChainLength CA certificates (TlsClientPolicy::isAcceptableCaCertificate())
-	QList<VeyonCrypto::Certificate> caCertificates;
+	QList<Veyon::Crypto::Certificate> caCertificates;
 
 	// optional: normalised https URL with host and optional port only (normalizedEnrollmentUrl())
 	QString enrollmentUrl;
 	// optional, requires enrollmentUrl: JWS compact serialisation (three base64url parts)
-	VeyonCrypto::SecureBuffer enrollmentToken;
+	Veyon::Crypto::SecureBuffer enrollmentToken;
 
 	// optional, informational for clients (06-pki.md §4)
 	std::optional<int> certValidityDays;
@@ -56,10 +56,10 @@ public:
 	std::optional<VeyonCore::TlsServerMode> serverMode;
 	std::optional<VeyonCore::TlsClientMode> clientMode;
 
-	[[nodiscard]] static std::optional<TrustBundle> fromJson(VeyonCrypto::ByteView json);
+	[[nodiscard]] static std::optional<TrustBundle> fromJson(Veyon::Crypto::ByteView json);
 
 	// validates the bundle like fromJson() and serialises it; std::nullopt for an invalid bundle
-	[[nodiscard]] std::optional<VeyonCrypto::SecureBuffer> toJson() const;
+	[[nodiscard]] std::optional<Veyon::Crypto::SecureBuffer> toJson() const;
 
 	// the CA certificates re-encoded as PEM bundle (value for TLS/CaCertificate; never the
 	// verbatim input, so nothing but certificates is imported)
@@ -73,5 +73,5 @@ public:
 	// 1..65535 and optional "/" path: no user info, query, fragment, percent-encoding, zone id,
 	// trailing dot, non-canonical IPv4 form (e.g. "0x7f.1") or whitespace
 	[[nodiscard]] static QString normalizedEnrollmentUrl(const QString& url);
-	[[nodiscard]] static bool isValidEnrollmentToken(VeyonCrypto::ByteView token);
+	[[nodiscard]] static bool isValidEnrollmentToken(Veyon::Crypto::ByteView token);
 };

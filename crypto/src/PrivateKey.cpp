@@ -8,7 +8,7 @@
 #include <openssl/pem.h>
 #include <openssl/rsa.h>
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 PrivateKey::PrivateKey() = default;
 PrivateKey::~PrivateKey() = default;
@@ -328,4 +328,4 @@ std::optional<PrivateKey> Internal::Access::toPrivateKey(const char* operation, 
 	return privateKey;
 }
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

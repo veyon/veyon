@@ -12,7 +12,7 @@
 // friend (Internal::Access) through which VeyonCrypto sources and the veyon-crypto-authority
 // library reach the native OpenSSL objects. Never include it from a public header.
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 class PublicKey::Private
 {
@@ -108,4 +108,4 @@ struct VEYON_CRYPTO_EXPORT Access
 
 } // namespace Internal
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

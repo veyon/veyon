@@ -7,7 +7,7 @@
 
 #include <optional>
 
-namespace VeyonCrypto {
+namespace Veyon::Crypto {
 
 // HMAC-SHA256 (RFC 2104). Keys must not be empty.
 class VEYON_CRYPTO_EXPORT Hmac
@@ -22,4 +22,4 @@ public:
 	[[nodiscard]] static bool verifySha256(ByteView key, ByteView message, ByteView expectedMac);
 };
 
-} // namespace VeyonCrypto
+} // namespace Veyon::Crypto

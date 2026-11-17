@@ -83,7 +83,7 @@ static std::optional<int> trustBundleInteger(const QJsonValue& value, int minimu
 
 
 
-std::optional<TrustBundle> TrustBundle::fromJson(VeyonCrypto::ByteView json)
+std::optional<TrustBundle> TrustBundle::fromJson(Veyon::Crypto::ByteView json)
 {
 	if (json.isEmpty() || json.size() > MaximumSize)
 	{
@@ -153,7 +153,7 @@ std::optional<TrustBundle> TrustBundle::fromJson(VeyonCrypto::ByteView json)
 			{
 				return refuse("invalid enrollment token");
 			}
-			bundle.enrollmentToken = VeyonCrypto::SecureBuffer::fromByteArray(token.toString().toUtf8());
+			bundle.enrollmentToken = Veyon::Crypto::SecureBuffer::fromByteArray(token.toString().toUtf8());
 			if (isValidEnrollmentToken(bundle.enrollmentToken) == false)
 			{
 				return refuse("invalid enrollment token");
@@ -228,7 +228,7 @@ std::optional<TrustBundle> TrustBundle::fromJson(VeyonCrypto::ByteView json)
 
 
 
-std::optional<VeyonCrypto::SecureBuffer> TrustBundle::toJson() const
+std::optional<Veyon::Crypto::SecureBuffer> TrustBundle::toJson() const
 {
 	if (isValid() == false)
 	{
@@ -279,7 +279,7 @@ std::optional<VeyonCrypto::SecureBuffer> TrustBundle::toJson() const
 		object[TrustBundleKeys::Modes] = modes;
 	}
 
-	auto json = VeyonCrypto::SecureBuffer::fromByteArray(QJsonDocument(object).toJson(QJsonDocument::Indented));
+	auto json = Veyon::Crypto::SecureBuffer::fromByteArray(QJsonDocument(object).toJson(QJsonDocument::Indented));
 	if (json.size() > MaximumSize)
 	{
 		vWarning() << "trust bundle exceeds" << qsizetype(MaximumSize) << "bytes";
@@ -310,7 +310,7 @@ bool TrustBundle::isValid() const
 		return QMetaEnum::fromType<decltype(value)>().valueToKey(int(value)) != nullptr;
 	};
 
-	if (caCertificates.isEmpty() || caCertificates.size() > VeyonCrypto::Certificate::MaximumChainLength ||
+	if (caCertificates.isEmpty() || caCertificates.size() > Veyon::Crypto::Certificate::MaximumChainLength ||
 		std::all_of(caCertificates.cbegin(), caCertificates.cend(), TlsClientPolicy::isAcceptableCaCertificate) == false)
 	{
 		return false;
@@ -445,7 +445,7 @@ QString TrustBundle::normalizedEnrollmentUrl(const QString& url)
 
 
 
-bool TrustBundle::isValidEnrollmentToken(VeyonCrypto::ByteView token)
+bool TrustBundle::isValidEnrollmentToken(Veyon::Crypto::ByteView token)
 {
 	if (token.isEmpty() || token.size() > MaximumTokenSize)
 	{

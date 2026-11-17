@@ -142,7 +142,7 @@ void IpcConnection::readData()
 			break;
 		}
 
-		processOutputs(m_channel.feed(VeyonCrypto::ByteView(buffer, bytesRead)));
+		processOutputs(m_channel.feed(Veyon::Crypto::ByteView(buffer, bytesRead)));
 	}
 }
 
