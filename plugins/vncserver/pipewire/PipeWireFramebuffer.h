@@ -67,6 +67,7 @@ private:
 	void logRejectedFormat(uint32_t width, uint32_t height, uint32_t videoFormat);
 
 	static constexpr qint64 DroppedFrameLogInterval = 10000;
+	static constexpr qint64 DroppedFrameReasonChangeLogInterval = 1000;
 
 	pw_main_loop* m_loop{nullptr};
 	pw_context* m_context{nullptr};

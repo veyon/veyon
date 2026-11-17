@@ -423,19 +423,21 @@ void PipeWireFramebuffer::processFrame()
 
 
 
-// Frames are untrusted input, a producer may send invalid ones at frame rate: log the first one and
-// each change of the reason immediately, repeats at most once per interval with the number of frames
-// dropped meanwhile
+// Frames are untrusted input, a producer may send invalid ones at frame rate: log the first one
+// immediately, a change of the reason after a short interval (bounded even if the producer alternates
+// between reasons) and repeats at most once per interval with the number of frames dropped meanwhile
 void PipeWireFramebuffer::logDroppedFrame(const char* reason)
 {
 	++m_droppedFrameCount;
 
-	const auto reasonChanged = m_lastDroppedFrameReason == nullptr ||
-		std::strcmp(m_lastDroppedFrameReason, reason) != 0;
-	if (reasonChanged == false && m_droppedFrameLogTimer.isValid() &&
-		m_droppedFrameLogTimer.hasExpired(DroppedFrameLogInterval) == false)
+	if (m_droppedFrameLogTimer.isValid())
 	{
-		return;
+		const auto reasonChanged = std::strcmp(m_lastDroppedFrameReason, reason) != 0;
+		const auto interval = reasonChanged ? DroppedFrameReasonChangeLogInterval : DroppedFrameLogInterval;
+		if (m_droppedFrameLogTimer.hasExpired(interval) == false)
+		{
+			return;
+		}
 	}
 
 	vWarning() << "dropping PipeWire frame:" << reason << "-" << m_droppedFrameCount << "dropped since last report";
