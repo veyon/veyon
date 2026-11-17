@@ -67,7 +67,10 @@ public:
 	void setMinimumFramebufferUpdateInterval(const MessageContext& context, int interval) override;
 
 private:
+	static TlsServerPolicy tlsServerPolicy();
+
 	void checkForIncompleteAuthentication(VncServerClient* client);
+	void reportAuthenticationResult(VncServerClient* client);
 	void showAuthenticationMessage(VncServerClient* client);
 	void showAccessControlMessage(VncServerClient* client);
 	QFutureWatcher<QMap<QString, QString>>* resolveFQDNs(const QStringList& hosts);

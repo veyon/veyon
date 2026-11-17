@@ -1,9 +1,9 @@
 // SPDX-FileCopyrightText: 2017-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include <QTcpServer>
 #include <QTcpSocket>
 
+#include "TlsSniffingServer.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
 #include "VncProxyConnection.h"
@@ -21,11 +21,8 @@ VncProxyServer::VncProxyServer(const QHostAddress& listenAddress,
 	m_listenAddress(listenAddress),
 	m_listenPort(listenPort),
 	m_connectionLimit(qMax(1, VeyonCore::config().serverConnectionLimit())),
-	m_server(new QTcpServer(this)),
 	m_connectionFactory(connectionFactory)
 {
-	connect(m_server, &QTcpServer::newConnection, this, &VncProxyServer::acceptConnection);
-	connect(m_server, &QTcpServer::acceptError, this, &VncProxyServer::handleAcceptError);
 }
 
 
@@ -37,9 +34,10 @@ VncProxyServer::~VncProxyServer()
 
 
 
-bool VncProxyServer::start(const VncServerEndpoint& vncServerEndpoint, const Password& vncServerPassword)
+bool VncProxyServer::start(const VncServerEndpoint& vncServerEndpoint, const Password& vncServerPassword,
+						   const TlsServerPolicy& tlsServerPolicy)
 {
-	if (m_server->isListening())
+	if (m_server)
 	{
 		vWarning() << "VNC proxy server is already listening";
 		return false;
@@ -48,10 +46,19 @@ bool VncProxyServer::start(const VncServerEndpoint& vncServerEndpoint, const Pas
 	m_vncServerEndpoint = vncServerEndpoint;
 	m_vncServerPassword = vncServerPassword;
 
+	const auto& config = VeyonCore::config();
+	m_server = new TlsSniffingServer(tlsServerPolicy, ConnectionLimiter::configFromConfiguration(config),
+									 qMax(1, config.connectionLimitPreAuthTimeoutSeconds()) * 1000, this);
+
+	connect(m_server, &QTcpServer::newConnection, this, &VncProxyServer::acceptConnection);
+	connect(m_server, &QTcpServer::acceptError, this, &VncProxyServer::handleAcceptError);
+
 	if (m_listenPort < 0 ||
 		m_server->listen(m_listenAddress, static_cast<quint16>(m_listenPort)) == false)
 	{
 		vWarning() << "could not listen on port" << m_listenPort << m_server->errorString();
+		delete m_server;
+		m_server = nullptr;
 		return false;
 	}
 
@@ -63,17 +70,26 @@ bool VncProxyServer::start(const VncServerEndpoint& vncServerEndpoint, const Pas
 
 void VncProxyServer::stop()
 {
-	if (m_server)
-	{
-		m_server->close();
-	}
-
 	for (auto connection : std::as_const(m_connections))
 	{
 		delete connection;
 	}
 
 	m_connections.clear();
+
+	// also closes all connections that have not been handed over yet
+	delete m_server;
+	m_server = nullptr;
+}
+
+
+
+void VncProxyServer::reportAuthenticationResult(VncProxyConnection* connection, bool authenticated)
+{
+	if (m_server && connection)
+	{
+		m_server->reportAuthenticationResult(connection->proxyClientSocket(), authenticated);
+	}
 }
 
 

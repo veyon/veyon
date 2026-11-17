@@ -7,9 +7,10 @@
 #include <QVector>
 
 #include "CryptoCore.h"
+#include "TlsServerPolicy.h"
 #include "VncServerSocket.h"
 
-class QTcpServer;
+class TlsSniffingServer;
 class VncProxyConnection;
 class VncProxyConnectionFactory;
 
@@ -26,8 +27,12 @@ public:
 				   QObject* parent = nullptr);
 	~VncProxyServer() override;
 
-	bool start(const VncServerEndpoint& vncServerEndpoint, const Password& vncServerPassword);
+	bool start(const VncServerEndpoint& vncServerEndpoint, const Password& vncServerPassword,
+			   const TlsServerPolicy& tlsServerPolicy);
 	void stop();
+
+	// frees the connection's pre-auth slot or marks it as failed authentication (05-tls.md §8)
+	void reportAuthenticationResult(VncProxyConnection* connection, bool authenticated);
 
 	const VncProxyConnectionList& clients() const
 	{
@@ -48,7 +53,7 @@ private:
 	QHostAddress m_listenAddress;
 	int m_listenPort;
 	int m_connectionLimit;
-	QTcpServer* m_server;
+	TlsSniffingServer* m_server{nullptr};
 	VncProxyConnectionFactory* m_connectionFactory;
 	VncProxyConnectionList m_connections;
 };

@@ -13,6 +13,7 @@
 #include "HostAddress.h"
 #include "PlatformPluginInterface.h"
 #include "SystemTrayIcon.h"
+#include "TlsHostCredentials.h"
 #include "VeyonConfiguration.h"
 
 
@@ -39,6 +40,8 @@ ComputerControlServer::ComputerControlServer(QObject* parent) :
 
 	connect(&m_serverAuthenticationManager, &ServerAuthenticationManager::finished,
 			this, &ComputerControlServer::showAuthenticationMessage);
+	connect(&m_serverAuthenticationManager, &ServerAuthenticationManager::finished,
+			this, &ComputerControlServer::reportAuthenticationResult);
 
 	connect(&m_serverAccessControlManager, &ServerAccessControlManager::finished,
 			this, &ComputerControlServer::showAccessControlMessage);
@@ -61,7 +64,7 @@ ComputerControlServer::~ComputerControlServer()
 
 bool ComputerControlServer::start()
 {
-	if (m_vncProxyServer.start(m_vncServer.endpoint(), m_vncServer.password()) == false)
+	if (m_vncProxyServer.start(m_vncServer.endpoint(), m_vncServer.password(), tlsServerPolicy()) == false)
 	{
 		return false;
 	}
@@ -70,6 +73,26 @@ bool ComputerControlServer::start()
 	m_vncServer.start();
 
 	return true;
+}
+
+
+
+TlsServerPolicy ComputerControlServer::tlsServerPolicy()
+{
+	auto policy = TlsServerPolicy::fromConfiguration(VeyonCore::config());
+
+	// the host key is shared by all session servers of this host and only kept in memory (02-ipc.md §6)
+	if (policy.mode != VeyonCore::TlsServerMode::Disabled)
+	{
+		const auto credentials = TlsHostCredentials::fetchFromService(VeyonCore::serviceIpcClient());
+		if (credentials.has_value())
+		{
+			policy.certificateChain = credentials->certificateChain();
+			policy.privateKey = credentials->privateKey();
+		}
+	}
+
+	return policy;
 }
 
 
@@ -164,6 +187,22 @@ void ComputerControlServer::checkForIncompleteAuthentication(VncServerClient* cl
 		client->setAuthState(VncServerClient::AuthState::Failed);
 
 		showAuthenticationMessage(client);
+		reportAuthenticationResult(client);
+	}
+}
+
+
+
+void ComputerControlServer::reportAuthenticationResult(VncServerClient* client)
+{
+	for (auto connection : m_vncProxyServer.clients())
+	{
+		const auto computerControlClient = qobject_cast<ComputerControlClient*>(connection);
+		if (computerControlClient && computerControlClient->serverClient() == client)
+		{
+			m_vncProxyServer.reportAuthenticationResult(connection, client->authState() == VncServerClient::AuthState::Successful);
+			return;
+		}
 	}
 }
 
