@@ -5,6 +5,7 @@
 
 #include <QMutex>
 #include <QTextStream>
+#include <QVariant>
 
 #include "VeyonCore.h"
 
@@ -49,6 +50,11 @@ public:
 	}
 
 	static LogLevel logLevelFromString(const QString& logLevelString);
+
+	// formats arguments (e.g. of a feature message) for log output as "{key=value, ...}" with
+	// "<redacted>" instead of the value of every key in sensitiveKeys (compared case-insensitively,
+	// 05-tls.md §7a); pass arguments.keys() to print the keys only
+	static QString redacted(const QVariantMap& arguments, const QStringList& sensitiveKeys);
 
 	// writes a line to stderr and the system log (Unix: syslog/journal, Windows: debugger output)
 	// without any Qt logging, for failures before any Logger instance or QCoreApplication exists

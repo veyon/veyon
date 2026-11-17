@@ -5,6 +5,8 @@
 #include <QDateTime>
 #include <QDir>
 #include <QFile>
+#include <QJsonArray>
+#include <QJsonDocument>
 
 #include "Filesystem.h"
 #include "Logger.h"
@@ -77,6 +79,30 @@ Logger::~Logger()
 
 	QMutexLocker l(&m_logMutex);
 	delete m_logFile;
+}
+
+
+
+QString Logger::redacted(const QVariantMap& arguments, const QStringList& sensitiveKeys)
+{
+	QStringList entries;
+	entries.reserve(arguments.size());
+
+	for (auto it = arguments.constBegin(), end = arguments.constEnd(); it != end; ++it)
+	{
+		if (sensitiveKeys.contains(it.key(), Qt::CaseInsensitive))
+		{
+			entries.append(it.key() + QStringLiteral("=<redacted>"));
+		}
+		else
+		{
+			// compact JSON of a one-element array without the brackets: strings quoted, containers expanded
+			const auto value = QJsonDocument(QJsonArray{QJsonValue::fromVariant(it.value())}).toJson(QJsonDocument::Compact);
+			entries.append(it.key() + QLatin1Char('=') + QString::fromUtf8(value.mid(1, value.size() - 2)));
+		}
+	}
+
+	return QLatin1Char('{') + entries.join(QStringLiteral(", ")) + QLatin1Char('}');
 }
 
 
