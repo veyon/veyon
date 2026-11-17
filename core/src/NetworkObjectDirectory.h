@@ -8,6 +8,9 @@
 
 #include "NetworkObject.h"
 
+#include <functional>
+#include <optional>
+
 class QTimer;
 
 class VEYON_CORE_EXPORT NetworkObjectDirectory : public QObject
@@ -44,10 +47,28 @@ public:
 										   NetworkObject::Attribute attribute, const QVariant& value);
 	virtual NetworkObjectList queryParents(const NetworkObject& child);
 
+	// like queryObjects()/queryParents(), but return std::nullopt if the directory could not be
+	// queried (e.g. directory or broker not available) so that access control can fail closed
+	virtual std::optional<NetworkObjectList> tryQueryObjects(NetworkObject::Type type,
+															 NetworkObject::Attribute attribute, const QVariant& value);
+	virtual std::optional<NetworkObjectList> tryQueryParents(const NetworkObject& child);
+
 	virtual void update() = 0;
 	virtual void fetchObjects(const NetworkObject& object);
 
+	// whether the last update() or fetchObjects() could not query the directory completely, i.e.
+	// the objects are incomplete and must not be presented as the current state
+	bool hasUpdateFailed() const
+	{
+		return m_updateFailed;
+	}
+
 protected:
+	void setUpdateFailed(bool failed)
+	{
+		m_updateFailed = failed;
+	}
+
 	using NetworkObjectFilter = std::function<bool(const NetworkObject&)>;
 
 	bool hasObjects() const;
@@ -68,6 +89,7 @@ private:
 	NetworkObject m_rootObject;
 	NetworkObjectList m_defaultObjectList;
 	QList<NetworkObject::ModelId> m_changedObjectIds;
+	bool m_updateFailed = false;
 
 Q_SIGNALS:
 	void objectsAboutToBeInserted(NetworkObject::ModelId parentId, int index, int count);

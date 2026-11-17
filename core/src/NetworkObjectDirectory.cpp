@@ -252,6 +252,22 @@ NetworkObjectList NetworkObjectDirectory::queryParents(const NetworkObject& chil
 
 
 
+std::optional<NetworkObjectList> NetworkObjectDirectory::tryQueryObjects(NetworkObject::Type type,
+																		 NetworkObject::Attribute attribute,
+																		 const QVariant& value)
+{
+	return queryObjects(type, attribute, value);
+}
+
+
+
+std::optional<NetworkObjectList> NetworkObjectDirectory::tryQueryParents(const NetworkObject& child)
+{
+	return queryParents(child);
+}
+
+
+
 void NetworkObjectDirectory::fetchObjects(const NetworkObject& object)
 {
 	if (object.type() == NetworkObject::Type::Root)

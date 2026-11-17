@@ -8,6 +8,7 @@
 class FeatureMessage;
 class FeatureWorkerManager;
 class MessageContext;
+class VncServerClient;
 
 // clazy:excludeall=copyable-polymorphic
 
@@ -31,4 +32,8 @@ public:
 	virtual QString vncServerLocalSocketPath() const = 0;
 
 	virtual void setMinimumFramebufferUpdateInterval(const MessageContext& context, int interval) = 0;
+
+	// authentication and access control state of the connection a message was received on;
+	// nullptr if unknown (appended last to keep the vtable layout of 4.11 for existing plugins)
+	virtual const VncServerClient* vncServerClient(const MessageContext& context) const = 0;
 };
