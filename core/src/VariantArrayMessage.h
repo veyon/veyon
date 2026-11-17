@@ -15,7 +15,12 @@ class VEYON_CORE_EXPORT VariantArrayMessage
 public:
 	using MessageSize = quint32;
 
-	explicit VariantArrayMessage(QIODevice* ioDevice);
+	static constexpr MessageSize MaxMessageSize = 32 * 1024 * 1024;
+	// cap for every message of the authentication phase on both sides: the peer is not
+	// authenticated yet, and no legitimate message comes close
+	static constexpr MessageSize MaxAuthenticationMessageSize = 64 * 1024;
+
+	explicit VariantArrayMessage(QIODevice* ioDevice, MessageSize maximumMessageSize = MaxMessageSize);
 
 	bool send();
 
@@ -33,11 +38,8 @@ public:
 	}
 
 private:
-	enum {
-		MaxMessageSize = 1024 * 1024 * 32
-	};
-
 	QBuffer m_buffer;
 	VariantStream m_stream;
 	QIODevice* m_ioDevice;
+	MessageSize m_maximumMessageSize;
 };
