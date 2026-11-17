@@ -30,6 +30,14 @@ if(WITH_TESTS)
 	target_link_libraries(VeyonCryptoPkiTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-crypto-authority OpenSSL::Crypto)
 	add_test(NAME VeyonCryptoPkiTest COMMAND VeyonCryptoPkiTest)
 
+	# known-answer tests against fixtures produced with Veyon 4.x (QCA); OpenSSL is used directly to
+	# create signatures and ciphertexts with paddings VeyonCrypto never produces
+	add_executable(VeyonCryptoLegacyRsaTest VeyonCryptoLegacyRsaTest.cpp VeyonCryptoLegacyRsaTest.qrc)
+	set_default_target_properties(VeyonCryptoLegacyRsaTest)
+	target_compile_definitions(VeyonCryptoLegacyRsaTest PRIVATE OPENSSL_API_COMPAT=10101)
+	target_link_libraries(VeyonCryptoLegacyRsaTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-crypto OpenSSL::Crypto)
+	add_test(NAME VeyonCryptoLegacyRsaTest COMMAND VeyonCryptoLegacyRsaTest)
+
 	# PkiPublicApi; test certificates are crafted with OpenSSL directly (PkiTestCertificates.h), so
 	# that the tests do not need veyon-crypto-authority (capability boundary, 06-pki.md §1)
 	add_executable(TlsPeerVerifierTest TlsPeerVerifierTest.cpp PkiTestCertificates.h)
