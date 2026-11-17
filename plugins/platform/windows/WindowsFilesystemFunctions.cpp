@@ -17,6 +17,7 @@
 #include "UserGroupsBackendManager.h"
 #include "WindowsCoreFunctions.h"
 #include "WindowsFilesystemFunctions.h"
+#include "WindowsLogFileDirectory.h"
 
 
 static QString windowsConfigPath(const KNOWNFOLDERID folderId)
@@ -307,6 +308,43 @@ bool WindowsFilesystemFunctions::openFileSafely(QFile* file, QIODevice::OpenMode
 
 	return true;
 }
+
+
+QString WindowsFilesystemFunctions::systemLogFileDirectory() const
+{
+	return globalAppDataPath() + QDir::separator() + QStringLiteral("logs");
+}
+
+
+
+QString WindowsFilesystemFunctions::userLogFileDirectory(const QString& baseDirectory, const QString& loginName) const
+{
+	Q_UNUSED(loginName)
+
+	// %TEMP% is per user already
+	return baseDirectory;
+}
+
+
+
+bool WindowsFilesystemFunctions::usesSystemLogFileDirectory() const
+{
+	return WindowsLogFileDirectory::isPrivilegedProcess();
+}
+
+
+
+PlatformFilesystemFunctions::LogFileDirectory WindowsFilesystemFunctions::prepareLogFileDirectory(
+	const QString& baseDirectory)
+{
+	if (usesSystemLogFileDirectory())
+	{
+		return WindowsLogFileDirectory::prepareSystemDirectory(systemLogFileDirectory());
+	}
+
+	return WindowsLogFileDirectory::prepareUserDirectory(baseDirectory);
+}
+
 
 
 PlatformCoreFunctions::ProcessId WindowsFilesystemFunctions::findFileLockingProcess(const QString& filePath) const

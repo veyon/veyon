@@ -61,6 +61,16 @@ if(WITH_TESTS)
 		set_default_target_properties(IpcPipeSecurityTest)
 		target_link_libraries(IpcPipeSecurityTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core advapi32)
 		add_test(NAME IpcPipeSecurityTest COMMAND IpcPipeSecurityTest)
+
+		# log file directories and the protected DACL of the system log file directory (WP23)
+		add_executable(WindowsLogFileDirectoryTest
+			WindowsLogFileDirectoryTest.cpp
+			${CMAKE_SOURCE_DIR}/plugins/platform/windows/WindowsLogFileDirectory.cpp
+			)
+		set_default_target_properties(WindowsLogFileDirectoryTest)
+		target_include_directories(WindowsLogFileDirectoryTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/platform/windows)
+		target_link_libraries(WindowsLogFileDirectoryTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core advapi32)
+		add_test(NAME WindowsLogFileDirectoryTest COMMAND WindowsLogFileDirectoryTest)
 	endif()
 
 endif()

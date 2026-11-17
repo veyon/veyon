@@ -4,6 +4,7 @@
 #include <QDir>
 
 #include "LinuxFilesystemFunctions.h"
+#include "LinuxLogFileDirectory.h"
 
 #include <fcntl.h>
 #include <grp.h>
@@ -164,6 +165,42 @@ bool LinuxFilesystemFunctions::openFileSafely(QFile* file, QIODevice::OpenMode o
 	}
 
 	return file->open(fd, openMode, QFileDevice::AutoCloseHandle);
+}
+
+
+
+QString LinuxFilesystemFunctions::systemLogFileDirectory() const
+{
+	return LinuxLogFileDirectory::systemDirectory();
+}
+
+
+
+QString LinuxFilesystemFunctions::userLogFileDirectory(const QString& baseDirectory, const QString& loginName) const
+{
+	return LinuxLogFileDirectory::userDirectory(baseDirectory, loginName, geteuid());
+}
+
+
+
+bool LinuxFilesystemFunctions::usesSystemLogFileDirectory() const
+{
+	return geteuid() == 0;
+}
+
+
+
+PlatformFilesystemFunctions::LogFileDirectory LinuxFilesystemFunctions::prepareLogFileDirectory(
+	const QString& baseDirectory)
+{
+	if (usesSystemLogFileDirectory())
+	{
+		return LinuxLogFileDirectory::prepareSystemDirectory(systemLogFileDirectory());
+	}
+
+	const auto userId = geteuid();
+	return LinuxLogFileDirectory::prepareUserDirectory(baseDirectory, LinuxLogFileDirectory::loginName(userId),
+													   userId);
 }
 
 

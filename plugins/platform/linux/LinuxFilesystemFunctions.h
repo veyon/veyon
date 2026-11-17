@@ -20,5 +20,10 @@ public:
 
 	bool openFileSafely(QFile* file, QFile::OpenMode openMode, QFile::Permissions permissions) override;
 
+	QString systemLogFileDirectory() const override;
+	QString userLogFileDirectory(const QString& baseDirectory, const QString& loginName) const override;
+	bool usesSystemLogFileDirectory() const override;
+	LogFileDirectory prepareLogFileDirectory(const QString& baseDirectory) override;
+
 	PlatformCoreFunctions::ProcessId findFileLockingProcess(const QString& filePath) const override;
 };

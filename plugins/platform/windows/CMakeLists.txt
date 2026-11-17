@@ -13,6 +13,7 @@ build_veyon_plugin(windows-platform
 	WindowsCoreFunctions.cpp
 	WindowsDeviceFunctions.cpp
 	WindowsFilesystemFunctions.cpp
+	WindowsLogFileDirectory.cpp
 	WindowsInputDeviceFunctions.cpp
 	WindowsKeyboardShortcutTrapper.cpp
 	WindowsNetworkFunctions.cpp
@@ -35,6 +36,7 @@ build_veyon_plugin(windows-platform
 	WindowsCoreFunctions.h
 	WindowsDeviceFunctions.h
 	WindowsFilesystemFunctions.h
+	WindowsLogFileDirectory.h
 	WindowsInputDeviceFunctions.h
 	WindowsKeyboardShortcutTrapper.h
 	WindowsNetworkFunctions.h

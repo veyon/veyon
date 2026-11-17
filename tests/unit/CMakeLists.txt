@@ -188,6 +188,21 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 
 	add_test(NAME ProcessHardeningTest COMMAND ProcessHardeningTest)
 
+	# LinuxLogFileDirectoryTest: log file directories of root and unprivileged processes (WP23)
+	add_executable(LinuxLogFileDirectoryTest
+		LinuxLogFileDirectoryTest.cpp
+		${CMAKE_SOURCE_DIR}/plugins/platform/linux/LinuxFilesystemFunctions.cpp
+		${CMAKE_SOURCE_DIR}/plugins/platform/linux/LinuxLogFileDirectory.cpp
+	)
+	set_default_target_properties(LinuxLogFileDirectoryTest)
+	target_include_directories(LinuxLogFileDirectoryTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/platform/linux)
+	target_link_libraries(LinuxLogFileDirectoryTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+		veyon-core
+	)
+	add_test(NAME LinuxLogFileDirectoryTest COMMAND LinuxLogFileDirectoryTest)
+
 	# veyon-capture-helper (02-ipc.md §1a.5): stdin credentials line and supervision, and the real
 	# helper started from a non-dumpable process (loopback only, VNC password, dumpable helper)
 	if(TARGET veyon-capture-helper)
