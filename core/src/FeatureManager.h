@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <QHash>
 #include <QObject>
 
 #include "ComputerControlInterface.h"
@@ -35,6 +36,15 @@ public:
 
 	Plugin::Uid pluginUid(Feature::Uid featureUid) const;
 
+	QStringList sensitiveArguments(Feature::Uid featureUid) const
+	{
+		return m_sensitiveArguments.value(featureUid);
+	}
+
+	// arguments of a feature message or controlFeature() call for log output: values of sensitive
+	// arguments and all values of features unknown here (e.g. from a newer peer) are redacted
+	QString redactedArguments(Feature::Uid featureUid, const QVariantMap& arguments) const;
+
 
 	void controlFeature(Feature::Uid featureUid,
 						FeatureProviderInterface::Operation operation,
@@ -64,6 +74,7 @@ public:
 private:
 	FeatureList m_features;
 	FeatureUidList m_disabledFeaturesUids{};
+	QHash<Feature::Uid, QStringList> m_sensitiveArguments{};
 	const FeatureList m_emptyFeatureList;
 	QObjectList m_pluginObjects;
 	FeatureProviderInterfaceList m_featurePluginInterfaces;

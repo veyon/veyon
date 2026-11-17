@@ -4,6 +4,7 @@
 #include "FeatureManager.h"
 #include "FeatureMessage.h"
 #include "FeatureWorkerManager.h"
+#include "Logger.h"
 #include "PluginInterface.h"
 #include "PluginManager.h"
 #include "VeyonConfiguration.h"
@@ -34,6 +35,15 @@ FeatureManager::FeatureManager(QObject* parent) :
 			m_featurePluginInterfaces += featurePluginInterface;
 
 			m_features += featurePluginInterface->featureList();
+
+			for (const auto& feature : featurePluginInterface->featureList())
+			{
+				const auto sensitiveArguments = featurePluginInterface->sensitiveArguments(feature.uid());
+				if (sensitiveArguments.isEmpty() == false)
+				{
+					m_sensitiveArguments[feature.uid()] = sensitiveArguments;
+				}
+			}
 		}
 	}
 
@@ -129,11 +139,25 @@ Plugin::Uid FeatureManager::pluginUid(Feature::Uid featureUid) const
 
 
 
+QString FeatureManager::redactedArguments(Feature::Uid featureUid, const QVariantMap& arguments) const
+{
+	if (feature(featureUid).isValid() == false)
+	{
+		return Logger::redacted(arguments, arguments.keys());
+	}
+
+	return Logger::redacted(arguments, sensitiveArguments(featureUid));
+}
+
+
+
 void FeatureManager::controlFeature(Feature::Uid featureUid,
 									FeatureProviderInterface::Operation operation,
 									const QVariantMap& arguments,
 									const ComputerControlInterfaceList& computerControlInterfaces) const
 {
+	vDebug() << featureUid << operation << qUtf8Printable(redactedArguments(featureUid, arguments));
+
 	for (auto featureInterface : std::as_const(m_featurePluginInterfaces))
 	{
 		featureInterface->controlFeature(featureUid, operation, arguments, computerControlInterfaces);

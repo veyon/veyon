@@ -107,11 +107,13 @@ bool FeatureMessage::receive(QIODevice* ioDevice)
 
 QDebug operator<<(QDebug stream, const FeatureMessage& message)
 {
-	// directory broker messages contain user names and group memberships
-	const auto arguments = message.featureUid() == DirectoryBrokerMessage::featureUid() ? QStringLiteral("<redacted>") : VeyonCore::stringify(message.arguments());
+	// never print the values of sensitive arguments (05-tls.md §7a); directory broker
+	// messages contain user names and group memberships
+	const auto& featureManager = VeyonCore::featureManager();
+	const auto arguments = message.featureUid() == DirectoryBrokerMessage::featureUid() ? QStringLiteral("<redacted>") : featureManager.redactedArguments(message.featureUid(), message.arguments());
 
 	stream << QStringLiteral("FeatureMessage(%1,%2,%3)")
-				  .arg(VeyonCore::featureManager().feature(message.featureUid()).name())
+				  .arg(featureManager.feature(message.featureUid()).name())
 				  .arg(FeatureMessage::CommandType(message.command()))
 				  .arg(arguments)
 				  .toUtf8()
