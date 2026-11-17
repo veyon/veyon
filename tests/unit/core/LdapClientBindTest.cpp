@@ -210,6 +210,37 @@ private Q_SLOTS:
 		}
 	}
 
+	// WP9 review L2: a bind password missing at start (e.g. imported later) is read again after a
+	// back-off instead of disabling the client for the lifetime of the process
+	void bindPasswordAvailableLater()
+	{
+		ConnectionCounter counter;
+		QTemporaryDir directory;
+		Configuration::JsonStore store(Configuration::Store::Scope::System, directory.filePath(QStringLiteral("c.json")));
+		VeyonConfiguration configuration(&store);
+		LdapConfiguration ldapConfiguration(&configuration);
+		ldapConfiguration.setServerHost(QStringLiteral("127.0.0.1"));
+		ldapConfiguration.setServerPort(counter.port());
+		ldapConfiguration.setUseBindCredentials(true);
+		ldapConfiguration.setBindDn(QStringLiteral("cn=veyon,dc=example,dc=org"));
+
+		LdapClient client(ldapConfiguration);
+		client.setBindCredentialsRetryInterval(50);
+		QVERIFY(client.queryNamingContexts().isEmpty());
+		QVERIFY(client.hasQueryFailed());
+
+		m_backend.m_secrets.emplace(QStringLiteral("ldap/bindPassword"), SecureBuffer::fromByteArray("secret"));
+
+		// not before the back-off has passed
+		QVERIFY(client.queryNamingContexts().isEmpty());
+		QTest::qWait(100);
+		QCOMPARE(counter.connections(), 0);
+
+		QTest::qWait(100);
+		(void)client.queryNamingContexts();
+		QTRY_VERIFY(counter.connections() > 0);
+	}
+
 	// positive control: with a password the client connects
 	void bindPasswordAvailable()
 	{

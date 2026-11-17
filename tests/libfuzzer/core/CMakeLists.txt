@@ -1,5 +1,6 @@
 add_subdirectory(certificate)
 add_subdirectory(certificaterequest)
+add_subdirectory(directorybroker)
 add_subdirectory(ipcauthenticationrequest)
 add_subdirectory(ipcchannel)
 add_subdirectory(legacyrsakey)

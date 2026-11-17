@@ -83,6 +83,29 @@ if(WITH_TESTS)
 	target_link_libraries(ServiceIpcCommandHandlerTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
 	add_test(NAME ServiceIpcCommandHandlerTest COMMAND ServiceIpcCommandHandlerTest)
 
+	# directory and user-groups broker (04-directory-broker.md §7)
+	add_executable(DirectoryBrokerTest DirectoryBrokerTest.cpp DummyDirectoryPlugin.h)
+	set_default_target_properties(DirectoryBrokerTest)
+	target_link_libraries(DirectoryBrokerTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
+	add_test(NAME DirectoryBrokerTest COMMAND DirectoryBrokerTest)
+
+	# fail-closed access control decisions on directory failures
+	add_executable(DirectoryAccessControlTest DirectoryAccessControlTest.cpp)
+	set_default_target_properties(DirectoryAccessControlTest)
+	target_link_libraries(DirectoryAccessControlTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
+	add_test(NAME DirectoryAccessControlTest COMMAND DirectoryAccessControlTest)
+
+	# grace period and re-check wiring of the session server
+	add_executable(ServerAccessControlManagerTest
+		ServerAccessControlManagerTest.cpp
+		${CMAKE_SOURCE_DIR}/server/src/ServerAccessControlManager.cpp
+		${CMAKE_SOURCE_DIR}/server/src/ServerAccessControlManager.h
+		)
+	set_default_target_properties(ServerAccessControlManagerTest)
+	target_include_directories(ServerAccessControlManagerTest PRIVATE ${CMAKE_SOURCE_DIR}/server/src)
+	target_link_libraries(ServerAccessControlManagerTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
+	add_test(NAME ServerAccessControlManagerTest COMMAND ServerAccessControlManagerTest)
+
 	# SecretStore, SecretReference, legacy secret migration and encrypted secret exports
 	# (03-secretstore-config.md §6); the platform backends are tested separately
 	add_executable(SecretStoreTest SecretStoreTest.cpp)
@@ -116,6 +139,23 @@ if(WITH_TESTS)
 		if(VEYON_BUILD_WINDOWS)
 			# kldap-light.dll is not next to the test executable
 			set_tests_properties(LdapClientBindTest PROPERTIES
+				ENVIRONMENT_MODIFICATION "PATH=path_list_prepend:$<TARGET_FILE_DIR:kldap-light>")
+		endif()
+
+		# search status: result codes, timeouts, lost connections (fail-closed queries)
+		add_executable(LdapClientQueryTest
+			LdapClientQueryTest.cpp
+			${CMAKE_SOURCE_DIR}/plugins/ldap/LdapClient.cpp
+			${CMAKE_SOURCE_DIR}/plugins/ldap/LdapConfiguration.cpp
+			${CMAKE_SOURCE_DIR}/plugins/ldap/LdapDirectory.cpp
+			${CMAKE_SOURCE_DIR}/plugins/ldap/LdapNetworkObjectDirectory.cpp
+			)
+		set_default_target_properties(LdapClientQueryTest)
+		target_include_directories(LdapClientQueryTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/ldap ${Ldap_INCLUDE_DIRS})
+		target_link_libraries(LdapClientQueryTest PRIVATE Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Network veyon-core kldap-light)
+		add_test(NAME LdapClientQueryTest COMMAND LdapClientQueryTest)
+		if(VEYON_BUILD_WINDOWS)
+			set_tests_properties(LdapClientQueryTest PROPERTIES
 				ENVIRONMENT_MODIFICATION "PATH=path_list_prepend:$<TARGET_FILE_DIR:kldap-light>")
 		endif()
 	endif()
