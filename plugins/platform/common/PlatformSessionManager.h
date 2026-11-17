@@ -34,6 +34,9 @@ public:
 
 	static SessionId resolveSessionId(const PlatformSessionId& platformSessionId);
 
+	// session ID of an open session, InvalidSessionId if not open
+	SessionId sessionId(const PlatformSessionId& platformSessionId);
+
 	Mode mode() const
 	{
 		return m_mode;

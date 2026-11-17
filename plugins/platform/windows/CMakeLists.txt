@@ -56,6 +56,8 @@ build_veyon_plugin(windows-platform
 	../common/PlatformSessionManager.cpp
 	../common/ServiceDataManager.h
 	../common/ServiceDataManager.cpp
+	../common/ServiceIpcCommandHandler.h
+	../common/ServiceIpcCommandHandler.cpp
 	XEventLog.h
 	windows.qrc
 	)

@@ -3,6 +3,7 @@
 
 #include "AuthenticationCredentials.h"
 #include "CryptoCore.h"
+#include "IpcClient.h"
 #include "PlatformPluginInterface.h"
 #include "PlatformSessionFunctions.h"
 #include "PluginManager.h"
@@ -60,6 +61,8 @@ VncServer::VncServer(QObject* parent) :
 			m_pluginInterface = defaultVncServerPlugins.first();
 		}
 	}
+
+	queryExternalVncServerPassword();
 }
 
 
@@ -105,6 +108,11 @@ int VncServer::serverPort() const
 
 VncServer::Password VncServer::password() const
 {
+	if (m_externalVncServerPassword.isEmpty() == false)
+	{
+		return m_externalVncServerPassword;
+	}
+
 	if (m_pluginInterface && m_pluginInterface->configuredPassword().isEmpty() == false)
 	{
 		return m_pluginInterface->configuredPassword();
@@ -126,7 +134,11 @@ void VncServer::run()
 			VeyonCore::config().setVncServerPort(m_pluginInterface->configuredServerPort());
 		}
 
-		if (m_pluginInterface->configuredPassword().isEmpty() == false)
+		if (m_externalVncServerPassword.isEmpty() == false)
+		{
+			VeyonCore::authenticationCredentials().setInternalVncServerPassword(m_externalVncServerPassword);
+		}
+		else if (m_pluginInterface->configuredPassword().isEmpty() == false)
 		{
 			VeyonCore::authenticationCredentials().setInternalVncServerPassword(m_pluginInterface->configuredPassword());
 		}
@@ -137,5 +149,25 @@ void VncServer::run()
 		}
 
 		vDebug() << "finished";
+	}
+}
+
+
+
+void VncServer::queryExternalVncServerPassword()
+{
+	// called in the main thread, the IPC client must not be used from the VNC server thread
+	const auto ipcClient = VeyonCore::serviceIpcClient();
+	if (ipcClient == nullptr || ipcClient->isConnected() == false)
+	{
+		return;
+	}
+
+	// refused unless the external VNC server plugin is configured
+	const auto response = ipcClient->call(IpcProtocol::Command::GetExternalVncServerPassword);
+	if (response.ok)
+	{
+		m_externalVncServerPassword = QByteArray::fromBase64(
+			response.result.value(IpcProtocol::Key::Password).toString().toLatin1());
 	}
 }

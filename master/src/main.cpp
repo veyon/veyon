@@ -16,7 +16,7 @@ int main(int argc, char** argv)
 	QApplication app(argc, argv);
 	app.connect(&app, &QApplication::lastWindowClosed, &QApplication::quit);
 
-	VeyonCore core(&app, VeyonCore::Component::Master, QStringLiteral("Master"));
+	VeyonCore core(&app, VeyonCore::Component::Master, QStringLiteral("Master"), VeyonCore::defaultInitialization());
 
 #ifdef VEYON_DEBUG
 	if (qEnvironmentVariableIsSet("VEYON_MASTER_CREATE_DOC_FIGURES"))

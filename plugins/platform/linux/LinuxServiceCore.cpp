@@ -246,6 +246,19 @@ LinuxServiceCore::LinuxServiceCore(QObject* parent) :
 	QObject(parent)
 {
 	connectToLoginManager();
+
+	connect(&m_dataManager, &ServiceDataManager::serverEndpointFailed, this, [this](const QString& endpointName) {
+		for (auto it = m_serverProcesses.constBegin(); it != m_serverProcesses.constEnd(); ++it)
+		{
+			if (it.value()->ipcEndpointName() == endpointName)
+			{
+				// the regular supervision (checkSessionState()) restarts it with a new endpoint
+				vCritical() << "IPC endpoint of server for session" << it.key() << "failed - stopping server";
+				it.value()->stop();
+				break;
+			}
+		}
+	});
 }
 
 
@@ -564,16 +577,13 @@ void LinuxServiceCore::startServer(const QString& sessionPath)
 			<< "with ID" << sessionId
 			<< "at seat" << LinuxSessionFunctions::getSessionSeat(sessionPath).path;
 
-	serverEnvironment.insert(QLatin1String(ServiceDataManager::serviceDataTokenEnvironmentVariable()),
-							 QString::fromUtf8(m_dataManager.token().toByteArray()));
-
 	const auto serverUserId = sessionUid > 0 ?
 		static_cast<LinuxUserFunctions::UserId>(sessionUid) :
 		LinuxUserFunctions::InvalidUserId;
 
 	auto serverProcess = new LinuxServerProcess(serverEnvironment, sessionPath, sessionId,
 												serverUserId,
-												sessionType, this);
+												sessionType, m_dataManager, this);
 	serverProcess->start();
 
 	connect(serverProcess, &QProcess::stateChanged, this, [=, this]() { checkSessionState(sessionPath); });

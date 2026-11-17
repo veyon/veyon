@@ -3,66 +3,72 @@
 
 #pragma once
 
+#include <QMutex>
+#include <QSemaphore>
+#include <QSet>
 #include <QThread>
 
-#include "CryptoCore.h"
-#include "VariantArrayMessage.h"
+#include "IpcServer.h"
+#include "ServiceIpcCommandHandler.h"
 
-class QLocalServer;
-class QLocalSocket;
+#include <map>
 
+// Service side of the local IPC with the session servers (docs/specs/02-ipc.md §1–§6): one
+// endpoint per started server, created before the server starts, served in a dedicated thread.
+// All public functions are thread-safe.
 class ServiceDataManager : public QThread
 {
 	Q_OBJECT
 public:
-	enum class Command {
-		NoCommand,
-		ReadData,
-		WriteData,
+	struct ServerEndpoint
+	{
+		QString name;
+		// "VEYONIPC1 <name> <hex64>\n", to be written to the server's stdin only
+		VeyonCrypto::SecureBuffer credentialsLine;
 	};
-	Q_ENUM(Command)
 
-	using Data = CryptoCore::PlaintextPassword;
-	using Token = CryptoCore::PlaintextPassword;
-
-	ServiceDataManager(QObject* parent = nullptr);
+	explicit ServiceDataManager(QObject* parent = nullptr);
 	~ServiceDataManager() override;
 
-	const Token& token() const
-	{
-		return m_token;
-	}
+	// see ServiceIpcCommandHandler::Client; hasLoggedOnUser is called in the IPC thread and must
+	// return true if unsure
+	[[nodiscard]] std::optional<ServerEndpoint> createServerEndpoint(int sessionId, const QString& platformSessionId,
+																	 const IpcServer::PeerPolicy& peerPolicy,
+																	 const std::function<bool()>& hasLoggedOnUser);
+	void setServerProcessId(const QString& endpointName, IpcServer::ProcessId processId);
+	void removeServerEndpoint(const QString& endpointName);
 
-	static QByteArray read(const Token& token);
-	static bool write(const Token& token, const Data& data);
+	bool hasServerEndpointFailed(const QString& endpointName) const;
 
-	static const char* serviceDataTokenEnvironmentVariable()
-	{
-		return "VEYON_SERVICE_DATA_TOKEN";
-	}
-
-	static Token serviceDataTokenFromEnvironment();
+Q_SIGNALS:
+	// the endpoint was closed after too many failed connection attempts: the server is
+	// considered failed and has to be restarted
+	void serverEndpointFailed(const QString& endpointName);
 
 protected:
 	void run() override;
 
 private:
-	static constexpr auto SocketWaitTimeout = 1000;
-	static constexpr auto MessageReadTimeout = 10000;
-
-	static bool waitForMessage(QLocalSocket* socket);
-	static void sendMessage(QLocalSocket* socket, VariantArrayMessage& message);
-
-	void acceptConnection();
-	void handleConnection(QLocalSocket* socket);
-
-	static QString serverName()
+	struct Endpoint
 	{
-		return QStringLiteral("VeyonServiceDataManager");
-	}
+		IpcServer* server = nullptr;
+		ServiceIpcCommandHandler::Client client{};
+	};
 
-	QLocalServer* m_server{nullptr};
+	template<typename Function>
+	void runInIpcThread(Function&& function);
 
-	Token m_token;
-	Data m_data;
+	void handleRequest(const QString& endpointName, IpcConnection* connection, const QByteArray& message);
+
+	static std::optional<VeyonCrypto::SecureBuffer> externalVncServerPassword();
+
+	QObject* m_context = nullptr;
+	QSemaphore m_contextReady;
+
+	// accessed in the IPC thread only
+	ServiceIpcCommandHandler m_commandHandler;
+	std::map<QString, Endpoint> m_endpoints;
+
+	mutable QMutex m_failedEndpointsMutex;
+	QSet<QString> m_failedEndpoints;
 };

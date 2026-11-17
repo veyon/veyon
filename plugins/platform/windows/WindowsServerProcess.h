@@ -13,7 +13,7 @@
 class VeyonServerProcess
 {
 public:
-	VeyonServerProcess(WtsSessionManager::SessionId wtsSessionId, const ServiceDataManager::Token& token);
+	VeyonServerProcess(WtsSessionManager::SessionId wtsSessionId, int sessionId, ServiceDataManager& dataManager);
 	~VeyonServerProcess();
 
 	auto uptime() const
@@ -32,7 +32,9 @@ private:
 	static constexpr auto ServerWaitTime = 5000;
 
 	const WtsSessionManager::SessionId m_wtsSessionId;
-	const ServiceDataManager::Token m_token;
+	const int m_sessionId;
+	ServiceDataManager& m_dataManager;
+	QString m_ipcEndpointName;
 
 	SmartHandle m_processHandle{nullptr};
 	QElapsedTimer m_uptime;

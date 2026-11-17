@@ -58,7 +58,8 @@ int main(int argc, char** argv)
 		qputenv(Logger::logLevelEnvironmentVariable(), QByteArray::number(static_cast<int>(Logger::LogLevel::Nothing)));
 	}
 
-	const auto core = std::make_unique<VeyonCore>(app.get(), VeyonCore::Component::CLI, QStringLiteral("CLI"));
+	const auto core = std::make_unique<VeyonCore>(app.get(), VeyonCore::Component::CLI, QStringLiteral("CLI"),
+												  VeyonCore::defaultInitialization() | VeyonCore::InitializationFlag::SecretStore);
 	VeyonCore::pluginManager().registerExtraPluginInterface(new ConfigCommands(core.get()));
 	VeyonCore::pluginManager().registerExtraPluginInterface(new FeatureCommands(core.get()));
 	VeyonCore::pluginManager().registerExtraPluginInterface(new PluginCommands(core.get()));

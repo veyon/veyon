@@ -9,6 +9,7 @@
 #include "PlatformSessionManager.h"
 #include "ServiceDataManager.h"
 #include "WindowsSmartObjects.h"
+#include "WtsSessionManager.h"
 
 class WindowsServiceCore
 {
@@ -25,6 +26,9 @@ public:
 private:
 	void manageServersForAllSessions();
 	void manageServerForConsoleSession();
+
+	// session ID the server's VeyonCore resolves for itself (VeyonCore::initSession())
+	int serverSessionId(WtsSessionManager::SessionId wtsSessionId);
 
 	static void WINAPI serviceMainStatic(DWORD argc, LPWSTR* argv);
 	static DWORD WINAPI serviceCtrlStatic(DWORD ctrlCode, DWORD eventType, LPVOID eventData, LPVOID context);

@@ -57,6 +57,8 @@ build_veyon_plugin(linux-platform
 	../common/PlatformSessionManager.cpp
 	../common/ServiceDataManager.h
 	../common/ServiceDataManager.cpp
+	../common/ServiceIpcCommandHandler.h
+	../common/ServiceIpcCommandHandler.cpp
 )
 
 set_source_files_properties(LinuxCoreFunctions.cpp PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE)

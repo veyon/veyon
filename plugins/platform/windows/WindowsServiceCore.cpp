@@ -140,7 +140,8 @@ void WindowsServiceCore::manageServersForAllSessions()
 					m_sessionManager.openSession(QString::number(wtsSessionId));
 				}
 
-				serverProcesses[wtsSessionId] = new VeyonServerProcess(wtsSessionId, m_dataManager.token());
+				serverProcesses[wtsSessionId] = new VeyonServerProcess(wtsSessionId, serverSessionId(wtsSessionId),
+																	   m_dataManager);
 			}
 		}
 
@@ -194,7 +195,8 @@ void WindowsServiceCore::manageServerForConsoleSession()
 				if (m_serviceStopRequested == 0 &&
 					wtsSessionId != WtsSessionManager::InvalidSession)
 				{
-					serverProcess = new VeyonServerProcess(wtsSessionId, m_dataManager.token());
+					serverProcess = new VeyonServerProcess(wtsSessionId, PlatformSessionFunctions::DefaultSessionId,
+														   m_dataManager);
 				}
 			}
 
@@ -220,6 +222,20 @@ void WindowsServiceCore::manageServerForConsoleSession()
 
 	SetEvent(m_serverShutdownEvent);
 	delete serverProcess;
+}
+
+
+
+int WindowsServiceCore::serverSessionId(WtsSessionManager::SessionId wtsSessionId)
+{
+	if (m_sessionManager.mode() != PlatformSessionManager::Mode::Multi ||
+		wtsSessionId == WtsSessionManager::activeConsoleSession())
+	{
+		return PlatformSessionFunctions::DefaultSessionId;
+	}
+
+	const auto sessionId = m_sessionManager.sessionId(QString::number(wtsSessionId));
+	return sessionId == PlatformSessionFunctions::InvalidSessionId ? PlatformSessionFunctions::DefaultSessionId : sessionId;
 }
 
 

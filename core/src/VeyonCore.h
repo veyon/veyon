@@ -4,6 +4,7 @@
 #pragma once
 
 #include <QDebug>
+#include <QFlags>
 #include <QObject>
 #include <QtEndian>
 
@@ -26,6 +27,8 @@ class BuiltinFeatures;
 class CryptoCore;
 class FeatureManager;
 class Filesystem;
+class IpcClient;
+class IpcEndpointCredentials;
 class Logger;
 class NetworkObjectDirectoryManager;
 class PlatformPluginInterface;
@@ -81,7 +84,41 @@ public:
 	};
 	Q_ENUM(UiColorScheme)
 
-	VeyonCore(QCoreApplication* application, Component component, const QString& appComponentName);
+	// what a component initializes and may use; each component passes the flags it needs, the
+	// component itself is identity only (logging, session ID, paths)
+	enum class InitializationFlag {
+		Ui = 0x0001,
+		Translations = 0x0002,
+		LegacyCrypto = 0x0004, // legacy QCA-based crypto wrapper (cryptoCore())
+		AuthenticationCredentials = 0x0008,
+		Plugins = 0x0010, // all non-platform plugins (the platform plugin is always loaded)
+		Managers = 0x0020,
+		Features = 0x0040,
+		WritableConfiguration = 0x0080, // configuration upgrade and generation of the installation ID
+		// capabilities, never part of a preset
+		ServiceIpc = 0x0100,  // may connect to veyon-service via connectToServiceIpc() (02-ipc.md §6)
+		SecretStore = 0x0200, // may use the SecretStore (03-secretstore-config.md §2)
+	};
+	Q_DECLARE_FLAGS(InitializationFlags, InitializationFlag)
+
+	// functions instead of static constexpr members: a static data member of an exported class is
+	// imported from the DLL on Windows when it is ODR-used (e.g. bound to operator|()'s reference
+	// parameter), and the DLL does not export it
+	static constexpr InitializationFlags defaultInitialization()
+	{
+		return InitializationFlags(InitializationFlag::Ui) | InitializationFlag::Translations |
+			InitializationFlag::LegacyCrypto | InitializationFlag::AuthenticationCredentials |
+			InitializationFlag::Plugins | InitializationFlag::Managers | InitializationFlag::Features |
+			InitializationFlag::WritableConfiguration;
+	}
+	// platform plugin, read-only configuration, logger and session ID only
+	static constexpr InitializationFlags minimalInitialization()
+	{
+		return {};
+	}
+
+	VeyonCore(QCoreApplication* application, Component component, const QString& appComponentName,
+			  InitializationFlags flags);
 	~VeyonCore() override;
 
 	static VeyonCore* instance();
@@ -99,6 +136,16 @@ public:
 	static Component component()
 	{
 		return instance()->m_component;
+	}
+
+	static InitializationFlags initializationFlags()
+	{
+		return instance()->m_initializationFlags;
+	}
+
+	static bool hasInitializationFlag(InitializationFlag flag)
+	{
+		return instance()->m_initializationFlags.testFlag(flag);
 	}
 
 	static VeyonConfiguration& config()
@@ -150,6 +197,14 @@ public:
 	{
 		return *(instance()->m_filesystem);
 	}
+
+	// connection of a session server to veyon-service (02-ipc.md §6), nullptr if not connected
+	static IpcClient* serviceIpcClient()
+	{
+		return instance()->m_serviceIpcClient;
+	}
+
+	[[nodiscard]] bool connectToServiceIpc(IpcEndpointCredentials&& credentials);
 
 	static void setupApplicationParameters();
 	bool initAuthentication();
@@ -235,8 +290,10 @@ private:
 	FeatureManager* m_featureManager{nullptr};
 	UserGroupsBackendManager* m_userGroupsBackendManager;
 	NetworkObjectDirectoryManager* m_networkObjectDirectoryManager;
+	IpcClient* m_serviceIpcClient{nullptr};
 
 	Component m_component;
+	InitializationFlags m_initializationFlags;
 	bool m_debugging;
 
 	int m_sessionId{0};
@@ -246,6 +303,8 @@ Q_SIGNALS:
 	void applicationLoaded();
 	void exited();
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(VeyonCore::InitializationFlags)
 
 #define V_FUNC_INFO VeyonCore::shortenFuncinfo(Q_FUNC_INFO).constData()
 

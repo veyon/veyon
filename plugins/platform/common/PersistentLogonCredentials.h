@@ -14,5 +14,4 @@ public:
 
 	static bool read(QString* username, Password* password);
 	static bool write(const QString& username, const Password& password);
-	static bool clear();
 };

@@ -3,8 +3,8 @@
 
 #include <QBuffer>
 
+#include "IpcClient.h"
 #include "PersistentLogonCredentials.h"
-#include "ServiceDataManager.h"
 #include "VariantStream.h"
 
 
@@ -16,10 +16,18 @@ bool PersistentLogonCredentials::read(QString* username, Password* password)
 		return false;
 	}
 
-	auto logonData = ServiceDataManager::read(ServiceDataManager::serviceDataTokenFromEnvironment());
-	if (logonData.isEmpty())
+	const auto ipcClient = VeyonCore::serviceIpcClient();
+	if (ipcClient == nullptr)
 	{
-		vCritical() << "Empty data";
+		vCritical() << "no connection to service";
+		return false;
+	}
+
+	const auto response = ipcClient->call(IpcProtocol::Command::GetSessionData);
+	auto logonData = QByteArray::fromBase64(response.result.value(IpcProtocol::Key::Data).toString().toLatin1());
+	if (response.ok == false || logonData.isEmpty())
+	{
+		vDebug() << "no logon credentials available";
 		return false;
 	}
 
@@ -52,19 +60,15 @@ bool PersistentLogonCredentials::write(const QString& username, const Password& 
 	stream.write(username);
 	stream.write(VeyonCore::cryptoCore().encryptPassword(password));
 
-	if (ServiceDataManager::write(ServiceDataManager::serviceDataTokenFromEnvironment(),
-								  logonDataBuffer.data()) == false)
+	const auto ipcClient = VeyonCore::serviceIpcClient();
+	if (ipcClient == nullptr ||
+		ipcClient->call(IpcProtocol::Command::SetSessionData,
+						{{IpcProtocol::Key::Data, QString::fromLatin1(logonDataBuffer.data().toBase64())}})
+				.ok == false)
 	{
 		vCritical() << "Failed to write persistent service data";
 		return false;
 	}
 
 	return true;
-}
-
-
-
-bool PersistentLogonCredentials::clear()
-{
-	return ServiceDataManager::write(ServiceDataManager::serviceDataTokenFromEnvironment(), {});
 }

@@ -28,5 +28,10 @@ public:
 private:
 	void run() override;
 
+	void queryExternalVncServerPassword();
+
 	VncServerPluginInterface* m_pluginInterface;
+
+	// provided by veyon-service when the external VNC server plugin is configured (02-ipc.md §6)
+	Password m_externalVncServerPassword;
 };

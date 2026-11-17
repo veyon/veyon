@@ -21,6 +21,13 @@ public:
 
 	using Password = CryptoCore::SecureArray;
 
+	// identity of a user for the peer checks of local IPC endpoints (02-ipc.md §6a)
+	struct UserIdentity
+	{
+		qint64 userId = -1;			  // Linux: uid
+		QString securityIdentifier{}; // Windows: SID string
+	};
+
 	virtual ~PlatformUserFunctions() = default;
 
 	virtual QString queryCurrentUserProperty(UserProperty property) = 0;
@@ -30,6 +37,9 @@ public:
 	virtual QString userGroupSecurityIdentifier(const QString& groupName) = 0;
 
 	virtual bool isAnyUserLoggedOn() = 0;
+
+	// empty identity if the user is unknown
+	virtual UserIdentity queryUserIdentity(const QString& username) = 0;
 
 	virtual bool prepareLogon(const QString& username, const Password& password) = 0;
 	virtual bool performLogon(const QString& username, const Password& password) = 0;

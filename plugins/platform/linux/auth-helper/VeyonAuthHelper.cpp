@@ -149,7 +149,7 @@ int main(int argc, char** argv)
 	umask(077);
 
 	QCoreApplication app(argc, argv);
-	VeyonCore core(&app, VeyonCore::Component::AuthHelper, QStringLiteral("AuthHelper"));
+	VeyonCore core(&app, VeyonCore::Component::AuthHelper, QStringLiteral("AuthHelper"), VeyonCore::defaultInitialization());
 
 	auto bus = QDBusConnection::systemBus();
 	if (bus.isConnected() == false)

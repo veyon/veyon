@@ -7,6 +7,9 @@
 
 #include "LinuxSessionFunctions.h"
 #include "LinuxUserFunctions.h"
+#include "crypto/SecureBuffer.h"
+
+class ServiceDataManager;
 
 // clazy:excludeall=copyable-polymorphic
 
@@ -18,6 +21,7 @@ public:
 								const QString& sessionPath, int sessionId,
 								LinuxUserFunctions::UserId sessionUserId,
 								LinuxSessionFunctions::Type sessionType,
+								ServiceDataManager& dataManager,
 								QObject* parent = nullptr);
 	~LinuxServerProcess() override;
 
@@ -29,8 +33,21 @@ public:
 		return m_sessionUserId;
 	}
 
+	const QString& ipcEndpointName() const
+	{
+		return m_ipcEndpointName;
+	}
+
 private:
 	void setProcessUserId();
+
+	bool createIpcEndpoint(LinuxUserFunctions::UserId serverUserId);
+	void removeIpcEndpoint();
+	void sendIpcCredentials();
+
+	bool hasDesktopPortalRegistry();
+	static void warnAboutPtraceScope();
+	void startInSystemdScope();
 
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 	void setupChildProcess() override
@@ -51,4 +68,8 @@ private:
 	int m_sessionId;
 	const LinuxSessionFunctions::Type m_sessionType;
 	LinuxUserFunctions::UserId m_sessionUserId{LinuxUserFunctions::InvalidUserId};
+	ServiceDataManager& m_dataManager;
+
+	QString m_ipcEndpointName;
+	VeyonCrypto::SecureBuffer m_ipcCredentialsLine;
 };

@@ -20,6 +20,8 @@
 #include "FeatureManager.h"
 #include "Filesystem.h"
 #include "HostAddress.h"
+#include "IpcClient.h"
+#include "IpcServer.h"
 #include "Logger.h"
 #include "NetworkObjectDirectoryManager.h"
 #include "PasswordDialog.h"
@@ -38,7 +40,8 @@
 VeyonCore* VeyonCore::s_instance = nullptr;
 
 
-VeyonCore::VeyonCore(QCoreApplication* application, Component component, const QString& appComponentName) :
+VeyonCore::VeyonCore(QCoreApplication* application, Component component, const QString& appComponentName,
+					 InitializationFlags flags) :
 	QObject(application),
 	m_filesystem(new Filesystem),
 	m_config(nullptr),
@@ -52,6 +55,7 @@ VeyonCore::VeyonCore(QCoreApplication* application, Component component, const Q
 	m_userGroupsBackendManager(nullptr),
 	m_networkObjectDirectoryManager(nullptr),
 	m_component(component),
+	m_initializationFlags(flags),
 	m_debugging(false)
 {
 	Q_ASSERT(application != nullptr);
@@ -91,6 +95,9 @@ VeyonCore::~VeyonCore()
 {
 	vDebug();
 
+	delete m_serviceIpcClient;
+	m_serviceIpcClient = nullptr;
+
 	delete m_featureManager;
 	m_featureManager = nullptr;
 
@@ -122,6 +129,34 @@ VeyonCore::~VeyonCore()
 	m_cryptoCore = nullptr;
 
 	s_instance = nullptr;
+}
+
+
+
+bool VeyonCore::connectToServiceIpc(IpcEndpointCredentials&& credentials)
+{
+	if (m_initializationFlags.testFlag(InitializationFlag::ServiceIpc) == false)
+	{
+		vCritical() << "refusing service IPC without the ServiceIpc initialization flag";
+		return false;
+	}
+
+	if (m_serviceIpcClient)
+	{
+		return false;
+	}
+
+	auto client = new IpcClient(IpcProtocol::Role::SessionServer, quint32(sessionId()), this);
+	if (sessionId() < 0 ||
+		client->connectAndHandshake(IpcServer::serviceEndpointDirectory(), std::move(credentials)) == false)
+	{
+		delete client;
+		return false;
+	}
+
+	m_serviceIpcClient = client;
+
+	return true;
 }
 
 
@@ -543,6 +578,12 @@ void VeyonCore::initSession()
 void VeyonCore::initConfiguration()
 {
 	m_config = new VeyonConfiguration();
+
+	if (m_initializationFlags.testFlag(InitializationFlag::WritableConfiguration) == false)
+	{
+		return;
+	}
+
 	m_config->upgrade();
 
 	if (QUuid(config().installationID()).isNull())
@@ -575,6 +616,11 @@ void VeyonCore::initLogging(const QString& appComponentName)
 
 void VeyonCore::initLocaleAndTranslation()
 {
+	if (m_initializationFlags.testFlag(InitializationFlag::Translations) == false)
+	{
+		return;
+	}
+
 	if (TranslationLoader::load(QStringLiteral("qtbase")) == false)
 	{
 		TranslationLoader::load(QStringLiteral("qt"));
@@ -593,6 +639,11 @@ void VeyonCore::initLocaleAndTranslation()
 
 void VeyonCore::initUi()
 {
+	if (m_initializationFlags.testFlag(InitializationFlag::Ui) == false)
+	{
+		return;
+	}
+
 	auto app = qobject_cast<QApplication*>(QCoreApplication::instance());
 	if (app)
 	{
@@ -632,6 +683,11 @@ void VeyonCore::initUi()
 
 void VeyonCore::initCryptoCore()
 {
+	if (m_initializationFlags.testFlag(InitializationFlag::LegacyCrypto) == false)
+	{
+		return;
+	}
+
 	m_cryptoCore = new CryptoCore;
 }
 
@@ -639,6 +695,11 @@ void VeyonCore::initCryptoCore()
 
 void VeyonCore::initAuthenticationCredentials()
 {
+	if (m_initializationFlags.testFlag(InitializationFlag::AuthenticationCredentials) == false)
+	{
+		return;
+	}
+
 	if (m_authenticationCredentials)
 	{
 		delete m_authenticationCredentials;
@@ -652,6 +713,11 @@ void VeyonCore::initAuthenticationCredentials()
 
 void VeyonCore::initPlugins()
 {
+	if (m_initializationFlags.testFlag(InitializationFlag::Plugins) == false)
+	{
+		return;
+	}
+
 	// load all other (non-platform) plugins
 	m_pluginManager->loadPlugins();
 	m_pluginManager->upgradePlugins();
@@ -661,6 +727,11 @@ void VeyonCore::initPlugins()
 
 void VeyonCore::initManagers()
 {
+	if (m_initializationFlags.testFlag(InitializationFlag::Managers) == false)
+	{
+		return;
+	}
+
 	m_userGroupsBackendManager = new UserGroupsBackendManager(this);
 	m_networkObjectDirectoryManager = new NetworkObjectDirectoryManager(this);
 }
@@ -669,6 +740,11 @@ void VeyonCore::initManagers()
 
 void VeyonCore::initFeatures()
 {
+	if (m_initializationFlags.testFlag(InitializationFlag::Features) == false)
+	{
+		return;
+	}
+
 	m_builtinFeatures = new BuiltinFeatures();
 	m_featureManager = new FeatureManager(this);
 }

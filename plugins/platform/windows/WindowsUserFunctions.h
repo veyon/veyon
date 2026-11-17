@@ -20,6 +20,8 @@ public:
 
 	bool isAnyUserLoggedOn() override;
 
+	UserIdentity queryUserIdentity(const QString& username) override;
+
 	bool prepareLogon(const QString& username, const Password& password) override;
 	bool performLogon(const QString& username, const Password& password) override;
 

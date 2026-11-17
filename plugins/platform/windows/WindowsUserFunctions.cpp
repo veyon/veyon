@@ -3,6 +3,7 @@
 
 #include <dsgetdc.h>
 #include <wtsapi32.h>
+#include <sddl.h>
 
 #include <QBuffer>
 
@@ -19,6 +20,8 @@
 #define XK_MISCELLANY
 
 #include "keysymdef.h"
+
+#include <vector>
 
 
 static std::optional<QByteArray> tokenUserSid(HANDLE token)
@@ -167,6 +170,43 @@ bool WindowsUserFunctions::isAnyUserLoggedOn()
 	}
 
 	return false;
+}
+
+
+
+WindowsUserFunctions::UserIdentity WindowsUserFunctions::queryUserIdentity(const QString& username)
+{
+	const auto accountName = WindowsCoreFunctions::toWCharArray(username);
+
+	DWORD sidSize = 0;
+	DWORD domainSize = 0;
+	SID_NAME_USE sidType{};
+	LookupAccountNameW(nullptr, accountName.get(), nullptr, &sidSize, nullptr, &domainSize, &sidType);
+	if (sidSize == 0)
+	{
+		vWarning() << "could not look up SID of user" << username << GetLastError();
+		return {};
+	}
+
+	std::vector<BYTE> sid(sidSize);
+	std::vector<wchar_t> domain(domainSize + 1);
+	if (LookupAccountNameW(nullptr, accountName.get(), sid.data(), &sidSize, domain.data(), &domainSize, &sidType) == FALSE ||
+		sidType != SidTypeUser)
+	{
+		vWarning() << "could not look up SID of user" << username << GetLastError();
+		return {};
+	}
+
+	LPWSTR sidString = nullptr;
+	if (ConvertSidToStringSidW(sid.data(), &sidString) == FALSE)
+	{
+		return {};
+	}
+
+	const auto securityIdentifier = QString::fromWCharArray(sidString);
+	LocalFree(sidString);
+
+	return {-1, securityIdentifier};
 }
 
 

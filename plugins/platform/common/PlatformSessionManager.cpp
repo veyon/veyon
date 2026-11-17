@@ -95,6 +95,15 @@ void PlatformSessionManager::closeSession(const PlatformSessionId& platformSessi
 
 
 
+PlatformSessionManager::SessionId PlatformSessionManager::sessionId(const PlatformSessionId& platformSessionId)
+{
+	QMutexLocker l(&m_mutex);
+
+	return m_sessions.value(platformSessionId, PlatformSessionFunctions::InvalidSessionId).toInt();
+}
+
+
+
 PlatformSessionManager::SessionId PlatformSessionManager::resolveSessionId(const PlatformSessionId& platformSessionId)
 {
 	if (VeyonCore::component() == VeyonCore::Component::Service)

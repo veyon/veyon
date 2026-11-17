@@ -401,6 +401,19 @@ bool LinuxUserFunctions::authenticate(const QString& username, const Password& p
 
 
 
+LinuxUserFunctions::UserIdentity LinuxUserFunctions::queryUserIdentity(const QString& username)
+{
+	const auto userId = userIdFromName(username);
+	if (userId == InvalidUserId)
+	{
+		return {};
+	}
+
+	return {qint64(userId), {}};
+}
+
+
+
 LinuxUserFunctions::UserId LinuxUserFunctions::userIdFromName(const QString& username)
 {
 	const auto pw_entry = getpwnam(username.toUtf8().constData());
