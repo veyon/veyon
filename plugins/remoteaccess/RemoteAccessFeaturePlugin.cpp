@@ -61,6 +61,19 @@ const FeatureList& RemoteAccessFeaturePlugin::featureList() const
 
 
 
+QStringList RemoteAccessFeaturePlugin::sensitiveArguments(Feature::Uid featureUid) const
+{
+	// clipboard contents often include passwords
+	if (featureUid == m_clipboardExchangeFeature.uid())
+	{
+		return sensitiveArgumentKeys({Argument::ClipboardText, Argument::ClipboardImage});
+	}
+
+	return {};
+}
+
+
+
 bool RemoteAccessFeaturePlugin::controlFeature(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
 											   const ComputerControlInterfaceList& computerControlInterfaces)
 {

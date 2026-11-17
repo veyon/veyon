@@ -81,6 +81,19 @@ FileTransferPlugin::~FileTransferPlugin()
 
 
 
+QStringList FileTransferPlugin::sensitiveArguments(Feature::Uid featureUid) const
+{
+	// file contents may be confidential (e.g. exams)
+	if (hasFeature(featureUid))
+	{
+		return sensitiveArgumentKeys({Argument::DataChunk});
+	}
+
+	return {};
+}
+
+
+
 bool FileTransferPlugin::controlFeature(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
 										const ComputerControlInterfaceList& computerControlInterfaces)
 {

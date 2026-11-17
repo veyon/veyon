@@ -33,6 +33,18 @@ UserSessionControlPlugin::UserSessionControlPlugin(QObject* parent) :
 
 
 
+QStringList UserSessionControlPlugin::sensitiveArguments(Feature::Uid featureUid) const
+{
+	if (featureUid == m_userLoginFeature.uid())
+	{
+		return sensitiveArgumentKeys({Argument::Password});
+	}
+
+	return {};
+}
+
+
+
 bool UserSessionControlPlugin::controlFeature(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
 											  const ComputerControlInterfaceList& computerControlInterfaces)
 {
