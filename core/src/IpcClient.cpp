@@ -3,6 +3,7 @@
 
 #include <QDeadlineTimer>
 #include <QLocalSocket>
+#include <QTimer>
 
 #include "IpcClient.h"
 #include "IpcConnection.h"
@@ -20,6 +21,7 @@ IpcClient::IpcClient(IpcProtocol::Role role, quint32 sessionId, QObject* parent)
 
 IpcClient::~IpcClient()
 {
+	m_asyncCalls.clear();
 	delete m_connection;
 }
 
@@ -44,14 +46,11 @@ bool IpcClient::connectAndHandshake(const QString& directory, IpcEndpointCredent
 
 	m_connection = new IpcConnection(socket, IpcChannel::Side::Client, m_role, m_sessionId,
 									 std::move(credentials), nullptr, this);
-	connect(m_connection, &IpcConnection::messageReceived, this, [this](const QByteArray& message) {
-		// at most one request is in flight, so only a few stray messages can queue up
-		if (m_receivedMessages.size() < IpcProtocol::MaximumInFlightRequests)
-		{
-			m_receivedMessages.append(message);
-		}
+	connect(m_connection, &IpcConnection::messageReceived, this, &IpcClient::handleMessage);
+	connect(m_connection, &IpcConnection::closed, this, [this]() {
+		vWarning() << "IPC connection closed";
+		failAsyncCalls();
 	});
-	connect(m_connection, &IpcConnection::closed, this, []() { vWarning() << "IPC connection closed"; });
 
 	m_connection->start();
 
@@ -112,4 +111,106 @@ IpcClient::Response IpcClient::call(QLatin1String command, const QJsonObject& ar
 
 	vCritical() << "no response for request" << command;
 	return {};
+}
+
+
+
+void IpcClient::callAsync(const QString& command, const QJsonObject& arguments, const ResponseHandler& handler, int timeout)
+{
+	const auto fail = [this, handler]() {
+		QMetaObject::invokeMethod(this, [handler]() { handler({}); }, Qt::QueuedConnection);
+	};
+
+	if (isConnected() == false)
+	{
+		fail();
+		return;
+	}
+
+	if (int(m_asyncCalls.size()) >= MaximumAsyncCalls)
+	{
+		vWarning() << "too many asynchronous calls in flight";
+		fail();
+		return;
+	}
+
+	const auto requestId = m_nextRequestId++;
+
+	if (m_connection->sendMessage(IpcMessage::encodeRequest({requestId, command, arguments})) == false)
+	{
+		vCritical() << "failed to send request" << command;
+		fail();
+		return;
+	}
+
+	m_asyncCalls[requestId] = handler;
+
+	QTimer::singleShot(timeout, this, [this, requestId, command]() {
+		if (m_asyncCalls.find(requestId) != m_asyncCalls.end())
+		{
+			vCritical() << "no response for request" << command;
+			finishAsyncCall(requestId, {});
+		}
+	});
+}
+
+
+
+void IpcClient::handleMessage(const QByteArray& message)
+{
+	if (m_asyncCalls.empty() == false)
+	{
+		const auto response = IpcMessage::decodeResponse(message);
+		if (response.has_value() && m_asyncCalls.find(response->id) != m_asyncCalls.end())
+		{
+			// deferred, as this may run inside the wait loop of a synchronous call
+			const auto requestId = response->id;
+			const auto asyncResponse = *response;
+			QMetaObject::invokeMethod(this, [this, requestId, asyncResponse]() { finishAsyncCall(requestId, asyncResponse); },
+									  Qt::QueuedConnection);
+			return;
+		}
+	}
+
+	// at most one synchronous request is in flight, so only a few stray messages can queue up
+	if (m_receivedMessages.size() < IpcProtocol::MaximumInFlightRequests)
+	{
+		m_receivedMessages.append(message);
+	}
+}
+
+
+
+void IpcClient::finishAsyncCall(int requestId, const Response& response)
+{
+	const auto it = m_asyncCalls.find(requestId);
+	if (it == m_asyncCalls.end())
+	{
+		// late response after a timeout
+		return;
+	}
+
+	const auto handler = it->second;
+	m_asyncCalls.erase(it);
+
+	handler(response);
+}
+
+
+
+void IpcClient::failAsyncCalls()
+{
+	const auto requestIds = [this]() {
+		QList<int> ids;
+		for (const auto& asyncCall : m_asyncCalls)
+		{
+			ids.append(asyncCall.first);
+		}
+		return ids;
+	}();
+
+	for (const auto requestId : requestIds)
+	{
+		QMetaObject::invokeMethod(this, [this, requestId]() { finishAsyncCall(requestId, {}); }, Qt::QueuedConnection);
+	}
 }

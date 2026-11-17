@@ -5,6 +5,7 @@
 #include <QSemaphore>
 #include <QTemporaryDir>
 #include <QThread>
+#include <QTimer>
 #include <QtTest>
 
 #include "IpcClient.h"
@@ -159,6 +160,83 @@ private Q_SLOTS:
 
 		QCoreApplication::processEvents();
 		QVERIFY(server.connection()->isClosed() == false);
+	}
+
+	// asynchronous calls (directory broker, 04-directory-broker.md §5) interleaved with synchronous
+	// ones: every response reaches its caller exactly once, also when answered out of order or late
+	void asynchronousCalls()
+	{
+		QTemporaryDir directory;
+		IpcServer server(IpcProtocol::Role::SessionServer, SessionId);
+		QVERIFY(server.listen(directory.path(), ownPolicy()));
+		server.setExpectedProcessId(QCoreApplication::applicationPid());
+
+		connect(&server, &IpcServer::connectionEstablished, &server, [](IpcConnection* connection) {
+			connect(connection, &IpcConnection::messageReceived, connection, [connection](const QByteArray& message) {
+				const auto request = IpcMessage::decodeRequest(message);
+				if (request.has_value() == false)
+				{
+					return;
+				}
+				const auto response = IpcMessage::encodeResponse(IpcMessage::success(request->id, request->arguments));
+				if (request->command == QLatin1String("Slow"))
+				{
+					QTimer::singleShot(200, connection, [connection, response]() { (void)connection->sendMessage(response); });
+				}
+				else
+				{
+					(void)connection->sendMessage(response);
+				}
+			});
+		});
+
+		auto credentials = std::make_shared<IpcEndpointCredentials>(parseLine(server));
+		bool connected = false;
+		QList<int> asyncValues;
+		int syncValue = 0;
+		int timedOutCalls = 0;
+		int handlerCalls = 0;
+		std::unique_ptr<QThread> thread(QThread::create([&]() {
+			IpcClient client(IpcProtocol::Role::SessionServer, SessionId);
+			connected = client.connectAndHandshake(directory.path(), std::move(*credentials));
+			if (connected == false)
+			{
+				return;
+			}
+
+			QEventLoop loop;
+			const auto valueHandler = [&](const IpcClient::Response& response) {
+				++handlerCalls;
+				asyncValues.append(response.ok ? response.result.value(QStringLiteral("value")).toInt() : -1);
+			};
+			client.callAsync(QStringLiteral("Slow"), {{QStringLiteral("value"), 1}}, valueHandler);
+			client.callAsync(QStringLiteral("Echo"), {{QStringLiteral("value"), 2}}, valueHandler);
+			client.callAsync(QStringLiteral("Slow"), {{QStringLiteral("value"), 4}}, [&](const IpcClient::Response& response) {
+				++handlerCalls;
+				if (response.ok == false && response.error.isEmpty())
+				{
+					++timedOutCalls;
+				}
+			}, 50);
+
+			// synchronous call while asynchronous ones are in flight
+			syncValue = client.call(QLatin1String("Echo"), {{QStringLiteral("value"), 3}}).result.value(QStringLiteral("value")).toInt();
+
+			QTimer::singleShot(1000, &loop, &QEventLoop::quit);
+			loop.exec();
+		}));
+		thread->start();
+		while (thread->isFinished() == false)
+		{
+			QCoreApplication::processEvents(QEventLoop::AllEvents, 10);
+		}
+		thread->wait();
+
+		QVERIFY(connected);
+		QCOMPARE(syncValue, 3);
+		QCOMPARE(asyncValues, (QList<int>{2, 1}));
+		QCOMPARE(timedOutCalls, 1);
+		QCOMPARE(handlerCalls, 3);
 	}
 
 	// DoD 3: neither the token nor message contents show up in log output
