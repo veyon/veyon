@@ -90,7 +90,7 @@ VncServerClient::AuthState ServerAuthenticationManager::performKeyAuthentication
 	{
 	case VncServerClient::AuthState::Init:
 		client->setChallenge(CryptoCore::generateChallenge());
-		if (VariantArrayMessage(message.ioDevice()).write(client->challenge()).send() == false)
+		if (VariantArrayMessage(message.ioDevice(), VariantArrayMessage::MaxAuthenticationMessageSize).write(client->challenge()).send() == false)
 		{
 			vWarning() << "failed to send challenge";
 			return VncServerClient::AuthState::Failed;
@@ -159,7 +159,9 @@ VncServerClient::AuthState ServerAuthenticationManager::performLogonAuthenticati
 	case VncServerClient::AuthState::Init:
 		client->setPrivateKey(CryptoCore::KeyGenerator().createRSA(CryptoCore::RsaKeySize));
 
-		if (VariantArrayMessage(message.ioDevice()).write(client->privateKey().toPublicKey().toPEM()).send())
+		if (VariantArrayMessage(message.ioDevice(), VariantArrayMessage::MaxAuthenticationMessageSize)
+				.write(client->privateKey().toPublicKey().toPEM())
+				.send())
 		{
 			return VncServerClient::AuthState::Password;
 		}
