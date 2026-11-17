@@ -69,13 +69,19 @@ protected:
 		while (isInterruptionRequested() == false)
 		{
 			std::string line;
-			if (std::getline(std::cin, line) && m_reader)
+			if (std::getline(std::cin, line))
 			{
-				m_reader->lineRead(QString::fromStdString(line));
+				if (m_reader)
+				{
+					m_reader->lineRead(QString::fromStdString(line));
+				}
 			}
 			else
 			{
-				vCritical() << "failed to read from stdin or EOF reached";
+				// stdin stays in failed state after EOF or a read error, so there's nothing more to read –
+				// stop instead of spinning and flooding the log (and the event log) every 10 ms
+				vDebug() << "EOF reached or failed to read from stdin";
+				break;
 			}
 			QThread::msleep(10);
 		}
@@ -144,10 +150,13 @@ void WindowsCoreFunctions::writeToNativeLoggingSystem(const QString& message, Lo
 StandardInputReader* WindowsCoreFunctions::createStandardInputReader(QObject* parent)
 {
 	auto reader = new StandardInputReader(parent);
-	auto thread = new StandardInputReaderThread(reader, parent);
+	// the thread may be blocked in std::getline() at any time, so it must never be owned by a parent which
+	// destroys it while running (fatal "QThread: Destroyed while thread is still running", #1206) – instead
+	// let it delete itself once finished; if still blocked at process exit, the OS simply terminates it
+	auto thread = new StandardInputReaderThread(reader, nullptr);
 
 	QObject::connect(reader, &QObject::destroyed, thread, &QThread::requestInterruption);
-	QObject::connect(thread, &QThread::finished, reader, &QThread::deleteLater);
+	QObject::connect(thread, &QThread::finished, thread, &QObject::deleteLater);
 
 	thread->start();
 

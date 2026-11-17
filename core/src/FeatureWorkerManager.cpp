@@ -227,12 +227,7 @@ void FeatureWorkerManager::sendMessageToUnmanagedSessionWorker(const FeatureMess
 
 void FeatureWorkerManager::enqueueSessionWorkerMessage(const FeatureMessage& message)
 {
-	if (m_pendingSessionWorkerMessages.contains(message.featureUid()) == false)
-	{
-		vWarning() << "message queue does not exist for feature" << message.featureUid();
-		return;
-	}
-
+	// creates the queue on first use
 	auto& queue = m_pendingSessionWorkerMessages[message.featureUid()];
 	if (queue.size() >= MaximumPendingSessionWorkerMessages)
 	{
