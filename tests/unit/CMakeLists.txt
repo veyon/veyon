@@ -69,6 +69,43 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	add_test(NAME LinuxKeyboardMappingTest COMMAND LinuxKeyboardMappingTest)
 
 	#
+	# LinuxSessionControlTest: logout/reboot/power-off requests to logind, ConsoleKit and the desktop
+	# session managers with injected D-Bus calls, plus the real session bus calls against fake services.
+	# The latter only run on a private session bus (dbus-run-session), never on the desktop's bus.
+	#
+	if(WITH_QT6)
+		find_package(Qt6 COMPONENTS DBus REQUIRED)
+	else()
+		find_package(Qt5DBus REQUIRED)
+	endif()
+
+	add_executable(LinuxSessionControlTest
+		LinuxSessionControlTest.cpp
+		${CMAKE_SOURCE_DIR}/plugins/platform/linux/LinuxSessionControl.cpp
+	)
+	set_default_target_properties(LinuxSessionControlTest)
+
+	target_include_directories(LinuxSessionControlTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/platform/linux)
+
+	target_link_libraries(LinuxSessionControlTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+		Qt${QT_MAJOR_VERSION}::DBus
+		veyon-core
+	)
+
+	find_program(DBUS_RUN_SESSION_EXECUTABLE dbus-run-session)
+	if(DBUS_RUN_SESSION_EXECUTABLE)
+		add_test(NAME LinuxSessionControlTest
+			COMMAND ${DBUS_RUN_SESSION_EXECUTABLE} -- $<TARGET_FILE:LinuxSessionControlTest>)
+		set_tests_properties(LinuxSessionControlTest PROPERTIES
+			ENVIRONMENT VEYON_TEST_PRIVATE_SESSION_BUS=1
+			TIMEOUT 60)
+	else()
+		add_test(NAME LinuxSessionControlTest COMMAND LinuxSessionControlTest)
+	endif()
+
+	#
 	# PipeWireVncServerTest: tests BGRx→RGB conversion, damage rect clamping,
 	# and portal session token/path generation.
 	#

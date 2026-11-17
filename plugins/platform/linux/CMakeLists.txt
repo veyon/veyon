@@ -29,6 +29,7 @@ build_veyon_plugin(linux-platform
 	LinuxServiceBusInterface.cpp
 	LinuxServiceCore.cpp
 	LinuxServiceFunctions.cpp
+	LinuxSessionControl.cpp
 	LinuxSessionFunctions.cpp
 	LinuxUserFunctions.cpp
 	LinuxPlatformPlugin.h
@@ -46,6 +47,7 @@ build_veyon_plugin(linux-platform
 	LinuxServiceBusInterface.h
 	LinuxServiceCore.h
 	LinuxServiceFunctions.h
+	LinuxSessionControl.h
 	LinuxSessionFunctions.h
 	LinuxUserFunctions.h
 	linux.qrc
