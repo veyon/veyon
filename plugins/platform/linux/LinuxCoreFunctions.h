@@ -21,6 +21,8 @@
 struct proc_t;
 #endif
 
+class LinuxSessionControl;
+
 // clazy:excludeall=copyable-polymorphic
 
 class LinuxCoreFunctions : public PlatformCoreFunctions
@@ -64,12 +66,10 @@ public:
 
 	using DBusInterfacePointer = QSharedPointer<QDBusInterface>;
 
-	static DBusInterfacePointer kdeSessionManager();
-	static DBusInterfacePointer gnomeSessionManager();
-	static DBusInterfacePointer mateSessionManager();
-	static DBusInterfacePointer xfcePowerManager();
 	static DBusInterfacePointer systemdLoginManager();
 	static DBusInterfacePointer consoleKitManager();
+
+	static LinuxSessionControl sessionControl();
 
 	static bool isSystemdManaged();
 	static int systemctl(const QStringList& arguments);

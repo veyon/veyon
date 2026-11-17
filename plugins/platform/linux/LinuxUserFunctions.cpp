@@ -8,9 +8,9 @@
 
 #include "LinuxCoreFunctions.h"
 #include "LinuxDBusInterfaces.h"
-#include "LinuxDesktopIntegration.h"
 #include "LinuxKeyboardInput.h"
 #include "LinuxPlatformConfiguration.h"
+#include "LinuxSessionControl.h"
 #include "LinuxSessionFunctions.h"
 #include "LinuxUserFunctions.h"
 #include "VeyonConfiguration.h"
@@ -326,49 +326,7 @@ bool LinuxUserFunctions::performLogon(const QString& username, const Password& p
 
 void LinuxUserFunctions::logoff()
 {
-	VeyonCore::platform().coreFunctions().prepareSessionBusAccess();
-
-	// logout via common session managers
-	// logout via common session managers
-	for (const auto& call : std::initializer_list<std::function<QDBusMessage()>>{
-			 []() {
-		return LinuxCoreFunctions::kdeSessionManager()
-			->call(QStringLiteral("logout"),
-				   LinuxDesktopIntegration::KDE::ShutdownConfirmNo,
-				   LinuxDesktopIntegration::KDE::ShutdownTypeLogout,
-				   LinuxDesktopIntegration::KDE::ShutdownModeForceNow);
-	},
-			 []() {
-		return LinuxCoreFunctions::gnomeSessionManager()
-			->call(QStringLiteral("Logout"),
-				   LinuxDesktopIntegration::Gnome::GSM_MANAGER_LOGOUT_MODE_FORCE);
-	},
-			 []() {
-		return LinuxCoreFunctions::mateSessionManager()
-			->call(QStringLiteral("Logout"),
-				   LinuxDesktopIntegration::Mate::GSM_LOGOUT_MODE_FORCE);
-	}})
-	{
-		// call successful?
-		if (call().type() == QDBusMessage::ReplyMessage)
-		{
-			return;
-		}
-	}
-
-	// Xfce logout
-	QProcess::startDetached(QStringLiteral("xfce4-session-logout --logout"), {});
-
-	// LXDE logout
-	QProcess::startDetached(QStringLiteral("kill -TERM %1").arg(QProcessEnvironment::systemEnvironment().value(QStringLiteral("_LXSESSION_PID")).toInt()), {});
-
-	// terminate session via systemd
-	LinuxCoreFunctions::systemdLoginManager()->asyncCall(QStringLiteral("TerminateSession"),
-														 QProcessEnvironment::systemEnvironment().value(LinuxSessionFunctions::xdgSessionIdEnvVarName()));
-
-	// close session via ConsoleKit as a last resort
-	LinuxCoreFunctions::consoleKitManager()->asyncCall(QStringLiteral("CloseSession"),
-													   QProcessEnvironment::systemEnvironment().value(QStringLiteral("XDG_SESSION_COOKIE")));
+	LinuxCoreFunctions::sessionControl().requestLogout();
 }
 
 

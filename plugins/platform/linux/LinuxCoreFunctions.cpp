@@ -21,7 +21,8 @@
 #endif
 
 #include "LinuxCoreFunctions.h"
-#include "LinuxDesktopIntegration.h"
+#include "LinuxDBusInterfaces.h"
+#include "LinuxSessionControl.h"
 #include "LinuxUserFunctions.h"
 #include "PlatformUserFunctions.h"
 #include "ProcessHelper.h"
@@ -103,19 +104,7 @@ void LinuxCoreFunctions::writeToNativeLoggingSystem(const QString& message, Logg
 
 void LinuxCoreFunctions::reboot()
 {
-	if (systemdLoginManager()->call(QStringLiteral("Reboot"), false).type() != QDBusMessage::ReplyMessage &&
-		consoleKitManager()->call(QStringLiteral("Restart")).type() != QDBusMessage::ReplyMessage)
-	{
-		prepareSessionBusAccess();
-
-		kdeSessionManager()->asyncCall(QStringLiteral("logout"),
-									   LinuxDesktopIntegration::KDE::ShutdownConfirmNo,
-									   LinuxDesktopIntegration::KDE::ShutdownTypeReboot,
-									   LinuxDesktopIntegration::KDE::ShutdownModeForceNow);
-		gnomeSessionManager()->asyncCall(QStringLiteral("RequestReboot"));
-		mateSessionManager()->asyncCall(QStringLiteral("RequestReboot"));
-		xfcePowerManager()->asyncCall(QStringLiteral("Reboot"));
-	}
+	sessionControl().requestReboot();
 }
 
 
@@ -124,19 +113,7 @@ void LinuxCoreFunctions::powerDown(bool installUpdates)
 {
 	Q_UNUSED(installUpdates)
 
-	if (systemdLoginManager()->call(QStringLiteral("PowerOff"), false).type() != QDBusMessage::ReplyMessage &&
-		consoleKitManager()->call(QStringLiteral("Stop")).type() != QDBusMessage::ReplyMessage)
-	{
-		prepareSessionBusAccess();
-
-		kdeSessionManager()->asyncCall(QStringLiteral("logout"),
-									   LinuxDesktopIntegration::KDE::ShutdownConfirmNo,
-									   LinuxDesktopIntegration::KDE::ShutdownTypeHalt,
-									   LinuxDesktopIntegration::KDE::ShutdownModeForceNow);
-		gnomeSessionManager()->asyncCall(QStringLiteral("RequestShutdown"));
-		mateSessionManager()->asyncCall(QStringLiteral("RequestShutdown"));
-		xfcePowerManager()->asyncCall(QStringLiteral("Shutdown"));
-	}
+	sessionControl().requestPowerOff();
 }
 
 
@@ -477,56 +454,12 @@ QString LinuxCoreFunctions::getApplicationName(ProcessId processId) const
 
 
 
-/*! Returns DBus interface for session manager of KDE desktop */
-LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::kdeSessionManager()
-{
-	return DBusInterfacePointer::create(QStringLiteral("org.kde.ksmserver"),
-										QStringLiteral("/KSMServer"),
-										QStringLiteral("org.kde.KSMServerInterface"),
-										QDBusConnection::sessionBus());
-}
-
-
-
-/*! Returns DBus interface for session manager of Gnome desktop */
-LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::gnomeSessionManager()
-{
-	return DBusInterfacePointer::create(QStringLiteral("org.gnome.SessionManager"),
-										QStringLiteral("/org/gnome/SessionManager"),
-										QStringLiteral("org.gnome.SessionManager"),
-										QDBusConnection::sessionBus());
-}
-
-
-
-/*! Returns DBus interface for session manager of Mate desktop */
-LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::mateSessionManager()
-{
-	return DBusInterfacePointer::create(QStringLiteral("org.mate.SessionManager"),
-										QStringLiteral("/org/mate/SessionManager"),
-										QStringLiteral("org.mate.SessionManager"),
-										QDBusConnection::sessionBus());
-}
-
-
-
-/*! Returns DBus interface for Xfce/LXDE power manager */
-LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::xfcePowerManager()
-{
-	return DBusInterfacePointer::create(QStringLiteral("org.freedesktop.PowerManagement"),
-										QStringLiteral("/org/freedesktop/PowerManagement"),
-										QStringLiteral("org.freedesktop.PowerManagement"),
-										QDBusConnection::sessionBus());
-}
-
-
-
 /*! Returns DBus interface for systemd login manager */
 LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::systemdLoginManager()
 {
-	return DBusInterfacePointer::create(QStringLiteral("org.freedesktop.login1"),
-										QStringLiteral("/org/freedesktop/login1"),
-										QStringLiteral("org.freedesktop.login1.Manager"),
+	return DBusInterfacePointer::create(LogindManagerInterface::ServiceName,
+										LogindManagerInterface::ObjectPath,
+										LogindManagerInterface::InterfaceName,
 										QDBusConnection::systemBus());
 }
 
@@ -535,10 +468,36 @@ LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::systemdLoginManager
 /*! Returns DBus interface for ConsoleKit manager */
 LinuxCoreFunctions::DBusInterfacePointer LinuxCoreFunctions::consoleKitManager()
 {
-	return DBusInterfacePointer::create(QStringLiteral("org.freedesktop.ConsoleKit"),
-										QStringLiteral("/org/freedesktop/ConsoleKit/Manager"),
-										QStringLiteral("org.freedesktop.ConsoleKit.Manager"),
+	return DBusInterfacePointer::create(ConsoleKitManagerInterface::ServiceName,
+										ConsoleKitManagerInterface::ObjectPath,
+										ConsoleKitManagerInterface::InterfaceName,
 										QDBusConnection::systemBus());
+}
+
+
+
+LinuxSessionControl LinuxCoreFunctions::sessionControl()
+{
+	const auto callSystemBus = [](const QDBusMessage& methodCall) {
+		return QDBusConnection::systemBus().call(methodCall);
+	};
+	const auto callSessionBus = [](const QDBusMessage& methodCall) {
+		return LinuxSessionControl::callSessionBus(methodCall);
+	};
+	const auto prepareSessionBusAccess = []() {
+		VeyonCore::platform().coreFunctions().prepareSessionBusAccess();
+	};
+	const auto runLogoutCommands = []() {
+		// Xfce logout
+		QProcess::startDetached(QStringLiteral("xfce4-session-logout --logout"), {});
+
+		// LXDE logout
+		const auto lxSessionPid = QProcessEnvironment::systemEnvironment().value(QStringLiteral("_LXSESSION_PID")).toInt();
+		QProcess::startDetached(QStringLiteral("kill -TERM %1").arg(lxSessionPid), {});
+	};
+
+	return LinuxSessionControl({callSystemBus, callSessionBus, prepareSessionBusAccess, runLogoutCommands},
+							   QProcessEnvironment::systemEnvironment());
 }
 
 
