@@ -258,7 +258,8 @@ static Object::DataMap removeValueRecursive(Object::DataMap data,
 
 void Object::removeValue(const QString& key, const QString& parentKey)
 {
-	QStringList subLevels = parentKey.split(QLatin1Char('/'));
+	// an empty parentKey denotes the top level (as for value() and hasValue())
+	const auto subLevels = parentKey.isEmpty() ? QStringList() : parentKey.split(QLatin1Char('/'));
 	DataMap data = removeValueRecursive(m_data, subLevels, key);
 	if (data != m_data)
 	{

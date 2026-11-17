@@ -270,6 +270,7 @@ private:
 	void initLocaleAndTranslation();
 	void initUi();
 	void initCryptoCore();
+	void migrateLegacySecrets();
 	void initAuthenticationCredentials();
 	void initPlugins();
 	void initManagers();

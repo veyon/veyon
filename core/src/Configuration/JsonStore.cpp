@@ -10,6 +10,7 @@
 #include "Configuration/Object.h"
 #include "Filesystem.h"
 #include "PlatformFilesystemFunctions.h"
+#include "SecretExport.h"
 #include "VeyonConfiguration.h"
 
 
@@ -27,6 +28,13 @@ static void loadJsonTree(Object* obj, const QJsonObject& jsonParent, const QStri
 {
 	for (auto it = jsonParent.begin(); it != jsonParent.end(); ++it)
 	{
+		// the encrypted secrets of an export never become part of a configuration (only
+		// veyon-cli config import --include-secrets reads them, from the file itself)
+		if (parentKey.isEmpty() && it.key() == SecretExport::configurationKey())
+		{
+			continue;
+		}
+
 		if (it.value().isObject())
 		{
 			QJsonObject jsonObject = it.value().toObject();
@@ -70,15 +78,20 @@ void JsonStore::load(Object* obj)
 
 
 
-static QJsonObject saveJsonTree(const Object::DataMap& dataMap)
+static QJsonObject saveJsonTree(const Object::DataMap& dataMap, bool isTopLevel = true)
 {
 	QJsonObject jsonData;
 
 	for (auto it = dataMap.begin(); it != dataMap.end(); ++it)
 	{
+		if (isTopLevel && it.key() == SecretExport::configurationKey())
+		{
+			continue;
+		}
+
 		if (it.value().userType() == QMetaType::QVariantMap)
 		{
-			jsonData[it.key()] = saveJsonTree(it.value().toMap());
+			jsonData[it.key()] = saveJsonTree(it.value().toMap(), false);
 		}
 		else if (it.value().userType() == QMetaType::QJsonArray)
 		{
@@ -121,6 +134,20 @@ void JsonStore::flush(const Object* obj)
 	}
 
 	outfile.write(QJsonDocument(saveJsonTree(obj->data())).toJson());
+}
+
+
+
+QJsonObject JsonStore::toJsonObject(const Object* obj)
+{
+	return saveJsonTree(obj->data());
+}
+
+
+
+void JsonStore::loadJsonObject(Object* obj, const QJsonObject& jsonObject)
+{
+	loadJsonTree(obj, jsonObject, {});
 }
 
 

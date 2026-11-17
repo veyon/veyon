@@ -3,6 +3,7 @@
 
 #include <QCheckBox>
 #include <QColorDialog>
+#include <QCoreApplication>
 #include <QGroupBox>
 #include <QLineEdit>
 #include <QPushButton>
@@ -10,6 +11,7 @@
 #include <QSpinBox>
 
 #include "Configuration/UiMapping.h"
+#include "SecretStore.h"
 
 namespace Configuration {
 
@@ -51,9 +53,31 @@ void UiMapping::initWidgetFromProperty(const Configuration::TypedProperty<QStrin
 
 
 
-void UiMapping::initWidgetFromProperty(const Configuration::TypedProperty<Password>& property, QLineEdit* widget)
+// The widget never shows a stored secret. Without access to the SecretStore (configurator not
+// elevated) it is disabled; otherwise an entered value is written to the store when editing
+// has finished (03-secretstore-config.md §3).
+static void updateSecretWidget(const Configuration::TypedProperty<SecretReference>& property, QLineEdit* widget)
 {
-	widget->setText(QString::fromUtf8(property.value().plainText().toByteArray()));
+	widget->clear();
+
+	if (SecretStore::isAvailable() == false)
+	{
+		widget->setEnabled(false);
+		widget->setPlaceholderText(QCoreApplication::translate("Configuration::UiMapping",
+															   "requires administrator privileges"));
+		return;
+	}
+
+	const auto reference = property.value();
+	const auto isStored = reference.isValid() && SecretStore::keys().contains(reference.key());
+	widget->setPlaceholderText(isStored ? QCoreApplication::translate("Configuration::UiMapping", "stored securely") : QString());
+}
+
+
+
+void UiMapping::initWidgetFromProperty(const Configuration::TypedProperty<SecretReference>& property, QLineEdit* widget)
+{
+	updateSecretWidget(property, widget);
 }
 
 
@@ -142,10 +166,30 @@ void UiMapping::connectWidgetToProperty(const Configuration::TypedProperty<QStri
 
 
 
-void UiMapping::connectWidgetToProperty(const Configuration::TypedProperty<Password>& property, QLineEdit* widget)
+void UiMapping::connectWidgetToProperty(const Configuration::TypedProperty<SecretReference>& property, QLineEdit* widget)
 {
-	QObject::connect(widget, &QLineEdit::textChanged, property.lambdaContext(),
-					 [&property](const QString& plainText) { property.setValue(Password::fromPlainText(plainText.toUtf8())); });
+	QObject::connect(widget, &QLineEdit::editingFinished, property.lambdaContext(), [&property, widget]() {
+		const auto reference = SecretReference::fromString(property.defaultValue().toString());
+		if (widget->text().isEmpty() || reference.isValid() == false || SecretStore::isAvailable() == false)
+		{
+			return;
+		}
+
+		auto plainText = widget->text().toUtf8();
+		const auto written = SecretStore::write(reference.key(), Veyon::Crypto::SecureBuffer::fromByteArray(plainText));
+		plainText.fill(0);
+
+		if (written)
+		{
+			property.setValue(reference);
+		}
+		else
+		{
+			vCritical() << "failed to store secret" << reference.key();
+		}
+
+		updateSecretWidget(property, widget);
+	});
 }
 
 

@@ -25,7 +25,7 @@ public:
 	static void initWidgetFromProperty(const Configuration::TypedProperty<bool>& property, QRadioButton* widget);
 	static void initWidgetFromProperty(const Configuration::TypedProperty<QString>& property, QComboBox* widget);
 	static void initWidgetFromProperty(const Configuration::TypedProperty<QString>& property, QLineEdit* widget);
-	static void initWidgetFromProperty(const Configuration::TypedProperty<Password>& property, QLineEdit* widget);
+	static void initWidgetFromProperty(const Configuration::TypedProperty<SecretReference>& property, QLineEdit* widget);
 	static void initWidgetFromProperty(const Configuration::TypedProperty<QColor>& property, QPushButton* widget);
 	static void initWidgetFromProperty(const Configuration::TypedProperty<int>& property, QComboBox* widget);
 	static void initWidgetFromProperty(const Configuration::TypedProperty<int>& property, QSpinBox* widget);
@@ -69,7 +69,7 @@ public:
 	static void connectWidgetToProperty(const Configuration::TypedProperty<bool>& property, QRadioButton* widget);
 	static void connectWidgetToProperty(const Configuration::TypedProperty<QString>& property, QComboBox* widget);
 	static void connectWidgetToProperty(const Configuration::TypedProperty<QString>& property, QLineEdit* widget);
-	static void connectWidgetToProperty(const Configuration::TypedProperty<Password>& property, QLineEdit* widget);
+	static void connectWidgetToProperty(const Configuration::TypedProperty<SecretReference>& property, QLineEdit* widget);
 	static void connectWidgetToProperty(const Configuration::TypedProperty<QColor>& property, QPushButton* widget);
 	static void connectWidgetToProperty(const Configuration::TypedProperty<int>& property, QComboBox* widget);
 	static void connectWidgetToProperty(const Configuration::TypedProperty<int>& property, QSpinBox* widget);

@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <QJsonObject>
+
 #include "Configuration/Store.h"
 #include "VeyonCore.h"
 
@@ -19,6 +21,10 @@ public:
 	void flush(const Object* obj) override;
 	bool isWritable() const override;
 	void clear() override;
+
+	// JSON tree as written to/read from configuration files (export format)
+	static QJsonObject toJsonObject(const Object* obj);
+	static void loadJsonObject(Object* obj, const QJsonObject& jsonObject);
 
 private:
 	QString configurationFilePath() const;

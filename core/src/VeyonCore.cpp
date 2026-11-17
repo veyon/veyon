@@ -17,6 +17,7 @@
 #include <QToolTip>
 
 #include "BuiltinFeatures.h"
+#include "Configuration/LegacySecretMigration.h"
 #include "FeatureManager.h"
 #include "Filesystem.h"
 #include "HostAddress.h"
@@ -29,6 +30,7 @@
 #include "PlatformPluginManager.h"
 #include "PlatformSessionFunctions.h"
 #include "PluginManager.h"
+#include "SecretStore.h"
 #include "TranslationLoader.h"
 #include "UserGroupsBackendManager.h"
 #include "VeyonConfiguration.h"
@@ -75,6 +77,8 @@ VeyonCore::VeyonCore(QCoreApplication* application, Component component, const Q
 	initUi();
 
 	initCryptoCore();
+
+	migrateLegacySecrets();
 
 	initAuthenticationCredentials();
 
@@ -689,6 +693,36 @@ void VeyonCore::initCryptoCore()
 	}
 
 	m_cryptoCore = new CryptoCore;
+}
+
+
+
+void VeyonCore::migrateLegacySecrets()
+{
+	// privileged processes with the SecretStore flag only; runs at every start (not only once) so
+	// that legacy values re-applied by a GPO or configuration management are migrated again
+	// (03-secretstore-config.md §4)
+	if (SecretStore::isAvailable() == false)
+	{
+		return;
+	}
+
+	// fix or detect a directory pre-created by someone else before anything is written, i.e. at
+	// the first service start already; the process starts anyway (the store then refuses all
+	// operations)
+	if (SecretStore::prepareStorage() == false)
+	{
+		vCritical() << "secret storage not usable - secrets are unavailable";
+	}
+
+	// decrypting legacy values needs the legacy crypto, replacing them a writable configuration
+	if (m_cryptoCore == nullptr || m_initializationFlags.testFlag(InitializationFlag::WritableConfiguration) == false)
+	{
+		return;
+	}
+
+	VeyonConfiguration storedConfiguration;
+	(void)Configuration::LegacySecretMigration::migrateStoredConfiguration(storedConfiguration, *m_config, *m_cryptoCore);
 }
 
 

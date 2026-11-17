@@ -167,6 +167,8 @@ set(veyoncore_SOURCES
 	src/VncViewWidget.h
 	src/Configuration/JsonStore.cpp
 	src/Configuration/JsonStore.h
+	src/Configuration/LegacySecretMigration.cpp
+	src/Configuration/LegacySecretMigration.h
 	src/Configuration/LocalStore.cpp
 	src/Configuration/LocalStore.h
 	src/Configuration/Object.cpp
@@ -177,6 +179,9 @@ set(veyoncore_SOURCES
 	src/Configuration/Property.h
 	src/Configuration/Proxy.cpp
 	src/Configuration/Proxy.h
+	src/Configuration/SecretProperties.h
+	src/Configuration/SecretReference.cpp
+	src/Configuration/SecretReference.h
 	src/Configuration/Store.h
 	src/Configuration/UiMapping.cpp
 	src/Configuration/UiMapping.h

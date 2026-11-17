@@ -111,9 +111,34 @@ Password Configuration::TypedProperty<Password>::value() const
 
 
 template<>
-void Configuration::TypedProperty<Password>::setValue(const Password& value) const
+SecretReference Configuration::TypedProperty<SecretReference>::value() const
 {
-	setVariantValue(value.encrypted());
+	const auto ownReference = SecretReference::fromString(defaultValue().toString());
+	const auto storedValue = variantValue().toString();
+
+	if (storedValue.isEmpty() || storedValue == ownReference.toString())
+	{
+		return ownReference;
+	}
+
+	if (SecretReference::isLegacyValue(storedValue))
+	{
+		vDebug() << "legacy value of" << absoluteKey() << "not migrated yet";
+	}
+	else
+	{
+		vWarning() << "ignoring reference to a different secret in" << absoluteKey();
+	}
+
+	return {};
+}
+
+
+
+template<>
+void Configuration::TypedProperty<SecretReference>::setValue(const SecretReference& value) const
+{
+	setVariantValue(value.toString());
 }
 
 

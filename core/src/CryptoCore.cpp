@@ -52,11 +52,17 @@ QString CryptoCore::encryptPassword(const PlaintextPassword& password) const
 
 
 
-CryptoCore::PlaintextPassword CryptoCore::decryptPassword(const QString& encryptedPassword) const
+CryptoCore::PlaintextPassword CryptoCore::decryptPassword(const QString& encryptedPassword, bool* ok) const
 {
 	PlaintextPassword decryptedPassword;
 
-	if (PrivateKey(m_defaultPrivateKey).decrypt(QByteArray::fromHex(encryptedPassword.toUtf8()), &decryptedPassword, DefaultEncryptionAlgorithm))
+	const auto success = PrivateKey(m_defaultPrivateKey).decrypt(QByteArray::fromHex(encryptedPassword.toUtf8()), &decryptedPassword, DefaultEncryptionAlgorithm);
+	if (ok)
+	{
+		*ok = success;
+	}
+
+	if (success)
 	{
 		return decryptedPassword;
 	}

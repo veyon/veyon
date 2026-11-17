@@ -7,20 +7,20 @@
 
 namespace Configuration {
 
+// Read-only legacy type: value of a password property of Veyon < 4.12 (hex encoded RSA ciphertext
+// with the public key of default-pkey.pem, i.e. obfuscation only). New code stores secrets in the
+// SecretStore and uses SecretReference properties; LegacySecretMigration is the only reader.
 class VEYON_CORE_EXPORT Password
 {
 	Q_GADGET
 public:
 	Password() = default;
 
-	CryptoCore::PlaintextPassword plainText() const;
-
 	const QString& encrypted() const
 	{
 		return m_encrypted;
 	}
 
-	static Password fromPlainText(const CryptoCore::PlaintextPassword& plainText);
 	static Password fromEncrypted(const QString& encrypted);
 
 private:

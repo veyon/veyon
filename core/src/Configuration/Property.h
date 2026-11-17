@@ -6,6 +6,8 @@
 #include <QUuid>
 
 #include "Configuration/Password.h"
+#include "Configuration/SecretProperties.h"
+#include "Configuration/SecretReference.h"
 #include "VeyonCore.h"
 
 namespace Configuration {
@@ -89,6 +91,22 @@ public:
 		return m_flags;
 	}
 
+	// true for TypedProperty<SecretReference>, i.e. the value is a reference to a SecretStore key
+	bool isSecretReference() const
+	{
+		return m_isSecretReference;
+	}
+
+protected:
+	void markAsSecretReference()
+	{
+		m_isSecretReference = true;
+
+		// every secret property must have a row in SecretProperties with its key as default value
+		Q_ASSERT(findSecretProperty(m_parentKey, m_key) &&
+				 m_defaultValue == SecretReference::defaultValue(findSecretProperty(m_parentKey, m_key)->secretKey));
+	}
+
 private:
 	Object* m_object;
 	Proxy* m_proxy;
@@ -96,6 +114,7 @@ private:
 	const QString m_parentKey;
 	const QVariant m_defaultValue;
 	const Flags m_flags;
+	bool m_isSecretReference = false;
 };
 
 
@@ -109,12 +128,20 @@ public:
 				  const QVariant& defaultValue, Flags flags) :
 		Property(object, key, parentKey, defaultValue, flags)
 	{
+		if constexpr (std::is_same_v<T, SecretReference>)
+		{
+			markAsSecretReference();
+		}
 	}
 
 	TypedProperty(Proxy* proxy, const QString& key, const QString& parentKey,
 				  const QVariant& defaultValue, Flags flags) :
 		Property(proxy, key, parentKey, defaultValue, flags)
 	{
+		if constexpr (std::is_same_v<T, SecretReference>)
+		{
+			markAsSecretReference();
+		}
 	}
 
 	T value() const
@@ -128,11 +155,17 @@ public:
 	}
 };
 
+// read-only legacy type, see LegacySecretMigration
 template<>
 VEYON_CORE_EXPORT Password TypedProperty<Password>::value() const;
 
+// always the property's own reference (its default value), or an invalid reference if the
+// configuration holds a legacy value or a reference to a different key
 template<>
-VEYON_CORE_EXPORT void TypedProperty<Password>::setValue(const Password& value) const;
+VEYON_CORE_EXPORT SecretReference TypedProperty<SecretReference>::value() const;
+
+template<>
+VEYON_CORE_EXPORT void TypedProperty<SecretReference>::setValue(const SecretReference& value) const;
 
 
 #define DECLARE_CONFIG_PROPERTY(className, config, type, name, setter, key, parentKey, defaultValue, flags) \

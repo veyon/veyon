@@ -31,8 +31,11 @@ public:
 
 	static QByteArray generateChallenge();
 
+	// legacy obfuscation with the public default-pkey.pem: only for the UserLogin feature message
+	// (replaced in 4.12, 05-tls.md §7) and LegacySecretMigration, never for new stored data
 	QString encryptPassword(const PlaintextPassword& password) const;
-	PlaintextPassword decryptPassword(const QString& encryptedPassword) const;
+	// ok (if given) tells a failure apart from an empty plaintext
+	PlaintextPassword decryptPassword(const QString& encryptedPassword, bool* ok = nullptr) const;
 
 private:
 	QCA::Initializer m_qcaInitializer;
