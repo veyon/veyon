@@ -183,10 +183,8 @@ void Logger::reportLogFileError(const QString& error)
 	const auto message = QStringLiteral("%1: file logging disabled: %2").arg(m_appName, error);
 	logEarlyCritical(message.toUtf8().constData());
 
-	if (m_logToSystem)
-	{
-		VeyonCore::platform().coreFunctions().writeToNativeLoggingSystem(message, LogLevel::Critical);
-	}
+	// regardless of Logging/LogToSystem, as this would go unnoticed otherwise (Windows: event log)
+	VeyonCore::platform().coreFunctions().writeToNativeLoggingSystem(message, LogLevel::Critical);
 }
 
 
