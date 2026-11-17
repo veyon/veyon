@@ -160,6 +160,43 @@ if(WITH_TESTS)
 		endif()
 	endif()
 
+	# platform plugin of the build tree for tests that create a VeyonCore instance
+	if(VEYON_BUILD_WINDOWS)
+		set(VEYON_TEST_PLATFORM_PLUGIN windows-platform)
+	else()
+		set(VEYON_TEST_PLATFORM_PLUGIN linux-platform)
+	endif()
+
+	# redaction of sensitive feature arguments in logs (05-tls.md §7a), with the plugins of the build tree
+	add_executable(FeatureMessageRedactionTest FeatureMessageRedactionTest.cpp)
+	set_default_target_properties(FeatureMessageRedactionTest)
+	target_link_libraries(FeatureMessageRedactionTest PRIVATE Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Widgets veyon-core)
+	add_dependencies(FeatureMessageRedactionTest ${VEYON_TEST_PLATFORM_PLUGIN} usersessioncontrol demo remoteaccess filetransfer)
+	add_test(NAME FeatureMessageRedactionTest COMMAND FeatureMessageRedactionTest)
+
+	# pre-auth hardening of the master (VeyonConnection) and the server (VncServerProtocol,
+	# ServerAuthenticationManager) and 4.11 interoperability (05-tls.md §6)
+	add_executable(VeyonAuthenticationTest
+		VeyonAuthenticationTest.cpp
+		${CMAKE_SOURCE_DIR}/server/src/ServerAuthenticationManager.cpp
+		)
+	set_default_target_properties(VeyonAuthenticationTest)
+	target_include_directories(VeyonAuthenticationTest PRIVATE ${CMAKE_SOURCE_DIR}/server/src)
+	target_link_libraries(VeyonAuthenticationTest PRIVATE Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Network veyon-core)
+	add_dependencies(VeyonAuthenticationTest ${VEYON_TEST_PLATFORM_PLUGIN})
+	add_test(NAME VeyonAuthenticationTest COMMAND VeyonAuthenticationTest)
+
+	# logon credentials in the service data blob (05-tls.md §7)
+	add_executable(PersistentLogonCredentialsTest
+		PersistentLogonCredentialsTest.cpp
+		${CMAKE_SOURCE_DIR}/plugins/platform/common/PersistentLogonCredentials.cpp
+		)
+	set_default_target_properties(PersistentLogonCredentialsTest)
+	target_include_directories(PersistentLogonCredentialsTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/platform/common)
+	target_link_libraries(PersistentLogonCredentialsTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
+	add_dependencies(PersistentLogonCredentialsTest ${VEYON_TEST_PLATFORM_PLUGIN})
+	add_test(NAME PersistentLogonCredentialsTest COMMAND PersistentLogonCredentialsTest)
+
 	if(VEYON_BUILD_WINDOWS)
 		# DACLs of the IPC endpoint pipes (02-ipc.md §1, §6a)
 		add_executable(IpcPipeSecurityTest IpcPipeSecurityTest.cpp)

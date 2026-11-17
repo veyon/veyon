@@ -911,8 +911,9 @@ private Q_SLOTS:
 			QStringLiteral("core/src/CryptoCore.h"),
 			QStringLiteral("core/src/CryptoCore.cpp"),
 			QStringLiteral("core/src/Configuration/LegacySecretMigration.cpp"),
-			// UserLogin feature message: replaced by a plain argument over verified TLS together with
-			// the redaction of sensitive feature arguments in WP5 (05-tls.md §7, §7a)
+			// UserLogin feature message: replaced by a plain argument over verified TLS in WP5b, which
+			// needs TransportState::TlsVerified and isSecureTransport (WP6/WP7); the redaction of the
+			// argument in logs is in place already (05-tls.md §7, §7a)
 			QStringLiteral("plugins/usersessioncontrol/UserSessionControlPlugin.cpp"),
 		};
 
