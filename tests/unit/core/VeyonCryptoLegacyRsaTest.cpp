@@ -289,6 +289,7 @@ private Q_SLOTS:
 	void rejectsOaepLabel();
 	void successClearsLastError();
 	void nullKeys();
+	void copyAndMove();
 };
 
 
@@ -373,6 +374,12 @@ void VeyonCryptoLegacyRsaTest::lenientPemFraming()
 	QByteArray combined = publicKeyPem + privateKeyPem;
 	QVERIFY(LegacyRsaPrivateKey::fromPem(combined).has_value());
 	QVERIFY(LegacyRsaPublicKey::fromPem(combined).has_value());
+
+	// a block without content and one with more DER than any accepted key
+	QVERIFY(LegacyRsaPrivateKey::fromPem(QByteArrayLiteral("-----BEGIN PRIVATE KEY-----\n-----END PRIVATE KEY-----\n")).has_value() == false);
+	QVERIFY(LegacyRsaPublicKey::fromPem(QByteArrayLiteral("-----BEGIN PUBLIC KEY-----\n-----END PUBLIC KEY-----\n")).has_value() == false);
+	QVERIFY(LegacyRsaPrivateKey::fromPem(pem("PRIVATE KEY", QByteArray(LegacyRsaPrivateKey::MaximumEncodedSize + 1, 'x'))).has_value() == false);
+	QVERIFY2(lastError().contains(QLatin1String("invalid size")), qPrintable(lastError()));
 }
 
 
@@ -832,6 +839,11 @@ void VeyonCryptoLegacyRsaTest::rejectsInconsistentPrivateKey()
 	// larger keys are rejected by the size policy already
 	QVERIFY(LegacyRsaPrivateKey::fromPem(fixture("crafted-bogus8194.pem")).has_value() == false);
 	QVERIFY2(lastError().contains(QLatin1String("unsupported key size")), qPrintable(lastError()));
+
+	// consistent components, but p is the product of two primes (primality is not tested): only
+	// the pairwise sign/verify check catches it
+	QVERIFY(LegacyRsaPrivateKey::fromPem(fixture("crafted-composite-p.pem")).has_value() == false);
+	QVERIFY2(lastError().endsWith(QLatin1String(": inconsistent key")), qPrintable(lastError()));
 }
 
 
@@ -1005,6 +1017,29 @@ void VeyonCryptoLegacyRsaTest::nullKeys()
 	QVERIFY(publicKey.encryptOaepSha1(QByteArray("m")).has_value() == false);
 	QCOMPARE(publicKey.maximumOaepSha1PlaintextSize(), qsizetype(0));
 	QVERIFY((publicKey == publicKey) == false);
+}
+
+
+
+void VeyonCryptoLegacyRsaTest::copyAndMove()
+{
+	// public keys are implicitly shared, private keys move-only
+	LegacyRsaPublicKey publicKey;
+	const auto loadedPublicKey = ::publicKey("key2048-public.pem");
+	publicKey = loadedPublicKey;
+	QVERIFY(publicKey == loadedPublicKey);
+	LegacyRsaPublicKey movedPublicKey;
+	movedPublicKey = std::move(publicKey);
+	QVERIFY(movedPublicKey == loadedPublicKey);
+	const LegacyRsaPublicKey copiedPublicKey(movedPublicKey);
+	QCOMPARE(copiedPublicKey.toDer(), loadedPublicKey.toDer());
+
+	LegacyRsaPrivateKey key;
+	key = ::privateKey("key2048-private.pem");
+	QCOMPARE(key.bits(), 2048);
+	LegacyRsaPrivateKey movedKey(std::move(key));
+	QCOMPARE(movedKey.bits(), 2048);
+	QVERIFY(movedKey.publicKey() == loadedPublicKey);
 }
 
 

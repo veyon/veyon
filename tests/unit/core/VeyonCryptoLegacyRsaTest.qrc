@@ -7,6 +7,7 @@
 		<file alias="crafted-bogus4096.pem">data/legacyrsa/crafted-bogus4096.pem</file>
 		<file alias="crafted-bogus8192.pem">data/legacyrsa/crafted-bogus8192.pem</file>
 		<file alias="crafted-bogus8194.pem">data/legacyrsa/crafted-bogus8194.pem</file>
+		<file alias="crafted-composite-p.pem">data/legacyrsa/crafted-composite-p.pem</file>
 		<file alias="crafted-good-crt-bad-d.pem">data/legacyrsa/crafted-good-crt-bad-d.pem</file>
 		<file alias="crafted-k2047.pem">data/legacyrsa/crafted-k2047.pem</file>
 		<file alias="crafted-k2049.pem">data/legacyrsa/crafted-k2049.pem</file>

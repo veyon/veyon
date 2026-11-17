@@ -161,6 +161,10 @@ private Q_SLOTS:
 	void displaySafeNames_data();
 	void displaySafeNames();
 	void criticalExtensionsAndSanTypes();
+	void usageExtensions();
+	void nullAndCopiedObjects();
+	void invalidInputSizes();
+	void unsupportedKeyTypes();
 	void rsaPssParameters_data();
 	void rsaPssParameters();
 	void canonicalPublicKeyEncoding();
@@ -1180,6 +1184,9 @@ void VeyonCryptoPkiTest::canonicalSignatureAlgorithms()
 	QVERIFY(CertificateRequest::fromDer(withSignatureAlgorithm(
 											pssRequest->toDer(), derElement(0x30, pssObject + withNonMinimalLength(pssParameters))))
 				.has_value() == false);
+	// RSASSA-PSS without parameters (i.e. the SHA-1 defaults) and with NULL parameters
+	QVERIFY(CertificateRequest::fromDer(withSignatureAlgorithm(pssRequest->toDer(), derElement(0x30, pssObject))).has_value() == false);
+	QVERIFY(CertificateRequest::fromDer(withSignatureAlgorithm(pssRequest->toDer(), derElement(0x30, pssObject + hex("0500")))).has_value() == false);
 
 	// certificates: the AlgorithmIdentifier is signed (inside the tbsCertificate as well), but still
 	// only its one encoding is accepted
@@ -1393,6 +1400,8 @@ void VeyonCryptoPkiTest::certificateTimeFormat_data()
 	QTest::newRow("utc-with-offset") << V_ASN1_UTCTIME << QByteArray("261116160040+0100") << false;
 	QTest::newRow("generalized-fraction") << V_ASN1_GENERALIZEDTIME << QByteArray("20261116160040.5Z") << false;
 	QTest::newRow("generalized-local") << V_ASN1_GENERALIZEDTIME << QByteArray("20261116160040") << false;
+	QTest::newRow("utc-non-digit") << V_ASN1_UTCTIME << QByteArray("2611161600x0Z") << false;
+	QTest::newRow("utc-invalid-month") << V_ASN1_UTCTIME << QByteArray("261316160040Z") << false;
 }
 
 
@@ -1554,6 +1563,134 @@ void VeyonCryptoPkiTest::criticalExtensionsAndSanTypes()
 	QVERIFY(mixedNames.has_value());
 	QCOMPARE(mixedNames->dnsNames(), QStringList{QStringLiteral("host.example")});
 	QCOMPARE(mixedNames->ipAddresses(), QList<QHostAddress>{QHostAddress(QStringLiteral("192.0.2.1"))});
+
+	// DNS names longer than 253 characters
+	const QByteArray longName = QByteArray(250, 'a') + QByteArrayLiteral(".exa");
+	QVERIFY(Certificate::fromDer(craftCertificate(signingKey, [&](X509* certificate) {
+		return addSubjectAlternativeName(certificate, GEN_DNS, longName, X509V3_ADD_DEFAULT);
+	})).has_value() == false);
+}
+
+
+
+void VeyonCryptoPkiTest::usageExtensions()
+{
+	const auto& signingKey = key(KeyAlgorithm::EcP256);
+
+	// usages other than serverAuth/clientAuth are ignored
+	const auto clientCertificate = Certificate::fromDer(craftCertificate(signingKey, [](X509* certificate) {
+		return addConfiguredExtension(certificate, NID_ext_key_usage, "clientAuth,codeSigning");
+	}));
+	QVERIFY(clientCertificate.has_value());
+	QVERIFY(clientCertificate->hasExtendedKeyUsageExtension());
+	QVERIFY(clientCertificate->hasExtendedKeyUsage(Certificate::ExtendedKeyUsage::ClientAuth));
+	QVERIFY(clientCertificate->hasExtendedKeyUsage(Certificate::ExtendedKeyUsage::ServerAuth) == false);
+
+	const auto pathLength = [&](const char* basicConstraints) {
+		return Certificate::fromDer(craftCertificate(signingKey, [&](X509* certificate) {
+			return addConfiguredExtension(certificate, NID_basic_constraints, basicConstraints);
+		}));
+	};
+	const auto maximumPathLength = pathLength("critical,CA:TRUE,pathlen:255");
+	QVERIFY(maximumPathLength.has_value());
+	QCOMPARE(maximumPathLength->pathLengthConstraint(), 255);
+	QVERIFY(pathLength("critical,CA:TRUE,pathlen:256").has_value() == false);
+}
+
+
+
+void VeyonCryptoPkiTest::nullAndCopiedObjects()
+{
+	const Certificate nullCertificate;
+	QVERIFY(nullCertificate.isNull());
+	QVERIFY(nullCertificate.toDer().isEmpty());
+	QVERIFY(nullCertificate.toPem().isEmpty());
+	QVERIFY(nullCertificate.serialNumberHex().isEmpty());
+	QVERIFY(m_caCertificate.isNull() == false);
+
+	const Certificate copiedCertificate(m_caCertificate);
+	QCOMPARE(copiedCertificate.toDer(), m_caCertificate.toDer());
+	Certificate movedCertificate;
+	movedCertificate = Certificate(m_caCertificate);
+	QCOMPARE(movedCertificate.toDer(), m_caCertificate.toDer());
+
+	const CertificateRequest nullRequest;
+	QVERIFY(nullRequest.toDer().isEmpty());
+	QVERIFY(nullRequest.toPem().isEmpty());
+	const auto request = CertificateRequest::create(key(KeyAlgorithm::EcP256), QStringLiteral("copied"));
+	QVERIFY(request.has_value());
+	CertificateRequest copiedRequest;
+	copiedRequest = *request;
+	QCOMPARE(copiedRequest.toDer(), request->toDer());
+	CertificateRequest movedRequest;
+	movedRequest = std::move(copiedRequest);
+	QCOMPARE(movedRequest.toDer(), request->toDer());
+
+	const PrivateKey nullKey;
+	QVERIFY(nullKey.isNull());
+	QVERIFY(key(KeyAlgorithm::EcP256).isNull() == false);
+	QCOMPARE(nullKey.bits(), 0);
+	QVERIFY(nullKey.toPkcs8Der().has_value() == false);
+	QVERIFY(nullKey.toPkcs8Pem().has_value() == false);
+	QVERIFY(nullKey.publicKey().isNull());
+
+	const PublicKey nullPublicKey;
+	QCOMPARE(nullPublicKey.bits(), 0);
+	QVERIFY(nullPublicKey.toPem().isEmpty());
+	QVERIFY(nullPublicKey.toEd25519RawKey().isEmpty());
+	QVERIFY(key(KeyAlgorithm::EcP256).publicKey().toEd25519RawKey().isEmpty());
+	const auto ed25519PublicKey = key(KeyAlgorithm::Ed25519).publicKey();
+	PublicKey copiedPublicKey;
+	copiedPublicKey = ed25519PublicKey;
+	QCOMPARE(copiedPublicKey.toEd25519RawKey().size(), PublicKey::Ed25519KeySize);
+}
+
+
+
+void VeyonCryptoPkiTest::invalidInputSizes()
+{
+	const QByteArray oversized(64 * 1024 + 1, 'A');
+
+	QVERIFY(CertificateRequest::fromPem({}).has_value() == false);
+	QVERIFY(CertificateRequest::fromPem(oversized).has_value() == false);
+	QVERIFY(PrivateKey::fromPkcs8Pem({}).has_value() == false);
+	QVERIFY(PrivateKey::fromPkcs8Pem(oversized).has_value() == false);
+	QVERIFY(PublicKey::fromDer({}).has_value() == false);
+	QVERIFY(PublicKey::fromDer(oversized).has_value() == false);
+	QVERIFY(PublicKey::fromPem({}).has_value() == false);
+	QVERIFY(PublicKey::fromPem(oversized).has_value() == false);
+
+	// names longer than 64 characters
+	CertificateAuthority::CaParameters parameters;
+	parameters.commonName = QString(65, u'c');
+	QVERIFY(CertificateAuthority::createCaCertificate(m_caKey, parameters).has_value() == false);
+	QVERIFY(lastError().contains(QLatin1String("invalid name attribute")));
+}
+
+
+
+void VeyonCryptoPkiTest::unsupportedKeyTypes()
+{
+	// X25519 (key agreement only) is no signature key type
+	Internal::EvpPkeyPtr x25519Key;
+	{
+		const Internal::EvpPkeyContextPtr context(EVP_PKEY_CTX_new_id(EVP_PKEY_X25519, nullptr));
+		EVP_PKEY* generatedKey = nullptr;
+		QVERIFY(context && EVP_PKEY_keygen_init(context.get()) == 1 && EVP_PKEY_keygen(context.get(), &generatedKey) == 1);
+		x25519Key.reset(generatedKey);
+	}
+	const auto subjectPublicKeyInfo = Internal::subjectPublicKeyInfo(x25519Key.get());
+	QVERIFY(subjectPublicKeyInfo.isEmpty() == false);
+	QCOMPARE(Internal::classifyKey(x25519Key.get()), KeyAlgorithm::Invalid);
+	QCOMPARE(Internal::classifyKey(nullptr), KeyAlgorithm::Invalid);
+	QVERIFY(PublicKey::fromDer(subjectPublicKeyInfo).has_value() == false);
+	QVERIFY(lastError().contains(QLatin1String("unsupported key type")));
+
+	// well-formed structures with an algorithm unknown to OpenSSL (OID 1.3.6.1.4.1.99999.1)
+	const auto unknownAlgorithm = derElement(0x30, hex("06092b06010401868d1f01"));
+	QVERIFY(PublicKey::fromDer(derElement(0x30, unknownAlgorithm + derElement(0x03, QByteArray(33, 0x00)))).has_value() == false);
+	QVERIFY(PrivateKey::fromPkcs8Der(derElement(0x30, hex("020100") + unknownAlgorithm + derElement(0x04, derElement(0x04, QByteArray(32, 0x01)))))
+				.has_value() == false);
 }
 
 

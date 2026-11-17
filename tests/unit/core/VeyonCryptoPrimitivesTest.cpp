@@ -61,6 +61,7 @@ private Q_SLOTS:
 
 	void hash_data();
 	void hash();
+	void hashRejectsUnknownAlgorithm();
 
 	void hmacKnownAnswers_data();
 	void hmacKnownAnswers();
@@ -133,6 +134,8 @@ void VeyonCryptoPrimitivesTest::secureBufferBasics()
 	// resize keeps the prefix and zero-fills
 	QVERIFY(moved.resize(4));
 	QCOMPARE(moved.toUnprotectedByteArray(), QByteArray("Secr"));
+	QVERIFY(moved.resize(6));
+	QCOMPARE(moved.toUnprotectedByteArray(), QByteArray("Secr\0\0", 6));
 	QVERIFY(moved.resize(6));
 	QCOMPARE(moved.toUnprotectedByteArray(), QByteArray("Secr\0\0", 6));
 
@@ -215,6 +218,8 @@ void VeyonCryptoPrimitivesTest::random()
 	QVERIFY(hexString.has_value());
 	QCOMPARE(hexString->size(), 8);
 	QVERIFY(QRegularExpression(QStringLiteral("^[0-9a-f]{8}$")).match(*hexString).hasMatch());
+	QVERIFY(Random::hex(0).has_value() == false);
+	QVERIFY(Random::hex(Random::MaximumSize + 1).has_value() == false);
 }
 
 
@@ -257,6 +262,16 @@ void VeyonCryptoPrimitivesTest::hash()
 	QVERIFY(digest.has_value());
 	QCOMPARE(digest->toHex(), expected.toHex());
 	QCOMPARE(digest->size(), Hash::size(Hash::Algorithm(algorithm)));
+}
+
+
+
+void VeyonCryptoPrimitivesTest::hashRejectsUnknownAlgorithm()
+{
+	const auto unknownAlgorithm = Hash::Algorithm(42);
+	QCOMPARE(Hash::size(unknownAlgorithm), qsizetype(0));
+	QVERIFY(Hash::digest(unknownAlgorithm, QByteArray("abc")).has_value() == false);
+	QVERIFY(lastError().contains(QLatin1String("unsupported algorithm")));
 }
 
 
@@ -553,6 +568,10 @@ void VeyonCryptoPrimitivesTest::aeadInvalidInput()
 	QVERIFY(Aead::seal(algorithm, key, {}, QByteArray("x"), {}).has_value() == false);
 	QVERIFY(Aead::seal(Aead::Algorithm(42), key, nonce, QByteArray("x"), {}).has_value() == false);
 	QVERIFY(Aead::open(algorithm, key.left(16), nonce, QByteArray(32, 0), {}).has_value() == false);
+
+	const QByteArray oversizedPlaintext(Aead::MaximumPlaintextSize + 1, 'p');
+	QVERIFY(Aead::seal(algorithm, key, nonce, oversizedPlaintext, {}).has_value() == false);
+	QVERIFY(lastError().contains(QLatin1String("plaintext too large")));
 }
 
 
@@ -699,6 +718,8 @@ void VeyonCryptoPrimitivesTest::argon2idParameters()
 	parameters.parallelism = PasswordKdf::MaximumParallelism + 1;
 	QVERIFY(PasswordKdf::argon2id(password, salt, parameters, 32).has_value() == false);
 	QVERIFY(PasswordKdf::argon2id(password, salt.left(7), defaults, 32).has_value() == false);
+	QVERIFY(PasswordKdf::argon2id(password, salt, defaults, 0).has_value() == false);
+	QVERIFY(PasswordKdf::argon2id({}, salt, defaults, 32).has_value() == false);
 
 	if (PasswordKdf::isArgon2idAvailable() == false)
 	{
