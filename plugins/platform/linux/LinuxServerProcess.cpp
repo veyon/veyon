@@ -73,12 +73,15 @@ void LinuxServerProcess::start()
 
 	// a new endpoint and token for every start, created before the server starts (02 §1); a
 	// server running as the session user (Wayland) connects to a socket owned by that user
-	if (runAsSessionUser)
+	// without Yama a process of the session user can attach to a session-user server between
+	// execve() and prctl() (T-PROC-02, 02-ipc.md §1a.4), so such a server gets no TLS host key
+	const auto tlsHostKeyAllowed = runAsSessionUser == false || isPtraceRestricted();
+	if (tlsHostKeyAllowed == false)
 	{
 		warnAboutPtraceScope();
 	}
 
-	if (createIpcEndpoint(runAsSessionUser ? m_sessionUserId : 0) == false)
+	if (createIpcEndpoint(runAsSessionUser ? m_sessionUserId : 0, tlsHostKeyAllowed) == false)
 	{
 		vCritical() << "not starting server for session" << m_sessionPath << "without IPC endpoint";
 		return;
@@ -211,7 +214,7 @@ void LinuxServerProcess::setProcessUserId()
 
 
 
-bool LinuxServerProcess::createIpcEndpoint(LinuxUserFunctions::UserId serverUserId)
+bool LinuxServerProcess::createIpcEndpoint(LinuxUserFunctions::UserId serverUserId, bool tlsHostKeyAllowed)
 {
 	removeIpcEndpoint();
 
@@ -237,7 +240,7 @@ bool LinuxServerProcess::createIpcEndpoint(LinuxUserFunctions::UserId serverUser
 	auto endpoint = m_dataManager.createServerEndpoint(ipcSessionId, platformSessionId, peerPolicy, [sessionPath]() {
 		// only a login screen session has no logged on user
 		return LinuxSessionFunctions::getSessionClass(sessionPath) != LinuxSessionFunctions::Class::Greeter;
-	});
+	}, tlsHostKeyAllowed);
 
 	if (endpoint.has_value() == false)
 	{
@@ -368,10 +371,18 @@ void LinuxServerProcess::startInSystemdScope()
 
 
 
-void LinuxServerProcess::warnAboutPtraceScope()
+bool LinuxServerProcess::isPtraceRestricted()
 {
 	// the session-user server makes itself non-dumpable only in main(), so without Yama a process
 	// of the session user can attach right after execve() (T-PROC-02, 02-ipc.md §1a.4)
+	QFile ptraceScopeFile(QStringLiteral("/proc/sys/kernel/yama/ptrace_scope"));
+	return ptraceScopeFile.open(QFile::ReadOnly) && ptraceScopeFile.readAll().trimmed().toInt() >= 1;
+}
+
+
+
+void LinuxServerProcess::warnAboutPtraceScope()
+{
 	static bool warned = false;
 	if (warned)
 	{
@@ -379,11 +390,6 @@ void LinuxServerProcess::warnAboutPtraceScope()
 	}
 	warned = true;
 
-	QFile ptraceScopeFile(QStringLiteral("/proc/sys/kernel/yama/ptrace_scope"));
-	if (ptraceScopeFile.open(QFile::ReadOnly) == false ||
-		ptraceScopeFile.readAll().trimmed().toInt() < 1)
-	{
-		vWarning() << "same-user processes may attach to veyon-server during start-up;"
-				   << "set kernel.yama.ptrace_scope >= 1";
-	}
+	vWarning() << "same-user processes may attach to veyon-server during start-up;"
+			   << "set kernel.yama.ptrace_scope >= 1 - session-user servers get no TLS host key until then";
 }

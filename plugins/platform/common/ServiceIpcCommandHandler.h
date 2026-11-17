@@ -57,6 +57,8 @@ public:
 		std::function<bool()> hasLoggedOnUser{};
 		// server bootstrapped via D-Bus activation (02 §2a.2)
 		bool weakBootstrap = false;
+		// false for servers whose memory other processes may be able to read (T-PROC-02)
+		bool tlsHostKeyAllowed = false;
 		int tlsHostKeyRequests = 0;
 	};
 

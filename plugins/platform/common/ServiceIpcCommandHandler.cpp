@@ -146,6 +146,12 @@ IpcMessage::Response ServiceIpcCommandHandler::getTlsHostKey(Client& client, int
 		return IpcMessage::failure(requestId, IpcProtocol::Error::DeniedError);
 	}
 
+	if (client.tlsHostKeyAllowed == false)
+	{
+		vWarning() << "not handing out the TLS host key to the server of session" << client.sessionId;
+		return IpcMessage::failure(requestId, IpcProtocol::Error::DeniedError);
+	}
+
 	const auto hostKey = m_tlsHostKeyProvider ? m_tlsHostKeyProvider() : std::nullopt;
 	if (hostKey.has_value() == false)
 	{

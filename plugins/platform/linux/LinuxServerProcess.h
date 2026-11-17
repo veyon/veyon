@@ -41,11 +41,12 @@ public:
 private:
 	void setProcessUserId();
 
-	bool createIpcEndpoint(LinuxUserFunctions::UserId serverUserId);
+	bool createIpcEndpoint(LinuxUserFunctions::UserId serverUserId, bool tlsHostKeyAllowed);
 	void removeIpcEndpoint();
 	void sendIpcCredentials();
 
 	bool hasDesktopPortalRegistry();
+	static bool isPtraceRestricted();
 	static void warnAboutPtraceScope();
 	void startInSystemdScope();
 

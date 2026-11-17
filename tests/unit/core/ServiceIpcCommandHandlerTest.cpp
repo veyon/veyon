@@ -34,6 +34,7 @@ private:
 		client.sessionId = sessionId;
 		client.platformSessionId = platformSessionId;
 		client.hasLoggedOnUser = [loggedOnUser]() { return loggedOnUser; };
+		client.tlsHostKeyAllowed = true;
 		return client;
 	}
 
@@ -293,6 +294,19 @@ private Q_SLOTS:
 		QVERIFY(handler.handleRequest(weakServer, request(IpcProtocol::Command::GetTlsHostKey)).ok);
 		QCOMPARE(m_logMessages.size(), 1);
 		QVERIFY(m_logMessages.first().contains(QLatin1String("weak server bootstrap (D-Bus activation): host key exposure possible")));
+
+		// a server whose memory may be readable by other processes (T-PROC-02) never gets the key,
+		// which is also the default
+		auto exposedServer = client(4);
+		exposedServer.tlsHostKeyAllowed = false;
+		QCOMPARE(handler.handleRequest(exposedServer, request(IpcProtocol::Command::GetTlsHostKey)).error,
+				 QStringLiteral("denied"));
+		QVERIFY(m_logMessages.last().contains(QLatin1String("not handing out the TLS host key")));
+
+		auto defaultClient = ServiceIpcCommandHandler::Client{};
+		defaultClient.sessionId = 5;
+		QCOMPARE(handler.handleRequest(defaultClient, request(IpcProtocol::Command::GetTlsHostKey)).error,
+				 QStringLiteral("denied"));
 
 		for (const auto& message : std::as_const(m_logMessages))
 		{

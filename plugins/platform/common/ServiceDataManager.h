@@ -38,7 +38,8 @@ public:
 	// return true if unsure
 	[[nodiscard]] std::optional<ServerEndpoint> createServerEndpoint(int sessionId, const QString& platformSessionId,
 																	 const IpcServer::PeerPolicy& peerPolicy,
-																	 const std::function<bool()>& hasLoggedOnUser);
+																	 const std::function<bool()>& hasLoggedOnUser,
+																	 bool tlsHostKeyAllowed);
 	void setServerProcessId(const QString& endpointName, IpcServer::ProcessId processId);
 	void removeServerEndpoint(const QString& endpointName);
 
