@@ -247,7 +247,9 @@ bool WindowsFilesystemFunctions::openFileSafely(QFile* file, QIODevice::OpenMode
 		}
 	}
 
-	const auto path = WindowsCoreFunctions::toWCharArray(file->fileName());
+	// QFile::open(fd) creates a file engine without file name, so the name is kept for later use
+	const auto fileName = file->fileName();
+	const auto path = WindowsCoreFunctions::toWCharArray(fileName);
 	const auto handle = CreateFileW(path.get(), desiredAccess, FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr,
 									creationDisposition, FILE_ATTRIBUTE_NORMAL | FILE_FLAG_OPEN_REPARSE_POINT, nullptr);
 	if (handle == INVALID_HANDLE_VALUE)
@@ -282,6 +284,14 @@ bool WindowsFilesystemFunctions::openFileSafely(QFile* file, QIODevice::OpenMode
 		}
 	}
 
+	// apply permissions by name while the handle is open (setPermissions() on a QFile opened
+	// from a descriptor fails with "Empty filename passed to function")
+	if (QFile::setPermissions(fileName, permissions) == false)
+	{
+		CloseHandle(handle);
+		return false;
+	}
+
 	const auto descriptor = _open_osfhandle(reinterpret_cast<intptr_t>(handle), _O_BINARY);
 	if (descriptor == -1)
 	{
@@ -295,14 +305,7 @@ bool WindowsFilesystemFunctions::openFileSafely(QFile* file, QIODevice::OpenMode
 		return false;
 	}
 
-	if (file->setPermissions(permissions))
-	{
-		return true;
-	}
-
-	file->close();
-
-	return false;
+	return true;
 }
 
 

@@ -157,7 +157,8 @@ void Logger::initLogFile()
 	}
 
 	logPath += QDir::separator();
-	m_logFile = new QFile(logPath + QStringLiteral("%1.log").arg(m_appName));
+	m_logFilePath = logPath + QStringLiteral("%1.log").arg(m_appName);
+	m_logFile = new QFile(m_logFilePath);
 
 	openLogFile();
 
@@ -176,12 +177,19 @@ void Logger::initLogFile()
 
 void Logger::openLogFile()
 {
+	if (m_logFile == nullptr)
+	{
+		return;
+	}
+
+	m_logFile->setFileName(m_logFilePath);
+
 	if (VeyonCore::platform().filesystemFunctions().openFileSafely(
 			m_logFile,
 			QFile::WriteOnly | QFile::Append | QFile::Unbuffered | QFile::Text,
 			QFile::ReadOwner | QFile::WriteOwner) == false)
 	{
-		vCritical() << m_logFile->fileName() << "is a symlink and will not be written to for security reasons";
+		vCritical() << m_logFilePath << "is a symlink and will not be written to for security reasons";
 		m_logFile->close();
 		delete m_logFile;
 		m_logFile = nullptr;
@@ -205,7 +213,7 @@ void Logger::clearLogFile()
 	closeLogFile();
 	if (m_logFile)
 	{
-		m_logFile->remove();
+		QFile::remove(m_logFilePath);
 	}
 	openLogFile();
 }
@@ -221,7 +229,7 @@ void Logger::rotateLogFile()
 
 	closeLogFile();
 
-	const QFileInfo logFileInfo(*m_logFile);
+	const QFileInfo logFileInfo(m_logFilePath);
 	const QStringList logFileFilter({logFileInfo.fileName() + QStringLiteral(".*")});
 
 	auto rotatedLogFiles = logFileInfo.dir().entryList(logFileFilter, QDir::NoFilter, QDir::Name);
@@ -238,8 +246,8 @@ void Logger::rotateLogFile()
 		int logFileIndex = it->section(QLatin1Char('.'), -1).toInt(&numberOk);
 		if (numberOk)
 		{
-			const auto oldFileName = QString(QStringLiteral("%1.%2")).arg(m_logFile->fileName()).arg(logFileIndex);
-			const auto newFileName = QString(QStringLiteral("%1.%2")).arg(m_logFile->fileName()).arg(logFileIndex + 1);
+			const auto oldFileName = QString(QStringLiteral("%1.%2")).arg(m_logFilePath).arg(logFileIndex);
+			const auto newFileName = QString(QStringLiteral("%1.%2")).arg(m_logFilePath).arg(logFileIndex + 1);
 			QFile::rename(oldFileName, newFileName);
 		}
 		else
@@ -249,7 +257,7 @@ void Logger::rotateLogFile()
 		}
 	}
 
-	QFile::rename(m_logFile->fileName(), m_logFile->fileName() + QStringLiteral(".0"));
+	QFile::rename(m_logFilePath, m_logFilePath + QStringLiteral(".0"));
 
 	openLogFile();
 }
