@@ -10,6 +10,7 @@
 #include "UserGroupsBackendInterface.h"
 
 class LdapDirectory;
+class QThread;
 
 class LdapPlugin : public QObject, PluginInterface, CommandLinePluginInterface, NetworkObjectDirectoryPluginInterface, UserGroupsBackendInterface, ConfigurationPagePluginInterface
 {
@@ -76,6 +77,10 @@ public:
 
 	NetworkObjectDirectory* createNetworkObjectDirectory(QObject* parent) override;
 
+	// bind password in the SecretStore: directory and user groups are used through the directory
+	// broker in unprivileged components (04-directory-broker.md §2)
+	bool requiresSecrets() const override;
+
 	QString userGroupsBackendName() const override
 	{
 		return tr("%1 (load users and groups from LDAP/AD)").arg(name());
@@ -86,6 +91,7 @@ public:
 	QStringList userGroups(bool queryDomainGroups) override;
 	QStringList groupsOfUser(const QString& username, bool queryDomainGroups) override;
 	QString userGroupSecurityIdentifier(const QString& groupName) override;
+	std::optional<QStringList> tryQueryGroupsOfUser(const QString& username, bool queryDomainGroups) override;
 
 	ConfigurationPage* createConfigurationPage() override;
 
@@ -96,11 +102,13 @@ public Q_SLOTS:
 	CommandLinePluginInterface::RunResult handle_help(const QStringList& arguments);
 
 private:
+	bool isOwnerThread();
 	LdapClient& ldapClient();
 	LdapDirectory& ldapDirectory();
 
 	LdapConfiguration m_configuration;
 	LdapClient* m_ldapClient;
 	LdapDirectory* m_ldapDirectory;
+	QThread* m_ownerThread = nullptr;
 	QMap<QString, QString> m_commands;
 };

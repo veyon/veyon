@@ -64,10 +64,47 @@ NetworkObjectList LdapNetworkObjectDirectory::queryParents(const NetworkObject& 
 
 
 
+std::optional<NetworkObjectList> LdapNetworkObjectDirectory::tryQueryObjects(NetworkObject::Type type,
+																			 NetworkObject::Attribute attribute,
+																			 const QVariant& value)
+{
+	m_ldapDirectory.client().resetQueryStatus();
+
+	const auto objects = queryObjects(type, attribute, value);
+	if (m_ldapDirectory.client().hasQueryFailed())
+	{
+		vWarning() << "LDAP query for objects failed";
+		return {};
+	}
+
+	return objects;
+}
+
+
+
+std::optional<NetworkObjectList> LdapNetworkObjectDirectory::tryQueryParents(const NetworkObject& child)
+{
+	m_ldapDirectory.client().resetQueryStatus();
+
+	const auto parents = queryParents(child);
+	if (m_ldapDirectory.client().hasQueryFailed())
+	{
+		vWarning() << "LDAP query for parents failed";
+		return {};
+	}
+
+	return parents;
+}
+
+
+
 void LdapNetworkObjectDirectory::update()
 {
+	m_ldapDirectory.client().resetQueryStatus();
+
 	updateObjects(rootObject());
 
+	setUpdateFailed(m_ldapDirectory.client().hasQueryFailed());
 	setObjectPopulated(rootObject());
 }
 
@@ -85,8 +122,11 @@ void LdapNetworkObjectDirectory::fetchObjects(const NetworkObject& parent)
 	}
 	else
 	{
+		m_ldapDirectory.client().resetQueryStatus();
+
 		updateObjects(parent);
 
+		setUpdateFailed(m_ldapDirectory.client().hasQueryFailed());
 		setObjectPopulated(parent);
 	}
 }
@@ -159,8 +199,6 @@ NetworkObjectList LdapNetworkObjectDirectory::queryLocations(NetworkObject::Attr
 		locationObjects.append(NetworkObject(NetworkObject::Type::Location, location));
 	}
 
-	qCritical() << name << locations;
-
 	return locationObjects;
 }
 
@@ -168,40 +206,47 @@ NetworkObjectList LdapNetworkObjectDirectory::queryLocations(NetworkObject::Attr
 
 NetworkObjectList LdapNetworkObjectDirectory::queryHosts(NetworkObject::Attribute attribute, const QVariant& value)
 {
-	QStringList computers;
+	QString filterAttribute;
+	QString filterValue;
 
 	switch (attribute)
 	{
 	case NetworkObject::Attribute::None:
-		computers = m_ldapDirectory.computersByHostName({});
+		filterAttribute = m_ldapDirectory.computerHostNameAttribute();
 		break;
 
 	case NetworkObject::Attribute::Name:
-		computers = m_ldapDirectory.computersByDisplayName(value.toString());
+		filterAttribute = m_ldapDirectory.computerDisplayNameAttribute();
+		filterValue = value.toString();
 		break;
 
 	case NetworkObject::Attribute::HostAddress:
-	{
-		const auto hostName = m_ldapDirectory.hostToLdapFormat(value.toString());
-		if (hostName.isEmpty())
+		filterAttribute = m_ldapDirectory.computerHostNameAttribute();
+		filterValue = m_hostNameResolutionEnabled ? m_ldapDirectory.hostToLdapFormat(value.toString()) : m_ldapDirectory.hostNameToLdapFormat(value.toString());
+		if (filterValue.isEmpty())
 		{
 			return {};
 		}
-		computers = m_ldapDirectory.computersByHostName(hostName);
 		break;
-	}
 
 	default:
 		vCritical() << "Can't query hosts by attribute" << attribute;
 		return {};
 	}
 
+	// one search with all attributes instead of one search per computer
+	const auto computerAttributes = this->computerAttributes(&m_ldapDirectory);
+	const auto computers = m_ldapDirectory.client().queryObjects(m_ldapDirectory.computersDn(), computerAttributes,
+																 LdapClient::constructQueryFilter(filterAttribute, filterValue,
+																								  m_ldapDirectory.computersFilter()),
+																 m_ldapDirectory.computerSearchScope());
+
 	NetworkObjectList hostObjects;
 	hostObjects.reserve(computers.size());
 
-	for (const auto& computer : std::as_const(computers))
+	for (auto it = computers.constBegin(), end = computers.constEnd(); it != end; ++it)
 	{
-		const auto hostObject = computerToObject(&m_ldapDirectory, computer);
+		const auto hostObject = computerToObject(&m_ldapDirectory, it.key(), it.value());
 		if (hostObject.isValid())
 		{
 			hostObjects.append(hostObject);
@@ -292,36 +337,51 @@ void LdapNetworkObjectDirectory::updateComputers(const NetworkObject& parent)
 
 NetworkObject LdapNetworkObjectDirectory::computerToObject(LdapDirectory* directory, const QString& computerDn)
 {
-	const auto displayNameAttribute = directory->computerDisplayNameAttribute();
-
-	auto hostNameAttribute = directory->computerHostNameAttribute();
-	if (hostNameAttribute.isEmpty())
-	{
-		hostNameAttribute = LdapClient::cn();
-	}
-
-	QStringList computerAttributes{displayNameAttribute, hostNameAttribute};
-
-	auto macAddressAttribute = directory->computerMacAddressAttribute();
-	if (macAddressAttribute.isEmpty() == false)
-	{
-		computerAttributes.append(macAddressAttribute);
-	}
-
-	computerAttributes.removeDuplicates();
-
-	const auto computers = directory->client().queryObjects(computerDn, computerAttributes,
+	const auto computers = directory->client().queryObjects(computerDn, computerAttributes(directory),
 															directory->computersFilter(), LdapClient::Scope::Base);
 	if (computers.isEmpty() == false)
 	{
-		const auto& computerDn = computers.firstKey();
-		const auto& computer = computers.first();
-		const auto displayName = computer[displayNameAttribute].value(0);
-		const auto hostName = computer[hostNameAttribute].value(0);
-		const auto macAddress = (macAddressAttribute.isEmpty() == false) ? computer[macAddressAttribute].value(0) : QString();
-
-		return NetworkObject{NetworkObject::Type::Host, displayName, hostName, macAddress, computerDn};
+		return computerToObject(directory, computers.firstKey(), computers.first());
 	}
 
 	return NetworkObject{NetworkObject::Type::None};
+}
+
+
+
+NetworkObject LdapNetworkObjectDirectory::computerToObject(LdapDirectory* directory, const QString& computerDn,
+														   const QMap<QString, QStringList>& attributes)
+{
+	const auto macAddressAttribute = directory->computerMacAddressAttribute();
+
+	return NetworkObject{NetworkObject::Type::Host,
+						 attributes.value(directory->computerDisplayNameAttribute()).value(0),
+						 attributes.value(computerHostNameAttribute(directory)).value(0),
+						 macAddressAttribute.isEmpty() ? QString() : attributes.value(macAddressAttribute).value(0),
+						 computerDn};
+}
+
+
+
+QString LdapNetworkObjectDirectory::computerHostNameAttribute(LdapDirectory* directory)
+{
+	const auto hostNameAttribute = directory->computerHostNameAttribute();
+	return hostNameAttribute.isEmpty() ? LdapClient::cn() : hostNameAttribute;
+}
+
+
+
+QStringList LdapNetworkObjectDirectory::computerAttributes(LdapDirectory* directory)
+{
+	QStringList attributes{directory->computerDisplayNameAttribute(), computerHostNameAttribute(directory)};
+
+	const auto macAddressAttribute = directory->computerMacAddressAttribute();
+	if (macAddressAttribute.isEmpty() == false)
+	{
+		attributes.append(macAddressAttribute);
+	}
+
+	attributes.removeDuplicates();
+
+	return attributes;
 }

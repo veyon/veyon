@@ -60,6 +60,8 @@ public:
 	QStringList computerLocationEntries(const QString& locationName);
 
 	QString hostToLdapFormat(const QString& host);
+	// without name resolution: host names only (no IP addresses), e.g. sent by a client
+	QString hostNameToLdapFormat(const QString& hostName) const;
 	QString computerObjectFromHost(const QString& host);
 
 	const QString& computersFilter() const
@@ -102,8 +104,9 @@ public:
 		return m_mapContainerStructureToLocations;
 	}
 
-private:
 	LdapClient::Scope computerSearchScope() const;
+
+private:
 
 	const LdapConfiguration& m_configuration;
 	LdapClient m_client;

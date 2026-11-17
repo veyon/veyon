@@ -1,6 +1,8 @@
 // SPDX-FileCopyrightText: 2019-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: LGPL-2.0-or-later
 
+#include <QThread>
+
 #include "CommandLineIO.h"
 #include "ConfigurationManager.h"
 #include "LdapConfigurationPage.h"
@@ -87,13 +89,20 @@ QString LdapPlugin::commandHelp(const QString& command) const
 
 NetworkObjectDirectory* LdapPlugin::createNetworkObjectDirectory(QObject* parent)
 {
-	return new LdapNetworkObjectDirectory(m_configuration, parent);
+	auto directory = new LdapNetworkObjectDirectory(m_configuration, parent);
+	directory->setHostNameResolutionEnabled(VeyonCore::component() != VeyonCore::Component::Service);
+	return directory;
 }
 
 
 
 void LdapPlugin::reloadConfiguration()
 {
+	if (m_ldapDirectory && isOwnerThread() == false)
+	{
+		return;
+	}
+
 	delete m_ldapDirectory;
 	m_ldapDirectory = new LdapDirectory(m_configuration);
 }
@@ -104,6 +113,11 @@ QStringList LdapPlugin::userGroups(bool queryDomainGroups)
 {
 	Q_UNUSED(queryDomainGroups);
 
+	if (isOwnerThread() == false)
+	{
+		return {};
+	}
+
 	return LdapClient::stripBaseDn(ldapDirectory().userGroups(), ldapClient().baseDn());
 }
 
@@ -112,6 +126,11 @@ QStringList LdapPlugin::userGroups(bool queryDomainGroups)
 QStringList LdapPlugin::groupsOfUser(const QString& username, bool queryDomainGroups)
 {
 	Q_UNUSED(queryDomainGroups);
+
+	if (isOwnerThread() == false)
+	{
+		return {};
+	}
 
 	const auto strippedUsername = VeyonCore::stripDomain(username);
 
@@ -134,6 +153,59 @@ QString LdapPlugin::userGroupSecurityIdentifier(const QString& groupName)
 	vWarning() << "resolving security identifiers from LDAP groups not supported";
 
 	return {};
+}
+
+
+
+std::optional<QStringList> LdapPlugin::tryQueryGroupsOfUser(const QString& username, bool queryDomainGroups)
+{
+	if (isOwnerThread() == false)
+	{
+		return {};
+	}
+
+	ldapDirectory().client().resetQueryStatus();
+	ldapClient().resetQueryStatus();
+
+	const auto groups = groupsOfUser(username, queryDomainGroups);
+
+	// a failed, timed out or truncated query must not be taken as "member of no group"
+	if (ldapDirectory().client().hasQueryFailed() || ldapClient().hasQueryFailed())
+	{
+		vWarning() << "LDAP query for groups of user failed";
+		return {};
+	}
+
+	return groups;
+}
+
+
+
+bool LdapPlugin::requiresSecrets() const
+{
+	// only the bind password is a secret: anonymous binds need no broker
+	return m_configuration.useBindCredentials();
+}
+
+
+
+bool LdapPlugin::isOwnerThread()
+{
+	// the LDAP objects are not thread-safe: the plugin instance is shared by everything in the
+	// process, so it must only be used by one thread (in veyon-service the directory worker)
+	if (m_ownerThread == nullptr)
+	{
+		m_ownerThread = QThread::currentThread();
+	}
+
+	if (m_ownerThread != QThread::currentThread())
+	{
+		vCritical() << "LDAP user groups backend used from a second thread - refusing";
+		Q_ASSERT(m_ownerThread == QThread::currentThread());
+		return false;
+	}
+
+	return true;
 }
 
 

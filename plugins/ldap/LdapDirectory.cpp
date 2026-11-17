@@ -1,6 +1,8 @@
 // SPDX-FileCopyrightText: 2019-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: LGPL-2.0-or-later
 
+#include <QHostAddress>
+
 #include "HostAddress.h"
 #include "LdapConfiguration.h"
 #include "LdapDirectory.h"
@@ -459,6 +461,25 @@ QString LdapDirectory::hostToLdapFormat(const QString& host)
 	}
 
 	return HostAddress(host).convert(HostAddress::Type::HostName);
+}
+
+
+
+QString LdapDirectory::hostNameToLdapFormat(const QString& hostName) const
+{
+	if (hostName.isEmpty() || QHostAddress(hostName).isNull() == false)
+	{
+		vWarning() << "not resolving host address" << hostName;
+		return {};
+	}
+
+	const auto normalizedHostName = hostName.toLower();
+	if (m_computerHostNameAsFQDN)
+	{
+		return normalizedHostName;
+	}
+
+	return normalizedHostName.section(QLatin1Char('.'), 0, 0);
 }
 
 

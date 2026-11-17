@@ -1,10 +1,15 @@
 // SPDX-FileCopyrightText: 2019-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: LGPL-2.0-or-later
 
+#include <QElapsedTimer>
+
+#include "DirectoryBrokerLimits.h"
+#include "DirectoryBrokerService.h"
 #include "LdapClient.h"
 #include "LdapConfiguration.h"
 #include "SecretStore.h"
 #include "ldapconnection.h"
+#include "ldapcontrol.h"
 #include "ldapoperation.h"
 #include "ldapserver.h"
 
@@ -77,89 +82,64 @@ LdapClient::Objects LdapClient::queryObjects(const QString& dn, const QStringLis
 {
 	vDebug() << "called with" << dn << attributes << filter << scope;
 
-	if (m_state != Bound && reconnect() == false)
-	{
-		vCritical() << "not bound to server!";
-		return {};
-	}
-
 	if (dn.isEmpty())
 	{
 		vCritical() << "DN is empty!";
+		m_queryFailed = true;
 		return {};
 	}
 
 	if (attributes.isEmpty())
 	{
 		vCritical() << "attributes empty!";
+		m_queryFailed = true;
 		return {};
 	}
 
 	Objects entries;
 
-	int result = -1;
-	auto id = m_operation->search(KLDAPCore::LdapDN(dn), kldapUrlScope(scope), filter, attributes);
-
-	if (id != -1)
+	auto realAttributeNames = attributes;
+	for (auto& attribute : realAttributeNames)
 	{
-		auto realAttributeNames = attributes;
-		for (auto& attribute : realAttributeNames)
-		{
-			attribute = attribute.toLower();
-		}
+		attribute = attribute.toLower();
+	}
 
-		auto isFirstResult = true;
+	auto isFirstResult = true;
 
-		while ((result = m_operation->waitForResult(id, m_queryTimeout)) == KLDAPCore::LdapOperation::RES_SEARCH_ENTRY)
+	search(dn, scope, filter, attributes, [&](const KLDAPCore::LdapObject& object) {
+		if (isFirstResult)
 		{
-			if (isFirstResult)
+			isFirstResult = false;
+
+			// match attribute name from result with requested attribute name in order
+			// to keep result aggregation below case-insensitive
+			const auto objectAttributes = object.attributes();
+			for (auto it = objectAttributes.constBegin(), end = objectAttributes.constEnd(); it != end; ++it)
 			{
-				isFirstResult = false;
-
-				// match attribute name from result with requested attribute name in order
-				// to keep result aggregation below case-insensitive
-				const auto attributes = m_operation->object().attributes();
-				for (auto it = attributes.constBegin(), end = attributes.constEnd(); it != end; ++it)
+				for (auto& attribute : realAttributeNames)
 				{
-					for (auto& attribute : realAttributeNames)
+					if (QString::compare(it.key().toLower(), attribute, Qt::CaseInsensitive) == 0)
 					{
-						if (QString::compare(it.key().toLower(), attribute, Qt::CaseInsensitive) == 0)
-						{
-							attribute = it.key();
-							break;
-						}
+						attribute = it.key();
+						break;
 					}
 				}
 			}
+		}
 
-			// convert result list from type QList<QByteArray> to QStringList
-			const auto dn = m_operation->object().dn().toString();
-			for (const auto& attribute : realAttributeNames)
+		// convert result list from type QList<QByteArray> to QStringList
+		const auto objectDn = object.dn().toString();
+		for (const auto& attribute : std::as_const(realAttributeNames))
+		{
+			const auto values = object.values(attribute);
+			for (const auto& value : values)
 			{
-				const auto values = m_operation->object().values(attribute);
-				for (const auto& value : values)
-				{
-					entries[dn][attribute] += QString::fromUtf8(value);
-				}
+				entries[objectDn][attribute] += QString::fromUtf8(value);
 			}
 		}
+	});
 
-		vDebug() << "results:" << entries;
-	}
-
-	if (result == -1)
-	{
-		vWarning() << "LDAP search failed with code" << m_connection->ldapErrorCode();
-
-		if (m_state == Bound && m_queryRetry == false)
-		{
-			// close connection and try again
-			m_queryRetry = true;
-			m_state = Disconnected;
-			entries = queryObjects(dn, attributes, filter, scope);
-			m_queryRetry = false;
-		}
-	}
+	vDebug() << "results:" << entries;
 
 	return entries;
 }
@@ -171,78 +151,53 @@ QStringList LdapClient::queryAttributeValues(const QString& dn, const QString& a
 {
 	vDebug() << "called with" << dn << attribute << filter << scope;
 
-	if (m_state != Bound && reconnect() == false)
-	{
-		vCritical() << "not bound to server!";
-		return {};
-	}
-
 	if (dn.isEmpty() && attribute != m_namingContextAttribute &&
 		attribute.contains(QLatin1String("namingcontext"), Qt::CaseInsensitive) == false)
 	{
 		vCritical() << "DN is empty!";
+		m_queryFailed = true;
 		return {};
 	}
 
 	if (attribute.isEmpty())
 	{
 		vCritical() << "attribute is empty!";
+		m_queryFailed = true;
 		return {};
 	}
 
 	QStringList entries;
 
-	int result = -1;
-	int id = m_operation->search(KLDAPCore::LdapDN(dn), kldapUrlScope(scope), filter, QStringList(attribute));
+	bool isFirstResult = true;
+	QString realAttributeName = attribute.toLower();
 
-	if (id != -1)
-	{
-		bool isFirstResult = true;
-		QString realAttributeName = attribute.toLower();
-
-		while ((result = m_operation->waitForResult(id, m_queryTimeout)) == KLDAPCore::LdapOperation::RES_SEARCH_ENTRY)
+	search(dn, scope, filter, QStringList(attribute), [&](const KLDAPCore::LdapObject& object) {
+		if (isFirstResult)
 		{
-			if (isFirstResult)
-			{
-				isFirstResult = false;
+			isFirstResult = false;
 
-				// match attribute name from result with requested attribute name in order
-				// to keep result aggregation below case-insensitive
-				const auto attributes = m_operation->object().attributes();
-				for (auto it = attributes.constBegin(), end = attributes.constEnd(); it != end; ++it)
+			// match attribute name from result with requested attribute name in order
+			// to keep result aggregation below case-insensitive
+			const auto attributes = object.attributes();
+			for (auto it = attributes.constBegin(), end = attributes.constEnd(); it != end; ++it)
+			{
+				if (it.key().toLower() == realAttributeName)
 				{
-					if (it.key().toLower() == realAttributeName)
-					{
-						realAttributeName = it.key();
-						break;
-					}
+					realAttributeName = it.key();
+					break;
 				}
 			}
-
-			// convert result list from type QList<QByteArray> to QStringList
-			const auto values = m_operation->object().values(realAttributeName);
-			for (const auto& value : values)
-			{
-				entries += QString::fromUtf8(value);
-			}
 		}
 
-		vDebug() << "results:" << entries;
-	}
-
-	if (result == -1)
-	{
-		vWarning() << "LDAP search failed with code" << m_connection->ldapErrorCode();
-
-		if (m_state == Bound && m_queryRetry == false)
+		// convert result list from type QList<QByteArray> to QStringList
+		const auto values = object.values(realAttributeName);
+		for (const auto& value : values)
 		{
-			// close connection and try again
-			m_queryRetry = true;
-			m_state = Disconnected;
-			entries = queryAttributeValues(dn, attribute, filter, scope);
-			m_queryRetry = false;
+			entries += QString::fromUtf8(value);
 		}
-	}
+	});
+
+	vDebug() << "results:" << entries;
 
 	return entries;
 }
@@ -253,47 +208,217 @@ QStringList LdapClient::queryDistinguishedNames(const QString& dn, const QString
 {
 	vDebug() << dn << filter << scope;
 
-	if (m_state != Bound && reconnect() == false)
-	{
-		vCritical() << "not bound to server!";
-		return {};
-	}
-
 	if (dn.isEmpty())
 	{
 		vCritical() << "DN is empty!";
+		m_queryFailed = true;
 		return {};
 	}
 
 	QStringList distinguishedNames;
 
-	int result = -1;
-	int id = m_operation->search(KLDAPCore::LdapDN(dn), kldapUrlScope(scope), filter, QStringList());
+	search(dn, scope, filter, QStringList(), [&](const KLDAPCore::LdapObject& object) {
+		distinguishedNames += object.dn().toString();
+	});
 
-	if (id != -1)
-	{
-		while ((result = m_operation->waitForResult(id, m_queryTimeout)) == KLDAPCore::LdapOperation::RES_SEARCH_ENTRY)
-		{
-			distinguishedNames += m_operation->object().dn().toString();
-		}
-		vDebug() << "results" << distinguishedNames;
-	}
-
-	if (result == -1)
-	{
-		vWarning() << "LDAP search failed with code" << m_connection->ldapErrorCode();
-
-		if (m_state == Bound && m_queryRetry == false)
-		{
-			// close connection and try again
-			m_queryRetry = true;
-			m_state = Disconnected;
-			distinguishedNames = queryDistinguishedNames(dn, filter, scope);
-			m_queryRetry = false;
-		}
-	}
+	vDebug() << "results" << distinguishedNames;
 
 	return distinguishedNames;
+}
+
+
+
+bool LdapClient::search(const QString& dn, Scope scope, const QString& filter, const QStringList& attributes,
+						const EntryHandler& handleEntry)
+{
+	QList<KLDAPCore::LdapObject> entries;
+	auto result = SearchResult::ConnectionError;
+
+	// one retry with a new connection if the connection was lost
+	for (int attempt = 0; attempt < 2 && result == SearchResult::ConnectionError; ++attempt)
+	{
+		entries.clear();
+
+		// reconnecting and binding cannot be aborted, so do not start it for a cancelled request
+		if (DirectoryBrokerService::isCurrentRequestCancelled())
+		{
+			result = SearchResult::Aborted;
+			break;
+		}
+
+		if (m_state != Bound && reconnect() == false)
+		{
+			vCritical() << "not bound to server!";
+			break;
+		}
+
+		result = runSearch(dn, scope, filter, attributes, entries);
+		if (result == SearchResult::ConnectionError)
+		{
+			vWarning() << "LDAP search failed with code" << m_connection->ldapErrorCode() << "- reconnecting";
+			m_state = Disconnected;
+		}
+		else if (result == SearchResult::Timeout)
+		{
+			// the connection may be dead without the socket noticing it (silently dropped by a
+			// firewall): use a new one for the next query instead of waiting on this one again
+			m_state = Disconnected;
+		}
+	}
+
+	// partial results (e.g. size limit exceeded) are passed on, but the query counts as failed
+	if (result == SearchResult::Success || result == SearchResult::ResultError)
+	{
+		for (const auto& entry : std::as_const(entries))
+		{
+			handleEntry(entry);
+		}
+	}
+
+	if (result != SearchResult::Success)
+	{
+		m_queryFailed = true;
+		return false;
+	}
+
+	return true;
+}
+
+
+
+LdapClient::SearchResult LdapClient::runSearch(const QString& dn, Scope scope, const QString& filter,
+											   const QStringList& attributes, QList<KLDAPCore::LdapObject>& entries)
+{
+	QElapsedTimer searchTimer;
+	searchTimer.start();
+
+	// simple paged results (RFC 2696, non-critical: servers without support return all entries at
+	// once), as AD returns at most MaxPageSize (default 1000) entries per search otherwise
+	const auto savedControls = m_operation->serverControls();
+	QByteArray cookie;
+
+	for (;;)
+	{
+		if (DirectoryBrokerService::isCurrentRequestCancelled())
+		{
+			return SearchResult::Aborted;
+		}
+
+		auto controls = savedControls;
+		KLDAPCore::LdapControl::insert(controls, KLDAPCore::LdapControl::createPageControl(PageSize, cookie));
+		m_operation->setServerControls(controls);
+		const auto id = m_operation->search(KLDAPCore::LdapDN(dn), kldapUrlScope(scope), filter, attributes);
+		m_operation->setServerControls(savedControls);
+
+		if (id == -1)
+		{
+			return SearchResult::ConnectionError;
+		}
+
+		const auto result = receiveSearchResults(id, searchTimer, entries);
+		if (result != SearchResult::Success)
+		{
+			return result;
+		}
+
+		cookie.clear();
+		const auto resultControls = m_operation->controls();
+		for (const auto& control : resultControls)
+		{
+			if (control.parsePageControl(cookie) != -1)
+			{
+				break;
+			}
+		}
+
+		if (cookie.isEmpty())
+		{
+			return SearchResult::Success;
+		}
+	}
+}
+
+
+
+LdapClient::SearchResult LdapClient::receiveSearchResults(int id, const QElapsedTimer& searchTimer,
+														  QList<KLDAPCore::LdapObject>& entries)
+{
+	// the query timeout applies to the time without any response from the server, the whole search
+	// (all pages) is limited by MaximumSearchDuration
+	QElapsedTimer inactivityTimer;
+	inactivityTimer.start();
+
+	for (;;)
+	{
+		if (DirectoryBrokerService::isCurrentRequestCancelled())
+		{
+			vWarning() << "aborting LDAP search of cancelled request";
+			(void)m_operation->abandon(id);
+			return SearchResult::Aborted;
+		}
+
+		const auto remainingTime = qMin<qint64>(m_queryTimeout - inactivityTimer.elapsed(),
+												MaximumSearchDuration - searchTimer.elapsed());
+		if (remainingTime <= 0)
+		{
+			vWarning() << "LDAP search timed out";
+			(void)m_operation->abandon(id);
+			return SearchResult::Timeout;
+		}
+
+		const auto waitTime = int(qMin<qint64>(remainingTime, AbortCheckInterval));
+		QElapsedTimer waitTimer;
+		waitTimer.start();
+
+		const auto result = m_operation->waitForResult(id, waitTime);
+		switch (result)
+		{
+		case KLDAPCore::LdapOperation::RES_SEARCH_ENTRY:
+			inactivityTimer.restart();
+			entries.append(m_operation->object());
+			if (entries.size() > DirectoryBrokerLimits::MaximumResultItems)
+			{
+				vWarning() << "LDAP search returned too many entries";
+				(void)m_operation->abandon(id);
+				return SearchResult::ResultError;
+			}
+			break;
+		case 0:
+			// returned early: a search reference (referrals are not chased), else no response
+			// within this interval
+			if (waitTimer.elapsed() < waitTime)
+			{
+				inactivityTimer.restart();
+			}
+			break;
+		case KLDAPCore::LdapOperation::RES_SEARCH_RESULT:
+		{
+			// libldap stores the result code of the parsed search result
+			const auto resultCode = m_connection->ldapErrorCode();
+			if (resultCode == LDAP_SUCCESS)
+			{
+				return SearchResult::Success;
+			}
+			if (resultCode == LDAP_SIZELIMIT_EXCEEDED)
+			{
+				vWarning() << "LDAP search exceeded the size limit of the server (e.g. AD's MaxPageSize "
+							  "without support for paged results) or of Veyon ("
+						   << DirectoryBrokerLimits::MaximumResultItems << "entries)";
+			}
+			else
+			{
+				vWarning() << "LDAP search completed with result code" << resultCode << errorString();
+			}
+			return SearchResult::ResultError;
+		}
+		case -1:
+			return SearchResult::ConnectionError;
+		default:
+			vWarning() << "unexpected LDAP result type" << result;
+			(void)m_operation->abandon(id);
+			return SearchResult::ResultError;
+		}
+	}
 }
 
 
@@ -445,19 +570,9 @@ bool LdapClient::connectAndBind(const QUrl& url)
 		if (m_configuration.useBindCredentials())
 		{
 			m_server->setBindDn(m_configuration.bindDn());
-			// available in privileged components only (service, elevated CLI/configurator);
-			// veyon-server and the master use the directory broker instead (04-directory-broker.md)
-			const auto bindPassword = SecretStore::read(m_configuration.bindPassword().key());
-			// a simple bind with a DN but an empty password is an unauthenticated bind (RFC 4513
-			// §5.1.2) which many servers accept anonymously: never fall back to it
-			if (bindPassword.has_value() == false || bindPassword->isEmpty())
-			{
-				vCritical() << "LDAP bind password not available in this process - not connecting";
-				m_bindCredentialsUnavailable = true;
-				return false;
-			}
-			m_server->setPassword(QString::fromUtf8(bindPassword->constData(), bindPassword->size()));
 			m_server->setAuth(KLDAPCore::LdapServer::Simple);
+			// without the password reconnect() refuses to connect (and tries again later)
+			(void)loadBindPassword();
 		}
 		else
 		{
@@ -484,11 +599,13 @@ bool LdapClient::connectAndBind(const QUrl& url)
 		initTLS();
 	}
 
-	if (reconnect() == false)
-	{
-		return false;
-	}
+	// server side limits and the timeout of synchronous operations (bind)
+	const auto timeLimit = qMax(1, (m_queryTimeout + 999) / 1000);
+	m_server->setTimeout(timeLimit);
+	m_server->setTimeLimit(timeLimit);
+	m_server->setSizeLimit(DirectoryBrokerLimits::MaximumResultItems);
 
+	// also needed if connecting fails now and succeeds later
 	m_namingContextAttribute = m_configuration.namingContextAttribute();
 
 	if (m_namingContextAttribute.isEmpty())
@@ -496,6 +613,30 @@ bool LdapClient::connectAndBind(const QUrl& url)
 		// fallback to AD default value
 		m_namingContextAttribute = QStringLiteral("defaultNamingContext");
 	}
+
+	return reconnect();
+}
+
+
+
+bool LdapClient::loadBindPassword()
+{
+	// available in privileged components only (service, elevated CLI/configurator); veyon-server
+	// and the master use the directory broker instead (04-directory-broker.md)
+	const auto bindPassword = SecretStore::read(m_configuration.bindPassword().key());
+
+	// a simple bind with a DN but an empty password is an unauthenticated bind (RFC 4513 §5.1.2)
+	// which many servers accept anonymously: never fall back to it
+	if (bindPassword.has_value() == false || bindPassword->isEmpty())
+	{
+		vCritical() << "LDAP bind password not available in this process - not connecting";
+		m_bindCredentialsUnavailable = true;
+		m_bindCredentialsRetryTimer.start();
+		return false;
+	}
+
+	m_server->setPassword(QString::fromUtf8(bindPassword->constData(), bindPassword->size()));
+	m_bindCredentialsUnavailable = false;
 
 	return true;
 }
@@ -530,7 +671,10 @@ bool LdapClient::reconnect()
 	m_connection->close();
 	m_state = Disconnected;
 
-	if (m_bindCredentialsUnavailable)
+	// the bind password may become available later (e.g. after an import), but never fall back to
+	// connecting without it
+	if (m_bindCredentialsUnavailable &&
+		(m_bindCredentialsRetryTimer.hasExpired(m_bindCredentialsRetryInterval) == false || loadBindPassword() == false))
 	{
 		return false;
 	}
@@ -548,6 +692,39 @@ bool LdapClient::reconnect()
 	{
 		vWarning() << "LDAP connect failed:" << errorString();
 		return false;
+	}
+
+	const auto ldap = static_cast<LDAP*>(m_connection->handle());
+
+	// never chase referrals/search references: libldap would follow them anonymously to hosts
+	// named by the server (from the root service), and AD answers such chased searches (e.g.
+	// DomainDnsZones below the domain root) with operationsError, failing the whole query
+	if (ldap_set_option(ldap, LDAP_OPT_REFERRALS, LDAP_OPT_OFF) != LDAP_OPT_SUCCESS)
+	{
+		vWarning() << "failed to disable LDAP referral chasing";
+	}
+
+#if defined(LDAP_OPT_X_KEEPALIVE_IDLE) && defined(LDAP_OPT_X_KEEPALIVE_PROBES) && defined(LDAP_OPT_X_KEEPALIVE_INTERVAL)
+	// detect silently dropped connections
+	const int keepAliveIdle = KeepAliveIdle;
+	const int keepAliveProbes = KeepAliveProbes;
+	const int keepAliveInterval = KeepAliveInterval;
+	if (ldap_set_option(ldap, LDAP_OPT_X_KEEPALIVE_IDLE, &keepAliveIdle) != LDAP_OPT_SUCCESS ||
+		ldap_set_option(ldap, LDAP_OPT_X_KEEPALIVE_PROBES, &keepAliveProbes) != LDAP_OPT_SUCCESS ||
+		ldap_set_option(ldap, LDAP_OPT_X_KEEPALIVE_INTERVAL, &keepAliveInterval) != LDAP_OPT_SUCCESS)
+	{
+		vWarning() << "failed to set LDAP keep-alive options";
+	}
+#endif
+
+	// libldap connects with the first operation (bind): never wait for an unreachable server
+	// longer than for a query
+	struct timeval networkTimeout{};
+	networkTimeout.tv_sec = m_queryTimeout / 1000;
+	networkTimeout.tv_usec = (m_queryTimeout % 1000) * 1000;
+	if (ldap_set_option(ldap, LDAP_OPT_NETWORK_TIMEOUT, &networkTimeout) != LDAP_OPT_SUCCESS)
+	{
+		vWarning() << "failed to set LDAP network timeout";
 	}
 
 	m_state = Connected;

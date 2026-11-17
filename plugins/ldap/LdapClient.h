@@ -3,13 +3,17 @@
 
 #pragma once
 
+#include <QElapsedTimer>
 #include <QObject>
 #include <QUrl>
 
 #include "LdapCommon.h"
 
+#include <functional>
+
 namespace KLDAPCore {
 class LdapConnection;
+class LdapObject;
 class LdapOperation;
 class LdapServer;
 }
@@ -66,6 +70,26 @@ public:
 	QString errorString() const;
 	QString errorDescription() const;
 
+	// whether any query since resetQueryStatus() failed: not connected, connection lost (also
+	// after the retry), timed out, aborted (cancelled broker request) or completed with a result
+	// code other than LDAP_SUCCESS (e.g. size limit exceeded, busy, insufficient access, no such
+	// object); results of such queries must not be used for access control decisions
+	void resetQueryStatus()
+	{
+		m_queryFailed = false;
+	}
+
+	bool hasQueryFailed() const
+	{
+		return m_queryFailed;
+	}
+
+	// tests
+	void setBindCredentialsRetryInterval(int interval)
+	{
+		m_bindCredentialsRetryInterval = interval;
+	}
+
 	Objects queryObjects(const QString& dn, const QStringList& attributes, const QString& filter, Scope scope);
 
 	QStringList queryAttributeValues(const QString& dn, const QString& attribute,
@@ -105,9 +129,34 @@ public:
 
 	static constexpr int DefaultQueryTimeout = 3000;
 
+	static constexpr int DefaultBindCredentialsRetryInterval = 30000;
+
 private:
 	static constexpr auto LdapLibraryDebugAny = -1;
+	static constexpr int AbortCheckInterval = 250;
+	static constexpr int MaximumSearchDuration = 30000;
+	static constexpr int PageSize = 500;
+	static constexpr int KeepAliveIdle = 60;
+	static constexpr int KeepAliveProbes = 3;
+	static constexpr int KeepAliveInterval = 10;
 
+	enum class SearchResult {
+		Success,
+		ConnectionError,
+		ResultError,
+		Timeout,
+		Aborted,
+	};
+
+	using EntryHandler = std::function<void(const KLDAPCore::LdapObject&)>;
+
+	bool search(const QString& dn, Scope scope, const QString& filter, const QStringList& attributes,
+				const EntryHandler& handleEntry);
+	SearchResult runSearch(const QString& dn, Scope scope, const QString& filter, const QStringList& attributes,
+						   QList<KLDAPCore::LdapObject>& entries);
+	SearchResult receiveSearchResults(int id, const QElapsedTimer& searchTimer, QList<KLDAPCore::LdapObject>& entries);
+
+	bool loadBindPassword();
 	bool reconnect();
 	bool connectAndBind(const QUrl& url);
 	void initTLS();
@@ -126,8 +175,10 @@ private:
 
 	State m_state = Disconnected;
 	bool m_bindCredentialsUnavailable = false;
+	QElapsedTimer m_bindCredentialsRetryTimer;
+	int m_bindCredentialsRetryInterval = DefaultBindCredentialsRetryInterval;
 
-	bool m_queryRetry = false;
+	bool m_queryFailed = false;
 
 	QString m_baseDn;
 	QString m_namingContextAttribute;
