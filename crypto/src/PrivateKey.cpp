@@ -3,7 +3,6 @@
 
 #include "CryptoPrivate.h"
 
-#include <cstring>
 #include <openssl/ec.h>
 #include <openssl/pem.h>
 #include <openssl/rsa.h>
@@ -200,65 +199,20 @@ std::optional<SecureBuffer> PrivateKey::toPkcs8Der() const
 		return std::nullopt;
 	}
 
-	Internal::Pkcs8Ptr keyInfo(EVP_PKEY2PKCS8(d->key.get()));
-	const auto size = keyInfo ? i2d_PKCS8_PRIV_KEY_INFO(keyInfo.get(), nullptr) : 0;
-	if (size <= 0)
-	{
-		Internal::setOpenSslError(Operation);
-		return std::nullopt;
-	}
-
-	// encode directly into the secure buffer (no intermediate copy)
-	SecureBuffer der(size);
-	auto output = der.bytes();
-	if (i2d_PKCS8_PRIV_KEY_INFO(keyInfo.get(), &output) != size)
-	{
-		Internal::setOpenSslError(Operation);
-		return std::nullopt;
-	}
-
-	return der;
+	return Internal::privateKeyToPkcs8Der(Operation, d->key.get());
 }
 
 
 
 std::optional<SecureBuffer> PrivateKey::toPkcs8Pem() const
 {
-	static constexpr auto Operation = "PrivateKey::toPkcs8Pem";
-	static constexpr int LineLength = 64;
-	static constexpr char Header[] = "-----BEGIN PRIVATE KEY-----\n";
-	static constexpr char Footer[] = "-----END PRIVATE KEY-----\n";
-
 	const auto der = toPkcs8Der();
 	if (der.has_value() == false)
 	{
 		return std::nullopt;
 	}
 
-	// RFC 7468 encoding done here so that no key material passes through OpenSSL's PEM buffers
-	SecureBuffer base64(4 * ((der->size() + 2) / 3) + 1);
-	const auto base64Size = EVP_EncodeBlock(base64.bytes(), der->bytes(), int(der->size()));
-	if (base64Size <= 0)
-	{
-		Internal::setOpenSslError(Operation);
-		return std::nullopt;
-	}
-
-	const auto lineCount = (base64Size + LineLength - 1) / LineLength;
-	SecureBuffer pem(qsizetype(sizeof(Header) - 1 + base64Size + lineCount + sizeof(Footer) - 1));
-	auto output = pem.data();
-	std::memcpy(output, Header, sizeof(Header) - 1);
-	output += sizeof(Header) - 1;
-	for (int offset = 0; offset < base64Size; offset += LineLength)
-	{
-		const auto chunk = qMin(LineLength, base64Size - offset);
-		std::memcpy(output, base64.constData() + offset, size_t(chunk));
-		output += chunk;
-		*output++ = '\n';
-	}
-	std::memcpy(output, Footer, sizeof(Footer) - 1);
-
-	return pem;
+	return Internal::pemEncode("PrivateKey::toPkcs8Pem", *der, "PRIVATE KEY");
 }
 
 

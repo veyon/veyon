@@ -14,6 +14,7 @@
 #include <openssl/evp.h>
 #include <openssl/x509.h>
 #include <openssl/x509v3.h>
+#include <optional>
 
 // Internal header of the VeyonCrypto layer: never include it from a public header. It is shared by
 // the VeyonCrypto sources in veyon-crypto and by the separate veyon-crypto-authority library.
@@ -91,6 +92,14 @@ enum class PemReadResult {
 // the encoding inside the BIT STRING (e.g. the RSAPublicKey) is canonical DER; EC keys keep the
 // point form of their encoding
 [[nodiscard]] VEYON_CRYPTO_EXPORT bool isCanonicalSubjectPublicKeyInfo(EVP_PKEY* key, ByteView subjectPublicKeyInfo);
+
+// unencrypted PKCS#8 PrivateKeyInfo of a private key, encoded directly into secure memory
+[[nodiscard]] VEYON_CRYPTO_EXPORT std::optional<SecureBuffer> privateKeyToPkcs8Der(const char* operation, EVP_PKEY* key);
+
+// RFC 7468 encoding (64-character lines, LF line endings, as written by PEM_write_bio_*()) of
+// secret DER data with the given label, done here so that no key material passes through
+// OpenSSL's PEM buffers
+[[nodiscard]] VEYON_CRYPTO_EXPORT std::optional<SecureBuffer> pemEncode(const char* operation, ByteView der, const char* label);
 
 // the key policy of VeyonCrypto: EC P-256 (named curve), Ed25519 or RSA with
 // PrivateKey::MinimumRsaBits..MaximumRsaBits; everything else is KeyAlgorithm::Invalid

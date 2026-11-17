@@ -156,6 +156,70 @@ bool isCanonicalSubjectPublicKeyInfo(EVP_PKEY* key, ByteView subjectPublicKeyInf
 
 
 
+std::optional<SecureBuffer> privateKeyToPkcs8Der(const char* operation, EVP_PKEY* key)
+{
+	Pkcs8Ptr keyInfo(key ? EVP_PKEY2PKCS8(key) : nullptr);
+	const auto size = keyInfo ? i2d_PKCS8_PRIV_KEY_INFO(keyInfo.get(), nullptr) : 0;
+	if (size <= 0)
+	{
+		setOpenSslError(operation);
+		return std::nullopt;
+	}
+
+	// encode directly into the secure buffer (no intermediate copy)
+	SecureBuffer der(size);
+	auto output = der.bytes();
+	if (der.size() != size || i2d_PKCS8_PRIV_KEY_INFO(keyInfo.get(), &output) != size)
+	{
+		setOpenSslError(operation);
+		return std::nullopt;
+	}
+
+	return der;
+}
+
+
+
+std::optional<SecureBuffer> pemEncode(const char* operation, ByteView der, const char* label)
+{
+	static constexpr int LineLength = 64;
+
+	const QByteArray header = QByteArrayLiteral("-----BEGIN ") + QByteArray(label) + QByteArrayLiteral("-----\n");
+	const QByteArray footer = QByteArrayLiteral("-----END ") + QByteArray(label) + QByteArrayLiteral("-----\n");
+
+	if (der.isEmpty() || der.size() > SecureBuffer::MaximumSize / 2)
+	{
+		setError(operation, "invalid size");
+		return std::nullopt;
+	}
+
+	SecureBuffer base64(4 * ((der.size() + 2) / 3) + 1);
+	const auto base64Size = EVP_EncodeBlock(base64.bytes(), der.bytes(), int(der.size()));
+	if (base64Size <= 0)
+	{
+		setOpenSslError(operation);
+		return std::nullopt;
+	}
+
+	const auto lineCount = (base64Size + LineLength - 1) / LineLength;
+	SecureBuffer pem(qsizetype(header.size()) + base64Size + lineCount + qsizetype(footer.size()));
+	auto output = pem.data();
+	std::memcpy(output, header.constData(), size_t(header.size()));
+	output += header.size();
+	for (int offset = 0; offset < base64Size; offset += LineLength)
+	{
+		const auto chunk = qMin(LineLength, base64Size - offset);
+		std::memcpy(output, base64.constData() + offset, size_t(chunk));
+		output += chunk;
+		*output++ = '\n';
+	}
+	std::memcpy(output, footer.constData(), size_t(footer.size()));
+
+	return pem;
+}
+
+
+
 static bool isNamedCurveP256(EVP_PKEY* key)
 {
 	// determine the curve from the encoded AlgorithmIdentifier parameters: works identically in
