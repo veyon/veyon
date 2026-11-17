@@ -12,7 +12,8 @@
 #   4. no OpenSSL headers in the public VeyonCrypto headers (pimpl; only the internal headers
 #      OpenSslUtils.h and CryptoPrivate.h may include them)
 #   5. with <base-ref>: no QCA usage in lines added since <base-ref> (DoD 6, new crypto goes
-#      through VeyonCrypto); legacy QCA code may still be changed in place
+#      through VeyonCrypto); legacy QCA code may still be changed in place; exempt are tests/,
+#      CryptoCore and LegacySecretMigration
 #
 # Exit status 1 if any rule is violated.
 
@@ -83,7 +84,10 @@ done < <(git ls-files -- 'core/src/crypto/*.h' | grep -v -E "$INTERNAL_HEADERS|$
 if [ -n "$1" ] ; then
 	while IFS= read -r match ; do
 		fail "new QCA usage (use VeyonCrypto): $match"
-	done < <(git diff --unified=0 "$1" -- '*.c' '*.cpp' '*.h' '*.hpp' 'CMakeLists.txt' '*.cmake' |
+	# exempt: tests (may initialise the legacy crypto library to exercise existing QCA-based code),
+	# the legacy wrapper itself and the migration that decrypts legacy values (03 §4)
+	done < <(git diff --unified=0 "$1" -- '*.c' '*.cpp' '*.h' '*.hpp' 'CMakeLists.txt' '*.cmake' ':!tests/' \
+				 ':!core/src/CryptoCore.*' ':!core/src/Configuration/LegacySecretMigration.*' |
 				 grep -E '^\+[^+]' | grep -E "$QCA_PATTERN" || true)
 fi
 
