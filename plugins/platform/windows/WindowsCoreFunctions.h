@@ -29,7 +29,6 @@ public:
 	void initNativeLoggingSystem(const QString& appName) override;
 	void writeToNativeLoggingSystem(const QString& message, Logger::LogLevel loglevel) override;
 
-	StandardInputReader* createStandardInputReader(QObject* parent) override;
 
 	void reboot() override;
 	void powerDown(bool installUpdates) override;

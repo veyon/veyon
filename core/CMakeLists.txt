@@ -51,6 +51,20 @@ set(veyoncore_SOURCES
 	src/HashList.h
 	src/HostAddress.cpp
 	src/HostAddress.h
+	src/IpcChannel.cpp
+	src/IpcChannel.h
+	src/IpcClient.cpp
+	src/IpcClient.h
+	src/IpcConnection.cpp
+	src/IpcConnection.h
+	src/IpcEndpointCredentials.cpp
+	src/IpcEndpointCredentials.h
+	src/IpcMessage.cpp
+	src/IpcMessage.h
+	src/IpcProtocol.h
+	src/IpcServer.cpp
+	src/IpcServer.h
+	src/IpcServerPlatform.h
 	src/KeyboardShortcutTrapper.h
 	src/Lockable.h
 	src/LockingPointer.h
@@ -96,7 +110,9 @@ set(veyoncore_SOURCES
 	src/ServiceControl.cpp
 	src/ServiceControl.h
 	src/SocketDevice.h
+	src/StandardInputReader.cpp
 	src/StandardInputReader.h
+	src/StandardInputReaderPlatform.h
 	src/SystemTrayIcon.cpp
 	src/SystemTrayIcon.h
 	src/Toast.cpp
@@ -199,6 +215,21 @@ set(veyoncore_SOURCES
 	src/pki/TrustBundle.cpp
 	src/pki/TrustBundle.h
 	)
+
+# platform parts of core classes (Qt layout, e.g. IpcServer.cpp + IpcServerUnix.cpp / IpcServerWindows.cpp)
+if(VEYON_BUILD_WINDOWS)
+	list(APPEND veyoncore_SOURCES
+		src/IpcConnectionWindows.cpp
+		src/IpcServerWindows.cpp
+		src/StandardInputReaderWindows.cpp
+		)
+else()
+	list(APPEND veyoncore_SOURCES
+		src/IpcConnectionUnix.cpp
+		src/IpcServerUnix.cpp
+		src/StandardInputReaderUnix.cpp
+		)
+endif()
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/builddata.qrc.in ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
 set(core_RESOURCES

@@ -6,13 +6,11 @@
 #include <QWidget>
 #include <qpa/qplatformnativeinterface.h>
 
-#include <iostream>
 #include <shlobj.h>
 #include <userenv.h>
 #include <sddl.h>
 #include <tlhelp32.h>
 
-#include "StandardInputReader.h"
 #include "VeyonConfiguration.h"
 #include "WindowsCoreFunctions.h"
 #include "WindowsPlatformConfiguration.h"
@@ -50,40 +48,6 @@ static bool configureSoftwareSAS(bool enabled)
 
 	return true;
 }
-
-
-class StandardInputReaderThread : public QThread
-{
-public:
-	StandardInputReaderThread(StandardInputReader* reader, QObject* parent) :
-		QThread(parent),
-		m_reader(reader)
-	{
-	}
-
-protected:
-	void run() override
-	{
-		std::ios_base::sync_with_stdio(false);
-
-		while (isInterruptionRequested() == false)
-		{
-			std::string line;
-			if (std::getline(std::cin, line) && m_reader)
-			{
-				m_reader->lineRead(QString::fromStdString(line));
-			}
-			else
-			{
-				vCritical() << "failed to read from stdin or EOF reached";
-			}
-			QThread::msleep(10);
-		}
-	}
-
-private:
-	QPointer<StandardInputReader> m_reader;
-};
 
 
 WindowsCoreFunctions::~WindowsCoreFunctions()
@@ -137,21 +101,6 @@ void WindowsCoreFunctions::writeToNativeLoggingSystem(const QString& message, Lo
 	{
 		m_eventLog->Write(static_cast<WORD>(messageType), toConstWCharArray(message));
 	}
-}
-
-
-
-StandardInputReader* WindowsCoreFunctions::createStandardInputReader(QObject* parent)
-{
-	auto reader = new StandardInputReader(parent);
-	auto thread = new StandardInputReaderThread(reader, parent);
-
-	QObject::connect(reader, &QObject::destroyed, thread, &QThread::requestInterruption);
-	QObject::connect(thread, &QThread::finished, reader, &QThread::deleteLater);
-
-	thread->start();
-
-	return reader;
 }
 
 
