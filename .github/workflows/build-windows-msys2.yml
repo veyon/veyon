@@ -1,15 +1,22 @@
 name: Windows (MSYS2)
 
+# long-running (full MSYS2 build): only for pull requests that are ready for review, or on demand
 on:
-  push:
-    branches: [ "4.12", "wp*", "fix/*" ]
   pull_request:
-    branches: [ "4.12" ]
+    branches: [ "4.12", "main" ]
+    types: [ opened, reopened, synchronize, ready_for_review ]
   workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
+    # draft pull requests are skipped
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: windows-2022
+    timeout-minutes: 45
     defaults:
       run:
         shell: msys2 {0}
