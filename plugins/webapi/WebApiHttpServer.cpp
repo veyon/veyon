@@ -14,6 +14,7 @@
 
 #include "Filesystem.h"
 #include "HostAddress.h"
+#include "Logger.h"
 #include "ProcessHelper.h"
 #include "WebApiConfiguration.h"
 #include "WebApiController.h"
@@ -43,6 +44,15 @@ static inline QByteArray toJson(const QHttpHeaders& headers)
 	return toJson(headers.toListOfPairs());
 }
 #endif
+
+
+
+// request bodies carry credentials and feature arguments, e.g. the UserLogin password (05-tls.md §7a)
+static QString redactedRequestData(const QVariantMap& data)
+{
+	// WebApiController::Key::Credentials and Key::Arguments
+	return Logger::redacted(data, {QStringLiteral("credentials"), QStringLiteral("arguments")});
+}
 
 
 
@@ -142,11 +152,6 @@ WebApiHttpServer::~WebApiHttpServer()
 template<>
 QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Post>(const QHttpServerRequest& request)
 {
-	waDebug() << "[REQ] [POST]"
-			  << request.url().toString().toUtf8().constData()
-			  << toJson(request.headers()).constData()
-			  << request.body().constData();
-
 	QVariantMap data;
 
 	const auto bodyData = QJsonDocument::fromJson(request.body()).object();
@@ -154,6 +159,11 @@ QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Post>(co
 	{
 		data[it.key()] = it.value().toVariant();
 	}
+
+	waDebug() << "[REQ] [POST]"
+			  << request.url().toString().toUtf8().constData()
+			  << toJson(request.headers()).constData()
+			  << redactedRequestData(data).toUtf8().constData();
 
 	return data;
 }
@@ -163,11 +173,6 @@ QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Post>(co
 template<>
 QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Put>(const QHttpServerRequest& request)
 {
-	waDebug() << "[REQ] [PUT]"
-			  << request.url().toString().toUtf8().constData()
-			  << toJson(request.headers()).constData()
-			  << request.body().constData();
-
 	QVariantMap data;
 
 	const auto bodyData = QJsonDocument::fromJson(request.body()).object();
@@ -175,6 +180,11 @@ QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Put>(con
 	{
 		data[it.key()] = it.value().toVariant();
 	}
+
+	waDebug() << "[REQ] [PUT]"
+			  << request.url().toString().toUtf8().constData()
+			  << toJson(request.headers()).constData()
+			  << redactedRequestData(data).toUtf8().constData();
 
 	return data;
 }
