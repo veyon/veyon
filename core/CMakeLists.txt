@@ -142,6 +142,10 @@ set(veyoncore_SOURCES
 	src/SecretStore.h
 	src/ServiceControl.cpp
 	src/ServiceControl.h
+	src/SniffClassifier.cpp
+	src/SniffClassifier.h
+	src/SniffedConnection.cpp
+	src/SniffedConnection.h
 	src/SocketDevice.h
 	src/StandardInputReader.cpp
 	src/StandardInputReader.h
@@ -150,6 +154,10 @@ set(veyoncore_SOURCES
 	src/SystemTrayIcon.h
 	src/TlsHostCredentials.cpp
 	src/TlsHostCredentials.h
+	src/TlsServerPolicy.cpp
+	src/TlsServerPolicy.h
+	src/TlsSniffingServer.cpp
+	src/TlsSniffingServer.h
 	src/Toast.cpp
 	src/Toast.h
 	src/ToolButton.cpp
