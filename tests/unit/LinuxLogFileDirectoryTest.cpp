@@ -90,8 +90,14 @@ private Q_SLOTS:
 		QTest::newRow("nul") << QString(QStringLiteral("a") + QChar(0) + QStringLiteral("b")) << QStringLiteral("uid-1234");
 		QTest::newRow("delete") << QString(QStringLiteral("a") + QChar(0x7f)) << QStringLiteral("uid-1234");
 		QTest::newRow("c1 control") << QString(QStringLiteral("a") + QChar(0x9b)) << QStringLiteral("uid-1234");
-		QTest::newRow("too long") << QString(129, QLatin1Char('a')) << QStringLiteral("uid-1234");
-		QTest::newRow("long") << QString(128, QLatin1Char('a')) << QString(128, QLatin1Char('a'));
+		// "veyon-<login name>" must fit into NAME_MAX bytes
+		QTest::newRow("too long") << QString(250, QLatin1Char('a')) << QStringLiteral("uid-1234");
+		QTest::newRow("long") << QString(249, QLatin1Char('a')) << QString(249, QLatin1Char('a'));
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+		// file names are UTF-8 encoded with Qt 6
+		QTest::newRow("too long multi-byte") << QString(125, QChar(0xe4)) << QStringLiteral("uid-1234");
+		QTest::newRow("long multi-byte") << QString(124, QChar(0xe4)) << QString(124, QChar(0xe4));
+#endif
 	}
 
 	void sanitizedLoginName()

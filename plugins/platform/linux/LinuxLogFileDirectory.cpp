@@ -19,7 +19,8 @@
 
 namespace {
 
-constexpr int MaximumLoginNameLength = 128;
+// "veyon-" plus the login name must fit into one path component (NAME_MAX = 255 bytes)
+constexpr int MaximumLoginNameSize = 249;
 constexpr size_t PasswordBufferSize = 16384;
 
 QString modeString(mode_t mode)
@@ -117,7 +118,7 @@ QString LinuxLogFileDirectory::loginName(uid_t userId)
 QString LinuxLogFileDirectory::sanitizedLoginName(const QString& loginName, uid_t userId)
 {
 	const auto isSafe = [&loginName]() {
-		if (loginName.isEmpty() || loginName.size() > MaximumLoginNameLength ||
+		if (loginName.isEmpty() || QFile::encodeName(loginName).size() > MaximumLoginNameSize ||
 			loginName.contains(QLatin1Char('/')) || loginName.contains(QLatin1String("..")) ||
 			loginName == QLatin1String("."))
 		{
