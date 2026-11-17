@@ -260,6 +260,14 @@ public:
 	};
 	Q_ENUM(TlsIpTargetPolicy)
 
+	// DirectoryBroker/Mode (04-directory-broker.md §2); the enumerator names are the configuration values
+	enum class DirectoryBrokerMode {
+		Auto,
+		Required,
+		Disabled,
+	};
+	Q_ENUM(DirectoryBrokerMode)
+
 	int exec();
 
 private:

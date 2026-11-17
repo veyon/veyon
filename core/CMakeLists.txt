@@ -35,6 +35,23 @@ set(veyoncore_SOURCES
 	src/d3des.h
 	src/DesktopAccessDialog.cpp
 	src/DesktopAccessDialog.h
+	src/DirectoryBrokerClient.cpp
+	src/DirectoryBrokerClient.h
+	src/DirectoryBrokerConnectionClient.cpp
+	src/DirectoryBrokerConnectionClient.h
+	src/DirectoryBrokerFeaturePlugin.cpp
+	src/DirectoryBrokerFeaturePlugin.h
+	src/DirectoryBrokerIpcClient.cpp
+	src/DirectoryBrokerIpcClient.h
+	src/DirectoryBrokerLimits.h
+	src/DirectoryBrokerMessage.cpp
+	src/DirectoryBrokerMessage.h
+	src/DirectoryBrokerPendingRequests.cpp
+	src/DirectoryBrokerPendingRequests.h
+	src/DirectoryBrokerProtocol.h
+	src/DirectoryBrokerRateLimiter.h
+	src/DirectoryBrokerService.cpp
+	src/DirectoryBrokerService.h
 	src/EnumHelper.h
 	src/Feature.h
 	src/FeatureManager.cpp
@@ -108,6 +125,10 @@ set(veyoncore_SOURCES
 	src/ProcessHardening.h
 	src/ProcessHelper.cpp
 	src/ProcessHelper.h
+	src/RemoteNetworkObjectDirectory.cpp
+	src/RemoteNetworkObjectDirectory.h
+	src/RemoteUserGroupsBackend.cpp
+	src/RemoteUserGroupsBackend.h
 	src/RfbVeyonAuth.h
 	src/Screenshot.cpp
 	src/Screenshot.h

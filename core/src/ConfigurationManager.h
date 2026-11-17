@@ -17,7 +17,11 @@ public:
 
 	bool clearConfiguration();
 	bool applyConfiguration();
+	// refuses to save configurations that validateConfiguration() rejects
 	bool saveConfiguration();
+
+	// empty if the configuration can be saved, else a user-visible error message
+	static QString validateConfiguration(const VeyonConfiguration& configuration);
 
 	const QString& errorString() const
 	{

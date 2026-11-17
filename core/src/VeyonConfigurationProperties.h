@@ -109,6 +109,12 @@
 	OP(VeyonConfiguration, VeyonCore::config(), QStringList, tlsRevokedSerials, setTlsRevokedSerials, "RevokedSerials", "TLS", QStringList(), Configuration::Property::Flag::Advanced) \
 	OP(VeyonConfiguration, VeyonCore::config(), VeyonCore::TlsIpTargetPolicy, tlsIpTargetPolicy, setTlsIpTargetPolicy, "IpTargetPolicy", "TLS", QVariant::fromValue(VeyonCore::TlsIpTargetPolicy::AcceptCaSignedWithHostname), Configuration::Property::Flag::Advanced)
 
+// directory and user-groups broker (04-directory-broker.md §2, §3); read the mode through
+// DirectoryBrokerClient::configuredMode() (fail closed for invalid values)
+#define FOREACH_VEYON_DIRECTORY_BROKER_CONFIG_PROPERTY(OP) \
+	OP(VeyonConfiguration, VeyonCore::config(), VeyonCore::DirectoryBrokerMode, directoryBrokerMode, setDirectoryBrokerMode, "Mode", "DirectoryBroker", QVariant::fromValue(VeyonCore::DirectoryBrokerMode::Auto), Configuration::Property::Flag::Advanced) \
+	OP(VeyonConfiguration, VeyonCore::config(), QString, directoryBrokerHost, setDirectoryBrokerHost, "Host", "DirectoryBroker", QStringLiteral("localhost"), Configuration::Property::Flag::Advanced)
+
 #define FOREACH_VEYON_DIRECTORIES_CONFIG_PROPERTY(OP) \
 	OP(VeyonConfiguration, VeyonCore::config(), QString, configurationTemplatesDirectory, setConfigurationTemplatesDirectory, "ConfigurationTemplates", "Directories", QDir::toNativeSeparators(QStringLiteral("%GLOBALAPPDATA%/Config/Templates")), Configuration::Property::Flag::Standard) \
 	OP(VeyonConfiguration, VeyonCore::config(), QString, userConfigurationDirectory, setUserConfigurationDirectory, "UserConfiguration", "Directories", QDir::toNativeSeparators(QStringLiteral("%APPDATA%/Config")), Configuration::Property::Flag::Standard) \
@@ -189,6 +195,7 @@
 	FOREACH_VEYON_NETWORK_CONFIG_PROPERTY(OP) \
 	FOREACH_VEYON_CONNECTION_LIMIT_CONFIG_PROPERTY(OP) \
 	FOREACH_VEYON_TLS_CONFIG_PROPERTY(OP) \
+	FOREACH_VEYON_DIRECTORY_BROKER_CONFIG_PROPERTY(OP) \
 	FOREACH_VEYON_DIRECTORIES_CONFIG_PROPERTY(OP) \
 	FOREACH_VEYON_MASTER_CONFIG_PROPERTY(OP) \
 	FOREACH_VEYON_AUTHENTICATION_CONFIG_PROPERTY(OP) \

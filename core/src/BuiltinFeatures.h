@@ -7,6 +7,7 @@
 
 class AccessControlProvider;
 class DesktopAccessDialog;
+class DirectoryBrokerFeaturePlugin;
 class MonitoringMode;
 class SystemTrayIcon;
 
@@ -38,9 +39,15 @@ public:
 		return *m_accessControlProvider;
 	}
 
+	DirectoryBrokerFeaturePlugin& directoryBroker()
+	{
+		return *m_directoryBroker;
+	}
+
 private:
 	SystemTrayIcon* m_systemTrayIcon;
 	MonitoringMode* m_monitoringMode;
 	DesktopAccessDialog* m_desktopAccessDialog;
 	AccessControlProvider* m_accessControlProvider;
+	DirectoryBrokerFeaturePlugin* m_directoryBroker;
 };

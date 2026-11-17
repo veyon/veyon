@@ -3,6 +3,7 @@
 
 #include <QBuffer>
 
+#include "DirectoryBrokerMessage.h"
 #include "FeatureManager.h"
 #include "FeatureMessage.h"
 #include "VariantArrayMessage.h"
@@ -106,10 +107,13 @@ bool FeatureMessage::receive(QIODevice* ioDevice)
 
 QDebug operator<<(QDebug stream, const FeatureMessage& message)
 {
+	// directory broker messages contain user names and group memberships
+	const auto arguments = message.featureUid() == DirectoryBrokerMessage::featureUid() ? QStringLiteral("<redacted>") : VeyonCore::stringify(message.arguments());
+
 	stream << QStringLiteral("FeatureMessage(%1,%2,%3)")
 				  .arg(VeyonCore::featureManager().feature(message.featureUid()).name())
 				  .arg(FeatureMessage::CommandType(message.command()))
-				  .arg(VeyonCore::stringify(message.arguments()))
+				  .arg(arguments)
 				  .toUtf8()
 				  .constData();
 	return stream;
