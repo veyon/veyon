@@ -224,7 +224,21 @@ LinuxLogFileDirectory::Result LinuxLogFileDirectory::prepareUserDirectory(const 
 	}
 
 	QString baseError;
-	if (baseCreated && ::fchmod(descriptor, BaseDirectoryMode) != 0)
+	// others must not be able to replace the per-user directory once it has been checked
+	if ((status.st_mode & (S_IWGRP | S_IWOTH)) && (status.st_mode & S_ISVTX) == 0)
+	{
+		baseError = QStringLiteral("log directory %1 has mode %2 and is writable by group or others without the "
+								   "sticky bit (set it with chmod +t or use another directory)")
+						.arg(baseDirectory, modeString(status.st_mode));
+	}
+	else if (status.st_uid != 0 && status.st_uid != userId)
+	{
+		baseError = QStringLiteral("log directory %1 is owned by uid %2 instead of root or %3")
+						.arg(baseDirectory)
+						.arg(status.st_uid)
+						.arg(userId);
+	}
+	else if (baseCreated && ::fchmod(descriptor, BaseDirectoryMode) != 0)
 	{
 		baseError = QStringLiteral("could not set mode of log directory %1: %2").arg(baseDirectory, errnoString());
 	}
@@ -242,8 +256,8 @@ LinuxLogFileDirectory::Result LinuxLogFileDirectory::prepareUserDirectory(const 
 
 	const auto path = userDirectory(baseDirectory, loginName, userId);
 
-	bool created = false;
-	if (const auto error = createDirectory(path, UserDirectoryMode, &created); error.isEmpty() == false)
+	// the mode is checked and set below whether the directory was created or not
+	if (const auto error = createDirectory(path, UserDirectoryMode, nullptr); error.isEmpty() == false)
 	{
 		return {{}, error};
 	}
@@ -283,7 +297,10 @@ LinuxLogFileDirectory::Result LinuxLogFileDirectory::prepareUserDirectory(const 
 
 QString LinuxLogFileDirectory::createDirectory(const QString& path, mode_t mode, bool* created)
 {
-	*created = false;
+	if (created)
+	{
+		*created = false;
+	}
 
 	if (path.isEmpty() || QDir::isAbsolutePath(path) == false)
 	{
@@ -292,7 +309,10 @@ QString LinuxLogFileDirectory::createDirectory(const QString& path, mode_t mode,
 
 	if (::mkdir(QFile::encodeName(path).constData(), mode) == 0)
 	{
-		*created = true;
+		if (created)
+		{
+			*created = true;
+		}
 		return {};
 	}
 

@@ -217,6 +217,72 @@ private Q_SLOTS:
 		QVERIFY2(result.error.contains(QStringLiteral("is not a directory")), qPrintable(result.error));
 	}
 
+	void unsafeBaseDirectoryRefused_data()
+	{
+		QTest::addColumn<int>("mode");
+		QTest::addColumn<bool>("accepted");
+
+		QTest::newRow("0700") << 0700 << true;
+		QTest::newRow("0755") << 0755 << true;
+		QTest::newRow("sticky world writable") << 01777 << true;
+		QTest::newRow("sticky group writable") << 01770 << true;
+		QTest::newRow("world writable") << 0777 << false;
+		QTest::newRow("other writable") << 0757 << false;
+		QTest::newRow("group writable") << 0775 << false;
+	}
+
+	void unsafeBaseDirectoryRefused()
+	{
+		QFETCH(int, mode);
+		QFETCH(bool, accepted);
+
+		// e.g. a custom log directory created by Veyon 4.11 with mode 0777
+		const auto base = directory().filePath(QStringLiteral("base"));
+		QVERIFY(makeDirectory(base, mode_t(mode)));
+
+		const auto result = LinuxLogFileDirectory::prepareUserDirectory(base, QStringLiteral("alice"), ::geteuid());
+		QCOMPARE(result.path.isEmpty(), accepted == false);
+		if (accepted == false)
+		{
+			QVERIFY2(result.error.contains(QStringLiteral("without the sticky bit")), qPrintable(result.error));
+			QVERIFY(QFileInfo::exists(base + QStringLiteral("/veyon-alice")) == false);
+		}
+		// not changed
+		QCOMPARE(modeOf(base), mode_t(mode));
+	}
+
+	void baseDirectoryOfOtherUserRefused()
+	{
+		const auto base = directory().filePath(QStringLiteral("base"));
+		QVERIFY(makeDirectory(base, 01777));
+
+		if (isRoot())
+		{
+			// neither root nor the user
+			QVERIFY(changeOwner(base, ForeignUserId));
+			const auto result = LinuxLogFileDirectory::prepareUserDirectory(base, QStringLiteral("alice"), SomeUserId);
+			QVERIFY(result.path.isEmpty());
+			QVERIFY2(result.error.contains(QStringLiteral("is owned by uid %1 instead of root or %2")
+											   .arg(ForeignUserId)
+											   .arg(SomeUserId)),
+					 qPrintable(result.error));
+
+			// owned by root: accepted
+			QVERIFY(changeOwner(base, 0));
+			QVERIFY(LinuxLogFileDirectory::prepareUserDirectory(base, QStringLiteral("alice"), 0).error.isEmpty());
+			return;
+		}
+
+		// owned by this process, requested for another user
+		const auto result = LinuxLogFileDirectory::prepareUserDirectory(base, QStringLiteral("alice"), ::geteuid() + 1);
+		QVERIFY(result.path.isEmpty());
+		QVERIFY2(result.error.contains(QStringLiteral("is owned by uid %1 instead of root or %2")
+										   .arg(::geteuid())
+										   .arg(::geteuid() + 1)),
+				 qPrintable(result.error));
+		QVERIFY(QFileInfo::exists(base + QStringLiteral("/veyon-alice")) == false);
+	}
+
 	void existingUserDirectoryGetsPrivateMode()
 	{
 		const auto base = directory().path();
@@ -234,10 +300,11 @@ private Q_SLOTS:
 		const QString userDirectory = base + QStringLiteral("/veyon-alice");
 		QVERIFY(makeDirectory(userDirectory, 0700));
 
-		// owned by this process but not by the requested user
+		// owned by this process but not by the requested user (not root: the base directory is refused
+		// for the same reason already)
 		auto result = LinuxLogFileDirectory::prepareUserDirectory(base, QStringLiteral("alice"), ::geteuid() + 1);
 		QVERIFY(result.path.isEmpty());
-		QVERIFY2(result.error.contains(QStringLiteral("is owned by uid %1 instead of %2").arg(::geteuid()).arg(::geteuid() + 1)),
+		QVERIFY2(result.error.contains(QStringLiteral("is owned by uid %1 instead of").arg(::geteuid())),
 				 qPrintable(result.error));
 
 		if (isRoot() == false)

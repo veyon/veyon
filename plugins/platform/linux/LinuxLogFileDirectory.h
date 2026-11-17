@@ -34,11 +34,14 @@ public:
 	[[nodiscard]] static Result prepareSystemDirectory(const QString& path);
 
 	// creates or validates the base directory (only created if missing, 0700, mode of an existing
-	// one is not changed) and the per-user directory below it (owned by userId, 0700, no symlink)
+	// one is not changed, but it must be owned by root or userId and must have the sticky bit if
+	// writable by group or others) and the per-user directory below it (owned by userId, 0700, no
+	// symlink)
 	[[nodiscard]] static Result prepareUserDirectory(const QString& baseDirectory, const QString& loginName,
 													 uid_t userId);
 
 private:
+	// created may be nullptr
 	[[nodiscard]] static QString createDirectory(const QString& path, mode_t mode, bool* created);
 	[[nodiscard]] static QString checkCanonicalPath(const QString& path);
 };
