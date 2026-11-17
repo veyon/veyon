@@ -9,9 +9,9 @@
 #include <QtTest>
 
 #include "CaptureHelperProcess.h"
+#include "Random.h"
 #include "VncClientProtocol.h"
 #include "VncServerSocket.h"
-#include "crypto/Random.h"
 
 #include <cerrno>
 #include <csignal>

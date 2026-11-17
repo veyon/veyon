@@ -6,11 +6,14 @@
 #
 #   1. OpenSSL version and feature checks (OPENSSL_VERSION_NUMBER/_MAJOR/_MINOR/_PREREQ,
 #      OpenSSL_version_num, LIBRESSL_VERSION_NUMBER, OPENSSL_NO_*, __has_include(<openssl/...>))
-#      only in core/src/crypto/OpenSslCompat*
-#   2. all core/src/crypto/OpenSslCompat* files together stay within the budget of 150 lines
-#   3. no QCA usage in core/src/crypto
+#      only in crypto/src/OpenSslCompat*
+#   2. all crypto/src/OpenSslCompat* files together stay within the budget of 150 lines
+#   3. no QCA usage in crypto/
 #   4. no OpenSSL headers in the public VeyonCrypto headers (pimpl; only the internal headers
 #      OpenSslUtils.h and CryptoPrivate.h may include them)
+#   6. no Veyon core headers (VeyonCore.h, Logger.h, ...) in crypto/: veyon-crypto does not depend
+#      on veyon-core, so every "..." include there must name a header in crypto/src or next to the
+#      including file
 #   5. with <base-ref>: no QCA usage in lines added since <base-ref> (DoD 6, new crypto goes
 #      through VeyonCrypto); legacy QCA code may still be changed in place; exempt are tests/,
 #      CryptoCore and LegacySecretMigration
@@ -21,9 +24,9 @@ set -e
 
 cd "$(git -C "$(dirname "$0")" rev-parse --show-toplevel)"
 
-COMPAT_FILES='^core/src/crypto/OpenSslCompat[^/]*$'
+COMPAT_FILES='^crypto/src/OpenSslCompat[^/]*$'
 COMPAT_BUDGET=150
-INTERNAL_HEADERS='^core/src/crypto/(OpenSslUtils|CryptoPrivate)\.h$'
+INTERNAL_HEADERS='^crypto/src/(OpenSslUtils|CryptoPrivate)\.h$'
 VERSION_PATTERN='OPENSSL_VERSION_NUMBER|OPENSSL_VERSION_MAJOR|OPENSSL_VERSION_MINOR|OPENSSL_VERSION_PREREQ|OpenSSL_version_num|LIBRESSL_VERSION_NUMBER|OPENSSL_NO_[A-Z0-9_]+|__has_include[[:space:]]*\([[:space:]]*<openssl/'
 QCA_PATTERN='QtCrypto|QCA::|qca-qt|CryptoCore'
 
@@ -64,20 +67,20 @@ while IFS= read -r match ; do
 done < <(sources | grep -v -E "$COMPAT_FILES" | xargs -r -d '\n' grep -n -H -E "$VERSION_PATTERN" || true)
 
 # 2. compat budget
-compatLines=$(git ls-files -- 'core/src/crypto/OpenSslCompat*' | xargs -r -d '\n' cat | wc -l)
+compatLines=$(git ls-files -- 'crypto/src/OpenSslCompat*' | xargs -r -d '\n' cat | wc -l)
 if [ "$compatLines" -gt "$COMPAT_BUDGET" ] ; then
-	fail "core/src/crypto/OpenSslCompat* has $compatLines lines (budget: $COMPAT_BUDGET)"
+	fail "crypto/src/OpenSslCompat* has $compatLines lines (budget: $COMPAT_BUDGET)"
 fi
 
 # 3. QCA in the crypto layer
 while IFS= read -r match ; do
-	fail "QCA usage in core/src/crypto: $match"
-done < <(git ls-files -- 'core/src/crypto' | xargs -r -d '\n' grep -n -H -E "$QCA_PATTERN" || true)
+	fail "QCA usage in crypto/: $match"
+done < <(git ls-files -- 'crypto' | xargs -r -d '\n' grep -n -H -E "$QCA_PATTERN" || true)
 
 # 4. OpenSSL in public headers
 while IFS= read -r match ; do
 	fail "OpenSSL header in public VeyonCrypto header: $match"
-done < <(git ls-files -- 'core/src/crypto/*.h' | grep -v -E "$INTERNAL_HEADERS|$COMPAT_FILES" |
+done < <(git ls-files -- 'crypto/src/*.h' | grep -v -E "$INTERNAL_HEADERS|$COMPAT_FILES" |
 			 xargs -r -d '\n' grep -n -H -E '#[[:space:]]*include[[:space:]]*<openssl/' || true)
 
 # 5. new QCA usage
@@ -90,6 +93,16 @@ if [ -n "$1" ] ; then
 				 ':!core/src/CryptoCore.*' ':!core/src/Configuration/LegacySecretMigration.*' |
 				 grep -E '^\+[^+]' | grep -E "$QCA_PATTERN" || true)
 fi
+
+# 6. Veyon core headers in crypto/
+while IFS= read -r source ; do
+	directory=$(dirname "$source")
+	while IFS= read -r header ; do
+		if [[ "$header" == *..* ]] || { [ ! -f "crypto/src/$header" ] && [ ! -f "$directory/$header" ] ; } ; then
+			fail "non-crypto header $header in $source (veyon-crypto must not depend on veyon-core)"
+		fi
+	done < <(sed -n -E 's/^[[:space:]]*#[[:space:]]*include[[:space:]]*"([^"]+)".*/\1/p' "$source")
+done < <(git ls-files -- 'crypto/*.c' 'crypto/*.cpp' 'crypto/*.h' 'crypto/*.hpp')
 
 if [ $status -eq 0 ] ; then
 	echo "VeyonCrypto checks passed (OpenSslCompat: $compatLines/$COMPAT_BUDGET lines)"

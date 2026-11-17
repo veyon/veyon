@@ -3,9 +3,9 @@
 
 #pragma once
 
-#include "crypto/Certificate.h"
-#include "crypto/CertificateRequest.h"
-#include "crypto/PrivateKey.h"
+#include "Certificate.h"
+#include "CertificateRequest.h"
+#include "PrivateKey.h"
 
 namespace VeyonCrypto {
 

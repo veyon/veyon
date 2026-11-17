@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <QString>
+
 #include "SecureBuffer.h"
 
 #include <memory>
@@ -27,7 +29,7 @@ enum class KeyAlgorithm {
 
 // Public key (SubjectPublicKeyInfo). Immutable, implicitly shared and safe to use from several
 // threads. Keys of other types/curves/sizes are rejected on import.
-class VEYON_CORE_EXPORT PublicKey
+class VEYON_CRYPTO_EXPORT PublicKey
 {
 public:
 	static constexpr qsizetype MaximumEncodedSize = 16 * 1024;

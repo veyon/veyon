@@ -6,7 +6,8 @@
 #include <QString>
 
 #include "IpcProtocol.h"
-#include "crypto/SecureBuffer.h"
+#include "SecureBuffer.h"
+#include "VeyonCore.h"
 
 #include <optional>
 

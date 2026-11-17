@@ -72,7 +72,7 @@ public:
 
 namespace Internal {
 
-struct VEYON_CORE_EXPORT Access
+struct VEYON_CRYPTO_EXPORT Access
 {
 	// native handles for OpenSSL functions that need them; the objects may be shared between
 	// threads and copies, so they must never be modified

@@ -3,17 +3,17 @@
 
 #include <QtTest>
 
-#include "crypto/Aead.h"
-#include "crypto/ConstantTime.h"
-#include "crypto/CryptoError.h"
-#include "crypto/Hash.h"
-#include "crypto/Hkdf.h"
-#include "crypto/Hmac.h"
-#include "crypto/OpenSslCompat.h"
-#include "crypto/PasswordKdf.h"
-#include "crypto/PrivateKey.h"
-#include "crypto/Random.h"
-#include "crypto/SecureBuffer.h"
+#include "Aead.h"
+#include "ConstantTime.h"
+#include "CryptoError.h"
+#include "Hash.h"
+#include "Hkdf.h"
+#include "Hmac.h"
+#include "OpenSslCompat.h"
+#include "PasswordKdf.h"
+#include "PrivateKey.h"
+#include "Random.h"
+#include "SecureBuffer.h"
 
 #include <vector>
 

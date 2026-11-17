@@ -3,8 +3,8 @@
 
 #pragma once
 
+#include "Certificate.h"
 #include "VeyonCore.h"
-#include "crypto/Certificate.h"
 
 class VeyonConfiguration;
 

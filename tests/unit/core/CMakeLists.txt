@@ -2,21 +2,24 @@
 
 if(WITH_TESTS)
 
+	# the VeyonCrypto tests link veyon-crypto only, so that they also verify that it builds and links
+	# without veyon-core (06-pki.md §2)
 	add_executable(VeyonCryptoPrimitivesTest VeyonCryptoPrimitivesTest.cpp)
 	set_default_target_properties(VeyonCryptoPrimitivesTest)
-	target_link_libraries(VeyonCryptoPrimitivesTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
+	target_link_libraries(VeyonCryptoPrimitivesTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-crypto)
 	add_test(NAME VeyonCryptoPrimitivesTest COMMAND VeyonCryptoPrimitivesTest)
 
 	# Replaces the OpenSSL memory functions to check zeroisation before release. This only works
 	# before OpenSSL allocates anything, which libraries loaded with Qt Network may already do at
-	# load time, so SecureBuffer is compiled in directly instead of linking veyon-core.
+	# load time, so SecureBuffer is compiled in directly instead of linking veyon-crypto.
 	add_executable(VeyonCryptoSecureBufferTest
 		VeyonCryptoSecureBufferTest.cpp
-		${CMAKE_SOURCE_DIR}/core/src/crypto/SecureBuffer.cpp
+		${CMAKE_SOURCE_DIR}/crypto/src/CryptoLogging.cpp
+		${CMAKE_SOURCE_DIR}/crypto/src/SecureBuffer.cpp
 		)
 	set_default_target_properties(VeyonCryptoSecureBufferTest)
-	target_include_directories(VeyonCryptoSecureBufferTest PRIVATE ${CMAKE_SOURCE_DIR}/core/src)
-	target_compile_definitions(VeyonCryptoSecureBufferTest PRIVATE OPENSSL_API_COMPAT=10101 veyon_core_EXPORTS)
+	target_include_directories(VeyonCryptoSecureBufferTest PRIVATE ${CMAKE_SOURCE_DIR}/crypto/src)
+	target_compile_definitions(VeyonCryptoSecureBufferTest PRIVATE OPENSSL_API_COMPAT=10101 veyon_crypto_EXPORTS)
 	target_link_libraries(VeyonCryptoSecureBufferTest PRIVATE Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Core OpenSSL::Crypto)
 	add_test(NAME VeyonCryptoSecureBufferTest COMMAND VeyonCryptoSecureBufferTest)
 
@@ -24,7 +27,7 @@ if(WITH_TESTS)
 	add_executable(VeyonCryptoPkiTest VeyonCryptoPkiTest.cpp)
 	set_default_target_properties(VeyonCryptoPkiTest)
 	target_compile_definitions(VeyonCryptoPkiTest PRIVATE OPENSSL_API_COMPAT=10101)
-	target_link_libraries(VeyonCryptoPkiTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core veyon-crypto-authority OpenSSL::Crypto)
+	target_link_libraries(VeyonCryptoPkiTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-crypto-authority OpenSSL::Crypto)
 	add_test(NAME VeyonCryptoPkiTest COMMAND VeyonCryptoPkiTest)
 
 	# PkiPublicApi; test certificates are crafted with OpenSSL directly (PkiTestCertificates.h), so

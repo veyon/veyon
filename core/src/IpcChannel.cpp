@@ -3,12 +3,12 @@
 
 #include <QtEndian>
 
+#include "Aead.h"
+#include "Hash.h"
+#include "Hkdf.h"
+#include "Hmac.h"
 #include "IpcChannel.h"
-#include "crypto/Aead.h"
-#include "crypto/Hash.h"
-#include "crypto/Hkdf.h"
-#include "crypto/Hmac.h"
-#include "crypto/Random.h"
+#include "Random.h"
 
 #include <chrono>
 #include <cstring>

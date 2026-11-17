@@ -18,9 +18,9 @@
 #include "LinuxCoreFunctions.h"
 #include "LinuxServerProcess.h"
 #include "LinuxUserFunctions.h"
+#include "Random.h"
 #include "ServiceDataManager.h"
 #include "VeyonConfiguration.h"
-#include "crypto/Random.h"
 
 #include <sys/errno.h>
 #include <sys/types.h>

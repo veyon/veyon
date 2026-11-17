@@ -8,11 +8,11 @@
 #include <QTimer>
 
 #include "CaptureHelperCredentials.h"
+#include "ConstantTime.h"
 #include "PipeWireCaptureServer.h"
 #include "PipeWireFramebuffer.h"
 #include "PortalSession.h"
 #include "VeyonCore.h"
-#include "crypto/ConstantTime.h"
 
 #include <cerrno>
 #include <cstring>

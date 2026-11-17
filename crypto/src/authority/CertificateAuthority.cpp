@@ -2,10 +2,11 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <QRegularExpression>
+#include <QtEndian>
 
 #include "CertificateAuthority.h"
-#include "crypto/CryptoPrivate.h"
-#include "crypto/Random.h"
+#include "CryptoPrivate.h"
+#include "Random.h"
 
 #include <algorithm>
 

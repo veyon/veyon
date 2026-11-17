@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "crypto/CertificateRequest.h"
+#include "CertificateRequest.h"
 
 // PKCS#10 request parsers of VeyonCrypto (untrusted input of the enrollment server); the first
 // input byte selects DER or PEM parsing

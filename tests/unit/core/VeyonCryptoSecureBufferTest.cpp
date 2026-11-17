@@ -3,7 +3,7 @@
 
 #include <QtTest>
 
-#include "crypto/SecureBuffer.h"
+#include "SecureBuffer.h"
 
 #include <cstdlib>
 #include <mutex>
@@ -16,14 +16,8 @@
 // the checks run inside OpenSSL's memory functions: this test installs its own allocator via
 // CRYPTO_set_mem_functions() (only possible before OpenSSL allocates anything, hence the custom
 // main()) and verifies that watched SecureBuffer memory is all-zero at the moment it is freed.
-// The test links neither veyon-core nor Qt Network, whose dependencies may already allocate through
-// OpenSSL while being loaded.
-
-// vWarning() in SecureBuffer.cpp uses this helper of veyon-core, which this test does not link
-QByteArray VeyonCore::shortenFuncinfo(const QByteArray& info)
-{
-	return info;
-}
+// The test links neither veyon-crypto nor Qt Network, whose dependencies may already allocate
+// through OpenSSL while being loaded.
 
 
 

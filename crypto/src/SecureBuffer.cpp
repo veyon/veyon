@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: 2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include "CryptoLogging.h"
 #include "SecureBuffer.h"
 
 #include <atomic>
@@ -47,8 +48,8 @@ static bool mayUseSecureHeap(qsizetype size)
 	{
 		if (secureHeapFallbackReported.exchange(true) == false)
 		{
-			vWarning() << "secure heap share for SecureBuffers exhausted, using the normal heap for secrets "
-						  "(increase its size)";
+			qCWarning(lcVeyonCrypto) << "secure heap share for SecureBuffers exhausted, using the normal heap for secrets "
+										"(increase its size)";
 		}
 		return false;
 	}

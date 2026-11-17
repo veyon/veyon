@@ -31,7 +31,7 @@ namespace VeyonCrypto {
 // (spkiSha256()) or the verification of the chain.
 //
 // Immutable, implicitly shared and safe to use from several threads.
-class VEYON_CORE_EXPORT Certificate
+class VEYON_CRYPTO_EXPORT Certificate
 {
 public:
 	static constexpr qsizetype MaximumEncodedSize = 64 * 1024;

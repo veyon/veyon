@@ -16,7 +16,7 @@ namespace VeyonCrypto {
 // ciphertext; readers pass the stored parameters. Parameters are bounded (Maximum* below) so that a
 // crafted file cannot make the reader allocate excessive memory or CPU time. The password and
 // salt must not be empty.
-class VEYON_CORE_EXPORT PasswordKdf
+class VEYON_CRYPTO_EXPORT PasswordKdf
 {
 public:
 	enum class Algorithm {

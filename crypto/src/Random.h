@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <QString>
+
 #include "SecureBuffer.h"
 
 #include <optional>
@@ -11,7 +13,7 @@ namespace VeyonCrypto {
 
 // Cryptographically secure random numbers from the OpenSSL CSPRNG (RAND_bytes). Never use
 // QRandomGenerator for tokens, nonces, salts, keys or serial numbers.
-class VEYON_CORE_EXPORT Random
+class VEYON_CRYPTO_EXPORT Random
 {
 public:
 	static constexpr qsizetype MaximumSize = 1024 * 1024;

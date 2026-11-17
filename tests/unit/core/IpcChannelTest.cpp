@@ -4,12 +4,12 @@
 #include <QtEndian>
 #include <QtTest>
 
+#include "ConstantTime.h"
 #include "IpcChannel.h"
 #include "IpcEndpointCredentials.h"
 #include "IpcMessage.h"
+#include "Random.h"
 #include "StandardInputReader.h"
-#include "crypto/ConstantTime.h"
-#include "crypto/Random.h"
 
 #include <cstring>
 #include <memory>

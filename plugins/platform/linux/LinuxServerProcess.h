@@ -7,7 +7,7 @@
 
 #include "LinuxSessionFunctions.h"
 #include "LinuxUserFunctions.h"
-#include "crypto/SecureBuffer.h"
+#include "SecureBuffer.h"
 
 class ServiceDataManager;
 

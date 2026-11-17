@@ -7,7 +7,8 @@
 #include <QList>
 
 #include "IpcProtocol.h"
-#include "crypto/SecureBuffer.h"
+#include "SecureBuffer.h"
+#include "VeyonCore.h"
 
 #include <functional>
 #include <optional>

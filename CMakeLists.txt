@@ -326,6 +326,7 @@ include(cmake/CPackDefinitions.cmake)
 
 
 # make sub-directories
+add_subdirectory(crypto)
 add_subdirectory(core)
 if(NOT WITH_CORE_ONLY)
 	add_subdirectory(server)
@@ -348,7 +349,7 @@ endif()
 # authority plugin target (PkiPlugin, WP11c/d) has to be added explicitly.
 include(CheckCapabilityBoundary)
 set(VEYON_CRYPTO_AUTHORITY_CONSUMERS veyon-service veyon-pki VeyonCryptoPkiTest)
-set(VEYON_CAPABILITY_BOUNDARY_REQUIRED_TARGETS veyon-core)
+set(VEYON_CAPABILITY_BOUNDARY_REQUIRED_TARGETS veyon-crypto veyon-core)
 if(NOT WITH_CORE_ONLY)
 	list(APPEND VEYON_CAPABILITY_BOUNDARY_REQUIRED_TARGETS veyon-master veyon-server veyon-worker veyon-service)
 endif()
@@ -401,11 +402,12 @@ if(VEYON_BUILD_ANDROID)
 	list(APPEND ANDROID_EXTRA_LIBS "${QT_DIR}/lib/libldap.so"
 		"${QT_DIR}/lib/liblber.so"
 		"${QT_DIR}/lib/libsasl2.so")
-	androiddeployqt("veyon-master" "${ANDROID_ADDITIONAL_FIND_ROOT_PATH};${CMAKE_BINARY_DIR}/core")
+	androiddeployqt("veyon-master" "${ANDROID_ADDITIONAL_FIND_ROOT_PATH};${CMAKE_BINARY_DIR}/crypto;${CMAKE_BINARY_DIR}/core")
 	set_target_properties(create-apk-veyon-master PROPERTIES ANDROID_APK_DIR "${CMAKE_ANDROID_DIR}")
 
 	add_custom_target(prepare-apk
 		COMMAND rm -rf ${ANDROID_INSTALL_DIR}
+		COMMAND cd ${CMAKE_BINARY_DIR}/crypto && make DESTDIR=${ANDROID_INSTALL_DIR} install
 		COMMAND cd ${CMAKE_BINARY_DIR}/core && make DESTDIR=${ANDROID_INSTALL_DIR} install
 		COMMAND cd ${CMAKE_BINARY_DIR}/plugins && make DESTDIR=${ANDROID_INSTALL_DIR} install
 		)

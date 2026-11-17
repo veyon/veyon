@@ -3,11 +3,11 @@
 
 #include <QRegularExpression>
 
+#include "Hash.h"
 #include "TlsClientPolicy.h"
 #include "TlsConfiguration.h"
 #include "TlsPeerVerifier.h"
 #include "VeyonConfiguration.h"
-#include "crypto/Hash.h"
 
 
 // non-empty and [0-9a-f] only

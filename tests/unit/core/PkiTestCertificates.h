@@ -6,9 +6,9 @@
 #include <QDateTime>
 #include <QStringList>
 
-#include "crypto/Certificate.h"
-#include "crypto/CryptoPrivate.h"
-#include "crypto/PrivateKey.h"
+#include "Certificate.h"
+#include "CryptoPrivate.h"
+#include "PrivateKey.h"
 
 #include <ctime>
 #include <openssl/rsa.h>

@@ -3,7 +3,9 @@
 
 #pragma once
 
-#include "VeyonCore.h"
+#include <QString>
+
+#include "VeyonCryptoExport.h"
 
 namespace VeyonCrypto {
 
@@ -11,11 +13,11 @@ namespace VeyonCrypto {
 // semantics: only meaningful directly after a function reported failure, successful calls do not
 // reset it). It names the operation and the OpenSSL reason codes only and never contains input
 // data or key material, so it may be logged.
-[[nodiscard]] VEYON_CORE_EXPORT QString lastError();
+[[nodiscard]] VEYON_CRYPTO_EXPORT QString lastError();
 
-VEYON_CORE_EXPORT void clearLastError();
+VEYON_CRYPTO_EXPORT void clearLastError();
 
 // version of the OpenSSL library loaded at runtime (diagnostics), e.g. "OpenSSL 3.0.13 30 Jan 2024"
-[[nodiscard]] VEYON_CORE_EXPORT QString openSslVersion();
+[[nodiscard]] VEYON_CRYPTO_EXPORT QString openSslVersion();
 
 } // namespace VeyonCrypto

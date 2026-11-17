@@ -5,8 +5,8 @@
 #include <QScopeGuard>
 
 #include "CaptureHelperCredentials.h"
+#include "Random.h"
 #include "StandardInputReader.h"
-#include "crypto/Random.h"
 
 #include <cstring>
 #include <unistd.h>

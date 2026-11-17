@@ -22,3 +22,10 @@ add_test(NAME WorkerChannelWithoutTcp
 # veyon-server is not D-Bus activatable, the capture helper owns no well-known bus name
 add_test(NAME NoServerBusActivation
 	COMMAND ${CMAKE_COMMAND} -DVEYON_SOURCE_DIR=${CMAKE_SOURCE_DIR} -P ${CMAKE_CURRENT_SOURCE_DIR}/CheckNoServerBusActivation.cmake)
+
+# veyon-crypto is installed and packaged wherever veyon-core is (install rules only without WITH_CORE_ONLY)
+if(NOT WITH_CORE_ONLY)
+	add_test(NAME InstalledLibraries
+		COMMAND ${CMAKE_COMMAND} -DVEYON_SOURCE_DIR=${CMAKE_SOURCE_DIR} -DVEYON_BINARY_DIR=${CMAKE_BINARY_DIR}
+			-P ${CMAKE_CURRENT_SOURCE_DIR}/CheckInstalledLibraries.cmake)
+endif()

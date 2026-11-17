@@ -5,7 +5,7 @@
 
 #include <QString>
 
-#include "crypto/SecureBuffer.h"
+#include "SecureBuffer.h"
 
 #include <optional>
 

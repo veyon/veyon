@@ -3,9 +3,9 @@
 
 #pragma once
 
+#include "Certificate.h"
+#include "SecureBuffer.h"
 #include "VeyonCore.h"
-#include "crypto/Certificate.h"
-#include "crypto/SecureBuffer.h"
 
 // Trust bundle veyon-trust-bundle.json (06-pki.md §4, part of PkiPublicApi):
 //   {"v":1,

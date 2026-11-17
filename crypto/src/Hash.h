@@ -10,7 +10,7 @@
 namespace VeyonCrypto {
 
 // SHA-2 message digests
-class VEYON_CORE_EXPORT Hash
+class VEYON_CRYPTO_EXPORT Hash
 {
 public:
 	enum class Algorithm {

@@ -6,7 +6,7 @@
 #include <QMutex>
 #include <QObject>
 
-#include "crypto/SecureBuffer.h"
+#include "SecureBuffer.h"
 
 class PortalSession;
 class PipeWireFramebuffer;

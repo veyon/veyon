@@ -63,5 +63,5 @@ jobs:
           fi
       - name: Unit tests
         run: |
-          export PATH="$PWD/build/core:$PATH"
+          export PATH="$PWD/build/crypto:$PWD/build/core:$PATH"
           QT_QPA_PLATFORM=offscreen ctest --test-dir build --output-on-failure --no-tests=error

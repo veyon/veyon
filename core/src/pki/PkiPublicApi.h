@@ -10,9 +10,9 @@
 // veyon-core, which must not link veyon-crypto-authority (configure-time capability boundary check,
 // top-level CMakeLists.txt).
 
+#include "Certificate.h"
 #include "TlsClientPolicy.h"
 #include "TlsConfiguration.h"
 #include "TlsError.h"
 #include "TlsPeerVerifier.h"
 #include "TrustBundle.h"
-#include "crypto/Certificate.h"

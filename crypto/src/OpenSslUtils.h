@@ -16,7 +16,7 @@
 #include <openssl/x509v3.h>
 
 // Internal header of the VeyonCrypto layer: never include it from a public header. It is shared by
-// the VeyonCrypto sources in veyon-core and by the separate veyon-crypto-authority library.
+// the VeyonCrypto sources in veyon-crypto and by the separate veyon-crypto-authority library.
 // Only the EVP/X509 subset of 06-pki.md §2 may be used; no OpenSSL version checks here
 // (version-specific code belongs to OpenSslCompat.{h,cpp}). Objects obtained from OpenSSL getters
 // are never modified (OpenSSL 4.x returns them const) and getter results are passed on directly or
@@ -58,17 +58,17 @@ using X509RequestPtr = std::unique_ptr<X509_REQ, OpenSslDeleter<X509_REQ_free>>;
 // error reporting into VeyonCrypto::lastError(); operation/reason must be static strings without
 // any data; setOpenSslError() appends the OpenSSL reason codes and empties the thread's OpenSSL
 // error queue so that no stale errors leak into later operations (e.g. QSslSocket)
-VEYON_CORE_EXPORT void setError(const char* operation, const char* reason);
-VEYON_CORE_EXPORT void setOpenSslError(const char* operation);
+VEYON_CRYPTO_EXPORT void setError(const char* operation, const char* reason);
+VEYON_CRYPTO_EXPORT void setOpenSslError(const char* operation);
 
 // PEM password callback that never prompts (OpenSSL's default reads from the terminal)
-VEYON_CORE_EXPORT int noPasswordCallback(char* buffer, int size, int writing, void* userData);
+VEYON_CRYPTO_EXPORT int noPasswordCallback(char* buffer, int size, int writing, void* userData);
 
-[[nodiscard]] VEYON_CORE_EXPORT bool fitsInt(qsizetype size);
+[[nodiscard]] VEYON_CRYPTO_EXPORT bool fitsInt(qsizetype size);
 
 // read-only BIO over the given bytes (no copy, data must outlive the BIO)
-[[nodiscard]] VEYON_CORE_EXPORT BioPtr readOnlyBio(ByteView data);
-[[nodiscard]] VEYON_CORE_EXPORT QByteArray bioContents(BIO* bio);
+[[nodiscard]] VEYON_CRYPTO_EXPORT BioPtr readOnlyBio(ByteView data);
+[[nodiscard]] VEYON_CRYPTO_EXPORT QByteArray bioContents(BIO* bio);
 
 // Reads the next PEM block with the given label (or its legacy form "X509 CERTIFICATE" or "NEW
 // CERTIFICATE REQUEST", RFC 7468; blocks with other labels are skipped) and returns its decoded
@@ -80,44 +80,44 @@ enum class PemReadResult {
 	EndOfInput,
 	Error,
 };
-[[nodiscard]] VEYON_CORE_EXPORT PemReadResult readPemBlock(BIO* bio, const char* label, qsizetype maximumSize, QByteArray& der);
+[[nodiscard]] VEYON_CRYPTO_EXPORT PemReadResult readPemBlock(BIO* bio, const char* label, qsizetype maximumSize, QByteArray& der);
 // same, but further blocks with the given label are an error
-[[nodiscard]] VEYON_CORE_EXPORT PemReadResult readSinglePemBlock(BIO* bio, const char* label, qsizetype maximumSize, QByteArray& der);
+[[nodiscard]] VEYON_CRYPTO_EXPORT PemReadResult readSinglePemBlock(BIO* bio, const char* label, qsizetype maximumSize, QByteArray& der);
 
 // DER encoding of a SubjectPublicKeyInfo; empty on failure
-[[nodiscard]] VEYON_CORE_EXPORT QByteArray subjectPublicKeyInfo(EVP_PKEY* key);
+[[nodiscard]] VEYON_CRYPTO_EXPORT QByteArray subjectPublicKeyInfo(EVP_PKEY* key);
 
 // whether subjectPublicKeyInfo is exactly OpenSSL's encoding of the key decoded from it, i.e. also
 // the encoding inside the BIT STRING (e.g. the RSAPublicKey) is canonical DER; EC keys keep the
 // point form of their encoding
-[[nodiscard]] VEYON_CORE_EXPORT bool isCanonicalSubjectPublicKeyInfo(EVP_PKEY* key, ByteView subjectPublicKeyInfo);
+[[nodiscard]] VEYON_CRYPTO_EXPORT bool isCanonicalSubjectPublicKeyInfo(EVP_PKEY* key, ByteView subjectPublicKeyInfo);
 
 // the key policy of VeyonCrypto: EC P-256 (named curve), Ed25519 or RSA with
 // PrivateKey::MinimumRsaBits..MaximumRsaBits; everything else is KeyAlgorithm::Invalid
-[[nodiscard]] VEYON_CORE_EXPORT KeyAlgorithm classifyKey(EVP_PKEY* key);
+[[nodiscard]] VEYON_CRYPTO_EXPORT KeyAlgorithm classifyKey(EVP_PKEY* key);
 
 // the only signature schemes: ECDSA-SHA256 (EC P-256), Ed25519, RSA-PSS-SHA256 (MGF1-SHA256,
 // salt length 32); the scheme is bound to the key algorithm and never chosen by the caller
-[[nodiscard]] VEYON_CORE_EXPORT bool initializeSignatureContext(EVP_MD_CTX* context, EVP_PKEY* key,
-																KeyAlgorithm algorithm, bool forSigning);
+[[nodiscard]] VEYON_CRYPTO_EXPORT bool initializeSignatureContext(EVP_MD_CTX* context, EVP_PKEY* key,
+																  KeyAlgorithm algorithm, bool forSigning);
 
 // display-safe RFC 2253 representation (UTF-8; control, format and line/paragraph separator
 // characters escaped as a backslash, "u" and four hex digits, or "U" and eight hex digits outside
 // the Basic Multilingual Plane, e.g. tag characters; literal backslashes are escaped as "\\" by
 // RFC 2253) and the single common name of an X.509 name (empty if there is none or more than one,
 // if it is longer than 64 characters or contains such characters)
-[[nodiscard]] VEYON_CORE_EXPORT QString nameToString(const X509_NAME* name);
-[[nodiscard]] VEYON_CORE_EXPORT QString commonNameOf(const X509_NAME* name);
+[[nodiscard]] VEYON_CRYPTO_EXPORT QString nameToString(const X509_NAME* name);
+[[nodiscard]] VEYON_CRYPTO_EXPORT QString commonNameOf(const X509_NAME* name);
 
 // whether a certificate/CSR signature AlgorithmIdentifier is acceptable for an issuer key of the
 // given algorithm, each in its one encoding: ecdsa-with-SHA256 (EcP256) and Ed25519 without
 // parameters, sha256WithRSAEncryption with NULL parameters or RSASSA-PSS with exactly SHA-256,
 // MGF1-SHA256, salt length 32 and the (omitted) default trailer field in DER (Rsa)
-[[nodiscard]] VEYON_CORE_EXPORT bool isAcceptedSignatureAlgorithm(const X509_ALGOR* signatureAlgorithm,
-																  KeyAlgorithm issuerKeyAlgorithm);
+[[nodiscard]] VEYON_CRYPTO_EXPORT bool isAcceptedSignatureAlgorithm(const X509_ALGOR* signatureAlgorithm,
+																	KeyAlgorithm issuerKeyAlgorithm);
 
 // X.509 name with CN (required, 1..64 characters) and optional O (0..64 characters); nullptr if invalid
-[[nodiscard]] VEYON_CORE_EXPORT X509NamePtr createName(const QString& commonName, const QString& organization = {});
+[[nodiscard]] VEYON_CRYPTO_EXPORT X509NamePtr createName(const QString& commonName, const QString& organization = {});
 
 } // namespace Internal
 

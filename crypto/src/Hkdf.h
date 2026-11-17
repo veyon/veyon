@@ -11,7 +11,7 @@ namespace VeyonCrypto {
 
 // HKDF-SHA256 (RFC 5869). The input key material must not be empty; an empty salt means the
 // RFC default (HashLen zero bytes).
-class VEYON_CORE_EXPORT Hkdf
+class VEYON_CRYPTO_EXPORT Hkdf
 {
 public:
 	static constexpr qsizetype PseudoRandomKeySize = 32;

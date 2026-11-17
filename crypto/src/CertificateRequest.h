@@ -18,7 +18,7 @@ namespace VeyonCrypto {
 // use the DER encoding of a request as identity, only the SPKI pin of its publicKey(). Requested extensions and subject attributes other
 // than the common name are ignored; an issuer must take names from its own sources, never from the
 // request (06-pki.md §7).
-class VEYON_CORE_EXPORT CertificateRequest
+class VEYON_CRYPTO_EXPORT CertificateRequest
 {
 public:
 	static constexpr qsizetype MaximumEncodedSize = 16 * 1024;

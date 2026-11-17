@@ -15,7 +15,7 @@ namespace VeyonCrypto {
 // nonce explicitly and MUST never use a nonce twice with the same key (e.g. a per-direction record
 // counter as in 02-ipc.md §5, or a fresh random nonce for a fresh key derived from a random salt).
 // open() verifies the tag before releasing any plaintext; on failure nothing is returned.
-class VEYON_CORE_EXPORT Aead
+class VEYON_CRYPTO_EXPORT Aead
 {
 public:
 	enum class Algorithm {

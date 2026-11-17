@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include "crypto/Certificate.h"
+#include "Certificate.h"
 
 // X.509 certificate parsers of VeyonCrypto (untrusted input: TLS peers, trust bundles,
 // enrollment responses); the first input byte selects DER or PEM chain parsing

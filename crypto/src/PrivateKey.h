@@ -11,7 +11,7 @@ namespace VeyonCrypto {
 // schemes). Move-only so that ownership of key material stays explicit; safe to use from several
 // threads for signing. Serialisation is only possible into a SecureBuffer, as unencrypted PKCS#8
 // (encrypt it with PasswordKdf + Aead where it leaves the SecretStore).
-class VEYON_CORE_EXPORT PrivateKey
+class VEYON_CRYPTO_EXPORT PrivateKey
 {
 public:
 	static constexpr int MinimumRsaBits = 3072;

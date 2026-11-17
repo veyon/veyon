@@ -175,37 +175,6 @@ set(veyoncore_SOURCES
 	src/Configuration/Store.h
 	src/Configuration/UiMapping.cpp
 	src/Configuration/UiMapping.h
-	src/crypto/Aead.cpp
-	src/crypto/Aead.h
-	src/crypto/Certificate.cpp
-	src/crypto/Certificate.h
-	src/crypto/CertificateRequest.cpp
-	src/crypto/CertificateRequest.h
-	src/crypto/ConstantTime.cpp
-	src/crypto/ConstantTime.h
-	src/crypto/CryptoError.cpp
-	src/crypto/CryptoError.h
-	src/crypto/CryptoPrivate.h
-	src/crypto/Hash.cpp
-	src/crypto/Hash.h
-	src/crypto/Hkdf.cpp
-	src/crypto/Hkdf.h
-	src/crypto/Hmac.cpp
-	src/crypto/Hmac.h
-	src/crypto/OpenSslCompat.cpp
-	src/crypto/OpenSslCompat.h
-	src/crypto/OpenSslUtils.cpp
-	src/crypto/OpenSslUtils.h
-	src/crypto/PasswordKdf.cpp
-	src/crypto/PasswordKdf.h
-	src/crypto/PrivateKey.cpp
-	src/crypto/PrivateKey.h
-	src/crypto/PublicKey.cpp
-	src/crypto/PublicKey.h
-	src/crypto/Random.cpp
-	src/crypto/Random.h
-	src/crypto/SecureBuffer.cpp
-	src/crypto/SecureBuffer.h
 	src/pki/PkiPublicApi.h
 	src/pki/TlsClientPolicy.cpp
 	src/pki/TlsClientPolicy.h
@@ -264,6 +233,7 @@ target_link_libraries(veyon-core PUBLIC
 	Qt${QT_MAJOR_VERSION}::Network
 	Qt${QT_MAJOR_VERSION}::Widgets
 	qca-qt${QT_MAJOR_VERSION}
+	veyon-crypto
 	)
 
 if(WITH_QT6)
@@ -276,12 +246,6 @@ if(WITH_TESTS)
 endif()
 
 target_link_libraries(veyon-core PUBLIC OpenSSL::SSL)
-
-# VeyonCrypto (src/crypto) uses the OpenSSL API subset common to 1.1.1, 3.x and 4.x (06-pki.md §2)
-target_compile_definitions(veyon-core PRIVATE OPENSSL_API_COMPAT=10101)
-
-# CA primitives in a separate library outside veyon-core (capability boundary, 06-pki.md §1)
-add_subdirectory(src/crypto/authority)
 
 if(WITH_BUNDLED_LIBVNC)
 	target_link_libraries(veyon-core PUBLIC vncclient)

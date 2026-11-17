@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-      - name: VeyonCrypto OpenSSL version guards and QCA usage (06-pki.md §2)
+      - name: VeyonCrypto OpenSSL version guards, QCA usage and core headers (06-pki.md §2)
         env:
           # pull requests: their base; pushes: the previous head (all zeros for new branches)
           BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}

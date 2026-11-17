@@ -10,7 +10,7 @@
 namespace VeyonCrypto {
 
 // HMAC-SHA256 (RFC 2104). Keys must not be empty.
-class VEYON_CORE_EXPORT Hmac
+class VEYON_CRYPTO_EXPORT Hmac
 {
 public:
 	static constexpr qsizetype Sha256Size = 32;

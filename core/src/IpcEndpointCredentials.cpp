@@ -5,9 +5,9 @@
 #include <QScopeGuard>
 
 #include "IpcEndpointCredentials.h"
+#include "Random.h"
 #include "StandardInputReader.h"
 #include "StandardInputReaderPlatform.h"
-#include "crypto/Random.h"
 
 #include <cstring>
 

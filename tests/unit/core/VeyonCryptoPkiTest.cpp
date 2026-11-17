@@ -4,12 +4,12 @@
 #include <QSslKey>
 #include <QtTest>
 
+#include "Certificate.h"
 #include "CertificateAuthority.h"
-#include "crypto/Certificate.h"
-#include "crypto/CertificateRequest.h"
-#include "crypto/CryptoPrivate.h"
-#include "crypto/Hash.h"
-#include "crypto/PrivateKey.h"
+#include "CertificateRequest.h"
+#include "CryptoPrivate.h"
+#include "Hash.h"
+#include "PrivateKey.h"
 
 #include <algorithm>
 #include <ctime>

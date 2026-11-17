@@ -3,7 +3,9 @@
 
 #pragma once
 
-#include "VeyonCore.h"
+#include <QByteArray>
+
+#include "VeyonCryptoExport.h"
 
 #include <optional>
 
@@ -23,7 +25,7 @@ namespace VeyonCrypto {
 // - Sizes outside 0..MaximumSize are never clamped: such a buffer stays empty (size() 0,
 //   data() nullptr), resize() fails. Allocation failures abort like QByteArray does (Qt is built
 //   without exceptions).
-class VEYON_CORE_EXPORT SecureBuffer
+class VEYON_CRYPTO_EXPORT SecureBuffer
 {
 public:
 	// nothing in Veyon keeps larger secrets (IPC records, exports, keys)
