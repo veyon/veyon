@@ -1,6 +1,8 @@
 // SPDX-FileCopyrightText: 2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include <QScopeGuard>
+
 #include "IpcAuthenticationRequest.h"
 #include "ServiceIpcCommandHandler.h"
 
@@ -103,8 +105,10 @@ IpcMessage::Response ServiceIpcCommandHandler::setSessionData(const Client& clie
 		return IpcMessage::failure(request.id, IpcProtocol::Error::BadRequestError);
 	}
 
-	const auto decodedData = QByteArray::fromBase64Encoding(encodedData.toString().toLatin1(),
-															QByteArray::AbortOnBase64DecodingErrors);
+	auto decodedData = QByteArray::fromBase64Encoding(encodedData.toString().toLatin1(),
+													  QByteArray::AbortOnBase64DecodingErrors);
+	// the data (logon credentials) is kept in a SecureBuffer only
+	const auto wipeDecodedData = qScopeGuard([&decodedData]() { decodedData.decoded.fill(0); });
 	if (decodedData.decodingStatus != QByteArray::Base64DecodingStatus::Ok)
 	{
 		return IpcMessage::failure(request.id, IpcProtocol::Error::BadRequestError);
