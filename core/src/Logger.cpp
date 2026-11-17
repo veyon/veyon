@@ -122,7 +122,7 @@ void Logger::initLogFile()
 
 	if (logFileDirectory.path.isEmpty())
 	{
-		reportLogFileError(logFileDirectory.error);
+		reportLogFileError(logFileDirectory.error, false);
 		return;
 	}
 
@@ -156,21 +156,34 @@ void Logger::openLogFile()
 	if (VeyonCore::platform().filesystemFunctions().openFileSafely(
 			m_logFile,
 			QFile::WriteOnly | QFile::Append | QFile::Unbuffered | QFile::Text,
-			QFile::ReadOwner | QFile::WriteOwner) == false)
+			QFile::ReadOwner | QFile::WriteOwner))
 	{
-		// openFileSafely() refuses symlinks, files of other users and non-regular files
-		reportLogFileError(QStringLiteral("%1 could not be opened safely (symlink, owned by another user, "
-										  "not a regular file or not accessible)")
-							   .arg(m_logFilePath));
-		m_logFile->close();
-		delete m_logFile;
-		m_logFile = nullptr;
+		m_logFileOpened = true;
+		return;
 	}
+
+	// openFileSafely() refuses symlinks, files of other users and non-regular files
+	const auto error = QStringLiteral("%1 could not be opened safely (symlink, owned by another user, "
+									  "not a regular file or not accessible)")
+						   .arg(m_logFilePath);
+	m_logFile->close();
+
+	if (m_logFileOpened)
+	{
+		// reopening after rotation or clearing may fail temporarily (e.g. while the process runs with
+		// another effective uid), so outputMessage() retries with the next message
+		reportLogFileError(error, true);
+		return;
+	}
+
+	reportLogFileError(error, false);
+	delete m_logFile;
+	m_logFile = nullptr;
 }
 
 
 
-void Logger::reportLogFileError(const QString& error)
+void Logger::reportLogFileError(const QString& error, bool retrying)
 {
 	if (m_logFileErrorReported)
 	{
@@ -180,7 +193,9 @@ void Logger::reportLogFileError(const QString& error)
 	m_logFileErrorReported = true;
 
 	// written directly (stderr and Unix: syslog) as this may happen while a message is being logged
-	const auto message = QStringLiteral("%1: file logging disabled: %2").arg(m_appName, error);
+	const auto message = retrying ? QStringLiteral("%1: file logging interrupted, retrying with the next message: %2")
+										.arg(m_appName, error) :
+									QStringLiteral("%1: file logging disabled: %2").arg(m_appName, error);
 	logEarlyCritical(message.toUtf8().constData());
 
 	// regardless of Logging/LogToSystem, as this would go unnoticed otherwise (Windows: event log)
@@ -342,7 +357,13 @@ void Logger::log(LogLevel logLevel, const QString& message)
 
 void Logger::outputMessage(const QString& message)
 {
-	if (m_logFile)
+	// retry after a failed reopen
+	if (m_logFile && m_logFile->isOpen() == false)
+	{
+		openLogFile();
+	}
+
+	if (m_logFile && m_logFile->isOpen())
 	{
 		m_logFile->write(message.toUtf8());
 		m_logFile->flush();

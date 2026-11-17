@@ -10,6 +10,7 @@
 #include "Logger.h"
 #include "VeyonCore.h"
 
+#include <memory>
 #include <pwd.h>
 #include <sys/stat.h>
 #include <unistd.h>
@@ -154,12 +155,13 @@ private:
 				QString::fromUtf8(process.readAll())};
 	}
 
-	// child side: configuration in a temporary system scope, then a VeyonCore with the Linux platform
-	// plugin and logging, which writes some messages
-	static void runLoggingCore(const QString& baseDirectory, const QVariantMap& extraSettings, int messageCount)
+	static std::unique_ptr<VeyonCore> createLoggingCore(const QString& baseDirectory, const QVariantMap& extraSettings)
 	{
 		QTemporaryDir configurationDirectory;
-		QVERIFY(configurationDirectory.isValid());
+		if (configurationDirectory.isValid() == false)
+		{
+			return {};
+		}
 		QSettings::setPath(QSettings::NativeFormat, QSettings::SystemScope, configurationDirectory.path());
 		QSettings::setPath(QSettings::NativeFormat, QSettings::UserScope, configurationDirectory.path());
 
@@ -177,15 +179,28 @@ private:
 			settings.sync();
 		}
 
-		auto core = std::make_unique<VeyonCore>(QCoreApplication::instance(), VeyonCore::Component::Server,
-												QLatin1String(AppName), VeyonCore::minimalInitialization());
+		// the configuration is read here, the directory isn't needed afterwards
+		return std::make_unique<VeyonCore>(QCoreApplication::instance(), VeyonCore::Component::Server,
+										   QLatin1String(AppName), VeyonCore::minimalInitialization());
+	}
 
+	static void logMessages(int messageCount)
+	{
 		const QString message(1024, QLatin1Char('x'));
 		for (int i = 0; i < messageCount; ++i)
 		{
 			// differing messages, so that they're not collapsed
 			vCritical() << "logger test message" << i << message;
 		}
+	}
+
+	// child side: configuration in a temporary system scope, then a VeyonCore with the Linux platform
+	// plugin and logging, which writes some messages
+	static void runLoggingCore(const QString& baseDirectory, const QVariantMap& extraSettings, int messageCount)
+	{
+		const auto core = createLoggingCore(baseDirectory, extraSettings);
+		QVERIFY(core != nullptr);
+		logMessages(messageCount);
 	}
 
 	static QString scenario()
@@ -442,6 +457,56 @@ private Q_SLOTS:
 
 		const auto withLimit = settings.isEmpty() == false && scenario() != QLatin1String("symlinkedLogFile");
 		runLoggingCore(m_baseDirectory, settings, withLimit ? RotationMessageCount : FewMessages);
+	}
+
+	void reopenRetriedAfterFailure()
+	{
+		if (isChild())
+		{
+			QSKIP("parent only");
+		}
+
+		const auto result = runChild(QStringLiteral("childReopenRetry"), QStringLiteral("default"));
+		QVERIFY2(result.exitCode == 0, qPrintable(result.output));
+
+		const QString logFilePath = userDirectory() + QLatin1Char('/') + QLatin1String(LogFileName);
+		QVERIFY2(result.output.contains(QStringLiteral("file logging interrupted, retrying with the next message: %1 "
+													   "could not be opened safely")
+											.arg(logFilePath)),
+				 qPrintable(result.output));
+		QCOMPARE(result.output.count(QLatin1String("file logging")), 1);
+	}
+
+	void childReopenRetry()
+	{
+		if (isChild() == false)
+		{
+			QSKIP("child only");
+		}
+
+		// cleared (not rotated) when it exceeds 1 MB
+		const auto core = createLoggingCore(m_baseDirectory, {{QStringLiteral("Logging/LogFileSizeLimitEnabled"), true}, {QStringLiteral("Logging/LogFileSizeLimit"), 1}});
+		QVERIFY(core != nullptr);
+		logMessages(FewMessages);
+
+		const QString logFilePath = m_baseDirectory + QStringLiteral("/veyon-") + loginName(::geteuid()) +
+			QLatin1Char('/') + QLatin1String(LogFileName);
+		QVERIFY(QFileInfo(logFilePath).size() > 0);
+
+		// make reopening after clearing fail: the file is replaced by a directory, which can't be
+		// removed and opened as the log file
+		QVERIFY(QFile::remove(logFilePath));
+		QVERIFY(QDir().mkdir(logFilePath));
+		logMessages(RotationMessageCount);
+		QVERIFY(QFileInfo(logFilePath).isDir());
+
+		// the next message reopens the log file once possible again
+		QVERIFY(QDir().rmdir(logFilePath));
+		vCritical() << "logger test message after recovery";
+
+		QFile logFile(logFilePath);
+		QVERIFY(logFile.open(QFile::ReadOnly));
+		QVERIFY(logFile.readAll().contains("logger test message after recovery"));
 	}
 
 	// --- privileged processes ---

@@ -60,7 +60,7 @@ private:
 	void closeLogFile();
 	void clearLogFile();
 	void rotateLogFile();
-	void reportLogFileError(const QString& error);
+	void reportLogFileError(const QString& error, bool retrying);
 
 	void log(LogLevel logLevel, const QString& message);
 	void outputMessage(const QString& message);
@@ -80,6 +80,7 @@ private:
 	bool m_logToStdErr{false};
 	bool m_logToSystem{false};
 	bool m_logFileErrorReported{false};
+	bool m_logFileOpened{false};
 
 	QString m_appName;
 
