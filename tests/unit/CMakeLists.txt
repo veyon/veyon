@@ -107,6 +107,51 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 
 	add_test(NAME FilesystemSafeJoinTest COMMAND FilesystemSafeJoinTest)
 
+	# IpcServerTest: local IPC endpoints with real Unix domain sockets (peer credentials,
+	# socket/directory modes, one connection per endpoint)
+	add_executable(IpcServerTest
+		IpcServerTest.cpp
+	)
+	set_default_target_properties(IpcServerTest)
+
+	target_link_libraries(IpcServerTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+		Qt${QT_MAJOR_VERSION}::Network
+		veyon-core
+	)
+
+	add_test(NAME IpcServerTest COMMAND IpcServerTest)
+
+	# IpcWorkerChannelTest: server ⇄ worker channel with a real child process (02-ipc.md §6a)
+	add_executable(IpcWorkerChannelTest
+		IpcWorkerChannelTest.cpp
+	)
+	set_default_target_properties(IpcWorkerChannelTest)
+
+	target_link_libraries(IpcWorkerChannelTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+		Qt${QT_MAJOR_VERSION}::Network
+		veyon-core
+	)
+
+	add_test(NAME IpcWorkerChannelTest COMMAND IpcWorkerChannelTest)
+
+	# ProcessHardeningTest: non-dumpable server/worker processes (02-ipc.md §1a, §8.12)
+	add_executable(ProcessHardeningTest
+		ProcessHardeningTest.cpp
+	)
+	set_default_target_properties(ProcessHardeningTest)
+
+	target_link_libraries(ProcessHardeningTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+		veyon-core
+	)
+
+	add_test(NAME ProcessHardeningTest COMMAND ProcessHardeningTest)
+
 endif()
 
 # platform-independent tests

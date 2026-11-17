@@ -1,5 +1,6 @@
 add_subdirectory(certificate)
 add_subdirectory(certificaterequest)
+add_subdirectory(ipcchannel)
 add_subdirectory(textmessagesanitizer)
 add_subdirectory(trustbundle)
 add_subdirectory(variantarraymessage)

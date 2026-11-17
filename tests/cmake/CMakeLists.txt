@@ -14,3 +14,7 @@ foreach(variant transitive interface direct plugin objects path option sources l
 			PASS_REGULAR_EXPRESSION "must not link veyon-crypto-authority")
 	endif()
 endforeach()
+
+# the server ⇄ worker channel uses the authenticated local IPC only (02-ipc.md §6a): no loopback TCP
+add_test(NAME WorkerChannelWithoutTcp
+	COMMAND ${CMAKE_COMMAND} -DVEYON_SOURCE_DIR=${CMAKE_SOURCE_DIR} -P ${CMAKE_CURRENT_SOURCE_DIR}/CheckWorkerChannelWithoutTcp.cmake)

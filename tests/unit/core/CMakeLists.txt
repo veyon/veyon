@@ -41,4 +41,26 @@ if(WITH_TESTS)
 	target_link_libraries(TrustBundleTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core OpenSSL::Crypto)
 	add_test(NAME TrustBundleTest COMMAND TrustBundleTest)
 
+	add_executable(IpcChannelTest IpcChannelTest.cpp)
+	set_default_target_properties(IpcChannelTest)
+	target_link_libraries(IpcChannelTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
+	add_test(NAME IpcChannelTest COMMAND IpcChannelTest)
+
+	add_executable(ServiceIpcCommandHandlerTest
+		ServiceIpcCommandHandlerTest.cpp
+		${CMAKE_SOURCE_DIR}/plugins/platform/common/ServiceIpcCommandHandler.cpp
+		)
+	set_default_target_properties(ServiceIpcCommandHandlerTest)
+	target_include_directories(ServiceIpcCommandHandlerTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/platform/common)
+	target_link_libraries(ServiceIpcCommandHandlerTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
+	add_test(NAME ServiceIpcCommandHandlerTest COMMAND ServiceIpcCommandHandlerTest)
+
+	if(VEYON_BUILD_WINDOWS)
+		# DACLs of the IPC endpoint pipes (02-ipc.md §1, §6a)
+		add_executable(IpcPipeSecurityTest IpcPipeSecurityTest.cpp)
+		set_default_target_properties(IpcPipeSecurityTest)
+		target_link_libraries(IpcPipeSecurityTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core advapi32)
+		add_test(NAME IpcPipeSecurityTest COMMAND IpcPipeSecurityTest)
+	endif()
+
 endif()
