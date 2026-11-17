@@ -13,8 +13,12 @@
 
 #include <map>
 
+class DirectoryBrokerService;
+
 // Service side of the local IPC with the session servers (docs/specs/02-ipc.md §1–§6): one
 // endpoint per started server, created before the server starts, served in a dedicated thread.
+// The directory broker commands (04-directory-broker.md) are passed on to DirectoryBrokerService,
+// which answers them asynchronously from its directory worker thread.
 // All public functions are thread-safe.
 class ServiceDataManager : public QThread
 {
@@ -63,6 +67,8 @@ private:
 	void runInIpcThread(Function&& function);
 
 	void handleRequest(const QString& endpointName, IpcConnection* connection, const QByteArray& message);
+	void handleDirectoryBrokerRequest(const QString& endpointName, IpcConnection* connection,
+									  const IpcMessage::Request& request);
 
 	static std::optional<Veyon::Crypto::SecureBuffer> externalVncServerPassword();
 
@@ -72,6 +78,7 @@ private:
 	// accessed in the IPC thread only
 	ServiceIpcCommandHandler m_commandHandler;
 	std::map<QString, Endpoint> m_endpoints;
+	DirectoryBrokerService* m_directoryBrokerService = nullptr;
 
 	mutable QMutex m_failedEndpointsMutex;
 	QSet<QString> m_failedEndpoints;

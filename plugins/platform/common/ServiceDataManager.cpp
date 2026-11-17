@@ -3,10 +3,54 @@
 
 #include <QPointer>
 
+#include "DirectoryBrokerClient.h"
+#include "DirectoryBrokerService.h"
 #include "IpcConnection.h"
+#include "NetworkObjectDirectoryManager.h"
 #include "SecretStore.h"
 #include "ServiceDataManager.h"
+#include "UserGroupsBackendManager.h"
 #include "VeyonConfiguration.h"
+
+
+// called in the directory worker thread; the managers' plugin lists are not modified after start
+static bool isCentralDirectoryBrokerConfigured()
+{
+	if (DirectoryBrokerClient::isLocalHost(VeyonCore::config().directoryBrokerHost()))
+	{
+		return false;
+	}
+
+	// 04-directory-broker.md §3a: requires a verified TLS connection and KeyFileBound
+	// authentication to the central host, which are not available yet - fail closed
+	vCritical() << "central directory broker mode (DirectoryBroker/Host) is not supported by this version - "
+				   "directory and user groups are unavailable";
+	return true;
+}
+
+
+
+static NetworkObjectDirectory* createBrokerDirectory()
+{
+	if (isCentralDirectoryBrokerConfigured())
+	{
+		return nullptr;
+	}
+
+	return VeyonCore::networkObjectDirectoryManager().createDirectory(VeyonCore::config().networkObjectDirectoryPlugin(), nullptr);
+}
+
+
+
+static UserGroupsBackendInterface* brokerUserGroupsBackend()
+{
+	if (isCentralDirectoryBrokerConfigured())
+	{
+		return nullptr;
+	}
+
+	return VeyonCore::userGroupsBackendManager().configuredLocalBackend();
+}
 
 
 ServiceDataManager::ServiceDataManager(QObject* parent) :
@@ -118,6 +162,11 @@ void ServiceDataManager::removeServerEndpoint(const QString& endpointName)
 			delete it->second.server;
 			m_endpoints.erase(it);
 		}
+
+		if (m_directoryBrokerService)
+		{
+			m_directoryBrokerService->removeClient(endpointName);
+		}
 	});
 
 	QMutexLocker locker(&m_failedEndpointsMutex);
@@ -146,6 +195,10 @@ void ServiceDataManager::run()
 {
 	QObject context;
 	m_context = &context;
+
+	DirectoryBrokerService directoryBrokerService(&createBrokerDirectory, &brokerUserGroupsBackend);
+	m_directoryBrokerService = &directoryBrokerService;
+
 	m_contextReady.release();
 
 	exec();
@@ -156,6 +209,7 @@ void ServiceDataManager::run()
 	}
 	m_endpoints.clear();
 
+	m_directoryBrokerService = nullptr;
 	m_context = nullptr;
 }
 
@@ -193,12 +247,49 @@ void ServiceDataManager::handleRequest(const QString& endpointName, IpcConnectio
 		return;
 	}
 
+	if (DirectoryBrokerMessage::isBrokerCommand(request->command))
+	{
+		handleDirectoryBrokerRequest(endpointName, connection, *request);
+		return;
+	}
+
 	// Authenticate is answered later: the connection may be gone by then
 	m_commandHandler.handleRequest(it->second.client, *request, m_context,
 								   [connection = QPointer<IpcConnection>(connection)](const IpcMessage::Response& response) {
 		if (connection && connection->sendMessage(IpcMessage::encodeResponse(response)) == false)
 		{
 			connection->close();
+		}
+	});
+}
+
+
+
+void ServiceDataManager::handleDirectoryBrokerRequest(const QString& endpointName, IpcConnection* connection,
+													  const IpcMessage::Request& request)
+{
+	const QPointer<IpcConnection> replyConnection(connection);
+	const auto ipcRequestId = request.id;
+
+	// one broker client per session server endpoint (limits, cursors, round-robin queue)
+	m_directoryBrokerService->handleRequest(endpointName, DirectoryBrokerMessage::fromIpcRequest(request),
+											[replyConnection, ipcRequestId](const DirectoryBrokerMessage::Reply& reply) {
+		if (replyConnection.isNull() || replyConnection->isClosed())
+		{
+			return;
+		}
+
+		auto message = IpcMessage::encodeResponse(DirectoryBrokerMessage::toIpcResponse(ipcRequestId, reply));
+		if (message.size() > IpcProtocol::MaximumRecordPlaintextSize)
+		{
+			vCritical() << "directory broker reply too large for IPC";
+			message = IpcMessage::encodeResponse(
+				DirectoryBrokerMessage::toIpcResponse(ipcRequestId, DirectoryBrokerMessage::error(0, DirectoryBrokerProtocol::Error::TooLarge)));
+		}
+
+		if (replyConnection->sendMessage(message) == false)
+		{
+			replyConnection->close();
 		}
 	});
 }

@@ -4,6 +4,7 @@
 #include "NetworkObjectDirectoryManager.h"
 #include "NetworkObjectDirectoryPluginInterface.h"
 #include "PluginManager.h"
+#include "RemoteNetworkObjectDirectory.h"
 #include "VeyonConfiguration.h"
 
 
@@ -44,10 +45,57 @@ NetworkObjectDirectory* NetworkObjectDirectoryManager::configuredDirectory()
 {
 	if (m_configuredDirectory == nullptr)
 	{
-		m_configuredDirectory = createDirectory(VeyonCore::config().networkObjectDirectoryPlugin(), this);
+		const auto plugin = directoryPlugin(VeyonCore::config().networkObjectDirectoryPlugin());
+		if (plugin == nullptr)
+		{
+			vCritical() << "no directory plugin available";
+			return nullptr;
+		}
+
+		m_configuredDirectory = createDirectory(plugin, DirectoryBrokerClient::configuredPlacement(plugin->requiresSecrets()),
+												&DirectoryBrokerClient::configuredClient, this);
 	}
 
 	return m_configuredDirectory;
+}
+
+
+
+NetworkObjectDirectory* NetworkObjectDirectoryManager::createDirectory(NetworkObjectDirectoryPluginInterface* plugin,
+																	   DirectoryBrokerClient::Placement placement,
+																	   const BrokerClientProvider& brokerClientProvider,
+																	   QObject* parent)
+{
+	if (placement == DirectoryBrokerClient::Placement::Broker)
+	{
+		// the plugin's directory (and its credentials) is never instantiated in this process
+		return new RemoteNetworkObjectDirectory(brokerClientProvider(), parent);
+	}
+
+	return plugin ? plugin->createNetworkObjectDirectory(parent) : nullptr;
+}
+
+
+
+NetworkObjectDirectoryPluginInterface* NetworkObjectDirectoryManager::directoryPlugin(Plugin::Uid uid) const
+{
+	for (auto it = m_directoryPluginInterfaces.constBegin(), end = m_directoryPluginInterfaces.constEnd(); it != end; ++it)
+	{
+		if (it.key()->uid() == uid)
+		{
+			return it.value();
+		}
+	}
+
+	for (auto it = m_directoryPluginInterfaces.constBegin(), end = m_directoryPluginInterfaces.constEnd(); it != end; ++it)
+	{
+		if (it.key()->flags().testFlag(Plugin::ProvidesDefaultImplementation))
+		{
+			return it.value();
+		}
+	}
+
+	return nullptr;
 }
 
 

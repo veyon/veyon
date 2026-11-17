@@ -1,7 +1,9 @@
 // SPDX-FileCopyrightText: 2017-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include "DirectoryBrokerClient.h"
 #include "PluginManager.h"
+#include "RemoteUserGroupsBackend.h"
 #include "UserGroupsBackendManager.h"
 #include "VeyonConfiguration.h"
 
@@ -35,6 +37,10 @@ UserGroupsBackendManager::UserGroupsBackendManager(QObject* parent) :
 
 
 
+UserGroupsBackendManager::~UserGroupsBackendManager() = default;
+
+
+
 QMap<Plugin::Uid, QString> UserGroupsBackendManager::availableBackends()
 {
 	QMap<Plugin::Uid, QString> items;
@@ -61,12 +67,35 @@ UserGroupsBackendInterface* UserGroupsBackendManager::configuredBackend()
 
 
 
+UserGroupsBackendInterface* UserGroupsBackendManager::configuredLocalBackend() const
+{
+	const auto backend = m_backends.value(VeyonCore::config().userGroupsBackend());
+
+	return backend ? backend : m_defaultBackend;
+}
+
+
+
 void UserGroupsBackendManager::reloadConfiguration()
 {
-	m_configuredBackend = m_backends.value(VeyonCore::config().userGroupsBackend());
+	const auto localBackend = configuredLocalBackend();
 
-	if (m_configuredBackend == nullptr)
+	if (localBackend &&
+		DirectoryBrokerClient::configuredPlacement(localBackend->requiresSecrets()) == DirectoryBrokerClient::Placement::Broker)
 	{
-		m_configuredBackend = m_defaultBackend;
+		// the backend (and its credentials) is never used in this process; the remote backend is
+		// kept, as callers such as AccessControlProvider store the pointer
+		if (m_remoteBackend == nullptr)
+		{
+			m_remoteBackend = std::make_unique<RemoteUserGroupsBackend>(localBackend->userGroupsBackendName(),
+																		DirectoryBrokerClient::configuredClient());
+		}
+		m_remoteBackend->setUserGroupsBackendName(localBackend->userGroupsBackendName());
+		m_remoteBackend->reloadConfiguration();
+		m_configuredBackend = m_remoteBackend.get();
+	}
+	else
+	{
+		m_configuredBackend = localBackend;
 	}
 }
