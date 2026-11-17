@@ -3,6 +3,9 @@
 
 #pragma once
 
+#include <QJsonArray>
+
+#include "AccessControlDirectoryQueries.h"
 #include "AccessControlRule.h"
 #include "FeatureProviderInterface.h"
 #include "NetworkObject.h"
@@ -29,6 +32,7 @@ public:
 		ConfirmedByUser,
 		UserNotInAuthorizedUserGroups,
 		UserInAuthorizedUserGroups,
+		DirectoryUnavailable,
 	};
 
 	enum class Argument {
@@ -43,13 +47,23 @@ public:
 	};
 
 	AccessControlProvider();
+	// tests: given backend, directory and rules instead of the configured ones
+	AccessControlProvider(UserGroupsBackendInterface* userGroupsBackend, NetworkObjectDirectory* networkObjectDirectory,
+						  const QJsonArray& accessControlRules,
+						  const AccessControlDirectoryQueries::Clock& clock = IpcChannel::steadyNow);
+
+	// directory results are memoized from beginCheckPass() to the matching endCheckPass(), e.g. for
+	// re-checking all connections (checkAccess() is a pass of its own if called outside of one)
+	// virtual for tests of the session server's access control manager
+	virtual void beginCheckPass();
+	virtual void endCheckPass();
 
 	QStringList userGroups() const;
 	QStringList locations() const;
 	QStringList locationsOfComputer(const QString& computer) const;
 
-	CheckResult checkAccess(const QString& accessingUser, const QString& accessingComputer,
-							const QStringList& connectedUsers);
+	virtual CheckResult checkAccess(const QString& accessingUser, const QString& accessingComputer,
+									const QStringList& connectedUsers);
 
 	bool processAuthorizedGroups(const QString& accessingUser);
 
@@ -60,6 +74,11 @@ public:
 														 const QStringList& connectedUsers);
 
 	bool isAccessToLocalComputerDenied() const;
+	// false if the directory is not available (only an optimisation, connections are still checked)
+	bool isAccessDeniedForLocalState(const QString& localUser, const QString& localComputer) const;
+
+	// whether a directory query of the last check (or rule processing) failed
+	bool hasDirectoryQueryFailed() const;
 
 	Plugin::Uid uid() const override
 	{
@@ -118,6 +137,11 @@ public:
 	void sendDetails(QIODevice* ioDevice, const QString& details);
 
 private:
+	void loadAccessControlRules(const QJsonArray& accessControlRules);
+
+	// these record failed directory/broker queries (hasDirectoryQueryFailed()), so that a decision
+	// based on missing data is turned into a denial (fail closed, 04-directory-broker.md §2)
+	QStringList groupsOfUser(const QString& user) const;
 	bool isMemberOfUserGroup(const QString& user, const QString& groupName) const;
 	bool isLocatedAt(const QString& computer, const QString& locationName) const;
 	bool haveGroupsInCommon(const QString& userOne, const QString& userTwo) const;
@@ -146,5 +170,6 @@ private:
 	Feature m_accessControlFeature;
 	FeatureList m_features{m_accessControlFeature};
 
-	QStringList m_authorizedUserGroups;
+	QStringList m_authorizedUserGroups{};
+	mutable AccessControlDirectoryQueries m_directoryQueries;
 };

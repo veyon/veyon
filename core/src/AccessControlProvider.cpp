@@ -3,6 +3,7 @@
 
 #include <QNetworkInterface>
 #include <QRegularExpression>
+#include <QScopeGuard>
 
 #include "AccessControlProvider.h"
 #include "HostAddress.h"
@@ -22,10 +23,47 @@ AccessControlProvider::AccessControlProvider() :
 	m_accessControlFeature(QLatin1String(staticMetaObject.className()),
 						   Feature::Flag::Meta | Feature::Flag::Builtin,
 						   Feature::Uid{QStringLiteral("1815941e-eaef-43ab-b9cd-5403dca3f749")}, {}, {}, {}, {}, {}),
-	m_authorizedUserGroups(VeyonCore::config().authorizedUserGroups())
+	m_authorizedUserGroups(VeyonCore::config().authorizedUserGroups()),
+	m_directoryQueries(m_userGroupsBackend, m_networkObjectDirectory, m_useDomainUserGroups)
 {
-	const QJsonArray accessControlRules = VeyonCore::config().accessControlRules();
+	loadAccessControlRules(VeyonCore::config().accessControlRules());
+}
 
+
+
+AccessControlProvider::AccessControlProvider(UserGroupsBackendInterface* userGroupsBackend,
+											 NetworkObjectDirectory* networkObjectDirectory,
+											 const QJsonArray& accessControlRules,
+											 const AccessControlDirectoryQueries::Clock& clock) :
+	m_userGroupsBackend(userGroupsBackend),
+	m_networkObjectDirectory(networkObjectDirectory),
+	m_useDomainUserGroups(false),
+	m_accessControlFeature(QLatin1String(staticMetaObject.className()),
+						   Feature::Flag::Meta | Feature::Flag::Builtin,
+						   Feature::Uid{QStringLiteral("1815941e-eaef-43ab-b9cd-5403dca3f749")}, {}, {}, {}, {}, {}),
+	m_directoryQueries(m_userGroupsBackend, m_networkObjectDirectory, m_useDomainUserGroups, clock)
+{
+	loadAccessControlRules(accessControlRules);
+}
+
+
+
+void AccessControlProvider::beginCheckPass()
+{
+	m_directoryQueries.beginPass();
+}
+
+
+
+void AccessControlProvider::endCheckPass()
+{
+	m_directoryQueries.endPass();
+}
+
+
+
+void AccessControlProvider::loadAccessControlRules(const QJsonArray& accessControlRules)
+{
 	m_accessControlRules.reserve(accessControlRules.size());
 
 	for (const auto& accessControlRule : accessControlRules)
@@ -71,27 +109,7 @@ QStringList AccessControlProvider::locationsOfComputer(const QString& computer) 
 		return {};
 	}
 
-	const auto computers = m_networkObjectDirectory->queryObjects(NetworkObject::Type::Host,
-																  NetworkObject::Attribute::HostAddress, fqdn);
-	if (computers.isEmpty())
-	{
-		vWarning() << "Could not query any network objects for host" << fqdn;
-		return {};
-	}
-
-	QStringList locationList;
-	locationList.reserve(computers.size() * 3);
-
-	for (const auto& computer : computers)
-	{
-		const auto parents = m_networkObjectDirectory->queryParents(computer);
-		for (const auto& parent : parents)
-		{
-			locationList.append(parent.name());
-		}
-	}
-
-	std::sort(locationList.begin(), locationList.end());
+	const auto locationList = m_directoryQueries.locationsOfComputer(fqdn);
 
 	vDebug() << "Found locations:" << locationList;
 
@@ -104,10 +122,21 @@ AccessControlProvider::CheckResult AccessControlProvider::checkAccess(const QStr
 																	  const QString& accessingComputer,
 																	  const QStringList& connectedUsers)
 {
+	// directory results are reused within this check (or the re-check pass it belongs to)
+	beginCheckPass();
+	const auto endPass = qScopeGuard([this]() { endCheckPass(); });
+
 	CheckResult denyAccessCheckResult{Access::Deny};
 	if (VeyonCore::config().isAccessRestrictedToUserGroups())
 	{
-		if (processAuthorizedGroups(accessingUser))
+		m_directoryQueries.resetFailure();
+		const auto isInAuthorizedGroups = processAuthorizedGroups(accessingUser);
+		if (m_directoryQueries.hasFailed())
+		{
+			vWarning() << "user groups not available, denying access";
+			return {Access::Deny, Reason::DirectoryUnavailable};
+		}
+		if (isInAuthorizedGroups)
 		{
 			return {Access::Allow, Reason::UserInAuthorizedUserGroups};
 		}
@@ -120,6 +149,12 @@ AccessControlProvider::CheckResult AccessControlProvider::checkAccess(const QStr
 													VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName),
 													HostAddress::localFQDN(),
 													connectedUsers);
+		// a condition evaluated without directory data would select the wrong rule
+		if (m_directoryQueries.hasFailed())
+		{
+			vWarning() << "directory not available while processing access control rules, denying access";
+			return {Access::Deny, Reason::DirectoryUnavailable};
+		}
 		if (rule)
 		{
 			switch (rule->action())
@@ -158,7 +193,7 @@ bool AccessControlProvider::processAuthorizedGroups(const QString& accessingUser
 {
 	vDebug() << "processing for user" << accessingUser;
 
-	const auto groupsOfAccessingUser = m_userGroupsBackend->groupsOfUser(accessingUser, m_useDomainUserGroups);
+	const auto groupsOfAccessingUser = groupsOfUser(accessingUser);
 
 	vDebug() << groupsOfAccessingUser << m_authorizedUserGroups;
 
@@ -178,6 +213,8 @@ AccessControlRule::Pointer AccessControlProvider::processAccessControlRules(cons
 {
 	vDebug() << "processing rules for" << accessingUser << accessingComputer << localUser << localComputer << connectedUsers;
 
+	m_directoryQueries.resetFailure();
+
 	for (const auto& rule : std::as_const(m_accessControlRules))
 	{
 		// rule disabled?
@@ -187,8 +224,17 @@ AccessControlRule::Pointer AccessControlProvider::processAccessControlRules(cons
 			continue;
 		}
 
-		if (rule->areConditionsIgnored() ||
-			matchConditions(*rule, accessingUser, accessingComputer, localUser, localComputer, connectedUsers))
+		const auto matches = rule->areConditionsIgnored() ||
+			matchConditions(*rule, accessingUser, accessingComputer, localUser, localComputer, connectedUsers);
+
+		// no decision on missing directory data: stop at the first failed query (deny)
+		if (hasDirectoryQueryFailed())
+		{
+			vWarning() << "directory query failed while processing rule" << rule->name() << "- denying access";
+			return nullptr;
+		}
+
+		if (matches)
 		{
 			vDebug() << "rule" << rule->name() << "matched with action" << rule->action();
 			return rule;
@@ -211,11 +257,29 @@ bool AccessControlProvider::isAccessToLocalComputerDenied() const
 		return false;
 	}
 
+	return isAccessDeniedForLocalState(VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName),
+									   HostAddress::localFQDN());
+}
+
+
+
+bool AccessControlProvider::isAccessDeniedForLocalState(const QString& localUser, const QString& localComputer) const
+{
+	m_directoryQueries.resetFailure();
+
 	for (const auto& rule : std::as_const(m_accessControlRules))
 	{
-		if (matchConditions(*rule, {}, {},
-							VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName),
-							HostAddress::localFQDN(), {}))
+		const auto conditionsMatch = matchConditions(*rule, {}, {}, localUser, localComputer, {});
+
+		// only an optimisation (listening on localhost only): on missing directory data assume access
+		// is possible, every connection is still checked (and denied) individually
+		if (hasDirectoryQueryFailed())
+		{
+			vWarning() << "directory not available, not restricting access to the local computer";
+			return false;
+		}
+
+		if (conditionsMatch)
 		{
 			switch (rule->action())
 			{
@@ -231,6 +295,13 @@ bool AccessControlProvider::isAccessToLocalComputerDenied() const
 	}
 
 	return false;
+}
+
+
+
+bool AccessControlProvider::hasDirectoryQueryFailed() const
+{
+	return m_directoryQueries.hasFailed();
 }
 
 
@@ -257,10 +328,17 @@ void AccessControlProvider::sendDetails(QIODevice* ioDevice, const QString& deta
 
 
 
+QStringList AccessControlProvider::groupsOfUser(const QString& user) const
+{
+	return m_directoryQueries.groupsOfUser(user);
+}
+
+
+
 bool AccessControlProvider::isMemberOfUserGroup(const QString& user,
 												const QString& groupName) const
 {
-	return matchList(m_userGroupsBackend->groupsOfUser(user, m_useDomainUserGroups), groupName);
+	return matchList(groupsOfUser(user), groupName);
 }
 
 
@@ -274,8 +352,12 @@ bool AccessControlProvider::isLocatedAt(const QString& computer, const QString& 
 
 bool AccessControlProvider::haveGroupsInCommon(const QString& userOne, const QString& userTwo) const
 {
-	const auto userOneGroups = m_userGroupsBackend->groupsOfUser(userOne, m_useDomainUserGroups);
-	const auto userTwoGroups = m_userGroupsBackend->groupsOfUser(userTwo, m_useDomainUserGroups);
+	const auto userOneGroups = groupsOfUser(userOne);
+	if (hasDirectoryQueryFailed())
+	{
+		return false;
+	}
+	const auto userTwoGroups = groupsOfUser(userTwo);
 
 	const auto userOneGroupSet = QSet<QString>{userOneGroups.begin(), userOneGroups.end()};
 	const auto userTwoGroupSet = QSet<QString>{userTwoGroups.begin(), userTwoGroups.end()};
@@ -359,7 +441,8 @@ bool AccessControlProvider::matchConditions(const AccessControlRule& rule,
 		const auto group = rule.argument(condition);
 
 		if (user.isEmpty() || group.isEmpty() ||
-			isMemberOfUserGroup(user, group) != matchResult)
+			isMemberOfUserGroup(user, group) != matchResult ||
+			hasDirectoryQueryFailed())
 		{
 			return false;
 		}
@@ -370,7 +453,8 @@ bool AccessControlProvider::matchConditions(const AccessControlRule& rule,
 		hasConditions = true;
 
 		if (accessingUser.isEmpty() || localUser.isEmpty() ||
-			haveGroupsInCommon(accessingUser, localUser) != matchResult)
+			haveGroupsInCommon(accessingUser, localUser) != matchResult ||
+			hasDirectoryQueryFailed())
 		{
 			return false;
 		}
@@ -385,7 +469,8 @@ bool AccessControlProvider::matchConditions(const AccessControlRule& rule,
 		const auto location = rule.argument(condition);
 
 		if (computer.isEmpty() || location.isEmpty() ||
-			isLocatedAt(computer, location) != matchResult)
+			isLocatedAt(computer, location) != matchResult ||
+			hasDirectoryQueryFailed())
 		{
 			return false;
 		}
@@ -396,7 +481,8 @@ bool AccessControlProvider::matchConditions(const AccessControlRule& rule,
 		hasConditions = true;
 
 		if (accessingComputer.isEmpty() || localComputer.isEmpty() ||
-			haveSameLocations(accessingComputer, localComputer) != matchResult)
+			haveSameLocations(accessingComputer, localComputer) != matchResult ||
+			hasDirectoryQueryFailed())
 		{
 			return false;
 		}

@@ -3,9 +3,13 @@
 
 #pragma once
 
+#include <QTimer>
+
+#include "AccessControlGracePeriod.h"
 #include "DesktopAccessDialog.h"
 #include "VncServerClient.h"
 
+class AccessControlProvider;
 class VariantArrayMessage;
 
 class ServerAccessControlManager : public QObject
@@ -14,10 +18,16 @@ class ServerAccessControlManager : public QObject
 public:
 	ServerAccessControlManager(FeatureWorkerManager& featureWorkerManager,
 							   DesktopAccessDialog& desktopAccessDialog,
-							   QObject* parent);
+							   AccessControlProvider& accessControlProvider,
+							   QObject* parent,
+							   const AccessControlGracePeriod::Clock& clock = IpcChannel::steadyNow);
 
 	void addClient(VncServerClient* client);
 	void removeClient(VncServerClient* client);
+
+	// tests
+	void setGraceRecheckInterval(int interval);
+	bool isGraceRecheckActive() const;
 
 
 Q_SIGNALS:
@@ -26,7 +36,17 @@ Q_SIGNALS:
 private:
 	static constexpr int ClientWaitInterval = 1000;
 
-	void performAccessControl(VncServerClient* client);
+	enum class CheckMode {
+		NewConnection,
+		Recheck,
+	};
+
+	void addClient(VncServerClient* client, CheckMode mode);
+	void recheckAllClients();
+	// true if the client was closed
+	bool recheckClient(VncServerClient* client);
+	void recheckGraceClients();
+	void performAccessControl(VncServerClient* client, CheckMode mode);
 	VncServerClient::AccessControlState confirmDesktopAccess(VncServerClient* client);
 	void finishDesktopAccessConfirmation(VncServerClient* client);
 
@@ -34,6 +54,7 @@ private:
 
 	FeatureWorkerManager& m_featureWorkerManager;
 	DesktopAccessDialog& m_desktopAccessDialog;
+	AccessControlProvider& m_accessControlProvider;
 
 	VncServerClientList m_clients;
 
@@ -41,4 +62,7 @@ private:
 	using DesktopAccessChoiceMap = QMap<HostUserPair, DesktopAccessDialog::Choice>;
 
 	DesktopAccessChoiceMap m_desktopAccessChoices;
+
+	AccessControlGracePeriod m_gracePeriod;
+	QTimer m_graceRecheckTimer{this};
 };

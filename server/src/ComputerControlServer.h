@@ -47,6 +47,8 @@ public:
 
 	bool sendFeatureMessageReply(const MessageContext& context, const FeatureMessage& reply) override;
 
+	const VncServerClient* vncServerClient(const MessageContext& context) const override;
+
 	FeatureWorkerManager& featureWorkerManager() override
 	{
 		return m_featureWorkerManager;

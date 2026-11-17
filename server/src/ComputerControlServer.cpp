@@ -22,7 +22,8 @@ ComputerControlServer::ComputerControlServer(QObject* parent) :
 	m_failedAuthHosts(),
 	m_featureWorkerManager(*this),
 	m_serverAuthenticationManager(this),
-	m_serverAccessControlManager(m_featureWorkerManager, VeyonCore::builtinFeatures().desktopAccessDialog(), this),
+	m_serverAccessControlManager(m_featureWorkerManager, VeyonCore::builtinFeatures().desktopAccessDialog(),
+								 VeyonCore::builtinFeatures().accessControlProvider(), this),
 	m_vncServer(),
 	m_vncProxyServer(VeyonCore::config().localConnectOnly() || VeyonCore::builtinFeatures().accessControlProvider().isAccessToLocalComputerDenied() ?
 						 QHostAddress::LocalHost :
@@ -130,6 +131,14 @@ bool ComputerControlServer::sendFeatureMessageReply(const MessageContext& contex
 	}
 
 	return false;
+}
+
+
+
+const VncServerClient* ComputerControlServer::vncServerClient(const MessageContext& context) const
+{
+	const auto client = qobject_cast<ComputerControlClient*>(context.connection());
+	return client ? client->serverClient() : nullptr;
 }
 
 

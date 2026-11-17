@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include "AccessControlProvider.h"
-#include "BuiltinFeatures.h"
 #include "DesktopAccessDialog.h"
 #include "ServerAccessControlManager.h"
 #include "VeyonCore.h"
@@ -10,24 +9,37 @@
 
 ServerAccessControlManager::ServerAccessControlManager(FeatureWorkerManager& featureWorkerManager,
 													   DesktopAccessDialog& desktopAccessDialog,
-													   QObject* parent) :
+													   AccessControlProvider& accessControlProvider,
+													   QObject* parent,
+													   const AccessControlGracePeriod::Clock& clock) :
 	QObject(parent),
 	m_featureWorkerManager(featureWorkerManager),
 	m_desktopAccessDialog(desktopAccessDialog),
+	m_accessControlProvider(accessControlProvider),
 	m_clients(),
-	m_desktopAccessChoices()
+	m_desktopAccessChoices(),
+	m_gracePeriod(clock)
 {
+	m_graceRecheckTimer.setInterval(AccessControlGracePeriod::RecheckInterval);
+	connect(&m_graceRecheckTimer, &QTimer::timeout, this, &ServerAccessControlManager::recheckGraceClients);
 }
 
 
 
 void ServerAccessControlManager::addClient(VncServerClient* client)
 {
+	addClient(client, CheckMode::NewConnection);
+}
+
+
+
+void ServerAccessControlManager::addClient(VncServerClient* client, CheckMode mode)
+{
 	switch (client->authType())
 	{
 	case RfbVeyonAuth::KeyFile:
 	case RfbVeyonAuth::Logon:
-		performAccessControl(client);
+		performAccessControl(client, mode);
 		break;
 
 	case RfbVeyonAuth::Token:
@@ -51,31 +63,117 @@ void ServerAccessControlManager::addClient(VncServerClient* client)
 
 void ServerAccessControlManager::removeClient(VncServerClient* client)
 {
-	m_clients.removeAll(client);
+	m_gracePeriod.remove(client);
 
-	// force all remaining clients to pass access control again as conditions might
-	// have changed (e.g. AccessControlRule::Condition::AccessFromAlreadyConnectedUser)
-
-	const VncServerClientList previousClients = m_clients;
-	m_clients.clear();
-
-	for (auto prevClient : std::as_const(previousClients))
+	// only the departure of a client that had passed access control can change the conditions
+	// (e.g. AccessControlRule::Condition::AccessFromAlreadyConnectedUser), not the end of a
+	// connection that never got that far
+	if (m_clients.removeAll(client) == 0)
 	{
-		prevClient->setAccessControlState(VncServerClient::AccessControlState::Init);
-		addClient(prevClient);
+		return;
+	}
 
-		if (prevClient->accessControlState() != VncServerClient::AccessControlState::Successful &&
-			prevClient->accessControlState() != VncServerClient::AccessControlState::Pending)
+	// force all remaining clients to pass access control again
+	recheckAllClients();
+}
+
+
+
+void ServerAccessControlManager::setGraceRecheckInterval(int interval)
+{
+	m_graceRecheckTimer.setInterval(interval);
+}
+
+
+
+bool ServerAccessControlManager::isGraceRecheckActive() const
+{
+	return m_graceRecheckTimer.isActive();
+}
+
+
+
+void ServerAccessControlManager::recheckAllClients()
+{
+	// a client closed by a re-check may have been the reason for the access of others (e.g.
+	// AccessControlRule::Condition::AccessFromAlreadyConnectedUser): check the remaining ones again
+	// until no further client is closed (terminates, as every further pass closes a client)
+	auto clientClosed = true;
+	while (clientClosed && m_clients.isEmpty() == false)
+	{
+		clientClosed = false;
+
+		const VncServerClientList previousClients = m_clients;
+		m_clients.clear();
+
+		m_accessControlProvider.beginCheckPass();
+		for (auto prevClient : std::as_const(previousClients))
 		{
-			vDebug() << "closing connection as client does not pass access control any longer";
-			prevClient->setProtocolState(VncServerProtocol::State::Close);
+			clientClosed |= recheckClient(prevClient);
 		}
+		m_accessControlProvider.endCheckPass();
 	}
 }
 
 
 
-void ServerAccessControlManager::performAccessControl(VncServerClient* client)
+bool ServerAccessControlManager::recheckClient(VncServerClient* client)
+{
+	client->setAccessControlState(VncServerClient::AccessControlState::Init);
+	addClient(client, CheckMode::Recheck);
+
+	if (client->accessControlState() != VncServerClient::AccessControlState::Successful &&
+		client->accessControlState() != VncServerClient::AccessControlState::Pending)
+	{
+		vDebug() << "closing connection as client does not pass access control any longer";
+		client->setProtocolState(VncServerProtocol::State::Close);
+		return true;
+	}
+
+	return false;
+}
+
+
+
+// runs in the server's main thread like all access control checks: a check blocks it until the
+// directory broker answers (bounded by the broker's request timeout and, while the directory is
+// unavailable, the 3 s circuit breaker of AccessControlDirectoryQueries)
+void ServerAccessControlManager::recheckGraceClients()
+{
+	auto clientClosed = false;
+
+	m_accessControlProvider.beginCheckPass();
+
+	const auto clients = m_gracePeriod.clients();
+	for (const auto clientId : clients)
+	{
+		for (auto client : std::as_const(m_clients))
+		{
+			if (client == clientId)
+			{
+				m_clients.removeAll(client);
+				clientClosed |= recheckClient(client);
+				break;
+			}
+		}
+	}
+
+	m_accessControlProvider.endCheckPass();
+
+	if (clientClosed)
+	{
+		recheckAllClients();
+	}
+
+	if (m_gracePeriod.isEmpty())
+	{
+		m_graceRecheckTimer.stop();
+	}
+}
+
+
+
+void ServerAccessControlManager::performAccessControl(VncServerClient* client, CheckMode mode)
 {
 	// implement access control wait for connections other than the one an
 	// access dialog is currently active for
@@ -95,9 +193,27 @@ void ServerAccessControlManager::performAccessControl(VncServerClient* client)
 		break;
 	}
 
-	const auto checkResult = VeyonCore::builtinFeatures().accessControlProvider().checkAccess(client->username(),
-																							  client->hostAddress(),
-																							  connectedUsers());
+	const auto checkResult = m_accessControlProvider.checkAccess(client->username(),
+																 client->hostAddress(),
+																 connectedUsers());
+
+	const auto description = QStringLiteral("%1@%2").arg(client->username(), client->hostAddress());
+
+	// an established, already authorised connection keeps its access for a while if the directory
+	// is not available; new connections are denied (fail closed)
+	if (mode == CheckMode::Recheck && checkResult.reason == AccessControlProvider::Reason::DirectoryUnavailable)
+	{
+		if (m_gracePeriod.keepAccess(client, description))
+		{
+			client->setAccessControlState(VncServerClient::AccessControlState::Successful);
+			m_graceRecheckTimer.start();
+			return;
+		}
+	}
+	else
+	{
+		m_gracePeriod.remove(client, description);
+	}
 
 	switch (checkResult.access) // Flawfinder: ignore
 	{
@@ -127,6 +243,10 @@ void ServerAccessControlManager::performAccessControl(VncServerClient* client)
 		else if (checkResult.reason == AccessControlProvider::Reason::UserNotInAuthorizedUserGroups)
 		{
 			client->setAccessControlDetails(tr("Accessing user not member of an authorized user group"));
+		}
+		else if (checkResult.reason == AccessControlProvider::Reason::DirectoryUnavailable)
+		{
+			client->setAccessControlDetails(tr("Directory for access control not available"));
 		}
 		break;
 	}

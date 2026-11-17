@@ -4,6 +4,10 @@ set(veyoncore_SOURCES
 	src/AboutDialog.cpp
 	src/AboutDialog.h
 	src/AboutDialog.ui
+	src/AccessControlDirectoryQueries.cpp
+	src/AccessControlDirectoryQueries.h
+	src/AccessControlGracePeriod.cpp
+	src/AccessControlGracePeriod.h
 	src/AccessControlProvider.cpp
 	src/AccessControlProvider.h
 	src/AccessControlRule.cpp
