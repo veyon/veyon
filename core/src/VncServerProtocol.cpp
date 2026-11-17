@@ -179,7 +179,7 @@ bool VncServerProtocol::sendAuthenticationTypes()
 {
 	const auto authTypes = supportedAuthTypes();
 
-	VariantArrayMessage message(m_socket);
+	VariantArrayMessage message(m_socket, VariantArrayMessage::MaxAuthenticationMessageSize);
 	message.write(int(authTypes.count()));
 
 	for (auto authType : authTypes)
@@ -194,7 +194,7 @@ bool VncServerProtocol::sendAuthenticationTypes()
 
 bool VncServerProtocol::receiveAuthenticationTypeResponse()
 {
-	VariantArrayMessage message(m_socket);
+	VariantArrayMessage message(m_socket, VariantArrayMessage::MaxAuthenticationMessageSize);
 
 	if (message.isReadyForReceive() && message.receive())
 	{
@@ -223,10 +223,10 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 		setState(State::Authenticating);
 
 		// send auth ack message
-		VariantArrayMessage(m_socket).send();
+		VariantArrayMessage(m_socket, VariantArrayMessage::MaxAuthenticationMessageSize).send();
 
 		// init authentication
-		VariantArrayMessage dummyMessage(m_socket);
+		VariantArrayMessage dummyMessage(m_socket, VariantArrayMessage::MaxAuthenticationMessageSize);
 		processAuthentication(dummyMessage);
 	}
 
@@ -237,7 +237,7 @@ bool VncServerProtocol::receiveAuthenticationTypeResponse()
 
 bool VncServerProtocol::receiveAuthenticationMessage()
 {
-	VariantArrayMessage message(m_socket);
+	VariantArrayMessage message(m_socket, VariantArrayMessage::MaxAuthenticationMessageSize);
 
 	if (message.isReadyForReceive() && message.receive())
 	{
