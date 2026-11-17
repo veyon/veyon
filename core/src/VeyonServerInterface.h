@@ -27,5 +27,8 @@ public:
 
 	virtual int vncServerBasePort() const = 0;
 
+	// Unix domain socket of the local VNC server if it doesn't listen on a TCP port
+	virtual QString vncServerLocalSocketPath() const = 0;
+
 	virtual void setMinimumFramebufferUpdateInterval(const MessageContext& context, int interval) = 0;
 };

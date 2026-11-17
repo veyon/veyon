@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <QCoreApplication>
+#include <QTcpSocket>
 
 #include "AccessControlProvider.h"
 #include "BuiltinFeatures.h"
@@ -59,7 +60,7 @@ ComputerControlServer::~ComputerControlServer()
 
 bool ComputerControlServer::start()
 {
-	if (m_vncProxyServer.start(m_vncServer.serverPort(), m_vncServer.password()) == false)
+	if (m_vncProxyServer.start(m_vncServer.endpoint(), m_vncServer.password()) == false)
 	{
 		return false;
 	}
@@ -73,11 +74,11 @@ bool ComputerControlServer::start()
 
 
 VncProxyConnection* ComputerControlServer::createVncProxyConnection(QTcpSocket* clientSocket,
-																	int vncServerPort,
+																	const VncServerEndpoint& vncServerEndpoint,
 																	const Password& vncServerPassword,
 																	QObject* parent)
 {
-	auto client = new ComputerControlClient(this, clientSocket, vncServerPort, vncServerPassword, parent);
+	auto client = new ComputerControlClient(this, clientSocket, vncServerEndpoint, vncServerPassword, parent);
 
 	connect(client, &ComputerControlClient::serverConnectionClosed, this,
 			[=, this]() { checkForIncompleteAuthentication(client->serverClient()); },

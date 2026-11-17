@@ -320,6 +320,12 @@ bool VncClientProtocol::receiveSecurityTypes()
 			securityType = rfbSecTypeVncAuth;
 			m_state = State::SecurityChallenge;
 		}
+		else if (m_vncAuthenticationRequired)
+		{
+			vCritical() << "VNC server does not offer VNC authentication - refusing" << securityTypeList;
+			m_socket->close();
+			return false;
+		}
 		else if (securityTypeList.contains(rfbSecTypeNone))
 		{
 			securityType = rfbSecTypeNone;

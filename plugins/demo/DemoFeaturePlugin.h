@@ -33,7 +33,8 @@ public:
 		ViewportY,
 		ViewportWidth,
 		ViewportHeight,
-		VncServerPortOffset
+		VncServerPortOffset,
+		VncServerLocalSocketPath,
 	};
 	Q_ENUM(Argument)
 

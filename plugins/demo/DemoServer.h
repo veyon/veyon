@@ -10,6 +10,7 @@
 
 #include "CryptoCore.h"
 #include "DemoServerConnection.h"
+#include "VncServerSocket.h"
 
 class DemoConfiguration;
 class QTcpServer;
@@ -24,7 +25,7 @@ public:
 	using MessageList = QList<QPair<qint64, QByteArray>>;
 	static constexpr auto DefaultBandwidthLimit = 100;
 
-	DemoServer(int vncServerPort, const Password& vncServerPassword, const Password& demoAccessToken,
+	DemoServer(const VncServerEndpoint& vncServerEndpoint, const Password& vncServerPassword, const Password& demoAccessToken,
 			   const DemoConfiguration& configuration, int demoServerPort, QObject* parent);
 	~DemoServer() override;
 
@@ -90,13 +91,12 @@ private:
 	const DemoConfiguration& m_configuration;
 	const qint64 m_memoryLimit;
 	const int m_keyFrameInterval;
-	const int m_vncServerPort;
 	const Password m_demoAccessToken;
 
 	QList<quintptr> m_pendingConnectionSockets;
 	QList<QPointer<DemoServerConnection>> m_connections;
 
-	QTcpSocket* m_vncServerSocket;
+	VncServerSocket* m_vncServerSocket;
 	VncClientProtocol* m_vncClientProtocol;
 
 	QReadWriteLock m_dataLock;

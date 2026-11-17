@@ -7,6 +7,7 @@
 #include <QVector>
 
 #include "CryptoCore.h"
+#include "VncServerSocket.h"
 
 class QTcpServer;
 class VncProxyConnection;
@@ -25,7 +26,7 @@ public:
 				   QObject* parent = nullptr);
 	~VncProxyServer() override;
 
-	bool start(int vncServerPort, const Password& vncServerPassword);
+	bool start(const VncServerEndpoint& vncServerEndpoint, const Password& vncServerPassword);
 	void stop();
 
 	const VncProxyConnectionList& clients() const
@@ -42,7 +43,7 @@ private:
 	void closeConnection(VncProxyConnection*);
 	void handleAcceptError(QAbstractSocket::SocketError socketError);
 
-	int m_vncServerPort;
+	VncServerEndpoint m_vncServerEndpoint;
 	Password m_vncServerPassword;
 	QHostAddress m_listenAddress;
 	int m_listenPort;

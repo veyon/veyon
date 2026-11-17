@@ -3,6 +3,7 @@
 
 #include <QMessageBox>
 #include <QScreen>
+#include <QTcpSocket>
 
 #include "AuthenticationCredentials.h"
 #include "Computer.h"
@@ -288,11 +289,13 @@ bool DemoFeaturePlugin::handleFeatureMessage(VeyonServerInterface& server,
 	{
 		if (message.command<FeatureCommand>() == FeatureCommand::StartDemoServer)
 		{
-			// add VNC server password to message
+			// add VNC server password and endpoint to message - the Unix domain socket of
+			// veyon-capture-helper (02-ipc.md §1a.5) belongs to this server's session only
 			server.featureWorkerManager().sendMessageToManagedSystemWorker(
 				FeatureMessage{message}
 					.addArgument(Argument::VncServerPassword, VeyonCore::authenticationCredentials().internalVncServerPassword().toByteArray())
-					.addArgument(Argument::VncServerPort, server.vncServerBasePort() + message.argument(Argument::VncServerPortOffset).toInt()));
+					.addArgument(Argument::VncServerPort, server.vncServerBasePort() + message.argument(Argument::VncServerPortOffset).toInt())
+					.addArgument(Argument::VncServerLocalSocketPath, server.vncServerLocalSocketPath()));
 		}
 		else if (message.command<FeatureCommand>() != FeatureCommand::StopDemoServer ||
 				 server.featureWorkerManager().isWorkerRunning(m_demoServerFeature.uid()))
@@ -369,7 +372,12 @@ bool DemoFeaturePlugin::handleFeatureMessage(VeyonWorkerInterface& worker, const
 		case FeatureCommand::StartDemoServer:
 			if (m_demoServer == nullptr)
 			{
-				m_demoServer = new DemoServer(message.argument(Argument::VncServerPort).toInt(),
+				VncServerEndpoint vncServerEndpoint;
+				vncServerEndpoint.port = message.argument(Argument::VncServerPort).toInt();
+				vncServerEndpoint.localSocketPath = message.argument(Argument::VncServerLocalSocketPath).toString();
+				// the demo server worker and veyon-capture-helper are both started by the server
+				vncServerEndpoint.expectedParentProcessId = VncServerSocket::parentProcessId();
+				m_demoServer = new DemoServer(vncServerEndpoint,
 											  message.argument(Argument::VncServerPassword).toByteArray(),
 											  message.argument(Argument::DemoAccessToken).toByteArray(),
 											  m_configuration,

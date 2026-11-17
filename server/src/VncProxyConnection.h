@@ -6,7 +6,10 @@
 #include <QObject>
 #include <QTimer>
 
+#include "VncServerSocket.h"
+
 class QBuffer;
+class QIODevice;
 class QTcpSocket;
 
 class VncClientProtocol;
@@ -20,7 +23,7 @@ public:
 		ProtocolRetryTime = 250
 	};
 
-	VncProxyConnection(QTcpSocket* clientSocket, int vncServerPort, QObject* parent);
+	VncProxyConnection(QTcpSocket* clientSocket, const VncServerEndpoint& vncServerEndpoint, QObject* parent);
 	~VncProxyConnection() override;
 
 	void start();
@@ -30,9 +33,9 @@ public:
 		return m_proxyClientSocket;
 	}
 
-	QTcpSocket* vncServerSocket() const
+	QIODevice* vncServerSocket() const
 	{
-		return m_vncServerSocket;
+		return m_vncServerSocket->device();
 	}
 
 protected Q_SLOTS:
@@ -52,7 +55,8 @@ protected:
 	virtual VncServerProtocol& serverProtocol() = 0;
 
 private:
-	bool flushPendingToSocket(QTcpSocket* target, QByteArray& pending);
+	bool flushPendingToSocket(QIODevice* target, QByteArray& pending);
+	void closeSockets();
 	bool synchronizeClientStream();
 
 	void updateHandshakeState();
@@ -62,10 +66,8 @@ private:
 	static constexpr auto MaximumReadBufferSize = 64 * 1024 * 1024;
 	static constexpr auto MaximumPendingWriteSize = 64 * 1024 * 1024;
 
-	const int m_vncServerPort;
-
 	QTcpSocket* m_proxyClientSocket;
-	QTcpSocket* m_vncServerSocket;
+	VncServerSocket* m_vncServerSocket;
 
 	const QMap<int, int> m_rfbClientToServerMessageSizes;
 	QTimer m_clientSyncTimer{this};

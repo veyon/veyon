@@ -4,6 +4,7 @@
 #pragma once
 
 #include "CryptoCore.h"
+#include "VncServerSocket.h"
 
 class QTcpSocket;
 class VncProxyConnection;
@@ -18,7 +19,7 @@ public:
 	virtual ~VncProxyConnectionFactory() = default;
 
 	virtual VncProxyConnection* createVncProxyConnection(QTcpSocket* clientSocket,
-														 int vncServerPort,
+														 const VncServerEndpoint& vncServerEndpoint,
 														 const Password& vncServerPassword,
 														 QObject* parent) = 0;
 };

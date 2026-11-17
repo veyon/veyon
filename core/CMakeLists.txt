@@ -154,6 +154,8 @@ set(veyoncore_SOURCES
 	src/VncServerPluginInterface.h
 	src/VncServerProtocol.cpp
 	src/VncServerProtocol.h
+	src/VncServerSocket.cpp
+	src/VncServerSocket.h
 	src/VncView.cpp
 	src/VncView.h
 	src/VncViewWidget.cpp

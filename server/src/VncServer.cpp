@@ -106,6 +106,26 @@ int VncServer::serverPort() const
 
 
 
+VncServerEndpoint VncServer::endpoint() const
+{
+	VncServerEndpoint endpoint;
+	endpoint.port = serverPort();
+
+	if (m_pluginInterface)
+	{
+		endpoint.localSocketPath = m_pluginInterface->localSocketPath();
+		if (endpoint.isLocalSocket())
+		{
+			auto pluginInterface = m_pluginInterface;
+			endpoint.expectedProcessId = [pluginInterface]() { return pluginInterface->localSocketProcessId(); };
+		}
+	}
+
+	return endpoint;
+}
+
+
+
 VncServer::Password VncServer::password() const
 {
 	if (m_externalVncServerPassword.isEmpty() == false)

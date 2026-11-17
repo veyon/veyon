@@ -11,12 +11,11 @@
 #include "VncServerProtocol.h"
 
 VncProxyConnection::VncProxyConnection(QTcpSocket* clientSocket,
-									   int vncServerPort,
+									   const VncServerEndpoint& vncServerEndpoint,
 									   QObject* parent) :
 	QObject(parent),
-	m_vncServerPort(vncServerPort),
 	m_proxyClientSocket(clientSocket),
-	m_vncServerSocket(new QTcpSocket(this)),
+	m_vncServerSocket(new VncServerSocket(vncServerEndpoint, this)),
 	m_rfbClientToServerMessageSizes({
 		{rfbFramebufferUpdateRequest, sz_rfbFramebufferUpdateRequestMsg},
 		{rfbKeyEvent, sz_rfbKeyEventMsg},
@@ -32,20 +31,19 @@ VncProxyConnection::VncProxyConnection(QTcpSocket* clientSocket,
 	m_handshakeTimer.setSingleShot(true);
 
 	connect(m_proxyClientSocket, &QTcpSocket::readyRead, this, &VncProxyConnection::readFromClient);
-	connect(m_vncServerSocket, &QTcpSocket::readyRead, this, &VncProxyConnection::readFromServer);
+	connect(m_vncServerSocket->device(), &QIODevice::readyRead, this, &VncProxyConnection::readFromServer);
 	connect(&m_clientSyncTimer, &QTimer::timeout, this, &VncProxyConnection::synchronizeClientStream);
 	connect(&m_clientRetryTimer, &QTimer::timeout, this, &VncProxyConnection::readFromClient);
 	connect(&m_serverRetryTimer, &QTimer::timeout, this, &VncProxyConnection::readFromServer);
 	connect(&m_handshakeTimer, &QTimer::timeout, this, [this]() {
 		vWarning() << "closing connection after RFB handshake timeout from"
 				   << m_proxyClientSocket->peerAddress().toString();
-		m_proxyClientSocket->close();
-		m_vncServerSocket->close();
+		closeSockets();
 	});
-	connect(m_vncServerSocket, &QTcpSocket::bytesWritten, this, [this] { readFromClientLater(); });
+	connect(m_vncServerSocket->device(), &QIODevice::bytesWritten, this, [this] { readFromClientLater(); });
 	connect(m_proxyClientSocket, &QTcpSocket::bytesWritten, this, [this] { readFromServerLater(); });
 
-	connect(m_vncServerSocket, &QTcpSocket::disconnected, this, &VncProxyConnection::clientConnectionClosed);
+	connect(m_vncServerSocket, &VncServerSocket::disconnected, this, &VncProxyConnection::clientConnectionClosed);
 	connect(m_proxyClientSocket, &QTcpSocket::disconnected, this, &VncProxyConnection::serverConnectionClosed);
 }
 
@@ -55,6 +53,7 @@ VncProxyConnection::~VncProxyConnection()
 {
 	// do not get notified about disconnects any longer
 	disconnect(m_vncServerSocket);
+	disconnect(m_vncServerSocket->device());
 	disconnect(m_proxyClientSocket);
 
 	delete m_vncServerSocket;
@@ -99,7 +98,9 @@ void VncProxyConnection::readFromClient()
 	if (serverProtocol().state() == VncServerProtocol::State::FramebufferInit &&
 		clientProtocol().state() == VncClientProtocol::Disconnected)
 	{
-		m_vncServerSocket->connectToHost(QHostAddress::LocalHost, quint16(m_vncServerPort));
+		// no unauthenticated fallback towards veyon-capture-helper (02-ipc.md §1a.5)
+		clientProtocol().setVncAuthenticationRequired(m_vncServerSocket->endpoint().isLocalSocket());
+		m_vncServerSocket->connectToServer();
 
 		clientProtocol().start();
 	}
@@ -146,7 +147,7 @@ void VncProxyConnection::readFromServer()
 
 
 
-bool VncProxyConnection::flushPendingToSocket(QTcpSocket* target, QByteArray& pending)
+bool VncProxyConnection::flushPendingToSocket(QIODevice* target, QByteArray& pending)
 {
 	if (pending.isEmpty())
 	{
@@ -156,8 +157,7 @@ bool VncProxyConnection::flushPendingToSocket(QTcpSocket* target, QByteArray& pe
 	const auto written = target->write(pending);
 	if (written < 0)
 	{
-		m_proxyClientSocket->close();
-		m_vncServerSocket->close();
+		closeSockets();
 		return false;
 	}
 
@@ -168,10 +168,11 @@ bool VncProxyConnection::flushPendingToSocket(QTcpSocket* target, QByteArray& pe
 
 	if (pending.size() > MaximumPendingWriteSize)
 	{
-		vCritical() << "closing slow peer" << target->peerAddress().toString()
+		vCritical() << "closing slow peer"
+					<< (target == m_proxyClientSocket ? m_proxyClientSocket->peerAddress().toString() :
+														m_vncServerSocket->peerName())
 					<< "with oversized pending write buffer";
-		m_proxyClientSocket->close();
-		m_vncServerSocket->close();
+		closeSockets();
 		return false;
 	}
 
@@ -198,7 +199,7 @@ bool VncProxyConnection::synchronizeClientStream()
 
 bool VncProxyConnection::forwardDataToServer(qint64 size)
 {
-	if (!flushPendingToSocket(m_vncServerSocket, m_pendingServerData))
+	if (!flushPendingToSocket(m_vncServerSocket->device(), m_pendingServerData))
 	{
 		return false;
 	}
@@ -214,10 +215,10 @@ bool VncProxyConnection::forwardDataToServer(qint64 size)
 		return false;
 	}
 
-	const auto written = m_vncServerSocket->write(data);
+	const auto written = m_vncServerSocket->device()->write(data);
 	if (written < 0)
 	{
-		m_vncServerSocket->close();
+		m_vncServerSocket->device()->close();
 		return false;
 	}
 
@@ -227,13 +228,20 @@ bool VncProxyConnection::forwardDataToServer(qint64 size)
 		if (m_pendingServerData.size() > MaximumPendingWriteSize)
 		{
 			vCritical() << "closing slow VNC server with oversized pending write buffer";
-			m_proxyClientSocket->close();
-			m_vncServerSocket->close();
+			closeSockets();
 		}
 		return false;
 	}
 
 	return true;
+}
+
+
+
+void VncProxyConnection::closeSockets()
+{
+	m_proxyClientSocket->close();
+	m_vncServerSocket->device()->close();
 }
 
 

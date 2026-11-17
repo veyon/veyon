@@ -6,6 +6,7 @@
 #include <QThread>
 
 #include "CryptoCore.h"
+#include "VncServerSocket.h"
 
 class VncServerPluginInterface;
 
@@ -22,6 +23,9 @@ public:
 
 	int serverBasePort() const;
 	int serverPort() const;
+
+	// loopback TCP port or, for veyon-capture-helper, its Unix domain socket
+	VncServerEndpoint endpoint() const;
 
 	Password password() const;
 

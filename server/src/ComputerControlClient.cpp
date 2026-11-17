@@ -12,10 +12,10 @@
 
 ComputerControlClient::ComputerControlClient(ComputerControlServer* server,
 											 QTcpSocket* clientSocket,
-											 int vncServerPort,
+											 const VncServerEndpoint& vncServerEndpoint,
 											 const Password& vncServerPassword,
 											 QObject* parent) :
-	VncProxyConnection(clientSocket, vncServerPort, parent),
+	VncProxyConnection(clientSocket, vncServerEndpoint, parent),
 	m_server(server),
 	m_serverClient(),
 	m_serverProtocol(clientSocket,

@@ -36,6 +36,12 @@ public:
 
 	void reset();
 	void start();
+
+	// refuse servers which don't offer VNC authentication (no fallback to rfbSecTypeNone)
+	void setVncAuthenticationRequired(bool required)
+	{
+		m_vncAuthenticationRequired = required;
+	}
 	bool read(); // Flawfinder: ignore
 
 	const QByteArray& serverInitMessage() const
@@ -119,6 +125,7 @@ private:
 	State m_state;
 
 	Password m_vncPassword;
+	bool m_vncAuthenticationRequired = false;
 
 	QByteArray m_serverInitMessage;
 

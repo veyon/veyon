@@ -12,16 +12,15 @@
 #include "rfb/rfbproto.h"
 
 
-DemoServer::DemoServer(int vncServerPort, const Password& vncServerPassword, const Password& demoAccessToken,
+DemoServer::DemoServer(const VncServerEndpoint& vncServerEndpoint, const Password& vncServerPassword, const Password& demoAccessToken,
 					   const DemoConfiguration& configuration, int demoServerPort, QObject* parent) :
 	QTcpServer(parent),
 	m_configuration(configuration),
 	m_memoryLimit(m_configuration.memoryLimit() * BytesPerMB),
 	m_keyFrameInterval(m_configuration.keyFrameInterval() * 1000),
-	m_vncServerPort(vncServerPort),
 	m_demoAccessToken(demoAccessToken),
-	m_vncServerSocket(new QTcpSocket(this)),
-	m_vncClientProtocol(new VncClientProtocol(m_vncServerSocket, vncServerPassword)),
+	m_vncServerSocket(new VncServerSocket(vncServerEndpoint, this)),
+	m_vncClientProtocol(new VncClientProtocol(m_vncServerSocket->device(), vncServerPassword)),
 	m_framebufferUpdateTimer(this),
 	m_lastFullFramebufferUpdate(),
 	m_requestFullFramebufferUpdate(false)
@@ -49,7 +48,10 @@ DemoServer::DemoServer(int vncServerPort, const Password& vncServerPassword, con
 
 	m_maxKBytesPerSecond = std::max(1, bandwidthLimit) * BytesPerMB / BytesPerKB;
 
-	connect(m_vncServerSocket, &QTcpSocket::readyRead, this, &DemoServer::readFromVncServer);
+	connect(m_vncServerSocket->device(), &QIODevice::readyRead, this, &DemoServer::readFromVncServer);
+
+	// no unauthenticated fallback towards veyon-capture-helper (02-ipc.md §1a.5)
+	m_vncClientProtocol->setVncAuthenticationRequired(vncServerEndpoint.isLocalSocket());
 
 	connect(&m_framebufferUpdateTimer, &QTimer::timeout, this, &DemoServer::requestFramebufferUpdate);
 
@@ -77,6 +79,7 @@ DemoServer::~DemoServer()
 void DemoServer::terminate()
 {
 	m_vncServerSocket->disconnect(this);
+	m_vncServerSocket->device()->disconnect(this);
 
 	const auto connections = findChildren<DemoServerConnection*>();
 	if (connections.isEmpty())
@@ -179,16 +182,16 @@ void DemoServer::reconnectToVncServer()
 	m_bytesSinceLastQualityAdjust = 0;
 	m_dataLock.unlock();
 
-	disconnect(m_vncServerSocket, &QTcpSocket::disconnected, this, &DemoServer::reconnectToVncServer);
+	disconnect(m_vncServerSocket, &VncServerSocket::disconnected, this, &DemoServer::reconnectToVncServer);
 	m_vncServerSocket->abort();
 
 	m_vncClientProtocol->reset();
 
 	m_vncClientProtocol->start();
 
-	m_vncServerSocket->connectToHost(QHostAddress::LocalHost, static_cast<quint16>(m_vncServerPort));
+	m_vncServerSocket->connectToServer();
 
-	connect(m_vncServerSocket, &QTcpSocket::disconnected, this, &DemoServer::reconnectToVncServer);
+	connect(m_vncServerSocket, &VncServerSocket::disconnected, this, &DemoServer::reconnectToVncServer);
 }
 
 

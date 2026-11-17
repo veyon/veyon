@@ -34,6 +34,22 @@ public:
 	virtual int configuredServerPort() = 0;
 
 	virtual Password configuredPassword() = 0;
+
+	/*!
+	 * \brief Unix domain socket the VNC server listens on instead of the loopback TCP port (empty: TCP)
+	 */
+	virtual QString localSocketPath()
+	{
+		return {};
+	}
+
+	/*!
+	 * \brief Process which must listen on localSocketPath() (-1 while none is running) - thread-safe
+	 */
+	virtual qint64 localSocketProcessId()
+	{
+		return -1;
+	}
 };
 
 using VncServerPluginInterfaceList = QList<VncServerPluginInterface*>;

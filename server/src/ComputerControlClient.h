@@ -20,7 +20,7 @@ public:
 
 	ComputerControlClient(ComputerControlServer* server,
 						  QTcpSocket* clientSocket,
-						  int vncServerPort,
+						  const VncServerEndpoint& vncServerEndpoint,
 						  const Password& vncServerPassword,
 						  QObject* parent);
 	~ComputerControlClient() override;

@@ -29,7 +29,7 @@ public:
 	bool start();
 
 	VncProxyConnection* createVncProxyConnection(QTcpSocket* clientSocket,
-												 int vncServerPort,
+												 const VncServerEndpoint& vncServerEndpoint,
 												 const Password& vncServerPassword,
 												 QObject* parent) override;
 
@@ -55,6 +55,11 @@ public:
 	int vncServerBasePort() const override
 	{
 		return m_vncServer.serverBasePort();
+	}
+
+	QString vncServerLocalSocketPath() const override
+	{
+		return m_vncServer.endpoint().localSocketPath;
 	}
 
 	void setMinimumFramebufferUpdateInterval(const MessageContext& context, int interval) override;

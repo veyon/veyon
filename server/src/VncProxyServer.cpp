@@ -16,7 +16,7 @@ VncProxyServer::VncProxyServer(const QHostAddress& listenAddress,
 							   VncProxyConnectionFactory* connectionFactory,
 							   QObject* parent) :
 	QObject(parent),
-	m_vncServerPort(-1),
+	m_vncServerEndpoint(),
 	m_vncServerPassword(),
 	m_listenAddress(listenAddress),
 	m_listenPort(listenPort),
@@ -37,7 +37,7 @@ VncProxyServer::~VncProxyServer()
 
 
 
-bool VncProxyServer::start(int vncServerPort, const Password& vncServerPassword)
+bool VncProxyServer::start(const VncServerEndpoint& vncServerEndpoint, const Password& vncServerPassword)
 {
 	if (m_server->isListening())
 	{
@@ -45,7 +45,7 @@ bool VncProxyServer::start(int vncServerPort, const Password& vncServerPassword)
 		return false;
 	}
 
-	m_vncServerPort = vncServerPort;
+	m_vncServerEndpoint = vncServerEndpoint;
 	m_vncServerPassword = vncServerPassword;
 
 	if (m_listenPort < 0 ||
@@ -99,7 +99,7 @@ void VncProxyServer::acceptConnection()
 		}
 
 		auto connection = m_connectionFactory->createVncProxyConnection(clientSocket,
-																		m_vncServerPort,
+																		m_vncServerEndpoint,
 																		m_vncServerPassword,
 																		this);
 		if (connection == nullptr)
