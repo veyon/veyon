@@ -148,6 +148,8 @@ set(veyoncore_SOURCES
 	src/StandardInputReaderPlatform.h
 	src/SystemTrayIcon.cpp
 	src/SystemTrayIcon.h
+	src/TlsHostCredentials.cpp
+	src/TlsHostCredentials.h
 	src/Toast.cpp
 	src/Toast.h
 	src/ToolButton.cpp
@@ -235,6 +237,7 @@ if(VEYON_BUILD_WINDOWS)
 		src/LoggerWindows.cpp
 		src/ProcessHardeningWindows.cpp
 		src/StandardInputReaderWindows.cpp
+		src/TlsHostCredentialsWindows.cpp
 		)
 else()
 	list(APPEND veyoncore_SOURCES
@@ -243,6 +246,7 @@ else()
 		src/LoggerUnix.cpp
 		src/ProcessHardeningUnix.cpp
 		src/StandardInputReaderUnix.cpp
+		src/TlsHostCredentialsUnix.cpp
 		)
 endif()
 
