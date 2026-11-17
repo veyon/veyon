@@ -106,8 +106,7 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	endif()
 
 	#
-	# PipeWireVncServerTest: tests BGRx→RGB conversion, damage rect clamping,
-	# and portal session token/path generation.
+	# PipeWireVncServerTest: portal session token/path generation
 	#
 	add_executable(PipeWireVncServerTest
 		PipeWireVncServerTest.cpp
@@ -234,6 +233,19 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 			veyon-core
 		)
 		add_test(NAME CaptureHelperProcessTest COMMAND CaptureHelperProcessTest)
+
+		# PipeWire frame validation and copy of the helper; SPA headers only, no PipeWire runtime
+		add_executable(PipeWireFrameTest
+			PipeWireFrameTest.cpp
+			${CAPTURE_HELPER_SOURCE_DIR}/PipeWireFrame.cpp
+		)
+		set_default_target_properties(PipeWireFrameTest)
+		target_include_directories(PipeWireFrameTest PRIVATE ${CAPTURE_HELPER_SOURCE_DIR} ${Spa_INCLUDE_DIR})
+		target_link_libraries(PipeWireFrameTest PRIVATE
+			Qt${QT_MAJOR_VERSION}::Test
+			Qt${QT_MAJOR_VERSION}::Core
+		)
+		add_test(NAME PipeWireFrameTest COMMAND PipeWireFrameTest)
 	endif()
 
 endif()
