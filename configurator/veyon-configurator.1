@@ -12,6 +12,25 @@ by the administrator with elevated privileges whenever necessary.
 
 .PP
 For more information about the veyon-configurator, point your browser to file:///usr/share/doc/packages/veyon-configurator or https://veyon.io/.
+.SH FILES
+.TP
+.I /var/log/veyon/
+Log files of Veyon processes running as root, e.g. the Veyon Service
+(\fIVeyonService.log\fR), Veyon Server instances running as root and the
+authentication helper. The directory is owned by root with mode 0750 and is
+created if missing. If it is not owned by root, is writable by group or others
+or is a symbolic link, file logging is disabled and the reason is written to
+the standard error output and the system log.
+.TP
+.I <log file directory>/veyon-<login name>/
+Log files of Veyon processes running as an unprivileged user, e.g. Veyon
+Master, Veyon Server and Veyon Worker instances in a user session. The log file
+directory is configured with \fILogging/LogFileDirectory\fR (default:
+\fI$TEMP\fR, i.e. \fI/tmp\fR). The per-user directory is owned by the user with
+mode 0700 and is created if missing. If it is owned by another user or is a
+symbolic link, file logging is disabled instead of falling back to a shared
+location.
+
 .SH SEE ALSO
 .IR veyon-service (1), veyon-master (1)
 
