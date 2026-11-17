@@ -49,6 +49,8 @@ if(PipeWire_FOUND AND Qt${QT_MAJOR_VERSION}DBus_FOUND)
 		CaptureHelperCredentials.h
 		PipeWireCaptureServer.cpp
 		PipeWireCaptureServer.h
+		PipeWireFrame.cpp
+		PipeWireFrame.h
 		PipeWireFramebuffer.cpp
 		PipeWireFramebuffer.h
 		PipeWireVncConfiguration.cpp
