@@ -44,35 +44,23 @@ bool isTokenMember(WELL_KNOWN_SID_TYPE type)
 		member != FALSE;
 }
 
-
-
-// whether the SID is the user of the token of this process
-bool isProcessUser(PSID sid)
-{
-	SmartHandle token;
-	if (OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, token.put()) == FALSE)
-	{
-		return false;
-	}
-
-	std::array<BYTE, sizeof(TOKEN_USER) + SECURITY_MAX_SID_SIZE> buffer{};
-	DWORD size = 0;
-	if (GetTokenInformation(token.get(), TokenUser, buffer.data(), DWORD(buffer.size()), &size) == FALSE)
-	{
-		return false;
-	}
-
-	return EqualSid(reinterpret_cast<TOKEN_USER*>(buffer.data())->User.Sid, sid) != FALSE;
-}
-
 }
 
 
 
 QString WindowsLogFileDirectory::systemDirectorySecurityDescriptor()
 {
-	// SYSTEM and Administrators full access (inherited by files and subdirectories), nothing else
-	return QStringLiteral("D:P(A;OICI;FA;;;SY)(A;OICI;FA;;;BA)");
+	// owned by Administrators; SYSTEM and Administrators full access (inherited by files and
+	// subdirectories), nothing else
+	return QStringLiteral("O:BAD:P(A;OICI;FA;;;SY)(A;OICI;FA;;;BA)");
+}
+
+
+
+QString WindowsLogFileDirectory::parentDirectorySecurityDescriptor()
+{
+	// owned by Administrators independent of the default owner of the token, inherited DACL
+	return QStringLiteral("O:BA");
 }
 
 
@@ -89,8 +77,20 @@ WindowsLogFileDirectory::Result WindowsLogFileDirectory::prepareSystemDirectory(
 	// %ProgramData%\Veyon: users may create subdirectories in %ProgramData%, so an existing one has
 	// to be owned by SYSTEM or the Administrators group as well
 	const auto parentPath = QFileInfo(path).absolutePath();
+	SmartSecurityDescriptor parentSecurityDescriptor;
+	if (const auto error = createSecurityDescriptor(parentDirectorySecurityDescriptor(), parentSecurityDescriptor);
+		error.isEmpty() == false)
+	{
+		return {{}, error};
+	}
+
+	SECURITY_ATTRIBUTES parentAttributes{};
+	parentAttributes.nLength = sizeof(parentAttributes);
+	parentAttributes.lpSecurityDescriptor = parentSecurityDescriptor.get();
+	parentAttributes.bInheritHandle = FALSE;
+
 	const auto nativeParentPath = nativePath(parentPath);
-	if (CreateDirectoryW(nativeParentPath.c_str(), nullptr) == FALSE)
+	if (CreateDirectoryW(nativeParentPath.c_str(), &parentAttributes) == FALSE)
 	{
 		if (const auto error = GetLastError(); error != ERROR_ALREADY_EXISTS)
 		{
@@ -107,12 +107,10 @@ WindowsLogFileDirectory::Result WindowsLogFileDirectory::prepareSystemDirectory(
 	}
 
 	SmartSecurityDescriptor securityDescriptor;
-	const auto securityDescriptorString = systemDirectorySecurityDescriptor().toStdWString();
-	if (ConvertStringSecurityDescriptorToSecurityDescriptorW(securityDescriptorString.c_str(), SDDL_REVISION_1,
-															 securityDescriptor.put(), nullptr) == FALSE)
+	if (const auto error = createSecurityDescriptor(systemDirectorySecurityDescriptor(), securityDescriptor);
+		error.isEmpty() == false)
 	{
-		const auto error = GetLastError();
-		return {{}, QStringLiteral("could not create security descriptor for log directory %1: error %2").arg(path).arg(error)};
+		return {{}, error};
 	}
 
 	SECURITY_ATTRIBUTES attributes{};
@@ -228,8 +226,7 @@ QString WindowsLogFileDirectory::checkOwner(const QString& path)
 		return QStringLiteral("could not query owner of directory %1: error %2").arg(path).arg(result);
 	}
 
-	if (IsWellKnownSid(owner, WinLocalSystemSid) || IsWellKnownSid(owner, WinBuiltinAdministratorsSid) ||
-		isProcessUser(owner))
+	if (IsWellKnownSid(owner, WinLocalSystemSid) || IsWellKnownSid(owner, WinBuiltinAdministratorsSid))
 	{
 		return {};
 	}
@@ -258,6 +255,22 @@ QString WindowsLogFileDirectory::applySecurityDescriptor(const QString& path, PS
 	if (result != ERROR_SUCCESS)
 	{
 		return QStringLiteral("could not set DACL of log directory %1: error %2").arg(path).arg(result);
+	}
+
+	return {};
+}
+
+
+
+QString WindowsLogFileDirectory::createSecurityDescriptor(const QString& securityDescriptorString,
+														  SmartSecurityDescriptor& securityDescriptor)
+{
+	const auto string = securityDescriptorString.toStdWString();
+	if (ConvertStringSecurityDescriptorToSecurityDescriptorW(string.c_str(), SDDL_REVISION_1, securityDescriptor.put(),
+															 nullptr) == FALSE)
+	{
+		const auto error = GetLastError();
+		return QStringLiteral("could not create security descriptor %1: error %2").arg(securityDescriptorString).arg(error);
 	}
 
 	return {};
