@@ -6,25 +6,21 @@
 #include <QPointer>
 #include <QProcess>
 #include <QRecursiveMutex>
-#include <QTcpServer>
-#include <QTcpSocket>
 #include <QTimer>
 
-#include "CryptoCore.h"
 #include "FeatureMessage.h"
+#include "IpcServer.h"
 
 class FeatureManager;
 class VeyonServerInterface;
 
+// Starts feature workers and talks to them over one authenticated local IPC endpoint per worker
+// start (docs/specs/02-ipc.md §6a): the endpoint is created before the worker starts, the
+// credentials are passed via the worker's stdin only and feature messages are carried in records.
 class VEYON_CORE_EXPORT FeatureWorkerManager : public QObject
 {
 	Q_OBJECT
 public:
-	enum class MessageArgument {
-		AuthToken
-	};
-	Q_ENUM(MessageArgument)
-
 	FeatureWorkerManager(VeyonServerInterface& server, QObject* parent = nullptr);
 	~FeatureWorkerManager() override;
 
@@ -39,9 +35,16 @@ public:
 	bool isWorkerRunning(Feature::Uid featureUid);
 
 private:
-	void acceptConnection();
-	void processConnection(QTcpSocket* socket);
-	void closeConnection(QTcpSocket* socket);
+	enum class WorkerType {
+		ManagedSystemWorker,
+		UnmanagedSessionWorker,
+	};
+
+	IpcServer* createWorkerEndpoint(Feature::Uid featureUid, WorkerType workerType,
+									const QString& sessionUser = {});
+	void handleWorkerConnection(Feature::Uid featureUid, const QString& endpointName, IpcConnection* connection);
+	void handleWorkerMessage(Feature::Uid featureUid, const QByteArray& data);
+	void removeWorker(Feature::Uid featureUid, const QString& endpointName);
 
 	void sendMessage(const FeatureMessage& message);
 
@@ -49,23 +52,22 @@ private:
 
 	void enqueueSessionWorkerMessage(const FeatureMessage& message);
 	void retryPendingSessionWorkerMessages();
-	void watchWorkerAuthentication(Feature::Uid featureUid, const QByteArray& token);
-	void removeStaleWorker(Feature::Uid featureUid, const QByteArray& token);
+	void watchWorkerAuthentication(Feature::Uid featureUid, const QString& endpointName);
+	void removeStaleWorker(Feature::Uid featureUid, const QString& endpointName);
 
 	static constexpr auto UnmanagedSessionProcessRetryInterval = 5000;
 	static constexpr auto MaximumPendingSessionWorkerMessages = 256;
 	static constexpr auto WorkerAuthenticationTimeout = 30000;
 
 	VeyonServerInterface& m_server;
-	QTcpServer m_tcpServer;
 
 	struct Worker
 	{
-		QPointer<QTcpSocket> socket;
+		QPointer<IpcServer> endpoint;
+		QString endpointName;
+		QPointer<IpcConnection> connection;
 		QPointer<QProcess> process;
 		QList<FeatureMessage> pendingMessages;
-		QByteArray token = CryptoCore::generateChallenge().toBase64();
-		bool authenticated = false;
 	};
 
 	using WorkerMap = QMap<Feature::Uid, Worker>;

@@ -1,6 +1,8 @@
 // SPDX-FileCopyrightText: 2017-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include <QBuffer>
+
 #include "FeatureManager.h"
 #include "FeatureMessage.h"
 #include "VariantArrayMessage.h"
@@ -39,6 +41,31 @@ bool FeatureMessage::sendAsRfbMessage(QIODevice* ioDevice) const
 	vCritical() << "no IO device!";
 
 	return false;
+}
+
+
+
+QByteArray FeatureMessage::toByteArray() const
+{
+	QBuffer buffer;
+	if (buffer.open(QBuffer::WriteOnly) == false || sendPlain(&buffer) == false)
+	{
+		return {};
+	}
+
+	return buffer.data();
+}
+
+
+
+bool FeatureMessage::fromByteArray(const QByteArray& data)
+{
+	auto dataCopy = data;
+	QBuffer buffer(&dataCopy);
+	return buffer.open(QBuffer::ReadOnly) &&
+		isReadyForReceive(&buffer) &&
+		receive(&buffer) &&
+		buffer.atEnd();
 }
 
 

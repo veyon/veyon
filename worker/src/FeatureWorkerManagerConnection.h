@@ -3,38 +3,36 @@
 
 #pragma once
 
-#include <QTcpSocket>
-#include <QTimer>
+#include <QPointer>
 
 #include "Feature.h"
+#include "FeatureMessage.h"
+#include "IpcConnection.h"
 
-class FeatureManager;
-class FeatureMessage;
 class VeyonWorkerInterface;
 
+// worker side of the authenticated server ⇄ worker channel (docs/specs/02-ipc.md §6a)
 class FeatureWorkerManagerConnection : public QObject
 {
 	Q_OBJECT
 public:
 	FeatureWorkerManagerConnection(VeyonWorkerInterface& worker,
 								   Feature::Uid featureUid,
+								   const QString& endpointDirectory,
+								   IpcEndpointCredentials&& credentials,
 								   QObject* parent = nullptr);
-
-	void setAuthToken(const QByteArray& authToken);
 
 	bool sendMessage(const FeatureMessage& message);
 
 private:
 	static constexpr auto ConnectTimeout = 3000;
 
-	void tryConnection();
-	void sendInitMessage();
-	void receiveMessage();
+	void receiveMessage(const QByteArray& data);
+	void sendPendingMessages();
+	void exitWorker();
 
 	VeyonWorkerInterface& m_worker;
-	const int m_port;
-	QTcpSocket m_socket;
 	Feature::Uid m_featureUid;
-	QByteArray m_authToken;
-	QTimer m_connectTimer{this};
+	QPointer<IpcConnection> m_connection;
+	QList<FeatureMessage> m_pendingMessages;
 };

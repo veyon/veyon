@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include "IpcEndpointCredentials.h"
 #include "VeyonCore.h"
 #include "VeyonWorkerInterface.h"
 
@@ -12,7 +13,8 @@ class VeyonWorker : public QObject, VeyonWorkerInterface
 {
 	Q_OBJECT
 public:
-	explicit VeyonWorker(QUuid featureUid, QObject* parent = nullptr);
+	VeyonWorker(QUuid featureUid, const QString& endpointDirectory, IpcEndpointCredentials&& credentials,
+				QObject* parent = nullptr);
 	~VeyonWorker() override;
 
 	bool sendFeatureMessageReply(const FeatureMessage& reply) override;

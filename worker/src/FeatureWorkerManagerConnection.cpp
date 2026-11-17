@@ -2,57 +2,41 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <QCoreApplication>
-#include <QHostAddress>
+#include <QTimer>
 
 #include "FeatureManager.h"
-#include "FeatureWorkerManager.h"
 #include "FeatureWorkerManagerConnection.h"
-#include "VeyonConfiguration.h"
 
 
 FeatureWorkerManagerConnection::FeatureWorkerManagerConnection(VeyonWorkerInterface& worker,
 															   Feature::Uid featureUid,
+															   const QString& endpointDirectory,
+															   IpcEndpointCredentials&& credentials,
 															   QObject* parent) :
 	QObject(parent),
 	m_worker(worker),
-	m_port(VeyonCore::config().featureWorkerManagerPort() + VeyonCore::sessionId()),
-	m_socket(this),
 	m_featureUid(featureUid)
 {
-	connect(&m_connectTimer, &QTimer::timeout, this, &FeatureWorkerManagerConnection::tryConnection);
-
-	connect(&m_socket, &QTcpSocket::connected,
-			this, &FeatureWorkerManagerConnection::sendInitMessage);
-
-	connect(&m_socket, &QTcpSocket::disconnected, this,
-			[=]() {
-		vDebug() << "lost connection to FeatureWorkerManager – exiting";
-		QCoreApplication::instance()->exit(0);
-	}, Qt::QueuedConnection);
-
-	connect(&m_socket, &QTcpSocket::readyRead,
-			this, &FeatureWorkerManagerConnection::receiveMessage);
-
-	tryConnection();
-}
-
-
-
-void FeatureWorkerManagerConnection::setAuthToken(const QByteArray& authToken)
-{
-	if (m_authToken.isEmpty())
+	// the endpoint is created by the server before the worker is started
+	auto socket = IpcConnection::connectToEndpoint(endpointDirectory, credentials.endpointName(), ConnectTimeout);
+	if (socket == nullptr)
 	{
-		m_authToken = authToken;
+		vCritical() << "could not connect to FeatureWorkerManager - exiting";
+		exitWorker();
+		return;
+	}
 
-		if (m_socket.state() == QTcpSocket::ConnectedState)
-		{
-			sendInitMessage();
-		}
-	}
-	else
-	{
-		vCritical() << "auth token already set";
-	}
+	m_connection = new IpcConnection(socket, IpcChannel::Side::Client, IpcProtocol::Role::Worker,
+									 quint32(qMax(0, VeyonCore::sessionId())), std::move(credentials), nullptr, this);
+
+	connect(m_connection, &IpcConnection::established, this, &FeatureWorkerManagerConnection::sendPendingMessages);
+	connect(m_connection, &IpcConnection::messageReceived, this, &FeatureWorkerManagerConnection::receiveMessage);
+	connect(m_connection, &IpcConnection::closed, this, [this]() {
+		vDebug() << "lost connection to FeatureWorkerManager - exiting";
+		exitWorker();
+	});
+
+	m_connection->start();
 }
 
 
@@ -61,49 +45,54 @@ bool FeatureWorkerManagerConnection::sendMessage(const FeatureMessage& message)
 {
 	vDebug() << message;
 
-	return message.sendPlain(&m_socket);
-}
-
-
-
-void FeatureWorkerManagerConnection::tryConnection()
-{
-	if (m_socket.state() != QTcpSocket::ConnectedState)
+	if (m_connection.isNull() || m_connection->isClosed())
 	{
-		vDebug() << "connecting to FeatureWorkerManager at port" << m_port;
-
-		m_socket.connectToHost(QHostAddress::LocalHost, m_port);
-		m_connectTimer.start(ConnectTimeout);
+		return false;
 	}
+
+	m_pendingMessages.append(message);
+	sendPendingMessages();
+
+	return true;
 }
 
 
 
-void FeatureWorkerManagerConnection::sendInitMessage()
-{
-	m_connectTimer.stop();
-
-	if (m_authToken.isEmpty() == false)
-	{
-		vDebug() << m_featureUid;
-
-		FeatureMessage(m_featureUid, FeatureMessage::Command::Init)
-			.addArgument(FeatureWorkerManager::MessageArgument::AuthToken, m_authToken)
-			.sendPlain(&m_socket);
-	}
-}
-
-
-
-void FeatureWorkerManagerConnection::receiveMessage()
+void FeatureWorkerManagerConnection::receiveMessage(const QByteArray& data)
 {
 	FeatureMessage featureMessage;
-
-	while (featureMessage.isReadyForReceive(&m_socket))
+	if (featureMessage.fromByteArray(data) == false || featureMessage.featureUid() != m_featureUid)
 	{
-		if (featureMessage.receive(&m_socket))
-		{
-			VeyonCore::featureManager().handleFeatureMessage(m_worker, featureMessage);
-		}
+		vCritical() << "invalid message from FeatureWorkerManager - exiting";
+		m_connection->close();
+		return;
 	}
+
+	VeyonCore::featureManager().handleFeatureMessage(m_worker, featureMessage);
+}
+
+
+
+void FeatureWorkerManagerConnection::sendPendingMessages()
+{
+	if (m_connection.isNull() || m_connection->isEstablished() == false)
+	{
+		return;
+	}
+
+	while (m_pendingMessages.isEmpty() == false)
+	{
+		if (m_connection->sendMessage(m_pendingMessages.first().toByteArray()) == false)
+		{
+			vWarning() << "dropping message which could not be sent";
+		}
+		m_pendingMessages.removeFirst();
+	}
+}
+
+
+
+void FeatureWorkerManagerConnection::exitWorker()
+{
+	QTimer::singleShot(0, QCoreApplication::instance(), []() { QCoreApplication::instance()->exit(0); });
 }

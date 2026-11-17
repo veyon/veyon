@@ -118,6 +118,11 @@ public:
 
 	bool receive(QIODevice* ioDevice);
 
+	// one message per byte array, e.g. per record of the worker channel (02-ipc.md §6a)
+	QByteArray toByteArray() const;
+	// fails unless data contains exactly one complete message
+	bool fromByteArray(const QByteArray& data);
+
 private:
 	FeatureUid m_featureUid{};
 	Command m_command = Command::Invalid;

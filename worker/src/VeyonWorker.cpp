@@ -5,13 +5,12 @@
 
 #include "FeatureManager.h"
 #include "FeatureWorkerManagerConnection.h"
-#include "PlatformCoreFunctions.h"
-#include "StandardInputReader.h"
 #include "VeyonConfiguration.h"
 #include "VeyonWorker.h"
 
 
-VeyonWorker::VeyonWorker(QUuid featureUid, QObject* parent) :
+VeyonWorker::VeyonWorker(QUuid featureUid, const QString& endpointDirectory, IpcEndpointCredentials&& credentials,
+						 QObject* parent) :
 	QObject(parent),
 	m_core(QCoreApplication::instance(),
 		   VeyonCore::Component::Worker,
@@ -38,21 +37,8 @@ VeyonWorker::VeyonWorker(QUuid featureUid, QObject* parent) :
 		qFatal("Specified feature is disabled by configuration!");
 	}
 
-	m_workerManagerConnection = new FeatureWorkerManagerConnection(*this, featureUid);
-
-	auto stdInReader = VeyonCore::platform().coreFunctions().createStandardInputReader(this);
-	connect(stdInReader, &StandardInputReader::lineRead, this, [this, stdInReader](const QString& line) {
-		const auto authToken = line.toUtf8();
-		if (authToken.isEmpty() == false)
-		{
-			m_workerManagerConnection->setAuthToken(authToken);
-		}
-		else
-		{
-			vCritical() << "failed to read auth token from stdin";
-		}
-		stdInReader->deleteLater();
-	});
+	m_workerManagerConnection = new FeatureWorkerManagerConnection(*this, featureUid, endpointDirectory,
+																   std::move(credentials));
 
 	vInfo() << "Running worker for feature" << workerFeature->name();
 }

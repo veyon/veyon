@@ -9,29 +9,20 @@
 #include "FeatureManager.h"
 #include "FeatureWorkerManager.h"
 #include "Filesystem.h"
+#include "IpcConnection.h"
 #include "PlatformCoreFunctions.h"
 #include "PlatformUserFunctions.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
 
+#include <memory>
+
 // clazy:excludeall=detaching-member
 
 FeatureWorkerManager::FeatureWorkerManager(VeyonServerInterface& server, QObject* parent) :
 	QObject(parent),
-	m_server(server),
-	m_tcpServer(this)
+	m_server(server)
 {
-	connect(&m_tcpServer, &QTcpServer::newConnection,
-			this, &FeatureWorkerManager::acceptConnection);
-
-	const auto port = VeyonCore::config().featureWorkerManagerPort() + VeyonCore::sessionId();
-
-	if (!m_tcpServer.listen(QHostAddress::LocalHost, static_cast<quint16>(port)))
-	{
-		vCritical() << "can't listen at port" << port;
-		qFatal("listen error");
-	}
-
 	auto pendingMessagesTimer = new QTimer(this);
 	connect(pendingMessagesTimer, &QTimer::timeout, this, &FeatureWorkerManager::sendPendingMessages);
 
@@ -46,8 +37,6 @@ FeatureWorkerManager::FeatureWorkerManager(VeyonServerInterface& server, QObject
 
 FeatureWorkerManager::~FeatureWorkerManager()
 {
-	m_tcpServer.close();
-
 	// properly shutdown all worker processes
 	while (m_workers.isEmpty() == false)
 	{
@@ -67,7 +56,15 @@ bool FeatureWorkerManager::startManagedSystemWorker(Feature::Uid featureUid)
 
 	stopWorker(featureUid);
 
+	auto endpoint = createWorkerEndpoint(featureUid, WorkerType::ManagedSystemWorker);
+	if (endpoint == nullptr)
+	{
+		return false;
+	}
+
 	Worker worker;
+	worker.endpoint = endpoint;
+	worker.endpointName = endpoint->endpointName();
 
 	worker.process = new QProcess;
 	worker.process->setProcessChannelMode(QProcess::ForwardedChannels);
@@ -75,36 +72,54 @@ bool FeatureWorkerManager::startManagedSystemWorker(Feature::Uid featureUid)
 	// a worker that terminates before connecting should not remain registered;
 	// otherwise, `isWorkerRunning()` remains true and the feature appears active
 	// until the server is restarted
-	const auto token = worker.token;
+	const auto endpointName = worker.endpointName;
 
 	connect(worker.process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-			this, [=, this]() { removeStaleWorker(featureUid, token); });
+			this, [=, this]() { removeStaleWorker(featureUid, endpointName); });
 
 	connect(worker.process, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
 			worker.process, &QProcess::deleteLater);
+
+	// register the PID before the worker can read the credentials (the endpoint only accepts it)
+	auto credentialsLine = std::make_shared<VeyonCrypto::SecureBuffer>(endpoint->credentialsLine());
+	const QPointer<IpcServer> endpointPointer(endpoint);
+	const QPointer<QProcess> process(worker.process);
+	connect(worker.process, &QProcess::started, this, [endpointPointer, process, credentialsLine]() {
+		if (endpointPointer && process)
+		{
+			endpointPointer->setExpectedProcessId(process->processId());
+			process->write(credentialsLine->constData(), credentialsLine->size());
+		}
+		credentialsLine->clear();
+		if (process)
+		{
+			process->closeWriteChannel();
+		}
+	});
+
+	const QStringList arguments{featureUid.toString(), IpcServer::workerEndpointDirectory()};
 
 	vDebug() << "Starting managed system worker for feature" << VeyonCore::featureManager().feature(featureUid).name();
 	if (qEnvironmentVariableIsSet("VEYON_VALGRIND_WORKERS"))
 	{
 		worker.process->start(QStringLiteral("valgrind"),
-							  {QStringLiteral("--error-limit=no"),
-							   QStringLiteral("--leak-check=full"),
-							   QStringLiteral("--show-leak-kinds=all"),
-							   QStringLiteral("--log-file=valgrind-%1.log").arg(featureUid.toString(QUuid::WithoutBraces)),
-							   VeyonCore::filesystem().workerFilePath(), featureUid.toString()});
+							  QStringList{QStringLiteral("--error-limit=no"),
+										  QStringLiteral("--leak-check=full"),
+										  QStringLiteral("--show-leak-kinds=all"),
+										  QStringLiteral("--log-file=valgrind-%1.log").arg(featureUid.toString(QUuid::WithoutBraces)),
+										  VeyonCore::filesystem().workerFilePath()} +
+								  arguments);
 	}
 	else
 	{
-		worker.process->start(VeyonCore::filesystem().workerFilePath(), {featureUid.toString()});
+		worker.process->start(VeyonCore::filesystem().workerFilePath(), arguments);
 	}
-
-	worker.process->write(worker.token + '\n');
 
 	m_workersMutex.lock();
 	m_workers[featureUid] = worker;
 	m_workersMutex.unlock();
 
-	watchWorkerAuthentication(featureUid, token);
+	watchWorkerAuthentication(featureUid, endpointName);
 
 	return true;
 }
@@ -121,8 +136,6 @@ bool FeatureWorkerManager::startUnmanagedSessionWorker(Feature::Uid featureUid)
 
 	stopWorker(featureUid);
 
-	Worker worker{};
-
 	vDebug() << "Starting worker (unmanaged session process) for feature" << featureUid;
 
 	const auto currentUser = VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName);
@@ -132,13 +145,28 @@ bool FeatureWorkerManager::startUnmanagedSessionWorker(Feature::Uid featureUid)
 		return false;
 	}
 
-	const auto ret = VeyonCore::platform().coreFunctions().runProgramAsUser(VeyonCore::filesystem().workerFilePath(), {featureUid.toString()},
-																			currentUser,
-																			VeyonCore::platform().coreFunctions().activeDesktopName(),
-																			worker.token + '\n');
+	auto endpoint = createWorkerEndpoint(featureUid, WorkerType::UnmanagedSessionWorker, currentUser);
+	if (endpoint == nullptr)
+	{
+		return false;
+	}
+
+	Worker worker;
+	worker.endpoint = endpoint;
+	worker.endpointName = endpoint->endpointName();
+
+	// runProgramAsUser() reports no PID: the token handshake and the uid/session check are the
+	// authenticators of unmanaged workers (02 §6a)
+	auto stdInData = endpoint->credentialsLine().toUnprotectedByteArray();
+	const auto ret = VeyonCore::platform().coreFunctions().runProgramAsUser(
+		VeyonCore::filesystem().workerFilePath(), {featureUid.toString(), IpcServer::workerEndpointDirectory()},
+		currentUser, VeyonCore::platform().coreFunctions().activeDesktopName(), stdInData);
+	stdInData.fill(0);
+
 	if (ret == false)
 	{
 		vWarning() << "failed to start worker for feature" << featureUid;
+		delete endpoint;
 		return false;
 	}
 
@@ -146,7 +174,7 @@ bool FeatureWorkerManager::startUnmanagedSessionWorker(Feature::Uid featureUid)
 	m_workers[featureUid] = worker;
 	m_workersMutex.unlock();
 
-	watchWorkerAuthentication(featureUid, worker.token);
+	watchWorkerAuthentication(featureUid, worker.endpointName);
 
 	return true;
 }
@@ -167,15 +195,13 @@ bool FeatureWorkerManager::stopWorker(Feature::Uid featureUid)
 	{
 		vDebug() << "Stopping worker for feature" << featureUid;
 
-		auto& worker = m_workers[featureUid];
+		auto worker = m_workers.take(featureUid);
 
-		if (worker.socket)
+		// the endpoint owns the connection: closing it makes an unmanaged worker quit on its own
+		if (worker.endpoint)
 		{
-			worker.socket->disconnect(this);
-			disconnect(worker.socket);
-
-			worker.socket->close();
-			worker.socket->deleteLater();
+			worker.endpoint->disconnect(this);
+			worker.endpoint->deleteLater();
 		}
 
 		if (worker.process)
@@ -186,8 +212,6 @@ bool FeatureWorkerManager::stopWorker(Feature::Uid featureUid)
 			connect(killTimer, &QTimer::timeout, killTimer, &QTimer::deleteLater);
 			killTimer->start(5000);
 		}
-
-		m_workers.remove(featureUid);
 	}
 
 	return false;
@@ -284,14 +308,14 @@ void FeatureWorkerManager::retryPendingSessionWorkerMessages()
 
 
 
-void FeatureWorkerManager::watchWorkerAuthentication(Feature::Uid featureUid, const QByteArray& token)
+void FeatureWorkerManager::watchWorkerAuthentication(Feature::Uid featureUid, const QString& endpointName)
 {
-	// a worker that was launched but never authenticated (token not read, process terminated, etc.) would block
-	// the feature indefinitely: we remove it so that a subsequent message can restart it
+	// a worker that was launched but never authenticated (credentials not read, process terminated, etc.)
+	// would block the feature indefinitely: we remove it so that a subsequent message can restart it
 	QTimer::singleShot(WorkerAuthenticationTimeout, this, [=, this]() {
 		QMutexLocker locker(&m_workersMutex);
 		const auto it = m_workers.constFind(featureUid);
-		if (it != m_workers.constEnd() && it->token == token && it->authenticated == false)
+		if (it != m_workers.constEnd() && it->endpointName == endpointName && it->connection.isNull())
 		{
 			locker.unlock();
 			vWarning() << "worker for feature" << featureUid << "did not authenticate in time - stopping it";
@@ -302,13 +326,17 @@ void FeatureWorkerManager::watchWorkerAuthentication(Feature::Uid featureUid, co
 
 
 
-void FeatureWorkerManager::removeStaleWorker(Feature::Uid featureUid, const QByteArray& token)
+void FeatureWorkerManager::removeStaleWorker(Feature::Uid featureUid, const QString& endpointName)
 {
 	QMutexLocker locker(&m_workersMutex);
 	const auto it = m_workers.find(featureUid);
-	if (it != m_workers.end() && it->token == token && it->socket.isNull())
+	if (it != m_workers.end() && it->endpointName == endpointName && it->connection.isNull())
 	{
 		vDebug() << "removing stale worker for feature" << featureUid;
+		if (it->endpoint)
+		{
+			it->endpoint->deleteLater();
+		}
 		m_workers.erase(it);
 	}
 }
@@ -323,126 +351,145 @@ bool FeatureWorkerManager::isWorkerRunning(Feature::Uid featureUid)
 
 
 
-void FeatureWorkerManager::acceptConnection()
+IpcServer* FeatureWorkerManager::createWorkerEndpoint(Feature::Uid featureUid, WorkerType workerType,
+													  const QString& sessionUser)
 {
-	auto socket = m_tcpServer.nextPendingConnection();
-	vDebug() << "new connection from worker at" << socket->peerPort();
+	const auto directory = IpcServer::workerEndpointDirectory();
+	if (IpcServer::prepareWorkerEndpointDirectory(directory) == false)
+	{
+		vCritical() << "no trusted endpoint directory for workers - not starting worker for feature" << featureUid;
+		return nullptr;
+	}
 
-	// connect to readyRead() signal of new connection
-	connect(socket, &QTcpSocket::readyRead,
-			this, [=, this]() { processConnection(socket); });
+	IpcServer::PeerPolicy peerPolicy;
+	// a failed handshake stops that worker only, the session server keeps running (02 §6a)
+	peerPolicy.maximumFailedHandshakes = 1;
+	peerPolicy.windowsSessionId = IpcServer::currentWindowsSessionId();
 
-	connect(socket, &QTcpSocket::disconnected,
-			this, [=, this]() { closeConnection(socket); });
-
-	// a connection which is not associated with an authenticated worker in time is closed: the
-	// worker process then quits on its own (it can't be killed when not started by us, e.g.
-	// unmanaged session workers) and no stale worker accumulates in the user session
-	QTimer::singleShot(WorkerAuthenticationTimeout, socket, [=, this]() {
-		QMutexLocker locker(&m_workersMutex);
-		for (const auto& worker : std::as_const(m_workers))
+	if (workerType == WorkerType::ManagedSystemWorker)
+	{
+		// child process with the server's identity
+		peerPolicy.userId = IpcServer::currentUserId();
+		peerPolicy.checkProcessId = true;
+		peerPolicy.windowsAccess = IpcServer::WindowsAccess::SystemOnly;
+	}
+	else
+	{
+		const auto identity = VeyonCore::platform().userFunctions().queryUserIdentity(sessionUser);
+#ifdef Q_OS_WIN
+		if (identity.securityIdentifier.isEmpty())
+#else
+		if (identity.userId < 0)
+#endif
 		{
-			if (worker.socket == socket && worker.authenticated)
-			{
-				return;
-			}
+			vCritical() << "could not determine identity of session user - not starting worker for feature" << featureUid;
+			return nullptr;
 		}
-		locker.unlock();
-		vWarning() << "closing unauthenticated worker connection from port" << socket->peerPort();
-		socket->close();
+
+		peerPolicy.userId = identity.userId;
+		// a root server hands the socket over to the session user
+		if (identity.userId != IpcServer::currentUserId())
+		{
+			peerPolicy.socketOwnerUserId = identity.userId;
+		}
+		peerPolicy.checkProcessId = false;
+		peerPolicy.windowsAccess = IpcServer::WindowsAccess::SystemAndUser;
+		peerPolicy.windowsUserSid = identity.securityIdentifier;
+	}
+
+	auto endpoint = new IpcServer(IpcProtocol::Role::Worker, quint32(qMax(0, VeyonCore::sessionId())), this);
+	if (VeyonCore::sessionId() < 0 || endpoint->listen(directory, peerPolicy) == false)
+	{
+		vCritical() << "failed to create worker endpoint for feature" << featureUid;
+		delete endpoint;
+		return nullptr;
+	}
+
+	const auto endpointName = endpoint->endpointName();
+
+	connect(endpoint, &IpcServer::connectionEstablished, this, [=, this](IpcConnection* connection) {
+		handleWorkerConnection(featureUid, endpointName, connection);
 	});
+
+	connect(endpoint, &IpcServer::failed, this, [=, this]() {
+		vWarning() << "handshake with worker for feature" << featureUid << "failed - stopping worker";
+		QMutexLocker locker(&m_workersMutex);
+		const auto it = m_workers.constFind(featureUid);
+		if (it != m_workers.constEnd() && it->endpointName == endpointName)
+		{
+			locker.unlock();
+			stopWorker(featureUid);
+		}
+	});
+
+	return endpoint;
 }
 
 
 
-void FeatureWorkerManager::processConnection(QTcpSocket* socket)
+void FeatureWorkerManager::handleWorkerConnection(Feature::Uid featureUid, const QString& endpointName,
+												  IpcConnection* connection)
+{
+	QMutexLocker locker(&m_workersMutex);
+
+	const auto it = m_workers.find(featureUid);
+	if (it == m_workers.end() || it->endpointName != endpointName)
+	{
+		connection->close();
+		return;
+	}
+
+	vDebug() << "worker for feature" << featureUid << "connected";
+
+	it->connection = connection;
+
+	connect(connection, &IpcConnection::messageReceived, this, [=, this](const QByteArray& data) {
+		handleWorkerMessage(featureUid, data);
+	});
+
+	connect(connection, &IpcConnection::closed, this, [=, this]() {
+		vDebug() << "connection to worker for feature" << featureUid << "closed";
+		removeWorker(featureUid, endpointName);
+	});
+
+	sendPendingMessages();
+}
+
+
+
+void FeatureWorkerManager::handleWorkerMessage(Feature::Uid featureUid, const QByteArray& data)
 {
 	FeatureMessage message;
-	while (message.isReadyForReceive(socket))
+	if (message.fromByteArray(data) == false || message.featureUid() != featureUid)
 	{
-		message.receive(socket);
+		vCritical() << "invalid message from worker for feature" << featureUid << "- stopping worker";
+		stopWorker(featureUid);
+		return;
+	}
 
-		m_workersMutex.lock();
-
-		if (m_workers.contains(message.featureUid()))
-		{
-			Worker& worker = m_workers[message.featureUid()];
-
-			bool authorized = false;
-
-			// authenticate and set socket information
-			if (worker.socket.isNull())
-			{
-				if (message.command() == FeatureMessage::Command::Init &&
-					message.argument(MessageArgument::AuthToken).toByteArray() == worker.token)
-				{
-					vDebug() << "worker at" << socket->peerPort() << "authenticated successfully";
-					worker.socket = socket;
-					worker.authenticated = true;
-					authorized = true;
-					sendPendingMessages();
-				}
-				else
-				{
-					vCritical() << "worker at" << socket->peerPort() << "failed to authenticate - closing connection";
-					closeConnection(socket);
-					m_workersMutex.unlock();
-					return;
-				}
-			}
-			else
-			{
-				authorized = worker.authenticated && worker.socket == socket;
-			}
-
-			m_workersMutex.unlock();
-
-			if (authorized == false)
-			{
-				vCritical() << "rejecting message from unauthenticated socket for" << message.featureUid();
-				closeConnection(socket);
-				return;
-			}
-
-			if (message.command<FeatureMessage::CommandType>() >= 0)
-			{
-				VeyonCore::featureManager().handleFeatureMessageFromWorker(m_server, message);
-			}
-		}
-		else
-		{
-			m_workersMutex.unlock();
-
-			vCritical() << "got data from non-existing worker!" << message.featureUid();
-			// make the orphaned worker quit instead of lingering with an open connection
-			socket->close();
-			return;
-		}
+	if (message.command<FeatureMessage::CommandType>() >= 0)
+	{
+		VeyonCore::featureManager().handleFeatureMessageFromWorker(m_server, message);
 	}
 }
 
 
 
-void FeatureWorkerManager::closeConnection(QTcpSocket* socket)
+void FeatureWorkerManager::removeWorker(Feature::Uid featureUid, const QString& endpointName)
 {
-	m_workersMutex.lock();
+	QMutexLocker locker(&m_workersMutex);
 
-	for (auto it = m_workers.begin(); it != m_workers.end();)
+	const auto it = m_workers.find(featureUid);
+	if (it != m_workers.end() && it->endpointName == endpointName)
 	{
-		if (it.value().socket == socket)
+		vDebug() << "removing worker after its connection has been closed";
+		if (it->endpoint)
 		{
-			vDebug() << "removing worker after socket has been closed";
-			it = m_workers.erase(it);
+			it->endpoint->disconnect(this);
+			it->endpoint->deleteLater();
 		}
-		else
-		{
-			++it;
-		}
+		m_workers.erase(it);
 	}
-
-	m_workersMutex.unlock();
-
-	socket->deleteLater();
 }
 
 
@@ -473,9 +520,12 @@ void FeatureWorkerManager::sendPendingMessages()
 	{
 		auto& worker = it.value();
 
-		while (worker.socket && worker.pendingMessages.isEmpty() == false)
+		while (worker.connection && worker.connection->isEstablished() && worker.pendingMessages.isEmpty() == false)
 		{
-			worker.pendingMessages.first().sendPlain(worker.socket);
+			if (worker.connection->sendMessage(worker.pendingMessages.first().toByteArray()) == false)
+			{
+				vWarning() << "dropping message for worker of feature" << it.key() << "which could not be sent";
+			}
 			worker.pendingMessages.removeFirst();
 		}
 	}
