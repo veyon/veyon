@@ -161,7 +161,8 @@ static QProcessEnvironment sessionToServerEnvironment(const QProcessEnvironment&
 
 
 // Resolves a path, following symlinks, and verifies it is owned by the given uid
-// and not writable by other users. Returns false if the path is missing, owned by
+// and not writable by other users (for sockets: located in a directory private
+// to the given uid). Returns false if the path is missing, owned by
 // someone else, or looks unsafe.
 static bool isPathOwnedBySessionUser(const QString& path, uint expectedUid)
 {
@@ -194,7 +195,30 @@ static bool isPathOwnedBySessionUser(const QString& path, uint expectedUid)
 		return false;
 	}
 
-	// reject world- or group-writable files/sockets to avoid TOCTOU / hijack via
+	if (S_ISSOCK(st.st_mode))
+	{
+		// sockets such as /run/user/<uid>/bus are usually created with mode 0666
+		// since connecting requires write permission - access is restricted by the
+		// containing directory instead, so verify that one is private to the user
+		const auto directory = QFileInfo(path).canonicalPath();
+		struct stat directorySt{};
+		if (directory.isEmpty() || ::stat(directory.toUtf8().constData(), &directorySt) != 0)
+		{
+			vWarning() << "could not stat directory of socket" << path;
+			return false;
+		}
+
+		if (directorySt.st_uid != expectedUid || (directorySt.st_mode & (S_IRWXG | S_IRWXO)))
+		{
+			vWarning() << "directory" << directory << "of socket" << path
+					   << "is not private to session user (uid" << expectedUid << "), rejecting";
+			return false;
+		}
+
+		return true;
+	}
+
+	// reject world- or group-writable files to avoid TOCTOU / hijack via
 	// another local user replacing the target after our check
 	if (st.st_mode & (S_IWGRP | S_IWOTH))
 	{
