@@ -24,6 +24,12 @@ set(veyoncrypto_SOURCES
 	src/Hkdf.h
 	src/Hmac.cpp
 	src/Hmac.h
+	src/LegacyRsa.cpp
+	src/LegacyRsa.h
+	src/LegacyRsaPrivateKey.cpp
+	src/LegacyRsaPrivateKey.h
+	src/LegacyRsaPublicKey.cpp
+	src/LegacyRsaPublicKey.h
 	src/OpenSslCompat.cpp
 	src/OpenSslCompat.h
 	src/OpenSslUtils.cpp
