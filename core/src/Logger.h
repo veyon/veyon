@@ -78,6 +78,8 @@ private:
 	QString m_appName;
 
 	QFile* m_logFile;
+	// QFile::fileName() is not reliable after opening a file from a descriptor (openFileSafely())
+	QString m_logFilePath;
 	int m_logFileSizeLimit;
 	int m_logFileRotationCount;
 };
