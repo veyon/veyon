@@ -152,6 +152,53 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 
 	add_test(NAME ProcessHardeningTest COMMAND ProcessHardeningTest)
 
+	# veyon-capture-helper (02-ipc.md §1a.5): stdin credentials line and supervision, and the real
+	# helper started from a non-dumpable process (loopback only, VNC password, dumpable helper)
+	if(TARGET veyon-capture-helper)
+		set(CAPTURE_HELPER_SOURCE_DIR ${CMAKE_SOURCE_DIR}/plugins/vncserver/pipewire)
+
+		add_executable(CaptureHelperCredentialsTest
+			CaptureHelperCredentialsTest.cpp
+			${CAPTURE_HELPER_SOURCE_DIR}/CaptureHelperCredentials.cpp
+		)
+		set_default_target_properties(CaptureHelperCredentialsTest)
+		target_include_directories(CaptureHelperCredentialsTest PRIVATE ${CAPTURE_HELPER_SOURCE_DIR})
+		target_link_libraries(CaptureHelperCredentialsTest PRIVATE
+			Qt${QT_MAJOR_VERSION}::Test
+			Qt${QT_MAJOR_VERSION}::Core
+			veyon-core
+		)
+		add_test(NAME CaptureHelperCredentialsTest COMMAND CaptureHelperCredentialsTest)
+
+		add_executable(CaptureHelperCoreTest CaptureHelperCoreTest.cpp)
+		set_default_target_properties(CaptureHelperCoreTest)
+		add_dependencies(CaptureHelperCoreTest linux-platform)
+		target_link_libraries(CaptureHelperCoreTest PRIVATE
+			Qt${QT_MAJOR_VERSION}::Test
+			Qt${QT_MAJOR_VERSION}::Core
+			veyon-core
+		)
+		add_test(NAME CaptureHelperCoreTest COMMAND CaptureHelperCoreTest)
+
+		add_executable(CaptureHelperProcessTest
+			CaptureHelperProcessTest.cpp
+			${CAPTURE_HELPER_SOURCE_DIR}/CaptureHelperCredentials.cpp
+			${CAPTURE_HELPER_SOURCE_DIR}/CaptureHelperProcess.cpp
+		)
+		set_default_target_properties(CaptureHelperProcessTest)
+		target_include_directories(CaptureHelperProcessTest PRIVATE ${CAPTURE_HELPER_SOURCE_DIR})
+		target_compile_definitions(CaptureHelperProcessTest PRIVATE
+			CAPTURE_HELPER_FILE_PATH="$<TARGET_FILE:veyon-capture-helper>")
+		add_dependencies(CaptureHelperProcessTest veyon-capture-helper pipewire-vnc-server)
+		target_link_libraries(CaptureHelperProcessTest PRIVATE
+			Qt${QT_MAJOR_VERSION}::Test
+			Qt${QT_MAJOR_VERSION}::Core
+			Qt${QT_MAJOR_VERSION}::Network
+			veyon-core
+		)
+		add_test(NAME CaptureHelperProcessTest COMMAND CaptureHelperProcessTest)
+	endif()
+
 endif()
 
 # platform-independent tests

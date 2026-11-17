@@ -18,3 +18,7 @@ endforeach()
 # the server ⇄ worker channel uses the authenticated local IPC only (02-ipc.md §6a): no loopback TCP
 add_test(NAME WorkerChannelWithoutTcp
 	COMMAND ${CMAKE_COMMAND} -DVEYON_SOURCE_DIR=${CMAKE_SOURCE_DIR} -P ${CMAKE_CURRENT_SOURCE_DIR}/CheckWorkerChannelWithoutTcp.cmake)
+
+# veyon-server is not D-Bus activatable, the capture helper owns no well-known bus name
+add_test(NAME NoServerBusActivation
+	COMMAND ${CMAKE_COMMAND} -DVEYON_SOURCE_DIR=${CMAKE_SOURCE_DIR} -P ${CMAKE_CURRENT_SOURCE_DIR}/CheckNoServerBusActivation.cmake)
