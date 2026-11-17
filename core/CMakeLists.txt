@@ -111,6 +111,8 @@ set(veyoncore_SOURCES
 	src/RfbVeyonAuth.h
 	src/Screenshot.cpp
 	src/Screenshot.h
+	src/SecretExport.cpp
+	src/SecretExport.h
 	src/SecretStore.cpp
 	src/SecretStore.h
 	src/ServiceControl.cpp

@@ -8,6 +8,8 @@ set(cli_SOURCES
 	src/FeatureCommands.h
 	src/PluginCommands.cpp
 	src/PluginCommands.h
+	src/SecretInputOutput.cpp
+	src/SecretInputOutput.h
 	src/ServiceControlCommands.cpp
 	src/ServiceControlCommands.h
 	src/ShellCommands.cpp

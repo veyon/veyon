@@ -3,8 +3,17 @@
 
 #pragma once
 
+#include <QJsonObject>
+
 #include "CommandLinePluginInterface.h"
+#include "SecretExport.h"
 #include "VeyonConfiguration.h"
+
+#include <optional>
+
+namespace Configuration {
+struct SecretProperty;
+}
 
 class ConfigCommands : public QObject, CommandLinePluginInterface, PluginInterface
 {
@@ -62,6 +71,7 @@ public Q_SLOTS:
 	CommandLinePluginInterface::RunResult handle_list(const QStringList& arguments);
 	CommandLinePluginInterface::RunResult handle_import(const QStringList& arguments);
 	CommandLinePluginInterface::RunResult handle_export(const QStringList& arguments);
+	CommandLinePluginInterface::RunResult handle_export_premigration(const QStringList& arguments);
 	CommandLinePluginInterface::RunResult handle_get(const QStringList& arguments);
 	CommandLinePluginInterface::RunResult handle_set(const QStringList& arguments);
 	CommandLinePluginInterface::RunResult handle_unset(const QStringList& arguments);
@@ -73,6 +83,24 @@ private:
 		Defaults,
 		Types
 	};
+
+	struct Options
+	{
+		QString fileName{};
+		bool includeSecrets = false;
+		SecretExport::Kdf kdf = SecretExport::Kdf::Scrypt;
+		QString passphraseFile{};
+	};
+
+	static std::optional<Options> parseOptions(const QStringList& arguments);
+	static QStringList configuredSecretKeys();
+	static std::optional<Veyon::Crypto::SecureBuffer> readSecretInput(const QString& prompt, bool confirm);
+	static std::optional<Veyon::Crypto::SecureBuffer> readPassphrase(const Options& options, bool confirm);
+
+	std::optional<QJsonObject> exportSecrets(const Options& options);
+	std::optional<SecretExport::Secrets> decryptSecrets(const QJsonObject& secretsDocument, const Options& options);
+	CommandLinePluginInterface::RunResult setSecret(const Configuration::SecretProperty& secretProperty,
+													const std::optional<QString>& value);
 
 	void listConfiguration(ListMode listMode) const;
 

@@ -14,11 +14,14 @@
 
 #include "AboutDialog.h"
 #include "Configuration/JsonStore.h"
+#include "Configuration/LegacySecretMigration.h"
+#include "Configuration/SecretProperties.h"
 #include "Configuration/UiMapping.h"
 #include "ConfigurationManager.h"
 #include "ConfigurationPagePluginInterface.h"
 #include "MainWindow.h"
 #include "PluginManager.h"
+#include "SecretStore.h"
 #include "VeyonConfiguration.h"
 
 #include "ui_MainWindow.h"
@@ -175,8 +178,35 @@ void MainWindow::loadSettingsFromFile()
 													QDir::homePath(), tr("JSON files (*.json)"));
 	if (!fileName.isEmpty())
 	{
-		// write current configuration to output file
-		Configuration::JsonStore(Configuration::JsonStore::Scope::System, fileName).load(&VeyonCore::config());
+		Configuration::JsonStore jsonStore(Configuration::JsonStore::Scope::System, fileName);
+		VeyonConfiguration importedConfiguration(&jsonStore);
+
+		// encrypted secrets of an export can only be imported with veyon-cli (passphrase), and secret
+		// properties never refer to other keys than their own
+		Configuration::LegacySecretMigration::scrubConfiguration(importedConfiguration);
+
+		// never store legacy ciphertext (readable with the public default-pkey.pem) again
+		if (Configuration::LegacySecretMigration::hasLegacySecrets(importedConfiguration))
+		{
+			if (SecretStore::isAvailable() == false)
+			{
+				QMessageBox::critical(this, tr("Load settings from file"),
+									  tr("The file contains legacy encrypted passwords. Loading it requires "
+										 "administrator privileges so that they can be moved to the secure "
+										 "secret storage."));
+				return;
+			}
+			if (Configuration::LegacySecretMigration::migrate(importedConfiguration, VeyonCore::cryptoCore(),
+															  Configuration::LegacySecretMigration::ExistingSecrets::Overwrite) !=
+				Configuration::LegacySecretMigration::Result::Migrated)
+			{
+				QMessageBox::critical(this, tr("Load settings from file"),
+									  tr("Could not migrate the legacy encrypted passwords of the file."));
+				return;
+			}
+		}
+
+		VeyonCore::config() += importedConfiguration;
 		reset(true);
 		configurationChanged(); // give user a chance to apply possible changes
 	}
@@ -197,8 +227,10 @@ void MainWindow::saveSettingsToFile()
 
 		bool configChangedPrevious = m_configChanged;
 
-		// write current configuration to output file
-		Configuration::JsonStore(Configuration::JsonStore::Scope::System, fileName).flush(&VeyonCore::config());
+		// write current configuration to output file - with references to secrets only
+		Configuration::Object exportedConfiguration(VeyonCore::config());
+		(void)Configuration::LegacySecretMigration::removeLegacySecrets(exportedConfiguration);
+		Configuration::JsonStore(Configuration::JsonStore::Scope::System, fileName).flush(&exportedConfiguration);
 
 		m_configChanged = configChangedPrevious;
 		ui->buttonBox->setEnabled(m_configChanged);
@@ -211,10 +243,30 @@ void MainWindow::resetConfiguration()
 {
 	if (QMessageBox::warning(this, tr("Reset configuration"),
 							 tr("Do you really want to reset the local configuration and revert "
-								"all settings to their defaults?"),
+								"all settings to their defaults? Stored secrets such as the LDAP bind "
+								"password are deleted as well."),
 							 QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ==
 		QMessageBox::Yes)
 	{
+		// like veyon-cli config clear: a reset configuration must not keep old secrets effective
+		if (SecretStore::isAvailable())
+		{
+			for (const auto& secretProperty : Configuration::SecretProperties)
+			{
+				if (SecretStore::remove(secretProperty.secretKey) == false)
+				{
+					QMessageBox::critical(this, tr("Reset configuration"),
+										  tr("Could not remove secret %1.").arg(secretProperty.secretKey));
+					return;
+				}
+			}
+		}
+		else
+		{
+			QMessageBox::warning(this, tr("Reset configuration"),
+								 tr("Stored secrets have not been removed (requires administrator privileges)."));
+		}
+
 		ConfigurationManager().clearConfiguration();
 		reset(false);
 	}

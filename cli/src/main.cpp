@@ -87,11 +87,13 @@ int main(int argc, char** argv)
 
 			if (arguments.count() > 2)
 			{
-				const auto handler = QStringLiteral("handle_%1(QStringList)").arg(arguments[2]);
+				// commands like "export-premigration" are handled by handle_export_premigration()
+				const auto command = QString(arguments[2]).replace(QLatin1Char('-'), QLatin1Char('_'));
+				const auto handler = QStringLiteral("handle_%1(QStringList)").arg(command);
 				if (it.value()->metaObject()->indexOfMethod(handler.toUtf8().constData()) >= 0)
 				{
 					QMetaObject::invokeMethod(it.value(),
-											  QStringLiteral("handle_%1").arg(arguments[2]).toUtf8().constData(),
+											  QStringLiteral("handle_%1").arg(command).toUtf8().constData(),
 											  Qt::DirectConnection,
 											  Q_RETURN_ARG(CommandLinePluginInterface::RunResult, runResult),
 											  Q_ARG(QStringList, arguments.mid(3)));
