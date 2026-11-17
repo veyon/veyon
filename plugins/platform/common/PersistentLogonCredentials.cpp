@@ -38,9 +38,20 @@ bool PersistentLogonCredentials::read(QString* username, Password* password)
 		return false;
 	}
 
+	// the password is stored in plain text: the blob only travels over the authenticated and
+	// encrypted IPC channel and lives in the service's memory (02-ipc.md §6, 05-tls.md §7)
 	VariantStream stream(&logonDataBuffer);
 	*username = stream.read().toString();
-	*password = VeyonCore::cryptoCore().decryptPassword(stream.read().toString());
+	auto passwordData = stream.read();
+	if (passwordData.userType() == QMetaType::QByteArray)
+	{
+		auto plainTextPassword = passwordData.toByteArray();
+		// release the variant's reference first so that fill() wipes the only copy in place
+		passwordData.clear();
+		*password = Password(plainTextPassword);
+		plainTextPassword.fill(0);
+	}
+	logonData.fill(0);
 
 	return username->isEmpty() == false && password->isEmpty() == false;
 }
@@ -58,13 +69,18 @@ bool PersistentLogonCredentials::write(const QString& username, const Password& 
 
 	VariantStream stream(&logonDataBuffer);
 	stream.write(username);
-	stream.write(VeyonCore::cryptoCore().encryptPassword(password));
+	auto plainTextPassword = QByteArray(password.constData(), password.size());
+	stream.write(plainTextPassword);
+	plainTextPassword.fill(0);
 
 	const auto ipcClient = VeyonCore::serviceIpcClient();
-	if (ipcClient == nullptr ||
+	const auto success = ipcClient &&
 		ipcClient->call(IpcProtocol::Command::SetSessionData,
 						{{IpcProtocol::Key::Data, QString::fromLatin1(logonDataBuffer.data().toBase64())}})
-				.ok == false)
+			.ok;
+	logonDataBuffer.buffer().fill(0);
+
+	if (success == false)
 	{
 		vCritical() << "Failed to write persistent service data";
 		return false;

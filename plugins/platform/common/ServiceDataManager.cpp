@@ -3,8 +3,8 @@
 
 #include <QPointer>
 
-#include "Configuration/Password.h"
 #include "IpcConnection.h"
+#include "SecretStore.h"
 #include "ServiceDataManager.h"
 #include "VeyonConfiguration.h"
 
@@ -215,13 +215,13 @@ std::optional<Veyon::Crypto::SecureBuffer> ServiceDataManager::externalVncServer
 		return {};
 	}
 
-	const auto password = Configuration::Password::fromEncrypted(
-							  VeyonCore::config().value(QStringLiteral("Password"), QStringLiteral("ExternalVncServer"), {}).toString())
-							  .plainText();
-	if (password.isEmpty())
+	// fixed key of the ExternalVncServer/Password property (SecretReference, 03-secretstore-config.md
+	// §4.2); the configuration value never selects the key
+	auto password = SecretStore::read(QStringLiteral("vncserver-external/password"));
+	if (password.has_value() == false || password->isEmpty())
 	{
 		return {};
 	}
 
-	return Veyon::Crypto::SecureBuffer(password.constData(), password.size());
+	return password;
 }

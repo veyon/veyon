@@ -56,13 +56,8 @@ void LdapPlugin::upgrade(const QVersionNumber& oldVersion)
 		m_configuration.setUserGroupsFilter(upgradeFilter(m_configuration.userGroupsFilter()));
 		m_configuration.setUsersFilter(upgradeFilter(m_configuration.usersFilter()));
 
-		// bind password not encrypted yet?
-		const auto rawBindPassword = m_configuration.bindPasswordProperty().variantValue().toString();
-		if (rawBindPassword.size() < MaximumPlaintextPasswordLength)
-		{
-			// setting it again will encrypt it
-			m_configuration.setBindPassword(Configuration::Password::fromPlainText(rawBindPassword.toUtf8()));
-		}
+		// a plain text bind password of old versions is moved to the SecretStore by
+		// LegacySecretMigration (03-secretstore-config.md §4)
 	}
 	else if (oldVersion < QVersionNumber(1, 2))
 	{

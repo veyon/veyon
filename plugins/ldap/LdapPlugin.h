@@ -96,10 +96,6 @@ public Q_SLOTS:
 	CommandLinePluginInterface::RunResult handle_help(const QStringList& arguments);
 
 private:
-	enum {
-		MaximumPlaintextPasswordLength = 64
-	};
-
 	LdapClient& ldapClient();
 	LdapDirectory& ldapDirectory();
 

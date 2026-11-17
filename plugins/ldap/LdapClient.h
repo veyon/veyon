@@ -125,6 +125,7 @@ private:
 	};
 
 	State m_state = Disconnected;
+	bool m_bindCredentialsUnavailable = false;
 
 	bool m_queryRetry = false;
 

@@ -16,7 +16,7 @@
 	OP(LdapConfiguration, m_configuration, QString, tlsCACertificateFile, setTLSCACertificateFile, "TLSCACertificateFile", "LDAP", QString(), Configuration::Property::Flag::Standard) \
 	OP(LdapConfiguration, m_configuration, bool, useBindCredentials, setUseBindCredentials, "UseBindCredentials", "LDAP", false, Configuration::Property::Flag::Standard) \
 	OP(LdapConfiguration, m_configuration, QString, bindDn, setBindDn, "BindDN", "LDAP", QString(), Configuration::Property::Flag::Standard) \
-	OP(LdapConfiguration, m_configuration, Configuration::Password, bindPassword, setBindPassword, "BindPassword", "LDAP", QString(), Configuration::Property::Flag::Standard) \
+	OP(LdapConfiguration, m_configuration, Configuration::SecretReference, bindPassword, setBindPassword, "BindPassword", "LDAP", Configuration::SecretReference::defaultValue(QStringLiteral("ldap/bindPassword")), Configuration::Property::Flag::Standard) \
 	OP(LdapConfiguration, m_configuration, bool, queryNamingContext, setQueryNamingContext, "QueryNamingContext", "LDAP", false, Configuration::Property::Flag::Standard) \
 	OP(LdapConfiguration, m_configuration, int, queryTimeout, setQueryTimeout, "QueryTimeout", "LDAP", LdapClient::DefaultQueryTimeout, Configuration::Property::Flag::Advanced) \
 	OP(LdapConfiguration, m_configuration, QString, baseDn, setBaseDn, "BaseDN", "LDAP", QString(), Configuration::Property::Flag::Standard) \

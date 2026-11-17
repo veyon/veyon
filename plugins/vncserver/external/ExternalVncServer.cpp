@@ -6,6 +6,7 @@
 #include "AuthenticationCredentials.h"
 #include "ExternalVncServer.h"
 #include "ExternalVncServerConfigurationWidget.h"
+#include "SecretStore.h"
 #include "VeyonConfiguration.h"
 
 
@@ -13,22 +14,6 @@ ExternalVncServer::ExternalVncServer(QObject* parent) :
 	QObject(parent),
 	m_configuration(&VeyonCore::config())
 {
-}
-
-
-
-void ExternalVncServer::upgrade(const QVersionNumber& oldVersion)
-{
-	if (oldVersion < QVersionNumber(1, 1))
-	{
-		// external VNC server password not encrypted yet?
-		const auto rawPassword = m_configuration.passwordProperty().variantValue().toString();
-		if (rawPassword.size() < MaximumPlaintextPasswordLength)
-		{
-			// setting it again will encrypt it
-			m_configuration.setPassword(Configuration::Password::fromPlainText(rawPassword.toUtf8()));
-		}
-	}
 }
 
 
@@ -67,7 +52,20 @@ int ExternalVncServer::configuredServerPort()
 
 ExternalVncServer::Password ExternalVncServer::configuredPassword()
 {
-	return m_configuration.password().plainText();
+	// veyon-server gets the password from veyon-service (02-ipc.md §6); the SecretStore is
+	// available in privileged components only
+	if (SecretStore::isAvailable() == false)
+	{
+		return {};
+	}
+
+	const auto password = SecretStore::read(m_configuration.password().key());
+	if (password.has_value() == false)
+	{
+		return {};
+	}
+
+	return Password(QByteArray::fromRawData(password->constData(), password->size()));
 }
 
 

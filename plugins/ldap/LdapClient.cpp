@@ -3,6 +3,7 @@
 
 #include "LdapClient.h"
 #include "LdapConfiguration.h"
+#include "SecretStore.h"
 #include "ldapconnection.h"
 #include "ldapoperation.h"
 #include "ldapserver.h"
@@ -444,7 +445,18 @@ bool LdapClient::connectAndBind(const QUrl& url)
 		if (m_configuration.useBindCredentials())
 		{
 			m_server->setBindDn(m_configuration.bindDn());
-			m_server->setPassword(QString::fromUtf8(m_configuration.bindPassword().plainText().toByteArray()));
+			// available in privileged components only (service, elevated CLI/configurator);
+			// veyon-server and the master use the directory broker instead (04-directory-broker.md)
+			const auto bindPassword = SecretStore::read(m_configuration.bindPassword().key());
+			// a simple bind with a DN but an empty password is an unauthenticated bind (RFC 4513
+			// §5.1.2) which many servers accept anonymously: never fall back to it
+			if (bindPassword.has_value() == false || bindPassword->isEmpty())
+			{
+				vCritical() << "LDAP bind password not available in this process - not connecting";
+				m_bindCredentialsUnavailable = true;
+				return false;
+			}
+			m_server->setPassword(QString::fromUtf8(bindPassword->constData(), bindPassword->size()));
 			m_server->setAuth(KLDAPCore::LdapServer::Simple);
 		}
 		else
@@ -517,6 +529,11 @@ bool LdapClient::reconnect()
 {
 	m_connection->close();
 	m_state = Disconnected;
+
+	if (m_bindCredentialsUnavailable)
+	{
+		return false;
+	}
 
 	m_connection->setServer(*m_server);
 

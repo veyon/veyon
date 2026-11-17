@@ -55,8 +55,6 @@ public:
 		return {};
 	}
 
-	void upgrade(const QVersionNumber& oldVersion) override;
-
 	QWidget* configurationWidget() override;
 
 	void prepareServer() override;
@@ -68,9 +66,5 @@ public:
 	Password configuredPassword() override;
 
 private:
-	enum {
-		MaximumPlaintextPasswordLength = 64
-	};
-
 	ExternalVncServerConfiguration m_configuration;
 };
