@@ -59,7 +59,12 @@ public:
 
 	bool handleServerMessage(rfbClient* client, uint8_t msg);
 
+	// client side of the Veyon authentication on the connected socketDevice; called by libvncclient
+	// for the Veyon security type, public for tests
+	[[nodiscard]] static bool authenticate(VeyonConnection* connection, QIODevice& socketDevice);
+
 	static constexpr auto VeyonConnectionTag = 0xFE14A11;
+	static constexpr auto MaxAuthTypeCount = 32;
 
 
 Q_SIGNALS:
