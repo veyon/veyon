@@ -9,8 +9,10 @@
 #include "NetworkObjectDirectoryManager.h"
 #include "SecretStore.h"
 #include "ServiceDataManager.h"
+#include "TlsHostCredentials.h"
 #include "UserGroupsBackendManager.h"
 #include "VeyonConfiguration.h"
+#include "pki/TlsConfiguration.h"
 
 
 // called in the directory worker thread; the managers' plugin lists are not modified after start
@@ -59,6 +61,7 @@ ServiceDataManager::ServiceDataManager(QObject* parent) :
 	vDebug();
 
 	m_commandHandler.setExternalVncServerPasswordProvider(&ServiceDataManager::externalVncServerPassword);
+	m_commandHandler.setTlsHostKeyProvider(&ServiceDataManager::tlsHostKey);
 
 	start();
 
@@ -316,4 +319,24 @@ std::optional<Veyon::Crypto::SecureBuffer> ServiceDataManager::externalVncServer
 	}
 
 	return password;
+}
+
+
+
+std::optional<ServiceIpcCommandHandler::TlsHostKey> ServiceDataManager::tlsHostKey()
+{
+	// 02-ipc.md §6: refused with TLS disabled or without a valid host certificate
+	if (TlsConfiguration::serverMode(VeyonCore::config()) == VeyonCore::TlsServerMode::Disabled)
+	{
+		return {};
+	}
+
+	auto credentials = TlsHostCredentials::load(VeyonCore::config());
+	if (credentials.has_value() == false)
+	{
+		return {};
+	}
+
+	return ServiceIpcCommandHandler::TlsHostKey{std::move(credentials->privateKeyDer),
+												credentials->certificateChainPem};
 }

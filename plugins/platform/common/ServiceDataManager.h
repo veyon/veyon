@@ -72,6 +72,7 @@ private:
 									  const IpcMessage::Request& request);
 
 	static std::optional<Veyon::Crypto::SecureBuffer> externalVncServerPassword();
+	static std::optional<ServiceIpcCommandHandler::TlsHostKey> tlsHostKey();
 
 	QObject* m_context = nullptr;
 	QSemaphore m_contextReady;
