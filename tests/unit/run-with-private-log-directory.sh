@@ -10,4 +10,7 @@ if [ "$(id -u)" != 0 ] ; then
 	exec "$@"
 fi
 
+# root without CAP_SYS_ADMIN (e.g. in a container) can't create a mount namespace
+unshare --mount true 2>/dev/null || exit 77
+
 exec unshare --mount sh -c 'mount -t tmpfs tmpfs /var/log || exit 77; exec "$@"' sh "$@"
