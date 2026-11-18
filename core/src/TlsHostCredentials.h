@@ -12,7 +12,6 @@
 
 #include <optional>
 
-class IpcClient;
 class VeyonConfiguration;
 
 // The TLS identity of this host (05-tls.md §2, 06-pki.md §3): the private key in the SecretStore
@@ -61,13 +60,19 @@ public:
 	}
 
 	// key is PKCS#8 (EC P-256 or RSA, the host key types of 06-pki.md §11), the chain 1..16 PEM
-	// certificates, the key belongs to the first one, which is valid at the given time
+	// certificates, the key belongs to the first one, which is valid at the given time (NotYetValid
+	// and Expired are reported, but see isUsable())
 	[[nodiscard]] static Error check(const Veyon::Crypto::SecureBuffer& privateKeyDer, const QByteArray& certificateChainPem,
 									 const QDateTime& now);
 	[[nodiscard]] static QString errorString(Error error);
 
+	// the credentials can be used for TLS: also with a certificate outside its validity period,
+	// since the verifying peer decides about it (CA: expired, pins ignore the validity, 05-tls.md §5)
+	[[nodiscard]] static bool isUsable(Error error);
+
 	// service side: reads and checks tls/hostKey and the certificate file; logs why nothing was
-	// returned and warns about an upcoming expiry
+	// returned, warns about an upcoming expiry and complains about a certificate outside its
+	// validity period, which is returned nevertheless
 	[[nodiscard]] static std::optional<Encoded> load(const VeyonConfiguration& configuration,
 													 const QDateTime& now = QDateTime::currentDateTimeUtc());
 
@@ -83,7 +88,6 @@ public:
 	// session server side: the result of GetTlsHostKey
 	[[nodiscard]] static std::optional<TlsHostCredentials> fromServiceResponse(const IpcMessage::Response& response,
 																			   const QDateTime& now = QDateTime::currentDateTimeUtc());
-	[[nodiscard]] static std::optional<TlsHostCredentials> fetchFromService(IpcClient* serviceIpcClient);
 
 private:
 	QList<QSslCertificate> m_certificateChain;

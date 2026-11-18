@@ -147,7 +147,7 @@ private:
 			{
 				for (int i = 0; i < calls; ++i)
 				{
-					result = TlsHostCredentials::fetchFromService(&ipcClient);
+					result = TlsHostCredentials::fromServiceResponse(ipcClient.call(IpcProtocol::Command::GetTlsHostKey));
 				}
 			}
 		}));
@@ -164,6 +164,12 @@ private:
 private Q_SLOTS:
 	void initTestCase()
 	{
+		// the session server side needs QSslKey, e.g. not with MSYS2's Schannel-only Qt 6 (spike S8)
+		if (VeyonCore::isTlsAvailable() == false)
+		{
+			QSKIP("Qt OpenSSL TLS backend not available");
+		}
+
 		QVERIFY(m_directory.isValid());
 		m_now = QDateTime::currentDateTimeUtc();
 		m_hostKey = TlsTestHostCredentials::generateKey();
@@ -234,6 +240,25 @@ private Q_SLOTS:
 	{
 		QVERIFY(m_secrets.removeSecret(TlsHostCredentials::PrivateKeySecret));
 		QVERIFY(fetch(true).has_value() == false);
+	}
+
+	// the verifying peer decides about the validity period (CA: expired, pins: accepted)
+	void expiredCertificate()
+	{
+		const auto expired = TlsTestHostCredentials::createCertificate(m_hostKey, m_now, -10 * 86400, -86400);
+		const auto path = m_directory.filePath(QStringLiteral("expired.pem"));
+		QFile file(path);
+		QVERIFY(file.open(QFile::WriteOnly));
+		file.write(expired.toPem());
+		file.close();
+		m_configuration->setTlsHostCertificateFile(path);
+		const auto restore = qScopeGuard([this]() {
+			m_configuration->setTlsHostCertificateFile(m_directory.filePath(QStringLiteral("host-cert.pem")));
+		});
+
+		const auto credentials = fetch(true);
+		QVERIFY(credentials.has_value());
+		QCOMPARE(credentials->certificateChain().first().toDer(), expired.toDer());
 	}
 
 	// at most two calls per server start (02-ipc.md §6)

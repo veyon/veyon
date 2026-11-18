@@ -248,12 +248,21 @@ private Q_SLOTS:
 
 		QCOMPARE(TlsHostCredentials::check(key, chain, m_now), expected);
 
-		const auto credentials = TlsHostCredentials::fromEncoded({std::move(key), chain}, m_now);
-		QCOMPARE(credentials.has_value(), expected == TlsHostCredentials::Error::None);
-		if (credentials.has_value() == false)
+		// certificates outside their validity period are still used, the verifying peer decides
+		const auto usable = expected == TlsHostCredentials::Error::None ||
+			expected == TlsHostCredentials::Error::NotYetValid || expected == TlsHostCredentials::Error::Expired;
+		QCOMPARE(TlsHostCredentials::isUsable(expected), usable);
+
+		if (VeyonCore::isTlsAvailable())
 		{
-			QCOMPARE(m_logMessages.size(), 1);
-			QVERIFY(m_logMessages.first().contains(TlsHostCredentials::errorString(expected)));
+			const auto credentials = TlsHostCredentials::fromEncoded({std::move(key), chain}, m_now);
+			QCOMPARE(credentials.has_value(), usable);
+			if (expected != TlsHostCredentials::Error::None)
+			{
+				QCOMPARE(m_logMessages.size(), 1);
+				QVERIFY(m_logMessages.first().contains(TlsHostCredentials::errorString(expected)));
+				QCOMPARE(m_logMessages.first().contains(QLatin1String("still offered")), usable);
+			}
 		}
 
 		verifyNoKeyMaterialLogged(m_key);
@@ -287,6 +296,11 @@ private Q_SLOTS:
 
 	void qsslCredentials()
 	{
+		if (VeyonCore::isTlsAvailable() == false)
+		{
+			QSKIP("Qt OpenSSL TLS backend not available");
+		}
+
 		QFETCH(bool, rsa);
 
 		const auto expectedAlgorithm = rsa ? QSsl::Rsa : QSsl::Ec;
@@ -309,6 +323,11 @@ private Q_SLOTS:
 
 	void serviceResponse()
 	{
+		if (VeyonCore::isTlsAvailable() == false)
+		{
+			QSKIP("Qt OpenSSL TLS backend not available");
+		}
+
 		const auto encoded = TlsTestHostCredentials::encode(m_key, {m_certificate});
 		const auto keyBase64 = QString::fromLatin1(encoded.privateKeyDer.toUnprotectedByteArray().toBase64());
 		const auto chain = QString::fromLatin1(encoded.certificateChainPem);
@@ -346,9 +365,9 @@ private Q_SLOTS:
 					.has_value() == false);
 		QVERIFY(m_logMessages.last().contains(TlsHostCredentials::errorString(TlsHostCredentials::Error::KeyMismatch)));
 
-		// no service connection (standalone server)
-		QVERIFY(TlsHostCredentials::fetchFromService(nullptr).has_value() == false);
-		QVERIFY(m_logMessages.last().contains(QLatin1String("no service connection")));
+		// withheld by the service (T-PROC-02)
+		QVERIFY(TlsHostCredentials::fromServiceResponse(IpcMessage::failure(1, IpcProtocol::Error::HostKeyWithheldError), m_now)
+					.has_value() == false);
 
 		verifyNoKeyMaterialLogged(m_key);
 		verifyNoKeyMaterialLogged(m_otherKey);
@@ -384,10 +403,16 @@ private Q_SLOTS:
 		QCOMPARE(m_logMessages.size(), 1);
 		QVERIFY(m_logMessages.first().contains(QLatin1String("expires on")));
 
-		// expired: not handed out
+		// expired or not yet valid: still handed out, with a complaint
 		m_logMessages.clear();
-		QVERIFY(TlsHostCredentials::load(configuration, m_now.addDays(731)).has_value() == false);
-		QVERIFY(m_logMessages.last().contains(QLatin1String("host certificate expired")));
+		QVERIFY(TlsHostCredentials::load(configuration, m_now.addDays(731)).has_value());
+		QCOMPARE(m_logMessages.size(), 1);
+		QVERIFY(m_logMessages.first().contains(QLatin1String("expired on")));
+		QVERIFY(m_logMessages.first().contains(QLatin1String("still offered")));
+		m_logMessages.clear();
+		QVERIFY(TlsHostCredentials::load(configuration, m_now.addDays(-1)).has_value());
+		QCOMPARE(m_logMessages.size(), 1);
+		QVERIFY(m_logMessages.first().contains(QLatin1String("not valid before")));
 
 		// certificate of another key in the file (e.g. key renewed, certificate not yet installed)
 		configuration.setTlsHostCertificateFile(writeFile(QStringLiteral("other.pem"),

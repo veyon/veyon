@@ -4,7 +4,6 @@
 #include <QFile>
 
 #include "Certificate.h"
-#include "IpcClient.h"
 #include "PrivateKey.h"
 #include "SecretStore.h"
 #include "TlsHostCredentials.h"
@@ -64,6 +63,13 @@ TlsHostCredentials::Error TlsHostCredentials::check(const Veyon::Crypto::SecureB
 
 
 
+bool TlsHostCredentials::isUsable(Error error)
+{
+	return error == Error::None || error == Error::NotYetValid || error == Error::Expired;
+}
+
+
+
 QString TlsHostCredentials::errorString(Error error)
 {
 	switch (error)
@@ -110,16 +116,27 @@ std::optional<TlsHostCredentials::Encoded> TlsHostCredentials::load(const VeyonC
 	}
 
 	const auto error = check(*privateKeyDer, certificateChainPem, now);
-	if (error != Error::None)
+	if (isUsable(error) == false)
 	{
 		vWarning() << "tls:" << qUtf8Printable(errorString(error)) << certificateFilePath;
 		return std::nullopt;
 	}
 
-	const auto notAfter = Veyon::Crypto::Certificate::chainFromPem(certificateChainPem)->first().notAfter();
-	if (now.addDays(ExpiryWarningDays) >= notAfter)
+	const auto certificate = Veyon::Crypto::Certificate::chainFromPem(certificateChainPem)->first();
+	if (error == Error::Expired)
 	{
-		vWarning() << "tls: host certificate" << certificateFilePath << "expires on" << notAfter.toString(Qt::ISODate);
+		vCritical() << "tls: host certificate" << certificateFilePath << "expired on"
+					<< certificate.notAfter().toString(Qt::ISODate) << "- still offered";
+	}
+	else if (error == Error::NotYetValid)
+	{
+		vCritical() << "tls: host certificate" << certificateFilePath << "not valid before"
+					<< certificate.notBefore().toString(Qt::ISODate) << "- still offered";
+	}
+	else if (now.addDays(ExpiryWarningDays) >= certificate.notAfter())
+	{
+		vWarning() << "tls: host certificate" << certificateFilePath << "expires on"
+				   << certificate.notAfter().toString(Qt::ISODate);
 	}
 
 	return Encoded{std::move(*privateKeyDer), certificateChainPem};
@@ -143,10 +160,14 @@ QString TlsHostCredentials::certificateFilePath(const VeyonConfiguration& config
 std::optional<TlsHostCredentials> TlsHostCredentials::fromEncoded(const Encoded& encoded, const QDateTime& now)
 {
 	const auto error = check(encoded.privateKeyDer, encoded.certificateChainPem, now);
-	if (error != Error::None)
+	if (isUsable(error) == false)
 	{
 		vWarning() << "tls:" << qUtf8Printable(errorString(error));
 		return std::nullopt;
+	}
+	if (error != Error::None)
+	{
+		vWarning() << "tls:" << qUtf8Printable(errorString(error)) << "- still offered";
 	}
 
 	const auto privateKey = Veyon::Crypto::PrivateKey::fromPkcs8Der(encoded.privateKeyDer);
@@ -212,17 +233,4 @@ std::optional<TlsHostCredentials> TlsHostCredentials::fromServiceResponse(const 
 	}
 
 	return fromEncoded(encoded, now);
-}
-
-
-
-std::optional<TlsHostCredentials> TlsHostCredentials::fetchFromService(IpcClient* serviceIpcClient)
-{
-	if (serviceIpcClient == nullptr)
-	{
-		vWarning() << "tls: no service connection to get the host key from";
-		return std::nullopt;
-	}
-
-	return fromServiceResponse(serviceIpcClient->call(IpcProtocol::Command::GetTlsHostKey));
 }
