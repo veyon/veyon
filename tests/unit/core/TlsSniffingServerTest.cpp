@@ -124,7 +124,7 @@ private:
 
 	TlsServerPolicy policy(VeyonCore::TlsServerMode mode, int sniffTimeout = 200, bool withCredentials = true) const
 	{
-		auto policy = TlsTestHostCredentials::policy(mode, withCredentials ? &*m_credentials : nullptr);
+		auto policy = TlsTestHostCredentials::policy(mode, withCredentials && m_credentials ? &*m_credentials : nullptr);
 		policy.sniffTimeoutMs = sniffTimeout;
 		return policy;
 	}
@@ -253,8 +253,6 @@ private:
 private Q_SLOTS:
 	void initTestCase()
 	{
-		QVERIFY(VeyonCore::isTlsAvailable());
-
 		m_now = QDateTime::currentDateTimeUtc();
 		m_caKey = TlsTestHostCredentials::generateKey();
 		m_hostKey = TlsTestHostCredentials::generateKey();
@@ -262,11 +260,24 @@ private Q_SLOTS:
 		const auto hostCertificate = TlsTestHostCredentials::createCertificate(m_hostKey, m_now, -60, 86400, &m_caKey,
 																			   m_caCertificate.subjectCommonName());
 		m_credentials = TlsHostCredentials::fromEncoded(TlsTestHostCredentials::encode(m_hostKey, {hostCertificate}), m_now);
-		QVERIFY(m_credentials.has_value());
+		QVERIFY(m_credentials.has_value() || VeyonCore::isTlsAvailable() == false);
 	}
 
 	void init()
 	{
+		// e.g. MSYS2's Qt 6 has the Schannel backend only (spike S8)
+		static const QStringList testsWithoutTls{
+			QStringLiteral("requiredWithoutCredentials"),
+			QStringLiteral("incompleteCredentials"),
+			QStringLiteral("serverDestroyedWhileSniffing"),
+			QStringLiteral("withoutTlsBackend"),
+		};
+		if (VeyonCore::isTlsAvailable() == false &&
+			testsWithoutTls.contains(QLatin1String(QTest::currentTestFunction())) == false)
+		{
+			QSKIP("Qt OpenSSL TLS backend not available");
+		}
+
 		m_logMessages.clear();
 		s_logMessages = &m_logMessages;
 		qInstallMessageHandler(captureMessage);
@@ -534,6 +545,27 @@ private Q_SLOTS:
 		QTest::qWait(300);
 		QVERIFY(m_accepted.empty());
 		QCOMPARE(server.connectionLimiter().preAuthCount(), 0);
+	}
+
+	// without TLS backend Optional serves plain connections only and Required refuses all
+	void withoutTlsBackend()
+	{
+		if (VeyonCore::isTlsAvailable())
+		{
+			QSKIP("Qt OpenSSL TLS backend available");
+		}
+
+		auto& server = startServer(policy(VeyonCore::TlsServerMode::Optional, TlsServerPolicy::MaximumSniffTimeout));
+		QVERIFY(server.isTlsEnabled() == false);
+		QVERIFY(server.isRefusingConnections() == false);
+		auto plainClient = connectPlainClient();
+		QTRY_COMPARE_WITH_TIMEOUT(m_accepted.size(), size_t(1), TlsServerPolicy::MaximumSniffTimeout - 500);
+		QVERIFY(receivedBanner(plainClient.get()));
+
+		auto& requiredServer = startServer(policy(VeyonCore::TlsServerMode::Required));
+		QVERIFY(requiredServer.isRefusingConnections());
+		auto refusedClient = connectPlainClient();
+		QVERIFY(waitForDisconnect(refusedClient.get(), 1000));
 	}
 
 	// a policy with credentials whose key is not usable is never taken for TLS

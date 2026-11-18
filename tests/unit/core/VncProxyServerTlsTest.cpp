@@ -126,6 +126,8 @@ private:
 		QByteArray token = ValidToken;
 		// stop after receiving the banner
 		bool stopAfterBanner = false;
+		// send the protocol version before receiving the banner (scanners, non-conforming clients)
+		bool sendVersionFirst = false;
 		// keep the connection for this long at the end and check whether it is still open
 		int holdTime = 0;
 	};
@@ -186,7 +188,7 @@ private:
 
 	TlsServerPolicy policy(VeyonCore::TlsServerMode mode, bool withCredentials = true) const
 	{
-		auto policy = TlsTestHostCredentials::policy(mode, withCredentials ? &*m_credentials : nullptr);
+		auto policy = TlsTestHostCredentials::policy(mode, withCredentials && m_credentials ? &*m_credentials : nullptr);
 		policy.sniffTimeoutMs = 100;
 		return policy;
 	}
@@ -262,6 +264,11 @@ private:
 			result.connected = socket->waitForConnected(5000);
 		}
 
+		if (result.connected && behaviour.sendVersionFirst)
+		{
+			socket->write("RFB 003.008\n");
+		}
+
 		if (result.connected == false || waitForBytes(*socket, sz_rfbProtocolVersionMsg) == false)
 		{
 			return;
@@ -272,7 +279,10 @@ private:
 		{
 			return;
 		}
-		socket->write(result.banner);
+		if (behaviour.sendVersionFirst == false)
+		{
+			socket->write(result.banner);
+		}
 
 		// security types: count 1, rfbSecTypeVeyon
 		if (waitForBytes(*socket, 2) == false || socket->read(2) != QByteArray::fromHex("0128"))
@@ -342,7 +352,7 @@ private Q_SLOTS:
 		const auto hostCertificate = TlsTestHostCredentials::createCertificate(m_hostKey, m_now, -60, 86400, &m_caKey,
 																			   m_caCertificate.subjectCommonName());
 		m_credentials = TlsHostCredentials::fromEncoded(TlsTestHostCredentials::encode(m_hostKey, {hostCertificate}), m_now);
-		QVERIFY(m_credentials.has_value());
+		QVERIFY(m_credentials.has_value() || VeyonCore::isTlsAvailable() == false);
 	}
 
 	void cleanup()
@@ -378,6 +388,12 @@ private Q_SLOTS:
 		QFETCH(bool, tlsClient);
 		QFETCH(bool, expectAuthenticated);
 
+		// e.g. MSYS2's Qt 6 has the Schannel backend only (spike S8)
+		if (VeyonCore::isTlsAvailable() == false && (tlsClient || (withCredentials && mode != VeyonCore::TlsServerMode::Disabled)))
+		{
+			QSKIP("Qt OpenSSL TLS backend not available");
+		}
+
 		QVERIFY(startProxyServer(policy(mode, withCredentials)));
 
 		const auto result = connectClient(tlsClient);
@@ -404,6 +420,11 @@ private Q_SLOTS:
 	// authentication results reach the limiter through VncProxyServer::reportAuthenticationResult()
 	void authenticationResults()
 	{
+		if (VeyonCore::isTlsAvailable() == false)
+		{
+			QSKIP("Qt OpenSSL TLS backend not available");
+		}
+
 		QVERIFY(startProxyServer(policy(VeyonCore::TlsServerMode::Optional)));
 
 		const auto authenticated = connectClient(true);
@@ -433,6 +454,11 @@ private Q_SLOTS:
 	// Network/ConnectionLimit/PreAuthTimeoutSeconds: authenticated connections stay, others are closed
 	void preAuthTimeout()
 	{
+		if (VeyonCore::isTlsAvailable() == false)
+		{
+			QSKIP("Qt OpenSSL TLS backend not available");
+		}
+
 		auto& config = VeyonCore::config();
 		const auto previousTimeout = config.connectionLimitPreAuthTimeoutSeconds();
 		config.setConnectionLimitPreAuthTimeoutSeconds(1);
@@ -457,8 +483,63 @@ private Q_SLOTS:
 		}
 	}
 
+	// a plain client that speaks before the banner is not stalled by the sniffing (it consumed the
+	// first readyRead())
+	void plainClientSpeakingFirst()
+	{
+		if (VeyonCore::isTlsAvailable() == false)
+		{
+			QSKIP("Qt OpenSSL TLS backend not available");
+		}
+
+		QVERIFY(startProxyServer(policy(VeyonCore::TlsServerMode::Optional)));
+
+		ClientBehaviour speakingFirst;
+		speakingFirst.sendVersionFirst = true;
+		const auto result = connectClient(false, speakingFirst);
+		QCOMPARE(result.banner, QByteArrayLiteral("RFB 003.008\n"));
+		QVERIFY(result.authenticated);
+	}
+
+	// an expired host certificate is still offered: the verifying master decides
+	void expiredCertificate()
+	{
+		if (VeyonCore::isTlsAvailable() == false)
+		{
+			QSKIP("Qt OpenSSL TLS backend not available");
+		}
+
+		const auto expired = TlsTestHostCredentials::createCertificate(m_hostKey, m_now, -10 * 86400, -86400, &m_caKey,
+																	   m_caCertificate.subjectCommonName());
+		const auto credentials = TlsHostCredentials::fromEncoded(TlsTestHostCredentials::encode(m_hostKey, {expired}), m_now);
+		QVERIFY(credentials.has_value());
+		auto expiredPolicy = TlsTestHostCredentials::policy(VeyonCore::TlsServerMode::Required, &*credentials);
+		expiredPolicy.sniffTimeoutMs = 100;
+		QVERIFY(startProxyServer(expiredPolicy));
+
+		// TLS is still offered: the handshake reaches certificate verification, which fails
+		QSslSocket client;
+		auto configuration = client.sslConfiguration();
+		configuration.setCaCertificates({m_caCertificate.toQSslCertificate()});
+		client.setSslConfiguration(configuration);
+		QList<QSslError> errors;
+		connect(&client, QOverload<const QList<QSslError>&>::of(&QSslSocket::sslErrors), this,
+				[&errors](const QList<QSslError>& sslErrors) { errors = sslErrors; });
+		client.connectToHostEncrypted(QStringLiteral("127.0.0.1"), m_port);
+		QTRY_VERIFY(errors.isEmpty() == false);
+		QVERIFY(std::any_of(errors.cbegin(), errors.cend(), [](const QSslError& error) {
+			return error.error() == QSslError::CertificateExpired;
+		}));
+		QCOMPARE(client.peerCertificate().toDer(), expired.toDer());
+	}
+
 	void startTwice()
 	{
+		if (VeyonCore::isTlsAvailable() == false)
+		{
+			QSKIP("Qt OpenSSL TLS backend not available");
+		}
+
 		QVERIFY(startProxyServer(policy(VeyonCore::TlsServerMode::Optional)));
 		QVERIFY(m_proxyServer->start(unusedVncServerEndpoint(), {}, policy(VeyonCore::TlsServerMode::Optional)) == false);
 
