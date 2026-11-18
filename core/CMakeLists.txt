@@ -66,6 +66,8 @@ set(veyoncore_SOURCES
 	src/IpcServer.h
 	src/IpcServerPlatform.h
 	src/KeyboardShortcutTrapper.h
+	src/LocalCredentialsVerifier.cpp
+	src/LocalCredentialsVerifier.h
 	src/Lockable.h
 	src/LockingPointer.h
 	src/LockWidget.cpp

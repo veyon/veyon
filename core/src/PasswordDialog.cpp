@@ -1,9 +1,11 @@
 // SPDX-FileCopyrightText: 2010-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include <QApplication>
 #include <QMessageBox>
 #include <QPushButton>
 
+#include "LocalCredentialsVerifier.h"
 #include "PasswordDialog.h"
 #include "PlatformUserFunctions.h"
 
@@ -62,15 +64,38 @@ AuthenticationCredentials PasswordDialog::credentials() const
 
 void PasswordDialog::accept()
 {
-	if (VeyonCore::platform().userFunctions().authenticate(username(), password()) == false)
+	// the Veyon Server of this session checks the credentials like a remote master's logon
+	setEnabled(false);
+	QApplication::setOverrideCursor(Qt::WaitCursor);
+	const auto result = LocalCredentialsVerifier::verify(
+		username(), Veyon::Crypto::SecureBuffer::fromByteArray(password().toByteArray()));
+	QApplication::restoreOverrideCursor();
+	setEnabled(true);
+
+	switch (result)
 	{
+	case LocalCredentialsVerifier::Result::Valid:
+		QDialog::accept();
+		break;
+
+	case LocalCredentialsVerifier::Result::Invalid:
 		QMessageBox::critical(window(),
 							  tr("Authentication error"),
 							  tr("Logon failed with given username and password. Please try again!"));
-	}
-	else
-	{
-		QDialog::accept();
+		break;
+
+	case LocalCredentialsVerifier::Result::Unavailable:
+		// a mistyped password must not be sent to all computers unnoticed
+		if (QMessageBox::question(window(), tr("Authentication"),
+								  tr("The password of the account \"%1\" cannot be verified on this computer. It "
+									 "will be verified by the computers you connect to. If it is wrong, access will "
+									 "be denied and the account may get locked. Continue?")
+									  .arg(username()),
+								  QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::Yes)
+		{
+			QDialog::accept();
+		}
+		break;
 	}
 }
 

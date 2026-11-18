@@ -9,9 +9,9 @@
 #include "FileSystemBrowser.h"
 #include "Filesystem.h"
 #include "GeneralConfigurationPage.h"
+#include "LocalCredentialsVerifier.h"
 #include "NetworkObjectDirectoryManager.h"
 #include "PlatformFilesystemFunctions.h"
-#include "PlatformUserFunctions.h"
 #include "PluginManager.h"
 #include "UserGroupsBackendManager.h"
 #include "VeyonConfiguration.h"
@@ -139,9 +139,29 @@ void GeneralConfigurationPage::testAuthentication()
 
 bool GeneralConfigurationPage::testLogonAuthentication()
 {
-	return VeyonCore::instance()->initAuthentication() &&
-		VeyonCore::platform().userFunctions().authenticate(VeyonCore::authenticationCredentials().logonUsername(),
-														   VeyonCore::authenticationCredentials().logonPassword());
+	if (VeyonCore::instance()->initAuthentication() == false)
+	{
+		return false;
+	}
+
+	const auto& credentials = VeyonCore::authenticationCredentials();
+	switch (LocalCredentialsVerifier::verify(credentials.logonUsername(),
+											 Veyon::Crypto::SecureBuffer::fromByteArray(credentials.logonPassword().toByteArray())))
+	{
+	case LocalCredentialsVerifier::Result::Valid:
+		return true;
+	case LocalCredentialsVerifier::Result::Invalid:
+		QMessageBox::critical(this, authenticationTestTitle(),
+							  tr("Logon failed with given username and password."));
+		break;
+	case LocalCredentialsVerifier::Result::Unavailable:
+		QMessageBox::information(this, authenticationTestTitle(),
+								 tr("Logon authentication can only be tested while Veyon Server is running on "
+									"this computer."));
+		break;
+	}
+
+	return false;
 }
 
 
