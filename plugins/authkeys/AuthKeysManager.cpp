@@ -523,7 +523,7 @@ bool AuthKeysManager::setKeyFilePermissions(const QString& name, const QString& 
 
 bool AuthKeysManager::setPrivateKeyFilePermissions(const QString& fileName) const
 {
-	return QFile::setPermissions(fileName, QFile::ReadOwner | QFile::ReadUser | QFile::ReadGroup);
+	return VeyonCore::platform().filesystemFunctions().setFileOwnerGroupPermissions(fileName, QFile::ReadOwner | QFile::ReadGroup);
 }
 
 
