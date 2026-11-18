@@ -442,6 +442,11 @@ bool LinuxCoreFunctions::runProgramAsUser(const QString& program, const QStringL
 	auto process = new UserProcess(adjustChildProcessPrivileges);
 #endif
 
+	// User applications can outlive this worker; unread output pipes would
+	// otherwise give their helpers SIGPIPE after the worker exits.
+	process->setStandardOutputFile(QProcess::nullDevice());
+	process->setStandardErrorFile(QProcess::nullDevice());
+
 	if (stdInData.isEmpty() == false)
 	{
 		QObject::connect(process, &QProcess::started, [=]() {

@@ -159,7 +159,11 @@ bool DesktopServicesFeaturePlugin::handleFeatureMessage(VeyonWorkerInterface& wo
 
 	if (message.featureUid() == m_openWebsiteFeature.uid())
 	{
-		openWebsite(message.argument(Argument::WebsiteUrls).toString());
+		const auto websites = message.argument(Argument::WebsiteUrls).toStringList();
+		for (const auto& website : websites)
+		{
+			openWebsite(website);
+		}
 		QCoreApplication::quit();
 		return true;
 	}

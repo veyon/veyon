@@ -90,3 +90,28 @@ if(WITH_TESTS)
 	target_link_libraries(ConfiguratorDraftTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
 	add_test(NAME ConfiguratorDraftTest COMMAND ConfiguratorDraftTest)
 endif()
+
+if(WITH_TESTS)
+	add_executable(DesktopServicesFeatureTest DesktopServicesFeatureTest.cpp)
+	target_include_directories(DesktopServicesFeatureTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/desktopservices)
+	target_link_libraries(DesktopServicesFeatureTest PRIVATE veyon-core desktopservices Qt${QT_MAJOR_VERSION}::Test)
+	set_default_target_properties(DesktopServicesFeatureTest)
+	add_test(NAME DesktopServicesFeatureTest COMMAND DesktopServicesFeatureTest)
+	set_tests_properties(DesktopServicesFeatureTest PROPERTIES
+		ENVIRONMENT "QT_QPA_PLATFORM=offscreen;QT_QUICK_BACKEND=software"
+		TIMEOUT 30)
+endif()
+
+if(WITH_TESTS AND VEYON_BUILD_LINUX)
+	add_executable(LinuxUserProcessTest LinuxUserProcessTest.cpp)
+	target_include_directories(LinuxUserProcessTest PRIVATE
+		${CMAKE_SOURCE_DIR}/plugins/platform/linux
+		$<TARGET_PROPERTY:linux-platform,INCLUDE_DIRECTORIES>)
+	target_compile_definitions(LinuxUserProcessTest PRIVATE
+		$<TARGET_PROPERTY:linux-platform,COMPILE_DEFINITIONS>)
+	target_link_libraries(LinuxUserProcessTest PRIVATE
+		veyon-core linux-platform Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::DBus)
+	set_default_target_properties(LinuxUserProcessTest)
+	add_test(NAME LinuxUserProcessTest COMMAND LinuxUserProcessTest)
+	set_tests_properties(LinuxUserProcessTest PROPERTIES TIMEOUT 30)
+endif()
