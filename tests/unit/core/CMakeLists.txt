@@ -52,6 +52,38 @@ if(WITH_TESTS)
 	target_link_libraries(TrustBundleTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core OpenSSL::Crypto)
 	add_test(NAME TrustBundleTest COMMAND TrustBundleTest)
 
+	# TLS sniffing listener of the session and demo servers (05-tls.md §1–3, §8, §10)
+	add_executable(SniffClassifierTest SniffClassifierTest.cpp)
+	set_default_target_properties(SniffClassifierTest)
+	target_link_libraries(SniffClassifierTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
+	add_test(NAME SniffClassifierTest COMMAND SniffClassifierTest)
+
+	add_executable(TlsHostCredentialsTest TlsHostCredentialsTest.cpp TlsTestHostCredentials.h PkiTestCertificates.h)
+	set_default_target_properties(TlsHostCredentialsTest)
+	target_compile_definitions(TlsHostCredentialsTest PRIVATE OPENSSL_API_COMPAT=10101)
+	target_link_libraries(TlsHostCredentialsTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core OpenSSL::Crypto)
+	add_test(NAME TlsHostCredentialsTest COMMAND TlsHostCredentialsTest)
+
+	add_executable(TlsSniffingServerTest TlsSniffingServerTest.cpp TlsTestHostCredentials.h PkiTestCertificates.h)
+	set_default_target_properties(TlsSniffingServerTest)
+	target_compile_definitions(TlsSniffingServerTest PRIVATE OPENSSL_API_COMPAT=10101)
+	target_link_libraries(TlsSniffingServerTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core OpenSSL::Crypto)
+	add_test(NAME TlsSniffingServerTest COMMAND TlsSniffingServerTest)
+
+	# the session server's VNC proxy behind the sniffing listener
+	add_executable(VncProxyServerTlsTest
+		VncProxyServerTlsTest.cpp
+		TlsTestHostCredentials.h
+		PkiTestCertificates.h
+		${CMAKE_SOURCE_DIR}/server/src/VncProxyConnection.cpp
+		${CMAKE_SOURCE_DIR}/server/src/VncProxyServer.cpp
+		)
+	set_default_target_properties(VncProxyServerTlsTest)
+	target_include_directories(VncProxyServerTlsTest PRIVATE ${CMAKE_SOURCE_DIR}/server/src)
+	target_compile_definitions(VncProxyServerTlsTest PRIVATE OPENSSL_API_COMPAT=10101)
+	target_link_libraries(VncProxyServerTlsTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core OpenSSL::Crypto)
+	add_test(NAME VncProxyServerTlsTest COMMAND VncProxyServerTlsTest)
+
 	add_executable(IpcChannelTest IpcChannelTest.cpp)
 	set_default_target_properties(IpcChannelTest)
 	target_link_libraries(IpcChannelTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)

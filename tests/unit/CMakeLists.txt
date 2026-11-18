@@ -197,6 +197,33 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 
 	add_test(NAME IpcServerTest COMMAND IpcServerTest)
 
+	# TlsHostKeyIpcTest: GetTlsHostKey from the service's SecretStore and certificate file to the
+	# session server's TLS listener through a real endpoint (02-ipc.md §6, 05-tls.md §2)
+	add_executable(TlsHostKeyIpcTest
+		TlsHostKeyIpcTest.cpp
+		core/TlsTestHostCredentials.h
+		core/PkiTestCertificates.h
+		${CMAKE_SOURCE_DIR}/plugins/platform/common/AuthenticationLimiter.cpp
+		${CMAKE_SOURCE_DIR}/plugins/platform/common/IpcAuthenticationRequest.cpp
+		${CMAKE_SOURCE_DIR}/plugins/platform/common/ServiceIpcCommandHandler.cpp
+	)
+	set_default_target_properties(TlsHostKeyIpcTest)
+
+	target_include_directories(TlsHostKeyIpcTest PRIVATE
+		${CMAKE_CURRENT_SOURCE_DIR}/core
+		${CMAKE_SOURCE_DIR}/plugins/platform/common
+	)
+	target_compile_definitions(TlsHostKeyIpcTest PRIVATE OPENSSL_API_COMPAT=10101)
+
+	target_link_libraries(TlsHostKeyIpcTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Network
+		veyon-core
+		OpenSSL::Crypto
+	)
+
+	add_test(NAME TlsHostKeyIpcTest COMMAND TlsHostKeyIpcTest)
+
 	# IpcWorkerChannelTest: server ⇄ worker channel with a real child process (02-ipc.md §6a)
 	add_executable(IpcWorkerChannelTest
 		IpcWorkerChannelTest.cpp
