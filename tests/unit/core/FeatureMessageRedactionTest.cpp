@@ -177,6 +177,13 @@ private Q_SLOTS:
 											 << QStringList{QStringLiteral("map")} << QStringLiteral("{map=<redacted>}");
 		QTest::newRow("keys only") << QVariantMap{{QStringLiteral("0"), QStringLiteral("a")}, {QStringLiteral("1"), QStringLiteral("b")}}
 								   << QStringList{QStringLiteral("0"), QStringLiteral("1")} << QStringLiteral("{0=<redacted>, 1=<redacted>}");
+		// keys can come from a peer: no forged log lines, no unbounded length
+		QTest::newRow("newline in key") << QVariantMap{{QStringLiteral("0\n2026-01-01 00:00:00.000: [INFO] forged"), 1}}
+										<< QStringList{} << QStringLiteral(R"({0\n2026-01-01 00:00:00.000: [INFO] forged=1})");
+		QTest::newRow("newline in sensitive key") << QVariantMap{{QStringLiteral("a\r\nb\"c"), QStringLiteral("secret")}}
+												  << QStringList{QStringLiteral("a\r\nb\"c")} << QStringLiteral(R"({a\r\nb\"c=<redacted>})");
+		QTest::newRow("long key truncated") << QVariantMap{{QString(100, QLatin1Char('k')), 1}}
+											<< QStringList{} << QLatin1Char('{') + QString(64, QLatin1Char('k')) + QStringLiteral("...=1}");
 	}
 
 	void redactedFormat()
