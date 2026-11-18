@@ -269,7 +269,7 @@ bool hasConsistentTwoPrimeComponents(ByteView rsaPrivateKey)
 	const auto result = BN_CTX_get(context.get());
 	const auto isConsistent =
 		result != nullptr &&
-		BN_cmp(p, BN_value_one()) > 0 && BN_cmp(q, BN_value_one()) > 0 &&
+		BN_cmp(p, BN_value_one()) > 0 && BN_cmp(q, BN_value_one()) > 0 && BN_cmp(d, n) < 0 &&
 		BN_mul(product, p, q, context.get()) == 1 && BN_cmp(product, n) == 0 &&
 		BN_sub(pMinusOne, p, BN_value_one()) == 1 && BN_sub(qMinusOne, q, BN_value_one()) == 1 &&
 		BN_mod_mul(result, d, e, pMinusOne, context.get()) == 1 && BN_is_one(result) &&

@@ -26,10 +26,11 @@
 //
 // Deliberate differences to 4.x (fail closed instead of silent failures): keys outside
 // LegacyRsaPublicKey::MinimumBits..MaximumBits, even moduli, even or out-of-range public exponents,
-// multi-prime or inconsistent private keys, non-DER key encodings, encrypted key files, files with
-// more than one key block, plaintexts longer than the OAEP limit (4.x silently truncated them to
-// the limit), signatures and ciphertexts not of exactly the modulus size and non-hex password
-// strings (4.x skipped invalid characters) are rejected. Successful operations clear lastError().
+// multi-prime or inconsistent private keys (including private exponents not less than the modulus;
+// QCA and OpenSSL keys have d < lambda(n) or d < phi(n)), non-DER key encodings, encrypted key
+// files, files with more than one key block, plaintexts longer than the OAEP limit (4.x silently
+// truncated them to the limit), signatures and ciphertexts not of exactly the modulus size and
+// non-hex password strings (4.x skipped invalid characters) are rejected. Successful operations clear lastError().
 
 namespace Veyon::Crypto::LegacyRsa {
 

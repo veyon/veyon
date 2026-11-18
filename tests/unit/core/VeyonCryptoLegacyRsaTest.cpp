@@ -844,6 +844,11 @@ void VeyonCryptoLegacyRsaTest::rejectsInconsistentPrivateKey()
 	// the pairwise sign/verify check catches it
 	QVERIFY(LegacyRsaPrivateKey::fromPem(fixture("crafted-composite-p.pem")).has_value() == false);
 	QVERIFY2(lastError().endsWith(QLatin1String(": inconsistent key")), qPrintable(lastError()));
+
+	// the same key with d + k * lcm(p - 1, q - 1) > n: consistent modulo p - 1 and q - 1, but a
+	// private exponent of up to the maximum encoded size would make the pairwise check expensive
+	QVERIFY(LegacyRsaPrivateKey::fromPem(fixture("crafted-composite-p-big-d.pem")).has_value() == false);
+	QVERIFY2(lastError().contains(QLatin1String("inconsistent or multi-prime key")), qPrintable(lastError()));
 }
 
 
