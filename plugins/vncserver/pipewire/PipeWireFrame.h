@@ -114,6 +114,10 @@ public:
 
 	static const char* statusName(Status status);
 
+	// BGRx to R,G,B,x for count pixels (SIMD where available); the generic variant is public for tests
+	static void convertPixels(uchar* target, const uchar* source, size_t count);
+	static void convertPixelsGeneric(uchar* target, const uchar* source, size_t count);
+
 private:
 	static bool isValidRect(const Rect& rect, int width, int height);
 	static void copyRect(const Source& source, const Target& target, const Rect& rect);

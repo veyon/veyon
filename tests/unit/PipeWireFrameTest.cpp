@@ -23,6 +23,7 @@ class PipeWireFrameTest : public QObject
 {
 	Q_OBJECT
 private Q_SLOTS:
+	void convertPixelsMatchesGeneric();
 	void validSize_data();
 	void validSize();
 	void supportedFormat();
@@ -119,6 +120,40 @@ private:
 	static constexpr uchar Untouched = 0x5a;
 	static constexpr auto BGRx = uint32_t(SPA_VIDEO_FORMAT_BGRx);
 };
+
+
+
+// the SIMD path (if the CPU has one) must produce exactly the result of the generic loop for any
+// pixel count and alignment
+void PipeWireFrameTest::convertPixelsMatchesGeneric()
+{
+	constexpr int MaximumCount = 67;
+	constexpr int MaximumOffset = 3;
+	QByteArray source(MaximumCount * 4 + MaximumOffset, Qt::Uninitialized);
+	for (int i = 0; i < source.size(); ++i)
+	{
+		source[i] = char(i * 37 + 11);
+	}
+
+	for (int offset = 0; offset <= MaximumOffset; ++offset)
+	{
+		for (int count = 0; count <= MaximumCount; ++count)
+		{
+			const auto* sourcePixels = reinterpret_cast<const uchar*>(source.constData()) + offset;
+			QByteArray expected(MaximumCount * 4 + 4, '\x55');
+			QByteArray actual(expected);
+			PipeWireFrame::convertPixelsGeneric(reinterpret_cast<uchar*>(expected.data()) + offset, sourcePixels,
+												size_t(count));
+			PipeWireFrame::convertPixels(reinterpret_cast<uchar*>(actual.data()) + offset, sourcePixels, size_t(count));
+			QCOMPARE(actual, expected);
+		}
+	}
+
+	const uchar bgrx[] = {0x10, 0x20, 0x30, 0x40};
+	uchar rgbx[4] = {};
+	PipeWireFrame::convertPixels(rgbx, bgrx, 1);
+	QCOMPARE(QByteArray(reinterpret_cast<const char*>(rgbx), 4), QByteArray("\x30\x20\x10\x40", 4));
+}
 
 
 

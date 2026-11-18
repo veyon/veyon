@@ -6,6 +6,11 @@
 #include <algorithm>
 #include <cstring>
 
+#if defined(__x86_64__) || defined(__i386__)
+#include <immintrin.h>
+#define VEYON_PIPEWIRE_FRAME_SSSE3
+#endif
+
 extern "C" {
 #include <spa/buffer/buffer.h>
 #include <spa/buffer/meta.h>
@@ -24,6 +29,27 @@ constexpr uint32_t PipeWireChunkFlagEmpty = 1u << 1;
 // damage covering more than 3/5 of the frame is cheaper to copy as a whole than rect by rect
 constexpr qint64 FullFrameDamageNumerator = 3;
 constexpr qint64 FullFrameDamageDenominator = 5;
+
+#ifdef VEYON_PIPEWIRE_FRAME_SSSE3
+// swaps bytes 0 and 2 of each pixel, 4 pixels at a time; at -O2 (common for distribution packages)
+// this is about 3.5x faster than the auto-vectorization-dependent generic loop and as fast as AVX2
+// (the copy is memory bound), QImage::rgbSwapped() plus memcpy() was about 5x slower
+__attribute__((target("ssse3"))) void convertPixelsSsse3(uchar* target, const uchar* source, size_t count)
+{
+	const auto shuffleMask = _mm_setr_epi8(2, 1, 0, 3, 6, 5, 4, 7, 10, 9, 8, 11, 14, 13, 12, 15);
+
+	size_t i = 0;
+	for (; i + 4 <= count; i += 4)
+	{
+		const auto pixels = _mm_loadu_si128(reinterpret_cast<const __m128i*>(source + i * 4));
+		_mm_storeu_si128(reinterpret_cast<__m128i*>(target + i * 4), _mm_shuffle_epi8(pixels, shuffleMask));
+	}
+
+	PipeWireFrame::convertPixelsGeneric(target + i * 4, source + i * 4, count - i);
+}
+
+const bool hasSsse3 = __builtin_cpu_supports("ssse3");
+#endif
 
 }
 
@@ -279,14 +305,35 @@ void PipeWireFrame::copyRect(const Source& source, const Target& target, const R
 		const auto* sourcePixel = source.pixels + qint64(y) * source.stride + qint64(rect.x1) * BytesPerPixel;
 		auto* targetPixel = target.pixels + qint64(y) * target.stride + qint64(rect.x1) * BytesPerPixel;
 
-		for (size_t x = 0; x < pixelCount; ++x)
-		{
-			targetPixel[0] = sourcePixel[2];
-			targetPixel[1] = sourcePixel[1];
-			targetPixel[2] = sourcePixel[0];
-			targetPixel[3] = sourcePixel[3];
-			sourcePixel += BytesPerPixel;
-			targetPixel += BytesPerPixel;
-		}
+		convertPixels(targetPixel, sourcePixel, pixelCount);
+	}
+}
+
+
+
+void PipeWireFrame::convertPixels(uchar* target, const uchar* source, size_t count)
+{
+#ifdef VEYON_PIPEWIRE_FRAME_SSSE3
+	if (hasSsse3)
+	{
+		convertPixelsSsse3(target, source, count);
+		return;
+	}
+#endif
+	convertPixelsGeneric(target, source, count);
+}
+
+
+
+void PipeWireFrame::convertPixelsGeneric(uchar* target, const uchar* source, size_t count)
+{
+	for (size_t x = 0; x < count; ++x)
+	{
+		target[0] = source[2];
+		target[1] = source[1];
+		target[2] = source[0];
+		target[3] = source[3];
+		source += BytesPerPixel;
+		target += BytesPerPixel;
 	}
 }
