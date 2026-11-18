@@ -19,40 +19,19 @@
 #include "WebApiConfiguration.h"
 #include "WebApiController.h"
 #include "WebApiHttpServer.h"
+#include "WebApiLogRedaction.h"
 
-static inline QByteArray toJson(const QVariant& data)
-{
-	return QJsonDocument::fromVariant(data).toJson(QJsonDocument::Compact);
-}
-
-
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-static inline QByteArray toJson(const QList<QPair<QByteArray, QByteArray>>& headers)
-{
-	QVariantList data;
-	for (auto it = headers.constBegin(), end = headers.constEnd(); it != end; ++it)
-	{
-		data.append(QVariantList({it->first, it->second}));
-	}
-	return toJson(data);
-}
-#endif
+using WebApiLogRedaction::redactedHeaders;
+using WebApiLogRedaction::redactedRequestData;
+using WebApiLogRedaction::redactedResponseData;
+using WebApiLogRedaction::toJson;
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
-static inline QByteArray toJson(const QHttpHeaders& headers)
+static inline QByteArray redactedHeaders(const QHttpHeaders& headers)
 {
-	return toJson(headers.toListOfPairs());
+	return redactedHeaders(headers.toListOfPairs());
 }
 #endif
-
-
-
-// request bodies carry credentials and feature arguments, e.g. the UserLogin password (05-tls.md §7a)
-static QString redactedRequestData(const QVariantMap& data)
-{
-	// WebApiController::Key::Credentials and Key::Arguments
-	return Logger::redacted(data, {QStringLiteral("credentials"), QStringLiteral("arguments")});
-}
 
 
 
@@ -65,7 +44,7 @@ static QHttpServerResponse convertResponse(const WebApiController::Request& requ
 		{
 			waDebug() << "[RESP]"
 					  << request.path.toUtf8().constData()
-					  << toJson(request.headers).constData()
+					  << redactedHeaders(request.headers).constData()
 					  << "[binary data]";
 			return QHttpServerResponse{response.binaryData};
 		}
@@ -74,15 +53,15 @@ static QHttpServerResponse convertResponse(const WebApiController::Request& requ
 		{
 			waDebug() << "[RESP]"
 					  << request.path.toUtf8().constData()
-					  << toJson(request.headers).constData()
+					  << redactedHeaders(request.headers).constData()
 					  << toJson(response.arrayData).constData();
 			return {QJsonArray::fromVariantList(response.arrayData)};
 		}
 
 		waDebug() << "[RESP]"
 				  << request.path.toUtf8().constData()
-				  << toJson(request.headers).constData()
-				  << toJson(response.mapData).constData();
+				  << redactedHeaders(request.headers).constData()
+				  << redactedResponseData(response.mapData).toUtf8().constData();
 		return {QJsonObject::fromVariantMap(response.mapData)};
 	}
 
@@ -162,7 +141,7 @@ QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Post>(co
 
 	waDebug() << "[REQ] [POST]"
 			  << request.url().toString().toUtf8().constData()
-			  << toJson(request.headers()).constData()
+			  << redactedHeaders(request.headers()).constData()
 			  << redactedRequestData(data).toUtf8().constData();
 
 	return data;
@@ -183,7 +162,7 @@ QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Put>(con
 
 	waDebug() << "[REQ] [PUT]"
 			  << request.url().toString().toUtf8().constData()
-			  << toJson(request.headers()).constData()
+			  << redactedHeaders(request.headers()).constData()
 			  << redactedRequestData(data).toUtf8().constData();
 
 	return data;
@@ -196,7 +175,7 @@ QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Get>(con
 {
 	waDebug() << "[REQ] [GET]"
 			  << request.url().toString().toUtf8().constData()
-			  << toJson(request.headers()).constData();
+			  << redactedHeaders(request.headers()).constData();
 
 	QVariantMap data;
 
@@ -216,7 +195,7 @@ QVariantMap WebApiHttpServer::dataFromRequest<WebApiHttpServer::Method::Delete>(
 {
 	waDebug() << "[REQ] [DELETE]"
 			  << request.url().toString().toUtf8().constData()
-			  << toJson(request.headers()).constData();
+			  << redactedHeaders(request.headers()).constData();
 
 	QVariantMap data;
 

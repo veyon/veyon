@@ -174,6 +174,15 @@ if(WITH_TESTS)
 	add_dependencies(FeatureMessageRedactionTest ${VEYON_TEST_PLATFORM_PLUGIN} usersessioncontrol demo remoteaccess filetransfer)
 	add_test(NAME FeatureMessageRedactionTest COMMAND FeatureMessageRedactionTest)
 
+	# debug output of the WebAPI plugin (05-tls.md §7a)
+	if(WITH_WEBAPI)
+		add_executable(WebApiLogRedactionTest WebApiLogRedactionTest.cpp)
+		set_default_target_properties(WebApiLogRedactionTest)
+		target_include_directories(WebApiLogRedactionTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/webapi)
+		target_link_libraries(WebApiLogRedactionTest PRIVATE Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Concurrent veyon-core)
+		add_test(NAME WebApiLogRedactionTest COMMAND WebApiLogRedactionTest)
+	endif()
+
 	# pre-auth hardening of the master (VeyonConnection) and the server (VncServerProtocol,
 	# ServerAuthenticationManager) and 4.11 interoperability (05-tls.md §6)
 	add_executable(VeyonAuthenticationTest
