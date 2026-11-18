@@ -94,6 +94,8 @@ inline constexpr auto UnknownCommandError = QLatin1String("unknown-command");
 inline constexpr auto DeniedError = QLatin1String("denied");
 inline constexpr auto BadRequestError = QLatin1String("bad-request");
 inline constexpr auto RateLimitedError = QLatin1String("rate-limited");
+// GetTlsHostKey: the server's memory may be readable by other processes (T-PROC-02)
+inline constexpr auto HostKeyWithheldError = QLatin1String("host-key-withheld");
 } // namespace Error
 
 namespace Key {

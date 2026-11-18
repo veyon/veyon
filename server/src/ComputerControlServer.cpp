@@ -11,6 +11,7 @@
 #include "FeatureManager.h"
 #include "FeatureMessage.h"
 #include "HostAddress.h"
+#include "IpcClient.h"
 #include "PlatformPluginInterface.h"
 #include "SystemTrayIcon.h"
 #include "TlsHostCredentials.h"
@@ -84,7 +85,23 @@ TlsServerPolicy ComputerControlServer::tlsServerPolicy()
 	// the host key is shared by all session servers of this host and only kept in memory (02-ipc.md §6)
 	if (policy.mode != VeyonCore::TlsServerMode::Disabled)
 	{
-		const auto credentials = TlsHostCredentials::fetchFromService(VeyonCore::serviceIpcClient());
+		const auto serviceIpcClient = VeyonCore::serviceIpcClient();
+		if (serviceIpcClient == nullptr)
+		{
+			policy.missingCredentialsReason = QStringLiteral("no service connection to get the host key from");
+			return policy;
+		}
+
+		const auto response = serviceIpcClient->call(IpcProtocol::Command::GetTlsHostKey);
+		if (response.error == IpcProtocol::Error::HostKeyWithheldError)
+		{
+			policy.missingCredentialsReason = QStringLiteral("host key withheld by veyon-service since other processes may "
+															 "read the memory of this server - set kernel.yama.ptrace_scope >= 1 "
+															 "or install veyon-server with mode 0711");
+			return policy;
+		}
+
+		const auto credentials = TlsHostCredentials::fromServiceResponse(response);
 		if (credentials.has_value())
 		{
 			policy.certificateChain = credentials->certificateChain();

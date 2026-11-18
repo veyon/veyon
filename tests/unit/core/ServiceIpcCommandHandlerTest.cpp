@@ -299,14 +299,20 @@ private Q_SLOTS:
 		// which is also the default
 		auto exposedServer = client(4);
 		exposedServer.tlsHostKeyAllowed = false;
+		exposedServer.tlsHostKeyRefusal = QStringLiteral("kernel.yama.ptrace_scope is 0 - remedy");
 		QCOMPARE(handler.handleRequest(exposedServer, request(IpcProtocol::Command::GetTlsHostKey)).error,
-				 QStringLiteral("denied"));
+				 QStringLiteral("host-key-withheld"));
 		QVERIFY(m_logMessages.last().contains(QLatin1String("not handing out the TLS host key")));
+		// cause and remedy on every refused request
+		QVERIFY(m_logMessages.last().contains(QLatin1String("kernel.yama.ptrace_scope is 0 - remedy")));
+		m_logMessages.clear();
+		(void)handler.handleRequest(exposedServer, request(IpcProtocol::Command::GetTlsHostKey));
+		QCOMPARE(m_logMessages.size(), 1);
 
 		auto defaultClient = ServiceIpcCommandHandler::Client{};
 		defaultClient.sessionId = 5;
 		QCOMPARE(handler.handleRequest(defaultClient, request(IpcProtocol::Command::GetTlsHostKey)).error,
-				 QStringLiteral("denied"));
+				 QStringLiteral("host-key-withheld"));
 
 		for (const auto& message : std::as_const(m_logMessages))
 		{

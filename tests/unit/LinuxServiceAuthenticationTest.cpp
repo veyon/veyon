@@ -55,7 +55,7 @@ private:
 																	 IpcServer::ProcessId processId)
 	{
 		auto endpoint = m_dataManager->createServerEndpoint(VeyonCore::sessionId(), QStringLiteral("seat0"), policy,
-															[]() { return true; });
+															[]() { return true; }, QString{});
 		if (endpoint.has_value())
 		{
 			m_dataManager->setServerProcessId(endpoint->name, processId);

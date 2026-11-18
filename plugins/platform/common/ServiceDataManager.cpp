@@ -83,7 +83,7 @@ ServiceDataManager::~ServiceDataManager()
 
 std::optional<ServiceDataManager::ServerEndpoint> ServiceDataManager::createServerEndpoint(
 	int sessionId, const QString& platformSessionId, const IpcServer::PeerPolicy& peerPolicy,
-	const std::function<bool()>& hasLoggedOnUser, bool tlsHostKeyAllowed)
+	const std::function<bool()>& hasLoggedOnUser, const QString& tlsHostKeyRefusal)
 {
 	std::optional<ServerEndpoint> serverEndpoint;
 
@@ -129,7 +129,8 @@ std::optional<ServiceDataManager::ServerEndpoint> ServiceDataManager::createServ
 		endpoint.client.sessionId = sessionId;
 		endpoint.client.platformSessionId = platformSessionId;
 		endpoint.client.hasLoggedOnUser = hasLoggedOnUser;
-		endpoint.client.tlsHostKeyAllowed = tlsHostKeyAllowed;
+		endpoint.client.tlsHostKeyAllowed = tlsHostKeyRefusal.isEmpty();
+		endpoint.client.tlsHostKeyRefusal = tlsHostKeyRefusal;
 
 		serverEndpoint = ServerEndpoint{endpointName, server->credentialsLine()};
 	});

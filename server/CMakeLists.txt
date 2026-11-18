@@ -1,7 +1,15 @@
 include(BuildVeyonApplication)
 
+# Linux: not readable by the session user, so that a server started as the session user (Wayland)
+# is non-dumpable from execve() on (T-PROC-02, 02-ipc.md §1a.4) and may get the TLS host key also
+# without Yama ptrace restrictions
+if(VEYON_BUILD_LINUX)
+	set(VEYON_SERVER_PERMISSIONS PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_EXECUTE WORLD_EXECUTE)
+endif()
+
 build_veyon_application(veyon-server
 	NAME Server
+	${VEYON_SERVER_PERMISSIONS}
 	SOURCES
 	src/ComputerControlClient.cpp
 	src/ComputerControlClient.h

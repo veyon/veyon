@@ -41,13 +41,15 @@ public:
 private:
 	void setProcessUserId();
 
-	bool createIpcEndpoint(LinuxUserFunctions::UserId serverUserId, bool tlsHostKeyAllowed);
+	bool createIpcEndpoint(LinuxUserFunctions::UserId serverUserId, const QString& tlsHostKeyRefusal);
 	void removeIpcEndpoint();
 	void sendIpcCredentials();
 
 	bool hasDesktopPortalRegistry();
+	// empty if the server may get the TLS host key, else the reason and remedy
+	static QString tlsHostKeyRefusal(bool runAsSessionUser);
 	static bool isPtraceRestricted();
-	static void warnAboutPtraceScope();
+	static QString nonDumpableFromExecFailure();
 	void startInSystemdScope();
 
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)

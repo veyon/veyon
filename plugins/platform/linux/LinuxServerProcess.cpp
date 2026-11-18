@@ -23,6 +23,7 @@
 #include "VeyonConfiguration.h"
 
 #include <sys/errno.h>
+#include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
@@ -73,15 +74,7 @@ void LinuxServerProcess::start()
 
 	// a new endpoint and token for every start, created before the server starts (02 §1); a
 	// server running as the session user (Wayland) connects to a socket owned by that user
-	// without Yama a process of the session user can attach to a session-user server between
-	// execve() and prctl() (T-PROC-02, 02-ipc.md §1a.4), so such a server gets no TLS host key
-	const auto tlsHostKeyAllowed = runAsSessionUser == false || isPtraceRestricted();
-	if (tlsHostKeyAllowed == false)
-	{
-		warnAboutPtraceScope();
-	}
-
-	if (createIpcEndpoint(runAsSessionUser ? m_sessionUserId : 0, tlsHostKeyAllowed) == false)
+	if (createIpcEndpoint(runAsSessionUser ? m_sessionUserId : 0, tlsHostKeyRefusal(runAsSessionUser)) == false)
 	{
 		vCritical() << "not starting server for session" << m_sessionPath << "without IPC endpoint";
 		return;
@@ -214,7 +207,7 @@ void LinuxServerProcess::setProcessUserId()
 
 
 
-bool LinuxServerProcess::createIpcEndpoint(LinuxUserFunctions::UserId serverUserId, bool tlsHostKeyAllowed)
+bool LinuxServerProcess::createIpcEndpoint(LinuxUserFunctions::UserId serverUserId, const QString& tlsHostKeyRefusal)
 {
 	removeIpcEndpoint();
 
@@ -240,7 +233,7 @@ bool LinuxServerProcess::createIpcEndpoint(LinuxUserFunctions::UserId serverUser
 	auto endpoint = m_dataManager.createServerEndpoint(ipcSessionId, platformSessionId, peerPolicy, [sessionPath]() {
 		// only a login screen session has no logged on user
 		return LinuxSessionFunctions::getSessionClass(sessionPath) != LinuxSessionFunctions::Class::Greeter;
-	}, tlsHostKeyAllowed);
+	}, tlsHostKeyRefusal);
 
 	if (endpoint.has_value() == false)
 	{
@@ -371,25 +364,55 @@ void LinuxServerProcess::startInSystemdScope()
 
 
 
+QString LinuxServerProcess::tlsHostKeyRefusal(bool runAsSessionUser)
+{
+	// a session-user server makes itself non-dumpable only in main(), so a process of the session
+	// user may attach right after execve() (T-PROC-02, 02-ipc.md §1a.4) unless Yama restricts
+	// ptrace or the kernel makes the process non-dumpable already at execve()
+	if (runAsSessionUser == false || isPtraceRestricted())
+	{
+		return {};
+	}
+
+	const auto nonDumpableFromExecRefusal = nonDumpableFromExecFailure();
+	if (nonDumpableFromExecRefusal.isEmpty())
+	{
+		return {};
+	}
+
+	return QStringLiteral("processes of the session user can attach to veyon-server during start-up "
+						  "(kernel.yama.ptrace_scope is 0 and %1) - set kernel.yama.ptrace_scope >= 1 "
+						  "or install veyon-server with mode 0711")
+		.arg(nonDumpableFromExecRefusal);
+}
+
+
+
 bool LinuxServerProcess::isPtraceRestricted()
 {
-	// the session-user server makes itself non-dumpable only in main(), so without Yama a process
-	// of the session user can attach right after execve() (T-PROC-02, 02-ipc.md §1a.4)
 	QFile ptraceScopeFile(QStringLiteral("/proc/sys/kernel/yama/ptrace_scope"));
 	return ptraceScopeFile.open(QFile::ReadOnly) && ptraceScopeFile.readAll().trimmed().toInt() >= 1;
 }
 
 
 
-void LinuxServerProcess::warnAboutPtraceScope()
+QString LinuxServerProcess::nonDumpableFromExecFailure()
 {
-	static bool warned = false;
-	if (warned)
+	// execve() of a binary the user cannot read sets the dumpable flag to fs.suid_dumpable, which
+	// keeps the process non-dumpable unless it is 1
+	const auto serverFilePath = VeyonCore::filesystem().serverFilePath();
+	struct stat status{};
+	if (stat(QFile::encodeName(serverFilePath).constData(), &status) != 0 || status.st_uid != 0 ||
+		(status.st_mode & (S_IRGRP | S_IROTH)) != 0)
 	{
-		return;
+		return QStringLiteral("%1 is readable by the session user").arg(serverFilePath);
 	}
-	warned = true;
 
-	vWarning() << "same-user processes may attach to veyon-server during start-up;"
-			   << "set kernel.yama.ptrace_scope >= 1 - session-user servers get no TLS host key until then";
+	QFile suidDumpableFile(QStringLiteral("/proc/sys/fs/suid_dumpable"));
+	if (suidDumpableFile.open(QFile::ReadOnly) == false || suidDumpableFile.readAll().trimmed() == QByteArrayLiteral("1"))
+	{
+		return QStringLiteral("fs.suid_dumpable is 1");
+	}
+
+	return {};
 }

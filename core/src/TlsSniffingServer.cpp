@@ -27,7 +27,8 @@ TlsSniffingServer::TlsSniffingServer(const TlsServerPolicy& policy, const Connec
 	}
 	else if (m_policy.hasCredentials() == false)
 	{
-		reason = QStringLiteral("no usable host certificate and key");
+		reason = m_policy.missingCredentialsReason.isEmpty() ? QStringLiteral("no usable host certificate and key") :
+															   m_policy.missingCredentialsReason;
 	}
 	else
 	{

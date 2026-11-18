@@ -27,6 +27,8 @@ struct VEYON_CORE_EXPORT TlsServerPolicy
 	QSslKey privateKey{};
 	int sniffTimeoutMs = DefaultSniffTimeout;
 	int handshakeTimeoutMs = DefaultHandshakeTimeout;
+	// why there are no credentials, logged instead of a generic reason
+	QString missingCredentialsReason{};
 
 	bool hasCredentials() const
 	{

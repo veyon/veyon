@@ -118,7 +118,7 @@ void VeyonServerProcess::start()
 	// the server runs as SYSTEM, so the session user cannot read its memory
 	auto endpoint = m_dataManager.createServerEndpoint(m_sessionId, QString::number(m_wtsSessionId), peerPolicy,
 													   [wtsSessionId]() { return isUserLoggedOnInWtsSession(wtsSessionId); },
-													   true);
+													   {});
 	if (endpoint.has_value() == false)
 	{
 		vCritical() << "not starting server for WTS session" << m_wtsSessionId << "without IPC endpoint";

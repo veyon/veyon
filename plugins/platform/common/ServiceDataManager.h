@@ -35,11 +35,12 @@ public:
 	~ServiceDataManager() override;
 
 	// see ServiceIpcCommandHandler::Client; hasLoggedOnUser is called in the IPC thread and must
-	// return true if unsure
+	// return true if unsure; tlsHostKeyRefusal: why the server must not get the TLS host key, empty
+	// if it may
 	[[nodiscard]] std::optional<ServerEndpoint> createServerEndpoint(int sessionId, const QString& platformSessionId,
 																	 const IpcServer::PeerPolicy& peerPolicy,
 																	 const std::function<bool()>& hasLoggedOnUser,
-																	 bool tlsHostKeyAllowed);
+																	 const QString& tlsHostKeyRefusal);
 	void setServerProcessId(const QString& endpointName, IpcServer::ProcessId processId);
 	void removeServerEndpoint(const QString& endpointName);
 

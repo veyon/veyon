@@ -1,20 +1,24 @@
 # BuildVeyonApplication.cmake - Copyright (c) 2019-2026 Tobias Junghans
 #
 # description: build Veyon application
-# usage: build_veyon_application(<NAME> <SOURCES>)
+# usage: build_veyon_application(<NAME> SOURCES <SOURCES> [PERMISSIONS <install permissions>])
 include (WindowsBuildHelpers)
 
 function(build_veyon_application TARGET)
 	cmake_parse_arguments(PARSE_ARGV 1 arg
 		""
 		""
-		"SOURCES")
+		"SOURCES;PERMISSIONS")
 
 	if(VEYON_BUILD_ANDROID)
 		add_library(${TARGET} SHARED ${arg_SOURCES})
 	else()
 		add_executable(${TARGET} ${arg_SOURCES})
-		install(TARGETS ${TARGET} RUNTIME DESTINATION bin)
+		if(arg_PERMISSIONS)
+			install(TARGETS ${TARGET} RUNTIME DESTINATION bin PERMISSIONS ${arg_PERMISSIONS})
+		else()
+			install(TARGETS ${TARGET} RUNTIME DESTINATION bin)
+		endif()
 	endif()
 	target_include_directories(${TARGET} PRIVATE ${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/src)
 	set_target_properties(${TARGET} PROPERTIES COMPILE_OPTIONS "${CMAKE_COMPILE_OPTIONS_PIE}")
