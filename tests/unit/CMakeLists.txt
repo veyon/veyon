@@ -188,6 +188,40 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 
 	add_test(NAME ProcessHardeningTest COMMAND ProcessHardeningTest)
 
+	set(PLATFORM_LINUX_SOURCE_DIR ${CMAKE_SOURCE_DIR}/plugins/platform/linux)
+	set(PLATFORM_COMMON_SOURCE_DIR ${CMAKE_SOURCE_DIR}/plugins/platform/common)
+
+	if(WITH_QT6)
+		find_package(Qt6 COMPONENTS DBus REQUIRED)
+	else()
+		find_package(Qt5DBus REQUIRED)
+	endif()
+
+	# LinuxServiceAuthenticationTest: Logon authentication of the session server through the
+	# service IPC with the real platform plugin and ServiceDataManager (02-ipc.md §6b)
+	add_executable(LinuxServiceAuthenticationTest
+		LinuxServiceAuthenticationTest.cpp
+		${PLATFORM_COMMON_SOURCE_DIR}/AuthenticationLimiter.cpp
+		${PLATFORM_COMMON_SOURCE_DIR}/IpcAuthenticationRequest.cpp
+		${PLATFORM_COMMON_SOURCE_DIR}/ServiceDataManager.cpp
+		${PLATFORM_COMMON_SOURCE_DIR}/ServiceIpcCommandHandler.cpp
+		${PLATFORM_LINUX_SOURCE_DIR}/LinuxAuthHelperClient.cpp
+	)
+	set_default_target_properties(LinuxServiceAuthenticationTest)
+	add_dependencies(LinuxServiceAuthenticationTest linux-platform)
+	target_include_directories(LinuxServiceAuthenticationTest PRIVATE
+		${PLATFORM_LINUX_SOURCE_DIR}
+		${PLATFORM_COMMON_SOURCE_DIR}
+	)
+	target_link_libraries(LinuxServiceAuthenticationTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+		Qt${QT_MAJOR_VERSION}::DBus
+		Qt${QT_MAJOR_VERSION}::Network
+		veyon-core
+	)
+	add_test(NAME LinuxServiceAuthenticationTest COMMAND LinuxServiceAuthenticationTest)
+
 	# LinuxLogFileDirectoryTest: log file directories of root and unprivileged processes (WP23)
 	add_executable(LinuxLogFileDirectoryTest
 		LinuxLogFileDirectoryTest.cpp

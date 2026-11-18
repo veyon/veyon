@@ -1,5 +1,6 @@
 add_subdirectory(certificate)
 add_subdirectory(certificaterequest)
+add_subdirectory(ipcauthenticationrequest)
 add_subdirectory(ipcchannel)
 add_subdirectory(legacyrsakey)
 if(TARGET veyon-capture-helper)

@@ -57,8 +57,25 @@ if(WITH_TESTS)
 	target_link_libraries(IpcChannelTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
 	add_test(NAME IpcChannelTest COMMAND IpcChannelTest)
 
+	add_executable(AuthenticationLimiterTest
+		AuthenticationLimiterTest.cpp
+		${CMAKE_SOURCE_DIR}/plugins/platform/common/AuthenticationLimiter.cpp
+		)
+	set_default_target_properties(AuthenticationLimiterTest)
+	target_include_directories(AuthenticationLimiterTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/platform/common)
+	target_link_libraries(AuthenticationLimiterTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
+	add_test(NAME AuthenticationLimiterTest COMMAND AuthenticationLimiterTest)
+
+	# credential check of master and configurator through the local server (02-ipc.md §6b)
+	add_executable(LocalCredentialsVerifierTest LocalCredentialsVerifierTest.cpp)
+	set_default_target_properties(LocalCredentialsVerifierTest)
+	target_link_libraries(LocalCredentialsVerifierTest PRIVATE Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Network veyon-core)
+	add_test(NAME LocalCredentialsVerifierTest COMMAND LocalCredentialsVerifierTest)
+
 	add_executable(ServiceIpcCommandHandlerTest
 		ServiceIpcCommandHandlerTest.cpp
+		${CMAKE_SOURCE_DIR}/plugins/platform/common/AuthenticationLimiter.cpp
+		${CMAKE_SOURCE_DIR}/plugins/platform/common/IpcAuthenticationRequest.cpp
 		${CMAKE_SOURCE_DIR}/plugins/platform/common/ServiceIpcCommandHandler.cpp
 		)
 	set_default_target_properties(ServiceIpcCommandHandlerTest)
