@@ -1,6 +1,7 @@
 // SPDX-FileCopyrightText: 2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include "IpcAuthenticationRequest.h"
 #include "ServiceIpcCommandHandler.h"
 
 
@@ -35,7 +36,28 @@ IpcMessage::Response ServiceIpcCommandHandler::handleRequest(Client& client, con
 		return getExternalVncServerPassword(request.id);
 	}
 
+	if (request.command == IpcProtocol::Command::Authenticate)
+	{
+		// asynchronous, see the other overload
+		return IpcMessage::failure(request.id, IpcProtocol::Error::DeniedError);
+	}
+
 	return IpcMessage::failure(request.id, IpcProtocol::Error::UnknownCommandError);
+}
+
+
+
+void ServiceIpcCommandHandler::handleRequest(Client& client, const IpcMessage::Request& request, QObject* context,
+											 const ResponseHandler& responseHandler)
+{
+	if (request.command == IpcProtocol::Command::Authenticate)
+	{
+		vDebug() << "session" << client.sessionId << "command" << request.command;
+		authenticate(client, request, context, responseHandler);
+		return;
+	}
+
+	responseHandler(handleRequest(client, request));
 }
 
 
@@ -167,4 +189,58 @@ void ServiceIpcCommandHandler::removeExpiredSessionData()
 			++it;
 		}
 	}
+}
+
+
+
+void ServiceIpcCommandHandler::authenticate(const Client& client, const IpcMessage::Request& request, QObject* context,
+											const ResponseHandler& responseHandler)
+{
+	if (m_authenticator == nullptr || m_authenticationLimiter == nullptr)
+	{
+		responseHandler(IpcMessage::failure(request.id, IpcProtocol::Error::DeniedError));
+		return;
+	}
+
+	auto arguments = IpcAuthenticationRequest::decode(request.arguments);
+	if (arguments.has_value() == false)
+	{
+		vWarning() << "malformed authentication request from session" << client.sessionId;
+		responseHandler(IpcMessage::failure(request.id, IpcProtocol::Error::BadRequestError));
+		return;
+	}
+
+	// one budget per server session, which outlives restarts of the server
+	const auto callerKey = QStringLiteral("ipc:%1:%2").arg(client.sessionId).arg(client.platformSessionId);
+
+	auto rejection = AuthenticationLimiter::Rejection::None;
+	const auto permit = m_authenticationLimiter->admit(callerKey, arguments->username, &rejection);
+	if (permit == nullptr)
+	{
+		int suppressedCount = 0;
+		if (m_authenticationLimiter->shouldLogRejection(callerKey, &suppressedCount))
+		{
+			vWarning() << "rejecting authentication request from session" << client.sessionId << "-"
+					   << AuthenticationLimiter::rejectionName(rejection) << "- suppressed rejections:" << suppressedCount;
+		}
+		responseHandler(IpcMessage::failure(request.id, IpcProtocol::Error::RateLimitedError));
+		return;
+	}
+
+	vInfo() << "authenticating user" << arguments->username << "for session" << client.sessionId;
+
+	const auto requestId = request.id;
+	m_authenticator(arguments->username, std::move(arguments->password), context,
+					[permit, requestId, responseHandler](AuthenticationResult result) {
+		const auto authenticated = result == AuthenticationResult::Authenticated;
+		if (result == AuthenticationResult::NoVerdict)
+		{
+			permit->finishWithoutResult();
+		}
+		else
+		{
+			permit->finish(authenticated);
+		}
+		responseHandler(IpcMessage::success(requestId, {{IpcProtocol::Key::Authenticated, authenticated}}));
+	});
 }

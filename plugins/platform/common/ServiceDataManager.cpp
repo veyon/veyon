@@ -1,6 +1,8 @@
 // SPDX-FileCopyrightText: 2019-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include <QPointer>
+
 #include "Configuration/Password.h"
 #include "IpcConnection.h"
 #include "ServiceDataManager.h"
@@ -132,6 +134,14 @@ bool ServiceDataManager::hasServerEndpointFailed(const QString& endpointName) co
 
 
 
+void ServiceDataManager::setAuthenticator(const ServiceIpcCommandHandler::Authenticator& authenticator,
+										  const std::shared_ptr<AuthenticationLimiter>& limiter)
+{
+	runInIpcThread([&]() { m_commandHandler.setAuthenticator(authenticator, limiter); });
+}
+
+
+
 void ServiceDataManager::run()
 {
 	QObject context;
@@ -183,11 +193,14 @@ void ServiceDataManager::handleRequest(const QString& endpointName, IpcConnectio
 		return;
 	}
 
-	const auto response = m_commandHandler.handleRequest(it->second.client, *request);
-	if (connection->sendMessage(IpcMessage::encodeResponse(response)) == false)
-	{
-		connection->close();
-	}
+	// Authenticate is answered later: the connection may be gone by then
+	m_commandHandler.handleRequest(it->second.client, *request, m_context,
+								   [connection = QPointer<IpcConnection>(connection)](const IpcMessage::Response& response) {
+		if (connection && connection->sendMessage(IpcMessage::encodeResponse(response)) == false)
+		{
+			connection->close();
+		}
+	});
 }
 
 

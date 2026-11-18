@@ -40,6 +40,10 @@ public:
 
 	bool hasServerEndpointFailed(const QString& endpointName) const;
 
+	// see ServiceIpcCommandHandler::setAuthenticator(); the authenticator is called in the IPC thread
+	void setAuthenticator(const ServiceIpcCommandHandler::Authenticator& authenticator,
+						  const std::shared_ptr<AuthenticationLimiter>& limiter);
+
 Q_SIGNALS:
 	// the endpoint was closed after too many failed connection attempts: the server is
 	// considered failed and has to be restarted

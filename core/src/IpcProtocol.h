@@ -86,12 +86,14 @@ inline constexpr auto GetSessionData = QLatin1String("GetSessionData");
 inline constexpr auto SetSessionData = QLatin1String("SetSessionData");
 inline constexpr auto GetTlsHostKey = QLatin1String("GetTlsHostKey");
 inline constexpr auto GetExternalVncServerPassword = QLatin1String("GetExternalVncServerPassword");
+inline constexpr auto Authenticate = QLatin1String("Authenticate");
 } // namespace Command
 
 namespace Error {
 inline constexpr auto UnknownCommandError = QLatin1String("unknown-command");
 inline constexpr auto DeniedError = QLatin1String("denied");
 inline constexpr auto BadRequestError = QLatin1String("bad-request");
+inline constexpr auto RateLimitedError = QLatin1String("rate-limited");
 } // namespace Error
 
 namespace Key {
@@ -105,6 +107,8 @@ inline constexpr auto Data = QLatin1String("data");
 inline constexpr auto TlsKey = QLatin1String("key");
 inline constexpr auto CertificateChain = QLatin1String("certificateChain");
 inline constexpr auto Password = QLatin1String("password");
+inline constexpr auto Username = QLatin1String("username");
+inline constexpr auto Authenticated = QLatin1String("authenticated");
 } // namespace Key
 
 // §6 session data

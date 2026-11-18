@@ -50,6 +50,10 @@ build_veyon_plugin(windows-platform
 	WtsSessionManager.h
 	DesktopInputController.h
 	SasEventListener.h
+	../common/AuthenticationLimiter.h
+	../common/AuthenticationLimiter.cpp
+	../common/IpcAuthenticationRequest.h
+	../common/IpcAuthenticationRequest.cpp
 	../common/LogonHelper.h
 	../common/LogonHelper.cpp
 	../common/PersistentLogonCredentials.h
