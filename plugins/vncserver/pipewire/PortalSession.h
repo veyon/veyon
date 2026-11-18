@@ -9,6 +9,7 @@
 #include <QString>
 #include <QVariantMap>
 
+#include "PortalInputDispatcher.h"
 #include "OrgFreedesktopPortalRemoteDesktop.h"
 #include "OrgFreedesktopPortalRequest.h"
 #include "OrgFreedesktopPortalScreenCast.h"
@@ -124,6 +125,7 @@ private:
 	QString makeRequestPath(const QString& token) const;
 
 	QDBusConnection m_sessionBus;
+	PortalInputDispatcher m_inputDispatcher{this};
 	OrgFreedesktopPortalRemoteDesktopInterface* m_remoteDesktop{nullptr};
 	OrgFreedesktopPortalScreenCastInterface* m_screenCast{nullptr};
 	OrgFreedesktopPortalRequestInterface* m_requestInterface{nullptr};
