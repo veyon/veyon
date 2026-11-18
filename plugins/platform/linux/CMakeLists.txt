@@ -27,6 +27,7 @@ build_veyon_plugin(linux-platform
 	InputBlockHelper.h
 	LinuxNetworkFunctions.cpp
 	LinuxSecretFunctions.cpp
+	LinuxServerHostKeyPolicy.cpp
 	LinuxServerProcess.cpp
 	LinuxAuthHelperClient.cpp
 	LinuxServiceCore.cpp
@@ -47,6 +48,7 @@ build_veyon_plugin(linux-platform
 	LinuxLogFileDirectory.h
 	LinuxNetworkFunctions.h
 	LinuxSecretFunctions.h
+	LinuxServerHostKeyPolicy.h
 	LinuxServerProcess.h
 	LinuxAuthHelperClient.h
 	LinuxServiceCore.h

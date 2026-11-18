@@ -46,11 +46,9 @@ private:
 	void sendIpcCredentials();
 
 	bool hasDesktopPortalRegistry();
-	// empty if the server may get the TLS host key, else the reason and remedy
-	static QString tlsHostKeyRefusal(bool runAsSessionUser);
 	static bool isPtraceRestricted();
 	static QString nonDumpableFromExecFailure();
-	void startInSystemdScope();
+	void startInSystemdScope(const QString& systemdRun);
 
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 	void setupChildProcess() override

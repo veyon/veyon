@@ -16,6 +16,7 @@
 #endif
 #include "Filesystem.h"
 #include "LinuxCoreFunctions.h"
+#include "LinuxServerHostKeyPolicy.h"
 #include "LinuxServerProcess.h"
 #include "LinuxUserFunctions.h"
 #include "Random.h"
@@ -72,9 +73,30 @@ void LinuxServerProcess::start()
 		m_sessionType == LinuxSessionFunctions::Type::Wayland &&
 		m_sessionUserId != LinuxUserFunctions::InvalidUserId;
 
+	// the launch path is decided before the endpoint since it matters for the TLS host key
+	const auto debugWrapper = qEnvironmentVariableIsSet("VEYON_VALGRIND_SERVERS") ||
+		(VeyonCore::isDebugging() && QFileInfo::exists(catchsegv));
+	// xdg-desktop-portal < 1.20 needs the server in a systemd scope (02 §2a.1)
+	const auto useSystemdScope = debugWrapper == false && m_sessionType == LinuxSessionFunctions::Type::Wayland &&
+		hasDesktopPortalRegistry() == false;
+	const auto systemdRun = useSystemdScope ? QStandardPaths::findExecutable(QStringLiteral("systemd-run"),
+																			 {QStringLiteral("/usr/bin"), QStringLiteral("/bin")}) :
+											  QString{};
+	if (useSystemdScope && systemdRun.isEmpty())
+	{
+		vWarning() << "xdg-desktop-portal < 1.20 and systemd-run not available - launching server directly;"
+				   << "the portal may not detect the app ID io.veyon.veyon-server and portal permissions may not work";
+	}
+
+	LinuxServerHostKeyPolicy::Conditions hostKeyConditions;
+	hostKeyConditions.runAsSessionUser = runAsSessionUser;
+	hostKeyConditions.ptraceRestricted = isPtraceRestricted();
+	hostKeyConditions.launchedThroughSystemdRun = systemdRun.isEmpty() == false;
+	hostKeyConditions.nonDumpableFromExecFailure = nonDumpableFromExecFailure();
+
 	// a new endpoint and token for every start, created before the server starts (02 §1); a
 	// server running as the session user (Wayland) connects to a socket owned by that user
-	if (createIpcEndpoint(runAsSessionUser ? m_sessionUserId : 0, tlsHostKeyRefusal(runAsSessionUser)) == false)
+	if (createIpcEndpoint(runAsSessionUser ? m_sessionUserId : 0, LinuxServerHostKeyPolicy::refusal(hostKeyConditions)) == false)
 	{
 		vCritical() << "not starting server for session" << m_sessionPath << "without IPC endpoint";
 		return;
@@ -102,14 +124,14 @@ void LinuxServerProcess::start()
 		setChildProcessModifier([this] { setProcessUserId(); });
 #endif
 
-		if (hasDesktopPortalRegistry())
+		if (systemdRun.isEmpty())
 		{
-			vDebug() << "xdg-desktop-portal >= 1.20 detected, launching server directly";
+			vDebug() << "launching server directly";
 			QProcess::start(VeyonCore::filesystem().serverFilePath(), QStringList{});
 		}
 		else
 		{
-			startInSystemdScope();
+			startInSystemdScope(systemdRun);
 		}
 	}
 	else
@@ -330,22 +352,18 @@ bool LinuxServerProcess::hasDesktopPortalRegistry()
 
 
 
-void LinuxServerProcess::startInSystemdScope()
+void LinuxServerProcess::startInSystemdScope(const QString& systemdRun)
 {
 	// xdg-desktop-portal < 1.20 derives the app ID from the systemd unit of the caller. Instead of
 	// D-Bus activation (the server would not be our child and not get the IPC token via stdin)
 	// systemd-run registers a transient scope and then executes the server itself, so it keeps
 	// our PID and stdin (02 §2a.1). The suffix after the app ID must be a single alphanumeric
 	// token, otherwise the portal derives a wrong app ID.
-	const auto systemdRun = QStandardPaths::findExecutable(QStringLiteral("systemd-run"),
-														   {QStringLiteral("/usr/bin"), QStringLiteral("/bin")});
 	const auto unitSuffix = Veyon::Crypto::Random::hex(IpcProtocol::EndpointRandomSize);
 
-	if (systemdRun.isEmpty() || unitSuffix.has_value() == false)
+	if (unitSuffix.has_value() == false)
 	{
-		vWarning() << "xdg-desktop-portal < 1.20 and systemd-run not available - launching server directly;"
-				   << "the portal may not detect the app ID io.veyon.veyon-server and portal permissions may not work";
-		QProcess::start(VeyonCore::filesystem().serverFilePath(), QStringList{});
+		vCritical() << "failed to generate systemd unit name";
 		return;
 	}
 
@@ -364,30 +382,6 @@ void LinuxServerProcess::startInSystemdScope()
 
 
 
-QString LinuxServerProcess::tlsHostKeyRefusal(bool runAsSessionUser)
-{
-	// a session-user server makes itself non-dumpable only in main(), so a process of the session
-	// user may attach right after execve() (T-PROC-02, 02-ipc.md §1a.4) unless Yama restricts
-	// ptrace or the kernel makes the process non-dumpable already at execve()
-	if (runAsSessionUser == false || isPtraceRestricted())
-	{
-		return {};
-	}
-
-	const auto nonDumpableFromExecRefusal = nonDumpableFromExecFailure();
-	if (nonDumpableFromExecRefusal.isEmpty())
-	{
-		return {};
-	}
-
-	return QStringLiteral("processes of the session user can attach to veyon-server during start-up "
-						  "(kernel.yama.ptrace_scope is 0 and %1) - set kernel.yama.ptrace_scope >= 1 "
-						  "or install veyon-server with mode 0711")
-		.arg(nonDumpableFromExecRefusal);
-}
-
-
-
 bool LinuxServerProcess::isPtraceRestricted()
 {
 	QFile ptraceScopeFile(QStringLiteral("/proc/sys/kernel/yama/ptrace_scope"));
@@ -398,21 +392,13 @@ bool LinuxServerProcess::isPtraceRestricted()
 
 QString LinuxServerProcess::nonDumpableFromExecFailure()
 {
-	// execve() of a binary the user cannot read sets the dumpable flag to fs.suid_dumpable, which
-	// keeps the process non-dumpable unless it is 1
 	const auto serverFilePath = VeyonCore::filesystem().serverFilePath();
 	struct stat status{};
-	if (stat(QFile::encodeName(serverFilePath).constData(), &status) != 0 || status.st_uid != 0 ||
-		(status.st_mode & (S_IRGRP | S_IROTH)) != 0)
-	{
-		return QStringLiteral("%1 is readable by the session user").arg(serverFilePath);
-	}
+	const auto statSucceeded = stat(QFile::encodeName(serverFilePath).constData(), &status) == 0;
 
 	QFile suidDumpableFile(QStringLiteral("/proc/sys/fs/suid_dumpable"));
-	if (suidDumpableFile.open(QFile::ReadOnly) == false || suidDumpableFile.readAll().trimmed() == QByteArrayLiteral("1"))
-	{
-		return QStringLiteral("fs.suid_dumpable is 1");
-	}
+	const auto suidDumpable = suidDumpableFile.open(QFile::ReadOnly) ? suidDumpableFile.readAll() : QByteArray{};
 
-	return {};
+	return LinuxServerHostKeyPolicy::nonDumpableFromExecFailure(serverFilePath, statSucceeded, status.st_uid,
+																status.st_mode, suidDumpable);
 }

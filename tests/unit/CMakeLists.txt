@@ -197,6 +197,22 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 
 	add_test(NAME IpcServerTest COMMAND IpcServerTest)
 
+	# LinuxServerHostKeyPolicyTest: TLS host key decision for session servers (T-PROC-02)
+	add_executable(LinuxServerHostKeyPolicyTest
+		LinuxServerHostKeyPolicyTest.cpp
+		${CMAKE_SOURCE_DIR}/plugins/platform/linux/LinuxServerHostKeyPolicy.cpp
+	)
+	set_default_target_properties(LinuxServerHostKeyPolicyTest)
+
+	target_include_directories(LinuxServerHostKeyPolicyTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/platform/linux)
+
+	target_link_libraries(LinuxServerHostKeyPolicyTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+	)
+
+	add_test(NAME LinuxServerHostKeyPolicyTest COMMAND LinuxServerHostKeyPolicyTest)
+
 	# TlsHostKeyIpcTest: GetTlsHostKey from the service's SecretStore and certificate file to the
 	# session server's TLS listener through a real endpoint (02-ipc.md §6, 05-tls.md §2)
 	add_executable(TlsHostKeyIpcTest
