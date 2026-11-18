@@ -25,6 +25,7 @@ if(PipeWire_FOUND AND Qt${QT_MAJOR_VERSION}DBus_FOUND)
 	build_veyon_plugin(pipewire-vnc-server
 		NAME PipeWireVncServer
 		SOURCES
+		QuickConfiguration.cpp
 		PipeWireVncServer.cpp
 		PipeWireVncServer.h
 		PipeWireVncConfiguration.h
@@ -35,6 +36,7 @@ if(PipeWire_FOUND AND Qt${QT_MAJOR_VERSION}DBus_FOUND)
 		PipeWireFramebuffer.h
 		PortalSession.cpp
 		PortalSession.h
+		PortalInputDispatcher.h
 		${DBUS_GENERATED_SOURCES}
 	)
 
@@ -50,6 +52,16 @@ if(PipeWire_FOUND AND Qt${QT_MAJOR_VERSION}DBus_FOUND)
 	endif()
 
 	target_compile_options(pipewire-vnc-server PRIVATE -Wno-parentheses)
+
+	if(WITH_TESTS)
+		add_executable(PortalSessionTest
+			${CMAKE_SOURCE_DIR}/tests/unit/PortalSessionTest.cpp
+			PortalSession.cpp PortalSession.h ${DBUS_GENERATED_SOURCES})
+		target_include_directories(PortalSessionTest PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
+		target_link_libraries(PortalSessionTest PRIVATE veyon-core Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::DBus)
+		add_test(NAME PortalSessionTest COMMAND PortalSessionTest)
+		set_tests_properties(PortalSessionTest PROPERTIES ENVIRONMENT "QT_QPA_PLATFORM=offscreen" TIMEOUT 30)
+	endif()
 
 	install(
 		PROGRAMS "${CMAKE_CURRENT_SOURCE_DIR}/veyon-preauth-kde.sh"

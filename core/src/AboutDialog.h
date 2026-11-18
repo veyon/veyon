@@ -2,25 +2,13 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #pragma once
-
-#include <QDialog>
-
+#include <QObject>
 #include "VeyonCore.h"
-
-namespace Ui {
-class AboutDialog;
-}
-
-class VEYON_CORE_EXPORT AboutDialog : public QDialog
+class QWidget;
+class VEYON_CORE_EXPORT AboutDialog : public QObject
 {
 	Q_OBJECT
 public:
 	explicit AboutDialog(QWidget* parent);
-	~AboutDialog() override;
-
-private Q_SLOTS:
-	void openDonationWebsite();
-
-private:
-	Ui::AboutDialog* ui;
+	int exec();
 };

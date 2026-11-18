@@ -6,7 +6,7 @@
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
-#include <QMessageBox>
+#include "QuickUi.h"
 #include <QMetaEnum>
 #include <QPainter>
 #include <QRegularExpression>
@@ -47,7 +47,7 @@ void Screenshot::take(const ComputerControlInterface::Pointer& computerControlIn
 		vCritical() << msg.toUtf8().constData();
 		if (qobject_cast<QApplication*>(QCoreApplication::instance()))
 		{
-			QMessageBox::critical(nullptr, tr("Screenshot"), msg);
+			QuickUi::showError(tr("Screenshot"), msg);
 		}
 
 		return;
@@ -66,7 +66,7 @@ void Screenshot::take(const ComputerControlInterface::Pointer& computerControlIn
 		vCritical() << msg.toUtf8().constData();
 		if (qobject_cast<QApplication*>(QCoreApplication::instance()))
 		{
-			QMessageBox::critical(nullptr, tr("Screenshot"), msg);
+			QuickUi::showError(tr("Screenshot"), msg);
 		}
 
 		return;

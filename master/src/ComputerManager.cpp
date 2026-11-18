@@ -5,7 +5,7 @@
 #include <QFile>
 #include <QHostAddress>
 #include <QHostInfo>
-#include <QMessageBox>
+#include "QuickUi.h"
 #include <QTime>
 
 #include "BuiltinFeatures.h"
@@ -37,12 +37,8 @@ ComputerManager::ComputerManager(UserConfig& config, QObject* parent) :
 {
 	if (m_networkObjectDirectory == nullptr)
 	{
-		QMessageBox::critical(nullptr,
-							  tr("Missing network object directory plugin"),
-							  tr("No default network object directory plugin was found. "
-								 "Please check your installation or configure a different "
-								 "network object directory backend via Veyon Configurator."));
-		qFatal("ComputerManager: missing network object directory plugin!");
+		QuickUi::execDialog(QStringLiteral("information"), {{QStringLiteral("title"),tr("Missing network object directory plugin")},{QStringLiteral("text"),tr("No default network object directory plugin was found. Check your installation or configure a different backend using Veyon Configurator.")}});
+		qFatal( "ComputerManager: missing network object directory plugin!" );
 	}
 
 	if (QHostInfo::localDomainName().isEmpty() == false)
@@ -251,11 +247,7 @@ void ComputerManager::initLocations()
 	{
 		if (m_currentLocations.isEmpty())
 		{
-			QMessageBox::warning(nullptr,
-								 tr("Location detection failed"),
-								 tr("The location of this computer could not be determined. "
-									"This indicates a problem with the system configuration. "
-									"No locations and computers will be displayed in the \"Locations & computers\" panel."));
+			QuickUi::execDialog(QStringLiteral("information"), {{QStringLiteral("title"),tr("Location detection failed")},{QStringLiteral("text"),tr("The location of this computer could not be determined. Check the system configuration.")}});
 			vWarning() << "location detection failed";
 			m_currentLocations = QStringList{tr("Unknown location")};
 		}

@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <QSharedPointer>
+
 #include "Computer.h"
 #include "Feature.h"
 #include "Lockable.h"
@@ -10,7 +12,7 @@
 #include "VeyonConnection.h"
 #include "VeyonCore.h"
 
-class VEYON_CORE_EXPORT ComputerControlInterface : public QObject, public Lockable
+class VEYON_CORE_EXPORT ComputerControlInterface : public QObject, public Lockable, public QEnableSharedFromThis<ComputerControlInterface>
 {
 	Q_OBJECT
 public:

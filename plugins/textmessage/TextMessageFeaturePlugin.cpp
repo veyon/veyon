@@ -1,13 +1,26 @@
 // SPDX-FileCopyrightText: 2017-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include <QMessageBox>
 
-#include "ComputerControlInterface.h"
-#include "FeatureWorkerManager.h"
-#include "PlatformCoreFunctions.h"
-#include "TextMessageDialog.h"
+#include <QDateTime>
+#include <QDialog>
+#include <QGuiApplication>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QLocale>
+#include <QPushButton>
+#include <QScreen>
+#include <QTextBrowser>
+#include <QTextDocument>
+#include <QVBoxLayout>
+
 #include "TextMessageFeaturePlugin.h"
+#include "TextMessageDialog.h"
+#include "QuickUi.h"
+#include "DesktopIcons.h"
+#include "FeatureWorkerManager.h"
+#include "ComputerControlInterface.h"
+#include "PlatformCoreFunctions.h"
 #include "VeyonMasterInterface.h"
 #include "VeyonServerInterface.h"
 
@@ -76,15 +89,32 @@ bool TextMessageFeaturePlugin::startFeature(VeyonMasterInterface& master, const 
 	QString textMessage;
 	QString messageTitle;
 
-	TextMessageDialog(textMessage, messageTitle, master.mainWindow()).exec();
+	QStringList recipients;
+	for (const auto& computer : computerControlInterfaces)
+	{
+		recipients.append(computer->computerName());
+	}
+	auto summary = tr("Recipients: %n computer(s)", "", recipients.size());
+	if (!recipients.isEmpty())
+	{
+		const auto shownNames = recipients.mid(0, 5).join(QStringLiteral(", "));
+		summary += QStringLiteral("\n") + shownNames;
+		if (recipients.size() > 5)
+		{
+			summary += tr(" and %n more", "", recipients.size() - 5);
+		}
+	}
+	TextMessageDialog(textMessage, messageTitle, master.mainWindow(), summary).exec();
 
 	if (textMessage.isEmpty() == false)
 	{
-		controlFeature(m_textMessageFeature.uid(), Operation::Start,
-					   {{argToString(Argument::Text), textMessage},
-						{argToString(Argument::Icon), QMessageBox::Information},
-						{argToString(Argument::Title), messageTitle}},
-					   computerControlInterfaces);
+		controlFeature( m_textMessageFeature.uid(), Operation::Start,
+						{
+							{ argToString(Argument::Text), textMessage },
+							{ argToString(Argument::Icon), 1 },
+							{ argToString(Argument::Title), messageTitle }
+						},
+						computerControlInterfaces );
 	}
 
 	return true;
@@ -123,14 +153,15 @@ bool TextMessageFeaturePlugin::handleFeatureMessage(VeyonWorkerInterface& worker
 			title = tr("Message from teacher");
 		}
 
-		auto messageBox = new QMessageBox(static_cast<QMessageBox::Icon>(message.argument(Argument::Icon).toInt()),
-										  title,
-										  message.argument(Argument::Text).toString());
-		messageBox->setTextFormat(Qt::RichText);
-		messageBox->setTextInteractionFlags(Qt::TextBrowserInteraction | Qt::TextSelectableByKeyboard);
-		messageBox->setAttribute(Qt::WA_DeleteOnClose);
-		messageBox->show();
-		VeyonCore::platform().coreFunctions().raiseWindow(messageBox, true);
+		QuickUi::execDialog(QStringLiteral("notification"), {
+			{QStringLiteral("title"), tr("Message from teacher")},
+			{QStringLiteral("summary"), QString(title + QStringLiteral(" · ") + QLocale().toString(QTime::currentTime(), QLocale::ShortFormat))},
+			{QStringLiteral("text"), message.argument(Argument::Text).toString()},
+			{QStringLiteral("richText"), true},
+			{QStringLiteral("iconName"), message.argument(Argument::Icon).toInt() == 2 ? QStringLiteral("triangle-alert") :
+				message.argument(Argument::Icon).toInt() == 3 ? QStringLiteral("circle-alert") :
+				message.argument(Argument::Icon).toInt() == 4 ? QStringLiteral("circle-help") : QStringLiteral("message-square-text")}});
+		QCoreApplication::quit();
 
 		return true;
 	}

@@ -2,26 +2,16 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #pragma once
-
-#include <QDialog>
-
-namespace Ui {
-class TextMessageDialog;
-}
-
-class TextMessageDialog : public QDialog
+#include <QObject>
+class QWidget;
+class TextMessageDialog : public QObject
 {
 	Q_OBJECT
 public:
-	TextMessageDialog(QString& msgStr, QString& titleStr, QWidget* parent);
-	~TextMessageDialog() override;
-
-private Q_SLOTS:
-	void accept() override;
-
-
+	TextMessageDialog(QString& message, QString& title, QWidget* parent, const QString& summary = {});
+	int exec();
 private:
-	Ui::TextMessageDialog* ui;
-	QString& m_msgStr;
-	QString& m_titleStr;
+	QString& m_message;
+	QString& m_title;
+	QString m_summary;
 };

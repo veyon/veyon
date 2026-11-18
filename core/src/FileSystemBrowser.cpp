@@ -1,7 +1,8 @@
 // SPDX-FileCopyrightText: 2010-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include <QFileDialog>
+#include "QuickUi.h"
+#include <QUrl>
 #include <QLineEdit>
 
 #include "FileSystemBrowser.h"
@@ -41,24 +42,11 @@ QString FileSystemBrowser::exec(const QString& path,
 	default: break;
 	}
 
-	QString chosenPath;
-	switch (m_browseMode)
-	{
-	case ExistingDirectory:
-		chosenPath = QFileDialog::getExistingDirectory(m_parent, title,
-													   browsePath,
-													   QFileDialog::ShowDirsOnly |
-														   QFileDialog::DontResolveSymlinks);
-		break;
-	case ExistingFile:
-		chosenPath = QFileDialog::getOpenFileName(m_parent, title, browsePath, filter);
-		break;
-	case SaveFile:
-		chosenPath = QFileDialog::getSaveFileName(m_parent, title, browsePath, filter);
-		break;
-
-	default: break;
-	}
+	const auto result = QuickUi::execDialog(m_browseMode == ExistingDirectory ? QStringLiteral("folder") : QStringLiteral("file"), {
+		{QStringLiteral("title"), title}, {QStringLiteral("folder"), QUrl::fromLocalFile(browsePath)},
+		{QStringLiteral("save"), m_browseMode == SaveFile},
+		{QStringLiteral("filters"), filter.isEmpty() ? QStringList{} : filter.split(QStringLiteral(";;"))}});
+	const auto chosenPath = result.value(QStringLiteral("path")).toString();
 
 	if (!chosenPath.isEmpty())
 	{

@@ -17,7 +17,7 @@ class ComputerMonitoringView
 public:
 	static constexpr int MinimumComputerScreenSize = 50;
 	static constexpr int MaximumComputerScreenSize = 1000;
-	static constexpr int DefaultComputerScreenSize = 150;
+	static constexpr int DefaultComputerScreenSize = 190;
 
 	static constexpr auto IncreaseIconSizeStepSize = 20;
 	static constexpr auto DecreaseIconSizeMinimumStepSize = 5;
@@ -34,6 +34,7 @@ public:
 
 	virtual ComputerControlInterfaceList selectedComputerControlInterfaces() const = 0;
 	ComputerControlInterfaceList filteredComputerControlInterfaces() const;
+	void runFeatureOnComputers(const Feature& feature, const ComputerControlInterfaceList& computers, bool toggleActiveMode = true);
 
 	QString searchFilter() const;
 	void setSearchFilter(const QString& searchFilter);

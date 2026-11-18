@@ -140,14 +140,14 @@ bool ScreenLockFeaturePlugin::handleFeatureMessage(VeyonWorkerInterface& worker,
 			{
 				VeyonCore::platform().coreFunctions().disableScreenSaver();
 
-				auto mode = LockWidget::BackgroundPixmap;
-				if (message.featureUid() == m_lockInputDevicesFeature.uid())
+				auto mode = LockWidget::ClassroomLock;
+				if( message.featureUid() == m_lockInputDevicesFeature.uid() )
 				{
 					mode = LockWidget::DesktopVisible;
 				}
 
-				m_lockWidget = new LockWidget(mode,
-											  QPixmap(QStringLiteral(":/screenlock/locked-screen-background.png")));
+				m_lockWidget = new LockWidget( mode,
+											   QPixmap(QStringLiteral(":/screenlock/system-lock-screen.png")) );
 			}
 			return true;
 

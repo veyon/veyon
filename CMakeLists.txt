@@ -154,6 +154,9 @@ if(WITH_QT6)
 		Concurrent
 		Gui
 		Widgets
+		Qml
+		Quick
+		QuickControls2
 		Network
 		REQUIRED)
 	if(WITH_TRANSLATIONS)
@@ -166,6 +169,9 @@ else()
 		Concurrent
 		Gui
 		Widgets
+		Qml
+		Quick
+		QuickControls2
 		Network
 		REQUIRED)
 	if(WITH_TRANSLATIONS)
@@ -300,6 +306,7 @@ add_definitions(
 	)
 
 file(GLOB_RECURSE IN_FILES RELATIVE ${CMAKE_SOURCE_DIR} "veyonconfig.h.in" "*.desktop.in" "*.policy.in" "*.service.in" "*.nsi.in")
+set(VEYON_WITH_TESTS ${WITH_TESTS})
 configure_files(${IN_FILES})
 
 set(CMAKE_AUTOMOC TRUE)

@@ -3,13 +3,16 @@
 
 #pragma once
 
+#include "QuickConfigurationPluginInterface.h"
+
+#include <atomic>
+
 #include <QMutex>
 
 #include "PipeWireVncConfiguration.h"
 #include "PluginInterface.h"
 #include "VncServerPluginInterface.h"
 
-#include <atomic>
 
 class PortalSession;
 class PipeWireFramebuffer;
@@ -32,13 +35,16 @@ extern "C" {
  *
  * See plugins/vncserver/pipewire/README.md for full pre-authorization details.
  */
-class PipeWireVncServer : public QObject, VncServerPluginInterface, PluginInterface
+class PipeWireVncServer : public QObject, VncServerPluginInterface, PluginInterface,
+		public QuickConfigurationPluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.PipeWireVncServer")
-	Q_INTERFACES(PluginInterface VncServerPluginInterface)
+	Q_INTERFACES(QuickConfigurationPluginInterface PluginInterface VncServerPluginInterface)
 
 public:
+	QObject* createQuickConfiguration(Configuration::Object* draft, QObject* parent) override;
+
 	explicit PipeWireVncServer(QObject* parent = nullptr);
 	~PipeWireVncServer() override;
 

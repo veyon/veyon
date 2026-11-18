@@ -3,7 +3,7 @@
 
 #include <QDialogButtonBox>
 #include <QGuiApplication>
-#include <QInputDialog>
+#include "QuickUi.h"
 #include <QLineEdit>
 #include <QPointer>
 #include <QScreen>
@@ -588,21 +588,9 @@ QString MonitoringMode::queryUserIdentity()
 {
 	qApp->setQuitOnLastWindowClosed(false);
 
-	QInputDialog dialog;
-	dialog.setWindowTitle(tr("Identification request"));
-	dialog.setLabelText(tr("Please enter your name:"));
-	dialog.setInputMode(QInputDialog::TextInput);
-	dialog.setWindowFlags(dialog.windowFlags() & (~Qt::WindowCloseButtonHint));
-	dialog.setStyleSheet(QStringLiteral("button-layout:%1").arg(QDialogButtonBox::WinLayout));
-
-	auto lineEdit = dialog.findChild<QLineEdit*>();
-	if (lineEdit)
-	{
-		lineEdit->setPlaceholderText(tr("First name + last name"));
-	}
-
-	VeyonCore::platform().coreFunctions().raiseWindow(&dialog, true);
-
-	dialog.exec();
-	return dialog.textValue();
+	const auto result = QuickUi::execDialog(QStringLiteral("input"), {
+		{QStringLiteral("title"), tr("Identification request")},
+		{QStringLiteral("label"), tr("Please enter your name:")},
+		{QStringLiteral("placeholder"), tr("First name + last name")}});
+	return result.value(QStringLiteral("accepted")).toBool() ? result.value(QStringLiteral("value")).toString() : QString{};
 }

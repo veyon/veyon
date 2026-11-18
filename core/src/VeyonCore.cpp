@@ -4,6 +4,7 @@
 #include <QAbstractButton>
 #include <QAction>
 #include <QApplication>
+#include "DesktopStyle.h"
 #include <QDir>
 #include <QGroupBox>
 #include <QJsonDocument>
@@ -601,17 +602,6 @@ void VeyonCore::initUi()
 			app->setStyle(QStyleFactory::create(QStringLiteral("Fusion")));
 		}
 
-		app->setStyleSheet(QStringLiteral(
-			"QToolButton:checked {background-color:#88ddff;}"
-			"QToolTip {padding:5px; border:0px;}"));
-
-		auto toolTipPalette = QToolTip::palette();
-		static const char* toolTipBackgroundColor = "#198cb3";
-		toolTipPalette.setColor(QPalette::Window, toolTipBackgroundColor);
-		toolTipPalette.setColor(QPalette::ToolTipBase, toolTipBackgroundColor);
-		toolTipPalette.setColor(QPalette::ToolTipText, Qt::white);
-		QToolTip::setPalette(toolTipPalette);
-
 #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
 		switch (config().uiColorScheme())
 		{
@@ -625,6 +615,7 @@ void VeyonCore::initUi()
 			break;
 		}
 #endif
+		DesktopStyle::apply(app);
 	}
 }
 

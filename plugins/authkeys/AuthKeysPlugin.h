@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include "QuickConfigurationPluginInterface.h"
+
 #include "CommandLineIO.h"
 #include "CommandLinePluginInterface.h"
 #include "ConfigurationPagePluginInterface.h"
@@ -13,15 +15,18 @@ class AuthKeysPlugin : public QObject,
 					   CommandLinePluginInterface,
 					   PluginInterface,
 					   CommandLineIO,
-					   ConfigurationPagePluginInterface
+		ConfigurationPagePluginInterface,
+		public QuickConfigurationPluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.AuthKeys")
-	Q_INTERFACES(PluginInterface
+	Q_INTERFACES(QuickConfigurationPluginInterface PluginInterface
 					 CommandLinePluginInterface
 						 ConfigurationPagePluginInterface)
 public:
-	explicit AuthKeysPlugin(QObject* parent = nullptr);
+	QObject* createQuickConfiguration(Configuration::Object* draft, QObject* parent) override;
+
+	explicit AuthKeysPlugin( QObject* parent = nullptr );
 	~AuthKeysPlugin() override = default;
 
 	Plugin::Uid uid() const override

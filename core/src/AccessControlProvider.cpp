@@ -16,15 +16,23 @@
 
 
 AccessControlProvider::AccessControlProvider() :
-	m_userGroupsBackend(VeyonCore::userGroupsBackendManager().configuredBackend()),
-	m_networkObjectDirectory(VeyonCore::networkObjectDirectoryManager().configuredDirectory()),
-	m_useDomainUserGroups(VeyonCore::config().useDomainUserGroups()),
+	AccessControlProvider(VeyonCore::config())
+{
+}
+
+AccessControlProvider::AccessControlProvider(const VeyonConfiguration& configuration,
+	UserGroupsBackendInterface* userGroupsBackend, NetworkObjectDirectory* networkObjectDirectory) :
+	m_userGroupsBackend(userGroupsBackend ? userGroupsBackend : VeyonCore::userGroupsBackendManager().configuredBackend()),
+	m_networkObjectDirectory(networkObjectDirectory ? networkObjectDirectory : VeyonCore::networkObjectDirectoryManager().configuredDirectory()),
+	m_useDomainUserGroups(configuration.useDomainUserGroups()),
 	m_accessControlFeature(QLatin1String(staticMetaObject.className()),
 						   Feature::Flag::Meta | Feature::Flag::Builtin,
 						   Feature::Uid{QStringLiteral("1815941e-eaef-43ab-b9cd-5403dca3f749")}, {}, {}, {}, {}, {}),
-	m_authorizedUserGroups(VeyonCore::config().authorizedUserGroups())
+	m_authorizedUserGroups(configuration.authorizedUserGroups()),
+	m_restrictedToUserGroups(configuration.isAccessRestrictedToUserGroups()),
+	m_rulesProcessingEnabled(configuration.isAccessControlRulesProcessingEnabled())
 {
-	const QJsonArray accessControlRules = VeyonCore::config().accessControlRules();
+	const QJsonArray accessControlRules = configuration.accessControlRules();
 
 	m_accessControlRules.reserve(accessControlRules.size());
 
@@ -105,7 +113,7 @@ AccessControlProvider::CheckResult AccessControlProvider::checkAccess(const QStr
 																	  const QStringList& connectedUsers)
 {
 	CheckResult denyAccessCheckResult{Access::Deny};
-	if (VeyonCore::config().isAccessRestrictedToUserGroups())
+	if (m_restrictedToUserGroups)
 	{
 		if (processAuthorizedGroups(accessingUser))
 		{
@@ -113,7 +121,7 @@ AccessControlProvider::CheckResult AccessControlProvider::checkAccess(const QStr
 		}
 		denyAccessCheckResult.reason = Reason::UserNotInAuthorizedUserGroups;
 	}
-	else if (VeyonCore::config().isAccessControlRulesProcessingEnabled())
+	else if (m_rulesProcessingEnabled)
 	{
 		const auto rule = processAccessControlRules(accessingUser,
 													accessingComputer,
@@ -206,7 +214,7 @@ AccessControlRule::Pointer AccessControlProvider::processAccessControlRules(cons
  */
 bool AccessControlProvider::isAccessToLocalComputerDenied() const
 {
-	if (VeyonCore::config().isAccessControlRulesProcessingEnabled() == false)
+	if (!m_rulesProcessingEnabled)
 	{
 		return false;
 	}

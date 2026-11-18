@@ -5,6 +5,9 @@ add_subdirectory(kldap)
 build_veyon_plugin(ldap
 	NAME Ldap
 	SOURCES
+	QuickConfiguration.cpp
+	QuickConfigurationController.cpp
+	QuickConfigurationController.h
 	LdapPlugin.cpp
 	LdapPlugin.h
 	LdapBrowseDialog.cpp

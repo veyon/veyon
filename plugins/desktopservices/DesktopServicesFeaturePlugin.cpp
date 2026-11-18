@@ -159,7 +159,11 @@ bool DesktopServicesFeaturePlugin::handleFeatureMessage(VeyonWorkerInterface& wo
 
 	if (message.featureUid() == m_openWebsiteFeature.uid())
 	{
-		openWebsite(message.argument(Argument::WebsiteUrls).toString());
+		const auto websites = message.argument(Argument::WebsiteUrls).toStringList();
+		for (const auto& website : websites)
+		{
+			openWebsite(website);
+		}
 		QCoreApplication::quit();
 		return true;
 	}
@@ -228,33 +232,34 @@ void DesktopServicesFeaturePlugin::updateFeatures()
 	{
 		master->reloadSubFeatures();
 
-		auto startAppButton = master->mainWindow()->findChild<QToolButton*>(m_startAppFeature.name());
-		if (startAppButton && startAppButton->menu())
-		{
-			startAppButton->menu()->installEventFilter(this);
-		}
-
-		auto openWebsiteButton = master->mainWindow()->findChild<QToolButton*>(m_openWebsiteFeature.name());
-		if (openWebsiteButton && openWebsiteButton->menu())
-		{
-			openWebsiteButton->menu()->installEventFilter(this);
-		}
 	}
 }
 
 
 
-void DesktopServicesFeaturePlugin::openMenu(const QString& objectName)
+bool DesktopServicesFeaturePlugin::removePresetFeature(const QString& uid)
 {
 	auto master = VeyonCore::instance()->findChild<VeyonMasterInterface*>();
-	if (master)
-	{
-		auto button = master->mainWindow()->findChild<QToolButton*>(objectName);
-		if (button && button->menu())
-		{
-			button->showMenu();
-		}
-	}
+	if (!master) return false;
+	DesktopServicesConfiguration config(master->userConfigurationObject());
+	const auto id = DesktopServiceObject::Uid(uid);
+	ObjectManager<DesktopServiceObject> apps(config.predefinedApplications());
+	ObjectManager<DesktopServiceObject> websites(config.predefinedWebsites());
+	const auto beforeApps = apps.objects();
+	const auto beforeWebsites = websites.objects();
+	apps.remove(id);
+	websites.remove(id);
+	if (apps.objects() == beforeApps && websites.objects() == beforeWebsites) return false;
+	config.setPredefinedApplications(apps.objects());
+	config.setPredefinedWebsites(websites.objects());
+	config.flushStore();
+	updateFeatures();
+	return true;
+}
+
+void DesktopServicesFeaturePlugin::openMenu( const QString& objectName )
+{
+	Q_UNUSED(objectName)
 }
 
 
@@ -262,9 +267,10 @@ void DesktopServicesFeaturePlugin::openMenu(const QString& objectName)
 void DesktopServicesFeaturePlugin::executeStartAppDialog(VeyonMasterInterface& master,
 														 const ComputerControlInterfaceList& computerControlInterfaces)
 {
-	StartAppDialog startAppDialog(master.mainWindow());
+	StartAppDialog startAppDialog(master.mainWindow(),
+		tr("Recipients: %n computer(s)", "", computerControlInterfaces.size()));
 
-	if (startAppDialog.exec() == QDialog::Accepted)
+	if( startAppDialog.exec() != 0 )
 	{
 		startApp(startAppDialog.apps(),
 				 startAppDialog.remember() ? startAppDialog.presetName() : QString{},
@@ -301,9 +307,10 @@ void DesktopServicesFeaturePlugin::startApp(const QString& app, const QString& s
 void DesktopServicesFeaturePlugin::executeOpenWebsiteDialog(VeyonMasterInterface& master,
 															const ComputerControlInterfaceList& computerControlInterfaces)
 {
-	OpenWebsiteDialog openWebsiteDialog(master.mainWindow());
+	OpenWebsiteDialog openWebsiteDialog(master.mainWindow(),
+		tr("Recipients: %n computer(s)", "", computerControlInterfaces.size()));
 
-	if (openWebsiteDialog.exec() == QDialog::Accepted)
+	if( openWebsiteDialog.exec() != 0 )
 	{
 		openWebsite(openWebsiteDialog.website(),
 					openWebsiteDialog.remember() ? openWebsiteDialog.presetName() : QString{},

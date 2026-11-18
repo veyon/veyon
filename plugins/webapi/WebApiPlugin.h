@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include "QuickConfigurationPluginInterface.h"
+
 #include <QThread>
 
 #include "CommandLinePluginInterface.h"
@@ -11,15 +13,18 @@
 
 class WebApiHttpServer;
 
-class WebApiPlugin : public QObject, PluginInterface, CommandLinePluginInterface, ConfigurationPagePluginInterface
+class WebApiPlugin : public QObject, PluginInterface, CommandLinePluginInterface, ConfigurationPagePluginInterface,
+		public QuickConfigurationPluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.WebApi")
-	Q_INTERFACES(PluginInterface
+	Q_INTERFACES(QuickConfigurationPluginInterface PluginInterface
 					 CommandLinePluginInterface
 						 ConfigurationPagePluginInterface)
 public:
-	explicit WebApiPlugin(QObject* parent = nullptr);
+	QObject* createQuickConfiguration(Configuration::Object* draft, QObject* parent) override;
+
+	explicit WebApiPlugin( QObject* parent = nullptr );
 	~WebApiPlugin() override;
 
 	Plugin::Uid uid() const override

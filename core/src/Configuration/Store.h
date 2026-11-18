@@ -73,6 +73,25 @@ public:
 	virtual bool isWritable() const = 0;
 	virtual void clear() = 0;
 
+	virtual bool loadChecked(Object* object, QString* error = nullptr)
+	{
+		if (error) error->clear();
+		load(object);
+		return true;
+	}
+	virtual bool flushChecked(const Object* object, QString* error = nullptr)
+	{
+		if (error) error->clear();
+		flush(object);
+		return true;
+	}
+	virtual bool clearChecked(QString* error = nullptr)
+	{
+		if (error) error->clear();
+		clear();
+		return true;
+	}
+
 
 private:
 	const Backend m_backend;

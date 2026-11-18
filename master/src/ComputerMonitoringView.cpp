@@ -159,8 +159,16 @@ void ComputerMonitoringView::runFeature(const Feature& feature)
 		computerControlInterfaces = m_master->filteredComputerControlInterfaces();
 	}
 
-	const auto alreadyActive = feature.testFlag(Feature::Flag::Mode) &&
-		isFeatureOrRelatedFeatureActive(computerControlInterfaces, feature.uid());
+	runFeatureOnComputers(feature, computerControlInterfaces);
+}
+
+void ComputerMonitoringView::runFeatureOnComputers(const Feature& feature, const ComputerControlInterfaceList& computerControlInterfaces, bool toggleActiveMode)
+{
+	if (computerControlInterfaces.isEmpty()) return;
+	const auto alreadyActive = toggleActiveMode && feature.testFlag(Feature::Flag::Mode) &&
+		std::all_of(computerControlInterfaces.cbegin(), computerControlInterfaces.cend(), [this, &feature](const auto& computer) {
+			return isFeatureOrRelatedFeatureActive({computer}, feature.uid());
+		});
 
 	if (feature.testFlag(Feature::Flag::Mode))
 	{
@@ -191,15 +199,18 @@ void ComputerMonitoringView::runFeature(const Feature& feature)
 bool ComputerMonitoringView::isFeatureOrRelatedFeatureActive(const ComputerControlInterfaceList& computerControlInterfaces,
 															 Feature::Uid featureUid) const
 {
-	const auto& relatedFeatures = VeyonCore::featureManager().relatedFeatures(featureUid);
+	const auto& relatedFeatures = VeyonCore::featureManager().relatedFeatures( featureUid );
+	const auto metaUid = VeyonCore::featureManager().metaFeatureUid(featureUid);
 
 	for (const auto& controlInterface : computerControlInterfaces)
 	{
-		if (controlInterface->activeFeatures().contains(featureUid) ||
-			std::find_if(relatedFeatures.begin(), relatedFeatures.end(),
-						 [&controlInterface](const auto& relatedFeature) {
-			return controlInterface->activeFeatures().contains(relatedFeature.uid());
-		}) != relatedFeatures.end())
+		if( controlInterface->activeFeatures().contains( featureUid ) ||
+			(!metaUid.isNull() && controlInterface->activeFeatures().contains(metaUid)) ||
+			std::find_if( relatedFeatures.begin(), relatedFeatures.end(),
+						  [&controlInterface, featureUid](const auto& relatedFeature) {
+							  return relatedFeature.parentUid() == featureUid && controlInterface->activeFeatures().contains(relatedFeature.uid());
+						  } )
+			!= relatedFeatures.end() )
 		{
 			return true;
 		}

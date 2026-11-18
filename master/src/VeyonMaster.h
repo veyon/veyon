@@ -59,6 +59,7 @@ public:
 	}
 
 	QWidget* mainWindow() override;
+	QWindow* mainQmlWindow() override;
 	Configuration::Object* userConfigurationObject() override;
 	void reloadSubFeatures() override;
 

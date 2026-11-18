@@ -2,41 +2,18 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #pragma once
-
-#include <QDialog>
-
-namespace Ui {
-class OpenWebsiteDialog;
-}
-
-class OpenWebsiteDialog : public QDialog
+#include <QObject>
+class QWidget;
+class OpenWebsiteDialog : public QObject
 {
 	Q_OBJECT
 public:
-	explicit OpenWebsiteDialog(QWidget* parent);
-	~OpenWebsiteDialog() override;
-
-	const QString& website() const
-	{
-		return m_website;
-	}
-
-	bool remember() const
-	{
-		return m_remember;
-	}
-
-	const QString& presetName() const
-	{
-		return m_presetName;
-	}
-
+	explicit OpenWebsiteDialog(QWidget* parent, const QString& summary = {});
+	int exec();
+	const QString& website() const { return m_website; }
+	bool remember() const { return m_remember; }
+	const QString& presetName() const { return m_presetName; }
 private:
-	void validate();
-	void accept() override;
-
-	Ui::OpenWebsiteDialog* ui;
-	QString m_website;
-	bool m_remember;
-	QString m_presetName;
+	QString m_summary, m_website, m_presetName;
+	bool m_remember = false;
 };

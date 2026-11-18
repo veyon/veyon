@@ -1,6 +1,8 @@
 <RCC>
     <qresource prefix="/filetransfer" >
         <file>collect-files.png</file>
+        <file>qml/TransferWindow.qml</file>
+        <file>qml/CollectWindow.qml</file>
         <file>distribute-files.png</file>
         <file>distribute-files-dark.png</file>
         <file>file-scheduled.png</file>

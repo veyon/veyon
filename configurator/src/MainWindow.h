@@ -11,6 +11,12 @@ namespace Ui {
 class MainWindow;
 }
 
+class QLineEdit;
+class QPushButton;
+class QTreeWidget;
+class QTreeWidgetItem;
+class QLabel;
+
 class MainWindow : public QMainWindow
 {
 	Q_OBJECT
@@ -43,6 +49,22 @@ private:
 
 	void closeEvent(QCloseEvent* closeEvent) override;
 
+	void buildNavigation();
+	void selectNavigationPage(QTreeWidgetItem* item);
+	void updateStatus();
+	void filterPages();
+	QTreeWidget* m_navigation{};
+	QLabel* m_heading{};
+	QLabel* m_description{};
+	QLabel* m_status{};
+	QLabel* m_statusIndicator{};
+	QPushButton* m_serviceAction{};
+	QLabel* m_serviceStatus{};
+	QLabel* m_authenticationStatus{};
+	QLabel* m_directoryStatus{};
+	QLabel* m_ldapStatus{};
+	QLabel* m_accessStatus{};
+	QLineEdit* m_pageSearch{};
 	Ui::MainWindow* ui;
 	bool m_configChanged;
 };

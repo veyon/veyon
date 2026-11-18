@@ -7,12 +7,14 @@
 #include "NetworkObjectDirectory.h"
 #include "VeyonConfiguration.h"
 #include "VeyonCore.h"
+#include "Configuration/Metadata.h"
 
 
 VeyonConfiguration::VeyonConfiguration() :
 	Configuration::Object(Configuration::Store::Backend::Local,
 						  Configuration::Store::Scope::System)
 {
+	Configuration::Metadata::initialize(*this);
 }
 
 
@@ -20,6 +22,7 @@ VeyonConfiguration::VeyonConfiguration() :
 VeyonConfiguration::VeyonConfiguration(Configuration::Store* store) :
 	Configuration::Object(store)
 {
+	Configuration::Metadata::initialize(*this);
 }
 
 

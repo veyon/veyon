@@ -3,17 +3,22 @@
 
 #pragma once
 
+#include "QuickConfigurationPluginInterface.h"
+
 #include "ExternalVncServerConfiguration.h"
 #include "PluginInterface.h"
 #include "VncServerPluginInterface.h"
 
-class ExternalVncServer : public QObject, VncServerPluginInterface, PluginInterface
+class ExternalVncServer : public QObject, VncServerPluginInterface, PluginInterface,
+		public QuickConfigurationPluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.ExternalVncServer")
-	Q_INTERFACES(PluginInterface VncServerPluginInterface)
+	Q_INTERFACES(QuickConfigurationPluginInterface PluginInterface VncServerPluginInterface)
 public:
-	explicit ExternalVncServer(QObject* parent = nullptr);
+	QObject* createQuickConfiguration(Configuration::Object* draft, QObject* parent) override;
+
+	explicit ExternalVncServer( QObject* parent = nullptr );
 
 	Plugin::Uid uid() const override
 	{

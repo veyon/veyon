@@ -3,10 +3,12 @@
 
 #pragma once
 
-#include "BuiltinDirectoryConfiguration.h"
-#include "CommandLineIO.h"
+#include "QuickConfigurationPluginInterface.h"
+
 #include "CommandLinePluginInterface.h"
+#include "CommandLineIO.h"
 #include "ConfigurationPagePluginInterface.h"
+#include "BuiltinDirectoryConfiguration.h"
 #include "NetworkObject.h"
 #include "NetworkObjectDirectoryPluginInterface.h"
 
@@ -17,16 +19,19 @@ class BuiltinDirectoryPlugin : public QObject,
 							   NetworkObjectDirectoryPluginInterface,
 							   ConfigurationPagePluginInterface,
 							   CommandLinePluginInterface,
-							   CommandLineIO
+		CommandLineIO,
+		public QuickConfigurationPluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.BuiltinDirectory")
-	Q_INTERFACES(PluginInterface
+	Q_INTERFACES(QuickConfigurationPluginInterface PluginInterface
 					 NetworkObjectDirectoryPluginInterface
 						 ConfigurationPagePluginInterface
 							 CommandLinePluginInterface)
 public:
-	explicit BuiltinDirectoryPlugin(QObject* paren = nullptr);
+	QObject* createQuickConfiguration(Configuration::Object* draft, QObject* parent) override;
+
+	explicit BuiltinDirectoryPlugin( QObject* paren = nullptr );
 	~BuiltinDirectoryPlugin() override = default;
 
 	Plugin::Uid uid() const override

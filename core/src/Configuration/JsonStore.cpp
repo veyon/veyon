@@ -3,6 +3,8 @@
 
 #include <QDir>
 #include <QFile>
+#include <QFileInfo>
+#include <QSaveFile>
 #include <QJsonDocument>
 #include <QJsonObject>
 
@@ -23,7 +25,7 @@ JsonStore::JsonStore(Scope scope, const QString& file) :
 
 
 
-static void loadJsonTree(Object* obj, const QJsonObject& jsonParent, const QString& parentKey)
+static bool loadJsonTree(Object* obj, const QJsonObject& jsonParent, const QString& parentKey, QString* error)
 {
 	for (auto it = jsonParent.begin(); it != jsonParent.end(); ++it)
 	{
@@ -33,16 +35,26 @@ static void loadJsonTree(Object* obj, const QJsonObject& jsonParent, const QStri
 
 			if (jsonObject.contains(QStringLiteral("JsonStoreArray")))
 			{
-				obj->setValue(it.key(), jsonObject[QStringLiteral("JsonStoreArray")].toArray(), parentKey);
+				if (jsonObject.size() != 1 || !jsonObject[QStringLiteral("JsonStoreArray")].isArray())
+				{
+					if (error) *error = QObject::tr("Invalid array value for %1.").arg(it.key());
+					return false;
+				}
+				obj->setValue( it.key(), jsonObject[QStringLiteral("JsonStoreArray")].toArray(), parentKey );
 			}
 			else if (jsonObject.contains(QStringLiteral("JsonStoreObject")))
 			{
-				obj->setValue(it.key(), jsonObject[QStringLiteral("JsonStoreObject")].toObject(), parentKey);
+				if (jsonObject.size() != 1 || !jsonObject[QStringLiteral("JsonStoreObject")].isObject())
+				{
+					if (error) *error = QObject::tr("Invalid object value for %1.").arg(it.key());
+					return false;
+				}
+				obj->setValue( it.key(), jsonObject[QStringLiteral("JsonStoreObject")].toObject(), parentKey );
 			}
 			else
 			{
-				const QString subParentKey = parentKey + (parentKey.isEmpty() ? QString() : QStringLiteral("/")) + it.key();
-				loadJsonTree(obj, it.value().toObject(), subParentKey);
+				const QString subParentKey = parentKey + ( parentKey.isEmpty() ? QString() : QStringLiteral("/") ) + it.key();
+				if (!loadJsonTree(obj, it.value().toObject(), subParentKey, error)) return false;
 			}
 		}
 		else
@@ -50,22 +62,50 @@ static void loadJsonTree(Object* obj, const QJsonObject& jsonParent, const QStri
 			obj->setValue(it.key(), it.value().toVariant(), parentKey);
 		}
 	}
+	return true;
 }
 
 
 
 void JsonStore::load(Object* obj)
 {
-	QFile jsonFile(configurationFilePath());
-	if (!jsonFile.open(QFile::ReadOnly))
+	if (!QFileInfo::exists(configurationFilePath())) return;
+	QString error;
+	if (!loadChecked(obj, &error)) vWarning() << error;
+}
+
+bool JsonStore::loadChecked(Object* object, QString* error)
+{
+	if (error) error->clear();
+	QFile file(configurationFilePath());
+	if (!file.open(QIODevice::ReadOnly))
 	{
-		vWarning() << "could not open" << jsonFile.fileName();
-		return;
+		if (error) *error = QObject::tr("Could not read %1: %2").arg(file.fileName(), file.errorString());
+		return false;
 	}
-
-	QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonFile.readAll());
-
-	loadJsonTree(obj, jsonDoc.object(), {});
+	const auto data = file.readAll();
+	if (file.error() != QFileDevice::NoError)
+	{
+		if (error) *error = QObject::tr("Could not read %1: %2").arg(file.fileName(), file.errorString());
+		return false;
+	}
+	QJsonParseError parseError;
+	const auto document = QJsonDocument::fromJson(data, &parseError);
+	if (parseError.error != QJsonParseError::NoError)
+	{
+		if (error) *error = QObject::tr("Invalid JSON in %1 at byte %2: %3")
+			.arg(file.fileName()).arg(parseError.offset).arg(parseError.errorString());
+		return false;
+	}
+	if (!document.isObject())
+	{
+		if (error) *error = QObject::tr("The configuration in %1 must be a JSON object.").arg(file.fileName());
+		return false;
+	}
+	Object loaded;
+	if (!loadJsonTree(&loaded, document.object(), {}, error)) return false;
+	*object += loaded;
+	return true;
 }
 
 
@@ -113,40 +153,43 @@ static QJsonObject saveJsonTree(const Object::DataMap& dataMap)
 
 void JsonStore::flush(const Object* obj)
 {
-	QFile outfile(configurationFilePath());
-	if (!outfile.open(QIODevice::WriteOnly | QIODevice::Truncate))
-	{
-		vCritical() << "could not write to configuration file" << configurationFilePath();
-		return;
-	}
+	QString error;
+	if (!flushChecked(obj, &error)) vCritical() << error;
+}
 
-	outfile.write(QJsonDocument(saveJsonTree(obj->data())).toJson());
+bool JsonStore::flushChecked(const Object* object, QString* error)
+{
+	if (error) error->clear();
+	QSaveFile file(configurationFilePath());
+	const auto data = QJsonDocument(saveJsonTree(object->data())).toJson();
+	if (!file.open(QIODevice::WriteOnly) || file.write(data) != data.size() || !file.commit())
+	{
+		if (error) *error = QObject::tr("Could not write %1: %2").arg(file.fileName(), file.errorString());
+		return false;
+	}
+	return true;
 }
 
 
 
 bool JsonStore::isWritable() const
 {
-	QFile outfile(configurationFilePath());
-	if (!outfile.open(QFile::WriteOnly | QFile::Append))
-	{
-		return false;
-	}
-	outfile.close();
-
-	return QFileInfo(configurationFilePath()).isWritable();
+	const QFileInfo file(configurationFilePath());
+	return file.exists() ? file.isFile() && file.isWritable() : QFileInfo(file.absolutePath()).isWritable();
 }
 
 
 
 void JsonStore::clear()
 {
-	// truncate configuration file
-	QFile outfile(configurationFilePath());
-	if (!outfile.open(QIODevice::WriteOnly | QIODevice::Truncate))
-	{
-		vCritical() << "could not write to configuration file" << configurationFilePath();
-	}
+	QString error;
+	if (!clearChecked(&error)) vCritical() << error;
+}
+
+bool JsonStore::clearChecked(QString* error)
+{
+	const Object empty;
+	return flushChecked(&empty, error);
 }
 
 

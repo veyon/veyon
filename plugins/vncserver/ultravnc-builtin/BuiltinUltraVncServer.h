@@ -3,17 +3,22 @@
 
 #pragma once
 
+#include "QuickConfigurationPluginInterface.h"
+
 #include "UltraVncConfiguration.h"
 #include "VncServerPluginInterface.h"
 
 class LogoffEventFilter;
 
-class BuiltinUltraVncServer : public QObject, VncServerPluginInterface, PluginInterface
+class BuiltinUltraVncServer : public QObject, VncServerPluginInterface, PluginInterface,
+		public QuickConfigurationPluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.BuiltinUltraVncServer")
-	Q_INTERFACES(PluginInterface VncServerPluginInterface)
+	Q_INTERFACES(QuickConfigurationPluginInterface PluginInterface VncServerPluginInterface)
 public:
+	QObject* createQuickConfiguration(Configuration::Object* draft, QObject* parent) override;
+
 	BuiltinUltraVncServer();
 	~BuiltinUltraVncServer() override;
 

@@ -15,6 +15,7 @@ find_package(PkgConfig REQUIRED)
 build_veyon_plugin(linux-platform
 	NAME LinuxPlatform
 	SOURCES
+	QuickConfiguration.cpp
 	LinuxPlatformPlugin.cpp
 	LinuxCoreFunctions.cpp
 	LinuxPlatformConfigurationPage.h

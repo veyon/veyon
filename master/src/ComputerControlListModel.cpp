@@ -89,6 +89,10 @@ QVariant ComputerControlListModel::data(const QModelIndex& index, int role) cons
 	case StateRole:
 		return QVariant::fromValue(computerControl->state());
 
+	case SearchRole:
+		return QStringLiteral("%1 %2 %3 %4 %5").arg(computerControl->computerName(), computerControl->userLoginName(),
+			computerControl->userFullName(), computerControl->computer().hostName(), computerControl->computer().location());
+
 	case UserLoginNameRole:
 		return computerControl->userLoginName();
 
@@ -262,7 +266,7 @@ QVariant ComputerControlListModel::uidRoleData(const ComputerControlInterface::P
 void ComputerControlListModel::updateState(const QModelIndex& index)
 {
 	Q_EMIT stateChanged(index);
-	Q_EMIT dataChanged(index, index, {Qt::DisplayRole, Qt::DecorationRole, Qt::SizeHintRole, Qt::ToolTipRole, FramebufferRole});
+	Q_EMIT dataChanged(index, index, {Qt::DisplayRole, Qt::DecorationRole, Qt::SizeHintRole, Qt::ToolTipRole, FramebufferRole, StateRole, SearchRole});
 }
 
 
@@ -291,7 +295,7 @@ void ComputerControlListModel::updateActiveFeatures(const QModelIndex& index)
 
 void ComputerControlListModel::updateUser(const QModelIndex& index)
 {
-	Q_EMIT dataChanged(index, index, {Qt::DisplayRole, Qt::ToolTipRole, Qt::SizeHintRole});
+	Q_EMIT dataChanged(index, index, {Qt::DisplayRole, Qt::ToolTipRole, Qt::SizeHintRole, SearchRole, UserLoginNameRole});
 
 	auto controlInterface = computerControlInterface(index);
 	if (controlInterface.isNull() == false)
@@ -306,7 +310,7 @@ void ComputerControlListModel::updateSessionInfo(const QModelIndex& index)
 {
 	if (uidRoleContent() == UidRoleContent::SessionMetaDataHash)
 	{
-		Q_EMIT dataChanged(index, index, {Qt::ToolTipRole, UidRole});
+		Q_EMIT dataChanged(index, index, {Qt::ToolTipRole, UidRole, Qt::DisplayRole, SearchRole});
 	}
 	else
 	{

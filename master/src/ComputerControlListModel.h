@@ -15,7 +15,8 @@ class ComputerControlListModel : public ComputerListModel
 {
 	Q_OBJECT
 public:
-	explicit ComputerControlListModel(VeyonMaster* masterCore, QObject* parent = nullptr);
+	enum { SearchRole = Qt::UserRole + 50 };
+	explicit ComputerControlListModel( VeyonMaster* masterCore, QObject* parent = nullptr );
 
 	int rowCount(const QModelIndex& parent = QModelIndex()) const override;
 

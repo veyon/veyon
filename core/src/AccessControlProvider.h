@@ -9,6 +9,7 @@
 
 class UserGroupsBackendInterface;
 class NetworkObjectDirectory;
+class VeyonConfiguration;
 
 class VEYON_CORE_EXPORT AccessControlProvider : public QObject, FeatureProviderInterface, PluginInterface
 {
@@ -43,6 +44,9 @@ public:
 	};
 
 	AccessControlProvider();
+	explicit AccessControlProvider(const VeyonConfiguration& configuration,
+		UserGroupsBackendInterface* userGroupsBackend = nullptr,
+		NetworkObjectDirectory* networkObjectDirectory = nullptr);
 
 	QStringList userGroups() const;
 	QStringList locations() const;
@@ -147,4 +151,7 @@ private:
 	FeatureList m_features{m_accessControlFeature};
 
 	QStringList m_authorizedUserGroups;
-};
+	bool m_restrictedToUserGroups{false};
+	bool m_rulesProcessingEnabled{false};
+
+} ;

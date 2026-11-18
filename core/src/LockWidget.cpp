@@ -1,99 +1,118 @@
-// SPDX-FileCopyrightText: 2006-2026 Tobias Junghans <tobydox@veyon.io>
-// SPDX-License-Identifier: GPL-2.0-or-later
-
-#include <QApplication>
-#include <QPainter>
-#include <QScreen>
-#include <QWindow>
+/*
+ *  LockWidget.cpp - widget for locking a client
+ *
+ *  Copyright (c) 2006-2026 Tobias Junghans <tobydox@veyon.io>
+ *
+ *  This file is part of Veyon - https://veyon.io
+ *
+ *  This is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This software is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this software; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307,
+ *  USA.
+ */
 
 #include "LockWidget.h"
+#include "QuickUi.h"
 #include "PlatformCoreFunctions.h"
 #include "PlatformInputDeviceFunctions.h"
-
-
-LockWidget::LockWidget(Mode mode, const QPixmap& background, QWidget* parent) :
-	QWidget(parent, Qt::X11BypassWindowManagerHint),
-	m_background(background),
-	m_mode(mode)
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <QQuickImageProvider>
+#include <QQuickWindow>
+#include <QScreen>
+#include <utility>
+namespace
 {
-	auto leftMostScreen = QGuiApplication::primaryScreen();
-	int minimumX = 0;
-	const auto screens = QGuiApplication::screens();
-	for (auto* screen : screens)
+class LockImageProvider final : public QQuickImageProvider
+{
+public:
+	explicit LockImageProvider(QImage image) : QQuickImageProvider(Image), m_image(std::move(image)) {}
+	QImage requestImage(const QString&, QSize* size, const QSize&) override
 	{
-		if (screen->geometry().x() < minimumX)
-		{
-			minimumX = screen->geometry().x();
-			leftMostScreen = screen;
+		if (size) *size = m_image.size();
+		return m_image;
 		}
-	}
-
-	if (mode == DesktopVisible)
+private:
+	QImage m_image;
+};
+}
+LockWidget::LockWidget(Mode mode, const QPixmap& background, QObject* parent) : QObject(parent), m_mode(mode)
+{
+	connect(QCoreApplication::instance(), &QCoreApplication::aboutToQuit, this, &LockWidget::cleanup);
+	auto screen = QGuiApplication::primaryScreen();
+	if (!screen)
 	{
-		m_background = leftMostScreen->grabWindow(0);
+		vCritical() << "Could not lock the desktop: no screen is available";
+		return;
 	}
-
+	for (auto candidate : QGuiApplication::screens())
+		if (candidate->geometry().x() < screen->geometry().x()) screen = candidate;
+	m_engine = QuickUi::createEngine(this);
+	m_engine->addImageProvider(QStringLiteral("lockBackground"), new LockImageProvider(
+		mode == DesktopVisible ? screen->grabWindow(0).toImage() : background.toImage()));
+	m_engine->rootContext()->setContextProperty(QStringLiteral("lockState"), this);
+	m_engine->load(QUrl(QStringLiteral("qrc:/quick/LockWindow.qml")));
+	if (!m_engine->rootObjects().isEmpty()) m_window = qobject_cast<QWindow*>(m_engine->rootObjects().first());
+	m_hasQmlContent = !m_window.isNull();
+	if (!m_window)
+	{
+		auto fallback = new QQuickWindow;
+		fallback->setColor(Qt::black);
+		fallback->QObject::setParent(m_engine);
+		m_window = fallback;
+	}
+	auto flags = Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint;
+#ifdef Q_OS_LINUX
+	flags |= Qt::X11BypassWindowManagerHint;
+#endif
+	m_window->setFlags(flags);
+	m_window->setScreen(screen);
+	const auto desktopGeometry = screen->virtualGeometry();
+	m_window->setGeometry(desktopGeometry);
 	VeyonCore::platform().coreFunctions().setSystemUiState(false);
 	VeyonCore::platform().inputDeviceFunctions().disableInputDevices();
-
-	setWindowTitle({});
-
-#ifdef Q_OS_LINUX
-	show();
-#endif
-	move(leftMostScreen->geometry().topLeft());
-#ifndef Q_OS_LINUX
-	showFullScreen();
-#endif
-	windowHandle()->setScreen(leftMostScreen);
-	setFixedSize(leftMostScreen->virtualSize());
-
-	VeyonCore::platform().coreFunctions().raiseWindow(this, true);
-#ifdef Q_OS_LINUX
-	showFullScreen();
-#endif
-
-	setFocusPolicy(Qt::StrongFocus);
-	setFocus();
-	grabMouse();
-	grabKeyboard();
-	setCursor(Qt::BlankCursor);
+	m_locked = true;
+	m_window->show();
+	VeyonCore::platform().coreFunctions().raiseWindow(m_window.data(), true);
+	m_window->showFullScreen();
+	m_window->setMinimumSize(desktopGeometry.size());
+	m_window->setMaximumSize(desktopGeometry.size());
+	m_window->setGeometry(desktopGeometry);
+	m_window->setMouseGrabEnabled(true);
+	m_window->setKeyboardGrabEnabled(true);
+	m_window->setCursor(QCursor(Qt::BlankCursor));
 	QGuiApplication::setOverrideCursor(Qt::BlankCursor);
-
-	QCursor::setPos(mapToGlobal(QPoint(0, 0)));
 }
-
-
-
 LockWidget::~LockWidget()
 {
-	VeyonCore::platform().inputDeviceFunctions().enableInputDevices();
-	VeyonCore::platform().coreFunctions().setSystemUiState(true);
-
-	QGuiApplication::restoreOverrideCursor();
+	cleanup();
 }
 
-
-
-void LockWidget::paintEvent(QPaintEvent* event)
+void LockWidget::cleanup()
 {
-	Q_UNUSED(event);
-
-	QPainter p(this);
-	switch (m_mode)
+	if (m_window)
 	{
-	case DesktopVisible:
-		p.drawPixmap(0, 0, m_background);
-		break;
-
-	case BackgroundPixmap:
-		p.fillRect(rect(), QColor(64, 64, 64));
-		p.drawPixmap((width() - m_background.width()) / 2,
-					 (height() - m_background.height()) / 2,
-					 m_background);
-		break;
-
-	default:
-		break;
+		m_window->setMouseGrabEnabled(false);
+		m_window->setKeyboardGrabEnabled(false);
+	}
+	delete std::exchange(m_engine, nullptr);
+	m_window = nullptr;
+	m_hasQmlContent = false;
+	if (std::exchange(m_locked, false))
+	{
+		VeyonCore::platform().inputDeviceFunctions().enableInputDevices();
+		VeyonCore::platform().coreFunctions().setSystemUiState(true);
+		QGuiApplication::restoreOverrideCursor();
 	}
 }

@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include "QuickConfigurationPluginInterface.h"
+
 #include "ConfigurationPagePluginInterface.h"
 #include "PluginInterface.h"
 #include "PlatformPluginInterface.h"
@@ -16,13 +18,16 @@
 
 class QWindow;
 
-class WindowsPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface, ConfigurationPagePluginInterface
+class WindowsPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface, ConfigurationPagePluginInterface,
+		public QuickConfigurationPluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.WindowsPlatform")
-	Q_INTERFACES(PluginInterface PlatformPluginInterface ConfigurationPagePluginInterface)
+	Q_INTERFACES(QuickConfigurationPluginInterface PluginInterface PlatformPluginInterface ConfigurationPagePluginInterface)
 public:
-	WindowsPlatformPlugin(QObject* parent = nullptr);
+	QObject* createQuickConfiguration(Configuration::Object* draft, QObject* parent) override;
+
+	WindowsPlatformPlugin( QObject* parent = nullptr );
 	~WindowsPlatformPlugin() override;
 
 	Plugin::Uid uid() const override

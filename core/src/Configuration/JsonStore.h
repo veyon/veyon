@@ -19,6 +19,9 @@ public:
 	void flush(const Object* obj) override;
 	bool isWritable() const override;
 	void clear() override;
+	bool loadChecked(Object* object, QString* error = nullptr) override;
+	bool flushChecked(const Object* object, QString* error = nullptr) override;
+	bool clearChecked(QString* error = nullptr) override;
 
 private:
 	QString configurationFilePath() const;

@@ -3,6 +3,9 @@ include(BuildVeyonPlugin)
 build_veyon_plugin(builtindirectory
 	NAME BuiltinDirectory
 	SOURCES
+	QuickConfiguration.cpp
+	QuickConfigurationController.cpp
+	QuickConfigurationController.h
 	BuiltinDirectoryPlugin.cpp
 	BuiltinDirectoryConfigurationPage.cpp
 	BuiltinDirectoryConfigurationPage.ui

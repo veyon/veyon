@@ -5,11 +5,14 @@
 
 #include "CryptoCore.h"
 
+class VeyonConfiguration;
+
 class AuthKeysManager : public QObject
 {
 	Q_OBJECT
 public:
-	explicit AuthKeysManager(QObject* parent = nullptr);
+	explicit AuthKeysManager( QObject* parent = nullptr );
+	AuthKeysManager(const VeyonConfiguration& configuration, QObject* parent = nullptr);
 	~AuthKeysManager() override = default;
 
 	const QString& resultMessage() const
@@ -38,7 +41,10 @@ public:
 	static QString keyNameFromExportedKeyFile(const QString& keyFile);
 
 private:
-	bool checkKey(const QString& name, const QString& type, bool checkIsReadable = true);
+	QString privateKeyPath(const QString& name) const;
+	QString publicKeyPath(const QString& name) const;
+	const VeyonConfiguration& m_configuration;
+	bool checkKey( const QString& name, const QString& type, bool checkIsReadable = true );
 
 	QString keyFilePathFromType(const QString& name, const QString& type) const;
 	bool setKeyFilePermissions(const QString& name, const QString& type) const;

@@ -2,41 +2,18 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #pragma once
-
-#include <QDialog>
-
-namespace Ui {
-class StartAppDialog;
-}
-
-class StartAppDialog : public QDialog
+#include <QObject>
+class QWidget;
+class StartAppDialog : public QObject
 {
 	Q_OBJECT
 public:
-	explicit StartAppDialog(QWidget* parent);
-	~StartAppDialog() override;
-
-	const QString& apps() const
-	{
-		return m_apps;
-	}
-
-	bool remember() const
-	{
-		return m_remember;
-	}
-
-	const QString& presetName() const
-	{
-		return m_presetName;
-	}
-
+	explicit StartAppDialog(QWidget* parent, const QString& summary = {});
+	int exec();
+	const QString& apps() const { return m_apps; }
+	bool remember() const { return m_remember; }
+	const QString& presetName() const { return m_presetName; }
 private:
-	void validate();
-	void accept() override;
-
-	Ui::StartAppDialog* ui;
-	QString m_apps;
-	bool m_remember;
-	QString m_presetName;
+	QString m_summary, m_apps, m_presetName;
+	bool m_remember = false;
 };

@@ -6,7 +6,12 @@
 
 #include "PlatformServiceFunctions.h"
 #include "ServiceControl.h"
-#include "Toast.h"
+#include "QuickUi.h"
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <QGuiApplication>
+#include <memory>
+#include <QWindow>
 
 
 ServiceControl::ServiceControl(const QString& name,
@@ -85,7 +90,7 @@ void ServiceControl::unregisterService()
 
 void ServiceControl::serviceControl(const QString& title, const Operation& operation)
 {
-	if (m_parent)
+	if (m_parent || (qobject_cast<QGuiApplication*>(QCoreApplication::instance()) && QGuiApplication::focusWindow()))
 	{
 		graphicalFeedback(title, operation);
 	}
@@ -99,20 +104,28 @@ void ServiceControl::serviceControl(const QString& title, const Operation& opera
 
 void ServiceControl::graphicalFeedback(const QString& title, const Operation& operation)
 {
-	auto toast = new Toast(m_parent);
-	toast->setTitle(tr("Service control"));
-	toast->setText(title);
-	toast->applyPreset(Toast::Preset::Information);
-	toast->setDuration(0);
-	toast->show();
+	const auto parentWindow = QGuiApplication::focusWindow();
+	std::unique_ptr<QQmlApplicationEngine> engine(QuickUi::createEngine());
+	auto request = new QuickDialogRequest(QStringLiteral("busy"),
+		{{QStringLiteral("title"), tr("Service control")}, {QStringLiteral("text"), title}}, engine.get());
+	engine->rootContext()->setContextProperty(QStringLiteral("dialogRequest"), request);
+	engine->load(QUrl(QStringLiteral("qrc:/quick/GenericDialog.qml")));
+	if (!engine->rootObjects().isEmpty())
+		if (auto window = qobject_cast<QWindow*>(engine->rootObjects().first()))
+		{
+			window->hide();
+			window->setTransientParent(parentWindow);
+			window->setModality(Qt::ApplicationModal);
+			window->show();
+		}
 
-	while (operation.isRunning())
+	while (!operation.isFinished())
 	{
 		QCoreApplication::processEvents();
 		QThread::msleep(10);
 	}
 
-	toast->hide();
+	request->accept();
 }
 
 

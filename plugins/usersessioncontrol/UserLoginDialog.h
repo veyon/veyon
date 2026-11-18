@@ -2,28 +2,18 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #pragma once
-
-#include <QDialog>
-
+#include <QObject>
 #include "CryptoCore.h"
-
-namespace Ui {
-class UserLoginDialog;
-}
-
-class UserLoginDialog : public QDialog
+class QWidget;
+class UserLoginDialog : public QObject
 {
 	Q_OBJECT
 public:
 	explicit UserLoginDialog(QWidget* parent);
-	~UserLoginDialog() override;
-
-	QString username() const;
-	CryptoCore::PlaintextPassword password() const;
-
-private Q_SLOTS:
-	void updateOkButton();
-
+	int exec();
+	QString username() const { return m_username; }
+	CryptoCore::PlaintextPassword password() const { return m_password; }
 private:
-	Ui::UserLoginDialog* ui;
+	QString m_username;
+	CryptoCore::PlaintextPassword m_password;
 };

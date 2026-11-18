@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <QHostAddress>
-#include <QMessageBox>
+#include "QuickUi.h"
 
 #include "BuiltinFeatures.h"
 #include "ComputerControlListModel.h"
@@ -34,10 +34,8 @@ VeyonMaster::VeyonMaster(QObject* parent) :
 {
 	if (m_userConfig->isStoreWritable() == false)
 	{
-		QMessageBox::information(nullptr,
-								 tr("No write access"),
-								 tr("Could not save your personal settings! Please check the user configuration "
-									"file path using Veyon Configurator."));
+		QuickUi::execDialog(QStringLiteral("information"), {{QStringLiteral("title"), tr("No write access")},
+			{QStringLiteral("text"), tr("Could not save your personal settings. Check the user configuration file path using Veyon Configurator.")}});
 	}
 
 	connect(m_computerControlListModel, &ComputerControlListModel::modelAboutToBeReset,
@@ -54,10 +52,11 @@ VeyonMaster::VeyonMaster(QObject* parent) :
 	m_localSessionControlInterface.start({}, ComputerControlInterface::UpdateMode::Disabled);
 
 	// attach computer list model to proxy model
-	m_computerMonitoringModel->setSourceModel(m_computerControlListModel);
-	m_computerMonitoringModel->setSortRole(Qt::InitialSortOrderRole);
-	m_computerMonitoringModel->setStateRole(ComputerControlListModel::StateRole);
-	m_computerMonitoringModel->sort(0);
+	m_computerMonitoringModel->setSourceModel( m_computerControlListModel );
+	m_computerMonitoringModel->setSortRole( Qt::InitialSortOrderRole );
+	m_computerMonitoringModel->setFilterRole(ComputerControlListModel::SearchRole);
+	m_computerMonitoringModel->setStateRole( ComputerControlListModel::StateRole );
+	m_computerMonitoringModel->sort( 0 );
 
 	m_mainWindow = new MainWindow(*this);
 }
@@ -127,9 +126,15 @@ FeatureList VeyonMaster::allFeatures() const
 
 QWidget* VeyonMaster::mainWindow()
 {
-	return m_mainWindow;
+	return nullptr;
 }
 
+
+
+QWindow* VeyonMaster::mainQmlWindow()
+{
+	return m_mainWindow ? m_mainWindow->window() : nullptr;
+}
 
 
 Configuration::Object* VeyonMaster::userConfigurationObject()

@@ -6,6 +6,7 @@ find_package(Qt6 REQUIRED COMPONENTS GuiPrivate)
 build_veyon_plugin(windows-platform
 	NAME WindowsPlatform
 	SOURCES
+	QuickConfiguration.cpp
 	WindowsPlatformPlugin.cpp
 	WindowsPlatformConfigurationPage.h
 	WindowsPlatformConfigurationPage.cpp

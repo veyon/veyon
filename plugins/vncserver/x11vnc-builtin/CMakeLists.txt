@@ -107,7 +107,8 @@ if(NOT VEYON_X11VNC_EXTERNAL)
 	set(X11VNC_CONFIG ${CMAKE_BINARY_DIR}/config.h)
 	configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h @ONLY)
 
-	set(x11vnc_SOURCES x11vnc-veyon.c
+	set(x11vnc_SOURCES
+	x11vnc-veyon.c
 		${x11vnc_DIR}/src/appshare.c
 		${x11vnc_DIR}/src/avahi.c
 		${x11vnc_DIR}/src/rates.c
@@ -166,6 +167,7 @@ set(WITH_PCH OFF)
 build_veyon_plugin(builtin-x11vnc-server
 	NAME BuiltinX11VncServer
 	SOURCES
+		QuickConfiguration.cpp
 	BuiltinX11VncServer.cpp
 	X11VncConfigurationWidget.cpp
 	X11VncConfigurationWidget.ui

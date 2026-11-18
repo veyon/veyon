@@ -3,11 +3,12 @@
 
 #include <QDialogButtonBox>
 #include <QGuiApplication>
-#include <QMessageBox>
+
 #include <QPushButton>
 #include <QTimer>
 
 #include "DesktopAccessDialog.h"
+#include "QuickUi.h"
 #include "FeatureWorkerManager.h"
 #include "HostAddress.h"
 #include "PlatformCoreFunctions.h"
@@ -116,34 +117,14 @@ DesktopAccessDialog::Choice DesktopAccessDialog::requestDesktopAccess(const QStr
 
 	qApp->setQuitOnLastWindowClosed(false);
 
-	QMessageBox m(QMessageBox::Question,
-				  tr("Confirm desktop access"),
-				  tr("The user %1 at computer %2 wants to access your desktop. Do you want to grant access?").arg(user, hostName), QMessageBox::Yes | QMessageBox::No);
-
-	m.setStyleSheet(QStringLiteral("button-layout:%1").arg(QDialogButtonBox::WinLayout));
-
-	auto neverBtn = m.addButton(tr("Never for this session"), QMessageBox::NoRole);
-	auto alwaysBtn = m.addButton(tr("Always for this session"), QMessageBox::YesRole);
-
-	m.setEscapeButton(m.button(QMessageBox::No));
-	m.setDefaultButton(neverBtn);
-
-	VeyonCore::platform().coreFunctions().raiseWindow(&m, true);
-
-	const auto result = m.exec();
-
-	if (m.clickedButton() == neverBtn)
-	{
-		return ChoiceNever;
-	}
-	else if (m.clickedButton() == alwaysBtn)
-	{
-		return ChoiceAlways;
-	}
-	else if (result == QMessageBox::Yes)
-	{
-		return ChoiceYes;
-	}
-
-	return ChoiceNo;
+	const QVariantList buttons{
+		QVariantMap{{QStringLiteral("text"), tr("Never for this session")}, {QStringLiteral("value"), ChoiceNever}},
+		QVariantMap{{QStringLiteral("text"), tr("No")}, {QStringLiteral("value"), ChoiceNo}},
+		QVariantMap{{QStringLiteral("text"), tr("Yes")}, {QStringLiteral("value"), ChoiceYes}},
+		QVariantMap{{QStringLiteral("text"), tr("Always for this session")}, {QStringLiteral("value"), ChoiceAlways}}};
+	const auto result = QuickUi::execDialog(QStringLiteral("access"), {
+		{QStringLiteral("title"), tr("Confirm desktop access")},
+		{QStringLiteral("text"), tr("The user %1 at computer %2 wants to access your desktop. Do you want to grant access?").arg(user, hostName)},
+		{QStringLiteral("buttons"), buttons}});
+	return result.value(QStringLiteral("accepted")).toBool() ? static_cast<Choice>(result.value(QStringLiteral("choice")).toInt()) : ChoiceNo;
 }

@@ -129,5 +129,6 @@ private:
 	QString m_clipboardText;
 	QImage m_clipboardImage;
 
-	QList<QPair<QPointer<QObject>, VncView*>> m_vncViews{};
+	QList<QPair<QPointer<QObject>, ComputerControlInterface::Pointer>> m_vncViews{};
+
 };

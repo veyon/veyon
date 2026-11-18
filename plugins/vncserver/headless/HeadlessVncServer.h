@@ -3,19 +3,24 @@
 
 #pragma once
 
+#include "QuickConfigurationPluginInterface.h"
+
 #include "HeadlessVncConfiguration.h"
 #include "PluginInterface.h"
 #include "VncServerPluginInterface.h"
 
 struct HeadlessVncScreen;
 
-class HeadlessVncServer : public QObject, VncServerPluginInterface, PluginInterface
+class HeadlessVncServer : public QObject, VncServerPluginInterface, PluginInterface,
+		public QuickConfigurationPluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.HeadlessVncServer")
-	Q_INTERFACES(PluginInterface VncServerPluginInterface)
+	Q_INTERFACES(QuickConfigurationPluginInterface PluginInterface VncServerPluginInterface)
 public:
-	explicit HeadlessVncServer(QObject* parent = nullptr);
+	QObject* createQuickConfiguration(Configuration::Object* draft, QObject* parent) override;
+
+	explicit HeadlessVncServer( QObject* parent = nullptr );
 
 	Plugin::Uid uid() const override
 	{

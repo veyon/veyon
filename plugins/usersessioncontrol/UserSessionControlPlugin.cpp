@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2017-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include <QMessageBox>
+#include "QuickUi.h"
 
 #include "PlatformSessionFunctions.h"
 #include "PlatformUserFunctions.h"
@@ -145,9 +145,11 @@ bool UserSessionControlPlugin::confirmFeatureExecution(const Feature& feature, b
 
 	if (feature == m_userLogoffFeature)
 	{
-		return QMessageBox::question(parent, tr("Confirm user logoff"),
-									 all ? tr("Do you really want to log off <b>ALL</b> users?") : tr("Do you really want to log off the selected users?")) ==
-			QMessageBox::Yes;
+		Q_UNUSED(parent)
+		return QuickUi::execDialog(QStringLiteral("confirm"), {
+			{QStringLiteral("title"), tr("Confirm user logoff")},
+			{QStringLiteral("text"), all ? tr("Do you really want to log off ALL users?") : tr("Do you really want to log off the selected users?")}})
+			.value(QStringLiteral("accepted")).toBool();
 	}
 
 	return true;

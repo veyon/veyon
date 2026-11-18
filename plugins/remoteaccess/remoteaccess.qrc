@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/remoteaccess">
+        <file>RemoteAccess.qml</file>
         <file>preferences-system-windows-effect-desktopgrid.png</file>
         <file>application-exit.png</file>
         <file>krdc.png</file>

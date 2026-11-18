@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <QMap>
 #include <QObject>
 #include <QTimer>
 
