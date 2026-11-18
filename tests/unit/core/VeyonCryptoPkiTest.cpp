@@ -1642,7 +1642,7 @@ void VeyonCryptoPkiTest::nullAndCopiedObjects()
 	const auto ed25519PublicKey = key(KeyAlgorithm::Ed25519).publicKey();
 	PublicKey copiedPublicKey;
 	copiedPublicKey = ed25519PublicKey;
-	QCOMPARE(copiedPublicKey.toEd25519RawKey().size(), PublicKey::Ed25519KeySize);
+	QCOMPARE(copiedPublicKey.toEd25519RawKey().size(), qsizetype(PublicKey::Ed25519KeySize));
 }
 
 
@@ -1653,12 +1653,16 @@ void VeyonCryptoPkiTest::invalidInputSizes()
 
 	QVERIFY(CertificateRequest::fromPem({}).has_value() == false);
 	QVERIFY(CertificateRequest::fromPem(oversized).has_value() == false);
+	QVERIFY2(lastError().contains(QLatin1String("invalid size")), qPrintable(lastError()));
 	QVERIFY(PrivateKey::fromPkcs8Pem({}).has_value() == false);
 	QVERIFY(PrivateKey::fromPkcs8Pem(oversized).has_value() == false);
+	QVERIFY2(lastError().contains(QLatin1String("invalid size")), qPrintable(lastError()));
 	QVERIFY(PublicKey::fromDer({}).has_value() == false);
 	QVERIFY(PublicKey::fromDer(oversized).has_value() == false);
+	QVERIFY2(lastError().contains(QLatin1String("invalid size")), qPrintable(lastError()));
 	QVERIFY(PublicKey::fromPem({}).has_value() == false);
 	QVERIFY(PublicKey::fromPem(oversized).has_value() == false);
+	QVERIFY2(lastError().contains(QLatin1String("invalid size")), qPrintable(lastError()));
 
 	// names longer than 64 characters
 	CertificateAuthority::CaParameters parameters;
