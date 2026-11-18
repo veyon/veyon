@@ -86,7 +86,11 @@ if(WITH_TESTS)
 		# the RFB headers need winsock2.h before windows.h (veyon-server gets it from its precompiled header)
 		target_compile_options(VncProxyServerTlsTest PRIVATE -include winsock2.h)
 	endif()
-	add_test(NAME VncProxyServerTlsTest COMMAND VncProxyServerTlsTest)
+	# needs a VeyonCore instance with the platform plugin from the build tree, which the Windows
+	# CI job does not provide (and its TLS cases need the OpenSSL backend, which MSYS2 lacks)
+	if(NOT VEYON_BUILD_WINDOWS)
+		add_test(NAME VncProxyServerTlsTest COMMAND VncProxyServerTlsTest)
+	endif()
 
 	add_executable(IpcChannelTest IpcChannelTest.cpp)
 	set_default_target_properties(IpcChannelTest)
