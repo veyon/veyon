@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include "QuickConfigurationPluginInterface.h"
+
 #include <QFile>
 
 #include "ConfigurationPagePluginInterface.h"
@@ -13,15 +15,19 @@
 class FileCollectWorker;
 class FileTransferController;
 
-class FileTransferPlugin : public QObject, FeatureProviderInterface, PluginInterface, ConfigurationPagePluginInterface
+class FileTransferPlugin : public QObject, FeatureProviderInterface, PluginInterface, ConfigurationPagePluginInterface,
+		public QuickConfigurationPluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.FileTransfer")
-	Q_INTERFACES(PluginInterface
+	Q_INTERFACES(QuickConfigurationPluginInterface PluginInterface
 					 FeatureProviderInterface
 						 ConfigurationPagePluginInterface)
 public:
-	enum class FeatureCommand {
+	QObject* createQuickConfiguration(Configuration::Object* draft, QObject* parent) override;
+
+	enum class FeatureCommand
+	{
 		StartFileTransfer,
 		ContinueFileTransfer,
 		CancelFileTransfer,

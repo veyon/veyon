@@ -3,12 +3,12 @@ include(BuildVeyonPlugin)
 build_veyon_plugin(filetransfer
 	NAME FileTransfer
 	SOURCES
+	QuickConfiguration.cpp
 	FileTransferPlugin.cpp
 	FileTransferPlugin.h
 	FileCollection.h
 	FileCollectController.h
 	FileCollectController.cpp
-	FileCollectDialog.ui
 	FileCollectDialog.h
 	FileCollectDialog.cpp
 	FileCollectTreeModel.h
@@ -25,11 +25,8 @@ build_veyon_plugin(filetransfer
 	FileTransferListModel.h
 	FileTransferDialog.cpp
 	FileTransferDialog.h
-	FileTransferDialog.ui
 	FileTransferUserConfiguration.h
 	FileReadThread.cpp
 	FileReadThread.h
-	ProgressItemDelegate.cpp
-	ProgressItemDelegate.h
 	filetransfer.qrc
 	)

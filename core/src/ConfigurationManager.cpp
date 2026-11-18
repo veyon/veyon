@@ -11,9 +11,13 @@
 
 
 
-ConfigurationManager::ConfigurationManager(QObject* parent) :
-	QObject(parent),
-	m_configuration(VeyonCore::config())
+ConfigurationManager::ConfigurationManager( QObject* parent ) :
+	ConfigurationManager(VeyonCore::config(), parent)
+{
+}
+
+ConfigurationManager::ConfigurationManager(VeyonConfiguration& configuration, QObject* parent) :
+	QObject(parent), m_configuration(configuration)
 {
 }
 
@@ -21,15 +25,14 @@ ConfigurationManager::ConfigurationManager(QObject* parent) :
 
 bool ConfigurationManager::clearConfiguration()
 {
-	Configuration::LocalStore(Configuration::LocalStore::Scope::System).clear();
-
-	return true;
+	return Configuration::LocalStore(Configuration::LocalStore::Scope::System).clearChecked(&m_errorString);
 }
 
 
 
 bool ConfigurationManager::applyConfiguration()
 {
+	m_errorString.clear();
 	// update Veyon Service configuration
 	if (VeyonServiceControl().setAutostart(m_configuration.autostartService()) == false)
 	{
@@ -76,6 +79,5 @@ bool ConfigurationManager::saveConfiguration()
 		return false;
 	}
 
-	localStore.flush(&m_configuration);
-	return true;
+	return localStore.flushChecked(&m_configuration, &m_errorString);
 }

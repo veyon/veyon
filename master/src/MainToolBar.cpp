@@ -69,11 +69,11 @@ void MainToolBar::updateMinimumSize()
 		const auto newSize = m_layout->contentsRect().size();
 		if (orientation() == Qt::Horizontal)
 		{
-			setMinimumSize(0, newSize.height());
+			setMinimumSize(0, qMax(0, newSize.height()));
 		}
 		else
 		{
-			setMinimumSize(newSize.width(), 0);
+			setMinimumSize(qMax(0, newSize.width()), 0);
 		}
 	}
 }

@@ -3,6 +3,9 @@ include(BuildVeyonPlugin)
 build_veyon_plugin(desktopservices
 	NAME DesktopServices
 	SOURCES
+	QuickConfiguration.cpp
+	QuickConfigurationController.cpp
+	QuickConfigurationController.h
 	DesktopServiceObject.cpp
 	DesktopServicesConfigurationPage.cpp
 	DesktopServicesConfigurationPage.ui

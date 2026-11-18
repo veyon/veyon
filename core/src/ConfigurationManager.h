@@ -13,7 +13,8 @@ class VEYON_CORE_EXPORT ConfigurationManager : public QObject
 {
 	Q_OBJECT
 public:
-	explicit ConfigurationManager(QObject* parent = nullptr);
+	explicit ConfigurationManager( QObject* parent = nullptr );
+	explicit ConfigurationManager(VeyonConfiguration& configuration, QObject* parent = nullptr);
 
 	bool clearConfiguration();
 	bool applyConfiguration();

@@ -9,6 +9,7 @@
 class BuiltinFeatures;
 class ComputerControlInterface;
 class QWidget;
+class QWindow;
 
 class VEYON_CORE_EXPORT VeyonMasterInterface : public QObject
 {
@@ -22,6 +23,7 @@ public:
 	~VeyonMasterInterface() override = default;
 
 	virtual QWidget* mainWindow() = 0;
+	virtual QWindow* mainQmlWindow() { return nullptr; }
 	virtual Configuration::Object* userConfigurationObject() = 0;
 	virtual void reloadSubFeatures() = 0;
 

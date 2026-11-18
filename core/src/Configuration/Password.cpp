@@ -9,7 +9,8 @@ namespace Configuration {
 
 CryptoCore::PlaintextPassword Password::plainText() const
 {
-	return VeyonCore::cryptoCore().decryptPassword(m_encrypted);
+	if (m_encrypted.isEmpty()) return {};
+	return VeyonCore::cryptoCore().decryptPassword( m_encrypted );
 }
 
 

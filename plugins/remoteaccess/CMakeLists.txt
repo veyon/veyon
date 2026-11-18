@@ -5,6 +5,6 @@ build_veyon_plugin(remoteaccess
 	SOURCES
 	RemoteAccessFeaturePlugin.h
 	RemoteAccessFeaturePlugin.cpp
-	RemoteAccessWidget.h
-	RemoteAccessWidget.cpp
+	RemoteAccessSession.h
+	RemoteAccessSession.cpp
 	remoteaccess.qrc)

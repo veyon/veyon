@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2017-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include <QMessageBox>
+#include "QuickUi.h"
 #include <QScreen>
 
 #include "AuthenticationCredentials.h"
@@ -176,15 +176,15 @@ bool DemoFeaturePlugin::startFeature(VeyonMasterInterface& master, const Feature
 		const auto selectedComputerControlInterfaces = master.selectedComputerControlInterfaces();
 		if (selectedComputerControlInterfaces.size() < 1)
 		{
-			QMessageBox::critical(master.mainWindow(), feature.name(),
-								  tr("Please select a user screen to share."));
+			QuickUi::showError(feature.name(),
+								   tr( "Please select a user screen to share.") );
 			return true;
 		}
 
 		if (selectedComputerControlInterfaces.size() > 1)
 		{
-			QMessageBox::critical(master.mainWindow(), feature.name(),
-								  tr("Please select only one user screen to share."));
+			QuickUi::showError(feature.name(),
+								   tr( "Please select only one user screen to share.") );
 			return true;
 		}
 

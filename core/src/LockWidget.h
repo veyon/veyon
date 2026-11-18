@@ -2,30 +2,28 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #pragma once
-
+#include <QObject>
 #include <QPixmap>
-#include <QWidget>
-
+#include <QWindow>
+#include <QPointer>
 #include "VeyonCore.h"
-
-
-class VEYON_CORE_EXPORT LockWidget : public QWidget
+class QQmlApplicationEngine;
+class VEYON_CORE_EXPORT LockWidget : public QObject
 {
 	Q_OBJECT
+	Q_PROPERTY(int mode READ mode CONSTANT)
 public:
-	enum Mode {
-		DesktopVisible,
-		BackgroundPixmap,
-		NoBackground
-	};
-
-	explicit LockWidget(Mode mode, const QPixmap& background = QPixmap(), QWidget* parent = nullptr);
+	enum Mode { DesktopVisible, BackgroundPixmap, NoBackground, ClassroomLock };
+	explicit LockWidget(Mode mode, const QPixmap& background = {}, QObject* parent = nullptr);
 	~LockWidget() override;
-
-
+	int mode() const { return m_mode; }
+	QWindow* window() const { return m_window; }
+	bool hasQmlContent() const { return m_hasQmlContent; }
 private:
-	void paintEvent(QPaintEvent*) override;
-
-	QPixmap m_background;
+	void cleanup();
 	Mode m_mode;
+	QQmlApplicationEngine* m_engine = nullptr;
+	QPointer<QWindow> m_window;
+	bool m_hasQmlContent{false};
+	bool m_locked{false};
 };

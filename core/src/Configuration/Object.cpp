@@ -12,7 +12,7 @@ Object::Object(Store::Backend backend, Store::Scope scope, const QString& storeN
 	m_store(createStore(backend, scope)),
 	m_data()
 {
-	m_store->setName(storeName);
+	if (m_store) m_store->setName(storeName);
 
 	reloadFromStore();
 }
@@ -65,7 +65,7 @@ Object& Object::operator=(const Object& ref)
 		m_store = createStore(backend, scope);
 	}
 
-	m_data = ref.data();
+	replaceData(ref.data());
 
 	return *this;
 }
@@ -93,9 +93,18 @@ static Object::DataMap operator+(Object::DataMap dst, const Object::DataMap& src
 
 Object& Object::operator+=(const Object& ref)
 {
-	m_data = m_data + ref.data();
+	replaceData(m_data + ref.data());
 
 	return *this;
+}
+
+void Object::replaceData(const DataMap& data)
+{
+	if (m_data != data)
+	{
+		m_data = data;
+		Q_EMIT configurationChanged();
+	}
 }
 
 
@@ -218,8 +227,8 @@ void Object::setValue(const QString& key, const QVariant& value, const QString& 
 {
 	// recursively search through data maps and sub data-maps until
 	// all levels of the parentKey are processed
-	QStringList subLevels = parentKey.split(QLatin1Char('/'));
-	DataMap data = setValueRecursive(m_data, subLevels, key, value);
+	QStringList subLevels = parentKey.split(QLatin1Char('/'), Qt::SkipEmptyParts);
+	DataMap data = setValueRecursive( m_data, subLevels, key, value );
 
 	if (data != m_data)
 	{
@@ -258,9 +267,9 @@ static Object::DataMap removeValueRecursive(Object::DataMap data,
 
 void Object::removeValue(const QString& key, const QString& parentKey)
 {
-	QStringList subLevels = parentKey.split(QLatin1Char('/'));
-	DataMap data = removeValueRecursive(m_data, subLevels, key);
-	if (data != m_data)
+	QStringList subLevels = parentKey.split(QLatin1Char('/'), Qt::SkipEmptyParts);
+	DataMap data = removeValueRecursive( m_data, subLevels, key );
+	if( data != m_data )
 	{
 		m_data = data;
 		Q_EMIT configurationChanged();

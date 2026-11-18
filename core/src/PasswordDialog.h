@@ -2,33 +2,19 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #pragma once
-
-#include <QDialog>
-
+#include <QObject>
 #include "AuthenticationCredentials.h"
-
-namespace Ui {
-class PasswordDialog;
-}
-
-class VEYON_CORE_EXPORT PasswordDialog : public QDialog
+class QWidget;
+class VEYON_CORE_EXPORT PasswordDialog : public QObject
 {
 	Q_OBJECT
 public:
-	explicit PasswordDialog(QWidget* parent);
-	~PasswordDialog() override;
-
-	QString username() const;
-	CryptoCore::PlaintextPassword password() const;
-
+	explicit PasswordDialog(QWidget* parent = nullptr);
+	int exec();
+	QString username() const { return m_username; }
+	CryptoCore::PlaintextPassword password() const { return m_password; }
 	AuthenticationCredentials credentials() const;
-
-	void accept() override;
-
-private Q_SLOTS:
-	void updateOkButton();
-
-
 private:
-	Ui::PasswordDialog* ui;
+	QString m_username;
+	CryptoCore::PlaintextPassword m_password;
 };

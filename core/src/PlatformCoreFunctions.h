@@ -4,6 +4,7 @@
 #pragma once
 
 #include <QFile>
+#include <QWindow>
 
 #include "Logger.h"
 #include "PlatformPluginInterface.h"
@@ -35,6 +36,15 @@ public:
 	virtual void powerDown(bool installUpdates) = 0;
 
 	virtual void raiseWindow(QWidget* widget, bool stayOnTop) = 0;
+
+	virtual void raiseWindow(QWindow* window, bool stayOnTop)
+	{
+		if (!window) return;
+		window->setFlag(Qt::WindowStaysOnTopHint, stayOnTop);
+		window->show();
+		window->raise();
+		window->requestActivate();
+	}
 
 	virtual void disableScreenSaver() = 0;
 	virtual void restoreScreenSaverSettings() = 0;

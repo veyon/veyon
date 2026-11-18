@@ -1,117 +1,107 @@
 // SPDX-FileCopyrightText: 2018-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
-
-#include <QMessageBox>
-#include <QPushButton>
-#include <QScreen>
-
-#include "FileTransferController.h"
 #include "FileTransferDialog.h"
-#include "FileTransferListModel.h"
-#include "Filesystem.h"
+#include "FileTransferController.h"
+#include "QuickUi.h"
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <QWindow>
+#include <QFileInfo>
 
-#include "ui_FileTransferDialog.h"
-
-FileTransferDialog::FileTransferDialog(FileTransferController* controller, QWidget* parent) :
-	QDialog(parent),
-	ui(new Ui::FileTransferDialog),
-	m_controller(controller),
-	m_listModel(new FileTransferListModel(m_controller, this))
+FileTransferDialog::FileTransferDialog(FileTransferController* controller, QWindow* parent,
+	const ComputerControlInterfaceList& interfaces) :
+	QObject(nullptr), m_controller(controller), m_interfaces(interfaces), m_parentWindow(parent)
 {
-	ui->setupUi(this);
-	ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Start"));
-
-	ui->fileListView->setModel(m_listModel);
-
-	connect(m_controller, &FileTransferController::progressChanged,
-			this, &FileTransferDialog::updateProgress);
-
-	connect(m_controller, &FileTransferController::finished,
-			this, &FileTransferDialog::finish);
-
-	connect(m_controller, &FileTransferController::errorOccurred,
-			this, &FileTransferDialog::reportError);
-
-	const auto availableSize = screen()->availableSize();
-	move(availableSize.width() / 8, availableSize.height() / 8);
-	resize(availableSize * 3 / 4);
+	connect(controller, &FileTransferController::progressChanged, this, [this](int value) {
+		m_progress = value;
+		Q_EMIT changed();
+	});
+	connect(controller, &FileTransferController::started, this, [this]() {
+		m_completed = false;
+		m_cancelled = false;
+		m_progress = 0;
+		m_errors.clear();
+		Q_EMIT changed();
+	});
+	connect(controller, &FileTransferController::finished, this, [this]() {
+		m_completed = true;
+		Q_EMIT changed();
+	});
+	connect(controller, &FileTransferController::filesChanged, this, &FileTransferDialog::changed);
+	connect(controller, &FileTransferController::errorOccurred, this, [this](const QString& message) {
+		if (!m_errors.isEmpty()) m_errors += QLatin1Char('\n');
+		m_errors += message;
+		Q_EMIT changed();
+	});
+	for (const auto& target : m_interfaces)
+		connect(target.data(), &ComputerControlInterface::stateChanged, this, &FileTransferDialog::changed);
 }
-
-
-
-FileTransferDialog::~FileTransferDialog()
+FileTransferDialog::~FileTransferDialog() { delete m_engine; }
+void FileTransferDialog::open()
 {
-	delete ui;
-
-	delete m_listModel;
+	m_engine = QuickUi::createEngine(this);
+	m_engine->rootContext()->setContextProperty(QStringLiteral("transferDialog"), this);
+	m_engine->load(QUrl(QStringLiteral("qrc:/filetransfer/qml/TransferWindow.qml")));
+	if (m_engine->rootObjects().isEmpty()) {
+		QuickUi::showError(tr("File transfer"), tr("The file transfer window could not be loaded."), m_parentWindow);
+		Q_EMIT finished();
+		return;
+	}
+	auto window = qobject_cast<QWindow*>(m_engine->rootObjects().first());
+	if (window) window->setTransientParent(m_parentWindow);
 }
-
-
-
-void FileTransferDialog::accept()
+bool FileTransferDialog::running() const { return m_controller && m_controller->isRunning(); }
+QVariantList FileTransferDialog::files() const
 {
-	ui->optionsGroupBox->setDisabled(true);
-	ui->buttonBox->setStandardButtons(QDialogButtonBox::Cancel);
-
+	QVariantList rows;
+	if (!m_controller) return rows;
+	const auto current = m_controller->currentFileIndex();
+	for (int i = 0; i < m_controller->files().size(); ++i)
+		rows.append(QVariantMap{{QStringLiteral("name"), QFileInfo(m_controller->files().at(i)).fileName()},
+			{QStringLiteral("path"), QFileInfo(m_controller->files().at(i)).absoluteFilePath()},
+			{QStringLiteral("status"), i < current ? tr("Processed") :
+				(i == current && running() ? tr("Sending") : tr("Queued"))}});
+	return rows;
+}
+QVariantList FileTransferDialog::targets() const
+{
+	QVariantList rows;
+	for (const auto& target : m_interfaces) {
+		const bool connected = target->state() == ComputerControlInterface::State::Connected;
+		rows.append(QVariantMap{{QStringLiteral("name"), target->computerName()},
+			{QStringLiteral("status"), !connected ? tr("Disconnected") :
+				(running() ? (target->isMessageQueueEmpty() ? tr("Ready") : tr("Sending")) :
+				(m_completed ? (m_cancelled ? tr("Stopped") : tr("Processed")) : tr("Ready")))}});
+	}
+	return rows;
+}
+void FileTransferDialog::start(const QString& destination, int openMode, bool overwrite)
+{
+	if (!m_controller || running()) return;
+	if (m_interfaces.isEmpty())
+	{
+		QuickUi::showError(tr("File transfer"), tr("No recipient computers are selected."), m_parentWindow);
+		return;
+	}
 	FileTransferController::Flags flags(FileTransferController::Transfer);
-
-	if (ui->transferAndOpenFolder->isChecked())
-	{
-		flags |= FileTransferController::OpenTransferFolder;
-	}
-
-	if (ui->transferAndOpenProgram->isChecked())
-	{
-		flags |= FileTransferController::OpenFilesInApplication;
-	}
-
-	if (ui->overwriteExistingFiles->isChecked())
-	{
-		flags |= FileTransferController::OverwriteExistingFiles;
-	}
-
-	// Set custom destination directory if provided
-	const auto destDir = ui->destinationDirectoryEdit->text().trimmed();
-	if (destDir.isEmpty() == false)
-	{
-		m_controller->setDestinationDirectory(destDir);
-	}
-
+	if (openMode == 1) flags |= FileTransferController::OpenTransferFolder;
+	if (openMode == 2) flags |= FileTransferController::OpenFilesInApplication;
+	if (overwrite) flags |= FileTransferController::OverwriteExistingFiles;
+	m_controller->setDestinationDirectory(destination.trimmed());
 	m_controller->setFlags(flags);
 	m_controller->start();
 }
-
-
-
-void FileTransferDialog::reject()
+void FileTransferDialog::cancel()
 {
-	if (m_controller->isRunning())
-	{
+	if (running()) {
+		m_cancelled = true;
 		m_controller->stop();
 	}
-
-	QDialog::reject();
 }
-
-
-
-void FileTransferDialog::finish()
+void FileTransferDialog::close()
 {
-	ui->buttonBox->setStandardButtons(QDialogButtonBox::Close);
-	connect(ui->buttonBox->button(QDialogButtonBox::Close), &QPushButton::clicked,
-			this, &FileTransferDialog::close);
-}
-
-
-
-void FileTransferDialog::updateProgress(int progress)
-{
-	ui->progressBar->setValue(progress);
-}
-
-
-
-void FileTransferDialog::reportError(const QString& message)
-{
-	QMessageBox::critical(this, tr("File transfer error"), message);
+	if (m_closed) return;
+	m_closed = true;
+	cancel();
+	Q_EMIT finished();
 }

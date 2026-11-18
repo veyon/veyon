@@ -25,6 +25,7 @@ if(PipeWire_FOUND AND Qt${QT_MAJOR_VERSION}DBus_FOUND)
 	build_veyon_plugin(pipewire-vnc-server
 		NAME PipeWireVncServer
 		SOURCES
+		QuickConfiguration.cpp
 		PipeWireVncServer.cpp
 		PipeWireVncServer.h
 		PipeWireVncConfiguration.h

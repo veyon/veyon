@@ -4,12 +4,12 @@
 #include <QApplication>
 #include <QBuffer>
 #include <QClipboard>
-#include <QInputDialog>
+#include "QuickUi.h"
 
 #include "AuthenticationCredentials.h"
 #include "FeatureWorkerManager.h"
 #include "RemoteAccessFeaturePlugin.h"
-#include "RemoteAccessWidget.h"
+#include "RemoteAccessSession.h"
 #include "VeyonConfiguration.h"
 #include "VeyonMasterInterface.h"
 #include "VeyonServerInterface.h"
@@ -91,7 +91,7 @@ bool RemoteAccessFeaturePlugin::startFeature(VeyonMasterInterface& master, const
 	const auto viewOnly = feature.uid() == m_remoteViewFeature.uid() ||
 		remoteControlEnabled() == false;
 
-	const auto selectedComputerControlInterfaces = master.selectedComputerControlInterfaces();
+	const auto selectedComputerControlInterfaces = computerControlInterfaces;
 
 	if (selectedComputerControlInterfaces.count() > 0)
 	{
@@ -102,10 +102,10 @@ bool RemoteAccessFeaturePlugin::startFeature(VeyonMasterInterface& master, const
 	}
 	else
 	{
-		const auto hostAddress = QInputDialog::getText(master.mainWindow(),
-													   tr("Remote access"),
-													   tr("No computer has been selected so you can enter a hostname "
-														  "or IP address of a computer for manual access:"));
+		const auto response = QuickUi::execDialog(QStringLiteral("input"), {
+			{QStringLiteral("title"), tr("Remote access")},
+			{QStringLiteral("text"), tr("Enter a hostname or IP address:")}}, master.mainQmlWindow());
+		const auto hostAddress = response.value(QStringLiteral("accepted")).toBool() ? response.value(QStringLiteral("value")).toString().trimmed() : QString{};
 		if (hostAddress.isEmpty())
 		{
 			return false;
@@ -132,7 +132,7 @@ bool RemoteAccessFeaturePlugin::handleFeatureMessage(ComputerControlInterface::P
 	{
 		for (auto it = m_vncViews.constBegin(), end = m_vncViews.constEnd(); it != end; ++it)
 		{
-			if (it->first && it->second->computerControlInterface() == computerControlInterface)
+			if (it->first && it->second == computerControlInterface)
 			{
 				loadClipboardData(message);
 			}
@@ -346,12 +346,13 @@ bool RemoteAccessFeaturePlugin::remoteAccess(const QString& hostAddress, bool vi
 void RemoteAccessFeaturePlugin::createRemoteAccessWindow(const ComputerControlInterface::Pointer& computerControlInterface,
 														 bool viewOnly)
 {
-	auto widget = new RemoteAccessWidget(computerControlInterface, viewOnly,
-										 remoteViewEnabled() && remoteControlEnabled());
+	auto widget = new RemoteAccessSession(computerControlInterface, viewOnly,
+										  remoteViewEnabled() && remoteControlEnabled(), this);
 
 	// forward clipboard changes as long as the widget exists
-	connect(QGuiApplication::clipboard(), &QClipboard::dataChanged, widget, [=, this]() {
-		sendClipboardData(widget->computerControlInterface());
+	connect(QGuiApplication::clipboard(), &QClipboard::dataChanged, widget, [=, this]()
+			 {
+				 sendClipboardData(widget->controlInterface());
 	});
 
 	connect(widget, &QObject::destroyed, this, [this](QObject* view) {
@@ -368,7 +369,7 @@ void RemoteAccessFeaturePlugin::createRemoteAccessWindow(const ComputerControlIn
 		}
 	});
 
-	m_vncViews.append(qMakePair(widget, widget->vncView()));
+	m_vncViews.append(qMakePair(QPointer<QObject>(widget), computerControlInterface));
 }
 
 

@@ -1,0 +1,13 @@
+<RCC><qresource prefix="/quick">
+<file alias="qmldir">qml/qmldir</file>
+<file alias="Theme.qml">qml/Theme.qml</file>
+<file alias="Icon.qml">qml/Icon.qml</file>
+<file alias="ActionButton.qml">qml/ActionButton.qml</file>
+<file alias="CheckBox.qml">qml/CheckBox.qml</file>
+<file alias="TextField.qml">qml/TextField.qml</file>
+<file alias="ComboBox.qml">qml/ComboBox.qml</file>
+<file alias="SpinBox.qml">qml/SpinBox.qml</file>
+<file alias="GenericDialog.qml">qml/GenericDialog.qml</file>
+<file alias="LockWindow.qml">qml/LockWindow.qml</file>
+<file alias="DemoWindow.qml">qml/DemoWindow.qml</file>
+</qresource></RCC>

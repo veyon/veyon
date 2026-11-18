@@ -12,6 +12,7 @@ file(GLOB veyoncore_SOURCES
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/builddata.qrc.in ${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc)
 set(core_RESOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/resources/core.qrc
+	${CMAKE_CURRENT_SOURCE_DIR}/resources/quick.qrc
 	${CMAKE_CURRENT_BINARY_DIR}/builddata.qrc
 	)
 
@@ -34,6 +35,9 @@ target_link_libraries(veyon-core PUBLIC
 	Qt${QT_MAJOR_VERSION}::Gui
 	Qt${QT_MAJOR_VERSION}::Network
 	Qt${QT_MAJOR_VERSION}::Widgets
+	Qt${QT_MAJOR_VERSION}::Qml
+	Qt${QT_MAJOR_VERSION}::Quick
+	Qt${QT_MAJOR_VERSION}::QuickControls2
 	qca-qt${QT_MAJOR_VERSION}
 	)
 

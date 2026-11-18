@@ -3,6 +3,7 @@ include(BuildVeyonPlugin)
 build_veyon_plugin(headless-vnc-server
 	NAME HeadlessVncServer
 	SOURCES
+	QuickConfiguration.cpp
 	HeadlessVncServer.cpp
 	HeadlessVncServer.h
 	HeadlessVncConfiguration.h

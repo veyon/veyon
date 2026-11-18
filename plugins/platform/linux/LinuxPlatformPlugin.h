@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include "QuickConfigurationPluginInterface.h"
+
 #include "ConfigurationPagePluginInterface.h"
 #include "LinuxCoreFunctions.h"
 #include "LinuxFilesystemFunctions.h"
@@ -14,13 +16,16 @@
 #include "PlatformPluginInterface.h"
 #include "PluginInterface.h"
 
-class LinuxPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface, ConfigurationPagePluginInterface
+class LinuxPlatformPlugin : public QObject, PlatformPluginInterface, PluginInterface, ConfigurationPagePluginInterface,
+		public QuickConfigurationPluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.LinuxPlatform")
-	Q_INTERFACES(PluginInterface PlatformPluginInterface ConfigurationPagePluginInterface)
+	Q_INTERFACES(QuickConfigurationPluginInterface PluginInterface PlatformPluginInterface ConfigurationPagePluginInterface)
 public:
-	explicit LinuxPlatformPlugin(QObject* parent = nullptr);
+	QObject* createQuickConfiguration(Configuration::Object* draft, QObject* parent) override;
+
+	explicit LinuxPlatformPlugin( QObject* parent = nullptr );
 	~LinuxPlatformPlugin() override;
 
 	Plugin::Uid uid() const override

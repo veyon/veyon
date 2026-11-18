@@ -71,7 +71,7 @@ FileCollectWorker::FileCollectWorker(FileTransferPlugin* plugin,
 							   sourceDirectory :
 							   QDir::toNativeSeparators(QDir::homePath() + QLatin1Char('/') + sourceDirectory))),
 	m_filePattern(filePattern),
-	m_collectRecursively(collectRecursively || m_configuration.collectFilesRecursively())
+	m_collectRecursively(collectRecursively)
 {
 	if (m_sourceDirectory.endsWith(QDir::separator()) == false)
 	{

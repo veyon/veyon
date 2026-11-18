@@ -3,17 +3,19 @@
 
 #pragma once
 
-#include <QTimeLine>
+#include "ComputerControlInterface.h"
+
 #include <QWidget>
 
-#include "ComputerControlInterface.h"
 
 class QActionGroup;
 
 class VncView;
 class VncViewWidget;
 class RemoteAccessWidget;
-class ToolButton;
+class QToolButton;
+class QLabel;
+class QScrollArea;
 
 // clazy:excludeall=ctor-missing-parent-argument
 
@@ -25,39 +27,26 @@ public:
 							  bool startViewOnly, bool showViewOnlyToggleButton);
 	~RemoteAccessWidgetToolBar() override = default;
 
-	void appear();
-	void disappear();
 	void updateControls(bool viewOnly);
 	void updateScreenSelectActions(int newScreen);
-
-
-protected:
-	void leaveEvent(QEvent* event) override;
-	void paintEvent(QPaintEvent* event) override;
-
+	void updateFullScreen(bool fullScreen);
 
 private:
-	void updatePosition();
 	void updateConnectionState();
 	void updateScreens();
 
 	RemoteAccessWidget* m_parent;
-	QTimeLine m_showHideTimeLine;
-
-	ToolButton* m_viewOnlyButton;
-	ToolButton* m_selectScreenButton;
-	ToolButton* m_sendShortcutButton;
-	ToolButton* m_screenshotButton;
-	ToolButton* m_fullScreenButton;
-	ToolButton* m_exitButton;
+	QToolButton* m_viewButton;
+	QToolButton* m_controlButton;
+	QToolButton* m_selectScreenButton;
+	QToolButton* m_sendShortcutButton;
+	QToolButton* m_screenshotButton;
+	QToolButton* m_fullScreenButton;
+	bool m_viewOnly;
 
 	QActionGroup* m_screenSelectActions{nullptr};
 
-	static constexpr int ShowHideAnimationDuration = 300;
-	static constexpr int DisappearDelay = 500;
 };
-
-
 
 class RemoteAccessWidget : public QWidget
 {
@@ -76,30 +65,35 @@ public:
 
 	void toggleFullScreen(bool);
 	void setViewOnly(bool viewOnly);
+	void setFitToWindow(bool fit);
 	void takeScreenshot();
 
 protected:
 	bool eventFilter(QObject* object, QEvent* event) override;
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-	void enterEvent(QEnterEvent* event) override;
-#else
-	void enterEvent(QEvent* event) override;
-#endif
-	void leaveEvent(QEvent* event) override;
 	void resizeEvent(QResizeEvent* event) override;
+	void changeEvent(QEvent* event) override;
 
 private:
 	void updateSize();
 	void updateRemoteAccessTitle();
+	void updateStageGeometry();
+	void updateConnectionState();
 
 	ComputerControlInterface::Pointer m_computerControlInterface;
 	VncViewWidget* m_vncView;
 	RemoteAccessWidgetToolBar* m_toolBar;
 
-	static constexpr int AppearDelay = 500;
+	QScrollArea* m_stage;
+	QWidget* m_controlBanner;
+	QLabel* m_sessionLabel;
+	QLabel* m_connectionLabel;
+	QLabel* m_modeLabel;
+	bool m_fitToWindow{true};
+	bool m_viewOnly{true};
 
 	int m_currentScreen{-1};
 
 Q_SIGNALS:
 	void screenChangedInRemoteAccessWidget(int newScreen);
+
 };

@@ -2,25 +2,15 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #pragma once
-
-#include <QDialog>
-
-namespace Ui {
-class PowerDownTimeInputDialog;
-}
-
-class PowerDownTimeInputDialog : public QDialog
+#include <QObject>
+class QWidget;
+class PowerDownTimeInputDialog : public QObject
 {
 	Q_OBJECT
 public:
 	explicit PowerDownTimeInputDialog(QWidget* parent);
-	~PowerDownTimeInputDialog() override;
-
-	int seconds() const;
-
+	int exec();
+	int seconds() const { return m_seconds; }
 private:
-	void updateSeconds();
-
-	Ui::PowerDownTimeInputDialog* ui;
-	int m_seconds;
+	int m_seconds = 0;
 };

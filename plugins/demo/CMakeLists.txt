@@ -3,6 +3,7 @@ include(BuildVeyonPlugin)
 build_veyon_plugin(demo
 	NAME Demo
 	SOURCES
+	QuickConfiguration.cpp
 	DemoFeaturePlugin.cpp
 	DemoConfigurationPage.cpp
 	DemoConfigurationPage.ui

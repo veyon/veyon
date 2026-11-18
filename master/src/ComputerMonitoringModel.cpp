@@ -24,27 +24,45 @@ ComputerMonitoringModel::ComputerMonitoringModel(QObject* parent) :
 
 void ComputerMonitoringModel::setStateRole(int role)
 {
-	beginResetModel();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+	beginFilterChange();
+#endif
 	m_stateRole = role;
-	endResetModel();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+	endFilterChange(QSortFilterProxyModel::Direction::Rows);
+#else
+	invalidateFilter();
+#endif
 }
 
 
 
 void ComputerMonitoringModel::setUserLoginNameRole(int role)
 {
-	beginResetModel();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+	beginFilterChange();
+#endif
 	m_userLoginNameRole = role;
-	endResetModel();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+	endFilterChange(QSortFilterProxyModel::Direction::Rows);
+#else
+	invalidateFilter();
+#endif
 }
 
 
 
 void ComputerMonitoringModel::setStateFilter(ComputerControlInterface::State state)
 {
-	beginResetModel();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+	beginFilterChange();
+#endif
 	m_stateFilter = state;
-	endResetModel();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+	endFilterChange(QSortFilterProxyModel::Direction::Rows);
+#else
+	invalidateFilter();
+#endif
 }
 
 
@@ -53,9 +71,15 @@ void ComputerMonitoringModel::setFilterNonEmptyUserLoginNames(bool enabled)
 {
 	if (enabled != m_filterNonEmptyUserLoginNames)
 	{
-		beginResetModel();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+		beginFilterChange();
+#endif
 		m_filterNonEmptyUserLoginNames = enabled;
-		endResetModel();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+		endFilterChange(QSortFilterProxyModel::Direction::Rows);
+#else
+		invalidateFilter();
+#endif
 	}
 }
 

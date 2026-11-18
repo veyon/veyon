@@ -1,97 +1,60 @@
 // SPDX-FileCopyrightText: 2006-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include <QApplication>
-#include <QIcon>
-
 #include "DemoClient.h"
 #include "LockWidget.h"
+#include "QuickUi.h"
 #include "PlatformCoreFunctions.h"
-#include "VncViewWidget.h"
-
-
-DemoClient::DemoClient(const QString& host, int port, bool fullscreen, QRect viewport, QObject* parent) :
-	QObject(parent),
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <QCoreApplication>
+#include <QTimer>
+#include <utility>
+DemoClient::DemoClient(const QString& host, int port, bool fullscreen, QRect viewport, QObject* parent)
+	: QObject(parent ? parent : QCoreApplication::instance()),
 	m_computerControlInterface(ComputerControlInterface::Pointer::create(Computer({}, host, host), port, this))
 {
+	connect(QCoreApplication::instance(), &QCoreApplication::aboutToQuit, this, &DemoClient::cleanup);
 	if (fullscreen)
 	{
-		m_toplevel = new LockWidget(LockWidget::NoBackground);
+		m_lock = new LockWidget(LockWidget::NoBackground, {}, this);
+		if (m_lock->hasQmlContent())
+		{
+			m_window = m_lock->window();
+			m_window->setProperty("demoViewport", viewport);
+			m_window->setProperty("demoComputer", QVariant::fromValue(static_cast<QObject*>(m_computerControlInterface.data())));
+		}
 	}
 	else
 	{
-		m_toplevel = new QWidget();
-		m_toplevel->setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint | Qt::WindowMinMaxButtonsHint);
-		m_toplevel->move(0, 0);
+		m_engine = QuickUi::createEngine(this);
+		m_engine->rootContext()->setContextProperty(QStringLiteral("demoConnection"), m_computerControlInterface.data());
+		m_engine->rootContext()->setContextProperty(QStringLiteral("demoViewport"), viewport);
+		m_engine->load(QUrl(QStringLiteral("qrc:/quick/DemoWindow.qml")));
+		if (!m_engine->rootObjects().isEmpty()) m_window = qobject_cast<QWindow*>(m_engine->rootObjects().first());
 	}
-
-	m_toplevel->setWindowTitle(tr("Veyon Demo"));
-	m_toplevel->setWindowIcon(QPixmap(QStringLiteral(":/core/icon64.png")));
-	m_toplevel->setAttribute(Qt::WA_DeleteOnClose, false);
-	m_toplevel->installEventFilter(this);
-
-	m_vncView = new VncViewWidget(m_computerControlInterface, viewport, m_toplevel);
-
-	connect(m_toplevel, &QObject::destroyed, this, &DemoClient::viewDestroyed);
-	connect(m_vncView, &VncViewWidget::sizeHintChanged, this, &DemoClient::resizeToplevelWidget);
-
-	if (fullscreen == false)
+	if (!m_window)
 	{
-		m_toplevel->show();
+		vCritical() << "Could not create the demonstration window";
+		cleanup();
+		QTimer::singleShot(0, QCoreApplication::instance(), &QCoreApplication::quit);
+		return;
 	}
-
-	resizeToplevelWidget();
-
-	VeyonCore::platform().coreFunctions().raiseWindow(m_toplevel, fullscreen);
-
+	VeyonCore::platform().coreFunctions().raiseWindow(m_window.data(), fullscreen);
 	VeyonCore::platform().coreFunctions().disableScreenSaver();
+	m_screenSaverDisabled = true;
 }
-
-
-
 DemoClient::~DemoClient()
 {
+	cleanup();
+}
+
+void DemoClient::cleanup()
+{
+	delete std::exchange(m_engine, nullptr);
+	delete std::exchange(m_lock, nullptr);
+	m_window = nullptr;
+	m_computerControlInterface.clear();
+	if (std::exchange(m_screenSaverDisabled, false))
 	VeyonCore::platform().coreFunctions().restoreScreenSaverSettings();
-
-	delete m_toplevel;
-}
-
-
-
-bool DemoClient::eventFilter(QObject* watched, QEvent* event)
-{
-	if (watched == m_toplevel && event->type() == QEvent::Resize)
-	{
-		m_vncView->setFixedSize(m_toplevel->size());
-		return true;
-	}
-
-	return QObject::eventFilter(watched, event);
-}
-
-
-
-void DemoClient::viewDestroyed(QObject* obj)
-{
-	// prevent double deletion of toplevel widget
-	if (m_toplevel == obj)
-	{
-		m_toplevel = nullptr;
-	}
-
-	deleteLater();
-}
-
-
-
-void DemoClient::resizeToplevelWidget()
-{
-	if (m_toplevel->windowState() & Qt::WindowFullScreen)
-	{
-		m_vncView->setFixedSize(m_toplevel->size());
-	}
-	else
-	{
-		m_toplevel->resize(m_vncView->sizeHint());
-	}
 }

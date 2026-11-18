@@ -53,12 +53,14 @@ public:
 
 	bool isStoreWritable() const
 	{
-		return m_store->isWritable();
+		return m_store && m_store->isWritable();
 	}
+
+	void replaceData(const DataMap& data);
 
 	void clear()
 	{
-		m_data.clear();
+		replaceData({});
 	}
 
 	const DataMap& data() const

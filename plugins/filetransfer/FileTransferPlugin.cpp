@@ -3,9 +3,11 @@
 
 #include <QCoreApplication>
 #include <QDesktopServices>
-#include <QFileDialog>
+#include "QuickUi.h"
+#include <QGuiApplication>
+#include <QWindow>
 #include <QFileInfo>
-#include <QMessageBox>
+
 
 #include "BuiltinFeatures.h"
 #include "FeatureWorkerManager.h"
@@ -104,7 +106,12 @@ bool FileTransferPlugin::startFeature(VeyonMasterInterface& master, const Featur
 {
 	if (feature == m_distributeFilesFeature)
 	{
-		FileTransferUserConfiguration config(master.userConfigurationObject());
+		if (m_fileTransferController && m_fileTransferController->isRunning())
+		{
+			QuickUi::showError(tr("File transfer"), tr("A file transfer is already running."), master.mainQmlWindow());
+			return false;
+		}
+		FileTransferUserConfiguration config( master.userConfigurationObject() );
 
 		m_lastFileTransferSourceDirectory = config.lastFileTransferSourceDirectory();
 		if (m_configuration.rememberLastFileTransferSourceDirectory() == false ||
@@ -112,9 +119,10 @@ bool FileTransferPlugin::startFeature(VeyonMasterInterface& master, const Featur
 		{
 			m_lastFileTransferSourceDirectory = VeyonCore::filesystem().expandPath(m_configuration.fileTransferDefaultSourceDirectory());
 		}
-		const auto files = QFileDialog::getOpenFileNames(master.mainWindow(),
-														 tr("Select one or more files to transfer"),
-														 m_lastFileTransferSourceDirectory);
+		const auto selection = QuickUi::execDialog(QStringLiteral("files"),
+			{{QStringLiteral("title"), tr("Select one or more files to transfer")},
+			 {QStringLiteral("folder"), m_lastFileTransferSourceDirectory}}, master.mainQmlWindow());
+		const auto files = selection.value(QStringLiteral("files")).toStringList();
 
 		if (files.isEmpty() == false)
 		{
@@ -123,8 +131,8 @@ bool FileTransferPlugin::startFeature(VeyonMasterInterface& master, const Featur
 			if (controlFeature(feature.uid(), Operation::Initialize,
 							   {{argToString(Argument::Files), files}}, computerControlInterfaces))
 			{
-				auto dialog = new FileTransferDialog(m_fileTransferController, master.mainWindow());
-				connect(dialog, &QDialog::finished, dialog, &QDialog::deleteLater);
+				auto dialog = new FileTransferDialog(m_fileTransferController, master.mainQmlWindow(), computerControlInterfaces);
+				connect(dialog, &FileTransferDialog::finished, dialog, &QObject::deleteLater);
 				dialog->open();
 			}
 		}
@@ -134,11 +142,16 @@ bool FileTransferPlugin::startFeature(VeyonMasterInterface& master, const Featur
 
 	if (feature == m_collectFilesFeature)
 	{
+		if (m_fileCollectController && m_fileCollectController->isRunning())
+		{
+			QuickUi::showError(tr("Collect files"), tr("A file collection is already running."), master.mainQmlWindow());
+			return false;
+		}
 		if (controlFeature(feature.uid(), Operation::Initialize, {}, computerControlInterfaces))
 		{
-			auto dialog = new FileCollectDialog(m_fileCollectController, master.mainWindow());
-			connect(dialog, &QDialog::finished, dialog, &QDialog::deleteLater);
-			dialog->exec();
+			auto dialog = new FileCollectDialog(m_fileCollectController, master.mainQmlWindow());
+			connect(dialog, &FileCollectDialog::finished, dialog, &QObject::deleteLater);
+			dialog->open();
 		}
 
 		return true;
@@ -430,37 +443,32 @@ QString FileTransferPlugin::destinationDirectory() const
 
 FileTransferPlugin::LockedFileAction FileTransferPlugin::queryLockedFileAction(const QString& fileName)
 {
-	qApp->setQuitOnLastWindowClosed(false);
+	qGuiApp->setQuitOnLastWindowClosed(false);
 
 	const auto processId = VeyonCore::platform().filesystemFunctions().findFileLockingProcess(fileName);
 	const auto applicationName = VeyonCore::platform().coreFunctions().getApplicationName(processId);
 
-	QMessageBox lockedFileNotification(QMessageBox::Warning,
-									   tr("File transfer"),
-									   (applicationName.isEmpty() ?
-											tr("The file %1 is to be collected, but is still open in an application.").arg(fileName) :
-											tr("The file %1 is to be collected, but is still open in the application <b>%2</b>.").arg(fileName, applicationName)) +
-										   QLatin1Char(' ') +
-										   tr("Please save your changes and close the program so that the transfer can be completed."),
-									   QMessageBox::Retry | QMessageBox::Ignore);
-
-	VeyonCore::platform().coreFunctions().raiseWindow(&lockedFileNotification, true);
-
-	if (lockedFileNotification.exec() == QMessageBox::Retry)
-	{
+	const QString text = (applicationName.isEmpty() ?
+		tr("The file %1 is to be collected, but is still open in an application.").arg(fileName) :
+		tr("The file %1 is to be collected, but is still open in the application %2.").arg(fileName, applicationName)) +
+		QLatin1Char(' ') + tr("Please save your changes and close the program so that the transfer can be completed.");
+	const QVariantList buttons{
+		QVariantMap{{QStringLiteral("text"), tr("Retry")}, {QStringLiteral("value"), QStringLiteral("retry")}},
+		QVariantMap{{QStringLiteral("text"), tr("Ignore")}, {QStringLiteral("value"), QStringLiteral("ignore")}}};
+	const auto result = QuickUi::execDialog(QStringLiteral("confirm"),
+		{{QStringLiteral("title"), tr("File transfer")}, {QStringLiteral("text"), text},
+		 {QStringLiteral("buttons"), buttons}, {QStringLiteral("stayOnTop"), true}});
+	if (result.value(QStringLiteral("choice")).toString() != QStringLiteral("ignore"))
 		return LockedFileAction::RetryOpeningLockedFile;
-	}
-
-	QMessageBox confirmDialog(QMessageBox::Question,
-							  tr("File transfer"),
-							  tr("Are you sure you want to skip transferring the file %1?").arg(fileName, QString{}), QMessageBox::Yes | QMessageBox::No);
-
-	VeyonCore::platform().coreFunctions().raiseWindow(&confirmDialog, true);
-
-	if (confirmDialog.exec() == QMessageBox::Yes)
-	{
+	const auto confirm = QuickUi::execDialog(QStringLiteral("confirm"),
+		{{QStringLiteral("title"), tr("File transfer")},
+		 {QStringLiteral("text"), tr("Are you sure you want to skip transferring the file %1?").arg(fileName)},
+		 {QStringLiteral("stayOnTop"), true},
+		 {QStringLiteral("buttons"), QVariantList{
+			QVariantMap{{QStringLiteral("text"), tr("Yes")}, {QStringLiteral("value"), QStringLiteral("yes")}},
+			QVariantMap{{QStringLiteral("text"), tr("No")}, {QStringLiteral("value"), QStringLiteral("no")}}}}});
+	if (confirm.value(QStringLiteral("choice")).toString() == QStringLiteral("yes"))
 		return LockedFileAction::SkipLockedFile;
-	}
 
 	return LockedFileAction::RetryOpeningLockedFile;
 }
@@ -494,7 +502,7 @@ bool FileTransferPlugin::handleDistributeFilesMessage(const FeatureMessage& mess
 					if (hasControlCharacters(customDestinationDirectory))
 					{
 						vWarning() << "rejecting custom file transfer destination directory with control characters";
-						QMessageBox::critical(nullptr, tr("File transfer"),
+						QuickUi::showError(tr("File transfer"),
 											  tr("Could not receive the file because the destination directory is invalid."));
 						return true;
 					}
@@ -514,7 +522,7 @@ bool FileTransferPlugin::handleDistributeFilesMessage(const FeatureMessage& mess
 			if (QDir(destDir).exists() == false &&
 				VeyonCore::filesystem().ensurePathExists(destDir) == false)
 			{
-				QMessageBox::critical(nullptr, tr("File transfer"),
+				QuickUi::showError(tr("File transfer"),
 									  tr("Could not receive the file because the destination directory could not be created."));
 				return true;
 			}
@@ -522,7 +530,7 @@ bool FileTransferPlugin::handleDistributeFilesMessage(const FeatureMessage& mess
 			m_currentFileName = Filesystem::safeJoin(destDir, message.argument(Argument::FileName).toString());
 			if (m_currentFileName.isEmpty())
 			{
-				QMessageBox::critical(nullptr, tr("File transfer"),
+				QuickUi::showError(tr("File transfer"),
 									  tr("Could not receive the file because its name is invalid."));
 				return true;
 			}
@@ -530,7 +538,7 @@ bool FileTransferPlugin::handleDistributeFilesMessage(const FeatureMessage& mess
 		m_currentFile.setFileName(m_currentFileName);
 		if (m_currentFile.exists() && message.argument(Argument::OverwriteExistingFile).toBool() == false)
 		{
-			QMessageBox::critical(nullptr, tr("File transfer"),
+			QuickUi::showError(tr("File transfer"),
 								  tr("Could not receive file %1 as it already exists.").arg(m_currentFile.fileName()));
 			return true;
 		}
@@ -544,7 +552,7 @@ bool FileTransferPlugin::handleDistributeFilesMessage(const FeatureMessage& mess
 		}
 		else
 		{
-			QMessageBox::critical(nullptr, tr("File transfer"),
+			QuickUi::showError(tr("File transfer"),
 								  tr("Could not receive file %1 as it could not be opened for writing!").arg(m_currentFile.fileName()));
 		}
 		return true;

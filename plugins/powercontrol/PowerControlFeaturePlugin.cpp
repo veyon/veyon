@@ -2,10 +2,10 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <QEvent>
-#include <QMessageBox>
+#include "QuickUi.h"
 #include <QNetworkInterface>
 #include <QProgressBar>
-#include <QProgressDialog>
+
 #include <QUdpSocket>
 #include <QtConcurrent>
 
@@ -246,11 +246,13 @@ bool PowerControlFeaturePlugin::handleFeatureMessage(VeyonWorkerInterface& worke
 	if (message.featureUid() == m_powerDownConfirmedFeature.uid())
 	{
 		confirmShutdown();
+		qApp->quit();
 		return true;
 	}
 	else if (message.featureUid() == m_powerDownDelayedFeature.uid())
 	{
-		displayShutdownTimeout(message.argument(Argument::ShutdownTimeout).toInt());
+		displayShutdownTimeout( message.argument( Argument::ShutdownTimeout ).toInt() );
+		qApp->quit();
 		return true;
 	}
 
@@ -296,12 +298,6 @@ CommandLinePluginInterface::RunResult PowerControlFeaturePlugin::handle_on(const
 
 bool PowerControlFeaturePlugin::eventFilter(QObject* watched, QEvent* event)
 {
-	if (event->type() == QEvent::Close &&
-		qobject_cast<QProgressDialog*>(watched))
-	{
-		event->ignore();
-		return true;
-	}
 
 	return QObject::eventFilter(watched, event);
 }
@@ -315,22 +311,22 @@ bool PowerControlFeaturePlugin::confirmFeatureExecution(const Feature& feature, 
 		return true;
 	}
 
+	Q_UNUSED(parent)
+	QString title;
+	QString text;
 	if (feature == m_rebootFeature)
 	{
-		return QMessageBox::question(parent, tr("Confirm reboot"),
-									 all ? tr("Do you really want to reboot <b>ALL</b> computers?") : tr("Do you really want to reboot the selected computers?")) ==
-			QMessageBox::Yes;
+		title = tr("Confirm reboot");
+		text = all ? tr("Do you really want to reboot ALL computers?") : tr("Do you really want to reboot the selected computers?");
 	}
-	else if (feature == m_powerDownFeature ||
-			 feature == m_powerDownNowFeature ||
-			 feature == m_installUpdatesAndPowerDownFeature ||
-			 feature == m_powerDownConfirmedFeature ||
-			 feature == m_powerDownDelayedFeature)
+	else if (feature == m_powerDownFeature || feature == m_powerDownNowFeature ||
+		feature == m_installUpdatesAndPowerDownFeature || feature == m_powerDownConfirmedFeature || feature == m_powerDownDelayedFeature)
 	{
-		return QMessageBox::question(parent, tr("Confirm power down"),
-									 all ? tr("Do you really want to power down <b>ALL</b> computers?") : tr("Do you really want to power down the selected computers?")) ==
-			QMessageBox::Yes;
+		title = tr("Confirm power down");
+		text = all ? tr("Do you really want to power down ALL computers?") : tr("Do you really want to power down the selected computers?");
 	}
+	if (!title.isEmpty()) return QuickUi::execDialog(QStringLiteral("confirm"),
+		{{QStringLiteral("title"), title}, {QStringLiteral("text"), text}}).value(QStringLiteral("accepted")).toBool();
 
 	return true;
 }
@@ -396,69 +392,15 @@ bool PowerControlFeaturePlugin::broadcastWOLPacket(QString macAddress)
 
 void PowerControlFeaturePlugin::confirmShutdown()
 {
-	QMessageBox m(QMessageBox::Question, tr("Confirm power down"),
-				  tr("The computer was remotely requested to power down. Do you want to power down the computer now?"),
-				  QMessageBox::Yes | QMessageBox::No);
-	m.show();
-	VeyonCore::platform().coreFunctions().raiseWindow(&m, true);
-
-	if (m.exec() == QMessageBox::Yes)
-	{
-		VeyonCore::platform().coreFunctions().powerDown(false);
-	}
-}
-
-
-
-static void updateDialog(QProgressDialog* dialog, int newValue)
-{
-	dialog->setValue(newValue);
-
-	const auto remainingSeconds = dialog->maximum() - newValue;
-
-	dialog->setLabelText(PowerControlFeaturePlugin::tr(
-							 "The computer will be powered down in %1 minutes, %2 seconds.\n\n"
-							 "Please save your work and close all programs.")
-							 .arg(remainingSeconds / 60, 2, 10, QLatin1Char('0'))
-							 .arg(remainingSeconds % 60, 2, 10, QLatin1Char('0')));
-
-	if (remainingSeconds <= 0)
-	{
-		dialog->accept();
-	}
+	if (QuickUi::execDialog(QStringLiteral("confirm"), {
+		{QStringLiteral("title"), tr("Confirm power down")}, {QStringLiteral("stayOnTop"), true},
+		{QStringLiteral("text"), tr("The computer was remotely requested to power down. Do you want to power down the computer now?")}})
+		.value(QStringLiteral("accepted")).toBool()) VeyonCore::platform().coreFunctions().powerDown(false);
 }
 
 void PowerControlFeaturePlugin::displayShutdownTimeout(int shutdownTimeout)
 {
-	QProgressDialog dialog;
-	dialog.setAutoReset(false);
-	dialog.setMinimum(0);
-	dialog.setMaximum(shutdownTimeout);
-	dialog.setCancelButton(nullptr);
-	dialog.setWindowFlags(Qt::Window | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
-	dialog.installEventFilter(this);
-
-	auto progressBar = dialog.findChild<QProgressBar*>();
-	if (progressBar)
-	{
-		progressBar->setTextVisible(false);
-	}
-
-	updateDialog(&dialog, 0);
-
-	dialog.show();
-	VeyonCore::platform().coreFunctions().raiseWindow(&dialog, true);
-
-	QTimer powerdownTimer;
-	powerdownTimer.start(1000);
-
-	connect(&powerdownTimer, &QTimer::timeout, this, [&dialog]() {
-		updateDialog(&dialog, dialog.value() + 1);
-	});
-
-	while (dialog.exec() != QDialog::Accepted)
-	{
-	}
-
-	VeyonCore::platform().coreFunctions().powerDown(false);
+	if (QuickUi::execDialog(QStringLiteral("countdown"), {
+		{QStringLiteral("title"), tr("Confirm power down")}, {QStringLiteral("seconds"), shutdownTimeout}})
+		.value(QStringLiteral("accepted")).toBool()) VeyonCore::platform().coreFunctions().powerDown(false);
 }

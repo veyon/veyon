@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <QCoreApplication>
-#include <QMessageBox>
+#include "QuickUi.h"
 #include <QPainter>
 #include <QPixmap>
 #include <QSystemTrayIcon>
@@ -133,15 +133,9 @@ bool SystemTrayIcon::handleFeatureMessage(VeyonWorkerInterface& worker, const Fe
 		}
 		else
 		{
-			auto messageBox = new QMessageBox(QMessageBox::Information,
-											  message.argument(Argument::MessageTitle).toString(),
+			QuickUi::showNotification(message.argument(Argument::MessageTitle).toString(),
 											  message.argument(Argument::MessageText).toString());
-			messageBox->setAttribute(Qt::WA_DeleteOnClose);
-			connect(messageBox, &QObject::destroyed,
-					QCoreApplication::instance(), &QCoreApplication::quit);
-			QTimer::singleShot(MessageBoxAutoCloseInterval, messageBox, &QWidget::close);
-			messageBox->show();
-			VeyonCore::platform().coreFunctions().raiseWindow(messageBox, true);
+			QTimer::singleShot(MessageBoxAutoCloseInterval, QCoreApplication::instance(), &QCoreApplication::quit);
 		}
 		return true;
 

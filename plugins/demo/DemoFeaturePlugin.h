@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include "QuickConfigurationPluginInterface.h"
+
 #include <QGuiApplication>
 
 #include "ConfigurationPagePluginInterface.h"
@@ -14,12 +16,15 @@ class QScreen;
 class DemoServer;
 class DemoClient;
 
-class DemoFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterface, ConfigurationPagePluginInterface
+class DemoFeaturePlugin : public QObject, FeatureProviderInterface, PluginInterface, ConfigurationPagePluginInterface,
+		public QuickConfigurationPluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.Demo")
-	Q_INTERFACES(PluginInterface FeatureProviderInterface ConfigurationPagePluginInterface)
+	Q_INTERFACES(QuickConfigurationPluginInterface PluginInterface FeatureProviderInterface ConfigurationPagePluginInterface)
 public:
+	QObject* createQuickConfiguration(Configuration::Object* draft, QObject* parent) override;
+
 	using Token = CryptoCore::PlaintextPassword;
 
 	enum class Argument {

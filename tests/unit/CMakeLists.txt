@@ -6,15 +6,15 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	# LinuxKeyboardMappingTest: tests keysym → linux keycode mapping tables
 	# and UTF-8 → linux keycode conversion.
 	#
+	find_package(PkgConfig REQUIRED)
+	pkg_check_modules(keyboard_fakekey QUIET IMPORTED_TARGET libfakekey)
 	add_executable(LinuxKeyboardMappingTest
 		LinuxKeyboardMappingTest.cpp
 		${CMAKE_SOURCE_DIR}/plugins/platform/linux/LinuxKeyboardInput.cpp
-		${CMAKE_SOURCE_DIR}/3rdparty/libfakekey/src/libfakekey.c
 	)
 
 	target_include_directories(LinuxKeyboardMappingTest PRIVATE
 		${CMAKE_SOURCE_DIR}/plugins/platform/linux
-		${CMAKE_SOURCE_DIR}/3rdparty/libfakekey
 		${CMAKE_SOURCE_DIR}/core/src
 		${CMAKE_SOURCE_DIR}/core/src/Configuration
 	)
@@ -26,6 +26,13 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 		${X11_LIBRARIES}
 		${X11_XTest_LIB}
 	)
+
+	if(keyboard_fakekey_FOUND)
+		target_link_libraries(LinuxKeyboardMappingTest PRIVATE PkgConfig::keyboard_fakekey)
+	else()
+		target_sources(LinuxKeyboardMappingTest PRIVATE ${CMAKE_SOURCE_DIR}/3rdparty/libfakekey/src/libfakekey.c)
+		target_include_directories(LinuxKeyboardMappingTest PRIVATE ${CMAKE_SOURCE_DIR}/3rdparty/libfakekey)
+	endif()
 
 	add_test(NAME LinuxKeyboardMappingTest COMMAND LinuxKeyboardMappingTest)
 
@@ -68,4 +75,18 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 
 	add_test(NAME FilesystemSafeJoinTest COMMAND FilesystemSafeJoinTest)
 
+endif()
+
+if(WITH_TESTS)
+	add_executable(ConfigurationAspectTest ConfigurationAspectTest.cpp)
+	target_link_libraries(ConfigurationAspectTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Core veyon-core)
+	add_test(NAME ConfigurationAspectTest COMMAND ConfigurationAspectTest)
+endif()
+
+if(WITH_TESTS)
+	add_executable(ConfiguratorDraftTest ConfiguratorDraftTest.cpp)
+	target_include_directories(ConfiguratorDraftTest PRIVATE ${CMAKE_SOURCE_DIR}/configurator/src)
+	target_link_libraries(ConfiguratorDraftTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
+	add_test(NAME ConfiguratorDraftTest COMMAND ConfiguratorDraftTest)
 endif()

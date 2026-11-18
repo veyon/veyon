@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <QFileDialog>
+#include <QVBoxLayout>
 #include <QKeyEvent>
 #include <QMessageBox>
 
@@ -26,6 +27,10 @@ ComputerSelectPanel::ComputerSelectPanel(ComputerManager& computerManager, QWidg
 	m_filterProxyModel->setRecursiveFilteringEnabled(true);
 
 	ui->setupUi(this);
+	setMinimumWidth(190);
+	layout()->setContentsMargins(10, 10, 10, 10);
+	ui->filterLineEdit->setClearButtonEnabled(true);
+	static_cast<QVBoxLayout*>(layout())->insertWidget(0, ui->filterLineEdit);
 
 	// capture keyboard events for tree view
 	ui->treeView->installEventFilter(this);

@@ -3,3 +3,5 @@ if(WITH_FUZZERS)
 endif()
 
 add_subdirectory(unit)
+
+add_subdirectory(ui)

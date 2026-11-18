@@ -1,6 +1,18 @@
 include(BuildVeyonApplication)
 
-file(GLOB master_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.*)
+set(master_SOURCES
+ src/main.cpp src/VeyonMaster.cpp src/VeyonMaster.h
+ src/MainWindow.cpp src/MainWindow.h src/MasterComputerModel.cpp
+ src/ComputerManager.cpp src/ComputerManager.h
+ src/CheckableItemProxyModel.cpp src/CheckableItemProxyModel.h
+ src/KExtraColumnsProxyModel.cpp src/KExtraColumnsProxyModel.h
+ src/NetworkObjectFilterProxyModel.cpp src/NetworkObjectFilterProxyModel.h
+ src/NetworkObjectOverlayDataModel.cpp src/NetworkObjectOverlayDataModel.h
+ src/NetworkObjectTreeModel.cpp src/NetworkObjectTreeModel.h
+ src/ComputerControlListModel.cpp src/ComputerControlListModel.h
+ src/ComputerMonitoringModel.cpp src/ComputerMonitoringModel.h
+ src/UserConfig.cpp src/UserConfig.h
+ qml/master-qml.qrc)
 
 set(master_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/resources/master.qrc)
 if(VEYON_DEBUG)

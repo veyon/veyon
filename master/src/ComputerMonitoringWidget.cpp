@@ -2,6 +2,10 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <QApplication>
+#include <QCheckBox>
+#include <QPainter>
+#include <QSignalBlocker>
+#include <QStringList>
 #include <QMenu>
 #include <QScrollBar>
 #include <QShowEvent>
@@ -16,26 +20,77 @@
 #include "VeyonMaster.h"
 
 
-ComputerMonitoringWidget::ComputerMonitoringWidget(QWidget* parent) :
-	FlexibleListView(parent),
+namespace
+{
+class ComputerListHeader : public QWidget
+{
+public:
+	ComputerListHeader(const QStringList& labels, QWidget* parent) : QWidget(parent), m_labels(labels)
+	{
+		setObjectName(QStringLiteral("computerListHeader"));
+		setFixedHeight(30);
+		setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
+	}
+
+protected:
+	void paintEvent(QPaintEvent*) override
+	{
+		QPainter painter(this);
+		painter.fillRect(rect(), palette().color(QPalette::Window));
+		painter.setPen(QPen(palette().color(QPalette::Mid), 2));
+		painter.drawLine(rect().bottomLeft(), rect().bottomRight());
+		auto labelFont = font();
+		labelFont.setPixelSize(11);
+		labelFont.setWeight(QFont::DemiBold);
+		labelFont.setLetterSpacing(QFont::AbsoluteSpacing, .6);
+		painter.setFont(labelFont);
+		painter.setPen(palette().color(QPalette::PlaceholderText));
+		const QFontMetrics metrics(labelFont);
+		const auto available = width() - 24;
+		const auto factor = qMin(1.0, qMax(.45, available / 850.0));
+		const int checkWidth = qRound(36 * factor);
+		const int nameWidth = qRound(110 * factor);
+		const int statusWidth = qRound(190 * factor);
+		const int addressWidth = qRound(130 * factor);
+		const int osWidth = qRound(120 * factor);
+		const int userWidth = qMax(0, available - checkWidth - nameWidth - statusWidth - addressWidth - osWidth);
+		const int widths[] = {nameWidth, userWidth, statusWidth, addressWidth, osWidth};
+		int column = 12 + checkWidth;
+		for (int i = 0; i < m_labels.size(); ++i)
+		{
+			const auto textWidth = qMax(0, widths[i] - 8);
+			painter.drawText(QRect(column, 0, textWidth, height()), Qt::AlignLeft | Qt::AlignVCenter,
+				metrics.elidedText(m_labels[i].toUpper(), Qt::ElideRight, textWidth));
+			column += widths[i];
+		}
+	}
+
+private:
+	const QStringList m_labels;
+};
+}
+
+ComputerMonitoringWidget::ComputerMonitoringWidget( QWidget *parent ) :
+	FlexibleListView( parent ),
 	m_featureMenu(new QMenu(this)),
 	m_itemsLayoutDebounceTimer(new QTimer(this))
 {
-	const auto computerMonitoringThumbnailSpacing = VeyonCore::config().computerMonitoringThumbnailSpacing();
-
-	setContextMenuPolicy(Qt::CustomContextMenu);
-	setAcceptDrops(true);
-	setDragEnabled(true);
-	setDragDropMode(QAbstractItemView::DropOnly);
-	setDefaultDropAction(Qt::MoveAction);
-	setSelectionMode(QAbstractItemView::ExtendedSelection);
-	setFlow(QListView::LeftToRight);
-	setWrapping(true);
-	setResizeMode(QListView::Adjust);
-	setSpacing(computerMonitoringThumbnailSpacing);
-	setViewMode(QListView::IconMode);
-	setUniformItemSizes(true);
-	setSelectionRectVisible(true);
+	setContextMenuPolicy( Qt::CustomContextMenu );
+	setAcceptDrops( true );
+	setDragEnabled( true );
+	setDragDropMode( QAbstractItemView::DropOnly );
+	setDefaultDropAction( Qt::MoveAction );
+	setSelectionMode( QAbstractItemView::ExtendedSelection );
+	setFlow( QListView::LeftToRight );
+	setWrapping( true );
+	setResizeMode( QListView::Adjust );
+	setSpacing(6);
+	setViewportMargins(8, 8, 8, 8);
+	setViewMode( QListView::IconMode );
+	setUniformItemSizes( true );
+	setSelectionRectVisible( true );
+	setMouseTracking(true);
+	setFrameShape(QFrame::NoFrame);
 
 	const auto fullLengthLabels = VeyonCore::config().computerMonitoringGridSizingMode() ==
 		ComputerListModel::GridSizingMode::FullLengthLabels;
@@ -58,6 +113,25 @@ ComputerMonitoringWidget::ComputerMonitoringWidget(QWidget* parent) :
 	initializeView(this);
 
 	setModel(dataModel());
+	m_listHeader = new ComputerListHeader({tr("Computer"), tr("User"), tr("Status"), tr("Address"), tr("OS")}, this);
+	m_listHeader->hide();
+	m_selectAllComputers = new QCheckBox(m_listHeader);
+	m_selectAllComputers->setObjectName(QStringLiteral("selectAllComputers"));
+	m_selectAllComputers->setAccessibleName(tr("Select all computers"));
+	m_selectAllComputers->setToolTip(tr("Select all computers"));
+	m_selectAllComputers->setTristate(true);
+	m_selectAllComputers->setGeometry(12, 7, 16, 16);
+	connect(m_selectAllComputers, &QCheckBox::clicked, this, [this](bool checked) {
+		if (checked) selectAll();
+		else clearSelection();
+		updateListHeaderSelection();
+	});
+	connect(selectionModel(), &QItemSelectionModel::selectionChanged, this, &ComputerMonitoringWidget::updateListHeaderSelection);
+	connect(model(), &QAbstractItemModel::modelReset, this, &ComputerMonitoringWidget::updateListHeaderSelection);
+	connect(model(), &QAbstractItemModel::rowsInserted, this, &ComputerMonitoringWidget::updateListHeaderSelection);
+	connect(model(), &QAbstractItemModel::rowsRemoved, this, &ComputerMonitoringWidget::updateListHeaderSelection);
+	updateListHeaderSelection();
+	updateCardLayout();
 }
 
 
@@ -81,6 +155,11 @@ ComputerControlInterfaceList ComputerMonitoringWidget::selectedComputerControlIn
 
 bool ComputerMonitoringWidget::performIconSizeAutoAdjust()
 {
+	if (property("listMode").toBool())
+	{
+		return false;
+	}
+
 	if (isVisible() == false)
 	{
 		initiateIconSizeAutoAdjust();
@@ -96,7 +175,7 @@ bool ComputerMonitoringWidget::performIconSizeAutoAdjust()
 
 	auto size = iconSize().width();
 
-	setComputerScreenSize(size);
+	setCardMinimumWidth(size);
 	QApplication::processEvents();
 
 	while (verticalScrollBar()->isVisible() == false &&
@@ -104,7 +183,7 @@ bool ComputerMonitoringWidget::performIconSizeAutoAdjust()
 		   size < MaximumComputerScreenSize)
 	{
 		size += IncreaseIconSizeStepSize;
-		setComputerScreenSize(size);
+		setCardMinimumWidth(size);
 		QApplication::processEvents();
 	}
 
@@ -114,7 +193,7 @@ bool ComputerMonitoringWidget::performIconSizeAutoAdjust()
 	{
 		const auto scrollMax = std::max(verticalScrollBar()->maximum(), horizontalScrollBar()->maximum());
 		size -= std::max(DecreaseIconSizeMinimumStepSize, std::min(size / 10, scrollMax / 5));
-		setComputerScreenSize(size);
+		setCardMinimumWidth(size);
 		QApplication::processEvents();
 	}
 
@@ -174,7 +253,12 @@ void ComputerMonitoringWidget::setIconSize(const QSize& size)
 void ComputerMonitoringWidget::setColors(const QColor& backgroundColor, const QColor& textColor)
 {
 	auto pal = palette();
-	if (VeyonCore::useDarkMode())
+	if (backgroundColor == QColor(Qt::white) && textColor == QColor(Qt::black))
+	{
+		pal.setColor(QPalette::Base, qApp->palette().color(QPalette::Base));
+		pal.setColor(QPalette::Text, qApp->palette().color(QPalette::Text));
+	}
+	else if (VeyonCore::useDarkMode())
 	{
 		pal.setColor(QPalette::Base, textColor);
 		pal.setColor(QPalette::Text, backgroundColor);
@@ -212,6 +296,7 @@ void ComputerMonitoringWidget::loadComputerPositions(const QJsonArray& positions
 
 void ComputerMonitoringWidget::populateFeatureMenu(const ComputerControlInterfaceList& computerControlInterfaces)
 {
+	m_featureMenuTargets = computerControlInterfaces;
 	Plugin::Uid previousPluginUid;
 
 	m_featureMenu->clear();
@@ -234,8 +319,10 @@ void ComputerMonitoringWidget::populateFeatureMenu(const ComputerControlInterfac
 
 		previousPluginUid = pluginUid;
 
-		if (feature.displayNameActive().isEmpty() == false &&
-			isFeatureOrRelatedFeatureActive(computerControlInterfaces, feature.uid()))
+		if (!feature.displayNameActive().isEmpty() && !computerControlInterfaces.isEmpty() &&
+			std::all_of(computerControlInterfaces.cbegin(), computerControlInterfaces.cend(), [this, &feature](const auto& computer) {
+				return isFeatureOrRelatedFeatureActive({computer}, feature.uid());
+			}))
 		{
 			addFeatureToMenu(feature, feature.displayNameActive());
 		}
@@ -258,16 +345,18 @@ void ComputerMonitoringWidget::populateFeatureMenu(const ComputerControlInterfac
 
 void ComputerMonitoringWidget::addFeatureToMenu(const Feature& feature, const QString& label)
 {
+	const auto targets = m_featureMenuTargets;
 	m_featureMenu->addAction(QIcon(feature.iconUrl()),
 							 label,
-							 this, [=, this]() { runFeature(feature); });
+							 this, [this, feature, targets]() { runFeatureOnComputers(feature, targets); });
 }
 
 
 
 void ComputerMonitoringWidget::addSubFeaturesToMenu(const Feature& parentFeature, const FeatureList& subFeatures, const QString& label)
 {
-	auto menu = m_featureMenu->addMenu(QIcon(parentFeature.iconUrl()), label);
+	const auto targets = m_featureMenuTargets;
+	auto menu = m_featureMenu->addMenu( QIcon( parentFeature.iconUrl() ), label );
 
 	for (const auto& subFeature : subFeatures)
 	{
@@ -275,7 +364,7 @@ void ComputerMonitoringWidget::addSubFeaturesToMenu(const Feature& parentFeature
 #if QT_VERSION >= QT_VERSION_CHECK(6, 3, 0)
 						subFeature.shortcut(),
 #endif
-						this, [=, this]() { runFeature(subFeature); }
+						 this, [this, subFeature, targets]() { runFeatureOnComputers(subFeature, targets, false); }
 #if QT_VERSION < QT_VERSION_CHECK(6, 3, 0)
 						,
 						subFeature.shortcut()
@@ -393,6 +482,7 @@ void ComputerMonitoringWidget::mouseMoveEvent(QMouseEvent* event)
 void ComputerMonitoringWidget::resizeEvent(QResizeEvent* event)
 {
 	FlexibleListView::resizeEvent(event);
+	updateCardLayout();
 
 	if (m_ignoreResizeEvent == false)
 	{
@@ -419,7 +509,7 @@ void ComputerMonitoringWidget::wheelEvent(QWheelEvent* event)
 	if (m_ignoreWheelEvent == false &&
 		event->modifiers().testFlag(Qt::ControlModifier))
 	{
-		setComputerScreenSize(iconSize().width() + event->angleDelta().y() / 8);
+		setCardMinimumWidth(m_cardMinimumWidth + event->angleDelta().y() / 8);
 
 		Q_EMIT computerScreenSizeAdjusted(computerScreenSize());
 
@@ -429,4 +519,73 @@ void ComputerMonitoringWidget::wheelEvent(QWheelEvent* event)
 	{
 		QListView::wheelEvent(event);
 	}
+}
+
+void ComputerMonitoringWidget::setListMode(bool enabled)
+{
+	setProperty("listMode", enabled);
+	setViewportMargins(8, enabled ? 38 : 8, 8, 8);
+	m_listHeader->setVisible(enabled);
+	setViewMode(enabled ? QListView::ListMode : QListView::IconMode);
+	setFlow(enabled ? QListView::TopToBottom : QListView::LeftToRight);
+	setWrapping(!enabled);
+	setSpacing(enabled ? 0 : 6);
+	updateCardLayout();
+}
+
+void ComputerMonitoringWidget::setCardMinimumWidth(int width)
+{
+	m_cardMinimumWidth = qBound(150, width, 1000);
+	setComputerScreenSize(m_cardMinimumWidth);
+	updateCardLayout();
+}
+
+void ComputerMonitoringWidget::updateCardLayout()
+{
+	if (!model()) return;
+	if (m_listHeader)
+	{
+		m_listHeader->setGeometry(viewport()->geometry().left(), 8, viewport()->width(), 30);
+		m_listHeader->raise();
+	}
+	if (property("listMode").toBool())
+	{
+		setProperty("cardWidth", qMax(140, viewport()->width()));
+		QStyleOptionViewItem option;
+		option.initFrom(this);
+		option.font = font();
+		option.fontMetrics = fontMetrics();
+		option.widget = this;
+		setGridSize(QSize(viewport()->width(), qMax(30, itemDelegate()->sizeHint(option, model()->index(0, 0)).height())));
+	}
+	else if (!flexible())
+	{
+		const int available = qMax(150, viewport()->width() - 13);
+		const int columns = qMax(1, (available + 12) / (m_cardMinimumWidth + 12));
+		const int width = (available - (columns - 1) * 12) / columns;
+		setProperty("cardWidth", width);
+		QStyleOptionViewItem option;
+		option.initFrom(this);
+		option.font = font();
+		option.fontMetrics = fontMetrics();
+		option.widget = this;
+		setGridSize(QSize(width + 12, itemDelegate()->sizeHint(option, model()->index(0, 0)).height() + 12));
+	}
+	else
+	{
+		setProperty("cardWidth", iconSize().width());
+		setGridSize({});
+	}
+	doItemsLayout();
+	viewport()->update();
+}
+
+void ComputerMonitoringWidget::updateListHeaderSelection()
+{
+	if (!m_selectAllComputers || !selectionModel() || !model()) return;
+	const auto count = model()->rowCount();
+	const auto selected = selectionModel()->selectedRows().size();
+	const QSignalBlocker blocker(m_selectAllComputers);
+	m_selectAllComputers->setEnabled(count > 0);
+	m_selectAllComputers->setCheckState(selected == 0 ? Qt::Unchecked : selected == count ? Qt::Checked : Qt::PartiallyChecked);
 }

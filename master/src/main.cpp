@@ -2,32 +2,21 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <QApplication>
-#include <QSplashScreen>
+#include <QWindow>
 
-#include "DocumentationFigureCreator.h"
-#include "MainWindow.h"
+
 #include "VeyonMaster.h"
+#include "MainWindow.h"
 
 
 int main(int argc, char** argv)
 {
 	VeyonCore::setupApplicationParameters();
 
-	QApplication app(argc, argv);
-	app.connect(&app, &QApplication::lastWindowClosed, &QApplication::quit);
+	QApplication app( argc, argv );
 
 	VeyonCore core(&app, VeyonCore::Component::Master, QStringLiteral("Master"));
 
-#ifdef VEYON_DEBUG
-	if (qEnvironmentVariableIsSet("VEYON_MASTER_CREATE_DOC_FIGURES"))
-	{
-		DocumentationFigureCreator().run();
-		return 0;
-	}
-#endif
-
-	QSplashScreen splashScreen(QPixmap(QStringLiteral(":/master/splash.png")));
-	splashScreen.show();
 
 	if (MainWindow::initAuthentication() == false ||
 		MainWindow::initAccessControl() == false)
@@ -37,10 +26,8 @@ int main(int argc, char** argv)
 
 	VeyonMaster masterCore(&core);
 
-	// hide splash-screen as soon as main-window is shown
-	splashScreen.finish(masterCore.mainWindow());
-
-	masterCore.mainWindow()->show();
+	if (!masterCore.mainQmlWindow()) return -1;
+	masterCore.mainQmlWindow()->show();
 
 	return core.exec();
 }

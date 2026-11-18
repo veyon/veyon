@@ -1,5 +1,14 @@
 <RCC>
     <qresource prefix="/configurator">
+        <file alias="Configurator.qml">../qml/Configurator.qml</file>
+        <file alias="DirectoryPage.qml">../qml/DirectoryPage.qml</file>
+        <file alias="KeysPage.qml">../qml/KeysPage.qml</file>
+        <file alias="LdapPage.qml">../qml/LdapPage.qml</file>
+        <file alias="Overview.qml">../qml/Overview.qml</file>
+        <file alias="PresetsPage.qml">../qml/PresetsPage.qml</file>
+        <file alias="PropertyRow.qml">../qml/PropertyRow.qml</file>
+        <file alias="RulesPage.qml">../qml/RulesPage.qml</file>
+
         <file>veyon-configurator.png</file>
         <file>help-about.png</file>
         <file>network-vpn.png</file>

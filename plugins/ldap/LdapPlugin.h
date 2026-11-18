@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include "QuickConfigurationPluginInterface.h"
+
 #include "CommandLinePluginInterface.h"
 #include "ConfigurationPagePluginInterface.h"
 #include "LdapConfiguration.h"
@@ -11,17 +13,24 @@
 
 class LdapDirectory;
 
-class LdapPlugin : public QObject, PluginInterface, CommandLinePluginInterface, NetworkObjectDirectoryPluginInterface, UserGroupsBackendInterface, ConfigurationPagePluginInterface
+class LdapPlugin : public QObject, PluginInterface,
+		CommandLinePluginInterface,
+		NetworkObjectDirectoryPluginInterface,
+		UserGroupsBackendInterface,
+		ConfigurationPagePluginInterface,
+		public QuickConfigurationPluginInterface
 {
 	Q_OBJECT
 	Q_PLUGIN_METADATA(IID "io.veyon.Veyon.Plugins.Ldap")
-	Q_INTERFACES(PluginInterface
+	Q_INTERFACES(QuickConfigurationPluginInterface PluginInterface
 					 CommandLinePluginInterface
 						 NetworkObjectDirectoryPluginInterface
 							 UserGroupsBackendInterface
 								 ConfigurationPagePluginInterface)
 public:
-	explicit LdapPlugin(QObject* parent = nullptr);
+	QObject* createQuickConfiguration(Configuration::Object* draft, QObject* parent) override;
+
+	explicit LdapPlugin( QObject* parent = nullptr );
 	~LdapPlugin() override;
 
 	Plugin::Uid uid() const override

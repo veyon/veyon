@@ -7,6 +7,7 @@
 #include <QJsonObject>
 #include <QRegularExpression>
 #include <QSettings>
+#include <memory>
 
 #include "Configuration/LocalStore.h"
 #include "Configuration/Object.h"
@@ -70,9 +71,33 @@ static void loadSettingsTree(Object* obj, QSettings* s,
 
 void LocalStore::load(Object* obj)
 {
-	auto s = createSettingsObject();
-	loadSettingsTree(obj, s, {});
-	delete s;
+	QString error;
+	if (!loadChecked(obj, &error)) vWarning() << error;
+}
+
+static bool checkSettingsStatus(QSettings* settings, QString* error)
+{
+	settings->sync();
+	if (error) error->clear();
+	if (settings->status() == QSettings::NoError) return true;
+	if (error)
+	{
+		*error = settings->status() == QSettings::AccessError ?
+			QObject::tr("Could not access configuration store %1. Check permissions and available disk space.").arg(settings->fileName()) :
+			QObject::tr("The configuration store %1 has an invalid format.").arg(settings->fileName());
+	}
+	return false;
+}
+
+bool LocalStore::loadChecked(Object* object, QString* error)
+{
+	std::unique_ptr<QSettings> settings(createSettingsObject());
+	if (!checkSettingsStatus(settings.get(), error)) return false;
+	Object loaded;
+	loadSettingsTree(&loaded, settings.get(), {});
+	if (!checkSettingsStatus(settings.get(), error)) return false;
+	*object += loaded;
+	return true;
 }
 
 
@@ -136,12 +161,23 @@ static void saveSettingsTree(const Object::DataMap& dataMap, QSettings* s)
 
 void LocalStore::flush(const Object* obj)
 {
-	auto s = createSettingsObject();
-	// clear previously saved items
-	s->setFallbacksEnabled(false);
-	s->clear();
-	saveSettingsTree(obj->data(), s);
-	delete s;
+	QString error;
+	if (!flushChecked(obj, &error)) vCritical() << error;
+}
+
+bool LocalStore::flushChecked(const Object* object, QString* error)
+{
+	std::unique_ptr<QSettings> settings(createSettingsObject());
+	settings->setFallbacksEnabled(false);
+	if (!checkSettingsStatus(settings.get(), error)) return false;
+	if (!settings->isWritable())
+	{
+		if (error) *error = QObject::tr("Configuration is not writable. Please check your permissions!");
+		return false;
+	}
+	settings->clear();
+	saveSettingsTree(object->data(), settings.get());
+	return checkSettingsStatus(settings.get(), error);
 }
 
 
@@ -159,10 +195,14 @@ bool LocalStore::isWritable() const
 
 void LocalStore::clear()
 {
-	auto s = createSettingsObject();
-	s->setFallbacksEnabled(false);
-	s->clear();
-	delete s;
+	QString error;
+	if (!clearChecked(&error)) vCritical() << error;
+}
+
+bool LocalStore::clearChecked(QString* error)
+{
+	const Object empty;
+	return flushChecked(&empty, error);
 }
 
 

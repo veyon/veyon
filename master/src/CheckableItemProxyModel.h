@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <QBitArray>
 #include <QIdentityProxyModel>
 #include <QJsonArray>
 #include <QUuid>

@@ -42,6 +42,18 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Лицензия</translation>
     </message>
     <message>
+        <source>Veyon %1</source>
+        <translation>Veyon %1</translation>
+    </message>
+    <message>
+        <source>Donate</source>
+        <translation>Поддержать проект</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Закрыть</translation>
+    </message>
+    <message>
         <source>About Veyon %1</source>
         <translation>О программе Veyon %1</translation>
     </message>
@@ -53,20 +65,20 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Контроль доступа к компьютеру</translation>
     </message>
     <message>
-        <source>Restrict access to members of specific user groups</source>
-        <translation>Ограничить доступ участникам указанных групп пользователей</translation>
+        <source>Process access control rules</source>
+        <translation>Правила контроля доступа к процессу</translation>
     </message>
     <message>
         <source>Test</source>
         <translation>Тестировать</translation>
     </message>
     <message>
-        <source>Process access control rules</source>
-        <translation>Правила контроля доступа к процессу</translation>
-    </message>
-    <message>
         <source>Grant access to every authenticated user (default)</source>
         <translation>Предоставлять доступ каждому аутентифицированному пользователю (по умолчанию)</translation>
+    </message>
+    <message>
+        <source>Restrict access to members of specific user groups</source>
+        <translation>Ограничить доступ участникам указанных групп пользователей</translation>
     </message>
     <message>
         <source>User groups authorized for computer access</source>
@@ -215,6 +227,10 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Пользователь, выполняющий доступ, уже подключён</translation>
     </message>
     <message>
+        <source>Local computer is already being accessed</source>
+        <translation>К локальному компьютеру уже осуществляется доступ</translation>
+    </message>
+    <message>
         <source>Action</source>
         <translation>Действие</translation>
     </message>
@@ -249,10 +265,6 @@ If you&apos;re interested in translating Veyon into your local or another langua
     <message>
         <source>Local computer</source>
         <translation>Локальный компьютер</translation>
-    </message>
-    <message>
-        <source>Local computer is already being accessed</source>
-        <translation>К локальному компьютеру уже осуществляется доступ</translation>
     </message>
 </context>
 <context>
@@ -298,12 +310,12 @@ If you&apos;re interested in translating Veyon into your local or another langua
         <translation>Доступ в данном сценарии требует разрешения зарегистрированного пользователя.</translation>
     </message>
     <message>
-        <source>Test result</source>
-        <translation>Результат испытаний</translation>
-    </message>
-    <message>
         <source>There is no matching rule with a valid action. The access is therefore denied.</source>
         <translation>Нет правила соответствия с допустимым действием. Поэтому доступ запрещен.</translation>
+    </message>
+    <message>
+        <source>Test result</source>
+        <translation>Результат испытаний</translation>
     </message>
 </context>
 <context>
@@ -403,6 +415,14 @@ The public key is used on client computers to authenticate incoming connection r
         <translation>Выберите ключ для удаления!</translation>
     </message>
     <message>
+        <source>Please enter the name of the user group or role for which to import the authentication key.
+
+Make sure that the names of the keys belonging to each other are identical on all computers.</source>
+        <translation>Введите имя группы пользователей или роли, для которой необходимо импортировать ключ аутентификации.
+
+Убедитесь, что имена ключей, принадлежащих друг другу, идентичны на всех компьютерах.</translation>
+    </message>
+    <message>
         <source>Please select a key to export!</source>
         <translation>Выберите ключ для экспорта!</translation>
     </message>
@@ -413,14 +433,6 @@ The public key is used on client computers to authenticate incoming connection r
     <message>
         <source>Please select a key which to set the access group for!</source>
         <translation>Выберите ключ, для которого необходимо установить группу доступа!</translation>
-    </message>
-    <message>
-        <source>Please enter the name of the user group or role for which to import the authentication key.
-
-Make sure that the names of the keys belonging to each other are identical on all computers.</source>
-        <translation>Введите имя группы пользователей или роли, для которой необходимо импортировать ключ аутентификации.
-
-Убедитесь, что имена ключей, принадлежащих друг другу, идентичны на всех компьютерах.</translation>
     </message>
 </context>
 <context>
@@ -561,6 +573,14 @@ Make sure that the names of the keys belonging to each other are identical on al
 <context>
     <name>AuthKeysPlugin</name>
     <message>
+        <source>Command line support for managing authentication keys</source>
+        <translation>Поддержка управления ключами аутентификации в командной строке</translation>
+    </message>
+    <message>
+        <source>Commands for managing authentication keys</source>
+        <translation>Команды для управления ключами аутентификации</translation>
+    </message>
+    <message>
         <source>Create new authentication key pair</source>
         <translation>Создать новую пару ключей для аутентификации</translation>
     </message>
@@ -652,13 +672,36 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>PAIR ID</source>
         <translation>ИД ПАРЫ</translation>
     </message>
+</context>
+<context>
+    <name>AuthKeysQuickConfigurationController</name>
     <message>
-        <source>Command line support for managing authentication keys</source>
-        <translation>Поддержка управления ключами аутентификации в командной строке</translation>
+        <source>Operation completed.</source>
+        <translation>Операция выполнена.</translation>
     </message>
     <message>
-        <source>Commands for managing authentication keys</source>
-        <translation>Команды для управления ключами аутентификации</translation>
+        <source>Operation failed.</source>
+        <translation>Не удалось выполнить операцию.</translation>
+    </message>
+    <message>
+        <source>Invalid authentication key name.</source>
+        <translation>Недопустимое имя ключа аутентификации.</translation>
+    </message>
+    <message>
+        <source>The public key could not be read.</source>
+        <translation>Не удалось прочитать открытый ключ.</translation>
+    </message>
+    <message>
+        <source>The private key could not be read. Import the matching private key to test authentication on this computer.</source>
+        <translation>Не удалось прочитать закрытый ключ. Для проверки аутентификации на этом компьютере импортируйте соответствующий закрытый ключ.</translation>
+    </message>
+    <message>
+        <source>Authentication key pair is valid and the public and private keys match.</source>
+        <translation>Пара ключей аутентификации действительна: открытый и закрытый ключи соответствуют друг другу.</translation>
+    </message>
+    <message>
+        <source>The public and private keys do not match.</source>
+        <translation>Открытый и закрытый ключи не соответствуют друг другу.</translation>
     </message>
 </context>
 <context>
@@ -970,6 +1013,18 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Ошибка при обработке строки %1.</translation>
     </message>
     <message>
+        <source>Location &quot;%1&quot; not found.</source>
+        <translation>Местоположение &quot;%1&quot; не найдено.</translation>
+    </message>
+    <message>
+        <source>Local directory</source>
+        <translation>Локальный каталог</translation>
+    </message>
+    <message>
+        <source>Computers and rooms</source>
+        <translation>Компьютеры и кабинеты</translation>
+    </message>
+    <message>
         <source>Network object directory which stores objects in local configuration</source>
         <translation>Каталог объектов сети, где хранятся объекты в локальной конфигурации</translation>
     </message>
@@ -1001,13 +1056,72 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>&quot;Computer 01&quot;</source>
         <translation>&quot;Компьютер 01&quot;</translation>
     </message>
+</context>
+<context>
+    <name>BuiltinDirectoryQuickConfigurationController</name>
     <message>
-        <source>Location &quot;%1&quot; not found.</source>
-        <translation>Местоположение &quot;%1&quot; не найдено.</translation>
+        <source>Enter a name.</source>
+        <translation>Введите название.</translation>
+    </message>
+    <message>
+        <source>Invalid object type.</source>
+        <translation>Недопустимый тип объекта.</translation>
+    </message>
+    <message>
+        <source>Select a valid parent location.</source>
+        <translation>Выберите допустимое родительское расположение.</translation>
+    </message>
+    <message>
+        <source>A location cannot be placed inside itself.</source>
+        <translation>Нельзя поместить расположение внутрь самого себя.</translation>
+    </message>
+    <message>
+        <source>Select a JSON array exported from the computer directory. %1</source>
+        <translation>Выберите массив JSON, экспортированный из каталога компьютеров. %1</translation>
+    </message>
+    <message>
+        <source>The directory contains an invalid object or duplicate identifier.</source>
+        <translation>Каталог содержит недопустимый объект или повторяющийся идентификатор.</translation>
+    </message>
+    <message>
+        <source>The directory contains a missing parent location.</source>
+        <translation>В каталоге есть ссылка на отсутствующее родительское расположение.</translation>
+    </message>
+    <message>
+        <source>The directory contains a circular hierarchy.</source>
+        <translation>В иерархии каталога обнаружен цикл.</translation>
     </message>
 </context>
 <context>
     <name>BuiltinUltraVncServer</name>
+    <message>
+        <source>UltraVNC server</source>
+        <translation>Сервер UltraVNC</translation>
+    </message>
+    <message>
+        <source>Capture layered windows</source>
+        <translation>Захватывать многослойные окна</translation>
+    </message>
+    <message>
+        <source>Enable multiple monitors</source>
+        <translation>Включить поддержку нескольких мониторов</translation>
+    </message>
+    <message>
+        <source>Poll full screen</source>
+        <translation>Опрос всего экрана</translation>
+    </message>
+    <message>
+        <source>Use low accuracy</source>
+        <translation>Использовать низкую точность</translation>
+    </message>
+    <message>
+        <source>Use desktop duplication engine</source>
+        <translation>Использовать механизм дублирования рабочего стола</translation>
+    </message>
+    <message>
+        <source>Maximum CPU usage</source>
+        <translation>Максимальное использование ЦП</translation>
+    </message>
     <message>
         <source>Builtin VNC server (UltraVNC)</source>
         <translation>Встроенный сервер VNC (UltraVNC)</translation>
@@ -1018,6 +1132,124 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Builtin VNC server (x11vnc)</source>
         <translation>Встроенный сервер VNC (x11vnc)</translation>
+    </message>
+    <message>
+        <source>X11 VNC server</source>
+        <translation>Сервер VNC X11</translation>
+    </message>
+    <message>
+        <source>Disable XDamage extension</source>
+        <translation>Отключить расширение XDamage</translation>
+    </message>
+    <message>
+        <source>Extra x11vnc arguments</source>
+        <translation>Дополнительные параметры x11vnc</translation>
+    </message>
+</context>
+<context>
+    <name>ClassroomSidebar</name>
+    <message>
+        <source>Computer or student</source>
+        <translation>Компьютер или ученик</translation>
+    </message>
+    <message>
+        <source>ROOMS</source>
+        <translation>КАБИНЕТЫ</translation>
+    </message>
+    <message>
+        <source>%1 / %2 online</source>
+        <translation>В сети: %1 из %2</translation>
+    </message>
+    <message>
+        <source>%1 computers</source>
+        <translation>Компьютеров: %1</translation>
+    </message>
+</context>
+<context>
+    <name>CollectWindow</name>
+    <message>
+        <source>Collect files</source>
+        <translation>Собрать файлы</translation>
+    </message>
+    <message>
+        <source>Collect work from the selected classroom computers.</source>
+        <translation>Соберите работы с выбранных компьютеров класса.</translation>
+    </message>
+    <message>
+        <source>Remote source directory</source>
+        <translation>Исходный каталог на удалённых компьютерах</translation>
+    </message>
+    <message>
+        <source>Relative or absolute path on remote computers</source>
+        <translation>Относительный или абсолютный путь на удалённых компьютерах</translation>
+    </message>
+    <message>
+        <source>File pattern</source>
+        <translation>Шаблон файла</translation>
+    </message>
+    <message>
+        <source>*.docx;*.pdf — empty for all files</source>
+        <translation>*.docx;*.pdf — пустое поле означает все файлы</translation>
+    </message>
+    <message>
+        <source>Subfolders</source>
+        <translation>Подкаталоги</translation>
+    </message>
+    <message>
+        <source>Use configured setting</source>
+        <translation>Использовать значение из настроек</translation>
+    </message>
+    <message>
+        <source>Source directory only</source>
+        <translation>Только исходный каталог</translation>
+    </message>
+    <message>
+        <source>Include subdirectories</source>
+        <translation>Включать подкаталоги</translation>
+    </message>
+    <message>
+        <source>Local destination</source>
+        <translation>Локальный каталог назначения</translation>
+    </message>
+    <message>
+        <source>Browse…</source>
+        <translation>Обзор…</translation>
+    </message>
+    <message>
+        <source>Collected files</source>
+        <translation>Собранные файлы</translation>
+    </message>
+    <message>
+        <source>Expand or collapse files</source>
+        <translation>Развернуть или свернуть список файлов</translation>
+    </message>
+    <message>
+        <source>files</source>
+        <translation>файлов</translation>
+    </message>
+    <message>
+        <source>Overall progress</source>
+        <translation>Общий прогресс</translation>
+    </message>
+    <message>
+        <source>Open output directory</source>
+        <translation>Открыть каталог для сохранения</translation>
+    </message>
+    <message>
+        <source>Cancel collection</source>
+        <translation>Отменить сбор</translation>
+    </message>
+    <message>
+        <source>Collect again</source>
+        <translation>Собрать снова</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Начать</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Закрыть</translation>
     </message>
 </context>
 <context>
@@ -1031,8 +1263,16 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Место: %1</translation>
     </message>
     <message>
-        <source>Active features: %1</source>
-        <translation>Задействованные возможности: %1</translation>
+        <source>Hostname: %1</source>
+        <translation>Имя хоста: %1</translation>
+    </message>
+    <message>
+        <source>unknown</source>
+        <translation>неизвестный</translation>
+    </message>
+    <message>
+        <source>IP address: %1</source>
+        <translation>IP-адрес: %1</translation>
     </message>
     <message>
         <source>[no user]</source>
@@ -1049,6 +1289,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Computer offline or switched off</source>
         <translation>Компьютер в автономном режиме или выключен</translation>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation>Имя хоста не может быть разрешено</translation>
     </message>
     <message>
         <source>Veyon Server unreachable or not running</source>
@@ -1071,24 +1315,12 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Вход в систему под пользователем: %1</translation>
     </message>
     <message>
-        <source>Hostname: %1</source>
-        <translation>Имя хоста: %1</translation>
-    </message>
-    <message>
-        <source>unknown</source>
-        <translation>неизвестный</translation>
-    </message>
-    <message>
-        <source>IP address: %1</source>
-        <translation>IP-адрес: %1</translation>
-    </message>
-    <message>
-        <source>Hostname could not be resolved</source>
-        <translation>Имя хоста не может быть разрешено</translation>
-    </message>
-    <message>
         <source>No features active</source>
         <translation>Нет активных функций</translation>
+    </message>
+    <message>
+        <source>Active features: %1</source>
+        <translation>Задействованные возможности: %1</translation>
     </message>
 </context>
 <context>
@@ -1127,6 +1359,53 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
 </context>
 <context>
+    <name>ComputerItemDelegate</name>
+    <message>
+        <source>Disconnected</source>
+        <translation>Отключён</translation>
+    </message>
+    <message>
+        <source>Locked</source>
+        <translation>Заблокирован</translation>
+    </message>
+    <message>
+        <source>Watching demo</source>
+        <translation>Смотрит демонстрацию</translation>
+    </message>
+    <message>
+        <source>Online</source>
+        <translation>В сети</translation>
+    </message>
+    <message>
+        <source>Connecting…</source>
+        <translation>Подключение…</translation>
+    </message>
+    <message>
+        <source>Offline</source>
+        <translation>Не в сети</translation>
+    </message>
+    <message>
+        <source>Unknown host</source>
+        <translation>Узел не найден</translation>
+    </message>
+    <message>
+        <source>Service unavailable</source>
+        <translation>Служба недоступна</translation>
+    </message>
+    <message>
+        <source>Access denied</source>
+        <translation>Доступ запрещён</translation>
+    </message>
+    <message>
+        <source>Screen unavailable</source>
+        <translation>Экран недоступен</translation>
+    </message>
+    <message>
+        <source>Screen hidden</source>
+        <translation>Экран скрыт</translation>
+    </message>
+</context>
+<context>
     <name>ComputerManager</name>
     <message>
         <source>User</source>
@@ -1141,8 +1420,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Отсутствует плагин каталога сетевых объектов</translation>
     </message>
     <message>
-        <source>No default network object directory plugin was found. Please check your installation or configure a different network object directory backend via Veyon Configurator.</source>
-        <translation>Не найден ни один плагин каталога сетевых объектов по умолчанию. Пожалуйста, проверьте корректность установки или настройте другой сервер каталога объектов сети через конфигуратор Veyon.</translation>
+        <source>No default network object directory plugin was found. Check your installation or configure a different backend using Veyon Configurator.</source>
+        <translation>Модуль каталога сетевых объектов по умолчанию не найден. Проверьте установку или выберите другую службу каталога в конфигураторе Veyon.</translation>
     </message>
     <message>
         <source>Computer name;Hostname;User</source>
@@ -1161,12 +1440,39 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Не удалось определить место</translation>
     </message>
     <message>
-        <source>The location of this computer could not be determined. This indicates a problem with the system configuration. No locations and computers will be displayed in the &quot;Locations &amp; computers&quot; panel.</source>
-        <translation>Не удалось определить расположение этого компьютера. Это означает, что в настройках системы есть проблемы. В панели «Места и компьютеры» не будут отображаться ни расположения, ни компьютеры.</translation>
+        <source>The location of this computer could not be determined. Check the system configuration.</source>
+        <translation>Не удалось определить расположение этого компьютера. Проверьте настройки системы.</translation>
     </message>
     <message>
         <source>Unknown location</source>
         <translation>Неизвестное место</translation>
+    </message>
+</context>
+<context>
+    <name>ComputerMonitoringWidget</name>
+    <message>
+        <source>Computer</source>
+        <translation>Компьютер</translation>
+    </message>
+    <message>
+        <source>User</source>
+        <translation>Пользователь</translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation>Статус</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>Адрес</translation>
+    </message>
+    <message>
+        <source>OS</source>
+        <translation>Система</translation>
+    </message>
+    <message>
+        <source>Select all computers</source>
+        <translation>Выбрать все компьютеры</translation>
     </message>
 </context>
 <context>
@@ -1202,6 +1508,14 @@ Make sure that the names of the keys belonging to each other are identical on al
 </context>
 <context>
     <name>ConfigCommands</name>
+    <message>
+        <source>Configure Veyon at command line</source>
+        <translation>Настройка Veyon в командной строке</translation>
+    </message>
+    <message>
+        <source>Commands for managing the configuration of Veyon</source>
+        <translation>Команды для управления настройками Veyon</translation>
+    </message>
     <message>
         <source>Clear system-wide Veyon configuration</source>
         <translation>Очистка всей системы Veyon</translation>
@@ -1266,13 +1580,12 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Please specify a valid value.</source>
         <translation>Укажите действительное значение.</translation>
     </message>
+</context>
+<context>
+    <name>Configuration::Property</name>
     <message>
-        <source>Configure Veyon at command line</source>
-        <translation>Настройка Veyon в командной строке</translation>
-    </message>
-    <message>
-        <source>Commands for managing the configuration of Veyon</source>
-        <translation>Команды для управления настройками Veyon</translation>
+        <source>The value has an invalid type or is outside the supported range.</source>
+        <translation>Значение имеет недопустимый тип или выходит за допустимые пределы.</translation>
     </message>
 </context>
 <context>
@@ -1299,10 +1612,373 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
 </context>
 <context>
-    <name>DemoClient</name>
+    <name>Configurator</name>
     <message>
-        <source>Veyon Demo</source>
-        <translation>Демонстрация Veyon</translation>
+        <source>Veyon Configurator</source>
+        <translation>Конфигуратор Veyon</translation>
+    </message>
+    <message>
+        <source>VEYON CONFIGURATOR</source>
+        <translation>КОНФИГУРАТОР VEYON</translation>
+    </message>
+    <message>
+        <source>Search settings  Ctrl+F</source>
+        <translation>Поиск настроек  Ctrl+F</translation>
+    </message>
+    <message>
+        <source>Advanced settings</source>
+        <translation>Расширенные настройки</translation>
+    </message>
+    <message>
+        <source>Local computer configuration</source>
+        <translation>Настройки локального компьютера</translation>
+    </message>
+    <message>
+        <source>Search results</source>
+        <translation>Результаты поиска</translation>
+    </message>
+    <message>
+        <source>Settings matching “%1”</source>
+        <translation>Настройки по запросу «%1»</translation>
+    </message>
+    <message>
+        <source>Configure %1.</source>
+        <translation>Настройка: %1.</translation>
+    </message>
+    <message>
+        <source>Service is running</source>
+        <translation>Сервис работает</translation>
+    </message>
+    <message>
+        <source>Service is stopped</source>
+        <translation>Служба остановлена</translation>
+    </message>
+    <message>
+        <source>Restart</source>
+        <translation>Перезапустить</translation>
+    </message>
+    <message>
+        <source>Start service</source>
+        <translation>Запустить службу</translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>Остановить</translation>
+    </message>
+    <message>
+        <source>Open log folder</source>
+        <translation>Открыть каталог журналов</translation>
+    </message>
+    <message>
+        <source>Clear log files…</source>
+        <translation>Очистить журналы…</translation>
+    </message>
+    <message>
+        <source>Clear log files? The service will be stopped temporarily.</source>
+        <translation>Очистить файлы журналов? Служба будет временно остановлена.</translation>
+    </message>
+    <message>
+        <source>Available classroom features</source>
+        <translation>Доступные функции управления классом</translation>
+    </message>
+    <message>
+        <source>Saved — application incomplete</source>
+        <translation>Сохранено — применение не завершено</translation>
+    </message>
+    <message>
+        <source>Unsaved changes</source>
+        <translation>Есть несохранённые изменения</translation>
+    </message>
+    <message>
+        <source>All changes saved</source>
+        <translation>Все изменения применены</translation>
+    </message>
+    <message>
+        <source>More</source>
+        <translation>Ещё</translation>
+    </message>
+    <message>
+        <source>Import configuration…</source>
+        <translation>Импорт настроек…</translation>
+    </message>
+    <message>
+        <source>Export configuration…</source>
+        <translation>Экспорт настроек…</translation>
+    </message>
+    <message>
+        <source>Factory reset…</source>
+        <translation>Сброс к исходным настройкам…</translation>
+    </message>
+    <message>
+        <source>Restore factory defaults in this draft?</source>
+        <translation>Восстановить исходные настройки в текущем черновике?</translation>
+    </message>
+    <message>
+        <source>Revert</source>
+        <translation>Отменить изменения</translation>
+    </message>
+    <message>
+        <source>Apply</source>
+        <translation>Применить</translation>
+    </message>
+    <message>
+        <source>Unsaved settings</source>
+        <translation>Несохранённые настройки</translation>
+    </message>
+    <message>
+        <source>Settings were saved, but system changes are incomplete. Retry Apply before closing?</source>
+        <translation>Настройки сохранены, но системные изменения не завершены. Повторить применение перед закрытием?</translation>
+    </message>
+    <message>
+        <source>Apply your changes before closing?</source>
+        <translation>Применить изменения перед закрытием?</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Отмена</translation>
+    </message>
+    <message>
+        <source>Close without retry</source>
+        <translation>Закрыть без повторной попытки</translation>
+    </message>
+    <message>
+        <source>Discard</source>
+        <translation>Отбросить</translation>
+    </message>
+    <message>
+        <source>Restart Veyon service?</source>
+        <translation>Перезапустить службу Veyon?</translation>
+    </message>
+    <message>
+        <source>The changed service settings require a restart.</source>
+        <translation>Для применения изменённых настроек службы необходим её перезапуск.</translation>
+    </message>
+</context>
+<context>
+    <name>ConfiguratorController</name>
+    <message>
+        <source>System language</source>
+        <translation>Язык системы</translation>
+    </message>
+    <message>
+        <source>English</source>
+        <translation>Английский</translation>
+    </message>
+    <message>
+        <source>No feature</source>
+        <translation>Нет функции</translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation>Обзор</translation>
+    </message>
+    <message>
+        <source>Getting started</source>
+        <translation>Начало работы</translation>
+    </message>
+    <message>
+        <source>Check this computer&apos;s configuration and manage your classroom settings.</source>
+        <translation>Проверьте настройки этого компьютера и настройте работу класса.</translation>
+    </message>
+    <message>
+        <source>Computers and rooms</source>
+        <translation>Компьютеры и кабинеты</translation>
+    </message>
+    <message>
+        <source>Connections and access</source>
+        <translation>Подключения и доступ</translation>
+    </message>
+    <message>
+        <source>Choose and organize the computers and locations shown in Veyon Master.</source>
+        <translation>Выберите и упорядочите компьютеры и расположения, отображаемые в Veyon Master.</translation>
+    </message>
+    <message>
+        <source>Sign in and keys</source>
+        <translation>Вход и ключи</translation>
+    </message>
+    <message>
+        <source>Choose how teachers authenticate and manage authentication keys.</source>
+        <translation>Выберите способ аутентификации преподавателей и настройте ключи доступа.</translation>
+    </message>
+    <message>
+        <source>Access control</source>
+        <translation>Контроль доступа</translation>
+    </message>
+    <message>
+        <source>Define which users may access this computer and test your rules.</source>
+        <translation>Укажите, кто может подключаться к этому компьютеру, и проверьте правила доступа.</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Группы пользователей</translation>
+    </message>
+    <message>
+        <source>Connections</source>
+        <translation>Подключения</translation>
+    </message>
+    <message>
+        <source>Monitoring and demonstration</source>
+        <translation>Мониторинг и демонстрация</translation>
+    </message>
+    <message>
+        <source>Classroom features</source>
+        <translation>Функции управления классом</translation>
+    </message>
+    <message>
+        <source>Applications and websites</source>
+        <translation>Приложения и сайты</translation>
+    </message>
+    <message>
+        <source>File transfer</source>
+        <translation>Передача файлов</translation>
+    </message>
+    <message>
+        <source>Veyon service</source>
+        <translation>Сервис Veyon</translation>
+    </message>
+    <message>
+        <source>System</source>
+        <translation>Система</translation>
+    </message>
+    <message>
+        <source>LDAP / Active Directory</source>
+        <translation>LDAP / Active Directory</translation>
+    </message>
+    <message>
+        <source>Logs</source>
+        <translation>Журналы</translation>
+    </message>
+    <message>
+        <source>User interface</source>
+        <translation>Интерфейс пользователя</translation>
+    </message>
+    <message>
+        <source>Web API</source>
+        <translation>Веб-API</translation>
+    </message>
+    <message>
+        <source>Platform settings</source>
+        <translation>Настройки платформы</translation>
+    </message>
+    <message>
+        <source>The settings were saved, but could not be fully applied. Retry Apply to finish: %1</source>
+        <translation>Настройки сохранены, но применены не полностью. Повторите применение: %1</translation>
+    </message>
+    <message>
+        <source>Export</source>
+        <translation>Экспорт</translation>
+    </message>
+    <message>
+        <source>Import</source>
+        <translation>Импорт</translation>
+    </message>
+    <message>
+        <source>Choose directory</source>
+        <translation>Выбор каталога</translation>
+    </message>
+    <message>
+        <source>The service operation failed. Check your permissions and the service log.</source>
+        <translation>Не удалось выполнить операцию со службой. Проверьте права доступа и журнал службы.</translation>
+    </message>
+    <message>
+        <source>Could not remove all log files or restart the service.</source>
+        <translation>Не удалось удалить все журналы или перезапустить службу.</translation>
+    </message>
+    <message>
+        <source>Authentication failed.</source>
+        <translation>Ошибка аутентификации.</translation>
+    </message>
+    <message>
+        <source>Select a key below and use Test key to verify its public and private parts.</source>
+        <translation>Выберите ключ ниже и нажмите «Проверить ключ», чтобы проверить его открытый и закрытый компоненты.</translation>
+    </message>
+    <message>
+        <source>Member of user group</source>
+        <translation>Член группы пользователей</translation>
+    </message>
+    <message>
+        <source>Groups in common</source>
+        <translation>Общие группы</translation>
+    </message>
+    <message>
+        <source>Located at</source>
+        <translation>Находится в расположении</translation>
+    </message>
+    <message>
+        <source>Same location</source>
+        <translation>То же расположение</translation>
+    </message>
+    <message>
+        <source>Access from local host</source>
+        <translation>Доступ с локального компьютера</translation>
+    </message>
+    <message>
+        <source>Access from local user</source>
+        <translation>Доступ от локального пользователя</translation>
+    </message>
+    <message>
+        <source>Already connected user</source>
+        <translation>Уже подключённый пользователь</translation>
+    </message>
+    <message>
+        <source>No user logged on</source>
+        <translation>Пользователь не вошел</translation>
+    </message>
+    <message>
+        <source>Computer already being accessed</source>
+        <translation>К компьютеру уже подключены</translation>
+    </message>
+    <message>
+        <source>New rule</source>
+        <translation>Новое правило</translation>
+    </message>
+    <message>
+        <source>Enter a name for the rule.</source>
+        <translation>Введите название правила.</translation>
+    </message>
+    <message>
+        <source>Apply directory and user-group backend changes before testing membership or location conditions. Rule edits can be tested without applying them.</source>
+        <translation>Перед проверкой членства в группах и расположения примените изменения каталога и службы групп пользователей. Изменения самих правил можно проверять без применения.</translation>
+    </message>
+    <message>
+        <source>No rule matches. Access is denied.</source>
+        <translation>Ни одно правило не совпало. Доступ запрещён.</translation>
+    </message>
+    <message>
+        <source>Matching rule: %1. Result: %2</source>
+        <translation>Совпавшее правило: %1. Результат: %2</translation>
+    </message>
+    <message>
+        <source>Allowed</source>
+        <translation>Разрешён</translation>
+    </message>
+    <message>
+        <source>Ask for permission</source>
+        <translation>Запрашивать разрешение</translation>
+    </message>
+    <message>
+        <source>Denied</source>
+        <translation>Запрещён</translation>
+    </message>
+    <message>
+        <source>Enter a user login name.</source>
+        <translation>Введите имя пользователя.</translation>
+    </message>
+    <message>
+        <source>Apply changes to the user-group backend before testing group membership.</source>
+        <translation>Перед проверкой членства в группах примените изменения службы групп пользователей.</translation>
+    </message>
+    <message>
+        <source>The user is allowed access by the selected groups.</source>
+        <translation>Выбранные группы разрешают доступ этому пользователю.</translation>
+    </message>
+    <message>
+        <source>The user is not allowed access by the selected groups.</source>
+        <translation>Выбранные группы не разрешают доступ этому пользователю.</translation>
+    </message>
+    <message>
+        <source>Finish applying the saved settings before testing access.</source>
+        <translation>Перед проверкой доступа завершите применение сохранённых настроек.</translation>
     </message>
 </context>
 <context>
@@ -1419,8 +2095,39 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Все экраны</translation>
     </message>
     <message>
+        <source>Demonstration</source>
+        <translation>Демонстрация</translation>
+    </message>
+    <message>
+        <source>Slow down thumbnail updates during demonstration</source>
+        <translation>Снизить частоту обновления миниатюр во время демонстрации</translation>
+    </message>
+    <message>
+        <source>Bandwidth limit</source>
+        <translation>Ограничение пропускной способности</translation>
+    </message>
+    <message>
+        <source>Framebuffer update interval</source>
+        <translation>Интервал обновления кадрового буфера</translation>
+    </message>
+    <message>
+        <source>Key frame interval</source>
+        <translation>Интервал между ключевыми кадрами</translation>
+    </message>
+    <message>
+        <source>Memory limit</source>
+        <translation>Предел памяти</translation>
+    </message>
+    <message>
         <source>Give a demonstration by screen broadcasting</source>
         <translation>Выполнить демонстрацию трансляцией изображения на экране</translation>
+    </message>
+</context>
+<context>
+    <name>DemoWindow</name>
+    <message>
+        <source>Veyon Demo</source>
+        <translation>Демонстрация Veyon</translation>
     </message>
 </context>
 <context>
@@ -1430,20 +2137,28 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Диалог доступа к рабочему столу</translation>
     </message>
     <message>
+        <source>Never for this session</source>
+        <translation>Никогда в этом сеансе</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Нет</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Да</translation>
+    </message>
+    <message>
+        <source>Always for this session</source>
+        <translation>Всегда в этом сеансе</translation>
+    </message>
+    <message>
         <source>Confirm desktop access</source>
         <translation>Разрешить доступ к рабочему столу</translation>
     </message>
     <message>
         <source>The user %1 at computer %2 wants to access your desktop. Do you want to grant access?</source>
         <translation>Пользователь %1 компьютера %2 пытается подключиться к вашему рабочему столу. Разрешить ему доступ к вашему рабочему столу?</translation>
-    </message>
-    <message>
-        <source>Never for this session</source>
-        <translation>Никогда в этом сеансе</translation>
-    </message>
-    <message>
-        <source>Always for this session</source>
-        <translation>Всегда в этом сеансе</translation>
     </message>
 </context>
 <context>
@@ -1515,6 +2230,14 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Click this button to open a website on all computers.</source>
         <translation>Нажмите эту кнопку для открытия веб-сайта на всех компьютерах.</translation>
     </message>
+    <message numerus="yes">
+        <source>Recipients: %n computer(s)</source>
+        <translation>
+            <numerusform>Получатель: %n компьютер</numerusform>
+            <numerusform>Получатели: %n компьютера</numerusform>
+            <numerusform>Получатели: %n компьютеров</numerusform>
+        </translation>
+    </message>
     <message>
         <source>Start application &quot;%1&quot;</source>
         <translation>Запустить приложение &quot;%1&quot;</translation>
@@ -1534,6 +2257,113 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Start apps and open websites in user sessions</source>
         <translation>Запустить программы и открыть веб-сайты в сеансах пользователей</translation>
+    </message>
+    <message>
+        <source>Presets</source>
+        <translation>Шаблоны</translation>
+    </message>
+    <message>
+        <source>Application presets</source>
+        <translation>Шаблоны приложений</translation>
+    </message>
+    <message>
+        <source>Website presets</source>
+        <translation>Шаблоны сайтов</translation>
+    </message>
+</context>
+<context>
+    <name>DirectoryPage</name>
+    <message>
+        <source>Local computer directory</source>
+        <translation>Каталог локальных компьютеров</translation>
+    </message>
+    <message>
+        <source>The local directory plugin is not installed.</source>
+        <translation>Модуль локального каталога не установлен.</translation>
+    </message>
+    <message>
+        <source>Add room</source>
+        <translation>Добавить кабинет</translation>
+    </message>
+    <message>
+        <source>Add computer</source>
+        <translation>Добавить компьютер</translation>
+    </message>
+    <message>
+        <source>Import…</source>
+        <translation>Импорт…</translation>
+    </message>
+    <message>
+        <source>Export…</source>
+        <translation>Экспорт…</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Место</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation>Открыть</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation>Изменить</translation>
+    </message>
+    <message>
+        <source>Move up</source>
+        <translation>Переместить вверх</translation>
+    </message>
+    <message>
+        <source>Move down</source>
+        <translation>Переместить вниз</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Удалить</translation>
+    </message>
+    <message>
+        <source>All top-level objects</source>
+        <translation>Все объекты верхнего уровня</translation>
+    </message>
+    <message>
+        <source>Edit room</source>
+        <translation>Изменение кабинета</translation>
+    </message>
+    <message>
+        <source>Edit computer</source>
+        <translation>Изменение компьютера</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Имя</translation>
+    </message>
+    <message>
+        <source>Parent room</source>
+        <translation>Родительский кабинет</translation>
+    </message>
+    <message>
+        <source>Hostname or IP address</source>
+        <translation>Имя узла или IP-адрес</translation>
+    </message>
+    <message>
+        <source>MAC address</source>
+        <translation>MAC-адрес</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Отмена</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>Сохранить</translation>
+    </message>
+    <message>
+        <source>Remove “%1” and its contents?</source>
+        <translation>Удалить «%1» и всё содержимое?</translation>
+    </message>
+    <message>
+        <source>Replace the directory in this draft?</source>
+        <translation>Заменить каталог в текущем черновике настроек?</translation>
     </message>
 </context>
 <context>
@@ -1588,6 +2418,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>External VNC server</source>
         <translation>Внешний VNC-сервер</translation>
+    </message>
+    <message>
+        <source>External VNC server port</source>
+        <translation>Порт внешнего сервера VNC</translation>
+    </message>
+    <message>
+        <source>External VNC password</source>
+        <translation>Пароль внешнего сервера VNC</translation>
     </message>
 </context>
 <context>
@@ -1791,16 +2629,40 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Общий прогресс</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation>Начать</translation>
+        <source>Collect files</source>
+        <translation>Собрать файлы</translation>
+    </message>
+    <message>
+        <source>The file collection window could not be loaded.</source>
+        <translation>Не удалось открыть окно сбора файлов.</translation>
+    </message>
+    <message>
+        <source>Waiting for file list</source>
+        <translation>Ожидание списка файлов</translation>
+    </message>
+    <message>
+        <source>Finished</source>
+        <translation>Завершено</translation>
+    </message>
+    <message>
+        <source>Receiving</source>
+        <translation>Получение</translation>
+    </message>
+    <message>
+        <source>Ready</source>
+        <translation>Готово</translation>
+    </message>
+    <message>
+        <source>Waiting</source>
+        <translation>Ожидание</translation>
+    </message>
+    <message>
+        <source>Stopped</source>
+        <translation>Остановлен</translation>
     </message>
     <message>
         <source>Select destination directory</source>
         <translation>Выберите каталог назначения</translation>
-    </message>
-    <message>
-        <source>Open output directory</source>
-        <translation>Открыть каталог для сохранения</translation>
     </message>
     <message>
         <source>Enter collection name</source>
@@ -1811,20 +2673,28 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Введите имя этой коллекции файлов</translation>
     </message>
     <message>
+        <source>Collection name</source>
+        <translation>Название набора</translation>
+    </message>
+    <message>
+        <source>Please enter a name without directory separators.</source>
+        <translation>Введите название без разделителей каталогов.</translation>
+    </message>
+    <message>
         <source>Output directory creation failed</source>
         <translation>Не удалось создать выходной каталог</translation>
     </message>
     <message>
-        <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
-        <translation>Выходной каталог &quot;%1&quot; не существует и не может быть создан. Проверьте конфигурацию и права доступа к файлам для указанного целевого каталога.</translation>
+        <source>The output directory &quot;%1&quot; could not be created. Check the directory and its permissions.</source>
+        <translation>Не удалось создать каталог назначения «%1». Проверьте путь и права доступа.</translation>
+    </message>
+    <message>
+        <source>No connected computers with logged on users are available.</source>
+        <translation>Нет подключённых компьютеров с вошедшими пользователями.</translation>
     </message>
 </context>
 <context>
     <name>FileCollectTreeModel</name>
-    <message>
-        <source>Progress</source>
-        <translation>Прогресс</translation>
-    </message>
     <message>
         <source>Name</source>
         <translation>Имя</translation>
@@ -1832,6 +2702,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Number of files</source>
         <translation>Количество файлов</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation>Прогресс</translation>
     </message>
 </context>
 <context>
@@ -1845,8 +2719,36 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Настройки распространения файлов</translation>
     </message>
     <message>
+        <source>Remember last source directory</source>
+        <translation>Запомнить последний исходный каталог</translation>
+    </message>
+    <message>
+        <source>Destination directory (remote):</source>
+        <translation>Целевой каталог (удалённый):</translation>
+    </message>
+    <message>
+        <source>Default source directory:</source>
+        <translation>Исходный каталог по умолчанию:</translation>
+    </message>
+    <message>
+        <source>Create destination directory if it does not exist</source>
+        <translation>Создать целевой каталог, если он не существует</translation>
+    </message>
+    <message>
         <source>Settings for collecting files</source>
         <translation>Настройки сбора файлов</translation>
+    </message>
+    <message>
+        <source>Store collected files in:</source>
+        <translation>Сохранять собранные файлы в:</translation>
+    </message>
+    <message>
+        <source>Group collected files:</source>
+        <translation>Группировать собранные файлы:</translation>
+    </message>
+    <message>
+        <source>Files to collect:</source>
+        <translation>Файлы для сбора:</translation>
     </message>
     <message>
         <source>No</source>
@@ -1865,12 +2767,28 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Нет</translation>
     </message>
     <message>
+        <source>User login name</source>
+        <translation>Имя пользователя (логин)</translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Полное имя пользователя</translation>
+    </message>
+    <message>
         <source>First part of user name</source>
         <translation>Первая часть имени пользователя</translation>
     </message>
     <message>
         <source>Last part of user name</source>
         <translation>Последняя часть имени пользователя</translation>
+    </message>
+    <message>
+        <source>Device name</source>
+        <translation>Имя ресурса</translation>
+    </message>
+    <message>
+        <source>Source directory (remote):</source>
+        <translation>Исходный каталог (удалённый):</translation>
     </message>
     <message>
         <source>Collect all files from configured source directory</source>
@@ -1883,22 +2801,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Prompt user for files to collect</source>
         <translation>Запрашивать у пользователя файлы для сбора</translation>
-    </message>
-    <message>
-        <source>Grouping attribute 3:</source>
-        <translation>Атрибут группировки 3:</translation>
-    </message>
-    <message>
-        <source>Destination directory:</source>
-        <translation>Целевой каталог:</translation>
-    </message>
-    <message>
-        <source>Store collected files in:</source>
-        <translation>Сохранять собранные файлы в:</translation>
-    </message>
-    <message>
-        <source>Group collected files:</source>
-        <translation>Группировать собранные файлы:</translation>
     </message>
     <message>
         <source>Grouping attribute 1:</source>
@@ -1921,59 +2823,31 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Подкаталог с именем, указанным пользователем при выполнении сбора файлов</translation>
     </message>
     <message>
-        <source>Files to collect:</source>
-        <translation>Файлы для сбора:</translation>
-    </message>
-    <message>
-        <source>Files to exclude:</source>
-        <translation>Файлы для исключения:</translation>
+        <source>Destination directory:</source>
+        <translation>Целевой каталог:</translation>
     </message>
     <message>
         <source>e.g. *.lnk or *.desktop</source>
         <translation>например, *.lnk или *.desktop</translation>
     </message>
     <message>
+        <source>Files to exclude:</source>
+        <translation>Файлы для исключения:</translation>
+    </message>
+    <message>
         <source>Collect files recursively</source>
         <translation>Собирать файлы рекурсивно</translation>
     </message>
     <message>
-        <source>Destination directory (remote):</source>
-        <translation>Целевой каталог (удалённый):</translation>
-    </message>
-    <message>
-        <source>Default source directory:</source>
-        <translation>Исходный каталог по умолчанию:</translation>
-    </message>
-    <message>
-        <source>Source directory (remote):</source>
-        <translation>Исходный каталог (удалённый):</translation>
-    </message>
-    <message>
-        <source>User login name</source>
-        <translation>Имя пользователя (логин)</translation>
-    </message>
-    <message>
-        <source>Full name of user</source>
-        <translation>Полное имя пользователя</translation>
-    </message>
-    <message>
-        <source>Device name</source>
-        <translation>Имя ресурса</translation>
-    </message>
-    <message>
-        <source>Remember last source directory</source>
-        <translation>Запомнить последний исходный каталог</translation>
-    </message>
-    <message>
-        <source>Create destination directory if it does not exist</source>
-        <translation>Создать целевой каталог, если он не существует</translation>
+        <source>Grouping attribute 3:</source>
+        <translation>Атрибут группировки 3:</translation>
     </message>
 </context>
 <context>
     <name>FileTransferController</name>
     <message>
         <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось открыть файл %1 для чтения. Проверьте права доступа. Этот файл будет пропущен, остальные файлы будут переданы.</translation>
     </message>
 </context>
 <context>
@@ -1995,32 +2869,56 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Относительный (Desktop/) или абсолютный путь (/tmp/ или C:\TMP), либо пустое значение для использования настроенного каталога</translation>
     </message>
     <message>
-        <source>Overwrite existing files</source>
-        <translation>Перезаписать существующие файлы</translation>
-    </message>
-    <message>
-        <source>Transfer only</source>
-        <translation>Только передача</translation>
+        <source>Transfer and open destination folder</source>
+        <translation>Передать и открыть папку назначения</translation>
     </message>
     <message>
         <source>Transfer and open file(s) with associated program</source>
         <translation>Передать и открыть файл(ы) с помощью связанной программы</translation>
     </message>
     <message>
-        <source>Transfer and open destination folder</source>
-        <translation>Передать и открыть папку назначения</translation>
+        <source>Transfer only</source>
+        <translation>Только передача</translation>
+    </message>
+    <message>
+        <source>Overwrite existing files</source>
+        <translation>Перезаписать существующие файлы</translation>
     </message>
     <message>
         <source>Files</source>
         <translation>Файлы</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation>Начать</translation>
+        <source>The file transfer window could not be loaded.</source>
+        <translation>Не удалось открыть окно передачи файлов.</translation>
     </message>
     <message>
-        <source>File transfer error</source>
-        <translation type="unfinished"/>
+        <source>Processed</source>
+        <translation>Обработано</translation>
+    </message>
+    <message>
+        <source>Sending</source>
+        <translation>Отправка</translation>
+    </message>
+    <message>
+        <source>Queued</source>
+        <translation>В очереди</translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation>Отключено</translation>
+    </message>
+    <message>
+        <source>Ready</source>
+        <translation>Готово</translation>
+    </message>
+    <message>
+        <source>Stopped</source>
+        <translation>Остановлен</translation>
+    </message>
+    <message>
+        <source>No recipient computers are selected.</source>
+        <translation>Не выбраны компьютеры-получатели.</translation>
     </message>
 </context>
 <context>
@@ -2042,12 +2940,24 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Нажмите эту кнопку, чтобы собрать файлы со всех компьютеров на свой компьютер.</translation>
     </message>
     <message>
+        <source>File transfer</source>
+        <translation>Передача файлов</translation>
+    </message>
+    <message>
+        <source>A file transfer is already running.</source>
+        <translation>Передача файлов уже выполняется.</translation>
+    </message>
+    <message>
         <source>Select one or more files to transfer</source>
         <translation>Выберите один или несколько файлов для передачи</translation>
     </message>
     <message>
-        <source>File transfer</source>
-        <translation>Передача файлов</translation>
+        <source>Collect files</source>
+        <translation>Собрать файлы</translation>
+    </message>
+    <message>
+        <source>A file collection is already running.</source>
+        <translation>Сбор файлов уже выполняется.</translation>
     </message>
     <message>
         <source>Received file %1.</source>
@@ -2058,16 +2968,32 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Файл %1 должен быть собран, но в данный момент открыт в приложении.</translation>
     </message>
     <message>
-        <source>The file %1 is to be collected, but is still open in the application &lt;b&gt;%2&lt;/b&gt;.</source>
-        <translation>Файл %1 должен быть собран, но в данный момент открыт в приложении &lt;b&gt;%2&lt;/b&gt;.</translation>
+        <source>The file %1 is to be collected, but is still open in the application %2.</source>
+        <translation>Файл %1 выбран для сбора, но ещё открыт в приложении %2.</translation>
     </message>
     <message>
         <source>Please save your changes and close the program so that the transfer can be completed.</source>
         <translation>Сохраните изменения и закройте программу, чтобы завершить передачу данных.</translation>
     </message>
     <message>
+        <source>Retry</source>
+        <translation>Повторить</translation>
+    </message>
+    <message>
+        <source>Ignore</source>
+        <translation>Пропустить</translation>
+    </message>
+    <message>
         <source>Are you sure you want to skip transferring the file %1?</source>
         <translation>Вы уверены, что хотите пропустить передачу файла %1?</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Да</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Нет</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it already exists.</source>
@@ -2078,8 +3004,131 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Не удалось получить файл %1, так как не удалось открыть его для записи.</translation>
     </message>
     <message>
+        <source>Remember the last source directory</source>
+        <translation>Запоминать последний исходный каталог</translation>
+    </message>
+    <message>
+        <source>Create destination directory</source>
+        <translation>Создавать каталог назначения</translation>
+    </message>
+    <message>
+        <source>Default source directory</source>
+        <translation>Исходный каталог по умолчанию</translation>
+    </message>
+    <message>
+        <source>Destination directory</source>
+        <translation>Каталог назначения</translation>
+    </message>
+    <message>
+        <source>Directory to collect files from</source>
+        <translation>Каталог, из которого собираются файлы</translation>
+    </message>
+    <message>
+        <source>Collection mode</source>
+        <translation>Режим сбора</translation>
+    </message>
+    <message>
+        <source>Files to exclude</source>
+        <translation>Исключаемые файлы</translation>
+    </message>
+    <message>
+        <source>Collect files from subdirectories</source>
+        <translation>Собирать файлы из подкаталогов</translation>
+    </message>
+    <message>
+        <source>Collected files destination</source>
+        <translation>Каталог для собранных файлов</translation>
+    </message>
+    <message>
+        <source>Collection directory</source>
+        <translation>Каталог сбора</translation>
+    </message>
+    <message>
+        <source>Group collected files</source>
+        <translation>Группировка собранных файлов</translation>
+    </message>
+    <message>
+        <source>First grouping attribute</source>
+        <translation>Первый атрибут группировки</translation>
+    </message>
+    <message>
+        <source>Second grouping attribute</source>
+        <translation>Второй атрибут группировки</translation>
+    </message>
+    <message>
+        <source>Third grouping attribute</source>
+        <translation>Третий атрибут группировки</translation>
+    </message>
+    <message>
+        <source>Collect from source directory</source>
+        <translation>Собирать из исходного каталога</translation>
+    </message>
+    <message>
+        <source>Ask user to select a folder</source>
+        <translation>Предлагать пользователю выбрать папку</translation>
+    </message>
+    <message>
+        <source>Ask user to select files</source>
+        <translation>Предлагать пользователю выбрать файлы</translation>
+    </message>
+    <message>
+        <source>Date and time subdirectory</source>
+        <translation>Подкаталог с датой и временем</translation>
+    </message>
+    <message>
+        <source>Ask for collection name</source>
+        <translation>Запрашивать название набора</translation>
+    </message>
+    <message>
+        <source>Do not group files</source>
+        <translation>Не группировать файлы</translation>
+    </message>
+    <message>
+        <source>Prefix filenames</source>
+        <translation>Добавлять префикс к именам файлов</translation>
+    </message>
+    <message>
+        <source>Create subdirectories</source>
+        <translation>Создавать подкаталоги</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Нет</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Имя пользователя (логин)</translation>
+    </message>
+    <message>
+        <source>Full user name</source>
+        <translation>Полное имя пользователя</translation>
+    </message>
+    <message>
+        <source>First part of user name</source>
+        <translation>Первая часть имени пользователя</translation>
+    </message>
+    <message>
+        <source>Last part of user name</source>
+        <translation>Последняя часть имени пользователя</translation>
+    </message>
+    <message>
+        <source>Computer name</source>
+        <translation>Имя компьютера</translation>
+    </message>
+    <message>
         <source>Transfer files between computers</source>
         <translation>Передача файлов между компьютерами</translation>
+    </message>
+</context>
+<context>
+    <name>FileTransferUserConfiguration</name>
+    <message>
+        <source>File transfer</source>
+        <translation>Передача файлов</translation>
+    </message>
+    <message>
+        <source>Last source directory</source>
+        <translation>Последний исходный каталог</translation>
     </message>
 </context>
 <context>
@@ -2089,20 +3138,32 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Интерфейс пользователя</translation>
     </message>
     <message>
+        <source>Native</source>
+        <translation>Нативный</translation>
+    </message>
+    <message>
         <source>Use system language setting</source>
         <translation>Использовать настройки системного языка</translation>
     </message>
     <message>
-        <source>Language:</source>
-        <translation>Язык:</translation>
+        <source>Color scheme:</source>
+        <translation>Цветовая схема:</translation>
     </message>
     <message>
         <source>Style:</source>
         <translation>Стиль:</translation>
     </message>
     <message>
-        <source>Native</source>
-        <translation>Нативный</translation>
+        <source>Light</source>
+        <translation>Светлая</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Тёмная</translation>
+    </message>
+    <message>
+        <source>Language:</source>
+        <translation>Язык:</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -2139,6 +3200,14 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source> seconds</source>
         <translation> сек.</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Группы пользователей</translation>
+    </message>
+    <message>
+        <source>Include user groups from domain</source>
+        <translation>Включить группы пользователей из домена</translation>
     </message>
     <message>
         <source>Logging</source>
@@ -2205,6 +3274,14 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Очистить все файлы журналов</translation>
     </message>
     <message>
+        <source>Missing user groups backend</source>
+        <translation>Отсутствующие группы пользователей</translation>
+    </message>
+    <message>
+        <source>No user groups plugin was found. Please check your installation!</source>
+        <translation>Плагин групп пользователей не найден. Проверьте установку!</translation>
+    </message>
+    <message>
         <source>Authentication is set up properly on this computer.</source>
         <translation>На этом компьютере аутентификация установлена правильно.</translation>
     </message>
@@ -2240,33 +3317,84 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Authentication test</source>
         <translation>Тест аутентификации</translation>
     </message>
+</context>
+<context>
+    <name>GenericDialog</name>
     <message>
-        <source>User groups</source>
-        <translation>Группы пользователей</translation>
+        <source>Veyon</source>
+        <translation>Veyon</translation>
     </message>
     <message>
-        <source>Include user groups from domain</source>
-        <translation>Включить группы пользователей из домена</translation>
+        <source>The computer will power down in %1 minutes, %2 seconds. Save your work.</source>
+        <translation>Компьютер выключится через %1 мин. %2 с. Сохраните свою работу.</translation>
     </message>
     <message>
-        <source>Missing user groups backend</source>
-        <translation>Отсутствующие группы пользователей</translation>
+        <source>Username</source>
+        <translation>Имя пользователя</translation>
     </message>
     <message>
-        <source>No user groups plugin was found. Please check your installation!</source>
-        <translation>Плагин групп пользователей не найден. Проверьте установку!</translation>
+        <source>Password</source>
+        <translation>Пароль</translation>
     </message>
     <message>
-        <source>Color scheme:</source>
-        <translation>Цветовая схема:</translation>
+        <source>Website address</source>
+        <translation>Адрес сайта</translation>
     </message>
     <message>
-        <source>Light</source>
-        <translation>Светлая</translation>
+        <source>Application or command</source>
+        <translation>Программа или команда</translation>
     </message>
     <message>
-        <source>Dark</source>
-        <translation>Тёмная</translation>
+        <source>Message text</source>
+        <translation>Текст сообщения</translation>
+    </message>
+    <message>
+        <source>Remember and add to the menu</source>
+        <translation>Запомнить и добавить в меню</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Имя</translation>
+    </message>
+    <message>
+        <source>Message title</source>
+        <translation>Заголовок сообщения</translation>
+    </message>
+    <message>
+        <source>Minutes</source>
+        <translation>Минуты</translation>
+    </message>
+    <message>
+        <source>Seconds</source>
+        <translation>Секунды</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Отмена</translation>
+    </message>
+    <message>
+        <source>Got it</source>
+        <translation>Понятно</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation>Открыть</translation>
+    </message>
+    <message>
+        <source>Run</source>
+        <translation>Запустить</translation>
+    </message>
+    <message>
+        <source>Send</source>
+        <translation>Отправить</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>ОК</translation>
+    </message>
+    <message>
+        <source>All files (*)</source>
+        <translation>Все файлы (*)</translation>
     </message>
 </context>
 <context>
@@ -2274,6 +3402,96 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Headless VNC server</source>
         <translation>Автоматический VNC-сервер</translation>
+    </message>
+    <message>
+        <source>Background color</source>
+        <translation>Цвет фона</translation>
+    </message>
+</context>
+<context>
+    <name>KWinGreeterVncServer</name>
+    <message>
+        <source>KWin Wayland greeter capture</source>
+        <translation>Захват экрана входа KWin Wayland</translation>
+    </message>
+</context>
+<context>
+    <name>KeysPage</name>
+    <message>
+        <source>Authentication keys</source>
+        <translation>Ключи аутентификации</translation>
+    </message>
+    <message>
+        <source>Key operations take effect immediately. Configuration Apply and Revert do not undo changes to key files.</source>
+        <translation>Операции с ключами выполняются сразу. Кнопки «Применить» и «Вернуть» не отменяют изменения файлов ключей.</translation>
+    </message>
+    <message>
+        <source>Create key pair…</source>
+        <translation>Создать пару ключей…</translation>
+    </message>
+    <message>
+        <source>Name of the group or role</source>
+        <translation>Название группы или роли</translation>
+    </message>
+    <message>
+        <source>Import key…</source>
+        <translation>Импорт ключа…</translation>
+    </message>
+    <message>
+        <source>Key name (leave empty to infer from filename)</source>
+        <translation>Имя ключа (пустое поле — определить по имени файла)</translation>
+    </message>
+    <message>
+        <source>Refresh</source>
+        <translation>Обновить</translation>
+    </message>
+    <message>
+        <source>Test logon…</source>
+        <translation>Проверить вход…</translation>
+    </message>
+    <message>
+        <source>Access group: %1 · Pair ID: %2</source>
+        <translation>Группа доступа: %1 · Идентификатор пары: %2</translation>
+    </message>
+    <message>
+        <source>Test key</source>
+        <translation>Проверить ключ</translation>
+    </message>
+    <message>
+        <source>Access group…</source>
+        <translation>Группа доступа…</translation>
+    </message>
+    <message>
+        <source>Group allowed to access this key</source>
+        <translation>Группа, которой разрешён доступ к ключу</translation>
+    </message>
+    <message>
+        <source>Export…</source>
+        <translation>Экспорт…</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Удалить</translation>
+    </message>
+    <message>
+        <source>Permanently delete key “%1”?</source>
+        <translation>Удалить ключ «%1» без возможности восстановления?</translation>
+    </message>
+    <message>
+        <source>Test logon authentication</source>
+        <translation>Проверка аутентификации при входе</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>Имя пользователя</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Пароль</translation>
+    </message>
+    <message>
+        <source>Authentication succeeded.</source>
+        <translation>Аутентификация прошла успешно.</translation>
     </message>
 </context>
 <context>
@@ -2433,64 +3651,64 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Атрибуты объектов</translation>
     </message>
     <message>
-        <source>e.g. name, ou or description</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
-        <translation>Имена хостов сохранены как полные доменные имена (FQDN, например, myhost.example.org)</translation>
-    </message>
-    <message>
-        <source>e.g. room or computerLab</source>
-        <translation>например, room или computerLab</translation>
-    </message>
-    <message>
-        <source>User login name attribute</source>
-        <translation>Атрибут имени пользователя для входа</translation>
-    </message>
-    <message>
-        <source>Computer location attribute</source>
-        <translation>Атрибут места компьютера</translation>
-    </message>
-    <message>
-        <source>e.g. member or memberUid</source>
-        <translation>например, member или memberUid</translation>
+        <source>e.g. cn or displayName</source>
+        <translation>например, cn или displayName</translation>
     </message>
     <message>
         <source>Group member attribute</source>
         <translation>Атрибут членства в группе</translation>
     </message>
     <message>
-        <source>e.g. hwAddress</source>
-        <translation>например, hwAddress</translation>
-    </message>
-    <message>
-        <source>Computer MAC address attribute</source>
-        <translation>Атрибут MAC-адреса компьютера</translation>
-    </message>
-    <message>
         <source>e.g. dNSHostName</source>
         <translation>например, dNSHostName</translation>
     </message>
     <message>
-        <source>e.g. uid or sAMAccountName</source>
-        <translation>например, uid или sAMAccountName</translation>
+        <source>e.g. name, ou or description</source>
+        <translation>Например, name, ou или description</translation>
     </message>
     <message>
-        <source>Computer display name attribute</source>
-        <translation>Атрибут показываемого названия компьютера</translation>
+        <source>e.g. member or memberUid</source>
+        <translation>например, member или memberUid</translation>
     </message>
     <message>
         <source>Computer hostname attribute</source>
         <translation>Атрибут имени хоста компьютера</translation>
     </message>
     <message>
+        <source>e.g. hwAddress</source>
+        <translation>например, hwAddress</translation>
+    </message>
+    <message>
+        <source>e.g. room or computerLab</source>
+        <translation>например, room или computerLab</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>Атрибут показываемого названия компьютера</translation>
+    </message>
+    <message>
+        <source>Computer MAC address attribute</source>
+        <translation>Атрибут MAC-адреса компьютера</translation>
+    </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>Атрибут места компьютера</translation>
+    </message>
+    <message>
         <source>Location name attribute</source>
         <translation>Атрибут названия места</translation>
     </message>
     <message>
-        <source>e.g. cn or displayName</source>
-        <translation>например, cn или displayName</translation>
+        <source>e.g. uid or sAMAccountName</source>
+        <translation>например, uid или sAMAccountName</translation>
+    </message>
+    <message>
+        <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
+        <translation>Имена хостов сохранены как полные доменные имена (FQDN, например, myhost.example.org)</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation>Атрибут имени пользователя для входа</translation>
     </message>
     <message>
         <source>Advanced settings</source>
@@ -2546,11 +3764,15 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Query user groups from user attribute</source>
-        <translation type="unfinished"/>
+        <translation>Запрашивать группы из атрибута пользователя</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
         <translation>Опросить вложенные группы пользователей (поддерживается только AD)</translation>
+    </message>
+    <message>
+        <source>Map container/OU structure 1:1 to locations</source>
+        <translation>Сопоставить структуру контейнера/подразделения 1:1 с местоположениями</translation>
     </message>
     <message>
         <source>Group member identification</source>
@@ -2594,7 +3816,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>List all user groups</source>
-        <translation type="unfinished"/>
+        <translation>Показать все группы пользователей</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -2605,24 +3827,24 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Места</translation>
     </message>
     <message>
+        <source>List all locations</source>
+        <translation>Вывести список всех мест</translation>
+    </message>
+    <message>
         <source>List all computers at a specific location</source>
-        <translation type="unfinished"/>
+        <translation>Показать все компьютеры в указанном расположении</translation>
     </message>
     <message>
         <source>Computers</source>
         <translation>Компьютеры</translation>
     </message>
     <message>
-        <source>List all groups of a computer</source>
-        <translation>Список всех групп компьютера</translation>
-    </message>
-    <message>
         <source>Get computer object by IP address</source>
         <translation>Получить объект компьютера по IP-адресу</translation>
     </message>
     <message>
-        <source>List all locations</source>
-        <translation>Вывести список всех мест</translation>
+        <source>List all groups of a computer</source>
+        <translation>Список всех групп компьютера</translation>
     </message>
     <message>
         <source>Browse</source>
@@ -2675,7 +3897,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>The LDAP naming context has been queried successfully. The following base DN was found:
 %1</source>
-        <translation>Успешно выполнен опрос контекста именования LDAP. Выявлен такой корневой DN: 
+        <translation>Успешно выполнен опрос контекста именования LDAP. Выявлен такой корневой DN:
 %1</translation>
     </message>
     <message>
@@ -2946,7 +4168,7 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>%1 %2 have been queried successfully:
 
 %3</source>
-        <translation>%1 %2 успешно опрошено: 
+        <translation>%1 %2 успешно опрошено:
 
 %3</translation>
     </message>
@@ -2970,9 +4192,128 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>%1 %2 have been queried successfully using the configured filter.</source>
         <translation>%1 %2 успешно опрошен с помощью настроенного фильтра.</translation>
     </message>
+</context>
+<context>
+    <name>LdapPage</name>
     <message>
-        <source>Map container/OU structure 1:1 to locations</source>
-        <translation>Сопоставить структуру контейнера/подразделения 1:1 с местоположениями</translation>
+        <source>Base distinguished name</source>
+        <translation>Базовое различающееся имя (DN)</translation>
+    </message>
+    <message>
+        <source>User tree</source>
+        <translation>Дерево пользователей</translation>
+    </message>
+    <message>
+        <source>Group tree</source>
+        <translation>Дерево групп</translation>
+    </message>
+    <message>
+        <source>Computer tree</source>
+        <translation>Дерево компьютеров</translation>
+    </message>
+    <message>
+        <source>Computer group tree</source>
+        <translation>Дерево групп компьютеров</translation>
+    </message>
+    <message>
+        <source>Bind distinguished name</source>
+        <translation>Различающееся имя для привязки</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation>Атрибут имени пользователя для входа</translation>
+    </message>
+    <message>
+        <source>Group member attribute</source>
+        <translation>Атрибут членства в группе</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>Атрибут показываемого названия компьютера</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>Атрибут имени хоста компьютера</translation>
+    </message>
+    <message>
+        <source>Computer MAC address attribute</source>
+        <translation>Атрибут MAC-адреса компьютера</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>Атрибут названия места</translation>
+    </message>
+    <message>
+        <source>User groups attribute</source>
+        <translation>Атрибут групп пользователя</translation>
+    </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>Атрибут места компьютера</translation>
+    </message>
+    <message>
+        <source>Naming context attribute</source>
+        <translation>Атрибут контекста именования</translation>
+    </message>
+    <message>
+        <source>Computer location discovery</source>
+        <translation>Определение расположения компьютеров</translation>
+    </message>
+    <message>
+        <source>Computer groups</source>
+        <translation>Группы компьютеров</translation>
+    </message>
+    <message>
+        <source>Container hierarchy</source>
+        <translation>Иерархия контейнеров</translation>
+    </message>
+    <message>
+        <source>Computer attribute</source>
+        <translation>Атрибут компьютера</translation>
+    </message>
+    <message>
+        <source>Directory diagnostics</source>
+        <translation>Диагностика каталога</translation>
+    </message>
+    <message>
+        <source>LDAP support is not installed.</source>
+        <translation>Поддержка LDAP не установлена.</translation>
+    </message>
+    <message>
+        <source>Run test</source>
+        <translation>Проверить</translation>
+    </message>
+    <message>
+        <source>Browse directory</source>
+        <translation>Просмотр каталога</translation>
+    </message>
+    <message>
+        <source>Browse</source>
+        <translation>Навигация</translation>
+    </message>
+    <message>
+        <source>Attributes</source>
+        <translation>Атрибуты</translation>
+    </message>
+    <message>
+        <source>Distinguished name (leave empty to browse naming contexts)</source>
+        <translation>Различающееся имя (пустое поле — просмотр контекстов именования)</translation>
+    </message>
+    <message>
+        <source>Querying LDAP…</source>
+        <translation>Запрос к LDAP…</translation>
+    </message>
+    <message>
+        <source>%1 results</source>
+        <translation>Результатов: %1</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation>Открыть</translation>
+    </message>
+    <message>
+        <source>Use value</source>
+        <translation>Использовать значение</translation>
     </message>
 </context>
 <context>
@@ -3006,6 +4347,186 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Настраиваем %1 как корневой DN и выключаем запросы по контексту именования.</translation>
     </message>
     <message>
+        <source>LDAP / Active Directory</source>
+        <translation>LDAP / Active Directory</translation>
+    </message>
+    <message>
+        <source>Server hostname</source>
+        <translation>Имя узла сервера</translation>
+    </message>
+    <message>
+        <source>Server port</source>
+        <translation>Порт сервера</translation>
+    </message>
+    <message>
+        <source>Connection security</source>
+        <translation>Защита соединения</translation>
+    </message>
+    <message>
+        <source>TLS certificate verification</source>
+        <translation>Проверка сертификата TLS</translation>
+    </message>
+    <message>
+        <source>CA certificate file</source>
+        <translation>Файл сертификата центра сертификации</translation>
+    </message>
+    <message>
+        <source>Use bind credentials</source>
+        <translation>Регистрационные данные привязки</translation>
+    </message>
+    <message>
+        <source>Bind distinguished name</source>
+        <translation>Различающееся имя для привязки</translation>
+    </message>
+    <message>
+        <source>Bind password</source>
+        <translation>Пароль привязки</translation>
+    </message>
+    <message>
+        <source>Query naming context</source>
+        <translation>Запрашивать контекст именования</translation>
+    </message>
+    <message>
+        <source>Query timeout</source>
+        <translation>Время ожидания запроса</translation>
+    </message>
+    <message>
+        <source>Base distinguished name</source>
+        <translation>Базовое различающееся имя (DN)</translation>
+    </message>
+    <message>
+        <source>Naming context attribute</source>
+        <translation>Атрибут контекста именования</translation>
+    </message>
+    <message>
+        <source>User tree</source>
+        <translation>Дерево пользователей</translation>
+    </message>
+    <message>
+        <source>Group tree</source>
+        <translation>Дерево групп</translation>
+    </message>
+    <message>
+        <source>Computer tree</source>
+        <translation>Дерево компьютеров</translation>
+    </message>
+    <message>
+        <source>Computer group tree</source>
+        <translation>Дерево групп компьютеров</translation>
+    </message>
+    <message>
+        <source>Search subtrees recursively</source>
+        <translation>Рекурсивный поиск в поддеревьях</translation>
+    </message>
+    <message>
+        <source>User login name attribute</source>
+        <translation>Атрибут имени пользователя для входа</translation>
+    </message>
+    <message>
+        <source>Group member attribute</source>
+        <translation>Атрибут членства в группе</translation>
+    </message>
+    <message>
+        <source>Computer display name attribute</source>
+        <translation>Атрибут показываемого названия компьютера</translation>
+    </message>
+    <message>
+        <source>Computer hostname attribute</source>
+        <translation>Атрибут имени хоста компьютера</translation>
+    </message>
+    <message>
+        <source>Use fully qualified hostnames</source>
+        <translation>Использовать полные доменные имена узлов</translation>
+    </message>
+    <message>
+        <source>Computer MAC address attribute</source>
+        <translation>Атрибут MAC-адреса компьютера</translation>
+    </message>
+    <message>
+        <source>Location name attribute</source>
+        <translation>Атрибут названия места</translation>
+    </message>
+    <message>
+        <source>User filter</source>
+        <translation>Фильтр пользователей</translation>
+    </message>
+    <message>
+        <source>User group filter</source>
+        <translation>Фильтр групп пользователей</translation>
+    </message>
+    <message>
+        <source>Computer filter</source>
+        <translation>Фильтр компьютеров</translation>
+    </message>
+    <message>
+        <source>Query nested user groups</source>
+        <translation>Запрашивать вложенные группы пользователей</translation>
+    </message>
+    <message>
+        <source>Query groups from user attribute</source>
+        <translation>Запрашивать группы из атрибута пользователя</translation>
+    </message>
+    <message>
+        <source>User groups attribute</source>
+        <translation>Атрибут групп пользователя</translation>
+    </message>
+    <message>
+        <source>Map container hierarchy to locations</source>
+        <translation>Отображать иерархию контейнеров как расположения</translation>
+    </message>
+    <message>
+        <source>Identify group members by name attribute</source>
+        <translation>Определять членов группы по атрибуту имени</translation>
+    </message>
+    <message>
+        <source>Computer group filter</source>
+        <translation>Фильтр групп компьютеров</translation>
+    </message>
+    <message>
+        <source>Computer container filter</source>
+        <translation>Фильтр контейнеров компьютеров</translation>
+    </message>
+    <message>
+        <source>Determine locations from containers</source>
+        <translation>Определять расположения по контейнерам</translation>
+    </message>
+    <message>
+        <source>Determine locations from attribute</source>
+        <translation>Определять расположения по атрибуту</translation>
+    </message>
+    <message>
+        <source>Computer location attribute</source>
+        <translation>Атрибут места компьютера</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Нет</translation>
+    </message>
+    <message>
+        <source>TLS</source>
+        <translation>TLS</translation>
+    </message>
+    <message>
+        <source>SSL</source>
+        <translation>SSL</translation>
+    </message>
+    <message>
+        <source>System default</source>
+        <translation>Системные настройки</translation>
+    </message>
+    <message>
+        <source>Never verify</source>
+        <translation>Не проверять</translation>
+    </message>
+    <message>
+        <source>Custom CA certificate</source>
+        <translation>Указанный сертификат центра сертификации</translation>
+    </message>
+    <message>
+        <source>LDAP/AD support for Veyon</source>
+        <translation>Поддержка LDAP/AD в Veyon</translation>
+    </message>
+    <message>
         <source>Commands for configuring and testing LDAP/AD integration</source>
         <translation>Команды для конфигурирования и тестирования интеграции LDAP/AD</translation>
     </message>
@@ -3017,9 +4538,176 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>%1 (load users and groups from LDAP/AD)</source>
         <translation>%1 (загрузить записи пользователей и групп с LDAP/AD)</translation>
     </message>
+</context>
+<context>
+    <name>LdapQuickConfigurationController</name>
     <message>
-        <source>LDAP/AD support for Veyon</source>
-        <translation>Поддержка LDAP/AD в Veyon</translation>
+        <source>Test connection and bind</source>
+        <translation>Проверить подключение и привязку</translation>
+    </message>
+    <message>
+        <source>Test base DN</source>
+        <translation>Проверить базовое DN</translation>
+    </message>
+    <message>
+        <source>Test naming context</source>
+        <translation>Проверить контекст именования</translation>
+    </message>
+    <message>
+        <source>Test user tree</source>
+        <translation>Проверить дерево пользователей</translation>
+    </message>
+    <message>
+        <source>Test group tree</source>
+        <translation>Проверить дерево групп</translation>
+    </message>
+    <message>
+        <source>Test computer tree</source>
+        <translation>Проверить дерево компьютеров</translation>
+    </message>
+    <message>
+        <source>Test computer group tree</source>
+        <translation>Проверить дерево групп компьютеров</translation>
+    </message>
+    <message>
+        <source>Test user login attribute</source>
+        <translation>Проверить атрибут имени пользователя</translation>
+    </message>
+    <message>
+        <source>User login name (wildcards allowed)</source>
+        <translation>Имя пользователя (допускаются шаблоны)</translation>
+    </message>
+    <message>
+        <source>Test group member attribute</source>
+        <translation>Проверить атрибут членов группы</translation>
+    </message>
+    <message>
+        <source>Group name</source>
+        <translation>Название группы</translation>
+    </message>
+    <message>
+        <source>Test computer display name</source>
+        <translation>Проверить отображаемое имя компьютера</translation>
+    </message>
+    <message>
+        <source>Computer display name</source>
+        <translation>Отображаемое имя компьютера</translation>
+    </message>
+    <message>
+        <source>Test computer hostname</source>
+        <translation>Проверить имя узла компьютера</translation>
+    </message>
+    <message>
+        <source>Computer hostname</source>
+        <translation>Имя узла компьютера</translation>
+    </message>
+    <message>
+        <source>Test computer MAC address</source>
+        <translation>Проверить MAC-адрес компьютера</translation>
+    </message>
+    <message>
+        <source>Computer distinguished name</source>
+        <translation>Различающееся имя компьютера</translation>
+    </message>
+    <message>
+        <source>Test computer location attribute</source>
+        <translation>Проверить атрибут расположения компьютера</translation>
+    </message>
+    <message>
+        <source>Location name (wildcards allowed)</source>
+        <translation>Название расположения (допускаются шаблоны)</translation>
+    </message>
+    <message>
+        <source>Test location name attribute</source>
+        <translation>Проверить атрибут названия расположения</translation>
+    </message>
+    <message>
+        <source>Test user filter</source>
+        <translation>Проверить фильтр пользователей</translation>
+    </message>
+    <message>
+        <source>Test user group filter</source>
+        <translation>Проверить фильтр групп пользователей</translation>
+    </message>
+    <message>
+        <source>Test computer filter</source>
+        <translation>Проверить фильтр компьютеров</translation>
+    </message>
+    <message>
+        <source>Test computer group filter</source>
+        <translation>Проверить фильтр групп компьютеров</translation>
+    </message>
+    <message>
+        <source>Test computer container filter</source>
+        <translation>Проверить фильтр контейнеров компьютеров</translation>
+    </message>
+    <message>
+        <source>Test user groups attribute</source>
+        <translation>Проверить атрибут групп пользователя</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Имя пользователя (логин)</translation>
+    </message>
+    <message>
+        <source>Query all user groups</source>
+        <translation>Запросить все группы пользователей</translation>
+    </message>
+    <message>
+        <source>Query groups of user</source>
+        <translation>Запросить группы пользователя</translation>
+    </message>
+    <message>
+        <source>Query groups of computer</source>
+        <translation>Запросить группы компьютера</translation>
+    </message>
+    <message>
+        <source>Resolve computer by IP address</source>
+        <translation>Найти компьютер по IP-адресу</translation>
+    </message>
+    <message>
+        <source>IP address</source>
+        <translation>IP-адрес</translation>
+    </message>
+    <message>
+        <source>Query location entries</source>
+        <translation>Запросить записи расположения</translation>
+    </message>
+    <message>
+        <source>Location name</source>
+        <translation>Название расположения</translation>
+    </message>
+    <message>
+        <source>Query all locations</source>
+        <translation>Запросить все расположения</translation>
+    </message>
+    <message>
+        <source>LDAP connection or bind failed: %1</source>
+        <translation>Не удалось подключиться к LDAP или выполнить привязку: %1</translation>
+    </message>
+    <message>
+        <source>Connected and bound successfully.</source>
+        <translation>Подключение и привязка выполнены успешно.</translation>
+    </message>
+    <message>
+        <source>The hostname does not match the configured fully qualified hostname setting.</source>
+        <translation>Имя узла не соответствует настройке использования полных доменных имён.</translation>
+    </message>
+    <message>
+        <source>Could not resolve the IP address. Check your DNS settings.</source>
+        <translation>Не удалось определить имя по IP-адресу. Проверьте настройки DNS.</translation>
+    </message>
+    <message>
+        <source>Unknown LDAP operation.</source>
+        <translation>Неизвестная операция LDAP.</translation>
+    </message>
+    <message>
+        <source>No matching entries were returned. Check the configured tree, attributes and filters. %1</source>
+        <translation>Подходящие записи не найдены. Проверьте дерево, атрибуты и фильтры. %1</translation>
+    </message>
+    <message>
+        <source>This setting is disabled by the current LDAP mode.</source>
+        <translation>Эта настройка недоступна в выбранном режиме LDAP.</translation>
     </message>
 </context>
 <context>
@@ -3049,12 +4737,12 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Имя пользователя</translation>
     </message>
     <message>
-        <source>Login key sequence</source>
-        <translation>Последовательность ключей для входа</translation>
-    </message>
-    <message>
         <source>Input start delay</source>
         <translation>Задержка входа</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation>Последовательность ключей для входа</translation>
     </message>
     <message>
         <source>Key press interval for text input</source>
@@ -3064,12 +4752,60 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Key press interval to control input fields</source>
         <translation>Интервал нажатия клавиш для управления полями ввода</translation>
     </message>
+    <message>
+        <source>LightDM login session</source>
+        <translation>Сеанс входа LightDM</translation>
+    </message>
+    <message>
+        <source>Session to start for remote login through LightDM, for example plasma. Leave empty to use the default session.</source>
+        <translation>Сеанс для удалённого входа через LightDM, например plasma. Оставьте поле пустым, чтобы использовать сеанс по умолчанию.</translation>
+    </message>
+    <message>
+        <source>Default session</source>
+        <translation>Сеанс по умолчанию</translation>
+    </message>
 </context>
 <context>
     <name>LinuxPlatformPlugin</name>
     <message>
         <source>Plugin implementing abstract functions for the Linux platform</source>
         <translation>Плагин, который реализует абстрактные функции на платформе Linux</translation>
+    </message>
+    <message>
+        <source>Linux</source>
+        <translation>Linux</translation>
+    </message>
+    <message>
+        <source>PAM service name</source>
+        <translation>Имя службы PAM</translation>
+    </message>
+    <message>
+        <source>Minimum session lifetime</source>
+        <translation>Минимальное время жизни сеанса</translation>
+    </message>
+    <message>
+        <source>Login key sequence</source>
+        <translation>Последовательность ключей для входа</translation>
+    </message>
+    <message>
+        <source>Delay before login input</source>
+        <translation>Задержка перед вводом данных для входа</translation>
+    </message>
+    <message>
+        <source>Text input key interval</source>
+        <translation>Интервал нажатия клавиш при вводе текста</translation>
+    </message>
+    <message>
+        <source>Control key interval</source>
+        <translation>Интервал нажатия управляющих клавиш</translation>
+    </message>
+    <message>
+        <source>LightDM login session</source>
+        <translation>Сеанс входа LightDM</translation>
+    </message>
+    <message>
+        <source>Session to start for remote login through LightDM, for example plasma. Leave empty to use the default session.</source>
+        <translation>Сеанс для удалённого входа через LightDM, например plasma. Оставьте поле пустым, чтобы использовать сеанс по умолчанию.</translation>
     </message>
 </context>
 <context>
@@ -3081,6 +4817,360 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>enter search filter...</source>
         <translation>введите фильтр поиска...</translation>
+    </message>
+</context>
+<context>
+    <name>LockWidget</name>
+    <message>
+        <source>Screen locked</source>
+        <translation>Компьютер заблокирован</translation>
+    </message>
+    <message>
+        <source>Your programs and files stay open. The lock ends when your teacher unlocks this computer.</source>
+        <translation>Ваши программы и файлы не закрыты. Блокировка снимется, когда преподаватель её отключит.</translation>
+    </message>
+</context>
+<context>
+    <name>Main</name>
+    <message>
+        <source>Remove saved action</source>
+        <translation>Удалить сохранённое действие</translation>
+    </message>
+    <message>
+        <source>online</source>
+        <translation>в сети</translation>
+    </message>
+    <message>
+        <source>Custom computer positions</source>
+        <translation>Произвольное расположение компьютеров</translation>
+    </message>
+    <message>
+        <source>Align computers</source>
+        <translation>Выровнять компьютеры</translation>
+    </message>
+    <message>
+        <source>Load positions…</source>
+        <translation>Загрузить расположение…</translation>
+    </message>
+    <message>
+        <source>Save positions…</source>
+        <translation>Сохранить расположение…</translation>
+    </message>
+    <message>
+        <source>Export computers and users…</source>
+        <translation>Экспорт компьютеров и пользователей…</translation>
+    </message>
+    <message>
+        <source>Documentation</source>
+        <translation>Документация</translation>
+    </message>
+    <message>
+        <source>About Veyon</source>
+        <translation>О программе Veyon</translation>
+    </message>
+    <message>
+        <source>Computer or student</source>
+        <translation>Компьютер или ученик</translation>
+    </message>
+    <message>
+        <source>ROOMS</source>
+        <translation>КАБИНЕТЫ</translation>
+    </message>
+    <message>
+        <source>Include this room</source>
+        <translation>Включить этот кабинет</translation>
+    </message>
+    <message>
+        <source>computers</source>
+        <translation>компьютеры</translation>
+    </message>
+    <message>
+        <source>Computers</source>
+        <translation>Компьютеры</translation>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation>Снимки экрана</translation>
+    </message>
+    <message>
+        <source>Slideshow</source>
+        <translation>Слайд-шоу</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Акцент</translation>
+    </message>
+    <message>
+        <source>Demonstration</source>
+        <translation>Демонстрация</translation>
+    </message>
+    <message>
+        <source>My screen · fullscreen</source>
+        <translation>Мой экран · на весь экран</translation>
+    </message>
+    <message>
+        <source>My screen · window</source>
+        <translation>Мой экран · в окне</translation>
+    </message>
+    <message>
+        <source>Selected student · fullscreen</source>
+        <translation>Выбранный ученик · на весь экран</translation>
+    </message>
+    <message>
+        <source>Selected student · window</source>
+        <translation>Выбранный ученик · в окне</translation>
+    </message>
+    <message>
+        <source>Lock screens</source>
+        <translation>Заблокировать экраны</translation>
+    </message>
+    <message>
+        <source>Message</source>
+        <translation>Сообщение</translation>
+    </message>
+    <message>
+        <source>All actions</source>
+        <translation>Все действия</translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>Остановить</translation>
+    </message>
+    <message>
+        <source>Whole class</source>
+        <translation>Весь класс</translation>
+    </message>
+    <message>
+        <source>Selected</source>
+        <translation>Выбранные</translation>
+    </message>
+    <message>
+        <source>All computers</source>
+        <translation>Все компьютеры</translation>
+    </message>
+    <message>
+        <source>Online</source>
+        <translation>В сети</translation>
+    </message>
+    <message>
+        <source>Logged-in users</source>
+        <translation>Вошедшие пользователи</translation>
+    </message>
+    <message>
+        <source>Grid</source>
+        <translation>Карточки</translation>
+    </message>
+    <message>
+        <source>List</source>
+        <translation>Список</translation>
+    </message>
+    <message>
+        <source>Fit all</source>
+        <translation>Показать все</translation>
+    </message>
+    <message>
+        <source>Computer</source>
+        <translation>Компьютер</translation>
+    </message>
+    <message>
+        <source>Refresh computers</source>
+        <translation>Обновить список компьютеров</translation>
+    </message>
+    <message>
+        <source>Add room…</source>
+        <translation>Добавить кабинет…</translation>
+    </message>
+    <message>
+        <source>Remove room</source>
+        <translation>Удалить кабинет</translation>
+    </message>
+    <message>
+        <source>Select all</source>
+        <translation>Выбрать все</translation>
+    </message>
+    <message>
+        <source>Clear selection</source>
+        <translation>Снять выделение</translation>
+    </message>
+    <message>
+        <source>Distribute files</source>
+        <translation>Раздать файлы</translation>
+    </message>
+    <message>
+        <source>Collect files</source>
+        <translation>Собрать файлы</translation>
+    </message>
+    <message>
+        <source>Show computers</source>
+        <translation>Показать компьютеры</translation>
+    </message>
+    <message>
+        <source>TO</source>
+        <translation>КОМУ</translation>
+    </message>
+    <message>
+        <source>Open website</source>
+        <translation>Открыть веб-сайт</translation>
+    </message>
+    <message>
+        <source>Start application</source>
+        <translation>Запустить приложение</translation>
+    </message>
+    <message>
+        <source>File transfer</source>
+        <translation>Передача файлов</translation>
+    </message>
+    <message>
+        <source>Power</source>
+        <translation>Питание</translation>
+    </message>
+    <message>
+        <source>User</source>
+        <translation>Пользователь</translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation>Статус</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>Адрес</translation>
+    </message>
+    <message>
+        <source>Choose a room to begin monitoring.</source>
+        <translation>Выберите кабинет, чтобы начать наблюдение.</translation>
+    </message>
+    <message>
+        <source>No computers match the current filters.</source>
+        <translation>Нет компьютеров, соответствующих заданным фильтрам.</translation>
+    </message>
+    <message>
+        <source>Zoom out</source>
+        <translation>Уменьшить масштаб</translation>
+    </message>
+    <message>
+        <source>Thumbnail size</source>
+        <translation>Размер миниатюр</translation>
+    </message>
+    <message>
+        <source>Zoom in</source>
+        <translation>Увеличить масштаб</translation>
+    </message>
+    <message>
+        <source>Filter computers</source>
+        <translation>Фильтр компьютеров</translation>
+    </message>
+    <message>
+        <source>Online logged-in users</source>
+        <translation>Компьютеры в сети с вошедшими пользователями</translation>
+    </message>
+    <message>
+        <source>Computer details</source>
+        <translation>Сведения о компьютере</translation>
+    </message>
+    <message>
+        <source>No user logged in</source>
+        <translation>Нет вошедшего пользователя</translation>
+    </message>
+    <message>
+        <source>Offline</source>
+        <translation>Не в сети</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Закрыть</translation>
+    </message>
+    <message>
+        <source>Waiting for screen</source>
+        <translation>Ожидание изображения</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Местоположение</translation>
+    </message>
+    <message>
+        <source>View</source>
+        <translation>Просмотр</translation>
+    </message>
+    <message>
+        <source>Control</source>
+        <translation>Управление</translation>
+    </message>
+    <message>
+        <source>Message…</source>
+        <translation>Сообщение…</translation>
+    </message>
+    <message>
+        <source>Show this screen to everyone</source>
+        <translation>Показать этот экран всем</translation>
+    </message>
+    <message>
+        <source>Reboot…</source>
+        <translation>Перезагрузить…</translation>
+    </message>
+    <message>
+        <source>Power down…</source>
+        <translation>Выключить…</translation>
+    </message>
+    <message>
+        <source>Add to spotlight</source>
+        <translation>Добавить в фокус</translation>
+    </message>
+    <message>
+        <source>%1 selected</source>
+        <translation>Выбрано: %1</translation>
+    </message>
+    <message>
+        <source>No user</source>
+        <translation>Нет пользователя</translation>
+    </message>
+    <message>
+        <source>Select %1</source>
+        <translation>Выбрать %1</translation>
+    </message>
+    <message>
+        <source>Veyon — Slideshow</source>
+        <translation>Veyon — Слайд-шоу</translation>
+    </message>
+    <message>
+        <source>Previous</source>
+        <translation>Предыдущий</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation>Пауза</translation>
+    </message>
+    <message>
+        <source>Play</source>
+        <translation>Воспроизвести</translation>
+    </message>
+    <message>
+        <source>Next</source>
+        <translation>Следующий</translation>
+    </message>
+    <message>
+        <source>Fullscreen</source>
+        <translation>На весь экран</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation>Открыть</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Удалить</translation>
+    </message>
+    <message>
+        <source>Add selected computers</source>
+        <translation>Добавить выбранные компьютеры</translation>
+    </message>
+    <message>
+        <source>Realtime</source>
+        <translation>В реальном времени</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Удалить</translation>
     </message>
 </context>
 <context>
@@ -3100,6 +5190,62 @@ Make sure that the names of the keys belonging to each other are identical on al
 </context>
 <context>
     <name>MainWindow</name>
+    <message>
+        <source>Adjust size of computer icons automatically</source>
+        <translation>Автоматическая регулировка размера значков компьютера</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Авто</translation>
+    </message>
+    <message>
+        <source>About Veyon</source>
+        <translation>О программе Veyon</translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation>О программе</translation>
+    </message>
+    <message>
+        <source>Search users and computers</source>
+        <translation>Поиск пользователей и компьютеров</translation>
+    </message>
+    <message>
+        <source>Align computers to grid</source>
+        <translation>Выравнивать компьютеры по сетке</translation>
+    </message>
+    <message>
+        <source>Use custom computer arrangement.
+
+Press and hold to load arrangement from a file or save current arrangement to a file.</source>
+        <translation>Использовать пользовательское расположение компьютеров.
+
+Нажмите и удерживайте, чтобы загрузить расположение из файла или сохранить текущее расположение в файл.</translation>
+    </message>
+    <message>
+        <source>Only show powered on computers</source>
+        <translation>Показывать только работающие компьютеры</translation>
+    </message>
+    <message>
+        <source>Locations &amp;&amp; computers</source>
+        <translation>Места и компьютеры</translation>
+    </message>
+    <message>
+        <source>Screenshots</source>
+        <translation>Снимки экрана</translation>
+    </message>
+    <message>
+        <source>Slideshow</source>
+        <translation>Слайд-шоу</translation>
+    </message>
+    <message>
+        <source>Spotlight</source>
+        <translation>Акцент</translation>
+    </message>
+    <message>
+        <source>Only show computers with logged on users</source>
+        <translation>Показывать только те компьютеры, где пользователи выполнили вход в систему</translation>
+    </message>
     <message>
         <source>Veyon Configurator</source>
         <translation>Конфигуратор Veyon</translation>
@@ -3161,10 +5307,6 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <source>About Veyon</source>
-        <translation>О программе Veyon</translation>
-    </message>
-    <message>
         <source>About Qt</source>
         <translation>О пакете Qt</translation>
     </message>
@@ -3181,48 +5323,84 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>&amp;Расширенный</translation>
     </message>
     <message>
-        <source>Adjust size of computer icons automatically</source>
-        <translation>Автоматическая регулировка размера значков компьютера</translation>
+        <source>Authentication impossible</source>
+        <translation>Невозможно выполнить аутентификацию</translation>
     </message>
     <message>
-        <source>Auto</source>
-        <translation>Авто</translation>
+        <source>No valid authentication key files were found. Configure authentication using Veyon Configurator.</source>
+        <translation>Действительные файлы ключей аутентификации не найдены. Настройте аутентификацию в конфигураторе Veyon.</translation>
     </message>
     <message>
-        <source>About</source>
-        <translation>О программе</translation>
+        <source>Access denied</source>
+        <translation>Доступ запрещён</translation>
     </message>
     <message>
-        <source>Search users and computers</source>
-        <translation>Поиск пользователей и компьютеров</translation>
+        <source>Your account is not allowed to access computers. Contact your system administrator.</source>
+        <translation>Вашей учётной записи не разрешён доступ к компьютерам. Обратитесь к системному администратору.</translation>
     </message>
     <message>
-        <source>Align computers to grid</source>
-        <translation>Выравнивать компьютеры по сетке</translation>
+        <source>Classroom</source>
+        <translation>Компьютерный класс</translation>
     </message>
     <message>
-        <source>Only show powered on computers</source>
-        <translation>Показывать только работающие компьютеры</translation>
+        <source>Add room</source>
+        <translation>Добавить кабинет</translation>
     </message>
     <message>
-        <source>Locations &amp;&amp; computers</source>
-        <translation>Места и компьютеры</translation>
+        <source>Demonstration</source>
+        <translation>Демонстрация</translation>
     </message>
     <message>
-        <source>Screenshots</source>
-        <translation>Снимки экрана</translation>
+        <source>Select exactly one student screen to share.</source>
+        <translation>Выберите ровно один экран ученика для демонстрации.</translation>
     </message>
     <message>
-        <source>Slideshow</source>
-        <translation>Слайд-шоу</translation>
+        <source>Remove saved action</source>
+        <translation>Удалить сохранённое действие</translation>
     </message>
     <message>
-        <source>Spotlight</source>
-        <translation>Акцент</translation>
+        <source>Remove this saved application or website?</source>
+        <translation>Удалить это сохранённое приложение или сайт?</translation>
     </message>
     <message>
-        <source>Only show computers with logged on users</source>
-        <translation>Показывать только те компьютеры, где пользователи выполнили вход в систему</translation>
+        <source>Save computer positions</source>
+        <translation>Сохранить позиции компьютеров</translation>
+    </message>
+    <message>
+        <source>Load computer positions</source>
+        <translation>Загрузить позиции компьютеров</translation>
+    </message>
+    <message>
+        <source>JSON files (*.json)</source>
+        <translation>Файлы JSON (*.json)</translation>
+    </message>
+    <message>
+        <source>File error</source>
+        <translation>Ошибка файла</translation>
+    </message>
+    <message>
+        <source>Export computers and users</source>
+        <translation>Экспорт компьютеров и пользователей</translation>
+    </message>
+    <message>
+        <source>Could not save the computer list.</source>
+        <translation>Не удалось сохранить список компьютеров.</translation>
+    </message>
+    <message>
+        <source>Delete screenshots</source>
+        <translation>Удаление снимков экрана</translation>
+    </message>
+    <message>
+        <source>Delete %1 selected screenshots?</source>
+        <translation>Удалить выбранные снимки экрана (%1)?</translation>
+    </message>
+    <message>
+        <source>Features active</source>
+        <translation>Есть активные функции</translation>
+    </message>
+    <message>
+        <source>Stop active features and close Veyon?</source>
+        <translation>Остановить активные функции и закрыть Veyon?</translation>
     </message>
     <message>
         <source>Veyon Configurator %1</source>
@@ -3231,10 +5409,6 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Load settings from file</source>
         <translation>Загрузить настройки из файла</translation>
-    </message>
-    <message>
-        <source>JSON files (*.json)</source>
-        <translation>Файлы JSON (*.json)</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
@@ -3249,60 +5423,227 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Существуют несохранённые настройки. Выйти, не сохранив их?</translation>
     </message>
     <message>
-        <source>Insufficient privileges</source>
-        <translation>Недостаточные права доступа</translation>
+        <source>Unsaved changes</source>
+        <translation>Есть несохранённые изменения</translation>
     </message>
     <message>
-        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment! The program will be run with normal user privileges.</source>
-        <translation>Не удалось запустить программу с правами администратора. Пожалуйста, убедитесь, что в рабочей среде установлена sudo-подобная программа! Программа будет запущена с правами доступа обычного пользователя.</translation>
+        <source>All changes saved</source>
+        <translation>Все изменения применены</translation>
     </message>
     <message>
-        <source>Configuration not writable</source>
-        <translation>Файл конфигурации не доступен для записи</translation>
+        <source>Running</source>
+        <translation>Работает</translation>
     </message>
     <message>
-        <source>The local configuration backend reported that the configuration is not writable! Please run Veyon Configurator with higher privileges.</source>
-        <translation>Локальный сервер сообщил, что конфигурация защищена от записи. Запустите конфигуратор Veyon с более высокими привилегиями.</translation>
+        <source>Stopped</source>
+        <translation>Остановлен</translation>
     </message>
     <message>
-        <source>Authentication impossible</source>
-        <translation>Невозможно выполнить аутентификацию</translation>
+        <source>Restart</source>
+        <translation>Перезапустить</translation>
     </message>
     <message>
-        <source>No authentication key files were found or your current ones are outdated. Please create new key files using Veyon Configurator. Alternatively set up logon authentication using Veyon Configurator. Otherwise you won&apos;t be able to access computers using Veyon.</source>
-        <translation>Не найдены файлы ключей аутентификации или они устарели. Пожалуйста, создайте новые файлы, используя конфигуратор Veyon. Как альтернатива установите аутентификацию входа, используя конфигуратор Veyon. Иначе Вы не сможете получить доступ к компьютерам с помощью Veyon.</translation>
+        <source>Start service</source>
+        <translation>Запустить службу</translation>
     </message>
     <message>
-        <source>Access denied</source>
-        <translation>Доступ запрещён</translation>
+        <source>Key file authentication</source>
+        <translation>Аутентификация с помощью ключа доступа</translation>
     </message>
     <message>
-        <source>According to the local configuration you&apos;re not allowed to access computers in the network. Please log in with a different account or let your system administrator check the local configuration.</source>
-        <translation>Согласно локальным настройкам вам запрещён доступ к компьютерам в сети. Пожалуйста, войдите с другой учётной записью или попросите администратора вашей системы изменить локальные настройки соответствующим образом.</translation>
+        <source>Logon authentication</source>
+        <translation>Аутентификация при входе в систему</translation>
     </message>
     <message>
-        <source>Feature active</source>
-        <translation>Функция активна</translation>
+        <source>%1 rooms · %2 computers in the local directory</source>
+        <translation>Кабинетов: %1 · ПК: %2 · локальный каталог</translation>
     </message>
     <message>
-        <source>The feature &quot;%1&quot; is still active. Please stop it before closing Veyon.</source>
-        <translation>Функция &quot;%1&quot; всё ещё активна. Пожалуйста, остановите её перед закрытием Veyon.</translation>
+        <source>Not configured</source>
+        <translation>Не настроено</translation>
     </message>
     <message>
-        <source>Use custom computer arrangement.
-
-Press and hold to load arrangement from a file or save current arrangement to a file.</source>
-        <translation>Использовать пользовательское расположение компьютеров.
-
-Нажмите и удерживайте, чтобы загрузить расположение из файла или сохранить текущее расположение в файл.</translation>
+        <source>Configured server: %1</source>
+        <translation>Настроен сервер: %1</translation>
     </message>
     <message>
-        <source>Load computer positions</source>
-        <translation>Загрузить позиции компьютеров</translation>
+        <source>Access restrictions enabled</source>
+        <translation>Ограничения доступа включены</translation>
     </message>
     <message>
-        <source>Save computer positions</source>
-        <translation>Сохранить позиции компьютеров</translation>
+        <source>Access rules are not enabled</source>
+        <translation>Правила доступа не включены</translation>
+    </message>
+    <message>
+        <source>Search settings</source>
+        <translation>Поиск настроек</translation>
+    </message>
+    <message>
+        <source>More</source>
+        <translation>Ещё</translation>
+    </message>
+    <message>
+        <source>Revert</source>
+        <translation>Отменить изменения</translation>
+    </message>
+    <message>
+        <source>START</source>
+        <translation>НАЧАЛО</translation>
+    </message>
+    <message>
+        <source>CONNECTIONS</source>
+        <translation>ПОДКЛЮЧЕНИЕ</translation>
+    </message>
+    <message>
+        <source>FEATURES</source>
+        <translation>ВОЗМОЖНОСТИ</translation>
+    </message>
+    <message>
+        <source>SYSTEM</source>
+        <translation>СИСТЕМА</translation>
+    </message>
+    <message>
+        <source>Overview</source>
+        <translation>Обзор</translation>
+    </message>
+    <message>
+        <source>Check this computer&apos;s configuration and manage your classroom settings.</source>
+        <translation>Проверьте настройки этого компьютера и настройте работу класса.</translation>
+    </message>
+    <message>
+        <source>Computers and rooms</source>
+        <translation>Компьютеры и кабинеты</translation>
+    </message>
+    <message>
+        <source>Choose the source of computers and locations shown in Veyon Master.</source>
+        <translation>Выберите источник компьютеров и классов для Veyon Master.</translation>
+    </message>
+    <message>
+        <source>Sign in and keys</source>
+        <translation>Вход и ключи</translation>
+    </message>
+    <message>
+        <source>Choose how teachers authenticate and test access to this computer.</source>
+        <translation>Выберите способ аутентификации учителей и проверьте доступ к этому компьютеру.</translation>
+    </message>
+    <message>
+        <source>Define which users may access this computer and when access is permitted.</source>
+        <translation>Укажите, кому и при каких условиях разрешён доступ к этому компьютеру.</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Группы пользователей</translation>
+    </message>
+    <message>
+        <source>Configure the user and group backend used by access rules.</source>
+        <translation>Настройте источник пользователей и групп для правил доступа.</translation>
+    </message>
+    <message>
+        <source>Monitoring and demonstration</source>
+        <translation>Мониторинг и демонстрация</translation>
+    </message>
+    <message>
+        <source>Configure monitoring, remote access, startup behavior and classroom features.</source>
+        <translation>Настройте наблюдение, удалённый доступ, запуск программы и функции управления классом.</translation>
+    </message>
+    <message>
+        <source>Veyon service</source>
+        <translation>Служба Veyon</translation>
+    </message>
+    <message>
+        <source>Manage the local service, server sessions and connection behavior.</source>
+        <translation>Настройте локальную службу, сеансы сервера и параметры подключений.</translation>
+    </message>
+    <message>
+        <source>Connections</source>
+        <translation>Подключения</translation>
+    </message>
+    <message>
+        <source>Configure network ports, remote access and server connections.</source>
+        <translation>Настройте сетевые порты, удалённый доступ и подключения к серверу.</translation>
+    </message>
+    <message>
+        <source>Logs</source>
+        <translation>Журналы</translation>
+    </message>
+    <message>
+        <source>Set logging detail, open the log folder and clear old log files.</source>
+        <translation>Выберите уровень подробности журналов, откройте папку журналов или удалите старые файлы.</translation>
+    </message>
+    <message>
+        <source>User interface</source>
+        <translation>Интерфейс пользователя</translation>
+    </message>
+    <message>
+        <source>Choose the language, style and color scheme for Veyon.</source>
+        <translation>Выберите язык, стиль и цветовую схему Veyon.</translation>
+    </message>
+    <message>
+        <source>LDAP / Active Directory</source>
+        <translation>LDAP / Active Directory</translation>
+    </message>
+    <message>
+        <source>Configure %1.</source>
+        <translation>Настройка: %1.</translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Аутентификация</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation>Открыть</translation>
+    </message>
+    <message>
+        <source>Configure</source>
+        <translation>Настроить</translation>
+    </message>
+    <message>
+        <source>Connect</source>
+        <translation>Подключить</translation>
+    </message>
+    <message>
+        <source>Configuration</source>
+        <translation>Конфигурация</translation>
+    </message>
+    <message>
+        <source>Export...</source>
+        <translation>Экспорт…</translation>
+    </message>
+    <message>
+        <source>Import...</source>
+        <translation>Импорт…</translation>
+    </message>
+    <message>
+        <source>Factory reset...</source>
+        <translation>Сбросить к заводским…</translation>
+    </message>
+</context>
+<context>
+    <name>MasterComputerModel</name>
+    <message>
+        <source>Online</source>
+        <translation>В сети</translation>
+    </message>
+    <message>
+        <source>Connecting</source>
+        <translation>Подключение</translation>
+    </message>
+    <message>
+        <source>DNS error</source>
+        <translation>Ошибка DNS</translation>
+    </message>
+    <message>
+        <source>Authentication failed</source>
+        <translation>Ошибка аутентификации</translation>
+    </message>
+    <message>
+        <source>Service unavailable</source>
+        <translation>Служба недоступна</translation>
+    </message>
+    <message>
+        <source>Offline</source>
+        <translation>Не в сети</translation>
     </message>
 </context>
 <context>
@@ -3316,56 +5657,72 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Каталоги</translation>
     </message>
     <message>
-        <source>User configuration</source>
-        <translation>Пользовательская конфигурация</translation>
-    </message>
-    <message>
         <source>Screenshots</source>
         <translation>Снимки экрана</translation>
     </message>
     <message>
-        <source>Text color</source>
-        <translation>Цвет текста</translation>
+        <source>User configuration</source>
+        <translation>Пользовательская конфигурация</translation>
     </message>
     <message>
-        <source> ms</source>
-        <translation> мс</translation>
+        <source>Configuration templates</source>
+        <translation>Шаблоны конфигурации</translation>
+    </message>
+    <message>
+        <source>Monitoring view</source>
+        <translation>Режим просмотра</translation>
     </message>
     <message>
         <source>Background color</source>
         <translation>Цвет фона</translation>
     </message>
     <message>
+        <source>Sort order</source>
+        <translation>Порядок сортировки</translation>
+    </message>
+    <message>
+        <source>Text color</source>
+        <translation>Цвет текста</translation>
+    </message>
+    <message>
+        <source>Visibility mode</source>
+        <translation>Режим видимости</translation>
+    </message>
+    <message>
         <source> px</source>
         <translation> пкс</translation>
     </message>
     <message>
-        <source>Auto</source>
-        <translation>Авто</translation>
+        <source>Aspect ratio</source>
+        <translation>Соотношение сторон</translation>
     </message>
     <message>
-        <source>Computer and user name</source>
-        <translation>Имя компьютера и пользователя</translation>
+        <source>Normal</source>
+        <translation>Обычный</translation>
     </message>
     <message>
-        <source>Only user name</source>
-        <translation>Только имя пользователя</translation>
+        <source>Blurred</source>
+        <translation>Размытый</translation>
     </message>
     <message>
-        <source>Only last part of user name</source>
-        <translation>Только последняя часть имени пользователя</translation>
+        <source>Hidden</source>
+        <translation>Скрытый</translation>
     </message>
     <message>
-        <source>Only computer name</source>
-        <translation>Только имя компьютера</translation>
+        <source> ms</source>
+        <translation> мс</translation>
     </message>
     <message>
         <source>User and computer name</source>
         <translation>Пользователь и имя компьютера</translation>
     </message>
     <message>
-        <source>Sort order</source>
-        <translation>Порядок сортировки</translation>
+        <source>Only user name</source>
+        <translation>Только имя пользователя</translation>
+    </message>
+    <message>
+        <source>Only computer name</source>
+        <translation>Только имя компьютера</translation>
     </message>
     <message>
         <source>Highest</source>
@@ -3388,8 +5745,68 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Самое низкое</translation>
     </message>
     <message>
+        <source>Computer and user name</source>
+        <translation>Имя компьютера и пользователя</translation>
+    </message>
+    <message>
+        <source>Only last part of user name</source>
+        <translation>Только последняя часть имени пользователя</translation>
+    </message>
+    <message>
+        <source>Grid spacing</source>
+        <translation>Расстояние между ячейками</translation>
+    </message>
+    <message>
+        <source>Image quality</source>
+        <translation>Качество изображения</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>Авто</translation>
+    </message>
+    <message>
+        <source>Display label</source>
+        <translation>Подпись</translation>
+    </message>
+    <message>
+        <source>Refresh rate</source>
+        <translation>Частота обновления</translation>
+    </message>
+    <message>
+        <source>Grid sizing mode</source>
+        <translation>Режим размера сетки</translation>
+    </message>
+    <message>
+        <source>Full-length labels (scales down all thumbnails)</source>
+        <translation>Полные подписи (уменьшает все миниатюры)</translation>
+    </message>
+    <message>
+        <source>Maximized thumbnails (truncated labels)</source>
+        <translation>Крупные миниатюры (сокращённые подписи)</translation>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation>Удалённый доступ</translation>
+    </message>
+    <message>
+        <source>Advanced</source>
+        <translation>Расширенный</translation>
+    </message>
+    <message>
+        <source>Computer name source</source>
+        <translation>Источник имени компьютера</translation>
+    </message>
+    <message>
         <source>Identify users in guest sessions</source>
         <translation>Определять пользователей в гостевых сеансах</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>По умолчанию</translation>
+    </message>
+    <message>
+        <source>Session meta data hash</source>
+        <translation>Хеш метаданных сеанса</translation>
     </message>
     <message>
         <source>Never</source>
@@ -3406,6 +5823,38 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Guest</source>
         <translation>Гость</translation>
+    </message>
+    <message>
+        <source>Computer UID role</source>
+        <translation>Роль UID компьютера</translation>
+    </message>
+    <message>
+        <source>Host address</source>
+        <translation>Адрес хоста</translation>
+    </message>
+    <message>
+        <source>Session client address</source>
+        <translation>Адрес клиента сеанса</translation>
+    </message>
+    <message>
+        <source>Session client name</source>
+        <translation>Имя клиента сеанса</translation>
+    </message>
+    <message>
+        <source>Session host name</source>
+        <translation>Имя хоста сеанса</translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation>Метаданные сеанса</translation>
+    </message>
+    <message>
+        <source>Full name of user</source>
+        <translation>Полное имя пользователя</translation>
+    </message>
+    <message>
+        <source>User login name</source>
+        <translation>Имя пользователя (логин)</translation>
     </message>
     <message>
         <source>Guest user identity extension</source>
@@ -3476,6 +5925,10 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Скрыть поле фильтрации компьютеров</translation>
     </message>
     <message>
+        <source>Always expand all locations</source>
+        <translation>Всегда раскрывать все местоположения</translation>
+    </message>
+    <message>
         <source>Modes and features</source>
         <translation>Режимы и возможности</translation>
     </message>
@@ -3515,81 +5968,635 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <source>&lt;no feature&gt;</source>
         <translation>&lt;нет функции&gt;</translation>
     </message>
+</context>
+<context>
+    <name>MasterWorkspace</name>
     <message>
-        <source>Always expand all locations</source>
-        <translation>Всегда раскрывать все местоположения</translation>
+        <source>Veyon Master — %1</source>
+        <translation>Veyon Master — %1</translation>
     </message>
     <message>
-        <source>Configuration templates</source>
-        <translation>Шаблоны конфигурации</translation>
+        <source>TARGET</source>
+        <translation>КОМУ</translation>
     </message>
     <message>
-        <source>Monitoring view</source>
-        <translation type="unfinished"/>
+        <source>Demo</source>
+        <translation>Демонстрация</translation>
     </message>
     <message>
-        <source>Visibility mode</source>
-        <translation type="unfinished"/>
+        <source>Lock</source>
+        <translation>Заблокировать</translation>
     </message>
     <message>
-        <source>Aspect ratio</source>
-        <translation type="unfinished"/>
+        <source>Message</source>
+        <translation>Сообщение</translation>
+    </message>
+    <message>
+        <source>Power</source>
+        <translation>Питание</translation>
+    </message>
+    <message>
+        <source>More actions and view options</source>
+        <translation>Другие действия и параметры отображения</translation>
+    </message>
+    <message>
+        <source>Grid</source>
+        <translation>Карточки</translation>
+    </message>
+    <message>
+        <source>List</source>
+        <translation>Список</translation>
+    </message>
+    <message>
+        <source>Clear selection</source>
+        <translation>Снять выделение</translation>
+    </message>
+    <message>
+        <source>User</source>
+        <translation>Пользователь</translation>
+    </message>
+    <message>
+        <source>Address</source>
+        <translation>Адрес</translation>
+    </message>
+    <message>
+        <source>System</source>
+        <translation>Система</translation>
+    </message>
+    <message>
+        <source>Session since</source>
+        <translation>Сеанс с</translation>
+    </message>
+    <message>
+        <source>View</source>
+        <translation>Просмотр</translation>
+    </message>
+    <message>
+        <source>Control</source>
+        <translation>Управление</translation>
+    </message>
+    <message>
+        <source>Message…</source>
+        <translation>Сообщение…</translation>
+    </message>
+    <message>
+        <source>Restart…</source>
+        <translation>Перезапустить…</translation>
+    </message>
+    <message>
+        <source>Shut down…</source>
+        <translation>Выключить…</translation>
+    </message>
+    <message>
+        <source>Show this screen to everyone</source>
+        <translation>Показать этот экран всем</translation>
+    </message>
+    <message>
+        <source>All actions</source>
+        <translation>Все действия</translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>Остановить</translation>
+    </message>
+    <message>
+        <source>All features</source>
+        <translation>Все функции</translation>
+    </message>
+    <message>
+        <source>Unlock</source>
+        <translation>Разблокировать</translation>
+    </message>
+    <message>
+        <source>Screen demonstration · %1 computers</source>
+        <translation>Демонстрация экрана · Компьютеров: %1</translation>
+    </message>
+    <message>
+        <source>Computers locked: %1</source>
+        <translation>Заблокированы компьютеры: %1</translation>
+    </message>
+    <message>
+        <source>Stop demonstration</source>
+        <translation>Остановить демонстрацию</translation>
+    </message>
+    <message>
+        <source>Unlock all</source>
+        <translation>Разблокировать все</translation>
+    </message>
+    <message>
+        <source>%1 computers</source>
+        <translation>%1 ПК</translation>
+    </message>
+    <message>
+        <source>%1 online</source>
+        <translation>%1 в сети</translation>
+    </message>
+    <message>
+        <source>%1 offline</source>
+        <translation>%1 выключены</translation>
+    </message>
+    <message>
+        <source>%1 errors</source>
+        <translation>%1 без доступа</translation>
+    </message>
+    <message>
+        <source>%1 computers    %2 online    %3 offline    %4 errors</source>
+        <translation>%1 ПК · %2 в сети · %3 не в сети · %4 без доступа</translation>
+    </message>
+    <message>
+        <source>Whole class · %1</source>
+        <translation>Весь класс · %1</translation>
+    </message>
+    <message>
+        <source>Choose a classroom to begin monitoring.</source>
+        <translation>Выберите класс для начала наблюдения.</translation>
+    </message>
+    <message>
+        <source>No computers match the current filters.</source>
+        <translation>Нет компьютеров, соответствующих заданным фильтрам.</translation>
+    </message>
+    <message>
+        <source>Selected · %1</source>
+        <translation>Выбранные · %1</translation>
+    </message>
+    <message>
+        <source>Online</source>
+        <translation>В сети</translation>
+    </message>
+    <message>
+        <source>Unavailable</source>
+        <translation>Недоступен</translation>
+    </message>
+</context>
+<context>
+    <name>Metadata</name>
+    <message>
+        <source>Internal configuration</source>
+        <translation>Внутренние настройки</translation>
+    </message>
+    <message>
+        <source>Configuration version</source>
+        <translation>Версия настроек</translation>
+    </message>
+    <message>
+        <source>Plugin versions</source>
+        <translation>Версии модулей</translation>
+    </message>
+    <message>
+        <source>Installation identifier</source>
+        <translation>Идентификатор установки</translation>
+    </message>
+    <message>
+        <source>Computer state polling interval</source>
+        <translation>Интервал опроса состояния компьютеров</translation>
+    </message>
+    <message>
+        <source>ms</source>
+        <translation>мс</translation>
+    </message>
+    <message>
+        <source>VNC connection timing</source>
+        <translation>Временные параметры соединений VNC</translation>
+    </message>
+    <message>
+        <source>Use custom VNC connection settings</source>
+        <translation>Использовать особые настройки соединений VNC</translation>
+    </message>
+    <message>
+        <source>Thread termination timeout</source>
+        <translation>Время ожидания завершения потока</translation>
+    </message>
+    <message>
+        <source>Connection timeout</source>
+        <translation>Время ожидания подключения</translation>
+    </message>
+    <message>
+        <source>Read timeout</source>
+        <translation>Время ожидания чтения</translation>
+    </message>
+    <message>
+        <source>Connection retry interval</source>
+        <translation>Интервал повторных подключений</translation>
+    </message>
+    <message>
+        <source>Message wait timeout</source>
+        <translation>Время ожидания сообщения</translation>
+    </message>
+    <message>
+        <source>Fast framebuffer update interval</source>
+        <translation>Интервал быстрого обновления кадрового буфера</translation>
+    </message>
+    <message>
+        <source>Initial framebuffer update timeout</source>
+        <translation>Время ожидания первого обновления кадрового буфера</translation>
+    </message>
+    <message>
+        <source>Framebuffer update timeout</source>
+        <translation>Время ожидания обновления кадрового буфера</translation>
+    </message>
+    <message>
+        <source>Socket keepalive idle time</source>
+        <translation>Время простоя перед проверкой соединения</translation>
+    </message>
+    <message>
+        <source>Socket keepalive interval</source>
+        <translation>Интервал проверки соединения</translation>
+    </message>
+    <message>
+        <source>Socket keepalive count</source>
+        <translation>Число проверок соединения</translation>
+    </message>
+    <message>
+        <source>Appearance</source>
+        <translation>Внешний вид</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation>Язык</translation>
+    </message>
+    <message>
+        <source>Style</source>
+        <translation>Стиль</translation>
+    </message>
+    <message>
+        <source>Fusion</source>
+        <translation>Fusion</translation>
+    </message>
+    <message>
+        <source>Native</source>
+        <translation>Нативный</translation>
+    </message>
+    <message>
+        <source>Color scheme</source>
+        <translation>Цветовая схема</translation>
+    </message>
+    <message>
+        <source>System</source>
+        <translation>Система</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation>Светлая</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Тёмная</translation>
+    </message>
+    <message>
+        <source>Restart Veyon applications after changing the language.</source>
+        <translation>После изменения языка перезапустите приложения Veyon.</translation>
+    </message>
+    <message>
+        <source>Notifications</source>
+        <translation>Уведомления</translation>
+    </message>
+    <message>
+        <source>Hide tray icon</source>
+        <translation>Скрыть иконку в трее</translation>
+    </message>
+    <message>
+        <source>Notify about failed authentication</source>
+        <translation>Уведомлять об ошибках аутентификации</translation>
+    </message>
+    <message>
+        <source>Notify about remote connections</source>
+        <translation>Уведомлять об удалённых подключениях</translation>
+    </message>
+    <message>
+        <source>Sessions</source>
+        <translation>Сеансы</translation>
+    </message>
+    <message>
+        <source>Only serve the active session</source>
+        <translation>Обслуживать только активный сеанс</translation>
+    </message>
+    <message>
+        <source>Enable multi-session mode</source>
+        <translation>Включить режим нескольких сеансов</translation>
+    </message>
+    <message>
+        <source>Maximum number of sessions</source>
+        <translation>Максимальное число сеансов</translation>
+    </message>
+    <message>
+        <source>Maximum number of server connections</source>
+        <translation>Максимальное число подключений к серверу</translation>
+    </message>
+    <message>
+        <source>Start service automatically</source>
+        <translation>Запускать службу автоматически</translation>
+    </message>
+    <message>
+        <source>Disable clipboard synchronization</source>
+        <translation>Отключить синхронизацию буфера обмена</translation>
+    </message>
+    <message>
+        <source>Session metadata</source>
+        <translation>Метаданные сеанса</translation>
+    </message>
+    <message>
+        <source>Session metadata source</source>
+        <translation>Источник метаданных сеанса</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Нет</translation>
+    </message>
+    <message>
+        <source>Environment variable</source>
+        <translation>Переменная окружения</translation>
+    </message>
+    <message>
+        <source>Registry key</source>
+        <translation>Ключ реестра</translation>
+    </message>
+    <message>
+        <source>Computer directory</source>
+        <translation>Каталог компьютеров</translation>
+    </message>
+    <message>
+        <source>Computer and location directory</source>
+        <translation>Каталог компьютеров и расположений</translation>
+    </message>
+    <message>
+        <source>Directory update interval</source>
+        <translation>Интервал обновления каталога</translation>
+    </message>
+    <message>
+        <source>s</source>
+        <translation>с</translation>
+    </message>
+    <message>
+        <source>User groups</source>
+        <translation>Группы пользователей</translation>
+    </message>
+    <message>
+        <source>User groups backend</source>
+        <translation>Служба групп пользователей</translation>
+    </message>
+    <message>
+        <source>Use domain user groups</source>
+        <translation>Использовать группы пользователей домена</translation>
+    </message>
+    <message>
+        <source>Features</source>
+        <translation>Функции</translation>
+    </message>
+    <message>
+        <source>Disabled features</source>
+        <translation>Отключённые функции</translation>
+    </message>
+    <message>
+        <source>Logging</source>
+        <translation>Ведение журнала</translation>
+    </message>
+    <message>
+        <source>Log level</source>
+        <translation>Уровень журналирования</translation>
+    </message>
+    <message>
+        <source>Nothing</source>
+        <translation>Отключить журналирование</translation>
+    </message>
+    <message>
+        <source>Critical</source>
+        <translation>Критическая ошибка</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>Ошибка</translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation>Предупреждение</translation>
+    </message>
+    <message>
+        <source>Information</source>
+        <translation>Информация</translation>
+    </message>
+    <message>
+        <source>Debug</source>
+        <translation>Отладка</translation>
+    </message>
+    <message>
+        <source>Log file directory</source>
+        <translation>Каталог, содержащий файл журнала</translation>
+    </message>
+    <message>
+        <source>Limit log file size</source>
+        <translation>Ограничить размер файла журнала</translation>
+    </message>
+    <message>
+        <source>Maximum log file size</source>
+        <translation>Максимальный размер файла журнала</translation>
+    </message>
+    <message>
+        <source>MB</source>
+        <translation>МБ</translation>
+    </message>
+    <message>
+        <source>Rotate log files</source>
+        <translation>Освежить файлы журналов</translation>
+    </message>
+    <message>
+        <source>Number of rotated log files</source>
+        <translation>Число сохраняемых файлов журналов</translation>
+    </message>
+    <message>
+        <source>Log to standard error</source>
+        <translation>Выводить журнал в стандартный поток ошибок</translation>
+    </message>
+    <message>
+        <source>Log to the system journal</source>
+        <translation>Записывать в системный журнал</translation>
+    </message>
+    <message>
+        <source>Network ports</source>
+        <translation>Сетевые порты</translation>
+    </message>
+    <message>
+        <source>Veyon server port</source>
+        <translation>Порт сервера Veyon</translation>
+    </message>
+    <message>
+        <source>VNC server port</source>
+        <translation>Порт сервера VNC</translation>
+    </message>
+    <message>
+        <source>Feature worker manager port</source>
+        <translation>Порт диспетчера исполнителей функций</translation>
+    </message>
+    <message>
+        <source>Demonstration server port</source>
+        <translation>Порт сервера демонстрации</translation>
+    </message>
+    <message>
+        <source>Enable firewall exception</source>
+        <translation>Включить исключения брандмауэра</translation>
+    </message>
+    <message>
+        <source>Allow connections from the local computer only</source>
+        <translation>Разрешать подключения только с локального компьютера</translation>
+    </message>
+    <message>
+        <source>VNC server</source>
+        <translation>VNC-сервер</translation>
+    </message>
+    <message>
+        <source>VNC server backend</source>
+        <translation>Сервер VNC</translation>
+    </message>
+    <message>
+        <source>Directories</source>
+        <translation>Каталоги</translation>
+    </message>
+    <message>
+        <source>Configuration templates directory</source>
+        <translation>Каталог шаблонов настроек</translation>
+    </message>
+    <message>
+        <source>User configuration directory</source>
+        <translation>Каталог пользовательских настроек</translation>
+    </message>
+    <message>
+        <source>Screenshot directory</source>
+        <translation>Каталог снимков экрана</translation>
+    </message>
+    <message>
+        <source>Monitoring</source>
+        <translation>Мониторинг</translation>
+    </message>
+    <message>
+        <source>Update interval</source>
+        <translation>Интервал обновления</translation>
+    </message>
+    <message>
+        <source>Thumbnail image quality</source>
+        <translation>Качество миниатюр</translation>
+    </message>
+    <message>
+        <source>Highest</source>
+        <translation>Самое высокое</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation>Высокое</translation>
+    </message>
+    <message>
+        <source>Medium</source>
+        <translation>Среднее</translation>
+    </message>
+    <message>
+        <source>Low</source>
+        <translation>Низкое</translation>
+    </message>
+    <message>
+        <source>Lowest</source>
+        <translation>Самое низкое</translation>
+    </message>
+    <message>
+        <source>Thumbnail spacing</source>
+        <translation>Расстояние между миниатюрами</translation>
+    </message>
+    <message>
+        <source>px</source>
+        <translation>пикс.</translation>
+    </message>
+    <message>
+        <source>Thumbnail caption</source>
+        <translation>Подпись миниатюры</translation>
+    </message>
+    <message>
+        <source>User and computer name</source>
+        <translation>Пользователь и имя компьютера</translation>
+    </message>
+    <message>
+        <source>User name</source>
+        <translation>Имя пользователя</translation>
+    </message>
+    <message>
+        <source>Computer name</source>
+        <translation>Имя компьютера</translation>
+    </message>
+    <message>
+        <source>Computer identifier</source>
+        <translation>Идентификатор компьютера</translation>
+    </message>
+    <message>
+        <source>Network object identifier</source>
+        <translation>Идентификатор сетевого объекта</translation>
+    </message>
+    <message>
+        <source>Session metadata hash</source>
+        <translation>Хеш метаданных сеанса</translation>
+    </message>
+    <message>
+        <source>Grid sizing</source>
+        <translation>Размер сетки</translation>
+    </message>
+    <message>
+        <source>Full-length captions</source>
+        <translation>Полные подписи</translation>
+    </message>
+    <message>
+        <source>Maximized thumbnails</source>
+        <translation>Крупные миниатюры</translation>
+    </message>
+    <message>
+        <source>Thumbnail visibility</source>
+        <translation>Видимость миниатюр</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished"/>
+        <translation>Обычный</translation>
     </message>
     <message>
         <source>Blurred</source>
-        <translation type="unfinished"/>
+        <translation>Размытый</translation>
     </message>
     <message>
         <source>Hidden</source>
-        <translation type="unfinished"/>
+        <translation>Скрытый</translation>
     </message>
     <message>
-        <source>Grid spacing</source>
-        <translation type="unfinished"/>
+        <source>Sort computers by</source>
+        <translation>Сортировка компьютеров</translation>
     </message>
     <message>
-        <source>Image quality</source>
-        <translation>Качество изображения</translation>
+        <source>Computer and user name</source>
+        <translation>Имя компьютера и пользователя</translation>
     </message>
     <message>
-        <source>Display label</source>
-        <translation type="unfinished"/>
+        <source>Last part of user name</source>
+        <translation>Последняя часть имени пользователя</translation>
     </message>
     <message>
-        <source>Refresh rate</source>
-        <translation type="unfinished"/>
+        <source>Thumbnail aspect ratio</source>
+        <translation>Соотношение сторон миниатюр</translation>
     </message>
     <message>
-        <source>Grid sizing mode</source>
-        <translation type="unfinished"/>
+        <source>Automatic</source>
+        <translation>Автоматически</translation>
     </message>
     <message>
-        <source>Full-length labels (scales down all thumbnails)</source>
-        <translation type="unfinished"/>
+        <source>Thumbnail background color</source>
+        <translation>Цвет фона миниатюр</translation>
     </message>
     <message>
-        <source>Maximized thumbnails (truncated labels)</source>
-        <translation type="unfinished"/>
+        <source>Thumbnail text color</source>
+        <translation>Цвет текста миниатюр</translation>
     </message>
     <message>
-        <source>Remote access</source>
-        <translation>Удалённый доступ</translation>
-    </message>
-    <message>
-        <source>Advanced</source>
-        <translation>Расширенный</translation>
+        <source>Automatically adjust thumbnail size</source>
+        <translation>Автоматически подбирать размер миниатюр</translation>
     </message>
     <message>
         <source>Computer name source</source>
         <translation>Источник имени компьютера</translation>
     </message>
     <message>
-        <source>Default</source>
-        <translation>По умолчанию</translation>
+        <source>Directory</source>
+        <translation>Каталог</translation>
     </message>
     <message>
         <source>Host address</source>
@@ -3608,11 +6615,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Имя хоста сеанса</translation>
     </message>
     <message>
-        <source>Session metadata</source>
-        <translation>Метаданные сеанса</translation>
-    </message>
-    <message>
-        <source>Full name of user</source>
+        <source>User full name</source>
         <translation>Полное имя пользователя</translation>
     </message>
     <message>
@@ -3620,16 +6623,232 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Имя пользователя (логин)</translation>
     </message>
     <message>
-        <source>Computer UID role</source>
-        <translation>Роль UID компьютера</translation>
+        <source>Locations</source>
+        <translation>Места</translation>
     </message>
     <message>
-        <source>Session meta data hash</source>
-        <translation>Хеш метаданных сеанса</translation>
+        <source>Automatically select the current location</source>
+        <translation>Автоматически выбирать текущее расположение</translation>
+    </message>
+    <message>
+        <source>Show the current location only</source>
+        <translation>Показывать только текущее расположение</translation>
+    </message>
+    <message>
+        <source>Allow adding hidden locations</source>
+        <translation>Разрешать добавление скрытых расположений</translation>
+    </message>
+    <message>
+        <source>Expand locations</source>
+        <translation>Разворачивать расположения</translation>
+    </message>
+    <message>
+        <source>Hide this computer</source>
+        <translation>Скрывать этот компьютер</translation>
+    </message>
+    <message>
+        <source>Hide the current session</source>
+        <translation>Скрывать текущий сеанс</translation>
+    </message>
+    <message>
+        <source>Hide empty locations</source>
+        <translation>Скрыть пустые места</translation>
+    </message>
+    <message>
+        <source>Hide computer filter</source>
+        <translation>Скрывать фильтр компьютеров</translation>
+    </message>
+    <message>
+        <source>Startup and actions</source>
+        <translation>Запуск и действия</translation>
+    </message>
+    <message>
+        <source>Check access control when starting Veyon Master</source>
+        <translation>Проверять права доступа при запуске Veyon Master</translation>
+    </message>
+    <message>
+        <source>Double-click action</source>
+        <translation>Действие по двойному щелчку</translation>
+    </message>
+    <message>
+        <source>Enforce the selected mode for clients</source>
+        <translation>Принудительно применять выбранный режим к клиентам</translation>
+    </message>
+    <message>
+        <source>Open the computer selection panel on startup</source>
+        <translation>Открывать панель выбора компьютеров при запуске</translation>
+    </message>
+    <message>
+        <source>Confirm potentially unsafe actions</source>
+        <translation>Подтверждать потенциально опасные действия</translation>
+    </message>
+    <message>
+        <source>Show feature windows on the same screen</source>
+        <translation>Показывать окна функций на том же экране</translation>
+    </message>
+    <message>
+        <source>Guest users</source>
+        <translation>Гостевые пользователи</translation>
+    </message>
+    <message>
+        <source>Identify guest users by</source>
+        <translation>Определять гостевых пользователей по</translation>
+    </message>
+    <message>
+        <source>Disabled</source>
+        <translation>Отключено</translation>
+    </message>
+    <message>
+        <source>Login name</source>
+        <translation>Имя для входа</translation>
+    </message>
+    <message>
+        <source>Full name</source>
+        <translation>Полное имя</translation>
+    </message>
+    <message>
+        <source>Guest user name</source>
+        <translation>Имя гостевого пользователя</translation>
+    </message>
+    <message>
+        <source>Guest identity extension</source>
+        <translation>Дополнение гостевого имени</translation>
+    </message>
+    <message>
+        <source>Prefix</source>
+        <translation>Префикс</translation>
+    </message>
+    <message>
+        <source>Suffix</source>
+        <translation>Суффикс</translation>
+    </message>
+    <message>
+        <source>Guest identity extension text</source>
+        <translation>Текст дополнения гостевого имени</translation>
+    </message>
+    <message>
+        <source>Remote access</source>
+        <translation>Удалённый доступ</translation>
+    </message>
+    <message>
+        <source>Remote access image quality</source>
+        <translation>Качество изображения при удалённом доступе</translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Аутентификация</translation>
+    </message>
+    <message>
+        <source>Authentication method</source>
+        <translation>Способ аутентификации</translation>
+    </message>
+    <message>
+        <source>Logon authentication</source>
+        <translation>Аутентификация при входе в систему</translation>
+    </message>
+    <message>
+        <source>Key file authentication</source>
+        <translation>Аутентификация с помощью ключа доступа</translation>
+    </message>
+    <message>
+        <source>Private key directory</source>
+        <translation>Каталог закрытых ключей</translation>
+    </message>
+    <message>
+        <source>Public key directory</source>
+        <translation>Каталог открытых ключей</translation>
+    </message>
+    <message>
+        <source>Directory containing private authentication keys. Path variables are supported.</source>
+        <translation>Каталог закрытых ключей аутентификации. Поддерживаются переменные пути.</translation>
+    </message>
+    <message>
+        <source>Directory containing public authentication keys. Path variables are supported.</source>
+        <translation>Каталог открытых ключей аутентификации. Поддерживаются переменные пути.</translation>
+    </message>
+    <message>
+        <source>Access policy</source>
+        <translation>Правила доступа</translation>
+    </message>
+    <message>
+        <source>Restrict access to authorized user groups</source>
+        <translation>Ограничивать доступ разрешёнными группами пользователей</translation>
+    </message>
+    <message>
+        <source>Process access control rules</source>
+        <translation>Правила контроля доступа к процессу</translation>
+    </message>
+    <message>
+        <source>Authorized user groups</source>
+        <translation>Разрешённые группы пользователей</translation>
+    </message>
+    <message>
+        <source>Access control rules</source>
+        <translation>Правила контроля доступа</translation>
+    </message>
+    <message>
+        <source>Legacy settings</source>
+        <translation>Устаревшие настройки</translation>
+    </message>
+    <message>
+        <source>Legacy user groups backend</source>
+        <translation>Устаревшая служба групп пользователей</translation>
+    </message>
+    <message>
+        <source>Legacy domain groups</source>
+        <translation>Устаревшие группы домена</translation>
+    </message>
+    <message>
+        <source>Legacy automatic grid size</source>
+        <translation>Устаревший автоматический размер сетки</translation>
+    </message>
+    <message>
+        <source>Legacy startup computer management</source>
+        <translation>Устаревшая настройка управления компьютерами при запуске</translation>
+    </message>
+    <message>
+        <source>Legacy current room selection</source>
+        <translation>Устаревший выбор текущего кабинета</translation>
+    </message>
+    <message>
+        <source>Legacy current room visibility</source>
+        <translation>Устаревшая видимость текущего кабинета</translation>
+    </message>
+    <message>
+        <source>Legacy manual room addition</source>
+        <translation>Устаревшее ручное добавление кабинетов</translation>
+    </message>
+    <message>
+        <source>Legacy empty room visibility</source>
+        <translation>Устаревшая видимость пустых кабинетов</translation>
+    </message>
+    <message>
+        <source>Legacy action confirmation</source>
+        <translation>Устаревшее подтверждение действий</translation>
+    </message>
+    <message>
+        <source>Legacy software secure attention sequence</source>
+        <translation>Устаревшая программная последовательность безопасного внимания</translation>
+    </message>
+    <message>
+        <source>Legacy local computer visibility</source>
+        <translation>Устаревшая видимость локального компьютера</translation>
+    </message>
+    <message>
+        <source>Legacy computer filter visibility</source>
+        <translation>Устаревшая видимость фильтра компьютеров</translation>
+    </message>
+    <message>
+        <source>Legacy service port</source>
+        <translation>Устаревший порт службы</translation>
     </message>
 </context>
 <context>
     <name>MonitoringMode</name>
+    <message>
+        <source>Builtin monitoring mode</source>
+        <translation>Встроенный режим мониторинга</translation>
+    </message>
     <message>
         <source>Monitoring</source>
         <translation>Мониторинг</translation>
@@ -3666,10 +6885,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <source>First name + last name</source>
         <translation>Имя и фамилия</translation>
     </message>
-    <message>
-        <source>Builtin monitoring mode</source>
-        <translation>Встроенный режим мониторинга</translation>
-    </message>
 </context>
 <context>
     <name>NetworkObjectTreeModel</name>
@@ -3704,6 +6919,73 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <source>Name:</source>
         <translation>Имя:</translation>
     </message>
+    <message>
+        <source>Open website on student computers</source>
+        <translation>Открыть сайт у учеников</translation>
+    </message>
+</context>
+<context>
+    <name>Overview</name>
+    <message>
+        <source>Veyon service</source>
+        <translation>Сервис Veyon</translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>Работает</translation>
+    </message>
+    <message>
+        <source>Stopped</source>
+        <translation>Остановлен</translation>
+    </message>
+    <message>
+        <source>Authentication</source>
+        <translation>Аутентификация</translation>
+    </message>
+    <message>
+        <source>Configure teacher sign-in and authentication keys</source>
+        <translation>Настройка входа преподавателей и ключей аутентификации</translation>
+    </message>
+    <message>
+        <source>Computers and rooms</source>
+        <translation>Компьютеры и кабинеты</translation>
+    </message>
+    <message>
+        <source>Manage your local directory or connect an external directory</source>
+        <translation>Управление локальным каталогом и подключение внешнего каталога</translation>
+    </message>
+    <message>
+        <source>Access control</source>
+        <translation>Контроль доступа</translation>
+    </message>
+    <message>
+        <source>Review who can access this computer</source>
+        <translation>Проверка доступа к этому компьютеру</translation>
+    </message>
+    <message>
+        <source>LDAP / Active Directory</source>
+        <translation>LDAP / Active Directory</translation>
+    </message>
+    <message>
+        <source>Connect your organization’s directory</source>
+        <translation>Подключение каталога организации</translation>
+    </message>
+    <message>
+        <source>Open</source>
+        <translation>Открыть</translation>
+    </message>
+    <message>
+        <source>Configuration</source>
+        <translation>Конфигурация</translation>
+    </message>
+    <message>
+        <source>Export…</source>
+        <translation>Экспорт…</translation>
+    </message>
+    <message>
+        <source>Import…</source>
+        <translation>Импорт…</translation>
+    </message>
 </context>
 <context>
     <name>PasswordDialog</name>
@@ -3724,27 +7006,23 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Пароль</translation>
     </message>
     <message>
-        <source>Authentication error</source>
-        <translation>Ошибка аутенфикации</translation>
-    </message>
-    <message>
-        <source>Logon failed with given username and password. Please try again!</source>
-        <translation>Не удалось войти, используя указанные имя пользователя и пароль. Пожалуйста, повторите попытку!</translation>
+        <source>Logon</source>
+        <translation>Вход</translation>
     </message>
 </context>
 <context>
     <name>PipeWireVncConfigurationWidget</name>
     <message>
         <source>PipeWire VNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>Настройки сервера VNC PipeWire</translation>
     </message>
     <message>
         <source>Remember the screen sharing approval across restarts</source>
-        <translation type="unfinished"/>
+        <translation>Запоминать разрешение на доступ к экрану после перезапуска</translation>
     </message>
     <message>
         <source>The approval token is stored in the user&apos;s state directory. Any program running as the same user can read it and share the screen without asking.</source>
-        <translation type="unfinished"/>
+        <translation>Токен разрешения хранится в каталоге состояния пользователя. Любая программа, работающая от его имени, может прочитать токен и получить доступ к экрану без запроса.</translation>
     </message>
 </context>
 <context>
@@ -3752,6 +7030,14 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>Wayland VNC server (PipeWire/XDG Desktop Portal)</source>
         <translation>VNC-сервер Wayland (PipeWire/XDG Desktop Portal)</translation>
+    </message>
+    <message>
+        <source>PipeWire VNC server</source>
+        <translation>Сервер VNC PipeWire</translation>
+    </message>
+    <message>
+        <source>Remember screen sharing permission</source>
+        <translation>Запоминать разрешение на доступ к экрану</translation>
     </message>
 </context>
 <context>
@@ -3848,8 +7134,8 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Потверждение перезагрузки</translation>
     </message>
     <message>
-        <source>Do you really want to reboot &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation>Действительно перезагрузить &lt;b&gt;ВСЕ&lt;/b&gt; компьютеры?</translation>
+        <source>Do you really want to reboot ALL computers?</source>
+        <translation>Вы действительно хотите перезагрузить ВСЕ компьютеры?</translation>
     </message>
     <message>
         <source>Do you really want to reboot the selected computers?</source>
@@ -3860,8 +7146,8 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Потверждение выключения</translation>
     </message>
     <message>
-        <source>Do you really want to power down &lt;b&gt;ALL&lt;/b&gt; computers?</source>
-        <translation>Действительно выключить &lt;b&gt;ВСЕ&lt;/b&gt; компьютеры?</translation>
+        <source>Do you really want to power down ALL computers?</source>
+        <translation>Вы действительно хотите выключить ВСЕ компьютеры?</translation>
     </message>
     <message>
         <source>Do you really want to power down the selected computers?</source>
@@ -3874,14 +7160,6 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
         <translation>Компьютер получил удалённую команду по выключению. Выключить компьютер сейчас?</translation>
-    </message>
-    <message>
-        <source>The computer will be powered down in %1 minutes, %2 seconds.
-
-Please save your work and close all programs.</source>
-        <translation>Компьютер выключится через %1 мин., %2 сек.
-
-Пожалуйста, сохраните результаты работы и завершите работу всех программ.</translation>
     </message>
     <message>
         <source>Power on/down or reboot a computer</source>
@@ -3909,6 +7187,246 @@ Please save your work and close all programs.</source>
     <message>
         <source>seconds</source>
         <translation>сек.</translation>
+    </message>
+    <message>
+        <source>Delayed power down</source>
+        <translation>Отложенное выключение</translation>
+    </message>
+</context>
+<context>
+    <name>PresetsPage</name>
+    <message>
+        <source>Applications</source>
+        <translation>Приложения</translation>
+    </message>
+    <message>
+        <source>Websites</source>
+        <translation>Сайты</translation>
+    </message>
+    <message>
+        <source>Websites available to teachers</source>
+        <translation>Сайты, доступные преподавателям</translation>
+    </message>
+    <message>
+        <source>Applications available to teachers</source>
+        <translation>Приложения, доступные преподавателям</translation>
+    </message>
+    <message>
+        <source>Add preset</source>
+        <translation>Добавить шаблон</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation>Изменить</translation>
+    </message>
+    <message>
+        <source>Move up</source>
+        <translation>Переместить вверх</translation>
+    </message>
+    <message>
+        <source>Move down</source>
+        <translation>Переместить вниз</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Удалить</translation>
+    </message>
+    <message>
+        <source>Website preset</source>
+        <translation>Шаблон сайта</translation>
+    </message>
+    <message>
+        <source>Application preset</source>
+        <translation>Шаблон приложения</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Имя</translation>
+    </message>
+    <message>
+        <source>Website URL</source>
+        <translation>Адрес сайта</translation>
+    </message>
+    <message>
+        <source>Application command or path</source>
+        <translation>Команда или путь к приложению</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Отмена</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>Сохранить</translation>
+    </message>
+</context>
+<context>
+    <name>Property</name>
+    <message>
+        <source>A value is required.</source>
+        <translation>Необходимо указать значение.</translation>
+    </message>
+    <message>
+        <source>The selected value is not a valid option.</source>
+        <translation>Выбранное значение недопустимо.</translation>
+    </message>
+    <message>
+        <source>Select one of the available values.</source>
+        <translation>Выберите одно из доступных значений.</translation>
+    </message>
+    <message>
+        <source>The value is outside the allowed range.</source>
+        <translation>Значение выходит за допустимые пределы.</translation>
+    </message>
+</context>
+<context>
+    <name>PropertyModel</name>
+    <message>
+        <source>This setting is not available for editing.</source>
+        <translation>Эту настройку нельзя изменить.</translation>
+    </message>
+</context>
+<context>
+    <name>PropertyRow</name>
+    <message>
+        <source>Open settings</source>
+        <translation>Открыть настройки</translation>
+    </message>
+    <message>
+        <source>One entry per line</source>
+        <translation>Каждая запись — на отдельной строке</translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <source>Could not access configuration store %1. Check permissions and available disk space.</source>
+        <translation>Нет доступа к хранилищу настроек %1. Проверьте права доступа и свободное место на диске.</translation>
+    </message>
+    <message>
+        <source>The configuration store %1 has an invalid format.</source>
+        <translation>Хранилище настроек %1 имеет недопустимый формат.</translation>
+    </message>
+    <message>
+        <source>Configuration is not writable. Please check your permissions!</source>
+        <translation>Конфигурация недоступна для записи. Проверьте свои права доступа!</translation>
+    </message>
+    <message>
+        <source>Invalid array value for %1.</source>
+        <translation>Недопустимое значение массива для %1.</translation>
+    </message>
+    <message>
+        <source>Invalid object value for %1.</source>
+        <translation>Недопустимое значение объекта для %1.</translation>
+    </message>
+    <message>
+        <source>Could not read %1: %2</source>
+        <translation>Не удалось прочитать %1: %2</translation>
+    </message>
+    <message>
+        <source>Invalid JSON in %1 at byte %2: %3</source>
+        <translation>Ошибка JSON в %1, байт %2: %3</translation>
+    </message>
+    <message>
+        <source>The configuration in %1 must be a JSON object.</source>
+        <translation>Настройки в %1 должны быть объектом JSON.</translation>
+    </message>
+    <message>
+        <source>Could not write %1: %2</source>
+        <translation>Не удалось записать %1: %2</translation>
+    </message>
+    <message>
+        <source>Insufficient privileges</source>
+        <translation>Недостаточные права доступа</translation>
+    </message>
+    <message>
+        <source>Could not start with administrative privileges. Please make sure a sudo-like program is installed for your desktop environment. The program will run with normal user privileges.</source>
+        <translation>Не удалось запустить программу с правами администратора. Убедитесь, что для вашего рабочего окружения установлена программа повышения привилегий, например sudo. Программа будет запущена с обычными правами пользователя.</translation>
+    </message>
+    <message>
+        <source>Configuration not writable</source>
+        <translation>Файл конфигурации не доступен для записи</translation>
+    </message>
+    <message>
+        <source>The local configuration backend is not writable. Please run Veyon Configurator with higher privileges.</source>
+        <translation>Запись в локальное хранилище настроек недоступна. Запустите конфигуратор Veyon с повышенными правами.</translation>
+    </message>
+</context>
+<context>
+    <name>QuickDialogRequest</name>
+    <message>
+        <source>Enter a valid website address.</source>
+        <translation>Введите корректный адрес сайта.</translation>
+    </message>
+    <message>
+        <source>Enter a name for the saved entry.</source>
+        <translation>Введите название для сохраняемой записи.</translation>
+    </message>
+    <message>
+        <source>Enter a message to send.</source>
+        <translation>Введите текст сообщения.</translation>
+    </message>
+    <message>
+        <source>Logon failed with given username and password. Please try again!</source>
+        <translation>Не удалось войти, используя указанные имя пользователя и пароль. Пожалуйста, повторите попытку!</translation>
+    </message>
+</context>
+<context>
+    <name>QuickUi</name>
+    <message>
+        <source>Could not load the dialog.</source>
+        <translation>Не удалось открыть диалоговое окно.</translation>
+    </message>
+</context>
+<context>
+    <name>RemoteAccess</name>
+    <message>
+        <source>Classroom</source>
+        <translation>Компьютерный класс</translation>
+    </message>
+    <message>
+        <source>Open in window</source>
+        <translation>Открыть в окне</translation>
+    </message>
+    <message>
+        <source>Close remote session</source>
+        <translation>Закрыть удалённый сеанс</translation>
+    </message>
+    <message>
+        <source>View</source>
+        <translation>Просмотр</translation>
+    </message>
+    <message>
+        <source>Control</source>
+        <translation>Управление</translation>
+    </message>
+    <message>
+        <source>Shortcuts</source>
+        <translation>Сочетания клавиш</translation>
+    </message>
+    <message>
+        <source>Screenshot</source>
+        <translation>Снимок экрана</translation>
+    </message>
+    <message>
+        <source>Fit</source>
+        <translation>Вместить</translation>
+    </message>
+    <message>
+        <source>Fullscreen</source>
+        <translation>На весь экран</translation>
+    </message>
+    <message>
+        <source>End session</source>
+        <translation>Завершить сеанс</translation>
+    </message>
+    <message>
+        <source>View only · remote input is disabled</source>
+        <translation>Только просмотр · удалённый ввод отключён</translation>
+    </message>
+    <message>
+        <source>You are controlling this computer</source>
+        <translation>Вы управляете этим компьютером</translation>
     </message>
 </context>
 <context>
@@ -3942,8 +7460,8 @@ Please save your work and close all programs.</source>
         <translation>Удалённый доступ</translation>
     </message>
     <message>
-        <source>No computer has been selected so you can enter a hostname or IP address of a computer for manual access:</source>
-        <translation>Компьютер не выбран, поэтому вы можете ввести имя хоста или IP-адрес компьютера для доступа к нему:</translation>
+        <source>Enter a hostname or IP address:</source>
+        <translation>Введите имя узла или IP-адрес:</translation>
     </message>
     <message>
         <source>Remote view or control a computer</source>
@@ -3951,7 +7469,86 @@ Please save your work and close all programs.</source>
     </message>
 </context>
 <context>
+    <name>RemoteAccessSession</name>
+    <message>
+        <source>Connected</source>
+        <translation>Подключено</translation>
+    </message>
+    <message>
+        <source>Authentication failed</source>
+        <translation>Ошибка аутентификации</translation>
+    </message>
+    <message>
+        <source>Hostname could not be resolved</source>
+        <translation>Имя хоста не может быть разрешено</translation>
+    </message>
+    <message>
+        <source>Connecting to computer…</source>
+        <translation>Подключение к компьютеру…</translation>
+    </message>
+    <message>
+        <source>All screens</source>
+        <translation>Все экраны</translation>
+    </message>
+</context>
+<context>
     <name>RemoteAccessWidget</name>
+    <message>
+        <source>Back to class</source>
+        <translation>Вернуться к классу</translation>
+    </message>
+    <message>
+        <source>You are controlling %1. Mouse and keyboard input is sent to this computer.</source>
+        <translation>Вы управляете компьютером %1. Действия мыши и клавиатуры передаются на этот компьютер.</translation>
+    </message>
+    <message>
+        <source>Back to view</source>
+        <translation>Вернуться к просмотру</translation>
+    </message>
+    <message>
+        <source>View only</source>
+        <translation>Только просмотр</translation>
+    </message>
+    <message>
+        <source>Mouse and keyboard control</source>
+        <translation>Управление мышью и клавиатурой</translation>
+    </message>
+    <message>
+        <source>Connected</source>
+        <translation>Подключено</translation>
+    </message>
+    <message>
+        <source>Connecting…</source>
+        <translation>Подключение…</translation>
+    </message>
+    <message>
+        <source>Computer offline</source>
+        <translation>Компьютер не в сети</translation>
+    </message>
+    <message>
+        <source>Host name resolution failed</source>
+        <translation>Не удалось определить адрес по имени компьютера</translation>
+    </message>
+    <message>
+        <source>Veyon Server is not running</source>
+        <translation>Сервер Veyon не запущен</translation>
+    </message>
+    <message>
+        <source>Authentication failed</source>
+        <translation>Ошибка аутентификации</translation>
+    </message>
+    <message>
+        <source>Access denied</source>
+        <translation>Доступ запрещён</translation>
+    </message>
+    <message>
+        <source>Connection failed</source>
+        <translation>Не удалось подключиться</translation>
+    </message>
+    <message>
+        <source>Disconnected</source>
+        <translation>Отключён</translation>
+    </message>
     <message>
         <source>%1 - Veyon Remote Access</source>
         <translation>%1 - Удалённый доступ Veyon</translation>
@@ -3964,20 +7561,20 @@ Please save your work and close all programs.</source>
 <context>
     <name>RemoteAccessWidgetToolBar</name>
     <message>
-        <source>View only</source>
-        <translation>Только трансляция</translation>
+        <source>View</source>
+        <translation>Просмотр</translation>
     </message>
     <message>
-        <source>Remote control</source>
-        <translation>Удалённое управление</translation>
+        <source>Control</source>
+        <translation>Управление</translation>
     </message>
     <message>
         <source>Select screen</source>
         <translation>Выбрать экран</translation>
     </message>
     <message>
-        <source>Send shortcut</source>
-        <translation>Отправить сокращение</translation>
+        <source>Ctrl+Alt+Del</source>
+        <translation>Ctrl+Alt+Del</translation>
     </message>
     <message>
         <source>Screenshot</source>
@@ -3988,16 +7585,12 @@ Please save your work and close all programs.</source>
         <translation>На весь экран</translation>
     </message>
     <message>
-        <source>Window</source>
-        <translation>В окне</translation>
+        <source>Fit screen</source>
+        <translation>Вписать в окно</translation>
     </message>
     <message>
-        <source>Exit</source>
-        <translation>Выход</translation>
-    </message>
-    <message>
-        <source>Ctrl+Alt+Del</source>
-        <translation>Ctrl+Alt+Del</translation>
+        <source>End session</source>
+        <translation>Завершить сеанс</translation>
     </message>
     <message>
         <source>Ctrl+Esc</source>
@@ -4028,16 +7621,167 @@ Please save your work and close all programs.</source>
         <translation>Alt+Ctrl+F1</translation>
     </message>
     <message>
-        <source>Connected.</source>
-        <translation>Подключён.</translation>
-    </message>
-    <message>
-        <source>Connecting...</source>
-        <translation>Подключение...</translation>
+        <source>Send shortcut</source>
+        <translation>Отправить сокращение</translation>
     </message>
     <message>
         <source>All screens</source>
         <translation>Все экраны</translation>
+    </message>
+</context>
+<context>
+    <name>RulesPage</name>
+    <message>
+        <source>Access policy</source>
+        <translation>Правила доступа</translation>
+    </message>
+    <message>
+        <source>Allow all authenticated users</source>
+        <translation>Разрешить доступ всем прошедшим аутентификацию пользователям</translation>
+    </message>
+    <message>
+        <source>Restrict access to user groups</source>
+        <translation>Ограничить доступ группами пользователей</translation>
+    </message>
+    <message>
+        <source>Process access control rules</source>
+        <translation>Правила контроля доступа к процессу</translation>
+    </message>
+    <message>
+        <source>Authorized user groups</source>
+        <translation>Разрешённые группы пользователей</translation>
+    </message>
+    <message>
+        <source>Load groups</source>
+        <translation>Загрузить группы</translation>
+    </message>
+    <message>
+        <source>One authorized group per line</source>
+        <translation>Каждая разрешённая группа — на отдельной строке</translation>
+    </message>
+    <message>
+        <source>User login name to test</source>
+        <translation>Имя пользователя для проверки</translation>
+    </message>
+    <message>
+        <source>Test access</source>
+        <translation>Проверить доступ</translation>
+    </message>
+    <message>
+        <source>Access rules</source>
+        <translation>Правила доступа</translation>
+    </message>
+    <message>
+        <source>Test rules…</source>
+        <translation>Проверить правила…</translation>
+    </message>
+    <message>
+        <source>Add rule</source>
+        <translation>Добавить правило</translation>
+    </message>
+    <message>
+        <source>Rules are evaluated in order. The first matching rule determines access.</source>
+        <translation>Правила проверяются по порядку. Доступ определяется первым совпавшим правилом.</translation>
+    </message>
+    <message>
+        <source>Allow</source>
+        <translation>Разрешить</translation>
+    </message>
+    <message>
+        <source>Deny</source>
+        <translation>Запретить</translation>
+    </message>
+    <message>
+        <source>Ask permission</source>
+        <translation>Запрашивать разрешение</translation>
+    </message>
+    <message>
+        <source>No action</source>
+        <translation>Нет действия</translation>
+    </message>
+    <message>
+        <source>Edit</source>
+        <translation>Изменить</translation>
+    </message>
+    <message>
+        <source>Move rule up</source>
+        <translation>Переместить правило вверх</translation>
+    </message>
+    <message>
+        <source>Move rule down</source>
+        <translation>Переместить правило вниз</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Удалить</translation>
+    </message>
+    <message>
+        <source>Access rule</source>
+        <translation>Правило доступа</translation>
+    </message>
+    <message>
+        <source>Rule name</source>
+        <translation>Название правила</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Описание</translation>
+    </message>
+    <message>
+        <source>Allow access</source>
+        <translation>Разрешить доступ</translation>
+    </message>
+    <message>
+        <source>Deny access</source>
+        <translation>Запретить доступ</translation>
+    </message>
+    <message>
+        <source>Ask logged-on user for permission</source>
+        <translation>Запрашивать разрешение вошедшего пользователя</translation>
+    </message>
+    <message>
+        <source>Ignore conditions</source>
+        <translation>Игнорировать условия</translation>
+    </message>
+    <message>
+        <source>Invert conditions</source>
+        <translation>Инвертировать условия</translation>
+    </message>
+    <message>
+        <source>Accessing user</source>
+        <translation>Пользователь, выполняющий доступ</translation>
+    </message>
+    <message>
+        <source>Local user</source>
+        <translation>Локальный пользователь</translation>
+    </message>
+    <message>
+        <source>Accessing computer</source>
+        <translation>Компьютер, с которого осуществляется доступ</translation>
+    </message>
+    <message>
+        <source>Local computer</source>
+        <translation>Локальный компьютер</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Отмена</translation>
+    </message>
+    <message>
+        <source>Save rule</source>
+        <translation>Сохранить правило</translation>
+    </message>
+    <message>
+        <source>Test access rules</source>
+        <translation>Проверка правил доступа</translation>
+    </message>
+    <message>
+        <source>Already connected users (comma separated)</source>
+        <translation>Уже подключённые пользователи (через запятую)</translation>
+    </message>
+    <message>
+        <source>Run test</source>
+        <translation>Проверить</translation>
     </message>
 </context>
 <context>
@@ -4199,11 +7943,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Maximum simultaneous server connections</source>
-        <translation type="unfinished"/>
+        <translation>Максимальное число одновременных подключений к серверу</translation>
     </message>
     <message>
         <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
-        <translation type="unfinished"/>
+        <translation>Ограничивает число одновременных удалённых подключений, чтобы предотвратить исчерпание ресурсов сервера.</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4238,14 +7982,18 @@ Please save your work and close all programs.</source>
         <translation>Режим локального сеанса (один экземпляр сервера для основного локального сеанса)</translation>
     </message>
     <message>
-        <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
-Typically this is required to support terminal servers.</source>
-        <translation>Включение этого пункта приведёт к тому, что сервис будет запускать процесс сервера для каждого интерактивного сеанса на компьютере.
-По умолчанию эта настройка требуется для реализации поддержки терминальных серверов.</translation>
+        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
+        <translation>Включите этот параметр, если необходимо запустить один экземпляр сервера Veyon для текущего активного сеанса, независимо от того, локальный он или удаленный.</translation>
     </message>
     <message>
         <source>Active session mode (single server instance for active local or remote session)</source>
         <translation>Режим активного сеанса (один экземпляр сервера для активного локального или удалённого сеанса)</translation>
+    </message>
+    <message>
+        <source>Enabling this option will make the service launch a server process for every interactive session on a computer.
+Typically this is required to support terminal servers.</source>
+        <translation>Включение этого пункта приведёт к тому, что сервис будет запускать процесс сервера для каждого интерактивного сеанса на компьютере.
+По умолчанию эта настройка требуется для реализации поддержки терминальных серверов.</translation>
     </message>
     <message>
         <source>Multi session mode (distinct server instance for each local and remote desktop session)</source>
@@ -4260,20 +8008,20 @@ Typically this is required to support terminal servers.</source>
         <translation>Номера сетевых портов</translation>
     </message>
     <message>
-        <source>Veyon server</source>
-        <translation>Veyon сервер</translation>
+        <source>Demo server</source>
+        <translation>Демонстрационный сервер</translation>
     </message>
     <message>
         <source>Internal VNC server</source>
         <translation>Встроенный VNC-сервер</translation>
     </message>
     <message>
-        <source>Feature manager</source>
-        <translation>Менеджер функций</translation>
+        <source>Veyon server</source>
+        <translation>Veyon сервер</translation>
     </message>
     <message>
-        <source>Demo server</source>
-        <translation>Демонстрационный сервер</translation>
+        <source>Feature manager</source>
+        <translation>Менеджер функций</translation>
     </message>
     <message>
         <source>Miscellaneous settings</source>
@@ -4300,18 +8048,6 @@ Typically this is required to support terminal servers.</source>
         <translation>Плагин:</translation>
     </message>
     <message>
-        <source>Restart Veyon Service</source>
-        <translation>Перезапустить сервис Veyon</translation>
-    </message>
-    <message>
-        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
-        <translation>Все настройки были успешно сохранены. Для того чтобы они вступили в силу необходимо перезапустить сервис Veyon. Перезапустить его сейчас?</translation>
-    </message>
-    <message>
-        <source>Running</source>
-        <translation>Работает</translation>
-    </message>
-    <message>
         <source>Session metadata</source>
         <translation>Метаданные сеанса</translation>
     </message>
@@ -4332,6 +8068,14 @@ Typically this is required to support terminal servers.</source>
         <translation>Значение ключа реестра</translation>
     </message>
     <message>
+        <source>Environment variable name</source>
+        <translation>Имя переменной среды</translation>
+    </message>
+    <message>
+        <source>Registry key name</source>
+        <translation>Имя ключа реестра</translation>
+    </message>
+    <message>
         <source>Optionally enter a regular expression with a capture to extract a part of the computer name and use it as the display name for the computer.
 
 Example: [^-]*-(PC[0-9]*)</source>
@@ -4340,24 +8084,20 @@ Example: [^-]*-(PC[0-9]*)</source>
 Пример: [^-]*-(PC[0-9]*)</translation>
     </message>
     <message>
-        <source>Enable if a single Veyon Server instance should be launched for the currently active session, no matter if local or remote.</source>
-        <translation>Включите этот параметр, если необходимо запустить один экземпляр сервера Veyon для текущего активного сеанса, независимо от того, локальный он или удаленный.</translation>
+        <source>Restart Veyon Service</source>
+        <translation>Перезапустить сервис Veyon</translation>
     </message>
     <message>
-        <source>Environment variable name</source>
-        <translation>Имя переменной среды</translation>
+        <source>All settings were saved successfully. In order to take effect the Veyon service needs to be restarted. Restart it now?</source>
+        <translation>Все настройки были успешно сохранены. Для того чтобы они вступили в силу необходимо перезапустить сервис Veyon. Перезапустить его сейчас?</translation>
     </message>
     <message>
-        <source>Registry key name</source>
-        <translation>Имя ключа реестра</translation>
+        <source>Running</source>
+        <translation>Работает</translation>
     </message>
 </context>
 <context>
     <name>ServiceControl</name>
-    <message>
-        <source>Service control</source>
-        <translation>Управление сервисам</translation>
-    </message>
     <message>
         <source>Starting %1</source>
         <translation>Запуск %1</translation>
@@ -4377,6 +8117,10 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Unregistering %1</source>
         <translation>Отмена регистрации %1</translation>
+    </message>
+    <message>
+        <source>Service control</source>
+        <translation>Управление сервисам</translation>
     </message>
 </context>
 <context>
@@ -4525,6 +8269,10 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Please enter the applications to start on the selected computers. You can separate multiple applications by line.</source>
         <translation>Укажите приложения для запуска на выбранных компьютерах. Чтобы перечислить несколько приложений, укажите каждое в отдельной строке.</translation>
     </message>
+    <message>
+        <source>Run application on student computers</source>
+        <translation>Запустить программу у учеников</translation>
+    </message>
 </context>
 <context>
     <name>SystemTrayIcon</name>
@@ -4567,11 +8315,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Title:</source>
-        <translation type="unfinished"/>
+        <translation>Заголовок:</translation>
     </message>
     <message>
         <source>Optional custom title for the message window</source>
-        <translation type="unfinished"/>
+        <translation>Необязательный заголовок окна сообщения</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -4579,7 +8327,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Message from %1</source>
-        <translation type="unfinished"/>
+        <translation>Сообщение от %1</translation>
+    </message>
+    <message>
+        <source>Message to students</source>
+        <translation>Сообщение ученикам</translation>
     </message>
 </context>
 <context>
@@ -4592,6 +8344,22 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Use this function to send a text message to all users e.g. to assign them new tasks.</source>
         <translation>Используйте эту функцию для отправки текстового сообщения всем пользователям (например, чтобы сообщить им о новых задачах).</translation>
     </message>
+    <message numerus="yes">
+        <source>Recipients: %n computer(s)</source>
+        <translation>
+            <numerusform>Получатель: %n компьютер</numerusform>
+            <numerusform>Получатели: %n компьютера</numerusform>
+            <numerusform>Получатели: %n компьютеров</numerusform>
+        </translation>
+    </message>
+    <message numerus="yes">
+        <source> and %n more</source>
+        <translation>
+            <numerusform> и ещё %n</numerusform>
+            <numerusform> и ещё %n</numerusform>
+            <numerusform> и ещё %n</numerusform>
+        </translation>
+    </message>
     <message>
         <source>Message from teacher</source>
         <translation>Сообщение от учителя</translation>
@@ -4599,6 +8367,80 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Send a message to a user</source>
         <translation>Отправить сообщение пользователю</translation>
+    </message>
+</context>
+<context>
+    <name>TransferWindow</name>
+    <message>
+        <source>Distribute files</source>
+        <translation>Раздать файлы</translation>
+    </message>
+    <message>
+        <source>Send files to the selected classroom computers.</source>
+        <translation>Отправьте файлы на выбранные компьютеры класса.</translation>
+    </message>
+    <message>
+        <source>Destination on remote computers</source>
+        <translation>Каталог назначения на удалённых компьютерах</translation>
+    </message>
+    <message>
+        <source>Configured destination (or enter a path)</source>
+        <translation>Каталог из настроек (или введите путь)</translation>
+    </message>
+    <message>
+        <source>After transfer</source>
+        <translation>После передачи</translation>
+    </message>
+    <message>
+        <source>Do nothing</source>
+        <translation>Ничего не делать</translation>
+    </message>
+    <message>
+        <source>Open destination folder</source>
+        <translation>Открыть каталог назначения</translation>
+    </message>
+    <message>
+        <source>Open files in application</source>
+        <translation>Открыть файлы в приложении</translation>
+    </message>
+    <message>
+        <source>Overwrite existing files</source>
+        <translation>Перезаписать существующие файлы</translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation>Файлы</translation>
+    </message>
+    <message>
+        <source>Recipients</source>
+        <translation>Получатели</translation>
+    </message>
+    <message>
+        <source>Sending progress</source>
+        <translation>Ход отправки</translation>
+    </message>
+    <message>
+        <source>Cancel transfer</source>
+        <translation>Отменить передачу</translation>
+    </message>
+    <message>
+        <source>Send again</source>
+        <translation>Отправить снова</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>Начать</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation>Закрыть</translation>
+    </message>
+</context>
+<context>
+    <name>TypedProperty</name>
+    <message>
+        <source>A password must be text.</source>
+        <translation>Пароль должен быть текстом.</translation>
     </message>
 </context>
 <context>
@@ -4650,6 +8492,10 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Password</source>
         <translation>Пароль</translation>
     </message>
+    <message>
+        <source>User logon</source>
+        <translation>Вход пользователя</translation>
+    </message>
 </context>
 <context>
     <name>UserSessionControlPlugin</name>
@@ -4674,8 +8520,8 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Потверждение выхода пользователя</translation>
     </message>
     <message>
-        <source>Do you really want to log off &lt;b&gt;ALL&lt;/b&gt; users?</source>
-        <translation>Действительно выполнить выход из системы для &lt;b&gt;ВСЕХ&lt;/b&gt; пользователей?</translation>
+        <source>Do you really want to log off ALL users?</source>
+        <translation>Вы действительно хотите завершить сеансы ВСЕХ пользователей?</translation>
     </message>
     <message>
         <source>Do you really want to log off the selected users?</source>
@@ -4688,50 +8534,6 @@ Example: [^-]*-(PC[0-9]*)</source>
 </context>
 <context>
     <name>VeyonCore</name>
-    <message>
-        <source>[OK]</source>
-        <translation>[OK]</translation>
-    </message>
-    <message>
-        <source>[FAIL]</source>
-        <translation>[НЕУДАЧА]</translation>
-    </message>
-    <message>
-        <source>Invalid arguments given</source>
-        <translation>Даны неправильные аргументы</translation>
-    </message>
-    <message>
-        <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
-        <translation>Недостаточно аргументов - используйте &quot;%1 help&quot; для получения дополнительной информации</translation>
-    </message>
-    <message>
-        <source>No command given</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Invalid command given</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Plugin not licensed</source>
-        <translation>Плагин не лицензирован</translation>
-    </message>
-    <message>
-        <source>Available commands:</source>
-        <translation>Доступные команды:</translation>
-    </message>
-    <message>
-        <source>Unknown command result</source>
-        <translation type="unfinished"/>
-    </message>
-    <message>
-        <source>Available modules:</source>
-        <translation>Доступные модули:</translation>
-    </message>
-    <message>
-        <source>No module specified or module not found - available modules are:</source>
-        <translation>Не указан модуль или модуль не найден. Доступные модули:</translation>
-    </message>
     <message>
         <source>INFO</source>
         <translation>ИНФОРМАЦИЯ</translation>
@@ -4764,6 +8566,50 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Guest</source>
         <translation>Гость</translation>
     </message>
+    <message>
+        <source>Available commands:</source>
+        <translation>Доступные команды:</translation>
+    </message>
+    <message>
+        <source>[OK]</source>
+        <translation>[OK]</translation>
+    </message>
+    <message>
+        <source>[FAIL]</source>
+        <translation>[НЕУДАЧА]</translation>
+    </message>
+    <message>
+        <source>Invalid arguments given</source>
+        <translation>Даны неправильные аргументы</translation>
+    </message>
+    <message>
+        <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
+        <translation>Недостаточно аргументов - используйте &quot;%1 help&quot; для получения дополнительной информации</translation>
+    </message>
+    <message>
+        <source>No command given</source>
+        <translation>Команда не указана</translation>
+    </message>
+    <message>
+        <source>Invalid command given</source>
+        <translation>Указана недопустимая команда</translation>
+    </message>
+    <message>
+        <source>Plugin not licensed</source>
+        <translation>Плагин не лицензирован</translation>
+    </message>
+    <message>
+        <source>Unknown command result</source>
+        <translation>Неизвестный результат команды</translation>
+    </message>
+    <message>
+        <source>Available modules:</source>
+        <translation>Доступные модули:</translation>
+    </message>
+    <message>
+        <source>No module specified or module not found - available modules are:</source>
+        <translation>Не указан модуль или модуль не найден. Доступные модули:</translation>
+    </message>
 </context>
 <context>
     <name>VeyonMaster</name>
@@ -4772,8 +8618,8 @@ Example: [^-]*-(PC[0-9]*)</source>
         <translation>Нет доступа на запись</translation>
     </message>
     <message>
-        <source>Could not save your personal settings! Please check the user configuration file path using Veyon Configurator.</source>
-        <translation>Не удалось сохранить ваши личные настройки! Пожалуйста, проверьте, правильно ли указан путь к файлу настроек пользователей с помощью конфигуратора Veyon.</translation>
+        <source>Could not save your personal settings. Check the user configuration file path using Veyon Configurator.</source>
+        <translation>Не удалось сохранить личные настройки. Проверьте путь к файлу пользовательских настроек в конфигураторе Veyon.</translation>
     </message>
 </context>
 <context>
@@ -4853,6 +8699,46 @@ Example: [^-]*-(PC[0-9]*)</source>
 <context>
     <name>WebApiPlugin</name>
     <message>
+        <source>HTTP server</source>
+        <translation>Сервер HTTP</translation>
+    </message>
+    <message>
+        <source>Enable HTTP server</source>
+        <translation>Включить сервер HTTP</translation>
+    </message>
+    <message>
+        <source>HTTP server port</source>
+        <translation>Порт сервера HTTP</translation>
+    </message>
+    <message>
+        <source>Connection lifetime</source>
+        <translation>Время жизни соединения</translation>
+    </message>
+    <message>
+        <source>Idle timeout</source>
+        <translation>Тайм-аут бездействия</translation>
+    </message>
+    <message>
+        <source>Authentication timeout</source>
+        <translation>Тайм-аут аутентификации</translation>
+    </message>
+    <message>
+        <source>Connection limit</source>
+        <translation>Ограничение числа соединений</translation>
+    </message>
+    <message>
+        <source>Enable HTTPS</source>
+        <translation>Включить HTTPS</translation>
+    </message>
+    <message>
+        <source>TLS certificate</source>
+        <translation>Сертификат TLS</translation>
+    </message>
+    <message>
+        <source>TLS private key</source>
+        <translation>Закрытый ключ TLS</translation>
+    </message>
+    <message>
         <source>Run WebAPI server</source>
         <translation>Включить Веб-API сервер</translation>
     </message>
@@ -4893,6 +8779,26 @@ Example: [^-]*-(PC[0-9]*)</source>
     <message>
         <source>Enable SAS generation by software (Ctrl+Alt+Del)</source>
         <translation>Включить программное создание SAS (Ctrl+Alt+Del)</translation>
+    </message>
+    <message>
+        <source>Handling of interfering windows</source>
+        <translation>Обработка мешающих окон</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Нет</translation>
+    </message>
+    <message>
+        <source>Fix window attributes</source>
+        <translation>Исправление атрибутов окна</translation>
+    </message>
+    <message>
+        <source>Terminate related process</source>
+        <translation>Завершение связанного процесса</translation>
+    </message>
+    <message>
+        <source>Close session</source>
+        <translation>Закрытие сеанса</translation>
     </message>
     <message>
         <source>User authentication</source>
@@ -4954,36 +8860,92 @@ Example: [^-]*-(PC[0-9]*)</source>
         <source>Disable mouse devices</source>
         <translation>Отключить устройства мыши</translation>
     </message>
+</context>
+<context>
+    <name>WindowsPlatformPlugin</name>
     <message>
-        <source>Handling of interfering windows</source>
+        <source>Windows</source>
+        <translation>Windows</translation>
+    </message>
+    <message>
+        <source>Enable software secure attention sequence</source>
+        <translation>Включить программную последовательность безопасного внимания</translation>
+    </message>
+    <message>
+        <source>Interfering window handling</source>
         <translation>Обработка мешающих окон</translation>
     </message>
     <message>
-        <source>None</source>
-        <translation>Нет</translation>
+        <source>Disable SSPI authentication</source>
+        <translation>Отключить аутентификацию SSPI</translation>
+    </message>
+    <message>
+        <source>Hide desktop while screen is locked</source>
+        <translation>Скрывать рабочий стол при блокировке экрана</translation>
+    </message>
+    <message>
+        <source>Hide taskbar while screen is locked</source>
+        <translation>Скрывать панель задач при блокировке экрана</translation>
+    </message>
+    <message>
+        <source>Hide Start menu while screen is locked</source>
+        <translation>Скрывать меню «Пуск» при блокировке экрана</translation>
+    </message>
+    <message>
+        <source>Use custom power scheme while screen is locked</source>
+        <translation>Использовать особую схему питания при блокировке экрана</translation>
+    </message>
+    <message>
+        <source>Use interception driver</source>
+        <translation>Использовать драйвер перехвата ввода</translation>
+    </message>
+    <message>
+        <source>Disable touch devices while screen is locked</source>
+        <translation>Отключать сенсорные устройства при блокировке экрана</translation>
+    </message>
+    <message>
+        <source>Disable keyboards while screen is locked</source>
+        <translation>Отключать клавиатуры при блокировке экрана</translation>
+    </message>
+    <message>
+        <source>Disable pointing devices while screen is locked</source>
+        <translation>Отключать устройства указания при блокировке экрана</translation>
+    </message>
+    <message>
+        <source>Delay before login input</source>
+        <translation>Задержка перед вводом данных для входа</translation>
+    </message>
+    <message>
+        <source>Login key interval</source>
+        <translation>Интервал нажатия клавиш при входе</translation>
+    </message>
+    <message>
+        <source>Confirm legal notice during login</source>
+        <translation>Подтверждать юридическое уведомление при входе</translation>
+    </message>
+    <message>
+        <source>Do nothing</source>
+        <translation>Ничего не делать</translation>
     </message>
     <message>
         <source>Fix window attributes</source>
         <translation>Исправление атрибутов окна</translation>
     </message>
     <message>
-        <source>Terminate related process</source>
-        <translation>Завершение связанного процесса</translation>
+        <source>Terminate process</source>
+        <translation>Завершить процесс</translation>
     </message>
     <message>
         <source>Close session</source>
         <translation>Закрытие сеанса</translation>
     </message>
-</context>
-<context>
-    <name>WindowsPlatformPlugin</name>
-    <message>
-        <source>Internal display</source>
-        <translation>Внутренний дисплей</translation>
-    </message>
     <message>
         <source>Plugin implementing abstract functions for the Windows platform</source>
         <translation>Плагин, который реализует абстрактные функции на платформе Windows</translation>
+    </message>
+    <message>
+        <source>Internal display</source>
+        <translation>Внутренний дисплей</translation>
     </message>
 </context>
 <context>

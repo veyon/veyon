@@ -1,82 +1,24 @@
 // SPDX-FileCopyrightText: 2010-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include <QMessageBox>
-#include <QPushButton>
-
 #include "PasswordDialog.h"
 #include "PlatformUserFunctions.h"
-
-#include "ui_PasswordDialog.h"
-
-
-PasswordDialog::PasswordDialog(QWidget* parent) :
-	QDialog(parent),
-	ui(new Ui::PasswordDialog)
+#include "QuickUi.h"
+PasswordDialog::PasswordDialog(QWidget*) : QObject(nullptr),
+	m_username(VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName)) {}
+int PasswordDialog::exec()
 {
-	ui->setupUi(this);
-
-	ui->username->setText(VeyonCore::platform().userFunctions().queryCurrentUserProperty(PlatformUserFunctions::UserProperty::LoginName));
-
-	if (ui->username->text().isEmpty() == false)
-	{
-		ui->password->setFocus();
-	}
-
-	updateOkButton();
+	const auto result = QuickUi::execDialog(QStringLiteral("authenticate"), {
+		{QStringLiteral("title"), tr("Logon")}, {QStringLiteral("username"), m_username}});
+	if (!result.value(QStringLiteral("accepted")).toBool()) return 0;
+	m_username = result.value(QStringLiteral("username")).toString();
+	m_password = result.value(QStringLiteral("password")).toString().toUtf8();
+	return 1;
 }
-
-
-
-PasswordDialog::~PasswordDialog()
-{
-	delete ui;
-}
-
-
-
-QString PasswordDialog::username() const
-{
-	return ui->username->text();
-}
-
-
-
-CryptoCore::PlaintextPassword PasswordDialog::password() const
-{
-	return ui->password->text().toUtf8();
-}
-
-
-
 AuthenticationCredentials PasswordDialog::credentials() const
 {
-	AuthenticationCredentials cred;
-	cred.setLogonUsername(username());
-	cred.setLogonPassword(password());
-
-	return cred;
-}
-
-
-
-void PasswordDialog::accept()
-{
-	if (VeyonCore::platform().userFunctions().authenticate(username(), password()) == false)
-	{
-		QMessageBox::critical(window(),
-							  tr("Authentication error"),
-							  tr("Logon failed with given username and password. Please try again!"));
-	}
-	else
-	{
-		QDialog::accept();
-	}
-}
-
-
-
-void PasswordDialog::updateOkButton()
-{
-	ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(!username().isEmpty() && !password().isEmpty());
+	AuthenticationCredentials result;
+	result.setLogonUsername(m_username);
+	result.setLogonPassword(m_password);
+	return result;
 }

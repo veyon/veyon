@@ -10,6 +10,7 @@
 #include "ComputerZoomWidget.h"
 #include "FlexibleListView.h"
 
+class QCheckBox;
 class FlexibleListView;
 class QTimer;
 
@@ -27,7 +28,9 @@ public:
 
 	void showContextMenu(QPoint globalPos);
 
-	void setIconSize(const QSize& size) override;
+	void setIconSize( const QSize& size ) override;
+	void setListMode(bool enabled);
+	void setCardMinimumWidth(int width);
 
 	void setIgnoreWheelEvent(bool enabled)
 	{
@@ -45,6 +48,11 @@ private:
 	void loadComputerPositions(const QJsonArray& positions) override;
 
 	bool performIconSizeAutoAdjust() override;
+	void updateCardLayout();
+	void updateListHeaderSelection();
+	QWidget* m_listHeader{};
+	QCheckBox* m_selectAllComputers{};
+	int m_cardMinimumWidth{190};
 
 	void handleSizeHintChanges(const QModelIndex& topLeft, const QModelIndex& bottomRight, const QVector<int>& roles);
 
@@ -65,6 +73,7 @@ private:
 	void wheelEvent(QWheelEvent* event) override;
 
 	QMenu* m_featureMenu{};
+	ComputerControlInterfaceList m_featureMenuTargets;
 	bool m_ignoreMousePressAndHoldEvent{false};
 	bool m_ignoreWheelEvent{false};
 	bool m_ignoreResizeEvent{false};

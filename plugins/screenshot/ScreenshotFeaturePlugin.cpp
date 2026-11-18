@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2017-2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-#include <QMessageBox>
+#include "QuickUi.h"
 
 #include "ComputerControlInterface.h"
 #include "Screenshot.h"
@@ -77,9 +77,10 @@ bool ScreenshotFeaturePlugin::startFeature(VeyonMasterInterface& master, const F
 {
 	if (controlFeature(feature.uid(), Operation::Start, {}, computerControlInterfaces))
 	{
-		QMessageBox::information(master.mainWindow(),
-								 tr("Screenshots taken"),
-								 tr("Screenshot of %1 computer have been taken successfully.").arg(computerControlInterfaces.count()));
+		QuickUi::execDialog(QStringLiteral("information"), {{QStringLiteral("title"),
+								  tr("Screenshots taken")}, {QStringLiteral("text"),
+								  tr( "Screenshot of %1 computer have been taken successfully." ).
+								  arg(computerControlInterfaces.count())}});
 
 		return true;
 	}

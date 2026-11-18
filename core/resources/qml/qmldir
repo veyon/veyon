@@ -1,0 +1,7 @@
+singleton Theme 1.0 Theme.qml
+Icon 1.0 Icon.qml
+ActionButton 1.0 ActionButton.qml
+CheckBox 1.0 CheckBox.qml
+TextField 1.0 TextField.qml
+ComboBox 1.0 ComboBox.qml
+SpinBox 1.0 SpinBox.qml
