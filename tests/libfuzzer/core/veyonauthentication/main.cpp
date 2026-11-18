@@ -53,6 +53,10 @@ private:
 
 
 
+static VeyonConnection* connection = nullptr;
+
+
+
 static void discardLogMessage(QtMsgType, const QMessageLogContext&, const QString&)
 {
 }
@@ -81,6 +85,10 @@ extern "C" int LLVMFuzzerInitialize(int* argc, char*** argv)
 
 	qInstallMessageHandler(discardLogMessage);
 
+	// authenticate() only reads from the connection, so one instance serves all inputs
+	// (a VncConnection per input grows the RSS by several KB per run)
+	connection = new VeyonConnection;
+
 	return 0;
 }
 
@@ -97,14 +105,10 @@ extern "C" int LLVMFuzzerTestOneInput(const char* data, size_t size)
 
 	static constexpr RfbVeyonAuth::Type AuthTypes[] = {RfbVeyonAuth::KeyFile, RfbVeyonAuth::Logon, RfbVeyonAuth::Token};
 
-	auto connection = new VeyonConnection;
 	connection->setVeyonAuthType(AuthTypes[static_cast<unsigned char>(data[0]) % 3]);
 
 	FuzzedServerDevice device(data + 1, qint64(size - 1));
 	(void)VeyonConnection::authenticate(connection, device);
-
-	connection->stopAndDeleteLater();
-	QCoreApplication::sendPostedEvents(nullptr, QEvent::DeferredDelete);
 
 	return 0;
 }

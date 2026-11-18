@@ -1,0 +1,4 @@
+# LeakSanitizer suppressions for the fuzzers
+# OpenSSL (legacy) provider loaded by QCA in CryptoCore::CryptoCore(), never unloaded
+leak:OSSL_provider_init
+leak:libcrypto

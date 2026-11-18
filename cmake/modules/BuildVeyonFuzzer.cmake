@@ -17,5 +17,8 @@ macro(build_veyon_fuzzer FUZZER_NAME)
 	else()
 		add_test(NAME ${FUZZER_NAME} COMMAND ${FUZZER_NAME} -max_total_time=60)
 	endif()
+	# OpenSSL providers loaded by QCA are never freed (ASan builds)
+	set_tests_properties(${FUZZER_NAME} PROPERTIES
+		ENVIRONMENT "LSAN_OPTIONS=suppressions=${CMAKE_SOURCE_DIR}/tests/libfuzzer/lsan.supp:print_suppressions=0")
 endmacro()
 
