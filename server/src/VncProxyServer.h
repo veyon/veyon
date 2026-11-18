@@ -48,6 +48,8 @@ private:
 	void closeConnection(VncProxyConnection*);
 	void handleAcceptError(QAbstractSocket::SocketError socketError);
 
+	static constexpr int MaximumPreAuthTimeoutSeconds = 300;
+
 	VncServerEndpoint m_vncServerEndpoint;
 	Password m_vncServerPassword;
 	QHostAddress m_listenAddress;

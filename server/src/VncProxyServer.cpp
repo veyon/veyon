@@ -48,7 +48,7 @@ bool VncProxyServer::start(const VncServerEndpoint& vncServerEndpoint, const Pas
 
 	const auto& config = VeyonCore::config();
 	m_server = new TlsSniffingServer(tlsServerPolicy, ConnectionLimiter::configFromConfiguration(config),
-									 qMax(1, config.connectionLimitPreAuthTimeoutSeconds()) * 1000, this);
+									 qBound(1, config.connectionLimitPreAuthTimeoutSeconds(), MaximumPreAuthTimeoutSeconds) * 1000, this);
 
 	connect(m_server, &QTcpServer::newConnection, this, &VncProxyServer::acceptConnection);
 	connect(m_server, &QTcpServer::acceptError, this, &VncProxyServer::handleAcceptError);

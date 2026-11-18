@@ -181,6 +181,12 @@ void SniffedConnection::handOver()
 	disconnect(m_socket, nullptr, this, nullptr);
 
 	m_server->addReadyConnection(m_socket);
+
+	// the sniffing consumed the readyRead() of bytes a plain client sent before the banner
+	if (m_socket->bytesAvailable() > 0)
+	{
+		QMetaObject::invokeMethod(m_socket, [socket = m_socket]() { Q_EMIT socket->readyRead(); }, Qt::QueuedConnection);
+	}
 }
 
 
