@@ -1,0 +1,5 @@
+# byte-exact test fixtures and key files: never convert line endings on checkout (Git for Windows
+# with core.autocrlf would otherwise write CRLF and break known-answer comparisons)
+tests/unit/core/data/** -text
+tests/libfuzzer/**/corpus/** -text
+core/resources/*.pem -text

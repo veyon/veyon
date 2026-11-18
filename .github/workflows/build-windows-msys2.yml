@@ -64,4 +64,9 @@ jobs:
       - name: Unit tests
         run: |
           export PATH="$PWD/build/crypto:$PWD/build/core:$PATH"
-          QT_QPA_PLATFORM=offscreen ctest --test-dir build --output-on-failure --no-tests=error
+          openssl version -a
+          git config --get core.autocrlf || true
+          QT_QPA_PLATFORM=offscreen ctest --test-dir build --output-on-failure --no-tests=error || {
+            cat build/Testing/Temporary/LastTest.log
+            exit 1
+          }
