@@ -5,6 +5,7 @@
 
 #include <QSet>
 
+#include "AuthenticationLimiter.h"
 #include "LinuxCoreFunctions.h"
 #include "PlatformSessionManager.h"
 #include "ServiceDataManager.h"
@@ -12,7 +13,6 @@
 #include <sys/types.h>
 
 class LinuxServerProcess;
-class LinuxServiceBusInterface;
 
 // clazy:excludeall=copyable-polymorphic
 
@@ -45,15 +45,14 @@ private:
 
 	void checkSessionState(const QString& sessionPath);
 
-	bool isActiveSessionUser(uid_t uid) const;
-
 	LinuxCoreFunctions::DBusInterfacePointer m_loginManager{LinuxCoreFunctions::systemdLoginManager()};
 	QMap<QString, LinuxServerProcess*> m_serverProcesses;
 	QStringList m_deferredServerSessions;
 	QSet<QString> m_sessionsWithUnknownState;
 	QSet<QString> m_sessionsWithPendingStateRecheck;
 
-	LinuxServiceBusInterface* m_busInterface = nullptr;
+	// limits the password checks of the server IPC (02-ipc.md §6b)
+	const std::shared_ptr<AuthenticationLimiter> m_authenticationLimiter{AuthenticationLimiter::create()};
 
 	ServiceDataManager m_dataManager{};
 	PlatformSessionManager m_sessionManager{};

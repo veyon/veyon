@@ -5,13 +5,6 @@
 
 #include <QString>
 
-namespace VeyonServiceInterface {
-inline constexpr auto ServiceName = QLatin1String("io.veyon.veyon-service");
-inline constexpr auto ObjectPath = QLatin1String("/io/veyon/VeyonService");
-inline constexpr auto InterfaceName = QLatin1String("io.veyon.VeyonService");
-inline constexpr auto AuthenticateMethod = QLatin1String("Authenticate");
-}
-
 namespace AuthHelperInterface {
 inline constexpr auto ServiceName = QLatin1String("io.veyon.AuthHelper");
 inline constexpr auto ObjectPath = QLatin1String("/io/veyon/AuthHelper");

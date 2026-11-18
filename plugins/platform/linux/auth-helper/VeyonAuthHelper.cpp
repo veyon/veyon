@@ -94,7 +94,7 @@ public Q_SLOTS:
 		auto err = pam_start(pam_service.constData(), nullptr, &pconv, &pamh);
 		if (err == PAM_SUCCESS)
 		{
-			err = pam_authenticate(pamh, PAM_SILENT);
+			err = pam_authenticate(pamh, PAM_SILENT | PAM_DISALLOW_NULL_AUTHTOK);
 			if (err != PAM_SUCCESS)
 			{
 				syslog(LOG_AUTHPRIV | LOG_NOTICE, "veyon-auth-helper: pam_authenticate failed: %s",

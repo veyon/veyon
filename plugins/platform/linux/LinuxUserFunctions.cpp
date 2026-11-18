@@ -6,6 +6,8 @@
 #include <QProcess>
 #include <QRegularExpression>
 
+#include "IpcAuthenticationRequest.h"
+#include "IpcClient.h"
 #include "LinuxCoreFunctions.h"
 #include "LinuxDBusInterfaces.h"
 #include "LinuxKeyboardInput.h"
@@ -333,28 +335,20 @@ void LinuxUserFunctions::logoff()
 
 bool LinuxUserFunctions::authenticate(const QString& username, const Password& password)
 {
-	QDBusInterface service(VeyonServiceInterface::ServiceName,
-						   VeyonServiceInterface::ObjectPath,
-						   VeyonServiceInterface::InterfaceName,
-						   QDBusConnection::systemBus());
-	service.setTimeout(AuthHelperTimeout);
-
-	const QDBusReply<bool> reply = service.call(VeyonServiceInterface::AuthenticateMethod,
-												username, password.toByteArray());
-	if (reply.isValid() == false)
+	// a session server started by veyon-service has the credentials of remote masters checked by
+	// the service through the authenticated service IPC (02-ipc.md §6b)
+	if (const auto ipcClient = VeyonCore::serviceIpcClient(); ipcClient != nullptr)
 	{
-		vCritical() << "authentication request failed:" << reply.error().message();
-		return false;
+		const auto authenticated = IpcAuthenticationRequest::authenticate(*ipcClient, username, password.constData(),
+																		  password.size());
+		vDebug() << "authentication via service IPC" << (authenticated ? "succeeded" : "failed");
+		return authenticated;
 	}
 
-	if (reply.value() == false)
-	{
-		vDebug() << "User authentication failed";
-		return false;
-	}
-
-	vDebug() << "User authenticated successfully";
-	return true;
+	// only session servers check credentials (for remote masters); master and configurator verify
+	// them through the local server (LocalCredentialsVerifier)
+	vWarning() << "Logon authentication requires a server started by veyon-service";
+	return false;
 }
 
 

@@ -7,9 +7,9 @@
 #include <QFileInfo>
 #include <QTimer>
 
+#include "LinuxAuthHelperClient.h"
 #include "LinuxPlatformConfiguration.h"
 #include "LinuxServerProcess.h"
-#include "LinuxServiceBusInterface.h"
 #include "LinuxServiceCore.h"
 #include "LinuxSessionFunctions.h"
 #include "LinuxUserFunctions.h"
@@ -296,17 +296,8 @@ LinuxServiceCore::~LinuxServiceCore()
 
 void LinuxServiceCore::run()
 {
-	if (m_busInterface == nullptr)
-	{
-		m_busInterface = new LinuxServiceBusInterface(
-			[this](uid_t uid) { return isActiveSessionUser(uid); },
-			this);
-	}
-
-	if (m_busInterface->registerOnSystemBus() == false)
-	{
-		vCritical() << "authentication requests via D-Bus will not be available";
-	}
+	// session servers send their authentication requests through the IPC (02-ipc.md §6b)
+	m_dataManager.setAuthenticator(&LinuxAuthHelperClient::authenticate, m_authenticationLimiter);
 
 	startServers();
 
@@ -717,19 +708,4 @@ void LinuxServiceCore::checkSessionState(const QString& sessionPath)
 			QTimer::singleShot(ServerRestartInterval, serverProcess, [serverProcess]() { serverProcess->start(); });
 		}
 	}
-}
-
-
-
-bool LinuxServiceCore::isActiveSessionUser(uid_t uid) const
-{
-	for (const auto& serverProcess : m_serverProcesses)
-	{
-		if (serverProcess->sessionUserId() == uid)
-		{
-			return true;
-		}
-	}
-
-	return false;
 }

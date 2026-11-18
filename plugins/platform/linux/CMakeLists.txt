@@ -27,7 +27,7 @@ build_veyon_plugin(linux-platform
 	InputBlockHelper.h
 	LinuxNetworkFunctions.cpp
 	LinuxServerProcess.cpp
-	LinuxServiceBusInterface.cpp
+	LinuxAuthHelperClient.cpp
 	LinuxServiceCore.cpp
 	LinuxServiceFunctions.cpp
 	LinuxSessionControl.cpp
@@ -46,13 +46,17 @@ build_veyon_plugin(linux-platform
 	LinuxLogFileDirectory.h
 	LinuxNetworkFunctions.h
 	LinuxServerProcess.h
-	LinuxServiceBusInterface.h
+	LinuxAuthHelperClient.h
 	LinuxServiceCore.h
 	LinuxServiceFunctions.h
 	LinuxSessionControl.h
 	LinuxSessionFunctions.h
 	LinuxUserFunctions.h
 	linux.qrc
+	../common/AuthenticationLimiter.h
+	../common/AuthenticationLimiter.cpp
+	../common/IpcAuthenticationRequest.h
+	../common/IpcAuthenticationRequest.cpp
 	../common/LogonHelper.h
 	../common/LogonHelper.cpp
 	../common/PersistentLogonCredentials.h
@@ -65,7 +69,8 @@ build_veyon_plugin(linux-platform
 	../common/ServiceIpcCommandHandler.cpp
 )
 
-set_source_files_properties(LinuxCoreFunctions.cpp PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE)
+# X11 headers define macros such as None
+set_source_files_properties(LinuxCoreFunctions.cpp LinuxInputDeviceFunctions.cpp LinuxKeyboardInput.cpp PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE)
 
 target_include_directories(linux-platform PRIVATE ../common)
 
