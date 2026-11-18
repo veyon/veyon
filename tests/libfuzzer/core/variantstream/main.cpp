@@ -1,4 +1,5 @@
 #include <QBuffer>
+#include <QVariant>
 
 #include "VariantStream.h"
 

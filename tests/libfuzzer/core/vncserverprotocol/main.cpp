@@ -1,12 +1,54 @@
-#include <QBuffer>
+#include <QTcpSocket>
 
 #include "VncServerClient.h"
 #include "VncServerProtocol.h"
 
+#include <cstring>
+
+// a QTcpSocket that is never connected: reads come from the fuzzer input, writes are discarded
+class FuzzedSocket : public QTcpSocket
+{
+public:
+	FuzzedSocket(const char* data, qint64 size) :
+		m_data(data),
+		m_size(size)
+	{
+		setOpenMode(QIODevice::ReadWrite | QIODevice::Unbuffered);
+	}
+
+	qint64 bytesAvailable() const override
+	{
+		return QIODevice::bytesAvailable() + m_size - m_position;
+	}
+
+protected:
+	qint64 readData(char* data, qint64 maxSize) override
+	{
+		const auto size = std::min(maxSize, m_size - m_position);
+		if (size > 0)
+		{
+			std::memcpy(data, m_data + m_position, size_t(size));
+			m_position += size;
+		}
+		return size;
+	}
+
+	qint64 writeData(const char* data, qint64 size) override
+	{
+		Q_UNUSED(data)
+		return size;
+	}
+
+private:
+	const char* m_data;
+	const qint64 m_size;
+	qint64 m_position = 0;
+};
+
 class VncServerProtocolTest : public VncServerProtocol
 {
 public:
-	VncServerProtocolTest(RfbVeyonAuth::Type authMethod, QIODevice* socket, VncServerClient* client) :
+	VncServerProtocolTest(RfbVeyonAuth::Type authMethod, QTcpSocket* socket, VncServerClient* client) :
 		VncServerProtocol(socket, client),
 		m_authMethod(authMethod)
 	{
@@ -30,7 +72,6 @@ private:
 	const RfbVeyonAuth::Type m_authMethod;
 };
 
-
 extern "C" int LLVMFuzzerTestOneInput(const char* data, size_t size)
 {
 	if (size < 5)
@@ -38,18 +79,14 @@ extern "C" int LLVMFuzzerTestOneInput(const char* data, size_t size)
 		return 0;
 	}
 
-	QBuffer buffer;
-	buffer.open(QIODevice::ReadWrite);
+	FuzzedSocket socket(data + 4, qint64(size - 4));
 
 	VncServerClient client;
-	VncServerProtocolTest protocol(RfbVeyonAuth::Type(data[0]), &buffer, &client);
+	VncServerProtocolTest protocol(RfbVeyonAuth::Type(data[0]), &socket, &client);
 
 	client.setProtocolState(VncServerProtocol::State(data[1]));
 	client.setAuthState(VncServerClient::AuthState(data[2]));
 	client.setAccessControlState(VncServerClient::AccessControlState(data[3]));
-
-	buffer.write(QByteArray::fromRawData(data + 4, size - 4));
-	buffer.seek(0);
 
 	protocol.read();
 
