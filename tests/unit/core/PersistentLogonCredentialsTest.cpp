@@ -155,6 +155,10 @@ private Q_SLOTS:
 		QTest::newRow("username size beyond data") << QByteArray("\x00\x00\x00\x10", 4) + "alice" + password;
 		QTest::newRow("huge username size") << QByteArray("\xff\xff\xff\xff", 4) + "alice" + password;
 		QTest::newRow("huge password size") << username + QByteArray("\xff\xff\xff\xff", 4) + "secret";
+		// negative as a 32-bit qsizetype, must not move the offset backwards
+		QTest::newRow("username size 2^31+4") << QByteArray("\x80\x00\x00\x04", 4) + "alice" + password;
+		QTest::newRow("password size 2^31+4") << username + QByteArray("\x80\x00\x00\x04", 4) + "secret";
+		QTest::newRow("password size 2^32-1 after valid username") << username + QByteArray("\xff\xff\xff\xff", 4);
 		QTest::newRow("username too long") << field(QByteArray(PersistentLogonCredentials::MaximumUsernameSize + 1, 'u')) + password;
 		QTest::newRow("password too long") << username + field(QByteArray(PersistentLogonCredentials::MaximumPasswordSize + 1, 'p'));
 		// 4.11 format (VariantStream with a default-pkey.pem ciphertext) is not accepted

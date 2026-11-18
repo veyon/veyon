@@ -136,10 +136,15 @@ bool PersistentLogonCredentials::decode(const SecureBuffer& data, QString* usern
 			return 0;
 		}
 
-		const auto size = qsizetype(qFromBigEndian<quint32>(data.constData() + offset));
+		// compare unsigned before converting, a size >= 2^31 would be negative as a 32-bit qsizetype
+		const auto size = qFromBigEndian<quint32>(data.constData() + offset);
 		offset += FieldSizeSize;
 
-		return size <= maximumSize && size <= data.size() - offset ? size : 0;
+		if (size == 0 || size > quint32(maximumSize) || size > quint32(data.size() - offset))
+		{
+			return 0;
+		}
+		return qsizetype(size);
 	};
 
 	const auto usernameSize = nextField(MaximumUsernameSize);
