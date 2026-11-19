@@ -369,6 +369,70 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 			Qt${QT_MAJOR_VERSION}::Core
 		)
 		add_test(NAME PipeWireFrameTest COMMAND PipeWireFrameTest)
+
+		# input order of PortalSession and PortalInputDispatcher against fake portal services; only on
+		# a private session bus (dbus-run-session), never on the desktop's bus
+		if(DBUS_RUN_SESSION_EXECUTABLE)
+			add_executable(PortalInputDispatcherTest
+				PortalInputDispatcherTest.cpp
+				${CAPTURE_HELPER_SOURCE_DIR}/PortalInputDispatcher.cpp
+			)
+			set_default_target_properties(PortalInputDispatcherTest)
+			target_include_directories(PortalInputDispatcherTest PRIVATE ${CAPTURE_HELPER_SOURCE_DIR})
+			target_link_libraries(PortalInputDispatcherTest PRIVATE
+				Qt${QT_MAJOR_VERSION}::Test
+				Qt${QT_MAJOR_VERSION}::Core
+				Qt${QT_MAJOR_VERSION}::DBus
+				veyon-core
+			)
+			add_test(NAME PortalInputDispatcherTest
+				COMMAND ${DBUS_RUN_SESSION_EXECUTABLE} -- $<TARGET_FILE:PortalInputDispatcherTest>)
+			set_tests_properties(PortalInputDispatcherTest PROPERTIES
+				ENVIRONMENT VEYON_TEST_PRIVATE_SESSION_BUS=1
+				TIMEOUT 60)
+
+			set(PORTAL_DBUS_INTERFACE_SOURCES)
+			qt_add_dbus_interface(PORTAL_DBUS_INTERFACE_SOURCES
+				${CAPTURE_HELPER_SOURCE_DIR}/dbus/org.freedesktop.portal.RemoteDesktop.xml
+				OrgFreedesktopPortalRemoteDesktop
+			)
+			qt_add_dbus_interface(PORTAL_DBUS_INTERFACE_SOURCES
+				${CAPTURE_HELPER_SOURCE_DIR}/dbus/org.freedesktop.portal.ScreenCast.xml
+				OrgFreedesktopPortalScreenCast
+			)
+			qt_add_dbus_interface(PORTAL_DBUS_INTERFACE_SOURCES
+				${CAPTURE_HELPER_SOURCE_DIR}/dbus/org.freedesktop.portal.Request.xml
+				OrgFreedesktopPortalRequest
+			)
+			qt_add_dbus_interface(PORTAL_DBUS_INTERFACE_SOURCES
+				${CAPTURE_HELPER_SOURCE_DIR}/dbus/org.freedesktop.portal.Session.xml
+				OrgFreedesktopPortalSession
+			)
+
+			add_executable(PortalSessionTest
+				PortalSessionTest.cpp
+				${CAPTURE_HELPER_SOURCE_DIR}/PortalInputDispatcher.cpp
+				${CAPTURE_HELPER_SOURCE_DIR}/PortalSession.cpp
+				${PORTAL_DBUS_INTERFACE_SOURCES}
+			)
+			set_default_target_properties(PortalSessionTest)
+			target_include_directories(PortalSessionTest PRIVATE
+				${CAPTURE_HELPER_SOURCE_DIR}
+				${CMAKE_CURRENT_BINARY_DIR}
+			)
+			target_link_libraries(PortalSessionTest PRIVATE
+				Qt${QT_MAJOR_VERSION}::Test
+				Qt${QT_MAJOR_VERSION}::Core
+				Qt${QT_MAJOR_VERSION}::DBus
+				Qt${QT_MAJOR_VERSION}::Gui
+				veyon-core
+			)
+			add_test(NAME PortalSessionTest
+				COMMAND ${DBUS_RUN_SESSION_EXECUTABLE} -- $<TARGET_FILE:PortalSessionTest>)
+			set_tests_properties(PortalSessionTest PROPERTIES
+				ENVIRONMENT "VEYON_TEST_PRIVATE_SESSION_BUS=1;QT_QPA_PLATFORM=offscreen"
+				TIMEOUT 60)
+		endif()
 	endif()
 
 endif()

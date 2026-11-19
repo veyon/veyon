@@ -13,6 +13,7 @@
 #include "OrgFreedesktopPortalRequest.h"
 #include "OrgFreedesktopPortalScreenCast.h"
 #include "OrgFreedesktopPortalSession.h"
+#include "PortalInputDispatcher.h"
 
 /**
  * @brief Manages an XDG Desktop Portal RemoteDesktop session.
@@ -79,7 +80,8 @@ public:
 	 * @brief Forward a keyboard keysym event from a VNC client to the portal session.
 	 *
 	 * The @p keySym value is the X11 keysym received from the VNC client (rfbKeySym).
-	 * No-op when the session is not in the Running state.
+	 * No-op when the session is not in the Running state. Input events are sent in order,
+	 * see PortalInputDispatcher.
 	 */
 	void notifyKeyboardKeysym(quint32 keySym, bool down);
 
@@ -131,6 +133,7 @@ private:
 	OrgFreedesktopPortalRemoteDesktopInterface* m_remoteDesktop{nullptr};
 	OrgFreedesktopPortalScreenCastInterface* m_screenCast{nullptr};
 	OrgFreedesktopPortalRequestInterface* m_requestInterface{nullptr};
+	PortalInputDispatcher m_inputDispatcher;
 
 	QString m_sessionHandle;
 	QString m_restoreToken;
