@@ -39,6 +39,13 @@ public:
 
 	QString pluginName(Plugin::Uid pluginUid) const;
 
+	// loads the plugin with all symbols resolved at load time and logs an error (once per file and
+	// process) if a plugin library cannot be loaded, e.g. because it was built for a different Veyon version
+	static QObject* loadPluginInstance(QPluginLoader& pluginLoader);
+
+	// plugin files which failed to load in this process
+	static QStringList incompatiblePluginFiles();
+
 private:
 	void initPluginSearchPath();
 	void loadPlugins(const QString& nameFilter);
