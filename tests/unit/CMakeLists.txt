@@ -254,6 +254,29 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	)
 	add_test(NAME LinuxLogFileDirectoryTest COMMAND LinuxLogFileDirectoryTest)
 
+	# LinuxUserProcessTest: programs started by LinuxCoreFunctions::runProgramAsUser() outlive the
+	# starting process without being killed by SIGPIPE
+	add_executable(LinuxUserProcessTest
+		LinuxUserProcessTest.cpp
+	)
+	set_default_target_properties(LinuxUserProcessTest)
+	target_include_directories(LinuxUserProcessTest PRIVATE
+		${CMAKE_SOURCE_DIR}/plugins/platform/linux
+		$<TARGET_PROPERTY:linux-platform,INCLUDE_DIRECTORIES>
+	)
+	target_compile_definitions(LinuxUserProcessTest PRIVATE
+		$<TARGET_PROPERTY:linux-platform,COMPILE_DEFINITIONS>
+	)
+	target_link_libraries(LinuxUserProcessTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+		Qt${QT_MAJOR_VERSION}::DBus
+		veyon-core
+		linux-platform
+	)
+	add_test(NAME LinuxUserProcessTest COMMAND LinuxUserProcessTest)
+	set_tests_properties(LinuxUserProcessTest PROPERTIES TIMEOUT 60)
+
 	# LoggerTest: Logger with the Linux platform plugin in child processes (unprivileged user, root
 	# in a private mount namespace with a tmpfs on /var/log; WP23)
 	add_executable(LoggerTest

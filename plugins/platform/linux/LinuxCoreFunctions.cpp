@@ -402,6 +402,12 @@ bool LinuxCoreFunctions::runProgramAsUser(const QString& program, const QStringL
 	auto process = new UserProcess(adjustChildProcessPrivileges);
 #endif
 
+	// nobody reads the output, and everything the program starts inherits it (e.g. a URL handler
+	// opened by a one-shot feature worker): output pipes are closed when the program or this
+	// process exits, so later writes would kill such processes with SIGPIPE
+	process->setStandardOutputFile(QProcess::nullDevice());
+	process->setStandardErrorFile(QProcess::nullDevice());
+
 	if (stdInData.isEmpty() == false)
 	{
 		QObject::connect(process, &QProcess::started, [=]() {
