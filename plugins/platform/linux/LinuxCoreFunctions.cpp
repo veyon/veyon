@@ -396,7 +396,7 @@ bool LinuxCoreFunctions::runProgramAsUser(const QString& program, const QStringL
 		}
 
 	private:
-		const std::function<void()>& m_modifier;
+		const std::function<void()> m_modifier;
 	};
 
 	auto process = new UserProcess(adjustChildProcessPrivileges);
