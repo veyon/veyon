@@ -28,6 +28,14 @@ static const auto PortalObjectPath = QStringLiteral("/org/freedesktop/portal/des
 PortalSession::PortalSession(bool persistRestoreToken, QObject* parent) :
 	QObject(parent), m_sessionBus(QDBusConnection::sessionBus()), m_persistRestoreToken(persistRestoreToken)
 {
+	// the portal does not respond or input can't keep up: release the session and let the
+	// owner restart it like after any other failure
+	m_inputDispatcher.setFailureHandler([this](const QDBusError&) {
+		close();
+		setState(State::Failed);
+		Q_EMIT failed();
+	});
+
 	const auto appId = QGuiApplication::desktopFileName();
 
 	// Use the default session bus connection so the portal can properly
@@ -86,9 +94,11 @@ void PortalSession::start()
 	{
 		return;
 	}
+	// a failed session may still be open at the portal
+	close();
+	m_inputDispatcher.reset();
 	m_pipewireFd = -1;
 	m_pipeWireNodeId = 0;
-	m_sessionHandle.clear();
 	createSession();
 }
 
@@ -96,6 +106,12 @@ void PortalSession::start()
 
 void PortalSession::close()
 {
+	// input state of this session must not leak into the next one
+	m_inputDispatcher.clear();
+	m_lastButtonMask = 0;
+	m_lastPointerX = 0;
+	m_lastPointerY = 0;
+
 	disconnectResponseSignal();
 
 	if (!m_sessionHandle.isEmpty())
@@ -458,11 +474,11 @@ void PortalSession::notifyKeyboardKeysym(quint32 keySym, bool down)
 	}
 
 	// Portal state: 0 = released, 1 = pressed
-	m_remoteDesktop->NotifyKeyboardKeysym(
-		QDBusObjectPath(m_sessionHandle),
-		QVariantMap{},
-		static_cast<int>(keySym),
-		down ? 1u : 0u);
+	const auto sessionPath = QDBusObjectPath(m_sessionHandle);
+	m_inputDispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this, sessionPath, keySym, down]() {
+		return m_remoteDesktop->NotifyKeyboardKeysym(sessionPath, QVariantMap{}, static_cast<int>(keySym),
+													 down ? 1u : 0u);
+	});
 }
 
 void PortalSession::notifyPointer(int buttonMask, int x, int y)
@@ -479,8 +495,11 @@ void PortalSession::notifyPointer(int buttonMask, int x, int y)
 	// Send motion event when the position changed
 	if (dx != m_lastPointerX || dy != m_lastPointerY)
 	{
-		m_remoteDesktop->NotifyPointerMotionAbsolute(
-			sessionPath, QVariantMap{}, m_pipeWireNodeId, dx, dy);
+		const auto nodeId = m_pipeWireNodeId;
+		m_inputDispatcher.enqueue(PortalInputDispatcher::RequestType::PointerMotion,
+								  [this, sessionPath, nodeId, dx, dy]() {
+			return m_remoteDesktop->NotifyPointerMotionAbsolute(sessionPath, QVariantMap{}, nodeId, dx, dy);
+		});
 		m_lastPointerX = dx;
 		m_lastPointerY = dy;
 	}
@@ -515,8 +534,12 @@ void PortalSession::notifyPointer(int buttonMask, int x, int y)
 			if (evdevButtons[i] != 0)
 			{
 				// Regular button press/release (0=released, 1=pressed)
-				m_remoteDesktop->NotifyPointerButton(
-					sessionPath, QVariantMap{}, evdevButtons[i], static_cast<uint>(current));
+				const auto button = evdevButtons[i];
+				m_inputDispatcher.enqueue(PortalInputDispatcher::RequestType::Default,
+										  [this, sessionPath, button, current]() {
+					return m_remoteDesktop->NotifyPointerButton(sessionPath, QVariantMap{}, button,
+																static_cast<uint>(current));
+				});
 			}
 			else if (current != 0)
 			{
@@ -545,8 +568,11 @@ void PortalSession::notifyPointer(int buttonMask, int x, int y)
 				}
 				if (steps != 0)
 				{
-					m_remoteDesktop->NotifyPointerAxisDiscrete(
-						sessionPath, QVariantMap{}, static_cast<uint>(axis), steps);
+					m_inputDispatcher.enqueue(PortalInputDispatcher::RequestType::Default,
+											  [this, sessionPath, axis, steps]() {
+						return m_remoteDesktop->NotifyPointerAxisDiscrete(sessionPath, QVariantMap{},
+																		  static_cast<uint>(axis), steps);
+					});
 				}
 			}
 		}

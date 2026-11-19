@@ -33,6 +33,8 @@ if(PipeWire_FOUND AND Qt${QT_MAJOR_VERSION}DBus_FOUND)
 		PipeWireVncConfigurationWidget.ui
 		PipeWireFramebuffer.cpp
 		PipeWireFramebuffer.h
+		PortalInputDispatcher.cpp
+		PortalInputDispatcher.h
 		PortalSession.cpp
 		PortalSession.h
 		${DBUS_GENERATED_SOURCES}

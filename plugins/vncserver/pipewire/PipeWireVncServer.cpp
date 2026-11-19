@@ -144,7 +144,8 @@ void PipeWireVncServer::onStreamEnded()
 	}
 	if (m_portalSession)
 	{
-		m_portalSession->close();
+		// the portal session belongs to the VncServer thread running runServer()
+		QMetaObject::invokeMethod(m_portalSession, &PortalSession::close, Qt::QueuedConnection);
 	}
 
 	QTimer::singleShot(2000, this, [this]() { m_shouldRestart = true; });
