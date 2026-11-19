@@ -71,7 +71,7 @@ bool LegacySecretMigration::hasLegacySecrets(const Object& configuration)
 
 
 LegacySecretMigration::Result LegacySecretMigration::migrate(Object& configuration, const CryptoCore& cryptoCore,
-															 ExistingSecrets existingSecrets)
+															 ExistingSecrets existingSecrets, QStringList* replacedSecretKeys)
 {
 	if (hasLegacySecrets(configuration) == false)
 	{
@@ -133,6 +133,12 @@ LegacySecretMigration::Result LegacySecretMigration::migrate(Object& configurati
 
 		configuration.setValue(secretProperty.key, reference, secretProperty.parentKey);
 		vInfo() << "migrated" << propertyKey << "to secret" << secretProperty.secretKey;
+
+		if (replacedSecretKeys && storedKeys.contains(secretProperty.secretKey) &&
+			replacedSecretKeys->contains(secretProperty.secretKey) == false)
+		{
+			replacedSecretKeys->append(secretProperty.secretKey);
+		}
 	}
 
 	if (result == Result::Migrated)
@@ -141,6 +147,26 @@ LegacySecretMigration::Result LegacySecretMigration::migrate(Object& configurati
 	}
 
 	return result;
+}
+
+
+
+QStringList LegacySecretMigration::missingSecretKeys(const Object& configuration)
+{
+	const auto storedKeys = SecretStore::keys();
+
+	QStringList missingKeys;
+	for (const auto& secretProperty : SecretProperties)
+	{
+		const auto reference = SecretReference::fromString(storedValue(configuration, secretProperty));
+		if (reference.isValid() && storedKeys.contains(reference.key()) == false &&
+			missingKeys.contains(reference.key()) == false)
+		{
+			missingKeys.append(reference.key());
+		}
+	}
+
+	return missingKeys;
 }
 
 

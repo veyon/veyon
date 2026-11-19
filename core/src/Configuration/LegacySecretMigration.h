@@ -51,9 +51,15 @@ public:
 	// writes each legacy value to the SecretStore and replaces it with its reference; sets
 	// Core/SecretMigrationVersion once no legacy value is left; values that fail stay unchanged.
 	// With ExistingSecrets::Keep a secret that is already stored is never replaced or deleted:
-	// the legacy value is only removed from the configuration (with a warning).
+	// the legacy value is only removed from the configuration (with a warning). The keys of stored
+	// secrets replaced (or deleted) with ExistingSecrets::Overwrite are appended to
+	// replacedSecretKeys, so that the admin can be told about them.
 	[[nodiscard]] static Result migrate(Object& configuration, const CryptoCore& cryptoCore,
-										ExistingSecrets existingSecrets = ExistingSecrets::Keep);
+										ExistingSecrets existingSecrets = ExistingSecrets::Keep,
+										QStringList* replacedSecretKeys = nullptr);
+
+	// keys of secrets the secret properties of the configuration refer to but which are not stored
+	[[nodiscard]] static QStringList missingSecretKeys(const Object& configuration);
 
 	// removes what never belongs into a stored configuration: the secrets document of an export
 	// and references of secret properties to other keys than their own; true if anything changed

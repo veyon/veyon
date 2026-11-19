@@ -92,6 +92,16 @@ CommandLinePluginInterface::RunResult ConfigCommands::handle_clear(const QString
 		{
 			CommandLineIO::info(tr("Removed secrets: %1").arg(removedSecretKeys.join(QStringLiteral(", "))));
 		}
+		// kept on purpose: the only way back to Veyon 4.11
+		const auto preMigrationKey = Configuration::LegacySecretMigration::preMigrationConfigurationKey();
+		if (storedKeys.contains(preMigrationKey))
+		{
+			CommandLineIO::info(tr("The pre-migration configuration backup (secret %1) has been kept for a downgrade "
+								   "to Veyon 4.11. It is not a configuration property and can't be removed with "
+								   "'config unset'. If it is no longer needed, save it with 'config export-premigration' "
+								   "if desired and delete it from the secret storage manually.")
+									.arg(preMigrationKey));
+		}
 	}
 	else
 	{
@@ -198,10 +208,22 @@ CommandLinePluginInterface::RunResult ConfigCommands::handle_import(const QStrin
 
 	Configuration::LegacySecretMigration::scrubConfiguration(importedConfiguration);
 
+	// an explicit import replaces stored secrets - tell the admin which ones
+	QStringList replacedSecretKeys;
+	const auto replacedSecretsWarning = qScopeGuard([&replacedSecretKeys]() {
+		if (replacedSecretKeys.isEmpty() == false)
+		{
+			CommandLineIO::warning(tr("The following stored secrets have been replaced with the imported values: %1")
+									   .arg(replacedSecretKeys.join(QStringLiteral(", "))));
+		}
+	});
+
+	const auto storedSecretKeys = secrets.has_value() ? SecretStore::keys() : QStringList{};
+
 	if (hasLegacySecrets &&
 		Configuration::LegacySecretMigration::migrate(importedConfiguration, VeyonCore::cryptoCore(),
-													  Configuration::LegacySecretMigration::ExistingSecrets::Overwrite) !=
-			Configuration::LegacySecretMigration::Result::Migrated)
+													  Configuration::LegacySecretMigration::ExistingSecrets::Overwrite,
+													  &replacedSecretKeys) != Configuration::LegacySecretMigration::Result::Migrated)
 	{
 		return operationError(tr("Could not migrate the legacy encrypted passwords of the configuration file."));
 	}
@@ -214,11 +236,26 @@ CommandLinePluginInterface::RunResult ConfigCommands::handle_import(const QStrin
 			{
 				return operationError(tr("Could not store secret %1.").arg(entry.first));
 			}
+			if (storedSecretKeys.contains(entry.first) && replacedSecretKeys.contains(entry.first) == false)
+			{
+				replacedSecretKeys.append(entry.first);
+			}
 		}
 	}
 
 	// merge configuration
 	VeyonCore::config() += importedConfiguration;
+
+	if (secrets.has_value() == false && SecretStore::isAvailable())
+	{
+		const auto missingSecretKeys = Configuration::LegacySecretMigration::missingSecretKeys(VeyonCore::config());
+		if (missingSecretKeys.isEmpty() == false)
+		{
+			CommandLineIO::warning(tr("The configuration references secrets that are not stored: %1 - import them "
+									  "with %2 or set them with 'config set'")
+									   .arg(missingSecretKeys.join(QStringLiteral(", ")), ConfigCommandOptions::IncludeSecrets));
+		}
+	}
 
 	return applyConfiguration();
 }

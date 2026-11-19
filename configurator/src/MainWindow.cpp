@@ -196,9 +196,17 @@ void MainWindow::loadSettingsFromFile()
 										 "secret storage."));
 				return;
 			}
-			if (Configuration::LegacySecretMigration::migrate(importedConfiguration, VeyonCore::cryptoCore(),
-															  Configuration::LegacySecretMigration::ExistingSecrets::Overwrite) !=
-				Configuration::LegacySecretMigration::Result::Migrated)
+			QStringList replacedSecretKeys;
+			const auto result = Configuration::LegacySecretMigration::migrate(
+				importedConfiguration, VeyonCore::cryptoCore(),
+				Configuration::LegacySecretMigration::ExistingSecrets::Overwrite, &replacedSecretKeys);
+			if (replacedSecretKeys.isEmpty() == false)
+			{
+				QMessageBox::warning(this, tr("Load settings from file"),
+									 tr("The following stored secrets have been replaced with the imported values: %1")
+										 .arg(replacedSecretKeys.join(QStringLiteral(", "))));
+			}
+			if (result != Configuration::LegacySecretMigration::Result::Migrated)
 			{
 				QMessageBox::critical(this, tr("Load settings from file"),
 									  tr("Could not migrate the legacy encrypted passwords of the file."));

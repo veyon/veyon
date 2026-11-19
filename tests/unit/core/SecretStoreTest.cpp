@@ -472,7 +472,11 @@ private Q_SLOTS:
 
 		// automatic migration: an existing secret is neither replaced nor deleted (WP4 re-review N2)
 		auto automatic = configuration;
-		QCOMPARE(LegacySecretMigration::migrate(automatic, *m_cryptoCore), LegacySecretMigration::Result::Migrated);
+		QStringList replacedSecretKeys;
+		QCOMPARE(LegacySecretMigration::migrate(automatic, *m_cryptoCore, LegacySecretMigration::ExistingSecrets::Keep,
+												&replacedSecretKeys),
+				 LegacySecretMigration::Result::Migrated);
+		QVERIFY(replacedSecretKeys.isEmpty());
 		QCOMPARE(m_backend.value(QStringLiteral("ldap/bindPassword")), QByteArray("old"));
 		QCOMPARE(value(automatic, QStringLiteral("BindPassword"), QStringLiteral("LDAP")),
 				 QStringLiteral("secret:ldap/bindPassword"));
@@ -480,13 +484,39 @@ private Q_SLOTS:
 
 		// explicit import: overwrites (here: deletes) with a warning naming the key
 		m_logMessages.clear();
-		QCOMPARE(LegacySecretMigration::migrate(configuration, *m_cryptoCore, LegacySecretMigration::ExistingSecrets::Overwrite),
+		QCOMPARE(LegacySecretMigration::migrate(configuration, *m_cryptoCore, LegacySecretMigration::ExistingSecrets::Overwrite,
+												&replacedSecretKeys),
 				 LegacySecretMigration::Result::Migrated);
+		// reported for the admin (WP4 review E): only the secret that was stored before
+		QCOMPARE(replacedSecretKeys, QStringList{QStringLiteral("ldap/bindPassword")});
 		QVERIFY(m_backend.m_secrets.count(QStringLiteral("ldap/bindPassword")) == 0);
 		QVERIFY(m_logMessages.filter(QStringLiteral("ldap/bindPassword")).isEmpty() == false);
 		QCOMPARE(m_backend.value(QStringLiteral("vncserver-external/password")), QByteArray("plain"));
 		QCOMPARE(value(configuration, QStringLiteral("BindPassword"), QStringLiteral("LDAP")),
 				 QStringLiteral("secret:ldap/bindPassword"));
+	}
+
+	// WP4 review C: references to secrets that are not stored (import without the secrets)
+	void missingSecretKeys()
+	{
+		Configuration::JsonStore store(Configuration::Store::Scope::System, configurationFile(QStringLiteral("missing")));
+		VeyonConfiguration configuration(&store);
+		QVERIFY(LegacySecretMigration::missingSecretKeys(configuration).isEmpty());
+
+		configuration.setValue(QStringLiteral("BindPassword"), QStringLiteral("secret:ldap/bindPassword"), QStringLiteral("LDAP"));
+		configuration.setValue(QStringLiteral("Password"), QStringLiteral("secret:vncserver-external/password"),
+							   QStringLiteral("ExternalVncServer"));
+		m_backend.m_secrets.emplace(QStringLiteral("vncserver-external/password"), SecureBuffer::fromByteArray("vnc"));
+		QCOMPARE(LegacySecretMigration::missingSecretKeys(configuration), QStringList{QStringLiteral("ldap/bindPassword")});
+
+		m_backend.m_secrets.emplace(QStringLiteral("ldap/bindPassword"), SecureBuffer::fromByteArray("bind"));
+		QVERIFY(LegacySecretMigration::missingSecretKeys(configuration).isEmpty());
+
+		// a legacy value is no reference
+		configuration.setValue(QStringLiteral("BindPassword"), legacyValue(MarkerSecret), QStringLiteral("LDAP"));
+		m_backend.m_secrets.clear();
+		QCOMPARE(LegacySecretMigration::missingSecretKeys(configuration),
+				 QStringList{QStringLiteral("vncserver-external/password")});
 	}
 
 	// N2: the configuration management replaced the whole configuration (no marker) - a stored,
