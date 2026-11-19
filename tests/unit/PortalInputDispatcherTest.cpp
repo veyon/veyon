@@ -8,6 +8,7 @@
 #include <QDBusConnection>
 #include <QDBusMessage>
 #include <QDBusVirtualObject>
+#include <QRegularExpression>
 #include <QTimer>
 #include <QtTest>
 
@@ -32,6 +33,8 @@ public:
 	enum class ReplyMode {
 		Reply,
 		ErrorForFirst,
+		// error for every request whose label does not start with "ok"
+		ErrorUnlessOk,
 		NoReply,
 	};
 
@@ -79,6 +82,11 @@ public:
 				connection.send(completed.size() == 1 ? message.createErrorReply(QDBusError::AccessDenied,
 																				 QStringLiteral("no keyboard access")) :
 														message.createReply());
+				break;
+			case ReplyMode::ErrorUnlessOk:
+				connection.send(label.startsWith(QLatin1String("ok")) ?
+									message.createReply() :
+									message.createErrorReply(QDBusError::AccessDenied, QStringLiteral("no access")));
 				break;
 			case ReplyMode::NoReply: break;
 			}
@@ -201,6 +209,76 @@ private Q_SLOTS:
 		QCOMPARE(m_service.maximumInFlight, 1);
 		QCOMPARE(failures, 0);
 		QCOMPARE(dispatcher.hasFailed(), false);
+	}
+
+	void consecutiveErrorsFail()
+	{
+		PortalInputDispatcher dispatcher;
+		QDBusError error;
+		int failures = 0;
+		dispatcher.setFailureHandler([&](const QDBusError& failure) {
+			error = failure;
+			++failures;
+		});
+		m_service.replyMode = DelayedInputService::ReplyMode::ErrorUnlessOk;
+
+		// a success in between restarts the count, and the error is reported only once per session
+		QTest::ignoreMessage(QtWarningMsg, QRegularExpression(QStringLiteral("portal input request failed")));
+#if QT_VERSION >= QT_VERSION_CHECK(6, 3, 0)
+		QTest::failOnWarning(QRegularExpression(QStringLiteral("portal input request failed")));
+#endif
+		QStringList events;
+		for (int i = 0; i < PortalInputDispatcher::MaximumConsecutiveErrors - 1; ++i)
+		{
+			events.append(QStringLiteral("denied-a%1").arg(i));
+		}
+		events.append(QStringLiteral("ok"));
+		for (int i = 0; i < PortalInputDispatcher::MaximumConsecutiveErrors - 1; ++i)
+		{
+			events.append(QStringLiteral("denied-b%1").arg(i));
+		}
+		for (const auto& event : std::as_const(events))
+		{
+			dispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this, event]() { return send(event); });
+		}
+		QTRY_COMPARE(m_service.completed.size(), events.size());
+		QTest::qWait(50);
+		QCOMPARE(failures, 0);
+		QCOMPARE(dispatcher.hasFailed(), false);
+
+		// one more error in a row
+		QTest::ignoreMessage(QtWarningMsg, QRegularExpression(QStringLiteral("portal input failed")));
+		dispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this]() { return send(QStringLiteral("denied-c")); });
+		dispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this]() { return send(QStringLiteral("ok-discarded")); });
+		QTRY_COMPARE(failures, 1);
+		QCOMPARE(error.type(), QDBusError::AccessDenied);
+		QVERIFY(dispatcher.hasFailed());
+		QTest::qWait(50);
+		QCOMPARE(m_service.received.size(), events.size() + 1);
+	}
+
+	void unavailablePortalFails()
+	{
+		PortalInputDispatcher dispatcher;
+		QDBusError error;
+		int failures = 0;
+		dispatcher.setFailureHandler([&](const QDBusError& failure) {
+			error = failure;
+			++failures;
+		});
+
+		// the bus itself replies to calls to a service nobody owns
+		dispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this]() {
+			return m_clientConnection->asyncCall(QDBusMessage::createMethodCall(
+				QStringLiteral("io.veyon.Test.NoSuchPortal"), ObjectPath, InterfaceName, QStringLiteral("Notify")));
+		});
+		dispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this]() { return send(QStringLiteral("discarded")); });
+
+		QTRY_COMPARE(failures, 1);
+		QCOMPARE(error.type(), QDBusError::ServiceUnknown);
+		QVERIFY(dispatcher.hasFailed());
+		QTest::qWait(50);
+		QVERIFY(m_service.received.isEmpty());
 	}
 
 	void missingReplyFails()

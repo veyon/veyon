@@ -133,7 +133,7 @@ private:
 	OrgFreedesktopPortalRemoteDesktopInterface* m_remoteDesktop{nullptr};
 	OrgFreedesktopPortalScreenCastInterface* m_screenCast{nullptr};
 	OrgFreedesktopPortalRequestInterface* m_requestInterface{nullptr};
-	PortalInputDispatcher m_inputDispatcher;
+	PortalInputDispatcher m_inputDispatcher{this};
 
 	QString m_sessionHandle;
 	QString m_restoreToken;

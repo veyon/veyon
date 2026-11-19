@@ -75,6 +75,29 @@ void PortalInputDispatcher::reset()
 	clear();
 	m_failed = false;
 	m_errorReported = false;
+	m_consecutiveErrors = 0;
+}
+
+
+
+bool PortalInputDispatcher::isPortalUnavailable(const QDBusError& error)
+{
+	switch (error.type())
+	{
+	case QDBusError::NoReply:
+	case QDBusError::Timeout:
+	case QDBusError::TimedOut:
+	case QDBusError::ServiceUnknown:
+	case QDBusError::Disconnected:
+	case QDBusError::NoServer:
+	case QDBusError::NoNetwork:
+	case QDBusError::UnknownObject:
+	case QDBusError::UnknownInterface:
+	case QDBusError::UnknownMethod: return true;
+	default: break;
+	}
+
+	return false;
 }
 
 
@@ -111,16 +134,25 @@ void PortalInputDispatcher::finishCurrentRequest()
 
 	if (watcher->isError())
 	{
+		const auto error = watcher->error();
+
+		// every later request would fail as well
+		if (isPortalUnavailable(error) || ++m_consecutiveErrors >= MaximumConsecutiveErrors)
+		{
+			fail(error);
+			return;
+		}
+
 		// the request has been dropped, later ones are still valid
 		if (m_errorReported == false)
 		{
-			vWarning() << "portal input request failed:" << watcher->error().name() << watcher->error().message();
+			vWarning() << "portal input request failed:" << error.name() << error.message();
 			m_errorReported = true;
 		}
 	}
 	else
 	{
-		m_errorReported = false;
+		m_consecutiveErrors = 0;
 	}
 
 	sendNextRequest();

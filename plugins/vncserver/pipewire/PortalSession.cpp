@@ -60,8 +60,8 @@ void PortalSession::registerHostAppId(const QString& appId)
 PortalSession::PortalSession(bool persistRestoreToken, QObject* parent) :
 	QObject(parent), m_sessionBus(QDBusConnection::sessionBus()), m_persistRestoreToken(persistRestoreToken)
 {
-	// the portal does not respond or input can't keep up: release the session and let the
-	// owner restart it like after any other failure
+	// the portal is gone, does not respond or input can't keep up: release the session and let
+	// the owner restart it like after any other failure
 	m_inputDispatcher.setFailureHandler([this](const QDBusError&) {
 		close();
 		setState(State::Failed);

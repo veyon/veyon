@@ -23,8 +23,10 @@ class QDBusPendingCallWatcher;
  * request, so the next request is sent only after the reply to the current one.
  *
  * Error replies (e.g. a device type the session has no access to) only drop the affected request.
- * If the portal does not reply in time or too many requests are pending, the dispatcher fails:
- * it discards all requests, calls the failure handler and ignores new requests until reset().
+ * The dispatcher fails if the portal is unavailable (transport errors such as ServiceUnknown or
+ * NoReply), after MaximumConsecutiveErrors error replies in a row, if the portal does not reply
+ * in time or if too many requests are pending: it discards all requests, calls the failure
+ * handler and ignores new requests until reset().
  */
 class PortalInputDispatcher : public QObject
 {
@@ -40,6 +42,7 @@ public:
 	};
 
 	static constexpr int MaximumPendingRequests = 4096;
+	static constexpr int MaximumConsecutiveErrors = 8;
 	static constexpr int DefaultReplyTimeout = 5000;
 
 	explicit PortalInputDispatcher(QObject* parent = nullptr);
@@ -84,10 +87,13 @@ private:
 	void finishCurrentRequest();
 	void fail(const QDBusError& error);
 
+	static bool isPortalUnavailable(const QDBusError& error);
+
 	QQueue<PendingRequest> m_pendingRequests;
 	QDBusPendingCallWatcher* m_currentRequest = nullptr;
 	QTimer m_replyTimer;
 	FailureHandler m_failureHandler;
 	bool m_failed = false;
 	bool m_errorReported = false;
+	int m_consecutiveErrors = 0;
 };
