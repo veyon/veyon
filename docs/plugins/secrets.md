@@ -43,8 +43,10 @@ both directories by handle, without following junctions or symlinks:
 - `%ProgramData%\Veyon\secrets` with a foreign owner or DACL, or a junction in its place, is moved
   aside and created again (SYSTEM and Administrators only) if it is empty; if moving fails, an
   empty directory is taken over by handle. If it already contains files, Veyon refuses to use it
-  and logs a critical message instead of silently starting with an empty store: check the
-  content and move or delete the directory manually, then start the Veyon Service again.
+  and logs a critical message, which is also written to the Windows event log (source of the
+  Veyon component, e.g. the Veyon Service) regardless of `Logging/LogToSystem`, instead of
+  silently starting with an empty store. The message names the directory, never secrets: check
+  the content and move or delete the directory manually, then start the Veyon Service again.
 - The installer doesn't change these directories (`takeown`/`icacls` follow junctions).
 
 ## Migration from 4.11 and downgrades (03-secretstore-config.md §4.4, §4.8)
@@ -55,7 +57,16 @@ both directories by handle, without following junctions or symlinks:
   (which may have been rotated), regardless of `Core/SecretMigrationVersion`; it is removed from
   the configuration with a warning. Only explicit imports of a file with legacy values
   (`veyon-cli config import`, loading settings in the configurator) replace a stored secret, with
-  a warning naming the key. Remove legacy values from policies and rotate the LDAP bind password.
+  a warning naming the key (CLI: on the console, configurator: a message box). Remove legacy
+  values from policies and rotate the LDAP bind password.
+- `veyon-cli config import --include-secrets` also warns with the keys of stored secrets it
+  replaces by the secrets of the file.
+- After `veyon-cli config import` without `--include-secrets` (with administrator privileges) the
+  CLI warns about every secret property whose reference points to a secret that is not stored,
+  e.g. after importing a file on another computer: import the secrets with `--include-secrets` or
+  set them with `veyon-cli config set`. Without access to the store nothing is checked.
+- `veyon-cli config clear` keeps `core/preMigrationConfig` (the only way back to 4.11) and says
+  so; it is no configuration property and has to be deleted from the secret storage manually.
 - Before the first migration the complete configuration (legacy values included) is saved as
   secret `core/preMigrationConfig`. `veyon-cli config export-premigration <file>` (administrator
   privileges) writes it to a private file (mode `0600`, on Windows SYSTEM and Administrators only)
