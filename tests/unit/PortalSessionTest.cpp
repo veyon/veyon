@@ -301,6 +301,23 @@ private Q_SLOTS:
 		QTRY_COMPARE(forwardedInput(sessionNumber), QStringList{keyEvent(sessionNumber, 'e', 1)});
 	}
 
+	void consecutiveErrorsCloseSession()
+	{
+		PortalSession session(false);
+		QSignalSpy failedSpy(&session, &PortalSession::failed);
+		QVERIFY(startSession(session));
+		const auto sessionNumber = currentSessionNumber();
+
+		for (int i = 0; i < PortalInputDispatcher::MaximumConsecutiveErrors; ++i)
+		{
+			session.notifyKeyboardKeysym(DeniedKeySym, i % 2 == 0);
+		}
+
+		QTRY_COMPARE(failedSpy.size(), 1);
+		QCOMPARE(session.state(), PortalSession::State::Failed);
+		QTRY_VERIFY(closedSessions().contains(SessionPathPrefix + QString::number(sessionNumber)));
+	}
+
 private:
 	bool startSession(PortalSession& session)
 	{
