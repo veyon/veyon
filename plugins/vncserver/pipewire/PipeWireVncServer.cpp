@@ -131,6 +131,14 @@ void PipeWireVncServer::onPortalStarted()
 void PipeWireVncServer::onPortalFailed()
 {
 	vWarning() << "XDG Portal session failed – will retry in 5 s";
+
+	// the session may have failed while running (see PortalInputDispatcher), so never let the
+	// restart open a second stream
+	if (m_framebuffer)
+	{
+		m_framebuffer->close();
+	}
+
 	QTimer::singleShot(5000, this, [this]() { m_shouldRestart = true; });
 }
 
