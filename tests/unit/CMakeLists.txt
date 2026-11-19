@@ -205,4 +205,28 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 		set_tests_properties(DesktopServicesFeatureTest PROPERTIES ENVIRONMENT QT_QPA_PLATFORM=offscreen)
 	endif()
 
+	# PluginLoadingTest: plugins with unresolved symbols (e.g. built for an older Veyon version) are
+	# refused at load time and logged. Linux only: on Windows a DLL with an undefined symbol does not link.
+	add_library(valid-test-plugin MODULE plugin-loading/ValidTestPlugin.cpp)
+	target_link_libraries(valid-test-plugin PRIVATE Qt${QT_MAJOR_VERSION}::Core)
+
+	# no set_default_target_properties(): it links with -no-undefined
+	add_library(incompatible-test-plugin MODULE plugin-loading/IncompatibleTestPlugin.cpp)
+	target_link_libraries(incompatible-test-plugin PRIVATE Qt${QT_MAJOR_VERSION}::Core)
+	target_link_options(incompatible-test-plugin PRIVATE "-Wl,--allow-shlib-undefined" "-Wl,-z,lazy")
+
+	add_executable(PluginLoadingTest PluginLoadingTest.cpp)
+	set_default_target_properties(PluginLoadingTest)
+	add_dependencies(PluginLoadingTest valid-test-plugin incompatible-test-plugin)
+	target_compile_definitions(PluginLoadingTest PRIVATE
+		VALID_TEST_PLUGIN_FILE_PATH="$<TARGET_FILE:valid-test-plugin>"
+		INCOMPATIBLE_TEST_PLUGIN_FILE_PATH="$<TARGET_FILE:incompatible-test-plugin>"
+		NON_PLUGIN_LIBRARY_FILE_PATH="$<TARGET_FILE:veyon-core>")
+	target_link_libraries(PluginLoadingTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+		veyon-core
+	)
+	add_test(NAME PluginLoadingTest COMMAND PluginLoadingTest)
+
 endif()

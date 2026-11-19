@@ -3,6 +3,7 @@
 
 #include <QCoreApplication>
 #include <QDir>
+#include <QMutex>
 #include <QPluginLoader>
 
 #include "Logger.h"
@@ -11,6 +12,13 @@
 
 #include <veyonconfig.h>
 
+namespace {
+
+// plugin files which failed to load, so that each one is logged only once per process
+QMutex incompatiblePluginFilesMutex;
+QStringList incompatiblePluginFilesList;
+
+}
 
 PluginManager::PluginManager(QObject* parent) :
 	QObject(parent),
@@ -140,6 +148,42 @@ QString PluginManager::pluginName(Plugin::Uid pluginUid) const
 
 
 
+QObject* PluginManager::loadPluginInstance(QPluginLoader& pluginLoader)
+{
+	// resolve all symbols at load time (RTLD_NOW on Linux), so that a plugin built against an
+	// incompatible Veyon version fails to load instead of terminating the process with a symbol lookup
+	// error as soon as a missing function is called
+	pluginLoader.setLoadHints(pluginLoader.loadHints() | QLibrary::ResolveAllSymbolsHint);
+
+	const auto pluginObject = pluginLoader.instance();
+	if (pluginObject == nullptr && pluginLoader.metaData().isEmpty() == false)
+	{
+		const auto filePath = pluginLoader.fileName();
+
+		QMutexLocker locker(&incompatiblePluginFilesMutex);
+		if (incompatiblePluginFilesList.contains(filePath) == false)
+		{
+			incompatiblePluginFilesList.append(filePath);
+			locker.unlock();
+
+			vCritical() << "plugin" << filePath
+						<< "is incompatible with this Veyon version and was not loaded:" << pluginLoader.errorString();
+		}
+	}
+
+	return pluginObject;
+}
+
+
+
+QStringList PluginManager::incompatiblePluginFiles()
+{
+	QMutexLocker locker(&incompatiblePluginFilesMutex);
+	return incompatiblePluginFilesList;
+}
+
+
+
 void PluginManager::initPluginSearchPath()
 {
 	QDir dir(QCoreApplication::applicationDirPath());
@@ -189,7 +233,7 @@ void PluginManager::loadPlugins(const QString& nameFilter)
 		}
 
 		auto pluginLoader = new QPluginLoader(fileInfo.filePath(), this);
-		auto pluginObject = pluginLoader->instance();
+		auto pluginObject = loadPluginInstance(*pluginLoader);
 		auto pluginInterface = qobject_cast<PluginInterface*>(pluginObject);
 
 		if (pluginObject && pluginInterface &&
