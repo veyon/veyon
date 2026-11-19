@@ -277,6 +277,24 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	add_test(NAME LinuxUserProcessTest COMMAND LinuxUserProcessTest)
 	set_tests_properties(LinuxUserProcessTest PROPERTIES TIMEOUT 60)
 
+	# DesktopServicesFeatureTest: website URLs handled by the worker after serialization
+	if(TARGET desktopservices)
+		add_executable(DesktopServicesFeatureTest
+			DesktopServicesFeatureTest.cpp
+		)
+		set_default_target_properties(DesktopServicesFeatureTest)
+		add_dependencies(DesktopServicesFeatureTest linux-platform)
+		target_include_directories(DesktopServicesFeatureTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/desktopservices)
+		target_link_libraries(DesktopServicesFeatureTest PRIVATE
+			Qt${QT_MAJOR_VERSION}::Test
+			Qt${QT_MAJOR_VERSION}::Gui
+			veyon-core
+			desktopservices
+		)
+		add_test(NAME DesktopServicesFeatureTest COMMAND DesktopServicesFeatureTest)
+		set_tests_properties(DesktopServicesFeatureTest PROPERTIES ENVIRONMENT QT_QPA_PLATFORM=offscreen)
+	endif()
+
 	# LoggerTest: Logger with the Linux platform plugin in child processes (unprivileged user, root
 	# in a private mount namespace with a tmpfs on /var/log; WP23)
 	add_executable(LoggerTest
