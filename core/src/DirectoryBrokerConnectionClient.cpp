@@ -39,7 +39,27 @@ DirectoryBrokerConnectionClient::~DirectoryBrokerConnectionClient()
 	m_connection = nullptr;
 	m_stateMutex.unlock();
 
-	delete m_computerControlInterface;
+	if (m_computerControlInterface)
+	{
+		// the VNC connection thread calls updateState() and handleFeatureMessage() directly, so
+		// disconnect and stop it synchronously before this object goes away - also at process exit,
+		// when the event loop no longer processes the deferred deletion of the connection
+		if (const auto connection = m_computerControlInterface->connection())
+		{
+			disconnect(connection, nullptr, this, nullptr);
+			if (const auto vncConnection = connection->vncConnection())
+			{
+				disconnect(vncConnection, nullptr, this, nullptr);
+				vncConnection->stop();
+				if (vncConnection->wait(ShutdownTimeout) == false)
+				{
+					vWarning() << "connection thread did not finish in time";
+				}
+			}
+		}
+
+		delete m_computerControlInterface;
+	}
 }
 
 

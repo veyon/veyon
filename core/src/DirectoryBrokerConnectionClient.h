@@ -36,6 +36,7 @@ public:
 
 private:
 	static constexpr int RateLimitRetryDelay = 100;
+	static constexpr int ShutdownTimeout = 5000;
 
 	void sendAsyncRequest(const QString& command, const QVariantMap& arguments, const ReplyHandler& handler,
 						  QDeadlineTimer deadline);
