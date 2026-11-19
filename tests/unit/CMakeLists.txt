@@ -68,4 +68,38 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 
 	add_test(NAME FilesystemSafeJoinTest COMMAND FilesystemSafeJoinTest)
 
+	#
+	# LinuxUserProcessTest: programs started by LinuxCoreFunctions::runProgramAsUser() outlive
+	# the starting process without being killed by SIGPIPE
+	#
+	if(WITH_QT6)
+		find_package(Qt6 COMPONENTS DBus REQUIRED)
+	else()
+		find_package(Qt5DBus REQUIRED)
+	endif()
+
+	add_executable(LinuxUserProcessTest
+		LinuxUserProcessTest.cpp
+	)
+
+	target_include_directories(LinuxUserProcessTest PRIVATE
+		${CMAKE_SOURCE_DIR}/plugins/platform/linux
+		$<TARGET_PROPERTY:linux-platform,INCLUDE_DIRECTORIES>
+	)
+
+	target_compile_definitions(LinuxUserProcessTest PRIVATE
+		$<TARGET_PROPERTY:linux-platform,COMPILE_DEFINITIONS>
+	)
+
+	target_link_libraries(LinuxUserProcessTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+		Qt${QT_MAJOR_VERSION}::DBus
+		veyon-core
+		linux-platform
+	)
+
+	add_test(NAME LinuxUserProcessTest COMMAND LinuxUserProcessTest)
+	set_tests_properties(LinuxUserProcessTest PROPERTIES TIMEOUT 60)
+
 endif()
