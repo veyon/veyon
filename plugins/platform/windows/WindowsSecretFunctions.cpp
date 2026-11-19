@@ -359,8 +359,12 @@ static bool ensureSecretDirectory(const QString& path)
 
 	if (isEmptyDirectory(path) == false)
 	{
-		vCritical() << "secret directory" << path << "has a foreign owner or permissions and contains files - refusing "
-					<< "to use it; check its content and move it aside manually";
+		const auto message = QStringLiteral("Secret directory %1 has a foreign owner or permissions and contains files - "
+											"refusing to use it; check its content and move it aside manually")
+								 .arg(QDir::toNativeSeparators(path));
+		vCritical() << qUtf8Printable(message);
+		// the service keeps running without secrets, which would go unnoticed otherwise
+		VeyonCore::platform().coreFunctions().writeToNativeLoggingSystem(message, Logger::LogLevel::Critical);
 		return false;
 	}
 
