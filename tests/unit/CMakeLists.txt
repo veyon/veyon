@@ -110,6 +110,8 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 			DesktopServicesFeatureTest.cpp
 		)
 
+		add_dependencies(DesktopServicesFeatureTest linux-platform)
+
 		target_include_directories(DesktopServicesFeatureTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/desktopservices)
 
 		target_link_libraries(DesktopServicesFeatureTest PRIVATE
