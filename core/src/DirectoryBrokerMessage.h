@@ -38,7 +38,7 @@ public:
 		QVariantMap arguments{};
 	};
 
-	struct Reply
+	struct VEYON_CORE_EXPORT Reply
 	{
 		quint32 requestId = 0;
 		QString command{};
