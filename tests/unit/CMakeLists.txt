@@ -102,4 +102,25 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	add_test(NAME LinuxUserProcessTest COMMAND LinuxUserProcessTest)
 	set_tests_properties(LinuxUserProcessTest PROPERTIES TIMEOUT 60)
 
+	#
+	# DesktopServicesFeatureTest: website URLs handled by the worker after serialization
+	#
+	if(TARGET desktopservices)
+		add_executable(DesktopServicesFeatureTest
+			DesktopServicesFeatureTest.cpp
+		)
+
+		target_include_directories(DesktopServicesFeatureTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/desktopservices)
+
+		target_link_libraries(DesktopServicesFeatureTest PRIVATE
+			Qt${QT_MAJOR_VERSION}::Test
+			Qt${QT_MAJOR_VERSION}::Gui
+			veyon-core
+			desktopservices
+		)
+
+		add_test(NAME DesktopServicesFeatureTest COMMAND DesktopServicesFeatureTest)
+		set_tests_properties(DesktopServicesFeatureTest PROPERTIES ENVIRONMENT QT_QPA_PLATFORM=offscreen)
+	endif()
+
 endif()
