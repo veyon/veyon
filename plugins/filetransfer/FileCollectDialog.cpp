@@ -61,6 +61,8 @@ FileCollectDialog::FileCollectDialog(FileCollectController* controller, QWidget*
 	});
 
 	connect(m_controller, &FileCollectController::finished, this, [this]() {
+		showFailedFiles();
+
 		ui->buttonBox->setStandardButtons(QDialogButtonBox::Open | QDialogButtonBox::Close);
 
 		const auto darkSuffix = VeyonCore::useDarkMode() ? QStringLiteral("-dark") : QString();
@@ -128,6 +130,30 @@ void FileCollectDialog::start()
 	}
 
 	m_controller->start();
+}
+
+
+
+void FileCollectDialog::showFailedFiles()
+{
+	int failedFilesCount = 0;
+	int row = 0;
+	for (const auto& collection : m_controller->collections())
+	{
+		if (collection.failedFiles.isEmpty() == false)
+		{
+			failedFilesCount += collection.failedFiles.size();
+			ui->collectionsTreeView->expand(m_model->index(row, 0));
+		}
+		++row;
+	}
+
+	if (failedFilesCount > 0)
+	{
+		ui->failedFilesLabel->setText(tr("<b>Warning:</b> %n file(s) could not be collected. They are marked in the list "
+										 "above, the reason is shown as tooltip.", nullptr, failedFilesCount));
+		ui->failedFilesLabel->show();
+	}
 }
 
 

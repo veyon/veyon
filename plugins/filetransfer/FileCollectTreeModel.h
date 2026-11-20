@@ -71,4 +71,5 @@ private:
 	QIcon m_transferringPixmap;
 	QIcon m_waitingPixmap;
 	QIcon m_finishedPixmap;
+	QIcon m_failedPixmap;
 };

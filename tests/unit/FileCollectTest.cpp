@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 // FileCollect: grouping values used as file name prefix or subdirectory, handling of output files
-// opened via openFileSafely()
+// opened via openFileSafely(), files that could not be collected
 
 #include <QCoreApplication>
 #include <QFile>
@@ -58,6 +58,24 @@ private Q_SLOTS:
 		QFETCH(QString, expected);
 
 		QCOMPARE(FileCollectController::safeGroupingValue(value), expected);
+	}
+
+	void failedFilesAreRecordedByIndex()
+	{
+		FileCollection collection;
+		collection.files = {QStringLiteral("a.txt"), QStringLiteral("Task 1: draft.odt"), QStringLiteral("c.txt")};
+
+		collection.processedFilesCount = 1;
+		collection.markCurrentFileFailed(QStringLiteral("not supported"));
+		collection.processedFilesCount = 3;
+
+		QVERIFY(collection.isFailedFile(0) == false);
+		QVERIFY(collection.isFailedFile(1));
+		QVERIFY(collection.isFailedFile(2) == false);
+		QCOMPARE(collection.failedFiles.size(), 1);
+		QCOMPARE(collection.failedFiles.value(1), QStringLiteral("not supported"));
+		// a failed file is processed, so the collection still completes
+		QCOMPARE(collection.progress(), 100);
 	}
 
 	void discardRemovesFileOpenedSafely()
