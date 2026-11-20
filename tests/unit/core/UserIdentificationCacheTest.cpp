@@ -20,6 +20,10 @@ private Q_SLOTS:
 	void sessionUserChangeInvalidatesIdentity();
 	void restartsDialogIfWorkerIsGone();
 	void dropsClosedConnections();
+	void forceAsksAgainDespiteCachedIdentity();
+	void forceIsIgnoredForUnidentifiedSession();
+	void forceWhileDialogIsOpen();
+	void forceCancelledLeavesNothingCached();
 };
 
 
@@ -149,6 +153,88 @@ void UserIdentificationCacheTest::dropsClosedConnections()
 	const auto requests = cache.complete(QStringLiteral("Jane Doe"), QStringLiteral("guest"));
 	QCOMPARE(requests.size(), 1);
 	QCOMPARE(requests.first().ioDevice(), &master1);
+}
+
+
+
+void UserIdentificationCacheTest::forceAsksAgainDespiteCachedIdentity()
+{
+	UserIdentificationCache cache;
+	QBuffer master1;
+	QBuffer master2;
+
+	cache.addRequest(MessageContext{&master1}, QStringLiteral("guest"), false);
+	cache.complete(QStringLiteral("Jane Doe"), QStringLiteral("guest"));
+
+	QCOMPARE(cache.addRequest(MessageContext{&master2}, QStringLiteral("guest"), false, true),
+			 RequestResult::StartDialog);
+	QVERIFY(cache.identity().isEmpty());
+
+	// automatic identification by another master meanwhile waits for the dialog as well
+	QCOMPARE(cache.addRequest(MessageContext{&master1}, QStringLiteral("guest"), true), RequestResult::Pending);
+
+	QCOMPARE(cache.complete(QStringLiteral("John Doe"), QStringLiteral("guest")).size(), 2);
+	QCOMPARE(cache.addRequest(MessageContext{&master1}, QStringLiteral("guest"), false), RequestResult::Cached);
+	QCOMPARE(cache.identity(), QStringLiteral("John Doe"));
+}
+
+
+
+void UserIdentificationCacheTest::forceIsIgnoredForUnidentifiedSession()
+{
+	UserIdentificationCache cache;
+	QBuffer master;
+
+	QCOMPARE(cache.addRequest(MessageContext{&master}, QStringLiteral("user"), false, true), RequestResult::Ignored);
+	QVERIFY(cache.isRequestPending() == false);
+	QVERIFY(cache.complete(QStringLiteral("Mallory"), QStringLiteral("user")).isEmpty());
+
+	// a session identified before is no longer identified once the session user changes
+	cache.addRequest(MessageContext{&master}, QStringLiteral("guest"), false);
+	cache.complete(QStringLiteral("Jane Doe"), QStringLiteral("guest"));
+	QCOMPARE(cache.addRequest(MessageContext{&master}, QStringLiteral("user"), false, true), RequestResult::Ignored);
+	QVERIFY(cache.identity().isEmpty());
+}
+
+
+
+void UserIdentificationCacheTest::forceWhileDialogIsOpen()
+{
+	UserIdentificationCache cache;
+	QBuffer master1;
+	QBuffer master2;
+
+	QCOMPARE(cache.addRequest(MessageContext{&master1}, QStringLiteral("guest"), false), RequestResult::StartDialog);
+	const auto requestId = cache.requestId();
+
+	// no second dialog - the open one answers the forced request as well
+	QCOMPARE(cache.addRequest(MessageContext{&master2}, QStringLiteral("guest"), true, true), RequestResult::Pending);
+	QCOMPARE(cache.requestId(), requestId);
+
+	QCOMPARE(cache.complete(QStringLiteral("Jane Doe"), QStringLiteral("guest")).size(), 2);
+	QCOMPARE(cache.identity(), QStringLiteral("Jane Doe"));
+}
+
+
+
+void UserIdentificationCacheTest::forceCancelledLeavesNothingCached()
+{
+	UserIdentificationCache cache;
+	QBuffer master;
+
+	cache.addRequest(MessageContext{&master}, QStringLiteral("guest"), false);
+	cache.complete(QStringLiteral("Jane Doe"), QStringLiteral("guest"));
+
+	QCOMPARE(cache.addRequest(MessageContext{&master}, QStringLiteral("guest"), false, true),
+			 RequestResult::StartDialog);
+	QCOMPARE(cache.complete(QString{}, QStringLiteral("guest")).size(), 1);
+
+	QCOMPARE(cache.addRequest(MessageContext{&master}, QStringLiteral("guest"), false), RequestResult::StartDialog);
+
+	// still a known guest session, so re-identification remains possible
+	cache.complete(QString{}, QStringLiteral("guest"));
+	QCOMPARE(cache.addRequest(MessageContext{&master}, QStringLiteral("guest"), false, true),
+			 RequestResult::StartDialog);
 }
 
 

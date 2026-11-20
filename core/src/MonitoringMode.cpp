@@ -29,6 +29,16 @@ UserIdentificationCache& userIdentificationCache()
 	return cache;
 }
 
+
+
+// the IdentifyUser feature is required in server and worker in any case, while the master only offers it
+// as an action if identification of users in guest sessions has been configured
+bool isIdentifyUserFeatureAvailable()
+{
+	return VeyonCore::component() != VeyonCore::Component::Master ||
+		(VeyonCore::config().guestUserProperty() != PlatformUserFunctions::UserProperty::None &&
+		 VeyonCore::config().guestUserValue().isEmpty() == false);
+}
 }
 
 
@@ -63,10 +73,17 @@ MonitoringMode::MonitoringMode(QObject* parent) :
 						  Feature::Uid("d5bbc486-7bc5-4c36-a9a8-1566c8b0091a"),
 						  Feature::Uid(), tr("Query properties of remotely available screens"), {}, {}),
 	m_identifyUserFeature(QStringLiteral("IdentifyUser"),
-						  Feature::Flag::Action | Feature::Flag::Service | Feature::Flag::Builtin,
+						  Feature::Flag::Action | Feature::Flag::Master | Feature::Flag::Service |
+							  Feature::Flag::Builtin,
 						  Feature::Uid("7310707d-3918-460d-a949-b060bcc4074e"),
 						  Feature::Uid(),
-						  tr("Identify users in guest sessions"), {}, {}),
+						  tr("Identify users"), {},
+						  tr("Click this button to ask the users in guest sessions on the selected computers "
+							 "to enter their names again."),
+						  QStringLiteral(":/core/identify-user.png")),
+	m_features(FeatureList{m_monitoringModeFeature, m_queryApplicationVersionFeature, m_queryActiveFeatures,
+						   m_queryUserInfoFeature, m_querySessionInfoFeature, m_queryScreensFeature} +
+			   (isIdentifyUserFeatureAvailable() ? FeatureList{m_identifyUserFeature} : FeatureList{})),
 	m_sessionMetaDataContent(VeyonCore::config().sessionMetaDataContent()),
 	m_sessionMetaDataEnvironmentVariable(VeyonCore::config().sessionMetaDataEnvironmentVariable()),
 	m_sessionMetaDataRegistryKey(VeyonCore::config().sessionMetaDataRegistryKey()),
@@ -147,6 +164,24 @@ void MonitoringMode::queryScreens(const ComputerControlInterfaceList& computerCo
 void MonitoringMode::identifyUser(const ComputerControlInterfaceList& computerControlInterfaces)
 {
 	sendFeatureMessage(FeatureMessage{m_identifyUserFeature.uid()}, computerControlInterfaces);
+}
+
+
+
+bool MonitoringMode::controlFeature(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
+									const ComputerControlInterfaceList& computerControlInterfaces)
+{
+	Q_UNUSED(arguments)
+
+	if (featureUid == m_identifyUserFeature.uid() && operation == Operation::Start)
+	{
+		// explicit re-identification - servers before 4.11.5 ignore the argument and always ask
+		sendFeatureMessage(FeatureMessage{m_identifyUserFeature.uid()}.addArgument(Argument::ForceIdentification, true),
+						   computerControlInterfaces);
+		return true;
+	}
+
+	return false;
 }
 
 
@@ -303,11 +338,12 @@ bool MonitoringMode::handleFeatureMessage(VeyonServerInterface& server,
 
 	if (message.featureUid() == m_identifyUserFeature.uid())
 	{
-		// arguments of the message are ignored on purpose - the identity is only ever set by the
-		// session's user through the dialog of the session worker
+		// apart from ForceIdentification, arguments of the message are ignored on purpose - the identity
+		// is only ever set by the session's user through the dialog of the session worker
 		auto& cache = userIdentificationCache();
 		switch (cache.addRequest(messageContext, sessionUserLoginName(),
-								 server.featureWorkerManager().isWorkerRunning(m_identifyUserFeature.uid())))
+								 server.featureWorkerManager().isWorkerRunning(m_identifyUserFeature.uid()),
+								 message.argument(Argument::ForceIdentification).toBool()))
 		{
 		case UserIdentificationCache::RequestResult::Cached:
 			return server.sendFeatureMessageReply(messageContext,
@@ -319,6 +355,7 @@ bool MonitoringMode::handleFeatureMessage(VeyonServerInterface& server,
 					.addArgument(Argument::UserIdentificationContextId, cache.requestId()));
 			break;
 		case UserIdentificationCache::RequestResult::Pending:
+		case UserIdentificationCache::RequestResult::Ignored:
 			break;
 		}
 		return true;

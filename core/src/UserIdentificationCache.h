@@ -9,6 +9,8 @@
 
 #include "MessageContext.h"
 
+#include <optional>
+
 // server-side state of the IdentifyUser feature: keeps the identity entered by the user of the
 // session in memory for the lifetime of the server process and collects the requests of all
 // masters while the identification dialog is open, so that only one dialog is shown at a time
@@ -18,21 +20,43 @@ public:
 	enum class RequestResult {
 		Cached,		 // identity is known, reply immediately
 		StartDialog, // send a new request (requestId()) to the session worker
-		Pending		 // a dialog is already open, reply once it has been answered
+		Pending,	 // a dialog is already open, reply once it has been answered
+		Ignored		 // forced request for a session which has not been identified before
 	};
 
 	// the cache is invalidated by the end of the server process, which ends with the session or when the
 	// server is restarted (e.g. on logon/logoff); sessionUser (login name of the session's user) is only
 	// an additional safeguard - a cached identity is not returned if it changes
-	RequestResult addRequest(const MessageContext& context, const QString& sessionUser, bool dialogRunning)
+	//
+	// force: ask the user again even if an identity is cached (re-identification triggered by a master);
+	// only honored for sessions which have been subject to identification before, i.e. a master has
+	// detected a guest session (identification of other sessions is never forced)
+	RequestResult addRequest(const MessageContext& context, const QString& sessionUser, bool dialogRunning,
+							 bool force = false)
 	{
-		if (m_identity.isEmpty() == false && m_identitySessionUser == sessionUser)
+		if (m_identifiedSessionUser.has_value() && *m_identifiedSessionUser != sessionUser)
+		{
+			m_identifiedSessionUser.reset();
+			m_identity.clear();
+		}
+
+		if (force)
+		{
+			if (m_identifiedSessionUser.has_value() == false)
+			{
+				return RequestResult::Ignored;
+			}
+			m_identity.clear();
+		}
+		else
+		{
+			m_identifiedSessionUser = sessionUser;
+		}
+
+		if (m_identity.isEmpty() == false)
 		{
 			return RequestResult::Cached;
 		}
-
-		m_identity.clear();
-		m_identitySessionUser.clear();
 
 		bool alreadyPending = false;
 		for (auto it = m_pendingRequests.begin(); it != m_pendingRequests.end();)
@@ -76,10 +100,9 @@ public:
 			return {};
 		}
 
-		if (identity.isEmpty() == false)
+		if (identity.isEmpty() == false && m_identifiedSessionUser == sessionUser)
 		{
 			m_identity = identity;
-			m_identitySessionUser = sessionUser;
 		}
 
 		m_requestId = QUuid{};
@@ -106,7 +129,7 @@ public:
 
 private:
 	QString m_identity;
-	QString m_identitySessionUser;
+	std::optional<QString> m_identifiedSessionUser;
 	QUuid m_requestId;
 	QList<MessageContext> m_pendingRequests;
 };
