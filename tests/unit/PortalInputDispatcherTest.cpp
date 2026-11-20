@@ -308,7 +308,7 @@ private Q_SLOTS:
 		QTest::ignoreMessage(QtWarningMsg, QRegularExpression(QStringLiteral("no reply to portal input request, dropping 3")));
 		dispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this]() { return send(QStringLiteral("hang")); });
 		dispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this]() { return send(QStringLiteral("discarded-1")); });
-		dispatcher.enqueue(PortalInputDispatcher::RequestType::PointerMotion,
+		dispatcher.enqueue(PortalInputDispatcher::RequestType::Default,
 						   [this]() { return send(QStringLiteral("discarded-2")); });
 		QCOMPARE(dispatcher.pendingRequestCount(), 2);
 
@@ -345,8 +345,9 @@ private Q_SLOTS:
 		QCOMPARE(dispatcher.hasFailed(), false);
 	}
 
-	// P23-3: dropping releases would leave keys or buttons pressed in the compositor
-	void missingReplyKeepsPendingReleases()
+	// P23-3: dropping releases would leave keys or buttons pressed in the compositor, and the last
+	// pointer motion is the current position
+	void missingReplyKeepsReleasesAndPosition()
 	{
 		PortalInputDispatcher dispatcher;
 		dispatcher.setReplyTimeout(300);
@@ -354,27 +355,34 @@ private Q_SLOTS:
 		dispatcher.setFailureHandler([&](const QDBusError&) { ++failures; });
 		m_service.replyMode = DelayedInputService::ReplyMode::NoReplyForHang;
 
-		QList<bool> releaseResults;
+		using Result = PortalInputDispatcher::Result;
+		QStringList results;
 		const auto enqueue = [&](PortalInputDispatcher::RequestType type, const QString& event) {
-			dispatcher.enqueue(type, [this, event]() { return send(event); },
-							   [&releaseResults](bool accepted) { releaseResults.append(accepted); });
+			dispatcher.enqueue(type, [this, event]() { return send(event); }, [&results, event](Result result) {
+				results.append(QStringLiteral("%1:%2").arg(event).arg(int(result)));
+			});
 		};
 		using Type = PortalInputDispatcher::RequestType;
 
 		QTest::ignoreMessage(QtWarningMsg,
-							 QRegularExpression(QStringLiteral("no reply to portal input request, dropping 4 .* keeping 2")));
+							 QRegularExpression(QStringLiteral("no reply to portal input request, dropping 4 .*3")));
 		enqueue(Type::Release, QStringLiteral("hang-release"));
 		enqueue(Type::Default, QStringLiteral("press"));
+		enqueue(Type::PointerMotion, QStringLiteral("motion-1"));
 		enqueue(Type::Release, QStringLiteral("release-1"));
-		enqueue(Type::PointerMotion, QStringLiteral("motion"));
+		enqueue(Type::PointerMotion, QStringLiteral("motion-2"));
 		enqueue(Type::Default, QStringLiteral("scroll"));
 		enqueue(Type::Release, QStringLiteral("release-2"));
 
-		QTRY_COMPARE_WITH_TIMEOUT(m_service.completed.size(), 3, 3000);
-		QCOMPARE(m_service.received, (QStringList{QStringLiteral("hang-release"), QStringLiteral("release-1"),
-												  QStringLiteral("release-2")}));
-		// the release without reply is reported as not accepted, so that its sender can retry it
-		QTRY_COMPARE(releaseResults, (QList<bool>{false, true, true}));
+		const QStringList expected{QStringLiteral("hang-release"), QStringLiteral("release-1"),
+								   QStringLiteral("motion-2"), QStringLiteral("release-2")};
+		QTRY_COMPARE_WITH_TIMEOUT(m_service.completed.size(), expected.size(), 3000);
+		QCOMPARE(m_service.received, expected);
+		// the release without reply is reported as such, so that its sender can retry it
+		QTRY_COMPARE(results, (QStringList{QStringLiteral("hang-release:%1").arg(int(Result::NoReply)),
+										   QStringLiteral("release-1:%1").arg(int(Result::Accepted)),
+										   QStringLiteral("motion-2:%1").arg(int(Result::Accepted)),
+										   QStringLiteral("release-2:%1").arg(int(Result::Accepted))}));
 		QCOMPARE(failures, 0);
 		QCOMPARE(dispatcher.hasFailed(), false);
 	}
@@ -384,21 +392,19 @@ private Q_SLOTS:
 		PortalInputDispatcher dispatcher;
 		m_service.replyMode = DelayedInputService::ReplyMode::ErrorUnlessOk;
 
-		QStringList results;
+		using Result = PortalInputDispatcher::Result;
+		QList<Result> results;
 		for (const auto& event : {QStringLiteral("ok-1"), QStringLiteral("denied"), QStringLiteral("ok-2")})
 		{
 			dispatcher.enqueue(PortalInputDispatcher::RequestType::Release, [this, event]() { return send(event); },
-							   [&results, event](bool accepted) {
-				results.append(QStringLiteral("%1:%2").arg(event).arg(accepted));
-			});
+							   [&results](Result result) { results.append(result); });
 		}
 
-		QTRY_COMPARE(results, (QStringList{QStringLiteral("ok-1:1"), QStringLiteral("denied:0"),
-										   QStringLiteral("ok-2:1")}));
+		QTRY_COMPARE(results, (QList<Result>{Result::Accepted, Result::Rejected, Result::Accepted}));
 
 		// not called for requests discarded by clear()
 		dispatcher.enqueue(PortalInputDispatcher::RequestType::Release, [this]() { return send(QStringLiteral("ok-3")); },
-						   [&results](bool) { results.append(QStringLiteral("cleared")); });
+						   [&results](Result) { results.append(Result::NoReply); });
 		dispatcher.clear();
 		QTest::qWait(100);
 		QCOMPARE(results.size(), 3);

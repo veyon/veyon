@@ -6,6 +6,7 @@
 #include <QDBusConnection>
 #include <QDBusObjectPath>
 #include <QDBusPendingCall>
+#include <QElapsedTimer>
 #include <QHash>
 #include <QObject>
 #include <QString>
@@ -67,6 +68,11 @@ public:
 	void close();
 
 	State state() const { return m_state; }
+
+	/**
+	 * @brief How long to wait for the reply to an input request, see PortalInputDispatcher.
+	 */
+	void setInputReplyTimeout(int milliseconds);
 
 	/**
 	 * @brief PipeWire remote file descriptor (valid after started() signal).
@@ -187,6 +193,7 @@ private:
 	// inputs pressed without a release the portal accepted, with the sequence number of the press
 	QHash<quint64, quint64> m_heldInputs;
 	quint64 m_pressSequence{0};
+	QElapsedTimer m_lastReleaseWarning;
 
 	int m_lastButtonMask{0};
 	double m_lastPointerX{0.0};

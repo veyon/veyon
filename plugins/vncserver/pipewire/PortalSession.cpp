@@ -22,6 +22,7 @@
 #include "VeyonCore.h"
 
 #include <linux/input.h>
+#include <limits>
 #include <unistd.h>
 
 // XDG Desktop Portal service and interface names
@@ -105,6 +106,13 @@ void PortalSession::start()
 	m_streamGeometry = {};
 	m_pointerMappingMode = PortalPointerMappingMode::Scale;
 	createSession();
+}
+
+
+
+void PortalSession::setInputReplyTimeout(int milliseconds)
+{
+	m_inputDispatcher.setReplyTimeout(milliseconds);
 }
 
 
@@ -593,7 +601,7 @@ void PortalSession::release(HeldInput input, int retries)
 
 	m_inputDispatcher.enqueue(PortalInputDispatcher::RequestType::Release,
 							  [this, input]() { return sendInput(input, false); },
-							  [this, input, pressSequence, retries](bool accepted) {
+							  [this, input, pressSequence, retries](PortalInputDispatcher::Result result) {
 		const auto currentPressSequence = m_heldInputs.value(input.id(), 0);
 		// pressed again in the meantime: the release of that press takes over
 		if (currentPressSequence != pressSequence)
@@ -601,7 +609,8 @@ void PortalSession::release(HeldInput input, int retries)
 			return;
 		}
 
-		if (accepted || pressSequence == 0)
+		// an error reply is deterministic (e.g. no access to the device), a retry would fail as well
+		if (result != PortalInputDispatcher::Result::NoReply || pressSequence == 0)
 		{
 			m_heldInputs.remove(input.id());
 		}
@@ -609,10 +618,12 @@ void PortalSession::release(HeldInput input, int retries)
 		{
 			release(input, retries - 1);
 		}
-		else
+		else if (m_lastReleaseWarning.isValid() == false ||
+				 m_lastReleaseWarning.elapsed() >= PortalInputDispatcher::ErrorLogInterval)
 		{
 			vWarning() << "could not release" << (input.type == HeldInput::Type::Key ? "key" : "button")
 					   << input.code << "- releasing it when closing the session";
+			m_lastReleaseWarning.start();
 		}
 	});
 }
@@ -651,9 +662,19 @@ void PortalSession::notifyPointer(int buttonMask, int x, int y, QSize framebuffe
 		const auto nodeId = m_pipeWireNodeId;
 		const auto px = position->x();
 		const auto py = position->y();
-		m_inputDispatcher.enqueue(PortalInputDispatcher::RequestType::PointerMotion,
-								  [this, sessionPath, nodeId, px, py]() {
+		m_inputDispatcher.enqueue(
+			PortalInputDispatcher::RequestType::PointerMotion,
+			[this, sessionPath, nodeId, px, py]() {
 			return m_remoteDesktop->NotifyPointerMotionAbsolute(sessionPath, QVariantMap{}, nodeId, px, py);
+		},
+			[this, px, py](PortalInputDispatcher::Result result) {
+			// the pointer may not be there, so send the position again with the next event, e.g. a
+			// click without moving
+			if (result != PortalInputDispatcher::Result::Accepted && px == m_lastPointerX && py == m_lastPointerY)
+			{
+				m_lastPointerX = std::numeric_limits<double>::quiet_NaN();
+				m_lastPointerY = std::numeric_limits<double>::quiet_NaN();
+			}
 		});
 		m_lastPointerX = px;
 		m_lastPointerY = py;

@@ -209,7 +209,7 @@ void PortalInputDispatcher::finishCurrentRequest()
 	// may enqueue further requests, e.g. to retry a release
 	if (completionHandler)
 	{
-		completionHandler(watcher->isError() == false);
+		completionHandler(watcher->isError() ? Result::Rejected : Result::Accepted);
 	}
 
 	sendNextRequest();
@@ -221,7 +221,8 @@ void PortalInputDispatcher::handleTimeout(const QDBusError& error, const Complet
 {
 	// a portal (or compositor) that stalls briefly, e.g. under load, must not restart the whole
 	// session including capture and possibly the consent dialog; the input pending in the meantime
-	// is outdated though, except for releases, without which keys or buttons would stay pressed
+	// is outdated though, except for releases, without which keys or buttons would stay pressed,
+	// and the last pointer motion, which is the current position
 	if (++m_consecutiveTimeouts >= MaximumConsecutiveTimeouts)
 	{
 		fail(error);
@@ -229,18 +230,29 @@ void PortalInputDispatcher::handleTimeout(const QDBusError& error, const Complet
 	}
 
 	const auto pendingCount = pendingRequestCount();
-	m_pendingRequests.erase(std::remove_if(m_pendingRequests.begin(), m_pendingRequests.end(),
-										   [](const PendingRequest& pendingRequest) {
-		return pendingRequest.type != RequestType::Release;
-	}),
-							m_pendingRequests.end());
+	const auto lastMotion = std::find_if(m_pendingRequests.crbegin(), m_pendingRequests.crend(),
+										 [](const PendingRequest& pendingRequest) {
+		return pendingRequest.type == RequestType::PointerMotion;
+	});
+	const auto lastMotionIndex = lastMotion == m_pendingRequests.crend() ?
+									 -1 : int(std::distance(lastMotion, m_pendingRequests.crend())) - 1;
+
+	QQueue<PendingRequest> keptRequests;
+	for (int i = 0; i < pendingCount; ++i)
+	{
+		if (m_pendingRequests[i].type == RequestType::Release || i == lastMotionIndex)
+		{
+			keptRequests.enqueue(m_pendingRequests[i]);
+		}
+	}
+	m_pendingRequests = keptRequests;
 
 	vWarning() << "no reply to portal input request, dropping" << pendingCount - pendingRequestCount() + 1
-			   << "pending input requests, keeping" << pendingRequestCount() << "releases";
+			   << "pending input requests, keeping" << pendingRequestCount();
 
 	if (completionHandler)
 	{
-		completionHandler(false);
+		completionHandler(Result::NoReply);
 	}
 
 	sendNextRequest();
