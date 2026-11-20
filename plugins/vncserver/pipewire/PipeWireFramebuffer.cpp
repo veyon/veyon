@@ -270,8 +270,14 @@ void PipeWireFramebuffer::onStreamParamChanged(void* data, uint32_t id,
 	vDebug() << "PipeWire stream format:" << width << "x" << height
 			 << "format=" << videoInfo.format;
 
-	self->m_frameSize = QSize(width, height);
+	const QSize frameSize(width, height);
+	const auto sizeChanged = self->m_frameSize.isValid() && self->m_frameSize != frameSize;
+	self->m_frameSize = frameSize;
 	self->m_videoFormat = videoInfo.format;
+	if (sizeChanged)
+	{
+		Q_EMIT self->frameSizeChanged(frameSize);
+	}
 
 	// Accept the negotiated format by calling pw_stream_update_params with buffer
 	// params and a request for SPA_META_VideoDamage so the compositor can tell us

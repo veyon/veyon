@@ -102,8 +102,10 @@ private Q_SLOTS:
 	void onPortalStarted();
 	void onPortalFailed();
 	void onStreamEnded();
+	void onFrameSizeChanged(QSize size);
 
 private:
+	void closeAndRestartSession();
 	bool initVncServer(int serverPort, const Password& password);
 	void cleanupVncServer();
 

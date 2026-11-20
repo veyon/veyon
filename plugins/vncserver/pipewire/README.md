@@ -205,6 +205,13 @@ systemctl --user enable --now veyon-server
   only works with portals older than 1.14; a warning is logged. The stream's
   `position` is not added, since positions are relative to the stream.
 
+  The stream size is read once per portal session. If the size of the
+  PipeWire buffers changes (e.g. after a change of the output's resolution),
+  the portal session is restarted to read it again. A change of the scale
+  alone leaves the buffers as they are and can't be noticed; the pointer is
+  off then until the session is restarted (e.g. by restarting the Veyon
+  Server).
+
 * **Input errors**: An error reply to a single input request only drops that
   request and is logged at most every 10 s. A request without reply within
   5 s drops the pending input but keeps the session; key and button releases

@@ -53,6 +53,12 @@ public:
 Q_SIGNALS:
 	void streamEnded();
 
+	/**
+	 * @brief The size of the stream's buffers changed after the first format of the stream, e.g.
+	 * after a change of the output's resolution. Emitted from the PipeWire loop thread.
+	 */
+	void frameSizeChanged(QSize size);
+
 private:
 	// PipeWire C callbacks (called from PipeWire loop thread)
 	static void onCoreError(void* data, uint32_t id, int seq, int res, const char* message);
