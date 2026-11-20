@@ -213,7 +213,7 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	add_test(NAME UserIdentificationCacheTest COMMAND UserIdentificationCacheTest)
 
 	#
-	# FileCollectTest: output files of FileCollect opened via openFileSafely()
+	# FileCollectTest: grouping values and output files of FileCollect
 	#
 	if(TARGET filetransfer)
 		add_executable(FileCollectTest
@@ -228,6 +228,7 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 			Qt${QT_MAJOR_VERSION}::Test
 			Qt${QT_MAJOR_VERSION}::Core
 			veyon-core
+			filetransfer
 		)
 
 		add_test(NAME FileCollectTest COMMAND FileCollectTest)

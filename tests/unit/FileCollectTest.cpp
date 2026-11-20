@@ -1,13 +1,15 @@
 // SPDX-FileCopyrightText: 2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
-// FileCollect: handling of output files opened via openFileSafely()
+// FileCollect: grouping values used as file name prefix or subdirectory, handling of output files
+// opened via openFileSafely()
 
 #include <QCoreApplication>
 #include <QFile>
 #include <QTemporaryDir>
 #include <QtTest>
 
+#include "FileCollectController.h"
 #include "FileCollection.h"
 #include "PlatformFilesystemFunctions.h"
 #include "VeyonCore.h"
@@ -32,6 +34,30 @@ private Q_SLOTS:
 	void cleanupTestCase()
 	{
 		m_core.reset();
+	}
+
+	void safeGroupingValue_data()
+	{
+		QTest::addColumn<QString>("value");
+		QTest::addColumn<QString>("expected");
+
+		QTest::newRow("plain") << QStringLiteral("Jane Doe") << QStringLiteral("Jane Doe");
+		QTest::newRow("backslash") << QStringLiteral("a\\b") << QStringLiteral("a_b");
+		QTest::newRow("domain-backslash") << QStringLiteral("SCHOOL\\jdoe") << QStringLiteral("SCHOOL_jdoe");
+		QTest::newRow("slash") << QStringLiteral("a/b") << QStringLiteral("a_b");
+		QTest::newRow("reserved-characters") << QStringLiteral("a<b>c:d\"e|f?g*h") << QStringLiteral("a_b_c_d_e_f_g_h");
+		QTest::newRow("control-character") << QStringLiteral("a\tb") << QStringLiteral("a_b");
+		QTest::newRow("trailing-dot-space") << QStringLiteral("name. ") << QStringLiteral("name");
+		QTest::newRow("parent") << QStringLiteral("..") << QStringLiteral("_");
+		QTest::newRow("empty") << QString{} << QStringLiteral("_");
+	}
+
+	void safeGroupingValue()
+	{
+		QFETCH(QString, value);
+		QFETCH(QString, expected);
+
+		QCOMPARE(FileCollectController::safeGroupingValue(value), expected);
 	}
 
 	void discardRemovesFileOpenedSafely()
