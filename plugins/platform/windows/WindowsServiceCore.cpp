@@ -3,6 +3,8 @@
 
 #include <windows.h>
 
+#include <QElapsedTimer>
+
 #include "WindowsServiceCore.h"
 #include "SasEventListener.h"
 #include "WindowsCoreFunctions.h"
@@ -163,41 +165,49 @@ void WindowsServiceCore::manageServerForConsoleSession()
 {
 	VeyonServerProcess* serverProcess = nullptr;
 
+	const auto stopServer = [this, &serverProcess]() {
+		if (serverProcess)
+		{
+			// the server resets the shutdown event while it is still starting up, so signal it
+			// repeatedly until the server has exited or has been running long enough
+			do
+			{
+				SetEvent(m_serverShutdownEvent);
+			} while (serverProcess->waitForFinished(ServerShutdownSignalInterval) == false &&
+					 serverProcess->uptime() < MinimumServerUptimeTime);
+
+			delete serverProcess;
+			serverProcess = nullptr;
+		}
+	};
+
 	auto oldWtsSessionId = WtsSessionManager::InvalidSession;
 
 	do
 	{
-		const auto sessionChanged = m_sessionChanged.testAndSetOrdered(1, 0);
+		const auto consoleSessionUserChanged = m_consoleSessionUserChanged.testAndSetOrdered(1, 0);
 		const auto wtsSessionId = WtsSessionManager::activeConsoleSession();
 
-		if (oldWtsSessionId != wtsSessionId || sessionChanged)
+		// only restart the server if the console session or its user actually changed - session change
+		// events are also received for other sessions (e.g. RDP sessions) and come in bursts
+		if (oldWtsSessionId != wtsSessionId || consoleSessionUserChanged)
 		{
-			vInfo() << "Session ID changed from" << oldWtsSessionId << "to" << wtsSessionId;
-
-			if (oldWtsSessionId != WtsSessionManager::InvalidSession || sessionChanged)
+			if (oldWtsSessionId != wtsSessionId)
 			{
-				// workaround for situations where server is stopped while it is still starting up
-				do
-				{
-					SetEvent(m_serverShutdownEvent);
-				} while (serverProcess && serverProcess->isRunning() &&
-						 serverProcess->uptime() < MinimumServerUptimeTime);
-
-				delete serverProcess;
-				serverProcess = nullptr;
+				vInfo() << "Session ID changed from" << oldWtsSessionId << "to" << wtsSessionId;
+			}
+			else
+			{
+				vInfo() << "User of console session" << wtsSessionId << "changed";
 			}
 
-			if (wtsSessionId != WtsSessionManager::InvalidSession || sessionChanged)
-			{
-				delete serverProcess;
-				serverProcess = nullptr;
+			stopServer();
 
-				if (m_serviceStopRequested == 0 &&
-					wtsSessionId != WtsSessionManager::InvalidSession)
-				{
-					serverProcess = new VeyonServerProcess(wtsSessionId, PlatformSessionFunctions::DefaultSessionId,
-														   m_dataManager);
-				}
+			if (m_serviceStopRequested == 0 &&
+				wtsSessionId != WtsSessionManager::InvalidSession)
+			{
+				serverProcess = new VeyonServerProcess(wtsSessionId, PlatformSessionFunctions::DefaultSessionId,
+													   m_dataManager);
 			}
 
 			oldWtsSessionId = wtsSessionId;
@@ -209,19 +219,43 @@ void WindowsServiceCore::manageServerForConsoleSession()
 			{
 				serverProcess->restartIfNotRunning();
 			}
-
-			oldWtsSessionId = wtsSessionId;
 		}
 
 		std::array<HANDLE, 2> events{m_sessionChangeEvent, m_stopServiceEvent};
-		WaitForMultipleObjects(events.size(), events.data(), FALSE, SessionPollingInterval);
+		if (WaitForMultipleObjects(events.size(), events.data(), FALSE, SessionPollingInterval) == WAIT_OBJECT_0)
+		{
+			// act on a change to another valid console session immediately, otherwise (unchanged or
+			// temporarily invalid console session) wait for further events
+			const auto newWtsSessionId = WtsSessionManager::activeConsoleSession();
+			if (newWtsSessionId == oldWtsSessionId || newWtsSessionId == WtsSessionManager::InvalidSession)
+			{
+				waitForSessionChangesToSettle();
+			}
+		}
 
 	} while (m_serviceStopRequested == 0);
 
 	vInfo() << "Service shutdown";
 
-	SetEvent(m_serverShutdownEvent);
-	delete serverProcess;
+	stopServer();
+}
+
+
+
+void WindowsServiceCore::waitForSessionChangesToSettle()
+{
+	// wait until no further session change events have been received for SessionChangeSettleTime
+	// so that a burst of events (e.g. when connecting or disconnecting an RDP session) is handled
+	// at once after the session state has been settled
+	QElapsedTimer settleTimer;
+	settleTimer.start();
+
+	std::array<HANDLE, 2> events{m_sessionChangeEvent, m_stopServiceEvent};
+	while (m_serviceStopRequested == 0 &&
+		   settleTimer.elapsed() < SessionChangeMaximumSettleTime &&
+		   WaitForMultipleObjects(events.size(), events.data(), FALSE, SessionChangeSettleTime) == WAIT_OBJECT_0)
+	{
+	}
 }
 
 
@@ -355,9 +389,10 @@ DWORD WindowsServiceCore::serviceCtrl(DWORD ctrlCode, DWORD eventType, LPVOID ev
 		break;
 
 	case SERVICE_CONTROL_SESSIONCHANGE:
+	{
+		const auto notification = reinterpret_cast<WTSSESSION_NOTIFICATION*>(eventData);
 		if (sessionChangeEventTypes.contains(eventType))
 		{
-			const auto notification = reinterpret_cast<WTSSESSION_NOTIFICATION*>(eventData);
 			vDebug() << "session change event:" << sessionChangeEventTypes[eventType]
 					 << "for session" << (notification ? notification->dwSessionId : -1);
 		}
@@ -365,15 +400,23 @@ DWORD WindowsServiceCore::serviceCtrl(DWORD ctrlCode, DWORD eventType, LPVOID ev
 		{
 		case WTS_SESSION_LOGON:
 		case WTS_SESSION_LOGOFF:
+			// the console session ID does not change when a user logs on or off in the console
+			// session, but the server has to be restarted then (e.g. for the tray icon)
+			if (notification && notification->dwSessionId == WtsSessionManager::activeConsoleSession())
+			{
+				m_consoleSessionUserChanged = 1;
+			}
+			SetEvent(m_sessionChangeEvent);
+			break;
 		case WTS_CONSOLE_CONNECT:
 		case WTS_CONSOLE_DISCONNECT:
 		case WTS_REMOTE_CONNECT:
 		case WTS_REMOTE_DISCONNECT:
-			m_sessionChanged = 1;
 			SetEvent(m_sessionChangeEvent);
 			break;
 		}
 		break;
+	}
 
 	default:
 		// Control code not recognised
