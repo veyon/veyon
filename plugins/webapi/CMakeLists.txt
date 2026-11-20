@@ -29,6 +29,7 @@ if(Qt6HttpServer_DIR OR Qt5HttpServer_DIR OR (Qt5Core_VERSION VERSION_GREATER 5.
 		WebApiController.h
 		WebApiHttpServer.cpp
 		WebApiHttpServer.h
+		WebApiLogRedaction.h
 		webapi.qrc
 		)
 

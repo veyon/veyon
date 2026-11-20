@@ -148,6 +148,23 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 
 	add_test(NAME FilesystemSafeJoinTest COMMAND FilesystemSafeJoinTest)
 
+	# debug output of the WebAPI plugin never contains the session token or credentials
+	if(WITH_WEBAPI)
+		add_executable(WebApiLogRedactionTest
+			core/WebApiLogRedactionTest.cpp
+		)
+
+		target_include_directories(WebApiLogRedactionTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/webapi)
+
+		target_link_libraries(WebApiLogRedactionTest PRIVATE
+			Qt${QT_MAJOR_VERSION}::Test
+			Qt${QT_MAJOR_VERSION}::Concurrent
+			veyon-core
+		)
+
+		add_test(NAME WebApiLogRedactionTest COMMAND WebApiLogRedactionTest)
+	endif()
+
 	#
 	# LinuxUserProcessTest: programs started by LinuxCoreFunctions::runProgramAsUser() outlive
 	# the starting process without being killed by SIGPIPE

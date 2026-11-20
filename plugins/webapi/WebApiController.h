@@ -120,6 +120,12 @@ public:
 
 	static QString errorString(Error error);
 
+	// the session token of an authenticated connection, never logged (05-tls.md §7a)
+	static QByteArray connectionUidHeaderFieldName()
+	{
+		return QByteArrayLiteral("Connection-Uid");
+	}
+
 private:
 	void runInWorkerThread(const std::function<void()>& functor) const;
 	void runInWorkerThreadNonBlocking(const std::function<void()>& functor) const;
@@ -139,11 +145,6 @@ private:
 	static QString k2s(Key key)
 	{
 		return EnumHelper::toCamelCaseString(key);
-	}
-
-	static QByteArray connectionUidHeaderFieldName()
-	{
-		return QByteArrayLiteral("Connection-Uid");
 	}
 
 	static QByteArray lookupHeaderField(const Request& request, const QByteArray& fieldName);
