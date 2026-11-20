@@ -78,6 +78,63 @@ private Q_SLOTS:
 		QCOMPARE(collection.progress(), 100);
 	}
 
+	void failedFilesAreBoundedByFileCount()
+	{
+		FileCollection collection;
+		collection.files = {QStringLiteral("a.txt"), QStringLiteral("b.txt")};
+
+		// a misbehaving computer keeps answering with invalid transfers after the last file
+		for (int i = 0; i < 10; ++i)
+		{
+			collection.markCurrentFileFailed(QStringLiteral("invalid"));
+			collection.processedFilesCount += 1;
+		}
+
+		QCOMPARE(collection.failedFiles.size(), 2);
+		QVERIFY(collection.isFailedFile(0));
+		QVERIFY(collection.isFailedFile(1));
+		QVERIFY(collection.isFailedFile(2) == false);
+	}
+
+	void cancelDiscardsAndMarksFileInTransfer()
+	{
+		QTemporaryDir dir;
+		QVERIFY(dir.isValid());
+		const auto filePath = dir.filePath(QStringLiteral("partial.txt"));
+
+		FileCollection collection;
+		collection.files = {QStringLiteral("a.txt"), QStringLiteral("partial.txt"), QStringLiteral("c.txt")};
+		collection.processedFilesCount = 1;
+		collection.state = FileCollection::State::FileTransferRunning;
+		QVERIFY(openOutputFile(collection, filePath));
+		QCOMPARE(collection.currentOutputFile->write("partial"), 7);
+
+		collection.cancel(QStringLiteral("cancelled"));
+
+		QCOMPARE(collection.state, FileCollection::State::Finished);
+		QVERIFY(collection.currentOutputFile == nullptr);
+		QVERIFY(collection.currentOutputFilePath.isEmpty());
+		// a late chunk of the old transfer no longer matches the transfer ID
+		QVERIFY(collection.currentTransferId.isNull());
+		QVERIFY(QFile::exists(filePath) == false);
+		QCOMPARE(collection.failedFiles.size(), 1);
+		QCOMPARE(collection.failedFiles.value(1), QStringLiteral("cancelled"));
+		QCOMPARE(collection.processedFilesCount, 1);
+	}
+
+	void cancelWithoutFileInTransferMarksNothing()
+	{
+		FileCollection collection;
+		collection.files = {QStringLiteral("a.txt"), QStringLiteral("b.txt")};
+		collection.processedFilesCount = 1;
+		collection.state = FileCollection::State::ReadyForNextFileTransfer;
+
+		collection.cancel(QStringLiteral("cancelled"));
+
+		QCOMPARE(collection.state, FileCollection::State::Finished);
+		QVERIFY(collection.failedFiles.isEmpty());
+	}
+
 	void discardRemovesFileOpenedSafely()
 	{
 		QTemporaryDir dir;
