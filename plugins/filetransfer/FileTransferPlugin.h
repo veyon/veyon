@@ -89,6 +89,8 @@ public:
 		return m_features;
 	}
 
+	QStringList sensitiveArguments(Feature::Uid featureUid) const override;
+
 	const FileTransferConfiguration& configuration() const
 	{
 		return m_configuration;

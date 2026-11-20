@@ -116,6 +116,18 @@ Feature::Uid DemoFeaturePlugin::metaFeature(Feature::Uid featureUid) const
 
 
 
+QStringList DemoFeaturePlugin::sensitiveArguments(Feature::Uid featureUid) const
+{
+	if (hasFeature(featureUid))
+	{
+		return sensitiveArgumentKeys({Argument::DemoAccessToken, Argument::VncServerPassword});
+	}
+
+	return {};
+}
+
+
+
 bool DemoFeaturePlugin::controlFeature(Feature::Uid featureUid,
 									   Operation operation,
 									   const QVariantMap& arguments,
