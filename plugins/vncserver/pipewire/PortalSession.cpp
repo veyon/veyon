@@ -2,12 +2,14 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <QDBusArgument>
+#include <QDBusMessage>
 #include <QDBusConnectionInterface>
 #include <QDBusReply>
 #include <QDBusObjectPath>
 #include <QDBusPendingCallWatcher>
 #include <QDBusPendingReply>
 #include <QDBusUnixFileDescriptor>
+#include <QDeadlineTimer>
 #include <QDir>
 #include <QFile>
 #include <QFileInfo>
@@ -568,18 +570,23 @@ void PortalSession::notifyKeyboardKeysym(quint32 keySym, bool down)
 	}
 }
 
+QDBusMessage PortalSession::inputMessage(HeldInput input, bool pressed) const
+{
+	auto message = QDBusMessage::createMethodCall(
+		PortalService, PortalObjectPath, m_remoteDesktop->interface(),
+		input.type == HeldInput::Type::Button ? QStringLiteral("NotifyPointerButton")
+											  : QStringLiteral("NotifyKeyboardKeysym"));
+	// portal state: 0 = released, 1 = pressed
+	message << QVariant::fromValue(QDBusObjectPath(m_sessionHandle)) << QVariantMap{} << int(input.code)
+			<< (pressed ? 1u : 0u);
+	return message;
+}
+
+
+
 QDBusPendingCall PortalSession::sendInput(HeldInput input, bool pressed)
 {
-	// portal state: 0 = released, 1 = pressed
-	const auto sessionPath = QDBusObjectPath(m_sessionHandle);
-	const auto state = pressed ? 1u : 0u;
-
-	if (input.type == HeldInput::Type::Button)
-	{
-		return m_remoteDesktop->NotifyPointerButton(sessionPath, QVariantMap{}, int(input.code), state);
-	}
-
-	return m_remoteDesktop->NotifyKeyboardKeysym(sessionPath, QVariantMap{}, int(input.code), state);
+	return m_sessionBus.asyncCall(inputMessage(input, pressed));
 }
 
 
@@ -634,10 +641,24 @@ void PortalSession::releaseHeldInputs()
 {
 	if (m_state == State::Running && m_sessionHandle.isEmpty() == false)
 	{
-		// best effort: the session is closed right after, so don't wait for the replies
+		// xdg-desktop-portal handles every call in a thread of its own, so Close() could overtake
+		// the releases, which then fail with "Invalid session" and leave the input pressed (e.g. on
+		// KWin's fake input), so wait for their replies. The wait is bounded, as an unresponsive
+		// portal may be why the session is closed, and QDBus::Block doesn't process events, so
+		// nothing can re-enter close() meanwhile.
+		const QDeadlineTimer deadline(ReleaseOnCloseTimeout);
 		for (auto it = m_heldInputs.constBegin(); it != m_heldInputs.constEnd(); ++it)
 		{
-			sendInput(HeldInput::fromId(it.key()), false);
+			const auto input = HeldInput::fromId(it.key());
+			const auto remainingTime = deadline.remainingTime();
+			if (remainingTime > 0)
+			{
+				m_sessionBus.call(inputMessage(input, false), QDBus::Block, int(remainingTime));
+			}
+			else
+			{
+				sendInput(input, false);
+			}
 		}
 	}
 

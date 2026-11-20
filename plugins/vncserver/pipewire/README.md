@@ -219,7 +219,8 @@ systemctl --user enable --now veyon-server
   doesn't reply to is sent once more (an error reply would only be repeated),
   a motion without reply is sent again with the next pointer event, and keys
   and buttons still pressed are released when the session is closed or
-  restarted. The session is closed
+  restarted, waiting at most 500 ms for the replies before the session is
+  closed. The session is closed
   and restarted (which also restarts capture) only if the portal is gone,
   after 8 error replies in a row (pointer positions rejected by the portal
   don't count) or after two requests in a row without reply.

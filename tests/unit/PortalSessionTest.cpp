@@ -786,6 +786,30 @@ private Q_SLOTS:
 		QCOMPARE(failedSpy.size(), 0);
 	}
 
+	// close() waits for the releases, but not for long if the portal doesn't reply
+	void closeWaitsBoundedForReleases()
+	{
+		PortalSession session(false);
+		QVERIFY(startSession(session));
+		const auto sessionNumber = currentSessionNumber();
+
+		session.notifyKeyboardKeysym('z', true);
+		session.notifyKeyboardKeysym('y', true);
+		QTRY_COMPARE(forwardedInput(sessionNumber).size(), 2);
+
+		faultReleases('z', 0, 1);
+		QElapsedTimer timer;
+		timer.start();
+		session.close();
+		const auto elapsed = timer.elapsed();
+		QVERIFY2(elapsed < PortalSession::ReleaseOnCloseTimeout + 500, qPrintable(QString::number(elapsed)));
+
+		QTRY_VERIFY(closedSessions().contains(SessionPathPrefix + QString::number(sessionNumber)));
+		QCOMPARE(rejectedInput(sessionNumber), QStringList{keyEvent(sessionNumber, 'z', 0)});
+		QCOMPARE(forwardedInput(sessionNumber).constLast(), keyEvent(sessionNumber, 'y', 0));
+		QCOMPARE(session.state(), PortalSession::State::Idle);
+	}
+
 private:
 	static void setMutter(bool mutter)
 	{
