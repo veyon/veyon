@@ -321,8 +321,7 @@ void FileCollectController::startFileTransfer(ComputerControlInterface::Pointer 
 		if (collection.currentOutputFile)
 		{
 			vCritical() << "previous file transfer not finished";
-			delete collection.currentOutputFile;
-			collection.currentOutputFile = nullptr;
+			collection.closeCurrentOutputFile();
 		}
 
 		if (fileSize < 0)
@@ -373,12 +372,13 @@ void FileCollectController::startFileTransfer(ComputerControlInterface::Pointer 
 				QFile::WriteOnly | QFile::Truncate,
 				QFile::ReadOwner | QFile::WriteOwner) == false)
 		{
-			vCritical() << "failed to open" << collection.currentOutputFile->fileName() << "for writing";
+			vCritical() << "failed to open" << outputFilePath << "for writing";
 			delete collection.currentOutputFile;
 			collection.currentOutputFile = nullptr;
 			return;
 		}
 
+		collection.currentOutputFilePath = outputFilePath;
 		collection.currentTransferId = transferId;
 		collection.currentFileSize = fileSize;
 		collection.state = FileCollection::State::FileTransferRunning;
@@ -417,14 +417,8 @@ void FileCollectController::continueFileTransfer(ComputerControlInterface::Point
 		{
 			if (dataChunk.size() > collection.currentFileSize - collection.currentOutputFile->size())
 			{
-				vCritical() << "file transfer exceeds announced file size";
-				const auto outputFilePath = collection.currentOutputFile->fileName();
-				collection.currentOutputFile->close();
-				delete collection.currentOutputFile;
-				collection.currentOutputFile = nullptr;
-				QFile::remove(outputFilePath);
-				collection.currentFileSize = 0;
-				collection.currentTransferId = FileCollection::TransferId{};
+				vCritical() << "file transfer exceeds announced file size" << collection.currentOutputFilePath;
+				collection.discardCurrentOutputFile();
 				collection.processedFilesCount += 1;
 				initiateNextFileTransfer(computerControlInterface, collection);
 				return;
@@ -432,14 +426,8 @@ void FileCollectController::continueFileTransfer(ComputerControlInterface::Point
 
 			if (collection.currentOutputFile->write(dataChunk) != dataChunk.size())
 			{
-				vCritical() << "failed to write file transfer data";
-				const auto outputFilePath = collection.currentOutputFile->fileName();
-				collection.currentOutputFile->close();
-				delete collection.currentOutputFile;
-				collection.currentOutputFile = nullptr;
-				QFile::remove(outputFilePath);
-				collection.currentFileSize = 0;
-				collection.currentTransferId = FileCollection::TransferId{};
+				vCritical() << "failed to write file transfer data" << collection.currentOutputFilePath;
+				collection.discardCurrentOutputFile();
 				collection.processedFilesCount += 1;
 				initiateNextFileTransfer(computerControlInterface, collection);
 				return;
@@ -512,19 +500,12 @@ void FileCollectController::finishFileTransfer(ComputerControlInterface::Pointer
 			return;
 		}
 
-		if (collection.currentOutputFile)
-		{
-			collection.currentOutputFile->close();
-			delete collection.currentOutputFile;
-			collection.currentOutputFile = nullptr;
-		}
-		else
+		if (collection.currentOutputFile == nullptr)
 		{
 			vCritical() << "transfer not started / output file not available" << transferId;
 		}
 
-		collection.currentFileSize = 0;
-		collection.currentTransferId = FileCollection::TransferId{};
+		collection.closeCurrentOutputFile();
 
 		collection.processedFilesCount += 1;
 

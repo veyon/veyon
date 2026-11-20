@@ -143,6 +143,27 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 
 	add_test(NAME FilesystemSafeJoinTest COMMAND FilesystemSafeJoinTest)
 
+	#
+	# FileCollectTest: output files of FileCollect opened via openFileSafely()
+	#
+	if(TARGET filetransfer)
+		add_executable(FileCollectTest
+			FileCollectTest.cpp
+		)
+
+		add_dependencies(FileCollectTest linux-platform)
+
+		target_include_directories(FileCollectTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/filetransfer)
+
+		target_link_libraries(FileCollectTest PRIVATE
+			Qt${QT_MAJOR_VERSION}::Test
+			Qt${QT_MAJOR_VERSION}::Core
+			veyon-core
+		)
+
+		add_test(NAME FileCollectTest COMMAND FileCollectTest)
+	endif()
+
 	# IpcServerTest: local IPC endpoints with real Unix domain sockets (peer credentials,
 	# socket/directory modes, one connection per endpoint)
 	add_executable(IpcServerTest

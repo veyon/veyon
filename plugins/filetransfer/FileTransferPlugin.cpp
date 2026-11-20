@@ -558,7 +558,7 @@ bool FileTransferPlugin::handleDistributeFilesMessage(const FeatureMessage& mess
 		else
 		{
 			QMessageBox::critical(nullptr, tr("File transfer"),
-								  tr("Could not receive file %1 as it could not be opened for writing!").arg(m_currentFile.fileName()));
+								  tr("Could not receive file %1 as it could not be opened for writing!").arg(m_currentFileName));
 		}
 		return true;
 
@@ -576,7 +576,10 @@ bool FileTransferPlugin::handleDistributeFilesMessage(const FeatureMessage& mess
 	case FeatureCommand::CancelFileTransfer:
 		if (m_currentFile.isOpen() && message.argument(Argument::TransferId).toUuid() == m_currentTransferId)
 		{
-			m_currentFile.remove();
+			// QFile::remove() does not work after opening via openFileSafely() (no file name)
+			m_currentFile.close();
+			m_currentFile.setFileName({});
+			QFile::remove(m_currentFileName);
 			m_currentFileName.clear();
 			m_currentTransferId = QUuid();
 		}
