@@ -69,6 +69,18 @@ static void updateSecretWidget(const Configuration::TypedProperty<SecretReferenc
 		return;
 	}
 
+	// e.g. a conflicting row of another plugin: the property is disabled instead of silently
+	// ignoring what is entered (03-secretstore-config.md §3a)
+	if (Configuration::SecretPropertyRegistry::isRegistered(property) == false)
+	{
+		widget->setEnabled(false);
+		widget->setPlaceholderText(QCoreApplication::translate("Configuration::UiMapping", "not available"));
+		widget->setToolTip(QCoreApplication::translate("Configuration::UiMapping",
+													   "This secret property is not registered with its secret key. "
+													   "See the log file for details."));
+		return;
+	}
+
 	const auto reference = property.value();
 	const auto isStored = reference.isValid() && SecretStore::keys().contains(reference.key());
 	widget->setPlaceholderText(isStored ? QCoreApplication::translate("Configuration::UiMapping", "stored securely") : QString());
