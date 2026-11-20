@@ -120,6 +120,18 @@ if(WITH_TESTS)
 	target_link_libraries(SecretStoreTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
 	add_test(NAME SecretStoreTest COMMAND SecretStoreTest)
 
+	# registry of secret properties declared by core and the plugins (03-secretstore-config.md §3a)
+	add_library(secret-properties-test-plugin MODULE secret-properties/SecretPropertiesTestPlugin.cpp)
+	target_link_libraries(secret-properties-test-plugin PRIVATE veyon-core)
+
+	add_executable(SecretPropertyRegistryTest SecretPropertyRegistryTest.cpp)
+	set_default_target_properties(SecretPropertyRegistryTest)
+	add_dependencies(SecretPropertyRegistryTest secret-properties-test-plugin)
+	target_compile_definitions(SecretPropertyRegistryTest PRIVATE
+		SECRET_PROPERTIES_TEST_PLUGIN_FILE_PATH="$<TARGET_FILE:secret-properties-test-plugin>")
+	target_link_libraries(SecretPropertyRegistryTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
+	add_test(NAME SecretPropertyRegistryTest COMMAND SecretPropertyRegistryTest)
+
 	# veyon-cli reading of secrets and writing of exports
 	add_executable(SecretInputOutputTest
 		SecretInputOutputTest.cpp
