@@ -88,9 +88,11 @@ if [ -n "$1" ] ; then
 	while IFS= read -r match ; do
 		fail "new QCA usage (use VeyonCrypto): $match"
 	# exempt: tests (may initialise the legacy crypto library to exercise existing QCA-based code),
-	# the legacy wrapper itself and the migration that decrypts legacy values (03 §4)
+	# the legacy wrapper itself, the migration that decrypts legacy values (03 §4) and the package
+	# dependencies on the QCA plugins, which are needed as long as the legacy wrapper links QCA
 	done < <(git diff --unified=0 "$1" -- '*.c' '*.cpp' '*.h' '*.hpp' 'CMakeLists.txt' '*.cmake' ':!tests/' \
-				 ':!core/src/CryptoCore.*' ':!core/src/Configuration/LegacySecretMigration.*' |
+				 ':!core/src/CryptoCore.*' ':!core/src/Configuration/LegacySecretMigration.*' \
+				 ':!cmake/CPackDefinitions.cmake' |
 				 grep -E '^\+[^+]' | grep -E "$QCA_PATTERN" || true)
 fi
 
