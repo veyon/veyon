@@ -21,8 +21,9 @@ public:
 		Pending		 // a dialog is already open, reply once it has been answered
 	};
 
-	// sessionUser is the login name of the session's user - a cached identity is only returned
-	// as long as the session user did not change
+	// the cache is invalidated by the end of the server process, which ends with the session or when the
+	// server is restarted (e.g. on logon/logoff); sessionUser (login name of the session's user) is only
+	// an additional safeguard - a cached identity is not returned if it changes
 	RequestResult addRequest(const MessageContext& context, const QString& sessionUser, bool dialogRunning)
 	{
 		if (m_identity.isEmpty() == false && m_identitySessionUser == sessionUser)
@@ -66,6 +67,9 @@ public:
 	// an empty identity (e.g. dialog cancelled) is not cached so that the user is asked again
 	QList<MessageContext> complete(const QString& identity, const QString& sessionUser)
 	{
+		// the context ID of the reply is not compared with requestId() on purpose: the ID is regenerated
+		// each time the request is sent again, and a reply to any of them answers all pending requests;
+		// replies can only come from the authenticated worker of this feature anyway
 		if (m_requestId.isNull())
 		{
 			// no request pending
