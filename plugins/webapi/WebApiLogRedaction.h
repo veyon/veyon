@@ -61,6 +61,28 @@ static inline QByteArray redactedHeaders(const QVariantMap& headers)
 	return toJson(data);
 }
 
+// compact JSON of a one-element array without the brackets: strings quoted, containers expanded
+static inline QString jsonValue(const QVariant& value)
+{
+	const auto json = QJsonDocument(QJsonArray{QJsonValue::fromVariant(value)}).toJson(QJsonDocument::Compact);
+	return QString::fromUtf8(json.mid(1, json.size() - 2));
+}
+
+// keys can come from a client, so they are escaped like values (no line breaks or control characters
+// in the log) but without the quotes, and long keys are truncated
+static inline QString escapedKey(const QString& key)
+{
+	static constexpr auto MaximumKeyLength = 64;
+
+	const auto quoted = jsonValue(key.left(MaximumKeyLength));
+	auto escaped = quoted.mid(1, quoted.size() - 2);
+	if (key.size() > MaximumKeyLength)
+	{
+		escaped += QStringLiteral("...");
+	}
+	return escaped;
+}
+
 // formats data as "{key=value, ...}" with "<redacted>" instead of the value of every key
 // in sensitiveKeys (compared case-insensitively); inline variant of Logger::redacted() of 4.12
 static inline QString redacted(const QVariantMap& data, const QStringList& sensitiveKeys)
@@ -72,13 +94,11 @@ static inline QString redacted(const QVariantMap& data, const QStringList& sensi
 	{
 		if (sensitiveKeys.contains(it.key(), Qt::CaseInsensitive))
 		{
-			entries.append(it.key() + QStringLiteral("=<redacted>"));
+			entries.append(escapedKey(it.key()) + QStringLiteral("=<redacted>"));
 		}
 		else
 		{
-			// compact JSON of a one-element array without the brackets: strings quoted, containers expanded
-			const auto value = QJsonDocument(QJsonArray{QJsonValue::fromVariant(it.value())}).toJson(QJsonDocument::Compact);
-			entries.append(it.key() + QLatin1Char('=') + QString::fromUtf8(value.mid(1, value.size() - 2)));
+			entries.append(escapedKey(it.key()) + QLatin1Char('=') + jsonValue(it.value()));
 		}
 	}
 

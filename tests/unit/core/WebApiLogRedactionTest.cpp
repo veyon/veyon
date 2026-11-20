@@ -72,6 +72,38 @@ private Q_SLOTS:
 		QCOMPARE(output, QStringLiteral("{connection-uid=<redacted>, validUntil=1234}"));
 	}
 
+	void redactedFormat_data()
+	{
+		QTest::addColumn<QVariantMap>("data");
+		QTest::addColumn<QStringList>("sensitiveKeys");
+		QTest::addColumn<QString>("expected");
+
+		QTest::newRow("empty") << QVariantMap{} << QStringList{} << QStringLiteral("{}");
+		QTest::newRow("values") << QVariantMap{{QStringLiteral("a"), QStringLiteral("x")}, {QStringLiteral("b"), 42}}
+								<< QStringList{} << QStringLiteral(R"({a="x", b=42})");
+		QTest::newRow("case-insensitive") << QVariantMap{{QStringLiteral("Credentials"), QStringLiteral("secret")}}
+										  << QStringList{QStringLiteral("credentials")} << QStringLiteral("{Credentials=<redacted>}");
+		// keys come from the request body of a client: no forged log lines, no unbounded length
+		QTest::newRow("newline in key") << QVariantMap{{QStringLiteral("a\n2026-11-20T00:00:00.000: [INFO] forged line"), 1}}
+										<< QStringList{} << QStringLiteral(R"({a\n2026-11-20T00:00:00.000: [INFO] forged line=1})");
+		QTest::newRow("newline in sensitive key") << QVariantMap{{QStringLiteral("a\r\nb\"c"), QStringLiteral("secret")}}
+												  << QStringList{QStringLiteral("a\r\nb\"c")} << QStringLiteral(R"({a\r\nb\"c=<redacted>})");
+		QTest::newRow("long key truncated") << QVariantMap{{QString(100, QLatin1Char('k')), 1}}
+											<< QStringList{} << QLatin1Char('{') + QString(64, QLatin1Char('k')) + QStringLiteral("...=1}");
+	}
+
+	void redactedFormat()
+	{
+		QFETCH(QVariantMap, data);
+		QFETCH(QStringList, sensitiveKeys);
+		QFETCH(QString, expected);
+
+		const auto output = WebApiLogRedaction::redacted(data, sensitiveKeys);
+		QCOMPARE(output, expected);
+		QVERIFY(output.contains(QLatin1Char('\n')) == false);
+		QVERIFY(output.contains(QLatin1Char('\r')) == false);
+	}
+
 	void requestData()
 	{
 		const QVariantMap request{{QStringLiteral("method"), QStringLiteral("0c69b301-81b4-42d6-8fae-128cdd113314")},
