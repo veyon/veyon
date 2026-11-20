@@ -7,6 +7,7 @@
 #include <QMenu>
 #include <QPaintEvent>
 #include <QPainter>
+#include <QScreen>
 
 #include "Computer.h"
 #include "ComputerControlInterface.h"
@@ -444,9 +445,44 @@ void RemoteAccessWidget::resizeEvent(QResizeEvent* event)
 
 void RemoteAccessWidget::updateSize()
 {
+	// don't resize or move maximized or fullscreen windows
+	if (isMaximized() || isFullScreen())
+	{
+		return;
+	}
+
 	if (!(windowState() & Qt::WindowFullScreen))
 	{
-		resize(m_vncView->sizeHint());
+		auto newSize = m_vncView->sizeHint();
+
+		// the size hint may span multiple screens, so don't exceed the available area of the current screen
+		const auto* windowScreen = screen();
+		if (windowScreen)
+		{
+			const auto maximumSize = windowScreen->availableGeometry().size() - (frameSize() - size());
+			if (newSize.width() > maximumSize.width() || newSize.height() > maximumSize.height())
+			{
+				newSize = newSize.scaled(maximumSize, Qt::KeepAspectRatio);
+			}
+		}
+
+		resize(newSize);
+
+		// also keep the window within the available area of the screen, e.g. if it has been
+		// moved to the position of the master window
+		if (windowScreen)
+		{
+			const auto availableGeometry = windowScreen->availableGeometry();
+			QRect frame{frameGeometry().topLeft(), newSize + (frameSize() - size())};
+			frame.moveRight(qMin(frame.right(), availableGeometry.right()));
+			frame.moveBottom(qMin(frame.bottom(), availableGeometry.bottom()));
+			frame.moveLeft(qMax(frame.left(), availableGeometry.left()));
+			frame.moveTop(qMax(frame.top(), availableGeometry.top()));
+			if (frame.topLeft() != frameGeometry().topLeft())
+			{
+				move(frame.topLeft());
+			}
+		}
 	}
 }
 
