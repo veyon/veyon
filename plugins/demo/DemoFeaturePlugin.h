@@ -4,6 +4,7 @@
 #pragma once
 
 #include <QGuiApplication>
+#include <QMutex>
 
 #include "ConfigurationPagePluginInterface.h"
 #include "DemoConfiguration.h"
@@ -110,6 +111,7 @@ private:
 
 	QRect viewportFromScreenSelection() const;
 
+	void setDemoServerActive(bool active);
 	void controlDemoServer();
 	bool controlDemoClient(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
 						   const ComputerControlInterfaceList& computerControlInterfaces);
@@ -143,8 +145,10 @@ private:
 	DemoServer* m_demoServer;
 	DemoClient* m_demoClient;
 
+	QMutex m_demoServerMutex;
 	ComputerControlInterfaceList m_demoServerControlInterfaces{};
 	ComputerControlInterfaceList m_demoServerClients{};
 	QVariantMap m_demoServerArguments{};
 	QTimer m_demoServerControlTimer{this};
+	bool m_demoServerActive{false};
 };
