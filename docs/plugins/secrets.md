@@ -16,17 +16,30 @@ Veyon 4.12 keeps secrets (directory credentials, private keys, tokens) in the `S
   another storage location when the store is not available.
 - Scopes are naming hygiene, not access control: every plugin loaded into a privileged process can
   read every scope. Plugins use their lower-case plugin name as scope.
-- Register every secret property in the static table `Configuration::SecretProperties`
-  (`core/src/Configuration/SecretProperties.h`); `veyon-cli config set/unset/clear` and
-  `config export/import --include-secrets` use only this table. Former `Configuration::Password`
-  properties (e.g. of the Entra ID connector) are marked `isLegacyPassword` and are migrated by
-  `LegacySecretMigration`.
-- Declare a secret as a `Configuration::SecretReference` property whose default value is its fixed
-  key, e.g.
+- Declare every secret property in `PluginInterface::secretProperties()` of the plugin, returning
+  `{parentKey, key, secretKey, isLegacyPassword}` rows (`core/src/Configuration/SecretProperty.h`),
+  e.g. `{QStringLiteral("MyPlugin"), QStringLiteral("ClientSecret"), QStringLiteral("myplugin/clientSecret"), false}`.
+  No core change is needed. After loading the plugins, `PluginManager` merges the rows into the
+  `Configuration::SecretPropertyRegistry` (`core/src/Configuration/SecretPropertyRegistry.h`), which
+  also holds the rows of core; `veyon-cli config set/unset/clear`, `config export/import
+  --include-secrets`, the configurator, the scrubbing and the legacy migration at privileged start
+  use only this registry. A row is rejected with a critical log message if its secret key is
+  invalid, uses a reserved scope (`core`, `ipc`, `pki`, `tls`) or its property or secret key is
+  declared already (the first registration wins); its property is then never resolved. Former
+  `Configuration::Password` properties (e.g. the client secret of the Entra ID connector) are
+  marked `isLegacyPassword` and are migrated by `LegacySecretMigration`.
+- Values of secret properties of plugins which are not installed (or failed to load) are not in
+  the registry: they are never resolved and left untouched, including legacy encrypted values,
+  which stay in the configuration until the plugin is installed and the next privileged start
+  migrates them. `veyon-cli config set` refuses to change such a `secret:` value, and `config
+  import --include-secrets` refuses secrets no loaded plugin declares.
+- Declare the property as a `Configuration::SecretReference` property whose default value is the
+  same fixed key, e.g.
   `OP(MyConfiguration, m_configuration, Configuration::SecretReference, clientSecret, setClientSecret, "ClientSecret", "MyPlugin", Configuration::SecretReference::defaultValue(QStringLiteral("myplugin/clientSecret")), Configuration::Property::Flag::Standard)`.
   The configurator, `veyon-cli config set` and `config export/import --include-secrets` then
   handle it; read it with `SecretStore::read(m_configuration.clientSecret().key())`. A stored value
-  never redirects a property to another key.
+  never redirects a property to another key, and a property whose default value doesn't match its
+  registered row resolves to an invalid reference.
 - Never log secret values, put them into command lines, environment variables or files outside the
   store; keep them in `Veyon::Crypto::SecureBuffer`.
 
@@ -98,4 +111,4 @@ both directories by handle, without following junctions or symlinks:
 | `pki` | `caKey`, `tokenSigningKey` | core (CA host) |
 | `ldap` | `bindPassword` | LDAP plugin |
 | `vncserver-external` | `password` | external VNC server plugin |
-| `entra` | plugin-defined | Entra ID connector |
+| `entra` | `clientSecret`, `clientCertificateKey` | Entra ID connector |
