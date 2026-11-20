@@ -496,6 +496,15 @@ void LinuxServiceCore::startServer(const QString& sessionPath)
 
 	const auto sessionUid = LinuxUserFunctions::getUserProperty(sessionUserPath, QStringLiteral("UID")).toUInt();
 
+	// the session environment is merged from all processes of the session, some of which may
+	// not belong to the user (e.g. helpers started by PAM modules with HOME=/), so always use
+	// the user's identity and home directory from the password database
+	if (sessionUid > 0 &&
+		LinuxUserFunctions::setUserEnvironment(serverEnvironment, sessionUid) == false)
+	{
+		vWarning() << "could not set user environment for session" << sessionPath;
+	}
+
 	// workaround for #817 where LinuxSessionFunctions::getSessionEnvironment() does not return all
 	// environment variables when executed via systemd for an established KDE session and xdg-open fails
 	if (sessionType != LinuxSessionFunctions::Type::Wayland &&

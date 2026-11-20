@@ -331,6 +331,27 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	add_test(NAME LinuxUserProcessTest COMMAND LinuxUserProcessTest)
 	set_tests_properties(LinuxUserProcessTest PROPERTIES TIMEOUT 60)
 
+	# LinuxUserFunctionsTest: user environment (HOME etc.) of servers from the password database
+	add_executable(LinuxUserFunctionsTest
+		LinuxUserFunctionsTest.cpp
+	)
+	set_default_target_properties(LinuxUserFunctionsTest)
+	target_include_directories(LinuxUserFunctionsTest PRIVATE
+		${CMAKE_SOURCE_DIR}/plugins/platform/linux
+		$<TARGET_PROPERTY:linux-platform,INCLUDE_DIRECTORIES>
+	)
+	target_compile_definitions(LinuxUserFunctionsTest PRIVATE
+		$<TARGET_PROPERTY:linux-platform,COMPILE_DEFINITIONS>
+	)
+	target_link_libraries(LinuxUserFunctionsTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+		Qt${QT_MAJOR_VERSION}::DBus
+		veyon-core
+		linux-platform
+	)
+	add_test(NAME LinuxUserFunctionsTest COMMAND LinuxUserFunctionsTest)
+
 	# DesktopServicesFeatureTest: website URLs handled by the worker after serialization
 	if(TARGET desktopservices)
 		add_executable(DesktopServicesFeatureTest
