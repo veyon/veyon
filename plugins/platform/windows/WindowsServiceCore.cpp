@@ -181,6 +181,15 @@ void WindowsServiceCore::manageServerForConsoleSession()
 		}
 	};
 
+	const auto startServer = [this, &serverProcess](WtsSessionManager::SessionId wtsSessionId) {
+		if (m_serviceStopRequested == 0 &&
+			wtsSessionId != WtsSessionManager::InvalidSession)
+		{
+			serverProcess = new VeyonServerProcess(wtsSessionId, PlatformSessionFunctions::DefaultSessionId,
+												   m_dataManager);
+		}
+	};
+
 	auto oldWtsSessionId = WtsSessionManager::InvalidSession;
 
 	do
@@ -202,19 +211,21 @@ void WindowsServiceCore::manageServerForConsoleSession()
 			}
 
 			stopServer();
-
-			if (m_serviceStopRequested == 0 &&
-				wtsSessionId != WtsSessionManager::InvalidSession)
-			{
-				serverProcess = new VeyonServerProcess(wtsSessionId, PlatformSessionFunctions::DefaultSessionId,
-													   m_dataManager);
-			}
+			startServer(wtsSessionId);
 
 			oldWtsSessionId = wtsSessionId;
 		}
+		else if (serverProcess && serverProcess->hasServerEndpointFailed())
+		{
+			// the server may still be running but can't use its IPC endpoint any longer (02 §1: too many
+			// failed handshakes), so shut it down gracefully and start a new one with a new endpoint
+			vCritical() << "IPC endpoint of server for WTS session" << wtsSessionId << "failed - restarting server";
+			stopServer();
+			startServer(wtsSessionId);
+		}
 		else if (serverProcess && serverProcess->isRunning() == false)
 		{
-			qDebug() << "server not running - (re)starting";
+			vDebug() << "server not running - (re)starting";
 			if (wtsSessionId != WtsSessionManager::InvalidSession)
 			{
 				serverProcess->restartIfNotRunning();

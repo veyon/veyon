@@ -49,7 +49,7 @@ VeyonServerProcess::~VeyonServerProcess()
 bool VeyonServerProcess::restartIfNotRunning()
 {
 	// a server whose IPC endpoint failed (02 §1: too many failed handshakes) is considered failed
-	const auto endpointFailed = m_dataManager.hasServerEndpointFailed(m_ipcEndpointName);
+	const auto endpointFailed = hasServerEndpointFailed();
 	if (endpointFailed)
 	{
 		vCritical() << "IPC endpoint of server for WTS session" << m_wtsSessionId << "failed - restarting server";
@@ -83,6 +83,14 @@ bool VeyonServerProcess::isRunning() const
 	}
 
 	return false;
+}
+
+
+
+bool VeyonServerProcess::hasServerEndpointFailed() const
+{
+	// false without an endpoint (empty name), e.g. if creating it or starting the server failed
+	return m_dataManager.hasServerEndpointFailed(m_ipcEndpointName);
 }
 
 

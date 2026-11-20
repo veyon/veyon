@@ -235,6 +235,36 @@ private Q_SLOTS:
 
 		QVERIFY(checks().isEmpty());
 	}
+
+	// the service polls hasServerEndpointFailed() for the endpoint of a running server (the Windows
+	// service restarts the server then): set once too many handshakes failed, cleared on removal
+	void failedEndpoint()
+	{
+		QVERIFY(m_dataManager->hasServerEndpointFailed(QString()) == false);
+
+		auto endpoint = createEndpoint(serverPolicy(), getpid());
+		QVERIFY(endpoint.has_value());
+		QVERIFY(m_dataManager->hasServerEndpointFailed(endpoint->name) == false);
+
+		// handshakes of the right process with a wrong role fail
+		for (int i = 0; i < IpcProtocol::MaximumFailedHandshakes; ++i)
+		{
+			QVERIFY(m_dataManager->hasServerEndpointFailed(endpoint->name) == false);
+			IpcClient client(IpcProtocol::Role::Worker, quint32(VeyonCore::sessionId()));
+			QVERIFY(client.connectAndHandshake(IpcServer::serviceEndpointDirectory(), parseLine(*endpoint), 1000) ==
+					false);
+		}
+		QTRY_VERIFY(m_dataManager->hasServerEndpointFailed(endpoint->name));
+
+		// other endpoints are not affected
+		auto otherEndpoint = createEndpoint(serverPolicy(), getpid());
+		QVERIFY(otherEndpoint.has_value());
+		QVERIFY(m_dataManager->hasServerEndpointFailed(otherEndpoint->name) == false);
+		m_dataManager->removeServerEndpoint(otherEndpoint->name);
+
+		m_dataManager->removeServerEndpoint(endpoint->name);
+		QVERIFY(m_dataManager->hasServerEndpointFailed(endpoint->name) == false);
+	}
 };
 
 

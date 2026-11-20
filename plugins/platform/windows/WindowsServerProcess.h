@@ -23,6 +23,7 @@ public:
 
 	bool restartIfNotRunning();
 	bool isRunning() const;
+	bool hasServerEndpointFailed() const;
 	bool waitForFinished(DWORD timeout) const;
 
 private:
