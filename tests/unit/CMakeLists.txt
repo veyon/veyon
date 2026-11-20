@@ -148,6 +148,22 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 
 	add_test(NAME FilesystemSafeJoinTest COMMAND FilesystemSafeJoinTest)
 
+	# redaction of sensitive feature arguments in logs, with the plugins of the build tree
+	add_executable(FeatureMessageRedactionTest
+		core/FeatureMessageRedactionTest.cpp
+	)
+
+	add_dependencies(FeatureMessageRedactionTest linux-platform usersessioncontrol demo remoteaccess filetransfer)
+
+	target_link_libraries(FeatureMessageRedactionTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Widgets
+		veyon-core
+	)
+
+	add_test(NAME FeatureMessageRedactionTest COMMAND FeatureMessageRedactionTest)
+	set_tests_properties(FeatureMessageRedactionTest PROPERTIES ENVIRONMENT QT_QPA_PLATFORM=offscreen)
+
 	# debug output of the WebAPI plugin never contains the session token or credentials
 	if(WITH_WEBAPI)
 		add_executable(WebApiLogRedactionTest
