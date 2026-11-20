@@ -14,9 +14,23 @@
 #include "MonitoringMode.h"
 #include "PlatformCoreFunctions.h"
 #include "PlatformUserFunctions.h"
+#include "UserIdentificationCache.h"
 #include "VeyonConfiguration.h"
 #include "VeyonServerInterface.h"
 #include "VeyonWorkerInterface.h"
+
+
+namespace {
+
+// there's only one MonitoringMode instance per process and the cache is used in the server only
+UserIdentificationCache& userIdentificationCache()
+{
+	static UserIdentificationCache cache;
+	return cache;
+}
+
+}
+
 
 
 MonitoringMode::MonitoringMode(QObject* parent) :
@@ -289,12 +303,24 @@ bool MonitoringMode::handleFeatureMessage(VeyonServerInterface& server,
 
 	if (message.featureUid() == m_identifyUserFeature.uid())
 	{
-		const auto contextId = QUuid::createUuid();
-		m_userIdentificationContexts[contextId] = messageContext;
-
-		server.featureWorkerManager().sendMessageToUnmanagedSessionWorker(
-			FeatureMessage{m_identifyUserFeature.uid()}
-				.addArgument(Argument::UserIdentificationContextId, contextId));
+		// arguments of the message are ignored on purpose - the identity is only ever set by the
+		// session's user through the dialog of the session worker
+		auto& cache = userIdentificationCache();
+		switch (cache.addRequest(messageContext, sessionUserLoginName(),
+								 server.featureWorkerManager().isWorkerRunning(m_identifyUserFeature.uid())))
+		{
+		case UserIdentificationCache::RequestResult::Cached:
+			return server.sendFeatureMessageReply(messageContext,
+												  FeatureMessage{m_identifyUserFeature.uid()}
+													  .addArgument(Argument::UserIdentity, cache.identity()));
+		case UserIdentificationCache::RequestResult::StartDialog:
+			server.featureWorkerManager().sendMessageToUnmanagedSessionWorker(
+				FeatureMessage{m_identifyUserFeature.uid()}
+					.addArgument(Argument::UserIdentificationContextId, cache.requestId()));
+			break;
+		case UserIdentificationCache::RequestResult::Pending:
+			break;
+		}
 		return true;
 	}
 
@@ -347,13 +373,23 @@ bool MonitoringMode::handleFeatureMessageFromWorker(VeyonServerInterface& server
 	if (message.featureUid() == m_identifyUserFeature.uid() &&
 		message.hasArgument(Argument::UserIdentificationContextId))
 	{
-		const auto contextId = message.argument(Argument::UserIdentificationContextId).toUuid();
-
 		server.featureWorkerManager().stopWorker(m_identifyUserFeature.uid());
 
-		// forward message to master - if contextId does not exist, default constructed MessageContext has
-		// ioDevice=nullptr so sendFeatureMessageReply() will do nothing
-		return server.sendFeatureMessageReply(m_userIdentificationContexts.value(contextId), message);
+		const auto userIdentity = message.argument(Argument::UserIdentity).toString().trimmed();
+
+		// answer all masters which asked while the dialog was open - closed connections have
+		// ioDevice=nullptr so sendFeatureMessageReply() will do nothing for them
+		const auto requests = userIdentificationCache().complete(userIdentity, sessionUserLoginName());
+		for (const auto& request : requests)
+		{
+			server.sendFeatureMessageReply(request,
+										   FeatureMessage{m_identifyUserFeature.uid()}
+											   .addArgument(Argument::UserIdentificationContextId,
+															message.argument(Argument::UserIdentificationContextId))
+											   .addArgument(Argument::UserIdentity, userIdentity));
+		}
+
+		return true;
 	}
 
 	return false;
@@ -367,8 +403,19 @@ bool MonitoringMode::handleFeatureMessage(VeyonWorkerInterface& worker, const Fe
 		return false;
 	}
 
+	// the server only sends one request at a time but may send it again (e.g. if the worker could not
+	// be started at first) - never stack dialogs as one answer is sufficient for all requests
+	static bool dialogOpen = false;
+	if (dialogOpen)
+	{
+		return true;
+	}
+
 	const auto contextId = message.argument(Argument::UserIdentificationContextId);
+
+	dialogOpen = true;
 	const auto userIdentity = queryUserIdentity();
+	dialogOpen = false;
 
 	return worker.sendFeatureMessageReply(FeatureMessage{m_identifyUserFeature.uid()}
 											  .addArgument(Argument::UserIdentificationContextId, contextId)
@@ -603,6 +650,21 @@ QString MonitoringMode::queryUserIdentity()
 
 	VeyonCore::platform().coreFunctions().raiseWindow(&dialog, true);
 
-	dialog.exec();
+	if (dialog.exec() != QDialog::Accepted)
+	{
+		return {};
+	}
+
 	return dialog.textValue();
+}
+
+
+
+QString MonitoringMode::sessionUserLoginName()
+{
+	m_userDataLock.lockForRead();
+	const auto userLoginName = m_userLoginName;
+	m_userDataLock.unlock();
+
+	return userLoginName;
 }

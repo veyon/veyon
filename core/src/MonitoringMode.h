@@ -154,6 +154,7 @@ private:
 	void updateScreenInfoList();
 
 	QString queryUserIdentity();
+	QString sessionUserLoginName();
 
 	enum class FeatureCommand {
 		Ping,
@@ -197,7 +198,7 @@ private:
 	QAtomicInt m_sessionInfoVersion = 0;
 	QTimer m_sessionInfoUpdateTimer;
 
-	QMap<QUuid, MessageContext> m_userIdentificationContexts;
+	QMap<QUuid, MessageContext> m_userIdentificationContexts; // unused, kept for binary compatibility
 	GuestUserIdentityExtensionType m_guestUserIdentityExtensionType;
 	QString m_guestUserIdentityExtensionValue;
 };
