@@ -75,6 +75,7 @@ public:
 	ConfigurationPage* createConfigurationPage() override;
 
 public Q_SLOTS:
+	CommandLinePluginInterface::RunResult handle_help(const QStringList& arguments);
 	CommandLinePluginInterface::RunResult handle_runserver(const QStringList& arguments);
 
 private:
