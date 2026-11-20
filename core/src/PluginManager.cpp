@@ -58,12 +58,6 @@ void PluginManager::loadPlatformPlugins()
 void PluginManager::loadPlugins()
 {
 	loadPlugins(QStringLiteral("*") + VeyonCore::sharedLibrarySuffix());
-
-	// before anything uses the registry, e.g. the legacy secret migration (03-secretstore-config.md §3a)
-	for (auto pluginInterface : std::as_const(m_pluginInterfaces))
-	{
-		Configuration::SecretPropertyRegistry::addPluginProperties(*pluginInterface);
-	}
 }
 
 
@@ -104,6 +98,10 @@ void PluginManager::registerExtraPluginInterface(QObject* pluginObject)
 	{
 		m_pluginInterfaces += pluginInterface;
 		m_pluginObjects += pluginObject;
+
+		// registered after the legacy secret migration (VeyonCore::initFeatures()), i.e. legacy
+		// values of these rows are migrated at the next privileged start only
+		Configuration::SecretPropertyRegistry::addPluginProperties(*pluginInterface);
 	}
 }
 
@@ -253,6 +251,10 @@ void PluginManager::loadPlugins(const QString& nameFilter)
 			m_pluginInterfaces += pluginInterface; // clazy:exclude=reserve-candidates
 			m_pluginObjects += pluginObject;	   // clazy:exclude=reserve-candidates
 			m_pluginLoaders += pluginLoader;	   // clazy:exclude=reserve-candidates
+
+			// before anything uses the registry, e.g. the legacy secret migration, which runs after
+			// all plugins have been loaded (03-secretstore-config.md §3a)
+			Configuration::SecretPropertyRegistry::addPluginProperties(*pluginInterface);
 		}
 		else
 		{

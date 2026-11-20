@@ -1,6 +1,8 @@
 // SPDX-FileCopyrightText: 2026 Tobias Junghans <tobydox@veyon.io>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include <QMutex>
+
 #include "Configuration/Property.h"
 #include "Configuration/SecretPropertyRegistry.h"
 #include "PluginInterface.h"
@@ -27,24 +29,95 @@ static SecretPropertyList coreSecretProperties()
 
 
 
-static SecretPropertyList& registeredProperties()
+namespace {
+
+struct RegisteredRow
 {
-	static SecretPropertyList properties = coreSecretProperties();
-	return properties;
+	SecretProperty secretProperty;
+	Plugin::Uid providerUid; // null for rows of core
+	QString providerName;
+};
+
+struct Registry
+{
+	QList<RegisteredRow> rows;
+	SecretPropertyList properties;
+	// lower-case keys of rejected conflicting rows, so that the result does not depend on the order
+	// in which the rows are added
+	QStringList conflictingPropertyKeys;
+	QStringList conflictingSecretKeys;
+
+	Registry()
+	{
+		reset();
+	}
+
+	void reset()
+	{
+		rows.clear();
+		const auto coreProperties = coreSecretProperties();
+		for (const auto& secretProperty : coreProperties)
+		{
+			rows.append({secretProperty, {}, QStringLiteral("core")});
+		}
+		conflictingPropertyKeys.clear();
+		conflictingSecretKeys.clear();
+		updateProperties();
+	}
+
+	void updateProperties()
+	{
+		properties.clear();
+		properties.reserve(rows.size());
+		for (const auto& row : std::as_const(rows))
+		{
+			properties.append(row.secretProperty);
+		}
+	}
+};
+
+// properties logged by ownReference() already
+QMutex loggedPropertiesMutex;
+QStringList loggedProperties;
+
+}
+
+
+
+static Registry& registry()
+{
+	static Registry registry;
+	return registry;
+}
+
+
+
+// a copy which does not share data with the given string, which may be a QStringLiteral in the
+// library of a plugin
+static QString deepCopy(const QString& string)
+{
+	return string.isNull() ? QString() : QString(string.constData(), string.size());
+}
+
+
+
+static QString describeProvider(Plugin::Uid providerUid, const QString& providerName)
+{
+	return providerUid.isNull() ? providerName : QStringLiteral("%1 (%2)").arg(providerName, providerUid.toString(QUuid::WithoutBraces));
 }
 
 
 
 const SecretPropertyList& SecretPropertyRegistry::properties()
 {
-	return registeredProperties();
+	return registry().properties;
 }
 
 
 
 std::optional<SecretProperty> SecretPropertyRegistry::find(const QString& parentKey, const QString& key)
 {
-	for (const auto& secretProperty : std::as_const(registeredProperties()))
+	for (const auto& secretProperty : std::as_const(registry().properties))
 	{
 		if (QString::compare(parentKey, secretProperty.parentKey, Qt::CaseInsensitive) == 0 &&
 			QString::compare(key, secretProperty.key, Qt::CaseInsensitive) == 0)
@@ -58,58 +131,107 @@ std::optional<SecretProperty> SecretPropertyRegistry::find(const QString& parent
 
 
 
-bool SecretPropertyRegistry::add(const SecretProperty& secretProperty, const QString& providerName)
+bool SecretPropertyRegistry::add(const SecretProperty& declaredProperty, Plugin::Uid providerUid, const QString& declaredProviderName)
 {
+	const SecretProperty secretProperty{deepCopy(declaredProperty.parentKey), deepCopy(declaredProperty.key),
+										deepCopy(declaredProperty.secretKey), declaredProperty.isLegacyPassword};
+	const auto providerName = deepCopy(declaredProviderName);
+	const auto provider = describeProvider(providerUid, providerName);
+
 	QString key;
 	QString parentKey;
 	if (splitConfigurationKey(secretProperty.propertyKey(), key, parentKey) == false)
 	{
-		vCritical() << "rejecting secret property" << secretProperty.propertyKey() << "of" << providerName
+		vCritical() << "rejecting secret property" << secretProperty.propertyKey() << "of" << provider
 					<< "- invalid property key";
 		return false;
 	}
 
 	if (SecretStore::isValidKey(secretProperty.secretKey) == false)
 	{
-		vCritical() << "rejecting secret property" << secretProperty.propertyKey() << "of" << providerName
+		vCritical() << "rejecting secret property" << secretProperty.propertyKey() << "of" << provider
 					<< "- invalid secret key" << secretProperty.secretKey;
 		return false;
 	}
 
 	if (isReservedScope(secretProperty.secretKey))
 	{
-		vCritical() << "rejecting secret property" << secretProperty.propertyKey() << "of" << providerName
+		vCritical() << "rejecting secret property" << secretProperty.propertyKey() << "of" << provider
 					<< "- secret key" << secretProperty.secretKey << "uses a reserved scope";
 		return false;
 	}
 
-	for (const auto& registeredProperty : std::as_const(registeredProperties()))
+	auto& rows = registry().rows;
+	const auto propertyKey = secretProperty.propertyKey().toLower();
+	const auto secretKey = secretProperty.secretKey.toLower();
+
+	auto conflicts = registry().conflictingPropertyKeys.contains(propertyKey) ||
+		registry().conflictingSecretKeys.contains(secretKey);
+	if (conflicts)
 	{
-		const auto sameProperty = QString::compare(registeredProperty.propertyKey(), secretProperty.propertyKey(),
-												   Qt::CaseInsensitive) == 0;
-		const auto sameSecretKey = registeredProperty.secretKey == secretProperty.secretKey;
+		vCritical() << "rejecting secret property" << secretProperty.propertyKey() << "of" << provider
+					<< "- conflicts with secret properties rejected before";
+	}
+
+	QList<qsizetype> conflictingRows;
+	for (qsizetype i = 0; i < rows.size(); ++i)
+	{
+		const auto& registeredRow = rows.at(i);
+		const auto& registeredProperty = registeredRow.secretProperty;
+		const auto sameProperty = registeredProperty.propertyKey().toLower() == propertyKey;
+		const auto sameSecretKey = registeredProperty.secretKey.toLower() == secretKey;
 		if (sameProperty == false && sameSecretKey == false)
 		{
 			continue;
 		}
 
-		// the same row again, e.g. plugins loaded by another VeyonCore instance in this process
-		if (sameProperty && sameSecretKey && registeredProperty.parentKey == secretProperty.parentKey &&
-			registeredProperty.key == secretProperty.key &&
+		// the same row again from the same provider, e.g. plugins loaded by another VeyonCore
+		// instance in this process
+		if (conflicts == false && registeredRow.providerUid.isNull() == false && registeredRow.providerUid == providerUid &&
+			registeredProperty.parentKey == secretProperty.parentKey && registeredProperty.key == secretProperty.key &&
+			registeredProperty.secretKey == secretProperty.secretKey &&
 			registeredProperty.isLegacyPassword == secretProperty.isLegacyPassword)
 		{
 			return true;
 		}
 
-		vCritical() << "rejecting secret property" << secretProperty.propertyKey() << "of" << providerName
-					<< "- conflicts with the registered secret property" << registeredProperty.propertyKey()
-					<< registeredProperty.secretKey;
-		return false;
+		vCritical() << "rejecting secret property" << secretProperty.propertyKey() << secretProperty.secretKey << "of" << provider
+					<< "- conflicts with the secret property" << registeredProperty.propertyKey()
+					<< registeredProperty.secretKey << "of" << describeProvider(registeredRow.providerUid, registeredRow.providerName);
+		conflicts = true;
+
+		// core rows always win
+		if (registeredRow.providerUid.isNull() == false)
+		{
+			conflictingRows.append(i);
+		}
 	}
 
-	registeredProperties().append(secretProperty);
+	if (conflicts == false)
+	{
+		rows.append({secretProperty, providerUid, providerName});
+		registry().updateProperties();
+		return true;
+	}
 
-	return true;
+	registry().conflictingPropertyKeys.append(propertyKey);
+	registry().conflictingSecretKeys.append(secretKey);
+
+	for (auto it = conflictingRows.crbegin(); it != conflictingRows.crend(); ++it)
+	{
+		const auto registeredRow = rows.takeAt(*it);
+		vCritical() << "rejecting the registered secret property" << registeredRow.secretProperty.propertyKey()
+					<< registeredRow.secretProperty.secretKey << "of"
+					<< describeProvider(registeredRow.providerUid, registeredRow.providerName)
+					<< "- conflicts with the secret property" << secretProperty.propertyKey() << secretProperty.secretKey
+					<< "of" << provider;
+		registry().conflictingPropertyKeys.append(registeredRow.secretProperty.propertyKey().toLower());
+		registry().conflictingSecretKeys.append(registeredRow.secretProperty.secretKey.toLower());
+	}
+
+	registry().updateProperties();
+
+	return false;
 }
 
 
@@ -119,7 +241,7 @@ void SecretPropertyRegistry::addPluginProperties(const PluginInterface& plugin)
 	const auto pluginProperties = plugin.secretProperties();
 	for (const auto& secretProperty : pluginProperties)
 	{
-		(void)add(secretProperty, plugin.name());
+		(void)add(secretProperty, plugin.uid(), plugin.name());
 	}
 }
 
@@ -147,7 +269,13 @@ SecretReference SecretPropertyRegistry::ownReference(const Property& property)
 	if (secretProperty.has_value() == false ||
 		property.defaultValue() != SecretReference::defaultValue(secretProperty->secretKey))
 	{
-		vCritical() << "secret property" << property.absoluteKey() << "is not registered with its secret key";
+		const auto absoluteKey = property.absoluteKey();
+		QMutexLocker locker(&loggedPropertiesMutex);
+		if (loggedProperties.contains(absoluteKey) == false)
+		{
+			loggedProperties.append(absoluteKey);
+			vCritical() << "secret property" << absoluteKey << "is not registered with its secret key - disabled";
+		}
 		return {};
 	}
 
@@ -160,7 +288,7 @@ QStringList SecretPropertyRegistry::secretKeysBelow(const QString& fullKey)
 {
 	QStringList secretKeys;
 
-	for (const auto& secretProperty : std::as_const(registeredProperties()))
+	for (const auto& secretProperty : std::as_const(registry().properties))
 	{
 		if (QString::compare(secretProperty.propertyKey(), fullKey, Qt::CaseInsensitive) == 0 ||
 			QString::compare(secretProperty.parentKey, fullKey, Qt::CaseInsensitive) == 0 ||
@@ -178,9 +306,9 @@ QStringList SecretPropertyRegistry::secretKeysBelow(const QString& fullKey)
 QStringList SecretPropertyRegistry::secretKeys()
 {
 	QStringList secretKeys;
-	secretKeys.reserve(registeredProperties().size());
+	secretKeys.reserve(registry().properties.size());
 
-	for (const auto& secretProperty : std::as_const(registeredProperties()))
+	for (const auto& secretProperty : std::as_const(registry().properties))
 	{
 		secretKeys.append(secretProperty.secretKey);
 	}
@@ -190,10 +318,44 @@ QStringList SecretPropertyRegistry::secretKeys()
 
 
 
+std::optional<QStringList> SecretPropertyRegistry::removeUnreservedSecrets(QString* failedKey)
+{
+	QStringList removedKeys;
+
+	const auto storedKeys = SecretStore::keys();
+	for (const auto& secretKey : storedKeys)
+	{
+		if (isReservedScope(secretKey))
+		{
+			continue;
+		}
+
+		if (SecretStore::remove(secretKey) == false)
+		{
+			vCritical() << "failed to remove secret" << secretKey;
+			if (failedKey)
+			{
+				*failedKey = secretKey;
+			}
+			return {};
+		}
+
+		vInfo() << "removed secret" << secretKey;
+		removedKeys.append(secretKey);
+	}
+
+	return removedKeys;
+}
+
+
+
 #if defined(VEYON_WITH_TESTS)
 void SecretPropertyRegistry::resetForTests()
 {
-	registeredProperties() = coreSecretProperties();
+	registry().reset();
+
+	QMutexLocker locker(&loggedPropertiesMutex);
+	loggedProperties.clear();
 }
 #endif
 

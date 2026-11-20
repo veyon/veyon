@@ -25,6 +25,10 @@ using Configuration::SecretPropertyRegistry;
 using Configuration::SecretReference;
 using Veyon::Crypto::SecureBuffer;
 
+static const Plugin::Uid LdapPluginUid{QStringLiteral("6f0a491e-c1c6-4338-8244-f823b0bf8670")};
+static const Plugin::Uid ExternalVncServerUid{QStringLiteral("67dfc1c1-8f37-4539-a298-16e74e34fd8b")};
+static const Plugin::Uid AddOnUid{QStringLiteral("d3b5e8a1-2c4f-4a96-8e17-5b0c9f6d2a78")};
+
 // in-memory backend standing in for the platform implementations (tested separately)
 class MemorySecretFunctions : public PlatformSecretFunctions
 {
@@ -167,16 +171,16 @@ private Q_SLOTS:
 		// an add-on, as PluginManager::loadPlugins() adds them
 		QVERIFY(SecretPropertyRegistry::add({QStringLiteral("LDAP"), QStringLiteral("BindPassword"),
 											 QStringLiteral("ldap/bindPassword"), true},
-											QStringLiteral("LDAP")));
+											LdapPluginUid, QStringLiteral("LDAP")));
 		QVERIFY(SecretPropertyRegistry::add({QStringLiteral("ExternalVncServer"), QStringLiteral("Password"),
 											 QStringLiteral("vncserver-external/password"), true},
-											QStringLiteral("ExternalVncServer")));
+											ExternalVncServerUid, QStringLiteral("ExternalVncServer")));
 		QVERIFY(SecretPropertyRegistry::add({QStringLiteral("AddOn/Client"), QStringLiteral("Secret"),
 											 QStringLiteral("add-on/clientSecret"), true},
-											QStringLiteral("AddOn")));
+											AddOnUid, QStringLiteral("AddOn")));
 		QVERIFY(SecretPropertyRegistry::add({QStringLiteral("AddOn/Client"), QStringLiteral("CertificateKey"),
 											 QStringLiteral("add-on/clientCertificateKey"), false},
-											QStringLiteral("AddOn")));
+											AddOnUid, QStringLiteral("AddOn")));
 	}
 
 	void cleanupTestCase()
@@ -552,6 +556,7 @@ private Q_SLOTS:
 		// once the plugin is installed, the next privileged start migrates the legacy value
 		QVERIFY(SecretPropertyRegistry::add({QStringLiteral("NotInstalled"), QStringLiteral("ClientSecret"),
 											 QStringLiteral("not-installed/clientSecret"), true},
+											Plugin::Uid{QStringLiteral("0c6a4f1e-3b8d-4e27-9f50-7d2a1c9e8b43")},
 											QStringLiteral("NotInstalled")));
 		QCOMPARE(LegacySecretMigration::migrateStoredConfiguration(stored, running, *m_cryptoCore),
 				 LegacySecretMigration::Result::Migrated);

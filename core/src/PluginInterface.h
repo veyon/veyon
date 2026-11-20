@@ -32,7 +32,9 @@ public:
 
 	// the plugin's configuration properties holding a Configuration::SecretReference with their
 	// fixed SecretStore keys (03-secretstore-config.md §3a); merged into the
-	// Configuration::SecretPropertyRegistry after loading the plugins
+	// Configuration::SecretPropertyRegistry in the main thread right after loading the plugin (or
+	// in PluginManager::registerExtraPluginInterface()), i.e. after the plugin's constructor: a
+	// plugin must not resolve its secret properties in its constructor
 	virtual Configuration::SecretPropertyList secretProperties() const
 	{
 		return {};

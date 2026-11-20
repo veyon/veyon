@@ -151,9 +151,11 @@ private Q_SLOTS:
 	{
 		QVERIFY(Configuration::SecretPropertyRegistry::add({QStringLiteral("LDAP"), QStringLiteral("BindPassword"),
 															QStringLiteral("ldap/bindPassword"), true},
+														   Plugin::Uid{QStringLiteral("6f0a491e-c1c6-4338-8244-f823b0bf8670")},
 														   QStringLiteral("LDAP")));
 		QVERIFY(Configuration::SecretPropertyRegistry::add({QStringLiteral("ExternalVncServer"), QStringLiteral("Password"),
 															QStringLiteral("vncserver-external/password"), true},
+														   Plugin::Uid{QStringLiteral("67dfc1c1-8f37-4539-a298-16e74e34fd8b")},
 														   QStringLiteral("ExternalVncServer")));
 	}
 
