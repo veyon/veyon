@@ -1734,6 +1734,53 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     </message>
 </context>
 <context>
+    <name>FileCollectController</name>
+    <message>
+        <source>The collection was cancelled.</source>
+        <translation>La raccolta è stata annullata.</translation>
+    </message>
+    <message>
+        <source>The file transfer was interrupted.</source>
+        <translation>Il trasferimento del file è stato interrotto.</translation>
+    </message>
+    <message>
+        <source>The announced file size is invalid.</source>
+        <translation>La dimensione del file annunciata non è valida.</translation>
+    </message>
+    <message>
+        <source>The file name is not supported on this computer.</source>
+        <translation>Il nome del file non è supportato su questo computer.</translation>
+    </message>
+    <message>
+        <source>The output directory could not be created.</source>
+        <translation>Impossibile creare la directory di output.</translation>
+    </message>
+    <message>
+        <source>The output path is outside of the collection directory.</source>
+        <translation>Il percorso di output si trova al di fuori della directory di raccolta.</translation>
+    </message>
+    <message>
+        <source>The output file could not be opened for writing. It may be a link or belong to another user.</source>
+        <translation>Impossibile aprire il file di output in scrittura. Potrebbe essere un collegamento o appartenere a un altro utente.</translation>
+    </message>
+    <message>
+        <source>The file is larger than announced.</source>
+        <translation>Il file è più grande di quanto annunciato.</translation>
+    </message>
+    <message>
+        <source>The output file could not be written.</source>
+        <translation>Impossibile scrivere il file di output.</translation>
+    </message>
+    <message>
+        <source>The file was skipped on the computer because it is still open in an application.</source>
+        <translation>Il file è stato saltato sul computer perché è ancora aperto in un&apos;applicazione.</translation>
+    </message>
+    <message>
+        <source>The file transfer was not started.</source>
+        <translation>Il trasferimento del file non è stato avviato.</translation>
+    </message>
+</context>
+<context>
     <name>FileCollectDialog</name>
     <message>
         <source>File transfer</source>
@@ -1815,6 +1862,18 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
         <translation>La directory di output &quot;%1&quot; non esiste e non è stato possibile crearla. Verificare la configurazione e i permessi dei file per la directory di destinazione configurata.</translation>
     </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; The collection was cancelled. Files that were not collected are marked in the list above.</source>
+        <translation>&lt;b&gt;Attenzione:&lt;/b&gt; La raccolta è stata annullata. I file non raccolti sono contrassegnati nell&apos;elenco qui sopra.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; 1 file could not be collected. It is marked in the list above, the reason is shown as tooltip.</source>
+        <translation>&lt;b&gt;Attenzione:&lt;/b&gt; Impossibile raccogliere 1 file. È contrassegnato nell&apos;elenco qui sopra, il motivo è indicato nel tooltip.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; %1 files could not be collected. They are marked in the list above, the reason is shown as tooltip.</source>
+        <translation>&lt;b&gt;Attenzione:&lt;/b&gt; Impossibile raccogliere %1 file. Sono contrassegnati nell&apos;elenco qui sopra, il motivo è indicato nel tooltip.</translation>
+    </message>
 </context>
 <context>
     <name>FileCollectTreeModel</name>
@@ -1830,6 +1889,18 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <source>Number of files</source>
         <translation>Numero di file</translation>
     </message>
+    <message>
+        <source>1 file could not be collected.</source>
+        <translation>Impossibile raccogliere 1 file.</translation>
+    </message>
+    <message>
+        <source>%1 files could not be collected.</source>
+        <translation>Impossibile raccogliere %1 file.</translation>
+    </message>
+    <message>
+        <source>%1 (%2 not collected)</source>
+        <translation>%1 (%2 non raccolti)</translation>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -1840,6 +1911,10 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     <message>
         <source>Settings for distributing files</source>
         <translation>Impostazioni per la distribuzione del file</translation>
+    </message>
+    <message>
+        <source>Allow master to choose the destination directory</source>
+        <translation>Consenti a Veyon Master di scegliere la directory di destinazione</translation>
     </message>
     <message>
         <source>Settings for collecting files</source>
@@ -2065,6 +2140,18 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
     <message>
         <source>Are you sure you want to skip transferring the file %1?</source>
         <translation>Vuoi davvero saltare il trasferimento del file %1?</translation>
+    </message>
+    <message>
+        <source>Could not receive the file because the destination directory is invalid.</source>
+        <translation>Impossibile ricevere il file perché la directory di destinazione non è valida.</translation>
+    </message>
+    <message>
+        <source>Could not receive the file because the destination directory could not be created.</source>
+        <translation>Impossibile ricevere il file perché non è stato possibile creare la directory di destinazione.</translation>
+    </message>
+    <message>
+        <source>Could not receive the file because its name is invalid.</source>
+        <translation>Impossibile ricevere il file perché il nome non è valido.</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it already exists.</source>
@@ -3136,8 +3223,8 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Salva impostazioni su file</translation>
     </message>
     <message>
-        <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
+        <source>Ctrl+Shift+S</source>
+        <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
@@ -3216,12 +3303,32 @@ Assicurati che i nomi delle chiavi che appartengono l&apos;una all&apos;altra si
         <translation>Veyon Configurator %1</translation>
     </message>
     <message>
+        <source>Apply configuration (%1)</source>
+        <translation>Applica configurazione (%1)</translation>
+    </message>
+    <message>
         <source>Load settings from file</source>
         <translation>Carica impostazioni da file</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
         <translation>File JSON (*.json)</translation>
+    </message>
+    <message>
+        <source>Could not open the file %1 for reading: %2</source>
+        <translation>Impossibile aprire il file %1 in lettura: %2</translation>
+    </message>
+    <message>
+        <source>The file %1 does not contain valid settings.</source>
+        <translation>Il file %1 non contiene impostazioni valide.</translation>
+    </message>
+    <message>
+        <source>Could not open the file %1 for writing: %2</source>
+        <translation>Impossibile aprire il file %1 in scrittura: %2</translation>
+    </message>
+    <message>
+        <source>Could not write the settings to the file %1.</source>
+        <translation>Impossibile scrivere le impostazioni nel file %1.</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
@@ -3638,8 +3745,12 @@ Tieni premuto per caricare la disposizione da un file o salvare la disposizione 
         <translation>Interroga le proprietà delle schermate disponibili in remoto</translation>
     </message>
     <message>
-        <source>Identify users in guest sessions</source>
-        <translation>Identifica gli utenti nelle sessioni guest</translation>
+        <source>Identify users</source>
+        <translation>Identifica utenti</translation>
+    </message>
+    <message>
+        <source>Click this button to ask the users in guest sessions on the selected computers to enter their names again.</source>
+        <translation>Fare clic su questo pulsante per chiedere agli utenti nelle sessioni guest dei computer selezionati di inserire nuovamente il proprio nome.</translation>
     </message>
     <message>
         <source>Identification request</source>
@@ -4839,8 +4950,16 @@ Esempio: [^-]*-(PC[0-9]*)</translation>
 <context>
     <name>WebApiPlugin</name>
     <message>
+        <source>Show help about command</source>
+        <translation>Mostra aiuto per i comandi</translation>
+    </message>
+    <message>
         <source>Run WebAPI server</source>
         <translation>Esegui il server API Web</translation>
+    </message>
+    <message>
+        <source>Runs the WebAPI server in the foreground with the configured settings until the program is terminated.</source>
+        <translation>Esegue il server API Web in primo piano con le impostazioni configurate fino al termine del programma.</translation>
     </message>
     <message>
         <source>Failed to start WebAPI server at port %1</source>

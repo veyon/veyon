@@ -1737,6 +1737,53 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
 </context>
 <context>
+    <name>FileCollectController</name>
+    <message>
+        <source>The collection was cancelled.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The file transfer was interrupted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The announced file size is invalid.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The file name is not supported on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output directory could not be created.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output path is outside of the collection directory.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output file could not be opened for writing. It may be a link or belong to another user.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The file is larger than announced.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output file could not be written.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The file was skipped on the computer because it is still open in an application.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The file transfer was not started.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>FileCollectDialog</name>
     <message>
         <source>File transfer</source>
@@ -1818,6 +1865,18 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
         <translation>輸出目錄 &quot;%1&quot; 不存在且無法建立。 請檢查設定的目標目錄的設定和檔案權限。</translation>
     </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; The collection was cancelled. Files that were not collected are marked in the list above.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; 1 file could not be collected. It is marked in the list above, the reason is shown as tooltip.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; %1 files could not be collected. They are marked in the list above, the reason is shown as tooltip.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>FileCollectTreeModel</name>
@@ -1833,6 +1892,18 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Number of files</source>
         <translation>檔案數量</translation>
     </message>
+    <message>
+        <source>1 file could not be collected.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 files could not be collected.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 (%2 not collected)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -1843,6 +1914,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Settings for distributing files</source>
         <translation>分發檔案的設定</translation>
+    </message>
+    <message>
+        <source>Allow master to choose the destination directory</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Settings for collecting files</source>
@@ -2068,6 +2143,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Are you sure you want to skip transferring the file %1?</source>
         <translation>您確定要略過傳輸檔案 %1?</translation>
+    </message>
+    <message>
+        <source>Could not receive the file because the destination directory is invalid.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive the file because the destination directory could not be created.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive the file because its name is invalid.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not receive file %1 as it already exists.</source>
@@ -3149,8 +3236,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>將設定存到檔案</translation>
     </message>
     <message>
-        <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
+        <source>Ctrl+Shift+S</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
@@ -3229,12 +3316,32 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Veyon Configurator %1</translation>
     </message>
     <message>
+        <source>Apply configuration (%1)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Load settings from file</source>
         <translation>從檔案載入設定</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
         <translation>JSON 檔 (*.json)</translation>
+    </message>
+    <message>
+        <source>Could not open the file %1 for reading: %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The file %1 does not contain valid settings.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not open the file %1 for writing: %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not write the settings to the file %1.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
@@ -3651,8 +3758,12 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>查詢遠端可用螢幕的內容</translation>
     </message>
     <message>
-        <source>Identify users in guest sessions</source>
-        <translation>識別訪客工作階段中的使用者</translation>
+        <source>Identify users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to ask the users in guest sessions on the selected computers to enter their names again.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Identification request</source>
@@ -4853,8 +4964,16 @@ Example: [^-]*-(PC[0-9]*)</source>
 <context>
     <name>WebApiPlugin</name>
     <message>
+        <source>Show help about command</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Run WebAPI server</source>
         <translation>執行 WebAPI 伺服器</translation>
+    </message>
+    <message>
+        <source>Runs the WebAPI server in the foreground with the configured settings until the program is terminated.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Failed to start WebAPI server at port %1</source>

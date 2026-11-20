@@ -1737,6 +1737,53 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     </message>
 </context>
 <context>
+    <name>FileCollectController</name>
+    <message>
+        <source>The collection was cancelled.</source>
+        <translation>Insamlingen avbröts.</translation>
+    </message>
+    <message>
+        <source>The file transfer was interrupted.</source>
+        <translation>Filöverföringen avbröts.</translation>
+    </message>
+    <message>
+        <source>The announced file size is invalid.</source>
+        <translation>Den angivna filstorleken är ogiltig.</translation>
+    </message>
+    <message>
+        <source>The file name is not supported on this computer.</source>
+        <translation>Filnamnet stöds inte på den här datorn.</translation>
+    </message>
+    <message>
+        <source>The output directory could not be created.</source>
+        <translation>Utdatakatalogen kunde inte skapas.</translation>
+    </message>
+    <message>
+        <source>The output path is outside of the collection directory.</source>
+        <translation>Utdatasökvägen ligger utanför insamlingskatalogen.</translation>
+    </message>
+    <message>
+        <source>The output file could not be opened for writing. It may be a link or belong to another user.</source>
+        <translation>Utdatafilen kunde inte öppnas för skrivning. Den kan vara en länk eller tillhöra en annan användare.</translation>
+    </message>
+    <message>
+        <source>The file is larger than announced.</source>
+        <translation>Filen är större än angivet.</translation>
+    </message>
+    <message>
+        <source>The output file could not be written.</source>
+        <translation>Utdatafilen kunde inte skrivas.</translation>
+    </message>
+    <message>
+        <source>The file was skipped on the computer because it is still open in an application.</source>
+        <translation>Filen hoppades över på datorn eftersom den fortfarande är öppen i ett program.</translation>
+    </message>
+    <message>
+        <source>The file transfer was not started.</source>
+        <translation>Filöverföringen startades inte.</translation>
+    </message>
+</context>
+<context>
     <name>FileCollectDialog</name>
     <message>
         <source>File transfer</source>
@@ -1818,6 +1865,18 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
         <translation>Utdatakatalogen ”%1” finns inte och kunde inte skapas. Kontrollera konfigurationen och filbehörigheterna för den konfigurerade målkatalogen.</translation>
     </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; The collection was cancelled. Files that were not collected are marked in the list above.</source>
+        <translation>&lt;b&gt;Varning:&lt;/b&gt; Insamlingen avbröts. Filer som inte samlades in är markerade i listan ovan.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; 1 file could not be collected. It is marked in the list above, the reason is shown as tooltip.</source>
+        <translation>&lt;b&gt;Varning:&lt;/b&gt; 1 fil kunde inte samlas in. Den är markerad i listan ovan, orsaken visas som verktygstips.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; %1 files could not be collected. They are marked in the list above, the reason is shown as tooltip.</source>
+        <translation>&lt;b&gt;Varning:&lt;/b&gt; %1 filer kunde inte samlas in. De är markerade i listan ovan, orsaken visas som verktygstips.</translation>
+    </message>
 </context>
 <context>
     <name>FileCollectTreeModel</name>
@@ -1833,6 +1892,18 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <source>Number of files</source>
         <translation>Antal filer</translation>
     </message>
+    <message>
+        <source>1 file could not be collected.</source>
+        <translation>1 fil kunde inte samlas in.</translation>
+    </message>
+    <message>
+        <source>%1 files could not be collected.</source>
+        <translation>%1 filer kunde inte samlas in.</translation>
+    </message>
+    <message>
+        <source>%1 (%2 not collected)</source>
+        <translation>%1 (%2 inte insamlade)</translation>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -1843,6 +1914,10 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     <message>
         <source>Settings for distributing files</source>
         <translation>Inställningar för distribuering av filer</translation>
+    </message>
+    <message>
+        <source>Allow master to choose the destination directory</source>
+        <translation>Tillåt Veyon Master att välja målkatalog</translation>
     </message>
     <message>
         <source>Settings for collecting files</source>
@@ -2068,6 +2143,18 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
     <message>
         <source>Are you sure you want to skip transferring the file %1?</source>
         <translation>Är du säker på att du vill hoppa över överföringen av filen %1?</translation>
+    </message>
+    <message>
+        <source>Could not receive the file because the destination directory is invalid.</source>
+        <translation>Kunde inte ta emot filen eftersom målkatalogen är ogiltig.</translation>
+    </message>
+    <message>
+        <source>Could not receive the file because the destination directory could not be created.</source>
+        <translation>Kunde inte ta emot filen eftersom målkatalogen inte kunde skapas.</translation>
+    </message>
+    <message>
+        <source>Could not receive the file because its name is invalid.</source>
+        <translation>Kunde inte ta emot filen eftersom dess namn är ogiltigt.</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it already exists.</source>
@@ -3149,8 +3236,8 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Spara inställningar till fil</translation>
     </message>
     <message>
-        <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
+        <source>Ctrl+Shift+S</source>
+        <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
@@ -3229,12 +3316,32 @@ Se till att namnen på de nycklar som tillhör varandra är identiska på alla d
         <translation>Veyon Configurator %1</translation>
     </message>
     <message>
+        <source>Apply configuration (%1)</source>
+        <translation>Tillämpa konfiguration (%1)</translation>
+    </message>
+    <message>
         <source>Load settings from file</source>
         <translation>Läs in inställningar från fil</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
         <translation>JSON-filer (*.json)</translation>
+    </message>
+    <message>
+        <source>Could not open the file %1 for reading: %2</source>
+        <translation>Kunde inte öppna filen %1 för läsning: %2</translation>
+    </message>
+    <message>
+        <source>The file %1 does not contain valid settings.</source>
+        <translation>Filen %1 innehåller inga giltiga inställningar.</translation>
+    </message>
+    <message>
+        <source>Could not open the file %1 for writing: %2</source>
+        <translation>Kunde inte öppna filen %1 för skrivning: %2</translation>
+    </message>
+    <message>
+        <source>Could not write the settings to the file %1.</source>
+        <translation>Kunde inte skriva inställningarna till filen %1.</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
@@ -3651,8 +3758,12 @@ Håll nedtryckt för att ladda arrangemanget från en fil eller spara aktuellt a
         <translation>Fråga efter egenskaper för fjärrtillgängliga skärmar</translation>
     </message>
     <message>
-        <source>Identify users in guest sessions</source>
-        <translation>Identifiera användare i gästsessioner</translation>
+        <source>Identify users</source>
+        <translation>Identifiera användare</translation>
+    </message>
+    <message>
+        <source>Click this button to ask the users in guest sessions on the selected computers to enter their names again.</source>
+        <translation>Klicka på den här knappen för att be användarna i gästsessioner på de valda datorerna att ange sina namn igen.</translation>
     </message>
     <message>
         <source>Identification request</source>
@@ -4853,8 +4964,16 @@ Exempel: [^-]*-(pc[0-9]*) [^-]*-(PC[0-9]*)</translation>
 <context>
     <name>WebApiPlugin</name>
     <message>
+        <source>Show help about command</source>
+        <translation>Visa hjälp om kommandot</translation>
+    </message>
+    <message>
         <source>Run WebAPI server</source>
         <translation>Kör WebAPI-server</translation>
+    </message>
+    <message>
+        <source>Runs the WebAPI server in the foreground with the configured settings until the program is terminated.</source>
+        <translation>Kör WebAPI-servern i förgrunden med de konfigurerade inställningarna tills programmet avslutas.</translation>
     </message>
     <message>
         <source>Failed to start WebAPI server at port %1</source>

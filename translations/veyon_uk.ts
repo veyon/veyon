@@ -1734,6 +1734,53 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
 </context>
 <context>
+    <name>FileCollectController</name>
+    <message>
+        <source>The collection was cancelled.</source>
+        <translation>Збирання було скасовано.</translation>
+    </message>
+    <message>
+        <source>The file transfer was interrupted.</source>
+        <translation>Передавання файла було перервано.</translation>
+    </message>
+    <message>
+        <source>The announced file size is invalid.</source>
+        <translation>Оголошений розмір файла є некоректним.</translation>
+    </message>
+    <message>
+        <source>The file name is not supported on this computer.</source>
+        <translation>Назва файла не підтримується на цьому комп&apos;ютері.</translation>
+    </message>
+    <message>
+        <source>The output directory could not be created.</source>
+        <translation>Не вдалося створити каталог результатів.</translation>
+    </message>
+    <message>
+        <source>The output path is outside of the collection directory.</source>
+        <translation>Шлях до результатів перебуває поза каталогом збирання.</translation>
+    </message>
+    <message>
+        <source>The output file could not be opened for writing. It may be a link or belong to another user.</source>
+        <translation>Не вдалося відкрити файл результатів для запису. Можливо, це посилання або файл належить іншому користувачеві.</translation>
+    </message>
+    <message>
+        <source>The file is larger than announced.</source>
+        <translation>Файл є більшим, ніж було оголошено.</translation>
+    </message>
+    <message>
+        <source>The output file could not be written.</source>
+        <translation>Не вдалося записати файл результатів.</translation>
+    </message>
+    <message>
+        <source>The file was skipped on the computer because it is still open in an application.</source>
+        <translation>Файл на комп&apos;ютері було пропущено, оскільки його все ще відкрито у якійсь програмі.</translation>
+    </message>
+    <message>
+        <source>The file transfer was not started.</source>
+        <translation>Передавання файла не було розпочато.</translation>
+    </message>
+</context>
+<context>
     <name>FileCollectDialog</name>
     <message>
         <source>File transfer</source>
@@ -1815,6 +1862,18 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
         <translation>Каталогу результатів «%1» не існує, і його не вдалося створити. Будь ласка, перевірте налаштування і права доступу до файлів для налаштованого каталогу призначення.</translation>
     </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; The collection was cancelled. Files that were not collected are marked in the list above.</source>
+        <translation>&lt;b&gt;Попередження:&lt;/b&gt; збирання було скасовано. Файли, які не вдалося зібрати, позначено у списку вище.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; 1 file could not be collected. It is marked in the list above, the reason is shown as tooltip.</source>
+        <translation>&lt;b&gt;Попередження:&lt;/b&gt; не вдалося зібрати 1 файл. Його позначено у списку вище, причину показано у підказці.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; %1 files could not be collected. They are marked in the list above, the reason is shown as tooltip.</source>
+        <translation>&lt;b&gt;Попередження:&lt;/b&gt; не вдалося зібрати файли (%1). Їх позначено у списку вище, причину показано у підказці.</translation>
+    </message>
 </context>
 <context>
     <name>FileCollectTreeModel</name>
@@ -1830,6 +1889,18 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Number of files</source>
         <translation>Кількість файлів</translation>
     </message>
+    <message>
+        <source>1 file could not be collected.</source>
+        <translation>Не вдалося зібрати 1 файл.</translation>
+    </message>
+    <message>
+        <source>%1 files could not be collected.</source>
+        <translation>Не вдалося зібрати файли: %1.</translation>
+    </message>
+    <message>
+        <source>%1 (%2 not collected)</source>
+        <translation>%1 (не зібрано: %2)</translation>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -1840,6 +1911,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Settings for distributing files</source>
         <translation>Параметри для поширення файлів</translation>
+    </message>
+    <message>
+        <source>Allow master to choose the destination directory</source>
+        <translation>Дозволити Veyon Master вибирати каталог призначення</translation>
     </message>
     <message>
         <source>Settings for collecting files</source>
@@ -2065,6 +2140,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Are you sure you want to skip transferring the file %1?</source>
         <translation>Ви справді хочете пропустити передавання файла %1?</translation>
+    </message>
+    <message>
+        <source>Could not receive the file because the destination directory is invalid.</source>
+        <translation>Не вдалося отримати файл, оскільки каталог призначення є некоректним.</translation>
+    </message>
+    <message>
+        <source>Could not receive the file because the destination directory could not be created.</source>
+        <translation>Не вдалося отримати файл, оскільки не вдалося створити каталог призначення.</translation>
+    </message>
+    <message>
+        <source>Could not receive the file because its name is invalid.</source>
+        <translation>Не вдалося отримати файл, оскільки його назва є некоректною.</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it already exists.</source>
@@ -3148,8 +3235,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Зберегти параметри до файла</translation>
     </message>
     <message>
-        <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
+        <source>Ctrl+Shift+S</source>
+        <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
@@ -3228,12 +3315,32 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Засіб налаштовування Veyon %1</translation>
     </message>
     <message>
+        <source>Apply configuration (%1)</source>
+        <translation>Застосувати налаштування (%1)</translation>
+    </message>
+    <message>
         <source>Load settings from file</source>
         <translation>Завантажити параметри з файла</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
         <translation>файли JSON (*.json)</translation>
+    </message>
+    <message>
+        <source>Could not open the file %1 for reading: %2</source>
+        <translation>Не вдалося відкрити файл %1 для читання: %2</translation>
+    </message>
+    <message>
+        <source>The file %1 does not contain valid settings.</source>
+        <translation>Файл %1 не містить коректних параметрів.</translation>
+    </message>
+    <message>
+        <source>Could not open the file %1 for writing: %2</source>
+        <translation>Не вдалося відкрити файл %1 для запису: %2</translation>
+    </message>
+    <message>
+        <source>Could not write the settings to the file %1.</source>
+        <translation>Не вдалося записати параметри до файла %1.</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
@@ -3650,8 +3757,12 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Опитати віддалені доступні екрани щодо властивостей</translation>
     </message>
     <message>
-        <source>Identify users in guest sessions</source>
-        <translation>Ідентифікувати користувачів у гостьових сеансах</translation>
+        <source>Identify users</source>
+        <translation>Ідентифікувати користувачів</translation>
+    </message>
+    <message>
+        <source>Click this button to ask the users in guest sessions on the selected computers to enter their names again.</source>
+        <translation>Натисніть цю кнопку, щоб попросити користувачів у гостьових сеансах на позначених комп&apos;ютерах повторно ввести свої імена.</translation>
     </message>
     <message>
         <source>Identification request</source>
@@ -4852,8 +4963,16 @@ Example: [^-]*-(PC[0-9]*)</source>
 <context>
     <name>WebApiPlugin</name>
     <message>
+        <source>Show help about command</source>
+        <translation>Показати довідку щодо команди</translation>
+    </message>
+    <message>
         <source>Run WebAPI server</source>
         <translation>Запустити сервер WebAPI</translation>
+    </message>
+    <message>
+        <source>Runs the WebAPI server in the foreground with the configured settings until the program is terminated.</source>
+        <translation>Запускає сервер WebAPI на передньому плані з налаштованими параметрами, доки роботу програми не буде завершено.</translation>
     </message>
     <message>
         <source>Failed to start WebAPI server at port %1</source>

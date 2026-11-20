@@ -1737,6 +1737,53 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
 </context>
 <context>
+    <name>FileCollectController</name>
+    <message>
+        <source>The collection was cancelled.</source>
+        <translation>Surinkimas atšauktas.</translation>
+    </message>
+    <message>
+        <source>The file transfer was interrupted.</source>
+        <translation>Failo perdavimas nutrauktas.</translation>
+    </message>
+    <message>
+        <source>The announced file size is invalid.</source>
+        <translation>Nurodytas failo dydis netinkamas.</translation>
+    </message>
+    <message>
+        <source>The file name is not supported on this computer.</source>
+        <translation>Failo pavadinimas šiame kompiuteryje nepalaikomas.</translation>
+    </message>
+    <message>
+        <source>The output directory could not be created.</source>
+        <translation>Nepavyko sukurti išvesties katalogo.</translation>
+    </message>
+    <message>
+        <source>The output path is outside of the collection directory.</source>
+        <translation>Išvesties kelias yra už rinkinio katalogo ribų.</translation>
+    </message>
+    <message>
+        <source>The output file could not be opened for writing. It may be a link or belong to another user.</source>
+        <translation>Nepavyko atverti išvesties failo rašymui. Galbūt tai yra nuoroda arba failas priklauso kitam vartotojui.</translation>
+    </message>
+    <message>
+        <source>The file is larger than announced.</source>
+        <translation>Failas didesnis, nei buvo nurodyta.</translation>
+    </message>
+    <message>
+        <source>The output file could not be written.</source>
+        <translation>Nepavyko įrašyti išvesties failo.</translation>
+    </message>
+    <message>
+        <source>The file was skipped on the computer because it is still open in an application.</source>
+        <translation>Failas kompiuteryje praleistas, nes jis vis dar atvertas programoje.</translation>
+    </message>
+    <message>
+        <source>The file transfer was not started.</source>
+        <translation>Failo perdavimas nepradėtas.</translation>
+    </message>
+</context>
+<context>
     <name>FileCollectDialog</name>
     <message>
         <source>File transfer</source>
@@ -1818,6 +1865,18 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
         <translation>Išvesties katalogo „%1“ nėra ir jo nepavyko sukurti. Patikrinkite sukonfigūruotą paskirties katalogą ir failų prieigos teises.</translation>
     </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; The collection was cancelled. Files that were not collected are marked in the list above.</source>
+        <translation>&lt;b&gt;Įspėjimas:&lt;/b&gt; surinkimas atšauktas. Nesurinkti failai pažymėti aukščiau esančiame sąraše.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; 1 file could not be collected. It is marked in the list above, the reason is shown as tooltip.</source>
+        <translation>&lt;b&gt;Įspėjimas:&lt;/b&gt; nepavyko surinkti 1 failo. Jis pažymėtas aukščiau esančiame sąraše, priežastis rodoma paaiškinime.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; %1 files could not be collected. They are marked in the list above, the reason is shown as tooltip.</source>
+        <translation>&lt;b&gt;Įspėjimas:&lt;/b&gt; nepavyko surinkti kai kurių failų (%1). Jie pažymėti aukščiau esančiame sąraše, priežastis rodoma paaiškinime.</translation>
+    </message>
 </context>
 <context>
     <name>FileCollectTreeModel</name>
@@ -1833,6 +1892,18 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Number of files</source>
         <translation>Failų skaičius</translation>
     </message>
+    <message>
+        <source>1 file could not be collected.</source>
+        <translation>Nepavyko surinkti 1 failo.</translation>
+    </message>
+    <message>
+        <source>%1 files could not be collected.</source>
+        <translation>Nepavyko surinkti failų: %1.</translation>
+    </message>
+    <message>
+        <source>%1 (%2 not collected)</source>
+        <translation>%1 (nesurinkta: %2)</translation>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -1843,6 +1914,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Settings for distributing files</source>
         <translation>Failų platinimo nustatymai</translation>
+    </message>
+    <message>
+        <source>Allow master to choose the destination directory</source>
+        <translation>Leisti Veyon Master pasirinkti paskirties katalogą</translation>
     </message>
     <message>
         <source>Settings for collecting files</source>
@@ -2068,6 +2143,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Are you sure you want to skip transferring the file %1?</source>
         <translation>Ar tikrai norite praleisti failo %1 perdavimą?</translation>
+    </message>
+    <message>
+        <source>Could not receive the file because the destination directory is invalid.</source>
+        <translation>Nepavyko gauti failo, nes paskirties katalogas netinkamas.</translation>
+    </message>
+    <message>
+        <source>Could not receive the file because the destination directory could not be created.</source>
+        <translation>Nepavyko gauti failo, nes nepavyko sukurti paskirties katalogo.</translation>
+    </message>
+    <message>
+        <source>Could not receive the file because its name is invalid.</source>
+        <translation>Nepavyko gauti failo, nes jo pavadinimas netinkamas.</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it already exists.</source>
@@ -2546,7 +2633,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Query user groups from user attribute</source>
-        <translation type="unfinished"/>
+        <translation>Užklausti vartotojų grupes iš vartotojo atributo</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
@@ -2594,7 +2681,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>List all user groups</source>
-        <translation type="unfinished"/>
+        <translation>Išvardyti visas vartotojų grupes</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -2606,7 +2693,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>List all computers at a specific location</source>
-        <translation type="unfinished"/>
+        <translation>Išvardyti visus kompiuterius konkrečioje vietoje</translation>
     </message>
     <message>
         <source>Computers</source>
@@ -3149,8 +3236,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Išsaugoti nustatymus į failą</translation>
     </message>
     <message>
-        <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
+        <source>Ctrl+Shift+S</source>
+        <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
@@ -3229,12 +3316,32 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Veyon konfigūratorius %1</translation>
     </message>
     <message>
+        <source>Apply configuration (%1)</source>
+        <translation>Pritaikyti konfigūraciją (%1)</translation>
+    </message>
+    <message>
         <source>Load settings from file</source>
         <translation>Įkelti nustatymus iš failo</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
         <translation>JSON failai (*.json)</translation>
+    </message>
+    <message>
+        <source>Could not open the file %1 for reading: %2</source>
+        <translation>Nepavyko atverti failo %1 skaitymui: %2</translation>
+    </message>
+    <message>
+        <source>The file %1 does not contain valid settings.</source>
+        <translation>Faile %1 nėra tinkamų nustatymų.</translation>
+    </message>
+    <message>
+        <source>Could not open the file %1 for writing: %2</source>
+        <translation>Nepavyko atverti failo %1 rašymui: %2</translation>
+    </message>
+    <message>
+        <source>Could not write the settings to the file %1.</source>
+        <translation>Nepavyko įrašyti nustatymų į failą %1.</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
@@ -3525,31 +3632,31 @@ Paspauskite ir palaikykite, kad įkeltumėte išdėstymą iš failo arba įrašy
     </message>
     <message>
         <source>Monitoring view</source>
-        <translation type="unfinished"/>
+        <translation>Stebėjimo rodinys</translation>
     </message>
     <message>
         <source>Visibility mode</source>
-        <translation type="unfinished"/>
+        <translation>Matomumo režimas</translation>
     </message>
     <message>
         <source>Aspect ratio</source>
-        <translation type="unfinished"/>
+        <translation>Kraštinių santykis</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished"/>
+        <translation>Įprastas</translation>
     </message>
     <message>
         <source>Blurred</source>
-        <translation type="unfinished"/>
+        <translation>Sulietas</translation>
     </message>
     <message>
         <source>Hidden</source>
-        <translation type="unfinished"/>
+        <translation>Paslėptas</translation>
     </message>
     <message>
         <source>Grid spacing</source>
-        <translation type="unfinished"/>
+        <translation>Tinklelio tarpai</translation>
     </message>
     <message>
         <source>Image quality</source>
@@ -3557,23 +3664,23 @@ Paspauskite ir palaikykite, kad įkeltumėte išdėstymą iš failo arba įrašy
     </message>
     <message>
         <source>Display label</source>
-        <translation type="unfinished"/>
+        <translation>Rodoma etiketė</translation>
     </message>
     <message>
         <source>Refresh rate</source>
-        <translation type="unfinished"/>
+        <translation>Atnaujinimo dažnis</translation>
     </message>
     <message>
         <source>Grid sizing mode</source>
-        <translation type="unfinished"/>
+        <translation>Tinklelio dydžio režimas</translation>
     </message>
     <message>
         <source>Full-length labels (scales down all thumbnails)</source>
-        <translation type="unfinished"/>
+        <translation>Visos etiketės (sumažina visas miniatiūras)</translation>
     </message>
     <message>
         <source>Maximized thumbnails (truncated labels)</source>
-        <translation type="unfinished"/>
+        <translation>Padidintos miniatiūros (sutrumpintos etiketės)</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -3651,8 +3758,12 @@ Paspauskite ir palaikykite, kad įkeltumėte išdėstymą iš failo arba įrašy
         <translation>Užklausti nuotoliniu būdu pasiekiamų ekranų ypatybes</translation>
     </message>
     <message>
-        <source>Identify users in guest sessions</source>
-        <translation>Nustatyti vartotojų tapatybę svečio sesijose</translation>
+        <source>Identify users</source>
+        <translation>Nustatyti vartotojų tapatybę</translation>
+    </message>
+    <message>
+        <source>Click this button to ask the users in guest sessions on the selected computers to enter their names again.</source>
+        <translation>Spustelėkite šį mygtuką, kad paprašytumėte svečio sesijų vartotojų pasirinktuose kompiuteriuose iš naujo įvesti savo vardus.</translation>
     </message>
     <message>
         <source>Identification request</source>
@@ -3736,15 +3847,15 @@ Paspauskite ir palaikykite, kad įkeltumėte išdėstymą iš failo arba įrašy
     <name>PipeWireVncConfigurationWidget</name>
     <message>
         <source>PipeWire VNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>PipeWire VNC serverio konfigūracija</translation>
     </message>
     <message>
         <source>Remember the screen sharing approval across restarts</source>
-        <translation type="unfinished"/>
+        <translation>Atsiminti ekrano bendrinimo leidimą po paleidimų iš naujo</translation>
     </message>
     <message>
         <source>The approval token is stored in the user&apos;s state directory. Any program running as the same user can read it and share the screen without asking.</source>
-        <translation type="unfinished"/>
+        <translation>Leidimo prieigos raktas saugomas vartotojo būsenos kataloge. Bet kuri programa, veikianti to paties vartotojo teisėmis, gali jį perskaityti ir bendrinti ekraną neklausdama.</translation>
     </message>
 </context>
 <context>
@@ -4853,8 +4964,16 @@ Pavyzdys: [^-]*-(PC[0-9]*)</translation>
 <context>
     <name>WebApiPlugin</name>
     <message>
+        <source>Show help about command</source>
+        <translation>Rodyti komandos žinyną</translation>
+    </message>
+    <message>
         <source>Run WebAPI server</source>
         <translation>Paleisti Web API serverį</translation>
+    </message>
+    <message>
+        <source>Runs the WebAPI server in the foreground with the configured settings until the program is terminated.</source>
+        <translation>Paleidžia WebAPI serverį priekiniame plane su sukonfigūruotais nustatymais, kol programa bus užbaigta.</translation>
     </message>
     <message>
         <source>Failed to start WebAPI server at port %1</source>

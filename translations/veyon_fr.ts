@@ -1737,6 +1737,53 @@ Assurez-vous que les noms des clés associées soient identiques sur tous les or
     </message>
 </context>
 <context>
+    <name>FileCollectController</name>
+    <message>
+        <source>The collection was cancelled.</source>
+        <translation>La collecte a été annulée.</translation>
+    </message>
+    <message>
+        <source>The file transfer was interrupted.</source>
+        <translation>Le transfert de fichier a été interrompu.</translation>
+    </message>
+    <message>
+        <source>The announced file size is invalid.</source>
+        <translation>La taille de fichier annoncée n&apos;est pas valide.</translation>
+    </message>
+    <message>
+        <source>The file name is not supported on this computer.</source>
+        <translation>Le nom de fichier n&apos;est pas pris en charge sur cet ordinateur.</translation>
+    </message>
+    <message>
+        <source>The output directory could not be created.</source>
+        <translation>Le répertoire de sortie n&apos;a pas pu être créé.</translation>
+    </message>
+    <message>
+        <source>The output path is outside of the collection directory.</source>
+        <translation>Le chemin de sortie se trouve en dehors du répertoire de collecte.</translation>
+    </message>
+    <message>
+        <source>The output file could not be opened for writing. It may be a link or belong to another user.</source>
+        <translation>Le fichier de sortie n&apos;a pas pu être ouvert en écriture. Il s&apos;agit peut-être d&apos;un lien ou il appartient à un autre utilisateur.</translation>
+    </message>
+    <message>
+        <source>The file is larger than announced.</source>
+        <translation>Le fichier est plus volumineux qu&apos;annoncé.</translation>
+    </message>
+    <message>
+        <source>The output file could not be written.</source>
+        <translation>Le fichier de sortie n&apos;a pas pu être écrit.</translation>
+    </message>
+    <message>
+        <source>The file was skipped on the computer because it is still open in an application.</source>
+        <translation>Le fichier a été ignoré sur l&apos;ordinateur car il est encore ouvert dans une application.</translation>
+    </message>
+    <message>
+        <source>The file transfer was not started.</source>
+        <translation>Le transfert de fichier n&apos;a pas démarré.</translation>
+    </message>
+</context>
+<context>
     <name>FileCollectDialog</name>
     <message>
         <source>File transfer</source>
@@ -1818,6 +1865,18 @@ Assurez-vous que les noms des clés associées soient identiques sur tous les or
         <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
         <translation>Le répertoire de sortie « %1 » n&apos;existe pas et n&apos;a pas pu être créé. Veuillez vérifier la configuration et les droits d&apos;accès du répertoire de destination configuré.</translation>
     </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; The collection was cancelled. Files that were not collected are marked in the list above.</source>
+        <translation>&lt;b&gt;Attention :&lt;/b&gt; La collecte a été annulée. Les fichiers non collectés sont marqués dans la liste ci-dessus.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; 1 file could not be collected. It is marked in the list above, the reason is shown as tooltip.</source>
+        <translation>&lt;b&gt;Attention :&lt;/b&gt; 1 fichier n&apos;a pas pu être collecté. Il est marqué dans la liste ci-dessus, la raison est indiquée dans l&apos;info-bulle.</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; %1 files could not be collected. They are marked in the list above, the reason is shown as tooltip.</source>
+        <translation>&lt;b&gt;Attention :&lt;/b&gt; %1 fichiers n&apos;ont pas pu être collectés. Ils sont marqués dans la liste ci-dessus, la raison est indiquée dans l&apos;info-bulle.</translation>
+    </message>
 </context>
 <context>
     <name>FileCollectTreeModel</name>
@@ -1833,6 +1892,18 @@ Assurez-vous que les noms des clés associées soient identiques sur tous les or
         <source>Number of files</source>
         <translation>Nombre de fichiers</translation>
     </message>
+    <message>
+        <source>1 file could not be collected.</source>
+        <translation>1 fichier n&apos;a pas pu être collecté.</translation>
+    </message>
+    <message>
+        <source>%1 files could not be collected.</source>
+        <translation>%1 fichiers n&apos;ont pas pu être collectés.</translation>
+    </message>
+    <message>
+        <source>%1 (%2 not collected)</source>
+        <translation>%1 (%2 non collectés)</translation>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -1843,6 +1914,10 @@ Assurez-vous que les noms des clés associées soient identiques sur tous les or
     <message>
         <source>Settings for distributing files</source>
         <translation>Paramètres de partage de fichiers</translation>
+    </message>
+    <message>
+        <source>Allow master to choose the destination directory</source>
+        <translation>Autoriser Veyon Master à choisir le répertoire de destination</translation>
     </message>
     <message>
         <source>Settings for collecting files</source>
@@ -2068,6 +2143,18 @@ Assurez-vous que les noms des clés associées soient identiques sur tous les or
     <message>
         <source>Are you sure you want to skip transferring the file %1?</source>
         <translation>Êtes-vous sûr de vouloir ignorer le transfert du fichier %1 ?</translation>
+    </message>
+    <message>
+        <source>Could not receive the file because the destination directory is invalid.</source>
+        <translation>Impossible de recevoir le fichier car le répertoire de destination n&apos;est pas valide.</translation>
+    </message>
+    <message>
+        <source>Could not receive the file because the destination directory could not be created.</source>
+        <translation>Impossible de recevoir le fichier car le répertoire de destination n&apos;a pas pu être créé.</translation>
+    </message>
+    <message>
+        <source>Could not receive the file because its name is invalid.</source>
+        <translation>Impossible de recevoir le fichier car son nom n&apos;est pas valide.</translation>
     </message>
     <message>
         <source>Could not receive file %1 as it already exists.</source>
@@ -2546,7 +2633,7 @@ Assurez-vous que les noms des clés associées soient identiques sur tous les or
     </message>
     <message>
         <source>Query user groups from user attribute</source>
-        <translation type="unfinished"/>
+        <translation>Interroger les groupes d&apos;utilisateurs à partir de l&apos;attribut utilisateur</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
@@ -2594,7 +2681,7 @@ Assurez-vous que les noms des clés associées soient identiques sur tous les or
     </message>
     <message>
         <source>List all user groups</source>
-        <translation type="unfinished"/>
+        <translation>Lister tous les groupes d&apos;utilisateurs</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -2606,7 +2693,7 @@ Assurez-vous que les noms des clés associées soient identiques sur tous les or
     </message>
     <message>
         <source>List all computers at a specific location</source>
-        <translation type="unfinished"/>
+        <translation>Lister tous les ordinateurs d&apos;un emplacement spécifique</translation>
     </message>
     <message>
         <source>Computers</source>
@@ -3149,8 +3236,8 @@ Assurez-vous que les noms des clés associées soient identiques sur tous les or
         <translation>Enregistre la configuration dans un fichier</translation>
     </message>
     <message>
-        <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
+        <source>Ctrl+Shift+S</source>
+        <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
@@ -3229,12 +3316,32 @@ Assurez-vous que les noms des clés associées soient identiques sur tous les or
         <translation>Veyon Configurator %1</translation>
     </message>
     <message>
+        <source>Apply configuration (%1)</source>
+        <translation>Appliquer la configuration (%1)</translation>
+    </message>
+    <message>
         <source>Load settings from file</source>
         <translation>Charge la configuration à partir d&apos;un fichier</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
         <translation>Fichiers JSON (*.json)</translation>
+    </message>
+    <message>
+        <source>Could not open the file %1 for reading: %2</source>
+        <translation>Impossible d&apos;ouvrir le fichier %1 en lecture : %2</translation>
+    </message>
+    <message>
+        <source>The file %1 does not contain valid settings.</source>
+        <translation>Le fichier %1 ne contient pas de paramètres valides.</translation>
+    </message>
+    <message>
+        <source>Could not open the file %1 for writing: %2</source>
+        <translation>Impossible d&apos;ouvrir le fichier %1 en écriture : %2</translation>
+    </message>
+    <message>
+        <source>Could not write the settings to the file %1.</source>
+        <translation>Impossible d&apos;écrire les paramètres dans le fichier %1.</translation>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
@@ -3565,15 +3672,15 @@ Appuyez et maintenez enfoncé pour charger une configuration à partir d&apos;un
     </message>
     <message>
         <source>Grid sizing mode</source>
-        <translation type="unfinished"/>
+        <translation>Mode de dimensionnement de la grille</translation>
     </message>
     <message>
         <source>Full-length labels (scales down all thumbnails)</source>
-        <translation type="unfinished"/>
+        <translation>Étiquettes complètes (réduit toutes les vignettes)</translation>
     </message>
     <message>
         <source>Maximized thumbnails (truncated labels)</source>
-        <translation type="unfinished"/>
+        <translation>Vignettes agrandies (étiquettes tronquées)</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -3651,8 +3758,12 @@ Appuyez et maintenez enfoncé pour charger une configuration à partir d&apos;un
         <translation>Interroger les propriétés des écrans distants disponibles</translation>
     </message>
     <message>
-        <source>Identify users in guest sessions</source>
-        <translation>Identifier les utilisateurs dans les sessions en mode invité</translation>
+        <source>Identify users</source>
+        <translation>Identifier les utilisateurs</translation>
+    </message>
+    <message>
+        <source>Click this button to ask the users in guest sessions on the selected computers to enter their names again.</source>
+        <translation>Cliquez sur ce bouton pour demander aux utilisateurs des sessions invités sur les ordinateurs sélectionnés de saisir à nouveau leur nom.</translation>
     </message>
     <message>
         <source>Identification request</source>
@@ -3736,15 +3847,15 @@ Appuyez et maintenez enfoncé pour charger une configuration à partir d&apos;un
     <name>PipeWireVncConfigurationWidget</name>
     <message>
         <source>PipeWire VNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>Configuration du serveur VNC PipeWire</translation>
     </message>
     <message>
         <source>Remember the screen sharing approval across restarts</source>
-        <translation type="unfinished"/>
+        <translation>Mémoriser l&apos;autorisation de partage d&apos;écran entre les redémarrages</translation>
     </message>
     <message>
         <source>The approval token is stored in the user&apos;s state directory. Any program running as the same user can read it and share the screen without asking.</source>
-        <translation type="unfinished"/>
+        <translation>Le jeton d&apos;autorisation est stocké dans le répertoire d&apos;état de l&apos;utilisateur. Tout programme exécuté sous le même utilisateur peut le lire et partager l&apos;écran sans demander.</translation>
     </message>
 </context>
 <context>
@@ -4853,8 +4964,16 @@ Exemple : [^-]*-(ORD[0-9]*)</translation>
 <context>
     <name>WebApiPlugin</name>
     <message>
+        <source>Show help about command</source>
+        <translation>Afficher la commande aide et à propos</translation>
+    </message>
+    <message>
         <source>Run WebAPI server</source>
         <translation>Exécuter le serveur API Web</translation>
+    </message>
+    <message>
+        <source>Runs the WebAPI server in the foreground with the configured settings until the program is terminated.</source>
+        <translation>Exécute le serveur API Web au premier plan avec les paramètres configurés jusqu&apos;à l&apos;arrêt du programme.</translation>
     </message>
     <message>
         <source>Failed to start WebAPI server at port %1</source>

@@ -122,7 +122,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The specified user is allowed to access computers with this configuration.</source>
-        <translation>Указанному пользователю разрешено обращаться к компьютерам с этой конфигурацией.</translation>
+        <translation>Указанному пользователю разрешён доступ к компьютерам с данной конфигурацией.</translation>
     </message>
     <message>
         <source>Access denied</source>
@@ -130,7 +130,7 @@ If you&apos;re interested in translating Veyon into your local or another langua
     </message>
     <message>
         <source>The specified user is not allowed to access computers with this configuration.</source>
-        <translation>Указанному пользователю не разрешается обращаться к компьютерам с этой конфигурацией.</translation>
+        <translation>Указанному пользователю не разрешён доступ к компьютерам с данной конфигурацией.</translation>
     </message>
 </context>
 <context>
@@ -1737,6 +1737,53 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
 </context>
 <context>
+    <name>FileCollectController</name>
+    <message>
+        <source>The collection was cancelled.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The file transfer was interrupted.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The announced file size is invalid.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The file name is not supported on this computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output directory could not be created.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output path is outside of the collection directory.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output file could not be opened for writing. It may be a link or belong to another user.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The file is larger than announced.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The output file could not be written.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The file was skipped on the computer because it is still open in an application.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The file transfer was not started.</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
     <name>FileCollectDialog</name>
     <message>
         <source>File transfer</source>
@@ -1818,6 +1865,18 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>The output directory &quot;%1&quot; does not exist and could not be created. Please check the configuration and the file permissions for the configured destination directory.</source>
         <translation>Выходной каталог &quot;%1&quot; не существует и не может быть создан. Проверьте конфигурацию и права доступа к файлам для указанного целевого каталога.</translation>
     </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; The collection was cancelled. Files that were not collected are marked in the list above.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; 1 file could not be collected. It is marked in the list above, the reason is shown as tooltip.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; %1 files could not be collected. They are marked in the list above, the reason is shown as tooltip.</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>FileCollectTreeModel</name>
@@ -1833,6 +1892,18 @@ Make sure that the names of the keys belonging to each other are identical on al
         <source>Number of files</source>
         <translation>Количество файлов</translation>
     </message>
+    <message>
+        <source>1 file could not be collected.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 files could not be collected.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>%1 (%2 not collected)</source>
+        <translation type="unfinished"/>
+    </message>
 </context>
 <context>
     <name>FileTransferConfigurationPage</name>
@@ -1843,6 +1914,10 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Settings for distributing files</source>
         <translation>Настройки распространения файлов</translation>
+    </message>
+    <message>
+        <source>Allow master to choose the destination directory</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Settings for collecting files</source>
@@ -1973,7 +2048,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     <name>FileTransferController</name>
     <message>
         <source>Could not open file %1 for reading. Please check your permissions. The file will be skipped, remaining files will still be transferred.</source>
-        <translation type="unfinished"/>
+        <translation>Не удалось открыть файл %1 для чтения. Проверьте права доступа. Этот файл будет пропущен, остальные файлы будут переданы.</translation>
     </message>
 </context>
 <context>
@@ -2020,7 +2095,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>File transfer error</source>
-        <translation type="unfinished"/>
+        <translation>Ошибка передачи файла</translation>
     </message>
 </context>
 <context>
@@ -2068,6 +2143,18 @@ Make sure that the names of the keys belonging to each other are identical on al
     <message>
         <source>Are you sure you want to skip transferring the file %1?</source>
         <translation>Вы уверены, что хотите пропустить передачу файла %1?</translation>
+    </message>
+    <message>
+        <source>Could not receive the file because the destination directory is invalid.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive the file because the destination directory could not be created.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not receive the file because its name is invalid.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Could not receive file %1 as it already exists.</source>
@@ -2434,7 +2521,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>e.g. name, ou or description</source>
-        <translation type="unfinished"/>
+        <translation>например, имя, подразделение или описание</translation>
     </message>
     <message>
         <source>Hostnames stored as fully qualified domain names (FQDN, e.g. myhost.example.org)</source>
@@ -2546,7 +2633,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>Query user groups from user attribute</source>
-        <translation type="unfinished"/>
+        <translation>Получать группы пользователей из атрибута пользователя</translation>
     </message>
     <message>
         <source>Query nested user groups (supported by AD only)</source>
@@ -2594,7 +2681,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>List all user groups</source>
-        <translation type="unfinished"/>
+        <translation>Список всех групп пользователей</translation>
     </message>
     <message>
         <source>List all groups of a user</source>
@@ -2606,7 +2693,7 @@ Make sure that the names of the keys belonging to each other are identical on al
     </message>
     <message>
         <source>List all computers at a specific location</source>
-        <translation type="unfinished"/>
+        <translation>Список всех компьютеров в указанном местоположении</translation>
     </message>
     <message>
         <source>Computers</source>
@@ -3149,8 +3236,8 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Сохранить настройки в файл</translation>
     </message>
     <message>
-        <source>Ctrl+S</source>
-        <translation>Ctrl+S</translation>
+        <source>Ctrl+Shift+S</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>L&amp;oad settings from file</source>
@@ -3229,12 +3316,32 @@ Make sure that the names of the keys belonging to each other are identical on al
         <translation>Конфигуратор Veyon %1</translation>
     </message>
     <message>
+        <source>Apply configuration (%1)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Load settings from file</source>
         <translation>Загрузить настройки из файла</translation>
     </message>
     <message>
         <source>JSON files (*.json)</source>
         <translation>Файлы JSON (*.json)</translation>
+    </message>
+    <message>
+        <source>Could not open the file %1 for reading: %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>The file %1 does not contain valid settings.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not open the file %1 for writing: %2</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Could not write the settings to the file %1.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Do you really want to reset the local configuration and revert all settings to their defaults?</source>
@@ -3525,31 +3632,31 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Monitoring view</source>
-        <translation type="unfinished"/>
+        <translation>Режим мониторинга</translation>
     </message>
     <message>
         <source>Visibility mode</source>
-        <translation type="unfinished"/>
+        <translation>Режим отображения</translation>
     </message>
     <message>
         <source>Aspect ratio</source>
-        <translation type="unfinished"/>
+        <translation>Соотношение сторон</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished"/>
+        <translation>Обычный</translation>
     </message>
     <message>
         <source>Blurred</source>
-        <translation type="unfinished"/>
+        <translation>Размытый</translation>
     </message>
     <message>
         <source>Hidden</source>
-        <translation type="unfinished"/>
+        <translation>Скрытый</translation>
     </message>
     <message>
         <source>Grid spacing</source>
-        <translation type="unfinished"/>
+        <translation> Интервал между элементами сетки</translation>
     </message>
     <message>
         <source>Image quality</source>
@@ -3557,23 +3664,23 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Display label</source>
-        <translation type="unfinished"/>
+        <translation>Отображать подпись</translation>
     </message>
     <message>
         <source>Refresh rate</source>
-        <translation type="unfinished"/>
+        <translation>Частота обновления</translation>
     </message>
     <message>
         <source>Grid sizing mode</source>
-        <translation type="unfinished"/>
+        <translation>Режим масштабирования элементов сетки</translation>
     </message>
     <message>
         <source>Full-length labels (scales down all thumbnails)</source>
-        <translation type="unfinished"/>
+        <translation>Полные подписи (уменьшает все миниатюры)</translation>
     </message>
     <message>
         <source>Maximized thumbnails (truncated labels)</source>
-        <translation type="unfinished"/>
+        <translation>Максимальные миниатюры (сокращённые подписи)</translation>
     </message>
     <message>
         <source>Remote access</source>
@@ -3651,8 +3758,12 @@ Press and hold to load arrangement from a file or save current arrangement to a 
         <translation>Запросить свойства удаленно доступных экранов</translation>
     </message>
     <message>
-        <source>Identify users in guest sessions</source>
-        <translation>Определять пользователей в гостевых сеансах</translation>
+        <source>Identify users</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Click this button to ask the users in guest sessions on the selected computers to enter their names again.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Identification request</source>
@@ -3736,15 +3847,15 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     <name>PipeWireVncConfigurationWidget</name>
     <message>
         <source>PipeWire VNC server configuration</source>
-        <translation type="unfinished"/>
+        <translation>Настройка VNC-сервера PipeWire</translation>
     </message>
     <message>
         <source>Remember the screen sharing approval across restarts</source>
-        <translation type="unfinished"/>
+        <translation>Сохранять разрешение на демонстрацию экрана после перезапуска</translation>
     </message>
     <message>
         <source>The approval token is stored in the user&apos;s state directory. Any program running as the same user can read it and share the screen without asking.</source>
-        <translation type="unfinished"/>
+        <translation>Токен разрешения сохраняется в каталоге состояния пользователя. Любая программа, запущенная от имени того же пользователя, может прочитать этот токен и получить доступ к демонстрации экрана без запроса разрешения.</translation>
     </message>
 </context>
 <context>
@@ -3869,7 +3980,7 @@ Press and hold to load arrangement from a file or save current arrangement to a 
     </message>
     <message>
         <source>Invalid MAC address specified!</source>
-        <translation>Указан некорректный MAC-адрес!</translation>
+        <translation>Указан недопустимый MAC-адрес!</translation>
     </message>
     <message>
         <source>The computer was remotely requested to power down. Do you want to power down the computer now?</source>
@@ -4117,7 +4228,7 @@ Please save your work and close all programs.</source>
     <name>ScreenshotManagementPanel</name>
     <message>
         <source>All screenshots taken by you are listed here. You can take screenshots by clicking the &quot;Screenshot&quot; item in the context menu of a computer. The screenshots can be managed using the buttons below.</source>
-        <translation>Здесь приведен список всех сделанных вами снимков окон. Вы можете создавать снимки экрана, выбирая пункт &quot;Снимок экрана&quot; в контекстном меню компьютера. Управлять снимками окон можно с помощью расположенных ниже кнопок.</translation>
+        <translation>Все сделанные вами снимки экрана перечислены здесь. Чтобы сделать снимок экрана компьютера, выберите пункт «Снимок экрана» в его контекстном меню. Управлять снимками экрана можно с помощью расположенных ниже кнопок.</translation>
     </message>
     <message>
         <source>User:</source>
@@ -4199,11 +4310,11 @@ Please save your work and close all programs.</source>
     </message>
     <message>
         <source>Maximum simultaneous server connections</source>
-        <translation type="unfinished"/>
+        <translation> Максимальное количество одновременных подключений к серверу</translation>
     </message>
     <message>
         <source>Limits simultaneous remote connections to protect the server against resource exhaustion.</source>
-        <translation type="unfinished"/>
+        <translation>Ограничивает количество одновременных удалённых подключений, чтобы предотвратить исчерпание ресурсов сервера.</translation>
     </message>
     <message>
         <source>Hide tray icon</source>
@@ -4567,11 +4678,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Title:</source>
-        <translation type="unfinished"/>
+        <translation>Заголовок:</translation>
     </message>
     <message>
         <source>Optional custom title for the message window</source>
-        <translation type="unfinished"/>
+        <translation>Необязательный заголовок окна сообщения</translation>
     </message>
     <message>
         <source>Message from teacher</source>
@@ -4579,7 +4690,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Message from %1</source>
-        <translation type="unfinished"/>
+        <translation>Сообщение от %1</translation>
     </message>
 </context>
 <context>
@@ -4698,7 +4809,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Invalid arguments given</source>
-        <translation>Даны неправильные аргументы</translation>
+        <translation>Указаны недопустимые аргументы</translation>
     </message>
     <message>
         <source>Not enough arguments given - use &quot;%1 help&quot; for more information</source>
@@ -4706,11 +4817,11 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>No command given</source>
-        <translation type="unfinished"/>
+        <translation>Команда не задана</translation>
     </message>
     <message>
         <source>Invalid command given</source>
-        <translation type="unfinished"/>
+        <translation>Указана недопустимая команда</translation>
     </message>
     <message>
         <source>Plugin not licensed</source>
@@ -4722,7 +4833,7 @@ Example: [^-]*-(PC[0-9]*)</source>
     </message>
     <message>
         <source>Unknown command result</source>
-        <translation type="unfinished"/>
+        <translation> Неизвестный результат выполнения команды</translation>
     </message>
     <message>
         <source>Available modules:</source>
@@ -4853,8 +4964,16 @@ Example: [^-]*-(PC[0-9]*)</source>
 <context>
     <name>WebApiPlugin</name>
     <message>
+        <source>Show help about command</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
         <source>Run WebAPI server</source>
         <translation>Включить Веб-API сервер</translation>
+    </message>
+    <message>
+        <source>Runs the WebAPI server in the foreground with the configured settings until the program is terminated.</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Failed to start WebAPI server at port %1</source>
