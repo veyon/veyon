@@ -6,7 +6,9 @@
 // (dbus-run-session). The fake portal runs in a child process since PortalSession waits for
 // OpenPipeWireRemote() synchronously.
 
+#include <QDBusArgument>
 #include <QDBusConnection>
+#include <QDBusMetaType>
 #include <QDBusMessage>
 #include <QDBusUnixFileDescriptor>
 #include <QDBusVirtualObject>
@@ -22,6 +24,7 @@
 #include "PortalSession.h"
 
 #include <fcntl.h>
+#include <linux/input.h>
 #include <unistd.h>
 
 
@@ -39,7 +42,57 @@ constexpr quint32 HangingKeySym = 'h'; // never replied to
 
 constexpr int SlowKeyDelay = 100;
 
+constexpr uint StreamNodeId = 42;
+
+// the D-Bus types of the streams in the Start response, a(ua{sv}) with (ii) for position and size
+struct IntPair
+{
+	int first = 0;
+	int second = 0;
+};
+
+struct Stream
+{
+	uint nodeId = 0;
+	QVariantMap properties;
+};
+
 } // namespace
+
+Q_DECLARE_METATYPE(IntPair)
+Q_DECLARE_METATYPE(Stream)
+
+QDBusArgument& operator<<(QDBusArgument& argument, const IntPair& pair)
+{
+	argument.beginStructure();
+	argument << pair.first << pair.second;
+	argument.endStructure();
+	return argument;
+}
+
+const QDBusArgument& operator>>(const QDBusArgument& argument, IntPair& pair)
+{
+	argument.beginStructure();
+	argument >> pair.first >> pair.second;
+	argument.endStructure();
+	return argument;
+}
+
+QDBusArgument& operator<<(QDBusArgument& argument, const Stream& stream)
+{
+	argument.beginStructure();
+	argument << stream.nodeId << stream.properties;
+	argument.endStructure();
+	return argument;
+}
+
+const QDBusArgument& operator>>(const QDBusArgument& argument, Stream& stream)
+{
+	argument.beginStructure();
+	argument >> stream.nodeId >> stream.properties;
+	argument.endStructure();
+	return argument;
+}
 
 
 
@@ -59,6 +112,15 @@ public:
 		if (message.interface() == TestInterface && method == QLatin1String("State"))
 		{
 			connection.send(message.createReply({m_closedSessions, m_forwardedInput}));
+			return true;
+		}
+
+		if (message.interface() == TestInterface && method == QLatin1String("SetStream"))
+		{
+			const auto arguments = message.arguments();
+			m_streamPosition = QPoint(arguments.value(0).toInt(), arguments.value(1).toInt());
+			m_streamSize = QSize(arguments.value(2).toInt(), arguments.value(3).toInt());
+			connection.send(message.createReply());
 			return true;
 		}
 
@@ -82,6 +144,23 @@ public:
 			return true;
 		}
 
+		if (method == QLatin1String("NotifyPointerMotionAbsolute"))
+		{
+			handlePointerMotion(message, connection);
+			return true;
+		}
+
+		if (method == QLatin1String("NotifyPointerButton"))
+		{
+			const auto arguments = message.arguments();
+			m_forwardedInput.append(QStringLiteral("%1:button:%2:%3")
+										.arg(sessionNumber(arguments.value(0)))
+										.arg(arguments.value(2).toInt())
+										.arg(arguments.value(3).toUInt()));
+			connection.send(message.createReply());
+			return true;
+		}
+
 		if (method == QLatin1String("OpenPipeWireRemote"))
 		{
 			const int fd = ::open("/dev/null", O_RDONLY);
@@ -102,6 +181,34 @@ public:
 	}
 
 private:
+	static QString sessionNumber(const QVariant& sessionHandle)
+	{
+		return qvariant_cast<QDBusObjectPath>(sessionHandle).path().mid(SessionPathPrefix.size());
+	}
+
+	void handlePointerMotion(const QDBusMessage& message, const QDBusConnection& connection)
+	{
+		const auto arguments = message.arguments();
+		const auto stream = arguments.value(2).toUInt();
+		const auto x = arguments.value(3).toDouble();
+		const auto y = arguments.value(4).toDouble();
+
+		// the check of xdg-desktop-portal >= 1.19 against the stream size from the Start response
+		if (stream != StreamNodeId ||
+			(m_streamSize.isEmpty() == false &&
+			 (x < 0 || x >= m_streamSize.width() || y < 0 || y >= m_streamSize.height())))
+		{
+			connection.send(message.createErrorReply(QDBusError::Failed, QStringLiteral("Invalid position")));
+			return;
+		}
+
+		m_forwardedInput.append(QStringLiteral("%1:motion:%2,%3")
+									.arg(sessionNumber(arguments.value(0)))
+									.arg(x, 0, 'f', 2)
+									.arg(y, 0, 'f', 2));
+		connection.send(message.createReply());
+	}
+
 	void handleKeysym(const QDBusMessage& message, const QDBusConnection& connection)
 	{
 		const auto arguments = message.arguments();
@@ -155,6 +262,19 @@ private:
 		{
 			results[QStringLiteral("session_handle")] = QString(SessionPathPrefix + QString::number(++m_sessionCount));
 		}
+		else if (message.member() == QLatin1String("Start"))
+		{
+			Stream stream{StreamNodeId, {}};
+			stream.properties[QStringLiteral("position")] =
+				QVariant::fromValue(IntPair{m_streamPosition.x(), m_streamPosition.y()});
+			// old portals don't report the size
+			if (m_streamSize.isEmpty() == false)
+			{
+				stream.properties[QStringLiteral("size")] =
+					QVariant::fromValue(IntPair{m_streamSize.width(), m_streamSize.height()});
+			}
+			results[QStringLiteral("streams")] = QVariant::fromValue(QList<Stream>{stream});
+		}
 
 		connection.send(message.createReply({QVariant::fromValue(QDBusObjectPath(requestPath))}));
 
@@ -168,6 +288,8 @@ private:
 
 	int m_sessionCount = 0;
 	bool m_denyNextStart = false;
+	QPoint m_streamPosition;
+	QSize m_streamSize{1920, 1080};
 	QStringList m_closedSessions;
 	QStringList m_forwardedInput;
 };
@@ -318,7 +440,84 @@ private Q_SLOTS:
 		QTRY_VERIFY(closedSessions().contains(SessionPathPrefix + QString::number(sessionNumber)));
 	}
 
+	// KDE Plasma with a 4K output at 150 %: logical stream size, buffers in physical pixels
+	void pointerUsesStreamCoordinates()
+	{
+		setStream({3840, 0}, {2560, 1440});
+
+		PortalSession session(false);
+		QSignalSpy failedSpy(&session, &PortalSession::failed);
+		QVERIFY(startSession(session));
+		const auto sessionNumber = currentSessionNumber();
+		QCOMPARE(session.pipeWireNodeId(), StreamNodeId);
+		QCOMPARE(session.streamGeometry().position, QPoint(3840, 0));
+		QCOMPARE(session.streamGeometry().size, QSize(2560, 1440));
+
+		const QSize framebufferSize(3840, 2160);
+		session.notifyPointer(0, 1920, 1080, framebufferSize);
+		QTRY_COMPARE(forwardedInput(sessionNumber), QStringList{pointerEvent(sessionNumber, 1280, 720)});
+
+		// beyond the logical width: "Invalid position" before
+		session.notifyPointer(0, 3000, 2000, framebufferSize);
+		QTRY_COMPARE(forwardedInput(sessionNumber).size(), 2);
+		QCOMPARE(forwardedInput(sessionNumber).constLast(), pointerEvent(sessionNumber, 2000, 2000.0 * 1440 / 2160));
+
+		// the last pixel and anything beyond is clamped to the stream
+		session.notifyPointer(0, 3839, 2159, framebufferSize);
+		QTRY_COMPARE(forwardedInput(sessionNumber).size(), 3);
+		QCOMPARE(forwardedInput(sessionNumber).constLast(),
+				 pointerEvent(sessionNumber, 3839.0 * 2560 / 3840, 2159.0 * 1440 / 2160));
+		session.notifyPointer(1, 5000, 3000, framebufferSize);
+		QTRY_COMPARE(forwardedInput(sessionNumber).size(), 4);
+		QCOMPARE(forwardedInput(sessionNumber).constLast(), buttonEvent(sessionNumber, BTN_LEFT, 1));
+
+		// framebuffer resized at runtime
+		session.notifyPointer(0, 960, 540, {1920, 1080});
+		QTRY_COMPARE(forwardedInput(sessionNumber).size(), 6);
+		QCOMPARE(forwardedInput(sessionNumber).mid(4),
+				 (QStringList{pointerEvent(sessionNumber, 1280, 720), buttonEvent(sessionNumber, BTN_LEFT, 0)}));
+
+		QCOMPARE(failedSpy.size(), 0);
+		QCOMPARE(session.state(), PortalSession::State::Running);
+	}
+
+	void pointerWithoutStreamSize()
+	{
+		setStream({}, {});
+
+		PortalSession session(false);
+		QVERIFY(startSession(session));
+		const auto sessionNumber = currentSessionNumber();
+		QVERIFY(session.streamGeometry().size.isEmpty());
+
+		session.notifyPointer(0, 3000, 2000, {3840, 2160});
+		QTRY_COMPARE(forwardedInput(sessionNumber), QStringList{pointerEvent(sessionNumber, 3000, 2000)});
+		session.notifyPointer(0, 4000, 2000, {3840, 2160});
+		QTRY_COMPARE(forwardedInput(sessionNumber).size(), 2);
+		QCOMPARE(forwardedInput(sessionNumber).constLast(), pointerEvent(sessionNumber, 3839, 2000));
+
+		setStream({}, {1920, 1080});
+	}
+
 private:
+	static void setStream(QPoint position, QSize size)
+	{
+		auto request = QDBusMessage::createMethodCall(FakePortalService, FakePortalObjectPath, TestInterface,
+													  QStringLiteral("SetStream"));
+		request.setArguments({position.x(), position.y(), size.width(), size.height()});
+		QDBusConnection::sessionBus().call(request);
+	}
+
+	static QString pointerEvent(int sessionNumber, double x, double y)
+	{
+		return QStringLiteral("%1:motion:%2,%3").arg(sessionNumber).arg(x, 0, 'f', 2).arg(y, 0, 'f', 2);
+	}
+
+	static QString buttonEvent(int sessionNumber, int button, uint state)
+	{
+		return QStringLiteral("%1:button:%2:%3").arg(sessionNumber).arg(button).arg(state);
+	}
+
 	bool startSession(PortalSession& session)
 	{
 		QSignalSpy startedSpy(&session, &PortalSession::started);
@@ -375,6 +574,10 @@ int main(int argc, char** argv)
 
 	if (application.arguments().contains(QStringLiteral("--fake-portal")))
 	{
+		qDBusRegisterMetaType<IntPair>();
+		qDBusRegisterMetaType<Stream>();
+		qDBusRegisterMetaType<QList<Stream>>();
+
 		FakePortal portal;
 		auto connection = QDBusConnection::sessionBus();
 		if (connection.registerService(FakePortalService) == false ||

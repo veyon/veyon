@@ -208,6 +208,19 @@ systemctl --user enable --now veyon-server
   `NotifyPointerAxisDiscrete`.  All input events are ignored until the portal
   session is in the `Running` state.
 
+* **Pointer coordinates and display scaling**: VNC clients send pointer
+  positions in framebuffer pixels, i.e. in the size of the PipeWire buffers.
+  `NotifyPointerMotionAbsolute` however takes positions in the coordinate space
+  of the stream, which is the `size` the portal reports for the stream in the
+  `Start` response. With display scaling this is the logical size of the
+  output (e.g. 2560×1440 for a 4K output at 150 % on KDE Plasma), and
+  xdg-desktop-portal rejects positions outside of it ("Invalid position").
+  Positions are therefore scaled by stream size / framebuffer size and clamped
+  to the stream, using the current framebuffer size so that a resize at
+  runtime is taken into account. If the portal doesn't report a size (old
+  portals), positions are passed unscaled. The stream's `position` is not
+  added, since positions are relative to the stream.
+
 * **Multi-monitor**: `SelectSources` currently requests a single monitor.
   Multi-monitor support can be added by iterating stream node IDs returned by
   the portal `Start` response.

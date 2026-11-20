@@ -57,6 +57,7 @@ if(PipeWire_FOUND AND Qt${QT_MAJOR_VERSION}DBus_FOUND)
 		PipeWireVncConfiguration.h
 		PortalInputDispatcher.cpp
 		PortalInputDispatcher.h
+		PortalPointerMapping.h
 		PortalSession.cpp
 		PortalSession.h
 		${DBUS_GENERATED_SOURCES}

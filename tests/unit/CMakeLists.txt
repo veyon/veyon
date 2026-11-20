@@ -119,6 +119,22 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 
 	add_test(NAME PipeWireVncServerTest COMMAND PipeWireVncServerTest)
 
+	#
+	# PortalPointerMappingTest: VNC framebuffer positions to the coordinate space of a portal stream
+	#
+	add_executable(PortalPointerMappingTest
+		PortalPointerMappingTest.cpp
+	)
+
+	target_include_directories(PortalPointerMappingTest PRIVATE ${CMAKE_SOURCE_DIR}/plugins/vncserver/pipewire)
+
+	target_link_libraries(PortalPointerMappingTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+	)
+
+	add_test(NAME PortalPointerMappingTest COMMAND PortalPointerMappingTest)
+
 	add_executable(VncProtocolRobustnessTest
 		VncProtocolRobustnessTest.cpp
 	)
