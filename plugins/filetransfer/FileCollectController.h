@@ -130,6 +130,9 @@ Q_SIGNALS:
 	void finished();
 
 private:
+	// returns the collection if it exists and is neither finished nor cancelled, otherwise nullptr
+	FileCollection* activeCollection(const ComputerControlInterface::Pointer& computerControlInterface,
+									 FileCollection::Id collectionId);
 	void initiateNextFileTransfer(ComputerControlInterface::Pointer computerControlInterface,
 								  FileCollection& collection);
 	// records the current file as not collected and continues with the next one

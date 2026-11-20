@@ -6,6 +6,8 @@
 #include <QFile>
 #include <QMap>
 
+#include <algorithm>
+
 struct FileCollection
 {
 	enum class State {
@@ -13,7 +15,8 @@ struct FileCollection
 		Initializing,
 		ReadyForNextFileTransfer,
 		FileTransferRunning,
-		Finished
+		Finished,
+		Cancelled
 	};
 
 	using Id = QUuid;
@@ -28,6 +31,8 @@ struct FileCollection
 	int processedFilesCount = 0;
 	// files that were skipped or rejected (index in files → reason)
 	QMap<int, QString> failedFiles = {};
+	// set by cancel(), applies to all files that were not processed
+	QString cancelReason = {};
 
 	TransferId currentTransferId = {};
 	QFile* currentOutputFile = nullptr;
@@ -54,6 +59,43 @@ struct FileCollection
 		return failedFiles.contains(index);
 	}
 
+	// no further transfer messages are processed for a finished or cancelled collection
+	bool isEnded() const
+	{
+		return state == State::Finished || state == State::Cancelled;
+	}
+
+	bool isCancelled() const
+	{
+		return state == State::Cancelled;
+	}
+
+	// failed files plus, for a cancelled collection, all files that were not processed
+	bool isNotCollectedFile(int index) const
+	{
+		return isFailedFile(index) || (isCancelled() && index >= processedFilesCount && index < files.size());
+	}
+
+	QString notCollectedReason(int index) const
+	{
+		return isFailedFile(index) ? failedFiles.value(index) : (isNotCollectedFile(index) ? cancelReason : QString{});
+	}
+
+	int notCollectedFilesCount() const
+	{
+		auto count = int(failedFiles.size());
+		if (isCancelled() && processedFilesCount < files.size())
+		{
+			// the file in transfer at the cancel is already in failedFiles
+			count += int(files.size()) - std::max(processedFilesCount, 0);
+			if (isFailedFile(processedFilesCount))
+			{
+				count -= 1;
+			}
+		}
+		return count;
+	}
+
 	void closeCurrentOutputFile()
 	{
 		if (currentOutputFile)
@@ -78,7 +120,8 @@ struct FileCollection
 		}
 	}
 
-	// marks a file still being received as failed, removes it and drops all further transfers
+	// marks a file still being received as failed, removes it and drops all further transfers;
+	// the remaining files count as not collected
 	void cancel(const QString& reason)
 	{
 		if (currentOutputFile)
@@ -86,7 +129,8 @@ struct FileCollection
 			markCurrentFileFailed(reason);
 			discardCurrentOutputFile();
 		}
-		state = State::Finished;
+		cancelReason = reason;
+		state = State::Cancelled;
 	}
 
 	int currentFileProgress() const
@@ -96,6 +140,7 @@ struct FileCollection
 			0;
 	}
 
+	// a cancelled collection keeps the progress of the files processed before the cancel
 	int progress() const
 	{
 		if (files.isEmpty())

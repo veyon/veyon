@@ -137,24 +137,34 @@ void FileCollectDialog::start()
 void FileCollectDialog::showFailedFiles()
 {
 	int failedFilesCount = 0;
+	bool cancelled = false;
 	int row = 0;
 	for (const auto& collection : m_controller->collections())
 	{
-		if (collection.failedFiles.isEmpty() == false)
+		if (collection.notCollectedFilesCount() > 0)
 		{
-			failedFilesCount += collection.failedFiles.size();
+			failedFilesCount += collection.notCollectedFilesCount();
 			ui->collectionsTreeView->expand(m_model->index(row, 0));
 		}
+		cancelled |= collection.isCancelled();
 		++row;
 	}
 
-	if (failedFilesCount > 0)
+	if (cancelled)
+	{
+		// the number of files is not known for computers that did not list their files yet
+		ui->failedFilesLabel->setText(tr("<b>Warning:</b> The collection was cancelled. Files that were not "
+										 "collected are marked in the list above."));
+		ui->failedFilesLabel->show();
+	}
+	else if (failedFilesCount > 0)
 	{
 		ui->failedFilesLabel->setText(failedFilesCount == 1 ?
-			tr("<b>Warning:</b> 1 file could not be collected. It is marked in the list above, "
-			   "the reason is shown as tooltip.") :
-			tr("<b>Warning:</b> %1 files could not be collected. They are marked in the list above, "
-			   "the reason is shown as tooltip.").arg(failedFilesCount));
+										  tr("<b>Warning:</b> 1 file could not be collected. It is marked in the list above, "
+											 "the reason is shown as tooltip.") :
+										  tr("<b>Warning:</b> %1 files could not be collected. They are marked in the list above, "
+											 "the reason is shown as tooltip.")
+											  .arg(failedFilesCount));
 		ui->failedFilesLabel->show();
 	}
 }

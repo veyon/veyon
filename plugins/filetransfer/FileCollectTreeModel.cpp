@@ -222,11 +222,16 @@ QVariant FileCollectTreeModel::collectionData(const FileCollection& collection, 
 			case FileCollection::State::FileTransferRunning: return m_transferringPixmap;
 			case FileCollection::State::Finished:
 				return collection.failedFiles.isEmpty() ? m_finishedPixmap : m_failedPixmap;
+			case FileCollection::State::Cancelled: return m_failedPixmap;
 			default: break;
 			}
 			break;
 
 		case Qt::ToolTipRole:
+			if (collection.isCancelled())
+			{
+				return collection.cancelReason;
+			}
 			if (collection.failedFiles.isEmpty() == false)
 			{
 				return collection.failedFiles.size() == 1 ?
@@ -238,13 +243,16 @@ QVariant FileCollectTreeModel::collectionData(const FileCollection& collection, 
 		break;
 
 	case Column::FileCount:
-		if (role == Qt::DisplayRole && collection.state != FileCollection::State::Initializing)
+		// the number of files of a collection that was cancelled before the computer listed them is unknown
+		if (role == Qt::DisplayRole && collection.state != FileCollection::State::Initializing &&
+			(collection.isCancelled() == false || collection.files.isEmpty() == false))
 		{
-			if (collection.failedFiles.isEmpty())
+			const auto notCollectedFilesCount = collection.notCollectedFilesCount();
+			if (notCollectedFilesCount == 0)
 			{
 				return collection.files.size();
 			}
-			return tr("%1 (%2 not collected)").arg(collection.files.size()).arg(collection.failedFiles.size());
+			return tr("%1 (%2 not collected)").arg(collection.files.size()).arg(notCollectedFilesCount);
 		}
 		return {};
 
@@ -262,10 +270,10 @@ QVariant FileCollectTreeModel::collectionData(const FileCollection& collection, 
 
 QVariant FileCollectTreeModel::fileData(const FileCollection& collection, const QModelIndex& index, int role) const
 {
-	// show the reason in every column of a failed file, including the progress bar
-	if (role == Qt::ToolTipRole && collection.isFailedFile(index.row()))
+	// show the reason in every column of a file that was not collected, including the progress bar
+	if (role == Qt::ToolTipRole && collection.isNotCollectedFile(index.row()))
 	{
-		return collection.failedFiles.value(index.row());
+		return collection.notCollectedReason(index.row());
 	}
 
 	switch (Column(index.column()))
@@ -274,7 +282,7 @@ QVariant FileCollectTreeModel::fileData(const FileCollection& collection, const 
 		switch (role)
 		{
 		case Qt::DecorationRole:
-			if (collection.isFailedFile(index.row()))
+			if (collection.isNotCollectedFile(index.row()))
 			{
 				return m_failedPixmap;
 			}
@@ -301,7 +309,7 @@ QVariant FileCollectTreeModel::fileData(const FileCollection& collection, const 
 	case Column::Progress:
 		if (role == Qt::DisplayRole)
 		{
-			if (collection.isFailedFile(index.row()))
+			if (collection.isNotCollectedFile(index.row()))
 			{
 				return 0;
 			}
