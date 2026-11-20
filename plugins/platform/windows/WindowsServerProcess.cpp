@@ -55,6 +55,18 @@ bool VeyonServerProcess::isRunning() const
 
 
 
+bool VeyonServerProcess::waitForFinished(DWORD timeout) const
+{
+	if (m_processHandle)
+	{
+		return WaitForSingleObject(m_processHandle.get(), timeout) != WAIT_TIMEOUT;
+	}
+
+	return true;
+}
+
+
+
 void VeyonServerProcess::start()
 {
 	const auto baseProcessId = WtsSessionManager::findProcessId(QStringLiteral("winlogon.exe"), m_wtsSessionId);

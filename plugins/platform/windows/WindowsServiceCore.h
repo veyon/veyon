@@ -25,6 +25,7 @@ public:
 private:
 	void manageServersForAllSessions();
 	void manageServerForConsoleSession();
+	void waitForSessionChangesToSettle();
 
 	static void WINAPI serviceMainStatic(DWORD argc, LPWSTR* argv);
 	static DWORD WINAPI serviceCtrlStatic(DWORD ctrlCode, DWORD eventType, LPVOID eventData, LPVOID context);
@@ -43,12 +44,15 @@ private:
 	HANDLE m_stopServiceEvent{nullptr};
 	HANDLE m_serverShutdownEvent{nullptr};
 	QAtomicInt m_serviceStopRequested{0};
-	QAtomicInt m_sessionChanged{0};
+	QAtomicInt m_consoleSessionUserChanged{0};
 
 	ServiceDataManager m_dataManager{};
 	PlatformSessionManager m_sessionManager{};
 
 	static constexpr auto SessionPollingInterval = 5000;
 	static constexpr auto MinimumServerUptimeTime = 10000;
+	static constexpr auto ServerShutdownSignalInterval = 100;
+	static constexpr auto SessionChangeSettleTime = 2000;
+	static constexpr auto SessionChangeMaximumSettleTime = 10000;
 	static constexpr auto ServiceStartTimeout = 15000;
 };
