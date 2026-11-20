@@ -27,6 +27,7 @@ public:
 		SessionMetaData,
 		UserIdentity,
 		UserIdentificationContextId,
+		ForceIdentification,
 		ActiveFeaturesList = 0 // for compatibility after migration from FeatureControl
 	};
 	Q_ENUM(Argument)
@@ -98,15 +99,7 @@ public:
 	void identifyUser(const ComputerControlInterfaceList& computerControlInterfaces);
 
 	bool controlFeature(Feature::Uid featureUid, Operation operation, const QVariantMap& arguments,
-						const ComputerControlInterfaceList& computerControlInterfaces) override
-	{
-		Q_UNUSED(featureUid)
-		Q_UNUSED(operation)
-		Q_UNUSED(arguments)
-		Q_UNUSED(computerControlInterfaces)
-
-		return false;
-	}
+						const ComputerControlInterfaceList& computerControlInterfaces) override;
 
 	bool handleFeatureMessage(ComputerControlInterface::Pointer computerControlInterface,
 							  const FeatureMessage& message) override;
@@ -172,10 +165,7 @@ private:
 	const Feature m_querySessionInfoFeature;
 	const Feature m_queryScreensFeature;
 	const Feature m_identifyUserFeature;
-	const FeatureList m_features = {
-		m_monitoringModeFeature, m_queryApplicationVersionFeature, m_queryActiveFeatures,
-		m_queryUserInfoFeature, m_querySessionInfoFeature, m_queryScreensFeature,
-		m_identifyUserFeature};
+	const FeatureList m_features;
 
 	int m_activeFeaturesVersion{0};
 	QStringList m_activeFeatures;
