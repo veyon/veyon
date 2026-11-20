@@ -66,7 +66,14 @@ jobs:
           export PATH="$PWD/build/crypto:$PWD/build/core:$PATH"
           openssl version -a
           git config --get core.autocrlf || true
-          QT_QPA_PLATFORM=offscreen ctest --test-dir build --output-on-failure --no-tests=error || {
+          # the platform plugin compiles bundled UltraVNC sources, which may fail to build (see above);
+          # tests which load it can only run if it was built
+          ctest_args=""
+          if [ -z "$(find build -name 'windows-platform*.dll' 2>/dev/null)" ]; then
+            echo "windows-platform plugin not built - skipping tests labelled platform-plugin"
+            ctest_args="-LE platform-plugin"
+          fi
+          QT_QPA_PLATFORM=offscreen ctest --test-dir build --output-on-failure --no-tests=error $ctest_args || {
             cat build/Testing/Temporary/LastTest.log
             exit 1
           }

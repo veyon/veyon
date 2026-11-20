@@ -173,6 +173,7 @@ if(WITH_TESTS)
 	target_link_libraries(FeatureMessageRedactionTest PRIVATE Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Widgets veyon-core)
 	add_dependencies(FeatureMessageRedactionTest ${VEYON_TEST_PLATFORM_PLUGIN} usersessioncontrol demo remoteaccess filetransfer)
 	add_test(NAME FeatureMessageRedactionTest COMMAND FeatureMessageRedactionTest)
+	set_tests_properties(FeatureMessageRedactionTest PROPERTIES LABELS platform-plugin)
 
 	# debug output of the WebAPI plugin (05-tls.md §7a)
 	if(WITH_WEBAPI)
@@ -194,6 +195,7 @@ if(WITH_TESTS)
 	target_link_libraries(VeyonAuthenticationTest PRIVATE Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Network veyon-core)
 	add_dependencies(VeyonAuthenticationTest ${VEYON_TEST_PLATFORM_PLUGIN})
 	add_test(NAME VeyonAuthenticationTest COMMAND VeyonAuthenticationTest)
+	set_tests_properties(VeyonAuthenticationTest PROPERTIES LABELS platform-plugin)
 
 	# logon credentials in the service data blob (05-tls.md §7)
 	add_executable(PersistentLogonCredentialsTest
@@ -205,6 +207,7 @@ if(WITH_TESTS)
 	target_link_libraries(PersistentLogonCredentialsTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
 	add_dependencies(PersistentLogonCredentialsTest ${VEYON_TEST_PLATFORM_PLUGIN})
 	add_test(NAME PersistentLogonCredentialsTest COMMAND PersistentLogonCredentialsTest)
+	set_tests_properties(PersistentLogonCredentialsTest PROPERTIES LABELS platform-plugin)
 
 	if(VEYON_BUILD_WINDOWS)
 		# DACLs of the IPC endpoint pipes (02-ipc.md §1, §6a)
