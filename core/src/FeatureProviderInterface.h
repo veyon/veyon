@@ -59,6 +59,34 @@ public:
 	}
 
 	/*!
+	 * \brief Returns the keys of the arguments of a feature whose values must never be logged, e.g.
+	 * passwords and tokens; every feature that transmits a secret registers it here,
+	 * usually via sensitiveArgumentKeys()
+	 * \param featureUid the UID of the feature
+	 */
+	virtual QStringList sensitiveArguments(Feature::Uid featureUid) const
+	{
+		Q_UNUSED(featureUid)
+
+		return {};
+	}
+
+	// both keys of each argument: the stringified index used in FeatureMessage and the camel-case
+	// name used in controlFeature() argument maps
+	template<class T>
+	static QStringList sensitiveArgumentKeys(std::initializer_list<T> arguments)
+	{
+		QStringList keys;
+		keys.reserve(int(arguments.size()) * 2);
+		for (const auto argument : arguments)
+		{
+			keys.append(QString::number(static_cast<int>(argument)));
+			keys.append(argToString(argument));
+		}
+		return keys;
+	}
+
+	/*!
 	 * \brief Control feature in a generic way based on passed arguments
 	 * \param featureUid the UID of the feature to control
 	 * \param operation the operation to perform for the feature
