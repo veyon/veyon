@@ -11,6 +11,7 @@
 #include <QProcess>
 #include <QPushButton>
 #include <QScrollBar>
+#include <QShortcut>
 #include <QSettings>
 #include <QTimer>
 
@@ -54,6 +55,13 @@ MainWindow::MainWindow(QWidget* parent) :
 	}
 
 	connect(ui->buttonBox, &QDialogButtonBox::clicked, this, &MainWindow::resetOrApply);
+
+	// Ctrl+S applies the configuration - use a separate shortcut so the button keeps its mnemonic;
+	// click() does nothing while the apply button is disabled
+	auto applyButton = ui->buttonBox->button(QDialogButtonBox::Apply);
+	auto applyShortcut = new QShortcut(QKeySequence::Save, this);
+	connect(applyShortcut, &QShortcut::activated, applyButton, &QAbstractButton::click);
+	applyButton->setToolTip(tr("Apply configuration (%1)").arg(applyShortcut->key().toString(QKeySequence::NativeText)));
 
 	connect(ui->actionLoadSettings, &QAction::triggered, this, &MainWindow::loadSettingsFromFile);
 	connect(ui->actionSaveSettings, &QAction::triggered, this, &MainWindow::saveSettingsToFile);
