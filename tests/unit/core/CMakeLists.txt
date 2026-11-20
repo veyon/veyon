@@ -121,8 +121,10 @@ if(WITH_TESTS)
 	add_test(NAME SecretStoreTest COMMAND SecretStoreTest)
 
 	# registry of secret properties declared by core and the plugins (03-secretstore-config.md §3a)
+	include(BuildVeyonPlugin)
 	add_library(secret-properties-test-plugin MODULE secret-properties/SecretPropertiesTestPlugin.cpp)
 	target_link_libraries(secret-properties-test-plugin PRIVATE veyon-core)
+	add_veyon_plugin_build_version(secret-properties-test-plugin)
 
 	add_executable(SecretPropertyRegistryTest SecretPropertyRegistryTest.cpp)
 	set_default_target_properties(SecretPropertyRegistryTest)

@@ -386,20 +386,43 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 
 	# PluginLoadingTest: plugins with unresolved symbols (e.g. built for an older Veyon version) are
 	# refused at load time and logged. Linux only: on Windows a DLL with an undefined symbol does not link.
+	# Plugins built for another Veyon version or without build version are refused before instantiation.
+	include(BuildVeyonPlugin)
+
 	add_library(valid-test-plugin MODULE plugin-loading/ValidTestPlugin.cpp)
+	target_compile_definitions(valid-test-plugin PRIVATE TEST_PLUGIN_NAME="valid")
 	target_link_libraries(valid-test-plugin PRIVATE Qt${QT_MAJOR_VERSION}::Core)
+	add_veyon_plugin_build_version(valid-test-plugin)
 
 	# no set_default_target_properties(): it links with -no-undefined
 	add_library(incompatible-test-plugin MODULE plugin-loading/IncompatibleTestPlugin.cpp)
 	target_link_libraries(incompatible-test-plugin PRIVATE Qt${QT_MAJOR_VERSION}::Core)
 	target_link_options(incompatible-test-plugin PRIVATE "-Wl,--allow-shlib-undefined" "-Wl,-z,lazy")
+	add_veyon_plugin_build_version(incompatible-test-plugin)
+
+	# like a plugin built for the previous or next patch release
+	math(EXPR OTHER_VERSION_PATCH "${VERSION_PATCH} + 1")
+	add_library(other-version-test-plugin MODULE plugin-loading/ValidTestPlugin.cpp)
+	target_compile_definitions(other-version-test-plugin PRIVATE TEST_PLUGIN_NAME="other-version")
+	target_link_libraries(other-version-test-plugin PRIVATE Qt${QT_MAJOR_VERSION}::Core)
+	add_veyon_plugin_build_version(other-version-test-plugin
+		VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${OTHER_VERSION_PATCH}")
+
+	# like a plugin built for a Veyon version without build version check
+	add_library(unversioned-test-plugin MODULE plugin-loading/ValidTestPlugin.cpp)
+	target_compile_definitions(unversioned-test-plugin PRIVATE TEST_PLUGIN_NAME="unversioned")
+	target_link_libraries(unversioned-test-plugin PRIVATE Qt${QT_MAJOR_VERSION}::Core)
 
 	add_executable(PluginLoadingTest PluginLoadingTest.cpp)
 	set_default_target_properties(PluginLoadingTest)
-	add_dependencies(PluginLoadingTest valid-test-plugin incompatible-test-plugin)
+	add_dependencies(PluginLoadingTest
+		valid-test-plugin incompatible-test-plugin other-version-test-plugin unversioned-test-plugin)
 	target_compile_definitions(PluginLoadingTest PRIVATE
 		VALID_TEST_PLUGIN_FILE_PATH="$<TARGET_FILE:valid-test-plugin>"
 		INCOMPATIBLE_TEST_PLUGIN_FILE_PATH="$<TARGET_FILE:incompatible-test-plugin>"
+		OTHER_VERSION_TEST_PLUGIN_FILE_PATH="$<TARGET_FILE:other-version-test-plugin>"
+		OTHER_VERSION_TEST_PLUGIN_VERSION="${VERSION_MAJOR}.${VERSION_MINOR}.${OTHER_VERSION_PATCH}"
+		UNVERSIONED_TEST_PLUGIN_FILE_PATH="$<TARGET_FILE:unversioned-test-plugin>"
 		NON_PLUGIN_LIBRARY_FILE_PATH="$<TARGET_FILE:veyon-core>")
 	target_link_libraries(PluginLoadingTest PRIVATE
 		Qt${QT_MAJOR_VERSION}::Test
