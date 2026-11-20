@@ -54,6 +54,12 @@ public:
 Q_SIGNALS:
 	void streamEnded();
 
+	/**
+	 * @brief The size of the stream's buffers changed after the first format of the stream, e.g.
+	 * after a change of the output's resolution. Emitted from the PipeWire loop thread.
+	 */
+	void frameSizeChanged(QSize size);
+
 private:
 	// PipeWire C callbacks (called from PipeWire loop thread)
 	static void onCoreError(void* data, uint32_t id, int seq, int res, const char* message);
@@ -80,6 +86,8 @@ private:
 	QMutex* m_screenMutex;
 	rfbScreenInfoPtr m_rfbScreen{nullptr};
 	QSize m_frameSize;
+	// size of the last accepted format of the stream, kept when a later format is rejected
+	QSize m_acceptedFrameSize;
 	uint32_t m_videoFormat{SPA_VIDEO_FORMAT_UNKNOWN};
 	bool m_running{false};
 	bool m_forceFullFrame{true};

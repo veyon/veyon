@@ -55,8 +55,10 @@ private Q_SLOTS:
 	void onPortalStarted();
 	void onPortalFailed();
 	void onStreamEnded();
+	void onFrameSizeChanged(QSize size);
 
 private:
+	void closeAndRestartSession();
 	bool initVncServer(const Veyon::Crypto::SecureBuffer& vncPassword);
 	bool listenOnSocket(const QString& socketPath);
 	void acceptConnections();

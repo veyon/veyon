@@ -77,6 +77,8 @@ bool PipeWireCaptureServer::run(const QString& socketPath, const Veyon::Crypto::
 	m_framebuffer = new PipeWireFramebuffer(&m_screenMutex);
 	connect(m_framebuffer, &PipeWireFramebuffer::streamEnded,
 			this, &PipeWireCaptureServer::onStreamEnded, Qt::QueuedConnection);
+	connect(m_framebuffer, &PipeWireFramebuffer::frameSizeChanged,
+			this, &PipeWireCaptureServer::onFrameSizeChanged, Qt::QueuedConnection);
 
 	// Start the portal flow asynchronously
 	m_portalSession->start();
@@ -142,7 +144,20 @@ void PipeWireCaptureServer::onPortalFailed()
 void PipeWireCaptureServer::onStreamEnded()
 {
 	vInfo() << "PipeWire stream ended – closing session and reconnecting in 2 s";
+	closeAndRestartSession();
+}
 
+void PipeWireCaptureServer::onFrameSizeChanged(QSize size)
+{
+	// the stream size from the portal's Start response, which xdg-desktop-portal checks pointer
+	// positions against, is outdated now (e.g. after a change of the output's resolution), so
+	// read it again; a change of the scale alone doesn't change the buffers and isn't noticed
+	vInfo() << "PipeWire stream size changed to" << size << "– closing session and reconnecting in 2 s";
+	closeAndRestartSession();
+}
+
+void PipeWireCaptureServer::closeAndRestartSession()
+{
 	if (m_framebuffer)
 	{
 		m_framebuffer->close();
