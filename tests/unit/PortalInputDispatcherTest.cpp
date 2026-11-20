@@ -36,6 +36,10 @@ public:
 		// error for every request whose label does not start with "ok"
 		ErrorUnlessOk,
 		NoReply,
+		// no reply for every request whose label starts with "hang"
+		NoReplyForHang,
+		// "Invalid position" for every request whose label starts with "motion", like xdg-desktop-portal
+		InvalidPositionForMotion,
 	};
 
 	QStringList received;
@@ -89,6 +93,17 @@ public:
 									message.createErrorReply(QDBusError::AccessDenied, QStringLiteral("no access")));
 				break;
 			case ReplyMode::NoReply: break;
+			case ReplyMode::NoReplyForHang:
+				if (label.startsWith(QLatin1String("hang")) == false)
+				{
+					connection.send(message.createReply());
+				}
+				break;
+			case ReplyMode::InvalidPositionForMotion:
+				connection.send(label.startsWith(QLatin1String("motion")) ?
+									message.createErrorReply(QDBusError::Failed, QStringLiteral("Invalid position")) :
+									message.createReply());
+				break;
 			}
 		});
 
@@ -281,7 +296,56 @@ private Q_SLOTS:
 		QVERIFY(m_service.received.isEmpty());
 	}
 
-	void missingReplyFails()
+	// P23-2: a portal that stalls briefly must not restart the session
+	void singleMissingReplyDropsPendingRequests()
+	{
+		PortalInputDispatcher dispatcher;
+		dispatcher.setReplyTimeout(300);
+		int failures = 0;
+		dispatcher.setFailureHandler([&](const QDBusError&) { ++failures; });
+		m_service.replyMode = DelayedInputService::ReplyMode::NoReplyForHang;
+
+		QTest::ignoreMessage(QtWarningMsg, QRegularExpression(QStringLiteral("no reply to portal input request, dropping 3")));
+		dispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this]() { return send(QStringLiteral("hang")); });
+		dispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this]() { return send(QStringLiteral("discarded-1")); });
+		dispatcher.enqueue(PortalInputDispatcher::RequestType::PointerMotion,
+						   [this]() { return send(QStringLiteral("discarded-2")); });
+		QCOMPARE(dispatcher.pendingRequestCount(), 2);
+
+		QTRY_COMPARE_WITH_TIMEOUT(dispatcher.pendingRequestCount(), 0, 3000);
+		QCOMPARE(failures, 0);
+		QCOMPARE(dispatcher.hasFailed(), false);
+
+		dispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this]() { return send(QStringLiteral("next")); });
+		QTRY_COMPARE(m_service.completed, (QStringList{QStringLiteral("hang"), QStringLiteral("next")}));
+		QCOMPARE(m_service.received, (QStringList{QStringLiteral("hang"), QStringLiteral("next")}));
+		QCOMPARE(failures, 0);
+	}
+
+	void replyResetsMissingReplyCount()
+	{
+		PortalInputDispatcher dispatcher;
+		dispatcher.setReplyTimeout(300);
+		int failures = 0;
+		dispatcher.setFailureHandler([&](const QDBusError&) { ++failures; });
+		m_service.replyMode = DelayedInputService::ReplyMode::NoReplyForHang;
+
+		for (int i = 0; i < PortalInputDispatcher::MaximumConsecutiveTimeouts + 1; ++i)
+		{
+			QTest::ignoreMessage(QtWarningMsg, QRegularExpression(QStringLiteral("no reply to portal input request")));
+			const auto hang = QStringLiteral("hang-%1").arg(i);
+			const auto ok = QStringLiteral("ok-%1").arg(i);
+			dispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this, hang]() { return send(hang); });
+			QTest::qWait(500);
+			dispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this, ok]() { return send(ok); });
+			QTRY_VERIFY(m_service.completed.contains(ok));
+		}
+
+		QCOMPARE(failures, 0);
+		QCOMPARE(dispatcher.hasFailed(), false);
+	}
+
+	void consecutiveMissingRepliesFail()
 	{
 		PortalInputDispatcher dispatcher;
 		dispatcher.setReplyTimeout(300);
@@ -293,9 +357,14 @@ private Q_SLOTS:
 		});
 		m_service.replyMode = DelayedInputService::ReplyMode::NoReply;
 
+		QTest::ignoreMessage(QtWarningMsg, QRegularExpression(QStringLiteral("no reply to portal input request, dropping 2")));
 		dispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this]() { return send(QStringLiteral("first")); });
 		dispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this]() { return send(QStringLiteral("discarded")); });
+		QTRY_COMPARE_WITH_TIMEOUT(dispatcher.pendingRequestCount(), 0, 3000);
+		QCOMPARE(failures, 0);
 
+		QTest::ignoreMessage(QtWarningMsg, QRegularExpression(QStringLiteral("portal input failed")));
+		dispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this]() { return send(QStringLiteral("second")); });
 		QTRY_COMPARE_WITH_TIMEOUT(failures, 1, 3000);
 		QCOMPARE(error.type(), QDBusError::NoReply);
 		QVERIFY(dispatcher.hasFailed());
@@ -304,13 +373,62 @@ private Q_SLOTS:
 		// ignored until reset
 		dispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this]() { return send(QStringLiteral("ignored")); });
 		QTest::qWait(50);
-		QCOMPARE(m_service.received, QStringList{QStringLiteral("first")});
+		QCOMPARE(m_service.received, (QStringList{QStringLiteral("first"), QStringLiteral("second")}));
 
 		m_service.replyMode = DelayedInputService::ReplyMode::Reply;
 		dispatcher.reset();
 		dispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this]() { return send(QStringLiteral("after-reset")); });
-		QTRY_COMPARE(m_service.completed, (QStringList{QStringLiteral("first"), QStringLiteral("after-reset")}));
+		QTRY_VERIFY(m_service.completed.contains(QStringLiteral("after-reset")));
 		QCOMPARE(failures, 1);
+	}
+
+	// e.g. a VNC client with a stale framebuffer size
+	void rejectedPositionsKeepSession()
+	{
+		PortalInputDispatcher dispatcher;
+		int failures = 0;
+		dispatcher.setFailureHandler([&](const QDBusError&) { ++failures; });
+		m_service.replyMode = DelayedInputService::ReplyMode::InvalidPositionForMotion;
+
+		// reported once, rate-limited
+		QTest::ignoreMessage(QtWarningMsg, QRegularExpression(QStringLiteral("portal input request failed.*Invalid position")));
+#if QT_VERSION >= QT_VERSION_CHECK(6, 3, 0)
+		QTest::failOnWarning(QRegularExpression(QStringLiteral("portal input")));
+#endif
+		const auto count = PortalInputDispatcher::MaximumConsecutiveErrors * 3;
+		for (int i = 0; i < count; ++i)
+		{
+			const auto motion = QStringLiteral("motion-%1").arg(i);
+			dispatcher.enqueue(PortalInputDispatcher::RequestType::PointerMotion, [this, motion]() { return send(motion); });
+			QTRY_COMPARE(m_service.completed.size(), i + 1);
+		}
+
+		dispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this]() { return send(QStringLiteral("button")); });
+		QTRY_COMPARE(m_service.completed.size(), count + 1);
+		QTest::qWait(50);
+		QCOMPARE(failures, 0);
+		QCOMPARE(dispatcher.hasFailed(), false);
+	}
+
+	// a closed session rejects pointer motions as well, but as AccessDenied
+	void deniedPointerMotionsFail()
+	{
+		PortalInputDispatcher dispatcher;
+		int failures = 0;
+		dispatcher.setFailureHandler([&](const QDBusError&) { ++failures; });
+		m_service.replyMode = DelayedInputService::ReplyMode::ErrorUnlessOk;
+
+		QTest::ignoreMessage(QtWarningMsg, QRegularExpression(QStringLiteral("portal input request failed")));
+		QTest::ignoreMessage(QtWarningMsg, QRegularExpression(QStringLiteral("portal input failed")));
+		for (int i = 0; i < PortalInputDispatcher::MaximumConsecutiveErrors; ++i)
+		{
+			const auto motion = QStringLiteral("motion-%1").arg(i);
+			dispatcher.enqueue(PortalInputDispatcher::RequestType::PointerMotion, [this, motion]() { return send(motion); });
+			QTRY_COMPARE(m_service.completed.size(), i + 1);
+		}
+
+		QTRY_COMPARE(failures, 1);
+		QVERIFY(dispatcher.hasFailed());
 	}
 
 	void clearDiscardsPendingRequests()

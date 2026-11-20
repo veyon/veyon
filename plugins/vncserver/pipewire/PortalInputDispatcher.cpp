@@ -15,7 +15,7 @@ PortalInputDispatcher::PortalInputDispatcher(QObject* parent) :
 	m_replyTimer.setSingleShot(true);
 	m_replyTimer.setInterval(DefaultReplyTimeout);
 	connect(&m_replyTimer, &QTimer::timeout, this, [this]() {
-		fail(QDBusError(QDBusError::NoReply, QStringLiteral("no reply to portal input request")));
+		handleTimeout(QDBusError(QDBusError::NoReply, QStringLiteral("no reply to portal input request")));
 	});
 }
 
@@ -74,8 +74,10 @@ void PortalInputDispatcher::reset()
 {
 	clear();
 	m_failed = false;
-	m_errorReported = false;
 	m_consecutiveErrors = 0;
+	m_consecutiveTimeouts = 0;
+	m_lastErrorReport.invalidate();
+	m_suppressedErrorReports = 0;
 }
 
 
@@ -84,9 +86,6 @@ bool PortalInputDispatcher::isPortalUnavailable(const QDBusError& error)
 {
 	switch (error.type())
 	{
-	case QDBusError::NoReply:
-	case QDBusError::Timeout:
-	case QDBusError::TimedOut:
 	case QDBusError::ServiceUnknown:
 	case QDBusError::Disconnected:
 	case QDBusError::NoServer:
@@ -102,6 +101,31 @@ bool PortalInputDispatcher::isPortalUnavailable(const QDBusError& error)
 
 
 
+bool PortalInputDispatcher::isTimeout(const QDBusError& error)
+{
+	switch (error.type())
+	{
+	case QDBusError::NoReply:
+	case QDBusError::Timeout:
+	case QDBusError::TimedOut: return true;
+	default: break;
+	}
+
+	return false;
+}
+
+
+
+bool PortalInputDispatcher::isRejectedPosition(RequestType type, const QDBusError& error)
+{
+	// xdg-desktop-portal replies with org.freedesktop.DBus.Error.Failed "Invalid position" to
+	// positions outside of the stream, while a closed session is AccessDenied ("Invalid session")
+	return type == RequestType::PointerMotion &&
+		   (error.type() == QDBusError::Failed || error.type() == QDBusError::InvalidArgs);
+}
+
+
+
 void PortalInputDispatcher::sendNextRequest()
 {
 	if (m_currentRequest || m_pendingRequests.isEmpty() || m_failed)
@@ -112,6 +136,7 @@ void PortalInputDispatcher::sendNextRequest()
 	const auto pendingRequest = m_pendingRequests.dequeue();
 
 	// the finished() signal is emitted from the event loop even if the call is finished already
+	m_currentRequestType = pendingRequest.type;
 	m_currentRequest = new QDBusPendingCallWatcher(pendingRequest.request(), this);
 	connect(m_currentRequest, &QDBusPendingCallWatcher::finished, this, &PortalInputDispatcher::finishCurrentRequest);
 
@@ -136,26 +161,77 @@ void PortalInputDispatcher::finishCurrentRequest()
 	{
 		const auto error = watcher->error();
 
+		if (isTimeout(error))
+		{
+			handleTimeout(error);
+			return;
+		}
+
+		m_consecutiveTimeouts = 0;
+
 		// every later request would fail as well
-		if (isPortalUnavailable(error) || ++m_consecutiveErrors >= MaximumConsecutiveErrors)
+		if (isPortalUnavailable(error) ||
+			(isRejectedPosition(m_currentRequestType, error) == false &&
+			 ++m_consecutiveErrors >= MaximumConsecutiveErrors))
 		{
 			fail(error);
 			return;
 		}
 
 		// the request has been dropped, later ones are still valid
-		if (m_errorReported == false)
-		{
-			vWarning() << "portal input request failed:" << error.name() << error.message();
-			m_errorReported = true;
-		}
+		reportDroppedRequest(error);
 	}
 	else
 	{
 		m_consecutiveErrors = 0;
+		m_consecutiveTimeouts = 0;
 	}
 
 	sendNextRequest();
+}
+
+
+
+void PortalInputDispatcher::handleTimeout(const QDBusError& error)
+{
+	// a portal (or compositor) that stalls briefly, e.g. under load, must not restart the whole
+	// session including capture and possibly the consent dialog; the input pending in the meantime
+	// is outdated though
+	if (++m_consecutiveTimeouts >= MaximumConsecutiveTimeouts)
+	{
+		fail(error);
+		return;
+	}
+
+	vWarning() << "no reply to portal input request, dropping" << pendingRequestCount() + 1
+			   << "pending input requests";
+	clear();
+}
+
+
+
+void PortalInputDispatcher::reportDroppedRequest(const QDBusError& error)
+{
+	// e.g. a session without access to one device type would log a warning per input event
+	if (m_lastErrorReport.isValid() && m_lastErrorReport.elapsed() < ErrorLogInterval)
+	{
+		++m_suppressedErrorReports;
+		vDebug() << "portal input request failed:" << error.name() << error.message();
+		return;
+	}
+
+	if (m_suppressedErrorReports > 0)
+	{
+		vWarning() << "portal input request failed:" << error.name() << error.message()
+				   << QStringLiteral("(%1 more failed since the last report)").arg(m_suppressedErrorReports);
+	}
+	else
+	{
+		vWarning() << "portal input request failed:" << error.name() << error.message();
+	}
+
+	m_lastErrorReport.start();
+	m_suppressedErrorReports = 0;
 }
 
 

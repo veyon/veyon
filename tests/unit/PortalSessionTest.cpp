@@ -124,6 +124,13 @@ public:
 			return true;
 		}
 
+		if (message.interface() == TestInterface && method == QLatin1String("SetRejectAllMotions"))
+		{
+			m_rejectAllMotions = message.arguments().value(0).toBool();
+			connection.send(message.createReply());
+			return true;
+		}
+
 		if (message.interface() == TestInterface && method == QLatin1String("DenyNextStart"))
 		{
 			m_denyNextStart = true;
@@ -194,7 +201,7 @@ private:
 		const auto y = arguments.value(4).toDouble();
 
 		// the check of xdg-desktop-portal >= 1.19 against the stream size from the Start response
-		if (stream != StreamNodeId ||
+		if (stream != StreamNodeId || m_rejectAllMotions ||
 			(m_streamSize.isEmpty() == false &&
 			 (x < 0 || x >= m_streamSize.width() || y < 0 || y >= m_streamSize.height())))
 		{
@@ -290,6 +297,7 @@ private:
 	bool m_denyNextStart = false;
 	QPoint m_streamPosition;
 	QSize m_streamSize{1920, 1080};
+	bool m_rejectAllMotions = false;
 	QStringList m_closedSessions;
 	QStringList m_forwardedInput;
 };
@@ -374,7 +382,30 @@ private Q_SLOTS:
 		QCOMPARE(session.state(), PortalSession::State::Running);
 	}
 
-	void missingReplyClosesSessionAndRestartWorks()
+	// P23-2: a portal that stalls briefly must not restart the session
+	void singleMissingReplyKeepsSession()
+	{
+		PortalSession session(false);
+		QSignalSpy failedSpy(&session, &PortalSession::failed);
+		QVERIFY(startSession(session));
+		const auto sessionNumber = currentSessionNumber();
+
+		session.notifyKeyboardKeysym(HangingKeySym, true);
+		session.notifyKeyboardKeysym('c', true);
+		QTest::qWait(PortalInputDispatcher::DefaultReplyTimeout + 500);
+		QCOMPARE(failedSpy.size(), 0);
+		QCOMPARE(session.state(), PortalSession::State::Running);
+
+		// the pending input has been dropped
+		session.notifyKeyboardKeysym('d', true);
+		session.notifyKeyboardKeysym('d', false);
+		QTRY_COMPARE(forwardedInput(sessionNumber),
+					 (QStringList{keyEvent(sessionNumber, 'd', 1), keyEvent(sessionNumber, 'd', 0)}));
+		QCOMPARE(failedSpy.size(), 0);
+		QVERIFY(closedSessions().contains(SessionPathPrefix + QString::number(sessionNumber)) == false);
+	}
+
+	void consecutiveMissingRepliesCloseSessionAndRestartWorks()
 	{
 		PortalSession session(false);
 		QSignalSpy failedSpy(&session, &PortalSession::failed);
@@ -383,12 +414,15 @@ private Q_SLOTS:
 
 		session.notifyKeyboardKeysym(HangingKeySym, true);
 		session.notifyKeyboardKeysym('c', true);
+		QTest::qWait(PortalInputDispatcher::DefaultReplyTimeout + 500);
+		QCOMPARE(failedSpy.size(), 0);
+		session.notifyKeyboardKeysym(HangingKeySym, false);
 
 		QTRY_COMPARE_WITH_TIMEOUT(failedSpy.size(), 1, PortalInputDispatcher::DefaultReplyTimeout + 5000);
 		QCOMPARE(session.state(), PortalSession::State::Failed);
 		QTRY_VERIFY(closedSessions().contains(SessionPathPrefix + QString::number(failedSessionNumber)));
 
-		// how PipeWireCaptureServer retries
+		// how PipeWireVncServer retries
 		QVERIFY(startSession(session));
 		const auto sessionNumber = currentSessionNumber();
 		QVERIFY(sessionNumber != failedSessionNumber);
@@ -399,6 +433,35 @@ private Q_SLOTS:
 					 (QStringList{keyEvent(sessionNumber, 'd', 1), keyEvent(sessionNumber, 'd', 0)}));
 		QVERIFY(forwardedInput(failedSessionNumber).isEmpty());
 		QCOMPARE(failedSpy.size(), 1);
+	}
+
+	// the report from KDE Plasma: a client moving the pointer outside of the stream made the
+	// session fail and restart
+	void rejectedPositionsKeepSession()
+	{
+		setStream({}, {1920, 1080});
+
+		PortalSession session(false);
+		QSignalSpy failedSpy(&session, &PortalSession::failed);
+		QVERIFY(startSession(session));
+		const auto sessionNumber = currentSessionNumber();
+
+		// the fake portal rejects every position now, as with a stream size that doesn't match
+		setRejectAllMotions(true);
+		for (int i = 0; i < PortalInputDispatcher::MaximumConsecutiveErrors * 2; ++i)
+		{
+			session.notifyPointer(0, 100 + i, 100, {1920, 1080});
+			QTest::qWait(10);
+		}
+		session.notifyKeyboardKeysym('m', true);
+		QTRY_COMPARE(forwardedInput(sessionNumber), QStringList{keyEvent(sessionNumber, 'm', 1)});
+		setRejectAllMotions(false);
+
+		session.notifyPointer(0, 500, 400, {1920, 1080});
+		QTRY_COMPARE(forwardedInput(sessionNumber).size(), 2);
+		QCOMPARE(forwardedInput(sessionNumber).constLast(), pointerEvent(sessionNumber, 500, 400));
+		QCOMPARE(failedSpy.size(), 0);
+		QCOMPARE(session.state(), PortalSession::State::Running);
 	}
 
 	void restartClosesFailedSession()
@@ -505,6 +568,14 @@ private:
 		auto request = QDBusMessage::createMethodCall(FakePortalService, FakePortalObjectPath, TestInterface,
 													  QStringLiteral("SetStream"));
 		request.setArguments({position.x(), position.y(), size.width(), size.height()});
+		QDBusConnection::sessionBus().call(request);
+	}
+
+	static void setRejectAllMotions(bool reject)
+	{
+		auto request = QDBusMessage::createMethodCall(FakePortalService, FakePortalObjectPath, TestInterface,
+													  QStringLiteral("SetRejectAllMotions"));
+		request.setArguments({reject});
 		QDBusConnection::sessionBus().call(request);
 	}
 
