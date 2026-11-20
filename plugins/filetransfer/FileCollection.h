@@ -4,6 +4,7 @@
 #pragma once
 
 #include <QFile>
+#include <QMap>
 
 struct FileCollection
 {
@@ -25,6 +26,8 @@ struct FileCollection
 	QString name = {};
 	QStringList files = {};
 	int processedFilesCount = 0;
+	// files that were skipped or rejected (index in files → reason)
+	QMap<int, QString> failedFiles = {};
 
 	TransferId currentTransferId = {};
 	QFile* currentOutputFile = nullptr;
@@ -35,6 +38,16 @@ struct FileCollection
 	bool operator!=(const FileCollection& other) const
 	{
 		return other.id != id;
+	}
+
+	void markCurrentFileFailed(const QString& reason)
+	{
+		failedFiles[processedFilesCount] = reason;
+	}
+
+	bool isFailedFile(int index) const
+	{
+		return failedFiles.contains(index);
 	}
 
 	void closeCurrentOutputFile()

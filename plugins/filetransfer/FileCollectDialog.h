@@ -21,6 +21,7 @@ public:
 
 private:
 	void start();
+	void showFailedFiles();
 	void openOutputDirectory();
 
 	void accept() override;

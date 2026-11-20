@@ -15,7 +15,8 @@ FileCollectTreeModel::FileCollectTreeModel(FileCollectController* controller, QO
 	m_scheduledPixmap(QIcon(QStringLiteral(":/filetransfer/file-scheduled.png"))),
 	m_transferringPixmap(QIcon(QStringLiteral(":/filetransfer/file-transferring.png"))),
 	m_waitingPixmap(QIcon(QStringLiteral(":/filetransfer/file-waiting.png"))),
-	m_finishedPixmap(QIcon(QStringLiteral(":/filetransfer/file-finished.png")))
+	m_finishedPixmap(QIcon(QStringLiteral(":/filetransfer/file-finished.png"))),
+	m_failedPixmap(QIcon(QStringLiteral(":/core/toast-warning.png")))
 {
 	connect(m_controller, &FileCollectController::collectionsAboutToChange,
 			this, &FileCollectTreeModel::beginResetModel);
@@ -219,17 +220,31 @@ QVariant FileCollectTreeModel::collectionData(const FileCollection& collection, 
 			case FileCollection::State::Initializing: return m_scheduledPixmap;
 			case FileCollection::State::ReadyForNextFileTransfer: return m_transferringPixmap;
 			case FileCollection::State::FileTransferRunning: return m_transferringPixmap;
-			case FileCollection::State::Finished: return m_finishedPixmap;
+			case FileCollection::State::Finished:
+				return collection.failedFiles.isEmpty() ? m_finishedPixmap : m_failedPixmap;
 			default: break;
+			}
+			break;
+
+		case Qt::ToolTipRole:
+			if (collection.failedFiles.isEmpty() == false)
+			{
+				return tr("%n file(s) could not be collected.", nullptr, int(collection.failedFiles.size()));
 			}
 			break;
 		}
 		break;
 
 	case Column::FileCount:
-		return role == Qt::DisplayRole && collection.state != FileCollection::State::Initializing ?
-			collection.files.size() :
-			QVariant{};
+		if (role == Qt::DisplayRole && collection.state != FileCollection::State::Initializing)
+		{
+			if (collection.failedFiles.isEmpty())
+			{
+				return collection.files.size();
+			}
+			return tr("%1 (%2 not collected)").arg(collection.files.size()).arg(collection.failedFiles.size());
+		}
+		return {};
 
 	case Column::Progress:
 		return role == Qt::DisplayRole ? collection.progress() : QVariant{};
@@ -251,6 +266,10 @@ QVariant FileCollectTreeModel::fileData(const FileCollection& collection, const 
 		switch (role)
 		{
 		case Qt::DecorationRole:
+			if (collection.isFailedFile(index.row()))
+			{
+				return m_failedPixmap;
+			}
 			if (index.row() < collection.processedFilesCount)
 			{
 				return m_finishedPixmap;
@@ -266,6 +285,12 @@ QVariant FileCollectTreeModel::fileData(const FileCollection& collection, const 
 			return m_transferringPixmap;
 		case Qt::DisplayRole:
 			return collection.files.value(index.row());
+		case Qt::ToolTipRole:
+			if (collection.isFailedFile(index.row()))
+			{
+				return collection.failedFiles.value(index.row());
+			}
+			break;
 		default:
 			break;
 		}
@@ -274,6 +299,10 @@ QVariant FileCollectTreeModel::fileData(const FileCollection& collection, const 
 	case Column::Progress:
 		if (role == Qt::DisplayRole)
 		{
+			if (collection.isFailedFile(index.row()))
+			{
+				return 0;
+			}
 			if (index.row() < collection.processedFilesCount)
 			{
 				return 100;

@@ -329,18 +329,16 @@ void FileCollectController::startFileTransfer(ComputerControlInterface::Pointer 
 
 		if (fileSize < 0)
 		{
-			vCritical() << "rejecting file transfer with invalid file size";
-			collection.processedFilesCount += 1;
-			initiateNextFileTransfer(computerControlInterface, collection);
+			vCritical() << "rejecting file transfer with invalid file size" << fileName;
+			skipFailedFile(computerControlInterface, collection, tr("The announced file size is invalid."));
 			return;
 		}
 
 		const auto outputFilePath = this->outputFilePath(computerControlInterface, fileName);
 		if (outputFilePath.isEmpty())
 		{
-			vCritical() << "rejecting file transfer with unsafe output path";
-			collection.processedFilesCount += 1;
-			initiateNextFileTransfer(computerControlInterface, collection);
+			vCritical() << "rejecting file transfer with unsafe output path" << fileName;
+			skipFailedFile(computerControlInterface, collection, tr("The file name is not supported on this computer."));
 			return;
 		}
 
@@ -350,8 +348,7 @@ void FileCollectController::startFileTransfer(ComputerControlInterface::Pointer 
 		{
 			vCritical() << "failed to create directory" << effectiveOutputPath;
 			collection.closeCurrentOutputFile();
-			collection.processedFilesCount += 1;
-			initiateNextFileTransfer(computerControlInterface, collection);
+			skipFailedFile(computerControlInterface, collection, tr("The output directory could not be created."));
 			return;
 		}
 
@@ -362,10 +359,8 @@ void FileCollectController::startFileTransfer(ComputerControlInterface::Pointer 
 			 isPathWithinBase(canonicalOutputDirectory, canonicalBase) == false))
 		{
 			vCritical() << "output path resolved outside collection directory";
-			delete collection.currentOutputFile;
-			collection.currentOutputFile = nullptr;
-			collection.processedFilesCount += 1;
-			initiateNextFileTransfer(computerControlInterface, collection);
+			collection.closeCurrentOutputFile();
+			skipFailedFile(computerControlInterface, collection, tr("The output path is outside of the collection directory."));
 			return;
 		}
 
@@ -379,8 +374,8 @@ void FileCollectController::startFileTransfer(ComputerControlInterface::Pointer 
 			vCritical() << "failed to open" << outputFilePath << "for writing";
 			// not opened, so nothing to remove (the existing file may be a symlink or belong to another user)
 			collection.closeCurrentOutputFile();
-			collection.processedFilesCount += 1;
-			initiateNextFileTransfer(computerControlInterface, collection);
+			skipFailedFile(computerControlInterface, collection,
+						   tr("The output file could not be opened for writing. It may be a link or belong to another user."));
 			return;
 		}
 
@@ -425,8 +420,7 @@ void FileCollectController::continueFileTransfer(ComputerControlInterface::Point
 			{
 				vCritical() << "file transfer exceeds announced file size" << collection.currentOutputFilePath;
 				collection.discardCurrentOutputFile();
-				collection.processedFilesCount += 1;
-				initiateNextFileTransfer(computerControlInterface, collection);
+				skipFailedFile(computerControlInterface, collection, tr("The file is larger than announced."));
 				return;
 			}
 
@@ -434,8 +428,7 @@ void FileCollectController::continueFileTransfer(ComputerControlInterface::Point
 			{
 				vCritical() << "failed to write file transfer data" << collection.currentOutputFilePath;
 				collection.discardCurrentOutputFile();
-				collection.processedFilesCount += 1;
-				initiateNextFileTransfer(computerControlInterface, collection);
+				skipFailedFile(computerControlInterface, collection, tr("The output file could not be written."));
 				return;
 			}
 		}
@@ -481,9 +474,8 @@ void FileCollectController::skipToNextFileTransfer(ComputerControlInterface::Poi
 	{
 		auto& collection = m_collections[computerControlInterface]; // clazy:exclude=detaching-member
 
-		collection.processedFilesCount += 1;
-
-		initiateNextFileTransfer(computerControlInterface, collection);
+		skipFailedFile(computerControlInterface, collection,
+					   tr("The file was skipped on the computer because it is still open in an application."));
 	}
 	else
 	{
@@ -533,4 +525,15 @@ void FileCollectController::initiateNextFileTransfer(ComputerControlInterface::P
 	Q_EMIT collectionChanged(collection.id);
 
 	m_plugin->sendStartFileTransferMessage(collection, computerControlInterface);
+}
+
+
+
+void FileCollectController::skipFailedFile(ComputerControlInterface::Pointer computerControlInterface,
+										   FileCollection& collection, const QString& reason)
+{
+	collection.markCurrentFileFailed(reason);
+	collection.processedFilesCount += 1;
+
+	initiateNextFileTransfer(computerControlInterface, collection);
 }

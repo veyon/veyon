@@ -132,6 +132,9 @@ Q_SIGNALS:
 private:
 	void initiateNextFileTransfer(ComputerControlInterface::Pointer computerControlInterface,
 								  FileCollection& collection);
+	// records the current file as not collected and continues with the next one
+	void skipFailedFile(ComputerControlInterface::Pointer computerControlInterface,
+						FileCollection& collection, const QString& reason);
 
 	FileTransferPlugin* m_plugin = nullptr;
 
