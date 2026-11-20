@@ -403,19 +403,20 @@ bool MonitoringMode::handleFeatureMessage(VeyonWorkerInterface& worker, const Fe
 		return false;
 	}
 
-	// the server only sends one request at a time but may send it again (e.g. if the worker could not
-	// be started at first) - never stack dialogs as one answer is sufficient for all requests
-	static bool dialogOpen = false;
-	if (dialogOpen)
+	// the server sends the request again if the worker could not be started at first, so several
+	// requests can be queued for this worker - they are not handled while the dialog is open (readyRead()
+	// is not emitted recursively) but right after it has been closed; as the server answers all masters
+	// with the first reply and then stops the worker, ignore all further requests
+	static bool answered = false;
+	if (answered)
 	{
 		return true;
 	}
 
 	const auto contextId = message.argument(Argument::UserIdentificationContextId);
-
-	dialogOpen = true;
 	const auto userIdentity = queryUserIdentity();
-	dialogOpen = false;
+
+	answered = true;
 
 	return worker.sendFeatureMessageReply(FeatureMessage{m_identifyUserFeature.uid()}
 											  .addArgument(Argument::UserIdentificationContextId, contextId)
