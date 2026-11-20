@@ -229,7 +229,9 @@ QVariant FileCollectTreeModel::collectionData(const FileCollection& collection, 
 		case Qt::ToolTipRole:
 			if (collection.failedFiles.isEmpty() == false)
 			{
-				return tr("%n file(s) could not be collected.", nullptr, int(collection.failedFiles.size()));
+				return collection.failedFiles.size() == 1 ?
+					tr("1 file could not be collected.") :
+					tr("%1 files could not be collected.").arg(collection.failedFiles.size());
 			}
 			break;
 		}
@@ -260,6 +262,12 @@ QVariant FileCollectTreeModel::collectionData(const FileCollection& collection, 
 
 QVariant FileCollectTreeModel::fileData(const FileCollection& collection, const QModelIndex& index, int role) const
 {
+	// show the reason in every column of a failed file, including the progress bar
+	if (role == Qt::ToolTipRole && collection.isFailedFile(index.row()))
+	{
+		return collection.failedFiles.value(index.row());
+	}
+
 	switch (Column(index.column()))
 	{
 	case Column::Name:
@@ -285,12 +293,6 @@ QVariant FileCollectTreeModel::fileData(const FileCollection& collection, const 
 			return m_transferringPixmap;
 		case Qt::DisplayRole:
 			return collection.files.value(index.row());
-		case Qt::ToolTipRole:
-			if (collection.isFailedFile(index.row()))
-			{
-				return collection.failedFiles.value(index.row());
-			}
-			break;
 		default:
 			break;
 		}
