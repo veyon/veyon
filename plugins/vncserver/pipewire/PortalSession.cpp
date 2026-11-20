@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <QDBusArgument>
+#include <QDBusConnectionInterface>
+#include <QDBusReply>
 #include <QDBusObjectPath>
 #include <QDBusPendingCallWatcher>
 #include <QDBusPendingReply>
@@ -25,6 +27,7 @@
 // XDG Desktop Portal service and interface names
 static const auto PortalService = QStringLiteral("org.freedesktop.portal.Desktop");
 static const auto PortalObjectPath = QStringLiteral("/org/freedesktop/portal/desktop");
+static const auto MutterRemoteDesktopService = QStringLiteral("org.gnome.Mutter.RemoteDesktop");
 PortalSession::PortalSession(bool persistRestoreToken, QObject* parent) :
 	QObject(parent), m_sessionBus(QDBusConnection::sessionBus()), m_persistRestoreToken(persistRestoreToken)
 {
@@ -100,6 +103,7 @@ void PortalSession::start()
 	m_pipewireFd = -1;
 	m_pipeWireNodeId = 0;
 	m_streamGeometry = {};
+	m_pointerMappingMode = PortalPointerMappingMode::Scale;
 	createSession();
 }
 
@@ -400,8 +404,43 @@ void PortalSession::readStreams(const QVariantMap& results)
 		streams.endArray();
 	}
 
+	m_pointerMappingMode = detectPointerMappingMode();
+
 	vDebug() << "Portal session started, PipeWire node ID:" << m_pipeWireNodeId
-			 << "stream position:" << m_streamGeometry.position << "size:" << m_streamGeometry.size;
+			 << "stream position:" << m_streamGeometry.position << "size:" << m_streamGeometry.size
+			 << "pointer mapping:" << (m_pointerMappingMode == PortalPointerMappingMode::Scale ? "scale" : "clamp only");
+
+	if (m_streamGeometry.size.isEmpty())
+	{
+		vWarning() << "the portal reported no stream size - pointer positions are passed unscaled, "
+					  "xdg-desktop-portal >= 1.14 rejects all of them";
+	}
+}
+
+
+
+PortalPointerMappingMode PortalSession::detectPointerMappingMode() const
+{
+	// mutter takes positions in buffer pixels (see PortalPointerMappingMode::ClampOnly); its
+	// RemoteDesktop service, which xdg-desktop-portal-gnome talks to, is the most reliable sign
+	// that mutter is the compositor, also for other mutter based desktops
+	if (const auto busInterface = m_sessionBus.interface())
+	{
+		const QDBusReply<bool> registered = busInterface->isServiceRegistered(MutterRemoteDesktopService);
+		if (registered.isValid())
+		{
+			return registered.value() ? PortalPointerMappingMode::ClampOnly : PortalPointerMappingMode::Scale;
+		}
+	}
+
+	// the bus could not be asked
+	const auto desktops = qEnvironmentVariable("XDG_CURRENT_DESKTOP").split(QLatin1Char(':'));
+	if (desktops.contains(QStringLiteral("GNOME"), Qt::CaseInsensitive))
+	{
+		return PortalPointerMappingMode::ClampOnly;
+	}
+
+	return PortalPointerMappingMode::Scale;
 }
 
 
@@ -606,7 +645,7 @@ void PortalSession::notifyPointer(int buttonMask, int x, int y, QSize framebuffe
 	const auto sessionPath = QDBusObjectPath(m_sessionHandle);
 
 	// Send motion event when the position changed
-	const auto position = mapPointerToPortalStream({x, y}, framebufferSize, m_streamGeometry);
+	const auto position = mapPointerToPortalStream({x, y}, framebufferSize, m_streamGeometry, m_pointerMappingMode);
 	if (position.has_value() && (position->x() != m_lastPointerX || position->y() != m_lastPointerY))
 	{
 		const auto nodeId = m_pipeWireNodeId;

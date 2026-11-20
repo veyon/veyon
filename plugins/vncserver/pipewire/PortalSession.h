@@ -86,6 +86,12 @@ public:
 	const PortalStreamGeometry& streamGeometry() const { return m_streamGeometry; }
 
 	/**
+	 * @brief How pointer positions are mapped to the stream, depending on the compositor (valid
+	 * after started() signal).
+	 */
+	PortalPointerMappingMode pointerMappingMode() const { return m_pointerMappingMode; }
+
+	/**
 	 * @brief Forward a keyboard keysym event from a VNC client to the portal session.
 	 *
 	 * The @p keySym value is the X11 keysym received from the VNC client (rfbKeySym).
@@ -147,6 +153,7 @@ private:
 	void release(HeldInput input, int retries);
 	void releaseHeldInputs();
 	static std::optional<QPoint> readIntPair(const QVariant& value);
+	PortalPointerMappingMode detectPointerMappingMode() const;
 
 	void connectResponseSignal(const QString& requestPath);
 	void disconnectResponseSignal();
@@ -174,6 +181,7 @@ private:
 	int m_pipewireFd{-1};
 	quint32 m_pipeWireNodeId{0};
 	PortalStreamGeometry m_streamGeometry;
+	PortalPointerMappingMode m_pointerMappingMode{PortalPointerMappingMode::Scale};
 	QString m_connectedRequestPath;
 
 	// inputs pressed without a release the portal accepted, with the sequence number of the press
