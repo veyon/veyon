@@ -83,6 +83,9 @@ public:
 	QString outputFilePath(ComputerControlInterface::Pointer computerControlInterface,
 						   const QString& fileName) const;
 
+	// maps characters not allowed in file names to "_"
+	static QString safeGroupingValue(QString value);
+
 	void start();
 	void stop();
 

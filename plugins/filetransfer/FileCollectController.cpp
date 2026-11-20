@@ -20,19 +20,6 @@ bool isPathWithinBase(const QString& path, const QString& base)
 #endif
 }
 
-QString safeGroupingValue(QString value)
-{
-	static const QRegularExpression invalidFileNameCharacters(QStringLiteral("[\x00-\x1F<>:\"/\\|?*\x7F]"));
-	value.replace(invalidFileNameCharacters, QStringLiteral("_"));
-
-	while (value.endsWith(QLatin1Char('.')) || value.endsWith(QLatin1Char(' ')))
-	{
-		value.chop(1);
-	}
-
-	return Filesystem::isSafePathComponent(value) ? value : QStringLiteral("_");
-}
-
 }
 
 FileCollectController::FileCollectController(FileTransferPlugin* plugin) :
@@ -136,6 +123,22 @@ QString FileCollectController::outputDirectory() const
 	}
 
 	return m_destinationDirectory + QDir::separator() + m_collectionName;
+}
+
+
+
+QString FileCollectController::safeGroupingValue(QString value)
+{
+	// "\\\\" in the C++ literal is an escaped backslash in the regular expression
+	static const QRegularExpression invalidFileNameCharacters(QStringLiteral("[\x00-\x1F<>:\"/\\\\|?*\x7F]"));
+	value.replace(invalidFileNameCharacters, QStringLiteral("_"));
+
+	while (value.endsWith(QLatin1Char('.')) || value.endsWith(QLatin1Char(' ')))
+	{
+		value.chop(1);
+	}
+
+	return Filesystem::isSafePathComponent(value) ? value : QStringLiteral("_");
 }
 
 
