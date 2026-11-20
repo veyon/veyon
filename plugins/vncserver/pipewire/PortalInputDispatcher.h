@@ -25,14 +25,15 @@ class QDBusPendingCallWatcher;
  *
  * Error replies (e.g. a device type the session has no access to or a pointer position outside
  * of the stream) only drop the affected request and are logged rate-limited. If the portal does
- * not reply in time, the request and all pending ones are dropped, as the input would be outdated
+ * not reply in time, the request and the pending ones are dropped, as the input would be outdated
  * once the portal catches up. Releases (RequestType::Release) are kept though, as dropping them
- * would leave keys or buttons pressed in the compositor.
+ * would leave keys or buttons pressed in the compositor, and so is the last pending pointer
+ * motion, which is the current position.
  *
- * A request may come with a completion handler, which is called with whether the portal accepted
- * the request: after the reply, after an error reply or when the request was not replied to in
- * time (it may still have been forwarded then). It is not called for requests discarded by
- * clear() or on failure.
+ * A request may come with a completion handler, which is called with the Result of the request:
+ * after the reply, after an error reply or when the request was not replied to in time (it may
+ * still have been forwarded then). It is not called for requests discarded by clear() or on
+ * failure.
  *
  * The dispatcher fails if the portal is unavailable (transport errors such as ServiceUnknown or
  * Disconnected), after MaximumConsecutiveErrors error replies in a row (e.g. once the session has
@@ -47,7 +48,14 @@ class PortalInputDispatcher : public QObject
 public:
 	using Request = std::function<QDBusPendingCall()>;
 	using FailureHandler = std::function<void(const QDBusError& error)>;
-	using CompletionHandler = std::function<void(bool accepted)>;
+	enum class Result {
+		Accepted,
+		// error reply, the same request would be rejected again
+		Rejected,
+		// not replied to in time
+		NoReply,
+	};
+	using CompletionHandler = std::function<void(Result result)>;
 
 	enum class RequestType {
 		Default,

@@ -245,9 +245,11 @@ systemctl --user enable --now veyon-server
 * **Input errors**: An error reply to a single input request only drops that
   request and is logged at most every 10 s. A request without reply within
   5 s drops the pending input but keeps the session; key and button releases
-  are never dropped. A release the portal rejects or doesn't reply to is sent
-  once more, and keys and buttons still pressed are released when the session
-  is closed or restarted. The session is closed
+  and the last pointer position are never dropped. A release the portal
+  doesn't reply to is sent once more (an error reply would only be repeated),
+  a motion without reply is sent again with the next pointer event, and keys
+  and buttons still pressed are released when the session is closed or
+  restarted. The session is closed
   and restarted (which also restarts capture) only if the portal is gone,
   after 8 error replies in a row (pointer positions rejected by the portal
   don't count) or after two requests in a row without reply.

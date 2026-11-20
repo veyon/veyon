@@ -42,6 +42,7 @@ constexpr quint32 DeniedKeySym = 'x';  // error reply, e.g. no access to the key
 constexpr quint32 HangingKeySym = 'h'; // never replied to
 
 constexpr int SlowKeyDelay = 100;
+constexpr int TestReplyTimeout = 300;
 
 constexpr uint StreamNodeId = 42;
 
@@ -121,6 +122,13 @@ public:
 			const auto arguments = message.arguments();
 			m_streamPosition = QPoint(arguments.value(0).toInt(), arguments.value(1).toInt());
 			m_streamSize = QSize(arguments.value(2).toInt(), arguments.value(3).toInt());
+			connection.send(message.createReply());
+			return true;
+		}
+
+		if (message.interface() == TestInterface && method == QLatin1String("HangMotions"))
+		{
+			m_hangMotions = message.arguments().value(0).toInt();
 			connection.send(message.createReply());
 			return true;
 		}
@@ -229,6 +237,13 @@ private:
 							   .arg(sessionNumber(arguments.value(0)))
 							   .arg(x, 0, 'f', 2)
 							   .arg(y, 0, 'f', 2);
+
+		if (m_hangMotions > 0)
+		{
+			--m_hangMotions;
+			m_rejectedInput.append(event);
+			return;
+		}
 
 		// the check of xdg-desktop-portal >= 1.14 against the stream size from the Start response,
 		// which rejects every position without a size
@@ -344,6 +359,7 @@ private:
 	QPoint m_streamPosition;
 	QSize m_streamSize{1920, 1080};
 	bool m_rejectAllMotions = false;
+	int m_hangMotions = 0;
 	QStringList m_closedSessions;
 	QStringList m_forwardedInput;
 	QStringList m_rejectedInput;
@@ -440,7 +456,7 @@ private Q_SLOTS:
 
 		session.notifyKeyboardKeysym(HangingKeySym, true);
 		session.notifyKeyboardKeysym('c', true);
-		QTest::qWait(PortalInputDispatcher::DefaultReplyTimeout + 500);
+		QTest::qWait(TestReplyTimeout + 300);
 		QCOMPARE(failedSpy.size(), 0);
 		QCOMPARE(session.state(), PortalSession::State::Running);
 
@@ -462,11 +478,11 @@ private Q_SLOTS:
 
 		session.notifyKeyboardKeysym(HangingKeySym, true);
 		session.notifyKeyboardKeysym('c', true);
-		QTest::qWait(PortalInputDispatcher::DefaultReplyTimeout + 500);
+		QTest::qWait(TestReplyTimeout + 300);
 		QCOMPARE(failedSpy.size(), 0);
 		session.notifyKeyboardKeysym(HangingKeySym, false);
 
-		QTRY_COMPARE_WITH_TIMEOUT(failedSpy.size(), 1, PortalInputDispatcher::DefaultReplyTimeout + 5000);
+		QTRY_COMPARE_WITH_TIMEOUT(failedSpy.size(), 1, TestReplyTimeout + 3000);
 		QCOMPARE(session.state(), PortalSession::State::Failed);
 		QTRY_VERIFY(closedSessions().contains(SessionPathPrefix + QString::number(failedSessionNumber)));
 
@@ -661,28 +677,58 @@ private Q_SLOTS:
 		session.notifyKeyboardKeysym('t', true);
 		QTRY_COMPARE(forwardedInput(sessionNumber), QStringList{keyEvent(sessionNumber, 't', 1)});
 
-		// the release of 't' is not replied to, the release of 'a' is pending meanwhile
+		// the release of 't' is not replied to, the release of 'a' and a motion are pending meanwhile
 		faultReleases('t', 0, 1);
 		session.notifyKeyboardKeysym('t', false);
 		session.notifyKeyboardKeysym('a', true);
 		session.notifyKeyboardKeysym('a', false);
 		session.notifyPointer(0, 100, 100, {1920, 1080});
 
-		QTest::qWait(PortalInputDispatcher::DefaultReplyTimeout + 500);
-		// the press of 'a' and the motion are dropped, both releases arrive, 't' is sent again
+		QTest::qWait(TestReplyTimeout + 300);
+		// the press of 'a' is dropped, the release, the motion and 't' again arrive
 		QTRY_COMPARE(forwardedInput(sessionNumber),
 					 (QStringList{keyEvent(sessionNumber, 't', 1), keyEvent(sessionNumber, 'a', 0),
-								  keyEvent(sessionNumber, 't', 0)}));
+								  pointerEvent(sessionNumber, 100, 100), keyEvent(sessionNumber, 't', 0)}));
 		QCOMPARE(rejectedInput(sessionNumber), QStringList{keyEvent(sessionNumber, 't', 0)});
 		QCOMPARE(failedSpy.size(), 0);
 
 		// nothing is held anymore, so closing sends no further releases
 		session.close();
 		QTRY_VERIFY(closedSessions().contains(SessionPathPrefix + QString::number(sessionNumber)));
-		QCOMPARE(forwardedInput(sessionNumber).size(), 3);
+		QCOMPARE(forwardedInput(sessionNumber).size(), 4);
 	}
 
-	void failedReleaseIsRetriedOnce()
+	void releaseWithoutReplyIsReleasedOnClose()
+	{
+		PortalSession session(false);
+		QSignalSpy failedSpy(&session, &PortalSession::failed);
+		QVERIFY(startSession(session));
+		const auto sessionNumber = currentSessionNumber();
+
+		session.notifyKeyboardKeysym('t', true);
+		QTRY_COMPARE(forwardedInput(sessionNumber), QStringList{keyEvent(sessionNumber, 't', 1)});
+
+		// the release and its retry are not replied to, the release of 'a' in between is
+		faultReleases('t', 0, 2);
+		QTest::ignoreMessage(QtWarningMsg, QRegularExpression(QStringLiteral("could not release key")));
+		session.notifyKeyboardKeysym('t', false);
+		session.notifyKeyboardKeysym('a', true);
+		session.notifyKeyboardKeysym('a', false);
+		QTRY_COMPARE_WITH_TIMEOUT(rejectedInput(sessionNumber).size(), 2, 3000);
+		QTest::qWait(TestReplyTimeout + 300);
+		QCOMPARE(forwardedInput(sessionNumber),
+				 (QStringList{keyEvent(sessionNumber, 't', 1), keyEvent(sessionNumber, 'a', 0)}));
+		QCOMPARE(failedSpy.size(), 0);
+
+		session.close();
+		QTRY_VERIFY(closedSessions().contains(SessionPathPrefix + QString::number(sessionNumber)));
+		QCOMPARE(forwardedInput(sessionNumber),
+				 (QStringList{keyEvent(sessionNumber, 't', 1), keyEvent(sessionNumber, 'a', 0),
+							  keyEvent(sessionNumber, 't', 0)}));
+	}
+
+	// an error reply would be repeated, e.g. without access to the keyboard
+	void rejectedReleaseIsNotRetried()
 	{
 		PortalSession session(false);
 		QSignalSpy failedSpy(&session, &PortalSession::failed);
@@ -692,40 +738,52 @@ private Q_SLOTS:
 		faultReleases('r', 1, 0);
 		session.notifyKeyboardKeysym('r', true);
 		session.notifyKeyboardKeysym('r', false);
-		QTRY_COMPARE(forwardedInput(sessionNumber),
-					 (QStringList{keyEvent(sessionNumber, 'r', 1), keyEvent(sessionNumber, 'r', 0)}));
-		QCOMPARE(rejectedInput(sessionNumber), QStringList{keyEvent(sessionNumber, 'r', 0)});
-
-		// the retry fails as well: released when the session is closed
-		faultReleases('s', 2, 0);
-		session.notifyKeyboardKeysym('s', true);
-		session.notifyKeyboardKeysym('s', false);
-		QTRY_COMPARE(rejectedInput(sessionNumber).size(), 3);
-		session.notifyKeyboardKeysym('u', true);
-		session.notifyKeyboardKeysym('u', false);
-		QTRY_COMPARE(forwardedInput(sessionNumber).size(), 5);
-		QCOMPARE(forwardedInput(sessionNumber).mid(2),
-				 (QStringList{keyEvent(sessionNumber, 's', 1), keyEvent(sessionNumber, 'u', 1),
-							  keyEvent(sessionNumber, 'u', 0)}));
+		QTRY_COMPARE(rejectedInput(sessionNumber), QStringList{keyEvent(sessionNumber, 'r', 0)});
+		QTest::qWait(100);
+		QCOMPARE(forwardedInput(sessionNumber), QStringList{keyEvent(sessionNumber, 'r', 1)});
 
 		// held button
 		session.notifyPointer(1, 10, 10, {1920, 1080});
-		QTRY_COMPARE(forwardedInput(sessionNumber).size(), 7);
+		QTRY_COMPARE(forwardedInput(sessionNumber).size(), 3);
 		QCOMPARE(forwardedInput(sessionNumber).constLast(), buttonEvent(sessionNumber, BTN_LEFT, 1));
 		QCOMPARE(failedSpy.size(), 0);
 
+		// the rejected release isn't sent again, the button is released
 		session.close();
 		QTRY_VERIFY(closedSessions().contains(SessionPathPrefix + QString::number(sessionNumber)));
 		const auto input = forwardedInput(sessionNumber);
-		QCOMPARE(input.size(), 9);
-		QVERIFY(input.mid(7).contains(keyEvent(sessionNumber, 's', 0)));
-		QVERIFY(input.mid(7).contains(buttonEvent(sessionNumber, BTN_LEFT, 0)));
+		QCOMPARE(input, (QStringList{keyEvent(sessionNumber, 'r', 1), pointerEvent(sessionNumber, 10, 10),
+									 buttonEvent(sessionNumber, BTN_LEFT, 1), buttonEvent(sessionNumber, BTN_LEFT, 0)}));
+		QCOMPARE(rejectedInput(sessionNumber).size(), 1);
+	}
 
-		// no duplicate releases
-		for (const auto& event : input)
-		{
-			QCOMPARE(input.count(event), 1);
-		}
+	// a click without moving after a missing reply must land at the client's position
+	void pointerPositionSurvivesMissingReply()
+	{
+		PortalSession session(false);
+		QSignalSpy failedSpy(&session, &PortalSession::failed);
+		QVERIFY(startSession(session));
+		const auto sessionNumber = currentSessionNumber();
+		const QSize framebufferSize(1920, 1080);
+
+		// the motion itself is not replied to
+		hangMotions(1);
+		session.notifyPointer(0, 500, 400, framebufferSize);
+		QTRY_COMPARE(rejectedInput(sessionNumber), QStringList{pointerEvent(sessionNumber, 500, 400)});
+		QTest::qWait(TestReplyTimeout + 300);
+		session.notifyPointer(1, 500, 400, framebufferSize);
+		QTRY_COMPARE(forwardedInput(sessionNumber),
+					 (QStringList{pointerEvent(sessionNumber, 500, 400), buttonEvent(sessionNumber, BTN_LEFT, 1)}));
+
+		// the motion is pending while another request is not replied to
+		session.notifyKeyboardKeysym(HangingKeySym, true);
+		session.notifyPointer(1, 600, 300, framebufferSize);
+		QTest::qWait(TestReplyTimeout + 300);
+		session.notifyPointer(0, 600, 300, framebufferSize);
+		QTRY_COMPARE(forwardedInput(sessionNumber).size(), 4);
+		QCOMPARE(forwardedInput(sessionNumber).mid(2),
+				 (QStringList{pointerEvent(sessionNumber, 600, 300), buttonEvent(sessionNumber, BTN_LEFT, 0)}));
+		QCOMPARE(failedSpy.size(), 0);
 	}
 
 private:
@@ -734,6 +792,14 @@ private:
 		auto request = QDBusMessage::createMethodCall(FakePortalService, FakePortalObjectPath, TestInterface,
 													  QStringLiteral("SetMutter"));
 		request.setArguments({mutter});
+		QDBusConnection::sessionBus().call(request);
+	}
+
+	static void hangMotions(int count)
+	{
+		auto request = QDBusMessage::createMethodCall(FakePortalService, FakePortalObjectPath, TestInterface,
+													  QStringLiteral("HangMotions"));
+		request.setArguments({count});
 		QDBusConnection::sessionBus().call(request);
 	}
 
@@ -780,6 +846,7 @@ private:
 	bool startSession(PortalSession& session)
 	{
 		QSignalSpy startedSpy(&session, &PortalSession::started);
+		session.setInputReplyTimeout(TestReplyTimeout);
 		session.start();
 		if (startedSpy.wait(5000) == false || session.state() != PortalSession::State::Running)
 		{
