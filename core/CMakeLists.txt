@@ -17,6 +17,11 @@ set(core_RESOURCES
 
 add_library(veyon-core SHARED ${veyoncore_SOURCES} ${core_RESOURCES} ${libvncclient_SOURCES})
 
+if(VEYON_BUILD_WINDOWS)
+	# includes <windows.h>, whose macros must not leak into other sources
+	set_source_files_properties(src/PluginManager.cpp PROPERTIES SKIP_UNITY_BUILD_INCLUSION TRUE)
+endif()
+
 target_compile_definitions(veyon-core PRIVATE XK_KOREAN)
 
 set_default_target_properties(veyon-core)
@@ -41,6 +46,9 @@ if(WITH_QT6)
 	# required by qca-qt6
 	target_link_libraries(veyon-core PUBLIC Qt6::Core5Compat)
 endif()
+
+# dlopen()/dlsym() for the build version check of plugins (separate libdl before glibc 2.34)
+target_link_libraries(veyon-core PRIVATE ${CMAKE_DL_LIBS})
 
 if(WITH_TESTS)
 	target_link_libraries(veyon-core PUBLIC Qt${QT_MAJOR_VERSION}::Test)

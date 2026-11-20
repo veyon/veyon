@@ -3,6 +3,7 @@
 
 #include <QCoreApplication>
 #include <QDir>
+#include <QFile>
 #include <QMutex>
 #include <QPluginLoader>
 
@@ -11,6 +12,18 @@
 #include "VeyonConfiguration.h"
 
 #include <veyonconfig.h>
+
+#if defined(Q_OS_WIN)
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#include <windows.h>
+#else
+#include <dlfcn.h>
+#endif
 
 namespace {
 
@@ -155,23 +168,46 @@ QObject* PluginManager::loadPluginInstance(QPluginLoader& pluginLoader)
 	// error as soon as a missing function is called
 	pluginLoader.setLoadHints(pluginLoader.loadHints() | QLibrary::ResolveAllSymbolsHint);
 
-	const auto pluginObject = pluginLoader.instance();
-	if (pluginObject == nullptr && pluginLoader.metaData().isEmpty() == false)
+	// load the library without instantiating the plugin, i.e. without running any of its code except
+	// static initializers
+	if (pluginLoader.load() == false)
 	{
-		const auto filePath = pluginLoader.fileName();
-
-		QMutexLocker locker(&incompatiblePluginFilesMutex);
-		if (incompatiblePluginFilesList.contains(filePath) == false)
+		// not reported for simple shared libraries
+		if (pluginLoader.metaData().isEmpty() == false)
 		{
-			incompatiblePluginFilesList.append(filePath);
-			locker.unlock();
-
-			vCritical() << "plugin" << filePath
-						<< "is incompatible with this Veyon version and was not loaded:" << pluginLoader.errorString();
+			reportIncompatiblePlugin(pluginLoader.fileName(), pluginLoader.errorString());
 		}
+		return nullptr;
+	}
+
+	// there's no ABI compatibility between Veyon releases, so refuse plugins built for any other
+	// Veyon version before their (potentially incompatible) vtables are used
+	const auto pluginVersion = pluginBuildVersion(pluginLoader.fileName());
+	if (pluginVersion != buildVersion())
+	{
+		const auto builtFor = pluginVersion.isEmpty() ? QStringLiteral("an unknown Veyon version") : QStringLiteral("Veyon %1").arg(pluginVersion);
+		reportIncompatiblePlugin(pluginLoader.fileName(),
+								 QStringLiteral("it was built for %1 but Veyon %2 requires plugins built for the "
+												"same version")
+									 .arg(builtFor, buildVersion()));
+		pluginLoader.unload();
+		return nullptr;
+	}
+
+	const auto pluginObject = pluginLoader.instance();
+	if (pluginObject == nullptr)
+	{
+		reportIncompatiblePlugin(pluginLoader.fileName(), pluginLoader.errorString());
 	}
 
 	return pluginObject;
+}
+
+
+
+QString PluginManager::buildVersion()
+{
+	return QVersionNumber(VEYON_VERSION_MAJOR, VEYON_VERSION_MINOR, VEYON_VERSION_PATCH).toString();
 }
 
 
@@ -180,6 +216,57 @@ QStringList PluginManager::incompatiblePluginFiles()
 {
 	QMutexLocker locker(&incompatiblePluginFilesMutex);
 	return incompatiblePluginFilesList;
+}
+
+
+
+QString PluginManager::pluginBuildVersion(const QString& filePath)
+{
+	// resolve the symbol natively in the library loaded by QPluginLoader already, as a QLibrary for the
+	// same file would share (and possibly unload) the plugin loader's library and plugin instance
+	using BuildVersionFunction = const char* (*)();
+	const auto symbol = "veyonPluginBuildVersion";
+
+	QString version;
+
+#if defined(Q_OS_WIN)
+	const auto module = GetModuleHandleW(reinterpret_cast<LPCWSTR>(QDir::toNativeSeparators(filePath).utf16()));
+	if (module)
+	{
+		const auto buildVersionFunction = reinterpret_cast<BuildVersionFunction>(GetProcAddress(module, symbol));
+		if (buildVersionFunction)
+		{
+			version = QString::fromLatin1(buildVersionFunction());
+		}
+	}
+#else
+	const auto handle = dlopen(QFile::encodeName(filePath).constData(), RTLD_NOW | RTLD_NOLOAD);
+	if (handle)
+	{
+		const auto buildVersionFunction = reinterpret_cast<BuildVersionFunction>(dlsym(handle, symbol));
+		if (buildVersionFunction)
+		{
+			version = QString::fromLatin1(buildVersionFunction());
+		}
+		dlclose(handle);
+	}
+#endif
+
+	return version;
+}
+
+
+
+void PluginManager::reportIncompatiblePlugin(const QString& filePath, const QString& reason)
+{
+	QMutexLocker locker(&incompatiblePluginFilesMutex);
+	if (incompatiblePluginFilesList.contains(filePath) == false)
+	{
+		incompatiblePluginFilesList.append(filePath);
+		locker.unlock();
+
+		vCritical() << "plugin" << filePath << "is incompatible with this Veyon version and was not loaded:" << reason;
+	}
 }
 
 
