@@ -78,11 +78,12 @@ VeyonCore::VeyonCore(QCoreApplication* application, Component component, const Q
 
 	initCryptoCore();
 
-	migrateLegacySecrets();
-
 	initAuthenticationCredentials();
 
 	initPlugins();
+
+	// after loading the plugins, which declare most secret properties (03-secretstore-config.md §3a)
+	migrateLegacySecrets();
 
 	initManagers();
 
