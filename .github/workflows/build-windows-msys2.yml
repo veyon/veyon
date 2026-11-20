@@ -1,7 +1,10 @@
 name: Windows (MSYS2)
 
-# long-running (full MSYS2 build): only for pull requests that are ready for review, or on demand
+# long-running (full MSYS2 build): only for pull requests that are ready for review, on demand and
+# for the release branches (which provide the ccache cache for pull requests)
 on:
+  push:
+    branches: [ "4.12", "main" ]
   pull_request:
     branches: [ "4.12", "main" ]
     types: [ opened, reopened, synchronize, ready_for_review ]
@@ -21,16 +24,20 @@ jobs:
       run:
         shell: msys2 {0}
     steps:
+      # only the submodules needed for this build (UltraVNC is disabled and LibVNCServer comes from MSYS2)
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
+      - name: Submodules
+        shell: bash
+        run: git submodule update --init 3rdparty/kldap
       - uses: msys2/setup-msys2@v2
         with:
           msystem: UCRT64
           update: true
+          cache: true
           install: >-
             mingw-w64-ucrt-x86_64-cmake
             mingw-w64-ucrt-x86_64-ninja
+            mingw-w64-ucrt-x86_64-ccache
             mingw-w64-ucrt-x86_64-toolchain
             mingw-w64-ucrt-x86_64-pkgconf
             mingw-w64-ucrt-x86_64-qt6-base
@@ -38,36 +45,74 @@ jobs:
             mingw-w64-ucrt-x86_64-qt6-httpserver
             mingw-w64-ucrt-x86_64-qca-qt6
             mingw-w64-ucrt-x86_64-openssl
+            mingw-w64-ucrt-x86_64-libvncserver
             mingw-w64-ucrt-x86_64-lzo2
             mingw-w64-ucrt-x86_64-libjpeg-turbo
             mingw-w64-ucrt-x86_64-libpng
             mingw-w64-ucrt-x86_64-zlib
             mingw-w64-ucrt-x86_64-openldap
             mingw-w64-ucrt-x86_64-cyrus-sasl
-      - name: Interception header (not packaged in MSYS2)
-        run: curl -fsSL -o /ucrt64/include/interception.h https://raw.githubusercontent.com/oblitum/Interception/v1.0.1/library/interception.h
-      - name: Configure
-        run: cmake -S . -B build -G Ninja -DWITH_QT6=ON -DCMAKE_BUILD_TYPE=Debug -DWITH_UNITY_BUILD=OFF -DWITH_TESTS=ON -DWITH_BUNDLED_LIBVNC=ON -DWITH_TRANSLATIONS=OFF
-      # Bundled third-party code (UltraVNC, libvncserver) does not build with MSYS2's current GCC;
-      # the official packages use a different toolchain. Only first-party failures fail this job.
-      - name: Build
+      # the Windows platform plugin links the Interception library
+      - name: Interception library (not packaged in MSYS2)
         run: |
-          ninja -C build -k 0 > build.log 2>&1 || true
-          grep -E "^FAILED:" build.log | sed 's/^FAILED: \(\[code=[0-9]*\] \)\?//' | sort -u > failed.txt || true
-          grep -v -E "3rdparty/|translations/" failed.txt > failed-first-party.txt || true
-          echo "failed objects: $(wc -l < failed.txt), first-party: $(wc -l < failed-first-party.txt)"
-          if [ -s failed-first-party.txt ]; then
-            cat failed-first-party.txt
-            grep -E " error: " build.log | grep -v "3rdparty/" | sort -u | head -50
-            exit 1
+          url=https://raw.githubusercontent.com/oblitum/Interception/v1.0.1/library
+          curl -fsSL -o /ucrt64/include/interception.h $url/interception.h
+          curl -fsSL -o interception.c $url/interception.c
+          gcc -O2 -shared -DINTERCEPTION_EXPORT interception.c -o /ucrt64/bin/interception.dll \
+            -Wl,--out-implib,/ucrt64/lib/libinterception.dll.a
+          rm interception.c
+      # one cache per branch; pull requests start from the cache of their branch or of 4.12
+      - name: Restore ccache
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/ccache
+          key: msys2-ccache-${{ github.head_ref || github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            msys2-ccache-${{ github.head_ref || github.ref_name }}-
+            msys2-ccache-4.12-
+      - name: Set up ccache
+        run: |
+          # sloppiness required for precompiled headers
+          {
+            echo "CCACHE_DIR=$(cygpath -m '${{ runner.temp }}')/ccache"
+            echo "CCACHE_MAXSIZE=500M"
+            echo "CCACHE_SLOPPINESS=pch_defines,time_macros,include_file_mtime,include_file_ctime"
+          } >> "$GITHUB_ENV"
+      - name: Configure
+        run: |
+          ccache --zero-stats
+          cmake -S . -B build -G Ninja -DWITH_QT6=ON -DCMAKE_BUILD_TYPE=Debug -DWITH_UNITY_BUILD=ON -DWITH_PCH=ON \
+            -DWITH_TESTS=ON -DWITH_TRANSLATIONS=OFF -DWITH_BUNDLED_LIBVNC=OFF -DWITH_ULTRAVNC=OFF \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+      # without the bundled UltraVNC and LibVNCServer sources (which do not build with MSYS2's current GCC)
+      # everything has to build
+      - name: Build
+        id: build
+        run: |
+          if ninja -C build -k 0 > build.log 2>&1; then
+            exit 0
           fi
+          grep -E "^FAILED:" build.log | sed 's/^FAILED: \(\[code=[0-9]*\] \)\?//' | sort -u > failed.txt || true
+          echo "failed objects: $(wc -l < failed.txt)"
+          cat failed.txt
+          grep -E " error: |undefined reference" build.log | sort -u | head -50
+          tail -n 30 build.log
+          exit 1
+      - name: ccache statistics
+        if: always() && steps.build.outcome != 'skipped'
+        run: ccache --show-stats
+      - name: Save ccache
+        if: always() && steps.build.outcome != 'skipped'
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/ccache
+          key: msys2-ccache-${{ github.head_ref || github.ref_name }}-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Unit tests
         run: |
           export PATH="$PWD/build/crypto:$PWD/build/core:$PATH"
           openssl version -a
           git config --get core.autocrlf || true
-          # the platform plugin compiles bundled UltraVNC sources, which may fail to build (see above);
-          # tests which load it can only run if it was built
+          # fallback: tests which load the platform plugin can only run if it was built
           ctest_args=""
           if [ -z "$(find build -name 'windows-platform*.dll' 2>/dev/null)" ]; then
             echo "windows-platform plugin not built - skipping tests labelled platform-plugin"
