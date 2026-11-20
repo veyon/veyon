@@ -210,16 +210,30 @@ systemctl --user enable --now veyon-server
 
 * **Pointer coordinates and display scaling**: VNC clients send pointer
   positions in framebuffer pixels, i.e. in the size of the PipeWire buffers.
-  `NotifyPointerMotionAbsolute` however takes positions in the coordinate space
-  of the stream, which is the `size` the portal reports for the stream in the
-  `Start` response. With display scaling this is the logical size of the
-  output (e.g. 2560×1440 for a 4K output at 150 % on KDE Plasma), and
-  xdg-desktop-portal rejects positions outside of it ("Invalid position").
-  Positions are therefore scaled by stream size / framebuffer size and clamped
-  to the stream, using the current framebuffer size so that a resize at
-  runtime is taken into account. If the portal doesn't report a size (old
-  portals), positions are passed unscaled. The stream's `position` is not
-  added, since positions are relative to the stream.
+  xdg-desktop-portal (1.14 and later) only accepts positions for
+  `NotifyPointerMotionAbsolute` inside the `size` the portal reports for the
+  stream in the `Start` response and rejects all others ("Invalid position").
+  With display scaling, KDE Plasma and mutter both report the logical size of
+  the output (e.g. 2560×1440 for a 4K output at 150 %), but they interpret the
+  positions differently:
+
+  * **KDE Plasma** takes positions in logical pixels of the output, so they
+    are scaled by stream size / framebuffer size and clamped to the stream.
+  * **mutter (GNOME)** takes positions in buffer pixels and divides them by
+    the output's scale itself if stage views are scaled (fractional scaling,
+    `scale-monitor-framebuffer`). Positions are therefore passed unscaled and
+    clamped to the stream. Since the portal limits them to the logical size,
+    the area beyond it (right and bottom part of the screen) can't be reached
+    with fractional scaling. This is an upstream limitation of the portal's
+    `Notify*` methods; reaching it would need input via `ConnectToEIS`. Without
+    scaled stage views stream and buffer size are the same and the pointer
+    covers the whole screen.
+
+  mutter is detected by its `org.gnome.Mutter.RemoteDesktop` service on the
+  session bus (`XDG_CURRENT_DESKTOP` is only used if the bus can't be asked).
+  If the portal doesn't report a size, positions are passed unscaled, which
+  only works with portals older than 1.14; a warning is logged. The stream's
+  `position` is not added, since positions are relative to the stream.
 
 * **Input errors**: An error reply to a single input request only drops that
   request and is logged at most every 10 s. A request without reply within

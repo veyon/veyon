@@ -34,6 +34,7 @@ const auto FakePortalService = QStringLiteral("org.freedesktop.portal.Desktop");
 const auto FakePortalObjectPath = QStringLiteral("/org/freedesktop/portal/desktop");
 const auto SessionPathPrefix = QStringLiteral("/org/freedesktop/portal/desktop/session/test/");
 const auto TestInterface = QStringLiteral("io.veyon.Test.FakePortal");
+const auto MutterService = QStringLiteral("org.gnome.Mutter.RemoteDesktop");
 
 // keysyms the fake portal handles specially
 constexpr quint32 SlowKeySym = 0xffe1; // Shift_L: forwarded late, like by a busy portal thread
@@ -124,6 +125,21 @@ public:
 			return true;
 		}
 
+		if (message.interface() == TestInterface && method == QLatin1String("SetMutter"))
+		{
+			// what PortalSession takes as sign of mutter
+			if (message.arguments().value(0).toBool())
+			{
+				QDBusConnection(connection).registerService(MutterService);
+			}
+			else
+			{
+				QDBusConnection(connection).unregisterService(MutterService);
+			}
+			connection.send(message.createReply());
+			return true;
+		}
+
 		if (message.interface() == TestInterface && method == QLatin1String("FaultReleases"))
 		{
 			// keysym, number of releases to reply to with an error, then number not to reply to
@@ -209,19 +225,22 @@ private:
 		const auto x = arguments.value(3).toDouble();
 		const auto y = arguments.value(4).toDouble();
 
-		// the check of xdg-desktop-portal >= 1.19 against the stream size from the Start response
-		if (stream != StreamNodeId || m_rejectAllMotions ||
-			(m_streamSize.isEmpty() == false &&
-			 (x < 0 || x >= m_streamSize.width() || y < 0 || y >= m_streamSize.height())))
+		const auto event = QStringLiteral("%1:motion:%2,%3")
+							   .arg(sessionNumber(arguments.value(0)))
+							   .arg(x, 0, 'f', 2)
+							   .arg(y, 0, 'f', 2);
+
+		// the check of xdg-desktop-portal >= 1.14 against the stream size from the Start response,
+		// which rejects every position without a size
+		if (stream != StreamNodeId || m_rejectAllMotions || m_streamSize.isEmpty() ||
+			x < 0 || x >= m_streamSize.width() || y < 0 || y >= m_streamSize.height())
 		{
+			m_rejectedInput.append(event);
 			connection.send(message.createErrorReply(QDBusError::Failed, QStringLiteral("Invalid position")));
 			return;
 		}
 
-		m_forwardedInput.append(QStringLiteral("%1:motion:%2,%3")
-									.arg(sessionNumber(arguments.value(0)))
-									.arg(x, 0, 'f', 2)
-									.arg(y, 0, 'f', 2));
+		m_forwardedInput.append(event);
 		connection.send(message.createReply());
 	}
 
@@ -574,20 +593,59 @@ private Q_SLOTS:
 		QCOMPARE(session.state(), PortalSession::State::Running);
 	}
 
+	// mutter takes positions in buffer pixels and divides by the scale itself
+	void pointerOnMutterIsNotScaled()
+	{
+		setStream({}, {2560, 1440});
+		setMutter(true);
+
+		PortalSession session(false);
+		QSignalSpy failedSpy(&session, &PortalSession::failed);
+		QVERIFY(startSession(session));
+		const auto sessionNumber = currentSessionNumber();
+		QCOMPARE(session.pointerMappingMode(), PortalPointerMappingMode::ClampOnly);
+
+		const QSize framebufferSize(3840, 2160);
+		session.notifyPointer(0, 1920, 1080, framebufferSize);
+		QTRY_COMPARE(forwardedInput(sessionNumber), QStringList{pointerEvent(sessionNumber, 1920, 1080)});
+
+		// beyond the logical size: unreachable through Notify*, clamped to the stream
+		session.notifyPointer(0, 3000, 2000, framebufferSize);
+		QTRY_COMPARE(forwardedInput(sessionNumber).size(), 2);
+		QCOMPARE(forwardedInput(sessionNumber).constLast(), pointerEvent(sessionNumber, 2559, 1439));
+		QCOMPARE(failedSpy.size(), 0);
+
+		setMutter(false);
+		session.close();
+
+		PortalSession kdeSession(false);
+		QVERIFY(startSession(kdeSession));
+		QCOMPARE(kdeSession.pointerMappingMode(), PortalPointerMappingMode::Scale);
+
+		setStream({}, {1920, 1080});
+	}
+
 	void pointerWithoutStreamSize()
 	{
 		setStream({}, {});
 
 		PortalSession session(false);
+		QSignalSpy failedSpy(&session, &PortalSession::failed);
+		QTest::ignoreMessage(QtWarningMsg, QRegularExpression(QStringLiteral("no stream size")));
 		QVERIFY(startSession(session));
 		const auto sessionNumber = currentSessionNumber();
 		QVERIFY(session.streamGeometry().size.isEmpty());
 
+		// passed unscaled (portals < 1.14), but rejected by newer ones; the session stays usable
 		session.notifyPointer(0, 3000, 2000, {3840, 2160});
-		QTRY_COMPARE(forwardedInput(sessionNumber), QStringList{pointerEvent(sessionNumber, 3000, 2000)});
+		QTRY_COMPARE(rejectedInput(sessionNumber), QStringList{pointerEvent(sessionNumber, 3000, 2000)});
 		session.notifyPointer(0, 4000, 2000, {3840, 2160});
-		QTRY_COMPARE(forwardedInput(sessionNumber).size(), 2);
-		QCOMPARE(forwardedInput(sessionNumber).constLast(), pointerEvent(sessionNumber, 3839, 2000));
+		QTRY_COMPARE(rejectedInput(sessionNumber).size(), 2);
+		QCOMPARE(rejectedInput(sessionNumber).constLast(), pointerEvent(sessionNumber, 3839, 2000));
+
+		session.notifyKeyboardKeysym('w', true);
+		QTRY_COMPARE(forwardedInput(sessionNumber), QStringList{keyEvent(sessionNumber, 'w', 1)});
+		QCOMPARE(failedSpy.size(), 0);
 
 		setStream({}, {1920, 1080});
 	}
@@ -671,6 +729,14 @@ private Q_SLOTS:
 	}
 
 private:
+	static void setMutter(bool mutter)
+	{
+		auto request = QDBusMessage::createMethodCall(FakePortalService, FakePortalObjectPath, TestInterface,
+													  QStringLiteral("SetMutter"));
+		request.setArguments({mutter});
+		QDBusConnection::sessionBus().call(request);
+	}
+
 	static void faultReleases(quint32 keySym, int errors, int missingReplies)
 	{
 		auto request = QDBusMessage::createMethodCall(FakePortalService, FakePortalObjectPath, TestInterface,
