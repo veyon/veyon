@@ -277,6 +277,22 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 	)
 	add_test(NAME LinuxServiceAuthenticationTest COMMAND LinuxServiceAuthenticationTest)
 
+	# SecretPropertyPluginsTest: the secret property rows the real plugins of the build tree declare
+	# match their properties (03-secretstore-config.md §3a)
+	add_executable(SecretPropertyPluginsTest SecretPropertyPluginsTest.cpp)
+	set_default_target_properties(SecretPropertyPluginsTest)
+	add_dependencies(SecretPropertyPluginsTest linux-platform external-vnc-server)
+	if(TARGET ldap)
+		add_dependencies(SecretPropertyPluginsTest ldap)
+		target_compile_definitions(SecretPropertyPluginsTest PRIVATE VEYON_TEST_WITH_LDAP_PLUGIN)
+	endif()
+	target_link_libraries(SecretPropertyPluginsTest PRIVATE
+		Qt${QT_MAJOR_VERSION}::Test
+		Qt${QT_MAJOR_VERSION}::Core
+		veyon-core
+	)
+	add_test(NAME SecretPropertyPluginsTest COMMAND SecretPropertyPluginsTest)
+
 	# LinuxLogFileDirectoryTest: log file directories of root and unprivileged processes (WP23)
 	add_executable(LinuxLogFileDirectoryTest
 		LinuxLogFileDirectoryTest.cpp

@@ -167,8 +167,9 @@ private Q_SLOTS:
 		QVERIFY(m_temporaryDirectory.isValid());
 		m_cryptoCore = new CryptoCore;
 
-		// the rows of the LDAP and external VNC server plugins (LdapPlugin, ExternalVncServer) and of
-		// an add-on, as PluginManager::loadPlugins() adds them
+		// copies of the rows of the LDAP and external VNC server plugins (LdapPlugin,
+		// ExternalVncServer; checked against the loaded plugins by SecretPropertyPluginsTest) and of
+		// an add-on, as the PluginManager adds them
 		QVERIFY(SecretPropertyRegistry::add({QStringLiteral("LDAP"), QStringLiteral("BindPassword"),
 											 QStringLiteral("ldap/bindPassword"), true},
 											LdapPluginUid, QStringLiteral("LDAP")));
@@ -435,7 +436,53 @@ private Q_SLOTS:
 
 		QVERIFY(proxy.clientSecretProperty().isSecretReference());
 		QVERIFY(proxy.clientSecret().isValid() == false);
-		QVERIFY(m_logMessages.filter(QStringLiteral("is not registered")).isEmpty() == false);
+		QCOMPARE(m_logMessages.filter(QStringLiteral("is not registered")).size(), 1);
+
+		// logged once per property, not on every access (WP26 review L5)
+		QVERIFY(proxy.clientSecret().isValid() == false);
+		QVERIFY(SecretPropertyRegistry::isRegistered(proxy.clientSecretProperty()) == false);
+		QCOMPARE(m_logMessages.filter(QStringLiteral("is not registered")).size(), 1);
+	}
+
+	// a row whose secret key differs from the property's default value doesn't resolve either
+	void secretKeyDiffersFromDefault()
+	{
+		Configuration::Object configuration;
+		Configuration::TypedProperty<SecretReference> property(&configuration, QStringLiteral("Secret"), QStringLiteral("Mismatch"),
+															   SecretReference::defaultValue(QStringLiteral("mismatch/secret")),
+															   Configuration::Property::Flag::Standard);
+		QVERIFY(SecretPropertyRegistry::add({QStringLiteral("Mismatch"), QStringLiteral("Secret"), QStringLiteral("mismatch/other"), false},
+											AddOnUid, QStringLiteral("AddOn")));
+		m_backend.m_secrets.emplace(QStringLiteral("mismatch/other"), SecureBuffer::fromByteArray(MarkerSecret));
+		configuration.setValue(QStringLiteral("Secret"), QStringLiteral("secret:mismatch/other"), QStringLiteral("Mismatch"));
+
+		QVERIFY(property.value().isValid() == false);
+		QVERIFY(SecretPropertyRegistry::isRegistered(property) == false);
+	}
+
+	// M1 of the WP26 review: config clear and the configurator reset remove all secrets outside
+	// the reserved scopes, also those of plugins which are not loaded
+	void removeUnreservedSecrets()
+	{
+		for (const auto& key : {QStringLiteral("ldap/bindPassword"), QStringLiteral("not-installed/clientSecret"),
+								QStringLiteral("add-on/ownKey"), QStringLiteral("core/preMigrationConfig"),
+								QStringLiteral("core/brokerClientKey"), QStringLiteral("tls/hostKey"),
+								QStringLiteral("pki/caKey"), QStringLiteral("ipc/key")})
+		{
+			m_backend.m_secrets.emplace(key, SecureBuffer::fromByteArray(MarkerSecret));
+		}
+
+		auto removedKeys = SecretPropertyRegistry::removeUnreservedSecrets();
+		QVERIFY(removedKeys.has_value());
+		removedKeys->sort();
+		QCOMPARE(*removedKeys, (QStringList{QStringLiteral("add-on/ownKey"), QStringLiteral("ldap/bindPassword"),
+											QStringLiteral("not-installed/clientSecret")}));
+		auto keys = SecretStore::keys();
+		keys.sort();
+		QCOMPARE(keys, (QStringList{QStringLiteral("core/brokerClientKey"), QStringLiteral("core/preMigrationConfig"),
+									QStringLiteral("ipc/key"), QStringLiteral("pki/caKey"), QStringLiteral("tls/hostKey")}));
+
+		QCOMPARE(SecretPropertyRegistry::removeUnreservedSecrets(), QStringList());
 	}
 
 	// H1 of the WP4 review: top-level values (e.g. the secrets document of an export) must be removable
@@ -566,6 +613,59 @@ private Q_SLOTS:
 		QCOMPARE(value(running, QStringLiteral("ClientSecret"), QStringLiteral("NotInstalled")),
 				 QStringLiteral("secret:not-installed/clientSecret"));
 		QCOMPARE(value(stored, QStringLiteral("Other"), QStringLiteral("NotInstalled")), QStringLiteral("secret:pki/caKey"));
+	}
+
+	// L2 of the WP26 review: a plugin installed after the first migration; its legacy value is
+	// added to the existing pre-migration backup, the rest of the backup is kept
+	void backupExtendedByLaterMigration()
+	{
+		const auto fileName = configurationFile(QStringLiteral("installed-later"));
+		const auto ldapPassword = legacyValue(MarkerSecret);
+		const auto laterPassword = legacyValue("later-secret");
+		Configuration::JsonStore store(Configuration::Store::Scope::System, fileName);
+		VeyonConfiguration stored(&store);
+		stored.setValue(QStringLiteral("BindPassword"), ldapPassword, QStringLiteral("LDAP"));
+		stored.setValue(QStringLiteral("ClientSecret"), laterPassword, QStringLiteral("InstalledLater"));
+		VeyonConfiguration running(&store);
+
+		QCOMPARE(LegacySecretMigration::migrateStoredConfiguration(stored, running, *m_cryptoCore),
+				 LegacySecretMigration::Result::Migrated);
+		const auto firstBackup = m_backend.value(QStringLiteral("core/preMigrationConfig"));
+		QVERIFY(firstBackup.contains(ldapPassword.toLatin1()));
+
+		// the backup is not rewritten as long as nothing is migrated
+		QCOMPARE(LegacySecretMigration::migrateStoredConfiguration(stored, running, *m_cryptoCore),
+				 LegacySecretMigration::Result::NothingToMigrate);
+		QCOMPARE(m_backend.value(QStringLiteral("core/preMigrationConfig")), firstBackup);
+
+		QVERIFY(SecretPropertyRegistry::add({QStringLiteral("InstalledLater"), QStringLiteral("ClientSecret"),
+											 QStringLiteral("installed-later/clientSecret"), true},
+											Plugin::Uid{QStringLiteral("8e1f2b6c-4d7a-4c39-a05e-3f9b2d6c1e84")},
+											QStringLiteral("InstalledLater")));
+		// other changes since the first backup don't go into it
+		stored.setValue(QStringLiteral("Port"), 1234, QStringLiteral("InstalledLater"));
+		m_logMessages.clear();
+		QCOMPARE(LegacySecretMigration::migrateStoredConfiguration(stored, running, *m_cryptoCore),
+				 LegacySecretMigration::Result::Migrated);
+		QCOMPARE(m_backend.value(QStringLiteral("installed-later/clientSecret")), QByteArray("later-secret"));
+		QVERIFY(m_logMessages.filter(QStringLiteral("plugin installed since")).isEmpty() == false);
+
+		const auto backup = QJsonDocument::fromJson(m_backend.value(QStringLiteral("core/preMigrationConfig")));
+		QVERIFY(backup.isObject());
+		Configuration::Object backupConfiguration;
+		Configuration::JsonStore::loadJsonObject(&backupConfiguration, backup.object());
+		QCOMPARE(value(backupConfiguration, QStringLiteral("BindPassword"), QStringLiteral("LDAP")), ldapPassword);
+		QCOMPARE(value(backupConfiguration, QStringLiteral("ClientSecret"), QStringLiteral("InstalledLater")), laterPassword);
+		QVERIFY(backupConfiguration.hasValue(QStringLiteral("Port"), QStringLiteral("InstalledLater")) == false);
+
+		// an unreadable backup stops the migration instead of losing it
+		stored.setValue(QStringLiteral("ClientSecret"), legacyValue("other-secret"), QStringLiteral("InstalledLater"));
+		m_backend.m_secrets.erase(QStringLiteral("installed-later/clientSecret"));
+		m_backend.m_secrets[QStringLiteral("core/preMigrationConfig")] = SecureBuffer::fromByteArray("no json");
+		QCOMPARE(LegacySecretMigration::migrateStoredConfiguration(stored, running, *m_cryptoCore),
+				 LegacySecretMigration::Result::Failed);
+		QVERIFY(m_backend.m_secrets.count(QStringLiteral("installed-later/clientSecret")) == 0);
+		QCOMPARE(m_backend.value(QStringLiteral("core/preMigrationConfig")), QByteArray("no json"));
 	}
 
 	void migrationOfSpecialValues()

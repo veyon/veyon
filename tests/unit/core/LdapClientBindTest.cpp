@@ -146,7 +146,9 @@ private:
 	}
 
 private Q_SLOTS:
-	// the rows LdapPlugin::secretProperties() and ExternalVncServer::secretProperties() declare
+	// copies of the rows LdapPlugin::secretProperties() and ExternalVncServer::secretProperties()
+	// declare, since the plugins are not loaded here; SecretPropertyPluginsTest checks the real rows
+	// of the loaded plugins against their properties
 	void initTestCase()
 	{
 		QVERIFY(Configuration::SecretPropertyRegistry::add({QStringLiteral("LDAP"), QStringLiteral("BindPassword"),
@@ -197,9 +199,9 @@ private Q_SLOTS:
 		runClient(counter, false);
 	}
 
-	// the properties of the plugins and the rows they declare agree: every SecretReference property
-	// (core and plugins with secrets) has a row in the registry with a matching default value and
-	// vice versa (WP4 re-review N6)
+	// the configuration classes and the copied rows agree: every SecretReference property has a
+	// row in the registry with a matching default value and vice versa (WP4 re-review N6; for the
+	// rows of the loaded plugins see SecretPropertyPluginsTest)
 	void registeredSecretProperties()
 	{
 		QTemporaryDir directory;
