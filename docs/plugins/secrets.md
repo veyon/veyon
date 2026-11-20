@@ -19,20 +19,38 @@ Veyon 4.12 keeps secrets (directory credentials, private keys, tokens) in the `S
 - Declare every secret property in `PluginInterface::secretProperties()` of the plugin, returning
   `{parentKey, key, secretKey, isLegacyPassword}` rows (`core/src/Configuration/SecretProperty.h`),
   e.g. `{QStringLiteral("MyPlugin"), QStringLiteral("ClientSecret"), QStringLiteral("myplugin/clientSecret"), false}`.
-  No core change is needed. After loading the plugins, `PluginManager` merges the rows into the
+  No core change is needed. Right after loading a plugin, `PluginManager` merges its rows into the
   `Configuration::SecretPropertyRegistry` (`core/src/Configuration/SecretPropertyRegistry.h`), which
   also holds the rows of core; `veyon-cli config set/unset/clear`, `config export/import
   --include-secrets`, the configurator, the scrubbing and the legacy migration at privileged start
   use only this registry. A row is rejected with a critical log message if its secret key is
-  invalid, uses a reserved scope (`core`, `ipc`, `pki`, `tls`) or its property or secret key is
-  declared already (the first registration wins); its property is then never resolved. Former
-  `Configuration::Password` properties (e.g. the client secret of the Entra ID connector) are
-  marked `isLegacyPassword` and are migrated by `LegacySecretMigration`.
+  invalid or uses a reserved scope (`core`, `ipc`, `pki`, `tls`). Rows declaring the same property
+  or the same secret key (compared case-insensitively) conflict unless they are identical and come
+  from the same plugin UID (e.g. a second `VeyonCore` in a process). Conflicting rows are **all**
+  rejected regardless of the load order and both plugins are logged with name and UID; the
+  properties are then never resolved (fail closed). Rows of core always win. Former `Configuration::Password`
+  properties (e.g. the client secret of the Entra ID connector) are marked `isLegacyPassword` and
+  are migrated by `LegacySecretMigration`.
+- The registry is complete only after all plugins have been loaded: never resolve a secret
+  property (`value()`, `SecretStore::read()` of its key) in the plugin's constructor, read it
+  lazily when it is needed. The registry is filled in the main thread while `VeyonCore` is
+  initialized and is read-only afterwards. Rows of objects registered with
+  `PluginManager::registerExtraPluginInterface()` are added as well, but after the legacy migration
+  of that start.
+- A secret property without a valid row is disabled in the configurator (with a tooltip) and its
+  critical log message is written once per process.
 - Values of secret properties of plugins which are not installed (or failed to load) are not in
   the registry: they are never resolved and left untouched, including legacy encrypted values,
   which stay in the configuration until the plugin is installed and the next privileged start
-  migrates them. `veyon-cli config set` refuses to change such a `secret:` value, and `config
-  import --include-secrets` refuses secrets no loaded plugin declares.
+  migrates them. `veyon-cli config set` refuses to change such a `secret:` value (key compared
+  case-insensitively), `config unset` refuses to remove it (load the plugin to remove the value
+  together with its secret, or use `config clear`), `config export --include-secrets` warns that
+  its secret is not exported, and `config import --include-secrets` refuses secrets no loaded
+  plugin declares.
+- `veyon-cli config clear` and the reset in the configurator remove **every** stored secret outside
+  the reserved scopes `core`, `ipc`, `pki` and `tls`, also those of plugins which are not loaded and
+  secrets a plugin stores in its own scope without a property, and print (CLI) or log the removed
+  keys. Host keys, CA keys and `core/preMigrationConfig` are kept.
 - Declare the property as a `Configuration::SecretReference` property whose default value is the
   same fixed key, e.g.
   `OP(MyConfiguration, m_configuration, Configuration::SecretReference, clientSecret, setClientSecret, "ClientSecret", "MyPlugin", Configuration::SecretReference::defaultValue(QStringLiteral("myplugin/clientSecret")), Configuration::Property::Flag::Standard)`.
@@ -81,7 +99,9 @@ both directories by handle, without following junctions or symlinks:
 - `veyon-cli config clear` keeps `core/preMigrationConfig` (the only way back to 4.11) and says
   so; it is no configuration property and has to be deleted from the secret storage manually.
 - Before the first migration the complete configuration (legacy values included) is saved as
-  secret `core/preMigrationConfig`. `veyon-cli config export-premigration <file>` (administrator
+  secret `core/preMigrationConfig`. Legacy values migrated later (e.g. of a plugin installed
+  after the first migration) are added to this backup; the rest of it is kept as it was. If the
+  backup can't be read or written, nothing is migrated. `veyon-cli config export-premigration <file>` (administrator
   privileges) writes it to a private file (mode `0600`, on Windows SYSTEM and Administrators only)
   for a downgrade with `veyon-cli config import`; delete the file afterwards, its passwords are
   readable with the public default key.
