@@ -349,8 +349,9 @@ void FileCollectController::startFileTransfer(ComputerControlInterface::Pointer 
 		if (VeyonCore::filesystem().ensurePathExists(effectiveOutputPath) == false)
 		{
 			vCritical() << "failed to create directory" << effectiveOutputPath;
-			delete collection.currentOutputFile;
-			collection.currentOutputFile = nullptr;
+			collection.closeCurrentOutputFile();
+			collection.processedFilesCount += 1;
+			initiateNextFileTransfer(computerControlInterface, collection);
 			return;
 		}
 
@@ -376,8 +377,10 @@ void FileCollectController::startFileTransfer(ComputerControlInterface::Pointer 
 				QFile::ReadOwner | QFile::WriteOwner) == false)
 		{
 			vCritical() << "failed to open" << outputFilePath << "for writing";
-			delete collection.currentOutputFile;
-			collection.currentOutputFile = nullptr;
+			// not opened, so nothing to remove (the existing file may be a symlink or belong to another user)
+			collection.closeCurrentOutputFile();
+			collection.processedFilesCount += 1;
+			initiateNextFileTransfer(computerControlInterface, collection);
 			return;
 		}
 
