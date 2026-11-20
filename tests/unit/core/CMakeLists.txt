@@ -57,6 +57,12 @@ if(WITH_TESTS)
 	target_link_libraries(IpcChannelTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
 	add_test(NAME IpcChannelTest COMMAND IpcChannelTest)
 
+	# server-side cache and request collection of the IdentifyUser feature (MonitoringMode)
+	add_executable(UserIdentificationCacheTest UserIdentificationCacheTest.cpp)
+	set_default_target_properties(UserIdentificationCacheTest)
+	target_link_libraries(UserIdentificationCacheTest PRIVATE Qt${QT_MAJOR_VERSION}::Test veyon-core)
+	add_test(NAME UserIdentificationCacheTest COMMAND UserIdentificationCacheTest)
+
 	add_executable(AuthenticationLimiterTest
 		AuthenticationLimiterTest.cpp
 		${CMAKE_SOURCE_DIR}/plugins/platform/common/AuthenticationLimiter.cpp
