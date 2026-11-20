@@ -199,6 +199,65 @@ bool LegacySecretMigration::scrubConfiguration(Object& configuration)
 
 
 
+static bool writeBackup(const Object& configuration)
+{
+	const auto backup = QJsonDocument(JsonStore::toJsonObject(&configuration)).toJson();
+	return backup.size() <= Veyon::Crypto::SecureBuffer::MaximumSize &&
+		SecretStore::write(LegacySecretMigration::preMigrationConfigurationKey(), Veyon::Crypto::SecureBuffer::fromByteArray(backup));
+}
+
+
+
+bool LegacySecretMigration::backUpConfiguration(const Object& storedConfiguration)
+{
+	const auto storedKeys = SecretStore::keys();
+
+	if (storedKeys.contains(preMigrationConfigurationKey()) == false)
+	{
+		return writeBackup(storedConfiguration);
+	}
+
+	// extend the backup of the first migration by the legacy values migrated now, e.g. of a
+	// plugin installed since, and keep everything else of it
+	const auto previousBackup = SecretStore::read(preMigrationConfigurationKey());
+	if (previousBackup.has_value() == false)
+	{
+		return false;
+	}
+	QJsonParseError parseError{};
+	const auto previousDocument = QJsonDocument::fromJson(previousBackup->toUnprotectedByteArray(), &parseError);
+	if (parseError.error != QJsonParseError::NoError || previousDocument.isObject() == false)
+	{
+		vCritical() << "invalid pre-migration configuration backup";
+		return false;
+	}
+	Object backup;
+	JsonStore::loadJsonObject(&backup, previousDocument.object());
+
+	auto changed = false;
+	for (const auto& secretProperty : SecretPropertyRegistry::properties())
+	{
+		// only values migrate() moves into the SecretStore, not the ones it ignores
+		const auto value = storedValue(storedConfiguration, secretProperty);
+		if (secretProperty.isLegacyPassword && SecretReference::isLegacyValue(value) &&
+			storedKeys.contains(secretProperty.secretKey) == false && storedValue(backup, secretProperty) != value)
+		{
+			backup.setValue(secretProperty.key, value, secretProperty.parentKey);
+			changed = true;
+		}
+	}
+
+	if (changed == false)
+	{
+		return true;
+	}
+
+	vInfo() << "extending the pre-migration configuration backup by newly migrated legacy values";
+	return writeBackup(backup);
+}
+
+
+
 LegacySecretMigration::Result LegacySecretMigration::migrateStoredConfiguration(Object& storedConfiguration,
 																				Object& runningConfiguration,
 																				const CryptoCore& cryptoCore)
@@ -217,18 +276,14 @@ LegacySecretMigration::Result LegacySecretMigration::migrateStoredConfiguration(
 	{
 		if (storedConfiguration.value(SecretMigrationVersionKey, CoreGroup, 0).toInt() >= MigrationVersion)
 		{
-			vWarning() << "legacy encrypted secret re-applied by configuration management - update the policy";
+			vWarning() << "legacy encrypted secret found after the first migration - re-applied by configuration "
+						  "management (update the policy) or of a plugin installed since";
 		}
 
-		if (SecretStore::keys().contains(preMigrationConfigurationKey()) == false)
+		if (backUpConfiguration(storedConfiguration) == false)
 		{
-			const auto backup = QJsonDocument(JsonStore::toJsonObject(&storedConfiguration)).toJson();
-			if (backup.size() > Veyon::Crypto::SecureBuffer::MaximumSize ||
-				SecretStore::write(preMigrationConfigurationKey(), Veyon::Crypto::SecureBuffer::fromByteArray(backup)) == false)
-			{
-				vCritical() << "failed to back up the configuration - not migrating legacy secrets";
-				return Result::Failed;
-			}
+			vCritical() << "failed to back up the configuration - not migrating legacy secrets";
+			return Result::Failed;
 		}
 
 		result = migrate(storedConfiguration, cryptoCore);

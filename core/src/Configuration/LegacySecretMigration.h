@@ -31,7 +31,8 @@ class VEYON_CORE_EXPORT LegacySecretMigration
 public:
 	static constexpr int MigrationVersion = 1;
 
-	// one-time backup of the configuration before the first migration (03-secretstore-config.md §4.8)
+	// backup of the configuration before the first migration, extended by the legacy values of
+	// later migrations, e.g. of a plugin installed since (03-secretstore-config.md §4.8)
 	static QString preMigrationConfigurationKey()
 	{
 		return QStringLiteral("core/preMigrationConfig");
@@ -67,13 +68,19 @@ public:
 	// and references of secret properties to other keys than their own; true if anything changed
 	static bool scrubConfiguration(Object& configuration);
 
-	// scrubs and migrates the stored configuration (after a one-time backup of it), saves it and
-	// applies the changed values to the running configuration
+	// scrubs and migrates the stored configuration (after backing it up, see
+	// preMigrationConfigurationKey()), saves it and applies the changed values to the running
+	// configuration
 	static Result migrateStoredConfiguration(Object& storedConfiguration, Object& runningConfiguration,
 											 const CryptoCore& cryptoCore);
 
 	// removes legacy values (e.g. from an export of an unprivileged process); returns their number
 	static int removeLegacySecrets(Object& configuration);
+
+private:
+	// writes the backup before the first migration or adds the legacy values about to be migrated
+	// to it; false if it could not be read or written
+	[[nodiscard]] static bool backUpConfiguration(const Object& storedConfiguration);
 };
 
 }
