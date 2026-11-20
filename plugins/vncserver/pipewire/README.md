@@ -221,6 +221,13 @@ systemctl --user enable --now veyon-server
   portals), positions are passed unscaled. The stream's `position` is not
   added, since positions are relative to the stream.
 
+* **Input errors**: An error reply to a single input request only drops that
+  request and is logged at most every 10 s. A request without reply within
+  5 s drops the pending input but keeps the session. The session is closed
+  and restarted (which also restarts capture) only if the portal is gone,
+  after 8 error replies in a row (pointer positions rejected by the portal
+  don't count) or after two requests in a row without reply.
+
 * **Multi-monitor**: `SelectSources` currently requests a single monitor.
   Multi-monitor support can be added by iterating stream node IDs returned by
   the portal `Start` response.
