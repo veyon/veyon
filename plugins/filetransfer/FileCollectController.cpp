@@ -237,7 +237,7 @@ void FileCollectController::stop()
 		// mark it as failed before the dialog is notified, and drop any late transfer messages
 		for (auto it = m_collections.begin(), end = m_collections.end(); it != end; ++it)
 		{
-			if (it->state != FileCollection::State::Finished)
+			if (it->isEnded() == false)
 			{
 				it->cancel(tr("The collection was cancelled."));
 				Q_EMIT collectionChanged(it->id);
@@ -274,52 +274,41 @@ int FileCollectController::overallProgress() const
 void FileCollectController::initCollection(ComputerControlInterface::Pointer computerControlInterface,
 										   FileCollection::Id collectionId, const QStringList& files)
 {
-	if (m_collections.value(computerControlInterface).id == collectionId)
+	auto collection = activeCollection(computerControlInterface, collectionId);
+	if (collection == nullptr)
 	{
-		Q_EMIT collectionAboutToInitialize(collectionId, files.size());
-
-		auto& collection = m_collections[computerControlInterface]; // clazy:exclude=detaching-member
-		collection.files = files;
-
-		Q_EMIT collectionInitialized(collectionId);
-
-		initiateNextFileTransfer(computerControlInterface, collection);
+		return;
 	}
-	else
-	{
-		vWarning() << "collection" << collectionId << "not found";
-	}
+
+	Q_EMIT collectionAboutToInitialize(collectionId, files.size());
+
+	collection->files = files;
+
+	Q_EMIT collectionInitialized(collectionId);
+
+	initiateNextFileTransfer(computerControlInterface, *collection);
 }
 
 
 
 void FileCollectController::finishFileCollection(ComputerControlInterface::Pointer computerControlInterface, FileCollection::Id collectionId)
 {
-	if (m_collections.value(computerControlInterface).id == collectionId)
+	// a cancelled collection stays cancelled
+	auto collection = activeCollection(computerControlInterface, collectionId);
+	if (collection == nullptr)
 	{
-		auto& collection = m_collections[computerControlInterface]; // clazy:exclude=detaching-member
-		collection.state = FileCollection::State::Finished;
-
-		Q_EMIT collectionChanged(collection.id);
-
-		bool allFinished = true;
-		for (const auto& collection : std::as_const(m_collections))
-		{
-			if (collection.state != FileCollection::State::Finished)
-			{
-				allFinished = false;
-				break;
-			}
-		}
-
-		if (allFinished)
-		{
-			stop();
-		}
+		return;
 	}
-	else
+
+	collection->state = FileCollection::State::Finished;
+
+	Q_EMIT collectionChanged(collectionId);
+
+	const auto allEnded = std::all_of(m_collections.cbegin(), m_collections.cend(),
+									  [](const FileCollection& c) { return c.isEnded(); });
+	if (allEnded)
 	{
-		vWarning() << "collection" << collectionId << "not found";
+		stop();
 	}
 }
 
@@ -329,14 +318,10 @@ void FileCollectController::startFileTransfer(ComputerControlInterface::Pointer 
 											  FileCollection::Id collectionId, FileCollection::TransferId transferId,
 											  const QString& fileName, qint64 fileSize)
 {
-	if (m_collections.value(computerControlInterface).id == collectionId)
+	auto collectionPointer = activeCollection(computerControlInterface, collectionId);
+	if (collectionPointer)
 	{
-		auto& collection = m_collections[computerControlInterface]; // clazy:exclude=detaching-member
-		if (collection.state == FileCollection::State::Finished)
-		{
-			vDebug() << "file collection canceled or finished";
-			return;
-		}
+		auto& collection = *collectionPointer;
 
 		if (collection.currentOutputFile)
 		{
@@ -408,10 +393,6 @@ void FileCollectController::startFileTransfer(ComputerControlInterface::Pointer 
 
 		m_plugin->sendContinueFileTransferMessage(collection, computerControlInterface);
 	}
-	else
-	{
-		vWarning() << "collection" << collectionId << "not found";
-	}
 }
 
 
@@ -420,17 +401,13 @@ void FileCollectController::continueFileTransfer(ComputerControlInterface::Point
 												 FileCollection::Id collectionId, FileCollection::TransferId transferId,
 												 const QByteArray& dataChunk)
 {
-	if (m_collections.value(computerControlInterface).id == collectionId)
+	auto collectionPointer = activeCollection(computerControlInterface, collectionId);
+	if (collectionPointer)
 	{
-		auto& collection = m_collections[computerControlInterface]; // clazy:exclude=detaching-member
+		auto& collection = *collectionPointer;
 		if (collection.currentTransferId != transferId)
 		{
 			vCritical() << "file transfer ID does not match" << collection.currentTransferId << transferId;
-			return;
-		}
-		if (collection.state == FileCollection::State::Finished)
-		{
-			vDebug() << "file collection canceled or finished";
 			return;
 		}
 
@@ -462,10 +439,6 @@ void FileCollectController::continueFileTransfer(ComputerControlInterface::Point
 
 		m_plugin->sendContinueFileTransferMessage(collection, computerControlInterface);
 	}
-	else
-	{
-		vWarning() << "collection" << collectionId << "not found";
-	}
 }
 
 
@@ -473,15 +446,10 @@ void FileCollectController::continueFileTransfer(ComputerControlInterface::Point
 void FileCollectController::retryFileTransfer(ComputerControlInterface::Pointer computerControlInterface,
 											  FileCollection::Id collectionId)
 {
-	if (m_collections.value(computerControlInterface).id == collectionId)
+	auto collection = activeCollection(computerControlInterface, collectionId);
+	if (collection)
 	{
-		auto& collection = m_collections[computerControlInterface]; // clazy:exclude=detaching-member
-
-		m_plugin->sendStartFileTransferMessage(collection, computerControlInterface);
-	}
-	else
-	{
-		vWarning() << "collection" << collectionId << "not found";
+		m_plugin->sendStartFileTransferMessage(*collection, computerControlInterface);
 	}
 }
 
@@ -490,16 +458,11 @@ void FileCollectController::retryFileTransfer(ComputerControlInterface::Pointer 
 void FileCollectController::skipToNextFileTransfer(ComputerControlInterface::Pointer computerControlInterface,
 												   FileCollection::Id collectionId)
 {
-	if (m_collections.value(computerControlInterface).id == collectionId)
+	auto collection = activeCollection(computerControlInterface, collectionId);
+	if (collection)
 	{
-		auto& collection = m_collections[computerControlInterface]; // clazy:exclude=detaching-member
-
-		skipFailedFile(computerControlInterface, collection,
+		skipFailedFile(computerControlInterface, *collection,
 					   tr("The file was skipped on the computer because it is still open in an application."));
-	}
-	else
-	{
-		vWarning() << "collection" << collectionId << "not found";
 	}
 }
 
@@ -508,9 +471,10 @@ void FileCollectController::skipToNextFileTransfer(ComputerControlInterface::Poi
 void FileCollectController::finishFileTransfer(ComputerControlInterface::Pointer computerControlInterface,
 											   FileCollection::Id collectionId, FileCollection::TransferId transferId)
 {
-	if (m_collections.value(computerControlInterface).id == collectionId)
+	auto collectionPointer = activeCollection(computerControlInterface, collectionId);
+	if (collectionPointer)
 	{
-		auto& collection = m_collections[computerControlInterface]; // clazy:exclude=detaching-member
+		auto& collection = *collectionPointer;
 
 		if (collection.currentTransferId != transferId)
 		{
@@ -531,10 +495,28 @@ void FileCollectController::finishFileTransfer(ComputerControlInterface::Pointer
 
 		initiateNextFileTransfer(computerControlInterface, collection);
 	}
-	else
+}
+
+
+
+FileCollection* FileCollectController::activeCollection(const ComputerControlInterface::Pointer& computerControlInterface,
+														FileCollection::Id collectionId)
+{
+	const auto it = m_collections.find(computerControlInterface); // clazy:exclude=detaching-member
+	if (it == m_collections.end() || it->id != collectionId)
 	{
 		vWarning() << "collection" << collectionId << "not found";
+		return nullptr;
 	}
+
+	if (it->isEnded())
+	{
+		// e.g. a reply that was already on the way when the collection was cancelled
+		vDebug() << "file collection canceled or finished";
+		return nullptr;
+	}
+
+	return &it.value();
 }
 
 

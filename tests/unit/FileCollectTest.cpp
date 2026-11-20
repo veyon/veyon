@@ -111,7 +111,8 @@ private Q_SLOTS:
 
 		collection.cancel(QStringLiteral("cancelled"));
 
-		QCOMPARE(collection.state, FileCollection::State::Finished);
+		QCOMPARE(collection.state, FileCollection::State::Cancelled);
+		QVERIFY(collection.isEnded());
 		QVERIFY(collection.currentOutputFile == nullptr);
 		QVERIFY(collection.currentOutputFilePath.isEmpty());
 		// a late chunk of the old transfer no longer matches the transfer ID
@@ -120,6 +121,14 @@ private Q_SLOTS:
 		QCOMPARE(collection.failedFiles.size(), 1);
 		QCOMPARE(collection.failedFiles.value(1), QStringLiteral("cancelled"));
 		QCOMPARE(collection.processedFilesCount, 1);
+		// the file after the one in transfer was not collected either, without an own entry
+		QVERIFY(collection.isNotCollectedFile(0) == false);
+		QVERIFY(collection.isNotCollectedFile(1));
+		QVERIFY(collection.isNotCollectedFile(2));
+		QVERIFY(collection.isFailedFile(2) == false);
+		QCOMPARE(collection.notCollectedReason(2), QStringLiteral("cancelled"));
+		QCOMPARE(collection.notCollectedFilesCount(), 2);
+		QCOMPARE(collection.progress(), 33);
 	}
 
 	void cancelWithoutFileInTransferMarksNothing()
@@ -131,8 +140,52 @@ private Q_SLOTS:
 
 		collection.cancel(QStringLiteral("cancelled"));
 
-		QCOMPARE(collection.state, FileCollection::State::Finished);
+		QCOMPARE(collection.state, FileCollection::State::Cancelled);
 		QVERIFY(collection.failedFiles.isEmpty());
+		QVERIFY(collection.isNotCollectedFile(0) == false);
+		QVERIFY(collection.isNotCollectedFile(1));
+		QCOMPARE(collection.notCollectedFilesCount(), 1);
+		QCOMPARE(collection.progress(), 50);
+	}
+
+	void cancelBeforeFileListIsNotCompleted()
+	{
+		// a computer that never answered the init request
+		FileCollection collection;
+		collection.state = FileCollection::State::Initializing;
+
+		collection.cancel(QStringLiteral("cancelled"));
+
+		QCOMPARE(collection.state, FileCollection::State::Cancelled);
+		QVERIFY(collection.isCancelled());
+		QCOMPARE(collection.cancelReason, QStringLiteral("cancelled"));
+		QCOMPARE(collection.progress(), 0);
+		QCOMPARE(collection.notCollectedFilesCount(), 0);
+
+		// unlike a finished collection without files
+		FileCollection emptyCollection;
+		emptyCollection.state = FileCollection::State::Finished;
+		QVERIFY(emptyCollection.isEnded());
+		QVERIFY(emptyCollection.isCancelled() == false);
+		QCOMPARE(emptyCollection.progress(), 100);
+	}
+
+	void cancelAfterLastFileCountsOnlyFailedFiles()
+	{
+		FileCollection collection;
+		collection.files = {QStringLiteral("a.txt"), QStringLiteral("b.txt")};
+		collection.processedFilesCount = 1;
+		collection.markCurrentFileFailed(QStringLiteral("not supported"));
+		collection.processedFilesCount = 2;
+		collection.state = FileCollection::State::ReadyForNextFileTransfer;
+
+		collection.cancel(QStringLiteral("cancelled"));
+
+		QCOMPARE(collection.notCollectedFilesCount(), 1);
+		QVERIFY(collection.isNotCollectedFile(0) == false);
+		QCOMPARE(collection.notCollectedReason(1), QStringLiteral("not supported"));
+		QVERIFY(collection.isNotCollectedFile(2) == false);
+		QCOMPARE(collection.progress(), 100);
 	}
 
 	void discardRemovesFileOpenedSafely()
