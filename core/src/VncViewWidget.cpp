@@ -107,6 +107,8 @@ void VncViewWidget::setViewOnly(bool enabled)
 	}
 
 	VncView::setViewOnly(enabled);
+
+	updateKeyboardShortcutTrapper();
 }
 
 
@@ -145,6 +147,18 @@ void VncViewWidget::updateGeometry()
 
 bool VncViewWidget::event(QEvent* event)
 {
+	switch (event->type())
+	{
+	case QEvent::WindowActivate:
+	case QEvent::WindowDeactivate:
+	case QEvent::Show:
+	case QEvent::Hide:
+		updateKeyboardShortcutTrapper();
+		break;
+	default:
+		break;
+	}
+
 	return VncView::handleEvent(event) || QWidget::event(event);
 }
 
@@ -192,6 +206,18 @@ void VncViewWidget::focusOutEvent(QFocusEvent* event)
 	}
 
 	QWidget::focusOutEvent(event);
+}
+
+
+
+void VncViewWidget::updateKeyboardShortcutTrapper()
+{
+	// the keyboard shortcut trapper may intercept keyboard input system-wide (e.g. a low-level keyboard
+	// hook on Windows), so only enable it while the window is shown and active, i.e. receives keyboard input
+	const auto* topLevelWidget = window();
+	setKeyboardShortcutTrapperEnabled(isVisible() &&
+									  topLevelWidget->isActiveWindow() &&
+									  topLevelWidget->isMinimized() == false);
 }
 
 
