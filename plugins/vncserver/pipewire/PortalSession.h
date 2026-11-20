@@ -5,6 +5,8 @@
 
 #include <QDBusConnection>
 #include <QDBusObjectPath>
+#include <QDBusPendingCall>
+#include <QHash>
 #include <QObject>
 #include <QString>
 #include <QVariantMap>
@@ -127,6 +129,27 @@ private:
 	void startSession();
 	void openPipeWireRemote();
 	void readStreams(const QVariantMap& results);
+
+	// a key (keysym) or button (evdev code) pressed by the VNC client
+	struct HeldInput
+	{
+		enum class Type : quint8 {
+			Key,
+			Button
+		};
+		Type type;
+		quint32 code;
+
+		quint64 id() const { return (quint64(type) << 32) | code; }
+		static HeldInput fromId(quint64 id) { return {Type(id >> 32), quint32(id)}; }
+	};
+
+	static constexpr int MaximumReleaseRetries = 1;
+
+	QDBusPendingCall sendInput(HeldInput input, bool pressed);
+	void press(HeldInput input);
+	void release(HeldInput input, int retries);
+	void releaseHeldInputs();
 	static std::optional<QPoint> readIntPair(const QVariant& value);
 
 	void connectResponseSignal(const QString& requestPath);
@@ -156,6 +179,10 @@ private:
 	quint32 m_pipeWireNodeId{0};
 	PortalStreamGeometry m_streamGeometry;
 	QString m_connectedRequestPath;
+
+	// inputs pressed without a release the portal accepted, with the sequence number of the press
+	QHash<quint64, quint64> m_heldInputs;
+	quint64 m_pressSequence{0};
 
 	int m_lastButtonMask{0};
 	double m_lastPointerX{0.0};

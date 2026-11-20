@@ -4,6 +4,8 @@
 
 #include <QDBusPendingCallWatcher>
 
+#include <algorithm>
+
 #include "PortalInputDispatcher.h"
 #include "VeyonCore.h"
 
@@ -15,7 +17,10 @@ PortalInputDispatcher::PortalInputDispatcher(QObject* parent) :
 	m_replyTimer.setSingleShot(true);
 	m_replyTimer.setInterval(DefaultReplyTimeout);
 	connect(&m_replyTimer, &QTimer::timeout, this, [this]() {
-		handleTimeout(QDBusError(QDBusError::NoReply, QStringLiteral("no reply to portal input request")));
+		const auto completionHandler = m_currentCompletionHandler;
+		abandonCurrentRequest();
+		handleTimeout(QDBusError(QDBusError::NoReply, QStringLiteral("no reply to portal input request")),
+					  completionHandler);
 	});
 }
 
@@ -28,7 +33,8 @@ PortalInputDispatcher::~PortalInputDispatcher()
 
 
 
-void PortalInputDispatcher::enqueue(RequestType type, const Request& request)
+void PortalInputDispatcher::enqueue(RequestType type, const Request& request,
+									const CompletionHandler& completionHandler)
 {
 	if (m_failed)
 	{
@@ -40,6 +46,7 @@ void PortalInputDispatcher::enqueue(RequestType type, const Request& request)
 		m_pendingRequests.last().type == RequestType::PointerMotion)
 	{
 		m_pendingRequests.last().request = request;
+		m_pendingRequests.last().completionHandler = completionHandler;
 		return;
 	}
 
@@ -49,7 +56,7 @@ void PortalInputDispatcher::enqueue(RequestType type, const Request& request)
 		return;
 	}
 
-	m_pendingRequests.enqueue({type, request});
+	m_pendingRequests.enqueue({type, request, completionHandler});
 	sendNextRequest();
 }
 
@@ -58,7 +65,15 @@ void PortalInputDispatcher::enqueue(RequestType type, const Request& request)
 void PortalInputDispatcher::clear()
 {
 	m_pendingRequests.clear();
+	abandonCurrentRequest();
+}
+
+
+
+void PortalInputDispatcher::abandonCurrentRequest()
+{
 	m_replyTimer.stop();
+	m_currentCompletionHandler = {};
 
 	if (m_currentRequest)
 	{
@@ -137,6 +152,7 @@ void PortalInputDispatcher::sendNextRequest()
 
 	// the finished() signal is emitted from the event loop even if the call is finished already
 	m_currentRequestType = pendingRequest.type;
+	m_currentCompletionHandler = pendingRequest.completionHandler;
 	m_currentRequest = new QDBusPendingCallWatcher(pendingRequest.request(), this);
 	connect(m_currentRequest, &QDBusPendingCallWatcher::finished, this, &PortalInputDispatcher::finishCurrentRequest);
 
@@ -157,13 +173,16 @@ void PortalInputDispatcher::finishCurrentRequest()
 	m_currentRequest = nullptr;
 	watcher->deleteLater();
 
+	const auto completionHandler = m_currentCompletionHandler;
+	m_currentCompletionHandler = {};
+
 	if (watcher->isError())
 	{
 		const auto error = watcher->error();
 
 		if (isTimeout(error))
 		{
-			handleTimeout(error);
+			handleTimeout(error, completionHandler);
 			return;
 		}
 
@@ -187,25 +206,44 @@ void PortalInputDispatcher::finishCurrentRequest()
 		m_consecutiveTimeouts = 0;
 	}
 
+	// may enqueue further requests, e.g. to retry a release
+	if (completionHandler)
+	{
+		completionHandler(watcher->isError() == false);
+	}
+
 	sendNextRequest();
 }
 
 
 
-void PortalInputDispatcher::handleTimeout(const QDBusError& error)
+void PortalInputDispatcher::handleTimeout(const QDBusError& error, const CompletionHandler& completionHandler)
 {
 	// a portal (or compositor) that stalls briefly, e.g. under load, must not restart the whole
 	// session including capture and possibly the consent dialog; the input pending in the meantime
-	// is outdated though
+	// is outdated though, except for releases, without which keys or buttons would stay pressed
 	if (++m_consecutiveTimeouts >= MaximumConsecutiveTimeouts)
 	{
 		fail(error);
 		return;
 	}
 
-	vWarning() << "no reply to portal input request, dropping" << pendingRequestCount() + 1
-			   << "pending input requests";
-	clear();
+	const auto pendingCount = pendingRequestCount();
+	m_pendingRequests.erase(std::remove_if(m_pendingRequests.begin(), m_pendingRequests.end(),
+										   [](const PendingRequest& pendingRequest) {
+		return pendingRequest.type != RequestType::Release;
+	}),
+							m_pendingRequests.end());
+
+	vWarning() << "no reply to portal input request, dropping" << pendingCount - pendingRequestCount() + 1
+			   << "pending input requests, keeping" << pendingRequestCount() << "releases";
+
+	if (completionHandler)
+	{
+		completionHandler(false);
+	}
+
+	sendNextRequest();
 }
 
 

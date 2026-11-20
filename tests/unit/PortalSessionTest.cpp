@@ -111,7 +111,7 @@ public:
 
 		if (message.interface() == TestInterface && method == QLatin1String("State"))
 		{
-			connection.send(message.createReply({m_closedSessions, m_forwardedInput}));
+			connection.send(message.createReply({m_closedSessions, m_forwardedInput, m_rejectedInput}));
 			return true;
 		}
 
@@ -120,6 +120,15 @@ public:
 			const auto arguments = message.arguments();
 			m_streamPosition = QPoint(arguments.value(0).toInt(), arguments.value(1).toInt());
 			m_streamSize = QSize(arguments.value(2).toInt(), arguments.value(3).toInt());
+			connection.send(message.createReply());
+			return true;
+		}
+
+		if (message.interface() == TestInterface && method == QLatin1String("FaultReleases"))
+		{
+			// keysym, number of releases to reply to with an error, then number not to reply to
+			const auto arguments = message.arguments();
+			m_releaseFaults[arguments.value(0).toUInt()] = {arguments.value(1).toInt(), arguments.value(2).toInt()};
 			connection.send(message.createReply());
 			return true;
 		}
@@ -227,6 +236,24 @@ private:
 							   .arg(keySym, 0, 16)
 							   .arg(state);
 
+		if (state == 0 && m_releaseFaults.contains(keySym))
+		{
+			auto& faults = m_releaseFaults[keySym];
+			if (faults.first > 0)
+			{
+				--faults.first;
+				m_rejectedInput.append(event);
+				connection.send(message.createErrorReply(QDBusError::Failed, QStringLiteral("release failed")));
+				return;
+			}
+			if (faults.second > 0)
+			{
+				--faults.second;
+				m_rejectedInput.append(event);
+				return;
+			}
+		}
+
 		if (keySym == DeniedKeySym)
 		{
 			connection.send(message.createErrorReply(QDBusError::AccessDenied, QStringLiteral("no keyboard access")));
@@ -300,6 +327,8 @@ private:
 	bool m_rejectAllMotions = false;
 	QStringList m_closedSessions;
 	QStringList m_forwardedInput;
+	QStringList m_rejectedInput;
+	QHash<quint32, QPair<int, int>> m_releaseFaults;
 };
 
 
@@ -431,7 +460,8 @@ private Q_SLOTS:
 		session.notifyKeyboardKeysym('d', false);
 		QTRY_COMPARE(forwardedInput(sessionNumber),
 					 (QStringList{keyEvent(sessionNumber, 'd', 1), keyEvent(sessionNumber, 'd', 0)}));
-		QVERIFY(forwardedInput(failedSessionNumber).isEmpty());
+		// the press of 'c' has been dropped, but whatever is held is released when closing
+		QCOMPARE(forwardedInput(failedSessionNumber), QStringList{keyEvent(failedSessionNumber, 'c', 0)});
 		QCOMPARE(failedSpy.size(), 1);
 	}
 
@@ -562,7 +592,99 @@ private Q_SLOTS:
 		setStream({}, {1920, 1080});
 	}
 
+	// P23-3: a missing reply must not drop releases, else keys stay pressed in the compositor
+	void timeoutKeepsAndRetriesReleases()
+	{
+		PortalSession session(false);
+		QSignalSpy failedSpy(&session, &PortalSession::failed);
+		QVERIFY(startSession(session));
+		const auto sessionNumber = currentSessionNumber();
+
+		session.notifyKeyboardKeysym('t', true);
+		QTRY_COMPARE(forwardedInput(sessionNumber), QStringList{keyEvent(sessionNumber, 't', 1)});
+
+		// the release of 't' is not replied to, the release of 'a' is pending meanwhile
+		faultReleases('t', 0, 1);
+		session.notifyKeyboardKeysym('t', false);
+		session.notifyKeyboardKeysym('a', true);
+		session.notifyKeyboardKeysym('a', false);
+		session.notifyPointer(0, 100, 100, {1920, 1080});
+
+		QTest::qWait(PortalInputDispatcher::DefaultReplyTimeout + 500);
+		// the press of 'a' and the motion are dropped, both releases arrive, 't' is sent again
+		QTRY_COMPARE(forwardedInput(sessionNumber),
+					 (QStringList{keyEvent(sessionNumber, 't', 1), keyEvent(sessionNumber, 'a', 0),
+								  keyEvent(sessionNumber, 't', 0)}));
+		QCOMPARE(rejectedInput(sessionNumber), QStringList{keyEvent(sessionNumber, 't', 0)});
+		QCOMPARE(failedSpy.size(), 0);
+
+		// nothing is held anymore, so closing sends no further releases
+		session.close();
+		QTRY_VERIFY(closedSessions().contains(SessionPathPrefix + QString::number(sessionNumber)));
+		QCOMPARE(forwardedInput(sessionNumber).size(), 3);
+	}
+
+	void failedReleaseIsRetriedOnce()
+	{
+		PortalSession session(false);
+		QSignalSpy failedSpy(&session, &PortalSession::failed);
+		QVERIFY(startSession(session));
+		const auto sessionNumber = currentSessionNumber();
+
+		faultReleases('r', 1, 0);
+		session.notifyKeyboardKeysym('r', true);
+		session.notifyKeyboardKeysym('r', false);
+		QTRY_COMPARE(forwardedInput(sessionNumber),
+					 (QStringList{keyEvent(sessionNumber, 'r', 1), keyEvent(sessionNumber, 'r', 0)}));
+		QCOMPARE(rejectedInput(sessionNumber), QStringList{keyEvent(sessionNumber, 'r', 0)});
+
+		// the retry fails as well: released when the session is closed
+		faultReleases('s', 2, 0);
+		session.notifyKeyboardKeysym('s', true);
+		session.notifyKeyboardKeysym('s', false);
+		QTRY_COMPARE(rejectedInput(sessionNumber).size(), 3);
+		session.notifyKeyboardKeysym('u', true);
+		session.notifyKeyboardKeysym('u', false);
+		QTRY_COMPARE(forwardedInput(sessionNumber).size(), 5);
+		QCOMPARE(forwardedInput(sessionNumber).mid(2),
+				 (QStringList{keyEvent(sessionNumber, 's', 1), keyEvent(sessionNumber, 'u', 1),
+							  keyEvent(sessionNumber, 'u', 0)}));
+
+		// held button
+		session.notifyPointer(1, 10, 10, {1920, 1080});
+		QTRY_COMPARE(forwardedInput(sessionNumber).size(), 7);
+		QCOMPARE(forwardedInput(sessionNumber).constLast(), buttonEvent(sessionNumber, BTN_LEFT, 1));
+		QCOMPARE(failedSpy.size(), 0);
+
+		session.close();
+		QTRY_VERIFY(closedSessions().contains(SessionPathPrefix + QString::number(sessionNumber)));
+		const auto input = forwardedInput(sessionNumber);
+		QCOMPARE(input.size(), 9);
+		QVERIFY(input.mid(7).contains(keyEvent(sessionNumber, 's', 0)));
+		QVERIFY(input.mid(7).contains(buttonEvent(sessionNumber, BTN_LEFT, 0)));
+
+		// no duplicate releases
+		for (const auto& event : input)
+		{
+			QCOMPARE(input.count(event), 1);
+		}
+	}
+
 private:
+	static void faultReleases(quint32 keySym, int errors, int missingReplies)
+	{
+		auto request = QDBusMessage::createMethodCall(FakePortalService, FakePortalObjectPath, TestInterface,
+													  QStringLiteral("FaultReleases"));
+		request.setArguments({keySym, errors, missingReplies});
+		QDBusConnection::sessionBus().call(request);
+	}
+
+	static QStringList rejectedInput(int sessionNumber)
+	{
+		const auto prefix = QStringLiteral("%1:").arg(sessionNumber);
+		return portalState().value(2).toStringList().filter(QRegularExpression(QLatin1Char('^') + prefix));
+	}
+
 	static void setStream(QPoint position, QSize size)
 	{
 		auto request = QDBusMessage::createMethodCall(FakePortalService, FakePortalObjectPath, TestInterface,
