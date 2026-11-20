@@ -26,7 +26,13 @@ class QDBusPendingCallWatcher;
  * Error replies (e.g. a device type the session has no access to or a pointer position outside
  * of the stream) only drop the affected request and are logged rate-limited. If the portal does
  * not reply in time, the request and all pending ones are dropped, as the input would be outdated
- * once the portal catches up.
+ * once the portal catches up. Releases (RequestType::Release) are kept though, as dropping them
+ * would leave keys or buttons pressed in the compositor.
+ *
+ * A request may come with a completion handler, which is called with whether the portal accepted
+ * the request: after the reply, after an error reply or when the request was not replied to in
+ * time (it may still have been forwarded then). It is not called for requests discarded by
+ * clear() or on failure.
  *
  * The dispatcher fails if the portal is unavailable (transport errors such as ServiceUnknown or
  * Disconnected), after MaximumConsecutiveErrors error replies in a row (e.g. once the session has
@@ -41,11 +47,14 @@ class PortalInputDispatcher : public QObject
 public:
 	using Request = std::function<QDBusPendingCall()>;
 	using FailureHandler = std::function<void(const QDBusError& error)>;
+	using CompletionHandler = std::function<void(bool accepted)>;
 
 	enum class RequestType {
 		Default,
 		// replaces a pointer motion that is still pending, i.e. not sent yet
 		PointerMotion,
+		// release of a key or button, never dropped on a missing reply
+		Release,
 	};
 
 	static constexpr int MaximumPendingRequests = 4096;
@@ -67,7 +76,7 @@ public:
 		m_replyTimer.setInterval(milliseconds);
 	}
 
-	void enqueue(RequestType type, const Request& request);
+	void enqueue(RequestType type, const Request& request, const CompletionHandler& completionHandler = {});
 
 	// discards all pending requests and stops waiting for the reply to the current one
 	void clear();
@@ -90,11 +99,13 @@ private:
 	{
 		RequestType type;
 		Request request;
+		CompletionHandler completionHandler;
 	};
 
 	void sendNextRequest();
 	void finishCurrentRequest();
-	void handleTimeout(const QDBusError& error);
+	void abandonCurrentRequest();
+	void handleTimeout(const QDBusError& error, const CompletionHandler& completionHandler);
 	void reportDroppedRequest(const QDBusError& error);
 	void fail(const QDBusError& error);
 
@@ -105,6 +116,7 @@ private:
 	QQueue<PendingRequest> m_pendingRequests;
 	QDBusPendingCallWatcher* m_currentRequest = nullptr;
 	RequestType m_currentRequestType = RequestType::Default;
+	CompletionHandler m_currentCompletionHandler;
 	QTimer m_replyTimer;
 	FailureHandler m_failureHandler;
 	bool m_failed = false;

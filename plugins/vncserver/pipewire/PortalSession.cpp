@@ -107,8 +107,10 @@ void PortalSession::start()
 
 void PortalSession::close()
 {
-	// input state of this session must not leak into the next one
+	// input state of this session must not leak into the next one, and nothing may stay pressed
+	// in the compositor
 	m_inputDispatcher.clear();
+	releaseHeldInputs();
 	m_lastButtonMask = 0;
 	m_lastPointerX = 0;
 	m_lastPointerY = 0;
@@ -509,13 +511,90 @@ void PortalSession::notifyKeyboardKeysym(quint32 keySym, bool down)
 		return;
 	}
 
-	// Portal state: 0 = released, 1 = pressed
+	if (down)
+	{
+		press({HeldInput::Type::Key, keySym});
+	}
+	else
+	{
+		release({HeldInput::Type::Key, keySym}, MaximumReleaseRetries);
+	}
+}
+
+QDBusPendingCall PortalSession::sendInput(HeldInput input, bool pressed)
+{
+	// portal state: 0 = released, 1 = pressed
 	const auto sessionPath = QDBusObjectPath(m_sessionHandle);
-	m_inputDispatcher.enqueue(PortalInputDispatcher::RequestType::Default, [this, sessionPath, keySym, down]() {
-		return m_remoteDesktop->NotifyKeyboardKeysym(sessionPath, QVariantMap{}, static_cast<int>(keySym),
-													 down ? 1u : 0u);
+	const auto state = pressed ? 1u : 0u;
+
+	if (input.type == HeldInput::Type::Button)
+	{
+		return m_remoteDesktop->NotifyPointerButton(sessionPath, QVariantMap{}, int(input.code), state);
+	}
+
+	return m_remoteDesktop->NotifyKeyboardKeysym(sessionPath, QVariantMap{}, int(input.code), state);
+}
+
+
+
+void PortalSession::press(HeldInput input)
+{
+	// held until the portal accepted a release sent after this press
+	m_heldInputs[input.id()] = ++m_pressSequence;
+
+	m_inputDispatcher.enqueue(PortalInputDispatcher::RequestType::Default,
+							  [this, input]() { return sendInput(input, true); });
+}
+
+
+
+void PortalSession::release(HeldInput input, int retries)
+{
+	const auto pressSequence = m_heldInputs.value(input.id(), 0);
+
+	m_inputDispatcher.enqueue(PortalInputDispatcher::RequestType::Release,
+							  [this, input]() { return sendInput(input, false); },
+							  [this, input, pressSequence, retries](bool accepted) {
+		const auto currentPressSequence = m_heldInputs.value(input.id(), 0);
+		// pressed again in the meantime: the release of that press takes over
+		if (currentPressSequence != pressSequence)
+		{
+			return;
+		}
+
+		if (accepted || pressSequence == 0)
+		{
+			m_heldInputs.remove(input.id());
+		}
+		else if (retries > 0)
+		{
+			release(input, retries - 1);
+		}
+		else
+		{
+			vWarning() << "could not release" << (input.type == HeldInput::Type::Key ? "key" : "button")
+					   << input.code << "- releasing it when closing the session";
+		}
 	});
 }
+
+
+
+void PortalSession::releaseHeldInputs()
+{
+	if (m_state == State::Running && m_sessionHandle.isEmpty() == false)
+	{
+		// best effort: the session is closed right after, so don't wait for the replies
+		for (auto it = m_heldInputs.constBegin(); it != m_heldInputs.constEnd(); ++it)
+		{
+			sendInput(HeldInput::fromId(it.key()), false);
+		}
+	}
+
+	m_heldInputs.clear();
+}
+
+
 
 void PortalSession::notifyPointer(int buttonMask, int x, int y, QSize framebufferSize)
 {
@@ -570,13 +649,16 @@ void PortalSession::notifyPointer(int buttonMask, int x, int y, QSize framebuffe
 
 			if (evdevButtons[i] != 0)
 			{
-				// Regular button press/release (0=released, 1=pressed)
-				const auto button = evdevButtons[i];
-				m_inputDispatcher.enqueue(PortalInputDispatcher::RequestType::Default,
-										  [this, sessionPath, button, current]() {
-					return m_remoteDesktop->NotifyPointerButton(sessionPath, QVariantMap{}, button,
-																static_cast<uint>(current));
-				});
+				// Regular button press/release
+				const HeldInput button{HeldInput::Type::Button, quint32(evdevButtons[i])};
+				if (current != 0)
+				{
+					press(button);
+				}
+				else
+				{
+					release(button, MaximumReleaseRetries);
+				}
 			}
 			else if (current != 0)
 			{
