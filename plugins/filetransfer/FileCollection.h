@@ -42,7 +42,11 @@ struct FileCollection
 
 	void markCurrentFileFailed(const QString& reason)
 	{
-		failedFiles[processedFilesCount] = reason;
+		// a misbehaving computer may announce more files than it listed
+		if (processedFilesCount >= 0 && processedFilesCount < files.size())
+		{
+			failedFiles[processedFilesCount] = reason;
+		}
 	}
 
 	bool isFailedFile(int index) const
@@ -72,6 +76,17 @@ struct FileCollection
 		{
 			QFile::remove(outputFilePath);
 		}
+	}
+
+	// marks a file still being received as failed, removes it and drops all further transfers
+	void cancel(const QString& reason)
+	{
+		if (currentOutputFile)
+		{
+			markCurrentFileFailed(reason);
+			discardCurrentOutputFile();
+		}
+		state = State::Finished;
 	}
 
 	int currentFileProgress() const

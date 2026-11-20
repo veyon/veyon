@@ -233,6 +233,17 @@ void FileCollectController::stop()
 	{
 		m_running = false;
 
+		// collections that are still running were cancelled: remove a partially received file and
+		// mark it as failed before the dialog is notified, and drop any late transfer messages
+		for (auto it = m_collections.begin(), end = m_collections.end(); it != end; ++it)
+		{
+			if (it->state != FileCollection::State::Finished)
+			{
+				it->cancel(tr("The collection was cancelled."));
+				Q_EMIT collectionChanged(it->id);
+			}
+		}
+
 		Q_EMIT finished();
 		Q_EMIT overallProgressChanged();
 
@@ -321,10 +332,19 @@ void FileCollectController::startFileTransfer(ComputerControlInterface::Pointer 
 	if (m_collections.value(computerControlInterface).id == collectionId)
 	{
 		auto& collection = m_collections[computerControlInterface]; // clazy:exclude=detaching-member
+		if (collection.state == FileCollection::State::Finished)
+		{
+			vDebug() << "file collection canceled or finished";
+			return;
+		}
+
 		if (collection.currentOutputFile)
 		{
 			vCritical() << "previous file transfer not finished";
-			collection.closeCurrentOutputFile();
+			// the computer already moved on to the next file
+			collection.markCurrentFileFailed(tr("The file transfer was interrupted."));
+			collection.discardCurrentOutputFile();
+			collection.processedFilesCount += 1;
 		}
 
 		if (fileSize < 0)
@@ -501,6 +521,8 @@ void FileCollectController::finishFileTransfer(ComputerControlInterface::Pointer
 		if (collection.currentOutputFile == nullptr)
 		{
 			vCritical() << "transfer not started / output file not available" << transferId;
+			skipFailedFile(computerControlInterface, collection, tr("The file transfer was not started."));
+			return;
 		}
 
 		collection.closeCurrentOutputFile();
