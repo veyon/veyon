@@ -123,18 +123,28 @@ bool DemoFeaturePlugin::controlFeature(Feature::Uid featureUid,
 {
 	if (featureUid == m_demoServerFeature.uid())
 	{
+		// controlFeature() may be called from a different thread (e.g. by the WebAPI plugin) than the
+		// one the control timer runs in, so the demo server state is protected by a mutex
 		if (operation == Operation::Start)
 		{
-			m_demoServerArguments = arguments;
-			m_demoServerControlInterfaces = computerControlInterfaces;
-			m_demoServerControlTimer.start(DemoServerControlInterval);
+			{
+				QMutexLocker locker(&m_demoServerMutex);
+				m_demoServerArguments = arguments;
+				m_demoServerControlInterfaces = computerControlInterfaces;
+			}
+			setDemoServerActive(true);
+			// send the start command right away since the control timer only repeats it
 			controlDemoServer();
 		}
 		else if (operation == Operation::Stop)
 		{
-			m_demoServerControlTimer.stop();
-			m_demoServerControlInterfaces = computerControlInterfaces;
+			setDemoServerActive(false);
+			{
+				QMutexLocker locker(&m_demoServerMutex);
+				m_demoServerControlInterfaces = computerControlInterfaces;
+			}
 			controlDemoServer();
+			QMutexLocker locker(&m_demoServerMutex);
 			m_demoServerControlInterfaces.clear();
 		}
 		else
@@ -264,7 +274,7 @@ bool DemoFeaturePlugin::stopFeature(VeyonMasterInterface& master, const Feature&
 		if (m_demoServerClients.isEmpty())
 		{
 			// then we can stop the server
-			m_demoServerControlTimer.stop();
+			setDemoServerActive(false);
 
 			// reset demo access token
 			m_demoAccessToken = CryptoCore::generateChallenge();
@@ -556,17 +566,52 @@ QRect DemoFeaturePlugin::viewportFromScreenSelection() const
 
 
 
+void DemoFeaturePlugin::setDemoServerActive(bool active)
+{
+	{
+		QMutexLocker locker(&m_demoServerMutex);
+		m_demoServerActive = active;
+	}
+
+	// controlFeature() may be called from a different thread (e.g. by the WebAPI plugin)
+	// while timers can only be started and stopped from the thread they belong to - don't block
+	// since that thread may not run an event loop (e.g. in the Windows service), in which case
+	// the timer never fires and StartDemoServer is only sent once by controlFeature()
+	QMetaObject::invokeMethod(&m_demoServerControlTimer, [this, active]() {
+		if (active)
+		{
+			m_demoServerControlTimer.start(DemoServerControlInterval);
+		}
+		else
+		{
+			m_demoServerControlTimer.stop();
+		}
+	});
+}
+
+
+
 void DemoFeaturePlugin::controlDemoServer()
 {
-	if (m_demoServerControlTimer.isActive())
+	bool demoServerActive = false;
+	QVariantMap demoServerArguments;
+	ComputerControlInterfaceList demoServerControlInterfaces;
 	{
-		const auto demoServerPort = m_demoServerArguments.value(argToString(Argument::DemoServerPort),
+		QMutexLocker locker(&m_demoServerMutex);
+		demoServerActive = m_demoServerActive;
+		demoServerArguments = m_demoServerArguments;
+		demoServerControlInterfaces = m_demoServerControlInterfaces;
+	}
+
+	if (demoServerActive)
+	{
+		const auto demoServerPort = demoServerArguments.value(argToString(Argument::DemoServerPort),
 																VeyonCore::config().demoServerPort() + VeyonCore::sessionId())
 										.toInt();
-		const auto vncServerPortOffset = m_demoServerArguments.value(argToString(Argument::VncServerPortOffset),
+		const auto vncServerPortOffset = demoServerArguments.value(argToString(Argument::VncServerPortOffset),
 																	 VeyonCore::sessionId())
 											 .toInt();
-		const auto demoAccessToken = m_demoServerArguments.value(argToString(Argument::DemoAccessToken),
+		const auto demoAccessToken = demoServerArguments.value(argToString(Argument::DemoAccessToken),
 																 m_demoAccessToken.toByteArray())
 										 .toByteArray();
 
@@ -574,12 +619,12 @@ void DemoFeaturePlugin::controlDemoServer()
 							   .addArgument(Argument::DemoAccessToken, demoAccessToken)
 							   .addArgument(Argument::VncServerPortOffset, vncServerPortOffset)
 							   .addArgument(Argument::DemoServerPort, demoServerPort),
-						   m_demoServerControlInterfaces);
+						   demoServerControlInterfaces);
 	}
 	else
 	{
 		sendFeatureMessage(FeatureMessage{m_demoServerFeature.uid(), FeatureCommand::StopDemoServer},
-						   m_demoServerControlInterfaces);
+						   demoServerControlInterfaces);
 	}
 }
 
