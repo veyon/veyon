@@ -99,6 +99,7 @@ void PortalSession::start()
 	m_inputDispatcher.reset();
 	m_pipewireFd = -1;
 	m_pipeWireNodeId = 0;
+	m_streamGeometry = {};
 	createSession();
 }
 
@@ -363,31 +364,66 @@ void PortalSession::onPortalResponse(uint response, const QVariantMap& results)
 		break;
 
 	case State::Starting:
-	{
-		// The streams result is an array of (node_id, properties) structs.
-		// Extract the first node ID.
-		const QDBusArgument streams = results.value(QStringLiteral("streams")).value<QDBusArgument>();
-		if (!streams.currentSignature().isEmpty())
-		{
-			streams.beginArray();
-			if (!streams.atEnd())
-			{
-				streams.beginStructure();
-				streams >> m_pipeWireNodeId;
-				streams.endStructure();
-			}
-			streams.endArray();
-		}
-
-		vDebug() << "Portal session started, PipeWire node ID:" << m_pipeWireNodeId;
+		readStreams(results);
 		openPipeWireRemote();
 		break;
-	}
 
 	default:
 		vWarning() << "Unexpected portal response in state" << static_cast<int>(m_state);
 		break;
 	}
+}
+
+void PortalSession::readStreams(const QVariantMap& results)
+{
+	// a(ua{sv}): PipeWire node ID and properties of each stream; only one monitor is selected
+	const auto streams = results.value(QStringLiteral("streams")).value<QDBusArgument>();
+	if (streams.currentSignature() == QLatin1String("a(ua{sv})"))
+	{
+		streams.beginArray();
+		if (!streams.atEnd())
+		{
+			QVariantMap properties;
+			streams.beginStructure();
+			streams >> m_pipeWireNodeId >> properties;
+			streams.endStructure();
+
+			m_streamGeometry.position = readIntPair(properties.value(QStringLiteral("position"))).value_or(QPoint{});
+			const auto size = readIntPair(properties.value(QStringLiteral("size")));
+			if (size.has_value() && size->x() > 0 && size->y() > 0)
+			{
+				m_streamGeometry.size = QSize(size->x(), size->y());
+			}
+		}
+		streams.endArray();
+	}
+
+	vDebug() << "Portal session started, PipeWire node ID:" << m_pipeWireNodeId
+			 << "stream position:" << m_streamGeometry.position << "size:" << m_streamGeometry.size;
+}
+
+
+
+std::optional<QPoint> PortalSession::readIntPair(const QVariant& value)
+{
+	if (value.canConvert<QDBusArgument>() == false)
+	{
+		return std::nullopt;
+	}
+
+	const auto argument = value.value<QDBusArgument>();
+	if (argument.currentSignature() != QLatin1String("(ii)"))
+	{
+		return std::nullopt;
+	}
+
+	int first = 0;
+	int second = 0;
+	argument.beginStructure();
+	argument >> first >> second;
+	argument.endStructure();
+
+	return QPoint(first, second);
 }
 
 // ---------------------------------------------------------------------------
@@ -481,7 +517,7 @@ void PortalSession::notifyKeyboardKeysym(quint32 keySym, bool down)
 	});
 }
 
-void PortalSession::notifyPointer(int buttonMask, int x, int y)
+void PortalSession::notifyPointer(int buttonMask, int x, int y, QSize framebufferSize)
 {
 	if (m_state != State::Running || m_pipeWireNodeId == 0)
 	{
@@ -489,19 +525,20 @@ void PortalSession::notifyPointer(int buttonMask, int x, int y)
 	}
 
 	const auto sessionPath = QDBusObjectPath(m_sessionHandle);
-	const double dx = static_cast<double>(x);
-	const double dy = static_cast<double>(y);
 
 	// Send motion event when the position changed
-	if (dx != m_lastPointerX || dy != m_lastPointerY)
+	const auto position = mapPointerToPortalStream({x, y}, framebufferSize, m_streamGeometry);
+	if (position.has_value() && (position->x() != m_lastPointerX || position->y() != m_lastPointerY))
 	{
 		const auto nodeId = m_pipeWireNodeId;
+		const auto px = position->x();
+		const auto py = position->y();
 		m_inputDispatcher.enqueue(PortalInputDispatcher::RequestType::PointerMotion,
-								  [this, sessionPath, nodeId, dx, dy]() {
-			return m_remoteDesktop->NotifyPointerMotionAbsolute(sessionPath, QVariantMap{}, nodeId, dx, dy);
+								  [this, sessionPath, nodeId, px, py]() {
+			return m_remoteDesktop->NotifyPointerMotionAbsolute(sessionPath, QVariantMap{}, nodeId, px, py);
 		});
-		m_lastPointerX = dx;
-		m_lastPointerY = dy;
+		m_lastPointerX = px;
+		m_lastPointerY = py;
 	}
 
 	// Send button/scroll events for every bit that changed

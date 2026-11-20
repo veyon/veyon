@@ -290,7 +290,9 @@ void PipeWireVncServer::onPtrAddEvent(int buttonMask, int x, int y, rfbClientRec
 	auto* self = static_cast<PipeWireVncServer*>(cl->screen->screenData);
 	if (self->m_portalSession)
 	{
-		self->m_portalSession->notifyPointer(buttonMask, x, y);
+		// called from rfbProcessEvents() with the screen mutex held, so the size matches the
+		// framebuffer the client's position refers to, also after a resize
+		self->m_portalSession->notifyPointer(buttonMask, x, y, QSize(cl->screen->width, cl->screen->height));
 	}
 }
 

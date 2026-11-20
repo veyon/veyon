@@ -14,6 +14,7 @@
 #include "OrgFreedesktopPortalScreenCast.h"
 #include "OrgFreedesktopPortalSession.h"
 #include "PortalInputDispatcher.h"
+#include "PortalPointerMapping.h"
 
 /**
  * @brief Manages an XDG Desktop Portal RemoteDesktop session.
@@ -77,6 +78,12 @@ public:
 	quint32 pipeWireNodeId() const { return m_pipeWireNodeId; }
 
 	/**
+	 * @brief Position and size of the screen stream as reported by the portal (valid after started() signal).
+	 * The size is empty if the portal doesn't report it.
+	 */
+	const PortalStreamGeometry& streamGeometry() const { return m_streamGeometry; }
+
+	/**
 	 * @brief Forward a keyboard keysym event from a VNC client to the portal session.
 	 *
 	 * The @p keySym value is the X11 keysym received from the VNC client (rfbKeySym).
@@ -92,11 +99,15 @@ public:
 	 * NotifyPointerButton / NotifyPointerAxisDiscrete when button state changes.
 	 * No-op when the session is not in the Running state.
 	 *
+	 * @p x and @p y are framebuffer coordinates of the VNC client, @p framebufferSize is the
+	 * current size of the framebuffer; they are mapped to the stream's coordinate space, see
+	 * mapPointerToPortalStream().
+	 *
 	 * @p buttonMask is the LibVNCServer button bitmask (bit 0 = left, 1 = middle,
 	 * 2 = right, 3 = scroll-up, 4 = scroll-down, 5 = scroll-left, 6 = scroll-right,
 	 * 7 = side, 8 = extra).
 	 */
-	void notifyPointer(int buttonMask, int x, int y);
+	void notifyPointer(int buttonMask, int x, int y, QSize framebufferSize);
 
 Q_SIGNALS:
 	void started();
@@ -111,6 +122,8 @@ private:
 	void selectSources();
 	void startSession();
 	void openPipeWireRemote();
+	void readStreams(const QVariantMap& results);
+	static std::optional<QPoint> readIntPair(const QVariant& value);
 
 	void connectResponseSignal(const QString& requestPath);
 	void disconnectResponseSignal();
@@ -137,6 +150,7 @@ private:
 	State m_state{State::Idle};
 	int m_pipewireFd{-1};
 	quint32 m_pipeWireNodeId{0};
+	PortalStreamGeometry m_streamGeometry;
 	QString m_connectedRequestPath;
 
 	int m_lastButtonMask{0};
