@@ -150,8 +150,11 @@ void FileCollectDialog::showFailedFiles()
 
 	if (failedFilesCount > 0)
 	{
-		ui->failedFilesLabel->setText(tr("<b>Warning:</b> %n file(s) could not be collected. They are marked in the list "
-										 "above, the reason is shown as tooltip.", nullptr, failedFilesCount));
+		ui->failedFilesLabel->setText(failedFilesCount == 1 ?
+			tr("<b>Warning:</b> 1 file could not be collected. It is marked in the list above, "
+			   "the reason is shown as tooltip.") :
+			tr("<b>Warning:</b> %1 files could not be collected. They are marked in the list above, "
+			   "the reason is shown as tooltip.").arg(failedFilesCount));
 		ui->failedFilesLabel->show();
 	}
 }
