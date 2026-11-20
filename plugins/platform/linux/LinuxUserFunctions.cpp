@@ -3,6 +3,8 @@
 
 #include <QDBusInterface>
 #include <QDBusReply>
+#include <QDir>
+#include <QFileInfo>
 #include <QProcess>
 #include <QRegularExpression>
 
@@ -20,6 +22,8 @@
 #include <X11/Xlib.h>
 #include <X11/keysymdef.h>
 #include <algorithm>
+#include <cerrno>
+#include <cstring>
 #include <grp.h>
 #include <pwd.h>
 #include <unistd.h>
@@ -425,6 +429,89 @@ LinuxUserFunctions::GroupId LinuxUserFunctions::userGroupIdFromName(const QStrin
 	}
 
 	return InvalidGroupId;
+}
+
+
+
+// sets HOME, USER, LOGNAME and SHELL from the password database and removes XDG base directory
+// variables which point outside the user's home directory
+bool LinuxUserFunctions::setUserEnvironment(QProcessEnvironment& environment, UserId userId)
+{
+	const auto suggestedBufferSize = sysconf(_SC_GETPW_R_SIZE_MAX);
+	QByteArray buffer(suggestedBufferSize > 0 ? int(suggestedBufferSize) : 16384, Qt::Uninitialized);
+
+	struct passwd pwEntry{};
+	struct passwd* result = nullptr;
+	int error = 0;
+	while ((error = getpwuid_r(userId, &pwEntry, buffer.data(), size_t(buffer.size()), &result)) == ERANGE &&
+		   buffer.size() < 1024 * 1024)
+	{
+		buffer.resize(buffer.size() * 2);
+	}
+
+	if (error != 0 || result == nullptr)
+	{
+		vWarning() << "could not look up user with ID" << userId << "-" << (error != 0 ? strerror(error) : "user not found");
+		return false;
+	}
+
+	const auto homeDirectory = QDir::cleanPath(QString::fromUtf8(pwEntry.pw_dir));
+	const auto userName = QString::fromUtf8(pwEntry.pw_name);
+
+	environment.insert(QStringLiteral("HOME"), homeDirectory);
+	environment.insert(QStringLiteral("USER"), userName);
+	environment.insert(QStringLiteral("LOGNAME"), userName);
+	if (pwEntry.pw_shell && *pwEntry.pw_shell)
+	{
+		environment.insert(QStringLiteral("SHELL"), QString::fromUtf8(pwEntry.pw_shell));
+	}
+	else
+	{
+		environment.remove(QStringLiteral("SHELL"));
+	}
+
+	// keep XDG base directories which are located in the home directory (also if it is reached via a
+	// symlink) or in a directory owned by the user (e.g. /var/tmp/<user> with NFS homes), so that
+	// values derived from a wrong HOME (e.g. "/.config") or pointing to other users are dropped
+	const auto homeDirectoryPrefix = homeDirectory.endsWith(QLatin1Char('/')) ? homeDirectory
+																			   : homeDirectory + QLatin1Char('/');
+	const auto canonicalHomeDirectory = QFileInfo(homeDirectory).canonicalFilePath();
+	const auto isUserDirectory = [&](const QString& path) {
+		if (QDir::isAbsolutePath(path) == false)
+		{
+			return false;
+		}
+
+		if (QDir::cleanPath(path).startsWith(homeDirectoryPrefix))
+		{
+			return true;
+		}
+
+		const QFileInfo fileInfo(path);
+		const auto canonicalPath = fileInfo.canonicalFilePath();
+		if (canonicalPath.isEmpty())
+		{
+			return false;
+		}
+
+		return (canonicalHomeDirectory.isEmpty() == false &&
+				(canonicalPath == canonicalHomeDirectory ||
+				 canonicalPath.startsWith(canonicalHomeDirectory + QLatin1Char('/')))) ||
+			   QFileInfo(canonicalPath).ownerId() == userId;
+	};
+
+	for (const auto& variable : {QStringLiteral("XDG_CONFIG_HOME"), QStringLiteral("XDG_DATA_HOME"),
+								 QStringLiteral("XDG_CACHE_HOME"), QStringLiteral("XDG_STATE_HOME")})
+	{
+		if (environment.contains(variable) && isUserDirectory(environment.value(variable)) == false)
+		{
+			vDebug() << "discarding" << variable << "neither below home directory" << homeDirectory
+					 << "nor owned by user";
+			environment.remove(variable);
+		}
+	}
+
+	return true;
 }
 
 

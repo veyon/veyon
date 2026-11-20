@@ -4,6 +4,7 @@
 #pragma once
 
 #include <QDBusConnection>
+#include <QProcessEnvironment>
 
 #include "LogonHelper.h"
 #include "PlatformUserFunctions.h"
@@ -37,6 +38,8 @@ public:
 
 	static UserId userIdFromName(const QString& username);
 	static GroupId userGroupIdFromName(const QString& username);
+
+	static bool setUserEnvironment(QProcessEnvironment& environment, UserId userId);
 
 	static QVariant getUserProperty(const QString& userPath, const QString& property, bool logErrors = true);
 
