@@ -92,6 +92,7 @@ protected:
 	void unpressModifiers(const QList<KeyCode>& modifierKeyCodes);
 	void unpressAllModifiers();
 
+	void setKeyboardShortcutTrapperEnabled(bool enabled);
 	void handleShortcut(KeyboardShortcutTrapper::Shortcut shortcut);
 	bool handleEvent(QEvent* handleEvent);
 

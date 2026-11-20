@@ -105,16 +105,22 @@ void VncView::setViewOnly(bool viewOnly)
 		m_connection->setUseRemoteCursor(!viewOnly);
 	}
 
+	// enabling the keyboard shortcut trapper is left to subclasses via setKeyboardShortcutTrapperEnabled()
+	// since it should only be active while the view receives keyboard input
 	if (m_viewOnly)
 	{
 		m_keyboardShortcutTrapper->setEnabled(false);
 	}
-	else
-	{
-		m_keyboardShortcutTrapper->setEnabled(true);
-	}
 
 	updateLocalCursor();
+}
+
+
+
+void VncView::setKeyboardShortcutTrapperEnabled(bool enabled)
+{
+	// never trap shortcuts in view-only mode
+	m_keyboardShortcutTrapper->setEnabled(enabled && m_viewOnly == false);
 }
 
 

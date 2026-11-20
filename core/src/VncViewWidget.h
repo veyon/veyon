@@ -44,6 +44,7 @@ protected:
 private:
 	void drawBusyIndicator(QPainter* painter);
 	void updateConnectionState();
+	void updateKeyboardShortcutTrapper();
 
 	bool m_viewOnlyFocus{true};
 
