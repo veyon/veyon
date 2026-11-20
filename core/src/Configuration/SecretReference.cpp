@@ -48,6 +48,13 @@ QVariant SecretReference::defaultValue(const QString& key)
 
 
 
+bool SecretReference::isReference(const QString& value)
+{
+	return value.startsWith(SecretReferencePrefix);
+}
+
+
+
 bool SecretReference::isLegacyValue(const QString& value)
 {
 	return value.isEmpty() == false && value.startsWith(SecretReferencePrefix) == false;

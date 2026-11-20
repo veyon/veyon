@@ -43,6 +43,9 @@ public:
 	// default value for the OP() entry of a SecretReference property
 	static QVariant defaultValue(const QString& key);
 
+	// value with the "secret:" prefix, whether its key is valid or not
+	static bool isReference(const QString& value);
+
 	// non-empty value of a former Configuration::Password property (RSA ciphertext with the key
 	// from default-pkey.pem, or a plain value of a very old version), see LegacySecretMigration
 	static bool isLegacyValue(const QString& value);

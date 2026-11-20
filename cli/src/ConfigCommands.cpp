@@ -411,6 +411,14 @@ CommandLinePluginInterface::RunResult ConfigCommands::handle_set(const QStringLi
 		return operationError(tr("Please specify a valid value."));
 	}
 
+	// a secret property of a plugin which is not loaded: neither replace its reference with a
+	// plain value nor create references (03-secretstore-config.md §3a)
+	if (Configuration::SecretReference::isReference(VeyonCore::config().value(key, parentKey, {}).toString()) ||
+		Configuration::SecretReference::isReference(value))
+	{
+		return operationError(tr("The specified key is not a secret property of a loaded plugin."));
+	}
+
 	if (property)
 	{
 		valueType = static_cast<QMetaType::Type>(property->variantValue().userType());
@@ -694,7 +702,9 @@ std::optional<SecretExport::Secrets> ConfigCommands::decryptSecrets(const QJsonO
 	{
 		if (allowedKeys.contains(entry.first) == false)
 		{
-			CommandLineIO::error(tr("The configuration file contains an unexpected secret %1.").arg(entry.first));
+			CommandLineIO::error(tr("The configuration file contains an unexpected secret %1 (no loaded plugin "
+									"declares it).")
+									 .arg(entry.first));
 			return {};
 		}
 	}
