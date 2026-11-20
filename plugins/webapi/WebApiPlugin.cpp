@@ -11,7 +11,8 @@ WebApiPlugin::WebApiPlugin(QObject* parent) :
 	QObject(parent),
 	m_configuration(&VeyonCore::config()),
 	m_httpServerThread(this),
-	m_commands({{QStringLiteral("runserver"), tr("Run WebAPI server")}})
+	m_commands({{QStringLiteral("help"), tr("Show help about command")},
+				{QStringLiteral("runserver"), tr("Run WebAPI server")}})
 {
 	if (VeyonCore::component() == VeyonCore::Component::Service &&
 		m_configuration.httpServerEnabled())
@@ -37,6 +38,23 @@ WebApiPlugin::~WebApiPlugin()
 ConfigurationPage* WebApiPlugin::createConfigurationPage()
 {
 	return new WebApiConfigurationPage(m_configuration);
+}
+
+
+
+CommandLinePluginInterface::RunResult WebApiPlugin::handle_help(const QStringList& arguments)
+{
+	const auto command = arguments.value(0);
+
+	if (command.isEmpty() || command == QLatin1String("runserver"))
+	{
+		CommandLineIO::printUsage(QStringLiteral("webapi"), QStringLiteral("runserver"), {});
+		CommandLineIO::printDescription(tr("Runs the WebAPI server in the foreground with the configured settings "
+										   "until the program is terminated."));
+		return NoResult;
+	}
+
+	return InvalidCommand;
 }
 
 
