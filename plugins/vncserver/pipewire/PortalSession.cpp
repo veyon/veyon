@@ -16,6 +16,7 @@
 #include <QGuiApplication>
 #include <QProcess>
 #include <QRandomGenerator>
+#include <QRegularExpression>
 #include <QSaveFile>
 #include <QStandardPaths>
 #include <QUuid>
@@ -30,9 +31,122 @@
 // XDG Desktop Portal service and interface names
 static const auto PortalService = QStringLiteral("org.freedesktop.portal.Desktop");
 static const auto PortalObjectPath = QStringLiteral("/org/freedesktop/portal/desktop");
+static const auto RemoteDesktopInterface = QStringLiteral("org.freedesktop.portal.RemoteDesktop");
+static const auto ScreenCastInterface = QStringLiteral("org.freedesktop.portal.ScreenCast");
+static const auto SessionInterface = QStringLiteral("org.freedesktop.portal.Session");
 static const auto MutterRemoteDesktopService = QStringLiteral("org.gnome.Mutter.RemoteDesktop");
+
+namespace {
+
+// the portal fails the whole SelectDevices call for an invalid token
+constexpr int MaximumRestoreTokenLength = 64;
+
+bool isValidRestoreToken(const QString& token)
+{
+	// xdg-desktop-portal < 1.22.1 generates UUIDs (QUuid would also accept one in braces), newer
+	// versions D-Bus object path elements ([A-Za-z0-9_]) and still accept UUIDs
+	static const QRegularExpression pathElement(QRegularExpression::anchoredPattern(QStringLiteral("[A-Za-z0-9_]+")));
+	return (token.size() == 36 && QUuid::fromString(token).isNull() == false) ||
+		(token.size() <= MaximumRestoreTokenLength && pathElement.match(token).hasMatch());
+}
+
+} // namespace
+
+
+
+QDBusConnection PortalSession::portalConnection()
+{
+	// a session bus connection of its own, so that registerHostAppId() surely comes first on it:
+	// Qt (< 6.10) may call the portal on the shared connection already while constructing
+	// QGuiApplication, e.g. the GNOME platform theme reading the Settings portal, after which the
+	// portal has derived the app ID of that connection and refuses Register(); Qt >= 6.10 registers
+	// the shared connection itself, but from a queued call which may come after CreateSession
+	return QDBusConnection::connectToBus(QDBusConnection::SessionBus, QStringLiteral("veyon-portal-session"));
+}
+
+
+
+bool PortalSession::registerHostAppId()
+{
+	const auto appId = QGuiApplication::desktopFileName();
+	if (appId.isEmpty())
+	{
+		m_portalInstance.clear();
+		return true;
+	}
+
+	// exported on the same object as all portal interfaces; the only call which may start the
+	// portal, see portalCall()
+	auto call = QDBusMessage::createMethodCall(PortalService, PortalObjectPath,
+											   QStringLiteral("org.freedesktop.host.portal.Registry"),
+											   QStringLiteral("Register"));
+	call << appId << QVariantMap{};
+
+	const auto reply = m_sessionBus.call(call, QDBus::Block, RegistryCallTimeout);
+	const auto errorName = reply.errorName();
+
+	// the portal is not (yet) reachable: no other call may come first, so the session must wait
+	if (reply.type() == QDBusMessage::ErrorMessage &&
+		(errorName == QLatin1String("org.freedesktop.DBus.Error.NoReply") ||
+		 errorName == QLatin1String("org.freedesktop.DBus.Error.Timeout") ||
+		 errorName == QLatin1String("org.freedesktop.DBus.Error.ServiceUnknown") ||
+		 errorName == QLatin1String("org.freedesktop.DBus.Error.NameHasNoOwner")))
+	{
+		vWarning() << "xdg-desktop-portal not reachable for registering app ID" << appId << ":"
+				   << reply.errorMessage();
+		return false;
+	}
+
+	// the unique name of the portal instance which answered (an error of the bus itself comes
+	// from org.freedesktop.DBus)
+	m_portalInstance = reply.service().startsWith(QLatin1Char(':')) ? reply.service() : QString();
+
+	if (reply.type() != QDBusMessage::ErrorMessage)
+	{
+		vDebug() << "registered app ID" << appId << "with xdg-desktop-portal";
+	}
+	else if (errorName == QLatin1String("org.freedesktop.DBus.Error.UnknownMethod") ||
+			 errorName == QLatin1String("org.freedesktop.DBus.Error.UnknownObject") ||
+			 errorName == QLatin1String("org.freedesktop.DBus.Error.UnknownInterface"))
+	{
+		vDebug() << "xdg-desktop-portal < 1.19.4 without host app registry, app ID derived from the systemd scope";
+	}
+	else if (errorName == QLatin1String("org.freedesktop.portal.Error.Failed") &&
+			 reply.errorMessage().contains(QLatin1String("already associated")))
+	{
+		// by the registration of an earlier start: no other call reaches a portal instance before
+		// it, see portalCall()
+		vDebug() << "app ID" << appId << "already registered with xdg-desktop-portal";
+	}
+	else
+	{
+		// e.g. a sandboxed process: the portal derives the app ID itself
+		vWarning() << "could not register app ID" << appId << "with xdg-desktop-portal:" << errorName
+				   << reply.errorMessage();
+	}
+
+	return true;
+}
+
+
+
+QDBusMessage PortalSession::portalCall(const QString& path, const QString& interface, const QString& method,
+									   const QVariantList& arguments) const
+{
+	// addressed to the portal instance the app ID has been registered with: a call reaching
+	// another (restarted) one first would make it derive the app ID itself, so a call for a gone
+	// instance fails instead, and never starts the portal
+	auto message = QDBusMessage::createMethodCall(m_portalInstance.isEmpty() ? PortalService : m_portalInstance,
+												  path, interface, method);
+	message.setArguments(arguments);
+	message.setAutoStartService(false);
+	return message;
+}
+
+
+
 PortalSession::PortalSession(bool persistRestoreToken, QObject* parent) :
-	QObject(parent), m_sessionBus(QDBusConnection::sessionBus()), m_persistRestoreToken(persistRestoreToken)
+	QObject(parent), m_sessionBus(portalConnection()), m_persistRestoreToken(persistRestoreToken)
 {
 	// the portal is gone, does not respond or input can't keep up: release the session and let
 	// the owner restart it like after any other failure
@@ -42,13 +156,16 @@ PortalSession::PortalSession(bool persistRestoreToken, QObject* parent) :
 		Q_EMIT failed();
 	});
 
-	const auto appId = QGuiApplication::desktopFileName();
+	// xdg-desktop-portal derives the app ID from the process behind the unique name of the
+	// calling connection: from its systemd unit/scope (sd_pid_get_user_unit(), "app-<id>-*.scope")
+	// or, with portal >= 1.19.4, from org.freedesktop.host.portal.Registry.Register() on that
+	// connection. Well-known bus names are not consulted. With portal >= 1.19.4 the server is
+	// started without a scope, so start() registers the app ID before any other portal call on
+	// this connection; otherwise the app ID is empty and e.g. KDE's kde-authorized
+	// pre-authorization doesn't apply. Older portals don't provide the registry and keep using
+	// the scope.
 
-	// Use the default session bus connection so the portal can properly
-	// identify this application by its well-known bus name and match
-	// pre-authorized permissions. Creating a separate connection would
-	// cause the portal to see a numeric :1.xx ID instead of the app ID,
-	// which breaks pre-authorization via flatpak permission-set.
+	const auto appId = QGuiApplication::desktopFileName();
 
 	// Apply KDE pre-authorization so the consent dialog can be suppressed
 	// in unattended/kiosk scenarios. These calls are best-effort and may
@@ -60,17 +177,13 @@ PortalSession::PortalSession(bool persistRestoreToken, QObject* parent) :
 					  {QStringLiteral("permission-set"), QStringLiteral("kde-authorized"),
 					   QStringLiteral("remote-desktop"), appId, QStringLiteral("yes")});
 
-	// Register the well-known name so the portal can resolve our app ID.
-	// This is not strictly required when using the default session bus,
-	// but helps consistency for logging and debugging.
+	// The portal doesn't resolve the app ID from the well-known name, but it helps consistency
+	// for logging and debugging.
 	if (!m_sessionBus.registerService(appId))
 	{
 		vDebug() << "Could not register D-Bus service name" << appId
 				 << ":" << m_sessionBus.lastError().message();
 	}
-
-	m_remoteDesktop = new OrgFreedesktopPortalRemoteDesktopInterface(PortalService, PortalObjectPath, m_sessionBus, this);
-	m_screenCast = new OrgFreedesktopPortalScreenCastInterface(PortalService, PortalObjectPath, m_sessionBus, this);
 
 	// persist_mode 2 only pays off across server runs if the token outlives this process; a
 	// token left from when persistence was enabled is removed so it no longer grants anything
@@ -100,6 +213,17 @@ void PortalSession::start()
 	{
 		return;
 	}
+
+	// the registration comes first, also with a restarted portal, and determines the portal
+	// instance all other calls go to; the owner retries a failed start
+	if (registerHostAppId() == false)
+	{
+		close();
+		setState(State::Failed);
+		Q_EMIT failed();
+		return;
+	}
+
 	// a failed session may still be open at the portal
 	close();
 	m_inputDispatcher.reset();
@@ -133,9 +257,7 @@ void PortalSession::close()
 
 	if (!m_sessionHandle.isEmpty())
 	{
-		OrgFreedesktopPortalSessionInterface sessionIface(
-			PortalService, m_sessionHandle, m_sessionBus);
-		sessionIface.Close();
+		m_sessionBus.asyncCall(portalCall(m_sessionHandle, SessionInterface, QStringLiteral("Close")));
 		m_sessionHandle.clear();
 	}
 
@@ -158,7 +280,8 @@ void PortalSession::createSession()
 	// race condition where the portal emits Response before we can connect.
 	connectResponseSignal(makeRequestPath(token));
 
-	auto call = m_remoteDesktop->CreateSession(options);
+	auto call = m_sessionBus.asyncCall(
+		portalCall(PortalObjectPath, RemoteDesktopInterface, QStringLiteral("CreateSession"), {options}));
 	auto* watcher = new QDBusPendingCallWatcher(call, this);
 	connect(watcher, &QDBusPendingCallWatcher::finished, this, [this](QDBusPendingCallWatcher* w) {
 		w->deleteLater();
@@ -194,7 +317,8 @@ void PortalSession::selectDevices()
 
 	connectResponseSignal(makeRequestPath(token));
 
-	auto call = m_remoteDesktop->SelectDevices(QDBusObjectPath(m_sessionHandle), options);
+	auto call = m_sessionBus.asyncCall(portalCall(PortalObjectPath, RemoteDesktopInterface, QStringLiteral("SelectDevices"),
+												  {QVariant::fromValue(QDBusObjectPath(m_sessionHandle)), options}));
 	connect(new QDBusPendingCallWatcher(call, this), &QDBusPendingCallWatcher::finished, this, [this](QDBusPendingCallWatcher* w) {
 		w->deleteLater();
 		QDBusPendingReply<QDBusObjectPath> reply = *w;
@@ -226,7 +350,8 @@ void PortalSession::selectSources()
 
 	connectResponseSignal(makeRequestPath(token));
 
-	auto call = m_screenCast->SelectSources(QDBusObjectPath(m_sessionHandle), options);
+	auto call = m_sessionBus.asyncCall(portalCall(PortalObjectPath, ScreenCastInterface, QStringLiteral("SelectSources"),
+												  {QVariant::fromValue(QDBusObjectPath(m_sessionHandle)), options}));
 	auto* watcher = new QDBusPendingCallWatcher(call, this);
 	connect(watcher, &QDBusPendingCallWatcher::finished, this, [this](QDBusPendingCallWatcher* w) {
 		w->deleteLater();
@@ -254,10 +379,9 @@ void PortalSession::startSession()
 
 	connectResponseSignal(makeRequestPath(token));
 
-	auto call = m_remoteDesktop->Start(
-		QDBusObjectPath(m_sessionHandle),
-		QStringLiteral(""), // parent_window handle (empty for daemon/unattended use)
-		options);
+	// parent_window handle empty for daemon/unattended use
+	auto call = m_sessionBus.asyncCall(portalCall(PortalObjectPath, RemoteDesktopInterface, QStringLiteral("Start"),
+												  {QVariant::fromValue(QDBusObjectPath(m_sessionHandle)), QString(), options}));
 	auto* watcher = new QDBusPendingCallWatcher(call, this);
 	connect(watcher, &QDBusPendingCallWatcher::finished, this, [this](QDBusPendingCallWatcher* w) {
 		w->deleteLater();
@@ -276,8 +400,9 @@ void PortalSession::startSession()
 
 void PortalSession::openPipeWireRemote()
 {
-	auto pending = m_screenCast->OpenPipeWireRemote(
-		QDBusObjectPath(m_sessionHandle), QVariantMap{});
+	QDBusPendingReply<QDBusUnixFileDescriptor> pending = m_sessionBus.asyncCall(
+		portalCall(PortalObjectPath, ScreenCastInterface, QStringLiteral("OpenPipeWireRemote"),
+				   {QVariant::fromValue(QDBusObjectPath(m_sessionHandle)), QVariantMap{}}));
 	pending.waitForFinished();
 
 	if (pending.isError())
@@ -499,10 +624,8 @@ void PortalSession::loadRestoreToken()
 	QFile file(restoreTokenFilePath());
 	if (file.open(QFile::ReadOnly))
 	{
-		const auto token = QString::fromUtf8(file.read(64)).trimmed();
-		// the portal fails the whole SelectDevices call for anything but a bare
-		// UUID, and QUuid would also accept one in braces
-		if (token.size() == 36 && QUuid::fromString(token).isNull() == false)
+		const auto token = QString::fromUtf8(file.read(MaximumRestoreTokenLength + 1)).trimmed();
+		if (isValidRestoreToken(token))
 		{
 			m_restoreToken = token;
 		}
@@ -572,14 +695,12 @@ void PortalSession::notifyKeyboardKeysym(quint32 keySym, bool down)
 
 QDBusMessage PortalSession::inputMessage(HeldInput input, bool pressed) const
 {
-	auto message = QDBusMessage::createMethodCall(
-		PortalService, PortalObjectPath, m_remoteDesktop->interface(),
-		input.type == HeldInput::Type::Button ? QStringLiteral("NotifyPointerButton")
-											  : QStringLiteral("NotifyKeyboardKeysym"));
 	// portal state: 0 = released, 1 = pressed
-	message << QVariant::fromValue(QDBusObjectPath(m_sessionHandle)) << QVariantMap{} << int(input.code)
-			<< (pressed ? 1u : 0u);
-	return message;
+	return portalCall(PortalObjectPath, RemoteDesktopInterface,
+					  input.type == HeldInput::Type::Button ? QStringLiteral("NotifyPointerButton")
+															: QStringLiteral("NotifyKeyboardKeysym"),
+					  {QVariant::fromValue(QDBusObjectPath(m_sessionHandle)), QVariantMap{}, int(input.code),
+					   pressed ? 1u : 0u});
 }
 
 
@@ -686,7 +807,9 @@ void PortalSession::notifyPointer(int buttonMask, int x, int y, QSize framebuffe
 		m_inputDispatcher.enqueue(
 			PortalInputDispatcher::RequestType::PointerMotion,
 			[this, sessionPath, nodeId, px, py]() {
-			return m_remoteDesktop->NotifyPointerMotionAbsolute(sessionPath, QVariantMap{}, nodeId, px, py);
+			return m_sessionBus.asyncCall(portalCall(PortalObjectPath, RemoteDesktopInterface,
+													 QStringLiteral("NotifyPointerMotionAbsolute"),
+													 {QVariant::fromValue(sessionPath), QVariantMap{}, nodeId, px, py}));
 		},
 			[this, px, py](PortalInputDispatcher::Result result) {
 			// the pointer may not be there, so send the position again with the next event, e.g. a
@@ -770,8 +893,10 @@ void PortalSession::notifyPointer(int buttonMask, int x, int y, QSize framebuffe
 				{
 					m_inputDispatcher.enqueue(PortalInputDispatcher::RequestType::Default,
 											  [this, sessionPath, axis, steps]() {
-						return m_remoteDesktop->NotifyPointerAxisDiscrete(sessionPath, QVariantMap{},
-																		  static_cast<uint>(axis), steps);
+						return m_sessionBus.asyncCall(portalCall(PortalObjectPath, RemoteDesktopInterface,
+																 QStringLiteral("NotifyPointerAxisDiscrete"),
+																 {QVariant::fromValue(sessionPath), QVariantMap{},
+																  static_cast<uint>(axis), steps}));
 					});
 				}
 			}

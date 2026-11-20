@@ -13,10 +13,7 @@
 #include <QString>
 #include <QVariantMap>
 
-#include "OrgFreedesktopPortalRemoteDesktop.h"
 #include "OrgFreedesktopPortalRequest.h"
-#include "OrgFreedesktopPortalScreenCast.h"
-#include "OrgFreedesktopPortalSession.h"
 #include "PortalInputDispatcher.h"
 #include "PortalPointerMapping.h"
 
@@ -29,7 +26,7 @@
  * All portal responses arrive asynchronously via the /org/freedesktop/portal/desktop/response
  * signal and are dispatched to the appropriate handler.
  *
- * The app_id used for permission-store lookups is "io.veyon.veyon-server".
+ * The app_id used for permission-store lookups is "io.veyon.veyon-server" (see registerHostAppId()).
  * KDE Plasma admins can pre-authorize unattended access via:
  *   flatpak permission-set kde-authorized screencast io.veyon.veyon-server yes
  * or directly through the DBus PermissionStore interface.
@@ -138,6 +135,16 @@ private Q_SLOTS:
 	void onPortalResponse(uint response, const QVariantMap& results);
 
 private:
+	static constexpr int RegistryCallTimeout = 5000;
+
+	static QDBusConnection portalConnection();
+	// portal >= 1.19.4: app ID of this connection (org.freedesktop.host.portal.Registry), before any
+	// other call to a portal instance; false if the portal can't be reached, then nothing else may
+	// be called yet
+	bool registerHostAppId();
+	QDBusMessage portalCall(const QString& path, const QString& interface, const QString& method,
+							const QVariantList& arguments = {}) const;
+
 	void createSession();
 	void selectDevices();
 	void selectSources();
@@ -183,8 +190,8 @@ private:
 	QString makeRequestPath(const QString& token) const;
 
 	QDBusConnection m_sessionBus;
-	OrgFreedesktopPortalRemoteDesktopInterface* m_remoteDesktop{nullptr};
-	OrgFreedesktopPortalScreenCastInterface* m_screenCast{nullptr};
+	// unique name of the portal instance which answered Register()
+	QString m_portalInstance;
 	OrgFreedesktopPortalRequestInterface* m_requestInterface{nullptr};
 	PortalInputDispatcher m_inputDispatcher{this};
 

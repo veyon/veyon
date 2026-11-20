@@ -8,15 +8,19 @@
 
 #include <QDBusArgument>
 #include <QDBusConnection>
+#include <QDBusConnectionInterface>
 #include <QDBusMetaType>
 #include <QDBusMessage>
 #include <QDBusUnixFileDescriptor>
 #include <QDBusVirtualObject>
+#include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QGuiApplication>
 #include <QProcess>
 #include <QRegularExpression>
 #include <QSignalSpy>
+#include <QStandardPaths>
 #include <QTemporaryDir>
 #include <QTimer>
 #include <QtTest>
@@ -34,6 +38,8 @@ const auto FakePortalService = QStringLiteral("org.freedesktop.portal.Desktop");
 const auto FakePortalObjectPath = QStringLiteral("/org/freedesktop/portal/desktop");
 const auto SessionPathPrefix = QStringLiteral("/org/freedesktop/portal/desktop/session/test/");
 const auto TestInterface = QStringLiteral("io.veyon.Test.FakePortal");
+const auto RegistryInterface = QStringLiteral("org.freedesktop.host.portal.Registry");
+const auto TestAppId = QStringLiteral("io.veyon.PortalSessionTest");
 const auto MutterService = QStringLiteral("org.gnome.Mutter.RemoteDesktop");
 
 // keysyms the fake portal handles specially
@@ -101,6 +107,19 @@ const QDBusArgument& operator>>(const QDBusArgument& argument, Stream& stream)
 class FakePortal : public QDBusVirtualObject
 {
 public:
+	enum class Registry {
+		Available,
+		// xdg-desktop-portal < 1.19.4
+		Missing,
+		// replies like a portal that is still starting
+		NoReply
+	};
+
+	explicit FakePortal(Registry registry) :
+		m_registry(registry)
+	{
+	}
+
 	QString introspect(const QString& path) const override
 	{
 		Q_UNUSED(path)
@@ -113,7 +132,21 @@ public:
 
 		if (message.interface() == TestInterface && method == QLatin1String("State"))
 		{
-			connection.send(message.createReply({m_closedSessions, m_forwardedInput, m_rejectedInput}));
+			connection.send(message.createReply({m_closedSessions, m_forwardedInput, m_rejectedInput,
+												 m_registeredAppIds, m_registerCalls, m_firstCalls,
+												 m_restoreTokens}));
+			return true;
+		}
+
+		if (message.interface() == TestInterface && method == QLatin1String("Quit"))
+		{
+			connection.send(message.createReply());
+			QTimer::singleShot(0, qApp, &QCoreApplication::quit);
+			return true;
+		}
+
+		if (message.interface() != TestInterface && trackAppId(message, connection))
+		{
 			return true;
 		}
 
@@ -221,6 +254,51 @@ public:
 	}
 
 private:
+	// like xdg-desktop-portal: the app ID of a connection is registered with its first call or
+	// derived from it otherwise, and can't be registered afterwards
+	bool trackAppId(const QDBusMessage& message, const QDBusConnection& connection)
+	{
+		const auto sender = message.service();
+		const auto firstCall = m_appIds.contains(sender) == false;
+		if (firstCall)
+		{
+			m_firstCalls.append(message.member());
+		}
+
+		if (message.interface() == RegistryInterface && message.member() == QLatin1String("Register"))
+		{
+			++m_registerCalls;
+			if (m_registry == Registry::Missing)
+			{
+				// answered with UnknownMethod
+				return false;
+			}
+			if (m_registry == Registry::NoReply)
+			{
+				connection.send(message.createErrorReply(QDBusError::NoReply, QStringLiteral("no reply")));
+				return true;
+			}
+			if (firstCall == false)
+			{
+				connection.send(message.createErrorReply(QStringLiteral("org.freedesktop.portal.Error.Failed"),
+														 QStringLiteral("Connection already associated with an application ID")));
+				return true;
+			}
+			const auto appId = message.arguments().value(0).toString();
+			m_appIds[sender] = appId;
+			m_registeredAppIds.append(appId);
+			connection.send(message.createReply());
+			return true;
+		}
+
+		if (firstCall)
+		{
+			m_appIds[sender] = QString();
+		}
+
+		return false;
+	}
+
 	static QString sessionNumber(const QVariant& sessionHandle)
 	{
 		return qvariant_cast<QDBusObjectPath>(sessionHandle).path().mid(SessionPathPrefix.size());
@@ -325,6 +403,11 @@ private:
 			response = 2;
 		}
 
+		if (message.member() == QLatin1String("SelectDevices"))
+		{
+			m_restoreTokens.append(options.value(QStringLiteral("restore_token")).toString());
+		}
+
 		QVariantMap results;
 		if (message.member() == QLatin1String("CreateSession"))
 		{
@@ -354,6 +437,13 @@ private:
 		});
 	}
 
+	const Registry m_registry;
+	QHash<QString, QString> m_appIds;
+	QStringList m_registeredAppIds;
+	int m_registerCalls = 0;
+	// the method of the first call of each connection
+	QStringList m_firstCalls;
+	QStringList m_restoreTokens;
 	int m_sessionCount = 0;
 	bool m_denyNextStart = false;
 	QPoint m_streamPosition;
@@ -392,20 +482,12 @@ private Q_SLOTS:
 		qputenv("XDG_STATE_HOME", m_home.filePath(QStringLiteral("state")).toUtf8());
 
 		m_portal.setProcessChannelMode(QProcess::ForwardedErrorChannel);
-		m_portal.start(QCoreApplication::applicationFilePath(), {QStringLiteral("--fake-portal")});
-		QVERIFY(m_portal.waitForStarted());
-		QVERIFY(m_portal.waitForReadyRead());
-		QCOMPARE(m_portal.readAllStandardOutput().trimmed(), QByteArrayLiteral("ready"));
+		QVERIFY(startPortal());
 	}
 
 	void cleanupTestCase()
 	{
-		m_portal.terminate();
-		if (m_portal.waitForFinished(2000) == false)
-		{
-			m_portal.kill();
-			m_portal.waitForFinished();
-		}
+		stopPortal();
 	}
 
 	void keepsInputOrder()
@@ -810,7 +892,248 @@ private Q_SLOTS:
 		QCOMPARE(session.state(), PortalSession::State::Idle);
 	}
 
+	// every start registers first, and again on the same portal it is no reason to warn
+	void registersAppIdOnEveryStart()
+	{
+		failOnAppIdWarning();
+
+		const auto calls = registerCalls();
+		PortalSession session(false);
+		QVERIFY(startSession(session));
+		session.close();
+		QVERIFY(startSession(session));
+		const auto sessionNumber = currentSessionNumber();
+		session.notifyKeyboardKeysym('g', true);
+		QTRY_COMPARE(forwardedInput(sessionNumber), QStringList{keyEvent(sessionNumber, 'g', 1)});
+
+		QCOMPARE(registerCalls(), calls + 2);
+		QCOMPARE(registeredAppIds(), QStringList{TestAppId});
+		QCOMPARE(firstCalls(), QStringList{QStringLiteral("Register")});
+	}
+
+	void restoreTokenFormats()
+	{
+		// xdg-desktop-portal >= 1.22.1: D-Bus path element characters, 22 for 16 random bytes
+		const auto pathElementToken = QStringLiteral("AbCdEfGhIjKlMnOpQr_t9z");
+		const auto uuidToken = QStringLiteral("0f2d8a5e-3c1b-4b6a-9e7d-2a4c6e8f0b1d");
+
+		const QList<QPair<QString, QString>> tokens{
+			{pathElementToken, pathElementToken},
+			{uuidToken, uuidToken},
+			// the portal would fail SelectDevices for these
+			{QLatin1Char('{') + uuidToken + QLatin1Char('}'), {}},
+			{QStringLiteral("AbCdEfGhIjKl-MnOpQr+t9z"), {}},
+			{QString(MaximumRestoreTokenLength + 1, QLatin1Char('a')), {}},
+		};
+
+		for (const auto& token : tokens)
+		{
+			writeRestoreToken(token.first);
+			PortalSession session(true);
+			QVERIFY(startSession(session));
+			session.close();
+			QCOMPARE(restoreTokens().constLast(), token.second);
+		}
+
+		QFile::remove(restoreTokenFilePath());
+	}
+
+	// systemctl --user restart xdg-desktop-portal: the stream ends and the session is closed while
+	// the new portal is running already, which knows no registration of the connection
+	void registersWithRestartedPortal()
+	{
+		failOnAppIdWarning();
+
+		PortalSession session(false);
+		QVERIFY(startSession(session));
+		session.notifyKeyboardKeysym('n', true);
+		QTRY_COMPARE(forwardedInput(currentSessionNumber()), QStringList{keyEvent(currentSessionNumber(), 'n', 1)});
+
+		restartPortal();
+
+		// the release and the closing go to the old portal, not to the new one before the registration
+		session.close();
+		QTest::qWait(200);
+		QCOMPARE(firstCalls(), QStringList{});
+
+		QVERIFY(startSession(session));
+		const auto sessionNumber = currentSessionNumber();
+		session.notifyKeyboardKeysym('n', true);
+		QTRY_COMPARE(forwardedInput(sessionNumber), QStringList{keyEvent(sessionNumber, 'n', 1)});
+
+		QCOMPARE(firstCalls(), QStringList{QStringLiteral("Register")});
+		QCOMPARE(registeredAppIds(), QStringList{TestAppId});
+		QCOMPARE(registerCalls(), 1);
+	}
+
+	// the portal went away and the session is closed while none is running: only the registration
+	// of the next start may start the portal (D-Bus activation, see CMakeLists.txt)
+	void onlyRegistrationStartsPortal()
+	{
+		failOnAppIdWarning();
+
+		PortalSession session(false);
+		QVERIFY(startSession(session));
+		session.notifyKeyboardKeysym('p', true);
+		QTRY_COMPARE(forwardedInput(currentSessionNumber()), QStringList{keyEvent(currentSessionNumber(), 'p', 1)});
+
+		stopPortal();
+		session.close();
+		QTest::qWait(300);
+		QCOMPARE(portalRunning(), false);
+
+		m_sessionNumber = 0;
+		QVERIFY(startSession(session));
+		QVERIFY(portalRunning());
+		QCOMPARE(firstCalls(), QStringList{QStringLiteral("Register")});
+		QCOMPARE(registeredAppIds(), QStringList{TestAppId});
+
+		session.close();
+		restartPortal();
+	}
+
+	// e.g. at login: the start fails while the portal doesn't reply, the restart succeeds
+	void waitsForPortal()
+	{
+		PortalSession session(false);
+		QSignalSpy failedSpy(&session, &PortalSession::failed);
+
+		restartPortal({QStringLiteral("--unreachable-registry")});
+		QTest::ignoreMessage(QtWarningMsg, QRegularExpression(QStringLiteral("not reachable for registering")));
+		session.start();
+		QCOMPARE(failedSpy.size(), 1);
+		QCOMPARE(session.state(), PortalSession::State::Failed);
+		QCOMPARE(firstCalls(), QStringList{QStringLiteral("Register")});
+		QCOMPARE(registerCalls(), 1);
+
+		restartPortal();
+		QVERIFY(startSession(session));
+		QCOMPARE(firstCalls(), QStringList{QStringLiteral("Register")});
+		QCOMPARE(registeredAppIds(), QStringList{TestAppId});
+		QCOMPARE(failedSpy.size(), 1);
+	}
+
+	// xdg-desktop-portal < 1.19.4
+	void worksWithoutRegistry()
+	{
+		failOnAppIdWarning();
+
+		PortalSession session(false);
+		QSignalSpy failedSpy(&session, &PortalSession::failed);
+
+		restartPortal({QStringLiteral("--without-registry")});
+		QVERIFY(startSession(session));
+		const auto sessionNumber = currentSessionNumber();
+		session.notifyKeyboardKeysym('o', true);
+		QTRY_COMPARE(forwardedInput(sessionNumber), QStringList{keyEvent(sessionNumber, 'o', 1)});
+		session.close();
+		QVERIFY(startSession(session));
+
+		QCOMPARE(registeredAppIds(), QStringList{});
+		QCOMPARE(registerCalls(), 2);
+		QCOMPARE(failedSpy.size(), 0);
+
+		// updated to a portal with registry
+		restartPortal();
+		session.close();
+		QVERIFY(startSession(session));
+		QCOMPARE(firstCalls(), QStringList{QStringLiteral("Register")});
+		QCOMPARE(registeredAppIds(), QStringList{TestAppId});
+	}
+
 private:
+	// see PortalSession
+	static constexpr int MaximumRestoreTokenLength = 64;
+
+	static void failOnAppIdWarning()
+	{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 3, 0)
+		QTest::failOnWarning(QRegularExpression(QStringLiteral("app ID")));
+#endif
+	}
+
+	static bool portalRunning()
+	{
+		return QDBusConnection::sessionBus().interface()->isServiceRegistered(FakePortalService);
+	}
+
+	bool startPortal(const QStringList& arguments = {})
+	{
+		m_portal.start(QCoreApplication::applicationFilePath(), QStringList{QStringLiteral("--fake-portal")} + arguments);
+		m_sessionNumber = 0;
+		return m_portal.waitForStarted() && m_portal.waitForReadyRead() &&
+			   m_portal.readAllStandardOutput().trimmed() == QByteArrayLiteral("ready");
+	}
+
+	void stopPortal()
+	{
+		if (m_portal.state() != QProcess::NotRunning)
+		{
+			m_portal.terminate();
+			if (m_portal.waitForFinished(2000) == false)
+			{
+				m_portal.kill();
+				m_portal.waitForFinished();
+			}
+		}
+		else if (portalRunning())
+		{
+			// started by the bus
+			auto request = QDBusMessage::createMethodCall(FakePortalService, FakePortalObjectPath, TestInterface,
+														  QStringLiteral("Quit"));
+			request.setAutoStartService(false);
+			QDBusConnection::sessionBus().call(request);
+			QTRY_VERIFY(portalRunning() == false);
+		}
+	}
+
+	void restartPortal(const QStringList& arguments = {})
+	{
+		stopPortal();
+		QVERIFY(startPortal(arguments));
+		// let the sessions see the change of the owner
+		QTest::qWait(200);
+	}
+
+	static QString restoreTokenFilePath()
+	{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 7, 0)
+		return QStandardPaths::writableLocation(QStandardPaths::GenericStateLocation) +
+			   QStringLiteral("/veyon/portal-restore-token");
+#else
+		return QDir::homePath() + QStringLiteral("/.local/share/veyon/portal-restore-token");
+#endif
+	}
+
+	static void writeRestoreToken(const QString& token)
+	{
+		const auto path = restoreTokenFilePath();
+		QDir().mkpath(QFileInfo(path).path());
+		QFile file(path);
+		QVERIFY(file.open(QFile::WriteOnly | QFile::Truncate));
+		file.write(token.toUtf8() + '\n');
+	}
+
+	static QStringList registeredAppIds()
+	{
+		return portalState().value(3).toStringList();
+	}
+
+	static int registerCalls()
+	{
+		return portalState().value(4).toInt();
+	}
+
+	static QStringList firstCalls()
+	{
+		return portalState().value(5).toStringList();
+	}
+
+	static QStringList restoreTokens()
+	{
+		return portalState().value(6).toStringList();
+	}
+
 	static void setMutter(bool mutter)
 	{
 		auto request = QDBusMessage::createMethodCall(FakePortalService, FakePortalObjectPath, TestInterface,
@@ -894,8 +1217,10 @@ private:
 
 	static QVariantList portalState()
 	{
-		const auto request = QDBusMessage::createMethodCall(FakePortalService, FakePortalObjectPath, TestInterface,
-															QStringLiteral("State"));
+		auto request = QDBusMessage::createMethodCall(FakePortalService, FakePortalObjectPath, TestInterface,
+													  QStringLiteral("State"));
+		// the portal under test is started by PortalSession only
+		request.setAutoStartService(false);
 		return QDBusConnection::sessionBus().call(request).arguments();
 	}
 
@@ -920,7 +1245,7 @@ private:
 int main(int argc, char** argv)
 {
 	QGuiApplication application(argc, argv);
-	QGuiApplication::setDesktopFileName(QStringLiteral("io.veyon.PortalSessionTest"));
+	QGuiApplication::setDesktopFileName(TestAppId);
 
 	if (application.arguments().contains(QStringLiteral("--fake-portal")))
 	{
@@ -928,7 +1253,16 @@ int main(int argc, char** argv)
 		qDBusRegisterMetaType<Stream>();
 		qDBusRegisterMetaType<QList<Stream>>();
 
-		FakePortal portal;
+		auto registry = FakePortal::Registry::Available;
+		if (application.arguments().contains(QStringLiteral("--without-registry")))
+		{
+			registry = FakePortal::Registry::Missing;
+		}
+		else if (application.arguments().contains(QStringLiteral("--unreachable-registry")))
+		{
+			registry = FakePortal::Registry::NoReply;
+		}
+		FakePortal portal(registry);
 		auto connection = QDBusConnection::sessionBus();
 		if (connection.registerService(FakePortalService) == false ||
 			connection.registerVirtualObject(QStringLiteral("/org/freedesktop/portal"), &portal,

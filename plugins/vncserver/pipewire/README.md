@@ -46,9 +46,13 @@ an administrator survive service restarts.
 
 The identifier is registered in three complementary ways:
 
-1. **D-Bus well-known name** — `PortalSession` calls
-   `QDBusConnection::sessionBus().registerService("io.veyon.veyon-server")`
-   at start-up so the portal sees the correct app_id for every method call.
+1. **Host app registry** — with xdg-desktop-portal ≥ 1.19.4, `PortalSession`
+   calls `org.freedesktop.host.portal.Registry.Register("io.veyon.veyon-server")`
+   on a session bus connection of its own whenever it starts a session. All
+   other portal calls go to the portal instance which answered, so a restarted
+   portal sees `Register` first. Older portals derive the app_id from the
+   systemd scope of the process. The portal doesn't take the app_id from
+   well-known bus names.
 
 2. **XDG `.desktop` file** — `io.veyon.veyon-server.desktop` is installed to
    `/usr/share/applications/`.  The portal reads `Name=Veyon Server` from it

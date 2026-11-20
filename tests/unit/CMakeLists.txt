@@ -133,8 +133,29 @@ if(WITH_TESTS AND VEYON_BUILD_LINUX)
 			veyon-core
 		)
 
+		# a bus which starts the fake portal on demand (D-Bus activation) instead of the system's portal
+		set(PORTAL_SESSION_TEST_BUS_DIR ${CMAKE_CURRENT_BINARY_DIR}/PortalSessionTestBus)
+		file(GENERATE OUTPUT ${PORTAL_SESSION_TEST_BUS_DIR}/services/org.freedesktop.portal.Desktop.service
+			CONTENT "[D-BUS Service]\nName=org.freedesktop.portal.Desktop\nExec=$<TARGET_FILE:PortalSessionTest> --fake-portal\n")
+		file(WRITE ${PORTAL_SESSION_TEST_BUS_DIR}/session.conf
+"<!DOCTYPE busconfig PUBLIC \"-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN\"
+ \"http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd\">
+<busconfig>
+	<type>session</type>
+	<listen>unix:tmpdir=/tmp</listen>
+	<auth>EXTERNAL</auth>
+	<servicedir>${PORTAL_SESSION_TEST_BUS_DIR}/services</servicedir>
+	<policy context=\"default\">
+		<allow send_destination=\"*\" eavesdrop=\"true\"/>
+		<allow eavesdrop=\"true\"/>
+		<allow own=\"*\"/>
+	</policy>
+</busconfig>
+")
+
 		add_test(NAME PortalSessionTest
-			COMMAND ${DBUS_RUN_SESSION_EXECUTABLE} -- $<TARGET_FILE:PortalSessionTest>)
+			COMMAND ${DBUS_RUN_SESSION_EXECUTABLE} --config-file=${PORTAL_SESSION_TEST_BUS_DIR}/session.conf
+				-- $<TARGET_FILE:PortalSessionTest>)
 		set_tests_properties(PortalSessionTest PROPERTIES
 			ENVIRONMENT "VEYON_TEST_PRIVATE_SESSION_BUS=1;QT_QPA_PLATFORM=offscreen"
 			TIMEOUT 60)
