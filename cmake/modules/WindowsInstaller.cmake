@@ -12,6 +12,10 @@ else()
 	set(DLL_DDENGINE "ddengine.dll")
 endif()
 
+if(WITH_ULTRAVNC)
+	set(VNCHOOKS_INSTALL_COMMAND COMMAND mv ${WINDOWS_INSTALL_FILES}/plugins/vnchooks.dll ${WINDOWS_INSTALL_FILES})
+endif()
+
 add_custom_target(windows-binaries
 	COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --config $<CONFIGURATION>
 	COMMAND rm -rf ${WINDOWS_INSTALL_FILES}*
@@ -24,7 +28,7 @@ add_custom_target(windows-binaries
 	COMMAND mkdir -p ${WINDOWS_INSTALL_FILES}/plugins
 	COMMAND find plugins/ -name '*.dll' -exec cp '{}' ${WINDOWS_INSTALL_FILES}/plugins/ '\;'
 	COMMAND mv ${WINDOWS_INSTALL_FILES}/plugins/lib*.dll ${WINDOWS_INSTALL_FILES}
-	COMMAND mv ${WINDOWS_INSTALL_FILES}/plugins/vnchooks.dll ${WINDOWS_INSTALL_FILES}
+	${VNCHOOKS_INSTALL_COMMAND}
 	COMMAND mkdir -p ${WINDOWS_INSTALL_FILES}/translations
 	COMMAND cp translations/*qm ${WINDOWS_INSTALL_FILES}/translations/
 	COMMAND cp ${DLLDIR}/libjpeg-62.dll ${WINDOWS_INSTALL_FILES}

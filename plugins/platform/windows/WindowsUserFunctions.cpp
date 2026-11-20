@@ -2,12 +2,14 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include <dsgetdc.h>
+#include <lm.h>
 #include <wtsapi32.h>
 #include <sddl.h>
+#define SECURITY_WIN32
+#include <security.h>
 
 #include <QBuffer>
 
-#include "DesktopInputController.h"
 #include "VeyonConfiguration.h"
 #include "WindowsCoreFunctions.h"
 #include "WindowsInputDeviceFunctions.h"
@@ -15,11 +17,14 @@
 #include "WindowsUserFunctions.h"
 #include "WtsSessionManager.h"
 
+#ifdef VEYON_WITH_ULTRAVNC
+#include "DesktopInputController.h"
 #include "authSSP.h"
 
 #define XK_MISCELLANY
 
 #include "keysymdef.h"
+#endif
 
 #include <vector>
 
@@ -213,6 +218,12 @@ WindowsUserFunctions::UserIdentity WindowsUserFunctions::queryUserIdentity(const
 
 bool WindowsUserFunctions::prepareLogon(const QString& username, const Password& password)
 {
+#ifndef VEYON_WITH_ULTRAVNC
+	Q_UNUSED(username)
+	Q_UNUSED(password)
+	vCritical() << "user logon is not supported as Veyon has been built without UltraVNC";
+	return false;
+#else
 	if (m_logonHelper.prepare(username, password))
 	{
 		logoff();
@@ -220,12 +231,19 @@ bool WindowsUserFunctions::prepareLogon(const QString& username, const Password&
 	}
 
 	return false;
+#endif
 }
 
 
 
 bool WindowsUserFunctions::performLogon(const QString& username, const Password& password)
 {
+#ifndef VEYON_WITH_ULTRAVNC
+	Q_UNUSED(username)
+	Q_UNUSED(password)
+	vCritical() << "user logon is not supported as Veyon has been built without UltraVNC";
+	return false;
+#else
 	WindowsPlatformConfiguration config(&VeyonCore::config());
 
 	DesktopInputController input(config.logonKeyPressInterval());
@@ -268,6 +286,7 @@ bool WindowsUserFunctions::performLogon(const QString& username, const Password&
 	input.pressAndReleaseKey(XK_Return);
 
 	return true;
+#endif
 }
 
 
@@ -299,28 +318,32 @@ bool WindowsUserFunctions::authenticate(const QString& username, const Password&
 	auto userWide = WindowsCoreFunctions::toWCharArray(user);
 	auto passwordWide = WindowsCoreFunctions::toWCharArray(QString::fromUtf8(password.toByteArray()));
 
-	bool result = false;
-
-	if (WindowsPlatformConfiguration(&VeyonCore::config()).disableSSPIBasedUserAuthentication())
+#ifdef VEYON_WITH_ULTRAVNC
+	if (WindowsPlatformConfiguration(&VeyonCore::config()).disableSSPIBasedUserAuthentication() == false)
 	{
-		for (auto logonProvider : {LOGON32_PROVIDER_DEFAULT, LOGON32_PROVIDER_WINNT50, LOGON32_PROVIDER_WINNT40})
-		{
-			SmartHandle token;
-			result = LogonUserW(userWide.get(), domain.isEmpty() ? nullptr : domainWide.get(), passwordWide.get(),
-								LOGON32_LOGON_NETWORK, logonProvider, token.put());
-			const auto error = GetLastError();
-			vDebug() << "LogonUserW()" << logonProvider << result << error;
-			if (token)
-			{
-				break;
-			}
-		}
-	}
-	else
-	{
-		result = SSPLogonUser(domainWide.get(), userWide.get(), passwordWide.get());
+		const bool result = SSPLogonUser(domainWide.get(), userWide.get(), passwordWide.get());
 		const auto error = GetLastError();
 		vDebug() << "SSPLogonUser()" << result << error;
+		return result;
+	}
+#else
+	vDebug() << "SSPI-based user authentication is not available as Veyon has been built without UltraVNC, "
+				"using LogonUserW() instead";
+#endif
+
+	bool result = false;
+
+	for (auto logonProvider : {LOGON32_PROVIDER_DEFAULT, LOGON32_PROVIDER_WINNT50, LOGON32_PROVIDER_WINNT40})
+	{
+		SmartHandle token;
+		result = LogonUserW(userWide.get(), domain.isEmpty() ? nullptr : domainWide.get(), passwordWide.get(),
+							LOGON32_LOGON_NETWORK, logonProvider, token.put());
+		const auto error = GetLastError();
+		vDebug() << "LogonUserW()" << logonProvider << result << error;
+		if (token)
+		{
+			break;
+		}
 	}
 
 	return result;

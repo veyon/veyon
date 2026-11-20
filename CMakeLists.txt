@@ -16,6 +16,7 @@ option(WITH_THREAD_SANITIZER "Build with thread sanitizer" OFF)
 option(WITH_UB_SANITIZER "Build with undefined behavior sanitizer" OFF)
 option(WITH_FUZZERS "Build LLVM fuzzer tests (implies WITH_TESTS=ON)" OFF)
 option(WITH_BUNDLED_LIBVNC "Build with bundled LibVNCServer/Client" OFF)
+option(WITH_ULTRAVNC "Build the components based on the bundled UltraVNC sources (Windows only)" ON)
 option(WITH_WEBAPI "Build WebAPI plugin" ON)
 
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
@@ -389,6 +390,7 @@ message("\n"
 	"* Stack protection            : ${WITH_STACK_PROTECTION}\n"
 	"* Use precompiled headers     : ${WITH_PCH}\n"
 	"* Use unity build             : ${WITH_UNITY_BUILD}\n"
+	"* UltraVNC (Windows only)     : ${WITH_ULTRAVNC}\n"
 	)
 
 if(VEYON_BUILD_ANDROID)
