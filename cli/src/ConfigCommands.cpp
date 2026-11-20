@@ -36,7 +36,8 @@ static constexpr qint64 MaximumConfigurationFileSize = 64 * 1024 * 1024;
 ConfigCommands::ConfigCommands(QObject* parent) :
 	QObject(parent),
 	m_commands({
-		{QStringLiteral("clear"), tr("Clear system-wide Veyon configuration")},
+		{QStringLiteral("clear"), tr("Clear system-wide Veyon configuration and all stored secrets except host keys, "
+									 "CA keys and the pre-migration backup")},
 		{QStringLiteral("list"), tr("List all configuration keys and values")},
 		{QStringLiteral("import"), tr("Import configuration from given file (secrets with --include-secrets "
 									  "[--passphrase-file FILE])")},
@@ -76,21 +77,16 @@ CommandLinePluginInterface::RunResult ConfigCommands::handle_clear(const QString
 	if (SecretStore::isAvailable())
 	{
 		const auto storedKeys = SecretStore::keys();
-		QStringList removedSecretKeys;
-		for (const auto& secretProperty : Configuration::SecretPropertyRegistry::properties())
+		// all secrets outside the reserved scopes, including those of plugins which are not loaded
+		QString failedKey;
+		const auto removedSecretKeys = Configuration::SecretPropertyRegistry::removeUnreservedSecrets(&failedKey);
+		if (removedSecretKeys.has_value() == false)
 		{
-			if (SecretStore::remove(secretProperty.secretKey) == false)
-			{
-				return operationError(tr("Could not remove secret %1.").arg(secretProperty.secretKey));
-			}
-			if (storedKeys.contains(secretProperty.secretKey))
-			{
-				removedSecretKeys.append(secretProperty.secretKey);
-			}
+			return operationError(tr("Could not remove secret %1.").arg(failedKey));
 		}
-		if (removedSecretKeys.isEmpty() == false)
+		if (removedSecretKeys->isEmpty() == false)
 		{
-			CommandLineIO::info(tr("Removed secrets: %1").arg(removedSecretKeys.join(QStringLiteral(", "))));
+			CommandLineIO::info(tr("Removed secrets: %1").arg(removedSecretKeys->join(QStringLiteral(", "))));
 		}
 		// kept on purpose: the only way back to Veyon 4.11
 		const auto preMigrationKey = Configuration::LegacySecretMigration::preMigrationConfigurationKey();
@@ -412,8 +408,9 @@ CommandLinePluginInterface::RunResult ConfigCommands::handle_set(const QStringLi
 	}
 
 	// a secret property of a plugin which is not loaded: neither replace its reference with a
-	// plain value nor create references (03-secretstore-config.md §3a)
-	if (Configuration::SecretReference::isReference(VeyonCore::config().value(key, parentKey, {}).toString()) ||
+	// plain value nor create references (03-secretstore-config.md §3a); the stored key may differ
+	// in case (case-insensitive registry on Windows)
+	if (unregisteredSecretReferences(arguments.value(0)).isEmpty() == false ||
 		Configuration::SecretReference::isReference(value))
 	{
 		return operationError(tr("The specified key is not a secret property of a loaded plugin."));
@@ -467,6 +464,17 @@ CommandLinePluginInterface::RunResult ConfigCommands::handle_unset(const QString
 
 	// a secret property or a group containing secret properties: remove their secrets as well
 	const auto fullKey = parentKey.isEmpty() ? key : QString(parentKey + QLatin1Char('/') + key);
+
+	// the reference of a secret property of a plugin which is not loaded: removing it would leave
+	// its secret effective again once the plugin is loaded (an empty value resolves to the own
+	// reference), and the secret it names is not looked up from the configuration
+	const auto unregisteredReferences = unregisteredSecretReferences(fullKey);
+	if (unregisteredReferences.isEmpty() == false)
+	{
+		return operationError(tr("%1 refers to a secret of a plugin which is not loaded. Load the plugin to unset "
+								 "it together with its secret, or remove all secrets with 'config clear'.")
+								  .arg(unregisteredReferences.join(QStringLiteral(", "))));
+	}
 	const auto removedSecretKeys = Configuration::SecretPropertyRegistry::secretKeysBelow(fullKey);
 	if (removedSecretKeys.isEmpty() == false)
 	{
@@ -557,6 +565,52 @@ QStringList ConfigCommands::configuredSecretKeys()
 
 
 
+static void collectUnregisteredSecretReferences(const QVariantMap& data, const QString& parentKey, QStringList& keys)
+{
+	for (auto it = data.constBegin(); it != data.constEnd(); ++it)
+	{
+		const auto fullKey = parentKey.isEmpty() ? it.key() : QString(parentKey + QLatin1Char('/') + it.key());
+		if (it.value().userType() == QMetaType::QVariantMap)
+		{
+			collectUnregisteredSecretReferences(it.value().toMap(), fullKey, keys);
+		}
+		else if (it.value().userType() == QMetaType::QString &&
+				 Configuration::SecretReference::isReference(it.value().toString()) &&
+				 Configuration::SecretPropertyRegistry::find(parentKey, it.key()).has_value() == false)
+		{
+			keys.append(fullKey);
+		}
+	}
+}
+
+
+
+QStringList ConfigCommands::unregisteredSecretReferences(const QString& fullKey)
+{
+	QStringList keys;
+	collectUnregisteredSecretReferences(VeyonCore::config().data(), {}, keys);
+
+	if (fullKey.isEmpty())
+	{
+		return keys;
+	}
+
+	// case-insensitive like the registry-based configuration on Windows
+	QStringList keysBelow;
+	for (const auto& key : std::as_const(keys))
+	{
+		if (key.compare(fullKey, Qt::CaseInsensitive) == 0 ||
+			key.startsWith(QString(fullKey + QLatin1Char('/')), Qt::CaseInsensitive))
+		{
+			keysBelow.append(key);
+		}
+	}
+
+	return keysBelow;
+}
+
+
+
 std::optional<Veyon::Crypto::SecureBuffer> ConfigCommands::readSecretInput(const QString& prompt, bool confirm)
 {
 	Veyon::Crypto::SecureBuffer secret;
@@ -639,6 +693,13 @@ std::optional<QJsonObject> ConfigCommands::exportSecrets(const Options& options)
 	{
 		CommandLineIO::error(tr("Exporting secrets requires administrator privileges."));
 		return {};
+	}
+
+	const auto unregisteredReferences = unregisteredSecretReferences({});
+	if (unregisteredReferences.isEmpty() == false)
+	{
+		CommandLineIO::warning(tr("The secrets of %1 are not exported (no loaded plugin declares them).")
+								   .arg(unregisteredReferences.join(QStringLiteral(", "))));
 	}
 
 	// only secrets referenced by the configuration, never host keys or CA keys

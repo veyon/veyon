@@ -94,6 +94,9 @@ private:
 
 	static std::optional<Options> parseOptions(const QStringList& arguments);
 	static QStringList configuredSecretKeys();
+	// keys of the configuration at or below fullKey (all for an empty one) holding a reference to a
+	// secret without a registered secret property, e.g. of a plugin which is not loaded
+	static QStringList unregisteredSecretReferences(const QString& fullKey);
 	static std::optional<Veyon::Crypto::SecureBuffer> readSecretInput(const QString& prompt, bool confirm);
 	static std::optional<Veyon::Crypto::SecureBuffer> readPassphrase(const Options& options, bool confirm);
 

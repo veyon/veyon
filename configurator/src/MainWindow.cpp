@@ -251,22 +251,21 @@ void MainWindow::resetConfiguration()
 {
 	if (QMessageBox::warning(this, tr("Reset configuration"),
 							 tr("Do you really want to reset the local configuration and revert "
-								"all settings to their defaults? Stored secrets such as the LDAP bind "
-								"password are deleted as well."),
+								"all settings to their defaults? All stored secrets such as the LDAP bind "
+								"password are deleted as well, except host keys, CA keys and the backup "
+								"of the configuration before the migration of legacy passwords."),
 							 QMessageBox::Yes | QMessageBox::No, QMessageBox::No) ==
 		QMessageBox::Yes)
 	{
-		// like veyon-cli config clear: a reset configuration must not keep old secrets effective
+		// like veyon-cli config clear: a reset configuration must not keep old secrets effective,
+		// including those of plugins which are not loaded (the removed keys are logged)
 		if (SecretStore::isAvailable())
 		{
-			for (const auto& secretProperty : Configuration::SecretPropertyRegistry::properties())
+			QString failedKey;
+			if (Configuration::SecretPropertyRegistry::removeUnreservedSecrets(&failedKey).has_value() == false)
 			{
-				if (SecretStore::remove(secretProperty.secretKey) == false)
-				{
-					QMessageBox::critical(this, tr("Reset configuration"),
-										  tr("Could not remove secret %1.").arg(secretProperty.secretKey));
-					return;
-				}
+				QMessageBox::critical(this, tr("Reset configuration"), tr("Could not remove secret %1.").arg(failedKey));
+				return;
 			}
 		}
 		else
